@@ -24,8 +24,18 @@
 - 🇸🇬 **싱가포르식** — 시각화, 모델
 - ✡️ **유대인식** — 하브루타 논리 토론
 
+---
+
+## 메인 허브
+
+https://choisuka.github.io/
+
 ## 관련 앱
 
-- 메인 허브: https://choisuka.github.io/
-- 아르모니아 허브: https://choisuka.github.io/armoonia_hub/
-- 유대인 수학: https://choisuka.github.io/jewish_math/
+| 앱 | 링크 | 설명 |
+|---|---|---|
+| 유대인 수학 교육과정 | https://choisuka.github.io/jewish_math/ | 하브루타·초1~중3 |
+| 고등 수학의 탑 | https://choisuka.github.io/hs_math/ | 고1 수학 카드 |
+| 수학왕국 드릴형 | https://choisuka.github.io/math_game/ | 초등·중등 드릴 |
+| 수학 탐정 수사국 | https://choisuka.github.io/detective_math/ | 방정식 활용 |
+| 마법학교 중등형 | https://choisuka.github.io/algebra_game/ | 중등 대수 |
