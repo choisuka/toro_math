@@ -39,3 +39,7 @@ https://choisuka.github.io/
 | 수학왕국 드릴형 | https://choisuka.github.io/math_game/ | 초등·중등 드릴 |
 | 수학 탐정 수사국 | https://choisuka.github.io/detective_math/ | 방정식 활용 |
 | 마법학교 중등형 | https://choisuka.github.io/algebra_game/ | 중등 대수 |
+
+## 개발 정보
+- 로컬 폴더: `C:/Users/USER/toro_math`
+- GitHub 레포: `choisuka/toro_math`
