@@ -1256,6 +1256,54 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 </div>
 
 <!-- ══════════════════════════════════
+     퀴즈
+══════════════════════════════════ -->
+<div id="quiz" class="screen">
+  <div class="nav-bar">
+    <button class="nav-back" onclick="showScreen(ST.from)">← 뒤로</button>
+    <div class="progress-wrap"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    <div class="q-num" id="q-num-label">1 / 5</div>
+  </div>
+  <div id="quiz-inner" style="width:100%;max-width:580px"></div>
+  <div id="feedback-area" class="feedback"></div>
+  <div style="display:flex;gap:10px;margin-top:10px;width:100%;max-width:580px">
+    <button class="btn btn-sub" id="btn-skip" onclick="skipQ()" style="flex:1">건너뛰기</button>
+    <button class="btn btn-sub" id="btn-next" onclick="nextQ()" style="flex:1;display:none">다음 →</button>
+    <button class="btn btn-sub" id="btn-dok" onclick="showDok()" style="display:none">💡 사고력</button>
+    <button class="btn btn-main" id="btn-check" onclick="checkAnswer()" style="display:none">확인</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     결과
+══════════════════════════════════ -->
+<div id="result" class="screen">
+  <span class="result-toro" id="result-toro">🦕</span>
+  <div class="result-score" id="result-score"></div>
+  <div class="result-msg" id="result-msg"></div>
+  <div class="result-detail" id="result-detail"></div>
+  <div class="donate-info" id="donate-info"></div>
+  <div id="armonia-badge-result" style="display:none;margin-top:12px;width:100%"></div>
+  <div style="display:flex;gap:10px;margin-top:16px;width:100%">
+    <button class="btn btn-sub" onclick="showScreen('notebook')" style="flex:1">📓 오답 확인</button>
+    <button class="btn btn-main" onclick="showScreen(ST.from)" style="flex:1">🏠 돌아가기</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     오답 노트
+══════════════════════════════════ -->
+<div id="notebook" class="screen">
+  <div class="nav-bar" style="max-width:600px;width:100%">
+    <button class="nav-back" onclick="showScreen('home')">← 홈</button>
+    <h2 style="flex:1;font-family:'Jua',sans-serif;color:var(--yellow);font-size:1.1rem;text-align:center">
+      📓 토로의 오답 노트
+    </h2>
+  </div>
+  <div id="notebook-list" style="width:100%;max-width:600px"></div>
+</div>
+
+<!-- ══════════════════════════════════
      사고력 문제
 ══════════════════════════════════ -->
 
@@ -5642,6 +5690,7 @@ showScreen=function(name){
   _origShowScreen(name);
   if(name==='factmult') renderFactmult();
   if(name==='fm-report') renderFMReport();
+  if(name==='notebook') renderNotebook();
   // badge 갱신
   document.getElementById('fm-badge-home').style.display=checkFMBadge()?'block':'none';
 };
@@ -6031,6 +6080,115 @@ awardArtifact = function(setName) {
 // 페이지 로드 시 초기화
 applyFog();
 updateArtifactBadge();
+
+// ── 퀴즈 보조 상수 ──────────────────────────────────────
+const TOPIC_NAMES={
+  frac_add:'분수 덧셈', frac_sub:'분수 뺄셈',
+  ratio:'비와 비율', percent:'백분율·할인',
+  prime:'소인수분해', equation:'일차방정식',
+};
+const TOPIC_COLOR={
+  frac_add:'var(--green)', frac_sub:'var(--blue)',
+  ratio:'var(--yellow)', percent:'var(--orange)',
+  prime:'var(--purple)', equation:'var(--blue)',
+};
+const ERR_MSG={
+  ERR_LCM:{label:'통분 오류',tip:'최소공배수를 먼저 구해 분모를 맞춰야 해요!'},
+  ERR_NUM:{label:'분자 계산 오류',tip:'통분할 때 분자에도 같은 수를 곱해야 해요!'},
+  ERR_CAL:{label:'연산 오류',tip:'통분 후 분자끼리만 더하거나 빼요!'},
+  ERR_RED:{label:'약분 미흡',tip:'결과를 최대공약수로 나눠 기약분수로 만들어요!'},
+};
+const TORO_DOK={};
+
+// ── skipQ ────────────────────────────────────────────────
+function skipQ(){
+  ST.cur++;
+  if(ST.cur>=ST.qs.length){ showResult(); return; }
+  renderQ();
+}
+
+// ── showDok (stub) ───────────────────────────────────────
+function showDok(){}
+
+// ── showResult ───────────────────────────────────────────
+function showResult(){
+  showScreen('result');
+  const pct=Math.round(ST.score/ST.qs.length*100);
+  const toro=pct>=80?'🦕✨':pct>=60?'🦕':'🤕';
+  const msg=pct>=80?'대단해! 토로가 너무 자랑스러워!':pct>=60?'잘 했어! 조금만 더 연습하면 완벽해!':'괜찮아, 오답 노트 보고 다시 도전해봐!';
+  document.getElementById('result-toro').textContent=toro;
+  document.getElementById('result-score').innerHTML=`<span style="color:var(--green)">${ST.score}</span><span style="color:var(--gray);font-size:1.5rem"> / ${ST.qs.length}</span>`;
+  document.getElementById('result-msg').textContent=msg;
+  let detail=`<div style="font-family:'Jua',sans-serif;color:var(--gray);margin-bottom:8px">📊 ${TOPIC_NAMES[ST.topic]||ST.topic} 결과</div>`;
+  ST.qs.forEach((q,i)=>{
+    const got=ST.log.slice(-(ST.qs.length))[i];
+    if(!got) return;
+    const ok=got.allOk;
+    const firstErr=got.stepResults?.find(s=>s.errCode)?.errCode;
+    detail+=`<div class="result-row">
+      <span>문제 ${i+1}</span>
+      <span>${ok?'<span style="color:var(--green)">✅ 정답':'<span style="color:var(--red)">❌ 오답'} ${firstErr?`<span style="color:var(--red);font-size:.75rem">[${ERR_MSG[firstErr]?.label||firstErr}]</span>`:''}</span>
+    </div>`;
+  });
+  document.getElementById('result-detail').innerHTML=detail;
+  const earned=ST.log.slice(-(ST.qs.length)).filter(l=>l.allOk).length*2;
+  document.getElementById('donate-info').innerHTML=`🏅 이번 탐험으로 <b>${earned}P</b> 획득! &nbsp; 누적: <b>${ST.points.toLocaleString()}P</b>`;
+  const badgeEl=document.getElementById('armonia-badge-result');
+  if(ST.from==='notebook' && pct===100){
+    badgeEl.style.display='block';
+    badgeEl.innerHTML=`<div class="fm-badge-box"><div style="font-size:2.4rem;margin-bottom:6px">🏆</div><div style="font-family:'Jua',sans-serif;font-size:1.1rem;color:#d4a017">아르모니아 뱃지 획득!</div><div style="font-size:.78rem;color:rgba(212,160,23,.7);margin-top:4px">오답을 모두 완벽하게 고쳤어요! 대단해! 🦕✨</div></div>`;
+  } else {
+    badgeEl.style.display='none';
+  }
+}
+
+// ── renderNotebook ───────────────────────────────────────
+function renderNotebook(){
+  const list=document.getElementById('notebook-list');
+  const entries=ST.log.filter(l=>l.stepResults).reverse();
+  if(!entries.length){
+    list.innerHTML='<div style="text-align:center;color:var(--gray);padding:40px 0">아직 기록이 없어요. 문제를 풀어봐요! 🦕</div>';
+    return;
+  }
+  const wrongs=entries.filter(l=>!l.allOk);
+  if(!wrongs.length){
+    list.innerHTML=`<div class="nb-toro-header">
+      <div class="nb-toro-face">🎉🦕</div>
+      <div class="nb-toro-msg"><b style="color:var(--green);font-size:1.05rem">오답이 하나도 없어요!</b><br>토로가 엄청 자랑스러워! 계속 이렇게 해줘!</div>
+    </div>`;
+    return;
+  }
+  let html=`<div class="nb-toro-header">
+    <div class="nb-toro-face">🩹🦕</div>
+    <div class="nb-toro-msg">나도 여기서 조금 헷갈렸어!<br><b style="color:var(--yellow)">우리 같이 다시 도전해볼까?</b></div>
+  </div>`;
+  html+=wrongs.map(l=>{
+    const topicCol=TOPIC_COLOR[l.topic]||'var(--gray)';
+    let stepsHtml='';
+    l.stepResults.forEach(s=>{
+      const icon=s.ok===null?'⏳':s.ok?'✅':'⚠️';
+      const err=s.errCode?ERR_MSG[s.errCode]:null;
+      stepsHtml+=`<div style="display:flex;gap:8px;align-items:flex-start;padding:4px 0">
+        <span>${icon}</span>
+        <div>
+          <div style="font-size:.82rem;color:${s.ok===false?'var(--red)':s.ok===true?'var(--green)':'var(--gray)'}">${s.label}</div>
+          ${err?`<div style="font-size:.78rem;color:var(--yellow);margin-top:2px">💡 ${err.tip}</div>`:''}
+        </div>
+      </div>`;
+    });
+    return `<div class="nb-card">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+        <span style="font-size:.8rem;color:${topicCol}">${TOPIC_NAMES[l.topic]||l.topic}</span>
+        <span style="font-size:.75rem;color:var(--gray)">${l.time}</span>
+      </div>
+      <div class="nb-q">${l.story}</div>
+      ${stepsHtml}
+      <div class="nb-toro">🦕 정답: <b style="color:var(--yellow)">${l.answer}</b></div>
+      <button class="nb-retry-btn" onclick="startQuiz('${l.topic}','notebook')">🔄 다시 도전하기</button>
+    </div>`;
+  }).join('');
+  list.innerHTML=html;
+}
 </script>
 </body>
 </html>
