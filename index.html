@@ -1074,8 +1074,17 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     <button onclick="startCards('inequality-guide','inequality-hub')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       📊 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
     </button>
-    <button onclick="startCards('inequality-havruta','inequality-hub')" style="width:100%;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+    <button onclick="startCards('inequality-havruta','inequality-hub')" style="width:100%;margin-bottom:8px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(1편)</span> →
+    </button>
+    <button onclick="startCards('ineq-hard10','inequality-hub')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      ⚔️ 심화 10선 — 3국 풀이 <span style="font-size:.72rem;opacity:.7">(10장)</span> →
+    </button>
+    <button onclick="startCards('ineq-gemini5','inequality-hub')" style="width:100%;margin-bottom:8px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🌍 3국 연합 5선 — 최고난도 <span style="font-size:.72rem;opacity:.7">(5장)</span> →
+    </button>
+    <button onclick="startCards('ineq-lesson','inequality-hub')" style="width:100%;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📘 150분 수업 교안 <span style="font-size:.72rem;opacity:.7">(5장)</span> →
     </button>
   </div>
 </div>
@@ -4089,6 +4098,330 @@ A=6a, B=6b, ab=12, gcd(a,b)=1<br>
 </div>`, ans:null }
 ]
 
+
+/* ── 일차부등식 심화 10선 (3국 풀이) ─────────────── */
+'ineq-hard10': [
+  { tag:'⚔️ 심화 1 — 매개변수 포함 부등식', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">3(x−2) > a+x 를 x에 대해 풀어라. a의 값에 따라 해를 분류하라.</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 원리 탐구</b><br>
+"부등호는 언제 방향이 바뀌나? 양변을 <b>음수로 나눌 때만</b>이다."<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+3x − 6 &gt; a + x<br>2x &gt; a + 6<br><b style="color:#fde68a">x &gt; (a+6)/2</b>
+</div><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 수직선</b><br>
+a=0이면 x&gt;3 / a=4이면 x&gt;5 / a=−10이면 x&gt;−2<br>
+a가 커질수록 해의 시작점도 오른쪽으로 이동<br><br>
+<b style="color:#fde68a">✡️ 유대인식</b><br>
+"만약 결과가 −2x &gt; a+6 이었다면?" → 나눌 때 <b>방향 뒤집기 필수</b>.<br>지금은 2x이므로 뒤집지 않는다 — 항상 계수 부호 확인하는 습관.
+</div>`, ans:null },
+
+  { tag:'⚔️ 심화 2 — 연립부등식 + 정수 해의 개수', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">2x−1 &lt; 3x+2 이고 4x−3 ≤ 2x+5 를 동시에 만족하는 정수 x의 개수</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 각각 먼저, 교집합 나중</b><br>
+① 2x−1 &lt; 3x+2 → <b>x &gt; −3</b><br>
+② 4x−3 ≤ 2x+5 → <b>x ≤ 4</b><br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 수직선 겹치기</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+①  ────────(−3=======→<br>
+②  ←================4]────<br>
+교집합:  (−3=========4]
+</div><br>
+정수: −2, −1, 0, 1, 2, 3, 4 → <b style="color:#fde68a">7개</b><br><br>
+<b style="color:#fca5a5">⚠️ 헷갈리는 부분</b><br>
+x &gt; −3 이므로 −3은 포함 ✗ / x ≤ 4 이므로 4는 포함 ✓<br>
+경계값 포함 여부를 ●(닫힘) ○(열림)으로 반드시 확인.
+</div>`, ans:null },
+
+  { tag:'⚔️ 심화 3 — 절댓값 부등식', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">|2x−3| &lt; 5 를 풀어라</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 절댓값의 정의</b><br>
+|A| &lt; k (k&gt;0) 이면 −k &lt; A &lt; k<br>
+"거리가 k보다 가까운 수" 로 이해.<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+−5 &lt; 2x−3 &lt; 5<br>−2 &lt; 2x &lt; 8<br><b style="color:#fde68a">−1 &lt; x &lt; 4</b>
+</div><br>
+<b style="color:#fde68a">✡️ 유대인식 — "만약 &lt; 대신 &gt; 였다면?"</b><br>
+|A| &gt; k 이면 A &lt; −k <b>또는</b> A &gt; k (두 조각으로 갈라짐)<br>
+<b style="color:#fca5a5">&lt; 는 하나의 연속 구간 / &gt; 는 두 개의 분리된 구간</b>
+</div>`, ans:null },
+
+  { tag:'⚔️ 심화 4 ★★ — 해의 개수 조건 역추적', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">a ≤ 2x−1 &lt; 7 의 정수해가 정확히 3개일 때, 정수 a의 범위</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 해를 먼저, 조건 역추적</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+(a+1)/2 ≤ x &lt; 4<br>정수 1,2,3이 되려면:<br>0 &lt; (a+1)/2 ≤ 1<br><b style="color:#fde68a">−1 &lt; a ≤ 1 → 정수 a = 0 또는 1</b>
+</div><br>
+<b style="color:#7dd3fc">🇸🇬 검증</b><br>
+a=0: x ≥ 0.5, 정수 1,2,3 ✓<br>
+a=1: x ≥ 1, 정수 1,2,3 ✓<br>
+a=−1: x ≥ 0, 정수 0,1,2,3 (4개) ✗<br><br>
+<b style="color:#fca5a5">⚠️ 핵심</b> 경계값을 직접 대입해서 확인하는 습관이 필수.
+</div>`, ans:null },
+
+  { tag:'⚔️ 심화 5 — 실생활 최적화', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">원가 2000원, 정가의 20% 할인해도 원가의 10% 이상 이익 → 정가 최솟값?</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 미지수 설정 명확히</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+정가 = x원<br>판매가 = 0.8x (20% 할인)<br>이익 = 0.8x − 2000 ≥ 200<br>0.8x ≥ 2200<br><b style="color:#fde68a">x ≥ 2750원</b>
+</div><br>
+<b style="color:#86efac">🇫🇮 핀란드식</b> "왜 0.8인가?"<br>
+20% 할인 = 원래 가격의 80%만 받음 = ×0.8<br><br>
+<b style="color:#fde68a">✡️ 유대인식 — 검증</b><br>
+x=2750: 판매가 2200, 이익 200 = 10% ✓<br>
+x=2749: 이익 199.2 &lt; 200 ✗
+</div>`, ans:null },
+
+  { tag:'⚔️ 심화 6 ★★ — 이중 부등식 + 매개변수', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">−1 &lt; (2x+a)/3 ≤ 5 의 해가 −5 &lt; x ≤ b 일 때, a+b의 값</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 역산으로 a 찾기</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+−3 &lt; 2x+a ≤ 15<br>(−3−a)/2 &lt; x ≤ (15−a)/2<br><br>
+(−3−a)/2 = −5 → a = 7<br>(15−7)/2 = 4 → b = 4<br><b style="color:#fde68a">a + b = 11</b>
+</div><br>
+<b style="color:#fca5a5">⚠️ 헷갈리는 부분</b><br>
+이중부등식은 <b>세 부분을 동시에</b> 같은 연산 적용.<br>
+한쪽만 하는 실수가 매우 잦음.
+</div>`, ans:null },
+
+  { tag:'⚔️ 심화 7 ★★★ — 해에서 계수 부호 역추적', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">ax+b &gt; 0의 해가 x &lt; 2일 때, bx−a &lt; 0의 해를 구하여라</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 해의 방향으로 계수 부호 읽기</b><br>
+해가 x &lt; 2 (왼쪽 열림) → <b>a &lt; 0</b><br>
+−b/a = 2 → b = −2a → b &gt; 0<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+bx &lt; a (b&gt;0이므로 방향 유지)<br>x &lt; a/b = a/(−2a) = <b style="color:#fde68a">−1/2</b>
+</div><br>
+<b style="color:#fde68a">✡️ 유대인식 핵심 원리</b><br>
+ax &gt; k의 해 방향 → a의 부호를 역추적 가능.<br>
+<b>해의 방향이 계수의 비밀을 말해준다.</b>
+</div>`, ans:null },
+
+  { tag:'⚔️ 심화 8 ★★★ — 역수 부등식', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">1/x &gt; 2 를 풀어라</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식</b> — x의 부호를 모를 때 양변에 x를 바로 곱하면 안 됨.<br><br>
+<b style="color:#7dd3fc">경우 1: x &gt; 0</b><br>
+1 &gt; 2x → x &lt; 1/2 → <b>0 &lt; x &lt; 1/2</b><br><br>
+<b style="color:#7dd3fc">경우 2: x &lt; 0</b><br>
+1 &lt; 2x → x &gt; 1/2 (x&lt;0과 모순) → <b>해 없음</b><br><br>
+<b>최종 해: 0 &lt; x &lt; 1/2</b><br><br>
+<b style="color:#fca5a5">⚠️ 가장 많이 하는 실수</b><br>
+그냥 x &lt; 1/2로 쓰는 것.<br>
+x=−1 대입: 1/(−1)=−1 &gt; 2 → 거짓. <b>반드시 검증.</b>
+</div>`, ans:null },
+
+  { tag:'⚔️ 심화 9 ★★★ — 공통해 존재하지 않을 조건', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">3x−2 &gt; a 이고 2x+1 &lt; 7 의 공통해가 존재하지 않을 조건</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식</b><br>
+① x &gt; (a+2)/3<br>② x &lt; 3<br><br>
+공통해 없으려면: (a+2)/3 ≥ 3 → <b style="color:#fde68a">a ≥ 7</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — 경계에서 무슨 일이?</b><br>
+a=7: x &gt; 3 이고 x &lt; 3 → 공통해 없음 ✓<br>
+a=6: x &gt; 8/3 이고 x &lt; 3 → 8/3 &lt; x &lt; 3 존재 ✗<br><br>
+<b>경계값을 직접 대입하여 확인하는 것이 가장 확실한 방법.</b>
+</div>`, ans:null },
+
+  { tag:'⚔️ 심화 10 ★★★ — 최고난도 종합', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">ax &gt; b의 해가 x &lt; −3일 때, bx &gt; a의 해를 구하여라</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 부호 분석</b><br>
+해가 x &lt; −3 → <b>a &lt; 0</b><br>
+b/a = −3 → b = −3a → <b>b &gt; 0</b><br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+bx &gt; a (b&gt;0, 방향 유지)<br>x &gt; a/b = a/(−3a) = <b style="color:#fde68a">−1/3</b>
+</div><br>
+<b style="color:#7dd3fc">🇸🇬 검증 (a=−2, b=6)</b><br>
+ax &gt; b: −2x &gt; 6 → x &lt; −3 ✓<br>
+bx &gt; a: 6x &gt; −2 → x &gt; −1/3 ✓<br><br>
+<b style="color:#fde68a">핵심 원리 요약</b><br>
+해의 방향 → 계수 부호 → 새 부등식의 방향 결정.
+</div>`, ans:null }
+],
+
+/* ── 일차부등식 3국 연합 5선 (Gemini) ──────────── */
+'ineq-gemini5': [
+  { tag:'🌍 문제 1 — [유대인] 해가 존재하지 않는 조건', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">a(x−1) &gt; 2x+5 의 해가 존재하지 않도록 하는 상수 a의 값 또는 범위</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">✡️ 유대인식 — 존재의 조건</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+(a−2)x &gt; a + 5<br><br>
+a&gt;2: x &gt; (a+5)/(a−2) → 해 존재<br>
+a&lt;2: x &lt; (a+5)/(a−2) → 해 존재<br>
+<b>a=2: 0 &gt; 7 → 거짓 → 해 없음</b>
+</div><br>
+<b style="color:#fca5a5">⚠️ 핵심</b><br>
+x가 사라지는 특수 상황 — <b>"어떤 수를 넣어도 거짓인 문장"</b><br>
+0·x &gt; 양수 처럼 계수가 0이 되는 경우를 항상 따로 확인.
+</div>`,
+    ans:`<b style="color:#fde68a">해가 존재하지 않는 조건: a = 2</b>` },
+
+  { tag:'🌍 문제 2 — [싱가포르] 텐트 배정 문제', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">4명씩 → 10명 남음 / 6명씩 → 마지막 텐트 미완성. 텐트 수는?</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 막대 모델</b><br>
+텐트 수 = n, 학생 수 = 4n+10<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+6(n−1) &lt; 4n+10 ≤ 6n<br>왼쪽: 6n−6 &lt; 4n+10 → n &lt; 8<br>오른쪽: 4n+10 ≤ 6n → n ≥ 5<br><b style="color:#fde68a">5 ≤ n ≤ 7</b>
+</div><br>
+<b style="color:#7dd3fc">수직선</b><br>
+────[5====6====7]────<br><br>
+가능한 텐트 수: <b>5개, 6개, 7개</b>
+</div>`,
+    ans:`<b style="color:#7dd3fc">가능한 텐트 수: 5개, 6개, 7개</b>` },
+
+  { tag:'🌍 문제 3 — [핀란드] 요금제 경제적 선택', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">A: 기본 20,000원 + 시간당 3,000원 / B: 시간당 5,500원 (10시간↑ 10% 할인)</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 구간별 분석</b><br><br>
+<b>x &lt; 10 (할인 없음)</b><br>
+A &lt; B: 20000+3000x &lt; 5500x → x &gt; 8<br>
+→ 8 &lt; x &lt; 10: A 유리 / x ≤ 8: B 유리<br><br>
+<b>x ≥ 10 (10% 할인)</b><br>
+0.9A &lt; 0.9B: (20000+3000x)&lt;5500x → x &gt; 8<br>
+→ x ≥ 10에서 항상 A 유리<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px;font-size:.75rem">
+x &lt; 8: B 유리 / x=8: 동일 / x &gt; 8: A 유리
+</div>
+</div>`,
+    ans:`<b style="color:#86efac">8시간 초과부터 A 요금제가 유리</b>` },
+
+  { tag:'🌍 문제 4 ★★ — [복합] 자연수 해의 개수 조건', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">(x−a)/2 ≤ (2x−1)/3 의 자연수 해가 딱 3개일 때, a의 범위 (최고 오답률)</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 수직선 경계 확정</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+×6: 3x−3a ≤ 4x−2<br>x ≥ 2−3a
+</div><br>
+<b style="color:#fde68a">✡️ 유대인식 — 등호 끝장 토론</b><br>
+"기준선 2−3a가 딱 1이 되면?" → x ≥ 1 → 자연수 무한 ✗<br>
+자연수 1,2,3만 포함하려면: <b>0 &lt; 2−3a ≤ 1</b><br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+1 ≤ 3a &lt; 2<br><b style="color:#fde68a">1/3 ≤ a &lt; 2/3</b>
+</div>
+</div>`,
+    ans:`<b style="color:#c4b5fd">a의 범위: 1/3 ≤ a &lt; 2/3</b>` },
+
+  { tag:'🌍 문제 5 ★★★ — [최고난도] 절댓값 거리 개념', tagColor:'#f9a8d4',
+    bg:'rgba(249,168,212,.07)', bd:'rgba(249,168,212,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">|x−2| + |x+3| ≤ k 의 해가 존재하려면 k의 최솟값은?</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 거리 개념</b><br>
+|x−2| = x와 2 사이의 거리<br>
+|x+3| = x와 −3 사이의 거리<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+수직선: ──●(−3)────────●(2)──<br>두 점 사이 거리 = 2−(−3) = <b style="color:#fde68a">5</b>
+</div><br>
+x가 두 점 사이에 있을 때 합이 최소 = 5<br>x가 밖으로 나가면 합이 5보다 커짐.<br><br>
+<b style="color:#86efac">🇫🇮 핀란드식 직관</b><br>
+"두 마을 사이 최단 거리가 5km인데, 총 이동거리가 5km 미만이 될 수 있을까? 절대 불가."
+</div>`,
+    ans:`<b style="color:#f9a8d4">k의 최솟값 = 5</b>` }
+],
+
+/* ── 일차부등식 150분 교안 ──────────────────────── */
+'ineq-lesson': [
+  { tag:'📘 교안 1/5 — 핵심 철학 & 학습 목표', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">📘 일차부등식은 단순한 계산이 아니라 '조건의 범위'를 추론하는 논리력이 핵심</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">"세상은 등식(=)보다 부등식(≠)으로 가득하다."</b><br>
+주머니 속 용돈, 게임 시간, 엘리베이터 제한 하중 — 이 모든 게 부등식.<br><br>
+<b style="color:#86efac">학습 목표 (3국)</b><br>
+🇫🇮 핀란드: 제한된 자원 속 최적의 선택을 하는 부등식 모델 설계<br>
+🇸🇬 싱가포르: 수직선 모델링으로 등호(=)가 들어갈 자리 시각적으로 확정<br>
+✡️ 유대인: 해가 특수한 경우(불능·부정)의 논리적 모순을 찾아냄<br><br>
+<b style="color:#fca5a5">하브루타 도입 질문</b><br>
+"양변에 같은 음수를 곱할 때 왜 부등호 방향이 뒤집혀야 할까?<br>이게 단순한 규칙일까, 아니면 우주의 섭리일까?"
+</div>`, ans:null },
+
+  { tag:'📘 교안 2/5 — 2교시 대표 풀이 (등호 끝장 토론)', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">대표 문제: (x−a)/2 ≤ (2x−1)/3 의 자연수 해가 3개일 때 a의 범위</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">✡️ 등호 끝장 토론 (학생과 함께)</b><br><br>
+Q: "K가 딱 3이면?" → x &lt; 3, 자연수 1,2뿐 → <b>2개 (부족)</b><br>
+Q: "K가 딱 4이면?" → x &lt; 4, 자연수 1,2,3 → <b>3개 맞음 ✓</b><br>
+Q: "K가 3.5이면?" → x &lt; 3.5, 자연수 1,2,3 → <b>3개 맞음 ✓</b><br><br>
+→ <b style="color:#fde68a">3 &lt; K ≤ 4</b> 임을 입으로 소리 내어 읽으며 스스로 깨닫게 함.<br><br>
+<b style="color:#86efac">핵심 포인트</b><br>
+등호의 포함 여부가 정답을 가른다.<br>
+숫자를 직접 대입해서 참/거짓을 확인하는 것이 최고의 치료제.
+</div>`, ans:null },
+
+  { tag:'📘 교안 3/5 — 3교시 핀란드식 실전 최적화', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">스마트폰 요금제 A vs B — 몇 GB부터 A가 유리한가?</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식</b> "이건 수학 문제가 아니라 너희의 지갑 문제야."<br><br>
+A: 기본료 30,000원 + 1GB당 5,000원<br>
+B: 기본료 없이 1GB당 10,000원<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
+30,000 + 5,000x &lt; 10,000x<br>30,000 &lt; 5,000x<br><b style="color:#fde68a">x &gt; 6</b>
+</div><br>
+<b>결론:</b> 6GB 초과부터 A가 이득. 6GB에서는 동일.<br><br>
+<b style="color:#fca5a5">활동</b> 1GB/5GB/10GB 각각의 비용을 표로 직접 계산해보기.
+</div>`, ans:null },
+
+  { tag:'📘 교안 4/5 — Teacher\'s Guide (헷갈리는 부분)', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">💡 가장 많이 틀리는 3가지 포인트</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#f87171">① 음수 곱셈의 공포</b><br>
+−2x &gt; 4 → x &gt; −2 (틀림!)<br>
+<b>해결법:</b> "수직선 위 숫자들이 거울(0)을 중심으로 반대편으로 단체 이사"<br><br>
+<b style="color:#f87171">② 경계값 포함 여부</b><br>
+&lt;와 ≤의 차이:<br>
+"성벽 안에 군인이 서 있느냐(≤) vs 성벽 바로 앞까지만 가느냐(&lt;)"<br>
+→ 경계값을 직접 대입해서 참/거짓 확인이 최고.<br><br>
+<b style="color:#f87171">③ 해의 존재 유무</b><br>
+0·x &gt; 양수 → 어떤 수를 넣어도 거짓.<br>
+→ "x가 사라지는 특수 상황"을 항상 먼저 확인.
+</div>`, ans:null },
+
+  { tag:'📘 교안 5/5 — 수업 마무리 & 흐름표', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">✅ 나만의 부등식 설계 + 150분 흐름표</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">마무리 활동</b><br>
+"내 용돈 50,000원으로 8,000원짜리 떡볶이를 몇 인분까지 살 수 있을까? (버스비 2,500원 남겨야 함)"<br>
+8000x + 2500 ≤ 50000 → x ≤ 5.9 → <b>최대 5인분</b><br><br>
+<b style="color:#86efac">150분 흐름표</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.75rem;line-height:1.9">
+0~30분: 도입 — 부등식의 철학 (하브루타)<br>
+30~50분: 식의 계산 — 음수 조심! (핀란드)<br>
+50~70분: 수직선 경계 긋기 (싱가포르)<br>
+70~90분: 등호 포함 여부 끝장 토론 (유대인)<br>
+90~150분: 실생활 문장제 최적해 찾기 (핀란드)
+</div><br>
+<b style="color:#fca5a5">핵심 메시지</b><br>
+부등식은 <b>'경계를 정하는 논리적 도구'</b>.<br>
+경계값의 포함 여부라는 미세한 차이가 정답을 가른다.
+</div>`, ans:null }
+],
+
 }; // end CARD_DATA
 
 function startCards(set, from) {
@@ -6343,6 +6676,9 @@ var ARTIFACTS = {
   'avg-havruta': { island:'평균·가능성의 안개 등대', emoji:'🏮', quote:'평균은 진실을 숨기기도 한다.', color:'#86efac' },
   'geometry-havruta': { island:'기본도형의 별자리 해안', emoji:'🌟', quote:'무질서한 하늘에서 질서를 찾는 눈이 수학자다.', color:'#c4b5fd' },
   'inequality-havruta': { island:'부등식의 한계 절벽', emoji:'🧗', quote:'한계를 아는 자가 자유롭다.', color:'#f87171' },
+  'ineq-hard10': { island:'부등식의 한계 절벽', emoji:'⚔️', quote:'경계를 아는 자가 논리를 지배한다.', color:'#f87171' },
+  'ineq-gemini5': { island:'부등식의 한계 절벽', emoji:'🌍', quote:'3국의 시각이 하나의 답으로 만난다.', color:'#f87171' },
+  'ineq-lesson': { island:'부등식의 한계 절벽', emoji:'📘', quote:'가르치는 자가 가장 깊이 배운다.', color:'#86efac' },
   'linear-func-havruta': { island:'일차함수의 직선 활주로', emoji:'📈', quote:'기울기는 변화의 속도다.', color:'#34d399' },
   'quadratic-havruta': { island:'이차방정식의 포물선 계곡', emoji:'🌊', quote:'두 개의 답은 두 개의 진실이다.', color:'#fb923c' },
   'simultaneous-havruta': { island:'연립방정식의 미궁', emoji:'🗝️', quote:'두 조건이 만나는 곳에 답이 있다.', color:'#7dd3fc' },
@@ -6475,7 +6811,7 @@ var HUB_ARTIFACTS = {
   'avg-hub': ['avg-guide','avg-hard','avg-havruta'],
   'simultaneous-hub': ['simultaneous-guide','simultaneous-basic','simultaneous-hard','simultaneous-havruta'],
   'geometry-hub': ['geometry-guide', 'geometry-havruta'],
-  'inequality-hub': ['inequality-havruta'],
+  'inequality-hub': ['inequality-guide','inequality-havruta','ineq-hard10','ineq-gemini5','ineq-lesson'],
   'linear-func-hub': ['linear-func-havruta'],
   'quadratic-hub': ['quadratic-havruta'],
   'factmult': [],
