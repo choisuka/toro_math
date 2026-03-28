@@ -592,6 +592,15 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       세 가지 방식을 모두 완료하면 <b style="color:#d4a017">🏆 아르모니아 마스터 뱃지</b>를 얻어요.
     </div>
     <div id="fm-cards"></div>
+    <button onclick="startCards('fm-guide','factmult')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🌍 3국 개념 토론관 — 약수·배수란? (4장) →
+    </button>
+    <button onclick="startCards('fm-gcd','factmult')" style="width:100%;margin-bottom:8px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🔢 최대공약수·최소공배수 3국 풀이관 (4장) →
+    </button>
+    <button onclick="startCards('fm-worksheet','factmult')" style="width:100%;margin-bottom:12px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📄 토론 워크시트 — 약수·배수의 세 얼굴 (4장) →
+    </button>
     <div id="fm-badge-unit" style="display:none">
       <div class="fm-badge-box">
         <div style="font-size:2.4rem;margin-bottom:6px">🏆</div>
@@ -3581,6 +3590,205 @@ cosθ = 5/(√10·√5) = 5/√50 = 5/(5√2) = 1/√2<br><br>
 ]
 
 
+,
+
+/* ── 약수·배수 3국 개념 토론관 (4장) ───────────────── */
+'fm-guide': [
+  { tag:'🇫🇮 핀란드식 — 실생활 연결 1/4', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.95rem">"수학은 교과서가 아니라 우리 옆집에 살고 있어."</b><br><br>
+핀란드는 수학적 개념이 실제 삶에서 어떻게 쓰이는지를 가장 중요하게 생각합니다.<br>약수와 배수를 <b style="color:#86efac">'나누어주기'</b>와 <b style="color:#86efac">'반복되는 일정'</b>으로 해석해요.<br><br>
+<b style="color:#fde68a">약수의 해석:</b> "사과 12개를 남김없이 똑같이 나눠 가질 수 있는 사람 수는 몇 명일까? 이게 바로 약수야."<br><br>
+<b style="color:#fde68a">배수의 해석:</b> "시내버스는 8분마다 오고, 지하철은 12분마다 와. 두 차가 동시에 만나는 시간은 언제일까? → 최소공배수!"<br><br>
+<b style="color:#86efac">핵심:</b> 수학이 실생활의 문제를 해결하는 유용한 도구임을 몸으로 체감하게 합니다.
+</div>`, ans:null },
+
+  { tag:'🇸🇬 싱가포르식 — 시각적 막대 모델 2/4', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc;font-size:.95rem">"눈으로 보이지 않는 숫자를 막대로 그려보자."</b><br><br>
+싱가포르는 CPA(Concrete → Pictorial → Abstract) 모델로 유명합니다.<br>추상적인 숫자를 다루기 전, 반드시 시각적인 <b style="color:#7dd3fc">막대 모델(Bar Model)</b>이나 구체물을 먼저 사용해요.<br><br>
+<b style="color:#fde68a">배수의 해석:</b> "배수는 같은 길이의 막대를 계속 이어 붙이는 과정이야."<br>
+─── ─── ───  (3의 배수: 3, 6, 9...)<br><br>
+<b style="color:#fde68a">약수의 해석:</b> "약수는 커다란 막대를 똑같은 크기의 작은 토막으로 자르는 과정이지."<br>
+█████████████ → ████ ████ ████ (12를 4토막)<br><br>
+<b style="color:#7dd3fc">토론 질문:</b> "6의 배수 막대와 9의 배수 막대를 나란히 놓았을 때, 처음으로 길이가 같아지는 지점은 어디일까?"<br><br>
+<b style="color:#7dd3fc">핵심:</b> 시각적 도구로 개념을 직관적으로 이해하고 고난도 문제 해결력을 기릅니다.
+</div>`, ans:null },
+
+  { tag:'✡️ 유대인식 — 질문과 논리 3/4', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a;font-size:.95rem">"모든 숫자는 자기만의 '가족'을 가지고 있지 않을까?"</b><br><br>
+유대인 교육(하브루타)은 정답보다 <b style="color:#fde68a">'왜?'</b>라는 질문을 던집니다.<br>약수와 배수를 단순한 계산이 아니라 <b style="color:#fde68a">수 사이의 관계(Relationship)</b>로 파악해요.<br><br>
+<b style="color:#fde68a">약수 질문:</b> "12라는 숫자가 있다면, 이 숫자를 완벽하게 나눌 수 있는 '친구들'은 누구지? 왜 5는 그 친구가 될 수 없을까?"<br><br>
+<b style="color:#fde68a">배수 질문:</b> "배수는 끝없이 커지는데, 약수는 왜 숫자가 제한되어 있을까? 무한과 유한의 차이는 어디에서 오는 걸까?"<br><br>
+<b style="color:#a5b4fc">철학적 시각:</b> 약수(공통점)는 안으로 파고드는 겸손함이고, 배수는 밖으로 뻗어 나가는 포용성.<br><br>
+<b style="color:#fde68a">핵심:</b> 논리적 추론을 통해 수의 구조를 스스로 깨우치게 합니다.
+</div>`, ans:null },
+
+  { tag:'📋 3국 비교 요약 4/4', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.06)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#c4b5fd;font-size:.95rem">세 나라의 시선을 합치면 약수·배수가 입체적으로 보여요!</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin-bottom:10px">
+<b style="color:#86efac">🇫🇮 핀란드</b> — 실용주의<br>
+<span style="color:#aaa;font-size:.78rem">접근: 실생활 현상 연결 &nbsp;|&nbsp; 약수=공평하게 나누기 &nbsp;|&nbsp; 배수=반복 주기</span>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin-bottom:10px">
+<b style="color:#7dd3fc">🇸🇬 싱가포르</b> — CPA 모델<br>
+<span style="color:#aaa;font-size:.78rem">접근: 시각적 막대 모델링 &nbsp;|&nbsp; 약수=전체를 조각내기 &nbsp;|&nbsp; 배수=막대 이어 붙이기</span>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b style="color:#fde68a">✡️ 유대인</b> — 하브루타<br>
+<span style="color:#aaa;font-size:.78rem">접근: 질문과 철학적 논쟁 &nbsp;|&nbsp; 약수=수의 구성 원리 &nbsp;|&nbsp; 배수=수의 확장성·무한성</span>
+</div>
+<br><b style="color:#c4b5fd">💡 셋을 함께 공부하면?</b> 단순 암기가 아니라 "왜 그렇지?" 까지 이해하는 진짜 수학 실력이 쌓여요!
+</div>`, ans:null }
+],
+
+/* ── 최대공약수·최소공배수 3국 풀이관 (4장) ─────────── */
+'fm-gcd': [
+  { tag:'🇸🇬 싱가포르식 — 막대 모델 1/4', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc;font-size:.95rem">예시: 8과 12의 최대공약수(GCD)와 최소공배수(LCM)</b><br><br>
+<b style="color:#fde68a">최대공약수(GCD) — 막대 자르기:</b><br>
+8cm 막대와 12cm 막대가 있습니다.<br>이 두 막대를 남는 부분 없이 똑같은 길이로 자를 수 있는 <b style="color:#7dd3fc">가장 큰 조각</b>은 몇 cm일까요?<br><br>
+1cm ✓ &nbsp; 2cm ✓ &nbsp; 4cm ✓ ← <b style="color:#fde68a">최대공약수 = 4</b><br>
+(4cm로 자르면 8cm→2토막, 12cm→3토막, 딱 맞아요!)<br><br>
+<b style="color:#fde68a">최소공배수(LCM) — 막대 기차:</b><br>
+8cm 막대와 12cm 막대를 각각 기차처럼 이어 붙입니다.<br>
+8→16→<b style="color:#86efac">24</b>→32...<br>
+12→<b style="color:#86efac">24</b>→36...<br><br>
+두 기차 길이가 처음 맞물리는 지점 → <b style="color:#fde68a">최소공배수 = 24</b>
+</div>`, ans:null },
+
+  { tag:'✡️ 유대인식 — 소인수분해 2/4', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a;font-size:.95rem">"숫자의 DNA를 분석해서 공통점과 차이점을 찾아!"</b><br><br>
+유대인 방식은 숫자를 <b style="color:#fde68a">'해부'</b>합니다. 어떤 소수로 구성되어 있는지 파악해요.<br><br>
+<b style="color:#fde68a">해부하기:</b><br>
+8 = 2 × 2 × 2 &nbsp;(2가 세 개인 가족)<br>
+12 = 2 × 2 × 3 &nbsp;(2가 두 개, 3이 한 개)<br><br>
+<b style="color:#7dd3fc">최대공약수 질문:</b> "두 숫자가 <b>공통으로 가진 가장 큰 유산</b>은?"<br>
+둘 다 2×2를 갖고 있어 → <b style="color:#fde68a">GCD = 4</b><br><br>
+<b style="color:#7dd3fc">최소공배수 질문:</b> "두 숫자의 성질을 <b>모두 만족시키는 가장 작은 조합</b>은?"<br>
+8을 만족 → 2가 세 개 필요<br>
+12도 만족 → 3이 하나 필요<br>
+→ 2×2×2×3 = <b style="color:#fde68a">LCM = 24</b><br><br>
+<b style="color:#a5b4fc">철학:</b> 공통점(약수)은 안으로 파고드는 겸손함, 배수는 밖으로 뻗는 포용성!
+</div>`, ans:null },
+
+  { tag:'🇫🇮 핀란드식 — 실생활 상황 3/4', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.95rem">"공식 전에 상황 먼저! 왜 필요한지 느껴봐요."</b><br><br>
+핀란드에서는 공식을 먼저 가르치지 않아요. 상황을 주고 아이들이 스스로 판단하게 합니다.<br><br>
+<b style="color:#fde68a">상황 A — 약수(GCD):</b><br>
+"가로 8m, 세로 12m인 벽에 <b style="color:#86efac">가장 큰 정사각형 타일</b>을 빈틈없이 붙이려면 타일 한 변은 몇 m여야 할까?"<br>
+→ 벽을 나누는 행위 속에서 자연스럽게 <b style="color:#fde68a">최대공약수 = 4m</b> 발견!<br><br>
+<b style="color:#fde68a">상황 B — 배수(LCM):</b><br>
+"준표는 8일마다 도서관에 가고, 민지는 12일마다 가. 오늘 만났다면, 다음번에 또 만날 날은 며칠 뒤일까?"<br>
+→ 주기가 반복되는 현상에서 <b style="color:#fde68a">최소공배수 = 24일 뒤</b> 발견!<br><br>
+<b style="color:#86efac">핵심:</b> "약수가 필요할까, 배수가 필요할까?" 스스로 판단하는 힘을 기릅니다.
+</div>`, ans:null },
+
+  { tag:'📋 GCD·LCM 3국 비교 요약 4/4', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.06)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#c4b5fd;font-size:.95rem">세 나라의 최대공약수·최소공배수 풀이법 한눈에!</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+<b style="color:#7dd3fc">🇸🇬 싱가포르</b> — 막대 모델로 자르고 붙이기<br>
+<span style="color:#aaa;font-size:.78rem">공간 감각과 수치적 직관력 향상</span>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+<b style="color:#fde68a">✡️ 유대인</b> — 소인수분해로 구성 성분 분석<br>
+<span style="color:#aaa;font-size:.78rem">논리적 사고와 수의 구조 이해</span>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b style="color:#86efac">🇫🇮 핀란드</b> — 타일 붙이기·약속 시간 정하기<br>
+<span style="color:#aaa;font-size:.78rem">수학의 실용적 가치와 응용력 체득</span>
+</div>
+<br><b style="color:#fde68a">💡 셋을 함께 사용하면:</b> 막대(눈) + 소인수(논리) + 상황(감각) = 완전한 이해!<br><br>
+<b style="color:#c4b5fd">다음 단계:</b> 세 방식으로 배운 것을 퀴즈로 확인해봐요!
+</div>`, ans:null }
+],
+
+/* ── 약수·배수 토론 워크시트 (4장) ──────────────────── */
+'fm-worksheet': [
+  { tag:'🔍 1단계 — 유대인의 질문 (숫자의 DNA 해부) 1/4', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a;font-size:.92rem">"모든 숫자는 자신만의 고유한 설계도를 가지고 있다."</b><br><br>
+<b style="color:#7dd3fc">미션:</b> 숫자 12와 18을 가장 작은 단위(소수)로 쪼개보세요.<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 14px;margin-bottom:10px">
+12 = 2 × 2 × 3<br>
+18 = 2 × 3 × 3
+</div>
+<b style="color:#fde68a">💬 토론 질문:</b><br>
+두 숫자가 공통으로 가지고 있는 '유전 정보(2 × 3)'는 무엇인가요?<br>
+→ 이 숫자가 바로 <b style="color:#86efac">최대공약수(GCD = 6)</b>입니다.<br><br>
+<b style="color:#a5b4fc">왜 우리는 공통된 부분을 '가장 크다(Maximum)'라고 부를까요?</b><br>
+<span style="color:#aaa;font-size:.78rem">두 숫자를 동시에 나눌 수 있는 수들 중 가장 큰 수이기 때문이에요.<br>공통 유전자 중 가장 큰 조합 = 두 수의 공통 본질!</span>
+</div>`, ans:null },
+
+  { tag:'🎨 2단계 — 싱가포르의 그림 (시각적 모델링) 2/4', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc;font-size:.92rem">"보이지 않는 관계를 눈에 보이게 만들어라."</b><br><br>
+<b style="color:#7dd3fc">미션:</b> 12칸짜리 막대와 18칸짜리 막대를 상상하며 활동해보세요.<br><br>
+<b style="color:#fde68a">활동 1 — 최대공약수 찾기:</b><br>
+두 막대를 똑같은 길이로 자를 수 있는 <b style="color:#7dd3fc">가장 긴 토막</b>은 몇 칸?<br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px 12px;margin:6px 0;font-size:.8rem">
+12칸 → 6칸 × 2토막 ✓<br>
+18칸 → 6칸 × 3토막 ✓<br>
+→ <b style="color:#86efac">GCD = 6칸</b>
+</div>
+<b style="color:#fde68a">활동 2 — 최소공배수 찾기:</b><br>
+두 막대를 옆으로 계속 이어 붙였을 때, 처음으로 길이가 같아지는 지점은?<br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px 12px;margin:6px 0;font-size:.8rem">
+12, 24, <b style="color:#86efac">36</b>, 48...<br>
+18, <b style="color:#86efac">36</b>, 54...<br>
+→ <b style="color:#86efac">LCM = 36칸</b>
+</div>
+</div>`, ans:null },
+
+  { tag:'🛠️ 3단계 — 핀란드의 해결 (실생활 미션) 3/4', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.92rem">"수학은 우리 마을의 문제를 해결하는 열쇠다."</b><br><br>
+<b style="color:#86efac">미션:</b> 당신은 인테리어 전문가입니다.<br>
+가로 12m, 세로 18m인 강당 바닥에 <b>남는 부분 없이 가장 큰 정사각형 타일</b>을 깔아야 합니다.<br><br>
+<b style="color:#fde68a">💬 토론 질문 1:</b><br>
+타일 한 변의 길이는 몇 m가 되어야 할까요?<br>
+→ <b style="color:#86efac">6m</b> (12와 18의 최대공약수)<br><br>
+<b style="color:#fde68a">💬 토론 질문 2:</b><br>
+이때 필요한 타일은 총 몇 개인가요?<br>
+→ (12÷6) × (18÷6) = 2 × 3 = <b style="color:#86efac">6개</b><br><br>
+<b style="color:#fde68a">💬 토론 질문 3:</b><br>
+왜 이 문제에서는 '배수'가 아니라 '약수'를 사용해야 할까요?<br>
+<span style="color:#aaa;font-size:.78rem">전체를 쪼개는 문제 → 약수 사용<br>반복해서 더해 나가는 문제 → 배수 사용<br>"나눌 때는 약수, 늘릴 때는 배수!"</span>
+</div>`, ans:null },
+
+  { tag:'💬 하브루타 마무리 — 선생님의 한 마디 4/4', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.06)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#c4b5fd;font-size:.92rem">오늘의 핵심을 마음에 새겨요!</b><br><br>
+<div style="background:rgba(196,181,253,.08);border-left:3px solid #c4b5fd;border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:14px;font-style:italic">
+"얘들아, 오늘 우리가 구한 <b style="color:#86efac">6(최대공약수)</b>과 <b style="color:#fde68a">36(최소공배수)</b>은 단순한 숫자가 아니야.<br><br>
+12와 18이라는 두 친구가 서로 어떻게 나뉘어 어울릴 수 있는지(<b style="color:#86efac">약수</b>), 그리고 어느 지점에서 미래에 함께 만날 수 있는지(<b style="color:#fde68a">배수</b>)를 알려주는 <b style="color:#c4b5fd">지도</b>란다."
+</div>
+<b style="color:#fde68a">오늘 배운 것 정리:</b><br>
+🔍 유대인 → 소인수분해로 공통 DNA 찾기<br>
+🎨 싱가포르 → 막대 모델로 눈에 보이게<br>
+🛠️ 핀란드 → 타일 문제로 실생활에 적용<br><br>
+<b style="color:#c4b5fd">세 방식을 합치면 약수·배수가 완전히 내 것이 돼요! 🦕✨</b>
+</div>`, ans:null }
+]
+
 }; // end CARD_DATA
 
 function startCards(set, from) {
@@ -5961,6 +6169,7 @@ cvNav = function(dir) {
 // 기능 4: 지혜의 깃발 (Wisdom Flag)
 // ══════════════════════════════════════════════════════════
 var HUB_ARTIFACTS = {
+  'factmult': ['fm-guide','fm-gcd','fm-worksheet'],
   'prime-hub': ['prime-havruta'],
   'equation-hub': ['eq-havruta-cards', 'eq-identity', 'eq-identity-havruta', 'eq-guarantee'],
   'avg-hub': ['avg-guide','avg-hard','avg-havruta'],
