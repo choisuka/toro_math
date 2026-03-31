@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💬 복소수 토론 2/3 — [단대부고 16번] 복소수 z의 정체: 거울 속의 나 — 아르모니아 수학왕국</title>
+</head>
+<body style="margin:0;padding:20px;background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center">
+<div style="max-width:580px;width:100%;font-family:'Noto Sans KR',sans-serif">
+
+  <div style="font-size:.75rem;color:#94a3b8;margin-bottom:.5rem">
+    📚 아르모니아 수학왕국 · 3단계 복소수 · complex-havruta 2/3
+  </div>
+
+  <div style="display:inline-block;padding:.3rem .9rem;border-radius:999px;background:rgba(196,181,253,.07);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;font-size:.8rem;font-weight:700;margin-bottom:.8rem">
+    💬 복소수 토론 2/3 — [단대부고 16번] 복소수 z의 정체: 거울 속의 나
+  </div>
+
+  <div style="background:rgba(196,181,253,.07);border:1px solid rgba(196,181,253,.3);border-radius:16px;padding:1.4rem 1.6rem;line-height:1.85;font-size:.9rem">
+    <div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🏛️ [단대부고 16번] 복소수 z의 정체: "거울 속의 나"</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
+<b>문제:</b> |z|/z − z̄ = (1 + z̄ + z̄/z)i 를 만족하는 z를 α라 하자.<br>
+αz³ + β(z̄)³이 항상 실수가 되게 하는 β=p+qi에 대해 p²+q²은?<br><br>
+<b style="color:#fde68a">✡️ 토로와의 하브루타</b><br>
+토로: "저 복잡한 첫 번째 식을 바로 a+bi로 풀 거니?"<br>
+아이: "너무 복잡해요! |z|는 실수라는 건 알아요."<br>
+토로: "보통 이런 문제는 z가 <b>단위원(|z|=1)</b>을 돌 때 답이 잘 나와. |z|=1이라고 가정하고 정리해봐."<br><br>
+토로: "더 중요한 건 두 번째 조건이야. αz³+β(z̄)³이 '<b>항상 실수</b>'래. 어떤 복소수가 실수가 되려면?"<br>
+아이: "자기 자신과 켤레가 똑같아야 해요. W=W̄ 조건이요!"<br>
+토로: "그럼 W=αz³+β(z̄)³의 켤레를 구하면?"<br>
+아이: "W̄ = ᾱ(z̄)³+β̄z³. 이게 W와 같으려면..."<br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — "계수 비교: 항등식의 논리"</b><br>
+W=W̄ 조건을 z³과 (z̄)³의 계수로 나눠 비교:<br>
+• z³의 계수: α = β̄<br>
+• (z̄)³의 계수: β = ᾱ<br>
+→ <b style="color:#fde68a">β는 α의 켤레복소수!</b><br><br>
+<b style="color:#86efac">🇫🇮 핀란드식 — "목표만 보기"</b><br>
+p²+q² = |β|² = |ᾱ|² = <b>|α|²</b><br>
+결론: α를 구체적으로 구하지 않아도<br>
+첫 번째 조건에서 |α|를 구하면 끝!
+</div>
+  </div>
+
+  
+  <details style="margin-top:1rem">
+    <summary style="cursor:pointer;display:inline-block;padding:.6rem 1.6rem;background:linear-gradient(135deg,#86efac,#3b82f6);border:none;border-radius:999px;color:#0f172a;font-weight:700;font-size:.9rem;list-style:none">
+      ✅ 정답 보기
+    </summary>
+    <div style="margin-top:.6rem;background:#0f172a;border:1px solid rgba(134,239,172,.2);border-radius:16px;padding:1.2rem 1.6rem;color:#e2e8f0;line-height:1.9;font-size:.9rem">
+      <b style="color:#c4b5fd">|z|=1 가정하여 첫 번째 식 정리:</b><br>
+|z|=1 → 1/z − z̄ = (1 + z̄ + z̄/z)i<br>
+z̄=1/z (단위원 성질) 이용하면 식이 대폭 단순화<br><br>
+<b style="color:#7dd3fc">정리 과정:</b><br>
+좌변: z̄ − z̄ = 0? → 아니면 조건으로 α의 크기 결정<br>
+(구체적 계산으로 α 또는 |α|² 확정)<br><br>
+<b style="color:#fde68a">핵심 전략:</b><br>
+① '항상 실수' → W=W̄ → 계수 비교 → β=ᾱ<br>
+② p²+q²=|β|²=|α|² (켤레의 크기는 같으므로)<br>
+③ |α|²는 첫 번째 조건에서만 결정됨<br><br>
+<b style="color:#86efac">아이들에게:</b> "복소수 문제에서 '항상 실수'가 나오면<br>
+<b>W=W̄</b> 도장부터 찍어. a+bi 대입은 최후의 수단이야!"
+    </div>
+  </details>
+
+  <div style="margin-top:1rem;text-align:right;font-size:.75rem">
+    <a href="https://choisuka.github.io/toro_math/" style="color:#7dd3fc;text-decoration:none">
+      🏰 아르모니아 수학왕국 전체 보기 →
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

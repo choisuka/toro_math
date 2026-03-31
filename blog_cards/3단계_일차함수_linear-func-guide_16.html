@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 심화 미션 3/4 (상세) — 넓이의 파괴자 (움직이는 점) — 아르모니아 수학왕국</title>
+</head>
+<body style="margin:0;padding:20px;background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center">
+<div style="max-width:580px;width:100%;font-family:'Noto Sans KR',sans-serif">
+
+  <div style="font-size:.75rem;color:#94a3b8;margin-bottom:.5rem">
+    📚 아르모니아 수학왕국 · 3단계 일차함수 · linear-func-guide 16/17
+  </div>
+
+  <div style="display:inline-block;padding:.3rem .9rem;border-radius:999px;background:rgba(249,168,212,.07);border:1px solid rgba(249,168,212,.3);color:#f9a8d4;font-size:.8rem;font-weight:700;margin-bottom:.8rem">
+    🎯 심화 미션 3/4 (상세) — 넓이의 파괴자 (움직이는 점)
+  </div>
+
+  <div style="background:rgba(249,168,212,.07);border:1px solid rgba(249,168,212,.3);border-radius:16px;padding:1.4rem 1.6rem;line-height:1.85;font-size:.9rem">
+    <div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🏛️ [아르모니아 심화 미션] 넓이의 파괴자 — 점 P의 이동과 삼각형 넓이</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
+<b>문제:</b> 가로 10, 세로 8인 직사각형에서 점 P가 A를 출발해 B를 거쳐 C까지 매초 1의 속도로 움직인다. 삼각형 ADP의 넓이가 전체 직사각형 넓이의 1/4이 되는 <b>모든 시간</b>을 구하라.<br><br>
+<b style="color:#fde68a">✡️ 유대인식 해결 (하브루타):</b><br>
+토로: "점 P가 움직이는 동안 삼각형의 넓이는 계속 변해. 그런데 왜 정답이 '두 번' 나올까?"<br><br>
+1. <b style="color:#7dd3fc">첫 번째 상황:</b> P가 A→B로 내려올 때, 삼각형의 높이가 점점 커지면서 넓이가 늘어나. 1/4이 되는 순간이 한 번 오겠지?<br>
+2. <b style="color:#86efac">두 번째 상황:</b> P가 모퉁이를 돌아 B→C로 갈 때, 이제 삼각형의 밑변은 고정되고 높이가 변해. 여기서도 1/4이 되는 지점이 또 존재할까?<br><br>
+<b style="color:#fde68a">결론:</b> "하나의 식(y=ax+b)으로만 풀려고 하면 절대 못 풀어. P의 위치에 따라 세상의 규칙(함수식)이 바뀐다는 것을 인정해야 해. 고등 미적분의 기초인 '구간에 따른 함수'를 넌 지금 맛보고 있는 거야!"
+</div>
+  </div>
+
+  
+  <details style="margin-top:1rem">
+    <summary style="cursor:pointer;display:inline-block;padding:.6rem 1.6rem;background:linear-gradient(135deg,#86efac,#3b82f6);border:none;border-radius:999px;color:#0f172a;font-weight:700;font-size:.9rem;list-style:none">
+      ✅ 정답 보기
+    </summary>
+    <div style="margin-top:.6rem;background:#0f172a;border:1px solid rgba(134,239,172,.2);border-radius:16px;padding:1.2rem 1.6rem;color:#e2e8f0;line-height:1.9;font-size:.9rem">
+      <b style="color:#f9a8d4">수학적 분석:</b><br>
+전체 넓이 = 10×8 = 80, 목표 = 80÷4 = <b>20</b><br><br>
+<b style="color:#7dd3fc">구간 1 (0≤t≤10, P가 A→B 이동):</b><br>
+삼각형 ADP: 밑변 AD=8, 높이=t<br>
+(1/2)×8×t = 20 → t = 5<br><br>
+<b style="color:#7dd3fc">구간 2 (10≤t≤18, P가 B→C 이동):</b><br>
+삼각형 ADP: 밑변 AD=8, 높이=(t−10)<br>
+(1/2)×8×(t−10) = 20 → t−10=5 → t = 15<br><br>
+<b style="color:#fde68a">정답: t=5초, t=15초 (두 번!)</b><br><br>
+<b style="color:#86efac">핵심:</b> B를 꺾는 순간 세상의 법칙이 바뀌어. 경계점을 찾고 구간별로 다른 함수식을 세우는 것, 이게 미적분을 향한 첫 계단이란다!
+    </div>
+  </details>
+
+  <div style="margin-top:1rem;text-align:right;font-size:.75rem">
+    <a href="https://choisuka.github.io/toro_math/" style="color:#7dd3fc;text-decoration:none">
+      🏰 아르모니아 수학왕국 전체 보기 →
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

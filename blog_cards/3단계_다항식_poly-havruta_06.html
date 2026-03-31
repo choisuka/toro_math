@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💬 다항식 토론 6/8 — [단대부고] 나머지의 합과 차, 상수 k의 값 — 아르모니아 수학왕국</title>
+</head>
+<body style="margin:0;padding:20px;background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center">
+<div style="max-width:580px;width:100%;font-family:'Noto Sans KR',sans-serif">
+
+  <div style="font-size:.75rem;color:#94a3b8;margin-bottom:.5rem">
+    📚 아르모니아 수학왕국 · 3단계 다항식 · poly-havruta 6/8
+  </div>
+
+  <div style="display:inline-block;padding:.3rem .9rem;border-radius:999px;background:rgba(249,168,212,.07);border:1px solid rgba(249,168,212,.3);color:#f9a8d4;font-size:.8rem;font-weight:700;margin-bottom:.8rem">
+    💬 다항식 토론 6/8 — [단대부고] 나머지의 합과 차, 상수 k의 값
+  </div>
+
+  <div style="background:rgba(249,168,212,.07);border:1px solid rgba(249,168,212,.3);border-radius:16px;padding:1.4rem 1.6rem;line-height:1.85;font-size:.9rem">
+    <div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🏛️ [단대부고] 나머지의 합과 차로 k를 찾아라</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
+<b>문제:</b> f(x)+g(x)를 [박스]로 나누면 나머지 3, f(x)−g(x)를 나누면 나머지 2.<br>
+f(x)+kg(x)가 [박스]를 인수로 가질 때, 상수 k의 값은?<br><br>
+<b style="color:#86efac">🇫🇮 핀란드식 — "박스 세트: 나머지끼리의 연산"</b><br>
+구조: f+g = [박스]×몫 + 3 → Rf + Rg = 3<br>
+구조: f−g = [박스]×몫 + 2 → Rf − Rg = 2<br>
+연립: 두 식 더하면 2Rf=5 → <b style="color:#fde68a">Rf=2.5</b><br>
+두 식 빼면 2Rg=1 → <b style="color:#fde68a">Rg=0.5</b><br>
+목표: Rf + k·Rg = 0 → 2.5 + 0.5k = 0 → <b style="color:#fde68a">k=−5</b><br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — "나머지 막대 그래프"</b><br>
+더했을 때 막대 합 = 3, 뺐을 때 막대 차 = 2<br>
+f 두 개의 나머지: 3+2=5 → f 하나당 <b>2.5</b><br>
+g 두 개의 나머지: 3−2=1 → g 하나당 <b>0.5</b><br>
+2.5짜리 막대를 0으로 없애려면 0.5막대가 왼쪽으로 5개 → k=<b style="color:#fde68a">−5</b>
+</div>
+  </div>
+
+  
+  <details style="margin-top:1rem">
+    <summary style="cursor:pointer;display:inline-block;padding:.6rem 1.6rem;background:linear-gradient(135deg,#86efac,#3b82f6);border:none;border-radius:999px;color:#0f172a;font-weight:700;font-size:.9rem;list-style:none">
+      ✅ 정답 보기
+    </summary>
+    <div style="margin-top:.6rem;background:#0f172a;border:1px solid rgba(134,239,172,.2);border-radius:16px;padding:1.2rem 1.6rem;color:#e2e8f0;line-height:1.9;font-size:.9rem">
+      <b style="color:#fde68a">✡️ 유대인식 하브루타: "인수라는 완벽한 약속"</b><br><br>
+토로: "'인수로 갖는다'는 게 무슨 뜻이야?"<br>
+아이: "나머지가 0이 된다는 거요!"<br>
+토로: "그럼 f(x)+kg(x)의 나머지는?"<br>
+아이: "Rf + k·Rg = 2.5 + 0.5k"<br>
+토로: "이걸 0으로 만들면?"<br>
+아이: "0.5k = −2.5 → <b style="color:#fde68a">k = −5!</b>"<br><br>
+원장님: "나머지의 성질(선형성)을 꿰뚫고 있는 아이만 1분 안에 풀 수 있습니다.<br>
+토로 힌트: <b>식 전체를 보지 말고 '찌꺼기(나머지)'에만 집중해!"</b>
+    </div>
+  </details>
+
+  <div style="margin-top:1rem;text-align:right;font-size:.75rem">
+    <a href="https://choisuka.github.io/toro_math/" style="color:#7dd3fc;text-decoration:none">
+      🏰 아르모니아 수학왕국 전체 보기 →
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

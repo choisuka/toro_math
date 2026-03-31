@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 이차함수 가이드 1/1 — [단대부고 22번] 두 지붕의 결합 — 아르모니아 수학왕국</title>
+</head>
+<body style="margin:0;padding:20px;background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center">
+<div style="max-width:580px;width:100%;font-family:'Noto Sans KR',sans-serif">
+
+  <div style="font-size:.75rem;color:#94a3b8;margin-bottom:.5rem">
+    📚 아르모니아 수학왕국 · 3단계 이차함수 · quad-func-guide 1/1
+  </div>
+
+  <div style="display:inline-block;padding:.3rem .9rem;border-radius:999px;background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.3);color:#fbbf24;font-size:.8rem;font-weight:700;margin-bottom:.8rem">
+    📊 이차함수 가이드 1/1 — [단대부고 22번] 두 지붕의 결합
+  </div>
+
+  <div style="background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.3);border-radius:16px;padding:1.4rem 1.6rem;line-height:1.85;font-size:.9rem">
+    <div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🏛️ [단대부고 22번] 이차함수 킬러 — 두 지붕이 만드는 새로운 그래프</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
+<b>문제:</b> f(x)=(x−a)²−a², g(x)=−(x−3a)²+9a²+b<br>
+조건 (가): f(x)=g(x)가 서로 다른 두 실근 α, β를 가짐<br>
+조건 (나): β−α=4<br>
+조건 (다): g(β)=f(α)+10a²+b<br>
+h(x)=max(f,g)일 때, h(x)=3x+k의 실근이 4개가 되는 범위 p&lt;k&lt;q. 2pq의 값은?<br><br>
+<b style="color:#86efac">🇫🇮 핀란드식 — "두 지붕의 결합"</b><br>
+조건 분석: f는 아래로 볼록 꼭짓점 (a, −a²), g는 위로 볼록 꼭짓점 (3a, 9a²+b)<br>
+조건 (다): g(β)=f(α)+10a²+b → b=−a² (핵심 단서)<br>
+조립: "큰 값 선택"=두 지붕이 겹쳐진 가장 높은 겉면만 따라가는 h(x) 생성<br>
+결과: h(x)는 W자 혹은 굴곡진 형태. 직선이 이 골짜기를 절묘히 통과해야 4개 교점!<br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — "그래프 퍼즐"</b><br>
+a=1로 설정 시: f꼭짓점=(1,−1), g꼭짓점=(3,8)<br>
+두 함수가 만나는 두 점(α,β): β−α=4<br>
+기울기 3인 직선을 위아래로 움직이며 교점 4개의 범위 확정<br>
+"접하는 순간"과 "꺾이는 지점을 지나는 순간"이 p, q의 경계!<br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "관계의 재정의"</b><br>
+토로: "직선이 곡선과 4번 만나려면 그 곡선이 얼마나 복잡해야 할까?"<br>
+아이: "보통 이차함수론 불가능해요!"<br>
+토로: "맞아! 그래서 두 함수를 이어붙여 '골짜기'를 만든 거야. 직선이 너무 높으면 2번, 너무 낮으면 2번. 골짜기를 비집고 들어갈 때만 4번이지."
+</div>
+  </div>
+
+  
+  <details style="margin-top:1rem">
+    <summary style="cursor:pointer;display:inline-block;padding:.6rem 1.6rem;background:linear-gradient(135deg,#86efac,#3b82f6);border:none;border-radius:999px;color:#0f172a;font-weight:700;font-size:.9rem;list-style:none">
+      ✅ 정답 보기
+    </summary>
+    <div style="margin-top:.6rem;background:#0f172a;border:1px solid rgba(134,239,172,.2);border-radius:16px;padding:1.2rem 1.6rem;color:#e2e8f0;line-height:1.9;font-size:.9rem">
+      <b style="color:#fbbf24">풀이 핵심:</b><br>
+b=−a²로 설정 후 a=1 가정:<br>
+f(x)=(x−1)²−1, g(x)=−(x−3)²+8<br>
+두 함수의 교점에서 h(x) 그래프 결정<br>
+직선 y=3x+k와 4개 교점 → 판별식으로 경계 k 값 계산<br><br>
+<b style="color:#fde68a">원장님 코칭:</b><br>
+"기울기가 3인 자(ruler)를 들고 그래프 위에서 직접 움직여봐!"<br>
+눈으로 4개 교점 확인하는 순간, 판별식 계산의 목적이 명확해집니다.<br><br>
+<b style="color:#86efac">이 문제가 담은 것:</b><br>
+함수의 정의 + 대칭성 + 접선 + 범위 추론<br>
+고등 수학의 모든 정수가 담긴 명품 문제입니다.
+    </div>
+  </details>
+
+  <div style="margin-top:1rem;text-align:right;font-size:.75rem">
+    <a href="https://choisuka.github.io/toro_math/" style="color:#7dd3fc;text-decoration:none">
+      🏰 아르모니아 수학왕국 전체 보기 →
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

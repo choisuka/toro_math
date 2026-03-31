@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💬 다항식 토론 7/8 — [단대부고 11번] 복소수 리듬 (3국 완전판) — 아르모니아 수학왕국</title>
+</head>
+<body style="margin:0;padding:20px;background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center">
+<div style="max-width:580px;width:100%;font-family:'Noto Sans KR',sans-serif">
+
+  <div style="font-size:.75rem;color:#94a3b8;margin-bottom:.5rem">
+    📚 아르모니아 수학왕국 · 3단계 다항식 · poly-havruta 7/8
+  </div>
+
+  <div style="display:inline-block;padding:.3rem .9rem;border-radius:999px;background:rgba(196,181,253,.07);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;font-size:.8rem;font-weight:700;margin-bottom:.8rem">
+    💬 다항식 토론 7/8 — [단대부고 11번] 복소수 리듬 (3국 완전판)
+  </div>
+
+  <div style="background:rgba(196,181,253,.07);border:1px solid rgba(196,181,253,.3);border-radius:16px;padding:1.4rem 1.6rem;line-height:1.85;font-size:.9rem">
+    <div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🏛️ [단대부고 11번] 복소수의 리듬 — 3국 완전판</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
+<b>문제:</b> f(n) = n×(i+i²+…+iⁿ)×(1/i+1/i²+…+1/iⁿ)<br>
+f(k)+f(k+3)=105를 만족하는 자연수 k의 값의 합은?<br><br>
+<b style="color:#86efac">🇫🇮 핀란드식 — "4개씩 묶으면 사라지는 마법"</b><br>
+i는 4개마다 제자리: i, −1, −i, 1 → 4개 합=0<br>
+1/i도 마찬가지: −i, −1, i, 1 → 4개 합=0<br>
+→ n이 4의 배수 → 두 괄호 모두 0 → <b>f(n)=0</b><br>
+n mod 4별 f(n) 값:<br>
+• 나머지 0: <b>f(n)=0</b><br>
+• 나머지 1: (i)×(−i)=1 → <b>f(n)=n</b><br>
+• 나머지 2: (i−1)×(−i−1)=2 → <b>f(n)=2n</b>  ← 핵심!<br>
+• 나머지 3: (−1)×(−1)=1 → <b>f(n)=n</b><br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — "회전하는 화살표"</b><br>
+i: ↑(위), i²=−1: ←(왼), i³=−i: ↓(아래), i⁴=1: →(오른)<br>
+4개 화살표 합 = 0 (원점 복귀)<br>
+r=2일 때 중간 괄호 곱 = 2 (대칭 상쇄 후 크기 2)
+</div>
+  </div>
+
+  
+  <details style="margin-top:1rem">
+    <summary style="cursor:pointer;display:inline-block;padding:.6rem 1.6rem;background:linear-gradient(135deg,#86efac,#3b82f6);border:none;border-radius:999px;color:#0f172a;font-weight:700;font-size:.9rem;list-style:none">
+      ✅ 정답 보기
+    </summary>
+    <div style="margin-top:.6rem;background:#0f172a;border:1px solid rgba(134,239,172,.2);border-radius:16px;padding:1.2rem 1.6rem;color:#e2e8f0;line-height:1.9;font-size:.9rem">
+      <b style="color:#c4b5fd">✡️ 유대인식 하브루타: "모든 경우를 의심하라"</b><br><br>
+k를 4로 나눈 나머지 r(k)별 경우의 수:<br>
+<b style="color:#7dd3fc">Case 1:</b> r(k)=1, r(k+3)=0<br>
+f(k)=k, f(k+3)=0 → k=105<br>
+105÷4=26…1 ✓, 108÷4=27 ✓ → <b style="color:#fde68a">k=105</b><br><br>
+<b style="color:#7dd3fc">Case 2:</b> r(k)=2, r(k+3)=1<br>
+f(k)=2k, f(k+3)=k+3 → 3k+3=105 → k=34<br>
+34÷4=8…2 ✓, 37÷4=9…1 ✓ → <b style="color:#fde68a">k=34</b><br><br>
+<b style="color:#7dd3fc">Case 3:</b> r(k)=3, r(k+3)=2<br>
+f(k)=k, f(k+3)=2(k+3) → 3k+6=105 → k=33<br>
+33÷4=8…1 ≠ 3 ✗ (모순, 탈락)<br><br>
+<b style="color:#7dd3fc">Case 4:</b> r(k)=0, r(k+3)=3<br>
+f(k)=0, f(k+3)=k+3=105 → k=102<br>
+102÷4=25…2 ≠ 0 ✗ (모순, 탈락)<br><br>
+<b style="color:#86efac">최종 답: 105+34 = 139</b><br>
+⚠️ r=2일 때 f(n)=<b>2n</b> (n이 아님!) — 이 차이가 정답을 가릅니다
+    </div>
+  </details>
+
+  <div style="margin-top:1rem;text-align:right;font-size:.75rem">
+    <a href="https://choisuka.github.io/toro_math/" style="color:#7dd3fc;text-decoration:none">
+      🏰 아르모니아 수학왕국 전체 보기 →
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

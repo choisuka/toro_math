@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💬 다항식 토론 8/8 — [단대부고 11번] 복소수의 리듬과 합의 퍼즐 (스토리 완성판) — 아르모니아 수학왕국</title>
+</head>
+<body style="margin:0;padding:20px;background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center">
+<div style="max-width:580px;width:100%;font-family:'Noto Sans KR',sans-serif">
+
+  <div style="font-size:.75rem;color:#94a3b8;margin-bottom:.5rem">
+    📚 아르모니아 수학왕국 · 3단계 다항식 · poly-havruta 8/8
+  </div>
+
+  <div style="display:inline-block;padding:.3rem .9rem;border-radius:999px;background:rgba(196,181,253,.07);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;font-size:.8rem;font-weight:700;margin-bottom:.8rem">
+    💬 다항식 토론 8/8 — [단대부고 11번] 복소수의 리듬과 합의 퍼즐 (스토리 완성판)
+  </div>
+
+  <div style="background:rgba(196,181,253,.07);border:1px solid rgba(196,181,253,.3);border-radius:16px;padding:1.4rem 1.6rem;line-height:1.85;font-size:.9rem">
+    <div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🏛️ [단대부고 11번] 복소수의 리듬과 합의 퍼즐</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — "사계절의 합은 0이다"</b><br>
+첫 번째 괄호(i의 합): i, −1, −i, 1 → 4개 더하면 <b>0</b><br>
+두 번째 괄호(역수의 합): 1/i=−i 도 마찬가지 → 4개 더하면 <b>0</b><br>
+결론: n이 4의 배수라면 두 괄호 모두 0 → <b style="color:#fde68a">f(n)=0</b><br><br>
+<b style="color:#86efac">🇫🇮 핀란드식 — "살아남은 조각들" (n mod 4 분석표)</b><br>
+<table style="font-size:.74rem;border-collapse:collapse;width:100%;margin:6px 0">
+<tr style="color:#c4b5fd;border-bottom:1px solid rgba(196,181,253,.3)">
+  <td style="padding:3px 6px">n (나머지)</td>
+  <td style="padding:3px 6px">첫 번째 괄호</td>
+  <td style="padding:3px 6px">두 번째 괄호</td>
+  <td style="padding:3px 6px">f(n)</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.1)">
+  <td style="padding:3px 6px">4m (0)</td>
+  <td style="padding:3px 6px">0</td>
+  <td style="padding:3px 6px">0</td>
+  <td style="padding:3px 6px"><b style="color:#fde68a">0</b></td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.1)">
+  <td style="padding:3px 6px">4m+1 (1)</td>
+  <td style="padding:3px 6px">i</td>
+  <td style="padding:3px 6px">−i</td>
+  <td style="padding:3px 6px"><b style="color:#fde68a">n</b></td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.1)">
+  <td style="padding:3px 6px">4m+2 (2)</td>
+  <td style="padding:3px 6px">i−1</td>
+  <td style="padding:3px 6px">−i−1</td>
+  <td style="padding:3px 6px"><b style="color:#fb923c">2n</b> ← 핵심!</td>
+</tr>
+<tr>
+  <td style="padding:3px 6px">4m+3 (3)</td>
+  <td style="padding:3px 6px">−1</td>
+  <td style="padding:3px 6px">−1</td>
+  <td style="padding:3px 6px"><b style="color:#fde68a">n</b></td>
+</tr>
+</table>
+<br>
+<b style="color:#fde68a">✡️ 유대인식 하브루타 — "105를 만드는 두 개의 수"</b><br>
+토로: "k와 k+3은 4로 나눈 나머지가 어떨까?"<br>
+아이: "하나는 4의 배수이거나, 나머지가 서로 연결되어 있겠네요!"<br><br>
+<b>Case 1:</b> k가 4의 배수 → f(k)=0, f(k+3)=k+3=105 → k=102<br>
+102÷4=25 나머지 2 ≠ 0 <b style="color:#fb923c">✗ 모순!</b><br><br>
+<b>Case 2:</b> k+3이 4의 배수 (k는 나머지 1) → f(k)=k=105<br>
+105÷4=26 나머지 1 ✓ → <b style="color:#fde68a">k=105</b><br><br>
+<b>Case 3:</b> k가 나머지 2 (k+3은 나머지 1)<br>
+2k+(k+3)=105 → 3k=102 → k=34<br>
+34÷4=8 나머지 2 ✓ → <b style="color:#fde68a">k=34</b>
+</div>
+  </div>
+
+  
+  <details style="margin-top:1rem">
+    <summary style="cursor:pointer;display:inline-block;padding:.6rem 1.6rem;background:linear-gradient(135deg,#86efac,#3b82f6);border:none;border-radius:999px;color:#0f172a;font-weight:700;font-size:.9rem;list-style:none">
+      ✅ 정답 보기
+    </summary>
+    <div style="margin-top:.6rem;background:#0f172a;border:1px solid rgba(134,239,172,.2);border-radius:16px;padding:1.2rem 1.6rem;color:#e2e8f0;line-height:1.9;font-size:.9rem">
+      <b style="color:#c4b5fd">🛠️ 미궁 탈출 결과</b><br><br>
+만족하는 k: <b style="color:#fde68a">105</b>와 <b style="color:#fde68a">34</b><br>
+최종 합: <b style="color:#86efac;font-size:.95rem">105+34 = 139</b><br><br>
+원장님, 이 문제는 단순한 계산력이 아니라 <b>"복소수의 주기성(4마디)"</b>과 <b>"나머지에 따른 분류"</b>라는 두 가지 핵심 전략을 동시에 요구합니다.<br><br>
+아르모니아 아이들에게는 이 문제를 <b>'4칸마다 반복되는 리듬 게임'</b>으로 가르쳐 주세요! 🎵<br><br>
+⚠️ 가장 많이 틀리는 포인트: 나머지 2일 때 f(n)=<b>2n</b> (n이 아님!)
+    </div>
+  </details>
+
+  <div style="margin-top:1rem;text-align:right;font-size:.75rem">
+    <a href="https://choisuka.github.io/toro_math/" style="color:#7dd3fc;text-decoration:none">
+      🏰 아르모니아 수학왕국 전체 보기 →
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

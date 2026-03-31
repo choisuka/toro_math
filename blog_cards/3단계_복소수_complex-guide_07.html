@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌀 복소수 완전 가이드 — 수학자의 시각 (5-1~5-5) — 아르모니아 수학왕국</title>
+</head>
+<body style="margin:0;padding:20px;background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center">
+<div style="max-width:580px;width:100%;font-family:'Noto Sans KR',sans-serif">
+
+  <div style="font-size:.75rem;color:#94a3b8;margin-bottom:.5rem">
+    📚 아르모니아 수학왕국 · 3단계 복소수 · complex-guide 7/7
+  </div>
+
+  <div style="display:inline-block;padding:.3rem .9rem;border-radius:999px;background:rgba(196,181,253,.07);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;font-size:.8rem;font-weight:700;margin-bottom:.8rem">
+    🌀 복소수 완전 가이드 — 수학자의 시각 (5-1~5-5)
+  </div>
+
+  <div style="background:rgba(196,181,253,.07);border:1px solid rgba(196,181,253,.3);border-radius:16px;padding:1.4rem 1.6rem;line-height:1.85;font-size:.9rem">
+    <div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🌀 복소수 완전 가이드 — 수학자의 시각</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
+<b style="color:#c4b5fd">━━ 5-1. 왜 ×i가 90도 회전인가? — 증명 ━━</b><br>
+[질문] "i를 곱하면 회전이라는데, 왜요? 그냥 외워요?"<br>
+[수학자] "복소평면에서 (a,b)를 90도 반시계 회전하면 좌표가 (−b,a)로 변해. 이건 중학 도형에서 배운 사실이야."<br>
+[학생] "그게 곱셈이랑 무슨 관계가 있어요?"<br>
+[수학자] "i×(a+bi)를 전개해봐:<br>
+= ai + bi² = ai + b(−1) = <b>−b + ai → 좌표 (−b, a)</b><br>
+수식이 정확히 90도 회전 공식이잖아! 외우는 게 아니라 계산으로 나오는 것."<br><br>
+<b style="color:#7dd3fc">━━ 5-2. 왜 곱셈이 각도 더하기인가? — 드무아브르의 이유 ━━</b><br>
+[질문] "(1+i)×(1+i)를 계산하면 각도가 45+45=90도?"<br>
+[수학자] "(cosα+isinα)(cosβ+isinβ) 전개:<br>
+= cos(α+β) + i sin(α+β) ← 코사인·사인 덧셈공식의 결과!"<br>
+[고1 버전] 두 화살표를 곱하면: 길이×길이, 각도+각도.<br>
+1+i = 길이√2, 각도45° → (1+i)² → 길이2, 각도90° → <b>2i ✓</b><br><br>
+<b style="color:#86efac">━━ 5-3. 주소 vs 명령 — 같은 i, 다른 역할 ━━</b><br>
+[질문] "i는 90도 회전이라면서 왜 위로 1칸이에요?"<br>
+[수학자] "역할이 두 개야.<br>
+① <b>주소:</b> 1+i = 좌표(1,1). '위로 1칸'은 주소 이야기.<br>
+② <b>명령:</b> ×i = 현재 점을 90도 반시계 회전. 둘 다 맞아!"<br>
+[확인] i(1+i): (a,b)=(1,1) → (−b,a)=(−1,1) = −1+i<br>
+수식: i+i²=i−1=−1+i ✓
+</div>
+  </div>
+
+  
+  <details style="margin-top:1rem">
+    <summary style="cursor:pointer;display:inline-block;padding:.6rem 1.6rem;background:linear-gradient(135deg,#86efac,#3b82f6);border:none;border-radius:999px;color:#0f172a;font-weight:700;font-size:.9rem;list-style:none">
+      ✅ 정답 보기
+    </summary>
+    <div style="margin-top:.6rem;background:#0f172a;border:1px solid rgba(134,239,172,.2);border-radius:16px;padding:1.2rem 1.6rem;color:#e2e8f0;line-height:1.9;font-size:.9rem">
+      <b style="color:#fde68a">━━ 5-4. 거듭제곱 패턴 — 시계바늘 돌리기 ━━</b><br>
+[질문] "i¹⁰⁰은 어떻게 빨리 구해요?"<br>
+[수학자] "i는 90도짜리. 4번 돌면 360도 → 제자리(1).<br>
+100=4×25, 나머지0 → <b>i¹⁰⁰=1</b>"<br>
+• i 계열: 4마디 (90°×4) / 1+i 계열: 8마디 → (1+i)⁸=16<br>
+• ω 계열: 3마디 (120°×3) → ω³=1<br>
+[3초 컷] 1:1비율→45° / 1:√3비율→60°<br><br>
+<b style="color:#fb923c">━━ 5-5. 나눗셈 + 단대부고 실전 ━━</b><br>
+[질문] "(1+i)/(1−i) 분모 실수화 없이도 돼요?"<br>
+[수학자] "나눗셈 = 각도 빼기 / 길이 나누기.<br>
+45°−(−45°)=90°, √2÷√2=1 → 답: <b>i</b>. 5초 컷."<br><br>
+<b>[단대부고 11번]</b> 나머지2 → f(n)=2n<br>
+왜? (i−1)(−i−1)=−i²−i+i+1=1+1=2<br>
+k=105, k=34 → 합 <b style="color:#fde68a">139</b><br><br>
+<b>[단대부고 13번]</b> α³이 실수 → 3×각도=180°×정수<br>
+→ 각도=60° 또는 120° → 이차방정식과 연립하여 m 결정
+    </div>
+  </details>
+
+  <div style="margin-top:1rem;text-align:right;font-size:.75rem">
+    <a href="https://choisuka.github.io/toro_math/" style="color:#7dd3fc;text-decoration:none">
+      🏰 아르모니아 수학왕국 전체 보기 →
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

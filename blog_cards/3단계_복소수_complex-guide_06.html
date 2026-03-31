@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌀 복소수 통합 가이드 (5-1~5-5) — 완전 정리 — 아르모니아 수학왕국</title>
+</head>
+<body style="margin:0;padding:20px;background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center">
+<div style="max-width:580px;width:100%;font-family:'Noto Sans KR',sans-serif">
+
+  <div style="font-size:.75rem;color:#94a3b8;margin-bottom:.5rem">
+    📚 아르모니아 수학왕국 · 3단계 복소수 · complex-guide 6/7
+  </div>
+
+  <div style="display:inline-block;padding:.3rem .9rem;border-radius:999px;background:rgba(196,181,253,.07);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;font-size:.8rem;font-weight:700;margin-bottom:.8rem">
+    🌀 복소수 통합 가이드 (5-1~5-5) — 완전 정리
+  </div>
+
+  <div style="background:rgba(196,181,253,.07);border:1px solid rgba(196,181,253,.3);border-radius:16px;padding:1.4rem 1.6rem;line-height:1.85;font-size:.9rem">
+    <div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🌀 복소수 완전 가이드 — 5개 테마</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
+<b style="color:#c4b5fd">━━ 5-1. i의 정체 — "90도 회전하는 핸들" ━━</b><br>
+• −1을 곱하면 180도 뒤집힘 → i는 그 절반, 90도 회전<br>
+• 기차(실수)는 앞뒤만. i를 곱하면 핸들을 꺾어 평면 어디든 이동 가능<br>
+• <b>핵심:</b> i를 곱하는 것 ≠ 위로 1칸 이동 (그건 주소). ×i = "90도 돌려라" (명령)<br>
+• <b>증명:</b> i×(a+bi) = −b+ai → 좌표 (a,b)가 (−b,a)로 → 90도 반시계 회전 공식과 일치!<br><br>
+<b style="color:#7dd3fc">━━ 5-2. 주소 vs 명령 + 1+i=45도 ━━</b><br>
+• 주소: 1+i = 좌표(1,1). 가로1·세로1 → 대각선 → <b>45도</b>, 크기 √2<br>
+• 명령: i(1+i) = (1,1)을 90도 돌리면 (−1,1) = −1+i ← 수식과 그림 일치!<br>
+• (1+i)ⁿ: 45도씩 n회전, 크기 (√2)ⁿ<br><br>
+<b style="color:#86efac">━━ 5-3. 거듭제곱 패턴 ━━</b><br>
+• i의 4마디: i¹⁰⁰ → 100÷4=25 나머지0 → <b>1</b><br>
+• (1+i)의 8마디: (1+i)⁸=16 (360도 제자리, 크기2⁴)<br>
+• ω(120도)의 3마디: ω³=1, ω²+ω+1=0<br>
+• 3초 컷: 실수:허수 = 1:1 → 45도 / 1:√3 → 60도<br><br>
+<b style="color:#fde68a">━━ 5-4. 나눗셈 = 각도 빼기 ━━</b><br>
+• (1+i)/(1−i): 45°−(−45°)=90° → <b>i</b>. 5초 컷!<br>
+• 전통 계산 확인: (1+i)²/(1+1) = 2i/2 = i ✓<br>
+• 곱셈=각도 더하기 / 나눗셈=각도 빼기
+</div>
+  </div>
+
+  
+  <details style="margin-top:1rem">
+    <summary style="cursor:pointer;display:inline-block;padding:.6rem 1.6rem;background:linear-gradient(135deg,#86efac,#3b82f6);border:none;border-radius:999px;color:#0f172a;font-weight:700;font-size:.9rem;list-style:none">
+      ✅ 정답 보기
+    </summary>
+    <div style="margin-top:.6rem;background:#0f172a;border:1px solid rgba(134,239,172,.2);border-radius:16px;padding:1.2rem 1.6rem;color:#e2e8f0;line-height:1.9;font-size:.9rem">
+      <b style="color:#fb923c">━━ 5-5. 수학자↔학생 핵심 Q&A ━━</b><br><br>
+<b style="color:#7dd3fc">Q: "(1+i)²=2i라고? 왜 2i야?"</b><br>
+A: "45도 두 번 = 90도. 크기 √2 두 번 = 2. → 크기2, 방향90도 = 2i"<br><br>
+<b style="color:#7dd3fc">Q: "α³이 실수라는 게 왜 120도랑 관련이야?"</b><br>
+A: "3번 회전해서 실수축 도착 → 3θ=180°×정수 → θ=60°또는 120°"<br><br>
+<b style="color:#7dd3fc">Q: "나머지2일 때 왜 f(n)=2n이야?"</b><br>
+A: "(i−1)(−i−1) = −i²−i+i+1 = 1+1 = 2 → f(n)=n×2=2n"<br><br>
+<b style="color:#c4b5fd">핵심 한마디:</b><br>
+"i는 숫자를 키우는 게 아니라 <b>방향을 바꾸는 핸들</b>이야.<br>
+복소수 곱셈 = 길이×길이 + 각도+각도. 이 두 줄이 전부다!"
+    </div>
+  </details>
+
+  <div style="margin-top:1rem;text-align:right;font-size:.75rem">
+    <a href="https://choisuka.github.io/toro_math/" style="color:#7dd3fc;text-decoration:none">
+      🏰 아르모니아 수학왕국 전체 보기 →
+    </a>
+  </div>
+
+</div>
+</body>
+</html>
