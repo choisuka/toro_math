@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>아르모니아 수학왕국 — 블로그 카드 목록</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0f172a; color:#e2e8f0; font-family:'Noto Sans KR',sans-serif; padding:24px; }
+h1 { font-size:1.4rem; color:#a78bfa; margin-bottom:6px; }
+p.sub { font-size:.85rem; color:#64748b; margin-bottom:24px; }
+.stage { margin-bottom:32px; }
+.stage-title { font-size:1rem; font-weight:700; color:#fde68a; margin-bottom:12px; padding:6px 14px; background:rgba(253,230,138,.08); border-left:3px solid #fde68a; border-radius:4px; }
+.cards { display:flex; flex-direction:column; gap:6px; }
+.card-row { display:flex; align-items:center; gap:10px; padding:8px 12px; background:#1e293b; border-radius:10px; text-decoration:none; color:#e2e8f0; font-size:.85rem; transition:background .2s; }
+.card-row:hover { background:#334155; }
+.card-row.done { opacity:.4; }
+.num { min-width:28px; color:#64748b; font-size:.78rem; }
+.tag { font-size:.78rem; color:#94a3b8; }
+.check { margin-left:auto; font-size:.9rem; cursor:pointer; }
+.copy-btn { margin-left:6px; padding:2px 8px; background:rgba(167,139,250,.15); border:1px solid rgba(167,139,250,.3); border-radius:999px; color:#a78bfa; font-size:.72rem; cursor:pointer; text-decoration:none; }
+.copy-btn:hover { background:rgba(167,139,250,.3); }
+input[type=text] { width:100%; padding:8px 12px; background:#1e293b; border:1px solid #334155; border-radius:8px; color:#e2e8f0; font-size:.85rem; margin-bottom:16px; }
+</style>
+</head>
+<body>
+
+<h1>🏰 아르모니아 수학왕국 — 블로그 카드 목록</h1>
+<p class="sub">총 229개 · 매일 1개씩 공유 · 클릭하면 문제 페이지로 이동</p>
+
+<input type="text" id="search" placeholder="🔍 검색 (예: 방정식, 핀란드, 부등식...)" oninput="filterCards()">
+
+<div id="list"></div>
+
+<script>
+const BASE = 'https://choisuka.github.io/toro_math/blog_cards/';
+
+const CARDS = [
+  // 1단계 약수배수
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-guide_01.html', tag:'약수배수 개념 1/4'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-guide_02.html', tag:'약수배수 개념 2/4'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-guide_03.html', tag:'약수배수 개념 3/4'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-guide_04.html', tag:'약수배수 개념 4/4'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-gcd_01.html', tag:'최대공약수 1/4'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-gcd_02.html', tag:'최대공약수 2/4'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-gcd_03.html', tag:'최대공약수 3/4'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-gcd_04.html', tag:'최대공약수 4/4'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-worksheet_01.html', tag:'워크시트 1/4'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-worksheet_02.html', tag:'워크시트 2/4'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-worksheet_03.html', tag:'워크시트 3/4'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-worksheet_04.html', tag:'워크시트 4/4'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-advanced_01.html', tag:'심화 1/5'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-advanced_02.html', tag:'심화 2/5'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-advanced_03.html', tag:'심화 3/5'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-advanced_04.html', tag:'심화 4/5'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-advanced_05.html', tag:'심화 5/5'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-hard10_01.html', tag:'심화10선 1/11'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-hard10_02.html', tag:'심화10선 2/11'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-hard10_03.html', tag:'심화10선 3/11'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-hard10_04.html', tag:'심화10선 4/11'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-hard10_05.html', tag:'심화10선 5/11'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-hard10_06.html', tag:'심화10선 6/11'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-hard10_07.html', tag:'심화10선 7/11'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-hard10_08.html', tag:'심화10선 8/11'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-hard10_09.html', tag:'심화10선 9/11'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-hard10_10.html', tag:'심화10선 10/11'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-hard10_11.html', tag:'심화10선 11/11'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-solution_01.html', tag:'해설 1/3'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-solution_02.html', tag:'해설 2/3'},
+  {stage:'1단계 약수배수', file:'1단계_약수배수_fm-solution_03.html', tag:'해설 3/3'},
+  // 1단계 소인수분해
+  {stage:'1단계 소인수분해', file:'1단계_소인수분해_prime-havruta_01.html', tag:'하브루타 1/4'},
+  {stage:'1단계 소인수분해', file:'1단계_소인수분해_prime-havruta_02.html', tag:'하브루타 2/4'},
+  {stage:'1단계 소인수분해', file:'1단계_소인수분해_prime-havruta_03.html', tag:'하브루타 3/4'},
+  {stage:'1단계 소인수분해', file:'1단계_소인수분해_prime-havruta_04.html', tag:'하브루타 4/4'},
+  // 2단계 방정식
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-guide_01.html', tag:'개념 핀란드식'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-guide_02.html', tag:'개념 싱가포르식'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-guide_03.html', tag:'개념 유대인식'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-basic_01.html', tag:'기본 1/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-basic_02.html', tag:'기본 2/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-basic_03.html', tag:'기본 3/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-basic_04.html', tag:'기본 4/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-basic_05.html', tag:'기본 5/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-basic_06.html', tag:'기본 6/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-basic_07.html', tag:'기본 7/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-basic_08.html', tag:'기본 8/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-basic_09.html', tag:'기본 9/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-basic_10.html', tag:'기본 10/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-hard_01.html', tag:'심화 1/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-hard_02.html', tag:'심화 2/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-hard_03.html', tag:'심화 3/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-hard_04.html', tag:'심화 4/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-hard_05.html', tag:'심화 5/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-hard_06.html', tag:'심화 6/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-hard_07.html', tag:'심화 7/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-hard_08.html', tag:'심화 8/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-hard_09.html', tag:'심화 9/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-hard_10.html', tag:'심화 10/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-hard_11.html', tag:'심화 11/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity_01.html', tag:'항등식 1/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity_02.html', tag:'항등식 2/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity_03.html', tag:'항등식 3/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity_04.html', tag:'항등식 4/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity_05.html', tag:'항등식 5/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity_06.html', tag:'항등식 6/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity_07.html', tag:'항등식 7/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity_08.html', tag:'항등식 8/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity_09.html', tag:'항등식 9/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity_10.html', tag:'항등식 10/10'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-havruta_01.html', tag:'항등식 하브루타 1/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-havruta_02.html', tag:'항등식 하브루타 2/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-havruta_03.html', tag:'항등식 하브루타 3/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-havruta_04.html', tag:'항등식 하브루타 4/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-havruta_05.html', tag:'항등식 하브루타 5/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-havruta_06.html', tag:'항등식 하브루타 6/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-havruta_07.html', tag:'항등식 하브루타 7/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-havruta_08.html', tag:'항등식 하브루타 8/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-havruta_09.html', tag:'항등식 하브루타 9/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-havruta_10.html', tag:'항등식 하브루타 10/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-havruta_11.html', tag:'항등식 하브루타 11/11'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-havruta-cards_01.html', tag:'하브루타 1/12'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-havruta-cards_02.html', tag:'하브루타 2/12'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-havruta-cards_03.html', tag:'하브루타 3/12'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-havruta-cards_04.html', tag:'하브루타 4/12'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-havruta-cards_05.html', tag:'하브루타 5/12'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-havruta-cards_06.html', tag:'하브루타 6/12'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-havruta-cards_07.html', tag:'하브루타 7/12'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-havruta-cards_08.html', tag:'하브루타 8/12'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-havruta-cards_09.html', tag:'하브루타 9/12'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-havruta-cards_10.html', tag:'하브루타 10/12'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-havruta-cards_11.html', tag:'하브루타 11/12'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-havruta-cards_12.html', tag:'하브루타 12/12'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-discussion_01.html', tag:'토론 1/5'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-discussion_02.html', tag:'토론 2/5'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-discussion_03.html', tag:'토론 3/5'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-discussion_04.html', tag:'토론 4/5'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-identity-discussion_05.html', tag:'토론 5/5'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-guarantee_01.html', tag:'보증 1/5'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-guarantee_02.html', tag:'보증 2/5'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-guarantee_03.html', tag:'보증 3/5'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-guarantee_04.html', tag:'보증 4/5'},
+  {stage:'2단계 방정식', file:'2단계_방정식_eq-guarantee_05.html', tag:'보증 5/5'},
+  // 2단계 부등식
+  {stage:'2단계 부등식', file:'2단계_부등식_inequality-guide_01.html', tag:'개념 1/3'},
+  {stage:'2단계 부등식', file:'2단계_부등식_inequality-guide_02.html', tag:'개념 2/3'},
+  {stage:'2단계 부등식', file:'2단계_부등식_inequality-guide_03.html', tag:'개념 3/3'},
+  {stage:'2단계 부등식', file:'2단계_부등식_inequality-havruta_01.html', tag:'하브루타 1/1'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-hard10_01.html', tag:'심화10선 1/10'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-hard10_02.html', tag:'심화10선 2/10'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-hard10_03.html', tag:'심화10선 3/10'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-hard10_04.html', tag:'심화10선 4/10'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-hard10_05.html', tag:'심화10선 5/10'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-hard10_06.html', tag:'심화10선 6/10'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-hard10_07.html', tag:'심화10선 7/10'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-hard10_08.html', tag:'심화10선 8/10'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-hard10_09.html', tag:'심화10선 9/10'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-hard10_10.html', tag:'심화10선 10/10'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-gemini5_01.html', tag:'3국연합 1/5'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-gemini5_02.html', tag:'3국연합 2/5'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-gemini5_03.html', tag:'3국연합 3/5'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-gemini5_04.html', tag:'3국연합 4/5'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-gemini5_05.html', tag:'3국연합 5/5'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-lesson_01.html', tag:'수업교안 1/5'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-lesson_02.html', tag:'수업교안 2/5'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-lesson_03.html', tag:'수업교안 3/5'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-lesson_04.html', tag:'수업교안 4/5'},
+  {stage:'2단계 부등식', file:'2단계_부등식_ineq-lesson_05.html', tag:'수업교안 5/5'},
+  // 2단계 연립방정식
+  {stage:'2단계 연립방정식', file:'2단계_연립방정식_simultaneous-guide_01.html', tag:'개념 1/3'},
+  {stage:'2단계 연립방정식', file:'2단계_연립방정식_simultaneous-guide_02.html', tag:'개념 2/3'},
+  {stage:'2단계 연립방정식', file:'2단계_연립방정식_simultaneous-guide_03.html', tag:'개념 3/3'},
+  {stage:'2단계 연립방정식', file:'2단계_연립방정식_simultaneous-basic_01.html', tag:'기본 1/3'},
+  {stage:'2단계 연립방정식', file:'2단계_연립방정식_simultaneous-basic_02.html', tag:'기본 2/3'},
+  {stage:'2단계 연립방정식', file:'2단계_연립방정식_simultaneous-basic_03.html', tag:'기본 3/3'},
+  {stage:'2단계 연립방정식', file:'2단계_연립방정식_simultaneous-hard_01.html', tag:'심화 1/3'},
+  {stage:'2단계 연립방정식', file:'2단계_연립방정식_simultaneous-hard_02.html', tag:'심화 2/3'},
+  {stage:'2단계 연립방정식', file:'2단계_연립방정식_simultaneous-hard_03.html', tag:'심화 3/3'},
+  {stage:'2단계 연립방정식', file:'2단계_연립방정식_simultaneous-havruta_01.html', tag:'하브루타 1/2'},
+  {stage:'2단계 연립방정식', file:'2단계_연립방정식_simultaneous-havruta_02.html', tag:'하브루타 2/2'},
+  // 3단계 일차함수
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_01.html', tag:'개념 1/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_02.html', tag:'개념 2/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_03.html', tag:'개념 3/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_04.html', tag:'개념 4/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_05.html', tag:'개념 5/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_06.html', tag:'개념 6/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_07.html', tag:'개념 7/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_08.html', tag:'개념 8/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_09.html', tag:'개념 9/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_10.html', tag:'개념 10/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_11.html', tag:'개념 11/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_12.html', tag:'개념 12/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_13.html', tag:'개념 13/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_14.html', tag:'개념 14/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_15.html', tag:'개념 15/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_16.html', tag:'개념 16/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-guide_17.html', tag:'개념 17/17'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-havruta_01.html', tag:'하브루타 1/8'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-havruta_02.html', tag:'하브루타 2/8'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-havruta_03.html', tag:'하브루타 3/8'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-havruta_04.html', tag:'하브루타 4/8'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-havruta_05.html', tag:'하브루타 5/8'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-havruta_06.html', tag:'하브루타 6/8'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-havruta_07.html', tag:'하브루타 7/8'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-havruta_08.html', tag:'하브루타 8/8'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-deep_01.html', tag:'심화 1/4'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-deep_02.html', tag:'심화 2/4'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-deep_03.html', tag:'심화 3/4'},
+  {stage:'3단계 일차함수', file:'3단계_일차함수_linear-func-deep_04.html', tag:'심화 4/4'},
+  // 3단계 다항식
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-guide_01.html', tag:'개념 1/12'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-guide_02.html', tag:'개념 2/12'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-guide_03.html', tag:'개념 3/12'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-guide_04.html', tag:'개념 4/12'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-guide_05.html', tag:'개념 5/12'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-guide_06.html', tag:'개념 6/12'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-guide_07.html', tag:'개념 7/12'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-guide_08.html', tag:'개념 8/12'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-guide_09.html', tag:'개념 9/12'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-guide_10.html', tag:'개념 10/12'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-guide_11.html', tag:'개념 11/12'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-guide_12.html', tag:'개념 12/12'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-havruta_01.html', tag:'하브루타 1/8'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-havruta_02.html', tag:'하브루타 2/8'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-havruta_03.html', tag:'하브루타 3/8'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-havruta_04.html', tag:'하브루타 4/8'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-havruta_05.html', tag:'하브루타 5/8'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-havruta_06.html', tag:'하브루타 6/8'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-havruta_07.html', tag:'하브루타 7/8'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-havruta_08.html', tag:'하브루타 8/8'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-hard_01.html', tag:'심화 1/4'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-hard_02.html', tag:'심화 2/4'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-hard_03.html', tag:'심화 3/4'},
+  {stage:'3단계 다항식', file:'3단계_다항식_poly-hard_04.html', tag:'심화 4/4'},
+  // 3단계 이차방정식
+  {stage:'3단계 이차방정식', file:'3단계_이차방정식_quad-eq-guide_01.html', tag:'개념 1/1'},
+  {stage:'3단계 이차방정식', file:'3단계_이차방정식_quad-eq-havruta_01.html', tag:'하브루타 1/1'},
+  // 3단계 복소수
+  {stage:'3단계 복소수', file:'3단계_복소수_complex-guide_01.html', tag:'개념 1/7'},
+  {stage:'3단계 복소수', file:'3단계_복소수_complex-guide_02.html', tag:'개념 2/7'},
+  {stage:'3단계 복소수', file:'3단계_복소수_complex-guide_03.html', tag:'개념 3/7'},
+  {stage:'3단계 복소수', file:'3단계_복소수_complex-guide_04.html', tag:'개념 4/7'},
+  {stage:'3단계 복소수', file:'3단계_복소수_complex-guide_05.html', tag:'개념 5/7'},
+  {stage:'3단계 복소수', file:'3단계_복소수_complex-guide_06.html', tag:'개념 6/7'},
+  {stage:'3단계 복소수', file:'3단계_복소수_complex-guide_07.html', tag:'개념 7/7'},
+  {stage:'3단계 복소수', file:'3단계_복소수_complex-havruta_01.html', tag:'하브루타 1/3'},
+  {stage:'3단계 복소수', file:'3단계_복소수_complex-havruta_02.html', tag:'하브루타 2/3'},
+  {stage:'3단계 복소수', file:'3단계_복소수_complex-havruta_03.html', tag:'하브루타 3/3'},
+  // 3단계 이차함수
+  {stage:'3단계 이차함수', file:'3단계_이차함수_quad-func-guide_01.html', tag:'개념 1/1'},
+  {stage:'3단계 이차함수', file:'3단계_이차함수_quad-func-havruta_01.html', tag:'하브루타 1/3'},
+  {stage:'3단계 이차함수', file:'3단계_이차함수_quad-func-havruta_02.html', tag:'하브루타 2/3'},
+  {stage:'3단계 이차함수', file:'3단계_이차함수_quad-func-havruta_03.html', tag:'하브루타 3/3'},
+  {stage:'3단계 이차함수', file:'3단계_이차함수_quadratic-guide_01.html', tag:'이차식 개념 1/6'},
+  {stage:'3단계 이차함수', file:'3단계_이차함수_quadratic-guide_02.html', tag:'이차식 개념 2/6'},
+  {stage:'3단계 이차함수', file:'3단계_이차함수_quadratic-guide_03.html', tag:'이차식 개념 3/6'},
+  {stage:'3단계 이차함수', file:'3단계_이차함수_quadratic-guide_04.html', tag:'이차식 개념 4/6'},
+  {stage:'3단계 이차함수', file:'3단계_이차함수_quadratic-guide_05.html', tag:'이차식 개념 5/6'},
+  {stage:'3단계 이차함수', file:'3단계_이차함수_quadratic-guide_06.html', tag:'이차식 개념 6/6'},
+  {stage:'3단계 이차함수', file:'3단계_이차함수_quadratic-havruta_01.html', tag:'이차식 하브루타 1/1'},
+  // 4단계 도형
+  {stage:'4단계 도형', file:'4단계_도형_geometry-guide_01.html', tag:'개념 1/3'},
+  {stage:'4단계 도형', file:'4단계_도형_geometry-guide_02.html', tag:'개념 2/3'},
+  {stage:'4단계 도형', file:'4단계_도형_geometry-guide_03.html', tag:'개념 3/3'},
+  {stage:'4단계 도형', file:'4단계_도형_geometry-havruta_01.html', tag:'하브루타 1/1'},
+  // 4단계 통계
+  {stage:'4단계 통계', file:'4단계_통계_avg-guide_01.html', tag:'개념 1/4'},
+  {stage:'4단계 통계', file:'4단계_통계_avg-guide_02.html', tag:'개념 2/4'},
+  {stage:'4단계 통계', file:'4단계_통계_avg-guide_03.html', tag:'개념 3/4'},
+  {stage:'4단계 통계', file:'4단계_통계_avg-guide_04.html', tag:'개념 4/4'},
+  {stage:'4단계 통계', file:'4단계_통계_avg-hard_01.html', tag:'심화 1/3'},
+  {stage:'4단계 통계', file:'4단계_통계_avg-hard_02.html', tag:'심화 2/3'},
+  {stage:'4단계 통계', file:'4단계_통계_avg-hard_03.html', tag:'심화 3/3'},
+  {stage:'4단계 통계', file:'4단계_통계_avg-example_01.html', tag:'예시 1/1'},
+  {stage:'4단계 통계', file:'4단계_통계_avg-havruta_01.html', tag:'하브루타 1/4'},
+  {stage:'4단계 통계', file:'4단계_통계_avg-havruta_02.html', tag:'하브루타 2/4'},
+  {stage:'4단계 통계', file:'4단계_통계_avg-havruta_03.html', tag:'하브루타 3/4'},
+  {stage:'4단계 통계', file:'4단계_통계_avg-havruta_04.html', tag:'하브루타 4/4'},
+];
+
+// 로컬스토리지에서 완료 상태 불러오기
+const DONE_KEY = 'armoonia_blog_done';
+let done = JSON.parse(localStorage.getItem(DONE_KEY) || '[]');
+
+function toggleDone(idx) {
+  if (done.includes(idx)) done = done.filter(i => i !== idx);
+  else done.push(idx);
+  localStorage.setItem(DONE_KEY, JSON.stringify(done));
+  render();
+}
+
+function copyURL(url) {
+  navigator.clipboard.writeText(url).then(() => {
+    alert('URL 복사됨!');
+  });
+}
+
+function filterCards() {
+  const q = document.getElementById('search').value.toLowerCase();
+  render(q);
+}
+
+function render(q = '') {
+  const stages = [...new Set(CARDS.map(c => c.stage))];
+  let html = '';
+  let globalIdx = 0;
+  stages.forEach(stage => {
+    const stageCards = CARDS.filter(c => c.stage === stage);
+    const filtered = stageCards.filter(c =>
+      !q || c.stage.includes(q) || c.tag.includes(q) || c.file.includes(q)
+    );
+    if (!filtered.length) { globalIdx += stageCards.length; return; }
+    html += `<div class="stage"><div class="stage-title">📌 ${stage}</div><div class="cards">`;
+    stageCards.forEach((card, i) => {
+      const idx = CARDS.indexOf(card);
+      const url = BASE + encodeURIComponent(card.file);
+      const isDone = done.includes(idx);
+      if (!q || card.stage.includes(q) || card.tag.includes(q) || card.file.includes(q)) {
+        html += `<a class="card-row${isDone?' done':''}" href="${url}" target="_blank">
+          <span class="num">${String(idx+1).padStart(3,'0')}</span>
+          <span>${card.tag}</span>
+          <span class="tag">${card.file.replace('.html','')}</span>
+          <button class="copy-btn" onclick="event.preventDefault();copyURL('${url}')">URL복사</button>
+          <span class="check" onclick="event.preventDefault();toggleDone(${idx})">${isDone?'✅':'⬜'}</span>
+        </a>`;
+      }
+    });
+    html += `</div></div>`;
+  });
+  document.getElementById('list').innerHTML = html;
+}
+
+render();
+</script>
+</body>
+</html>
