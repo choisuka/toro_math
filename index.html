@@ -1383,7 +1383,7 @@ const CARD_DATA = {
     ans:`<b style="color:#7dd3fc">풀이:</b> 형 = x<br>x + (x − 6) = 30<br>2x = 36<br><b style="color:#fde68a;font-size:.9rem">형 18개, 동생 12개</b>` },
   { tag:'✡️ 기본 6/10', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">0 × x = 0 에서 x는 무엇이든 될 수 있습니다.<br>이런 식도 방정식이라고 할 수 있을까요?</div>`,
-    ans:`<b style="color:#fde68a">답: 방정식 아님 → 항등식</b><br><br>방정식은 특정 x에서만 참이어야 합니다.<br>0×x=0은 x가 무엇이든 항상 참 → <b style="color:#a5b4fc">항등식</b>` },
+    ans:`<b style="color:#fde68a">답: 방정식 아님 → 항등식</b><br><br><div style="background:rgba(165,180,252,.08);border-radius:8px;padding:7px 10px;margin-bottom:8px;font-size:.79rem"><b style="color:#a5b4fc">항등식이란?</b> x가 어떤 값이든 항상 성립하는 등식이에요.<br>(방정식은 특정 x값에서만 성립 → "범인 찾기")</div>방정식은 특정 x에서만 참이어야 합니다.<br>0×x=0은 x가 무엇이든 항상 참 → <b style="color:#a5b4fc">항등식</b>` },
   { tag:'🇫🇮 기본 7/10', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">현재 아버지 45세, 아들 13세입니다.<br>아버지의 나이가 아들의 3배가 되는 것은 몇 년 후인가요?</div>`,
     ans:`<b style="color:#86efac">풀이:</b> x년 후<br>45 + x = 3(13 + x)<br>45 + x = 39 + 3x<br>6 = 2x<br><b style="color:#fde68a;font-size:.9rem">3년 후</b> (아버지 48세 = 아들 16세 × 3)` },
@@ -2427,7 +2427,7 @@ z³의 계수: β ↔ β̄ / (z̄)³의 계수: α ↔ ᾱ<br>
     ans:`<b style="color:#86efac">풀이:</b> 강아지=x, 오리=y<br>x + y = 10<br>4x + 2y = 26<br>→ 2x = 6 → x = 3<br><b style="color:#fde68a;font-size:.9rem">강아지 3마리, 오리 7마리</b>` },
   { tag:'🌱 기본 2/3 — 사탕과 초콜릿', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">사탕 3개와 초콜릿 2개의 합이 2,400원, 사탕 1개와 초콜릿 3개의 합이 2,200원입니다. 각각의 가격은?</div>`,
-    ans:`<b style="color:#86efac">풀이:</b> 사탕=x, 초콜릿=y<br>3x + 2y = 2400 … ①<br>x + 3y = 2200 … ②<br>①−②×3: 7x = 800 — 아니, ①×3−②×9 대신<br>②×3: 3x+9y=6600 / ①: 3x+2y=2400<br>7y = 4200 → y = 600, x = 400<br><b style="color:#fde68a;font-size:.9rem">사탕 400원, 초콜릿 600원</b>` },
+    ans:`<b style="color:#86efac">풀이:</b> 사탕=x, 초콜릿=y<br>3x + 2y = 2400 … ①<br>x + 3y = 2200 … ②<br>②×3: 3x + 9y = 6600 … ③<br>③ − ①: 7y = 4200 → <b>y = 600</b><br>②에 대입: x + 1800 = 2200 → <b>x = 400</b><br><b style="color:#fde68a;font-size:.9rem">사탕 400원, 초콜릿 600원</b>` },
   { tag:'🌱 기본 3/3 — 어머니와 딸의 나이', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">현재 어머니 나이는 딸 나이의 3배이고, 10년 후에는 어머니가 딸 나이의 2배가 됩니다. 현재 두 사람의 나이는?</div>`,
     ans:`<b style="color:#86efac">풀이:</b> 딸=x, 어머니=y<br>y = 3x … ①<br>y + 10 = 2(x + 10) … ②<br>①을 ②에: 3x+10 = 2x+20 → x = 10<br><b style="color:#fde68a;font-size:.9rem">딸 10세, 어머니 30세</b>` }
@@ -2561,7 +2561,23 @@ z³의 계수: β ↔ β̄ / (z̄)³의 계수: α ↔ ᾱ<br>
   { tag:'✡️ 유대인식 — 최악의 상황 가정법', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">✡️ 유대인식 (논리): "최대값과 최소값 중 무엇이 더 중요할까?"를 토론합니다.</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">최악의 상황(최소한 이만큼은 해야 함)을 가정하여 문제를 해결하는 전략적 사고를 배웁니다.<br><br>핵심: 유대인은 '최소 보장선'을 찾는다. 최악을 준비하면 어떤 상황도 버틸 수 있다!</div>`,
-    ans:null }
+    ans:null },
+
+  { tag:'⚠️ 핵심 규칙 — 부등호 방향이 바뀌는 순간 4/4', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.06)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#f87171;font-size:.92rem">부등식에서 가장 중요한 규칙!</b><br><br>
+방정식과 달리 부등식은 한 가지 특별한 상황에서 <b style="color:#f87171">부등호 방향이 뒤집혀요.</b><br><br>
+<div style="background:rgba(248,113,113,.08);border-radius:10px;padding:10px 14px;margin-bottom:10px">
+<b style="color:#86efac">✅ 방향 유지:</b> 양변에 같은 <b>양수</b>를 곱하거나 나눌 때<br>
+2 &lt; 4 → ×3 → 6 &lt; 12 (그대로)<br><br>
+<b style="color:#f87171">🔄 방향 뒤집기:</b> 양변에 같은 <b>음수</b>를 곱하거나 나눌 때<br>
+2 &lt; 4 → ×(−1) → −2 <b style="color:#f87171">&gt;</b> −4 (뒤집힘!)
+</div>
+<b style="color:#fde68a">💬 토로의 질문:</b> "왜 음수로 나누면 방향이 바뀔까?"<br>
+<span style="color:#aaa;font-size:.79rem">수직선에서 음수를 곱하면 좌우가 뒤집히기 때문이에요.<br>2는 4의 왼쪽 → ×(−1) → −2는 −4의 오른쪽!</span><br><br>
+<b style="color:#f87171">🚨 실수 방지:</b> 부등식 풀다가 계수가 음수 나오면 → 반드시 부등호 뒤집기!
+</div>`, ans:null }
 ],
 
 /* ── 일차부등식 하브루타 (1편) ──────────────── */
