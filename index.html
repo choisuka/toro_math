@@ -652,11 +652,14 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">논리<br>왜 1≠소수?</div>
       </div>
     </div>
+    <button onclick="startCards('prime-guide','prime-hub')" style="width:100%;margin-bottom:10px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📖 3개국 개념 가이드 (4장) →
+    </button>
     <button class="btn btn-main" onclick="startQuiz('prime','prime-hub')" style="width:100%;margin-bottom:10px;background:linear-gradient(135deg,#312e81,#6366f1)">
       📚 기본 문제 도전 (10문항)
     </button>
     <button onclick="startCards('prime-havruta','prime-hub')" style="width:100%;margin-bottom:10px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      ✡️ 하브루타 토론관 (4편) →
+      ✡️ 하브루타 토론관 (3편) →
     </button>
     <button class="btn btn-sub" onclick="startQuizHard('prime','prime-hub')" style="width:100%;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.4);color:#a5b4fc">
       🔥 심화 문제 도전 (10문항)
@@ -1562,17 +1565,85 @@ const CARD_DATA = {
     ans: null }
 ],
 
+/* ── 소인수분해 3국 개념 가이드 (4장) ──────── */
+'prime-guide': [
+  { tag:'🇫🇮 핀란드식 — 실생활로 만나는 소인수분해 1/4', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.95rem">"숫자를 쪼개면 숨어 있던 비밀이 보여요."</b><br><br>
+핀란드는 소인수분해를 <b style="color:#86efac">'숫자 블록 해체'</b>로 가르쳐요. 레고 블록처럼 어떤 수든 가장 작은 소수 블록으로 분해할 수 있다고 생각하는 거예요.<br><br>
+<b style="color:#fde68a">예시:</b> 12개의 달걀을 가장 작은 소수 묶음으로 나눠봐요.<br>
+12 = 2 × 6 = 2 × 2 × 3<br>
+→ 12의 소인수: <b style="color:#86efac">2, 3</b><br><br>
+<b style="color:#fde68a">핀란드식 질문:</b> "이 블록들을 다시 조립하면 항상 12가 될까? 순서가 달라도?"<br>
+2×3×2 = 3×2×2 = 2×2×3 = 12 ✓<br><br>
+<b style="color:#86efac">핵심:</b> 소인수분해의 결과는 순서가 달라도 <b>항상 유일</b>해요. 이걸 '산술의 기본 정리'라고 불러요.
+</div>`, ans:null },
+
+  { tag:'🇸🇬 싱가포르식 — 수형도(Factor Tree)로 시각화 2/4', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc;font-size:.95rem">"나무처럼 가지치기하면 소인수가 드러나요."</b><br><br>
+싱가포르는 <b style="color:#7dd3fc">수형도(Factor Tree)</b>로 소인수분해를 시각화해요.<br><br>
+<b style="color:#fde68a">36 수형도:</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 14px;font-size:.82rem;line-height:2">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36<br>
+&nbsp;&nbsp;&nbsp;↙&nbsp;&nbsp;&nbsp;↘<br>
+&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9<br>
+&nbsp;↙↘&nbsp;&nbsp;&nbsp;↙↘<br>
+<b style="color:#86efac">2&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;3</b>
+</div>
+→ 36 = 2² × 3²<br><br>
+<b style="color:#fde68a">핵심 규칙:</b> 가지 끝에 소수가 나오면 멈춰요. 소수는 더 이상 나눌 수 없는 '원자'예요.<br><br>
+<b style="color:#7dd3fc">연습:</b> 수형도로 48을 분해해보면?<br>
+<span style="color:#aaa;font-size:.78rem">48 = 2×24 = 2×2×12 = 2×2×2×6 = 2×2×2×2×3 = 2⁴×3</span>
+</div>`, ans:null },
+
+  { tag:'✡️ 유대인식 — 질문으로 파고드는 소인수분해 3/4', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a;font-size:.95rem">"왜 소수로만 분해해야 할까? 합성수로 끝내면 안 될까?"</b><br><br>
+유대인 하브루타 방식은 "왜?"라는 질문에서 출발해요.<br><br>
+<b style="color:#fde68a">토로의 질문:</b> 24를 분해할 때 4×6으로 끝내면 안 될까?<br><br>
+<b style="color:#d8b4fe">생각해보면:</b><br>
+4 = 2×2 (더 쪼갤 수 있어요)<br>
+6 = 2×3 (더 쪼갤 수 있어요)<br>
+→ 소수가 아닌 수로 멈추면 사람마다 다른 답이 나와요.<br>
+→ <b style="color:#86efac">소수로만 분해해야 "유일한 하나의 답"</b>이 보장돼요.<br><br>
+<b style="color:#fde68a">철학:</b> 소수는 숫자 세계의 '원소(Element)'예요. 화학에서 물을 더 이상 쪼개면 수소와 산소가 되듯, 숫자를 더 이상 쪼개면 소수만 남아요.<br><br>
+<b style="color:#fde68a">핵심 질문:</b> "2는 왜 소수 중 유일한 짝수일까?"
+</div>`, ans:null },
+
+  { tag:'📋 소인수분해 3국 비교 요약 4/4', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.06)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#c4b5fd;font-size:.95rem">세 나라로 소인수분해를 완전히 이해해요!</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+<b style="color:#86efac">🇫🇮 핀란드</b> — 블록 해체<br>
+<span style="color:#aaa;font-size:.78rem">숫자를 소수 블록으로 쪼개는 실용적 감각 | 유일성 체감</span>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+<b style="color:#7dd3fc">🇸🇬 싱가포르</b> — 수형도<br>
+<span style="color:#aaa;font-size:.78rem">가지치기로 분해 과정을 눈에 보이게 | 실수 방지</span>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin-bottom:14px">
+<b style="color:#fde68a">✡️ 유대인</b> — 왜 소수인가?<br>
+<span style="color:#aaa;font-size:.78rem">"왜 소수로만?" 질문으로 원리를 깊이 이해</span>
+</div>
+<b style="color:#fde68a">💡 소인수분해 공식:</b><br>
+어떤 수 N = p₁ᵃ × p₂ᵇ × p₃ᶜ … (p는 소수)<br>
+→ 약수의 개수 = (a+1)(b+1)(c+1)…<br><br>
+<b style="color:#c4b5fd">다음 단계:</b> 하브루타 토론관에서 더 깊이 파고들어요! ✡️
+</div>`, ans:null }
+],
+
 /* ── 소인수분해 하브루타 (3편) ──────────────── */
 'prime-havruta': [
   { tag:'💬 소인수 토론 1/3 — 1은 왜 소수가 아닐까?', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">● 질문: "1은 오직 1이라는 약수 하나만 가져서 아주 깔끔한데, 왜 소수(Prime Number) 대접을 못 받을까?"</div><div style="font-size:.72rem;color:#7dd3fc;font-weight:600;margin-bottom:4px">● 아이들의 예상 답변:</div><div style="font-size:.72rem;color:#aaa;margin-bottom:8px;font-style:italic">학생 A: "약수가 2개여야 소수라고 약속했으니까요!" <span style="color:#86efac">(단순 암기형)</span><br>학생 B: "1은 너무 작아서 그런 거 아닐까요?" <span style="color:#86efac">(직관적 추측)</span></div><div style="font-size:.72rem;color:#fde68a;font-weight:600">● 하브루타식 깊은 풀이 (토로의 질문)</div>`,
     ans:`<b style="color:#fde68a">토로:</b> "맞아, 약속 때문이지. 하지만 수학자들이 왜 그런 약속을 했을까? 만약 1을 소수에 넣어주면 어떤 혼란이 생길까?"<br><br><b style="color:#d8b4fe">논리 전개:</b> 6을 소인수분해하면 2×3이지? 이건 전 세계 어디서나 유일해. 그런데 1이 소수라면? 1×2×3도 되고, 1×1×2×3도 되고... 무한히 많은 방법이 생겨버려.<br><br><b style="color:#86efac">결론:</b> 수학에서 가장 중요한 '유일성(Uniqueness)'을 지키기 위해 1은 소수의 왕관을 포기하고 모든 수의 기초가 되는 '약수'의 역할에 충실하기로 한 거야. 1은 소수보다 더 근본적인 존재라고 볼 수 있지!` },
-  { tag:'💬 소인수 토론 2/3 — 약수의 개수가 3개인 수의 비밀', tagColor:'#fde68a',
-    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">● 어떤 자연수의 약수를 다 써봤더니 딱 3개뿐이야. 이 수들은 어떤 특별한 공통점이 있을까?</div><div style="font-size:.72rem;color:#aaa;margin-bottom:6px;font-style:italic">학생 A: "홀수들 아닐까요? 3, 5, 7 같은 거요."<br>학생 B: "3의 배수일 것 같아요!"</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "오! 홀수나 3의 배수를 떠올렸구나. 그럼 직접 확인해볼까? 3의 약수는 1, 3 두 개고, 6(3의 배수)은 1, 2, 3, 6 네 개네. 3개인 애들은 어디 숨었을까?"<br><br><b style="color:#d8b4fe">논리:</b> 약수가 3개라는 건 1과 자기 자신, 그리고 그 사이의 딱 한 숫자만 있다는 뜻이야. 예를 들면 4(1,2,4), 9(1,3,9), 25(1,5,25) 같은 수들이지. 2, 3, 5는 모두 소수네!<br><br><b style="color:#86efac">결론:</b> 약수가 3개인 수는 '소수의 제곱' 형태야. 소수라는 순수한 유전자가 두 번 곱해질 때만 나타나는 아주 희귀하고 아름다운 규칙이지. 이제 49나 121을 보면 약수가 몇 개일지 바로 보이지 않니?` },
-  { tag:'💬 소인수 토론 3/3 — 최대공약수 1의 존재감', tagColor:'#fde68a',
+  { tag:'💬 소인수 토론 2/3 — 최대공약수 1의 존재감', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">● 두 수의 최대공약수가 1일 때, 우리는 그들을 '서로소'라고 불러. 그런데 '1'밖에 공통점이 없는 사이가 왜 수학에서 그렇게 중요할까?</div><div style="font-size:.72rem;color:#aaa;margin-bottom:6px;font-style:italic">학생: "나눌 수 있는 게 없어서 쓸모없는 사이 아닌가요?"</div>`,
     ans:`<b style="color:#fde68a">토로:</b> "오히려 반대야! 나눌 수 있는 게 1뿐이라는 건, 두 수가 서로에게 '완전히 독립적'이라는 뜻이지."<br><br><b style="color:#d8b4fe">논리:</b> 톱니바퀴 두 개를 상상해봐. 하나는 8개, 하나는 15개의 이빨을 가졌어. 둘은 서로소지? 얘네들은 한 바퀴 돌 때마다 계속 새로운 조합으로 만나게 돼. 겹치지 않기 때문에 더 큰 세상을 만들 수 있는 거야.<br><br><b style="color:#86efac">결론:</b> 서로소는 서로 닮은 점이 없어서 소외된 게 아니라, 서로 다르기 때문에 가장 완벽한 협력을 할 수 있는 관계란다!` },
