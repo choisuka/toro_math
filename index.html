@@ -1633,22 +1633,78 @@ const CARD_DATA = {
 <b style="color:#fde68a">✡️ 유대인</b> — 왜 소수인가?<br>
 <span style="color:#aaa;font-size:.78rem">"왜 소수로만?" 질문으로 원리를 깊이 이해</span>
 </div>
-<b style="color:#fde68a">💡 약수의 개수 공식:</b><br>
-N = 2³ × 3² 처럼 소인수분해 되면<br>
-→ 약수의 개수 = <b style="color:#86efac">(3+1)</b> × <b style="color:#7dd3fc">(2+1)</b> = <b style="color:#fde68a">12개</b><br><br>
-<div style="background:rgba(253,230,138,.07);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:.79rem">
-<b style="color:#c4b5fd">왜 (지수+1)인지 직접 세어보자!</b><br><br>
-72 = 2³ × 3²의 약수 중 2만 보면:<br>
-2를 <b style="color:#86efac">0번</b> 쓴 약수: 1, 3, 9 (3개)<br>
-2를 <b style="color:#86efac">1번</b> 쓴 약수: 2, 6, 18 (3개)<br>
-2를 <b style="color:#86efac">2번</b> 쓴 약수: 4, 12, 36 (3개)<br>
-2를 <b style="color:#86efac">3번</b> 쓴 약수: 8, 24, 72 (3개)<br><br>
-→ 2를 쓰는 방법: 0~3번 → <b style="color:#86efac">4가지</b><br>
-→ 3을 쓰는 방법: 0~2번 → <b style="color:#7dd3fc">3가지</b><br>
-→ 전체 약수 = 4 × 3 = <b style="color:#fde68a">12개</b> ✓<br><br>
-<span style="color:#aaa">실제로: 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72</span>
+
+<b style="color:#fde68a">💡 약수의 개수 공식 — 세 나라 설명</b><br>
+<span style="color:#aaa;font-size:.78rem">72 = 2³ × 3² → 약수 개수 = <b style="color:#86efac">(3+1)</b> × <b style="color:#7dd3fc">(2+1)</b> = <b style="color:#fde68a">12개</b> &nbsp;← 왜?</span><br><br>
+
+<div style="background:rgba(134,239,172,.06);border:1px solid rgba(134,239,172,.2);border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:.78rem">
+<b style="color:#86efac">🇫🇮 핀란드식 — 직접 나열해서 느껴봐</b><br><br>
+72의 약수를 2가 들어간 수대로 쭉 써봐:<br>
+<span style="color:#86efac">2 없음(×1):</span> 1, 3, 9 → <b style="color:#86efac">3개</b><br>
+<span style="color:#86efac">2 한 번(×2):</span> 2, 6, 18 → <b style="color:#86efac">3개</b><br>
+<span style="color:#86efac">2 두 번(×4):</span> 4, 12, 36 → <b style="color:#86efac">3개</b><br>
+<span style="color:#86efac">2 세 번(×8):</span> 8, 24, 72 → <b style="color:#86efac">3개</b><br><br>
+줄이 4개(2³이니까 0,1,2,3번 → 3+1=4줄), 각 줄에 3개(3²이니까 3+1=4… 아니 2+1=3개)<br>
+→ 4줄 × 3개 = <b style="color:#86efac">12개!</b> 세어보니까 공식이 나왔어.
 </div>
-<b style="color:#c4b5fd">다음 단계:</b> 하브루타 토론관에서 더 깊이 파고들어요! ✡️
+
+<div style="background:rgba(125,211,252,.06);border:1px solid rgba(125,211,252,.2);border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:.78rem">
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 표로 보면 한눈에</b><br><br>
+<table style="width:100%;border-collapse:collapse;text-align:center;font-size:.75rem">
+<tr>
+<td style="padding:3px;color:#445;border:1px solid #1a3a5a"></td>
+<td style="padding:3px;color:#7dd3fc;border:1px solid #1a3a5a">×1<br><span style="color:#445;font-size:.68rem">(3⁰)</span></td>
+<td style="padding:3px;color:#7dd3fc;border:1px solid #1a3a5a">×3<br><span style="color:#445;font-size:.68rem">(3¹)</span></td>
+<td style="padding:3px;color:#7dd3fc;border:1px solid #1a3a5a">×9<br><span style="color:#445;font-size:.68rem">(3²)</span></td>
+</tr>
+<tr>
+<td style="padding:3px;color:#86efac;border:1px solid #1a3a5a">×1<br><span style="color:#445;font-size:.68rem">(2⁰)</span></td>
+<td style="padding:3px;color:#e2e8f0;border:1px solid #1a3a5a">1</td>
+<td style="padding:3px;color:#e2e8f0;border:1px solid #1a3a5a">3</td>
+<td style="padding:3px;color:#e2e8f0;border:1px solid #1a3a5a">9</td>
+</tr>
+<tr>
+<td style="padding:3px;color:#86efac;border:1px solid #1a3a5a">×2<br><span style="color:#445;font-size:.68rem">(2¹)</span></td>
+<td style="padding:3px;color:#e2e8f0;border:1px solid #1a3a5a">2</td>
+<td style="padding:3px;color:#e2e8f0;border:1px solid #1a3a5a">6</td>
+<td style="padding:3px;color:#e2e8f0;border:1px solid #1a3a5a">18</td>
+</tr>
+<tr>
+<td style="padding:3px;color:#86efac;border:1px solid #1a3a5a">×4<br><span style="color:#445;font-size:.68rem">(2²)</span></td>
+<td style="padding:3px;color:#e2e8f0;border:1px solid #1a3a5a">4</td>
+<td style="padding:3px;color:#e2e8f0;border:1px solid #1a3a5a">12</td>
+<td style="padding:3px;color:#e2e8f0;border:1px solid #1a3a5a">36</td>
+</tr>
+<tr>
+<td style="padding:3px;color:#86efac;border:1px solid #1a3a5a">×8<br><span style="color:#445;font-size:.68rem">(2³)</span></td>
+<td style="padding:3px;color:#e2e8f0;border:1px solid #1a3a5a">8</td>
+<td style="padding:3px;color:#e2e8f0;border:1px solid #1a3a5a">24</td>
+<td style="padding:3px;color:#fde68a;font-weight:700;border:1px solid #1a3a5a">72</td>
+</tr>
+</table>
+<br>표 칸 수 = 가로 <b style="color:#7dd3fc">3칸</b> × 세로 <b style="color:#86efac">4칸</b> = <b style="color:#fde68a">12칸 = 약수 12개</b><br>
+가로: 3의 지수 2 → 2+1=<b style="color:#7dd3fc">3</b> &nbsp;|&nbsp; 세로: 2의 지수 3 → 3+1=<b style="color:#86efac">4</b>
+</div>
+
+<div style="background:rgba(253,230,138,.06);border:1px solid rgba(253,230,138,.2);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:.78rem">
+<b style="color:#fde68a">✡️ 유대인식 — 민준이의 질문</b><br><br>
+<span style="color:#7dd3fc">민준:</span> "왜 지수+1이에요? 그냥 지수 아닌가요?"<br>
+<span style="color:#fde68a">토로:</span> "2³이면 2를 몇 번 쓸 수 있어?"<br>
+<span style="color:#7dd3fc">민준:</span> "1번, 2번, 3번요."<br>
+<span style="color:#fde68a">토로:</span> "0번은? 2를 아예 안 쓴 약수도 있잖아."<br>
+<span style="color:#7dd3fc">민준:</span> "아… 1, 3, 9처럼 2가 없는 것들이요."<br>
+<span style="color:#fde68a">토로:</span> "+1의 의미가 뭔지 알겠어?"<br>
+<span style="color:#7dd3fc">민준:</span> "<b style="color:#86efac">0번 쓰는 경우를 포함시키는 거구나!</b>"<br>
+<span style="color:#fde68a">토로:</span> "그래. 0번, 1번, 2번, 3번 — 총 4가지. 3+1=4."
+</div>
+
+<div style="background:rgba(196,181,253,.06);border:1px solid rgba(196,181,253,.25);border-radius:10px;padding:8px 12px;font-size:.77rem">
+<b style="color:#c4b5fd">세 나라 비교</b><br><br>
+<span style="color:#86efac">🇫🇮</span> 직접 세어보니 공식이 나왔어 — <b style="color:#86efac">체험적 확신</b><br>
+<span style="color:#7dd3fc">🇸🇬</span> 표로 그리니 칸 수가 곧 약수 수 — <b style="color:#7dd3fc">전체 구조 파악</b><br>
+<span style="color:#fde68a">✡️</span> "0번을 빠뜨리면?" 질문에서 +1 발견 — <b style="color:#fde68a">개념의 본질</b>
+</div>
+<br><b style="color:#c4b5fd">다음 단계:</b> 하브루타 토론관에서 더 깊이 파고들어요! ✡️
 </div>`, ans:null }
 ],
 
