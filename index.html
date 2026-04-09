@@ -1402,7 +1402,7 @@ const CARD_DATA = {
 'eq-hard': [
   { tag:'🇸🇬 심화 1/10 — 거리·속력·시간', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">집에서 학교까지 갈 때는 시속 4km, 올 때는 시속 6km로 걸어서 총 50분이 걸렸습니다. 집과 학교 사이의 거리는?<br><span style="font-size:.78rem;color:#7dd3fc;font-weight:400">(막대 모델로 전체 시간을 표시해 보세요.)</span></div>`,
-    ans:`<b style="color:#7dd3fc">싱가포르식 모델:</b><br>거리=x, 총시간=50분=5/6시간<br>x/4 + x/6 = 5/6<br>×12: 3x + 2x = 10<br><b style="color:#fde68a;font-size:.9rem">x = 2km</b>` },
+    ans:`<b style="color:#7dd3fc">싱가포르식 막대 모델:</b><br>거리=x<br>총시간: 50분 = 50÷60 = <b>5/6시간</b><br><br>갈 때 시간: 거리÷속력 = x÷4 = x/4<br>올 때 시간: x÷6 = x/6<br><br>x/4 + x/6 = 5/6<br><span style="color:#aaa;font-size:.79rem">(분모 4, 6의 최소공배수 12를 양변에 곱해요)</span><br>3x + 2x = 10<br>5x = 10<br><b style="color:#fde68a;font-size:.9rem">x = 2km</b>` },
   { tag:'✡️ 심화 2/10 — 농도', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">10% 소금물 200g에 소금을 더 넣어 20% 소금물을 만들려고 합니다. 추가해야 할 소금의 양은?<br><span style="font-size:.78rem;color:#fde68a;font-weight:400">(왜 물은 그대로인데 농도만 변하는지 토론해 보세요.)</span></div>`,
     ans:`<b style="color:#fde68a">소금을 추적:</b><br>처음 소금: 200×0.1 = 20g<br>(200+x)×0.2 = 20+x<br>40+0.2x = 20+x<br>20 = 0.8x<br><b style="color:#fde68a;font-size:.9rem">x = 25g</b>` },
@@ -1431,7 +1431,7 @@ const CARD_DATA = {
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">할아버지, 아버지, 아들의 나이 합은 140세입니다. 할아버지는 아버지 나이의 2배이고, 아버지는 아들보다 28살 많습니다. 세 사람의 나이를 각각 구하세요.</div>`,
     ans:`<b style="color:#fde68a">풀이:</b> 아들=x<br>아버지=x+28, 할아버지=2(x+28)<br>x+(x+28)+2(x+28)=140 → 4x=56<br><b style="color:#fde68a;font-size:.9rem">아들 14세 / 아버지 42세 / 할아버지 84세</b>` },
   { tag:'🌟 훌륭한 풀이 예시 — 심화 1번 싱가포르식 모델링', tagColor:'#fbbf24', bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.35)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9"><b style="color:#fbbf24">[문제]</b> 시속 4km로 가고, 시속 6km로 와서 총 50분(5/6시간)이 걸린 거리 구하기.<br><br><b style="color:#7dd3fc">① 시각화(Visualizing):</b> 거리를 <b>x</b>라고 할 때, 갈 때 걸린 시간은 <b>x/4</b>, 올 때 걸린 시간은 <b>x/6</b>입니다.<br><b style="color:#7dd3fc">② 모델 바 구성:</b> 전체 시간(5/6)을 나타내는 막대를 두 토막(x/4 와 x/6)으로 나눕니다.<br><b style="color:#7dd3fc">③ 식 세우기:</b> x/4 + x/6 = 5/6<br><b style="color:#7dd3fc">④ 해결:</b> 최소공배수 12를 양변에 곱합니다. 3x + 2x = 10 → 5x = 10 → <b style="color:#fde68a">x = 2</b><br><b style="color:#7dd3fc">⑤ 결론:</b> 집과 학교 사이의 거리는 <b style="color:#fbbf24">2km</b>입니다.</div>`,
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9"><b style="color:#fbbf24">[문제]</b> 시속 4km로 가고, 시속 6km로 와서 총 50분이 걸린 거리 구하기.<br><br><b style="color:#7dd3fc">① 단위 통일:</b> 50분 = 50÷60 = <b>5/6시간</b> (속력이 km/h이므로 시간 단위로 맞춰요)<br><b style="color:#7dd3fc">② 시각화:</b> 거리를 <b>x</b>라고 할 때, 갈 때 걸린 시간은 <b>x/4</b>, 올 때 걸린 시간은 <b>x/6</b>입니다.<br><b style="color:#7dd3fc">③ 막대 모델:</b> 전체 시간(5/6)을 나타내는 막대를 두 토막(x/4 와 x/6)으로 나눕니다.<br><b style="color:#7dd3fc">④ 식 세우기:</b> x/4 + x/6 = 5/6<br><b style="color:#7dd3fc">⑤ 계산:</b> 분모 4, 6의 최소공배수 12를 양변에 곱합니다.<br>→ 3x + 2x = 10 → 5x = 10 → <b style="color:#fde68a">x = 2</b><br><b style="color:#7dd3fc">⑥ 결론:</b> 집과 학교 사이의 거리는 <b style="color:#fbbf24">2km</b>입니다.</div>`,
     ans: null }
 ],
 
@@ -1630,9 +1630,19 @@ const CARD_DATA = {
 <b style="color:#fde68a">✡️ 유대인</b> — 왜 소수인가?<br>
 <span style="color:#aaa;font-size:.78rem">"왜 소수로만?" 질문으로 원리를 깊이 이해</span>
 </div>
-<b style="color:#fde68a">💡 소인수분해 공식:</b><br>
-어떤 수 N = p₁ᵃ × p₂ᵇ × p₃ᶜ … (p는 소수)<br>
-→ 약수의 개수 = (a+1)(b+1)(c+1)…<br><br>
+<b style="color:#fde68a">💡 약수의 개수 공식과 증명:</b><br>
+어떤 수 N = p₁ᵃ × p₂ᵇ … (p는 소수)<br>
+→ 약수의 개수 = (a+1)(b+1)…<br><br>
+<div style="background:rgba(253,230,138,.07);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:.79rem">
+<b style="color:#c4b5fd">왜 (a+1)일까? — 증명</b><br><br>
+예: N = 2³ × 3² = 72<br>
+모든 약수는 <b style="color:#86efac">2⁰~2³</b> 중 하나 × <b style="color:#7dd3fc">3⁰~3²</b> 중 하나<br><br>
+2의 지수 선택: 0, 1, 2, 3 → <b style="color:#86efac">4가지 (=3+1)</b><br>
+3의 지수 선택: 0, 1, 2 → <b style="color:#7dd3fc">3가지 (=2+1)</b><br><br>
+약수의 개수 = 4 × 3 = <b style="color:#fde68a">12개</b><br>
+실제로: 1,2,3,4,6,8,9,12,18,24,36,72 ✓<br><br>
+<span style="color:#aaa">즉, 각 소인수의 지수가 0부터 최대값까지 독립적으로 선택되므로<br>선택지 수 = (지수+1), 전체 = 각 선택지의 곱</span>
+</div>
 <b style="color:#c4b5fd">다음 단계:</b> 하브루타 토론관에서 더 깊이 파고들어요! ✡️
 </div>`, ans:null }
 ],
@@ -5107,6 +5117,10 @@ function genPerfectSquare(){
   return {type:'prime',subtype:'perfect_sq',story:rnd(stories)(),data:{n,f,fStr,minN,result,sqrtRes},answer:String(minN),choices:shuffle(choices.slice(0,4))};
 }
 
+// 숫자 뒤 조사 헬퍼: 과/와, 을/를
+function gwa(n){return[0,1,3,6,7,8].includes(n%10)?'과':'와';}
+function eul(n){return[0,1,3,6,7,8].includes(n%10)?'을':'를';}
+
 function genLCMGCDPair(){
   const cases=[
     {g:6,L:60,a:12,b:30},{g:4,L:48,a:12,b:16},{g:6,L:72,a:18,b:24},
@@ -5115,9 +5129,9 @@ function genLCMGCDPair(){
   ];
   const {g,L,a,b}=rnd(cases);
   const stories=[
-    ()=>`🇸🇬 두 자연수의 최대공약수(최대공약수)는 ${g}, 최소공배수(최소공배수)는 ${L}이에요. 두 수의 합이 가장 작을 때, 두 수는?`,
-    ()=>`🇸🇬 최대공약수=${g}, 최소공배수=${L}인 두 자연수 — 두 수의 차가 최소일 때를 구하세요.`,
-    ()=>`🇸🇬 두 수의 최대공약수와 최소공배수가 ${g}과 ${L}이에요. 두 수(합이 최소)는?`,
+    ()=>`🇸🇬 두 자연수의 최대공약수는 ${g}, 최소공배수는 ${L}이에요. 두 수의 합이 가장 작을 때, 두 수는?`,
+    ()=>`🇸🇬 최대공약수=${g}, 최소공배수=${L}인 두 자연수 — 두 수의 합이 가장 작을 때를 구하세요.`,
+    ()=>`🇸🇬 두 수의 최대공약수와 최소공배수가 ${g}${gwa(g)} ${L}이에요. 두 수(합이 최소)는?`,
   ];
   const answer=`${a}, ${b}`;
   const choices=[answer,`${g}, ${L}`,`${a+g}, ${b-g}`,`${a*2}, ${b/2}`].filter((v,i,arr)=>arr.indexOf(v)===i);
@@ -5150,8 +5164,8 @@ function genRemainderGCD(){
   ];
   const {a,ra,b,rb,ans}=rnd(cases);
   const stories=[
-    ()=>`🇫🇮 어떤 자연수로 ${a}을 나누면 ${ra}이 남고, ${b}을 나누면 ${rb}이 남아요. 이런 수 중 가장 큰 수는?`,
-    ()=>`🇫🇮 ${a}과 ${b}을 어떤 수로 나누면 각각 ${ra}, ${rb}이 남아요. 조건을 만족하는 가장 큰 수는?`,
+    ()=>`🇫🇮 어떤 자연수로 ${a}${eul(a)} 나누면 ${ra}이 남고, ${b}${eul(b)} 나누면 ${rb}이 남아요. 이런 수 중 가장 큰 수는?`,
+    ()=>`🇫🇮 ${a}${gwa(a)} ${b}${eul(b)} 어떤 수로 나누면 각각 ${ra}, ${rb}이 남아요. 조건을 만족하는 가장 큰 수는?`,
   ];
   const choices=[String(ans)];
   [String(ans-3),String(gcd(a,b)),String(ans+3),String(ans/2|0||ans+1)].forEach(w=>{if(!choices.includes(w)&&Number(w)>0)choices.push(w);});
@@ -6171,7 +6185,11 @@ function renderQ(){
     prime:ST.hardMode?['지수가 홀수이면 짝수로! 🔥','최대공약수×최소공배수 = 두 수의 곱!','약수 개수 = 지수+1 곱하기! 💪']:['소수는 1과 자신으로만! 🧬','수형도로 가지치기 해봐!','GCD로 서로소 판별! 토로 화이팅!'],
     equation:ST.hardMode?['거리 = 속력×시간, 왕복 조심! ⚖️','일의 양 전체=1이라는 빵! 🔥','농도 문제: 소금만 늘어요! 💪']:['시소 왼쪽=오른쪽! ⚖️','막대 모델로 x를 찾아봐!','이항: 부호 바꿔서 반대편으로!'],
   };
-  const lines=toroLines[ST.topic]||['같이 해결해보자 🦕'];
+  let lines=toroLines[ST.topic]||['같이 해결해보자 🦕'];
+  if(ST.topic==='equation'&&ST.hardMode&&q.subtype){
+    const eqHints={distance:'거리 = 속력×시간, 왕복 조심! ⚖️',salt:'농도 문제: 소금만 늘어요! 💪',work:'일의 양 전체=1이라는 빵! 🔥',profit:'정가 = 원가×(1+이익률), 할인 주의! 💰',savings:'역전 조건: 동생 저금액 > 형 저금액! 📈'};
+    lines=[eqHints[q.subtype]||lines[0]];
+  }
   const vis=renderVisual(q);
   const hardBadge=ST.hardMode?`<div style="text-align:center;margin-bottom:8px"><span style="background:rgba(231,76,60,.2);border:1px solid rgba(231,76,60,.4);color:#e74c3c;border-radius:20px;padding:3px 14px;font-size:.8rem;font-family:'Jua',sans-serif">🔥 심화 도전 중</span></div>`:'';
   document.getElementById('quiz-inner').innerHTML=`
