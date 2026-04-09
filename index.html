@@ -6369,67 +6369,67 @@ function makeSteps(q){
       const {d,t1,t2,v,w}=data;
       const vw=d/t1, vmw=d/t2;
       return [
-        {q:`① 내려갈 때 (배+유속): ${d}km ÷ ${t1}시간 = ?km/h`, ans:String(vw), unit:'km/h', hint:`${d}÷${t1}=${vw}`},
-        {q:`② 올라갈 때 (배−유속): ${d}km ÷ ${t2}시간 = ?km/h`, ans:String(vmw), unit:'km/h', hint:`${d}÷${t2}=${vmw}`},
-        {q:`③ 두 식 더하면: 2×배속력 = ${vw}+${vmw} = ${vw+vmw} → 배 속력 = ?`, ans:String(v), unit:'km/h', hint:`${vw+vmw}÷2=${v}`},
+        {q:`① 내려갈 때 (배+유속): ${d}km ÷ ${t1}시간 = ?km/h`, ans:String(vw), unit:'km/h', hint:`민준: "내려갈 때랑 올라갈 때 속력이 왜 달라요?"\n토로: "유속이 내려갈 땐 더해지고, 올라갈 땐 빼지거든! 일단 각각의 속력부터 구해봐."\n→ ${d}÷${t1}=${vw}km/h`},
+        {q:`② 올라갈 때 (배−유속): ${d}km ÷ ${t2}시간 = ?km/h`, ans:String(vmw), unit:'km/h', hint:`민준: "이 두 속력으로 배 속력을 어떻게 구해요?"\n토로: "내려갈 때=${vw}=배+유속, 올라갈 때=?=배−유속. 두 식을 더하면 유속이 사라져!"\n→ ${d}÷${t2}=${vmw}km/h`},
+        {q:`③ 두 식 더하면: 2×배속력 = ${vw}+${vmw} = ${vw+vmw} → 배 속력 = ?`, ans:String(v), unit:'km/h', hint:`민준: "더하면 왜 유속이 없어져요?"\n토로: "(배+유속)+(배−유속) = 2×배속력! 유속끼리 상쇄돼."\n→ ${vw+vmw}÷2=${v}km/h`},
       ];
     }
     if(sub==='hard_taps'){
       const {a,b,c,ans,L,ra,rb,rc,rate}=data;
       return [
-        {q:`① 전체 용량을 ${L}이라 할 때 A가 1시간에 채우는 양=${ra}, B=${rb}. A+B 합은?`, ans:String(ra+rb), unit:`(${L}분의)`, hint:`${ra}+${rb}=${ra+rb}`},
-        {q:`② 배수구가 1시간에 빼는 양=${rc}. 순 채우는 양: ${ra+rb}−${rc} = ?`, ans:String(rate), unit:`(${L}분의)`, hint:`${ra+rb}−${rc}=${rate}`},
-        {q:`③ 가득 채우는 시간: ${L} ÷ ${rate} = ?시간`, ans:String(ans), unit:'시간', hint:`${L}÷${rate}=${ans}`},
+        {q:`① 전체 용량을 ${L}이라 할 때 A가 1시간에 채우는 양=${ra}, B=${rb}. A+B 합은?`, ans:String(ra+rb), unit:`(${L}분의)`, hint:`민준: "전체 용량을 왜 하필 ${L}로 놓아요?"\n토로: "${a}, ${b}, ${c}의 최소공배수가 ${L}이라서 계산이 딱 떨어져! A는 ${L}을 ${a}시간에 채우니까 1시간에 ${ra}씩."\n→ A(${ra})+B(${rb})=${ra+rb}`},
+        {q:`② 배수구가 1시간에 빼는 양=${rc}. 순 채우는 양: ${ra+rb}−${rc} = ?`, ans:String(rate), unit:`(${L}분의)`, hint:`민준: "채우면서 동시에 빠지는 게 말이 돼요?"\n토로: "수도꼭지 열고 욕조 마개 빼면 채워지면서 빠지잖아! 순 증가량만 계산해."\n→ ${ra+rb}−${rc}=${rate}`},
+        {q:`③ 가득 채우는 시간: ${L} ÷ ${rate} = ?시간`, ans:String(ans), unit:'시간', hint:`민준: "나누는 게 맞아요?"\n토로: "1시간에 ${rate}씩 채운다면 전체 ${L}을 채우는 데 ${L}÷${rate}시간이지!"\n→ ${L}÷${rate}=${ans}시간`},
       ];
     }
     if(sub==='hard_loss'){
       const {price,rate,origA,origB,loss}=data;
       return [
-        {q:`① 이익 물건 원가: ${price.toLocaleString()} ÷ ${1+rate/100} = ?원`, ans:String(origA), unit:'원', hint:`${price.toLocaleString()}×100÷${100+rate}=${origA.toLocaleString()}`},
-        {q:`② 손해 물건 원가: ${price.toLocaleString()} ÷ ${1-rate/100} = ?원`, ans:String(origB), unit:'원', hint:`${price.toLocaleString()}×100÷${100-rate}=${origB.toLocaleString()}`},
-        {q:`③ 총 원가 ${(origA+origB).toLocaleString()}원 − 총 판매가 ${(price*2).toLocaleString()}원. 손해 금액은?`, ans:String(loss), unit:'원', hint:`${(origA+origB).toLocaleString()}−${(price*2).toLocaleString()}=${loss.toLocaleString()}원 손해`},
+        {q:`① 이익 물건 원가: ${price.toLocaleString()} ÷ ${1+rate/100} = ?원`, ans:String(origA), unit:'원', hint:`민준: "원가에 ${rate}% 이익을 붙여서 팔았다면 판매가 = 원가 × ${1+rate/100}이잖아요. 그럼 원가 = 판매가 ÷ ${1+rate/100}!"\n토로: "정확해! 거꾸로 나누면 돼."\n→ ${price.toLocaleString()}÷${1+rate/100}=${origA.toLocaleString()}원`},
+        {q:`② 손해 물건 원가: ${price.toLocaleString()} ÷ ${1-rate/100} = ?원`, ans:String(origB), unit:'원', hint:`민준: "${rate}% 손해면 원가 × ${1-rate/100}에 팔았다는 거죠?"\n토로: "맞아! 그러면 원가 = 판매가 ÷ ${1-rate/100}. ${1-rate/100}이 1보다 작으니까 원가가 더 크게 나와."\n→ ${price.toLocaleString()}÷${1-rate/100}=${origB.toLocaleString()}원`},
+        {q:`③ 총 원가 ${(origA+origB).toLocaleString()}원 − 총 판매가 ${(price*2).toLocaleString()}원. 손해 금액은?`, ans:String(loss), unit:'원', hint:`민준: "같은 비율인데 왜 손해가 나요?"\n토로: "이익 물건 원가(${origA.toLocaleString()})는 작고, 손해 물건 원가(${origB.toLocaleString()})는 크거든! 같은 비율이라도 기준이 달라서 손해가 더 커져."\n→ ${(origA+origB).toLocaleString()}−${(price*2).toLocaleString()}=${loss.toLocaleString()}원 손해`},
       ];
     }
     if(sub==='hard_ratio'){
       const {r1,r2,r3,diff,unit,total}=data;
       return [
-        {q:`① 비율 차: ${r1}−${r2}=${r1-r2}단위 = ${diff}개 → 단위 1개 = ?개`, ans:String(unit), unit:'개', hint:`${diff}÷${r1-r2}=${unit}`},
-        {q:`② 전체 = (${r1}+${r2}+${r3}) × ${unit}개 = ?개`, ans:String(total), unit:'개', hint:`${r1+r2+r3}×${unit}=${total}`},
+        {q:`① 비율 차: ${r1}−${r2}=${r1-r2}단위 = ${diff}개 → 단위 1개 = ?개`, ans:String(unit), unit:'개', hint:`민준: "단위가 뭐예요?"\n토로: "${r1}:${r2}:${r3}에서 1단위가 몇 개인지 찾는 거야. 첫째−둘째 = ${r1-r2}단위 = ${diff}개니까 1단위는?"\n→ ${diff}÷${r1-r2}=${unit}개`},
+        {q:`② 전체 = (${r1}+${r2}+${r3}) × ${unit}개 = ?개`, ans:String(total), unit:'개', hint:`민준: "비율을 다 더하면 되는 거죠?"\n토로: "맞아! ${r1}+${r2}+${r3}=${r1+r2+r3}단위, 1단위=${unit}개니까 전체는 곱하면 돼."\n→ ${r1+r2+r3}×${unit}=${total}개`},
       ];
     }
     if(sub==='hard_discount'){
       const {ru,rd,profit,orig,m}=data;
       return [
-        {q:`① 정가 = 원가 × ${1+ru/100}. 판매가 = 정가 × ${1-rd/100} = 원가 × ?`, ans:m, unit:'배', hint:`${1+ru/100}×${1-rd/100}=${m}`},
-        {q:`② 이익 = 원가×${m} − 원가 = 원가×${(parseFloat(m)-1).toFixed(2)} = ${profit.toLocaleString()} → 원가 = ?`, ans:String(orig), unit:'원', hint:`${profit.toLocaleString()}÷${(parseFloat(m)-1).toFixed(2)}=${orig.toLocaleString()}`},
+        {q:`① 정가 = 원가 × ${1+ru/100}. 판매가 = 정가 × ${1-rd/100} = 원가 × ?`, ans:m, unit:'배', hint:`민준: "두 번 곱하는 게 헷갈려요."\n토로: "정가에서 ${rd}% 할인하면 정가×${1-rd/100}이야. 그런데 정가=원가×${1+ru/100}이니까 대입하면 원가×${1+ru/100}×${1-rd/100}!"\n→ ${1+ru/100}×${1-rd/100}=${m}`},
+        {q:`② 이익 = 원가×${m} − 원가 = 원가×${(parseFloat(m)-1).toFixed(2)} = ${profit.toLocaleString()} → 원가 = ?`, ans:String(orig), unit:'원', hint:`민준: "이익이 왜 원가×${(parseFloat(m)-1).toFixed(2)}이에요?"\n토로: "판매가−원가 = 원가×${m}−원가×1 = 원가×(${m}−1) = 원가×${(parseFloat(m)-1).toFixed(2)}이야!"\n→ ${profit.toLocaleString()}÷${(parseFloat(m)-1).toFixed(2)}=${orig.toLocaleString()}원`},
       ];
     }
     if(sub==='hard_age_ratio'){
       const {nm,ya,am,son,father}=data;
       return [
-        {q:`① 아들=s, 아버지=${nm}s. ${ya}년 전: ${nm}s−${ya} = ${am}(s−${ya}) → 풀면 s = ?`, ans:String(son), unit:'세', hint:`${nm}s−${ya}=${am}s−${am*ya} → ${am-nm}s=−${ya}+${am*ya}=${(am-nm)*son} → s=${son}`},
-        {q:`② 아버지 = ${nm}×${son} = ?세`, ans:String(father), unit:'세', hint:`${nm}×${son}=${father}`},
+        {q:`① 아들=s, 아버지=${nm}s. ${ya}년 전: ${nm}s−${ya} = ${am}(s−${ya}) → 풀면 s = ?`, ans:String(son), unit:'세', hint:`민준: "식 세우는 게 어려워요. ${ya}년 전을 왜 ${ya}를 빼요?"\n토로: "지금 나이에서 ${ya}를 빼면 ${ya}년 전 나이가 되잖아! 아버지=${nm}s−${ya}, 아들=s−${ya}. 그때 ${am}배였으니까 ${nm}s−${ya}=${am}(s−${ya})."\n→ 풀면 s=${son}세`},
+        {q:`② 아버지 = ${nm}×${son} = ?세`, ans:String(father), unit:'세', hint:`민준: "아들이 ${son}세면 아버지는 그냥 곱하면 되죠?"\n토로: "맞아! 현재 아버지=아들×${nm} = ${son}×${nm} = ${father}세."\n→ ${nm}×${son}=${father}세`},
       ];
     }
     if(sub==='hard_three_bros'){
       const {total,gap,ad,a,b,c}=data;
       return [
-        {q:`① 첫째=a라 하면 둘째+막내=a−${gap}. 합: a+(a−${gap})=${total} → a = ?`, ans:String(a), unit:'세', hint:`2a=${total+gap} → a=${a}`},
-        {q:`② 둘째+막내=${total-a}, 둘째=막내+${ad}. 막내=?`, ans:String(c), unit:'세', hint:`2c+${ad}=${total-a} → c=${c}`},
-        {q:`③ 둘째 = ${c}+${ad} = ?세`, ans:String(b), unit:'세', hint:`${c}+${ad}=${b}`},
+        {q:`① 첫째=a라 하면 둘째+막내=a−${gap}. 합: a+(a−${gap})=${total} → a = ?`, ans:String(a), unit:'세', hint:`민준: "조건이 3개인데 어디서 시작해요?"\n토로: "첫째를 기준으로 잡으면 둘째+막내=첫째−${gap}이니까, 세 명 합=첫째+(첫째−${gap})=${total}. 한 줄로 끝나!"\n→ 2a=${total+gap}, a=${a}세`},
+        {q:`② 둘째+막내=${total-a}, 둘째=막내+${ad}. 막내=?`, ans:String(c), unit:'세', hint:`민준: "막내를 어떻게 구해요?"\n토로: "둘째=막내+${ad}를 둘째+막내에 대입! (막내+${ad})+막내=2×막내+${ad}=${total-a}."\n→ 2c=${total-a-ad}, c=${c}세`},
+        {q:`③ 둘째 = ${c}+${ad} = ?세`, ans:String(b), unit:'세', hint:`민준: "막내 구했으니까 둘째는 쉽네요!"\n토로: "맞아, 둘째=막내+${ad}=${c}+${ad}=${b}세. 검산: ${a}+${b}+${c}=${a+b+c}=${total} ✅"\n→ ${c}+${ad}=${b}세`},
       ];
     }
     if(sub==='hard_sum_prod'){
       return [
-        {q:`① a+b=ab 변형: ab−a−b=0. 양변에 1 더하면: ab−a−b+1 = ?`, ans:'1', unit:'', hint:`0+1=1`},
-        {q:`② 인수분해: (a−1)(b−1)=1. 자연수이므로 a−1=1, b−1=1 → a=b=?`, ans:'2', unit:'', hint:`자연수에서 곱이 1인 경우는 1×1뿐`},
+        {q:`① a+b=ab 변형: ab−a−b=0. 양변에 1 더하면: ab−a−b+1 = ?`, ans:'1', unit:'', hint:`민준: "왜 갑자기 1을 더해요?"\n토로: "인수분해를 위한 트릭이야! ab−a−b+1=(a−1)(b−1)이 되거든. 1을 더하면 딱 맞아 떨어져."\n→ 0+1=1`},
+        {q:`② 인수분해: (a−1)(b−1)=1. 자연수이므로 a−1=1, b−1=1 → a=b=?`, ans:'2', unit:'', hint:`민준: "자연수에서 곱이 1인 경우가 왜 하나뿐이에요?"\n토로: "자연수는 1, 2, 3...이라서 두 자연수의 곱이 1이 되려면 둘 다 1이어야 해. 0.5×2=1은 자연수가 아니잖아!"\n→ a−1=1, b−1=1 → a=b=2`},
       ];
     }
     if(sub==='hard_fraction'){
       const {num,den,ans1,ans2,cc}=data;
       return [
-        {q:`① 양변에 t를 곱하면: t²+1 = ${num}t/${den}. 정리하면 ${den}t²−${num}t+□=0. □는?`, ans:String(den), unit:'', hint:`우변 ${den}을 이항 → ${den}t²−${num}t+${den}=0`},
-        {q:`② (${den}t−${cc})(t−${ans1})=0 → 두 근 중 정수 근은?`, ans:String(ans1), unit:'', hint:`t=${ans1} 또는 t=${ans2}. 정수는 ${ans1}`},
+        {q:`① 양변에 t를 곱하면: t²+1 = ${num}t/${den}. 정리하면 ${den}t²−${num}t+□=0. □는?`, ans:String(den), unit:'', hint:`민준: "양변에 t를 왜 곱해요?"\n토로: "분수를 없애기 위해서야! t+1/t=${num}/${den}의 양변에 t 곱하면 t²+1=${num}t/${den}. 다시 ${den} 곱하면 ${den}t²−${num}t+${den}=0."\n→ □=${den}`},
+        {q:`② (${den}t−${cc})(t−${ans1})=0 → 두 근 중 정수 근은?`, ans:String(ans1), unit:'', hint:`민준: "인수분해가 왜 이렇게 돼요?"\n토로: "(${den}t−${cc})(t−${ans1})을 전개하면 ${den}t²−${num}t+${den}이 맞는지 확인해봐! t=${ans1} 또는 t=${ans2}. 정수는 ${ans1}이야."\n→ 정수 근 t=${ans1}`},
       ];
     }
     return [{q:'정답을 입력하세요', ans:q.answer, unit:'', hint:''}];
