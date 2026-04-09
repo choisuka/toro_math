@@ -5655,8 +5655,8 @@ function genEqDistance(){
   const {v1,v2,totalMin,dist}=rnd(cases);
   const totalH=`${totalMin}분(${totalMin>=60?Math.floor(totalMin/60)+'시간'+(totalMin%60?totalMin%60+'분':''):totalMin+'분'})`;
   const stories=[
-    ()=>`🇸🇬 [거리/속력/시간] 집→학교 시속 ${v1}km, 학교→집 시속 ${v2}km로 걸었더니 총 ${totalMin}분이 걸렸어요. 편도 거리 x는?`,
-    ()=>`🇸🇬 산책로를 갈 때 시속 ${v1}km, 올 때 시속 ${v2}km로 걸어서 왕복 ${totalMin}분이 걸렸어요. 편도 거리는?`,
+    ()=>`🇸🇬 [거리/속력/시간] 집에서 학교까지 시속 ${v1}km, 학교에서 집까지 시속 ${v2}km로 걸었더니 총 ${totalMin}분이 걸렸어요. 집과 학교 사이의 거리는?`,
+    ()=>`🇸🇬 산책로를 갈 때 시속 ${v1}km, 올 때 시속 ${v2}km로 걸어서 왕복 ${totalMin}분이 걸렸어요. 한 방향 거리는?`,
   ];
   const choices=[`${dist}km`,`${dist+1}km`,`${dist+2}km`,`${dist*v1/(v1+v2)*2|0}km`].filter((v,i,a)=>a.indexOf(v)===i);
   while(choices.length<4) choices.push(`${dist+3}km`);
@@ -5676,7 +5676,7 @@ function genEqSalt(){
   const {c1,w,c2,x}=rnd(cleanCases);
   const stories=[
     ()=>`✡️ [농도] ${c1}% 소금물 ${w}g에 소금을 추가해서 ${c2}% 소금물을 만들려 해요. 추가해야 할 소금 xg은?`,
-    ()=>`✡️ ${c1}% 소금물 ${w}g에 소금 xg을 더해 ${c2}% 소금물을 만들어요. x는?\n(왜 물 양은 그대로인데 농도만 바뀔까요? 소금만 늘어나니까요!)`,
+    ()=>`✡️ ${c1}% 소금물 ${w}g에 소금 xg을 더해 ${c2}% 소금물을 만들려고 해요. 소금은 몇 g 필요할까요?`,
   ];
   const choices=[`${x}g`,`${x+5}g`,`${x-5}g`,`${x*2}g`];
   return {type:'equation',subtype:'salt',story:rnd(stories)(),data:{c1,w,c2,x},answer:`${x}g`,choices:shuffle(choices)};
@@ -5689,8 +5689,8 @@ function genEqWork(){
   ];
   const {a,b,days}=rnd(cases);
   const stories=[
-    ()=>`🇫🇮 [일의 양] 영희 혼자 ${a}일, 철수 혼자 ${b}일에 끝나는 일이 있어요.\n(전체 일 = 커다란 빵 1개!) 둘이 함께 하면 며칠 걸릴까요?`,
-    ()=>`🇫🇮 어떤 일을 A는 ${a}일, B는 ${b}일에 완성해요. A+B가 함께 하면 며칠 걸릴까요?`,
+    ()=>`🇫🇮 [일의 양] 영희 혼자 ${a}일, 철수 혼자 ${b}일에 끝나는 일이 있어요. 둘이 함께 하면 며칠 걸릴까요?`,
+    ()=>`🇫🇮 어떤 일을 영희는 ${a}일, 철수는 ${b}일에 완성해요. 둘이 함께 하면 며칠 걸릴까요?`,
   ];
   const choices=[`${days}일`,`${days+1}일`,`${days-1}일`,`${a+b}일`];
   return {type:'equation',subtype:'work',story:rnd(stories)(),data:{a,b,days},answer:`${days}일`,choices:shuffle(choices)};
@@ -5720,7 +5720,7 @@ function genEqSavings(){
   const {m0,s0,dm,ds,ans}=rnd(cases);
   const stories=[
     ()=>`🇫🇮 [예금] 현재 민수 ${m0.toLocaleString()}원, 동생 ${s0.toLocaleString()}원. 매달 민수 ${dm.toLocaleString()}원, 동생 ${ds.toLocaleString()}원씩 저금해요. 동생이 민수보다 많아지는 것은 몇 달 후부터인가요?`,
-    ()=>`🇫🇮 형(${m0.toLocaleString()}원) vs 동생(${s0.toLocaleString()}원). 매달 형 +${dm.toLocaleString()}원, 동생 +${ds.toLocaleString()}원. 역전은 몇 달 후?`,
+    ()=>`🇫🇮 현재 형은 ${m0.toLocaleString()}원, 동생은 ${s0.toLocaleString()}원을 가지고 있어요. 매달 형은 ${dm.toLocaleString()}원, 동생은 ${ds.toLocaleString()}원씩 저금해요. 동생이 형보다 많아지는 건 몇 달 후부터일까요?`,
   ];
   const choices=[`${ans}달 후`,`${ans-1}달 후`,`${ans+1}달 후`,`${ans+3}달 후`];
   return {type:'equation',subtype:'savings',story:rnd(stories)(),data:{m0,s0,dm,ds,ans},answer:`${ans}달 후`,choices:shuffle(choices)};
@@ -6126,7 +6126,7 @@ function makeSteps(q){
       const {c1,w,c2,x}=data;
       const salt0=Math.round(w*c1/100);
       return [
-        {q:`① 처음 소금 양: ${w} × ${c1}/100 = ?g`, ans:String(salt0), unit:'g', hint:`${w}×${c1}÷100=${salt0}g`},
+        {q:`① 처음 소금 양: ${w} × ${c1}/100 = ?g`, ans:String(salt0), unit:'g', hint:`왜 물 양은 그대로인데 농도만 바뀔까요? 소금만 늘어나니까요! 💡 ${w}×${c1}÷100=${salt0}g`},
         {q:`② 소금 xg 추가 후: ${salt0}+x = ${c2}/100×(${w}+x) → 정리하면?`, ans:`0.${100-c2}x = ${c2*w/100-salt0}`, unit:'', hint:`${salt0}+x = ${c2*w/100}+${c2/100}x → ${(1-c2/100).toFixed(2)}x = ${c2*w/100-salt0}`},
         {q:`③ x = ${c2*w/100-salt0}/${1-c2/100} = ?`, ans:`${x}`, unit:'g', hint:`x = ${x}g`},
       ];
@@ -6135,7 +6135,7 @@ function makeSteps(q){
       const {a,b,days}=data;
       const L=lcm(a,b);
       return [
-        {q:`① 전체 일=1. 하루 일의 양: A = 1/${a}, B = 1/${b}. 함께: 1/${a} + 1/${b} = ?`, ans:`${L/a+L/b}/${L}`, unit:'', hint:`통분: ${L/a}/${L}+${L/b}/${L}=${L/a+L/b}/${L}`},
+        {q:`① 전체 일=1. 하루 일의 양: A = 1/${a}, B = 1/${b}. 함께: 1/${a} + 1/${b} = ?`, ans:`${L/a+L/b}/${L}`, unit:'', hint:`전체 일의 양을 1로 놓아요 (커다란 빵 1개!). 통분: ${L/a}/${L}+${L/b}/${L}=${L/a+L/b}/${L}`},
         {q:`② 함께하면 하루에 ${L/a+L/b}/${L}씩 진행. 전체(1) 나누면: x = 1 ÷ ${(L/a+L/b)+'/'+ L} = ?`, ans:`${days}`, unit:'일', hint:`${L}÷${L/a+L/b}=${days}일`},
       ];
     }
