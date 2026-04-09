@@ -5655,7 +5655,7 @@ function genEqDistance(){
   const {v1,v2,totalMin,dist}=rnd(cases);
   const totalH=`${totalMin}분(${totalMin>=60?Math.floor(totalMin/60)+'시간'+(totalMin%60?totalMin%60+'분':''):totalMin+'분'})`;
   const stories=[
-    ()=>`🇸🇬 [거리/속력/시간] 집→학교 시속 ${v1}km, 학교→집 시속 ${v2}km로 걸었더니 총 ${totalMin}분이 걸렸어요.\n막대 모델: 전체 시간 = x/${v1} + x/${v2} = ${totalMin}/60시간. 거리 x는?`,
+    ()=>`🇸🇬 [거리/속력/시간] 집→학교 시속 ${v1}km, 학교→집 시속 ${v2}km로 걸었더니 총 ${totalMin}분이 걸렸어요. 편도 거리 x는?`,
     ()=>`🇸🇬 산책로를 갈 때 시속 ${v1}km, 올 때 시속 ${v2}km로 걸어서 왕복 ${totalMin}분이 걸렸어요. 편도 거리는?`,
   ];
   const choices=[`${dist}km`,`${dist+1}km`,`${dist+2}km`,`${dist*v1/(v1+v2)*2|0}km`].filter((v,i,a)=>a.indexOf(v)===i);
@@ -5675,7 +5675,7 @@ function genEqSalt(){
   ];
   const {c1,w,c2,x}=rnd(cleanCases);
   const stories=[
-    ()=>`✡️ [농도] ${c1}% 소금물 ${w}g에 소금을 추가해서 ${c2}% 소금물을 만들려 해요.\n소금을 xg 넣으면: (${w}×${c1}/100 + x) = ${c2}/100 × (${w}+x). x는?`,
+    ()=>`✡️ [농도] ${c1}% 소금물 ${w}g에 소금을 추가해서 ${c2}% 소금물을 만들려 해요. 추가해야 할 소금 xg은?`,
     ()=>`✡️ ${c1}% 소금물 ${w}g에 소금 xg을 더해 ${c2}% 소금물을 만들어요. x는?\n(왜 물 양은 그대로인데 농도만 바뀔까요? 소금만 늘어나니까요!)`,
   ];
   const choices=[`${x}g`,`${x+5}g`,`${x-5}g`,`${x*2}g`];
@@ -5690,7 +5690,7 @@ function genEqWork(){
   const {a,b,days}=rnd(cases);
   const stories=[
     ()=>`🇫🇮 [일의 양] 영희 혼자 ${a}일, 철수 혼자 ${b}일에 끝나는 일이 있어요.\n(전체 일 = 커다란 빵 1개!) 둘이 함께 하면 며칠 걸릴까요?`,
-    ()=>`🇫🇮 어떤 일을 A는 ${a}일, B는 ${b}일에 완성해요. A+B가 함께 하면?\n(하루 일의 양: A=1/${a}, B=1/${b})`,
+    ()=>`🇫🇮 어떤 일을 A는 ${a}일, B는 ${b}일에 완성해요. A+B가 함께 하면 며칠 걸릴까요?`,
   ];
   const choices=[`${days}일`,`${days+1}일`,`${days-1}일`,`${a+b}일`];
   return {type:'equation',subtype:'work',story:rnd(stories)(),data:{a,b,days},answer:`${days}일`,choices:shuffle(choices)};
@@ -5705,7 +5705,7 @@ function genEqProfit(){
   const {rate,disc,profit,orig}=rnd(cases);
   const stories=[
     ()=>`🇸🇬 [원가/정가] 원가의 ${rate}% 이익을 붙여 정가를 정했다가, ${disc.toLocaleString()}원 할인해서 팔았더니 ${profit.toLocaleString()}원의 이익이 남았어요. 원가는?`,
-    ()=>`🇸🇬 원가 x원에 ${rate}% 이익 → 정가 = x × ${1+rate/100}. 거기서 ${disc.toLocaleString()}원 할인 후 이익 ${profit.toLocaleString()}원. x는?`,
+    ()=>`🇸🇬 원가 x원짜리 물건에 ${rate}% 이익을 붙여 정가를 정한 뒤, ${disc.toLocaleString()}원 할인해서 팔았더니 ${profit.toLocaleString()}원의 이익이 남았어요. 원가 x는?`,
   ];
   const choices=[`${orig.toLocaleString()}원`,`${(orig+1000).toLocaleString()}원`,`${(orig-500).toLocaleString()}원`,`${(orig*2).toLocaleString()}원`];
   return {type:'equation',subtype:'profit',story:rnd(stories)(),data:{rate,disc,profit,orig},answer:`${orig.toLocaleString()}원`,choices:shuffle(choices)};
