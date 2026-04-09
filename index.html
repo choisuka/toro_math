@@ -5811,7 +5811,7 @@ function genEqHardTaps(){
 function genEqHardSameLoss(){
   const cases=[
     {price:12000,rate:20,origA:10000,origB:15000,loss:1000},
-    {price:15000,rate:25,origA:12000,origB:20000,loss:3000},
+    {price:15000,rate:25,origA:12000,origB:20000,loss:2000},
   ];
   const {price,rate,origA,origB,loss}=rnd(cases);
   const stories=[
@@ -5889,8 +5889,8 @@ function genEqHardSumProduct(){
 
 function genEqHardFraction(){
   const cases=[
-    {num:10,den:3,ans1:3,ans2:'1/3',a:3,b:-10,cc:3},
-    {num:5,den:2,ans1:2,ans2:'1/2',a:2,b:-5,cc:2},
+    {num:10,den:3,ans1:3,ans2:'1/3',a:3,b:-10,cc:1},
+    {num:5,den:2,ans1:2,ans2:'1/2',a:2,b:-5,cc:1},
   ];
   const {num,den,ans1,ans2,a,b,cc}=rnd(cases);
   const desc=`${num}/${den}`;
@@ -6426,10 +6426,10 @@ function makeSteps(q){
       ];
     }
     if(sub==='hard_fraction'){
-      const {num,den,ans1,ans2,a,cc}=data;
+      const {num,den,ans1,ans2,cc}=data;
       return [
         {q:`① 양변에 t를 곱하면: t²+1 = ${num}t/${den} → ${den}t²−${num}t+${den} = 0`, ans:`${den}t²−${num}t+${den}=0`, unit:'', hint:`양변×t 후 정리`},
-        {q:`② 인수분해: (${den}t−${cc})(t−${ans1}) = 0 → t = ?`, ans:ans2, unit:'또는 '+ans1, hint:`t=${ans1} 또는 t=${ans2}`},
+        {q:`② (${den}t−${cc})(t−${ans1}) = 0 → 두 근: t=${ans2} 또는 t=${ans1}. 답 선택지에서 고르세요.`, ans:`${den}t²−${num}t+${den}=0`, unit:'', hint:`t=${ans1} 또는 t=${ans2}`},
       ];
     }
     return [{q:'정답을 입력하세요', ans:q.answer, unit:'', hint:''}];
