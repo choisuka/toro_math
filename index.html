@@ -1376,7 +1376,7 @@ const CARD_DATA = {
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">등식 3x + 6 = 12에서<br>양변을 3으로 먼저 나누는 것과<br>6을 먼저 빼는 것 중 어느 것이 더 논리적인가요?</div>`,
     ans:`<b style="color:#fde68a">핵심:</b> 두 방법 모두 x = 2<br><br><b style="color:#86efac">6을 먼저 빼는 것 추천:</b><br>3x = 6 → x = 2<br><br>핵심(3x)을 드러내기 위해 껍질(+6)부터 벗기는 게 실수를 줄이는 지름길` },
   { tag:'🇫🇮 기본 4/10', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">한 자루에 800원 하는 볼펜 x자루를 사고 5,000원을 냈더니 거스름돈이 1,800원이었습니다. x를 구하세요.</div>`,
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">한 자루에 800원 하는 볼펜을 몇 자루 사고 5,000원을 냈더니 거스름돈이 1,800원이었습니다. 몇 자루를 샀을까요?</div>`,
     ans:`<b style="color:#86efac">풀이:</b><br>5,000 − 800x = 1,800<br>800x = 3,200<br><b style="color:#fde68a;font-size:.9rem">x = 4 (볼펜 4자루)</b>` },
   { tag:'🇸🇬 기본 5/10', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">사탕 30개를 형과 동생이 나누었습니다.<br>형이 동생보다 6개 더 많다면<br>형의 사탕 수는?</div>`,
@@ -1388,10 +1388,10 @@ const CARD_DATA = {
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">현재 아버지 45세, 아들 13세입니다.<br>아버지의 나이가 아들의 3배가 되는 것은 몇 년 후인가요?</div>`,
     ans:`<b style="color:#86efac">풀이:</b> x년 후<br>45 + x = 3(13 + x)<br>45 + x = 39 + 3x<br>6 = 2x<br><b style="color:#fde68a;font-size:.9rem">3년 후</b> (아버지 48세 = 아들 16세 × 3)` },
   { tag:'🇸🇬 기본 8/10', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">가로가 세로보다 5cm 더 긴 직사각형의 둘레가 30cm입니다. 세로의 길이를 x라 두고 구하세요.</div>`,
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">가로가 세로보다 5cm 더 긴 직사각형의 둘레가 30cm입니다. 세로의 길이는?</div>`,
     ans:`<b style="color:#7dd3fc">풀이:</b> 세로=x, 가로=x+5<br>2(x + x + 5) = 30<br>4x + 10 = 30 → 4x = 20<br><b style="color:#fde68a;font-size:.9rem">세로 5cm, 가로 10cm</b>` },
   { tag:'✡️ 기본 9/10', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">'연속하는 세 홀수의 합이 33이다.'<br>중간 수를 x로 두는 것과 가장 작은 수를 x로 두는 것 중 무엇이 더 편할까요?</div>`,
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">'연속하는 세 홀수의 합이 33이다.'<br>중간 수를 기준으로 두는 것과 가장 작은 수를 기준으로 두는 것 중 무엇이 더 편할까요?</div>`,
     ans:`<b style="color:#fde68a">중간 수 x 추천:</b><br>(x−2) + x + (x+2) = 3x = 33<br><b style="color:#fde68a;font-size:.9rem">x = 11</b> (11, 13, 15)<br><br><span style="color:#aaa">가장 작은 수 x → 3x+6=33 → 복잡</span>` },
   { tag:'🇫🇮 기본 10/10', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">사탕을 학생들에게 4개씩 나눠주면 3개가 남고, 5개씩 나눠주면 2개가 부족합니다. 학생 수는?</div>`,
@@ -5676,8 +5676,8 @@ function genEqSalt(){
   ];
   const {c1,w,c2,x}=rnd(cleanCases);
   const stories=[
-    ()=>`✡️ [농도] ${c1}% 소금물 ${w}g에 소금을 추가해서 ${c2}% 소금물을 만들려 해요. 추가해야 할 소금 xg은?`,
-    ()=>`✡️ ${c1}% 소금물 ${w}g에 소금 xg을 더해 ${c2}% 소금물을 만들려고 해요. 소금은 몇 g 필요할까요?`,
+    ()=>`✡️ [농도] ${c1}% 소금물 ${w}g에 소금을 추가해서 ${c2}% 소금물을 만들려 해요. 소금은 몇 g 넣어야 할까요?`,
+    ()=>`✡️ ${c1}% 소금물 ${w}g에 소금을 더해 ${c2}% 소금물을 만들려고 해요. 소금은 몇 g 필요할까요?`,
   ];
   const choices=[`${x}g`,`${x+5}g`,`${x-5}g`,`${x*2}g`];
   return {type:'equation',subtype:'salt',story:rnd(stories)(),data:{c1,w,c2,x},answer:`${x}g`,choices:shuffle(choices)};
@@ -5706,7 +5706,7 @@ function genEqProfit(){
   const {rate,disc,profit,orig}=rnd(cases);
   const stories=[
     ()=>`🇸🇬 [원가/정가] 원가의 ${rate}% 이익을 붙여 정가를 정했다가, ${disc.toLocaleString()}원 할인해서 팔았더니 ${profit.toLocaleString()}원의 이익이 남았어요. 원가는?`,
-    ()=>`🇸🇬 원가 x원짜리 물건에 ${rate}% 이익을 붙여 정가를 정한 뒤, ${disc.toLocaleString()}원 할인해서 팔았더니 ${profit.toLocaleString()}원의 이익이 남았어요. 원가 x는?`,
+    ()=>`🇸🇬 어떤 물건에 ${rate}% 이익을 붙여 정가를 정한 뒤, ${disc.toLocaleString()}원 할인해서 팔았더니 ${profit.toLocaleString()}원의 이익이 남았어요. 원가는?`,
   ];
   const choices=[`${orig.toLocaleString()}원`,`${(orig+1000).toLocaleString()}원`,`${(orig-500).toLocaleString()}원`,`${(orig*2).toLocaleString()}원`];
   return {type:'equation',subtype:'profit',story:rnd(stories)(),data:{rate,disc,profit,orig},answer:`${orig.toLocaleString()}원`,choices:shuffle(choices)};
