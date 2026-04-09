@@ -702,10 +702,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       ✡️ 아르모니아 하브루타 토론관 →
     </button>
     <button class="btn btn-main" onclick="startQuiz('equation','equation-hub')" style="width:100%;margin-bottom:10px;background:linear-gradient(135deg,#4c1d95,#a855f7)">
-      📚 기본 문제 도전 (10문항)
-    </button>
-    <button class="btn btn-sub" onclick="startQuizHard('equation','equation-hub')" style="width:100%;background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.4);color:#d8b4fe">
-      🔥 심화 문제 도전 (10문항)
+      📚 기본 문제 도전 (20문항)
     </button>
   </div>
 </div>
@@ -5641,9 +5638,13 @@ function genEq(){
               genEqDistance,genEqSalt,genEqWork,genEqProfit,genEqSavings])();
 }
 function genQsEq(){
-  const fns=[genEqSimple,genEqRod,genEqAge,genEqRect,genEqCandy,genEqMoney,
-             genEqDistance,genEqSalt,genEqWork,genEqProfit,genEqSavings];
-  return shuffle(fns.map(f=>f())).slice(0,10);
+  const basicOrder=[0,1,2,3,4,5,0,1,2,3];
+  const basicFns=[genEqSimple,genEqRod,genEqAge,genEqRect,genEqCandy,genEqMoney];
+  const hardOrder=[0,1,2,3,4,0,1,2,3,4];
+  const hardFns=[genEqDistance,genEqSalt,genEqWork,genEqProfit,genEqSavings];
+  const basicQs=shuffle([...basicOrder]).map(i=>basicFns[i]());
+  const hardQs=shuffle([...hardOrder]).map(i=>hardFns[i]());
+  return shuffle([...basicQs,...hardQs]);
 }
 
 // ─── 일차방정식 심화 문제 ────────────────────────────────────
