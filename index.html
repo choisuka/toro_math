@@ -704,6 +704,9 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     <button class="btn btn-main" onclick="startQuiz('equation','equation-hub')" style="width:100%;margin-bottom:10px;background:linear-gradient(135deg,#4c1d95,#a855f7)">
       📚 기본 문제 도전 (20문항)
     </button>
+    <button class="btn btn-sub" onclick="startQuizHard('equation','equation-hub')" style="width:100%;background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.4);color:#d8b4fe">
+      🔥 심화 문제 도전 (12문항)
+    </button>
   </div>
 </div>
 
@@ -5638,13 +5641,12 @@ function genEq(){
               genEqDistance,genEqSalt,genEqWork,genEqProfit,genEqSavings])();
 }
 function genQsEq(){
-  const basicOrder=[0,1,2,3,4,5,0,1,2,3];
-  const basicFns=[genEqSimple,genEqRod,genEqAge,genEqRect,genEqCandy,genEqMoney];
-  const hardOrder=[0,1,2,3,4,0,1,2,3,4];
-  const hardFns=[genEqDistance,genEqSalt,genEqWork,genEqProfit,genEqSavings];
-  const basicQs=shuffle([...basicOrder]).map(i=>basicFns[i]());
-  const hardQs=shuffle([...hardOrder]).map(i=>hardFns[i]());
-  return shuffle([...basicQs,...hardQs]);
+  const basicFns=[genEqSimple,genEqRod,genEqAge,genEqRect,genEqCandy,genEqMoney,
+                  genEqDistance,genEqSalt,genEqWork,genEqProfit,genEqSavings,
+                  genEqChase,genEqMixSalt,genEqDigit];
+  const qs=basicFns.map(f=>f());
+  const extra=Array.from({length:6},()=>rnd(basicFns)());
+  return shuffle([...qs,...extra]).slice(0,20);
 }
 
 // ─── 일차방정식 심화 문제 ────────────────────────────────────
@@ -5728,13 +5730,193 @@ function genEqSavings(){
   return {type:'equation',subtype:'savings',story:rnd(stories)(),data:{m0,s0,dm,ds,ans},answer:`${ans}달 후`,choices:shuffle(choices)};
 }
 
+// ─── 기본 추가 3종 ──────────────────────────────────────────
+function genEqChase(){
+  const cases=[
+    {v1:60,v2:80,t:10,n:30},{v1:40,v2:60,t:15,n:30},
+    {v1:60,v2:90,t:10,n:20},{v1:30,v2:50,t:20,n:30},
+  ];
+  const {v1,v2,t,n}=rnd(cases);
+  const dist=Math.round(v1*t/60*10)/10;
+  const stories=[
+    ()=>`🇸🇬 [추격] 도둑이 시속 ${v1}km로 ${t}분 먼저 출발했어요. 경찰이 시속 ${v2}km로 뒤쫓는다면 몇 분 후에 잡을 수 있을까요?`,
+    ()=>`🇸🇬 A가 시속 ${v1}km로 ${t}분 먼저 출발했어요. B가 시속 ${v2}km로 뒤따른다면 따라잡는 건 몇 분 후일까요?`,
+  ];
+  const choices=[`${n}분 후`,`${n+10}분 후`,`${n-10}분 후`,`${n+20}분 후`].filter(v=>parseInt(v)>0);
+  while(choices.length<4) choices.push(`${n+30}분 후`);
+  return {type:'equation',subtype:'chase',story:rnd(stories)(),data:{v1,v2,t,n,dist},answer:`${n}분 후`,choices:shuffle(choices.slice(0,4))};
+}
+
+function genEqMixSalt(){
+  const cases=[
+    {c1:8,w1:300,c2:20,c3:12,x:150},{c1:6,w1:200,c2:18,c3:10,x:100},
+    {c1:5,w1:400,c2:15,c3:7,x:100},{c1:4,w1:300,c2:16,c3:8,x:150},
+  ];
+  const {c1,w1,c2,c3,x}=rnd(cases);
+  const stories=[
+    ()=>`🇸🇬 [소금물 혼합] ${c1}% 소금물 ${w1}g에 ${c2}% 소금물을 섞어 ${c3}% 소금물을 만들려 해요. ${c2}% 소금물은 몇 g 필요할까요?`,
+    ()=>`🇸🇬 ${c1}% 소금물 ${w1}g과 ${c2}% 소금물을 혼합해서 ${c3}% 소금물을 만들어요. 필요한 양은?`,
+  ];
+  const choices=[`${x}g`,`${x+50}g`,`${x-50}g`,`${x+100}g`].filter(v=>parseInt(v)>0);
+  while(choices.length<4) choices.push(`${x+150}g`);
+  return {type:'equation',subtype:'mix_salt',story:rnd(stories)(),data:{c1,w1,c2,c3,x},answer:`${x}g`,choices:shuffle(choices.slice(0,4))};
+}
+
+function genEqDigit(){
+  const cases=[
+    {a:3,b:6,orig:36,diff:27,sum:9},{a:2,b:7,orig:27,diff:45,sum:9},
+    {a:4,b:7,orig:47,diff:27,sum:11},{a:3,b:8,orig:38,diff:45,sum:11},
+  ];
+  const {a,b,orig,diff,sum}=rnd(cases);
+  const stories=[
+    ()=>`✡️ [두 자리 수 퍼즐] 십의 자리와 일의 자리의 합이 ${sum}이에요. 두 자리를 바꾸면 원래 수보다 ${diff} 커져요. 원래 수는?`,
+    ()=>`✡️ 어떤 두 자리 수의 각 자리 합은 ${sum}이고, 자리를 바꾸면 ${diff}이 커진다면 원래 수는?`,
+  ];
+  const choices=[String(orig),String(orig+9),String(orig-9),String(orig+18)];
+  return {type:'equation',subtype:'digit',story:rnd(stories)(),data:{a,b,orig,diff,sum},answer:String(orig),choices:shuffle(choices)};
+}
+
+// ─── 심화 9종 ────────────────────────────────────────────────
+function genEqHardRiver(){
+  const cases=[
+    {d:60,t1:2,t2:3,v:25,w:5},{d:80,t1:2,t2:4,v:30,w:10},
+    {d:60,t1:3,t2:5,v:16,w:4},
+  ];
+  const {d,t1,t2,v,w}=rnd(cases);
+  const stories=[
+    ()=>`🇫🇮 [강물 속 배] 배가 강을 따라 ${t1}시간에 ${d}km를 내려가고, 거슬러 올라올 때는 ${t2}시간이 걸렸어요. 잔잔한 물에서 배 자체의 속력은?`,
+    ()=>`🇫🇮 강 ${d}km 구간을 내려갈 때 ${t1}시간, 올라올 때 ${t2}시간. 유속이 더해지고 빠진다면 배 자체의 속력은?`,
+  ];
+  const choices=[`시속 ${v}km`,`시속 ${v+5}km`,`시속 ${v-5}km`,`시속 ${v+10}km`];
+  return {type:'equation',subtype:'hard_river',story:rnd(stories)(),data:{d,t1,t2,v,w},answer:`시속 ${v}km`,choices:shuffle(choices)};
+}
+
+function genEqHardTaps(){
+  const cases=[
+    {a:6,b:4,c:12,ans:3,L:12,ra:2,rb:3,rc:1},
+    {a:4,b:12,c:6,ans:6,L:12,ra:3,rb:1,rc:2},
+    {a:3,b:12,c:4,ans:6,L:12,ra:4,rb:1,rc:3},
+  ];
+  const {a,b,c,ans,L,ra,rb,rc}=rnd(cases);
+  const rate=ra+rb-rc;
+  const stories=[
+    ()=>`🇫🇮 [수도꼭지] A로만 채우면 ${a}시간, B로만 채우면 ${b}시간, 배수구로만 비우면 ${c}시간. A·B 열고 배수구도 열려 있으면 몇 시간에 가득 찰까요?`,
+    ()=>`🇫🇮 빈 물탱크를 A(${a}시간)·B(${b}시간)로 채우면서 배수구(${c}시간)도 열려 있어요. 가득 차는 데 몇 시간?`,
+  ];
+  const choices=[`${ans}시간`,`${ans+1}시간`,`${ans+2}시간`,`${ans-1}시간`].filter(v=>parseInt(v)>0);
+  while(choices.length<4) choices.push(`${ans+3}시간`);
+  return {type:'equation',subtype:'hard_taps',story:rnd(stories)(),data:{a,b,c,ans,L,ra,rb,rc,rate},answer:`${ans}시간`,choices:shuffle(choices.slice(0,4))};
+}
+
+function genEqHardSameLoss(){
+  const cases=[
+    {price:12000,rate:20,origA:10000,origB:15000,loss:1000},
+    {price:15000,rate:25,origA:12000,origB:20000,loss:3000},
+  ];
+  const {price,rate,origA,origB,loss}=rnd(cases);
+  const stories=[
+    ()=>`✡️ [손익의 함정] 두 물건을 각각 ${price.toLocaleString()}원에 팔았어요. 하나는 원가의 ${rate}% 이익, 다른 하나는 원가의 ${rate}% 손해. 전체로는 이익일까요, 손해일까요?`,
+    ()=>`✡️ 물건 두 개를 각각 ${price.toLocaleString()}원에 팔았어요. 하나는 ${rate}% 남겼고, 하나는 ${rate}% 손해. 합산하면?`,
+  ];
+  const choices=[`${loss.toLocaleString()}원 손해`,`손익 없음`,`${loss.toLocaleString()}원 이익`,`${(loss*2).toLocaleString()}원 손해`];
+  return {type:'equation',subtype:'hard_loss',story:rnd(stories)(),data:{price,rate,origA,origB,loss},answer:`${loss.toLocaleString()}원 손해`,choices:shuffle(choices)};
+}
+
+function genEqHardRatio(){
+  const cases=[
+    {r1:5,r2:3,r3:2,diff:30,unit:15,total:150},{r1:4,r2:2,r3:1,diff:20,unit:10,total:70},
+    {r1:5,r2:3,r3:2,diff:20,unit:10,total:100},{r1:3,r2:2,r3:1,diff:15,unit:15,total:90},
+  ];
+  const {r1,r2,r3,diff,unit,total}=rnd(cases);
+  const stories=[
+    ()=>`🇸🇬 [비율 배분] 사탕을 세 사람이 ${r1}:${r2}:${r3}로 나눴어요. 첫 번째 사람이 두 번째 사람보다 ${diff}개 많다면 전체 사탕 수는?`,
+    ()=>`🇸🇬 세 사람이 ${r1}:${r2}:${r3} 비율로 나눠 가졌더니 첫 번째가 두 번째보다 ${diff}개 많았어요. 전체는?`,
+  ];
+  const choices=[`${total}개`,`${total+15}개`,`${total-15}개`,`${total+30}개`];
+  return {type:'equation',subtype:'hard_ratio',story:rnd(stories)(),data:{r1,r2,r3,diff,unit,total},answer:`${total}개`,choices:shuffle(choices)};
+}
+
+function genEqHardComplexDiscount(){
+  const cases=[
+    {ru:40,rd:20,profit:840,orig:7000,m:'1.12'},{ru:50,rd:20,profit:2000,orig:10000,m:'1.20'},
+    {ru:30,rd:10,profit:1700,orig:10000,m:'1.17'},
+  ];
+  const {ru,rd,profit,orig,m}=rnd(cases);
+  const stories=[
+    ()=>`🇸🇬 [이중 할인] 원가에 ${ru}% 이익을 붙여 정가를 만든 뒤 ${rd}% 할인해서 팔았더니 ${profit.toLocaleString()}원 이익이 남았어요. 원가는?`,
+    ()=>`🇸🇬 원가 → +${ru}% → 정가 → −${rd}% → 판매가. 최종 이익이 ${profit.toLocaleString()}원이라면 원가는?`,
+  ];
+  const choices=[`${orig.toLocaleString()}원`,`${(orig+1000).toLocaleString()}원`,`${(orig-1000).toLocaleString()}원`,`${(orig+2000).toLocaleString()}원`];
+  return {type:'equation',subtype:'hard_discount',story:rnd(stories)(),data:{ru,rd,profit,orig,m},answer:`${orig.toLocaleString()}원`,choices:shuffle(choices)};
+}
+
+function genEqHardAgeRatio(){
+  const cases=[
+    {nm:4,ya:5,am:7,son:10,father:40},{nm:3,ya:10,am:7,son:15,father:45},
+    {nm:4,ya:10,am:9,son:16,father:64},
+  ];
+  const {nm,ya,am,son,father}=rnd(cases);
+  const stories=[
+    ()=>`✡️ [나이 역전] 현재 아버지 나이는 아들의 ${nm}배예요. ${ya}년 전에는 ${am}배였어요. 현재 두 사람의 나이는?`,
+    ()=>`✡️ 지금 아버지:아들 = ${nm}:1. ${ya}년 전에는 ${am}:1이었어요. 각각 몇 살일까요?`,
+  ];
+  const choices=[`아들 ${son}세·아버지 ${father}세`,`아들 ${son+2}세·아버지 ${father+8}세`,`아들 ${son-2}세·아버지 ${father-8}세`,`아들 ${son+5}세·아버지 ${father}세`];
+  return {type:'equation',subtype:'hard_age_ratio',story:rnd(stories)(),data:{nm,ya,am,son,father},answer:`아들 ${son}세·아버지 ${father}세`,choices:shuffle(choices)};
+}
+
+function genEqHardThreeBrothers(){
+  const cases=[
+    {total:45,gap:3,ad:5,a:24,b:13,c:8},{total:60,gap:12,ad:6,a:36,b:15,c:9},
+    {total:48,gap:6,ad:5,a:27,b:13,c:8},
+  ];
+  const {total,gap,ad,a,b,c}=rnd(cases);
+  const stories=[
+    ()=>`✡️ [세 형제] 세 형제 나이의 합은 ${total}세예요. 둘째와 막내 나이의 합이 첫째보다 ${gap}살 적고, 둘째는 막내보다 ${ad}살 많아요. 첫째의 나이는?`,
+    ()=>`✡️ 세 형제 나이 합=${total}. 둘째+막내=첫째−${gap}, 둘째=막내+${ad}. 첫째는 몇 살?`,
+  ];
+  const choices=[`${a}세`,`${a+3}세`,`${a-3}세`,`${a+6}세`];
+  return {type:'equation',subtype:'hard_three_bros',story:rnd(stories)(),data:{total,gap,ad,a,b,c},answer:`${a}세`,choices:shuffle(choices)};
+}
+
+function genEqHardSumProduct(){
+  const stories=[
+    ()=>`✡️ [합이 곱이 되는 수] 두 자연수의 합이 그 두 수의 곱과 같아요. 이런 자연수 쌍을 모두 구하고, 왜 그것밖에 없는지 설명해 보세요.`,
+    ()=>`✡️ a+b = a×b를 만족하는 자연수 a, b를 찾아보세요. 유일한 쌍일까요?`,
+  ];
+  const choices=['(2, 2)','(1, 1)','(3, 3)','(2, 3)'];
+  return {type:'equation',subtype:'hard_sum_prod',story:rnd(stories)(),data:{},answer:'(2, 2)',choices:shuffle(choices)};
+}
+
+function genEqHardFraction(){
+  const cases=[
+    {num:10,den:3,ans1:3,ans2:'1/3',a:3,b:-10,cc:3},
+    {num:5,den:2,ans1:2,ans2:'1/2',a:2,b:-5,cc:2},
+  ];
+  const {num,den,ans1,ans2,a,b,cc}=rnd(cases);
+  const desc=`${num}/${den}`;
+  const stories=[
+    ()=>`✡️ [분수 방정식] 어떤 수와 그 역수를 더하면 ${desc}이에요. 어떤 수는? (두 가지 답 가능)`,
+    ()=>`✡️ 어떤 수를 t라 할 때: t + 1/t = ${desc}. 이를 만족하는 수를 모두 구하세요.`,
+  ];
+  const answer=`${ans1} 또는 ${ans2}`;
+  const choices=[answer,`${ans1+1} 또는 ${ans2}`,`${ans1} 만`,`${ans1-1} 또는 ${ans2}`].filter((v,i,arr)=>arr.indexOf(v)===i);
+  while(choices.length<4) choices.push(`해 없음`);
+  return {type:'equation',subtype:'hard_fraction',story:rnd(stories)(),data:{num,den,ans1,ans2,a,b,cc},answer,choices:shuffle(choices.slice(0,4))};
+}
+
 function genEqHard(){
-  return rnd([genEqDistance,genEqSalt,genEqWork,genEqProfit,genEqSavings])();
+  return rnd([genEqHardRiver,genEqHardTaps,genEqHardSameLoss,genEqHardRatio,
+              genEqHardComplexDiscount,genEqHardAgeRatio,genEqHardThreeBrothers,
+              genEqHardSumProduct,genEqHardFraction])();
 }
 function genQsEqHard(){
-  const order=[0,1,2,3,4,0,1,2,3,4];
-  const fns=[genEqDistance,genEqSalt,genEqWork,genEqProfit,genEqSavings];
-  return shuffle([...order]).map(i=>fns[i]());
+  const fns=[genEqHardRiver,genEqHardTaps,genEqHardSameLoss,genEqHardRatio,
+             genEqHardComplexDiscount,genEqHardAgeRatio,genEqHardThreeBrothers,
+             genEqHardSumProduct,genEqHardFraction];
+  // 9종에서 중복 없이 9문제, 나머지 3개는 랜덤 반복
+  const qs=fns.map(f=>f());
+  const extra=Array.from({length:3},()=>rnd(fns)());
+  return shuffle([...qs,...extra]).slice(0,12);
 }
 
 function genQs(topic){
@@ -6155,6 +6337,99 @@ function makeSteps(q){
       return [
         {q:`① t달 후: 민수=${m0.toLocaleString()}+${dm.toLocaleString()}t, 동생=${s0.toLocaleString()}+${ds.toLocaleString()}t. 역전 조건: 동생>민수`, ans:`${s0.toLocaleString()}+${ds.toLocaleString()}t > ${m0.toLocaleString()}+${dm.toLocaleString()}t`, unit:'', hint:`동생 저금 > 민수 저금`},
         {q:`② ${ds-dm}t > ${m0-s0} → t > ${(m0-s0)/(ds-dm)} → 최소 t = ?`, ans:String(ans), unit:'달 후', hint:`${m0-s0}÷${ds-dm}=${(m0-s0)/(ds-dm)} → 올림하면 ${ans}`},
+      ];
+    }
+    // ── 기본 추가 3종 ──
+    if(sub==='chase'){
+      const {v1,v2,t,n,dist}=data;
+      return [
+        {q:`① 도둑이 ${t}분간 이동한 선행 거리: ${v1}km/h × ${t}/60시간 = ?km`, ans:String(dist), unit:'km', hint:`${v1}×${t}÷60=${dist}km`},
+        {q:`② 경찰이 n분 후 따라잡으려면: (${v2}-${v1})×n/60 = ${dist}km → n = ?`, ans:`${n}`, unit:'분 후', hint:`${dist}×60÷${v2-v1}=${n}분`},
+      ];
+    }
+    if(sub==='mix_salt'){
+      const {c1,w1,c2,c3,x}=data;
+      const s1=Math.round(w1*c1/100);
+      return [
+        {q:`① ${c1}% 소금물 ${w1}g의 소금 양: ${w1}×${c1}/100 = ?g`, ans:String(s1), unit:'g', hint:`${w1}×${c1}÷100=${s1}g`},
+        {q:`② xg 섞으면: (${s1}+${c2}x/100)/(${w1}+x)=${c3}/100. 정리하면: (${c2}-${c3})x = ${c3}×${w1}-${s1*100} → x = ?`, ans:String(x), unit:'g', hint:`소금 보존 원리: 섞기 전 소금 합 = 섞은 후 소금. x=${x}g`},
+      ];
+    }
+    if(sub==='digit'){
+      const {a,b,orig,diff,sum}=data;
+      const bd=diff/9;
+      return [
+        {q:`① 십의자리=a, 일의자리=b. 자리 바꾼 수 − 원래 수 = 9(b−a) = ${diff} → b−a = ?`, ans:String(bd), unit:'', hint:`${diff}÷9=${bd}`},
+        {q:`② a+b=${sum}, b−a=${bd}. 더하면 2b=? → b=?, a=?`, ans:`b=${b}, a=${a}`, unit:'', hint:`(${sum}+${bd})÷2=${b}=b, a=${sum}-${b}=${a}`},
+        {q:`③ 원래 수 = 10×${a}+${b} = ?`, ans:String(orig), unit:'', hint:`10×${a}+${b}=${orig}`},
+      ];
+    }
+    // ── 심화 9종 ──
+    if(sub==='hard_river'){
+      const {d,t1,t2,v,w}=data;
+      const vw=d/t1, vmw=d/t2;
+      return [
+        {q:`① 내려갈 때 (배+유속): ${d}km ÷ ${t1}시간 = ?km/h`, ans:String(vw), unit:'km/h', hint:`${d}÷${t1}=${vw}`},
+        {q:`② 올라갈 때 (배−유속): ${d}km ÷ ${t2}시간 = ?km/h`, ans:String(vmw), unit:'km/h', hint:`${d}÷${t2}=${vmw}`},
+        {q:`③ 두 식 더하면: 2×배속력 = ${vw}+${vmw} = ${vw+vmw} → 배 속력 = ?`, ans:String(v), unit:'km/h', hint:`${vw+vmw}÷2=${v}`},
+      ];
+    }
+    if(sub==='hard_taps'){
+      const {a,b,c,ans,L,ra,rb,rc,rate}=data;
+      return [
+        {q:`① 1시간에 A·B가 채우는 양: 1/${a}+1/${b}. 공통분모 ${L}: (${ra}+${rb})/${L} = ?/${L}`, ans:`${ra+rb}/${L}`, unit:'', hint:`${ra}+${rb}=${ra+rb}. ${ra+rb}/${L}`},
+        {q:`② 배수구가 빼는 양: 1/${c} = ${rc}/${L}. 순 채우는 양: ${ra+rb}/${L}−${rc}/${L} = ?/${L}`, ans:`${rate}/${L}`, unit:'', hint:`${ra+rb}-${rc}=${rate}`},
+        {q:`③ 전체(1)를 채우는 시간: 1 ÷ ${rate}/${L} = ?시간`, ans:`${ans}`, unit:'시간', hint:`${L}÷${rate}=${ans}`},
+      ];
+    }
+    if(sub==='hard_loss'){
+      const {price,rate,origA,origB,loss}=data;
+      return [
+        {q:`① 이익 물건 원가: ${price.toLocaleString()} ÷ ${1+rate/100} = ?원`, ans:origA.toLocaleString(), unit:'원', hint:`${price.toLocaleString()}×100÷${100+rate}=${origA.toLocaleString()}`},
+        {q:`② 손해 물건 원가: ${price.toLocaleString()} ÷ ${1-rate/100} = ?원`, ans:origB.toLocaleString(), unit:'원', hint:`${price.toLocaleString()}×100÷${100-rate}=${origB.toLocaleString()}`},
+        {q:`③ 총 원가(${(origA+origB).toLocaleString()}) − 총 판매가(${(price*2).toLocaleString()}) = ? → 이익? 손해?`, ans:`${loss.toLocaleString()}원 손해`, unit:'', hint:`${origA.toLocaleString()}+${origB.toLocaleString()}=${(origA+origB).toLocaleString()} > ${(price*2).toLocaleString()} → 손해`},
+      ];
+    }
+    if(sub==='hard_ratio'){
+      const {r1,r2,r3,diff,unit,total}=data;
+      return [
+        {q:`① 비율 차: ${r1}−${r2}=${r1-r2}단위 = ${diff}개 → 단위 1개 = ?개`, ans:String(unit), unit:'개', hint:`${diff}÷${r1-r2}=${unit}`},
+        {q:`② 전체 = (${r1}+${r2}+${r3}) × ${unit}개 = ?개`, ans:String(total), unit:'개', hint:`${r1+r2+r3}×${unit}=${total}`},
+      ];
+    }
+    if(sub==='hard_discount'){
+      const {ru,rd,profit,orig,m}=data;
+      return [
+        {q:`① 정가 = 원가 × ${1+ru/100}. 판매가 = 정가 × ${1-rd/100} = 원가 × ?`, ans:m, unit:'배', hint:`${1+ru/100}×${1-rd/100}=${m}`},
+        {q:`② 이익 = 원가×${m} − 원가 = 원가×${(parseFloat(m)-1).toFixed(2)} = ${profit.toLocaleString()} → 원가 = ?`, ans:orig.toLocaleString(), unit:'원', hint:`${profit.toLocaleString()}÷${(parseFloat(m)-1).toFixed(2)}=${orig.toLocaleString()}`},
+      ];
+    }
+    if(sub==='hard_age_ratio'){
+      const {nm,ya,am,son,father}=data;
+      return [
+        {q:`① 아들=s, 아버지=${nm}s. ${ya}년 전: ${nm}s−${ya} = ${am}(s−${ya}) → 풀면 s = ?`, ans:String(son), unit:'세', hint:`${nm}s−${ya}=${am}s−${am*ya} → ${am-nm}s=−${ya}+${am*ya}=${(am-nm)*son} → s=${son}`},
+        {q:`② 아버지 = ${nm}×${son} = ?세`, ans:String(father), unit:'세', hint:`${nm}×${son}=${father}`},
+      ];
+    }
+    if(sub==='hard_three_bros'){
+      const {total,gap,ad,a,b,c}=data;
+      return [
+        {q:`① 첫째=a라 하면 둘째+막내=a−${gap}. 합: a+(a−${gap})=${total} → a = ?`, ans:String(a), unit:'세', hint:`2a=${total+gap} → a=${a}`},
+        {q:`② 둘째+막내=${total-a}, 둘째=막내+${ad}. 막내=?`, ans:String(c), unit:'세', hint:`2c+${ad}=${total-a} → c=${c}`},
+        {q:`③ 둘째 = ${c}+${ad} = ?세`, ans:String(b), unit:'세', hint:`${c}+${ad}=${b}`},
+      ];
+    }
+    if(sub==='hard_sum_prod'){
+      return [
+        {q:`① a+b=ab 변형: ab−a−b=0. 양변에 1 더하면: ab−a−b+1 = ?`, ans:'1', unit:'', hint:`0+1=1`},
+        {q:`② 인수분해: (a−1)(b−1)=1. 자연수이므로 a−1=1, b−1=1 → a=b=?`, ans:'2', unit:'', hint:`자연수에서 곱이 1인 경우는 1×1뿐`},
+      ];
+    }
+    if(sub==='hard_fraction'){
+      const {num,den,ans1,ans2,a,cc}=data;
+      return [
+        {q:`① 양변에 t를 곱하면: t²+1 = ${num}t/${den} → ${den}t²−${num}t+${den} = 0`, ans:`${den}t²−${num}t+${den}=0`, unit:'', hint:`양변×t 후 정리`},
+        {q:`② 인수분해: (${den}t−${cc})(t−${ans1}) = 0 → t = ?`, ans:ans2, unit:'또는 '+ans1, hint:`t=${ans1} 또는 t=${ans2}`},
       ];
     }
     return [{q:'정답을 입력하세요', ans:q.answer, unit:'', hint:''}];
