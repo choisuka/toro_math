@@ -6377,17 +6377,17 @@ function makeSteps(q){
     if(sub==='hard_taps'){
       const {a,b,c,ans,L,ra,rb,rc,rate}=data;
       return [
-        {q:`① 1시간에 A·B가 채우는 양: 1/${a}+1/${b}. 공통분모 ${L}: (${ra}+${rb})/${L} = ?/${L}`, ans:`${ra+rb}/${L}`, unit:'', hint:`${ra}+${rb}=${ra+rb}. ${ra+rb}/${L}`},
-        {q:`② 배수구가 빼는 양: 1/${c} = ${rc}/${L}. 순 채우는 양: ${ra+rb}/${L}−${rc}/${L} = ?/${L}`, ans:`${rate}/${L}`, unit:'', hint:`${ra+rb}-${rc}=${rate}`},
-        {q:`③ 전체(1)를 채우는 시간: 1 ÷ ${rate}/${L} = ?시간`, ans:`${ans}`, unit:'시간', hint:`${L}÷${rate}=${ans}`},
+        {q:`① 전체 용량을 ${L}이라 할 때 A가 1시간에 채우는 양=${ra}, B=${rb}. A+B 합은?`, ans:String(ra+rb), unit:`(${L}분의)`, hint:`${ra}+${rb}=${ra+rb}`},
+        {q:`② 배수구가 1시간에 빼는 양=${rc}. 순 채우는 양: ${ra+rb}−${rc} = ?`, ans:String(rate), unit:`(${L}분의)`, hint:`${ra+rb}−${rc}=${rate}`},
+        {q:`③ 가득 채우는 시간: ${L} ÷ ${rate} = ?시간`, ans:String(ans), unit:'시간', hint:`${L}÷${rate}=${ans}`},
       ];
     }
     if(sub==='hard_loss'){
       const {price,rate,origA,origB,loss}=data;
       return [
-        {q:`① 이익 물건 원가: ${price.toLocaleString()} ÷ ${1+rate/100} = ?원`, ans:origA.toLocaleString(), unit:'원', hint:`${price.toLocaleString()}×100÷${100+rate}=${origA.toLocaleString()}`},
-        {q:`② 손해 물건 원가: ${price.toLocaleString()} ÷ ${1-rate/100} = ?원`, ans:origB.toLocaleString(), unit:'원', hint:`${price.toLocaleString()}×100÷${100-rate}=${origB.toLocaleString()}`},
-        {q:`③ 총 원가(${(origA+origB).toLocaleString()}) − 총 판매가(${(price*2).toLocaleString()}) = ? → 이익? 손해?`, ans:`${loss.toLocaleString()}원 손해`, unit:'', hint:`${origA.toLocaleString()}+${origB.toLocaleString()}=${(origA+origB).toLocaleString()} > ${(price*2).toLocaleString()} → 손해`},
+        {q:`① 이익 물건 원가: ${price.toLocaleString()} ÷ ${1+rate/100} = ?원`, ans:String(origA), unit:'원', hint:`${price.toLocaleString()}×100÷${100+rate}=${origA.toLocaleString()}`},
+        {q:`② 손해 물건 원가: ${price.toLocaleString()} ÷ ${1-rate/100} = ?원`, ans:String(origB), unit:'원', hint:`${price.toLocaleString()}×100÷${100-rate}=${origB.toLocaleString()}`},
+        {q:`③ 총 원가 ${(origA+origB).toLocaleString()}원 − 총 판매가 ${(price*2).toLocaleString()}원. 손해 금액은?`, ans:String(loss), unit:'원', hint:`${(origA+origB).toLocaleString()}−${(price*2).toLocaleString()}=${loss.toLocaleString()}원 손해`},
       ];
     }
     if(sub==='hard_ratio'){
@@ -6401,7 +6401,7 @@ function makeSteps(q){
       const {ru,rd,profit,orig,m}=data;
       return [
         {q:`① 정가 = 원가 × ${1+ru/100}. 판매가 = 정가 × ${1-rd/100} = 원가 × ?`, ans:m, unit:'배', hint:`${1+ru/100}×${1-rd/100}=${m}`},
-        {q:`② 이익 = 원가×${m} − 원가 = 원가×${(parseFloat(m)-1).toFixed(2)} = ${profit.toLocaleString()} → 원가 = ?`, ans:orig.toLocaleString(), unit:'원', hint:`${profit.toLocaleString()}÷${(parseFloat(m)-1).toFixed(2)}=${orig.toLocaleString()}`},
+        {q:`② 이익 = 원가×${m} − 원가 = 원가×${(parseFloat(m)-1).toFixed(2)} = ${profit.toLocaleString()} → 원가 = ?`, ans:String(orig), unit:'원', hint:`${profit.toLocaleString()}÷${(parseFloat(m)-1).toFixed(2)}=${orig.toLocaleString()}`},
       ];
     }
     if(sub==='hard_age_ratio'){
@@ -6428,8 +6428,8 @@ function makeSteps(q){
     if(sub==='hard_fraction'){
       const {num,den,ans1,ans2,cc}=data;
       return [
-        {q:`① 양변에 t를 곱하면: t²+1 = ${num}t/${den} → ${den}t²−${num}t+${den} = 0`, ans:`${den}t²−${num}t+${den}=0`, unit:'', hint:`양변×t 후 정리`},
-        {q:`② (${den}t−${cc})(t−${ans1}) = 0 → 두 근: t=${ans2} 또는 t=${ans1}. 답 선택지에서 고르세요.`, ans:`${den}t²−${num}t+${den}=0`, unit:'', hint:`t=${ans1} 또는 t=${ans2}`},
+        {q:`① 양변에 t를 곱하면: t²+1 = ${num}t/${den}. 정리하면 ${den}t²−${num}t+□=0. □는?`, ans:String(den), unit:'', hint:`우변 ${den}을 이항 → ${den}t²−${num}t+${den}=0`},
+        {q:`② (${den}t−${cc})(t−${ans1})=0 → 두 근 중 정수 근은?`, ans:String(ans1), unit:'', hint:`t=${ans1} 또는 t=${ans2}. 정수는 ${ans1}`},
       ];
     }
     return [{q:'정답을 입력하세요', ans:q.answer, unit:'', hint:''}];
