@@ -312,6 +312,12 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
           <div class="desc">🇫🇮 시소 · 🇸🇬 막대 모델 · ✡️ 변수의 의미</div>
           <span class="tag" style="background:rgba(168,85,247,.15);color:#d8b4fe;border:1px solid rgba(168,85,247,.35);margin-top:6px">중1 ★아르모니아</span>
         </div>
+        <div class="topic-card" onclick="showScreen('eq-identity-hub')" style="border:1px solid rgba(165,180,252,.3);background:linear-gradient(155deg,#0f1020,#181830);grid-column:1/-1">
+          <div class="ico">📜</div>
+          <div class="name" style="color:#a5b4fc">항등식의 법전</div>
+          <div class="desc">✡️ 항상 참인 등식 · 방정식의 뿌리 · 보증수표</div>
+          <span class="tag" style="background:rgba(165,180,252,.15);color:#a5b4fc;border:1px solid rgba(165,180,252,.35);margin-top:6px">중1 ★아르모니아</span>
+        </div>
         <div class="topic-card" onclick="showScreen('inequality-hub')" style="border:1px solid rgba(248,113,113,.3);background:linear-gradient(155deg,#1e0707,#2e0f0f);grid-column:1/-1">
           <div class="ico">🧗</div>
           <div class="name" style="color:#f87171">부등식의 한계 절벽</div>
@@ -698,17 +704,66 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">하브루타<br>변수의 본질</div>
       </div>
     </div>
-    <button onclick="showScreen('eq-concept')" style="width:100%;margin-bottom:8px;background:rgba(216,180,254,.1);border:1px solid rgba(216,180,254,.3);color:#d8b4fe;border-radius:12px;padding:12px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📖 3개국 개념 가이드 &amp; 문제 목록 →
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;font-size:.7rem">
+      <div style="background:rgba(125,211,252,.06);border:1px solid rgba(125,211,252,.2);border-radius:10px;padding:8px 10px">
+        <div style="color:#7dd3fc;font-weight:700;margin-bottom:4px">📋 문제 (카드)</div>
+        <div style="color:#aaa;line-height:1.6">고정 문항 · 상세 풀이<br>"<b style="color:#e2e8f0">왜?</b>"를 배우는 것</div>
+      </div>
+      <div style="background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.2);border-radius:10px;padding:8px 10px">
+        <div style="color:#d8b4fe;font-weight:700;margin-bottom:4px">🎯 퀴즈</div>
+        <div style="color:#aaa;line-height:1.6">랜덤 문항 · 정답만<br>"<b style="color:#e2e8f0">맞혔냐?</b>"를 확인하는 것</div>
+      </div>
+      <div style="background:rgba(125,211,252,.04);border:1px solid rgba(125,211,252,.15);border-radius:8px;padding:6px 10px;color:#94a3b8;line-height:1.7">
+        기본문제 ★ · 10문항<br>심화문제 ★★ · 10문항
+      </div>
+      <div style="background:rgba(168,85,247,.04);border:1px solid rgba(168,85,247,.15);border-radius:8px;padding:6px 10px;color:#94a3b8;line-height:1.7">
+        기본퀴즈 ★★ · 20문항<br>심화퀴즈 ★★★ · 12문항
+      </div>
+    </div>
+    <button onclick="startCards('eq-guide','equation-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📖 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
     </button>
-    <button onclick="showScreen('eq-havruta')" style="width:100%;margin-bottom:16px;background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:12px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      ✡️ 아르모니아 하브루타 토론관 →
+    <button onclick="startCards('eq-basic','equation-hub')" style="width:100%;margin-bottom:8px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📚 기본 문제 ★ <span style="font-size:.72rem;opacity:.7">(10문항)</span> →
     </button>
-    <button class="btn btn-main" onclick="startQuiz('equation','equation-hub')" style="width:100%;margin-bottom:10px;background:linear-gradient(135deg,#4c1d95,#a855f7)">
-      📚 기본 문제 도전 (20문항)
+    <button onclick="startCards('eq-hard','equation-hub')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🔥 심화 문제 ★★ <span style="font-size:.72rem;opacity:.7">(10문항)</span> →
+    </button>
+    <button onclick="startCards('eq-havruta-cards','equation-hub')" style="width:100%;margin-bottom:8px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(12편)</span> →
+    </button>
+    <button class="btn btn-main" onclick="startQuiz('equation','equation-hub')" style="width:100%;margin-bottom:8px;background:linear-gradient(135deg,#4c1d95,#a855f7)">
+      📊 기본 퀴즈 ★★ <span style="font-size:.8rem;opacity:.8">(20문항)</span>
     </button>
     <button class="btn btn-sub" onclick="startQuizHard('equation','equation-hub')" style="width:100%;background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.4);color:#d8b4fe">
-      🔥 심화 문제 도전 (12문항)
+      🎯 심화 퀴즈 ★★★ <span style="font-size:.8rem;opacity:.8">(12문항)</span>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     항등식 허브
+══════════════════════════════════ -->
+<div id="eq-identity-hub" class="screen">
+  <div style="width:100%;max-width:500px">
+    <div class="nav-bar" style="max-width:500px">
+      <button class="nav-back" onclick="showScreen('home')">← 수학왕국</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#a5b4fc">📜 항등식의 법전</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-family:'Jua',sans-serif;color:#a5b4fc;font-size:.88rem;text-align:center;margin-bottom:6px">"항상 참인 등식 — 방정식의 뿌리"</div>
+    <div style="font-size:.72rem;color:#888;text-align:center;margin-bottom:16px">어떤 x를 넣어도 성립하는 등식의 세계</div>
+    <button onclick="startCards('eq-identity','eq-identity-hub')" style="width:100%;margin-bottom:8px;background:rgba(165,180,252,.1);border:1px solid rgba(165,180,252,.3);color:#a5b4fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      ✡️ 항등식 심화 퀴즈 <span style="font-size:.72rem;opacity:.7">(10문항)</span> →
+    </button>
+    <button onclick="startCards('eq-identity-havruta','eq-identity-hub')" style="width:100%;margin-bottom:8px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      💬 항등식·방정식 하브루타 퀴즈 <span style="font-size:.72rem;opacity:.7">(10문항)</span> →
+    </button>
+    <button onclick="startCards('eq-guarantee','eq-identity-hub')" style="width:100%;margin-bottom:8px;background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.35);color:#fbbf24;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🏛️ 보증수표 심화 가이드 <span style="font-size:.72rem;opacity:.7">(5장)</span> →
+    </button>
+    <button onclick="startCards('eq-identity-discussion','eq-identity-hub')" style="width:100%;background:rgba(165,180,252,.1);border:1px solid rgba(165,180,252,.3);color:#a5b4fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      💭 항등식 철학토론 <span style="font-size:.72rem;opacity:.7">(5장)</span> →
     </button>
   </div>
 </div>
@@ -1081,16 +1136,22 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       </div>
     </div>
     <button onclick="startCards('inequality-guide','inequality-hub')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📊 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
+      📊 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(4장)</span> →
     </button>
     <button onclick="startCards('inequality-havruta','inequality-hub')" style="width:100%;margin-bottom:8px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(1편)</span> →
     </button>
     <button onclick="startCards('ineq-hard10','inequality-hub')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      ⚔️ 심화 10선 — 3국 풀이 <span style="font-size:.72rem;opacity:.7">(10장)</span> →
+      ⚔️ 기본 심화 ★~★★★ — 3국 풀이 <span style="font-size:.72rem;opacity:.7">(10장)</span> →
     </button>
     <button onclick="startCards('ineq-gemini5','inequality-hub')" style="width:100%;margin-bottom:8px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      🌍 3국 연합 5선 — 최고난도 <span style="font-size:.72rem;opacity:.7">(5장)</span> →
+      🌍 고난도 ★★~★★★ — 3국 연합 5선 <span style="font-size:.72rem;opacity:.7">(5장)</span> →
+    </button>
+    <button onclick="startCards('ineq-hard5b','inequality-hub')" style="width:100%;margin-bottom:8px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🔥 최상위 ★★★ — 5제 + 연습 10제 <span style="font-size:.72rem;opacity:.7">(15장)</span> →
+    </button>
+    <button onclick="startCards('ineq-word','inequality-hub')" style="width:100%;margin-bottom:8px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📝 활용문제 ★~★★ — 문장제 20선 <span style="font-size:.72rem;opacity:.7">(20장)</span> →
     </button>
     <button onclick="startCards('ineq-lesson','inequality-hub')" style="width:100%;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       📘 150분 수업 교안 <span style="font-size:.72rem;opacity:.7">(5장)</span> →
@@ -1167,7 +1228,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       </div>
     </div>
     <button onclick="startCards('quadratic-guide','quadratic-hub')" style="width:100%;margin-bottom:8px;background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.3);color:#fb923c;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      🎯 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
+      🎯 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(6장)</span> →
     </button>
     <button onclick="startCards('quadratic-havruta','quadratic-hub')" style="width:100%;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(1편)</span> →
@@ -2663,7 +2724,7 @@ z³의 계수: β ↔ β̄ / (z̄)³의 계수: α ↔ ᾱ<br>
 'linear-func-guide': [
   { tag:'🇫🇮 핀란드식 — 마법의 상자', tagColor:'#86efac',
     bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🇫🇮 핀란드식 (직관): 함수를 '마법의 상자'나 '자판기'로 이해합니다.</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">100원을 넣으면 콜라가 나오듯, x가 변할 때 y가 어떻게 규칙적으로 변하는지 실생활의 흐름으로 체득합니다.<br><br>예시: 양초가 타는 길이, 택시 요금, 핸드폰 배터리<br><b style="color:#86efac">핵심:</b> 함수는 '입력→출력'의 약속이다!`,
+    body:`<div style="font-size:.78rem;color:#34d399;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);border-radius:10px;padding:8px 12px;margin-bottom:10px;line-height:1.6">📌 이 가이드는 총 16장입니다.<br>1~3장: 3개국 핵심 요약 · 4~6장: 상세 설명 · 7장~: 실전 미션</div><div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🇫🇮 핀란드식 (직관): 함수를 '마법의 상자'나 '자판기'로 이해합니다.</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">100원을 넣으면 콜라가 나오듯, x가 변할 때 y가 어떻게 규칙적으로 변하는지 실생활의 흐름으로 체득합니다.<br><br>예시: 양초가 타는 길이, 택시 요금, 핸드폰 배터리<br><b style="color:#86efac">핵심:</b> 함수는 '입력→출력'의 약속이다!`,
     ans:null },
   { tag:'🇸🇬 싱가포르식 — 기울기 계단', tagColor:'#7dd3fc',
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
@@ -4329,6 +4390,12 @@ x &gt; −3 이므로 −3은 포함 ✗ / x ≤ 4 이므로 4는 포함 ✓<br>
     bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">|2x−3| &lt; 5 를 풀어라</div>
 <div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);border-radius:10px;padding:9px 13px;margin-bottom:10px">
+<b style="color:#f87171">📌 절댓값 부등식 — 처음 배우는 거예요!</b><br>
+|A|는 A의 수직선 위 원점까지의 거리.<br>
+• <b style="color:#86efac">|A| &lt; k</b> (k&gt;0) → −k &lt; A &lt; k &nbsp;(하나의 연속 구간)<br>
+• <b style="color:#fca5a5">|A| &gt; k</b> (k&gt;0) → A &lt; −k 또는 A &gt; k &nbsp;(두 조각으로 분리)
+</div>
 <b style="color:#86efac">🇫🇮 핀란드식 — 절댓값의 정의</b><br>
 |A| &lt; k (k&gt;0) 이면 −k &lt; A &lt; k<br>
 "거리가 k보다 가까운 수" 로 이해.<br><br>
@@ -4498,20 +4565,26 @@ x &lt; 8: B 유리 / x=8: 동일 / x &gt; 8: A 유리
 
   { tag:'🌍 문제 4 ★★ — [복합] 자연수 해의 개수 조건', tagColor:'#c4b5fd',
     bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">(x−a)/2 ≤ (2x−1)/3 의 자연수 해가 딱 3개일 때, a의 범위 (최고 오답률)</div>
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">(2x−1)/3 ≤ (x+a)/2 의 자연수 해가 딱 3개일 때, a의 범위 (최고 오답률)</div>
 <div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
 <b style="color:#7dd3fc">🇸🇬 싱가포르식 — 수직선 경계 확정</b><br>
 <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
-×6: 3x−3a ≤ 4x−2<br>x ≥ 2−3a
+×6: 2(2x−1) ≤ 3(x+a)<br>4x−2 ≤ 3x+3a<br>x ≤ 3a+2
 </div><br>
 <b style="color:#fde68a">✡️ 유대인식 — 등호 끝장 토론</b><br>
-"기준선 2−3a가 딱 1이 되면?" → x ≥ 1 → 자연수 무한 ✗<br>
-자연수 1,2,3만 포함하려면: <b>0 &lt; 2−3a ≤ 1</b><br><br>
+"상한선 3a+2가 딱 3이면?" → x ≤ 3 → 자연수 {1,2,3} → 3개 ✓<br>
+"상한선이 4 이상이면?" → {1,2,3,4} → 4개 ✗<br>
+"상한선이 3 미만이면?" → {1,2} → 2개 ✗<br>
+자연수 1,2,3만 포함하려면: <b>3 ≤ 3a+2 &lt; 4</b><br><br>
 <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.8rem">
 1 ≤ 3a &lt; 2<br><b style="color:#fde68a">1/3 ≤ a &lt; 2/3</b>
 </div>
 </div>`,
-    ans:`<b style="color:#c4b5fd">a의 범위: 1/3 ≤ a &lt; 2/3</b>` },
+    ans:`<b style="color:#c4b5fd">a의 범위: 1/3 ≤ a &lt; 2/3</b><br><br>
+<b style="color:#7dd3fc">검증</b><br>
+a=1/3: x ≤ 3, 자연수 1,2,3 → 3개 ✓<br>
+a=2/3: x ≤ 4, 자연수 1,2,3,4 → 4개 ✗ (경계 제외 확인)<br>
+a=0: x ≤ 2, 자연수 1,2 → 2개 ✗` },
 
   { tag:'🌍 문제 5 ★★★ — [최고난도] 절댓값 거리 개념', tagColor:'#f9a8d4',
     bg:'rgba(249,168,212,.07)', bd:'rgba(249,168,212,.3)',
@@ -4548,13 +4621,16 @@ x가 두 점 사이에 있을 때 합이 최소 = 5<br>x가 밖으로 나가면 
 
   { tag:'📘 교안 2/5 — 2교시 대표 풀이 (등호 끝장 토론)', tagColor:'#86efac',
     bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">대표 문제: (x−a)/2 ≤ (2x−1)/3 의 자연수 해가 3개일 때 a의 범위</div>
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">대표 문제: (2x−1)/3 ≤ (x+a)/2 의 자연수 해가 3개일 때 a의 범위</div>
 <div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+정리하면 x ≤ 3a+2. 상한선 K = 3a+2 로 놓고 등호 끝장 토론.<br><br>
 <b style="color:#fde68a">✡️ 등호 끝장 토론 (학생과 함께)</b><br><br>
-Q: "K가 딱 3이면?" → x &lt; 3, 자연수 1,2뿐 → <b>2개 (부족)</b><br>
-Q: "K가 딱 4이면?" → x &lt; 4, 자연수 1,2,3 → <b>3개 맞음 ✓</b><br>
-Q: "K가 3.5이면?" → x &lt; 3.5, 자연수 1,2,3 → <b>3개 맞음 ✓</b><br><br>
-→ <b style="color:#fde68a">3 &lt; K ≤ 4</b> 임을 입으로 소리 내어 읽으며 스스로 깨닫게 함.<br><br>
+Q: "K가 딱 2이면?" → x ≤ 2, 자연수 1,2뿐 → <b>2개 (부족)</b><br>
+Q: "K가 딱 3이면?" → x ≤ 3, 자연수 1,2,3 → <b>3개 맞음 ✓</b><br>
+Q: "K가 3.5이면?" → x ≤ 3.5, 자연수 1,2,3 → <b>3개 맞음 ✓</b><br>
+Q: "K가 딱 4이면?" → x ≤ 4, 자연수 1,2,3,4 → <b>4개 (초과)</b><br><br>
+→ <b style="color:#fde68a">3 ≤ K &lt; 4</b> 임을 입으로 소리 내어 읽으며 스스로 깨닫게 함.<br>
+→ 3 ≤ 3a+2 &lt; 4 → <b style="color:#fde68a">1/3 ≤ a &lt; 2/3</b><br><br>
 <b style="color:#86efac">핵심 포인트</b><br>
 등호의 포함 여부가 정답을 가른다.<br>
 숫자를 직접 대입해서 참/거짓을 확인하는 것이 최고의 치료제.
@@ -4610,6 +4686,1097 @@ B: 기본료 없이 1GB당 10,000원<br><br>
 경계값의 포함 여부라는 미세한 차이가 정답을 가른다.
 </div>`, ans:null }
 ],
+
+
+/* ── 최상위 5제 + 연습 10제 (세나라×한국 ★★★) ────── */
+'ineq-hard5b': [
+
+/* ─── 문제 1: 절댓값 이중부등식 (J-2) ─── */
+{ tag:'🔥 문제 1 ★★★ — 절댓값 이중부등식', tagColor:'#c4b5fd',
+  bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">|x−1| ≤ |x−5| 를 풀어라</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 3구간 분류</b><br>
+부호 전환점: x=1, x=5
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.77rem;margin:6px 0">
+① x &lt; 1 : (1−x) ≤ (5−x) → 1 ≤ 5 → <b style="color:#86efac">항상 참 ✓</b><br>
+② 1 ≤ x &lt; 5 : (x−1) ≤ (5−x) → 2x ≤ 6 → x ≤ 3 → <b style="color:#fde68a">1 ≤ x ≤ 3</b><br>
+③ x ≥ 5 : (x−1) ≤ (x−5) → −1 ≤ −5 → <b style="color:#fca5a5">항상 거짓 ✗</b>
+</div>
+합집합 → <b style="color:#fde68a">x ≤ 3</b><br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 수직선</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px;font-family:monospace;font-size:.77rem;margin:6px 0">
+←══[1]════[3]────(5)────<br>
+  x≤3: 1에 더 가깝다 ✓
+</div><br>
+<b style="color:#fde68a">✡️ 유대인식 — 거리의 언어로 번역하라</b><br>
+|x−1| = x와 점 1의 거리 &nbsp; |x−5| = x와 점 5의 거리<br>
+이 부등식은 수학 문제가 아니라 <b>지리 문제</b>다:
+<div style="background:rgba(253,230,138,.06);border:1px solid rgba(253,230,138,.2);border-radius:8px;padding:9px 12px;margin:6px 0">
+"1까지의 거리 ≤ 5까지의 거리인 점 x를 모두 찾아라"<br>
+1과 5의 중점 = <b>3</b> → 3의 왼쪽은 1에 더 가깝다 → <b style="color:#fde68a">x ≤ 3</b>
+</div>
+<b>🔭 2차원으로 확장하면?</b><br>
+수직선: 두 점의 등거리 집합 → 중점 <b>1개</b><br>
+평면: 두 점 A, B의 등거리 집합 → <b>수직이등분선 (직선 전체)</b><br>
+|x−1| ≤ |x−5|의 2D 버전 → A(1,0)보다 B(5,0)에 가까운 점 = 수직이등분선 <b>왼쪽 반평면</b><br><br>
+<b>📌 원리</b> |x−a| ≤ |x−b|의 해 = a, b의 중점 기준 <b>a쪽 반직선</b>. 핀란드식 3구간 분류는 이 원리의 대수적 증명이다.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px">
+<b style="color:#94a3b8;font-size:.74rem">💬 학생 대화 — 중·하위권</b><br><br>
+<b style="color:#fca5a5">Q. 왜 x=1이랑 x=5에서 나눠요?</b><br>
+절댓값 안이 0이 되는 점에서 식의 부호가 바뀌어요. x&lt;1이면 |x−1|=1−x, x≥1이면 |x−1|=x−1로 달라지거든요.<br><br>
+<b style="color:#fca5a5">Q. ③에서 −1 ≤ −5가 왜 거짓이에요?</b><br>
+수직선에서 −1은 −5보다 오른쪽에 있어요. "−1이 −5보다 작거나 같다"는 거짓이에요. 거짓이 나오면 그 구간에서 해가 없어요.<br><br>
+<b style="color:#fca5a5">Q. 유대인식으로만 풀면 안 되나요?</b><br>
+직관으로 확인하는 건 좋아요. 시험에선 3구간 분류 과정을 써야 감점이 없어요. 두 방법을 <b>같이</b> 쓰는 게 최선이에요.
+</div>
+</div>`, ans:null },
+
+/* 연습 1-A */
+{ tag:'✏️ 연습 1-A — 절댓값 이중 (거리 비교)', tagColor:'#a78bfa',
+  bg:'rgba(167,139,250,.05)', bd:'rgba(167,139,250,.2)',
+  body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.9;font-weight:600;margin-bottom:12px">|x+2| &lt; |x−4| 를 풀어라</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:18px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 3구간 분류</b> &nbsp; 전환점: x=−2, x=4
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+① x &lt; −2 : (−x−2) &lt; (4−x) → −2 &lt; 4 ✓ → 전체 포함<br>
+② −2 ≤ x &lt; 4 : (x+2) &lt; (4−x) → 2x &lt; 2 → <b style="color:#fde68a">x &lt; 1</b> → −2 ≤ x &lt; 1<br>
+③ x ≥ 4 : (x+2) &lt; (x−4) → 2 &lt; −4 ✗
+</div>
+<b style="color:#fde68a">✡️ 중점:</b> (−2+4)/2 = <b>1</b> → x &lt; 1이면 −2에 더 가깝다<br><br>
+<b style="color:#c4b5fd">답: x &lt; 1</b>
+</div>` },
+
+/* 연습 1-B */
+{ tag:'✏️ 연습 1-B — 절댓값 이중 (방향 반전)', tagColor:'#a78bfa',
+  bg:'rgba(167,139,250,.05)', bd:'rgba(167,139,250,.2)',
+  body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.9;font-weight:600;margin-bottom:12px">|x−3| ≤ |x+1| 을 풀어라</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:18px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 3구간 분류</b> &nbsp; 전환점: x=−1, x=3
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+① x &lt; −1 : (3−x) ≤ (−x−1) → 3 ≤ −1 ✗<br>
+② −1 ≤ x &lt; 3 : (3−x) ≤ (x+1) → 2 ≤ 2x → <b style="color:#fde68a">x ≥ 1</b> → 1 ≤ x &lt; 3<br>
+③ x ≥ 3 : (x−3) ≤ (x+1) → −3 ≤ 1 ✓ → 전체 포함
+</div>
+<b style="color:#fde68a">✡️ 중점:</b> (−1+3)/2 = <b>1</b> → x ≥ 1이면 3에 더 가깝다<br>
+<b style="color:#fca5a5">주목:</b> 1-A(x &lt; 1)와 방향 정반대 — 부등호가 바뀌면 해도 반전된다.<br><br>
+<b style="color:#c4b5fd">답: x ≥ 1</b>
+</div>` },
+
+/* ─── 문제 2: 계수 이중 역추적 (J-3) ─── */
+{ tag:'🔥 문제 2 ★★★ — 계수 이중 역추적', tagColor:'#c4b5fd',
+  bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">bx+a &lt; 0 의 해가 x &gt; −2 일 때, ax−b &gt; 0 의 해를 구하여라</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 3단계 역추적</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.77rem;margin:6px 0">
+Step 1 — b의 부호<br>
+bx &lt; −a, 해 x &gt; −2 (오른쪽 열림) → 나눌 때 뒤집힘 → <b style="color:#fca5a5">b &lt; 0</b><br><br>
+Step 2 — 관계 도출<br>
+−a/b = −2 → a = 2b → <b style="color:#fca5a5">a &lt; 0</b><br><br>
+Step 3 — ax−b &gt; 0<br>
+ax &gt; b, a &lt; 0이므로 뒤집기 → x &lt; b/a = b/(2b) = <b style="color:#fde68a">1/2</b>
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 검증</b> (b=−1 대입 → a=−2)
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px;font-family:monospace;font-size:.77rem;margin:6px 0">
+bx+a &lt; 0: −x−2 &lt; 0 → x &gt; −2 ✓<br>
+ax−b &gt; 0: −2x+1 &gt; 0 → x &lt; 1/2 ✓
+</div><br>
+<b style="color:#fde68a">✡️ 유대인식 — 부등식을 함수로 읽어라</b><br>
+f(x)=bx+a를 <b>직선</b>으로 보자.<br>
+해 x &gt; −2 = "f(x) &lt; 0인 구간이 오른쪽" → f는 <b>감소함수</b> → <b>b &lt; 0</b><br>
+직선의 영점(x절편): bx+a=0 → x = −a/b = −2
+<div style="background:rgba(253,230,138,.06);border:1px solid rgba(253,230,138,.2);border-radius:8px;padding:9px 12px;margin:6px 0">
+f(x) 영점: x = −a/b = −2<br>
+g(x)=ax−b 영점: x = b/a = 1/2<br>
+두 영점의 곱 = (−a/b)·(b/a) = <b style="color:#fde68a">−1</b> → 항상 성립하는 구조
+</div>
+<b>🔭 확장</b> bx+a &lt; 0의 해가 x &gt; k이면, ax−b &gt; 0의 해는 x &lt; 1/k.<br>
+a=2b라는 관계가 이 역수 구조를 만든다.<br><br>
+<b>📌 원리</b> 부등식의 해 <b>방향</b>이 계수 부호를 말해준다. 부등식을 함수 그래프의 x축 위/아래 구간으로 읽으면 계수를 <b>읽어낼</b> 수 있다.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px">
+<b style="color:#94a3b8;font-size:.74rem">💬 학생 대화 — 중·하위권</b><br><br>
+<b style="color:#fca5a5">Q. 해가 x &gt; −2인데 왜 b &lt; 0이에요?</b><br>
+bx &lt; −a를 b로 나눌 때, b &gt; 0이면 방향 유지 → x &lt; 뭔가(왼쪽). 그런데 해가 x &gt; −2(오른쪽)이니 방향이 뒤집혔다는 뜻 → b &lt; 0이에요.<br><br>
+<b style="color:#fca5a5">Q. a = 2b는 어떻게 나왔어요?</b><br>
+−a/b = −2에서 양변에 −b를 곱해요. b &lt; 0이므로 −b &gt; 0 → 방향 유지. −a = −2b → a = 2b.<br><br>
+<b style="color:#fca5a5">Q. 마지막에 왜 또 뒤집어요? 이미 한 번 했잖아요.</b><br>
+뒤집기는 <b>나누는 수가 음수일 때마다</b> 해요. Step 1에서 b &lt; 0으로 한 번, Step 3에서 a &lt; 0으로 또 한 번 — 이 문제의 핵심이 바로 두 번 뒤집는 거예요.
+</div>
+</div>`, ans:null },
+
+/* 연습 2-A */
+{ tag:'✏️ 연습 2-A — 역추적 (왼쪽 막힘)', tagColor:'#a78bfa',
+  bg:'rgba(167,139,250,.05)', bd:'rgba(167,139,250,.2)',
+  body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.9;font-weight:600;margin-bottom:12px">ax+b &gt; 0 의 해가 x &lt; 3 일 때, bx−a &gt; 0 의 해를 구하여라</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:18px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+해 x &lt; 3 (왼쪽 막힘) → <b style="color:#fca5a5">a &lt; 0</b> (나눌 때 뒤집힘)<br>
+−b/a = 3 → b = −3a → <b style="color:#fca5a5">b &gt; 0</b><br>
+bx−a &gt; 0 : bx &gt; a, b &gt; 0이므로 방향 유지<br>
+x &gt; a/b = a/(−3a) = <b style="color:#fde68a">−1/3</b>
+</div>
+<b style="color:#fde68a">✡️</b> 두 영점의 곱: (−b/a)·(a/b) = −1 → 항상 성립하는 구조<br><br>
+<b style="color:#c4b5fd">답: x &gt; −1/3</b>
+</div>` },
+
+/* 연습 2-B */
+{ tag:'✏️ 연습 2-B — 역추적 (오른쪽 열림)', tagColor:'#a78bfa',
+  bg:'rgba(167,139,250,.05)', bd:'rgba(167,139,250,.2)',
+  body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.9;font-weight:600;margin-bottom:12px">cx−d &lt; 0 의 해가 x &gt; −1 일 때, dx+c &lt; 0 의 해를 구하여라</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:18px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+해 x &gt; −1 (오른쪽 열림) → <b style="color:#fca5a5">c &lt; 0</b><br>
+d/c = −1 → d = −c → <b style="color:#fca5a5">d &gt; 0</b><br>
+dx+c &lt; 0 : dx &lt; −c, d &gt; 0이므로 방향 유지<br>
+x &lt; −c/d = −c/(−c) = <b style="color:#fde68a">1</b>
+</div>
+<b style="color:#fca5a5">주목:</b> 2-A(bx−a &gt; 0)와 달리 부등식이 &lt; 0 → 방향 혼동 주의<br><br>
+<b style="color:#c4b5fd">답: x &lt; 1</b>
+</div>` },
+
+/* ─── 문제 3: 공통해 없는 조건 (K-1) ─── */
+{ tag:'🔥 문제 3 ★★★ — 공통해 없을 조건', tagColor:'#c4b5fd',
+  bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">a+1 ≤ 3x−2 이고 2x+a &lt; 5 의 공통해가 없도록 하는 정수 a의 최솟값</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 각각 풀고 비교</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.77rem;margin:6px 0">
+① 3x ≥ a+3 → x ≥ (a+3)/3<br>
+② 2x &lt; 5−a → x &lt; (5−a)/2<br><br>
+공통해 없으려면: (a+3)/3 ≥ (5−a)/2<br>
+2(a+3) ≥ 3(5−a) → 2a+6 ≥ 15−3a<br>
+5a ≥ 9 → a ≥ 9/5 = 1.8<br>
+<b style="color:#fde68a">정수 최솟값: a = 2</b>
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 수직선</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px;font-family:monospace;font-size:.77rem;margin:6px 0">
+①: ─────[────────────→  (a+3)/3 부터<br>
+②: ←──────────)──────   (5−a)/2 까지<br>
+공통해 없으려면 ①의 시작 ≥ ②의 끝
+</div><br>
+<b style="color:#fde68a">✡️ 유대인식 — a가 커질수록 두 구간이 밀려난다</b><br>
+a 증가 → ①의 하한 (a+3)/3 <b>오른쪽</b> / ②의 상한 (5−a)/2 <b>왼쪽</b>
+<div style="background:rgba(253,230,138,.06);border:1px solid rgba(253,230,138,.2);border-radius:8px;padding:9px 12px;margin:6px 0">
+임계 순간 — 두 경계가 딱 만날 때:<br>
+(a+3)/3 = (5−a)/2 → a = 9/5<br>
+a &lt; 9/5: 구간 겹침 / a ≥ 9/5: 공통해 없음<br>
+a = 9/5 자체는? ①의 시작 = ②의 끝(미만) → 포함 안 됨 → 공통해 없음 ✓
+</div>
+<b>🔭 확장</b> a를 시간 t로 보면 t=9/5가 <b>분기점(bifurcation point)</b>.<br>
+t &lt; 9/5: 구간 겹침(공통해 있음) / t &gt; 9/5: 완전 분리(공통해 없음).<br>
+이 개념은 동역학계 이론의 핵심 구조와 동일하다.<br><br>
+<b>📌 원리</b> 두 구간의 겹침/비겹침 조건 = 한쪽 경계 vs 다른 쪽 경계의 크기 비교. 임계값을 먼저 구하고 등호 포함 여부를 판단하면 실수가 없다.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px">
+<b style="color:#94a3b8;font-size:.74rem">💬 학생 대화 — 중·하위권</b><br><br>
+<b style="color:#fca5a5">Q. 공통해 없으려면 왜 (a+3)/3 ≥ (5−a)/2예요?</b><br>
+①은 "(a+3)/3 이상"인 구간, ②는 "(5−a)/2 미만"인 구간이에요. 두 구간이 안 겹치려면 ①의 시작점이 ②의 끝점보다 크거나 같으면 돼요.<br><br>
+<b style="color:#fca5a5">Q. 등호도 포함되나요? ②는 미만인데.</b><br>
+(a+3)/3 = (5−a)/2일 때, ①의 시작점은 ②에서 "미만"이라 포함 안 돼요. 그러니 공통해 없음 → 등호 포함해요.<br><br>
+<b style="color:#fca5a5">Q. 9/5가 나왔는데 왜 답이 2예요?</b><br>
+a ≥ 9/5 = 1.8이 조건인데, 문제가 "정수 a"를 물었어요. 1.8 이상인 정수 중 가장 작은 건 <b>2</b>예요.
+</div>
+</div>`, ans:null },
+
+/* 연습 3-A */
+{ tag:'✏️ 연습 3-A — 공통해 없는 조건 (분모 2·3)', tagColor:'#a78bfa',
+  bg:'rgba(167,139,250,.05)', bd:'rgba(167,139,250,.2)',
+  body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.9;font-weight:600;margin-bottom:12px">a+2 ≤ 2x−1 이고 3x+a &lt; 8 의 공통해가 없도록 하는 정수 a의 최솟값</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:18px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+① x ≥ (a+3)/2 &nbsp;&nbsp;&nbsp; ② x &lt; (8−a)/3<br>
+공통해 없으려면: (a+3)/2 ≥ (8−a)/3<br>
+3(a+3) ≥ 2(8−a) → 3a+9 ≥ 16−2a<br>
+<b style="color:#fde68a">5a ≥ 7 → a ≥ 7/5 = 1.4</b><br>
+정수 최솟값: <b>a = 2</b>
+</div>
+검증: a=2 → x ≥ 5/2, x &lt; 2 → 2.5 &gt; 2 ✓<br>
+a=1 → x ≥ 2, x &lt; 7/3 → 공통해 존재 ✗<br><br>
+<b style="color:#c4b5fd">답: a = 2</b>
+</div>` },
+
+/* 연습 3-B */
+{ tag:'✏️ 연습 3-B — 공통해 없는 조건 (분모 1·3)', tagColor:'#a78bfa',
+  bg:'rgba(167,139,250,.05)', bd:'rgba(167,139,250,.2)',
+  body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.9;font-weight:600;margin-bottom:12px">2a ≤ x+3 이고 3x−a &lt; 9 의 공통해가 없도록 하는 정수 a의 최솟값</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:18px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+① x ≥ 2a−3 &nbsp;&nbsp;&nbsp; ② x &lt; (9+a)/3<br>
+공통해 없으려면: 2a−3 ≥ (9+a)/3<br>
+3(2a−3) ≥ 9+a → 6a−9 ≥ 9+a<br>
+<b style="color:#fde68a">5a ≥ 18 → a ≥ 18/5 = 3.6</b><br>
+정수 최솟값: <b>a = 4</b>
+</div>
+검증: a=4 → x ≥ 5, x &lt; 13/3 ≈ 4.33 → 5 &gt; 4.33 ✓<br>
+<b style="color:#fca5a5">함정:</b> ①의 분모가 1 → 양변에 3을 곱해서 통분<br><br>
+<b style="color:#c4b5fd">답: a = 4</b>
+</div>` },
+
+/* ─── 문제 4: |x−c|<a 역추적 (K-3) ─── */
+{ tag:'🔥 문제 4 ★★ — 절댓값 해로 a 역추적', tagColor:'#c4b5fd',
+  bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">|x−2| &lt; a 의 해가 −1 &lt; x &lt; 5 일 때, a의 값을 구하여라</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 변환 후 대조</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.77rem;margin:6px 0">
+|x−2| &lt; a → −a &lt; x−2 &lt; a → <b>2−a &lt; x &lt; 2+a</b><br><br>
+2−a = −1 → a = 3<br>
+2+a = 5 → a = 3 ✓<br>
+<b style="color:#fde68a">a = 3</b>
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 중심 2, 반지름 3</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px;font-family:monospace;font-size:.77rem;margin:6px 0">
+────(−1)────[2]────(5)────<br>
+      ←─ 3 ─→  ←─ 3 ─→
+</div><br>
+<b style="color:#fde68a">✡️ 유대인식 — 수직선 위의 열린 공(open ball)</b><br>
+|x−c| &lt; r은 중심 c, 반지름 r인 <b>1차원 열린 공</b>이다.<br>
+주어진 해 (−1, 5)에서:
+<div style="background:rgba(253,230,138,.06);border:1px solid rgba(253,230,138,.2);border-radius:8px;padding:9px 12px;margin:6px 0">
+중심 = (−1+5)/2 = <b>2</b> ← |x−2|와 일치<br>
+반지름 = (5−(−1))/2 = <b>3</b> = a
+</div>
+<b>🔭 2D로 확장하면?</b><br>
+|x−2| &lt; 3 (1D) → 반지름 3인 구간<br>
+√((x−2)²+(y−0)²) &lt; 3 (2D) → 중심 (2,0), 반지름 3인 <b>원판</b><br>
+절댓값 부등식은 1차원 원판이다.<br><br>
+<b>🔭 합 절댓값은?</b><br>
+|x−2|+|x−8| &lt; a → 두 점 2, 8까지의 거리의 합 &lt; a<br>
+두 점 사이에서 최소합 = 6 → a &gt; 6이어야 해가 존재.<br>
+이 구조가 2D에서 <b>타원</b>이 된다.<br><br>
+<b>📌 원리</b> |x−c| &lt; r의 역추적 = 주어진 구간의 <b>중심</b>(=c)과 <b>반지름</b>(=r)을 기하학적으로 읽는 것. a &gt; 0 확인은 "반지름은 양수"라는 기하학적 자명성.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px">
+<b style="color:#94a3b8;font-size:.74rem">💬 학생 대화 — 중·하위권</b><br><br>
+<b style="color:#fca5a5">Q. 2−a = −1인 건 어떻게 알았어요?</b><br>
+변환하면 "2−a &lt; x &lt; 2+a". 왼쪽 경계 2−a가 문제의 −1이니까 2−a = −1이에요.<br><br>
+<b style="color:#fca5a5">Q. 중심이 2라는 걸 처음부터 알 수 있어요?</b><br>
+|x−2|는 "x와 2의 거리"니까 중심이 2예요. 주어진 해 (−1, 5)의 중점을 구해도 (−1+5)/2 = 2 — 두 방법 다 통해요.<br><br>
+<b style="color:#fca5a5">Q. a &gt; 0 확인을 꼭 해야 해요?</b><br>
+꼭이요. |x−2| ≥ 0이라서 a ≤ 0이면 어떤 x도 &lt; a를 만족 못해요. 역추적 문제에선 구한 값이 조건을 만족하는지 반드시 확인해요.
+</div>
+</div>`, ans:null },
+
+/* 연습 4-A */
+{ tag:'✏️ 연습 4-A — 절댓값 역추적 (계수 1)', tagColor:'#a78bfa',
+  bg:'rgba(167,139,250,.05)', bd:'rgba(167,139,250,.2)',
+  body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.9;font-weight:600;margin-bottom:12px">|x+1| &lt; a 의 해가 −4 &lt; x &lt; 2 일 때, a의 값을 구하여라</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:18px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+|x−(−1)| &lt; a → −1−a &lt; x &lt; −1+a<br>
+왼쪽: −1−a = −4 → a = 3<br>
+오른쪽: −1+a = 2 → a = 3 ✓
+</div>
+<b style="color:#fde68a">✡️ 중심/반지름 확인</b><br>
+중심 = (−4+2)/2 = <b>−1</b> ← |x+1|=|x−(−1)|과 일치 ✓<br>
+반지름 = (2−(−4))/2 = <b>3</b> = a ✓<br><br>
+<b style="color:#c4b5fd">답: a = 3</b>
+</div>` },
+
+/* 연습 4-B */
+{ tag:'✏️ 연습 4-B — 절댓값 역추적 (계수 2)', tagColor:'#a78bfa',
+  bg:'rgba(167,139,250,.05)', bd:'rgba(167,139,250,.2)',
+  body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.9;font-weight:600;margin-bottom:12px">|2x−3| &lt; a 의 해가 1 &lt; x &lt; 2 일 때, a의 값을 구하여라</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:18px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+|2x−3| &lt; a → −a &lt; 2x−3 &lt; a<br>
+→ (3−a)/2 &lt; x &lt; (3+a)/2<br>
+(3−a)/2 = 1 → a = 1<br>
+(3+a)/2 = 2 → a = 1 ✓
+</div>
+<b style="color:#fca5a5">⚠️ 핵심 함정</b> 계수 2로 나누면 x 기준 반지름이 <b>절반</b><br>
+x 기준 반지름 = (2−1)/2 = 1/2 → a = 2×(1/2) = <b>1</b><br><br>
+<b style="color:#c4b5fd">답: a = 1</b>
+</div>` },
+
+/* ─── 문제 5: 이중부등식 정수 해 1개 (K-4) ─── */
+{ tag:'🔥 문제 5 ★★★ — 이중부등식 포획 전략', tagColor:'#c4b5fd',
+  bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">2a ≤ 3x−1 &lt; a+8 의 정수 해가 x=3뿐일 때, 정수 a의 값을 구하여라</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 변환 후 3단계 역추적</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.77rem;margin:6px 0">
++1 → 2a+1 ≤ 3x &lt; a+9 → <b>(2a+1)/3 ≤ x &lt; (a+9)/3</b><br><br>
+① x=3이 해: 2a+1 ≤ 9 이고 9 &lt; a+9 → a ≤ 4 이고 a &gt; 0 → 1 ≤ a ≤ 4<br>
+② x=2 제외: (2a+1)/3 &gt; 2 → 2a &gt; 5 → a ≥ 3<br>
+③ x=4 제외: (a+9)/3 ≤ 4 → a ≤ 3<br><br>
+a ≥ 3 이고 a ≤ 3 → <b style="color:#fde68a">a = 3</b>
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 검증</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px;font-family:monospace;font-size:.77rem;margin:6px 0">
+a=3: 7/3 ≤ x &lt; 4 → 2.33 ≤ x &lt; 4 → 정수 {3} ✓<br>
+a=4: 3 ≤ x &lt; 13/3 → 정수 {3, 4} ✗<br>
+a=2: 5/3 ≤ x &lt; 11/3 → 정수 {2, 3} ✗
+</div><br>
+<b style="color:#fde68a">✡️ 유대인식 — 포획 전략 (Sandwiching)</b><br>
+x=3을 잡고, 이웃(x=2, x=4)을 쫓아내라.
+<div style="background:rgba(253,230,138,.06);border:1px solid rgba(253,230,138,.2);border-radius:8px;padding:9px 12px;margin:6px 0">
+정수 격자: ···  2  [  3  )  4  ···<br>
+구간을 정수 3과 4 사이의 틈에 끼워넣기:<br>
+왼쪽 경계 L: 2 &lt; L ≤ 3 → (2a+1)/3 &gt; 2이고 ≤ 3<br>
+오른쪽 경계 R: 3 &lt; R ≤ 4 → (a+9)/3 &gt; 3이고 ≤ 4<br>
+교집합 → <b style="color:#fde68a">a = 3</b>
+</div>
+<b>🔭 확장</b> 정수 해가 n개이려면: 구간을 n개의 정수를 포함하는 틈에 끼워넣으면 된다.<br>
+2개(x=3,4)이려면: L을 (2,3], R을 (4,5]에 끼워넣기.<br><br>
+<b>📌 원리</b> 이중부등식의 "정수 해 개수 조건" = 구간을 정수 격자 사이에 <b>포획(sandwiching)</b>하는 문제. 이 구조는 해석학의 ε-δ 논법과 동일하다.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px">
+<b style="color:#94a3b8;font-size:.74rem">💬 학생 대화 — 중·하위권</b><br><br>
+<b style="color:#fca5a5">Q. 왜 x=2도 따로 확인해요?</b><br>
+x=3이 해인 건 ①로 잡았는데, a가 아직 1~4라 넓어요. x=3만 해이려면 x=2, x=4도 해가 아닌 걸 추가로 확인해서 a를 좁히는 거예요.<br><br>
+<b style="color:#fca5a5">Q. 이중부등식에서 왜 먼저 +1을 해요?</b><br>
+바로 나누면 (2a)/3 ≤ x−1/3처럼 분수가 복잡해져요. +1로 3x를 만들면 깔끔하게 3으로 나눌 수 있어요.<br><br>
+<b style="color:#fca5a5">Q. ① 조건에서 a &gt; 0은 어떻게 나왔어요?</b><br>
+x=3이 해이려면 두 조건 동시에: 2a+1 ≤ 9(a ≤ 4)이고 9 &lt; a+9(a &gt; 0). 두 번째 조건에서 a &gt; 0이 나와요.
+</div>
+</div>`, ans:null },
+
+/* 연습 5-A */
+{ tag:'✏️ 연습 5-A — 포획 전략 (x=2, 수렴 구간)', tagColor:'#a78bfa',
+  bg:'rgba(167,139,250,.05)', bd:'rgba(167,139,250,.2)',
+  body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.9;font-weight:600;margin-bottom:12px">a+1 ≤ 2x &lt; 9−a 의 정수 해가 x=2뿐일 때, 정수 a의 값을 구하여라</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:18px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+L = (a+1)/2, R = (9−a)/2<br>
+<b style="color:#fca5a5">a↑이면 L↑, R↓ → 두 경계 수렴!</b><br><br>
+포획 조건: 1 &lt; L ≤ 2 이고 2 &lt; R ≤ 3<br>
+L &gt; 1: a &gt; 1 / L ≤ 2: a ≤ 3<br>
+R &gt; 2: a &lt; 5 ✓ / R ≤ 3: a ≥ 3<br>
+교집합: a &gt; 1, a ≤ 3, a ≥ 3 → <b style="color:#fde68a">a = 3</b>
+</div>
+검증: a=3 → 2 ≤ x &lt; 3 → 정수 {2} ✓<br>
+a=2 → 3/2 ≤ x &lt; 7/2 → 정수 {2, 3} ✗<br><br>
+<b style="color:#c4b5fd">답: a = 3</b>
+</div>` },
+
+/* 연습 5-B */
+{ tag:'✏️ 연습 5-B — 포획 전략 (x=4, 수렴 구간)', tagColor:'#a78bfa',
+  bg:'rgba(167,139,250,.05)', bd:'rgba(167,139,250,.2)',
+  body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.9;font-weight:600;margin-bottom:12px">2a+1 ≤ 3x &lt; 18−a 의 정수 해가 x=4뿐일 때, 정수 a의 값을 구하여라</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:18px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+L = (2a+1)/3, R = (18−a)/3<br>
+<b style="color:#fca5a5">a↑이면 L↑, R↓ → 경계 수렴</b><br><br>
+포획 조건: 3 &lt; L ≤ 4 이고 4 &lt; R ≤ 5<br>
+L &gt; 3: a &gt; 4 / L ≤ 4: a ≤ 11/2<br>
+R &gt; 4: a &lt; 6 / R ≤ 5: a ≥ 3<br>
+교집합: 4 &lt; a ≤ 5.5 → 정수: <b style="color:#fde68a">a = 5</b>
+</div>
+검증: a=5 → 11/3 ≤ x &lt; 13/3 → 3.67 ≤ x &lt; 4.33 → 정수 {4} ✓<br>
+<b style="color:#fca5a5">주목:</b> 5-A와 포획 원리 동일 — 목표 정수와 분모만 다르다.<br><br>
+<b style="color:#c4b5fd">답: a = 5</b>
+</div>` }
+
+],
+
+
+/* ══════════════════════════════════════════════════════════
+   부등식 활용문제 (문장제) — ineq-word (20문제)
+   중2-1 기본 + 세나라 고난도
+══════════════════════════════════════════════════════════ */
+'ineq-word': [
+
+/* ─── 문제 1: 예산 ─── */
+{ tag:'📝 문제 1 ★ — 예산 계획', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+지수는 문구점에서 공책(1200원), 볼펜(2000원)을 각각 1개씩 사고,<br>
+연필은 한 자루에 500원인데 <b>총 15000원 이하</b>로 맞추고 싶다.<br>
+연필을 최대 몇 자루 살 수 있을까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 남은 예산으로 생각하기</b><br>
+공책+볼펜에 3200원 사용. 남은 돈: 15000−3200 = 11800원<br>
+연필 x자루: 500x ≤ 11800 → x ≤ 23.6<br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+∴ 최대 <b style="color:#fde68a">23자루</b>
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 부등식으로 세우기</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+1200 + 2000 + 500x ≤ 15000<br>
+3200 + 500x ≤ 15000<br>
+500x ≤ 11800<br>
+x ≤ 23.6
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — 핵심 질문: 남은 예산의 단위화</b><br>
+"연필 1자루당 500원. 전체 예산 15000원. 고정비 3200원."<br>
+→ 변동비 ≤ 11800 → 개수 ≤ 11800/500 = 23.6<br>
+<b>소수점이 나왔다면: 자루 수는 정수이므로 버림</b><br>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "23.6자루면 24자루 사면 안 돼요?"<br>
+→ 24자루: 500×24=12000 > 11800. 예산 초과! 항상 작은 정수로 버려야 해요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "≤ 라서 딱 15000원도 되는 건가요?"<br>
+→ 맞아요. '이하'는 같을 때도 포함해요. 500×23=11500, 3200+11500=14700 ≤ 15000 ✓
+</div>
+<b style="color:#86efac">답: 23자루</b>
+</div>` },
+
+/* ─── 문제 2: 평균 ─── */
+{ tag:'📝 문제 2 ★ — 평균 목표', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+현우의 국어, 수학 점수가 각각 85점, 78점이다.<br>
+영어 시험을 한 번 더 보아서 <b>세 과목 평균이 80점 이상</b>이 되려면<br>
+영어에서 최소 몇 점을 받아야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 부족분 계산</b><br>
+목표 합계: 80×3 = 240점. 현재 합계: 85+78 = 163점<br>
+필요 영어 점수: 240−163 = 77점 → 최소 <b>77점</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+<b style="color:#7dd3fc">🇸🇬 부등식으로</b><br>
+(85+78+x)/3 ≥ 80<br>
+163+x ≥ 240<br>
+x ≥ 77
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "목표와 현재의 차"</b><br>
+각 과목이 목표(80점) 대비: 국어 +5, 수학 −2 → 현재 초과분 +3<br>
+영어에서 필요한 최소 점수: 80 − 3 = <b>77점</b><br>
+<i style="color:#94a3b8">(직관: 세 과목 합이 240 필요. 이미 +3 모아놨으니 영어에서 −3까지 허용)</i>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "왜 3을 곱했어요?"<br>
+→ 양변에 3을 곱해서 분모를 없애는 거예요. 부등식에서 양수를 곱하면 방향 유지!<br><br>
+<b style="color:#7dd3fc">현우:</b> "유대인식에서 +3이면 영어가 77이상이면 되는 이유가?"<br>
+→ 국어+수학 합계가 목표보다 이미 3점 앞서 있어요. 그래서 영어는 77점만 받아도 240 달성!
+</div>
+<b style="color:#86efac">답: 77점 이상</b>
+</div>` },
+
+/* ─── 문제 3: 연속홀수 ─── */
+{ tag:'📝 문제 3 ★ — 연속 홀수', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+연속하는 세 홀수의 합이 <b>57 이상</b>이다.<br>
+이를 만족하는 가장 작은 세 홀수를 구하여라.
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 홀수의 간격</b><br>
+연속 홀수: n, n+2, n+4 (n은 홀수)
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+n + (n+2) + (n+4) ≥ 57<br>
+3n + 6 ≥ 57<br>
+3n ≥ 51 → n ≥ 17
+</div>
+n은 <b>홀수</b>이면서 ≥ 17 → 최솟값 n = 17<br>
+세 홀수: <b>17, 19, 21</b><br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 합의 평균</b><br>
+세 수의 합 ≥ 57 → 평균 ≥ 19. 중간값이 19 이상<br>
+가장 작은 경우: 중간값 = 19 → <b>17, 19, 21</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "연속 홀수의 합은 가운데 수의 3배"</b><br>
+가운데 수를 m으로 두면: (m−2)+m+(m+2) = 3m ≥ 57 → m ≥ 19<br>
+<i>이 방법이 계산이 더 간단!</i> 최솟값 m=19 → <b>17, 19, 21</b>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "n ≥ 17인데 왜 17인가요? 18이나 19도 되잖아요?"<br>
+→ n은 홀수여야 해요. 17은 홀수 ✓, 18은 짝수 ✗. 홀수 중 가장 작은 게 17이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "연속 짝수도 같은 방법이 되나요?"<br>
+→ 네! 연속 짝수: m−2, m, m+2 (m은 짝수). 합 = 3m. 완전히 동일 구조예요.
+</div>
+<b style="color:#86efac">답: 17, 19, 21</b>
+</div>` },
+
+/* ─── 문제 4: 도형 ─── */
+{ tag:'📝 문제 4 ★ — 도형 둘레', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+직사각형의 세로가 가로보다 4 cm 더 길다.<br>
+이 직사각형의 <b>둘레가 40 cm 이상</b>이 되려면<br>
+가로는 최소 몇 cm이어야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 관계 파악 후 식 세우기</b><br>
+가로 = x cm, 세로 = x+4 cm
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+2(x + x+4) ≥ 40<br>
+2(2x+4) ≥ 40<br>
+4x+8 ≥ 40<br>
+4x ≥ 32 → x ≥ 8
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 둘레 공식 직접 적용</b><br>
+둘레 = 2×(가로+세로) = 2×(x+x+4) = 4x+8<br>
+4x+8 ≥ 40 → <b>x ≥ 8</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "한 쌍"으로 단순화</b><br>
+한 쌍(가로+세로) ≥ 20 → x + (x+4) ≥ 20 → 2x ≥ 16 → x ≥ 8
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "세로가 가로보다 4 더 길다는 게 어떻게 x+4예요?"<br>
+→ 가로를 x로 놓으면, 세로는 가로보다 4 더 크니까 x+4예요. '더 길다'=덧셈이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "유대인식이 왜 2로 나누나요?"<br>
+→ 둘레 = 2×(한 쌍). 양변을 2로 나누면 한 쌍 ≥ 20. 이때 양수(2)로 나누므로 방향 유지!
+</div>
+<b style="color:#86efac">답: 8 cm 이상</b>
+</div>` },
+
+/* ─── 문제 5: 요금 비교 ─── */
+{ tag:'📝 문제 5 ★ — 요금제 비교', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+A 택시: 기본요금 5000원 + 1 km당 100원<br>
+B 택시: 기본요금 없음 + 1 km당 200원<br>
+<b>A 택시가 더 저렴</b>하려면 몇 km 이상 이동해야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 교차점 찾기</b><br>
+A = 5000+100x, B = 200x<br>
+"같아지는 거리": 5000+100x = 200x → x = 50<br>
+x > 50이면 A가 더 비싸짐 → <b>A가 유리한 구간: x > 50</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+<b style="color:#7dd3fc">🇸🇬 부등식으로</b><br>
+5000 + 100x &lt; 200x<br>
+5000 &lt; 100x<br>
+x &gt; 50
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "기본요금을 1km당으로 환산"</b><br>
+기본요금 5000원을 거리로 "회수"하는 관점:<br>
+km당 차액 = 200−100 = 100원/km<br>
+5000원 회수에 필요한 거리: 5000÷100 = <b>50 km</b><br>
+50 km 초과부터 A가 절약!
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "A &lt; B가 아니라 &lt;로 써야 하는 건가요?"<br>
+→ '더 저렴하다'는 엄밀히 '&lt;(미만)'이에요. 딱 같을 때(50km)는 어느 쪽도 이득이 아니에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "단거리면 B가 유리한 건 왜요?"<br>
+→ B는 기본요금이 없어요. 거리가 짧으면 기본요금 5000원을 내는 A보다 B가 더 싸요. 10km라면 A=6000, B=2000원이에요.
+</div>
+<b style="color:#86efac">답: 50 km 초과</b>
+</div>` },
+
+/* ─── 문제 6: 원가/정가 ─── */
+{ tag:'📝 문제 6 ★ — 원가와 이익', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+원가의 40%를 이익으로 붙여 정가를 만들었다.<br>
+이 물건을 정가에서 <b>600원 할인</b>해서 팔아도<br>
+원가보다는 이익이 나려면 원가는 최소 얼마일까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 단계별 가격 추적</b><br>
+원가 = x원 → 정가 = 1.4x원 → 판매가 = 1.4x−600원<br>
+조건: 판매가 > 원가
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+1.4x − 600 &gt; x<br>
+0.4x &gt; 600<br>
+x &gt; 1500
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 이익의 구조</b><br>
+이익 = 판매가 − 원가 = (1.4x−600) − x = 0.4x−600<br>
+이익 &gt; 0 → 0.4x &gt; 600 → <b>x &gt; 1500</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "할인액 vs 이익액"</b><br>
+원가의 40% 이익 = 0.4x. 할인 600원이 이익(0.4x)보다 작아야 이득:<br>
+600 &lt; 0.4x → x &gt; 1500<br>
+<i>즉, "할인이 이익을 넘지 않으면 된다"는 원리</i>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "1.4x가 뭐예요?"<br>
+→ 원가의 40%를 더한 정가예요. 원가 x에 0.4x 더하면 1x+0.4x = 1.4x예요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "x &gt; 1500인데, 원가가 딱 1500원이면 이익이 0이겠네요?"<br>
+→ 정확해요! 1500원일 때 이익=0. 그래서 '이익이 난다'(>0)면 원가가 1500원 초과여야 해요.
+</div>
+<b style="color:#86efac">답: 1500원 초과</b>
+</div>` },
+
+/* ─── 문제 7: 나이 ─── */
+{ tag:'📝 문제 7 ★ — 나이 부등식', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+아버지의 나이는 44세, 딸의 나이는 14세이다.<br>
+<b>x년 후에 아버지 나이가 딸 나이의 2배 이하</b>가 되려면<br>
+x는 최소 얼마 이상이어야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — x년 후 나이 설정</b><br>
+x년 후: 아버지 = 44+x세, 딸 = 14+x세
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+44 + x ≤ 2(14 + x)<br>
+44 + x ≤ 28 + 2x<br>
+16 ≤ x → x ≥ 16
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 나이 차 변화 관찰</b><br>
+나이 차는 항상 44−14 = 30세 유지<br>
+아버지 나이 = 딸 나이 + 30<br>
+조건: 딸+30 ≤ 2×딸 → 30 ≤ 딸 → 14+x ≥ 30 → x ≥ 16<br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "나이 차가 상대방의 몇 배?"</b><br>
+두 사람의 나이 차 = 30 (고정). 딸 나이가 30세 이상이면 나이 차는 딸 나이 이하<br>
+→ 아버지 나이(딸+30) ≤ 2×딸 이 되는 순간은 딸이 30세 → x년 후 딸 나이: 14+x ≥ 30 → x ≥ 16
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "나이 차는 왜 항상 30이에요?"<br>
+→ 둘 다 같은 속도로 나이를 먹어요. x년이 지나도 차이는 그대로 30세예요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "싱가포르식이 더 빠른 이유가 뭔가요?"<br>
+→ x를 직접 안 써도 돼요. 나이 차(30)와 딸 나이만으로 바로 조건을 구성할 수 있어서요.
+</div>
+<b style="color:#86efac">답: 16년 이상</b>
+</div>` },
+
+/* ─── 문제 8: 거리 기본 ─── */
+{ tag:'📝 문제 8 ★ — 거리·시간·속력', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+지수는 집에서 도서관까지 시속 60 km로 달리는 버스를 탄다.<br>
+<b>30분(0.5시간) 이내에 도착</b>하려면 집과 도서관 사이 거리는<br>
+최대 몇 km이어야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 거리 = 속력 × 시간</b><br>
+거리를 d km로 놓으면, 걸리는 시간 = d/60시간
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+d/60 ≤ 0.5<br>
+d ≤ 30
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 시간 안에 갈 수 있는 최대 거리</b><br>
+0.5시간 동안 시속 60 km로 가면 이동 거리 = 60×0.5 = 30 km<br>
+→ 거리 ≤ <b>30 km</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "단위 변환을 먼저"</b><br>
+30분 = 1/2시간. 속력 60 km/h × 1/2 h = 30 km<br>
+핵심: '이내'=≤, 시간을 시간 단위로 통일
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "분을 시간으로 왜 바꿔요?"<br>
+→ 속력이 km/h(시간 단위)이라서 시간도 '시간' 단위로 맞춰야 해요. 30분 = 30/60시간 = 0.5시간.<br><br>
+<b style="color:#7dd3fc">현우:</b> "거리를 d로 놓지 않고 바로 풀 수 있나요?"<br>
+→ 네! 싱가포르식처럼 '0.5시간에 갈 수 있는 최대 거리'를 직접 구해도 돼요.
+</div>
+<b style="color:#86efac">답: 30 km 이하</b>
+</div>` },
+
+/* ─── 문제 9: 일(혼합) ─── */
+{ tag:'📝 문제 9 ★★ — 일의 양', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+A 혼자 하면 10일, B 혼자 하면 15일 걸리는 일이 있다.<br>
+A, B가 함께 작업해서 <b>전체 일의 2/3 이상</b> 완성하려면<br>
+최소 며칠 이상 함께 일해야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 하루 작업량으로</b><br>
+A의 하루 작업량 = 1/10, B = 1/15<br>
+합산: 1/10 + 1/15 = 3/30 + 2/30 = <b>5/30 = 1/6</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+x일 작업량: (1/6)x ≥ 2/3<br>
+x ≥ 4
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 일의 양 도식</b><br>
+전체 = 1. 목표 = 2/3 = 0.667...<br>
+하루 공동 = 1/6. 4일 = 4/6 = 2/3 ✓ → <b>최소 4일</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "공통 분모로 합산"</b><br>
+LCM(10,15)=30. 전체 일을 30단위로 보면:<br>
+A: 하루 3단위, B: 하루 2단위 → 합: 하루 5단위<br>
+목표: 30×(2/3) = 20단위 → 20/5 = <b>4일</b>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "1/10 + 1/15를 어떻게 더해요?"<br>
+→ 분모 10과 15의 최소공배수는 30. 1/10=3/30, 1/15=2/30 → 합계 5/30=1/6.<br><br>
+<b style="color:#7dd3fc">현우:</b> "유대인식에서 왜 30단위로 봐요?"<br>
+→ 분수 계산 없이 정수로 처리하려고요. LCM을 전체 단위로 쓰면 계산이 훨씬 깔끔해요.
+</div>
+<b style="color:#86efac">답: 4일 이상</b>
+</div>` },
+
+/* ─── 문제 10: 파이프 ─── */
+{ tag:'📝 문제 10 ★★ — 파이프 채우기', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+A 파이프 혼자 수조를 채우면 6시간, B 파이프는 4시간 걸린다.<br>
+두 파이프를 동시에 열어서 <b>수조의 절반 이상</b>을 채우려면<br>
+최소 몇 시간 이상 열어두어야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 시간당 채우는 양</b><br>
+A: 1시간당 1/6, B: 1시간당 1/4<br>
+합산: 1/6 + 1/4 = 2/12 + 3/12 = <b>5/12</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+(5/12)x ≥ 1/2<br>
+x ≥ (1/2) × (12/5) = 6/5 = <b>1.2시간</b>
+</div>
+1.2시간 = 1시간 12분 → <b>최소 1.2시간</b><br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 단위 정수화</b><br>
+LCM(6,4)=12. 전체를 12단위:<br>
+A: 시간당 2단위, B: 시간당 3단위 → 합: 5단위<br>
+목표: 12×(1/2) = 6단위 → 6/5 = <b>1.2시간</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — 비례 관계</b><br>
+함께 채우면 한 시간에 5/12. 절반(6/12)을 채우려면?<br>
+(6/12) ÷ (5/12) = 6/5 = 1.2시간
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "1.2시간이 몇 분인지 어떻게 알아요?"<br>
+→ 0.2시간 × 60분/시간 = 12분. 그래서 1시간 12분이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "분수를 양변에 곱할 때 주의할 점은?"<br>
+→ 12/5는 양수이므로 부등호 방향 변함없어요. 음수를 곱할 때만 방향이 바뀌어요.
+</div>
+<b style="color:#86efac">답: 1.2시간(1시간 12분) 이상</b>
+</div>` },
+
+/* ─── 문제 11: 강 하류 ─── */
+{ tag:'📝 문제 11 ★★ — 강물 (하류)', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+강물의 유속은 시속 3 km이다.<br>
+이 강에서 어떤 배가 <b>하류 방향으로 2시간 동안 20 km 이상</b> 이동하려면<br>
+배의 정수속력(고요한 물에서의 속력)은 최소 시속 몇 km여야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 하류 속력 설정</b><br>
+하류 방향: 강물이 배를 밀어줌 → 실제 속력 = x+3
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+2시간 이동 거리 = 2(x+3) ≥ 20<br>
+2x+6 ≥ 20<br>
+2x ≥ 14 → x ≥ 7
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 속력 벡터 덧셈</b><br>
+하류: 배 속력 + 강 유속 = x+3 (같은 방향이므로 덧셈)<br>
+2(x+3) ≥ 20 → x+3 ≥ 10 → <b>x ≥ 7</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "강이 주는 보너스"</b><br>
+2시간에 20 km → 필요 속력 = 10 km/h<br>
+강이 3 km/h를 "무료로" 추가해줌 → 배가 내야 할 속력: 10−3 = <b>7 km/h</b>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "하류가 뭐예요?"<br>
+→ 물이 흐르는 방향이에요. 강물 흐름과 같은 방향으로 가는 것. 상류는 반대 방향이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "상류라면 x−3이 됐겠죠? 그럼 x < 3이면 배가 뒤로 가나요?"<br>
+→ 맞아요! x < 3이면 강 유속이 더 빠르니까 배가 실제론 뒤로 밀려요. 그래서 x > 3이어야 앞으로 가요.
+</div>
+<b style="color:#86efac">답: 시속 7 km 이상</b>
+</div>` },
+
+/* ─── 문제 12: 강 상류 ─── */
+{ tag:'📝 문제 12 ★★ — 강물 (상류)', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+강물의 유속은 시속 2 km이다.<br>
+이 강에서 어떤 배가 <b>상류 방향으로 3시간 동안 12 km 이상</b> 이동하려면<br>
+배의 정수속력은 최소 시속 몇 km여야 할까?<br>
+<span style="font-size:.75rem;color:#94a3b8">(단, 배의 정수속력은 강 유속보다 빠르다)</span>
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 상류 속력 설정</b><br>
+상류 방향: 강물이 배를 방해 → 실제 속력 = x−2
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+3(x−2) ≥ 12<br>
+3x−6 ≥ 12<br>
+3x ≥ 18 → x ≥ 6
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 속력 벡터 뺄셈</b><br>
+상류: 배 속력 − 강 유속 = x−2 (반대 방향이므로 뺄셈)<br>
+3(x−2) ≥ 12 → x−2 ≥ 4 → <b>x ≥ 6</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "강의 저항 뚫기"</b><br>
+3시간에 12 km → 필요 속력 = 4 km/h<br>
+강이 2 km/h를 빼앗아감 → 배가 내야 할 총 속력: 4+2 = <b>6 km/h</b>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "x &gt; 2라는 조건은 왜 있어요?"<br>
+→ 상류로 가려면 배의 속력이 강물보다 빨라야 해요. x ≤ 2면 배가 앞으로 못 가요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "문제 11과 구조가 대칭이네요?"<br>
+→ 맞아요! 하류=+, 상류=−. 이 개념이 나중에 벡터(크기+방향)의 기초가 돼요.
+</div>
+<b style="color:#86efac">답: 시속 6 km 이상</b>
+</div>` },
+
+/* ─── 문제 13: 마주보며 걷기 ─── */
+{ tag:'📝 문제 13 ★★ — 마주보며 걷기', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+A, B 두 사람이 4200 m 떨어진 곳에서 서로를 향해 동시에 출발한다.<br>
+A의 속력은 분속 50 m이다.<br>
+<b>60분 이내에 두 사람이 만나려면</b> B의 속력은 분속 최소 몇 m여야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 합산 이동 거리</b><br>
+60분 동안 A는 50×60=3000 m, B는 60x m 이동<br>
+만나려면 합산 거리 ≥ 4200
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+3000 + 60x ≥ 4200<br>
+60x ≥ 1200 → x ≥ 20
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 시간당 좁혀지는 거리</b><br>
+1분당 좁혀지는 거리 = 50+x (서로를 향해 이동)<br>
+60(50+x) ≥ 4200 → 50+x ≥ 70 → <b>x ≥ 20</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "남은 거리를 B가 담당"</b><br>
+60분에 A가 3000 m 커버. 남은 거리: 4200−3000 = 1200 m<br>
+B가 60분 안에 1200 m 이상: x ≥ 1200/60 = <b>20 m/분</b>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "마주보면 왜 두 사람 거리를 더해요?"<br>
+→ 두 사람이 서로를 향해 오니까 함께 거리를 좁혀요. 1분에 A가 50 m, B가 x m 좁혀서 합계가 4200 m 이상이면 만나요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "같은 방향으로 가면 어떻게 돼요?"<br>
+→ 같은 방향이면 속력의 차 (x−50)m/분으로 좁혀져요. 훨씬 오래 걸려요.
+</div>
+<b style="color:#86efac">답: 분속 20 m 이상</b>
+</div>` },
+
+/* ─── 문제 14: 기차+터널 ─── */
+{ tag:'📝 문제 14 ★★ — 기차와 터널', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+길이가 300 m인 기차가 터널을 완전히 통과하는 데 걸린 거리는<br>
+기차 길이 + 터널 길이이다.<br>
+이 기차가 <b>총 이동 거리 600 m 이하</b>로 통과할 수 있는<br>
+터널의 최대 길이는 몇 m일까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 통과 거리의 구성</b><br>
+터널 길이를 x m로 놓으면<br>
+통과 거리 = 기차 길이 + 터널 길이 = 300 + x
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+300 + x ≤ 600<br>
+x ≤ 300
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 기차 머리부터 꼬리까지 추적</b><br>
+기차 머리가 터널 입구 진입 → 꼬리가 터널 출구 빠져나올 때까지<br>
+이동: 터널(x) + 기차(300) = x+300 ≤ 600 → <b>x ≤ 300</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "기차가 차지하는 공간"</b><br>
+터널에 기차가 완전히 들어가려면 터널 &gt; 기차. 하지만 "통과"는 머리~꼬리가 모두 지나야 해요.<br>
+총 거리 = 기차(300) + 터널(x). 600 이하 → <b>x ≤ 300 m</b>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "왜 기차 길이를 더해요? 터널만 통과하면 되잖아요."<br>
+→ 기차가 터널에 '완전히' 들어갔다 '완전히' 나와야 해요. 꼬리가 입구를 벗어날 때까지 기차 길이만큼 더 가야 해요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "기차 두 대가 반대 방향으로 터널에서 만나면?"<br>
+→ 그건 '두 기차의 통과' 문제예요. 두 기차 합산 길이 + 터널 길이가 총 이동 거리가 돼요.
+</div>
+<b style="color:#86efac">답: 300 m 이하</b>
+</div>` },
+
+/* ─── 문제 15: 연못 반대방향 ─── */
+{ tag:'📝 문제 15 ★★ — 연못 반대 방향', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+둘레가 1800 m인 연못의 같은 지점에서<br>
+A(분속 60 m)와 B가 <b>반대 방향</b>으로 동시에 출발한다.<br>
+<b>20분 이내에 처음으로 만나려면</b> B의 속력은 분속 최소 몇 m여야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 반대 방향이면 합산</b><br>
+반대 방향: 둘의 이동 거리 합이 연못 둘레와 같아질 때 만남<br>
+20분 이내에 만나려면: 20(60+x) ≥ 1800
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+20(60+x) ≥ 1800<br>
+60+x ≥ 90 → x ≥ 30
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 원형 경로 = 한 바퀴 1800 m</b><br>
+1분당 A+B가 60+x m씩 가까워짐<br>
+20(60+x) ≥ 1800 → <b>x ≥ 30</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "남은 거리를 B가 책임"</b><br>
+20분 A의 이동: 60×20 = 1200 m. 남은 거리: 1800−1200 = 600 m<br>
+B가 20분에 600 m 이상: x ≥ 600/20 = <b>30 m/분</b>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "연못을 반대로 가면 왜 더하나요?"<br>
+→ 서로 마주 보며 가면 만나는 지점까지의 거리를 함께 채워요. 반대 방향 = 두 사람 거리 합이 전체 둘레.<br><br>
+<b style="color:#7dd3fc">현우:</b> "문제 13 마주보며 걷기와 구조가 같네요?"<br>
+→ 맞아요! 직선에서 마주보기 = 원형에서 반대 방향. 합산 이동 거리 ≥ 목표 거리 구조 동일.
+</div>
+<b style="color:#86efac">답: 분속 30 m 이상</b>
+</div>` },
+
+/* ─── 문제 16: 연못 같은방향 ─── */
+{ tag:'📝 문제 16 ★★ — 연못 같은 방향', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+둘레가 1800 m인 연못의 같은 지점에서<br>
+A(분속 60 m)와 B(A보다 빠름)가 <b>같은 방향</b>으로 동시에 출발한다.<br>
+<b>60분 이내에 B가 A를 처음으로 따라잡으려면</b> B의 속력은 분속 최소 몇 m여야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 같은 방향이면 차이</b><br>
+60분 동안 B가 A보다 한 바퀴(1800 m) 더 가야 따라잡음<br>
+60분 이내 달성: 60(x−60) ≥ 1800
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+60(x−60) ≥ 1800<br>
+x−60 ≥ 30 → x ≥ 90
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 따라잡기 = 1 바퀴 차이</b><br>
+1분당 B가 A보다 (x−60) m 앞서 나감<br>
+1800 m 차이 날 때 따라잡음: 60(x−60) ≥ 1800 → <b>x ≥ 90</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "상대 속력으로 생각"</b><br>
+B 기준으로 보면 A는 분속 (60−x)로 뒤로 움직임(즉 B가 분속 (x−60)으로 앞서감)<br>
+60분에 1800 m 이상 차이: x−60 ≥ 30 → <b>x ≥ 90 m/분</b>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "따라잡는다는 게 1800 m 더 가는 건가요?"<br>
+→ 원형이라서 B가 정확히 한 바퀴(1800 m) 더 가면 A와 같은 위치로 돌아와요. 그게 '따라잡기'예요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "문제 15와 비교하면 16이 더 어렵네요?"<br>
+→ 반대 방향(합산)은 빨리 만나지만 같은 방향(차이)은 한 바퀴 차이가 나야 해서 훨씬 조건이 빡세요.
+</div>
+<b style="color:#86efac">답: 분속 90 m 이상</b>
+</div>` },
+
+/* ─── 문제 17: 소금물 물 추가 ─── */
+{ tag:'📝 문제 17 ★★ — 소금물 (물 추가)', tagColor:'#fde68a',
+  bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+8% 소금물 200 g이 있다.<br>
+여기에 <b>물을 추가해도 농도 5% 이상</b>을 유지하려면<br>
+물은 최대 몇 g까지 추가할 수 있을까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 소금의 양은 변하지 않는다</b><br>
+원래 소금 = 200 × 0.08 = <b>16 g</b> (물을 추가해도 소금량 고정)<br>
+물 추가 후 전체 = (200+추가량) g<br>
+조건: 소금 16 g이 전체의 5% 이상
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+물 추가량을 w g이라 하면<br>
+16 ≥ 0.05 × (200 + w)<br>
+16 ≥ 10 + 0.05w<br>
+6 ≥ 0.05w → w ≤ 120
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 5% 기준 최대 전체량</b><br>
+소금 16 g이 전체의 5%이려면: 전체 = 16 ÷ 0.05 = 320 g<br>
+현재 200 g → 추가 가능: 320 − 200 = <b>120 g</b><br>
+(전체가 320 g 초과하면 농도가 5% 미만으로 떨어짐)<br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "소금이 감당할 수 있는 최대 물의 양"</b><br>
+16 g의 소금이 최소 5% 농도를 유지하려면 총 무게는 최대 몇 g?<br>
+16 ÷ 0.05 = 320 g. 이미 있는 200 g을 빼면 추가 가능 물: <b>120 g</b><br>
+핵심: <i>"소금이 버텨줄 수 있는 최대 부피를 먼저 구한다"</i>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "물을 추가하면 왜 농도가 낮아져요?"<br>
+→ 소금의 양(16g)은 그대로인데 전체 무게(분모)가 커지니까요. 분수에서 분모가 커지면 값이 작아져요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "싱가포르식이 가장 빠르네요. 부등식 없이 바로 구하는 건가요?"<br>
+→ 맞아요! '5%일 때 전체 최대값'을 먼저 구하면 바로 나와요. 이 역산 방법은 농도 문제에서 자주 씁니다.
+</div>
+<b style="color:#86efac">답: 120 g 이하</b>
+</div>` },
+
+/* ─── 문제 18: 소금물 혼합 ─── */
+{ tag:'📝 문제 18 ★★ — 소금물 혼합', tagColor:'#fde68a',
+  bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+3% 소금물에 12% 소금물 200 g을 섞어서<br>
+<b>8% 이하</b>의 소금물을 만들려고 한다.<br>
+3% 소금물은 최소 몇 g 이상 필요할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 소금의 양으로 접근</b><br>
+3% 소금물 x g의 소금 = 0.03x g<br>
+12% 소금물 200 g의 소금 = 0.12×200 = 24 g<br>
+전체 = (x+200) g
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+소금 합계 ≤ 8% × 전체<br>
+0.03x + 24 ≤ 0.08(x+200)<br>
+0.03x + 24 ≤ 0.08x + 16<br>
+8 ≤ 0.05x<br>
+x ≥ 160
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 저울 모델</b><br>
+목표 8%를 기준으로: 3%는 −5 차이, 12%는 +4 차이<br>
+비율: 3% 소금물 : 12% 소금물 = 4 : 5<br>
+12% 200 g이 "5 몫"이면 3%는 "4 몫" = 200×(4/5) = <b>160 g</b><br>
+<i style="color:#94a3b8">(비율은 참고용; 정확한 양은 부등식으로 확인)</i><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "8%보다 낮추려면 묽은 쪽이 충분히 많아야"</b><br>
+12%는 8%보다 4% 포인트 높음, 3%는 5% 포인트 낮음<br>
+균형: x×5% = 200×4% → x = 160 g이 경계<br>
+→ x ≥ <b>160 g</b>이면 8% 이하
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "0.03x가 뭐예요?"<br>
+→ 3% = 0.03. x g 소금물에 들어있는 소금의 양 = 0.03×x = 0.03x g이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "싱가포르식 저울 모델이 더 빠른 이유가 뭐예요?"<br>
+→ 목표 농도와의 '차이'를 역비로 쓰면 비율이 바로 나와요. 하지만 정확한 g수는 부등식이 필요해요.
+</div>
+<b style="color:#86efac">답: 160 g 이상</b>
+</div>` },
+
+/* ─── 문제 19: 합금 ─── */
+{ tag:'📝 문제 19 ★★★ — 합금 (구리 비율)', tagColor:'#fca5a5',
+  bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+구리 20%를 포함한 합금 x g과<br>
+구리 50%를 포함한 합금 300 g을 녹여 합쳤을 때,<br>
+합금 속 구리가 <b>40% 이상</b>이 되려면 x는 얼마 이하여야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 구리의 양 추적</b><br>
+합금 A(20%)에서 구리 = 0.2x g<br>
+합금 B(50%)에서 구리 = 0.5×300 = 150 g<br>
+전체 = (x+300) g
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+구리 합계 ≥ 40% × 전체<br>
+0.2x + 150 ≥ 0.4(x+300)<br>
+0.2x + 150 ≥ 0.4x + 120<br>
+30 ≥ 0.2x<br>
+x ≤ 150
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 저울 모델</b><br>
+목표 40% 기준: A(20%)는 −20, B(50%)는 +10<br>
+비율 A : B = 10 : 20 = 1 : 2<br>
+B = 300 g → A ≤ 300×(1/2) = <b>150 g</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "B의 잉여 구리로 A를 보충"</b><br>
+B는 목표보다 10%포인트 많고 A는 20%포인트 부족<br>
+B 300 g의 잉여: 300×10% = 30 g 구리 여유<br>
+A x g의 부족분: x×20% = 0.2x g<br>
+30 ≥ 0.2x → x ≤ <b>150 g</b>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "부등호 방향이 바뀐 건가요?"<br>
+→ 맞아요! 0.2x ≥ 0.4x+120−150 → 0.2x ≥ 0.4x−30 → −0.2x ≥ −30 → <b>양변에 −1 곱하면 방향 뒤집힘!</b> 최종 x ≤ 150.<br><br>
+<b style="color:#7dd3fc">현우:</b> "유대인식 저울 모델이 소금물과 같은 구조네요?"<br>
+→ 소금물이든 합금이든 '혼합 문제'의 본질은 같아요. 목표 농도와의 차이(잉여/부족)를 저울처럼 균형 맞추는 거예요.
+</div>
+<b style="color:#86efac">답: 150 g 이하</b>
+</div>` },
+
+/* ─── 문제 20: 비율 분배 ─── */
+{ tag:'📝 문제 20 ★ — 비율과 최솟값', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+학교 전체 학생 x명 중 5분의 3이 교내 행사에 참가한다.<br>
+참가 인원이 <b>150명 이상</b>이어야 행사가 열릴 수 있다면,<br>
+전체 학생은 최소 몇 명이어야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 분수 비율 적용</b><br>
+참가 인원 = (3/5)x
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+(3/5)x ≥ 150<br>
+x ≥ 150 × (5/3) = 250
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 비례로 직접 계산</b><br>
+3/5이 150명 → 전체 5/5는: 150 × (5/3) = <b>250명</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — "5등분 중 3개가 150"</b><br>
+1등분 = 150/3 = 50명 → 전체 5등분 = 50×5 = <b>250명</b>
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "양변에 5/3을 곱하면 부등호 방향이 바뀌나요?"<br>
+→ 5/3은 양수예요. 양수를 곱하거나 나누면 방향이 유지돼요. <b>음수일 때만 뒤집혀요!</b><br><br>
+<b style="color:#7dd3fc">현우:</b> "유대인식이 가장 직관적이네요. 비율 문제는 항상 이 방식이 빠른가요?"<br>
+→ '단위 분수 → 전체' 패턴은 비율 문제에 매우 강해요. 특히 암산이 필요할 때 빛나요.
+</div>
+<b style="color:#86efac">답: 250명 이상</b>
+</div>` }
+
+],
+
 
 }; // end CARD_DATA
 
@@ -7193,6 +8360,10 @@ var TORO_COMPASS = {
     '시소 양쪽의 무게가 같으면 어떤 숫자든 x가 될 수 있을까?',
     '방정식과 항등식의 차이는 딱 한 가지야. 뭘까?'
   ],
+  'eq-identity-hub': [
+    '항등식이 없으면 방정식을 풀 수 없는 이유가 뭘까?',
+    '분배법칙은 왜 항상 맞을까? 항등식과 무슨 관계일까?'
+  ],
   'inequality-hub': [
     '부등식에서 음수를 곱하면 왜 부등호 방향이 바뀔까?',
     'x > 3이면 x는 몇 개의 답을 가질까?'
@@ -7243,9 +8414,10 @@ function closeCompassModal() {
 // ══════════════════════════════════════════════════════════
 var ARTIFACTS = {
   'eq-havruta-cards': { island:'방정식의 천칭 사원', emoji:'⚖️', quote:'등호는 우주의 평화 조약이다.', color:'#a5b4fc' },
-  'eq-identity': { island:'방정식의 천칭 사원', emoji:'📜', quote:'항등식은 수학의 헌법이다.', color:'#a5b4fc' },
-  'eq-identity-havruta': { island:'방정식의 천칭 사원', emoji:'🏛️', quote:'법전 없이는 재판도 없다.', color:'#a5b4fc' },
-  'eq-guarantee': { island:'방정식의 천칭 사원', emoji:'🔐', quote:'항등식을 믿는 자만이 x를 찾을 수 있다.', color:'#a5b4fc' },
+  'eq-identity': { island:'항등식의 법전', emoji:'📜', quote:'항등식은 수학의 헌법이다.', color:'#a5b4fc' },
+  'eq-identity-havruta': { island:'항등식의 법전', emoji:'🏛️', quote:'법전 없이는 재판도 없다.', color:'#a5b4fc' },
+  'eq-guarantee': { island:'항등식의 법전', emoji:'🔐', quote:'항등식을 믿는 자만이 x를 찾을 수 있다.', color:'#a5b4fc' },
+  'eq-identity-discussion': { island:'항등식의 법전', emoji:'💭', quote:'진리는 토론할 필요가 없다. 그러나 이해는 필요하다.', color:'#a5b4fc' },
   'prime-havruta': { island:'소인수분해의 동굴', emoji:'💎', quote:'1은 소수의 왕관을 포기한 근본적 존재다.', color:'#818cf8' },
   'avg-havruta': { island:'평균·가능성의 안개 등대', emoji:'🏮', quote:'평균은 진실을 숨기기도 한다.', color:'#86efac' },
   'geometry-havruta': { island:'기본도형의 별자리 해안', emoji:'🌟', quote:'무질서한 하늘에서 질서를 찾는 눈이 수학자다.', color:'#c4b5fd' },
@@ -7253,6 +8425,7 @@ var ARTIFACTS = {
   'ineq-hard10': { island:'부등식의 한계 절벽', emoji:'⚔️', quote:'경계를 아는 자가 논리를 지배한다.', color:'#f87171' },
   'ineq-gemini5': { island:'부등식의 한계 절벽', emoji:'🌍', quote:'3국의 시각이 하나의 답으로 만난다.', color:'#f87171' },
   'ineq-lesson': { island:'부등식의 한계 절벽', emoji:'📘', quote:'가르치는 자가 가장 깊이 배운다.', color:'#86efac' },
+  'ineq-word': { island:'부등식의 활용 평원', emoji:'📝', quote:'수학은 현실 문제를 풀기 위한 언어다.', color:'#fde68a' },
   'linear-func-havruta': { island:'일차함수의 직선 활주로', emoji:'📈', quote:'기울기는 변화의 속도다.', color:'#34d399' },
   'quadratic-havruta': { island:'이차방정식의 포물선 계곡', emoji:'🌊', quote:'두 개의 답은 두 개의 진실이다.', color:'#fb923c' },
   'simultaneous-havruta': { island:'연립방정식의 미궁', emoji:'🗝️', quote:'두 조건이 만나는 곳에 답이 있다.', color:'#7dd3fc' },
@@ -7322,7 +8495,7 @@ function updateArtifactBadge() {
 // ══════════════════════════════════════════════════════════
 // showScreen 확장 — fog, compass, markVisited 연동
 // ══════════════════════════════════════════════════════════
-var HUB_SCREENS = ['factmult','prime-hub','equation-hub','inequality-hub','simultaneous-hub','linear-func-hub','quadratic-hub','geometry-hub','avg-hub','poly-hub'];
+var HUB_SCREENS = ['factmult','prime-hub','equation-hub','eq-identity-hub','inequality-hub','simultaneous-hub','linear-func-hub','quadratic-hub','geometry-hub','avg-hub','poly-hub'];
 
 var _origShowScreen2 = showScreen;
 showScreen = function(name) {
@@ -7381,11 +8554,12 @@ cvNav = function(dir) {
 var HUB_ARTIFACTS = {
   'factmult': ['fm-guide','fm-gcd','fm-worksheet','fm-advanced','fm-hard10','fm-solution'],
   'prime-hub': ['prime-havruta'],
-  'equation-hub': ['eq-havruta-cards', 'eq-identity', 'eq-identity-havruta', 'eq-guarantee'],
+  'equation-hub': ['eq-havruta-cards'],
+  'eq-identity-hub': ['eq-identity', 'eq-identity-havruta', 'eq-guarantee', 'eq-identity-discussion'],
   'avg-hub': ['avg-guide','avg-hard','avg-havruta'],
   'simultaneous-hub': ['simultaneous-guide','simultaneous-basic','simultaneous-hard','simultaneous-havruta'],
   'geometry-hub': ['geometry-guide', 'geometry-havruta'],
-  'inequality-hub': ['inequality-guide','inequality-havruta','ineq-hard10','ineq-gemini5','ineq-lesson'],
+  'inequality-hub': ['inequality-guide','inequality-havruta','ineq-hard10','ineq-gemini5','ineq-lesson','ineq-word'],
   'linear-func-hub': ['linear-func-havruta'],
   'quadratic-hub': ['quadratic-havruta'],
   'factmult': [],
