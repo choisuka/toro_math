@@ -1056,19 +1056,13 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       </div>
     </div>
     <button onclick="startCards('simultaneous-guide','simultaneous-hub')" style="width:100%;margin-bottom:8px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📖 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
-    </button>
-    <button onclick="startCards('simultaneous-basic','simultaneous-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      🌱 기본 문제 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
-    </button>
-    <button onclick="startCards('simultaneous-hard','simultaneous-hub')" style="width:100%;margin-bottom:8px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.25);color:#7dd3fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      ⚡ 심화 문제 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
+      📖 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(5장)</span> →
     </button>
     <button onclick="startCards('simul-basic10','simultaneous-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📝 기본 활용 ★~★★ — 문장제 10선 <span style="font-size:.72rem;opacity:.7">(10장)</span> →
+      📝 기본 활용 ★~★★ — 문장제 13선 <span style="font-size:.72rem;opacity:.7">(13장)</span> →
     </button>
     <button onclick="startCards('simul-hard10','simultaneous-hub')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      ⚔️ 심화 활용 ★★~★★★ — 문장제 10선 <span style="font-size:.72rem;opacity:.7">(10장)</span> →
+      ⚔️ 심화 활용 ★★~★★★ — 문장제 13선 <span style="font-size:.72rem;opacity:.7">(13장)</span> →
     </button>
     <button onclick="startCards('simul-top9','simultaneous-hub')" style="width:100%;margin-bottom:8px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🌍 세나라 최고난도 — 핀란드·싱가포르·유대인 각 3제 <span style="font-size:.72rem;opacity:.7">(10장)</span> →
@@ -2558,6 +2552,44 @@ z³의 계수: β ↔ β̄ / (z̄)³의 계수: α ↔ ᾱ<br>
   { tag:'✡️ 유대인식 — 조건의 논리', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">✡️ 유대인식 (논리): "변수가 두 개면 식도 반드시 두 개여야 할까?"</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">조건이 부족할 때(부정방정식 — 해가 무수히 많음)와 조건이 모순될 때(해 없음)를 토론하며 논리적 완결성을 배웁니다.<br><br>● 해가 무수히 많다 → 조건이 독립적이지 않음<br>● 해가 없다 → 조건이 서로 모순<br>● 해가 하나 → 진정한 연립방정식<br><br><span style="color:#fde68a">핵심 질문:</span> "조건이 모순되면 그 세계는 존재할 수 없는 걸까?"</div>`,
+    ans: null },
+
+  { tag:'🔧 풀이법 4/5 — 가감법(소거법)', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔧 가감법 — 한 미지수를 없애버리기</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
+두 식을 <b style="color:#7dd3fc">더하거나 빼서</b> 미지수 하나를 없애는 방법이에요.<br><br>
+<b style="color:#86efac">예시:</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.78rem;margin:8px 0">
+① x + y = 10<br>
+② 2x + y = 14<br>
+② − ①: x = 4<br>
+① 에 대입: y = 6
+</div>
+<b style="color:#fde68a">언제 쓰나?</b> 같은 미지수의 계수가 같거나, 배수 관계일 때 빠르게 소거 가능.<br><br>
+<b style="color:#f87171">주의:</b> 빼기 방향 실수 주의! ②−① 과 ①−② 는 결과가 달라요.
+</div>`,
+    ans: null },
+
+  { tag:'🔧 풀이법 5/5 — 대입법', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔧 대입법 — 한 식을 다른 식에 꽂아 넣기</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
+한 식에서 미지수를 <b style="color:#86efac">분리</b>한 뒤, 다른 식에 <b style="color:#86efac">대입</b>해서 푸는 방법이에요.<br><br>
+<b style="color:#86efac">예시:</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-family:monospace;font-size:.78rem;margin:8px 0">
+① y = 3x<br>
+② x + y = 20<br>
+②에 ① 대입: x + 3x = 20<br>
+4x = 20 → x = 5<br>
+y = 3 × 5 = 15
+</div>
+<b style="color:#fde68a">언제 쓰나?</b> "y = …" 처럼 이미 한 미지수가 분리된 식이 있을 때 최적.<br><br>
+<b style="color:#7dd3fc">가감법 vs 대입법:</b><br>
+• 계수 같거나 배수관계 → 가감법이 빠름<br>
+• 한 식이 이미 분리됨 → 대입법이 빠름<br>
+• 둘 다 괜찮으면 → 편한 것으로!
+</div>`,
     ans: null }
 ],
 
@@ -5792,6 +5824,121 @@ x ≥ 150 × (5/3) = 250
 ══════════════════════════════════════════════════════════ */
 'simul-basic10': [
 
+/* ─── 기본 1: 강아지와 오리 ─── */
+{ tag:'📝 기본 1 ★ — 강아지와 오리', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+강아지와 오리가 합해서 10마리이고,<br>
+다리 수의 합이 26개일 때<br>
+강아지와 오리는 각각 몇 마리인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 모두 오리 가정</b><br>
+10마리 모두 오리라면 다리 20개. 실제 26개 → 차이 6개.<br>
+강아지 1마리로 교체할 때마다 다리 2개 증가.<br>
+6 ÷ 2 = 3 → 강아지 3마리, 오리 7마리
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+검증: 3+7=10 ✓, 4×3+2×7=12+14=26 ✓
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 가감법</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+강아지 x, 오리 y<br>
+x + y = 10 … ①<br>
+4x + 2y = 26 … ②<br>
+①×2: 2x+2y=20<br>
+②−①×2: 2x=6 → x=3, y=7
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "다리 차이로 즉시"</b><br>
+오리→강아지 교체 시 다리 +2. 부족분 6개 ÷ 2 = 3마리 교체.<br>
+계산 없이 논리만으로 3마리.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "오리가 다리가 몇 개였지요?"<br>
+→ 오리(새)는 다리 2개, 강아지는 4개예요. 문제 풀기 전에 조건 확인이 먼저예요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "가정법(핀란드식)이 연립방정식보다 빠른 문제도 있네요."<br>
+→ 맞아요! 이런 '교체 차이' 유형은 가정법이 암산으로 끝나요.
+</div>
+<b style="color:#86efac">답: 강아지 3마리, 오리 7마리</b>
+</div>` },
+
+/* ─── 기본 2: 사탕과 초콜릿 ─── */
+{ tag:'📝 기본 2 ★ — 사탕과 초콜릿', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+사탕 3개와 초콜릿 2개의 합이 2400원이고,<br>
+사탕 1개와 초콜릿 3개의 합이 2200원이다.<br>
+사탕과 초콜릿 각각의 가격은 얼마인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 두 조건 합산</b><br>
+두 조건 합: 사탕 4개 + 초콜릿 5개 = 4600원.<br>
+두 조건 뺌: 사탕 2개 − 초콜릿 1개 = 200원.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+사탕+초콜릿 한 쌍이 보이지 않음 → 가감법 직접 적용
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 가감법(소거)</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+사탕 s, 초콜릿 c<br>
+3s + 2c = 2400 … ① ×3<br>
+s + 3c = 2200 … ② ×1<br>
+①×3: 9s+6c=7200<br>
+②×2: 2s+6c=4400<br>
+①×3−②×2: 7s=2800 → s=400<br>
+c=(2400−1200)/2=600
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "초콜릿 소거 전략"</b><br>
+c의 계수 2와 3의 LCM=6. ①×3과 ②×2로 c 소거.<br>
+계수 LCM을 먼저 찾는 것이 가감법 최단 경로.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "왜 ①을 3배, ②를 2배 하나요?"<br>
+→ 초콜릿 계수를 6으로 같게 맞추려고요. 같아지면 뺄 때 초콜릿이 사라져요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "사탕을 소거하는 방법도 있지 않나요?"<br>
+→ ①−②×3: 사탕 계수 3−3=0으로 소거 가능. 어느 쪽이든 답은 같아요.
+</div>
+<b style="color:#86efac">답: 사탕 400원, 초콜릿 600원</b>
+</div>` },
+
+/* ─── 기본 3: 어머니와 딸 나이 ─── */
+{ tag:'📝 기본 3 ★ — 어머니와 딸의 나이', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+현재 어머니 나이는 딸 나이의 3배이고,<br>
+10년 후에는 어머니 나이가 딸 나이의 2배가 된다.<br>
+현재 어머니와 딸의 나이는 각각 몇 살인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 나이 차 불변</b><br>
+나이 차는 항상 일정. 현재 어머니=3딸 → 차이=2딸.<br>
+10년 후 어머니=2×(딸+10) → 차이=딸+10.<br>
+2딸 = 딸+10 → 딸=10, 어머니=30.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+검증: 30=3×10 ✓, 40=2×20 ✓
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 대입법</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+딸 d, 어머니 m<br>
+m = 3d … ① (이미 분리됨 → 대입법 최적)<br>
+m+10 = 2(d+10) … ②<br>
+①을 ②에: 3d+10=2d+20<br>
+d=10, m=30
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "차이 불변 원리"</b><br>
+m−d = 2d (현재). 10년 후에도 차이 동일: (m+10)−(d+10)=m−d=2d.<br>
+2d = 2(d+10)−(d+10) = d+10 → d=10.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "대입법이 가감법보다 쉬운 경우는 언제예요?"<br>
+→ "m=3d"처럼 한 식이 이미 분리돼 있을 때예요. 바로 꽂아 넣으면 돼요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "나이 차 불변 원리를 알면 나이 문제는 항상 빠르게 풀 수 있겠네요."<br>
+→ 맞아요! 나이 문제의 핵심은 '차이는 변하지 않는다'예요.
+</div>
+<b style="color:#86efac">답: 딸 10살, 어머니 30살</b>
+</div>` },
+
 /* ─── 문제 1: 닭과 토끼 ─── */
 { tag:'📝 문제 1 ★ — 닭과 토끼', tagColor:'#86efac',
   bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
@@ -6199,6 +6346,121 @@ A: 15시간, B: 30시간
    연립방정식 심화 활용 — simul-hard10 (10문제)
 ══════════════════════════════════════════════════════════ */
 'simul-hard10': [
+
+/* ─── 심화 기존 1: 비율 할인 ─── */
+{ tag:'📝 심화 기본 1 ★★ — 비율 할인', tagColor:'#f87171',
+  bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+A와 B 두 제품의 가격 합은 50000원이다.<br>
+A를 10% 할인하고 B를 20% 할인했더니<br>
+전체적으로 15% 할인된 가격이 되었다.<br>
+A와 B 각각의 가격은 얼마인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 전체 할인액으로 접근</b><br>
+전체 15% 할인 = 50000×0.15 = 7500원 할인.<br>
+모두 A처럼 10% 할인 시: 5000원. 차이 2500원이 B의 추가 10% 몫.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+B의 10% = 2500 → B=25000원, A=25000원
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 가감법</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A+B=50000 … ①<br>
+0.1A+0.2B=7500 … ②<br>
+①×0.1: 0.1A+0.1B=5000<br>
+②−: 0.1B=2500 → B=25000<br>
+A=25000
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "초과 할인분 추출"</b><br>
+기준 10%로 설정. B만 10% 추가. 추가분=7500−5000=2500.<br>
+B의 10%=2500 → B=25000. 한 줄 풀이!
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "15% 할인이 전체 기준인데 왜 A, B가 다른 할인율이에요?"<br>
+→ 전체 15%는 두 제품의 가중 평균이에요. A가 많으면 10%에 가깝고, B가 많으면 20%에 가까워요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "A와 B가 같은 금액이 나온 게 신기해요. 할인율이 10%와 20%인데 15%는 딱 중간이니 당연한가요?"<br>
+→ 맞아요! 15%는 10%와 20%의 정중간이라 두 제품이 정확히 같은 금액이에요.
+</div>
+<b style="color:#86efac">답: A 25000원, B 25000원</b>
+</div>` },
+
+/* ─── 심화 기존 2: 두 자리 자연수 ─── */
+{ tag:'📝 심화 기본 2 ★★ — 두 자리 자연수', tagColor:'#f87171',
+  bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+두 자리 자연수에서 각 자리 숫자의 합은 12이고,<br>
+십의 자리와 일의 자리를 바꾼 수는<br>
+처음 수보다 18이 작다.<br>
+처음 수는 무엇인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 바꾼 수가 작다 = 십>일</b><br>
+바꾼 수가 작으면 십의 자리 > 일의 자리.<br>
+자리 바꿈 차이는 항상 9의 배수: 9(a−b)=18 → a−b=2.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+a+b=12, a−b=2<br>
+→ a=7, b=5 → 원래 수: 75
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 자릿값 구조</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+십의자리 a, 일의자리 b<br>
+a+b=12 … ①<br>
+(10a+b)−(10b+a)=18<br>
+9a−9b=18 → a−b=2 … ②<br>
+①+②: 2a=14 → a=7, b=5
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "9의 배수 패턴"</b><br>
+자리 바꿈 차이 = 9|a−b|. 18=9×2 → 차이=2.<br>
+합 12, 차 2 → (12+2)/2=7, (12−2)/2=5.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "자리 바꿈 차이가 왜 항상 9의 배수예요?"<br>
+→ (10a+b)−(10b+a)=9(a−b)예요. 항상 9가 인수로 남아요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "합과 차를 알면 두 수를 즉시 구하는 공식이 있네요."<br>
+→ 큰 수=(합+차)/2, 작은 수=(합−차)/2. 두 수 문제의 만능 공식이에요.
+</div>
+<b style="color:#86efac">답: 75</b>
+</div>` },
+
+/* ─── 심화 기존 3: 자동차 속력 ─── */
+{ tag:'📝 심화 기본 3 ★★ — 자동차 속력 변환', tagColor:'#f87171',
+  bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+자동차가 시속 60 km로 달리다가 시속 80 km로 속도를 높여<br>
+총 3시간에 220 km를 이동했다.<br>
+각각 몇 시간씩 달렸는가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 모두 60 km/h 가정</b><br>
+3시간 모두 60 km/h: 180 km. 실제 220 km → 차이 40 km.<br>
+80으로 교체 시 1시간당 +20 km. 40÷20=2시간.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+60 km/h: 1시간, 80 km/h: 2시간<br>
+검증: 60+160=220 ✓
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 대입법</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+60 km/h 시간 x, 80 km/h 시간 y<br>
+x+y=3 → x=3−y … ①<br>
+60x+80y=220 … ②<br>
+①을 ②에: 60(3−y)+80y=220<br>
+180+20y=220 → y=2, x=1
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "속력 차이로 교체 횟수"</b><br>
+기준 60 km/h. 1시간을 80으로 교체 시 +20 km.<br>
+필요 추가분 40 km ÷ 20 = 2시간 교체.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "속력 문제에서 대입법이 가감법보다 편한 이유가 있나요?"<br>
+→ x+y=3을 x=3−y로 바로 분리할 수 있어서 대입이 자연스러워요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "핀란드식 가정법이 이 문제에서도 가장 빠르네요."<br>
+→ '모두 같은 속력 가정 → 차이 계산' 패턴은 속력 혼합 문제의 최단 풀이예요.
+</div>
+<b style="color:#86efac">답: 시속 60 km로 1시간, 시속 80 km로 2시간</b>
+</div>` },
 
 /* ─── 문제 1: 분수 분자/분모 ─── */
 { tag:'📝 심화 1 ★★ — 분수 변환', tagColor:'#f87171',
@@ -9824,7 +10086,7 @@ var HUB_ARTIFACTS = {
   'equation-hub': ['eq-havruta-cards'],
   'eq-identity-hub': ['eq-identity', 'eq-identity-havruta', 'eq-guarantee', 'eq-identity-discussion'],
   'avg-hub': ['avg-guide','avg-hard','avg-havruta'],
-  'simultaneous-hub': ['simultaneous-guide','simultaneous-basic','simultaneous-hard','simultaneous-havruta','simul-basic10','simul-hard10','simul-top9'],
+  'simultaneous-hub': ['simultaneous-guide','simultaneous-havruta','simul-basic10','simul-hard10','simul-top9'],
   'geometry-hub': ['geometry-guide', 'geometry-havruta'],
   'inequality-hub': ['inequality-guide','inequality-havruta','ineq-hard10','ineq-gemini5','ineq-lesson','ineq-word'],
   'linear-func-hub': ['linear-func-havruta'],
