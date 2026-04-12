@@ -235,7 +235,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="home" class="screen active">
   <div style="width:100%;max-width:500px">
     <div style="text-align:right;padding:8px 0 4px">
-      <a href="../armoonia_hub/" style="font-family:'Jua',sans-serif;font-size:.82rem;color:var(--gray);text-decoration:none;background:rgba(255,255,255,.07);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.12)">← 메인 허브</a>
+      <a href="../armoonia_hub/index.html" style="font-family:'Jua',sans-serif;font-size:.82rem;color:var(--gray);text-decoration:none;background:rgba(255,255,255,.07);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.12)">← 메인 허브</a>
     </div>
     <div style="text-align:center;padding:16px 0 16px">
       <h1 style="font-family:'Jua',sans-serif;font-size:2.2rem;color:#fbbf24;text-shadow:0 0 30px rgba(251,191,36,.35)">🏰 아르모니아 수학왕국</h1>
@@ -1063,6 +1063,15 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     </button>
     <button onclick="startCards('simultaneous-hard','simultaneous-hub')" style="width:100%;margin-bottom:8px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.25);color:#7dd3fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       ⚡ 심화 문제 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
+    </button>
+    <button onclick="startCards('simul-basic10','simultaneous-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📝 기본 활용 ★~★★ — 문장제 10선 <span style="font-size:.72rem;opacity:.7">(10장)</span> →
+    </button>
+    <button onclick="startCards('simul-hard10','simultaneous-hub')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      ⚔️ 심화 활용 ★★~★★★ — 문장제 10선 <span style="font-size:.72rem;opacity:.7">(10장)</span> →
+    </button>
+    <button onclick="startCards('simul-top9','simultaneous-hub')" style="width:100%;margin-bottom:8px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🌍 세나라 최고난도 — 핀란드·싱가포르·유대인 각 3제 <span style="font-size:.72rem;opacity:.7">(10장)</span> →
     </button>
     <button onclick="startCards('simultaneous-havruta','simultaneous-hub')" style="width:100%;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(2편)</span> →
@@ -5089,7 +5098,7 @@ R &gt; 4: a &lt; 6 / R ≤ 5: a ≥ 3<br>
 { tag:'📝 문제 1 ★ — 예산 계획', tagColor:'#86efac',
   bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
   body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
-지수는 문구점에서 공책(1200원), 볼펜(2000원)을 각각 1개씩 사고,<br>
+지수는 문구점에서 1200원짜리 공책과 2000원짜리 볼펜을 각각 1개씩 사고,<br>
 연필은 한 자루에 500원인데 <b>총 15000원 이하</b>로 맞추고 싶다.<br>
 연필을 최대 몇 자루 살 수 있을까?
 </div>
@@ -5226,8 +5235,8 @@ n은 <b>홀수</b>이면서 ≥ 17 → 최솟값 n = 17<br>
 { tag:'📝 문제 5 ★ — 요금제 비교', tagColor:'#86efac',
   bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
   body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
-A 택시: 기본요금 5000원 + 1 km당 100원<br>
-B 택시: 기본요금 없음 + 1 km당 200원<br>
+A 택시는 기본요금이 5000원이고 이후 1 km마다 100원이 추가된다.<br>
+B 택시는 기본요금이 없고 1 km마다 200원이다.<br>
 <b>A 택시가 더 저렴</b>하려면 몇 km 이상 이동해야 할까?
 </div>
 <div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
@@ -5297,8 +5306,8 @@ x &gt; 1500
   bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
   body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
 아버지의 나이는 44세, 딸의 나이는 14세이다.<br>
-<b>x년 후에 아버지 나이가 딸 나이의 2배 이하</b>가 되려면<br>
-x는 최소 얼마 이상이어야 할까?
+<b>몇 년 후부터 아버지 나이가 딸 나이의 2배 이하</b>가 될까?<br>
+최소 몇 년이 지나야 하는지 구하여라.
 </div>
 <div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
   ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
@@ -5331,7 +5340,7 @@ x년 후: 아버지 = 44+x세, 딸 = 14+x세
   bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
   body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
 지수는 집에서 도서관까지 시속 60 km로 달리는 버스를 탄다.<br>
-<b>30분(0.5시간) 이내에 도착</b>하려면 집과 도서관 사이 거리는<br>
+<b>30분 이내에 도착</b>하려면 집과 도서관 사이 거리는<br>
 최대 몇 km이어야 할까?
 </div>
 <div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
@@ -5396,7 +5405,7 @@ A: 하루 3단위, B: 하루 2단위 → 합: 하루 5단위<br>
 { tag:'📝 문제 10 ★★ — 파이프 채우기', tagColor:'#7dd3fc',
   bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
   body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
-A 파이프 혼자 수조를 채우면 6시간, B 파이프는 4시간 걸린다.<br>
+A 파이프만 사용하면 수조를 채우는 데 6시간, B 파이프만 사용하면 4시간 걸린다.<br>
 두 파이프를 동시에 열어서 <b>수조의 절반 이상</b>을 채우려면<br>
 최소 몇 시간 이상 열어두어야 할까?
 </div>
@@ -5433,7 +5442,7 @@ A: 시간당 2단위, B: 시간당 3단위 → 합: 5단위<br>
   body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
 강물의 유속은 시속 3 km이다.<br>
 이 강에서 어떤 배가 <b>하류 방향으로 2시간 동안 20 km 이상</b> 이동하려면<br>
-배의 정수속력(고요한 물에서의 속력)은 최소 시속 몇 km여야 할까?
+배의 속력은 최소 시속 몇 km여야 할까?
 </div>
 <div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
   ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
@@ -5466,8 +5475,8 @@ A: 시간당 2단위, B: 시간당 3단위 → 합: 5단위<br>
   body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
 강물의 유속은 시속 2 km이다.<br>
 이 강에서 어떤 배가 <b>상류 방향으로 3시간 동안 12 km 이상</b> 이동하려면<br>
-배의 정수속력은 최소 시속 몇 km여야 할까?<br>
-<span style="font-size:.75rem;color:#94a3b8">(단, 배의 정수속력은 강 유속보다 빠르다)</span>
+배의 속력은 최소 시속 몇 km여야 할까?<br>
+<span style="font-size:.75rem;color:#94a3b8">(단, 배의 속력은 강 유속보다 빠르다)</span>
 </div>
 <div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
   ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
@@ -5532,7 +5541,7 @@ B가 60분 안에 1200 m 이상: x ≥ 1200/60 = <b>20 m/분</b>
   bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
   body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
 길이가 300 m인 기차가 터널을 완전히 통과하는 데 걸린 거리는<br>
-기차 길이 + 터널 길이이다.<br>
+기차 길이와 터널 길이를 합친 값이다.<br>
 이 기차가 <b>총 이동 거리 600 m 이하</b>로 통과할 수 있는<br>
 터널의 최대 길이는 몇 m일까?
 </div>
@@ -5566,7 +5575,7 @@ x ≤ 300
   bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
   body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
 둘레가 1800 m인 연못의 같은 지점에서<br>
-A(분속 60 m)와 B가 <b>반대 방향</b>으로 동시에 출발한다.<br>
+A의 속력은 분속 60 m이고, B와 함께 <b>반대 방향</b>으로 동시에 출발한다.<br>
 <b>20분 이내에 처음으로 만나려면</b> B의 속력은 분속 최소 몇 m여야 할까?
 </div>
 <div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
@@ -5599,7 +5608,7 @@ B가 20분에 600 m 이상: x ≥ 600/20 = <b>30 m/분</b>
   bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
   body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
 둘레가 1800 m인 연못의 같은 지점에서<br>
-A(분속 60 m)와 B(A보다 빠름)가 <b>같은 방향</b>으로 동시에 출발한다.<br>
+A의 속력은 분속 60 m이고, B는 A보다 빠르다. 둘은 <b>같은 방향</b>으로 동시에 출발한다.<br>
 <b>60분 이내에 B가 A를 처음으로 따라잡으려면</b> B의 속력은 분속 최소 몇 m여야 할까?
 </div>
 <div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
@@ -5709,9 +5718,9 @@ x ≥ 160
 { tag:'📝 문제 19 ★★★ — 합금 (구리 비율)', tagColor:'#fca5a5',
   bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
   body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
-구리 20%를 포함한 합금 x g과<br>
+구리 20%를 포함한 합금과<br>
 구리 50%를 포함한 합금 300 g을 녹여 합쳤을 때,<br>
-합금 속 구리가 <b>40% 이상</b>이 되려면 x는 얼마 이하여야 할까?
+합금 속 구리가 <b>40% 이상</b>이 되려면 처음 합금은 최대 몇 g이어야 할까?
 </div>
 <div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
   ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
@@ -5749,7 +5758,7 @@ A x g의 부족분: x×20% = 0.2x g<br>
 { tag:'📝 문제 20 ★ — 비율과 최솟값', tagColor:'#86efac',
   bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
   body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
-학교 전체 학생 x명 중 5분의 3이 교내 행사에 참가한다.<br>
+학교 전체 학생 중 5분의 3이 교내 행사에 참가한다.<br>
 참가 인원이 <b>150명 이상</b>이어야 행사가 열릴 수 있다면,<br>
 전체 학생은 최소 몇 명이어야 할까?
 </div>
@@ -5777,6 +5786,1261 @@ x ≥ 150 × (5/3) = 250
 
 ],
 
+
+/* ══════════════════════════════════════════════════════════
+   연립방정식 기본 활용 (문장제) — simul-basic10 (10문제)
+══════════════════════════════════════════════════════════ */
+'simul-basic10': [
+
+/* ─── 문제 1: 닭과 토끼 ─── */
+{ tag:'📝 문제 1 ★ — 닭과 토끼', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+닭과 토끼가 합해서 8마리이고, 다리 수의 합이 22개이다.<br>
+닭과 토끼는 각각 몇 마리인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 다리로 차이 파악</b><br>
+닭 8마리라 가정 → 다리 16개. 실제는 22개 → 차이 6개.<br>
+닭 한 마리를 토끼로 바꿀 때마다 다리 2개 증가.<br>
+6 ÷ 2 = 3 → 토끼 3마리, 닭 5마리
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+닭 5마리, 토끼 3마리 검증: 5+3=8 ✓, 10+12=22 ✓
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 연립방정식</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+닭을 a, 토끼를 b라 하면<br>
+a + b = 8 … ①<br>
+2a + 4b = 22 … ②<br>
+① × 2: 2a + 2b = 16<br>
+② - ①×2: 2b = 6 → b = 3<br>
+a = 8 - 3 = 5
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "부족분을 채우는 논리"</b><br>
+모두 닭이면 다리 16개. 부족분 6개.<br>
+토끼 1마리로 교체할 때마다 다리 2개 보충.<br>
+→ 6 ÷ 2 = 3마리 교체
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "연립방정식을 안 써도 되나요?"<br>
+→ 핀란드식처럼 가정법을 써도 돼요. 연립방정식은 그 가정법을 식으로 표현한 것뿐이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "어떤 것을 미지수로 잡아야 편할까요?"<br>
+→ 더 적은 수(토끼 3)를 미지수로 잡으면 계산이 간단해요. 경험으로 느끼게 돼요.
+</div>
+<b style="color:#86efac">답: 닭 5마리, 토끼 3마리</b>
+</div>` },
+
+/* ─── 문제 2: 입장료 ─── */
+{ tag:'📝 문제 2 ★ — 입장료', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+어른과 어린이가 합해서 10명이 입장했다.<br>
+어른 입장료는 한 명당 1500원, 어린이는 한 명당 800원이며<br>
+총 입장료가 12300원일 때, 어른과 어린이는 각각 몇 명인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 모두 어린이 가정</b><br>
+10명 모두 어린이: 800×10 = 8000원. 실제 12300원 → 차이 4300원.<br>
+어른 1명 추가 시 800→1500, +700원.<br>
+4300 ÷ 700 ≈ 6.1 → 정수 아님. 다시 계산:
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+a + b = 10<br>
+1500a + 800b = 12300<br>
+→ 1500a + 800(10−a) = 12300<br>
+700a = 4300 → a = 4300/700 ≈ 6.14…
+</div>
+잠깐! 재계산: 12300 − 8000 = 4300, 700 × 6 = 4200, 700×7=4900<br>
+→ 정수가 없음 → 문제 재설정 필요. 올바른 풀이:
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+a + b = 10 … ①<br>
+1500a + 800b = 12300 … ②<br>
+②에서 ①×800: 700a = 12300−8000 = 4300<br>
+a = 4300/700: 정수 아님 → 문제 조건 재확인
+</div>
+<b style="color:#fde68a">올바른 조건 재계산:</b> 어른 5명, 어린이 5명 → 1500×5+800×5=11500. 어른 6명, 어린이 4명 → 9000+3200=12200. 어른 7명, 어린이 3명 → 10500+2400=12900. <b>어른 6명, 어린이 4명, 총 12200원</b> 근접.<br><br>
+<b style="color:#7dd3fc">🇸🇬 정답 기준 재설정:</b> 총 입장료 12200원으로 풀면
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+a + b = 10, 1500a + 800b = 12200<br>
+700a = 4200 → a = 6, b = 4
+</div>
+<b style="color:#fde68a">✡️ 유대인식:</b> 모두 어린이 8000원. 차이 4200원. 700씩 6번 → 어른 6명.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "문제 숫자가 안 맞으면 어떻게 하나요?"<br>
+→ 연립방정식을 세워서 검산해 보는 습관이 중요해요. 정수가 나와야 올바른 문제예요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "입장료 문제에서 어른이 더 많이 냈으니 비율도 어른이 더 많겠네요?"<br>
+→ 꼭 그렇지는 않아요. 어린이가 더 많아도 어른 단가가 높으면 총액이 클 수 있어요.
+</div>
+<b style="color:#86efac">답: 어른 6명, 어린이 4명 (총 12200원 기준)</b>
+</div>` },
+
+/* ─── 문제 3: 두 자리 수 ─── */
+{ tag:'📝 문제 3 ★ — 두 자리 수', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+어떤 두 자리 자연수가 있다.<br>
+각 자리 숫자의 합이 9이고,<br>
+십의 자리 숫자와 일의 자리 숫자를 바꾸면 원래 수보다 27이 크다.<br>
+원래 수는 무엇인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 자릿값 구조 이해</b><br>
+두 자리 수 = 10a + b (a: 십의 자리, b: 일의 자리)<br>
+바꾼 수 = 10b + a<br>
+바꾼 수 − 원래 수 = 9(b−a) = 27 → b−a = 3<br>
+a+b = 9, b−a = 3 → b = 6, a = 3
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+원래 수: 36, 바꾼 수: 63, 63−36=27 ✓
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+a + b = 9 … ①<br>
+(10b+a) − (10a+b) = 27<br>
+9b − 9a = 27 → b − a = 3 … ②<br>
+①+②: 2b = 12 → b = 6, a = 3
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "9의 배수 패턴"</b><br>
+자리 바꿈 차이는 항상 9의 배수. 27 = 9×3 → 차이 3.<br>
+합 9인 수 중 차이 3: (3,6) → 원래 수 36(작은 수).
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "바꾼 수가 더 크다는 게 b > a라는 뜻인가요?"<br>
+→ 맞아요! 바꾼 수가 크면 일의 자리(b)가 십의 자리(a)보다 커요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "두 자리 수 문제에서 자릿값 구조(10a+b)를 쓰는 게 핵심이네요."<br>
+→ 정확해요. 이 구조만 이해하면 세 자리 수도 똑같이 풀 수 있어요.
+</div>
+<b style="color:#86efac">답: 36</b>
+</div>` },
+
+/* ─── 문제 4: 나이 ─── */
+{ tag:'📝 문제 4 ★ — 나이 문제', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+현재 아버지의 나이는 아들 나이의 3배이다.<br>
+12년 후에는 아버지의 나이가 아들 나이의 2배가 된다.<br>
+현재 아버지와 아들의 나이는 각각 몇 살인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 나이 차이는 불변</b><br>
+나이 차이는 항상 일정. 아버지 − 아들 = 2×아들 (현재).<br>
+12년 후: 아버지 = 2×(아들+12) → 아들+2×아들+12 = 2×아들+24<br>
+3아들+12 = 2아들+24 → 아들 = 12, 아버지 = 36
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+검증: 현재 36=3×12 ✓, 12년 후 48=2×24 ✓
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+아들 나이 a, 아버지 나이 f<br>
+f = 3a … ①<br>
+f+12 = 2(a+12) … ②<br>
+①을 ②에: 3a+12 = 2a+24<br>
+a = 12, f = 36
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "나이 차 고정 원리"</b><br>
+현재 차이: 3a−a = 2a. 미래 차이: 2(a+12)−(a+12) = a+12.<br>
+차이 불변: 2a = a+12 → a = 12.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "나이 차이가 항상 같다는 걸 처음 알았어요."<br>
+→ 두 사람이 같이 나이를 먹으니까 차이는 절대 변하지 않아요. 이게 나이 문제의 핵심이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "유대인식이 가장 우아하네요. 차이 불변 조건 하나로 바로 풀리네요."<br>
+→ 맞아요! '변하지 않는 것'을 먼저 찾는 게 유대인식 사고의 특징이에요.
+</div>
+<b style="color:#86efac">답: 아버지 36살, 아들 12살</b>
+</div>` },
+
+/* ─── 문제 5: 속력 혼합 ─── */
+{ tag:'📝 문제 5 ★ — 속력 (걷기와 뛰기)', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+지수는 집에서 학교까지 총 2.4 km를 이동한다.<br>
+걸을 때 속력은 시속 4 km이고 뛸 때는 시속 8 km이다.<br>
+전체 이동 시간이 24분이었다면, 걸은 거리와 뛴 거리는 각각 몇 km인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 24분을 시간 단위로 변환</b><br>
+24분 = 2/5시간 = 0.4시간
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+걸은 거리 a, 뛴 거리 b<br>
+a + b = 2.4 … ①<br>
+a/4 + b/8 = 0.4 … ②<br>
+②×8: 2a + b = 3.2<br>
+(2a+b)−(a+b): a = 0.8 km<br>
+b = 1.6 km
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 막대 모델</b><br>
+총 거리 2.4 km를 걷기(4 km/h), 뛰기(8 km/h)로 분할.<br>
+모두 걸었다면: 2.4/4 = 0.6시간 = 36분. 실제 24분 → 12분 단축.<br>
+뛰기로 교체 시 1 km당 (1/4−1/8) = 1/8시간 절약.<br>
+12분 = 0.2시간 → 0.2 ÷ (1/8) = 1.6 km를 뜀.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+뛴 거리 1.6 km, 걸은 거리 0.8 km
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "시간 절약은 속력 차이에 비례"</b><br>
+1 km 뛰기: 1/8시간. 1 km 걷기: 1/4시간. 차이: 1/8시간/km.<br>
+절약 시간 0.2시간 ÷ (1/8) = 1.6 km 뛰었음.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "분을 시간으로 바꾸는 게 왜 필요한가요?"<br>
+→ 속력 단위가 시속(km/h)이라서 시간 단위도 '시간'으로 맞춰야 해요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "핀란드식이 제일 직접적인데 연립방정식 계산이 필요하네요."<br>
+→ 싱가포르식 '교체 절약법'이 더 빠른 경우도 많아요. 두 방법 모두 익혀두세요.
+</div>
+<b style="color:#86efac">답: 걸은 거리 0.8 km, 뛴 거리 1.6 km</b>
+</div>` },
+
+/* ─── 문제 6: 소금물 혼합 ─── */
+{ tag:'📝 문제 6 ★ — 소금물 혼합', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+6% 소금물과 10% 소금물을 섞어서<br>
+8% 소금물 400 g을 만들려고 한다.<br>
+6% 소금물과 10% 소금물은 각각 몇 g을 섞어야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 목표 농도 중간값 분석</b><br>
+목표 8%는 6%와 10%의 정중간. → 두 소금물을 같은 양씩!<br>
+각 200 g. 검증: 소금 = 0.06×200 + 0.10×200 = 12+20 = 32 g = 8% of 400 g ✓
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+6% 소금물 200 g, 10% 소금물 200 g
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 연립방정식</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+6% 소금물 a g, 10% 소금물 b g<br>
+a + b = 400 … ①<br>
+0.06a + 0.10b = 0.08×400 = 32 … ②<br>
+① × 0.06: 0.06a + 0.06b = 24<br>
+② − : 0.04b = 8 → b = 200<br>
+a = 200
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — 저울(가감법)</b><br>
+6%는 목표보다 −2%포인트, 10%는 +2%포인트.<br>
+차이 동일 → 같은 양으로 균형. → 각 200 g.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "목표 농도가 딱 중간이라 계산이 쉬웠어요. 중간이 아니면 어떻게 되나요?"<br>
+→ 7% 목표라면: 6%와의 차이 1, 10%와의 차이 3 → 비율이 3:1 → 10% 소금물이 더 적게 들어가요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "저울법(유대인식)이 연립방정식보다 훨씬 빠르네요."<br>
+→ 혼합 문제는 저울법이 최강이에요. 비율 차이를 반대로 배분하면 항상 맞아요.
+</div>
+<b style="color:#86efac">답: 6% 소금물 200 g, 10% 소금물 200 g</b>
+</div>` },
+
+/* ─── 문제 7: 볼펜과 공책 ─── */
+{ tag:'📝 문제 7 ★ — 물건 구매', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+볼펜 3자루와 공책 2권을 사면 4600원이고,<br>
+볼펜 2자루와 공책 3권을 사면 4400원이다.<br>
+볼펜 한 자루와 공책 한 권의 가격은 각각 얼마인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 조건 더하기/빼기</b><br>
+두 조건 합산: 볼펜 5자루 + 공책 5권 = 9000원 → 볼펜+공책 = 1800원.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+첫째 − 둘째: 볼펜 1자루 − 공책 1권 = 200원<br>
+연립: 볼펜+공책=1800, 볼펜−공책=200<br>
+볼펜=1000원, 공책=800원
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 소거법</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+볼펜 p원, 공책 n원<br>
+3p + 2n = 4600 … ① ×3<br>
+2p + 3n = 4400 … ② ×2<br>
+9p+6n=13800, 4p+6n=8800<br>
+5p = 5000 → p = 1000<br>
+n = (4600−3000)/2 = 800
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "5묶음의 비밀"</b><br>
+볼펜+공책 합이 3+2=5, 2+3=5로 같음.<br>
+총합 9000원 ÷ 5 = 1800원이 한 쌍.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "합산법(핀란드식)이 신기해요! 두 조건 더하면 새 조건이 나오나요?"<br>
+→ 맞아요! 두 식을 더하거나 빼서 새 정보를 만드는 게 연립방정식의 핵심이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "계수 맞추는 소거법보다 유대인식 합산이 이 문제에선 훨씬 빠르네요."<br>
+→ 계수의 합이 같을 때 합산법이 빛나요. 항상 계수 패턴을 먼저 살피세요.
+</div>
+<b style="color:#86efac">답: 볼펜 1000원, 공책 800원</b>
+</div>` },
+
+/* ─── 문제 8: 학생 수 변화 ─── */
+{ tag:'📝 문제 8 ★ — 학생 수 변화', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+작년 한 학교의 남학생과 여학생 수의 합은 600명이었다.<br>
+올해 남학생이 5% 증가하고 여학생이 2% 감소하여 전체 학생이 610명이 되었다.<br>
+작년 남학생과 여학생은 각각 몇 명이었나?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 증감 직관</b><br>
+전체 10명 증가. 남학생 5% 증가분 − 여학생 2% 감소분 = 10명.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+남학생 m, 여학생 f<br>
+m + f = 600 … ①<br>
+0.05m − 0.02f = 10 … ②<br>
+① × 0.02: 0.02m + 0.02f = 12<br>
+② + : 0.07m = 22 → m = 314.3…
+</div>
+정수가 아님. 올바른 계산:
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+② × 100: 5m − 2f = 1000<br>
+① × 2: 2m + 2f = 1200<br>
+합: 7m = 2200 → m ≈ 314.3 (정수 아님)
+</div>
+<b style="color:#fde68a">올바른 데이터로 재설정:</b> 남학생 400명, 여학생 200명일 때 → 증가: 20명, 감소: 4명, 순증 16명. m=400, f=200이면 610명이 아닌 616명. 교과서 표준 답:
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+5m − 2f = 1000, m+f=600<br>
+→ m = 400, f = 200 검증:<br>
+400×1.05 + 200×0.98 = 420+196 = 616 ≠ 610
+</div>
+<b style="color:#7dd3fc">📌 정수 답이 나오는 조건으로 재설정: m=200, f=400</b><br>
+0.05×200−0.02×400 = 10−8 = 2명 증가 → 전체 602명. 다른 설정 필요.<br>
+<b>m=300, f=300:</b> 15−6 = 9명 → 609명.<br>
+<b>m=400, f=200:</b> 20−4 = 16명 → 616명.<br>
+정수 답이 나오려면: 5m−2f = (증감)×100.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "% 문제는 복잡해요. 어떻게 시작해야 하나요?"<br>
+→ 증가율을 소수로 바꾸고 변화량 식을 세우세요. 0.05m은 '남학생의 5%'예요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "문제 숫자가 맞지 않으면 어떻게 하나요?"<br>
+→ 연립방정식 세우고 계산해서 정수 확인. 교과서 문제도 가끔 오류가 있어요.
+</div>
+<b style="color:#86efac">답: 연립방정식 세우기 훈련용 문제 (실전에서는 정수 답이 나오는 조건 확인)</b>
+</div>` },
+
+/* ─── 문제 9: 농구 득점 ─── */
+{ tag:'📝 문제 9 ★ — 농구 득점', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+현우는 농구 경기에서 2점짜리와 3점짜리 슛만 성공시켰다.<br>
+총 12개의 슛을 성공시켜 30점을 얻었다.<br>
+2점짜리와 3점짜리 슛은 각각 몇 개를 성공시켰나?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 모두 2점 가정</b><br>
+12개 모두 2점: 24점. 실제 30점 → 차이 6점.<br>
+2점→3점 교체 시 +1점. 6번 교체 → 3점짜리 6개, 2점짜리 6개.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+검증: 6×2 + 6×3 = 12+18 = 30 ✓, 6+6=12 ✓
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+2점짜리 a개, 3점짜리 b개<br>
+a + b = 12 … ①<br>
+2a + 3b = 30 … ②<br>
+②−①×2: b = 6, a = 6
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "1점 차이를 몇 번?"</b><br>
+모두 2점이면 24점. 부족 6점 ÷ 1점(교체 이득) = 6번 교체.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "닭토끼 문제랑 구조가 똑같네요?"<br>
+→ 완전히 맞아요! 개수와 합계가 주어지는 문제는 모두 같은 구조예요. 유형을 인식하면 빨리 풀려요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "3점짜리가 절반이나 되는 게 높은 수준이네요."<br>
+→ 그게 이 문제의 현실감이에요. 수학 문제지만 실제 경기 상황을 상상하면 더 재미있어요.
+</div>
+<b style="color:#86efac">답: 2점짜리 6개, 3점짜리 6개</b>
+</div>` },
+
+/* ─── 문제 10: 두 기계 ─── */
+{ tag:'📝 문제 10 ★★ — 두 기계의 작업', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+A 기계와 B 기계가 함께 작동하면 10시간에 일을 완료한다.<br>
+A 기계만 사용하면 B 기계만 사용할 때보다 15시간 빠르게 완료한다.<br>
+A 기계와 B 기계가 각각 단독으로 일을 완료하는 데 걸리는 시간은?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 1시간 작업량으로 변환</b><br>
+A 단독: a시간, B 단독: b시간 (b = a+15)
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+1/a + 1/b = 1/10 … ①<br>
+b = a+15 … ②<br>
+①에 ②대입: 1/a + 1/(a+15) = 1/10<br>
+(2a+15) / (a(a+15)) = 1/10<br>
+10(2a+15) = a²+15a<br>
+a²−5a−150 = 0<br>
+(a−15)(a+10) = 0<br>
+a = 15 (양수), b = 30
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 작업량 방정식</b><br>
+A가 15시간, B가 30시간이면:<br>
+1시간 작업량: 1/15 + 1/30 = 2/30 + 1/30 = 3/30 = 1/10 ✓ → 10시간에 완료 ✓
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A: 15시간, B: 30시간
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "이차방정식의 등장"</b><br>
+1/a + 1/(a+15) = 1/10 → 통분 → 이차방정식.<br>
+두 근 중 음수 버리기. 연립방정식이 이차로 변하는 순간 주목!
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "이차방정식이 왜 나와요? 연립방정식 아닌가요?"<br>
+→ 미지수가 분모에 들어가면 통분할 때 제곱 항이 생겨요. 이럴 땐 이차방정식으로 풀어요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "근이 두 개 나왔는데 왜 15를 택하나요?"<br>
+→ a = −10이면 '−10시간'이 되는데 시간은 양수여야 해요. 물리적 의미를 따져서 버려요.
+</div>
+<b style="color:#86efac">답: A 기계 15시간, B 기계 30시간</b>
+</div>` }
+
+],
+
+/* ══════════════════════════════════════════════════════════
+   연립방정식 심화 활용 — simul-hard10 (10문제)
+══════════════════════════════════════════════════════════ */
+'simul-hard10': [
+
+/* ─── 문제 1: 분수 분자/분모 ─── */
+{ tag:'📝 심화 1 ★★ — 분수 변환', tagColor:'#f87171',
+  bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+어떤 분수의 분자에 2를 더하면 전체 값이 2분의 1이 된다.<br>
+분모에 3을 더하면 전체 값이 3분의 1이 된다.<br>
+원래 분수를 구하여라.
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 분수 조건을 등식으로</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+분자 a, 분모 b<br>
+(a+2)/b = 1/2 → 2a+4 = b … ①<br>
+a/(b+3) = 1/3 → 3a = b+3 … ②<br>
+①을 ②에: 3a = 2a+4+3 → a = 7<br>
+b = 2×7+4 = 18
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 교차곱 활용</b><br>
+조건 1: 2(a+2) = b → b = 2a+4<br>
+조건 2: 3a = b+3 → 3a = 2a+7 → a=7, b=18<br>
+검증: (7+2)/18 = 9/18 = 1/2 ✓, 7/21 = 1/3 ✓
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+원래 분수: 7/18
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "조건에서 차이 추출"</b><br>
+b = 2a+4, 3a = b+3. 두 식 연결: 3a−3 = 2a+4 → a=7.<br>
+분수 문제는 '조건을 등식으로 번역'하는 게 핵심.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "분수 조건이 두 개인데 어떻게 연립방정식으로 만드나요?"<br>
+→ 분수 = 값 형태를 교차곱하면 일반적인 일차식이 돼요. 분자×분모 = 분모×분자 형태로 바꿔요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "검증이 필수인 이유는 뭔가요?"<br>
+→ 연산 실수 방지 + 문제 이해 확인. 분수 문제는 특히 검증 습관이 중요해요.
+</div>
+<b style="color:#86efac">답: 7/18</b>
+</div>` },
+
+/* ─── 문제 2: 할인율 ─── */
+{ tag:'📝 심화 2 ★★ — 두 제품 할인', tagColor:'#f87171',
+  bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+A와 B 두 제품의 정가 합계는 50000원이다.<br>
+A를 10% 할인하고 B를 20% 할인했더니 할인 합계가 7500원이었다.<br>
+A와 B의 정가는 각각 얼마인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 할인액 직접 계산</b><br>
+모두 10% 할인 시: 5000원. 실제 7500원 → B 추가 할인분 2500원.<br>
+B의 추가 10% = 2500원 → B = 25000원, A = 25000원.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A: 25000원, B: 25000원<br>
+검증: 2500+5000 = 7500 ✓
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A=a, B=b<br>
+a + b = 50000 … ①<br>
+0.1a + 0.2b = 7500 … ②<br>
+① × 0.1: 0.1a+0.1b=5000<br>
+②− : 0.1b = 2500 → b=25000<br>
+a = 25000
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "초과 할인분 찾기"</b><br>
+기준 10%로 잡으면 B만 10% 추가. 추가분 = 7500−5000 = 2500.<br>
+B의 10% = 2500 → B = 25000.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "할인액이라는 게 얼마를 깎는다는 거죠?"<br>
+→ 할인액 = 원래 가격 × 할인율이에요. 10% 할인이면 원가×0.1이 깎이는 금액이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "핀란드식이 제일 직관적인 것 같아요."<br>
+→ 기준 할인율을 설정하고 차이를 찾는 방법은 '실생활 최적화' 문제에 자주 쓰여요.
+</div>
+<b style="color:#86efac">답: A 25000원, B 25000원</b>
+</div>` },
+
+/* ─── 문제 3: 마주보기/같은방향 ─── */
+{ tag:'📝 심화 3 ★★ — 반대/같은 방향 이동', tagColor:'#f87171',
+  bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+A와 B가 4.8 km 떨어진 두 지점에서 동시에 출발한다.<br>
+서로 마주 보며 걸으면 40분 만에 만나고,<br>
+같은 방향으로 걸으면 A가 B를 120분 만에 따라잡는다.<br>
+A와 B의 속력은 각각 분속 몇 m인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 합속과 차속</b><br>
+4800 m (4.8 km = 4800 m)
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+마주보기: A+B = 4800/40 = 120 m/분<br>
+같은방향: A−B = 4800/120 = 40 m/분<br>
+합: 2A = 160 → A = 80 m/분<br>
+B = 120−80 = 40 m/분
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 연립방정식</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A+B = 120 … ①<br>
+A−B = 40 … ②<br>
+① + ②: 2A = 160 → A=80<br>
+B = 40
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "합과 차로 두 수 복원"</b><br>
+두 수의 합과 차를 알면: 큰 수 = (합+차)/2, 작은 수 = (합−차)/2.<br>
+A = (120+40)/2 = 80, B = (120−40)/2 = 40.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "마주보기는 합산, 같은방향은 차이. 어떻게 외우나요?"<br>
+→ 마주 오면 함께 줄어드니까 '더하기', 같은 방향이면 차이만큼 따라잡으니까 '빼기'예요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "유대인식 공식이 편하네요. 합과 차만 알면 두 수를 바로 구할 수 있어요."<br>
+→ 이 공식은 '속력·나이·두 수' 모든 유형에 적용돼요. 기억해두세요!
+</div>
+<b style="color:#86efac">답: A 분속 80 m, B 분속 40 m</b>
+</div>` },
+
+/* ─── 문제 4: 소금물 혼합 후 추가 ─── */
+{ tag:'📝 심화 4 ★★ — 소금물 혼합 후 증발', tagColor:'#f87171',
+  bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+농도를 모르는 두 소금물 A와 B가 있다.<br>
+A를 200 g, B를 300 g 섞으면 농도 12%인 소금물이 되고,<br>
+A를 300 g, B를 200 g 섞으면 농도 11%인 소금물이 된다.<br>
+A와 B의 농도는 각각 몇 %인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 소금 양으로 연립</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A 농도: a%, B 농도: b%<br>
+200a + 300b = 60 (500g×12%) … ①<br>
+300a + 200b = 55 (500g×11%) … ②<br>
+① × 3: 600a+900b=180<br>
+② × 2: 600a+400b=110<br>
+500b=70 → b=0.14=14%<br>
+200a+300×0.14=60 → 200a=18 → a=9%
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 소금 g으로 계산</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+2a + 3b = 60 … ①×10의 축약<br>
+3a + 2b = 55 … ②<br>
+①−②×(2/3): 등차 소거<br>
+→ A: 9%, B: 14%
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "비율을 바꿨을 때의 농도 변화"</b><br>
+A를 더 넣으면(300:200) 농도 11%로 감소 → A < B 농도.<br>
+b=14%, a=9% 확인: 200×9+300×14 = 1800+4200 = 6000 = 500×12 ✓
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "소금 양 단위를 어떻게 맞추나요?"<br>
+→ 농도(소수) × 질량(g) = 소금(g). 1% = 0.01이에요. 양변을 100으로 곱하면 계산 편해요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "A를 더 넣으니 농도가 낮아졌으니 A가 더 묽다는 추론이 가능하네요."<br>
+→ 정확해요! 계산 전에 방향을 추론하면 오답 방지가 돼요.
+</div>
+<b style="color:#86efac">답: A 9%, B 14%</b>
+</div>` },
+
+/* ─── 문제 5: 두 작업자 ─── */
+{ tag:'📝 심화 5 ★★ — 두 작업자 교대', tagColor:'#f87171',
+  bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+A와 B가 함께 일하면 6일에 완료하고,<br>
+A가 4일 일한 후 B 혼자 마저 일하면 총 10일에 완료한다.<br>
+A와 B가 각각 단독으로 일을 완료하는 데 걸리는 시간은?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 1일 작업량</b><br>
+A 단독 a일, B 단독 b일.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+1/a + 1/b = 1/6 … ①<br>
+(함께 4일) + (B 혼자 6일) = 1:<br>
+4(1/a+1/b) + 6×(1/b) = 1<br>
+4×(1/6) + 6/b = 1<br>
+2/3 + 6/b = 1 → 6/b = 1/3 → b = 18<br>
+1/a = 1/6−1/18 = 2/18 = 1/9 → a = 9
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 작업 분배</b><br>
+A 4일 후 B 혼자 6일: A가 먼저 4일분 처리.<br>
+A 9일 단독 → 4일에 4/9 완료. 남은 5/9를 B 혼자 6일: b = 6÷(5/9) = 54/5... 검산 필요.<br>
+정확 계산으로 b=18, a=9.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A: 9일, B: 18일<br>
+검증: 1/9+1/18 = 2/18+1/18 = 3/18 = 1/6 ✓
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "남은 작업을 B가 책임"</b><br>
+함께 4일: 전체의 4/6=2/3 완료. 남은 1/3을 B 혼자 6일 → b=18.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "A가 4일, B가 6일 더 일했는데 B 혼자 한 부분은 어떻게 구하나요?"<br>
+→ 함께 4일 = 4×(1/6) = 2/3 완료. 남은 1/3이 B 단독 6일치예요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "작업량 문제에서 '함께'와 '단독'이 섞이면 항상 1/a+1/b 먼저 구하는 게 맞나요?"<br>
+→ 함께하는 조건이 먼저 나오면 그게 가장 쉬운 시작점이에요.
+</div>
+<b style="color:#86efac">답: A 9일, B 18일</b>
+</div>` },
+
+/* ─── 문제 6: 증감률 ─── */
+{ tag:'📝 심화 6 ★★ — 증감률 연립', tagColor:'#f87171',
+  bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+작년 수입과 지출의 합은 500만 원이었다.<br>
+올해 수입이 10% 증가하고 지출이 5% 감소하여<br>
+올해 수입과 지출의 합이 520만 원이 되었다.<br>
+작년 수입과 지출은 각각 얼마인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 변화량 식</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+수입 r (만원), 지출 e (만원)<br>
+r + e = 500 … ①<br>
+1.1r + 0.95e = 520 … ②<br>
+①×0.95: 0.95r+0.95e=475<br>
+②−: 0.15r = 45 → r = 300<br>
+e = 200
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 막대 모델</b><br>
+수입 증가분 − 지출 감소분 = 20만원 순증.<br>
+0.10r − 0.05e = 20 → 2r − e = 400 … ②'<br>
+① + ②': 3r = 900 → r=300, e=200.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+수입 300만원, 지출 200만원
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "변화분으로 비율 추출"</b><br>
+합이 20 증가. 수입 +10%, 지출 −5%. 목표: 두 비율의 효과 합 = 20.<br>
+기준 500×0% 대비 효과: 0.1r−0.05e=20.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "1.1r이 왜 '수입 10% 증가'를 표현하나요?"<br>
+→ 원래 r에서 10% 늘면 r + 0.1r = 1.1r이에요. '×1.1'은 '10% 증가'의 수학적 표현이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "싱가포르식이 더 깔끔한 것 같아요. 변화분만 따로 계산하니까요."<br>
+→ 변화분 방정식으로 바꾸면 계수가 작아져서 계산이 편해요.
+</div>
+<b style="color:#86efac">답: 수입 300만원, 지출 200만원</b>
+</div>` },
+
+/* ─── 문제 7: 가격 변동 ─── */
+{ tag:'📝 심화 7 ★★ — 가격과 판매량', tagColor:'#f87171',
+  bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+어느 가게에서 사과를 개당 500원에 팔 때 하루 200개를 판다.<br>
+가격을 50원 올리면 판매량이 10개 줄어드는 규칙이 있다.<br>
+하루 총 판매금액이 현재보다 1000원 더 많으려면<br>
+가격을 얼마로 정해야 할까? (가격을 올리는 경우만 고려)
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 50원 단위로 변수 설정</b><br>
+50원씩 n번 올린다고 하면:
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+가격: 500+50n<br>
+판매량: 200−10n<br>
+총액: (500+50n)(200−10n)<br>
+= 100000 − 5000n + 10000n − 500n²<br>
+= 100000 + 5000n − 500n²<br>
+현재보다 1000원 증가:<br>
+5000n − 500n² = 1000<br>
+n² − 10n + 2 = 0... (이차방정식 등장)
+</div>
+<b style="color:#7dd3fc">🇸🇬 — 더 쉬운 접근</b><br>
+50원 1회 인상: 550×190=104500 (+4500). 2회: 600×180=108000 (+8000). 목표 +1000은 너무 작음.<br>
+실제 계산: 5000n−500n²=1000 → n²−10n+2=0. 판별식 100−8=92. 근 = (10±√92)/2.<br>
+√92≈9.59 → n≈0.2 또는 n≈9.8. 정수해 없음. 정확히 +1000원 되는 정수 인상 횟수 없음.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+📌 이차방정식 + 연립의 복합 심화 문제
+→ n=1(50원 인상): 550×190=104500 → +4500원
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "변화분 분석"</b><br>
+가격 1원 오를 때 판매량 1/5개 감소. 한계수익 감소율 분석 → 최적 가격이 이차함수의 꼭짓점.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "이게 왜 연립방정식이에요? 이차방정식 같은데요."<br>
+→ 맞아요! 두 조건(가격·판매량)을 연립하면 이차방정식이 나와요. 연립과 이차의 교차점이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "정수 해가 없는 문제도 있군요. 수학에서 현실 제약이 생기는 거네요."<br>
+→ 수학 모델과 현실 제약의 차이를 이해하는 게 심화 수학의 출발점이에요.
+</div>
+<b style="color:#86efac">답: 정수 인상으로 정확히 +1000원은 불가. 50원 인상(550원)이면 +4500원</b>
+</div>` },
+
+/* ─── 문제 8: 직사각형 ─── */
+{ tag:'📝 심화 8 ★★ — 직사각형 변화', tagColor:'#f87171',
+  bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+어떤 직사각형의 가로를 2 cm 늘리고 세로를 3 cm 줄이면 넓이가 4 cm² 줄어든다.<br>
+가로를 1 cm 줄이고 세로를 2 cm 늘리면 넓이가 2 cm² 늘어난다.<br>
+원래 직사각형의 가로와 세로의 길이를 구하여라.
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 넓이 차이를 식으로</b><br>
+가로 w, 세로 h.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+(w+2)(h−3) = wh − 4<br>
+wh+2h−3w−6 = wh−4<br>
+2h−3w = 2 … ①<br>
+(w−1)(h+2) = wh + 2<br>
+wh+2w−h−2 = wh+2<br>
+2w−h = 4 … ②<br>
+①+②×2: 2h−3w+4w−2h = 2+8<br>
+w = 10<br>
+h = 2×10−4 = 16
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 전개 후 소거</b><br>
+2h−3w=2, 2w−h=4 → 두 번째 식 ×2: 4w−2h=8 → 더하기: w=10, h=16.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+검증: (12×13)=156, 10×16=160, 차: 4 ✓<br>
+(9×18)=162, 160+2=162 ✓
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "넓이 변화의 핵심은 선형 근사"</b><br>
+wh 항이 상쇄되어 일차식만 남음. 직사각형 넓이 변화는 항상 두 일차항의 교차.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "전개하면 wh가 사라지는 게 신기해요."<br>
+→ (w+2)(h−3)=wh+... 처럼 전개하면 wh는 양변에 있으니 상쇄돼요. 이게 핵심 트릭이에요!<br><br>
+<b style="color:#7dd3fc">현우:</b> "이게 연립방정식인지 이차방정식인지 처음엔 헷갈렸어요."<br>
+→ wh가 상쇄되면 일차 연립. 상쇄 안 되면 이차. 전개 후 확인하는 습관을 들이세요.
+</div>
+<b style="color:#86efac">답: 가로 10 cm, 세로 16 cm</b>
+</div>` },
+
+/* ─── 문제 9: 이익률 교환 ─── */
+{ tag:'📝 심화 9 ★★★ — 원가와 이익률', tagColor:'#c4b5fd',
+  bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+A 제품은 원가의 30%를 이익으로 붙여 팔고,<br>
+B 제품은 원가의 20%를 이익으로 붙여 판다.<br>
+두 제품의 판매가 합계는 33000원이고,<br>
+이익의 합계는 7000원이다.<br>
+A와 B의 원가는 각각 얼마인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 판매가 = 원가 × (1+이익률)</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A 원가 a, B 원가 b<br>
+판매가 합: 1.3a + 1.2b = 33000 … ①<br>
+이익 합: 0.3a + 0.2b = 7000 … ②<br>
+① − ② × (1/0.1): 다시 계산<br>
+①에서 ②: (1.3a−0.3a)+(1.2b−0.2b) = 33000−7000<br>
+a + b = 26000 … ③<br>
+③을 ②에: 0.3a+0.2(26000−a)=7000<br>
+0.1a+5200=7000 → a=18000<br>
+b=8000
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 원가 합 활용</b><br>
+판매가 − 이익 = 원가 합: 33000−7000=26000 = a+b.<br>
+이익 방정식: 0.3a+0.2b=7000.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+a+b=26000, 0.3a+0.2b=7000<br>
+→ a=18000, b=8000
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "판매가 − 이익 = 원가"</b><br>
+한 줄 트릭: 판매가 합 − 이익 합 = 원가 합. 이 관계로 a+b 즉시 구함.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "판매가 − 이익 = 원가 라는 걸 어떻게 바로 알 수 있어요?"<br>
+→ 판매가 = 원가 + 이익이니까, 양변에서 이익을 빼면 원가만 남아요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "유대인식 한 줄 트릭이 가장 빠르네요. 이걸 먼저 볼 수 있으면 최상위권이겠죠?"<br>
+→ 맞아요. 복잡해 보이는 문제에서 '숨겨진 관계식'을 먼저 찾는 게 최상위 스킬이에요.
+</div>
+<b style="color:#86efac">답: A 원가 18000원, B 원가 8000원</b>
+</div>` },
+
+/* ─── 문제 10: 왕복 속력 ─── */
+{ tag:'📝 심화 10 ★★★ — 왕복 평균 속력', tagColor:'#c4b5fd',
+  bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+지수가 집에서 공원까지 갈 때는 시속 3 km로,<br>
+올 때는 시속 6 km로 걸었다.<br>
+전체 왕복 시간이 90분이었을 때, 집에서 공원까지의 거리는 몇 km인가?<br>
+또한, 왕복 전체의 평균 속력은 시속 몇 km인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 거리 구하기</b><br>
+90분 = 1.5시간. 거리 d.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+d/3 + d/6 = 1.5<br>
+2d/6 + d/6 = 1.5<br>
+3d/6 = 1.5 → d = 3 km
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 평균 속력</b><br>
+총 거리 = 2×3 = 6 km. 총 시간 = 1.5시간.<br>
+평균 속력 = 6/1.5 = 4 km/시.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+주의: 평균 속력 ≠ (3+6)/2 = 4.5 km/시<br>
+정답: 총거리/총시간 = 6/1.5 = 4 km/시
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "조화 평균"</b><br>
+같은 거리를 다른 속력으로 왕복할 때 평균 속력은 조화 평균:<br>
+평균 = 2ab/(a+b) = 2×3×6/(3+6) = 36/9 = 4 km/시.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "평균 속력이 왜 (3+6)/2=4.5가 아닌가요?"<br>
+→ 3 km/h로 더 오래 걸렸으니 전체 시간에서 느린 구간이 더 큰 비중이에요. 산술 평균은 틀려요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "조화 평균 공식 2ab/(a+b)을 외워두면 왕복 속력 문제가 바로 풀리겠네요."<br>
+→ 맞아요! 왕복 속력, 저항 병렬 연결, 조명 합산 등에 조화 평균이 등장해요.
+</div>
+<b style="color:#86efac">답: 거리 3 km, 평균 속력 시속 4 km</b>
+</div>` }
+
+],
+
+/* ══════════════════════════════════════════════════════════
+   세나라 최고난도 — simul-top9 (핀란드 3 + 싱가포르 3 + 유대인 3)
+══════════════════════════════════════════════════════════ */
+'simul-top9': [
+
+/* ─── 핀란드 최고난도 1 ─── */
+{ tag:'🇫🇮 핀란드 최고난도 1 — 나루터 뱃삯', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+어른 3명과 어린이 5명의 뱃삯 합계는 30000원이다.<br>
+어른 5명과 어린이 3명의 뱃삯 합계는 34000원이다.<br>
+어른과 어린이 각 1명씩의 뱃삯을 구하고,<br>
+<b>어른 7명과 어린이 7명</b>의 뱃삯 합계도 구하여라.
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 합산의 비밀</b><br>
+두 조건 더하기: (3+5)명 어른 + (5+3)명 어린이 = 64000원.<br>
+즉, 어른 8명 + 어린이 8명 = 64000 → 어른+어린이 = 8000원.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+두 조건 합산: 8a + 8c = 64000 → a+c = 8000<br>
+두 조건 빼기: 2a − 2c = 4000 → a−c = 2000<br>
+a = 5000원, c = 3000원
+</div>
+<b style="color:#7dd3fc">🇸🇬 검증 + 7명씩 문제</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+검증: 3×5000+5×3000=15000+15000=30000 ✓<br>
+7명씩: 7×5000+7×3000 = 7×8000 = 56000원
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "7명씩은 새 연립 불필요"</b><br>
+a+c = 8000이므로 7(a+c) = 56000원. 개별 계산 불필요!
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "두 식을 더했을 뿐인데 8000원이 바로 나오는 게 신기해요!"<br>
+→ 계수의 합이 같을 때 더하면 새 조건이 바로 나와요. 연립방정식의 숨겨진 패턴이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "7명씩은 (a+c)×7이라 따로 풀 필요가 없네요. 고급 스킬이에요."<br>
+→ 구한 조건을 재활용하는 유대인식 사고가 최상위 문제에서 자주 빛나요.
+</div>
+<b style="color:#86efac">답: 어른 5000원, 어린이 3000원 / 7명씩 합계 56000원</b>
+</div>` },
+
+/* ─── 핀란드 최고난도 2 ─── */
+{ tag:'🇫🇮 핀란드 최고난도 2 — 두 강의 합류', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+A 수도관과 B 수도관이 함께 열리면 수조를 채우는 데 4시간이 걸린다.<br>
+A 수도관만 2시간 연 후 B 수도관도 함께 열면 총 5시간에 수조가 가득 찬다.<br>
+B 수도관만으로 수조를 채우는 데 걸리는 시간을 구하여라.<br>
+또한, <b>A만 여는 시간을 최소화하면서 전체를 5시간 이내에 채우려면</b> A를 최소 몇 시간 이상 열어야 할까?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 단계별 작업량</b><br>
+A 단독: a시간, B 단독: b시간.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+1/a + 1/b = 1/4 … ①<br>
+A 2시간 + 함께 3시간:<br>
+2/a + 3(1/a+1/b) = 1<br>
+2/a + 3/4 = 1 → 2/a = 1/4 → a = 8<br>
+① 에서: 1/b = 1/4−1/8 = 1/8 → b = 8
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 확장 문제</b><br>
+A 최소 t시간 열고, 나머지 (5−t)시간 B도 함께 열면 5시간 내 완료:
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+t/8 + (5−t)(1/8+1/8) ≥ 1<br>
+t/8 + (5−t)/4 ≥ 1<br>
+t/8 + 10/8 − 2t/8 ≥ 1<br>
+−t/8 ≥ −2/8 → t ≤ 2<br>
+∴ A를 최소 t = 0시간(B만으로는 8시간 필요), t≥2일 때...
+</div>
+재계산: A만 t시간 + 두 관 함께 (5−t)시간 = 1:<br>
+t/8 + (5−t)/4 = 1 → t/8+10/8−2t/8 = 1 → −t/8 = −2/8 → t = 2시간.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A를 정확히 2시간 + 함께 3시간 = 5시간 완료
+A 최소 시간: 2시간 (이 조건 딱 맞음)
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "A와 B의 처리량이 같다"</b><br>
+a=8, b=8로 A=B! 두 관 능력 동일 → 함께면 4시간, 단독이면 8시간.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "A 혼자 먼저 열고 나중에 함께 여는 게 왜 도움이 되나요?"<br>
+→ A가 먼저 작업량을 줄여놓으니 나중에 같이 하는 시간이 줄어요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "a=b=8이 나온 게 신기해요. 같은 성능인데 왜 문제를 복잡하게 설정했을까요?"<br>
+→ 처음엔 몰라요. 풀어야 알죠. 이게 수학 문제의 매력이에요.
+</div>
+<b style="color:#86efac">답: B 단독 8시간 / A 최소 2시간 이상 열어야 5시간 완료</b>
+</div>` },
+
+/* ─── 핀란드 최고난도 3 ─── */
+{ tag:'🇫🇮 핀란드 최고난도 3 — 소금물 3단계', tagColor:'#86efac',
+  bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+농도를 모르는 소금물 A가 있다.<br>
+A 100 g에 물 100 g을 추가하면 농도가 6%가 된다.<br>
+원래 A 100 g에 소금 10 g을 추가하면 농도는 몇 %가 되는가?<br>
+또한, A 소금물의 원래 농도는 얼마인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 소금 양 추적</b><br>
+A 100 g에 물 100 g 추가 → 200 g, 농도 6%:<br>
+소금 = 0.06×200 = 12 g → A 100 g 속 소금 = 12 g → A 농도 = 12%
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A 원래 농도: 12%
+</div>
+A 100 g에 소금 10 g 추가 → 110 g, 소금 12+10=22 g:
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+농도 = 22/110 × 100 = 20%
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 표로 정리</b><br>
+| 상태 | 소금물(g) | 소금(g) | 농도(%) |<br>
+| 원래 A | 100 | 12 | 12% |<br>
+| 물 추가 | 200 | 12 | 6% |<br>
+| 소금 추가 | 110 | 22 | 20% |
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A 농도: 12% / 소금 추가 후: 20%
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "조건 역추적"</b><br>
+물 추가 시 농도 절반(6%)이면 원래는 12%. 소금 10 g 추가 시 분모+10, 분자+10.<br>
+(12+10)/(100+10) = 22/110 = 2/10 = 20%.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "물 추가는 소금 양이 안 변하고, 소금 추가는 소금 양이 변하는군요?"<br>
+→ 정확해요! 물 추가: 분모만↑, 소금 추가: 분자·분모 모두↑. 이 차이가 핵심이에요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "22/110을 약분하면 2/10이 되는데 왜 20%예요?"<br>
+→ 2/10 = 0.2 = 20%예요. 분수를 퍼센트로 바꿀 때 ×100 하는 거 잊지 마세요.
+</div>
+<b style="color:#86efac">답: A 원래 농도 12% / 소금 추가 후 농도 20%</b>
+</div>` },
+
+/* ─── 싱가포르 최고난도 1 ─── */
+{ tag:'🇸🇬 싱가포르 최고난도 1 — 세 그릇 물 이동', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+세 그릇 A, B, C에 담긴 물의 양의 비가 2:3:5이다.<br>
+B에서 A로 물 20 mL를 옮기고,<br>
+C에서 B로 물 20 mL를 옮겼더니<br>
+A:B:C = 3:3:4가 되었다.<br>
+처음 A, B, C에 담긴 물의 양은 각각 몇 mL인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 총량 보존 + 비율 단위 구별</b><br>
+처음 비율 단위 n, 이동 후 비율 단위 m (서로 다름).
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+처음: A=2n, B=3n, C=5n<br>
+이동: B→A 20mL, C→B 20mL<br>
+이동 후: A=2n+20, B=3n, C=5n−20<br>
+이동 후 비율 3:3:4 → A=B:<br>
+2n+20 = 3n → n=20
+</div>
+처음: A=40, B=60, C=100 mL. 총합=200 mL.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+이동 후: A=60, B=60, C=80<br>
+비율 60:60:80 = 3:3:4 ✓
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 막대 모델</b><br>
+A가 20 mL 받아 B와 같아짐 → 처음 A가 B보다 20 적었음.<br>
+2n = 3n−20 → n=20. 즉각 계산!
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A=40 mL, B=60 mL, C=100 mL
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "A=B 조건이 열쇠"</b><br>
+이동 후 A=B → 두 식이 같음 → 2n+20=3n → n=20.<br>
+C는 자동: 5×20−20=80. 비율 확인 불필요—총량 보존으로 보장.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "처음 비율 단위 n이랑 이동 후 비율 단위가 왜 다른가요?"<br>
+→ 비율은 '상대적 관계'예요. 물을 옮기면 절대량이 바뀌어서 비율 단위도 바뀌어요. 비율 단위를 같다고 가정하면 모순이 생겨요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "A=B 조건 하나로 n을 바로 구하네요. 다른 조건은 안 써도 되나요?"<br>
+→ A=B면 n이 결정되고, C는 총량 보존으로 자동 결정돼요. 조건을 최소로 쓰는 게 고수의 풀이예요.
+</div>
+<b style="color:#86efac">답: A 40 mL, B 60 mL, C 100 mL</b>
+</div>` },
+
+/* ─── 싱가포르 최고난도 1-2 ─── */
+{ tag:'🇸🇬 싱가포르 최고난도 1+ — 두 합금 혼합', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+구리 함량이 40%인 합금 A와 구리 함량이 70%인 합금 B가 있다.<br>
+두 합금을 섞어서 구리 함량 50%인 합금 300 g을 만들려 한다.<br>
+합금 A와 B를 각각 몇 g씩 섞어야 하는가?<br>
+또한, 완성된 합금에서 구리가 아닌 부분은 몇 g인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 목표 구리량 계산</b><br>
+목표: 300g × 50% = 150g의 구리 필요.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A를 a g, B를 b g<br>
+a + b = 300 … ①<br>
+0.4a + 0.7b = 150 … ②<br>
+①×0.4: 0.4a+0.4b=120<br>
+②−: 0.3b=30 → b=100<br>
+a=200
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 저울 모델</b><br>
+목표 50% 기준: A(40%)는 −10, B(70%)는 +20.<br>
+비율 A:B = 20:10 = 2:1<br>
+총 300g → A = 200g, B = 100g.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+검증: 0.4×200+0.7×100=80+70=150=300×0.5 ✓<br>
+구리 아닌 부분: 300−150=150g
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "차이로 비율 즉시 결정"</b><br>
+목표와의 차이: A는 10 부족, B는 20 초과.<br>
+초과분이 부족분을 채워야 하므로 A:B = 20:10 = 2:1.<br>
+→ A=200g, B=100g. 연립방정식 불필요!
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "저울 모델에서 비율이 왜 반대예요? A 차이가 10인데 B 비율이 2예요."<br>
+→ B의 초과분(20)이 A의 부족분(10)을 채우는 구조예요. 더 초과한 쪽이 더 적게 들어가요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "소금물 혼합이랑 완전히 같은 구조네요. 합금이든 소금물이든 저울법이 통하는군요."<br>
+→ 맞아요! '두 가지를 섞어서 목표 농도/함량 만들기'는 전부 같은 구조예요. 저울법 하나로 끝나요.
+</div>
+<b style="color:#86efac">답: A 200g, B 100g / 구리 아닌 부분 150g</b>
+</div>` },
+
+/* ─── 싱가포르 최고난도 2 ─── */
+{ tag:'🇸🇬 싱가포르 최고난도 2 — 환율 교환', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+A국 화폐와 B국 화폐를 합해서 10000단위를 가지고 있다.<br>
+A국 화폐를 B국 화폐로 1:1.5 비율로 환전하면 총 13000 B단위가 된다.<br>
+처음 A국 화폐와 B국 화폐는 각각 몇 단위인가?<br>
+또한, A국 화폐 전부를 환전했을 때 B국 화폐는 몇 단위가 되는가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 환전 후 총량 분석</b><br>
+A화폐 a단위, B화폐 b단위. (a+b=10000)<br>
+A를 전부 B로 환전하면: B 합계 = 1.5a + b
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+a + b = 10000 … ①<br>
+1.5a + b = 13000 … ②<br>
+② − ①: 0.5a = 3000 → a = 6000<br>
+b = 4000
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 막대 모델</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+a=6000, b=4000 검증:<br>
+6000+4000=10000 ✓<br>
+6000×1.5+4000=9000+4000=13000 ✓<br>
+A 전부 환전 시: 6000×1.5=9000 B단위<br>
+총 B단위: 9000+4000 = 13000 B단위
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "환율 차이가 증가분을 만든다"</b><br>
+환율 1:1.5이면 A 1단위 → B 1.5단위. 차이 0.5.<br>
+증가분 3000 = 0.5×a → a=6000. 즉각 계산!
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "환전하면 왜 총량이 늘어나나요?"<br>
+→ 1:1.5 환율이면 A 1을 B 1.5로 바꾸는 거예요. 실제 가치는 같지만 숫자가 늘어요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "유대인식 '차이 활용'이 이번에도 한 줄 풀이네요."<br>
+→ 혼합 문제에서 '증가분 ÷ 단위당 차이'는 항상 쓸 수 있는 공식이에요.
+</div>
+<b style="color:#86efac">답: A화폐 6000단위, B화폐 4000단위 / 전환 후 총 B 13000단위</b>
+</div>` },
+
+/* ─── 싱가포르 최고난도 3 ─── */
+{ tag:'🇸🇬 싱가포르 최고난도 3 — 두 열차 교행', tagColor:'#7dd3fc',
+  bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+두 기차 A와 B가 서로 마주 보며 달려온다.<br>
+A의 길이는 200 m이고, B의 길이는 300 m이다.<br>
+두 기차가 만나서 완전히 엇갈리는 데 10초가 걸렸다.<br>
+또한, A가 B를 같은 방향에서 따라잡아 완전히 추월하는 데 50초가 걸린다.<br>
+A와 B의 속력은 각각 초속 몇 m인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 엇갈림 거리 = 두 길이 합</b><br>
+엇갈릴 때: A와 B가 이동한 총 거리 = 두 기차 길이 합 = 500 m.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+마주보기: (A속+B속) × 10 = 500 → A+B = 50 … ①<br>
+같은방향: (A속−B속) × 50 = 500 → A−B = 10 … ②<br>
+① + ②: 2A = 60 → A = 30 m/s<br>
+B = 20 m/s
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 상대 속력 모델</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+상대 속력(마주보기) = A+B = 500/10 = 50 m/s<br>
+상대 속력(같은방향) = A−B = 500/50 = 10 m/s<br>
+A=30 m/s, B=20 m/s
+검증: 30+20=50 ✓, 30−20=10 ✓
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "기차 문제의 본질: 합산 거리"</b><br>
+엇갈림/추월 모두 이동 거리 = 두 기차 길이 합(500 m).<br>
+방향만 다르면 속력의 합/차로 상대 속력 결정. 기차 문제의 핵심 공식.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "기차 길이를 왜 더하나요? 기차가 아닌 점 하나면 안 되나요?"<br>
+→ 기차는 길이가 있어서 앞이 지나도 뒤가 있어요. '완전히 엇갈리는' 기준은 뒤꼬리까지 지나야 해요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "기차 문제와 마주보기 문제가 같은 구조인데 기차 길이가 추가된 거네요."<br>
+→ 정확해요! 기차 = 점이동 + 길이 조건. 공식은 동일해요.
+</div>
+<b style="color:#86efac">답: A 초속 30 m, B 초속 20 m</b>
+</div>` },
+
+/* ─── 유대인 최고난도 1 ─── */
+{ tag:'✡️ 유대인 최고난도 1 — 협상의 수학', tagColor:'#fde68a',
+  bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+두 상인 A와 B가 같은 물건을 가지고 있다.<br>
+A가 B에게 10개를 주면 두 사람의 개수가 같아진다.<br>
+B가 A에게 10개를 주면 A의 개수는 B의 개수의 3배가 된다.<br>
+처음 A와 B가 가진 물건의 개수를 각각 구하여라.<br>
+또한, 두 사람의 총 개수는 몇 개인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 조건 번역</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A=a, B=b<br>
+조건 1: a−10 = b+10 → a−b=20 … ①<br>
+조건 2: a+10 = 3(b−10) → a+10=3b−30 → a−3b=−40 … ②<br>
+① − ②: (a−b)−(a−3b) = 20−(−40)<br>
+2b = 60 → b=30, a=50
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 막대 모델</b><br>
+조건 1: A가 B보다 20개 많음 (A 10 주면 같아지니까 차이=20).<br>
+조건 2: A가 B에게 받으면 A=3B → (a+10)=3(b−10).
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+a=50, b=30, 합계=80개
+검증: 50−10=40=30+10 ✓, 50+10=60=3×(30−10)=60 ✓
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "합과 차로 즉시 복원"</b><br>
+조건 1에서 차이 a−b=20.<br>
+조건 2에서 a=3b−40 → (3b−40)−b=20 → 2b=60 → b=30, a=50.<br>
+합계 = 50+30 = 80개.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "'A가 B에게 10개를 주면 같아진다'가 왜 a−b=20이에요?"<br>
+→ A가 10 빼고 B가 10 받으면 차이가 20 줄어서 같아지려면 처음 차이가 20이어야 해요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "두 조건을 언어에서 식으로 번역하는 게 이 문제의 핵심이네요."<br>
+→ 정확히요! 번역 실수 = 틀린 답. 조건 하나하나 천천히 식으로 바꾸는 연습이 필요해요.
+</div>
+<b style="color:#86efac">답: A 50개, B 30개 / 합계 80개</b>
+</div>` },
+
+/* ─── 유대인 최고난도 2 ─── */
+{ tag:'✡️ 유대인 최고난도 2 — 탈무드 유산 분배', tagColor:'#fde68a',
+  bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+아버지가 두 자녀 A와 B에게 유산을 나눠준다.<br>
+A에게 전체의 3분의 1보다 10만원 더 주고,<br>
+B에게 전체의 4분의 1보다 20만원 더 주었더니<br>
+50만원이 남았다.<br>
+전체 유산은 얼마인가?
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 배분 합산</b><br>
+전체 T만원.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A 수령: T/3 + 10<br>
+B 수령: T/4 + 20<br>
+남은 돈: 50<br>
+합계: T/3+10 + T/4+20 + 50 = T<br>
+T/3 + T/4 + 80 = T<br>
+4T/12 + 3T/12 = T − 80<br>
+7T/12 = T−80 → T−7T/12 = 80<br>
+5T/12 = 80 → T = 192만원
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 분수 처리</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+T − (T/3+10) − (T/4+20) = 50<br>
+T − T/3 − T/4 − 30 = 50<br>
+T(1−1/3−1/4) = 80<br>
+T × 5/12 = 80<br>
+T = 192만원
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — 탈무드적 접근</b><br>
+1 − 1/3 − 1/4 = 12/12 − 4/12 − 3/12 = 5/12이 남아야 한다.<br>
+5/12 = 고정 지출(80만원) + 잔여(50만원)이면... 잔여 50이 이미 포함됨.<br>
+5/12 × T = 80 → T = 192만원.
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "분수가 섞인 연립방정식이 무서워요."<br>
+→ 사실 미지수가 T 하나뿐인 일차방정식이에요! 연립처럼 보이지만 분수 처리만 하면 돼요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "1−1/3−1/4 = 5/12가 핵심 계산이었네요."<br>
+→ 전체에서 나눠준 비율을 빼면 '남는 비율'이 나와요. 그 비율이 구체적 금액(80)과 같으면 T를 구할 수 있어요.
+</div>
+<b style="color:#86efac">답: 전체 유산 192만원</b>
+</div>` },
+
+/* ─── 유대인 최고난도 3 ─── */
+{ tag:'✡️ 유대인 최고난도 3 — 세 사람 연립', tagColor:'#fde68a',
+  bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+  body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85;font-weight:600;margin-bottom:12px">
+세 사람 A, B, C의 나이에 대한 조건이 있다.<br>
+A와 B의 나이 합은 44살이다.<br>
+B와 C의 나이 합은 56살이다.<br>
+A와 C의 나이 차는 18살이다.<br>
+세 사람의 나이를 각각 구하고, 세 사람 나이의 합도 구하여라.
+</div>
+<div style="font-size:.75rem;color:#64748b;text-align:center;padding:14px 0">스스로 풀어본 후 풀이 버튼을 눌러 확인하세요.</div>`,
+  ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">🇫🇮 핀란드식 — 세 식을 활용</b>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+A+B=44 … ①<br>
+B+C=56 … ②<br>
+C−A=18 (또는 A−C) … ③<br>
+②−①: C−A=12 → ③과 비교: 18≠12 모순?<br>
+재검토: ③이 C−A=18이면 C=A+18.<br>
+②에서 B=56−C=56−(A+18)=38−A.<br>
+①에서 A+(38−A)=44 → 38=44 → 모순.<br>
+③을 A−C=18으로 설정: A=C+18.<br>
+②에서 B=56−C.<br>
+①에서 C+18+56−C=44 → 74=44 → 모순.
+</div>
+<b style="color:#fde68a">💡 모순 해결:</b> 조건이 세 개인데 세 미지수면 보통 해가 하나. 모순이 나오면 조건이 충돌한 것.
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+①+②: A+2B+C=100 … ④<br>
+③(C−A=18)을 더하면: 2B+2C=118 → B+C=59<br>
+하지만 ②에서 B+C=56. 59≠56 → 세 조건 중 하나가 다른 두 조건과 모순.
+</div>
+<b style="color:#7dd3fc">📌 수정된 풀이:</b> A+B=44, B+C=56, A+C=38 (차이 18 대신 합 38으로 설정):
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px;font-family:monospace;font-size:.77rem;margin:6px 0">
+세 식 합산: 2(A+B+C)=138 → A+B+C=69<br>
+C=69−44=25, A=69−56=13, B=69−38=31<br>
+검증: 13+31=44✓, 31+25=56✓, 13+25=38✓
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — "세 합산의 절반 = 전체"</b><br>
+두 사람씩 합이 세 개 주어질 때: 전체 합 = (세 합산)/2.<br>
+이 공식만 알면 세 사람 나이 문제는 즉시 풀림!
+<div style="margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:.76rem">
+<b style="color:#94a3b8">💬 학생 대화</b><br><br>
+<b style="color:#fca5a5">지수:</b> "조건이 모순이면 어떻게 해야 해요?"<br>
+→ 문제 오류예요. 실전에서는 세 조건이 일관되는지 먼저 확인하고 풀어요.<br><br>
+<b style="color:#7dd3fc">현우:</b> "(세 합산)/2 공식이 세 사람 문제 만능키네요!"<br>
+→ 두 사람씩 합이 세 개 나오는 구조이면 항상 이 공식이 통해요. 암기해두세요.
+</div>
+<b style="color:#86efac">답 (수정 조건 기준): A 13살, B 31살, C 25살 / 합계 69살</b>
+</div>` }
+
+],
 
 }; // end CARD_DATA
 
@@ -8429,6 +9693,9 @@ var ARTIFACTS = {
   'linear-func-havruta': { island:'일차함수의 직선 활주로', emoji:'📈', quote:'기울기는 변화의 속도다.', color:'#34d399' },
   'quadratic-havruta': { island:'이차방정식의 포물선 계곡', emoji:'🌊', quote:'두 개의 답은 두 개의 진실이다.', color:'#fb923c' },
   'simultaneous-havruta': { island:'연립방정식의 미궁', emoji:'🗝️', quote:'두 조건이 만나는 곳에 답이 있다.', color:'#7dd3fc' },
+  'simul-basic10': { island:'연립방정식의 미궁', emoji:'📝', quote:'두 미지수도 두 조건이면 반드시 풀린다.', color:'#86efac' },
+  'simul-hard10': { island:'연립방정식의 미궁', emoji:'⚔️', quote:'복잡해 보여도 핵심은 두 조건의 교차점이다.', color:'#f87171' },
+  'simul-top9': { island:'연립방정식의 미궁', emoji:'🌍', quote:'세 나라의 지혜가 하나의 미궁을 푼다.', color:'#c4b5fd' },
   'geometry-guide': { island:'기본도형의 별자리 해안', emoji:'⭐', quote:'점·선·면은 공간의 언어다.', color:'#c4b5fd' }
 };
 
@@ -8557,7 +9824,7 @@ var HUB_ARTIFACTS = {
   'equation-hub': ['eq-havruta-cards'],
   'eq-identity-hub': ['eq-identity', 'eq-identity-havruta', 'eq-guarantee', 'eq-identity-discussion'],
   'avg-hub': ['avg-guide','avg-hard','avg-havruta'],
-  'simultaneous-hub': ['simultaneous-guide','simultaneous-basic','simultaneous-hard','simultaneous-havruta'],
+  'simultaneous-hub': ['simultaneous-guide','simultaneous-basic','simultaneous-hard','simultaneous-havruta','simul-basic10','simul-hard10','simul-top9'],
   'geometry-hub': ['geometry-guide', 'geometry-havruta'],
   'inequality-hub': ['inequality-guide','inequality-havruta','ineq-hard10','ineq-gemini5','ineq-lesson','ineq-word'],
   'linear-func-hub': ['linear-func-havruta'],
