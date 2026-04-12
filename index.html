@@ -601,28 +601,41 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       세 가지 방식을 모두 완료하면 <b style="color:#d4a017">🏆 아르모니아 마스터 뱃지</b>를 얻어요.
     </div>
     <div id="fm-cards"></div>
+
+    <!-- 🟢 개념 -->
+    <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#86efac;letter-spacing:.08em;margin:4px 0 8px;padding-left:4px">🟢 개념</div>
     <button onclick="startCards('fm-guide','factmult')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🌍 3국 개념 토론관 — 약수·배수란? (4장) →
     </button>
-    <button onclick="startCards('fm-gcd','factmult')" style="width:100%;margin-bottom:8px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+    <button onclick="startCards('fm-gcd','factmult')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.25);color:#86efac;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🔢 최대공약수·최소공배수 3국 풀이관 (4장) →
     </button>
-    <button class="btn btn-main" onclick="startQuiz('fm','factmult')" style="width:100%;margin-bottom:8px;background:linear-gradient(135deg,#78350f,#d97706)">
-      📚 기본 퀴즈 — GCD·LCM·약수 (10문항)
+    <button onclick="startCards('fm-worksheet','factmult')" style="width:100%;margin-bottom:12px;background:rgba(134,239,172,.05);border:1px solid rgba(134,239,172,.2);color:#86efac;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📄 토론 워크시트 — 세 관점으로 다시 보기 (4장) →
     </button>
-    <button onclick="startCards('fm-worksheet','factmult')" style="width:100%;margin-bottom:8px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📄 토론 워크시트 — 약수·배수의 세 얼굴 (4장) →
+
+    <!-- 🟡 기본 연습 -->
+    <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#fde68a;letter-spacing:.08em;margin:0 0 8px;padding-left:4px">🟡 기본 연습</div>
+    <button class="btn btn-main" onclick="startQuiz('fm','factmult')" style="width:100%;margin-bottom:12px;background:linear-gradient(135deg,#78350f,#d97706)">
+      📚 기본 퀴즈 — 최대공약수·최소공배수·약수 (10문항)
     </button>
+
+    <!-- 🔴 심화 -->
+    <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#f87171;letter-spacing:.08em;margin:0 0 8px;padding-left:4px">🔴 심화</div>
     <button onclick="startCards('fm-advanced','factmult')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🧩 심화 혼합형 — 항구의 조명 문제 (5장) →
     </button>
-    <button onclick="startCards('fm-hard10','factmult')" style="width:100%;margin-bottom:8px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);color:#fbbf24;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+    <button onclick="startCards('fm-hard10','factmult')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.25);color:#fca5a5;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🏋️ 3국 사고력 도전 10선 (11장) →
     </button>
-    <button onclick="startCards('fm-solution','factmult')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25);color:#fca5a5;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📑 관점별 심화 해설지 (3장) →
+    <button onclick="startCards('fm-solution','factmult')" style="width:100%;margin-bottom:12px;background:rgba(248,113,113,.04);border:1px solid rgba(248,113,113,.18);color:#fca5a5;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📑 3국 사고력 10선 해설 (3장) →
     </button>
-    <button onclick="startCards('fm-prime-link','factmult')" style="width:100%;margin-bottom:12px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.35);color:#c4b5fd;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+
+    <!-- 🔵 소인수분해 연결 -->
+    <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#7dd3fc;letter-spacing:.08em;margin:0 0 6px;padding-left:4px">🔵 소인수분해 연결 — 중1 이후</div>
+    <div style="font-size:.75rem;color:#64748b;margin-bottom:8px;padding-left:4px">소인수분해(중1)를 배운 후 돌아오세요 →</div>
+    <button onclick="startCards('fm-prime-link','factmult')" style="width:100%;margin-bottom:12px;background:rgba(125,211,252,.07);border:1px solid rgba(125,211,252,.25);color:#7dd3fc;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🔗 소인수분해로 다시 보는 약수·배수 (9장) →
     </button>
     <div id="fm-badge-unit" style="display:none">
