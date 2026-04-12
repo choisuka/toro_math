@@ -619,8 +619,11 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     <button onclick="startCards('fm-hard10','factmult')" style="width:100%;margin-bottom:8px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);color:#fbbf24;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🏋️ 3국 사고력 도전 10선 (11장) →
     </button>
-    <button onclick="startCards('fm-solution','factmult')" style="width:100%;margin-bottom:12px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25);color:#fca5a5;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+    <button onclick="startCards('fm-solution','factmult')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25);color:#fca5a5;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       📑 관점별 심화 해설지 (3장) →
+    </button>
+    <button onclick="startCards('fm-prime-link','factmult')" style="width:100%;margin-bottom:12px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.35);color:#c4b5fd;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🔗 소인수분해로 다시 보는 약수·배수 (9장) →
     </button>
     <div id="fm-badge-unit" style="display:none">
       <div class="fm-badge-box">
@@ -670,8 +673,11 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     <button onclick="startCards('prime-havruta','prime-hub')" style="width:100%;margin-bottom:10px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       ✡️ 하브루타 토론관 (3편) →
     </button>
-    <button class="btn btn-sub" onclick="startQuizHard('prime','prime-hub')" style="width:100%;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.4);color:#a5b4fc">
+    <button class="btn btn-sub" onclick="startQuizHard('prime','prime-hub')" style="width:100%;margin-bottom:10px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.4);color:#a5b4fc">
       🔥 심화 문제 도전 (10문항)
+    </button>
+    <button onclick="startCards('fm-prime-link','prime-hub')" style="width:100%;background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.35);color:#fbbf24;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🔗 약수·배수 재방문 — 소인수분해로 연결 (9장) →
     </button>
   </div>
 </div>
@@ -4388,6 +4394,243 @@ A=6a, B=6b, ab=12, gcd(a,b)=1<br>
 → <b style="color:#86efac">(6,72) 또는 (18,24)</b>
 </div>
 </div>`, ans:null }
+],
+
+/* ── 소인수분해로 다시 보는 약수·배수 (9장) ──────── */
+'fm-prime-link': [
+  { tag:'🔗 1/9 — 1층 vs 2층: 소인수분해로 업그레이드', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#c4b5fd;font-size:.92rem">소인수분해를 배웠으니, 약수·배수를 새 눈으로 다시 보자!</b><br><br>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+<div style="background:rgba(134,239,172,.08);border:1px solid rgba(134,239,172,.3);border-radius:10px;padding:10px">
+<b style="color:#86efac">1층 — 나열법 (초등)</b><br>
+<span style="font-size:.78rem;color:#aaa">12의 약수: 1,2,3,4,6,12<br>눈으로 하나씩 찾기<br>큰 수엔 시간이 오래 걸림</span>
+</div>
+<div style="background:rgba(196,181,253,.08);border:1px solid rgba(196,181,253,.3);border-radius:10px;padding:10px">
+<b style="color:#c4b5fd">2층 — 소인수분해 (중1)</b><br>
+<span style="font-size:.78rem;color:#aaa">12 = 2² × 3<br>약수 개수 = (2+1)(1+1) = 6<br>1260도 단숨에 계산 가능!</span>
+</div>
+</div>
+<b style="color:#fde68a">💬 지수:</b> "그럼 소인수분해를 알면 약수를 일일이 안 세도 돼요?"<br>
+<b style="color:#7dd3fc">현우:</b> "맞아. 지수만 가지고 놀면 돼. 1260 = 2² × 3² × 5 × 7이면<br>
+약수 개수는 바로 (2+1)(2+1)(1+1)(1+1) = 36개."<br><br>
+<b style="color:#86efac">🇫🇮 핀란드식 통찰:</b> 1층은 '세기', 2층은 '구조 파악'. 구조를 알면 세지 않아도 된다.
+</div>`, ans:null },
+
+  { tag:'🧮 2/9 — 약수 개수 공식 (2^a × 3^b)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a;font-size:.92rem">2^a × 3^b 형태(a≥1, b≥1)에서 약수가 12개인 수를 모두 구하여라.</b><br><br>
+<b style="color:#86efac">🇫🇮 핀란드식 — 약수 개수 원리</b><br>
+<span style="font-size:.78rem;color:#aaa">"지수만 올려서 경우를 센다."</span><br>
+약수 개수 = (a+1)(b+1) = 12<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.8rem;margin-bottom:8px">
+12를 두 자연수의 곱으로: 2×6, 3×4, 4×3, 6×2<br>
+→ (a,b) = (1,5), (2,3), (3,2), (5,1)<br>
+→ 2¹×3⁵=486, 2²×3³=108, 2³×3²=72, 2⁵×3¹=96
+</div>
+<b style="color:#c4b5fd">💬 현우가 물었다:</b> "왜 (a+1)인가요? 2^0도 약수 아닌가요?"<br>
+<span style="font-size:.79rem;color:#aaa">2^a의 약수는 2⁰, 2¹, ..., 2^a → a+1가지. 0도 지수가 될 수 있어서!</span><br><br>
+<div style="background:rgba(253,230,138,.08);border:1px dashed rgba(253,230,138,.4);border-radius:8px;padding:10px;margin-top:4px">
+<b style="color:#fde68a">➕ 추가 문제</b><br>
+약수의 개수가 정확히 6개인 수 중 가장 작은 두 자리 자연수는?<br>
+<span style="font-size:.78rem;color:#aaa">힌트: 6 = 6×1 또는 2×3</span>
+</div>
+</div>`, ans:`약수 12개인 수: 72, 96, 108, 486 (모두 2^a×3^b 형태)
+
+추가 문제 풀이:
+약수 6개 형태: p^5 또는 p^2×q
+• p^5: 2^5 = 32 (두 자리)
+• p^2×q: 2^2×3 = 12 (가장 작은 두 자리)
+
+→ 답: 12` },
+
+  { tag:'🔬 3/9 — 큰 수의 최대공약수·최소공배수', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc;font-size:.92rem">1260과 2310의 최대공약수와 최소공배수를 소인수분해로 구하여라.</b><br><br>
+<b style="color:#86efac">🇫🇮 핀란드식 — 소인수분해 먼저</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.79rem;margin-bottom:8px;font-family:monospace">
+1260 = 2² × 3² × 5 × 7<br>
+2310 = 2 × 3 × 5 × 7 × 11
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 표로 비교</b><br>
+<div style="background:rgba(125,211,252,.06);border-radius:8px;padding:8px 10px;font-size:.79rem;margin-bottom:8px">
+최대공약수: 공통 소인수 × 작은 지수 = 2¹×3¹×5¹×7¹ = <b style="color:#fde68a">210</b><br>
+최소공배수: 모든 소인수 × 큰 지수 = 2²×3²×5×7×11 = <b style="color:#fde68a">13860</b>
+</div>
+<b style="color:#fde68a">✡️ 유대인식 검증:</b> 최대공약수 × 최소공배수 = 1260 × 2310 = 2,910,600<br>
+210 × 13860 = 2,910,600 ✓<br><br>
+<div style="background:rgba(125,211,252,.08);border:1px dashed rgba(125,211,252,.4);border-radius:8px;padding:10px;margin-top:4px">
+<b style="color:#7dd3fc">➕ 추가 문제</b><br>
+두 자연수 A, B의 최대공약수가 12, 최소공배수가 60이고 A=12일 때, B를 구하여라.
+</div>
+</div>`, ans:`최대공약수 = 210, 최소공배수 = 13860
+
+추가 문제:
+최대공약수 × 최소공배수 = A × B
+12 × 60 = 12 × B → B = 60
+
+검증: 최대공약수(12,60)=12 ✓, 최소공배수(12,60)=60 ✓
+→ 답: B = 60` },
+
+  { tag:'🪟 4/9 — 타일 문제 (소인수분해 활용)', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.92rem">252cm × 168cm 직사각형 방을 정사각형 타일로 빈틈없이 채울 때,<br>타일 한 변의 최대 크기와 필요한 최소 개수는?</b><br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 소인수분해로 계산</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.79rem;margin-bottom:8px;font-family:monospace">
+252 = 2² × 3² × 7<br>
+168 = 2³ × 3 × 7<br>
+최대공약수 = 2²×3×7 = <b style="color:#fde68a">84cm</b>
+</div>
+<b style="color:#86efac">🇫🇮 핀란드식 — 직관</b><br>
+한 변 84cm → 가로: 252÷84=3칸, 세로: 168÷84=2칸<br>
+→ 타일 최소 개수: 3×2 = <b style="color:#fde68a">6개</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — 왜 최대공약수인가?</b><br>
+<span style="font-size:.79rem;color:#aaa">"타일이 가로와 세로 모두를 딱 나누어야 해. 두 수의 공약수가 가능한 크기. 그 중 최대!"</span><br><br>
+<div style="background:rgba(134,239,172,.08);border:1px dashed rgba(134,239,172,.4);border-radius:8px;padding:10px;margin-top:4px">
+<b style="color:#86efac">➕ 추가 문제</b><br>
+6, 10, 15의 최소공배수를 구하고, 그 값의 약수의 개수를 구하여라.
+</div>
+</div>`, ans:`타일 최대 한 변: 84cm, 최소 개수: 6개
+
+추가 문제:
+6 = 2×3, 10 = 2×5, 15 = 3×5
+최소공배수 = 2×3×5 = 30
+
+30 = 2¹×3¹×5¹
+약수 개수 = (1+1)(1+1)(1+1) = 8개` },
+
+  { tag:'🔑 5/9 — 최대공약수 × 최소공배수 = 두 수의 곱', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#f87171;font-size:.92rem">두 자연수 A=d×a, B=d×b (d=최대공약수, 최대공약수(a,b)=1)일 때,<br>최대공약수 × 최소공배수 = A × B 임을 설명하여라.</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — 논리 증명</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.8rem;margin-bottom:8px">
+최대공약수 = d, 최소공배수 = d×a×b<br>
+(단, 최대공약수(a,b)=1이므로 d×a×b가 두 수의 최소공배수)<br><br>
+최대공약수 × 최소공배수 = d × (d×a×b) = d²×a×b<br>
+A × B = (d×a) × (d×b) = d²×a×b ✓
+</div>
+<b style="color:#86efac">🇫🇮 핀란드식 직관:</b><br>
+"A와 B를 각각 d로 나누면 서로소인 a, b. 최소공배수는 d에 a와 b를 다 곱한 것. 즉 A×B를 d로 한 번 나눈 값!"<br><br>
+<div style="background:rgba(248,113,113,.08);border:1px dashed rgba(248,113,113,.4);border-radius:8px;padding:10px;margin-top:4px">
+<b style="color:#f87171">➕ 추가 문제</b><br>
+두 자연수의 최대공약수가 8, 최소공배수가 240일 때,<br>가능한 두 수의 쌍을 모두 구하여라.
+</div>
+</div>`, ans:`추가 문제 풀이:
+A=8a, B=8b, 최대공약수(a,b)=1, a×b = 240÷8 = 30
+
+30 = 2×3×5
+서로소 쌍 (a,b): (1,30), (2,15), (3,10), (5,6)
+
+(A,B): (8,240), (16,120), (24,80), (40,48)
+→ 모두 4쌍` },
+
+  { tag:'⚡ 6/9 — 약수 개수가 홀수인 수의 비밀', tagColor:'#a5b4fc',
+    bg:'rgba(165,180,252,.07)', bd:'rgba(165,180,252,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#a5b4fc;font-size:.92rem">왜 어떤 수는 약수의 개수가 홀수일까?</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — 쌍의 논리</b><br>
+약수는 항상 쌍으로 존재한다.<br>
+예: 12의 약수 → (1,12), (2,6), (3,4) → 짝수 6개<br>
+예: 9의 약수 → (1,9), (3,3) → 3이 자기 자신과 쌍을 이룸 → 홀수 3개<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.8rem;margin-bottom:8px">
+<b style="color:#a5b4fc">결론:</b> 약수 개수가 홀수 ↔ <b style="color:#fde68a">완전제곱수</b><br>
+n = p^2a × q^2b × ... 이면 (2a+1)(2b+1)... = 홀수 × 홀수 = 홀수
+</div>
+<b style="color:#86efac">🇫🇮 핀란드식 직관:</b><br>
+"짝이 안 맞는 약수가 있다 → 그 약수가 자기 자신과 곱해서 n이 됨 → n은 제곱수!"<br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 문제:</b><br>
+1부터 50까지 자연수 중 약수의 개수가 홀수인 수의 개수는?<br>
+<span style="font-size:.79rem;color:#aaa">완전제곱수: 1,4,9,16,25,36,49 → 7개</span>
+</div>`, ans:`약수 개수가 홀수인 수 = 완전제곱수
+
+1~50 중: 1, 4, 9, 16, 25, 36, 49
+→ 총 7개` },
+
+  { tag:'🌍 7/9 — 3국 연합: 조합의 수 (최솟값 420)', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.07)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fb923c;font-size:.92rem">세 자연수 A, B, C의 최소공배수가 420이고 A × B × C = 2520이다.<br>조합은 모두 몇 가지인가?</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — 소인수분해로 구조 파악</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.79rem;margin-bottom:8px;font-family:monospace">
+420 = 2² × 3 × 5 × 7<br>
+2520 = 420 × 6 = 2³ × 3² × 5 × 7
+</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 소인수별 분배</b><br>
+각 소인수를 A, B, C에 독립적으로 배정:<br>
+<div style="background:rgba(125,211,252,.06);border-radius:8px;padding:8px 10px;font-size:.79rem;margin-bottom:8px">
+2의 배정: A×B×C에서 2의 지수합=3, 최솟값에서 최대지수=2<br>
+→ 최대지수 2 실현하며 지수합=3 → 경우 수 계산<br>
+3의 배정: 지수합=2, 최대=1 → 경우 수<br>
+5의 배정: 지수합=1, 최대=1 → 경우 수<br>
+7의 배정: 지수합=1, 최대=1 → 경우 수
+</div>
+<b style="color:#86efac">🇫🇮 핀란드식 — 전체 경우</b><br>
+소인수별 독립 계산 후 곱하기:<br>
+2: 6가지 × 3: 3가지 × 5: 3가지 × 7: 3가지 = <b style="color:#fde68a">162가지</b>
+</div>`, ans:`420 = 2²×3×5×7, 2520 = 2³×3²×5×7
+
+소인수별 (A,B,C)에 지수 배정:
+• 2 (지수합=3, 최솟값에서 max=2): (2,0,1),(2,1,0),(0,2,1),(1,2,0),(0,1,2),(1,0,2) → 6가지
+• 3 (지수합=2, max=1): (1,1,0),(1,0,1),(0,1,1) → 3가지
+• 5 (지수합=1, max=1): (1,0,0),(0,1,0),(0,0,1) → 3가지
+• 7 (지수합=1, max=1): 3가지
+
+총 6 × 3 × 3 × 3 = 162가지` },
+
+  { tag:'🎯 8/9 — B의 최솟값과 최댓값', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#34d399;font-size:.92rem">두 자연수 A, B에 대해 A=60이고 최소공배수가 420일 때,<br>B의 최솟값과 최댓값을 구하여라.</b><br><br>
+<b style="color:#fde68a">✡️ 유대인식 — 소인수분해로 접근</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.79rem;margin-bottom:8px;font-family:monospace">
+60 = 2² × 3 × 5<br>
+420 = 2² × 3 × 5 × 7
+</div>
+<b style="color:#86efac">🇫🇮 핀란드식 — 조건 분석</b><br>
+최소공배수(60,B) = 420이 되려면:<br>
+① B는 반드시 7의 배수여야 함 (7이 최소공배수에만 있으므로)<br>
+② B의 각 소인수 지수 ≤ 420의 지수<br>
+③ 최소공배수에서 60이 못 커버하는 부분을 B가 커버해야 함<br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 경우 나열</b><br>
+B = 2^a × 3^b × 5^c × 7^d, d≥1<br>
+a≤2, b≤1, c≤1, d=1 (d>1이면 최소공배수 초과)<br>
+최솟값: a=0,b=0,c=0,d=1 → B=<b style="color:#fde68a">7</b><br>
+최댓값: a=2,b=1,c=1,d=1 → B=4×3×5×7=<b style="color:#fde68a">420</b>
+</div>`, ans:`60 = 2²×3×5, 420 = 2²×3×5×7
+
+B의 조건: 최소공배수(60,B)=420
+→ B는 7의 배수, 각 소인수 지수 ≤ 420의 지수
+
+B의 최솟값: 7
+B의 최댓값: 2²×3×5×7 = 420` },
+
+  { tag:'⚙️ 9/9 — 톱니바퀴의 만남', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fbbf24;font-size:.92rem">톱니 수가 30개인 A와 18개인 B가 맞물려 돌아간다.<br>처음에 맞닿은 두 톱니가 다시 만날 때까지<br>각 톱니바퀴는 최소 몇 바퀴씩 도는가?</b><br><br>
+<b style="color:#86efac">🇫🇮 핀란드식 — 직관</b><br>
+"두 바퀴가 같은 수의 톱니를 지나쳐야 만날 수 있어. 둘 다 맞추는 가장 작은 값은?"<br>
+→ 최소공배수(30,18) = <b style="color:#fde68a">90번째 톱니</b>에서 재회<br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르식 — 소인수분해</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.79rem;margin-bottom:8px;font-family:monospace">
+30 = 2 × 3 × 5<br>
+18 = 2 × 3²<br>
+최소공배수 = 2 × 3² × 5 = 90
+</div>
+<b style="color:#fde68a">✡️ 유대인식 — 바퀴 수 계산</b><br>
+A(30개): 90 ÷ 30 = <b style="color:#fde68a">3바퀴</b><br>
+B(18개): 90 ÷ 18 = <b style="color:#fde68a">5바퀴</b><br><br>
+<b style="color:#86efac">💬 지수:</b> "와, 톱니바퀴도 최소공배수로 푸네요!"<br>
+<b style="color:#c4b5fd">현우:</b> "모든 '언제 다시 만나?' 문제는 최소공배수야. 버스 시간표, 신호등, 전구 깜빡임 모두."
+</div>`, ans:`최소공배수(30,18) = 90
+
+A: 90 ÷ 30 = 3바퀴
+B: 90 ÷ 18 = 5바퀴` }
 ],
 
 /* ── 일차부등식 심화 10선 (3국 풀이) ─────────────── */
@@ -9958,7 +10201,8 @@ var ARTIFACTS = {
   'simul-basic10': { island:'연립방정식의 미궁', emoji:'📝', quote:'두 미지수도 두 조건이면 반드시 풀린다.', color:'#86efac' },
   'simul-hard10': { island:'연립방정식의 미궁', emoji:'⚔️', quote:'복잡해 보여도 핵심은 두 조건의 교차점이다.', color:'#f87171' },
   'simul-top9': { island:'연립방정식의 미궁', emoji:'🌍', quote:'세 나라의 지혜가 하나의 미궁을 푼다.', color:'#c4b5fd' },
-  'geometry-guide': { island:'기본도형의 별자리 해안', emoji:'⭐', quote:'점·선·면은 공간의 언어다.', color:'#c4b5fd' }
+  'geometry-guide': { island:'기본도형의 별자리 해안', emoji:'⭐', quote:'점·선·면은 공간의 언어다.', color:'#c4b5fd' },
+  'fm-prime-link': { island:'약수와 배수의 숲', emoji:'🔗', quote:'소인수분해를 알면 세지 않아도 구조가 보인다.', color:'#c4b5fd' }
 };
 
 function getArtifacts() {
@@ -10081,7 +10325,7 @@ cvNav = function(dir) {
 // 기능 4: 지혜의 깃발 (Wisdom Flag)
 // ══════════════════════════════════════════════════════════
 var HUB_ARTIFACTS = {
-  'factmult': ['fm-guide','fm-gcd','fm-worksheet','fm-advanced','fm-hard10','fm-solution'],
+  'factmult': ['fm-guide','fm-gcd','fm-worksheet','fm-advanced','fm-hard10','fm-solution','fm-prime-link'],
   'prime-hub': ['prime-havruta'],
   'equation-hub': ['eq-havruta-cards'],
   'eq-identity-hub': ['eq-identity', 'eq-identity-havruta', 'eq-guarantee', 'eq-identity-discussion'],
@@ -10091,7 +10335,6 @@ var HUB_ARTIFACTS = {
   'inequality-hub': ['inequality-guide','inequality-havruta','ineq-hard10','ineq-gemini5','ineq-lesson','ineq-word'],
   'linear-func-hub': ['linear-func-havruta'],
   'quadratic-hub': ['quadratic-havruta'],
-  'factmult': [],
   'poly-hub': ['poly-guide','poly-hard','poly-havruta']
 };
 
