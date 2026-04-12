@@ -600,19 +600,9 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       <span style="font-family:'Jua',sans-serif;color:#fbbf24">단계별로 완전히 내 것으로!</span><br>
       세 가지 방식을 모두 완료하면 <b style="color:#d4a017">🏆 아르모니아 마스터 뱃지</b>를 얻어요.
     </div>
+    <!-- 🟢 개념 — 나라별 방 -->
+    <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#86efac;letter-spacing:.08em;margin:4px 0 8px;padding-left:4px">🟢 개념 — 나라별 방</div>
     <div id="fm-cards"></div>
-
-    <!-- 🟢 개념 -->
-    <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#86efac;letter-spacing:.08em;margin:4px 0 8px;padding-left:4px">🟢 개념</div>
-    <button onclick="startCards('fm-guide','factmult')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      🌍 3국 개념 토론관 — 약수·배수란? (4장) →
-    </button>
-    <button onclick="startCards('fm-gcd','factmult')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.25);color:#86efac;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      🔢 최대공약수·최소공배수 3국 풀이관 (4장) →
-    </button>
-    <button onclick="startCards('fm-worksheet','factmult')" style="width:100%;margin-bottom:12px;background:rgba(134,239,172,.05);border:1px solid rgba(134,239,172,.2);color:#86efac;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📄 토론 워크시트 — 세 관점으로 다시 보기 (4장) →
-    </button>
 
     <!-- 🟡 기본 연습 -->
     <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#fde68a;letter-spacing:.08em;margin:0 0 8px;padding-left:4px">🟡 기본 연습</div>
@@ -620,16 +610,11 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       📚 기본 퀴즈 — 최대공약수·최소공배수·약수 (10문항)
     </button>
 
-    <!-- 🔴 심화 -->
-    <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#f87171;letter-spacing:.08em;margin:0 0 8px;padding-left:4px">🔴 심화</div>
-    <button onclick="startCards('fm-advanced','factmult')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      🧩 심화 혼합형 — 항구의 조명 문제 (5장) →
-    </button>
-    <button onclick="startCards('fm-hard10','factmult')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.25);color:#fca5a5;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      🏋️ 3국 사고력 도전 10선 (11장) →
-    </button>
-    <button onclick="startCards('fm-solution','factmult')" style="width:100%;margin-bottom:12px;background:rgba(248,113,113,.04);border:1px solid rgba(248,113,113,.18);color:#fca5a5;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📑 3국 사고력 10선 해설 (3장) →
+    <!-- 🔴 종합 도전 -->
+    <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#f87171;letter-spacing:.08em;margin:0 0 8px;padding-left:4px">🔴 종합 도전</div>
+    <button onclick="startCards('fm-advanced','factmult')" style="width:100%;margin-bottom:12px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🧩 3국 종합 도전 — 항구의 조명 (5장) →
+      <div style="font-size:.73rem;color:rgba(248,113,113,.7);margin-top:3px">세 나라가 같은 문제를 다르게 푼다 — 방 3개 완료 후 도전 추천</div>
     </button>
 
     <!-- 🔵 소인수분해 연결 -->
@@ -4646,6 +4631,321 @@ A: 90 ÷ 30 = 3바퀴
 B: 90 ÷ 18 = 5바퀴` }
 ],
 
+/* ── 핀란드 방 — 실생활로 만나는 약수·배수 (6장) ────── */
+'fm-finland': [
+  { tag:'🇫🇮 1/6 — 실생활 입문: 버스·사과 이야기', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.08)', bd:'rgba(134,239,172,.35)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.95rem">"수학은 교과서가 아니라 우리 옆집에 살고 있어."</b><br><br>
+<div style="background:rgba(134,239,172,.07);border-left:3px solid #86efac;border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px">
+<b style="color:#fde68a">장면 1 — 사과 나누기:</b><br>
+사과 12개를 친구들에게 남김없이 똑같이 나눠주려 해요.<br>
+몇 명에게 나눠줄 수 있을까요?<br>
+<span style="color:#aaa;font-size:.79rem">→ 1명, 2명, 3명, 4명, 6명, 12명… 이 숫자들이 12의 <b style="color:#86efac">약수</b>예요!</span>
+</div>
+<div style="background:rgba(134,239,172,.07);border-left:3px solid #86efac;border-radius:0 10px 10px 0;padding:12px 14px">
+<b style="color:#fde68a">장면 2 — 버스 기다리기:</b><br>
+시내버스는 8분마다, 지하철은 12분마다 옵니다.<br>
+지금 막 두 교통수단이 동시에 왔다면, 다음에 다시 동시에 오는 건 몇 분 후일까요?<br>
+<span style="color:#aaa;font-size:.79rem">8의 배수: 8, 16, <b style="color:#86efac">24</b>… / 12의 배수: 12, <b style="color:#86efac">24</b>…<br>→ 처음 겹치는 수 24 = <b style="color:#fde68a">최소공배수</b></span>
+</div><br>
+<b style="color:#86efac">핵심:</b> 나눌 때 쓰는 수 → 약수 &nbsp;|&nbsp; 반복이 겹치는 시간 → 배수
+</div>`, ans:null },
+
+  { tag:'🇫🇮 2/6 — 개념 발견: "이게 바로 GCD·LCM이야!"', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.95rem">"공식 전에 상황 먼저! 왜 필요한지 느껴봐요."</b><br><br>
+<div style="background:rgba(255,255,255,.05);border-left:3px solid #fde68a;border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px">
+<b style="color:#fde68a">상황 A — 타일 붙이기 (약수·최대공약수):</b><br>
+가로 8m, 세로 12m인 벽에 가장 큰 정사각형 타일을 남는 부분 없이 붙이려면<br>타일 한 변은 몇 m여야 할까요?<br>
+<span style="color:#aaa;font-size:.79rem">8과 12를 동시에 나눌 수 있는 가장 큰 수 → <b style="color:#fde68a">최대공약수(8,12) = 4m</b></span>
+</div>
+<div style="background:rgba(255,255,255,.05);border-left:3px solid #fde68a;border-radius:0 10px 10px 0;padding:12px 14px">
+<b style="color:#fde68a">상황 B — 약속 정하기 (배수·최소공배수):</b><br>
+준표는 8일마다 도서관에 가고, 민지는 12일마다 가요.<br>오늘 만났다면 다음 만남은 며칠 뒤일까요?<br>
+<span style="color:#aaa;font-size:.79rem">8과 12의 공통 배수 중 가장 작은 수 → <b style="color:#fde68a">최소공배수(8,12) = 24일 뒤</b></span>
+</div><br>
+<b style="color:#86efac">💡 핵심 패턴:</b><br>
+"나눌 때 → 최대공약수 &nbsp;|&nbsp; 언제 다시 만날까 → 최소공배수"
+</div>`, ans:null },
+
+  { tag:'🇫🇮 3/6 — 연습: 약 복용법', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">💊 약 복용법</b><br><br>
+환자가 A 알약은 <b style="color:#86efac">6시간마다</b>,<br>B 알약은 <b style="color:#7dd3fc">9시간마다</b> 먹어야 합니다.<br><br>
+월요일 오전 9시에 두 알약을 동시에 먹기 시작했다면,<br>
+<b style="color:#fde68a">수요일이 되기 전까지 두 알약을 동시에 먹는 횟수는 총 몇 번인가요?</b><br><br>
+<span style="color:#aaa;font-size:.78rem">💡 힌트: 수요일 시작 = 월요일 9시로부터 몇 시간 후인지 먼저 계산해보세요!</span>
+</div>`,
+    ans:`<b style="color:#86efac">풀이:</b><br>최소공배수(6, 9) = 18시간 → 18시간마다 동시 복용<br><br>월요일 9시 → 수요일 0시 = 39시간<br><br>동시 복용 시각:<br>0h (월 9시) → 18h (화 3시) → 36h (화 21시)<br>54h = 수요일 15시 → 제외<br><br><b style="color:#fde68a;font-size:.9rem">총 3번</b>` },
+
+  { tag:'🇫🇮 4/6 — 연습: 교통 관제', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">✈️ 교통 관제</b><br><br>
+공항 셔틀버스는 <b style="color:#86efac">15분마다</b> 출발하고,<br>지하철은 <b style="color:#7dd3fc">12분마다</b> 도착합니다.<br><br>
+오후 3시 18분에 두 교통수단이 동시에 승강장에 있었다면,<br>
+<b style="color:#fde68a">다음번으로 동시에 만나는 시각은 몇 시 몇 분인가요?</b><br><br>
+<span style="color:#aaa;font-size:.78rem">💡 힌트: 두 교통수단이 반복되는 주기를 먼저 찾아보세요.</span>
+</div>`,
+    ans:`<b style="color:#86efac">풀이:</b><br>최소공배수(15, 12) = 60분<br><br>두 교통수단이 동시에 만나는 주기 = <b>60분</b><br><br>오후 3시 18분 + 60분 =<br><b style="color:#fde68a;font-size:.9rem">오후 4시 18분</b>` },
+
+  { tag:'🇫🇮 5/6 — 연습: 조명 아트', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">💡 조명 아트</b><br><br>
+가로등 A: <b style="color:#86efac">18초 켜짐 + 2초 꺼짐</b> 반복<br>
+가로등 B: <b style="color:#7dd3fc">25초 켜짐 + 5초 꺼짐</b> 반복<br><br>
+두 가로등이 동시에 켜지기 시작했을 때,<br>
+<b style="color:#fde68a">다시 처음으로 동시에 켜지는 데 걸리는 시간은 몇 분인가요?</b><br><br>
+<span style="color:#aaa;font-size:.78rem">💡 힌트: 켜진 시간만 보면 안 돼요! 전체 주기(켜짐+꺼짐)를 하나의 단위로 봐야 합니다.</span>
+</div>`,
+    ans:`<b style="color:#86efac">풀이:</b><br>A 전체 주기: 18 + 2 = <b>20초</b><br>B 전체 주기: 25 + 5 = <b>30초</b><br><br>최소공배수(20, 30) = 60초<br><br><b style="color:#fde68a;font-size:.9rem">1분 후</b>` },
+
+  { tag:'🇫🇮 6/6 — 핀란드 방식 총정리', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.08)', bd:'rgba(134,239,172,.35)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.92rem">핀란드 방에서 배운 것을 정리해요!</b><br><br>
+<div style="background:rgba(134,239,172,.07);border-radius:10px;padding:12px 14px;margin-bottom:10px">
+<b style="color:#fde68a">약수란?</b><br>
+어떤 수를 남김없이 나눌 수 있는 수<br>
+<span style="color:#aaa;font-size:.79rem">→ 사과 나누기, 타일 자르기, 모둠 만들기</span>
+</div>
+<div style="background:rgba(134,239,172,.07);border-radius:10px;padding:12px 14px;margin-bottom:10px">
+<b style="color:#fde68a">배수란?</b><br>
+같은 간격으로 반복되는 수<br>
+<span style="color:#aaa;font-size:.79rem">→ 버스 시간표, 약 복용, 가로등 주기</span>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:12px 14px">
+<b style="color:#86efac">문제 유형별 전략:</b><br>
+<span style="color:#fde68a">나눠야 하는 문제</span> → <b style="color:#86efac">최대공약수</b><br>
+<span style="color:#fde68a">언제 다시 만나는 문제</span> → <b style="color:#86efac">최소공배수</b><br>
+<span style="color:#fde68a">주기가 있는 문제</span> → <b style="color:#86efac">전체 주기(합)로 최소공배수</b>
+</div><br>
+<b style="color:#86efac">🎉 핀란드 방 완료!</b> 싱가포르 방이나 유대인 방도 도전해보세요.
+</div>`, ans:null }
+],
+
+/* ── 싱가포르 방 — 막대로 보는 약수·배수 (6장) ─────── */
+'fm-singapore': [
+  { tag:'🇸🇬 1/6 — 시각 입문: 막대로 보기', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.08)', bd:'rgba(125,211,252,.35)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc;font-size:.95rem">"눈으로 보이지 않는 숫자를 막대로 그려보자."</b><br><br>
+싱가포르는 <b style="color:#7dd3fc">CPA 모델</b>(Concrete → Pictorial → Abstract)로 배웁니다.<br>
+추상적인 숫자를 다루기 전, 먼저 눈에 보이게 만들어요.<br><br>
+<div style="background:rgba(125,211,252,.07);border-radius:10px;padding:12px 14px;margin-bottom:10px">
+<b style="color:#fde68a">배수 = 막대 이어 붙이기:</b><br>
+<span style="font-family:monospace">── ── ──</span> (3의 배수: 3, 6, 9…)<br>
+같은 길이의 막대를 계속 이어 붙이는 과정이에요.
+</div>
+<div style="background:rgba(125,211,252,.07);border-radius:10px;padding:12px 14px">
+<b style="color:#fde68a">약수 = 막대 자르기:</b><br>
+<span style="font-family:monospace">████████████ → ████ ████ ████</span><br>
+커다란 막대를 똑같은 크기의 작은 토막으로 자르는 과정이에요.<br><br>
+<b style="color:#7dd3fc">토론 질문:</b> "6의 배수 막대와 9의 배수 막대를 나란히 놓았을 때,<br>처음으로 길이가 같아지는 지점은 어디일까?"<br>
+<span style="color:#aaa;font-size:.79rem">6, 12, <b style="color:#86efac">18</b>… / 9, <b style="color:#86efac">18</b>… → 최소공배수(6,9) = 18</span>
+</div>
+</div>`, ans:null },
+
+  { tag:'🇸🇬 2/6 — GCD·LCM 막대로 발견 (8과 12)', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc;font-size:.95rem">예시: 8과 12의 최대공약수(GCD)와 최소공배수(LCM)</b><br><br>
+<b style="color:#fde68a">최대공약수(GCD) — 막대 자르기:</b><br>
+8cm 막대와 12cm 막대를 남는 부분 없이 똑같은 길이로 자를 수 있는<br>
+<b style="color:#7dd3fc">가장 큰 조각</b>은 몇 cm일까요?<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px 12px;margin-bottom:10px;font-size:.8rem">
+1cm ✓ &nbsp; 2cm ✓ &nbsp; 4cm ✓ ← <b style="color:#fde68a">최대공약수 = 4</b><br>
+(4cm로 자르면 8cm→2토막, 12cm→3토막, 딱 맞아요!)
+</div>
+<b style="color:#fde68a">최소공배수(LCM) — 막대 기차:</b><br>
+8cm 막대와 12cm 막대를 각각 기차처럼 이어 붙입니다.<br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:9px 12px;margin-bottom:10px;font-size:.8rem">
+8→16→<b style="color:#86efac">24</b>→32…<br>
+12→<b style="color:#86efac">24</b>→36…<br>
+두 기차 길이가 처음 맞물리는 지점 → <b style="color:#fde68a">최소공배수 = 24</b>
+</div>
+<b style="color:#7dd3fc">핵심:</b> 눈으로 보이면 개념이 먼저, 계산은 나중이에요!
+</div>`, ans:null },
+
+  { tag:'🇸🇬 3/6 — 시각 연습: 달력 주기', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc">📅 달력 주기</b><br><br>
+수영장은 <b style="color:#86efac">4일마다</b> 청소하고, 체육관은 <b style="color:#7dd3fc">6일마다</b> 청소합니다.<br><br>
+<b style="color:#fde68a">① 오늘 두 곳을 동시에 청소했다면, 다음번 동시 청소는 며칠 뒤인가요?<br>② 첫 번째 동시 청소부터 100일 사이에 동시 청소는 몇 번 일어나나요?</b><br><br>
+<div style="background:rgba(125,211,252,.07);border-radius:8px;padding:9px 12px;margin-bottom:8px;font-size:.8rem">
+<b style="color:#7dd3fc">막대로 생각하기:</b><br>
+4일 막대: [4] [8] <b style="color:#86efac">[12]</b> [16] [20] <b style="color:#86efac">[24]</b> …<br>
+6일 막대: [6] <b style="color:#86efac">[12]</b> [18] <b style="color:#86efac">[24]</b> …
+</div>
+<span style="color:#aaa;font-size:.78rem">💡 힌트: ①번은 최소공배수, ②번은 100일 안에 그 주기가 몇 번 들어가는지 세어요!</span>
+</div>`,
+    ans:`<b style="color:#7dd3fc">풀이:</b><br>최소공배수(4, 6) = 12<br><br>① 다음 동시 청소: <b style="color:#fde68a">12일 뒤</b><br><br>② 100일 사이 동시 청소 횟수:<br>12, 24, 36, 48, 60, 72, 84, 96 → <b style="color:#fde68a">8번</b><br><span style="color:#aaa;font-size:.78rem">(오늘=0일 제외, 100÷12=8···4이므로 8번)</span>` },
+
+  { tag:'🇸🇬 4/6 — 연습: 타일 설계', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc">🏠 타일 설계</b><br><br>
+가로 <b style="color:#86efac">120cm</b>, 세로 <b style="color:#7dd3fc">150cm</b>인 벽에<br>빈틈없이 똑같은 크기의 <b>가장 큰 정사각형 타일</b>을 붙이려고 합니다.<br><br>
+<b style="color:#fde68a">① 타일 한 변의 길이는?<br>② 필요한 타일의 개수는?</b><br><br>
+<span style="color:#aaa;font-size:.78rem">💡 힌트: 막대 모델로 120과 150을 가장 큰 같은 조각으로 자르는 상황을 그려보세요!</span>
+</div>`,
+    ans:`<b style="color:#7dd3fc">풀이:</b><br>최대공약수(120, 150) = 30<br><br>① 타일 한 변 = <b style="color:#fde68a">30cm</b><br>② 타일 개수 = (120÷30) × (150÷30)<br>= 4 × 5 = <b style="color:#fde68a">20개</b>` },
+
+  { tag:'🇸🇬 5/6 — 연습: 상자 쌓기', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc">📦 상자 쌓기</b><br><br>
+가로 <b>15cm</b>, 세로 <b>10cm</b>, 높이 <b>6cm</b>인<br>직육면체 모양 벽돌을 쌓아 <b style="color:#7dd3fc">가장 작은 정육면체</b>를 만들려고 합니다.<br><br>
+<b style="color:#fde68a">① 정육면체의 한 변의 길이는?<br>② 사용된 벽돌의 총 개수는?</b><br><br>
+<span style="color:#aaa;font-size:.78rem">💡 힌트: 세 방향 모두 딱 맞아야 하므로 세 수의 최소공배수를 구하세요!</span>
+</div>`,
+    ans:`<b style="color:#7dd3fc">풀이:</b><br>최소공배수(15, 10, 6) = 30<br><br>① 정육면체 한 변 = <b style="color:#fde68a">30cm</b><br>② 벽돌 개수 = (30×30×30) ÷ (15×10×6)<br>= 27,000 ÷ 900 = <b style="color:#fde68a">30개</b>` },
+
+  { tag:'🇸🇬 6/6 — 연습: 종이 자르기', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.08)', bd:'rgba(125,211,252,.35)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc">✂️ 종이 자르기</b><br><br>
+가로 <b>84cm</b>, 세로 <b>108cm</b>인 도화지를<br>남는 부분 없이 똑같은 크기의 <b>가장 큰 정사각형 카드</b>로 자릅니다.<br><br>
+<b style="color:#fde68a">카드 한 장의 둘레는 몇 cm인가요?</b><br><br>
+<span style="color:#aaa;font-size:.78rem">💡 힌트: 가장 큰 정사각형 → 최대공약수로 한 변을 구하고, 둘레 = 4×한변!</span><br><br>
+<b style="color:#7dd3fc">🎉 싱가포르 방 완료!</b><br>
+<span style="font-size:.79rem;color:#aaa">막대로 보면 GCD는 '자르기', LCM은 '이어붙이기'라는 게 자연스럽게 느껴지죠?<br>핀란드 방이나 유대인 방도 도전해보세요!</span>
+</div>`,
+    ans:`<b style="color:#7dd3fc">풀이:</b><br>최대공약수(84, 108) = 12<br><br>카드 한 변 = 12cm<br>둘레 = 4 × 12 = <b style="color:#fde68a">48cm</b>` }
+],
+
+/* ── 유대인 방 — 질문과 논리로 파고드는 약수·배수 (8장) ── */
+'fm-jewish': [
+  { tag:'✡️ 1/8 — 철학적 입문: 숫자의 가족', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.08)', bd:'rgba(253,230,138,.35)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a;font-size:.95rem">"모든 숫자는 자기만의 '가족'을 가지고 있지 않을까?"</b><br><br>
+유대인 교육(하브루타)은 정답보다 <b style="color:#fde68a">'왜?'</b>라는 질문을 던집니다.<br><br>
+<div style="background:rgba(253,230,138,.07);border-radius:10px;padding:12px 14px;margin-bottom:10px">
+<b style="color:#fde68a">약수 질문:</b><br>
+"12라는 숫자가 있다면, 이 숫자를 완벽하게 나눌 수 있는 '친구들'은 누구일까?<br>왜 5는 그 친구가 될 수 없을까?"
+</div>
+<div style="background:rgba(253,230,138,.07);border-radius:10px;padding:12px 14px;margin-bottom:10px">
+<b style="color:#fde68a">배수 질문:</b><br>
+"배수는 끝없이 커지는데, 약수는 왜 숫자가 제한되어 있을까?<br>무한과 유한의 차이는 어디에서 오는 걸까?"
+</div>
+<b style="color:#a5b4fc">철학적 시각:</b><br>
+약수(공통점)는 안으로 파고드는 겸손함이고,<br>배수는 밖으로 뻗어 나가는 포용성.<br><br>
+<b style="color:#fde68a">이 방에서는 계산보다 '왜?'를 먼저 묻습니다.</b>
+</div>`, ans:null },
+
+  { tag:'✡️ 2/8 — DNA 분석: 소인수분해로 GCD·LCM 발견', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a;font-size:.95rem">"숫자의 DNA를 분석해서 공통점과 차이점을 찾아!"</b><br><br>
+유대인 방식은 숫자를 <b style="color:#fde68a">'해부'</b>합니다.<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px 12px;margin-bottom:10px">
+12 = 2 × 2 × 3 &nbsp; (2가 두 개, 3이 한 개)<br>
+18 = 2 × 3 × 3 &nbsp; (2가 한 개, 3이 두 개)
+</div>
+<b style="color:#7dd3fc">최대공약수 질문:</b> "두 숫자가 <b>공통으로 가진 가장 큰 유산</b>은?"<br>
+둘 다 2×3을 갖고 있어 → <b style="color:#fde68a">최대공약수(12,18) = 6</b><br><br>
+<b style="color:#7dd3fc">최소공배수 질문:</b> "두 숫자의 성질을 <b>모두 만족시키는 가장 작은 조합</b>은?"<br>
+12를 만족 → 2가 두 개 필요<br>
+18도 만족 → 3이 두 개 필요<br>
+→ 2²×3² = <b style="color:#fde68a">최소공배수(12,18) = 36</b><br><br>
+<b style="color:#a5b4fc">철학:</b> 공통점(약수)은 안으로 파고드는 겸손함, 배수는 밖으로 뻗는 포용성!
+</div>`, ans:null },
+
+  { tag:'✡️ 3/8 — 핵심 공식 유도: GCD × LCM = A × B', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a;font-size:.92rem">"외우지 말고, 왜 성립하는지 논리로 이해해!"</b><br><br>
+<b style="color:#c4b5fd">공식:</b> 두 자연수 A, B에 대해<br>
+<div style="background:rgba(253,230,138,.1);border:2px solid rgba(253,230,138,.4);border-radius:10px;padding:12px;text-align:center;margin:8px 0;font-size:.95rem">
+<b style="color:#fde68a">최대공약수(A,B) × 최소공배수(A,B) = A × B</b>
+</div>
+<b style="color:#a5b4fc">왜 그럴까? — 소인수분해로 증명:</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px 12px;margin:8px 0;font-size:.8rem">
+A = g×a, B = g×b 라 하면 (g=최대공약수, a와b는 서로소)<br>
+최소공배수 = g×a×b<br>
+→ 최대공약수 × 최소공배수 = g × g×a×b = g²×a×b<br>
+→ A × B = g×a × g×b = g²×a×b ✓
+</div>
+<b style="color:#fde68a">12, 18로 확인:</b><br>
+최대공약수(12,18) = 6 &nbsp; 최소공배수(12,18) = 36<br>
+6 × 36 = 216 &nbsp; / &nbsp; 12 × 18 = 216 ✓<br><br>
+<b style="color:#86efac">💡 이 공식이 강력한 이유:</b> 두 수 중 하나와 GCD, LCM을 알면 나머지 하나를 바로 구할 수 있어요!
+</div>`, ans:null },
+
+  { tag:'✡️ 4/8 — 숫자 DNA 추론 (GCD=6, LCM=72)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">🧬 숫자 DNA 추론</b><br><br>
+어떤 두 자연수의<br>최대공약수(GCD) = <b style="color:#86efac">6</b><br>최소공배수(LCM) = <b style="color:#7dd3fc">72</b><br><br>
+두 수 중 한 수가 <b>18</b>일 때,<br>
+<b style="color:#fde68a">나머지 한 수는 무엇인가요?</b><br><br>
+<div style="background:rgba(253,230,138,.07);border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:.79rem">
+<b style="color:#c4b5fd">💡 3장에서 배운 공식 활용:</b><br>
+<b style="color:#fde68a">최대공약수 × 최소공배수 = A × B</b>
+</div>
+</div>`,
+    ans:`<b style="color:#fde68a">풀이:</b><br>최대공약수 × 최소공배수 = A × B<br>6 × 72 = 18 × B<br>432 = 18B<br><br><b style="color:#fde68a;font-size:.9rem">B = 24</b><br><br><span style="color:#aaa;font-size:.78rem">검증: 최대공약수(18,24)=6 ✓ 최소공배수(18,24)=72 ✓</span>` },
+
+  { tag:'✡️ 5/8 — 비밀번호 찾기 (역발상)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">🔐 비밀번호 찾기</b><br><br>
+세 자리 자연수 중에서<br>4로 나누면 <b style="color:#f87171">3</b>이 남고<br>5로 나누면 <b style="color:#f87171">4</b>가 남고<br>6으로 나누면 <b style="color:#f87171">5</b>가 남는<br>
+<b style="color:#fde68a">수 중 가장 작은 수를 찾으세요.</b><br><br>
+<div style="background:rgba(253,230,138,.08);border-radius:8px;padding:9px 12px;font-size:.8rem">
+<b style="color:#c4b5fd">✡️ 유대인 역발상 힌트:</b><br>
+4로 나눠 3이 남는다 = 4로 나눠 <b>1이 부족</b>하다.<br>
+즉 <b style="color:#fde68a">n+1</b>은 4, 5, 6 모두로 나누어 떨어집니다!
+</div>
+</div>`,
+    ans:`<b style="color:#fde68a">역발상 풀이:</b><br>n+1 이 4, 5, 6의 공배수<br>최소공배수(4, 5, 6) = 60<br><br>n+1 = 60k → n = 60k − 1<br>세 자리 최솟값: k=2 → n = 119<br><br>검증: 119÷4=29···<b>3</b>✓ 119÷5=23···<b>4</b>✓ 119÷6=19···<b>5</b>✓<br><br><b style="color:#fde68a;font-size:.9rem">정답: 119</b>` },
+
+  { tag:'✡️ 6/8 — 약수의 개수 논쟁', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">🤔 약수의 개수 논쟁</b><br><br>
+약수의 개수가 <b style="color:#f87171">홀수</b>인 숫자들은 어떤 특징이 있나요?<br><br>
+<b style="color:#fde68a">① 1부터 100까지 중 약수의 개수가 홀수인 숫자는 모두 몇 개인가요?<br>② 왜 그런지 논리적으로 설명하세요.</b><br><br>
+<span style="color:#aaa;font-size:.78rem">💡 유대인 힌트: 약수는 보통 쌍(pair)으로 존재해요.<br>예: 12의 약수 1↔12, 2↔6, 3↔4.<br>쌍이 아닌 약수가 생기려면 어떤 조건이 필요할까요?</span>
+</div>`,
+    ans:`<b style="color:#fde68a">논리:</b><br>약수는 항상 쌍으로 존재 (a×b=n).<br>단, a=b인 경우(n=a²)엔 쌍이 아니라 홀로 존재!<br>→ <b>완전제곱수만 약수의 개수가 홀수</b><br><br>1~100의 완전제곱수:<br>1, 4, 9, 16, 25, 36, 49, 64, 81, 100<br><br><b style="color:#fde68a;font-size:.9rem">총 10개</b>` },
+
+  { tag:'✡️ 7/8 — 미지의 수 찾기 (A×B=432)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">🔭 미지의 수 찾기</b><br><br>
+두 자연수 A와 B의<br>곱 A×B = <b>432</b><br>최소공배수(LCM) = <b>72</b><br><br>
+<b style="color:#fde68a">① 두 수의 최대공약수(GCD)를 구하세요.<br>② 가능한 (A, B) 쌍을 모두 찾으세요.</b><br><br>
+<span style="color:#aaa;font-size:.78rem">💡 힌트: A×B = 최대공약수×최소공배수 공식을 활용하세요.</span>
+</div>`,
+    ans:`<b style="color:#fde68a">풀이:</b><br>A×B = 최대공약수×최소공배수<br>432 = 최대공약수 × 72<br>→ <b>최대공약수 = 6</b><br><br>A=6a, B=6b, gcd(a,b)=1<br>ab = 72÷6 = 12<br><br>gcd=1인 (a,b) 쌍: (1,12), (3,4)<br><br><b style="color:#fde68a;font-size:.9rem">(A,B) = (6, 72) 또는 (18, 24)</b>` },
+
+  { tag:'✡️ 8/8 — 하브루타 마무리', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.08)', bd:'rgba(253,230,138,.35)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#fde68a;font-size:.92rem">오늘의 핵심을 마음에 새겨요!</b><br><br>
+<div style="background:rgba(253,230,138,.08);border-left:3px solid #fde68a;border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:14px;font-style:italic">
+"얘들아, 오늘 우리가 구한 최대공약수와 최소공배수는 단순한 숫자가 아니야.<br><br>
+두 수가 서로 어떻게 나뉘어 어울릴 수 있는지(<b style="color:#86efac">약수</b>),<br>
+그리고 어느 지점에서 미래에 함께 만날 수 있는지(<b style="color:#fde68a">배수</b>)를 알려주는<br>
+<b style="color:#c4b5fd">지도</b>란다."
+</div>
+<b style="color:#fde68a">유대인 방에서 배운 것:</b><br>
+🧬 소인수분해로 숫자의 DNA를 해부했어요<br>
+🔑 GCD×LCM = A×B 공식을 논리로 유도했어요<br>
+🔐 역발상으로 나머지 문제를 풀었어요<br>
+🤔 완전제곱수와 약수 쌍의 원리를 토론했어요<br><br>
+<b style="color:#fde68a">🎉 유대인 방 완료!</b><br>
+<span style="font-size:.79rem;color:#aaa">세 방을 모두 완료하면 🏆 아르모니아 마스터 뱃지를 획득할 수 있어요!</span>
+</div>`, ans:null }
+],
+
 /* ── 일차부등식 심화 10선 (3국 풀이) ─────────────── */
 'ineq-hard10': [
   { tag:'⚔️ 심화 1 — 매개변수 포함 부등식', tagColor:'#f87171',
@@ -7562,6 +7862,31 @@ C=69−44=25, A=69−56=13, B=69−38=31<br>
 
 }; // end CARD_DATA
 
+// ── FM 나라별 방: 퀴즈 카드를 개념/연습 사이에 삽입 ──────
+function buildFMRooms(){
+  const insertAt = { fi:2, sg:2, jw:3 };
+  const roomMap  = { fi:'fm-finland', sg:'fm-singapore', jw:'fm-jewish' };
+  ['fi','sg','jw'].forEach(function(method){
+    var m   = FM_METHODS[method];
+    var base= CARD_DATA[roomMap[method]];
+    var at  = insertAt[method];
+    var qCards = FM_QS[method].map(function(q,i){
+      var letters=['①','②','③','④'];
+      var choiceHtml = q.choices.map(function(c,ci){
+        return '<span style="display:block;padding:4px 0">'+ letters[ci] +' '+ c +'</span>';
+      }).join('');
+      return {
+        tag: m.flag +' 확인 문제 '+(i+1)+'/3',
+        tagColor:'#fde68a',
+        bg:'rgba(253,230,138,.05)', bd:'rgba(253,230,138,.25)',
+        body:'<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85"><b style="color:#fde68a">'+q.q+'</b><br><br>'+choiceHtml+'</div>',
+        ans:'<b style="color:#fde68a">정답: '+letters[q.ans]+' '+q.choices[q.ans]+'</b><br><br>'+q.explain
+      };
+    });
+    CARD_DATA[roomMap[method]] = base.slice(0,at).concat(qCards).concat(base.slice(at));
+  });
+}
+
 function startCards(set, from) {
   CS.set = set; CS.cards = CARD_DATA[set];
   CS.cur = 0; CS.from = from; CS.showAns = false;
@@ -9837,9 +10162,9 @@ function nextQ(){
 
 // FM_METHODS + FM_QS
 const FM_METHODS = {
-  fi: { key:'fi', flag:'🇫🇮', name:'1단계 — 핀란드식 직관', sub:'생활 속 상황으로 약수를 발견해요', color:'var(--green)', tagStyle:'background:rgba(46,204,113,.15);border:1px solid rgba(46,204,113,.3);color:#2ecc71' },
-  sg: { key:'sg', flag:'🇸🇬', name:'2단계 — 싱가포르식 시각', sub:'막대 모델로 배수를 눈으로 확인해요', color:'var(--blue)', tagStyle:'background:rgba(52,152,219,.15);border:1px solid rgba(52,152,219,.3);color:#3498db' },
-  jw: { key:'jw', flag:'✡️', name:'3단계 — 유대인식 논리', sub:'하브루타 토론으로 원리를 완전히 내 것으로', color:'var(--yellow)', tagStyle:'background:rgba(241,196,15,.15);border:1px solid rgba(241,196,15,.3);color:#f1c40f' }
+  fi: { key:'fi', flag:'🇫🇮', name:'핀란드 방', sub:'퀴즈 3문제 → 실생활 개념 카드 6장', color:'var(--green)', tagStyle:'background:rgba(46,204,113,.15);border:1px solid rgba(46,204,113,.3);color:#2ecc71' },
+  sg: { key:'sg', flag:'🇸🇬', name:'싱가포르 방', sub:'퀴즈 3문제 → 막대 모델 개념 카드 6장', color:'var(--blue)', tagStyle:'background:rgba(52,152,219,.15);border:1px solid rgba(52,152,219,.3);color:#3498db' },
+  jw: { key:'jw', flag:'✡️', name:'유대인 방', sub:'퀴즈 3문제 → 논리·심화 개념 카드 8장', color:'var(--yellow)', tagStyle:'background:rgba(241,196,15,.15);border:1px solid rgba(241,196,15,.3);color:#f1c40f' }
 };
 
 const FM_QS = {
@@ -9891,8 +10216,8 @@ function getFMScore(m){ return JSON.parse(localStorage.getItem(FM_SCORE_KEY)||'{
 function saveFMScore(m,s){ const d=JSON.parse(localStorage.getItem(FM_SCORE_KEY)||'{}'); d[m]=s; localStorage.setItem(FM_SCORE_KEY,JSON.stringify(d)); }
 
 function checkFMBadge(){
-  const p=getFMProg();
-  return p.fi&&p.sg&&p.jw;
+  const earned=getArtifacts();
+  return ['fm-finland','fm-singapore','fm-jewish'].every(function(s){return earned.indexOf(s)!==-1;});
 }
 
 function renderFactmult(){
@@ -9901,7 +10226,7 @@ function renderFactmult(){
   const order=['fi','sg','jw'];
   document.getElementById('fm-cards').innerHTML=order.map(k=>{
     const m=FM_METHODS[k]; const done=p[k];
-    return `<div class="fm-card ${k} ${done?'done':''}" onclick="startFM('${k}')">
+    return `<div class="fm-card ${k} ${done?'done':''}" onclick="startCards('${{fi:'fm-finland',sg:'fm-singapore',jw:'fm-jewish'}[k]}','factmult')">
       <div class="fm-flag">${m.flag}</div>
       <div class="fm-info">
         <div class="fm-title">${m.name}</div>
@@ -10087,6 +10412,9 @@ function setHomeView(v) {
   }
 }
 
+// FM 나라별 방 조합 (FM_METHODS·FM_QS 정의 후 실행)
+buildFMRooms();
+
 // init
 document.getElementById('fm-badge-home').style.display=checkFMBadge()?'block':'none';
 
@@ -10215,7 +10543,10 @@ var ARTIFACTS = {
   'simul-hard10': { island:'연립방정식의 미궁', emoji:'⚔️', quote:'복잡해 보여도 핵심은 두 조건의 교차점이다.', color:'#f87171' },
   'simul-top9': { island:'연립방정식의 미궁', emoji:'🌍', quote:'세 나라의 지혜가 하나의 미궁을 푼다.', color:'#c4b5fd' },
   'geometry-guide': { island:'기본도형의 별자리 해안', emoji:'⭐', quote:'점·선·면은 공간의 언어다.', color:'#c4b5fd' },
-  'fm-prime-link': { island:'약수와 배수의 숲', emoji:'🔗', quote:'소인수분해를 알면 세지 않아도 구조가 보인다.', color:'#c4b5fd' }
+  'fm-prime-link': { island:'약수와 배수의 숲', emoji:'🔗', quote:'소인수분해를 알면 세지 않아도 구조가 보인다.', color:'#c4b5fd' },
+  'fm-finland': { island:'약수와 배수의 숲', emoji:'🇫🇮', quote:'수학은 교과서가 아니라 우리 옆집에 살고 있어.', color:'#86efac' },
+  'fm-singapore': { island:'약수와 배수의 숲', emoji:'🇸🇬', quote:'눈으로 보이면 개념이 먼저, 계산은 나중이에요.', color:'#7dd3fc' },
+  'fm-jewish': { island:'약수와 배수의 숲', emoji:'✡️', quote:'외우지 말고, 왜 성립하는지 논리로 이해해!', color:'#fde68a' }
 };
 
 function getArtifacts() {
@@ -10338,7 +10669,7 @@ cvNav = function(dir) {
 // 기능 4: 지혜의 깃발 (Wisdom Flag)
 // ══════════════════════════════════════════════════════════
 var HUB_ARTIFACTS = {
-  'factmult': ['fm-guide','fm-gcd','fm-worksheet','fm-advanced','fm-hard10','fm-solution','fm-prime-link'],
+  'factmult': ['fm-finland','fm-singapore','fm-jewish','fm-prime-link'],
   'prime-hub': ['prime-havruta'],
   'equation-hub': ['eq-havruta-cards'],
   'eq-identity-hub': ['eq-identity', 'eq-identity-havruta', 'eq-guarantee', 'eq-identity-discussion'],
