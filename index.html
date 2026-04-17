@@ -353,6 +353,12 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
           <div class="desc">🇫🇮 넓이의 뿌리 · 🇸🇬 알제브라 타일 · ✡️ 두 답의 비밀</div>
           <span class="tag" style="background:rgba(251,146,60,.15);color:#fb923c;border:1px solid rgba(251,146,60,.35);margin-top:6px">중3 ★아르모니아</span>
         </div>
+        <div class="topic-card" onclick="showScreen('sqrt-hub')" style="border:1px solid rgba(45,212,191,.3);background:linear-gradient(155deg,#071e1c,#0d2e2a);grid-column:1/-1">
+          <div class="ico">🌱</div>
+          <div class="name" style="color:#2dd4bf">제곱근과 실수의 탑</div>
+          <div class="desc">🇫🇮 수에도 구멍이 있다 · 🇸🇬 수직선의 완성 · ✡️ 피타고라스의 비밀</div>
+          <span class="tag" style="background:rgba(45,212,191,.15);color:#2dd4bf;border:1px solid rgba(45,212,191,.35);margin-top:6px">중3-1 ★아르모니아</span>
+        </div>
       </div>
 
       <!-- 섹션 4 -->
@@ -1239,6 +1245,46 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     </button>
     <button onclick="startCards('quadratic-havruta','quadratic-hub')" style="width:100%;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(1편)</span> →
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     제곱근과 실수 허브
+══════════════════════════════════ -->
+<div id="sqrt-hub" class="screen">
+  <div style="width:100%;max-width:500px">
+    <div class="nav-bar" style="max-width:500px">
+      <button class="nav-back" onclick="showScreen('home')">← 수학왕국</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#2dd4bf">🌱 제곱근과 실수</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-family:'Jua',sans-serif;color:#2dd4bf;font-size:.95rem;text-align:center;margin-bottom:10px">🌱 "수에도 구멍이 있다"</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
+      <div style="background:linear-gradient(155deg,rgba(45,212,191,.08),rgba(45,212,191,.03));border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:10px 8px;text-align:center">
+        <div style="font-size:1.4rem">🇫🇮</div>
+        <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.78rem;margin:4px 0">핀란드</div>
+        <div style="font-size:.68rem;color:#aaa;line-height:1.4">직관<br>대각선의 발견</div>
+      </div>
+      <div style="background:linear-gradient(155deg,rgba(125,211,252,.08),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.25);border-radius:12px;padding:10px 8px;text-align:center">
+        <div style="font-size:1.4rem">🇸🇬</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.78rem;margin:4px 0">싱가포르</div>
+        <div style="font-size:.68rem;color:#aaa;line-height:1.4">시각화<br>수직선의 완성</div>
+      </div>
+      <div style="background:linear-gradient(155deg,rgba(253,230,138,.08),rgba(253,230,138,.03));border:1px solid rgba(253,230,138,.25);border-radius:12px;padding:10px 8px;text-align:center">
+        <div style="font-size:1.4rem">✡️</div>
+        <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.78rem;margin:4px 0">유대인</div>
+        <div style="font-size:.68rem;color:#aaa;line-height:1.4">논리<br>귀류법 증명</div>
+      </div>
+    </div>
+    <button onclick="startCards('sqrt-guide','sqrt-hub')" style="width:100%;margin-bottom:8px;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);color:#2dd4bf;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🌱 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
+    </button>
+    <button onclick="startCards('sqrt-basic','sqrt-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.08);border:1px solid rgba(134,239,172,.25);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📝 기본 문제 <span style="font-size:.72rem;opacity:.7">(9문항)</span> →
+    </button>
+    <button onclick="startCards('sqrt-havruta','sqrt-hub')" style="width:100%;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(3편)</span> →
     </button>
   </div>
 </div>
@@ -2952,6 +2998,69 @@ A−B = (30−2x)−(20−x) = 10−x<br><br>
     bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">● [현실의 모델링] 동생이 출발한 지 10분 후 형이 자전거를 타고 쫓아갈 때, 두 사람이 만나는 지점 구하기.</div><div style="font-size:.72rem;color:#aaa;font-style:italic">토로: "형은 왜 늦게 출발했을까? 하지만 속도(기울기)가 더 빠르지. 이 경주는 결국 누가 이길까?"</div>`,
     ans:`<b style="color:#34d399">논리 전개:</b><br>1. 시작점: "동생은 이미 앞에서 출발했으니 y절편이 양수야. 형은 원점(0)에서 시작하지."<br>2. 추격: "형의 기울기가 동생보다 가파르다면, 두 선은 반드시 만나. 그 만나는 찰나가 바로 '추월'의 순간이야."<br>3. 해결: "두 식을 나란히 놓고 '값이 같아지는 순간'을 찾는 것, 그게 바로 우리가 방정식을 푸는 이유란다."<br><br><b style="color:#fde68a">원장님 코칭 팁:</b><br>• "그래프를 그리지 않고는 입도 뻥긋하지 마라"<br>• 식 세우기 전에 손가락으로 허공에 선을 그려보게 하기<br>• "기울기가 2배가 되면 넓이는 어떻게 변할 것 같니?" 질문으로 변화 감각 깨우기` }
+],
+
+/* ── 제곱근과 실수 — 3개국 개념 가이드 (3장) ── */
+'sqrt-guide': [
+  { tag:'🇫🇮 핀란드식 — 수에도 구멍이 있다', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.8">정사각형의 한 변이 1cm일 때, <b style="color:#86efac">대각선의 길이</b>는 몇 cm일까요?<br><br>피타고라스 정리로 계산하면 √2 cm가 나옵니다.<br>그런데 √2는 분수로 나타낼 수 있을까요?<br><br><b style="color:#86efac">1.4?</b> → 1.4² = 1.96 (부족)<br><b style="color:#86efac">1.41?</b> → 1.41² = 1.9881 (부족)<br><b style="color:#86efac">1.414?</b> → 1.414² = 1.999396 (계속 부족)<br><br>소수점 아래가 끝없이 이어지고, 딱 떨어지지 않습니다.<br><span style="color:#fde68a">핵심 질문: 이런 수도 '수'라고 부를 수 있을까요?</span></div>`,
+    ans:null },
+  { tag:'🇸🇬 싱가포르식 — 수직선 위의 실수', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.8"><b style="color:#7dd3fc">수 체계 가계도</b> — 시각적으로 보기<br><br><div style="background:rgba(125,211,252,.08);border-radius:8px;padding:10px;font-size:.76rem;line-height:2">실수<br>├─ 유리수 (분수로 표현 가능)<br>│　├─ 정수 (−2, −1, 0, 1, 2 ...)<br>│　└─ 정수 아닌 유리수 (1/2, 0.75 ...)<br>└─ <b style="color:#2dd4bf">무리수 (분수 불가)</b><br>　　└─ √2, √3, π ...</div><br>수직선 위에는 유리수 사이사이에 무리수가 <b style="color:#7dd3fc">빈틈없이</b> 채워져 있습니다.<br><span style="color:#fde68a">핵심: 수직선 = 실수 전체 = 유리수 + 무리수</span></div>`,
+    ans:null },
+  { tag:'✡️ 유대인식 — 피타고라스의 비밀', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.8"><b style="color:#fde68a">"√2가 분수가 아님을 어떻게 증명하는가?"</b><br><br>기원전 피타고라스 학파는 이 사실을 발견하고 <b style="color:#fde68a">비밀로 했습니다.</b><br>왜냐하면 "모든 수는 정수의 비다"라는 신념이 흔들리기 때문이었어요.<br><br><b style="color:#86efac">귀류법:</b> 거짓이 참이라면 어떤 모순이 생기나?<br><br>√2 = p/q (서로소)라 가정하면<br>→ 2 = p²/q² → p² = 2q²<br>→ p는 짝수 → p = 2k<br>→ 4k² = 2q² → q²= 2k² → q도 짝수<br>→ p,q 모두 짝수 = 서로소 <b style="color:#f87171">모순!</b><br><br><span style="color:#fde68a">결론: √2는 절대 분수가 될 수 없다.</span></div>`,
+    ans:null }
+],
+
+/* ── 제곱근과 실수 — 기본 문제 (9문항) ──────── */
+'sqrt-basic': [
+  { tag:'🇫🇮 기본 1/9 — 넓이로 이해', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">넓이가 36인 정사각형의 한 변의 길이는?<br>넓이가 7인 정사각형의 한 변의 길이는?<br><span style="font-size:.76rem;color:#86efac;font-weight:400">(두 번째 답은 분수로 쓸 수 있나요?)</span></div>`,
+    ans:`<b style="color:#86efac">풀이:</b><br>넓이 36 → 한 변 = √36 = <b style="color:#fde68a">6</b><br>넓이 7 → 한 변 = √7<br><br>√7 ≈ 2.6457... 로 끝없이 이어지며 분수로 쓸 수 없습니다.<br>→ <b style="color:#2dd4bf">무리수</b>` },
+  { tag:'🇸🇬 기본 2/9 — 수 분류', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">다음 수를 유리수와 무리수로 분류하라.<br>√4,　√5,　0.333...,　π,　-√9,　√(1/4)</div>`,
+    ans:`<b style="color:#7dd3fc">분류:</b><br><b style="color:#86efac">유리수:</b> √4=2, 0.333...=1/3, -√9=-3, √(1/4)=1/2<br><b style="color:#2dd4bf">무리수:</b> √5, π<br><br>포인트: √4, -√9, √(1/4) 처럼 결과가 정수·분수면 유리수!` },
+  { tag:'✡️ 기본 3/9 — 개념 토론', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">-√9 과 √(-9) 은 같은가, 다른가?<br>각각 계산이 가능한가? 이유를 설명하라.</div>`,
+    ans:`<b style="color:#fde68a">답: 전혀 다르다!</b><br><br>-√9 = -(√9) = -3 → <b style="color:#86efac">계산 가능</b> (실수)<br>√(-9) = ? → 음수의 제곱근 → <b style="color:#f87171">실수 범위에서 불가</b><br><br>핵심: √ 기호 안에 음수를 넣으면 실수에서 답이 없다.<br>(나중에 복소수에서 √(-1) = i 로 정의됩니다)` },
+  { tag:'🇫🇮 기본 4/9 — 곱셈 법칙', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">√3 × √3 = ?<br>√2 × √8 = ?<br>√(4×9) = ?　와　√4 × √9 = ?<br><span style="font-size:.76rem;color:#86efac;font-weight:400">(세 번째와 네 번째는 같은가요?)</span></div>`,
+    ans:`<b style="color:#86efac">풀이:</b><br>√3 × √3 = (√3)² = <b style="color:#fde68a">3</b><br>√2 × √8 = √(2×8) = √16 = <b style="color:#fde68a">4</b><br>√(4×9) = √36 = 6<br>√4 × √9 = 2 × 3 = 6 → <b style="color:#2dd4bf">같다!</b><br><br>법칙: √a × √b = √(ab) (a≥0, b≥0)` },
+  { tag:'🇸🇬 기본 5/9 — 근호 변환', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">√8 = a√b (a, b는 자연수, b는 가장 작게)로 나타내라.<br><span style="font-size:.76rem;color:#7dd3fc;font-weight:400">(√8을 작은 제곱수로 쪼개보세요.)</span></div>`,
+    ans:`<b style="color:#7dd3fc">풀이:</b><br>8 = 4 × 2<br>√8 = √(4×2) = √4 × √2 = 2 × √2<br><br>∴ <b style="color:#fde68a">√8 = 2√2</b><br><br>같은 방법: √12 = 2√3, √18 = 3√2, √50 = 5√2` },
+  { tag:'✡️ 기본 6/9 — 함정 토론', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">√2 + √8 = √10 인가?<br>맞으면 이유를, 틀리면 올바른 답을 구하라.</div>`,
+    ans:`<b style="color:#fde68a">틀렸다!</b><br><br>√2 + √8 ≠ √10<br><br>√8 = 2√2 이므로<br>√2 + √8 = √2 + 2√2 = <b style="color:#fde68a">3√2</b><br><br>핵심: 근호 안을 더하면 안 된다. 근호 밖 계수를 맞춰서 더해야 한다.<br>(마치 2x + 3x = 5x 처럼!)` },
+  { tag:'🇫🇮 기본 7/9 — 현실 적용', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">직각을 낀 두 변이 각각 3cm, 4cm인 직각삼각형의 빗변은?<br>넓이가 20cm²인 정사각형의 한 변은?</div>`,
+    ans:`<b style="color:#86efac">풀이 1:</b> 빗변 = √(3²+4²) = √(9+16) = √25 = <b style="color:#fde68a">5cm</b><br><br><b style="color:#86efac">풀이 2:</b> 한 변 = √20 = √(4×5) = 2√5 cm<br>≈ 2 × 2.236 ≈ <b style="color:#fde68a">4.47cm</b>` },
+  { tag:'🇸🇬 기본 8/9 — 대소 비교', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">다음 수를 수직선 위에 순서대로 배열하라.<br>0, 1, √2, √3, 2, √5, √6<br><span style="font-size:.76rem;color:#7dd3fc;font-weight:400">(제곱해서 비교하면 쉬워요.)</span></div>`,
+    ans:`<b style="color:#7dd3fc">제곱 비교:</b><br>0 &lt; 1 &lt; √2 &lt; √3 &lt; 2 &lt; √5 &lt; √6<br>(각각 0, 1, 2, 3, 4, 5, 6 의 제곱근)<br><br>수직선: <b style="color:#fde68a">0 — 1 — √2 — √3 — 2 — √5 — √6</b><br><br>유리수(0,1,2) 사이에 무리수(√2,√3,√5,√6)가 촘촘히 존재!` },
+  { tag:'✡️ 기본 9/9 — 깊은 토론', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">0.999... (9가 무한히 반복) 는 1과 같은가, 다른가?<br>의견을 먼저 정하고, 수식으로 증명해보라.</div>`,
+    ans:`<b style="color:#fde68a">답: 완전히 같다!</b><br><br><b style="color:#86efac">증명:</b> x = 0.999... 라 하면<br>10x = 9.999...<br>10x - x = 9.999... - 0.999...<br>9x = 9 → <b style="color:#fde68a">x = 1</b><br><br>이것이 실수의 완전성: 수직선 위에 구멍이 없다는 뜻입니다.` }
+],
+
+/* ── 제곱근과 실수 — 하브루타 토론 (3편) ─────── */
+'sqrt-havruta': [
+  { tag:'✡️ 하브루타 1 — 귀류법 체험', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.8"><b style="color:#fde68a">【직접 증명하기】</b><br><br>√3이 무리수임을 귀류법으로 증명하라.<br><br>단계별로 시도해보자:<br>1. √3 = p/q (p,q 서로소) 라고 가정<br>2. 양변을 제곱<br>3. p²이 3의 배수임을 보여라<br>4. p가 3의 배수임을 보여라<br>5. q도 3의 배수가 됨을 보여라<br>6. 이것이 왜 모순인가?<br><br><span style="color:#fde68a">짝과 함께 각 단계를 토론하며 완성하라.</span></div>`,
+    ans:`<b style="color:#fde68a">증명:</b><br>√3 = p/q 가정 → 3 = p²/q² → p² = 3q²<br>→ p²이 3의 배수 → p = 3k<br>→ 9k² = 3q² → q² = 3k² → q도 3의 배수<br>→ p,q 모두 3의 배수 = 서로소 조건 <b style="color:#f87171">모순!</b><br><br><b style="color:#2dd4bf">결론: √3은 무리수</b><br>같은 방법으로 √2, √5, √7... 모두 무리수임을 증명할 수 있다.` },
+  { tag:'✡️ 하브루타 2 — 수 체계 확장 토론', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.8"><b style="color:#fde68a">【확장의 역사】</b><br><br>인류의 수 체계 확장 역사:<br>1. 자연수 → 0의 발견<br>2. 0 포함 → 음수 발견<br>3. 정수 → 분수 발견 (유리수)<br>4. 유리수 → 무리수 발견 (실수 완성)<br>5. 실수 → ???<br><br>토론 질문:<br>• 이차방정식 x²+1=0의 해는 실수에 없다. 어떻게 할까?<br>• 수 체계를 또 한번 확장하면 무엇이 생길까?<br>• 그 확장이 '수'라고 불릴 자격이 있을까?<br><br><span style="color:#fde68a">인류가 매번 두려움을 극복하며 수를 확장했음을 느껴보자.</span></div>`,
+    ans:`<b style="color:#fde68a">답: 복소수의 탄생</b><br><br>x² = -1 → x = √(-1) = <b style="color:#2dd4bf">i</b> (허수 단위)<br><br>실수 + 허수 = <b style="color:#2dd4bf">복소수</b> a + bi<br><br>처음에는 '상상 속의 수(imaginary)'라 불렀지만<br>지금은 전기공학·양자역학의 핵심 도구가 됨.<br><br><b style="color:#86efac">교훈: 수학의 역사 = 두려움을 이긴 확장의 역사</b>` },
+  { tag:'✡️ 하브루타 3 — 무한의 크기', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.8"><b style="color:#fde68a">【칸토르의 질문】</b><br><br>유리수도 무한히 많고, 무리수도 무한히 많다.<br>그렇다면 두 무한은 같은 크기인가?<br><br>토론 전에 직관으로 먼저 예측해보자:<br>• 유리수 vs 무리수, 어느 쪽이 더 많을 것 같은가?<br>• "더 많다"는 것을 무한에서 어떻게 비교할 수 있는가?<br><br><span style="color:#fde68a">힌트: 0과 1 사이의 유리수와 무리수를 생각해보자.</span></div>`,
+    ans:`<b style="color:#fde68a">놀라운 사실: 무리수가 훨씬 더 많다!</b><br><br>칸토르(1845-1918)의 발견:<br>• 유리수: 셀 수 있는 무한 (자연수와 1:1 대응 가능)<br>• 무리수: <b style="color:#2dd4bf">셀 수 없는 무한</b> (자연수와 대응 불가)<br><br>수직선의 거의 모든 점이 무리수이고<br>유리수는 그 사이에 드문드문 있는 것.<br><br><b style="color:#86efac">수학에서 무한은 하나가 아니다. 무한에도 크기가 있다.</b>` }
 ],
 
 /* ── 이차방정식 개념 가이드 (3장) ───────────── */
@@ -10538,6 +10647,9 @@ var ARTIFACTS = {
   'ineq-word': { island:'부등식의 활용 평원', emoji:'📝', quote:'수학은 현실 문제를 풀기 위한 언어다.', color:'#fde68a' },
   'linear-func-havruta': { island:'일차함수의 직선 활주로', emoji:'📈', quote:'기울기는 변화의 속도다.', color:'#34d399' },
   'quadratic-havruta': { island:'이차방정식의 포물선 계곡', emoji:'🌊', quote:'두 개의 답은 두 개의 진실이다.', color:'#fb923c' },
+  'sqrt-guide': { island:'제곱근과 실수의 탑', emoji:'🌱', quote:'수에도 구멍이 있다. 그것을 채우는 것이 수학이다.', color:'#2dd4bf' },
+  'sqrt-basic': { island:'제곱근과 실수의 탑', emoji:'📝', quote:'새로운 수를 발견하는 것은 새로운 세계를 여는 것이다.', color:'#2dd4bf' },
+  'sqrt-havruta': { island:'제곱근과 실수의 탑', emoji:'✡️', quote:'두려움을 이긴 자만이 수를 확장할 수 있다.', color:'#fde68a' },
   'simultaneous-havruta': { island:'연립방정식의 미궁', emoji:'🗝️', quote:'두 조건이 만나는 곳에 답이 있다.', color:'#7dd3fc' },
   'simul-basic10': { island:'연립방정식의 미궁', emoji:'📝', quote:'두 미지수도 두 조건이면 반드시 풀린다.', color:'#86efac' },
   'simul-hard10': { island:'연립방정식의 미궁', emoji:'⚔️', quote:'복잡해 보여도 핵심은 두 조건의 교차점이다.', color:'#f87171' },
