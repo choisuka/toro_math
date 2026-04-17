@@ -3329,6 +3329,298 @@ x²=2를 만족하는 수가 존재하는가?<br>
 그 공리를 우리는 믿기로 <b>선택</b>했다.<br>
 그 선택이 현대 수학 전체를 만들었다.
 </div>
+</div>` },
+
+  { tag:'🔬 심화①귀류법 — 왜 "아니라고 가정"하는가', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#2dd4bf">귀류법 (背理法, Proof by Contradiction)</b><br>
+<b style="color:#aaa;font-size:.76rem">라틴어: reductio ad absurdum — "불합리로의 환원"</b><br><br>
+<div style="background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.25);border-radius:10px;padding:12px;margin-bottom:12px">
+<b style="color:#6ee7b7">논리 구조</b><br>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.9;margin-top:4px">
+P를 증명하고 싶다.<br>
+① <b>¬P (P가 거짓)</b>라고 가정한다.<br>
+② 논리적 추론을 이어가면…<br>
+③ 명백한 <b style="color:#f87171">모순</b>이 발생한다.<br>
+④ 따라서 ¬P는 거짓 → <b style="color:#86efac">P가 참</b>이다.
+</div>
+</div>
+<b style="color:#86efac">세 가지 증명 방식 비교</b>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin:8px 0;font-size:.72rem">
+  <div style="background:rgba(134,239,172,.08);border-radius:6px;padding:8px">
+    <b style="color:#86efac">직접증명</b><br>
+    P → Q를 전제에서 결론까지 직접 연결<br>
+    <span style="color:#aaa">가장 이해하기 쉬움</span>
+  </div>
+  <div style="background:rgba(45,212,191,.08);border-radius:6px;padding:8px">
+    <b style="color:#2dd4bf">귀류법</b><br>
+    ¬P → 모순 → P<br>
+    <span style="color:#aaa">직접 증명이 불가능할 때</span>
+  </div>
+  <div style="background:rgba(253,230,138,.08);border-radius:6px;padding:8px">
+    <b style="color:#fde68a">대우증명</b><br>
+    ¬Q → ¬P (동치)<br>
+    <span style="color:#aaa">P→Q와 논리적으로 동일</span>
+  </div>
+</div>
+<b style="color:#fde68a">✡️ 핵심 질문</b><br>
+"귀류법은 P가 참임을 '직접' 보여주지 않고,<br>P가 거짓이면 모순이라는 '간접' 방법을 쓴다.<br>이것이 진짜 증명인가?"<br><br>
+<b style="color:#f87171">귀류법의 한계 — 가장 중요한 사실</b><br>
+귀류법은 어떤 것이 <b style="color:#f87171">없음</b>을 증명하는 데 강력하다.<br>
+그러나 "√2가 유리수가 아니다"를 증명하는 것과<br>
+"√2가 존재한다"를 증명하는 것은 <b>전혀 다른 문제다.</b>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#2dd4bf">√2 무리수 증명 — 전체 구조 분해</b><br><br>
+<b style="color:#86efac">목표: √2가 유리수가 아님을 증명한다.</b><br>
+<div style="background:rgba(45,212,191,.07);border-radius:8px;padding:11px;margin:8px 0;font-size:.78rem;line-height:1.9">
+① √2 = p/q (p, q는 서로소 자연수)라고 <b>가정</b>한다.<br>
+② 2 = p²/q² → p² = 2q²<br>
+③ p²이 2의 배수 → <b>p가 2의 배수</b> (유클리드 보조정리: 소수 2가 핵심)<br>
+④ p = 2k로 놓으면 4k² = 2q² → q² = 2k² → q도 2의 배수<br>
+⑤ p, q가 모두 짝수 → "서로소" <b style="color:#f87171">모순</b> ∎
+</div>
+<b style="color:#fde68a">③번 단계가 핵심인 이유</b><br>
+"p²이 2의 배수 → p가 2의 배수"<br>
+이것이 성립하는 유일한 이유: <b>2가 소수</b>이기 때문<br>
+4는 소수가 아니므로 같은 단계가 성립하지 않는다. (→ 카드 4 참조)<br><br>
+<b style="color:#f87171">귀류법이 증명한 것과 증명하지 못한 것</b><br>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0;font-size:.76rem">
+  <div style="background:rgba(134,239,172,.08);border-radius:6px;padding:8px">
+    <b style="color:#86efac">증명한 것 ✓</b><br>
+    √2 ∉ ℚ<br>
+    (√2는 유리수가 아니다)
+  </div>
+  <div style="background:rgba(248,113,113,.08);border-radius:6px;padding:8px">
+    <b style="color:#f87171">증명하지 못한 것 ✗</b><br>
+    √2 ∈ ℝ<br>
+    (√2의 존재) ← <b>완전성 공리</b>가 필요
+  </div>
+</div>
+<b style="color:#a78bfa">귀류법 사용 판단 기준</b><br>
+• "∃가 아니다", "불가능하다", "유한하지 않다" → 귀류법 적합<br>
+• "∃이다", "존재한다", "가능하다" → 직접증명 또는 구성적 증명 필요<br>
+귀류법은 <b>존재를 증명할 수 없다.</b> 비존재를 증명할 때 쓴다.
+</div>` },
+
+  { tag:'🔬 심화②완전성 공리 — 실수의 토대', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#2dd4bf">문제 제기: 유리수의 "빈틈"</b><br>
+S = { q ∈ ℚ | q² &lt; 2 } = { ... 1.4, 1.41, 1.414, 1.4142 ... }<br><br>
+<div style="background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px;margin-bottom:12px">
+<b style="color:#f87171">S는 위로 유계다: S의 모든 원소 &lt; 1.5 &lt; 2</b><br>
+<div style="font-size:.76rem;color:#e2e8f0;margin-top:6px;line-height:1.8">
+S의 최소상계(상한)가 ℚ 안에 존재하는가?<br><br>
+가정: sup S = r ∈ ℚ<br>
+→ r² = 2를 만족하는 유리수 r<br>
+→ 귀류법으로: r은 유리수일 수 없다.<br>
+→ <b>유리수 체계 ℚ 안에서 S의 상한이 없다.</b><br>
+→ ℚ에는 "구멍"이 있다.
+</div>
+</div>
+<b style="color:#86efac">완전성 공리 (Completeness Axiom)</b><br>
+<div style="background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);border-radius:10px;padding:13px;margin:8px 0;font-size:.82rem">
+실수 ℝ에서: <b style="color:#6ee7b7">위로 유계인 공집합이 아닌 집합은<br>최소상계(상한, supremum)를 가진다.</b>
+</div>
+<span style="color:#aaa;font-size:.75rem">이것은 증명이 아니다. 실수 체계를 정의할 때 넣는 <b style="color:#fde68a">공리</b>다.<br>유리수 ℚ에서는 이 공리가 거짓이다.</span><br><br>
+<b style="color:#fde68a">✡️ 이것이 왜 공리인가?</b><br>
+"완전하다(complete)"는 성질은 더 작은 전제에서 증명할 수 없다.<br>
+이것을 받아들이기로 선택하면 실수가 생기고,<br>
+거부하면 유리수 세계에 머문다.<br><br>
+<b style="color:#a78bfa">🏛️ 원탁 질문</b><br>
+<span style="color:#c4b5fd;font-size:.76rem">"데데킨트 절단(Dedekind Cut)은 이 공리 없이 실수를 '구성'하려는 시도다. 구성된 실수와 공리로 가정된 실수는 같은 것인가?"</span>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#2dd4bf">완전성 공리가 보장하는 것들</b><br><br>
+<b style="color:#86efac">1. √2의 존재</b><br>
+S = {q ∈ ℝ | q² &lt; 2} → 완전성 공리 → sup S = x가 존재<br>
+x² = 2 임을 증명 가능 (x² &lt; 2이면 x가 상한이 아님, x² &gt; 2이면 x가 최소상한이 아님)<br>
+→ <b>이 x가 √2다.</b> 귀류법이 아닌 <b>구성적 존재 증명</b>이다.<br><br>
+<b style="color:#86efac">2. 극한의 존재 (미적분의 기초)</b><br>
+수렴하는 수열이 반드시 극한값을 가진다 (코시 수열 완비성)<br>
+→ 완전성 공리 없이 미분적분학이 성립하지 않는다.<br><br>
+<b style="color:#86efac">3. 중간값 정리 (연속함수의 성질)</b><br>
+f(a)&lt;0, f(b)&gt;0인 연속함수는 (a,b) 사이에 f(c)=0인 c가 존재한다.<br>
+→ 완전성 공리의 직접적 결과<br><br>
+<div style="background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.25);border-radius:10px;padding:11px;margin-top:10px">
+<b style="color:#6ee7b7">완전성 공리를 거부하면 사라지는 것들</b><br>
+• √2를 포함한 모든 무리수의 '수로서의' 존재<br>
+• 극한, 미분, 적분 전체 (크로네커의 선택)<br>
+• 물리학, 공학 계산의 수학적 근거<br><br>
+<b style="color:#fde68a">완전성 공리를 받아들이면 얻는 것들</b><br>
+• 실수직선: 빈틈 없는 연속체<br>
+• 미적분학 전체<br>
+• 현대 분석학 (해석학) 전체
+</div>
+<b style="color:#aaa;margin-top:10px;display:block">데데킨트(1872): "공리로 가정하지 않고, 유리수의 '절단'으로 실수를 구성할 수 있다."<br>결론은 같지만 철학적 입장이 다르다 — 발견 vs 발명.</b>
+</div>` },
+
+  { tag:'🔬 심화③정렬원리 — 자연수의 근본', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#2dd4bf">정렬원리 (Well-Ordering Principle)</b><br>
+<div style="background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.35);border-radius:10px;padding:13px;margin:8px 0;font-size:.84rem">
+<b style="color:#6ee7b7">자연수 ℕ의 공집합이 아닌 모든 부분집합은<br>반드시 최솟값(최소 원소)을 가진다.</b>
+</div>
+<span style="color:#aaa;font-size:.75rem">이것은 증명이 아니다. 자연수의 공리다.</span><br><br>
+<b style="color:#86efac">왜 이것이 중요한가?</b><br>
+귀류법 + 정렬원리 = <b>"가장 작은 반례"</b> 전략<br><br>
+<div style="background:rgba(134,239,172,.08);border-radius:8px;padding:10px;margin-bottom:12px;font-size:.78rem;line-height:1.8">
+어떤 명제 P(n)이 거짓이라고 하자.<br>
+P(n)이 거짓인 자연수의 집합 S = {n ∈ ℕ | P(n) 거짓}<br>
+S가 공집합이 아니라면 → 정렬원리 → S의 최솟값 m 존재<br>
+"P(m)은 거짓이지만 P(m−1)은 참"<br>
+이 m이 존재한다는 가정에서 모순을 도출 → P(m)도 참 → S=∅
+</div>
+<b style="color:#fde68a">✡️ 정렬원리 vs 수학적 귀납법</b><br>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:.74rem;margin:6px 0">
+  <div style="background:rgba(253,230,138,.08);border-radius:6px;padding:8px">
+    <b style="color:#fde68a">정렬원리</b><br>
+    "최솟값이 반드시 존재한다"<br>
+    존재 보장 (공리)
+  </div>
+  <div style="background:rgba(125,211,252,.08);border-radius:6px;padding:8px">
+    <b style="color:#7dd3fc">수학적 귀납법</b><br>
+    P(1)이 참 + P(k)→P(k+1)<br>
+    → 모든 n에서 P(n) 참
+  </div>
+</div>
+이 둘은 논리적으로 <b style="color:#86efac">동치</b>다.<br>
+(정렬원리에서 귀납법을, 귀납법에서 정렬원리를 유도 가능)<br><br>
+<b style="color:#a78bfa">무한강하법 (페르마, 17세기)</b><br>
+<span style="color:#c4b5fd;font-size:.76rem">P(n)이 참이면 P(n보다 작은 수)도 참이라는 모순 → P는 처음부터 참이 아님.<br>정렬원리의 다른 표현. 페르마가 정수론 증명에 즐겨 사용.</span>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#2dd4bf">정렬원리 → 산술기본정리 증명 개요</b><br><br>
+<b style="color:#86efac">산술기본정리:</b> 2 이상의 모든 자연수는 소수의 곱으로 유일하게 표현된다.<br><br>
+<b style="color:#fde68a">존재 증명 (정렬원리 이용)</b><br>
+S = {n ≥ 2 | n이 소수의 곱으로 표현 불가} 라 하자.<br>
+S가 공집합이 아닌 가정 → 정렬원리 → S의 최솟값 m 존재<br>
+m이 소수면 → m = m (소수 1개의 곱) → S에 속할 수 없다 <b style="color:#f87171">모순</b><br>
+m이 소수가 아니면 → m = a×b (1&lt;a,b&lt;m) → a,b &lt; m → S에 없음 → 소수의 곱으로 표현 가능<br>
+→ m = (a의 소인수분해) × (b의 소인수분해) → m ∉ S <b style="color:#f87171">모순</b><br>
+따라서 S = ∅ → 모든 n ≥ 2는 소수의 곱으로 표현 가능 ∎<br><br>
+<b style="color:#86efac">유일성 증명은 유클리드 보조정리 필요</b> (→ 카드 4 참조)<br><br>
+<div style="background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:11px;margin-top:10px">
+<b style="color:#6ee7b7">정렬원리 없는 수 체계</b><br>
+• ℤ (정수): 음수는 최솟값 없음 → 정렬 아님<br>
+• ℚ (유리수): 양의 유리수는 최솟값 없음 → 정렬 아님<br>
+• ℝ (실수): 정렬 아님<br><br>
+<b style="color:#fde68a">정렬원리는 ℕ만의 특별한 성질이다.</b><br>
+이것이 수론(정수론)이 "자연수의 수학"인 이유다.
+</div>
+<b style="color:#aaa;margin-top:10px;display:block">전체 의존 구조:<br>
+정렬원리(공리) → 산술기본정리(증명) → 유클리드 보조정리 → √2 무리수 증명
+</b>
+</div>` },
+
+  { tag:'🔬 심화④무한의 크기 — 가산과 비가산', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#2dd4bf">두 집합의 "크기" 비교</b><br>
+<div style="background:rgba(45,212,191,.08);border-radius:8px;padding:10px;margin:8px 0;font-size:.78rem;line-height:1.8">
+두 집합 A, B의 크기가 "같다" = 전단사 함수 f: A→B가 존재한다.<br>
+(A의 원소와 B의 원소를 1:1로 짝지을 수 있다)<br>
+이것이 칸토어(Georg Cantor, 1874)의 집합론적 정의다.
+</div>
+<b style="color:#86efac">가산 무한 (Countably Infinite)</b><br>
+자연수 ℕ = {1, 2, 3, 4, ...}와 1:1 대응 가능한 무한 집합<br><br>
+<b style="color:#fde68a">|ℕ| = |ℤ|: 정수는 자연수만큼 "많다"</b>
+<div style="background:rgba(253,230,138,.07);border-radius:8px;padding:8px;margin:6px 0;font-size:.76rem">
+1 → 0, 2 → 1, 3 → −1, 4 → 2, 5 → −2, ...<br>
+ℤ의 모든 원소에 ℕ의 번호를 붙일 수 있다.
+</div>
+<b style="color:#fde68a">|ℕ| = |ℚ|: 유리수도 가산 무한이다!</b><br>
+<div style="background:rgba(253,230,138,.07);border-radius:8px;padding:8px;margin:6px 0;font-size:.76rem">
+칸토어의 표 세기 (지그재그 방향):
+<div style="font-family:monospace;margin:4px 0;color:#fde68a">
+1/1 → 2/1 &nbsp; 3/1 → 4/1 ...<br>
+↓ &nbsp;&nbsp; ↗ &nbsp;&nbsp; ↓<br>
+1/2 &nbsp; 2/2 &nbsp; 3/2 ...<br>
+↓ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↗<br>
+1/3 &nbsp; 2/3 ...
+</div>
+대각선 지그재그로 모든 양의 유리수를 나열 가능<br>
+→ ℚ⁺는 가산 → ℚ도 가산
+</div>
+<b style="color:#f87171">충격: 그러면 ℝ도 가산인가?</b><br>
+<span style="color:#aaa;font-size:.76rem">칸토어 이전에는 "모든 무한은 같다"고 생각했다.</span>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#2dd4bf">|ℕ| &lt; |ℝ|: 실수는 자연수보다 "많다"</b><br><br>
+<b style="color:#f87171">비가산 무한 (Uncountably Infinite)</b><br>
+|ℝ|을 ℵ₀(알레프-영) = |ℕ|과 비교하면:<br>
+|ℝ| = c (연속체의 농도) &gt; ℵ₀<br><br>
+<b style="color:#86efac">직관적 증명 (대각선 논증 개요)</b><br>
+[0,1] 구간의 실수를 모두 나열할 수 있다고 가정하자:<br>
+<div style="font-family:monospace;font-size:.74rem;background:rgba(248,113,113,.08);border-radius:6px;padding:8px;margin:8px 0;line-height:1.8;color:#fca5a5">
+r₁ = 0.<b style="color:#f87171">3</b>14159...<br>
+r₂ = 0.7<b style="color:#f87171">2</b>8182...<br>
+r₃ = 0.10<b style="color:#f87171">0</b>101...<br>
+r₄ = 0.618<b style="color:#f87171">0</b>33...<br>
+...
+</div>
+대각선 숫자: 3, 2, 0, 0 ...<br>
+각 자리수를 다르게 바꾼 수 x = 0.4311...<br>
+x는 r₁과 1번째 자리가 다름, r₂와 2번째 자리가 다름, ...<br>
+x는 목록의 어디에도 없다. <b style="color:#f87171">모순!</b><br><br>
+→ [0,1]의 실수를 ℕ으로 나열하는 것은 불가능하다.<br>
+→ |ℝ| &gt; |ℕ| = ℵ₀ &nbsp;(자세한 증명은 카드 11 참조)
+</div>` },
+
+  { tag:'🔬 심화⑤칸토어의 충격 — 이름 없는 수', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#2dd4bf">대각선 논증 (Diagonal Argument) — 칸토어, 1891</b><br><br>
+<b style="color:#86efac">전제:</b> [0,1]의 모든 실수를 나열할 수 있다고 가정<br>
+<div style="background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:8px;padding:10px;margin:8px 0;font-size:.78rem;line-height:1.8">
+f: ℕ → [0,1] 이 전단사 함수라고 하자.<br>
+f(1) = 0.a₁₁ a₁₂ a₁₃ a₁₄ ...<br>
+f(2) = 0.a₂₁ a₂₂ a₂₃ a₂₄ ...<br>
+f(3) = 0.a₃₁ a₃₂ a₃₃ a₃₄ ...<br>
+f(n) = 0.aₙ₁ aₙ₂ aₙ₃ aₙₙ ...<br><br>
+새로운 수 x를 만들자:<br>
+x의 n번째 자리 = aₙₙ ≠ aₙₙ (대각선 원소와 다르게)<br>
+→ x는 f(n)과 n번째 자리에서 다름 (모든 n에 대해)<br>
+→ x는 이 목록에 없다. <b style="color:#f87171">전단사 가정 모순</b> ∎
+</div>
+<b style="color:#f87171">결론: |ℝ| &gt; |ℕ| — 실수는 비가산 무한이다</b><br><br>
+<b style="color:#fde68a">✡️ 가장 충격적인 함의</b><br>
+수학에서 이름 붙일 수 있는 수: 가산 무한<br>
+(모든 수학적 표현식은 유한한 기호의 조합 → 가산)<br>
+ℝ은 비가산 → <b style="color:#f87171">거의 모든 실수는 이름이 없다</b><br><br>
+<b style="color:#a78bfa">🏛️ 원탁 질문</b><br>
+<span style="color:#c4b5fd;font-size:.76rem">"이름 붙일 수 없는 수가 수직선에 있다. 그것은 존재하는가? 존재한다면, 우리는 그것에 대해 무슨 말을 할 수 있는가?"</span>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#2dd4bf">가산과 비가산의 계층</b><br><br>
+<div style="background:rgba(45,212,191,.08);border-radius:8px;padding:10px;margin-bottom:12px;font-size:.78rem;line-height:2">
+|ℕ| = |ℤ| = |ℚ| = ℵ₀ (알레프-영) — 가산 무한<br>
+|ℝ| = c &gt; ℵ₀ — 비가산 무한<br>
+|ℕ의 모든 부분집합의 집합| = 2^ℵ₀ = c (칸토어 정리)
+</div>
+<b style="color:#86efac">이름 붙일 수 있는 수의 범위</b><br>
+유한한 기호 조합으로 표현 가능한 수:<br>
+• 모든 정수, 유리수 → 가산<br>
+• 모든 대수적 수(√2, ³√5, 황금비 등) → 가산<br>
+• π, e, ln2 등 초월수도 각각 가산<br>
+→ 이름 붙일 수 있는 수 전체: <b>가산 무한</b><br><br>
+그런데 ℝ은 비가산 → <b style="color:#f87171">이름 없는 수가 압도적으로 많다</b><br><br>
+<b style="color:#fde68a">연속체 가설 (Continuum Hypothesis)</b><br>
+ℵ₀ &lt; c 사이에 다른 무한의 크기가 있는가?<br>
+힐베르트(1900): 수학의 23대 문제 중 1번<br>
+코헨(1963): <b>ZFC 공리계에서 결정 불가능함을 증명</b><br>
+→ 연속체 가설은 참으로도, 거짓으로도 가정할 수 있다.<br><br>
+<div style="background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px;margin-top:10px">
+<b style="color:#f87171">이 모든 것의 기원:</b><br>
+"√2가 유리수인가?" → 귀류법 → 아니다<br>
+"그럼 √2는 어디 있는가?" → 완전성 공리 → ℝ에<br>
+"ℝ은 얼마나 큰가?" → 칸토어 → 비가산 무한<br>
+"비가산이면 이름 없는 수가 있다" → 수학의 한계<br><br>
+<b style="color:#2dd4bf">중3 제곱근 단원은 이 질문의 시작이다.</b>
+</div>
 </div>` }
 ],
 
@@ -3766,7 +4058,8 @@ x²+6x+7=0 → (x+3)²=2 → x+3=±√2 → <b style="color:#86efac">x=−3±√
 <b style="color:#a78bfa">🏛️ 필립엑시터 — 원탁 질문</b><br>
 <span style="color:#c4b5fd;font-size:.76rem">"판별식 D&lt;0일 때 '실수 해가 없다'고 말한다. 이것은 정확한 표현인가, 아니면 우리가 아직 모르는 수가 있는 것인가?"</span>
 </div>`,
-    ans:`<b style="color:#34d399">🔙 출발점 재확인:</b> ax²+bx+c=0의 해 = 이차함수 y=ax²+bx+c의 x절편<br><br>
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#34d399">🔙 출발점 재확인:</b> ax²+bx+c=0의 해 = 이차함수 y=ax²+bx+c의 x절편<br><br>
 <b style="color:#86efac">근의공식 유도 (배방완성법으로)</b><br>
 ax²+bx+c=0 (a≠0)<br>
 x²+(b/a)x = −c/a<br>
@@ -3774,12 +4067,28 @@ x²+(b/a)x+(b/2a)² = −c/a+(b/2a)²<br>
 (x+b/2a)² = (b²−4ac)/4a²<br>
 x = (−b±√(b²−4ac)) / 2a<br><br>
 <b style="color:#fde68a">판별식 D=b²−4ac:</b><br>
-D&gt;0 → √D 실수 → 서로 다른 두 실수 근<br>
-D=0 → √0=0 → 중근 (같은 두 근)<br>
-D&lt;0 → √D 허수 → 실수 해 없음 (복소수 해)<br><br>
+D&gt;0 → 서로 다른 두 실수 근 &nbsp;|&nbsp; D=0 → 중근 &nbsp;|&nbsp; D&lt;0 → 실수 해 없음<br><br>
 <b style="color:#2dd4bf">🔗 2단원과 연결:</b><br>
 인수분해 가능 ⟺ D = 완전제곱수 (정수 계수의 경우)<br>
-인수분해 불가 + D≥0 ⟺ 무리수 근 → √가 필요 (1단원 제곱근)` },
+인수분해 불가 + D≥0 ⟺ 무리수 근 → √가 필요 (1단원 제곱근)<br><br>
+<div style="border-left:2px solid #a78bfa;padding-left:10px;margin-top:8px">
+<b style="color:#a78bfa">✡️ 하브루타 — 두 학생의 토론</b><br><br>
+<b style="color:#86efac">서연:</b> "근의공식이 항상 된다면, 왜 인수분해법을 굳이 배우는 거야? 근의공식 하나면 되잖아."<br><br>
+<b style="color:#7dd3fc">민준:</b> "계산 속도 때문 아닐까? x²−5x+6=0은 (x−2)(x−3)=0으로 3초면 되는데, 근의공식 쓰면 더 걸리잖아."<br><br>
+<b style="color:#86efac">서연:</b> "그건 편의의 문제고, 원리는 근의공식이 더 깊잖아."<br><br>
+<b style="color:#7dd3fc">민준:</b> "잠깐, 그게 맞는지 모르겠어. 근의공식은 <b>결론</b>이고, 배방완성법은 <b>그 결론이 나오는 이유</b>야. 결론만 알고 이유를 모르면... 뭔가 이상하지 않아?"<br><br>
+<b style="color:#86efac">서연:</b> "그럼 배방완성법 → 근의공식 순서로 배우는 게 맞는 거겠지. 근의공식은 배방완성법의 일반화이니까."<br><br>
+<b style="color:#fde68a">지호:</b> "D&lt;0 문제로 가자. '실수 해가 없다'는 표현이 정확해? 1단원에서 유리수에 √2가 없다고 했을 때, 사실 √2는 <b>실수 체계에서는</b> 존재했잖아. D&lt;0도 같은 구조 아닐까?"<br><br>
+<b style="color:#7dd3fc">민준:</b> "맞아. '실수에서 해 없음'이 정확하고, '해 없음'은 부정확해. 복소수 범위에서는 (−b±i√|D|)/2a가 해로 존재하니까."<br><br>
+<b style="color:#86efac">서연:</b> "그럼 '실수 해 없음'이라 쓰고 '복소수 해: (−b±i√|D|)/2a'를 같이 쓰는 게 더 정직한 표현이겠네."<br><br>
+<div style="background:rgba(167,139,250,.08);border-radius:6px;padding:8px;margin-top:6px;font-size:.76rem">
+<b style="color:#a78bfa">이 토론의 결론:</b><br>
+"해가 없다"는 표현은 수 체계의 한계를 선언한 것이다.<br>
+1단원 제곱근 → 2단원 인수분해 → 3단원 판별식 D&lt;0 → <b>복소수 체계의 필요</b><br>
+매 단원이 "수 체계를 어디까지 확장할 것인가?"라는 하나의 질문이다.
+</div>
+</div>
+</div>` },
 
   { tag:'📝 기본문제 — 세 가지 풀이법', tagColor:'#86efac',
     bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
