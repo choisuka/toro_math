@@ -3375,12 +3375,70 @@ x²−5x+6 = (x−2)(x−3)<br>
 <b style="color:#fb923c">인수분해란?</b><br>
 <b style="color:#2dd4bf">다항식을 두 개 이상의 인수의 곱으로 나타내는 것</b><br>
 곱셈의 역방향이다.<br><br>
-<b style="color:#86efac">🇫🇮 핀란드 — 넓이 모델</b><br>
-x²+5x+6의 넓이를 가진 직사각형의 가로·세로는?<br>
-<div style="background:rgba(134,239,172,.08);border-radius:8px;padding:8px;font-size:.76rem;line-height:1.8;margin:6px 0">가로 (x+2), 세로 (x+3)이면<br>넓이 = x²+3x+2x+6 = x²+5x+6 ✓<br>인수분해 = 넓이를 아는 직사각형의 변 찾기</div>
-<b style="color:#7dd3fc">🇸🇬 싱가포르 — 알제브라 타일</b><br>
-x² 타일 1개 + x 타일 5개 + 단위 타일 6개<br>→ (x+2)×(x+3) 직사각형으로 배열 가능<br>
-<span style="font-size:.75rem;color:#aaa">배열이 안 되면? → 인수분해 불가 (소위 "안 되는 식")</span><br><br>
+<div style="background:rgba(134,239,172,.06);border:1px solid rgba(134,239,172,.2);border-radius:10px;padding:10px;margin-bottom:10px">
+<b style="color:#86efac">🇫🇮 핀란드 — 넓이 모델 (위→아래)</b><br>
+<div style="font-size:.73rem;color:#aaa;margin:4px 0">출발: <b style="color:#86efac">넓이 x²+5x+6 을 안다.</b> 변을 역으로 찾는다.</div>
+<div style="font-size:.72rem;color:#fde68a;margin-bottom:6px">❓ 가로·세로가 뭐길래 이 넓이가 나왔을까?</div>
+<div style="display:grid;grid-template-columns:28px 60px 28px;grid-template-rows:22px 60px 28px;gap:2px;font-size:.7rem;text-align:center;margin:6px 0">
+  <div></div>
+  <div style="background:rgba(125,211,252,.15);border-radius:4px;color:#7dd3fc;font-weight:bold;display:flex;align-items:center;justify-content:center">? → x</div>
+  <div style="background:rgba(125,211,252,.15);border-radius:4px;color:#7dd3fc;font-weight:bold;display:flex;align-items:center;justify-content:center">?→+3</div>
+  <div style="background:rgba(134,239,172,.15);border-radius:4px;color:#86efac;font-weight:bold;display:flex;align-items:center;justify-content:center">?→x</div>
+  <div style="background:rgba(216,180,254,.12);border:1px solid rgba(216,180,254,.3);border-radius:4px;color:#d8b4fe;display:flex;align-items:center;justify-content:center;font-size:.72rem">x²<br><span style="font-size:.58rem">(정사각형)</span></div>
+  <div style="background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.25);border-radius:4px;color:#86efac;display:flex;align-items:center;justify-content:center;font-size:.68rem">3x</div>
+  <div style="background:rgba(134,239,172,.15);border-radius:4px;color:#86efac;font-weight:bold;display:flex;align-items:center;justify-content:center">?→+2</div>
+  <div style="background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.25);border-radius:4px;color:#86efac;display:flex;align-items:center;justify-content:center;font-size:.68rem">2x</div>
+  <div style="background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.25);border-radius:4px;color:#fde68a;display:flex;align-items:center;justify-content:center;font-size:.68rem">6<br><span style="font-size:.55rem">(정사각형)</span></div>
+</div>
+<div style="font-size:.72rem;color:#aaa;margin-top:4px">x²+3x+2x+6 = x²+5x+6 ✓ → <b style="color:#86efac">(x+2)(x+3)</b></div>
+</div>
+<div style="background:rgba(125,211,252,.05);border:1px solid rgba(125,211,252,.2);border-radius:10px;padding:10px;margin-bottom:10px">
+<b style="color:#7dd3fc">🇸🇬 싱가포르 — 알제브라 타일 (아래→위)</b><br>
+<div style="font-size:.73rem;color:#aaa;margin:4px 0">출발: <b style="color:#7dd3fc">타일 조각을 갖고 있다.</b> 직사각형이 되는지 맞춰본다.</div>
+<div style="font-size:.72rem;color:#fde68a;margin-bottom:6px">❓ 이 조각들로 직사각형을 만들 수 있을까?</div>
+<div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;align-items:flex-end">
+  <div style="background:rgba(216,180,254,.15);border:1px solid rgba(216,180,254,.35);border-radius:4px;width:36px;height:36px;font-size:.62rem;color:#d8b4fe;display:flex;align-items:center;justify-content:center;flex-direction:column">x²<br><span style="font-size:.52rem">×1</span></div>
+  <div style="font-size:.8rem;color:#555;align-self:center">+</div>
+  <div style="display:flex;flex-direction:column;gap:2px">
+    <div style="background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.3);border-radius:3px;width:36px;height:14px;font-size:.56rem;color:#7dd3fc;display:flex;align-items:center;justify-content:center">x</div>
+    <div style="background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.3);border-radius:3px;width:36px;height:14px;font-size:.56rem;color:#7dd3fc;display:flex;align-items:center;justify-content:center">x</div>
+    <div style="background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.3);border-radius:3px;width:36px;height:14px;font-size:.56rem;color:#7dd3fc;display:flex;align-items:center;justify-content:center">x</div>
+    <div style="background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.3);border-radius:3px;width:36px;height:14px;font-size:.56rem;color:#7dd3fc;display:flex;align-items:center;justify-content:center">x</div>
+    <div style="background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.3);border-radius:3px;width:36px;height:14px;font-size:.56rem;color:#7dd3fc;display:flex;align-items:center;justify-content:center">x ×5</div>
+  </div>
+  <div style="font-size:.8rem;color:#555;align-self:center">+</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px">
+    <div style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.3);border-radius:2px;width:14px;height:14px"></div>
+    <div style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.3);border-radius:2px;width:14px;height:14px"></div>
+    <div style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.3);border-radius:2px;width:14px;height:14px"></div>
+    <div style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.3);border-radius:2px;width:14px;height:14px"></div>
+    <div style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.3);border-radius:2px;width:14px;height:14px"></div>
+    <div style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.3);border-radius:2px;width:14px;height:14px"></div>
+  </div>
+  <div style="font-size:.7rem;color:#fde68a;align-self:center">1×6</div>
+  <div style="font-size:1rem;color:#555;align-self:center">→</div>
+  <div style="display:grid;grid-template-columns:36px 14px 14px 14px;grid-template-rows:36px 14px 14px;gap:2px;align-self:center">
+    <div style="background:rgba(216,180,254,.15);border:1px solid rgba(216,180,254,.35);border-radius:3px;font-size:.58rem;color:#d8b4fe;display:flex;align-items:center;justify-content:center">x²</div>
+    <div style="background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.3);border-radius:2px"></div>
+    <div style="background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.3);border-radius:2px"></div>
+    <div style="background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.3);border-radius:2px"></div>
+    <div style="background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.3);border-radius:2px"></div>
+    <div style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.3);border-radius:2px"></div>
+    <div style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.3);border-radius:2px"></div>
+    <div style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.3);border-radius:2px"></div>
+    <div style="background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.3);border-radius:2px"></div>
+    <div style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.3);border-radius:2px"></div>
+    <div style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.3);border-radius:2px"></div>
+    <div style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.3);border-radius:2px"></div>
+  </div>
+</div>
+<div style="font-size:.72rem;color:#aaa">타일이 남거나 부족 없이 딱 맞음 → <b style="color:#7dd3fc">(x+2)(x+3)</b><br><span style="color:#f87171">남거나 빈칸이 생기면 인수분해 불가</span></div>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:8px;font-size:.72rem;color:#aaa;margin-bottom:10px">
+<b style="color:#e2e8f0">핵심 차이</b><br>
+핀란드: 식(넓이)이 먼저 → 변을 역방향으로 추론<br>
+싱가포르: 조각(타일)이 먼저 → 직사각형이 되는지 실험
+</div>
 <b style="color:#fde68a">✡️ 유대인 — 본질 질문</b><br>
 "덧셈은 역방향(뺄셈)이 항상 된다.<br>곱셈의 역방향(인수분해)은 왜 항상 안 되는가?"<br>
 <span style="color:#c4b5fd;font-size:.76rem">→ x²+1은 실수 범위에서 인수분해 불가. 왜?</span><br><br>
@@ -3416,7 +3474,26 @@ x²−2: 유리수에서 불가, 실수에서 (x−√2)(x+√2)<br><br>
 (7)번: 합=8, 곱=15인 두 수는?<br>
 → 3+5=8, 3×5=15 → (x+3)(x+5)<br><br>
 <b style="color:#86efac">🇫🇮 핀란드 접근법</b><br>
-(8)번: 2x²+7x+3의 넓이 직사각형을 그려봐라.</div>`,
+(8)번: 2x²+7x+3 — 이 넓이를 만드는 직사각형의 가로·세로는?
+<div style="display:grid;grid-template-columns:28px 52px 26px;grid-template-rows:22px 52px 26px;gap:2px;margin:6px 0;font-size:.7rem;text-align:center">
+  <div></div>
+  <div style="background:rgba(134,239,172,.15);border-radius:4px;color:#86efac;font-weight:bold;display:flex;align-items:center;justify-content:center">2x</div>
+  <div style="background:rgba(134,239,172,.15);border-radius:4px;color:#86efac;font-weight:bold;display:flex;align-items:center;justify-content:center">+1</div>
+  <div style="background:rgba(134,239,172,.15);border-radius:4px;color:#86efac;font-weight:bold;display:flex;align-items:center;justify-content:center">x</div>
+  <div style="background:rgba(216,180,254,.12);border:1px solid rgba(216,180,254,.3);border-radius:4px;color:#d8b4fe;display:flex;align-items:center;justify-content:center;font-size:.68rem">2x²<br><span style="font-size:.55rem">(2x×x)</span></div>
+  <div style="background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.25);border-radius:4px;color:#7dd3fc;display:flex;align-items:center;justify-content:center;font-size:.68rem">x<br><span style="font-size:.55rem">(1×x)</span></div>
+  <div style="background:rgba(134,239,172,.15);border-radius:4px;color:#86efac;font-weight:bold;display:flex;align-items:center;justify-content:center">+3</div>
+  <div style="background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.25);border-radius:4px;color:#7dd3fc;display:flex;align-items:center;justify-content:center;font-size:.68rem">6x<br><span style="font-size:.55rem">(2x×3)</span></div>
+  <div style="background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.25);border-radius:4px;color:#fde68a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;width:18px">
+      <div style="background:rgba(253,230,138,.4);border-radius:1px;aspect-ratio:1"></div>
+      <div style="background:rgba(253,230,138,.4);border-radius:1px;aspect-ratio:1"></div>
+      <div style="background:rgba(253,230,138,.4);border-radius:1px;aspect-ratio:1"></div>
+    </div>
+    <div style="font-size:.55rem;color:#fde68a">3개</div>
+  </div>
+</div>
+<div style="font-size:.72rem;color:#aaa">2x²+x+6x+3 = 2x²+7x+3 ✓ → <b style="color:#86efac">(2x+1)(x+3)</b></div></div>`,
     ans:`<b style="color:#86efac">【전개】</b><br>
 (1) x²+6x+9<br>
 (2) 4x²−4x+1<br>
@@ -3446,13 +3523,39 @@ a²=2를 만족하는 실수 a가 존재한다면...<br>
 x²−2 = x²−(√2)² = (x−√2)(x+√2)<br>
 → 실수 범위에서 <b style="color:#86efac">가능!</b><br>
 → <b>1단원에서 만든 √2가 여기서 쓰인다.</b><br><br>
+<div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px;margin-top:4px">
 <b style="color:#a78bfa">배방완성법 (Completing the Square)</b><br>
-x²+bx+c를 항상 완전제곱식으로 바꿀 수 있는가?<br><br>
-x²+6x+7<br>
-= x²+6x+9−2<br>
-= (x+3)²−2<br>
-= (x+3−√2)(x+3+√2) &nbsp;← 실수 범위<br><br>
-<span style="color:#fde68a">이 방법이 이차방정식의 근의 공식을 만들어낸다.<br>3단원의 핵심이 여기 숨어있다.</span>
+<div style="font-size:.74rem;color:#c4b5fd;margin:4px 0 8px">
+📍 기원: 알-콰리즈미 (Al-Khwarizmi, 이슬람, 820 AD)<br>
+"대수학(Algebra)"이라는 단어를 만든 수학자.<br>그는 이 방법을 <b>실제로 정사각형을 그려서</b> 설명했다.
+</div>
+<b style="color:#86efac">🇫🇮 핀란드 — 기하학적 원리</b><br>
+<div style="font-size:.74rem;color:#aaa;margin:4px 0">x²+6x 를 정사각형으로 완성하려면?</div>
+<div style="display:grid;grid-template-columns:54px 26px;grid-template-rows:54px 26px;gap:2px;margin:6px 0;font-size:.7rem;text-align:center">
+  <div style="background:rgba(216,180,254,.15);border:1px solid rgba(216,180,254,.3);border-radius:4px;color:#d8b4fe;display:flex;flex-direction:column;align-items:center;justify-content:center">x²<br><span style="font-size:.58rem">(x×x 정사각형)</span></div>
+  <div style="background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.25);border-radius:4px;color:#7dd3fc;font-size:.62rem;display:flex;align-items:center;justify-content:center">3x</div>
+  <div style="background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.25);border-radius:4px;color:#7dd3fc;font-size:.62rem;display:flex;align-items:center;justify-content:center">3x</div>
+  <div style="background:rgba(253,230,138,.2);border:2px dashed rgba(253,230,138,.5);border-radius:4px;color:#fde68a;font-size:.62rem;display:flex;flex-direction:column;align-items:center;justify-content:center">+9<br><span style="font-size:.5rem">3×3<br>정사각형</span></div>
+</div>
+<div style="font-size:.73rem;color:#aaa;margin-bottom:8px">x² 는 x×x <b style="color:#d8b4fe">정사각형</b> / 오른쪽 아래 <b style="color:#fde68a">9=3² = (b/2)²</b> 도 <b style="color:#fde68a">정사각형</b><br>
+이 칸을 채우면 전체가 (x+3)×(x+3) <b>완전한 정사각형</b><br>
+x²+6x <b style="color:#fde68a">+9</b> = (x+3)² &nbsp;→&nbsp; 더한 9를 빼면:<br>
+x²+6x+7 = (x+3)²−9+7 = <b style="color:#86efac">(x+3)²−2</b></div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르 — 공식으로 보면</b><br>
+<div style="background:rgba(125,211,252,.07);border-radius:6px;padding:8px;font-size:.76rem;margin:5px 0">
+x²+bx+c = (x + b/2)² − (b/2)² + c
+</div>
+<b style="color:#fde68a">✡️ 유대인 — 핵심 질문</b><br>
+<div style="font-size:.74rem;color:#e2e8f0;margin:4px 0 8px">"왜 (b/2)²를 더했다가 바로 빼는가?<br>더하고 빼면 0이 되는데, 왜 그 과정이 의미 있는가?"</div>
+<b style="color:#a78bfa">왜 필요한가?</b>
+<div style="font-size:.73rem;color:#e2e8f0;line-height:1.8;margin-top:4px">
+① <b style="color:#86efac">근의 공식 유도</b> — ax²+bx+c=0의 일반해<br>
+② <b style="color:#7dd3fc">이차함수 꼭짓점</b> — y=a(x−h)²+k 변환<br>
+③ <b style="color:#fde68a">인수분해 불가 식</b>도 실수 범위에서 인수분해 가능하게<br>
+<span style="color:#aaa;font-size:.7rem">모든 이차식은 배방완성법으로 반드시 풀린다.</span>
+</div>
+</div>
+<span style="color:#fde68a;font-size:.76rem">→ 3단원 이차방정식 전체가 이 방법 하나에서 나온다.</span>
 </div>`,
     ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
 <b style="color:#7dd3fc">결론: 인수분해 가능성은 수 체계에 의존한다</b><br><br>
