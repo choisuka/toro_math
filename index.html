@@ -1331,8 +1331,8 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     <button onclick="startCards('mid3-sqrt','mid3-hub')" style="width:100%;margin-bottom:8px;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);color:#2dd4bf;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🌱 1단원: 제곱근과 실수 <span style="font-size:.72rem;opacity:.7">— x²=2의 답이 사는 세계</span> →
     </button>
-    <button style="width:100%;margin-bottom:8px;background:rgba(251,146,60,.05);border:1px solid rgba(251,146,60,.15);color:#fb923c;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:default;text-align:left;opacity:.55">
-      🔧 2단원: 다항식의 곱셈과 인수분해 <span style="font-size:.72rem;opacity:.7">준비중</span>
+    <button onclick="startCards('mid3-factor','mid3-hub')" style="width:100%;margin-bottom:8px;background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.3);color:#fb923c;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🔧 2단원: 다항식의 곱셈과 인수분해 <span style="font-size:.72rem;opacity:.7">— 해를 찾는 도구 제작</span> →
     </button>
     <button style="width:100%;margin-bottom:8px;background:rgba(251,146,60,.05);border:1px solid rgba(251,146,60,.15);color:#fb923c;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:default;text-align:left;opacity:.55">
       🎯 3단원: 이차방정식 <span style="font-size:.72rem;opacity:.7">준비중</span>
@@ -3328,6 +3328,244 @@ x²=2를 만족하는 수가 존재하는가?<br>
 완전성 공리 → "R에는 반드시 있다"<br>
 그 공리를 우리는 믿기로 <b>선택</b>했다.<br>
 그 선택이 현대 수학 전체를 만들었다.
+</div>
+</div>` }
+],
+
+/* ── 중3-1학기 2단원: 다항식의 곱셈과 인수분해 (6장) ── */
+'mid3-factor': [
+  { tag:'🗺️ 전체지도 — 왜 인수분해인가', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.07)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.9">
+<div style="display:flex;flex-direction:column;gap:0;margin-bottom:14px">
+  <div style="background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:12px 14px;opacity:.6">
+    <div style="font-family:'Jua',sans-serif;color:#2dd4bf;font-size:.88rem">🌱 1단원: 제곱근과 실수</div>
+    <div style="font-size:.75rem;color:#aaa;margin-top:3px">"x²=2의 답이 사는 세계를 만들었다"</div>
+  </div>
+  <div style="text-align:center;color:#666;font-size:1.1rem;line-height:1.5">↓</div>
+  <div style="background:rgba(251,146,60,.12);border:2px solid rgba(251,146,60,.5);border-radius:12px;padding:12px 14px">
+    <div style="font-family:'Jua',sans-serif;color:#fb923c;font-size:.92rem">🔧 2단원: 인수분해 ← 지금 여기</div>
+    <div style="font-size:.75rem;color:#fbbf24;margin-top:3px">"해를 찾는 도구를 만든다"</div>
+  </div>
+  <div style="text-align:center;color:#666;font-size:1.1rem;line-height:1.5">↓</div>
+  <div style="background:rgba(134,239,172,.06);border:1px solid rgba(134,239,172,.2);border-radius:12px;padding:12px 14px;opacity:.6">
+    <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.88rem">🎯 3단원: 이차방정식</div>
+    <div style="font-size:.75rem;color:#aaa;margin-top:3px">"도구를 써서 해를 구한다"</div>
+  </div>
+</div>
+<b style="color:#fde68a">핵심 질문</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.25);border-radius:10px;padding:12px;margin:8px 0;font-size:.84rem;line-height:1.8">
+x² − 5x + 6 = 0 을 어떻게 푸는가?<br><br>
+x = 1? → 1−5+6 = 2 ≠ 0<br>
+x = 2? → 4−10+6 = 0 ✓<br>
+x = 3? → 9−15+6 = 0 ✓<br><br>
+운으로 찾았다. <b style="color:#f87171">운 없이 찾는 방법은?</b>
+</div>
+<b style="color:#fb923c">인수분해의 답</b><br>
+x²−5x+6 = (x−2)(x−3)<br>
+→ (x−2)(x−3) = 0<br>
+→ x=2 또는 x=3<br><br>
+<span style="color:#aaa;font-size:.78rem">곱셈을 알면 역방향(인수분해)으로 해를 꺼낼 수 있다.<br>이것이 이 단원 전체의 이유다.</span>
+</div>`,
+    ans:null },
+
+  { tag:'📖 개념설명 — 4개국이 인수분해를 보는 방식', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.07)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fb923c">인수분해란?</b><br>
+<b style="color:#2dd4bf">다항식을 두 개 이상의 인수의 곱으로 나타내는 것</b><br>
+곱셈의 역방향이다.<br><br>
+<b style="color:#86efac">🇫🇮 핀란드 — 넓이 모델</b><br>
+x²+5x+6의 넓이를 가진 직사각형의 가로·세로는?<br>
+<div style="background:rgba(134,239,172,.08);border-radius:8px;padding:8px;font-size:.76rem;line-height:1.8;margin:6px 0">가로 (x+2), 세로 (x+3)이면<br>넓이 = x²+3x+2x+6 = x²+5x+6 ✓<br>인수분해 = 넓이를 아는 직사각형의 변 찾기</div>
+<b style="color:#7dd3fc">🇸🇬 싱가포르 — 알제브라 타일</b><br>
+x² 타일 1개 + x 타일 5개 + 단위 타일 6개<br>→ (x+2)×(x+3) 직사각형으로 배열 가능<br>
+<span style="font-size:.75rem;color:#aaa">배열이 안 되면? → 인수분해 불가 (소위 "안 되는 식")</span><br><br>
+<b style="color:#fde68a">✡️ 유대인 — 본질 질문</b><br>
+"덧셈은 역방향(뺄셈)이 항상 된다.<br>곱셈의 역방향(인수분해)은 왜 항상 안 되는가?"<br>
+<span style="color:#c4b5fd;font-size:.76rem">→ x²+1은 실수 범위에서 인수분해 불가. 왜?</span><br><br>
+<b style="color:#a78bfa">🏛️ 필립엑시터 — 원탁 질문</b><br>
+<span style="color:#c4b5fd">"인수분해가 가능하다는 것은 무엇을 의미하는가?<br>어떤 다항식은 왜 인수분해가 불가능한가?"</span>
+</div>`,
+    ans:`<b style="color:#fb923c">🔙 출발점 재확인:</b> 인수분해 = 곱셈의 역방향<br><br>
+<b style="color:#86efac">핵심 공식</b><br>
+(a+b)² = a²+2ab+b²<br>
+(a−b)² = a²−2ab+b²<br>
+(a+b)(a−b) = a²−b²<br>
+x²+(a+b)x+ab = (x+a)(x+b)<br><br>
+<b style="color:#fde68a">유대인 질문의 답 (미리보기):</b><br>
+인수분해 가능 여부는 <b>어떤 수 체계에서 보느냐</b>에 달렸다.<br>
+x²+1: 실수에서 불가, 복소수에서 (x+i)(x−i)<br>
+x²−2: 유리수에서 불가, 실수에서 (x−√2)(x+√2)<br><br>
+<b style="color:#2dd4bf">이것이 1단원(제곱근)과 연결된다.</b>` },
+
+  { tag:'📝 기본문제 — 전개와 인수분해', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">【전개】</b> 다음을 전개하라.<br>
+(1) (x+3)²<br>
+(2) (2x−1)²<br>
+(3) (x+5)(x−5)<br>
+(4) (x+2)(x+7)<br><br>
+<b style="color:#86efac">【인수분해】</b> 다음을 인수분해하라.<br>
+(5) x²−8x+16<br>
+(6) 4x²−9<br>
+(7) x²+8x+15<br>
+(8) 2x²+7x+3<br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르 접근법</b><br>
+(7)번: 합=8, 곱=15인 두 수는?<br>
+→ 3+5=8, 3×5=15 → (x+3)(x+5)<br><br>
+<b style="color:#86efac">🇫🇮 핀란드 접근법</b><br>
+(8)번: 2x²+7x+3의 넓이 직사각형을 그려봐라.</div>`,
+    ans:`<b style="color:#86efac">【전개】</b><br>
+(1) x²+6x+9<br>
+(2) 4x²−4x+1<br>
+(3) x²−25<br>
+(4) x²+9x+14<br><br>
+<b style="color:#86efac">【인수분해】</b><br>
+(5) (x−4)² &nbsp;← 16=4², 8=2×4 확인<br>
+(6) (2x+3)(2x−3) &nbsp;← a²−b² 공식<br>
+(7) (x+3)(x+5) &nbsp;← 3+5=8, 3×5=15<br>
+(8) (2x+1)(x+3) &nbsp;← ac법: 2×3=6, 합=7 → 1+6=7<br><br>
+<b style="color:#fde68a">🔙 출발점:</b> 전개의 역방향이 인수분해.<br>
+(1)을 뒤집으면 (5). 이 관계를 확인하라.` },
+
+  { tag:'⚡ 심화 — 인수분해는 항상 유일한가', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.25);border-radius:10px;padding:12px;margin-bottom:14px">
+<b style="color:#7dd3fc">핵심 질문</b><br>
+x²−2는 인수분해가 되는가?<br>
+만약 된다면 어디서 되는가?
+</div>
+<b style="color:#86efac">시도 1 — 정수 범위</b><br>
+합=0, 곱=−2인 정수 쌍: 없다.<br>
+→ 정수 계수 범위에서 <b style="color:#f87171">불가</b><br><br>
+<b style="color:#7dd3fc">시도 2 — 실수 범위</b><br>
+a²=2를 만족하는 실수 a가 존재한다면...<br>
+x²−2 = x²−(√2)² = (x−√2)(x+√2)<br>
+→ 실수 범위에서 <b style="color:#86efac">가능!</b><br>
+→ <b>1단원에서 만든 √2가 여기서 쓰인다.</b><br><br>
+<b style="color:#a78bfa">배방완성법 (Completing the Square)</b><br>
+x²+bx+c를 항상 완전제곱식으로 바꿀 수 있는가?<br><br>
+x²+6x+7<br>
+= x²+6x+9−2<br>
+= (x+3)²−2<br>
+= (x+3−√2)(x+3+√2) &nbsp;← 실수 범위<br><br>
+<span style="color:#fde68a">이 방법이 이차방정식의 근의 공식을 만들어낸다.<br>3단원의 핵심이 여기 숨어있다.</span>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#7dd3fc">결론: 인수분해 가능성은 수 체계에 의존한다</b><br><br>
+<div style="background:rgba(125,211,252,.08);border-radius:8px;padding:10px;margin-bottom:10px">
+x²−2:<br>
+• 유리수 ℚ에서: <b style="color:#f87171">불가</b><br>
+• 실수 ℝ에서: <b style="color:#86efac">(x−√2)(x+√2) 가능</b><br><br>
+x²+1:<br>
+• 실수 ℝ에서: <b style="color:#f87171">불가</b> (D=−4&lt;0)<br>
+• 복소수 ℂ에서: <b style="color:#a78bfa">(x−i)(x+i) 가능</b>
+</div>
+<b style="color:#86efac">배방완성법의 일반형:</b><br>
+ax²+bx+c = a(x+b/2a)²−(b²−4ac)/4a<br><br>
+b²−4ac = 0: 완전제곱식 → 해 1개<br>
+b²−4ac &gt; 0: 두 실수 인수 → 해 2개<br>
+b²−4ac &lt; 0: 실수 인수 없음 → 실수 해 없음<br><br>
+<b style="color:#fde68a">이것이 판별식 D = b²−4ac다.</b><br>
+인수분해 가능성 = 판별식의 부호<br>
+→ 3단원(이차방정식)이 여기서 시작된다<br><br>
+<b style="color:#2dd4bf">🔙 1단원 연결:</b><br>
+D&lt;0 → 실수 해 없음 → "해가 사는 세계가 없다"<br>
+= 1단원에서 배운 것의 역방향<br>
+= 수 체계를 확장(복소수)하면 해가 생긴다
+</div>` },
+
+  { tag:'🔥 최고난도 — 치환과 나머지정리', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#f87171">【1】 치환 인수분해</b><br>
+(x²+x)²−8(x²+x)+12 를 인수분해하라.<br>
+<span style="color:#aaa;font-size:.76rem">힌트: t = x²+x 로 치환하면?</span><br><br>
+<b style="color:#f87171">【2】 고차식 인수분해</b><br>
+x³+2x²−x−2 를 인수분해하라.<br>
+<span style="color:#aaa;font-size:.76rem">힌트: x=1을 대입해보라. 왜 이것이 힌트인가?</span><br><br>
+<b style="color:#f87171">【3】 나머지정리 연결</b><br>
+다항식 f(x)를 (x−a)로 나눌 때 나머지는 f(a)다.<br><br>
+f(x) = x³−3x²+2x+k 가 (x−2)로 나누어떨어질 때<br>k의 값을 구하고, f(x)를 완전히 인수분해하라.<br><br>
+<span style="color:#fde68a">마지막 질문: 【2】와 【3】에서 쓴 원리가 같은가?</span>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#f87171">【1】 치환 풀이</b><br>
+t = x²+x 로 놓으면:<br>
+t²−8t+12 = (t−2)(t−6)<br>
+= (x²+x−2)(x²+x−6)<br>
+= (x+2)(x−1)(x+3)(x−2)<br><br>
+<b style="color:#f87171">【2】 고차식 풀이</b><br>
+f(1) = 1+2−1−2 = 0 → (x−1)이 인수<br>
+조립제법: x³+2x²−x−2 ÷ (x−1) = x²+3x+2<br>
+= (x−1)(x²+3x+2) = (x−1)(x+1)(x+2)<br><br>
+<b style="color:#f87171">【3】 나머지정리 적용</b><br>
+(x−2)로 나누어떨어짐 → f(2) = 0<br>
+f(2) = 8−12+4+k = 0 → <b>k = 0</b><br>
+f(x) = x³−3x²+2x = x(x²−3x+2) = <b>x(x−1)(x−2)</b><br><br>
+<div style="background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px;margin-top:10px">
+<b style="color:#fde68a">【2】와【3】의 공통 원리: 인수정리</b><br><br>
+f(a) = 0 ⟺ (x−a)가 f(x)의 인수<br><br>
+【2】에서: f(1)=0을 확인하고 (x−1)로 나눔<br>
+【3】에서: 나머지정리로 f(2)=0 조건을 구함<br><br>
+<b style="color:#2dd4bf">나머지정리는 인수분해의 X-ray다.</b><br>
+어디에 인수가 숨어있는지 직접 찾아주는 도구.<br>
+고1 다항식 단원 전체가 이 하나의 정리 위에 서 있다.
+</div>
+</div>` },
+
+  { tag:'🏛️ 하크니스 원탁 — x²+1은 인수분해가 되는가', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(167,139,250,.12);border-left:3px solid #a78bfa;border-radius:0 10px 10px 0;padding:11px 14px;margin-bottom:14px;font-size:.76rem;color:#c4b5fd;line-height:1.7">
+<b style="color:#a78bfa">하크니스 규칙</b><br>
+선생님은 질문만 한다. 절대 설명하지 않는다.<br>
+이전 발언을 이어받거나 반박해야 한다.
+</div>
+<b style="color:#fde68a">오늘의 출발 질문</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:13px;margin:8px 0 14px;font-size:.84rem;line-height:1.9;color:#e2e8f0">
+x² + 1 은 인수분해가 되는가?<br><br>
+실수 범위에서 시도해보라.<br>
+안 된다면, 왜 안 되는가?<br>
+그것이 무엇을 의미하는가?
+</div>
+<div style="font-size:.76rem;color:#888">참가자: 민준 · 서연 · 지호 · 유나 · 준혁 · 하은<br>풀이 보기를 눌러 원탁 토론을 읽어라.</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<div style="color:#a78bfa;font-family:'Jua',sans-serif;font-size:.84rem;margin-bottom:12px">─── 원탁 토론 전문 ───</div>
+
+<b style="color:#86efac">서연:</b> "판별식 D = 0−4 = −4 &lt; 0이에요. 실수 범위에서 인수분해 안 돼요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "그럼 x²+1 = 0의 해는 없는 건가요?"<br><br>
+<b style="color:#86efac">서연:</b> "실수 해가 없어요. 그래프가 x축과 안 만나요."<br><br>
+<b style="color:#fde68a">지호:</b> "잠깐요. 1단원에서 비슷한 말 들어본 것 같아요. '유리수 범위에서 √2가 없다.' 그런데 수 체계를 확장했더니 있었잖아요."<br><br>
+<b style="color:#f87171">준혁:</b> "지호 말은 x²+1 = 0의 해도 수 체계를 확장하면 있을 수 있다는 거예요?"<br><br>
+<b style="color:#fde68a">지호:</b> "맞아요. 제곱해서 −1이 되는 수를 정의하면 되잖아요. √2가 제곱해서 2가 되는 수였듯이."<br><br>
+<b style="color:#2dd4bf">유나:</b> "그게 허수 i = √(−1)이에요. x²+1 = (x+i)(x−i)."<br><br>
+<b style="color:#f87171">준혁:</b> "그런데 '허수'잖아요. 허(虛) = 비어있다, 가짜라는 뜻이잖아요. 그냥 이름 붙인 거 아닌가요?"<br><br>
+<b style="color:#fde68a">지호:</b> "실수도 가짜 아닌가요? √2도 완전성 공리라는 가정 위에서만 존재해요. 1단원에서 배웠잖아요. '존재'는 증명이 아니라 공리의 선택이라고."<br><br>
+<b style="color:#7dd3fc">민준:</b> "그럼 허수와 실수의 차이가 뭐예요? 실수는 '더 실재한다'는 증거가 있나요?"<br><br>
+<i style="color:#888">— 침묵 —</i><br><br>
+<b style="color:#c4b5fd">하은:</b> "물리학에서 전기회로를 계산할 때 복소수를 실제로 써요. 허수가 '가짜'라면 전기가 작동하는 이유가 없어요."<br><br>
+<b style="color:#f87171">준혁:</b> "그건 도구로 쓴다는 거잖아요. 도구가 작동한다는 게 존재한다는 증거인가요?"<br><br>
+<b style="color:#86efac">서연:</b> "수직선으로 돌아가요. 실수는 수직선에 점으로 나타낼 수 있어요. 허수는요?"<br><br>
+<b style="color:#2dd4bf">유나:</b> "수직선이 아니라 수 평면(복소평면)이에요. 2차원이에요. 실수가 1차원 세계라면, 복소수는 2차원 세계로의 확장이에요."<br><br>
+<b style="color:#fde68a">지호:</b> "그러면 질문이 바뀌어요. '허수가 존재하는가?'가 아니라 '2차원 수 체계를 받아들일 것인가?'예요. 1단원에서 '어떤 수 체계에서 살 것인가?'를 물었던 것처럼."<br><br>
+<b style="color:#c4b5fd">하은:</b> "중3에서 배우는 수학의 경계선이 여기예요. 실수 vs 복소수. 우리는 지금 그 경계에 서 있어요."<br><br>
+<div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px;margin-top:14px">
+<b style="color:#a78bfa">선생님 (수업 종료 시 유일한 발언):</b><br>
+"대수학의 기본정리(가우스, 1799): 모든 n차 다항식은 복소수 범위에서 정확히 n개의 근을 가진다.<br>x²+1 = 0의 해가 2개 있으려면 복소수가 필요하다.<br>이 정리는 복소수를 받아들인 수학이 왜 더 '완전한지'를 보여준다."
+</div>
+<div style="margin-top:12px;background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:11px">
+<b style="color:#2dd4bf">🔙 이 단원의 출발점으로:</b><br>
+인수분해 가능 여부 = 수 체계의 선택<br>
+유리수 → 실수(√ 필요) → 복소수(i 필요)<br>
+x²−5x+6 = (x−2)(x−3): 정수에서 가능<br>
+x²−2 = (x−√2)(x+√2): 실수 필요<br>
+x²+1 = (x−i)(x+i): 복소수 필요<br><br>
+<b style="color:#fb923c">다음 단원(이차방정식)에서 판별식 D&lt;0의 의미가 여기서 나온다.</b>
 </div>
 </div>` }
 ],
@@ -10920,6 +11158,7 @@ var ARTIFACTS = {
   'sqrt-basic': { island:'제곱근과 실수의 탑', emoji:'📝', quote:'새로운 수를 발견하는 것은 새로운 세계를 여는 것이다.', color:'#2dd4bf' },
   'sqrt-havruta': { island:'제곱근과 실수의 탑', emoji:'✡️', quote:'두려움을 이긴 자만이 수를 확장할 수 있다.', color:'#fde68a' },
   'mid3-sqrt': { island:'중3-1 이차의 왕국', emoji:'🗺️', quote:'x²=2의 답이 사는 세계를 만드는 것이 수학이다.', color:'#a78bfa' },
+  'mid3-factor': { island:'중3-1 이차의 왕국', emoji:'🔧', quote:'인수분해는 곱셈의 역방향이 아니라 수 체계의 선택이다.', color:'#fb923c' },
   'simultaneous-havruta': { island:'연립방정식의 미궁', emoji:'🗝️', quote:'두 조건이 만나는 곳에 답이 있다.', color:'#7dd3fc' },
   'simul-basic10': { island:'연립방정식의 미궁', emoji:'📝', quote:'두 미지수도 두 조건이면 반드시 풀린다.', color:'#86efac' },
   'simul-hard10': { island:'연립방정식의 미궁', emoji:'⚔️', quote:'복잡해 보여도 핵심은 두 조건의 교차점이다.', color:'#f87171' },
