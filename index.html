@@ -1337,8 +1337,8 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     <button onclick="startCards('mid3-quad-eq','mid3-hub')" style="width:100%;margin-bottom:8px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3);color:#34d399;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🎯 3단원: 이차방정식 <span style="font-size:.72rem;opacity:.7">— 해를 구하다</span> →
     </button>
-    <button style="width:100%;background:rgba(251,146,60,.05);border:1px solid rgba(251,146,60,.15);color:#fb923c;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:default;text-align:left;opacity:.55">
-      📈 4단원: 이차함수 <span style="font-size:.72rem;opacity:.7">준비중</span>
+    <button onclick="startCards('mid3-quad-func','mid3-hub')" style="width:100%;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);color:#a78bfa;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📈 4단원: 이차함수 <span style="font-size:.72rem;opacity:.7">— 해가 그래프 위에서 보인다</span> →
     </button>
   </div>
 </div>
@@ -4320,6 +4320,353 @@ D&lt;0 → "실수 해 없음" → 복소수 체계의 필요<br>
 </div>
 </div>` }
 
+],
+
+/* ── 중3-1학기 4단원: 이차함수 (6장) ── */
+'mid3-quad-func': [
+  { tag:'🗺️ 전체지도 — 이차함수의 위치', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.9">
+<div style="display:flex;flex-direction:column;gap:0;margin-bottom:14px">
+  <div style="background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:11px 14px;opacity:.6">
+    <div style="font-family:'Jua',sans-serif;color:#2dd4bf;font-size:.88rem">🌱 1단원: 제곱근과 실수</div>
+    <div style="font-size:.75rem;color:#aaa;margin-top:3px">"x²=2를 만족하는 수가 있다"</div>
+  </div>
+  <div style="text-align:center;color:#666;font-size:1.1rem;line-height:1.5">↓</div>
+  <div style="background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.25);border-radius:12px;padding:11px 14px;opacity:.6">
+    <div style="font-family:'Jua',sans-serif;color:#fb923c;font-size:.88rem">🔧 2단원: 인수분해</div>
+    <div style="font-size:.75rem;color:#aaa;margin-top:3px">"x²+bx+c = (x+α)(x+β) 로 분해한다"</div>
+  </div>
+  <div style="text-align:center;color:#666;font-size:1.1rem;line-height:1.5">↓</div>
+  <div style="background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);border-radius:12px;padding:11px 14px;opacity:.6">
+    <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.88rem">🎯 3단원: 이차방정식</div>
+    <div style="font-size:.75rem;color:#aaa;margin-top:3px">"ax²+bx+c=0 을 만족하는 x를 찾는다"</div>
+  </div>
+  <div style="text-align:center;color:#666;font-size:1.1rem;line-height:1.5">↓</div>
+  <div style="background:rgba(167,139,250,.12);border:2px solid rgba(167,139,250,.5);border-radius:12px;padding:12px 14px">
+    <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.92rem">📈 4단원: 이차함수 ← 지금 여기</div>
+    <div style="font-size:.75rem;color:#c4b5fd;margin-top:3px">"ax²+bx+c를 함수로 보면 무엇이 보이는가"</div>
+  </div>
+</div>
+<b style="color:#fde68a">핵심 연결 — 방정식과 함수</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.25);border-radius:10px;padding:12px;margin:8px 0;font-size:.84rem;line-height:2">
+y = ax²+bx+c<br>
+이 함수가 <b>x축과 만나는 점</b> = ax²+bx+c = 0의 <b>해</b><br><br>
+D &gt; 0: x축과 두 점에서 교차 → 서로 다른 두 실수 근<br>
+D = 0: x축과 접함 → 중근 (꼭짓점이 x축 위)<br>
+D &lt; 0: x축과 만나지 않음 → 실수 해 없음<br><br>
+<b style="color:#a78bfa">3단원의 판별식 D = 4단원의 그래프 위치</b>
+</div>
+<div style="background:rgba(167,139,250,.06);border-radius:8px;padding:9px;font-size:.76rem;color:#aaa">
+이 단원의 핵심: y=a(x−p)²+q (꼭짓점 형태)<br>
+꼭짓점 (p, q), 축 x=p, 개형(a의 부호)<br>
+최대·최솟값 = 꼭짓점의 y좌표
+</div>
+</div>`,
+    ans:null },
+
+  { tag:'📖 개념설명 — 4개국이 이차함수를 보는 방식', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#a78bfa">이차함수란?</b><br>
+<b style="color:#2dd4bf">y = ax² + bx + c (a ≠ 0) 꼴의 함수</b><br>
+x에 대한 이차식이 y값을 결정한다. 그래프는 포물선(parabola)이다.<br><br>
+<div style="background:rgba(134,239,172,.06);border:1px solid rgba(134,239,172,.2);border-radius:10px;padding:10px;margin-bottom:10px">
+<b style="color:#86efac">🇫🇮 핀란드 — 대칭의 기하학</b><br>
+<div style="font-size:.73rem;color:#aaa;margin:4px 0 6px">출발: y=x²의 꼭짓점은 (0,0). <b style="color:#86efac">포물선은 이 점을 기준으로 좌우 대칭</b>이다.</div>
+<div style="background:rgba(134,239,172,.06);border-radius:6px;padding:8px;font-size:.76rem;line-height:1.8">
+y=x² → y=(x−2)²+3 으로 이동:<br>
+• 꼭짓점: (0,0) → <b style="color:#86efac">(2, 3)</b><br>
+• 축: x=0 → <b style="color:#86efac">x=2</b><br>
+• 모양: 동일 (a=1로 같으므로)
+</div>
+<div style="font-size:.72rem;color:#aaa;margin-top:4px">핀란드 핵심: "이동(평행이동)으로 모든 포물선은 y=ax²에서 나온다"</div>
+</div>
+<div style="background:rgba(125,211,252,.05);border:1px solid rgba(125,211,252,.2);border-radius:10px;padding:10px;margin-bottom:10px">
+<b style="color:#7dd3fc">🇸🇬 싱가포르 — 표준형 변환 절차</b><br>
+<div style="font-size:.73rem;color:#aaa;margin:4px 0 6px">y=ax²+bx+c → y=a(x−p)²+q 로 변환하는 4단계</div>
+<div style="display:grid;grid-template-columns:1fr;gap:3px;font-size:.74rem">
+  <div style="background:rgba(125,211,252,.07);border-radius:5px;padding:6px"><b style="color:#7dd3fc">①</b> a를 x²과 x항에서 묶기</div>
+  <div style="background:rgba(125,211,252,.07);border-radius:5px;padding:6px"><b style="color:#7dd3fc">②</b> 괄호 안에서 배방완성: (x + b/2a)² − (b/2a)²</div>
+  <div style="background:rgba(125,211,252,.07);border-radius:5px;padding:6px"><b style="color:#7dd3fc">③</b> 상수 c와 합산</div>
+  <div style="background:rgba(125,211,252,.07);border-radius:5px;padding:6px"><b style="color:#7dd3fc">④</b> p = −b/2a, q = c − b²/4a 확인</div>
+</div>
+</div>
+<div style="background:rgba(253,230,138,.06);border:1px solid rgba(253,230,138,.2);border-radius:10px;padding:10px;margin-bottom:10px">
+<b style="color:#fde68a">✡️ 유대인 — 본질 질문</b><br>
+<div style="font-size:.76rem;color:#e2e8f0;margin-top:5px;line-height:1.8">
+"꼭짓점 x좌표가 −b/2a인 이유는 무엇인가?<br>이것이 근의공식의 두 근의 평균값인 것은 우연인가?"<br><br>
+→ 두 근 x₁ = (−b+√D)/2a, x₂ = (−b−√D)/2a<br>
+→ (x₁+x₂)/2 = −b/2a = 꼭짓점의 x좌표<br>
+→ <b>꼭짓점은 두 근의 중간에 있다. 비에타 공식의 기하학적 의미다.</b>
+</div>
+</div>
+<b style="color:#a78bfa">🏛️ 필립엑시터 — 원탁 질문</b><br>
+<span style="color:#c4b5fd;font-size:.76rem">"a &lt; 0이면 포물선이 아래로 열린다고 한다. 그렇다면 이 함수는 최대값을 갖는다. 왜 2차함수는 '최솟값'이나 '최댓값' 중 하나는 반드시 갖고, 둘 다 가질 수는 없는가?"</span>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#a78bfa">🔙 출발점 재확인:</b> y = a(x−p)²+q — 꼭짓점 (p, q), 축 x=p<br><br>
+<b style="color:#86efac">표준형 ↔ 일반형 변환 공식</b><br>
+y=ax²+bx+c 에서:<br>
+p = −b/2a &nbsp; (꼭짓점 x좌표 = 두 근의 평균)<br>
+q = c − b²/4a = −D/4a &nbsp; (꼭짓점 y좌표)<br><br>
+<b style="color:#fde68a">꼭짓점 y좌표 = −D/4a 의 의미</b><br>
+D &gt; 0: q = −D/4a &nbsp; (a&gt;0이면 q&lt;0 → 꼭짓점이 x축 아래 → x축과 교차)<br>
+D = 0: q = 0 → 꼭짓점이 x축 위<br>
+D &lt; 0: q = −D/4a &nbsp; (a&gt;0이면 q&gt;0 → 꼭짓점이 x축 위 → x축과 미교차)<br><br>
+<div style="border-left:2px solid #a78bfa;padding-left:10px;margin-top:8px">
+<b style="color:#a78bfa">✡️ 하브루타 — 두 학생의 토론</b><br><br>
+<b style="color:#86efac">서연:</b> "꼭짓점이 두 근의 중간이라는 게 신기해. 함수는 연속인데, 방정식은 점이잖아. 어떻게 연결돼?"<br><br>
+<b style="color:#7dd3fc">민준:</b> "포물선을 접으면 돼. 축 x=p를 기준으로 접으면 두 근이 겹쳐. 대칭이니까. 대칭축이 두 근의 중점을 지나는 건 당연해."<br><br>
+<b style="color:#86efac">서연:</b> "그럼 D&lt;0이면 두 근이 없는 건데, 꼭짓점은 있잖아. 꼭짓점 x좌표 −b/2a는 여전히 계산돼. 그게 '존재하지 않는 두 근의 평균'이라고 할 수 있어?"<br><br>
+<b style="color:#7dd3fc">민준:</b> "복소수 근 α = −b/2a + ki, β = −b/2a − ki 를 생각하면 (α+β)/2 = −b/2a 야. 복소 근의 평균이 꼭짓점이 되는 거지. 꼭짓점은 항상 존재해 — 수 체계에 관계없이."<br><br>
+<div style="background:rgba(167,139,250,.08);border-radius:6px;padding:8px;margin-top:6px;font-size:.76rem">
+<b style="color:#a78bfa">이 토론의 결론:</b><br>
+꼭짓점 −b/2a 는 3단원(이차방정식)·4단원(이차함수)을 잇는 다리다.<br>
+실수 근이 없어도 꼭짓점은 항상 실수다. 이것이 함수와 방정식의 연결이다.
+</div>
+</div>
+</div>` },
+
+  { tag:'📝 기본문제 — 표준형 변환과 그래프', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">【변환】</b> 다음을 y=a(x−p)²+q 꼴로 변환하고, 꼭짓점·축·개형을 구하라.<br>
+(1) y = x²−6x+11<br>
+(2) y = 2x²+8x+5<br>
+(3) y = −x²+4x−1<br><br>
+<b style="color:#86efac">【그래프 정보】</b> 다음 이차함수의 꼭짓점, 축, x절편, y절편을 구하라.<br>
+(4) y = (x−2)²−4<br>
+(5) y = −2(x+1)²+8<br><br>
+<b style="color:#7dd3fc">🇸🇬 싱가포르 — (1)번 4단계 풀이</b><br>
+<div style="background:rgba(125,211,252,.07);border-radius:8px;padding:10px;font-size:.76rem;line-height:1.9">
+y = x²−6x+11<br>
+① a=1이므로 x²−6x를 묶기: y = (x²−6x) + 11<br>
+② 배방완성: x²−6x = (x−3)²−9<br>
+③ y = (x−3)²−9+11<br>
+④ y = <b style="color:#86efac">(x−3)²+2</b><br>
+꼭짓점: (3, 2) &nbsp;|&nbsp; 축: x=3 &nbsp;|&nbsp; 아래로 열림(a=1&gt;0)
+</div>
+<br>
+<b style="color:#86efac">🇫🇮 핀란드 — (2)번 공식 직접 적용</b><br>
+a=2, b=8, c=5 → p = −8/4 = −2, q = 5−64/8 = 5−8 = −3<br>
+→ y = <b style="color:#86efac">2(x+2)²−3</b></div>`,
+    ans:`<b style="color:#86efac">【변환】 풀이</b><br>
+(1) y=(x−3)²+2 &nbsp; 꼭짓점(3,2), 축 x=3, 아래로 열림<br>
+(2) y=2(x+2)²−3 &nbsp; 꼭짓점(−2,−3), 축 x=−2, 아래로 열림<br>
+(3) y=−(x−2)²+3 &nbsp; 꼭짓점(2,3), 축 x=2, <b>위로 열림</b><br><br>
+<b style="color:#86efac">【그래프 정보】</b><br>
+(4) 꼭짓점(2,−4), 축 x=2<br>
+&nbsp;&nbsp;x절편: (x−2)²=4 → x=0 또는 x=4<br>
+&nbsp;&nbsp;y절편: x=0 → y=4−4=0 → (0,0)<br>
+(5) 꼭짓점(−1,8), 축 x=−1<br>
+&nbsp;&nbsp;x절편: (x+1)²=4 → x=1 또는 x=−3<br>
+&nbsp;&nbsp;y절편: x=0 → y=−2+8=6 → (0,6)<br><br>
+<b style="color:#fde68a">🔙 출발점:</b> 꼭짓점 형태 y=a(x−p)²+q 에서<br>
+x절편 → y=0 대입 → 3단원 이차방정식 풀기<br>
+이 두 단원은 같은 식의 두 가지 관점이다.` },
+
+  { tag:'⚡ 심화 — 판별식의 기하학적 의미', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.25);border-radius:10px;padding:12px;margin-bottom:14px">
+<b style="color:#7dd3fc">🔙 출발 정의 재확인 (3단원)</b><br>
+<div style="font-size:.76rem;color:#e2e8f0;margin-top:5px;line-height:1.8">
+D = b²−4ac: 이차방정식 ax²+bx+c=0의 근의 종류를 결정<br>
+꼭짓점 y좌표 q = −D/4a: 이 하나의 식이 그래프와 방정식을 연결한다.
+</div>
+</div>
+<b style="color:#86efac">이차함수와 직선의 관계</b><br>
+y = x²−4x+k 와 직선 y = 2x − 1의 교점 개수를<br>
+k의 값에 따라 분류하라.<br><br>
+<div style="background:rgba(134,239,172,.07);border-radius:8px;padding:10px;margin-bottom:10px;font-size:.78rem;line-height:1.8">
+<b style="color:#86efac">풀이 접근</b><br>
+교점: x²−4x+k = 2x−1<br>
+→ x²−6x+(k+1) = 0<br>
+→ D' = 36−4(k+1) = 32−4k<br><br>
+교점 2개: D'&gt;0 → k&lt;8<br>
+교점 1개(접함): D'=0 → k=8<br>
+교점 없음: D'&lt;0 → k&gt;8
+</div>
+<b style="color:#fde68a">✡️ 유대인 질문</b><br>
+<div style="font-size:.76rem;color:#e2e8f0;margin-top:5px;margin-bottom:10px;line-height:1.8">
+"교점 1개 = '접한다'는 것은 무엇인가?<br>직선이 포물선에 '닿는다'는 것은 어떤 의미인가?<br>접선(tangent)의 개념이 이것과 어떻게 다른가?"
+</div>
+<b style="color:#f87171">심화 — 이차부등식 연결</b><br>
+x²−6x+(k+1) &lt; 0 이 해를 가질 조건은?<br>
+x²−6x+(k+1) = 0 이 두 실수 근을 가져야 한다<br>
+→ D' &gt; 0 → k &lt; 8<br><br>
+<div style="background:rgba(248,113,113,.07);border-radius:8px;padding:9px;font-size:.76rem">
+<b style="color:#f87171">이차부등식 풀이 원리</b><br>
+ax²+bx+c &lt; 0의 해: 포물선이 x축 아래인 구간<br>
+ax²+bx+c &gt; 0의 해: 포물선이 x축 위인 구간<br>
+→ D의 부호 → 포물선과 x축의 위치 → 부등식의 해 유무
+</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#7dd3fc">판별식 D와 그래프 위치의 완전한 대응</b><br>
+(a &gt; 0인 경우)<br><br>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin:8px 0;font-size:.74rem">
+  <div style="background:rgba(134,239,172,.08);border-radius:6px;padding:8px;text-align:center">
+    <b style="color:#86efac">D &gt; 0</b><br>
+    꼭짓점 y &lt; 0<br>
+    x축과 두 점 교차<br>
+    이차부등식 해 있음
+  </div>
+  <div style="background:rgba(253,230,138,.08);border-radius:6px;padding:8px;text-align:center">
+    <b style="color:#fde68a">D = 0</b><br>
+    꼭짓점 y = 0<br>
+    x축에 접함<br>
+    이차부등식 경계만
+  </div>
+  <div style="background:rgba(248,113,113,.08);border-radius:6px;padding:8px;text-align:center">
+    <b style="color:#f87171">D &lt; 0</b><br>
+    꼭짓점 y &gt; 0<br>
+    x축과 미교차<br>
+    이차부등식 해 없음
+  </div>
+</div>
+<b style="color:#86efac">응용 문제</b><br>
+모든 실수 x에 대해 x²−2kx+k+2 &gt; 0이 성립할 k의 범위는?<br><br>
+a=1&gt;0이고, D &lt; 0이어야 한다.<br>
+D = 4k²−4(k+2) = 4k²−4k−8 &lt; 0<br>
+k²−k−2 &lt; 0<br>
+(k−2)(k+1) &lt; 0<br>
+→ <b>−1 &lt; k &lt; 2</b><br><br>
+<b style="color:#fde68a">🔙 출발점 연결:</b><br>
+이 문제는 "모든 x에서 포물선이 x축 위에 있다" = D&lt;0<br>
+3단원 판별식 조건이 4단원에서 그래프 조건이 된다.<br><br>
+<b style="color:#2dd4bf">✡️ 질문의 답 — 접선의 의미:</b><br>
+D=0: 포물선과 직선이 한 점에서 만나고, 그 점 근방에서<br>직선이 포물선의 같은 쪽에 있다 (교차하지 않는다)<br>
+→ 이것이 '접한다'의 기하학적 정의<br>
+→ 미분에서 f'(x₀) = 기울기로 다시 만난다
+</div>` },
+
+  { tag:'🔥 최고난도 — 이차함수의 최대·최솟값과 AM-GM', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25);border-radius:10px;padding:12px;margin-bottom:14px">
+<b style="color:#f87171">🔙 출발 정의 재확인</b><br>
+<div style="font-size:.76rem;color:#e2e8f0;margin-top:5px;line-height:1.8">
+y = a(x−p)²+q 에서: a&gt;0이면 x=p일 때 <b>최솟값 q</b><br>
+a&lt;0이면 x=p일 때 <b>최댓값 q</b><br>
+이차함수는 최대·최솟값 중 반드시 하나만 가진다.
+</div>
+</div>
+<b style="color:#f87171">【1】 제한 조건이 있는 최솟값</b><br>
+0 ≤ x ≤ 4 에서 y = x²−4x+5 의 최대·최솟값을 구하라.<br>
+<span style="color:#aaa;font-size:.76rem">힌트: 꼭짓점이 정의역 내부에 있는지 확인하라.</span><br><br>
+<b style="color:#f87171">【2】 두 변수의 관계에서 최솟값</b><br>
+양의 실수 x, y에 대해 x + y = 10일 때,<br>
+x² + y² 의 최솟값을 구하라.<br>
+<span style="color:#aaa;font-size:.76rem">힌트: y=10−x 로 치환 후 이차함수로 변환</span><br><br>
+<b style="color:#f87171">【3】 AM-GM 연결</b><br>
+양의 실수 x, y에 대해 x + y = 10일 때,<br>
+xy의 최댓값을 구하라. 두 가지 방법으로 풀어라:<br>
+<div style="background:rgba(248,113,113,.08);border-radius:8px;padding:9px;margin:6px 0;font-size:.76rem">
+방법 A: 이차함수로 변환<br>
+방법 B: AM-GM 부등식: (x+y)/2 ≥ √(xy)
+</div>
+마지막: 두 방법이 같은 답을 주는 이유를 설명하라.
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#f87171">【1】 제한 구간 최적화</b><br>
+y = x²−4x+5 = (x−2)²+1<br>
+꼭짓점 (2, 1), 정의역 0≤x≤4 → 꼭짓점 내부에 있다.<br>
+최솟값: x=2일 때 <b>y=1</b><br>
+최댓값: 양 끝점 비교 — x=0: y=5, x=4: y=5<br>
+<b>최댓값: y=5</b> (양 끝점에서 동시에 달성)<br><br>
+<b style="color:#f87171">【2】 두 변수 최솟값</b><br>
+y=10−x 대입: x²+(10−x)²<br>
+= x²+100−20x+x² = 2x²−20x+100<br>
+= 2(x−5)²+50<br>
+<b>최솟값: x=5, y=5일 때 50</b><br><br>
+<b style="color:#f87171">【3】 xy 최댓값 — 두 가지 방법</b><br>
+<b style="color:#86efac">방법 A (이차함수):</b><br>
+xy = x(10−x) = −x²+10x = −(x−5)²+25<br>
+<b>최댓값: x=5, y=5일 때 25</b><br><br>
+<b style="color:#7dd3fc">방법 B (AM-GM):</b><br>
+(x+y)/2 ≥ √(xy) → 10/2 ≥ √(xy) → 25 ≥ xy<br>
+등호: x=y=5일 때 성립 → <b>최댓값 25</b><br><br>
+<div style="background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px;margin-top:10px">
+<b style="color:#fde68a">두 방법이 같은 답인 이유</b><br><br>
+방법 A: (x−5)²≥0 → xy ≤ 25<br>
+방법 B: AM≥GM → (x+y)²/4 ≥ xy → xy ≤ 25<br><br>
+<b>이 둘은 같은 부등식이다.</b><br>
+AM-GM = 완전제곱식의 비음성 조건 (a−b)²≥0<br>
+= 1단원 (√의 성질) + 2단원 (완전제곱식) + 4단원 (꼭짓점)<br><br>
+<b style="color:#2dd4bf">🔙 1단원 연결:</b><br>
+1단원 심화 Card5: √a+√b &gt; √(a+b) = Jensen 부등식 = 오목함수<br>
+4단원 【3】: AM≥GM = 볼록함수의 최소값 원리<br>
+같은 진실의 두 방향 표현이다.
+</div>
+</div>` },
+
+  { tag:'🏛️ 하크니스 원탁 — 꼭짓점은 최솟값의 점인가, 대칭의 중심인가', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(167,139,250,.12);border-left:3px solid #a78bfa;border-radius:0 10px 10px 0;padding:11px 14px;margin-bottom:14px;font-size:.76rem;color:#c4b5fd;line-height:1.7">
+<b style="color:#a78bfa">하크니스 규칙</b><br>
+선생님은 질문만 한다. 절대 설명하지 않는다.<br>
+학생은 서로의 발언을 이어받거나 반박해야 한다.<br>
+정답은 없다. 더 좋은 질문이 있을 뿐이다.
+</div>
+<b style="color:#fde68a">오늘의 출발 질문</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:13px;margin:8px 0 14px;font-size:.84rem;line-height:1.9;color:#e2e8f0">
+y = x² − 4x + 3 의 꼭짓점은 (2, −1)이다.<br><br>
+교과서는 이 점을 <b style="color:#86efac">"최솟값의 점"</b>이라 부른다.<br>
+그런데 같은 점을 이렇게도 부를 수 있다:<br><br>
+<div style="font-size:.8rem;color:#c4b5fd;margin-left:8px">
+• 대칭축 x=2가 지나는 점<br>
+• 두 근(x=1, x=3)의 중점<br>
+• 배방완성법 (x−2)²−1이 가리키는 점
+</div><br>
+이 네 가지는 같은 것을 다르게 보는 것인가?<br>
+아니면 각각 다른 무언가를 가리키는 것인가?<br><br>
+<span style="color:#aaa;font-size:.78rem">정의역을 0 ≤ x ≤ 1로 제한하면 어떻게 되는지도 함께 생각하라.</span>
+</div>
+<div style="font-size:.76rem;color:#888;line-height:1.6">참가자: 민준 · 서연 · 지호 · 유나 · 준혁 · 하은<br>풀이 보기를 눌러 원탁 토론 전체를 읽어라.</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<div style="color:#a78bfa;font-family:'Jua',sans-serif;font-size:.84rem;margin-bottom:12px">─── 원탁 토론 전문 ───</div>
+
+<b style="color:#86efac">서연:</b> "저는 이것들이 결국 같은 점을 가리킨다고 생각해요. 배방완성법 (x−2)²−1에서 (x−2)²≥0이니까 x=2에서 최솟값이 나와요. 대칭축도 x=2고요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "근데 그냥 '같다'는 말이 불만족스러워요. 왜 대칭의 중심이 최솟값의 점과 일치하는 건가요? 우연인가요, 필연인가요?"<br><br>
+<b style="color:#fde68a">지호:</b> "배방완성법이 설명해줘요. (x−2)²−1에서 (x−2)²≥0이에요. 1단원에서 배운 '제곱은 항상 0 이상'이라는 성질 때문에요. x=2일 때만 0이 되니까 그 점이 최솟값이에요."<br><br>
+<b style="color:#2dd4bf">유나:</b> "그럼 꼭짓점이 최솟값인 근거가 사실 1단원이에요? a²≥0이라는 것이요?"<br><br>
+<b style="color:#f87171">준혁:</b> "맞아요. 그런데 대칭이라는 개념은 완전히 다른 것 같아요. 대칭은 형태의 성질이고, 최솟값은 크기의 성질이잖아요. 포물선에서 이 둘이 왜 같은 점에서 만나는 거예요?"<br><br>
+<b style="color:#86efac">서연:</b> "대칭으로 접근해볼게요. 포물선은 x=p를 기준으로 접으면 좌우가 겹쳐요. 등거리에 있는 두 점은 항상 같은 y값이에요. 그러면 최솟값은 가장 가운데, 즉 대칭축에 있어야 해요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "비에타 공식을 보면 더 명확해요. 두 근 x=1, x=3에 대해 α+β=4이므로 (α+β)/2=2예요. 이게 꼭짓점 x좌표와 같아요. 3단원 비에타 공식이 '두 근의 중점이 꼭짓점'이라는 걸 말해줘요."<br><br>
+<b style="color:#fde68a">지호:</b> "그런데 D&lt;0이면 실수 근이 없잖아요. 두 근이 없는데도 꼭짓점은 있어요. '존재하지 않는 두 근의 중점'이 꼭짓점이라는 게 말이 되나요?"<br><br>
+<b style="color:#2dd4bf">유나:</b> "3단원에서 나온 이야기예요! 복소수 근 α=−b/2a+ki, β=−b/2a−ki이면 (α+β)/2=−b/2a예요. 켤레복소수의 평균이 꼭짓점이 돼요. 꼭짓점은 실수 근이 없어도 항상 실수예요."<br><br>
+<b style="color:#f87171">준혁:</b> "그러면 꼭짓점의 네 정의 — 최솟값의 점, 대칭축, 두 근의 중점(복소수 포함), 배방완성법의 결과 — 이게 항상 일치하는 건가요?"<br><br>
+<b style="color:#c4b5fd">하은:</b> "이차함수에서는 그래요. 그런데 삼차함수 y=x³는 변곡점(x=0)이 있는데 최솟값은 없어요. '두 근의 중점이 꼭짓점'이라는 것도 삼차 이상에서는 성립하지 않아요. 이차함수 특유의 성질이에요."<br><br>
+<b style="color:#86efac">서연:</b> "2단원 배방완성법의 역사도 연결돼요. 알-콰리즈미(820년)가 기하학적으로 완전제곱식을 만들 때, 그 과정이 최솟값을 찾는 것이면서 동시에 대칭점을 찾는 거였어요. 아마 그는 이 두 개념이 같다는 걸 알았을 거예요."<br><br>
+<b style="color:#fde68a">지호:</b> "그러면 질문이 바뀌어요. '꼭짓점은 최솟값의 점인가, 대칭의 중심인가?'가 아니라 '이차함수에서는 왜 이 두 가지가 같은 점인가?'예요."<br><br>
+<b style="color:#c4b5fd">하은:</b> "1단원부터 4단원까지의 흐름이 꼭짓점 하나에 다 담겨 있어요. 1단원: (x−p)²≥0이라는 제곱의 성질. 2단원: 배방완성법으로 꼭짓점 발견. 3단원: 비에타 공식으로 두 근의 중점이 꼭짓점. 4단원: 꼭짓점이 최대·최솟값."<br><br>
+<i style="color:#888">— 긴 침묵 —</i><br><br>
+<b style="color:#f87171">준혁 (조용하게):</b> "그런데 정의역을 0≤x≤1로 제한하면 달라지지 않나요? 꼭짓점 x=2가 정의역 밖에 있어요. 최솟값은 끝점 x=1에서 생겨요. 대칭축, 두 근의 중점, 배방완성법은 여전히 x=2를 가리키지만, 최솟값의 점만 달라지잖아요."<br><br>
+<b style="color:#86efac">서연:</b> "그러면 '최솟값의 점'은 다른 세 가지 정의와 독립적인 거네요. 정의역이 제한되면 분리돼요."<br><br>
+<b style="color:#2dd4bf">유나:</b> "카드5에서 제한 구간을 다룬 이유가 여기 있는 것 같아요. 제한이 없을 때는 네 정의가 일치하지만, 제한이 생기면 '대칭·두 근의 중점·배방완성법'과 '최솟값의 점'이 분리돼요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "그래서 카드5에서 끝점과 꼭짓점 중 어느 쪽이 최솟값인지 확인해야 했던 거구나. 이제 왜 그 단계가 필요한지 알겠어요."<br><br>
+<div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px;margin-top:14px">
+<b style="color:#a78bfa">선생님 (수업 종료 시 유일한 발언):</b><br>
+"페르마(1638): 극값에서는 f(x+ε) ≈ f(x)가 성립한다. 이것이 최솟값을 찾는 아이디어의 시작이었다. 포물선에서 대칭과 최솟값이 같은 점인 것은 우연이 아니라 y=a(x−p)²+q 구조에서 나오는 필연이다. 그 구조를 발견한 것이 알-콰리즈미의 배방완성법이고, 비에타의 근과 계수의 관계이고, 1단원의 a²≥0이다. 오늘 여러분은 이차함수의 꼭짓점이 왜 특별한 점인지를 네 방향에서 재발견했다."
+</div>
+<div style="margin-top:12px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px">
+<b style="color:#f87171">수업 후에도 열린 질문들:</b><br>
+• 삼차함수 y=x³은 x=0에서 대칭(변곡점)이지만 최솟값이 없다. 왜 이차함수에서만 대칭점=최솟값인가?<br>
+• y=|x|도 x=0에서 최솟값이고 대칭이다. 이것과 포물선의 꼭짓점은 같은 원리인가?<br>
+• 정의역 제한 없이 최댓값과 최솟값을 동시에 갖는 이차함수가 존재할 수 있는가?
+</div>
+<div style="margin-top:12px;background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:12px">
+<b style="color:#2dd4bf">🔙 이 단원 전체의 출발점으로:</b><br>
+y = a(x−p)²+q — 꼭짓점 형태가 모든 것의 중심<br>
+p = −b/2a: 대칭축 = 두 근의 중점(복소수 포함) = 배방완성법의 결과<br>
+q = −D/4a: 최대·최솟값 = 꼭짓점의 y좌표 = D의 기하학적 의미<br><br>
+<b style="color:#a78bfa">1단원(a²≥0) → 2단원(배방완성법) → 3단원(비에타·판별식) → 4단원(꼭짓점의 최대·최솟값)<br>네 단원이 꼭짓점 하나에서 만난다.</b>
+</div>
+</div>` }
 ],
 
 /* ── 이차방정식 개념 가이드 (3장) ───────────── */
@@ -11912,6 +12259,7 @@ var ARTIFACTS = {
   'mid3-sqrt': { island:'중3-1 이차의 왕국', emoji:'🗺️', quote:'x²=2의 답이 사는 세계를 만드는 것이 수학이다.', color:'#a78bfa' },
   'mid3-factor': { island:'중3-1 이차의 왕국', emoji:'🔧', quote:'인수분해는 곱셈의 역방향이 아니라 수 체계의 선택이다.', color:'#fb923c' },
   'mid3-quad-eq': { island:'중3-1 이차의 왕국', emoji:'🎯', quote:'판별식 하나로 해의 운명이 결정된다.', color:'#34d399' },
+  'mid3-quad-func': { island:'중3-1 이차의 왕국', emoji:'📈', quote:'방정식의 해는 함수 그래프가 x축과 만나는 곳이다.', color:'#a78bfa' },
   'simultaneous-havruta': { island:'연립방정식의 미궁', emoji:'🗝️', quote:'두 조건이 만나는 곳에 답이 있다.', color:'#7dd3fc' },
   'simul-basic10': { island:'연립방정식의 미궁', emoji:'📝', quote:'두 미지수도 두 조건이면 반드시 풀린다.', color:'#86efac' },
   'simul-hard10': { island:'연립방정식의 미궁', emoji:'⚔️', quote:'복잡해 보여도 핵심은 두 조건의 교차점이다.', color:'#f87171' },
