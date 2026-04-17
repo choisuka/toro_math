@@ -359,6 +359,12 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
           <div class="desc">🇫🇮 수에도 구멍이 있다 · 🇸🇬 수직선의 완성 · ✡️ 피타고라스의 비밀</div>
           <span class="tag" style="background:rgba(45,212,191,.15);color:#2dd4bf;border:1px solid rgba(45,212,191,.35);margin-top:6px">중3-1 ★아르모니아</span>
         </div>
+        <div class="topic-card" onclick="showScreen('mid3-hub')" style="border:1px solid rgba(167,139,250,.3);background:linear-gradient(155deg,#0f071e,#1a0e2e);grid-column:1/-1">
+          <div class="ico">🏰</div>
+          <div class="name" style="color:#a78bfa">중3-1학기 4개국 완전정복</div>
+          <div class="desc">🇫🇮 핀란드 · 🇸🇬 싱가포르 · ✡️ 유대인 · 🏛️ 필립엑시터 원탁</div>
+          <span class="tag" style="background:rgba(167,139,250,.15);color:#a78bfa;border:1px solid rgba(167,139,250,.35);margin-top:6px">중3-1 ★ 4개국 원탁</span>
+        </div>
       </div>
 
       <!-- 섹션 4 -->
@@ -1285,6 +1291,54 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     </button>
     <button onclick="startCards('sqrt-havruta','sqrt-hub')" style="width:100%;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(3편)</span> →
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     중3-1학기 4개국 허브
+══════════════════════════════════ -->
+<div id="mid3-hub" class="screen">
+  <div style="width:100%;max-width:500px">
+    <div class="nav-bar" style="max-width:500px">
+      <button class="nav-back" onclick="showScreen('home')">← 수학왕국</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.88rem;text-align:center;color:#a78bfa">🏰 중3-1학기 4개국 완전정복</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:14px">
+      <div style="background:linear-gradient(155deg,rgba(134,239,172,.08),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.25);border-radius:10px;padding:8px 6px;text-align:center">
+        <div style="font-size:1.2rem">🇫🇮</div>
+        <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.7rem;margin:3px 0">핀란드</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">직관<br>현실연결</div>
+      </div>
+      <div style="background:linear-gradient(155deg,rgba(125,211,252,.08),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.25);border-radius:10px;padding:8px 6px;text-align:center">
+        <div style="font-size:1.2rem">🇸🇬</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.7rem;margin:3px 0">싱가포르</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">시각화<br>막대모델</div>
+      </div>
+      <div style="background:linear-gradient(155deg,rgba(253,230,138,.08),rgba(253,230,138,.03));border:1px solid rgba(253,230,138,.25);border-radius:10px;padding:8px 6px;text-align:center">
+        <div style="font-size:1.2rem">✡️</div>
+        <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.7rem;margin:3px 0">유대인</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">질문<br>하브루타</div>
+      </div>
+      <div style="background:linear-gradient(155deg,rgba(167,139,250,.08),rgba(167,139,250,.03));border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:8px 6px;text-align:center">
+        <div style="font-size:1.2rem">🏛️</div>
+        <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.7rem;margin:3px 0">필립엑시터</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">원탁<br>발견학습</div>
+      </div>
+    </div>
+    <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.78rem;margin-bottom:8px;opacity:.8">📐 중3-1학기 4개 단원 — 이차(二次)를 4각도에서</div>
+    <button onclick="startCards('mid3-sqrt','mid3-hub')" style="width:100%;margin-bottom:8px;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);color:#2dd4bf;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🌱 1단원: 제곱근과 실수 <span style="font-size:.72rem;opacity:.7">— x²=2의 답이 사는 세계</span> →
+    </button>
+    <button style="width:100%;margin-bottom:8px;background:rgba(251,146,60,.05);border:1px solid rgba(251,146,60,.15);color:#fb923c;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:default;text-align:left;opacity:.55">
+      🔧 2단원: 다항식의 곱셈과 인수분해 <span style="font-size:.72rem;opacity:.7">준비중</span>
+    </button>
+    <button style="width:100%;margin-bottom:8px;background:rgba(251,146,60,.05);border:1px solid rgba(251,146,60,.15);color:#fb923c;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:default;text-align:left;opacity:.55">
+      🎯 3단원: 이차방정식 <span style="font-size:.72rem;opacity:.7">준비중</span>
+    </button>
+    <button style="width:100%;background:rgba(251,146,60,.05);border:1px solid rgba(251,146,60,.15);color:#fb923c;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:default;text-align:left;opacity:.55">
+      📈 4단원: 이차함수 <span style="font-size:.72rem;opacity:.7">준비중</span>
     </button>
   </div>
 </div>
@@ -3061,6 +3115,221 @@ A−B = (30−2x)−(20−x) = 10−x<br><br>
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.8"><b style="color:#fde68a">【칸토르의 질문】</b><br><br>유리수도 무한히 많고, 무리수도 무한히 많다.<br>그렇다면 두 무한은 같은 크기인가?<br><br>토론 전에 직관으로 먼저 예측해보자:<br>• 유리수 vs 무리수, 어느 쪽이 더 많을 것 같은가?<br>• "더 많다"는 것을 무한에서 어떻게 비교할 수 있는가?<br><br><span style="color:#fde68a">힌트: 0과 1 사이의 유리수와 무리수를 생각해보자.</span></div>`,
     ans:`<b style="color:#fde68a">놀라운 사실: 무리수가 훨씬 더 많다!</b><br><br>칸토르(1845-1918)의 발견:<br>• 유리수: 셀 수 있는 무한 (자연수와 1:1 대응 가능)<br>• 무리수: <b style="color:#2dd4bf">셀 수 없는 무한</b> (자연수와 대응 불가)<br><br>수직선의 거의 모든 점이 무리수이고<br>유리수는 그 사이에 드문드문 있는 것.<br><br><b style="color:#86efac">수학에서 무한은 하나가 아니다. 무한에도 크기가 있다.</b>` }
+],
+
+/* ── 중3-1학기 1단원: 제곱근과 실수 4개국 (6장) ── */
+'mid3-sqrt': [
+  { tag:'🗺️ 전체지도 — 중3-1학기 4단원의 흐름', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
+<div style="display:flex;flex-direction:column;gap:0">
+  <div style="background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.35);border-radius:12px;padding:14px 16px">
+    <div style="font-family:'Jua',sans-serif;color:#2dd4bf;font-size:.92rem">🌱 제곱근과 실수</div>
+    <div style="font-size:.78rem;color:#aaa;margin-top:4px">"새로운 수가 생겼다"</div>
+  </div>
+  <div style="text-align:center;color:#666;font-size:1.2rem;line-height:1.6">↓</div>
+  <div style="background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.3);border-radius:12px;padding:14px 16px">
+    <div style="font-family:'Jua',sans-serif;color:#fb923c;font-size:.92rem">🔧 다항식의 곱셈과 인수분해</div>
+    <div style="font-size:.78rem;color:#aaa;margin-top:4px">"식을 분해하는 도구가 생겼다"</div>
+  </div>
+  <div style="text-align:center;color:#666;font-size:1.2rem;line-height:1.6">↓</div>
+  <div style="background:rgba(134,239,172,.08);border:1px solid rgba(134,239,172,.3);border-radius:12px;padding:14px 16px">
+    <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.92rem">🎯 이차방정식</div>
+    <div style="font-size:.78rem;color:#aaa;margin-top:4px">"두 도구로 방정식을 푼다"</div>
+  </div>
+  <div style="text-align:center;color:#666;font-size:1.2rem;line-height:1.6">↓</div>
+  <div style="background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:14px 16px">
+    <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.92rem">📈 이차함수</div>
+    <div style="font-size:.78rem;color:#aaa;margin-top:4px">"방정식의 해 = 함수의 그래프가 x축과 만나는 점"</div>
+  </div>
+</div>
+</div>`,
+    ans:null },
+  { tag:'📖 개념설명 — 4개국이 제곱근을 보는 방식', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85"><b style="color:#a78bfa">제곱근이란?</b><br><b style="color:#2dd4bf">정의: x²=a (a≥0)를 만족하는 x</b> — 이것이 출발점이다.<br><br><b style="color:#86efac">🇫🇮 핀란드 — 대각선에서 발견</b><br>한 변 1cm 정사각형의 대각선 = √2 cm<br>1.4² = 1.96, 1.41² = 1.9881 ... 끝없이 이어진다<br>→ "이 수는 분수가 아닌 새로운 종류의 수다"<br><br><b style="color:#7dd3fc">🇸🇬 싱가포르 — 수직선으로 본다</b><br><div style="background:rgba(125,211,252,.08);border-radius:8px;padding:8px;font-size:.74rem;line-height:1.9">실수 = 유리수 + 무리수<br>수직선은 유리수 사이 빈틈을 무리수가 채운다<br>√2는 1과 2 사이 수직선의 정확한 한 점</div><br><b style="color:#fde68a">✡️ 유대인 — 귀류법으로 증명</b><br>√2 = p/q (서로소) 가정<br>→ p² = 2q² → p 짝수 → p=2k<br>→ q² = 2k² → q 짝수 → <b style="color:#f87171">모순!</b><br>→ √2는 절대 분수가 될 수 없다<br><br><b style="color:#a78bfa">🏛️ 필립엑시터 — 원탁 질문</b><br><span style="color:#c4b5fd">"√2를 처음 발견한 피타고라스 제자는 왜 비밀에 부쳤을까? 수의 세계가 흔들린다는 게 무슨 뜻인가?"</span></div>`,
+    ans:`<b style="color:#a78bfa">🔙 정의 재확인:</b> 제곱근 = "x²=a를 만족하는 x"<br><br><b style="color:#86efac">4개국 핵심 정리</b><br>• 핀란드: 제곱근은 현실(대각선)에서 나온다<br>• 싱가포르: 수직선은 완성된다 (무리수가 빈틈 채움)<br>• 유대인: 귀류법 — 가정하면 모순이 생긴다<br>• 필립엑시터: 새로운 수의 발견 = 세계관의 충격<br><br><b style="color:#2dd4bf">√2는 정의만으로 존재하지 않는다.<br>완전성 공리가 그 자리를 보장한다.</b>` },
+  { tag:'📝 기본문제 — √의 계산과 대소 비교', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85"><b style="color:#86efac">【문제 1】</b> 다음을 계산하라.<br>(1) √49 &nbsp; (2) −√16 &nbsp; (3) (√5)²<br>(4) √(−3)² &nbsp; (5) (−√7)²<br><br><b style="color:#86efac">【문제 2】</b> 다음 수의 대소를 비교하라.<br>√5와 2 &nbsp;/&nbsp; 3과 √10 &nbsp;/&nbsp; √3+1과 √5<br><br><b style="color:#7dd3fc">🇸🇬 싱가포르 힌트 — 수직선으로 본다</b><br>수직선에서 √5의 위치를 찾아라:<br>2² = 4, 3² = 9 이므로 √5는 2와 3 사이<br><br><b style="color:#86efac">🇫🇮 핀란드 힌트 — 제곱 비교법</b><br>a, b&gt;0일 때: a&lt;b ⟺ a²&lt;b²<br>→ (√5)² = 5, 2² = 4 이므로 √5&gt;2</div>`,
+    ans:`<b style="color:#86efac">【문제 1】 풀이</b><br>(1) 7 &nbsp; (2) −4 &nbsp; (3) 5<br>(4) √9 = 3 &nbsp; (5) 7<br><br><b style="color:#2dd4bf">핵심: √(a²) = |a| (절댓값)</b><br><br><b style="color:#86efac">【문제 2】 풀이</b><br>√5 vs 2: 5&gt;4 이므로 <b>√5&gt;2</b><br>3 vs √10: 9&lt;10 이므로 <b>3&lt;√10</b><br>(√3+1)² = 4+2√3 ≈ 7.46, (√5)² = 5<br>→ <b>√3+1&gt;√5</b><br><br><b style="color:#fde68a">🔙 출발점: 제곱근 정의 x²=a이기 때문에<br>비교할 때는 제곱으로 돌아가면 된다</b>` },
+  { tag:'⚡ 심화 — 귀류법은 왜 √4에서 실패하는가', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.25);border-radius:10px;padding:12px;margin-bottom:14px">
+<b style="color:#7dd3fc">핵심 질문</b><br>
+√2 무리수 증명의 핵심 단계: "p² = 2q² → p는 짝수"<br>
+같은 방법으로 "√4가 무리수"를 증명해보라.<br><br>
+<span style="color:#fde68a">증명이 어디서 무너지는가?<br>왜 무너지는가?</span>
+</div>
+<b style="color:#86efac">시도해볼 것</b><br>
+√4 = p/q (서로소) 가정<br>
+→ 4 = p²/q² → p² = 4q²<br>
+→ p²이 4의 배수... 그러면 p는 4의 배수인가?<br><br>
+<span style="color:#f87171">p=6이면: p²=36=4×9. p²은 4의 배수. 그런데 p=6은 4의 배수가 아니다.</span><br><br>
+<b style="color:#7dd3fc">→ 증명이 여기서 붕괴한다.</b><br><br>
+<b style="color:#fde68a">그렇다면:</b><br>
+√2, √3, √5 증명은 왜 작동했는가?<br>
+2, 3, 5가 갖고 있는 공통 성질이 무엇인가?<br>
+4는 왜 그 성질이 없는가?</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#7dd3fc">붕괴 지점의 정체: 소수(Prime)의 성질</b><br><br>
+√2 증명의 핵심 단계:<br>
+"p² = 2q² → p는 2의 배수"<br><br>
+이게 성립하는 이유: <b style="color:#2dd4bf">2가 소수이기 때문이다.</b><br><br>
+<b style="color:#86efac">유클리드 보조정리 (Euclid's Lemma):</b><br>
+<div style="background:rgba(134,239,172,.08);border:1px solid rgba(134,239,172,.25);border-radius:8px;padding:10px;margin:8px 0">
+p가 소수이고 p | a²이면, 반드시 p | a
+</div>
+왜? 소수는 1과 자기 자신으로만 나누어진다.<br>
+a²의 소인수분해에 p가 들어있다면, a의 소인수분해에도 반드시 p가 있어야 한다.<br>
+(없으면 a²에도 없어야 하므로 모순)<br><br>
+<b style="color:#f87171">4가 소수가 아닌 이유로 실패:</b><br>
+4 | a²이지만 4 ∤ a인 경우가 존재한다. (a=6: 6²=36, 4|36이지만 4∤6)<br>
+→ "p²이 4의 배수 → p가 4의 배수" 단계가 거짓<br><br>
+<b style="color:#a78bfa">일반 정리:</b><br>
+√n이 무리수 ⟺ n이 완전제곱수가 아니다<br>
+(n=1,4,9,16,25... 이외는 전부 무리수)<br><br>
+<b style="color:#fde68a">이 모든 증명의 바닥:</b><br>
+유클리드 보조정리는 <b>산술의 기본 정리</b>에서 온다.<br>
+"모든 자연수는 소수의 곱으로 유일하게 표현된다."<br>
+→ 이것도 공리가 아니라 증명이다 (유클리드, 기원전 300년)<br>
+→ 그 증명은 정렬 원리를 쓴다<br>
+→ 정렬 원리는 공리다<br><br>
+<div style="background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);border-radius:8px;padding:10px">
+<b style="color:#7dd3fc">전체 의존 구조:</b><br>
+정렬원리(공리) → 산술기본정리 → 유클리드 보조정리 → √2 무리수 증명
+</div>
+</div>` },
+  { tag:'🔥 최고난도 — 세 문제가 가리키는 하나의 진실', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px;margin-bottom:14px;font-size:.78rem;color:#fca5a5">
+이 세 문제는 서로 무관해 보인다.<br>
+풀고 나서 <b>세 문제가 같은 하나의 사실</b>을 가리키고 있음을 밝혀라.
+</div>
+<b style="color:#f87171">【1】 대소 비교</b><br>
+a = √7 − √5, &nbsp; b = √5 − √3<br>
+a &lt; b 인가, a = b 인가, a &gt; b 인가? 증명하라.<br><br>
+<b style="color:#f87171">【2】 켤레 유리화</b><br>
+<div style="background:rgba(248,113,113,.08);border-radius:8px;padding:10px;text-align:center;font-size:.88rem">
+1/(√3 − √2) + 1/(√5 − √3) + 1/(√7 − √5)
+</div>
+를 계산하라. 결과의 형태에 주목하라.<br><br>
+<b style="color:#f87171">【3】 증명</b><br>
+a &gt; 0, b &gt; 0 일 때:<br>
+<div style="background:rgba(248,113,113,.08);border-radius:8px;padding:10px;text-align:center;font-size:.88rem">
+√a + √b &gt; √(a+b)
+</div>
+증명하고, 이것이 어떤 유명한 부등식과 연결되는지 말하라.</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#f87171">【1】 풀이</b><br>
+a − b = (√7−√5) − (√5−√3) = (√7+√3) − 2√5<br>
+(√7+√3)² = 10+2√21 &nbsp;vs&nbsp; (2√5)² = 20<br>
+√21 &lt; 5 (∵ 21&lt;25) → 2√21 &lt; 10 → 10+2√21 &lt; 20<br>
+∴ √7+√3 &lt; 2√5 &nbsp;→&nbsp; <b>a &lt; b</b><br><br>
+<div style="background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.15);border-radius:8px;padding:9px;margin-bottom:12px">
+<b style="color:#fde68a">숨겨진 의미:</b> 이것은 <b>AM-GM 부등식</b>의 한 표현이다.<br>
+(√7+√3)/2 (산술평균) vs √(√7·√3) = (21)^(1/4) (기하평균) — AM ≥ GM<br>
+수직선 위에서 두 점 사이의 간격은 멀어질수록 좁아진다 (포물선의 기울기가 감소하기 때문)
+</div>
+<b style="color:#f87171">【2】 풀이</b><br>
+유리화 원리: 1/(√(n+2)−√n) = (√(n+2)+√n)/2 &nbsp;(분모=2이면)<br>
+단, 1/(√3−√2): 분모 = √3−√2, 켤레 = √3+√2, 곱 = 1<br>
+→ 1/(√3−√2) = √3+√2<br>
+1/(√5−√3) = (√5+√3)/2<br>
+1/(√7−√5) = (√7+√5)/2<br>
+합 = (√3+√2) + (√5+√3)/2 + (√7+√5)/2<br>
+= √2 + (3√3+√5+√7+√5)/2 + ... = <b>√2+(√3+√5+√7+2√3)/2</b>...<br><br>
+정리하면: <b style="color:#2dd4bf">= √7 + √2</b> &nbsp;(중간 항들이 소거됨)<br><br>
+<div style="background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.15);border-radius:8px;padding:9px;margin-bottom:12px">
+<b style="color:#fde68a">숨겨진 의미:</b> 켤레 유리화는 <b>텔레스코핑(망원경) 합산</b>이다.<br>
+1/(√(n+2)−√n) = (√(n+2)+√n)/2 이므로 합산하면 처음과 끝만 남는다.<br>
+이 구조는 수열의 합산 기법 전체의 핵심이다.
+</div>
+<b style="color:#f87171">【3】 증명</b><br>
+(√a+√b)² = a + 2√(ab) + b<br>
+(√(a+b))² = a + b<br>
+a,b &gt; 0 이면 2√(ab) &gt; 0<br>
+∴ (√a+√b)² &gt; (√(a+b))²<br>
+양변 양수이므로 √a+√b &gt; √(a+b) &nbsp;<b>∎</b><br><br>
+<div style="background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:11px;margin-top:10px">
+<b style="color:#2dd4bf">세 문제가 가리키는 하나의 진실:</b><br><br>
+<b>√x는 오목함수(concave function)다.</b><br><br>
+【1】: 수직선 위 간격이 멀수록 차이가 작아짐 = √의 기울기 감소 = 오목성<br>
+【2】: 텔레스코핑이 성립하는 이유 = √의 증가율이 일정하지 않음<br>
+【3】: √a+√b &gt; √(a+b) = Jensen 부등식 (오목함수의 핵심 성질)<br><br>
+이 세 가지는 모두 같은 말이다:<br>
+<b style="color:#fde68a">"제곱근은 더한 다음 씌우면 씌운 다음 더한 것보다 작다"</b><br>
+이것이 고등수학 전체에서 반복되는 오목성(concavity)의 본질이다.<br>
+미분에서 f''(x) = −1/(4x^(3/2)) &lt; 0 으로 다시 만난다.
+</div>
+</div>` },
+  { tag:'🏛️ 하크니스 원탁 — √2 존재의 위기 (실제 토론 재구성)', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(167,139,250,.12);border-left:3px solid #a78bfa;border-radius:0 10px 10px 0;padding:11px 14px;margin-bottom:14px;font-size:.76rem;color:#c4b5fd;line-height:1.7">
+<b style="color:#a78bfa">하크니스 규칙</b><br>
+선생님은 질문만 한다. 절대 설명하지 않는다.<br>
+학생은 서로의 발언을 이어받거나 반박해야 한다.<br>
+정답은 없다. 더 좋은 질문이 있을 뿐이다.
+</div>
+<b style="color:#fde68a">오늘의 출발 질문</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:13px;margin:8px 0 14px;font-size:.84rem;line-height:1.9;color:#e2e8f0">
+귀류법 증명을 방금 배웠다.<br>
+그 증명은 √2가 <b style="color:#f87171">유리수가 아님</b>을 보여준다.<br><br>
+그것이 √2가 <b style="color:#86efac">존재함</b>을 보여주는가?
+</div>
+<div style="font-size:.76rem;color:#888;line-height:1.6">참가자: 민준 · 서연 · 지호 · 유나 · 준혁 · 하은<br>풀이 보기를 눌러 원탁 토론 전체를 읽어라.</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<div style="color:#a78bfa;font-family:'Jua',sans-serif;font-size:.84rem;margin-bottom:12px">─── 원탁 토론 전문 ───</div>
+
+<b style="color:#7dd3fc">민준:</b> "잠깐요. 저 방금 증명을 다시 읽었는데, 이건 √2가 유리수가 <b>아니라는 것</b>만 보여주잖아요. '없다'는 증명이지 '있다'는 증명이 아니에요."<br><br>
+<b style="color:#86efac">서연:</b> "그런데 컴퍼스로 그릴 수 있잖아요. 1×1 정사각형의 대각선. 그게 수직선 위에 분명히 찍히는데, 그게 존재 아닌가요?"<br><br>
+<b style="color:#fde68a">지호:</b> "잠깐, 서연아. 컴퍼스로 점을 그린 게 '수'를 만드나요? 그냥 '길이'잖아요. 피타고라스도 그 길이가 존재한다는 건 알았어요. 그들이 부정한 건 그게 '수'라는 것이었어요."<br><br>
+<b style="color:#86efac">서연:</b> "그럼 '길이로 존재함'과 '수로 존재함'이 다른 건가요?"<br><br>
+<b style="color:#f87171">준혁:</b> "당연히 다르죠. 수직선은 수들의 집합이라고 우리가 <b>정의</b>한 거잖아요. 그 정의 자체를 왜 믿어요?"<br><br>
+<b style="color:#7dd3fc">민준:</b> "그러면 귀류법 증명 자체를 다시 봐야 해요. 거기 숨겨진 가정이 있어요. 증명 첫 줄이 뭔지 다들 기억해요?"<br><br>
+<b style="color:#2dd4bf">유나:</b> "'√2 = p/q (p, q는 서로소인 자연수)' 가정하고 시작하죠."<br><br>
+<b style="color:#7dd3fc">민준:</b> "맞아요. '서로소인 자연수로 쓸 수 있다'는 것 자체가 가정이에요. 왜 모든 분수는 기약분수로 쓸 수 있나요?"<br><br>
+<b style="color:#fde68a">지호:</b> "자연수를 계속 약분하면 언젠가 끝나니까요. 무한히 작아질 수 없으니까."<br><br>
+<b style="color:#7dd3fc">민준:</b> "'무한히 작아질 수 없다' — 그게 바로 <b>정렬 원리</b>에요. '자연수의 공집합이 아닌 부분집합은 반드시 최솟값을 가진다.' 이건 증명이 아니라 공리예요."<br><br>
+<b style="color:#f87171">준혁:</b> "그러면 귀류법 증명은 '자연수가 정렬 원리를 만족한다'는 가정 위에 서 있는 거네요. 가정 위에 가정."<br><br>
+<b style="color:#c4b5fd">하은:</b> "모든 수학이 그래요. 공리가 없으면 아무것도 시작 못해요. 문제는 어떤 공리를 고르냐죠."<br><br>
+<b style="color:#f87171">준혁:</b> "그럼 결국 수학은 게임이에요? 공리를 바꾸면 다른 수학이 나오는?"<br><br>
+<i style="color:#888">— 침묵 —</i><br><br>
+<b style="color:#86efac">서연 (다시):</b> "존재 문제로 돌아가요. 귀류법은 Q에 없다고 했어요. 그럼 어디 있어요? '없음'이 아니라면 어딘가에 있어야 하잖아요."<br><br>
+<b style="color:#2dd4bf">유나:</b> "그게 <b>완전성 공리</b>에요. '위로 유계인 집합은 상한이 있다.' S = {유리수 q | q² &lt; 2} — 이 집합의 상한을 x라 하면 x² = 2예요. 그 x가 √2예요."<br><br>
+<b style="color:#fde68a">지호:</b> "유나야, 잠깐요. 완전성 공리는 '증명'이에요, '가정'이에요?"<br><br>
+<b style="color:#2dd4bf">유나:</b> "... 가정이에요. 실수 체계를 정의할 때 넣는 공리 중 하나에요."<br><br>
+<b style="color:#fde68a">지호:</b> "그러면 √2의 존재는 증명된 게 아니에요. <b>완전성 공리를 가정할 경우에</b> 존재해요. 그 가정을 안 하면 존재하지 않아요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "크로네커가 그랬잖아요. '신은 정수를 만들었다. 나머지는 모두 인간의 작품이다.' 크로네커는 완전성 공리를 거부했어요."<br><br>
+<b style="color:#f87171">준혁:</b> "크로네커가 맞을 수도 있어요. 증명해봐요, 크로네커가 틀렸다고."<br><br>
+<b style="color:#7dd3fc">민준:</b> "크로네커의 수학에서는 극한이 없어요. 미적분학이 성립하지 않아요."<br><br>
+<b style="color:#86efac">서연:</b> "미적분 없으면 물리학도 없어요."<br><br>
+<b style="color:#f87171">준혁:</b> "물리학이 없어진다는 게 수학이 틀렸다는 증거인가요? 아니면 물리학이 우리 수학에 의존한다는 증거인가요?"<br><br>
+<i style="color:#888">— 더 긴 침묵 —</i><br><br>
+<b style="color:#c4b5fd">하은:</b> "질문 자체를 바꿔야 할 것 같아요. '√2는 존재하는가?'가 아니라 — <b>'어떤 수 체계에서 살고 싶은가?'</b> 그게 진짜 질문이에요. 완전성 공리를 선택하면 미적분이 생기고, 포기하면 더 '순수한' 수학이 돼요. 우리는 선택하는 거예요."<br><br>
+<div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px;margin-top:14px">
+<b style="color:#a78bfa">선생님 (수업 종료 시 유일한 발언):</b><br>
+"오늘 여러분은 수학자들이 2000년간 논쟁한 것을 45분 만에 재발견했다.<br>피타고라스(기원전 500년) → 유클리드(기원전 300년) → 데데킨트(1872년) → 크로네커(1886년) → 힐베르트(1900년).<br>아직도 결론 없음."
+</div>
+<div style="margin-top:14px;padding:12px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:10px">
+<b style="color:#f87171">수업 후에도 열린 질문들:</b><br>
+• 거의 모든 실수는 이름조차 붙일 수 없다 (비가산 무한 vs 가산 언어). 이름 없는 그 수들은 존재하는가?<br>
+• 물리학에서 실제로 사용되는 수는 전부 유리수 근사다. 실수는 물리적 실재인가, 수학적 도구인가?<br>
+• √2는 <b>발견</b>된 것인가, <b>발명</b>된 것인가?
+</div>
+<div style="margin-top:12px;background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:12px">
+<b style="color:#2dd4bf">🔙 이 단원의 출발점으로:</b><br>
+x²=2를 만족하는 수가 존재하는가?<br>
+귀류법 → "Q에는 없다"<br>
+완전성 공리 → "R에는 반드시 있다"<br>
+그 공리를 우리는 믿기로 <b>선택</b>했다.<br>
+그 선택이 현대 수학 전체를 만들었다.
+</div>
+</div>` }
 ],
 
 /* ── 이차방정식 개념 가이드 (3장) ───────────── */
@@ -10650,6 +10919,7 @@ var ARTIFACTS = {
   'sqrt-guide': { island:'제곱근과 실수의 탑', emoji:'🌱', quote:'수에도 구멍이 있다. 그것을 채우는 것이 수학이다.', color:'#2dd4bf' },
   'sqrt-basic': { island:'제곱근과 실수의 탑', emoji:'📝', quote:'새로운 수를 발견하는 것은 새로운 세계를 여는 것이다.', color:'#2dd4bf' },
   'sqrt-havruta': { island:'제곱근과 실수의 탑', emoji:'✡️', quote:'두려움을 이긴 자만이 수를 확장할 수 있다.', color:'#fde68a' },
+  'mid3-sqrt': { island:'중3-1 이차의 왕국', emoji:'🗺️', quote:'x²=2의 답이 사는 세계를 만드는 것이 수학이다.', color:'#a78bfa' },
   'simultaneous-havruta': { island:'연립방정식의 미궁', emoji:'🗝️', quote:'두 조건이 만나는 곳에 답이 있다.', color:'#7dd3fc' },
   'simul-basic10': { island:'연립방정식의 미궁', emoji:'📝', quote:'두 미지수도 두 조건이면 반드시 풀린다.', color:'#86efac' },
   'simul-hard10': { island:'연립방정식의 미궁', emoji:'⚔️', quote:'복잡해 보여도 핵심은 두 조건의 교차점이다.', color:'#f87171' },
