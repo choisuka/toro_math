@@ -1702,7 +1702,59 @@ const CARD_DATA = {
       { label:'학생 A처럼 생각해요 — "중학생이니까 멋있어서 x를 써요!"', reaction:'솔직한 대답이야 😄 그런데 만약 멋이 없어도 x를 써야 하는 이유가 있다면? 미지수가 10개라면 □△○♦♥♠♣☆★◇ 이렇게 그릴 수 있을까? 이름이 없으면 부를 수가 없어!' },
       { label:'학생 B처럼 생각해요 — "계산하기 편하게 하려고요!"', reaction:'좋은 직관이야! 편리함도 이유야. 그런데 더 깊은 비밀이 있어 — x는 단순한 기호가 아니라 아직 밝혀지지 않은 탐정 소설의 주인공이야. 범인에게 이름을 붙여야 추리를 시작할 수 있지 않겠어?' },
       { label:'잘 모르겠어요 🤔', reaction:'괜찮아, 모르는 게 시작이야! 사실 수학자들도 처음엔 □나 ★ 같은 기호를 썼어. 그러다 x, y, z라는 이름표를 붙이기 시작하면서 수학이 엄청나게 발전했단다.' }
-    ] }
+    ] },
+
+  { tag:'🏛️ 하크니스 원탁 — 등호(=)는 무엇인가: 방정식의 출발점', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(167,139,250,.12);border-left:3px solid #a78bfa;border-radius:0 10px 10px 0;padding:11px 14px;margin-bottom:14px;font-size:.76rem;color:#c4b5fd;line-height:1.7">
+<b style="color:#a78bfa">하크니스 규칙</b><br>
+선생님은 질문만 한다. 절대 설명하지 않는다.<br>
+학생은 서로의 발언을 이어받거나 반박해야 한다.<br>
+정답은 없다. 더 좋은 질문이 있을 뿐이다.
+</div>
+<b style="color:#fde68a">오늘의 출발 질문</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:13px;margin:8px 0 14px;font-size:.84rem;line-height:1.9;color:#e2e8f0">
+3 + 4 = 7 에서 등호(=)는 <b style="color:#86efac">"계산 결과"</b>를 의미한다.<br>
+x + 3 = 10 에서 등호(=)는 <b style="color:#7dd3fc">"조건을 만족한다"</b>는 의미다.<br><br>
+같은 기호인데 의미가 다른 것인가?<br>
+아니면 방정식의 등호와 계산의 등호는 본질적으로 같은 것인가?<br><br>
+<span style="color:#aaa;font-size:.78rem">0 × x = 5 는 해가 없고, 0 × x = 0 은 모든 수가 해다. 이 두 경우도 함께 생각하라.</span>
+</div>
+<div style="font-size:.76rem;color:#888;line-height:1.6">참가자: 민준 · 서연 · 지호 · 유나 · 준혁 · 하은<br>풀이 보기를 눌러 원탁 토론 전체를 읽어라.</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<div style="color:#a78bfa;font-family:'Jua',sans-serif;font-size:.84rem;margin-bottom:12px">─── 원탁 토론 전문 ───</div>
+
+<b style="color:#86efac">서연:</b> "초등학교 때는 '='이 항상 '답'이었어요. 3+4=7이니까요. 중학교 와서 x+3=10을 보니까 등호가 '답을 내라'가 아니라 '균형이 맞다'는 느낌이에요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "저는 시소 이미지가 떠올라요. 양쪽 무게가 같을 때 = 이 성립하는 거잖아요. 3+4와 7이 같은 무게인 것처럼."<br><br>
+<b style="color:#fde68a">지호:</b> "그런데 x+3=10에서 x는 아직 모르는 거잖아요. 모르는 것이 있는데 어떻게 균형이 맞다고 할 수 있죠?"<br><br>
+<b style="color:#2dd4bf">유나:</b> "균형이 맞는 x가 존재한다는 선언이에요. '이런 x가 있다, 그것을 찾아라'는 뜻이요. 등호는 '이미 균형이 맞다'가 아니라 '균형이 맞아야 한다'는 조건이에요."<br><br>
+<b style="color:#f87171">준혁:</b> "그럼 0×x=5는요? x가 어떤 값이어도 왼쪽은 0이에요. 균형이 맞을 수가 없어요."<br><br>
+<b style="color:#86efac">서연:</b> "그건 거짓 조건이에요. 존재할 수 없는 상황을 등호로 연결한 거잖아요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "그럼 0×x=0은요? x가 뭐든 왼쪽이 0이에요. 항상 균형이 맞아요. 해가 무한히 많아요."<br><br>
+<b style="color:#fde68a">지호:</b> "흥미해요. 같은 등호인데 해가 없는 경우, 해가 하나인 경우, 해가 무한히 많은 경우가 있어요. 등호의 의미는 같은데 결과가 완전히 달라요."<br><br>
+<b style="color:#c4b5fd">하은:</b> "그게 방정식을 방정식답게 만드는 게 아닐까요? 조건을 달면 세상이 좁아지거나, 아예 불가능하거나, 오히려 더 넓어질 수도 있어요. 등호는 '조건을 거는 도구'예요."<br><br>
+<b style="color:#2dd4bf">유나:</b> "결국 등호는 두 가지 의미를 동시에 가지는 것 같아요. 3+4=7처럼 이미 사실인 '항등식'의 등호와, x+3=10처럼 특정 x에서만 성립하는 '조건'의 등호요."<br><br>
+<b style="color:#f87171">준혁:</b> "그리고 항등식의 등호 없이는 방정식의 등호도 못 쓰는 거잖아요. 이항할 때 '양변에 같은 수를 빼도 된다'는 것 자체가 항등식이에요."<br><br>
+<div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px;margin-top:14px">
+<b style="color:#a78bfa">선생님 (수업 종료 시 유일한 발언):</b><br>
+"라이프니츠(1646~1716): 등호는 두 표현이 같은 것을 가리킨다는 선언이다. 계산의 등호와 방정식의 등호는 다른 기호가 아니다. 다만 하나는 진술이고, 하나는 조건이다."
+</div>
+<div style="margin-top:12px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px">
+<b style="color:#f87171">수업 후에도 열린 질문들:</b><br>
+• 0으로 나누면 안 되는 이유를 등호의 관점에서 설명하라.<br>
+• 부등호(&lt;, &gt;)는 등호와 어떻게 다른가? 부등식도 '조건'인가?<br>
+• x+y=10이라는 식은 해가 무한히 많다. 이것은 방정식인가, 항등식인가?
+</div>
+<div style="margin-top:12px;background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:12px">
+<b style="color:#2dd4bf">🔙 이 단원의 출발점으로:</b><br>
+항등식: x에 어떤 수를 넣어도 항상 성립 → 방정식 풀이의 근거<br>
+방정식: 특정 x에서만 성립 → 해를 구하는 것<br>
+등호는 두 얼굴을 가진다: 진술과 조건<br><br>
+<b style="color:#a78bfa">방정식을 푼다는 것은, 등호의 조건을 만족하는 수를 논리로 추적하는 것이다.</b>
+</div>
+</div>` }
 ]
 
 ,
@@ -1894,7 +1946,59 @@ const CARD_DATA = {
       { label:'학생 A처럼 생각해요 — "홀수들일 것 같아요! 3, 5, 7처럼요."', reaction:'오! 홀수 방향으로 떠올렸구나. 그런데 4는 홀수가 아닌데 약수가 1, 2, 4로 딱 3개야. 그리고 홀수인 9도 1, 3, 9로 3개지. 홀수인지 아닌지가 기준이 아닌 것 같아. 4와 9의 공통점을 찾아볼까?' },
       { label:'학생 B처럼 생각해요 — "3의 배수일 것 같아요!"', reaction:'좋은 시도야! 그런데 3의 약수는 1, 3으로 2개뿐이고, 6(3의 배수)의 약수는 1, 2, 3, 6으로 4개야. 3의 배수라고 꼭 3개가 되진 않아. 4의 약수: 1, 2, 4 — 여기서 힌트를 찾을 수 있을까?' },
       { label:'잘 모르겠어요 🤔', reaction:'완벽한 출발이야! 4의 약수를 써봐: 1, 2, 4. 9의 약수: 1, 3, 9. 25의 약수: 1, 5, 25. 가운데 숫자들(2, 3, 5)의 공통점이 보이니? 바로 소수야! 그리고 4=2², 9=3², 25=5² — 패턴이 보이지 않니?' }
-    ] }
+    ] },
+
+  { tag:'🏛️ 하크니스 원탁 — 소수는 무한히 많다고 어떻게 알 수 있는가', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(167,139,250,.12);border-left:3px solid #a78bfa;border-radius:0 10px 10px 0;padding:11px 14px;margin-bottom:14px;font-size:.76rem;color:#c4b5fd;line-height:1.7">
+<b style="color:#a78bfa">하크니스 규칙</b><br>
+선생님은 질문만 한다. 절대 설명하지 않는다.<br>
+학생은 서로의 발언을 이어받거나 반박해야 한다.<br>
+정답은 없다. 더 좋은 질문이 있을 뿐이다.
+</div>
+<b style="color:#fde68a">오늘의 출발 질문</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:13px;margin:8px 0 14px;font-size:.84rem;line-height:1.9;color:#e2e8f0">
+소수를 나열하면: 2, 3, 5, 7, 11, 13, 17, 19 ...<br><br>
+수학자들은 <b style="color:#86efac">"소수는 무한히 많다"</b>고 말한다.<br>
+그런데 우리는 소수를 끝까지 셀 수 없다.<br><br>
+끝을 볼 수 없는데, 어떻게 <b>무한히 많다</b>는 것을 알 수 있는가?
+</div>
+<div style="font-size:.76rem;color:#888;line-height:1.6">참가자: 민준 · 서연 · 지호 · 유나 · 준혁 · 하은<br>풀이 보기를 눌러 원탁 토론 전체를 읽어라.</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<div style="color:#a78bfa;font-family:'Jua',sans-serif;font-size:.84rem;margin-bottom:12px">─── 원탁 토론 전문 ───</div>
+
+<b style="color:#86efac">서연:</b> "소수를 계속 찾으면 되지 않나요? 더 큰 수에서도 소수가 나오니까요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "그건 무한히 계속 찾아야 한다는 건데, 언제 '다 찾았다'고 말할 수 있어요? 영원히 못 끝내잖아요."<br><br>
+<b style="color:#fde68a">지호:</b> "발상을 바꿔봐요. '소수가 유한하다'고 가정하면 어떨까요? 세상에 소수가 딱 n개만 있다고요: p₁, p₂, ..., pₙ."<br><br>
+<b style="color:#f87171">준혁:</b> "그 가정이 왜 유용해요? 소수 목록이 있다고 해도 무한한지 아닌지 모르잖아요."<br><br>
+<b style="color:#2dd4bf">유나:</b> "지호 말을 이어받을게요. 그 소수들을 전부 곱하고 1을 더해봐요. N = p₁×p₂×...×pₙ + 1. 이 N을 목록에 있는 어떤 소수로 나눠도 나머지가 1이 남아요."<br><br>
+<b style="color:#86efac">서연:</b> "그럼 N은 소수예요?"<br><br>
+<b style="color:#c4b5fd">하은:</b> "꼭 그럴 필요는 없어요. N이 소수가 아니라면 어떤 소수의 배수겠죠. 그런데 그 소수는 목록에 있는 p₁~pₙ 중 어느 것도 아닌 새로운 소수예요. 왜냐면 목록에 있는 소수로 나누면 나머지가 1이 남으니까요."<br><br>
+<b style="color:#fde68a">지호:</b> "즉 어떤 경우든, 목록 바깥에 소수가 존재한다는 거예요. '소수가 유한하다'는 가정이 틀렸어요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "이게 귀류법이군요. '아니라고 가정하면 모순이 생긴다'는 방법이요. 끝을 보지 않고도 무한함을 증명했어요."<br><br>
+<b style="color:#f87171">준혁:</b> "그런데 이게 정말 증명인가요? 뭔가 손에 잡히지 않는 느낌이에요."<br><br>
+<b style="color:#c4b5fd">하은:</b> "수학에서 '없다는 것'은 증명하기 어려워요. 하지만 '있다는 것'도 직접 다 보여줄 수 없을 때 귀류법을 써요. '없다고 치면 세상이 이상해진다' — 이것으로 충분해요."<br><br>
+<b style="color:#86efac">서연:</b> "1이 소수가 아닌 이유도 비슷해요. 1이 소수라면 유일성이 깨지고, 소수가 유한하다고 가정해도 모순이 생겨요. 소수 체계 전체가 이 두 약속 위에 서 있는 거예요."<br><br>
+<div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px;margin-top:14px">
+<b style="color:#a78bfa">선생님 (수업 종료 시 유일한 발언):</b><br>
+"유클리드(기원전 300년), 원론 제9권 20번째 명제. 이 증명은 2300년간 반박된 적이 없다. 수학은 '모두 세어 확인하는 학문'이 아니라 '끝을 보지 않고도 진실을 알아내는 학문'이다."
+</div>
+<div style="margin-top:12px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px">
+<b style="color:#f87171">수업 후에도 열린 질문들:</b><br>
+• N = p₁×p₂×...×pₙ + 1 이 항상 소수인가? 아니라면 예를 들어라.<br>
+• 짝수인 소수는 2 하나뿐이다. 왜 그런가?<br>
+• 소수가 무한히 많다면, 쌍둥이 소수(11과 13처럼 차이가 2인 소수 쌍)도 무한히 많은가?
+</div>
+<div style="margin-top:12px;background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:12px">
+<b style="color:#2dd4bf">🔙 이 단원의 출발점으로:</b><br>
+소수 = 약수가 1과 자신뿐인 수 (1 제외)<br>
+모든 자연수 = 소수들의 곱 (소인수분해의 유일성)<br>
+소수는 무한히 많다 = 유클리드의 귀류법<br><br>
+<b style="color:#a78bfa">수학은 직접 다 볼 수 없는 것도 논리로 알아낸다.</b>
+</div>
+</div>` }
 ],
 
 /* ── 다항식·나머지 정리 3개국 가이드 (3장) ── */
@@ -2786,7 +2890,57 @@ y = 3 × 5 = 15
   { tag:'💬 평균 토론 3/3 — 평균의 함정 (이상치)', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">● 우리 반 5명의 몸무게가 30kg, 35kg, 40kg, 45kg, 100kg이야. 평균은 50kg이지. 이 '50kg'이 우리 반 아이들의 몸무게를 대표한다고 할 수 있을까?</div><div style="font-size:.72rem;color:#aaa;margin-bottom:6px;font-style:italic">학생: "계산 결과가 50이니까 맞긴 한데... 100kg인 친구 때문에 숫자가 너무 커진 것 같아요."</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "와! 정답보다 더 중요한 '이상치(Outlier)'를 찾아냈구나! 100kg인 친구 한 명 때문에 나머지 4명이 졸지에 자기 몸무게보다 훨씬 무거운 집단에 속하게 됐어."<br><br><b style="color:#d8b4fe">논리:</b> 유대인들은 숫자를 볼 때 '누군가 한 명의 특별한 데이터가 전체를 왜곡하고 있지는 않은가?'를 항상 의심해. 평균은 편리하지만, 때로는 '진실'을 가리기도 하거든.<br><br><b style="color:#86efac">결론:</b> 수학을 잘한다는 건 계산기에 숫자를 넣는 게 아니라, 숫자가 숨기고 있는 그림자를 읽어내는 힘이란다. 50kg이라는 숫자 뒤에 숨은 30kg 친구의 진짜 모습을 잊지 않는 것, 그게 진짜 하브루타 정신이야!` }
+    ans:`<b style="color:#fde68a">토로:</b> "와! 정답보다 더 중요한 '이상치(Outlier)'를 찾아냈구나! 100kg인 친구 한 명 때문에 나머지 4명이 졸지에 자기 몸무게보다 훨씬 무거운 집단에 속하게 됐어."<br><br><b style="color:#d8b4fe">논리:</b> 유대인들은 숫자를 볼 때 '누군가 한 명의 특별한 데이터가 전체를 왜곡하고 있지는 않은가?'를 항상 의심해. 평균은 편리하지만, 때로는 '진실'을 가리기도 하거든.<br><br><b style="color:#86efac">결론:</b> 수학을 잘한다는 건 계산기에 숫자를 넣는 게 아니라, 숫자가 숨기고 있는 그림자를 읽어내는 힘이란다. 50kg이라는 숫자 뒤에 숨은 30kg 친구의 진짜 모습을 잊지 않는 것, 그게 진짜 하브루타 정신이야!` },
+
+  { tag:'🏛️ 하크니스 원탁 — 평균이 없는 평균: 대표값은 무엇을 대표하는가', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(167,139,250,.12);border-left:3px solid #a78bfa;border-radius:0 10px 10px 0;padding:11px 14px;margin-bottom:14px;font-size:.76rem;color:#c4b5fd;line-height:1.7">
+<b style="color:#a78bfa">하크니스 규칙</b><br>
+선생님은 질문만 한다. 절대 설명하지 않는다.<br>
+학생은 서로의 발언을 이어받거나 반박해야 한다.<br>
+정답은 없다. 더 좋은 질문이 있을 뿐이다.
+</div>
+<b style="color:#fde68a">오늘의 출발 질문</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:13px;margin:8px 0 14px;font-size:.84rem;line-height:1.9;color:#e2e8f0">
+빌 게이츠가 10명 있는 방에 들어왔다.<br>
+방 안 사람들의 <b style="color:#86efac">평균 재산이 수십억 원</b>이 되었다.<br><br>
+이 '평균'은 그 방 사람들의 재산 상황을 대표하는가?<br><br>
+<span style="color:#aaa;font-size:.78rem">평균, 중앙값, 최빈값 — 이 셋 중 어느 것이 '진짜 대표'인가?</span>
+</div>
+<div style="font-size:.76rem;color:#888;line-height:1.6">참가자: 민준 · 서연 · 지호 · 유나 · 준혁 · 하은<br>풀이 보기를 눌러 원탁 토론 전체를 읽어라.</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<div style="color:#a78bfa;font-family:'Jua',sans-serif;font-size:.84rem;margin-bottom:12px">─── 원탁 토론 전문 ───</div>
+
+<b style="color:#86efac">서연:</b> "수학적으로 평균은 맞아요. 전체를 더해서 인원수로 나눈 거니까요. 틀린 계산이 아니에요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "계산은 맞는데 대표가 아니라는 게 이상해요. 계산이 맞으면 대표가 되어야 하지 않나요?"<br><br>
+<b style="color:#fde68a">지호:</b> "대표값이란 게 뭔지 먼저 물어봐야 할 것 같아요. '방 안 사람들이 보통 얼마나 가지고 있나'를 나타내야 대표값 아닌가요?"<br><br>
+<b style="color:#2dd4bf">유나:</b> "그 기준이라면 중앙값이 더 나을 것 같아요. 10명을 줄 세워서 5번째와 6번째 사람의 재산 평균이요. 빌 게이츠 한 명이 값을 올려놔도 중앙값은 거의 안 변해요."<br><br>
+<b style="color:#f87171">준혁:</b> "근데 중앙값도 완벽하지 않잖아요. 9명이 1원이고 1명이 100원이면 중앙값은 1원인데, 총재산의 대부분이 그 1명에게 있잖아요."<br><br>
+<b style="color:#86efac">서연:</b> "그럼 대표값이란 게 없는 건가요?"<br><br>
+<b style="color:#c4b5fd">하은:</b> "대표값이 하나일 필요가 없는 거 아닐까요? 평균은 '총량'을 나타내고, 중앙값은 '전형적인 경우'를 나타내고, 최빈값은 '가장 흔한 경우'를 나타내는 거잖아요. 다른 질문에 다른 대표값이 필요해요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "그럼 문제는 어떤 대표값을 쓸지가 아니라, 내가 무엇을 알고 싶은가를 먼저 정해야 한다는 거네요."<br><br>
+<b style="color:#fde68a">지호:</b> "뉴스에서 '평균 연봉'이라고 할 때 실제로 느끼는 것과 다른 이유가 여기 있는 것 같아요. 평균인지 중앙값인지를 안 밝히거나, 이상치가 있는데도 평균을 쓰거나."<br><br>
+<b style="color:#2dd4bf">유나:</b> "숫자가 거짓말하는 게 아니라, 숫자를 쓰는 사람이 질문을 숨기는 거예요."<br><br>
+<div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px;margin-top:14px">
+<b style="color:#a78bfa">선생님 (수업 종료 시 유일한 발언):</b><br>
+"마크 트웨인: '세상에는 세 가지 거짓말이 있다 — 거짓말, 새빨간 거짓말, 그리고 통계.' 평균은 계산이 맞다. 하지만 질문이 틀리면 맞는 계산도 잘못된 답을 준다."
+</div>
+<div style="margin-top:12px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px">
+<b style="color:#f87171">수업 후에도 열린 질문들:</b><br>
+• 우리 반 수학 점수의 평균, 중앙값, 최빈값이 모두 다를 수 있는가? 예를 들어라.<br>
+• 이상치(outlier)가 있을 때 평균과 중앙값 중 어느 것을 써야 하는가?<br>
+• 가능성(확률)도 일종의 평균인가?
+</div>
+<div style="margin-top:12px;background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:12px">
+<b style="color:#2dd4bf">🔙 이 단원의 출발점으로:</b><br>
+평균 = 전체 합 ÷ 개수 (총량의 균등 분배)<br>
+중앙값 = 가운데 값 (이상치에 강함)<br>
+최빈값 = 가장 자주 나오는 값 (분포의 중심)<br><br>
+<b style="color:#a78bfa">대표값 선택은 계산이 아니라 질문이 결정한다.</b>
+</div>
+</div>` }
 ],
 
 /* ── 연립방정식 하브루타 (2편) ──────────────── */
@@ -2798,7 +2952,56 @@ y = 3 × 5 = 15
   { tag:'💬 연립 토론 2/2 — 조건의 가치', tagColor:'#7dd3fc',
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">● 왜 미지수가 2개면 식도 반드시 2개가 필요할까? 식이 하나만 있으면 왜 정답을 못 찾을까?</div><div style="font-size:.72rem;color:#aaa;margin-bottom:6px;font-style:italic">학생: "범위가 너무 넓어서 하나로 딱 정해지지 않기 때문이에요."</div>`,
-    ans:`<b style="color:#7dd3fc">토로:</b> "정답이야! x+y=10이라는 식 하나만 있으면 정답은 무수히 많지. 이건 마치 '범인은 키가 크다'라는 정보만 있는 것과 같아."<br><br><b style="color:#d8b4fe">논리:</b> 여기에 '범인은 안경을 썼다'라는 두 번째 정보(식)가 추가되는 순간, 용의자는 단 한 명으로 좁혀져. 유대인들은 '하나의 질문에 하나의 대답만으로는 진실에 도달할 수 없다'고 믿어.<br><br><b style="color:#86efac">결론:</b> 수학은 여러 개의 단서를 엮어서 단 하나의 진실을 찾아내는 과정이야. 네 삶에서도 어려운 문제가 생기면, 더 많은 단서(식)를 찾아보렴. 반드시 정답은 나타날 거야!` }
+    ans:`<b style="color:#7dd3fc">토로:</b> "정답이야! x+y=10이라는 식 하나만 있으면 정답은 무수히 많지. 이건 마치 '범인은 키가 크다'라는 정보만 있는 것과 같아."<br><br><b style="color:#d8b4fe">논리:</b> 여기에 '범인은 안경을 썼다'라는 두 번째 정보(식)가 추가되는 순간, 용의자는 단 한 명으로 좁혀져. 유대인들은 '하나의 질문에 하나의 대답만으로는 진실에 도달할 수 없다'고 믿어.<br><br><b style="color:#86efac">결론:</b> 수학은 여러 개의 단서를 엮어서 단 하나의 진실을 찾아내는 과정이야. 네 삶에서도 어려운 문제가 생기면, 더 많은 단서(식)를 찾아보렴. 반드시 정답은 나타날 거야!` },
+
+  { tag:'🏛️ 하크니스 원탁 — 해가 없다는 것: 두 직선이 절대 만나지 않을 때', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(167,139,250,.12);border-left:3px solid #a78bfa;border-radius:0 10px 10px 0;padding:11px 14px;margin-bottom:14px;font-size:.76rem;color:#c4b5fd;line-height:1.7">
+<b style="color:#a78bfa">하크니스 규칙</b><br>
+선생님은 질문만 한다. 절대 설명하지 않는다.<br>
+학생은 서로의 발언을 이어받거나 반박해야 한다.<br>
+정답은 없다. 더 좋은 질문이 있을 뿐이다.
+</div>
+<b style="color:#fde68a">오늘의 출발 질문</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:13px;margin:8px 0 14px;font-size:.84rem;line-height:1.9;color:#e2e8f0">
+연립방정식 <b style="color:#86efac">x + y = 5</b> 와 <b style="color:#f87171">x + y = 7</b> 을 동시에 만족하는 수는 없다.<br><br>
+이것은 <b>문제가 잘못 만들어진 것</b>인가?<br>
+아니면 수학이 우리에게 무언가를 알려주는 것인가?<br><br>
+<span style="color:#aaa;font-size:.78rem">두 식을 그래프로 그리면 어떻게 보이는가?</span>
+</div>
+<div style="font-size:.76rem;color:#888;line-height:1.6">참가자: 민준 · 서연 · 지호 · 유나 · 준혁 · 하은<br>풀이 보기를 눌러 원탁 토론 전체를 읽어라.</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<div style="color:#a78bfa;font-family:'Jua',sans-serif;font-size:.84rem;margin-bottom:12px">─── 원탁 토론 전문 ───</div>
+
+<b style="color:#86efac">서연:</b> "x+y=5와 x+y=7은 같은 형태인데 오른쪽만 달라요. 같은 형태니까 그래프로 그리면 평행선이에요. 평행선은 안 만나요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "그래프가 안 만난다는 게 해가 없다는 뜻이에요. 그런데 '해가 없다'는 게 수학의 실패인가요, 아니면 수학이 뭔가를 발견한 건가요?"<br><br>
+<b style="color:#fde68a">지호:</b> "실패가 아니에요. x+y=5는 '두 수의 합이 5인 모든 쌍'을 나타내고, x+y=7은 '두 수의 합이 7인 모든 쌍'을 나타내요. 한 쌍이 동시에 합이 5이면서 7일 수는 없잖아요."<br><br>
+<b style="color:#2dd4bf">유나:</b> "그러면 '해가 없다'는 것이 모순되는 조건이 주어졌다는 신호예요. 수학이 '이 두 조건은 함께 성립할 수 없다'고 말해주는 거예요."<br><br>
+<b style="color:#f87171">준혁:</b> "현실에서는 어떤 상황인가요? 두 사람이 서로 모순된 요구를 하고 있는 상황 같아요. '둘의 합이 5가 되어야 해'라는 사람과 '둘의 합이 7이 되어야 해'라는 사람이요."<br><br>
+<b style="color:#c4b5fd">하은:</b> "연립방정식이 해가 없다는 건 그 상황에서 '모두를 만족시키는 방법이 없다'는 것이고, 해가 무수히 많다는 건 '두 조건이 사실 같은 조건'이라는 거예요."<br><br>
+<b style="color:#86efac">서연:</b> "x+y=5와 2x+2y=10이 해가 무수히 많은 경우잖아요. 두 번째 식이 첫 번째 식에 2를 곱한 거니까 새로운 정보가 없어요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "그러면 연립방정식은 세 가지만 있네요. 해가 딱 하나, 해가 없음, 해가 무한히 많음. 이 세 가지 외에 다른 경우가 있나요?"<br><br>
+<b style="color:#fde68a">지호:</b> "수학적으로 없어요. 두 직선의 관계가 만나거나, 평행하거나, 일치하거나 — 이 세 가지뿐이에요."<br><br>
+<div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px;margin-top:14px">
+<b style="color:#a78bfa">선생님 (수업 종료 시 유일한 발언):</b><br>
+"데카르트(1637): 대수와 기하는 같은 것을 다르게 표현한다. 연립방정식의 해가 없다는 것은 대수의 언어이고, 두 직선이 평행하다는 것은 기하의 언어다. 같은 진실의 두 얼굴이다."
+</div>
+<div style="margin-top:12px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px">
+<b style="color:#f87171">수업 후에도 열린 질문들:</b><br>
+• 미지수가 3개인 연립방정식에서 해가 없는 경우는 기하학적으로 어떤 상황인가?<br>
+• '불능(해 없음)'과 '부정(해 무한)'은 어느 것이 더 수학에서 유용한가?<br>
+• 방정식이 모순을 발견하는 도구가 될 수 있는가?
+</div>
+<div style="margin-top:12px;background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:12px">
+<b style="color:#2dd4bf">🔙 이 단원의 출발점으로:</b><br>
+해가 1개 → 두 직선이 한 점에서 만남 (독립된 두 조건)<br>
+해가 없음 → 두 직선이 평행 (모순된 두 조건)<br>
+해가 무한 → 두 직선이 일치 (같은 조건을 두 번 말함)<br><br>
+<b style="color:#a78bfa">수학에서 해가 없다는 것은 실패가 아니라 모순의 발견이다.</b>
+</div>
+</div>` }
 ],
 
 /* ── 기본 도형 개념 가이드 (3장) ────────────── */
@@ -2822,7 +3025,58 @@ y = 3 × 5 = 15
   { tag:'💬 기본도형 토론 1/1 — 평행선의 비밀', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">● 평행한 두 직선은 영원히 만나지 않는다고 해. 그런데 만약 우주 끝 어딘가에서 두 직선이 만난다면 어떤 일이 벌어질까?</div><div style="font-size:.72rem;color:#aaa;margin-bottom:6px;font-style:italic">학생: "그럼 평행이 아니게 되는 거 아닌가요? 규칙이 깨지는 거잖아요."</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "와! 규칙이 깨진다는 걸 바로 알아챘구나. 사실 우리가 배우는 수학은 '평면'에서의 약속이야."<br><br><b style="color:#d8b4fe">논리:</b> 하지만 지구처럼 둥근 공 모양(구면) 위에서 직선을 그으면 어떻게 될까? 적도에서 수직으로 올라간 두 선은 결국 북극점에서 만나게 돼! 우리가 당연하다고 믿는 '평행'도 사실 어떤 세상에 있느냐에 따라 달라질 수 있는 거지.<br><br><b style="color:#86efac">결론:</b> 수학은 정해진 답을 외우는 게 아니라, '내가 지금 어떤 세상(조건)에 있는가'를 먼저 살피는 학문이란다. 당연한 상식을 뒤집어 볼 때, 비로소 새로운 차원의 수학이 열리는 법이지!` }
+    ans:`<b style="color:#fde68a">토로:</b> "와! 규칙이 깨진다는 걸 바로 알아챘구나. 사실 우리가 배우는 수학은 '평면'에서의 약속이야."<br><br><b style="color:#d8b4fe">논리:</b> 하지만 지구처럼 둥근 공 모양(구면) 위에서 직선을 그으면 어떻게 될까? 적도에서 수직으로 올라간 두 선은 결국 북극점에서 만나게 돼! 우리가 당연하다고 믿는 '평행'도 사실 어떤 세상에 있느냐에 따라 달라질 수 있는 거지.<br><br><b style="color:#86efac">결론:</b> 수학은 정해진 답을 외우는 게 아니라, '내가 지금 어떤 세상(조건)에 있는가'를 먼저 살피는 학문이란다. 당연한 상식을 뒤집어 볼 때, 비로소 새로운 차원의 수학이 열리는 법이지!` },
+
+  { tag:'🏛️ 하크니스 원탁 — 점은 실제로 존재하는가: 수학의 정의와 현실', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(167,139,250,.12);border-left:3px solid #a78bfa;border-radius:0 10px 10px 0;padding:11px 14px;margin-bottom:14px;font-size:.76rem;color:#c4b5fd;line-height:1.7">
+<b style="color:#a78bfa">하크니스 규칙</b><br>
+선생님은 질문만 한다. 절대 설명하지 않는다.<br>
+학생은 서로의 발언을 이어받거나 반박해야 한다.<br>
+정답은 없다. 더 좋은 질문이 있을 뿐이다.
+</div>
+<b style="color:#fde68a">오늘의 출발 질문</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:13px;margin:8px 0 14px;font-size:.84rem;line-height:1.9;color:#e2e8f0">
+수학에서 <b style="color:#86efac">점(點)</b>은 "위치만 있고 크기가 없다"고 정의한다.<br>
+<b style="color:#7dd3fc">선(線)</b>은 "폭이 없고 길이만 있다"고 정의한다.<br><br>
+하지만 우리가 연필로 찍는 점은 분명히 크기가 있다.<br>
+<b>수학의 점은 현실에 존재하지 않는 허구인가?</b><br><br>
+<span style="color:#aaa;font-size:.78rem">허구라면, 왜 수학은 현실 세계에서 그토록 잘 작동하는가?</span>
+</div>
+<div style="font-size:.76rem;color:#888;line-height:1.6">참가자: 민준 · 서연 · 지호 · 유나 · 준혁 · 하은<br>풀이 보기를 눌러 원탁 토론 전체를 읽어라.</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<div style="color:#a78bfa;font-family:'Jua',sans-serif;font-size:.84rem;margin-bottom:12px">─── 원탁 토론 전문 ───</div>
+
+<b style="color:#86efac">서연:</b> "연필로 찍는 점은 연필심이 종이에 닿은 자국이에요. 현미경으로 보면 크기가 있죠. 그러면 수학의 점과 달라요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "그럼 수학의 점은 이상(理想)이에요. 현실에서는 완벽하게 구현할 수 없지만, 가장 완벽한 점을 '위치만 있고 크기가 없다'고 정의한 거예요."<br><br>
+<b style="color:#fde68a">지호:</b> "그렇다면 수학은 현실을 설명하는 게 아니라, 현실을 이상화한 세계를 다루는 학문인가요?"<br><br>
+<b style="color:#2dd4bf">유나:</b> "완벽하게 이상화된 점이 없어도, 점의 성질은 현실에서 작동해요. GPS가 좌표를 이용해 위치를 계산할 때 수학의 점 개념을 써요. 이상화된 것이 현실에 적용돼요."<br><br>
+<b style="color:#f87171">준혁:</b> "그게 신기해요. 현실에 없는 것을 정의하고, 그것으로 현실을 설명한다니요."<br><br>
+<b style="color:#c4b5fd">하은:</b> "완전한 원도 현실에 없어요. 하지만 '완전한 원'이라는 개념 덕분에 바퀴, 시계, 지구 공전 경로를 계산할 수 있어요. 이상화가 유용한 거예요."<br><br>
+<b style="color:#86efac">서연:</b> "그럼 수학의 정의들은 다 이상화인가요? 직선도 '끝이 없이 양쪽으로 뻗는다'고 하는데, 현실의 선은 다 유한하잖아요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "유클리드는 이것을 공리(公理)라고 불렀어요. '이것은 증명하지 않고 받아들이는 기본 약속'이에요. 점의 정의도 약속인 거예요."<br><br>
+<b style="color:#fde68a">지호:</b> "그러면 수학이 현실을 설명하는 게 아니라, 우리가 수학의 언어로 현실을 해석하는 건가요?"<br><br>
+<b style="color:#2dd4bf">유나:</b> "둘 다인 것 같아요. 수학은 이상화된 세계를 만들었고, 그 세계가 현실과 놀랍도록 잘 맞아요. 왜 맞는지는 아직 완전히 설명되지 않았어요."<br><br>
+<div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px;margin-top:14px">
+<b style="color:#a78bfa">선생님 (수업 종료 시 유일한 발언):</b><br>
+"유클리드(기원전 300년): 점은 부분이 없는 것이다. 선은 폭이 없는 길이이다. 이것은 증명이 아니라 약속이다. 수학은 이 약속들 위에 세워진 논리의 성(城)이다."
+</div>
+<div style="margin-top:12px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px">
+<b style="color:#f87171">수업 후에도 열린 질문들:</b><br>
+• 수학의 공리(약속)를 바꾸면 새로운 수학이 탄생한다. '평행선은 만나지 않는다'를 바꾸면 어떻게 되는가?<br>
+• 디지털 화면의 픽셀은 수학의 점인가?<br>
+• 수학이 현실을 잘 설명하는 이유는 무엇인가?
+</div>
+<div style="margin-top:12px;background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:12px">
+<b style="color:#2dd4bf">🔙 이 단원의 출발점으로:</b><br>
+점 → 선 → 면 → 입체: 차원이 하나씩 늘어난다<br>
+평행 = 만나지 않음 (평면에서) / 꼬인 위치 = 3차원의 평행<br>
+수학의 정의는 약속이다 — 그 약속이 얼마나 일관되게 유지되는가가 수학의 힘<br><br>
+<b style="color:#a78bfa">수학은 현실을 복사하는 게 아니라, 이상화하여 현실을 이해하게 한다.</b>
+</div>
+</div>` }
 ],
 
 /* ── 일차부등식 개념 가이드 (3장) ──────────── */
@@ -2862,7 +3116,58 @@ y = 3 × 5 = 15
   { tag:'💬 부등식 토론 1/1 — 박물관 단체 관람권의 경제학', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">● 박물관 단체 관람권이 30명부터 할인된대. 우리 인원은 26명인데, 그냥 30명이라고 단체권을 사는 게 더 이익일까? 수학적으로 '정직함'보다 '이익'이 우선인 상황이 있을까?</div><div style="font-size:.72rem;color:#aaa;margin-bottom:6px;font-style:italic">학생: "30명분 가격이 26명분보다 싸면 당연히 단체권을 사야죠! 그게 더 현명한 거 아닌가요?"</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "오! 경제적인 선택을 할 줄 아는구나. 맞아, 부등식은 우리에게 '손해 보지 않는 최선의 선택'이 무엇인지 알려줘."<br><br><b style="color:#d8b4fe">논리:</b> 26 × (개인 요금) > 30 × (단체 요금) 이라는 식을 세워보면, 굳이 30명이 아니더라도 단체권을 사는 게 유리한 시점을 정확히 찾아낼 수 있지.<br><br><b style="color:#86efac">결론:</b> 수학에서의 '정직'은 계산의 정확함이야. 부등식을 통해 불필요한 낭비를 막는 것도 수학이 우리에게 주는 큰 지혜란다. 인생의 수많은 선택지 중에서 가장 효율적인 범위를 찾아내는 힘, 그게 바로 부등식을 배우는 이유지!` }
+    ans:`<b style="color:#fde68a">토로:</b> "오! 경제적인 선택을 할 줄 아는구나. 맞아, 부등식은 우리에게 '손해 보지 않는 최선의 선택'이 무엇인지 알려줘."<br><br><b style="color:#d8b4fe">논리:</b> 26 × (개인 요금) > 30 × (단체 요금) 이라는 식을 세워보면, 굳이 30명이 아니더라도 단체권을 사는 게 유리한 시점을 정확히 찾아낼 수 있지.<br><br><b style="color:#86efac">결론:</b> 수학에서의 '정직'은 계산의 정확함이야. 부등식을 통해 불필요한 낭비를 막는 것도 수학이 우리에게 주는 큰 지혜란다. 인생의 수많은 선택지 중에서 가장 효율적인 범위를 찾아내는 힘, 그게 바로 부등식을 배우는 이유지!` },
+
+  { tag:'🏛️ 하크니스 원탁 — 부등식의 해가 무한히 많다는 것: 범위가 정답인가', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(167,139,250,.12);border-left:3px solid #a78bfa;border-radius:0 10px 10px 0;padding:11px 14px;margin-bottom:14px;font-size:.76rem;color:#c4b5fd;line-height:1.7">
+<b style="color:#a78bfa">하크니스 규칙</b><br>
+선생님은 질문만 한다. 절대 설명하지 않는다.<br>
+학생은 서로의 발언을 이어받거나 반박해야 한다.<br>
+정답은 없다. 더 좋은 질문이 있을 뿐이다.
+</div>
+<b style="color:#fde68a">오늘의 출발 질문</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:13px;margin:8px 0 14px;font-size:.84rem;line-height:1.9;color:#e2e8f0">
+방정식 <b style="color:#86efac">x = 3</b> 의 해는 딱 하나다.<br>
+부등식 <b style="color:#7dd3fc">x &gt; 3</b> 의 해는 무한히 많다.<br><br>
+방정식이 더 <b>정밀한</b> 수학인가?<br>
+아니면 부등식이 현실을 더 잘 반영하는 수학인가?<br><br>
+<span style="color:#aaa;font-size:.78rem">음수를 곱하면 부등호가 뒤집히는 이유도 함께 생각하라.</span>
+</div>
+<div style="font-size:.76rem;color:#888;line-height:1.6">참가자: 민준 · 서연 · 지호 · 유나 · 준혁 · 하은<br>풀이 보기를 눌러 원탁 토론 전체를 읽어라.</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<div style="color:#a78bfa;font-family:'Jua',sans-serif;font-size:.84rem;margin-bottom:12px">─── 원탁 토론 전문 ───</div>
+
+<b style="color:#86efac">서연:</b> "방정식이 더 정밀해 보여요. 딱 하나가 답이니까요. 부등식은 범위가 너무 넓어서 답을 못 정하는 것 같아요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "그런데 현실에서는 딱 하나가 답인 경우가 얼마나 되나요? 제 몸무게는 '50kg'이 아니라 '45~55kg 사이' 아닌가요?"<br><br>
+<b style="color:#fde68a">지호:</b> "엘리베이터 하중 제한도 '정확히 500kg'이 아니라 '500kg 이하'예요. 현실의 조건은 대부분 범위예요."<br><br>
+<b style="color:#2dd4bf">유나:</b> "그럼 부등식이 더 현실적인 수학인 거네요. 방정식은 이상적인 경우를 다루고, 부등식은 현실의 제약을 다루는 거예요."<br><br>
+<b style="color:#f87171">준혁:</b> "그런데 음수를 곱하면 부등호가 뒤집히는 게 이상해요. 방정식은 양변에 무엇을 곱해도 등호가 안 깨지는데, 왜 부등식은 뒤집어져요?"<br><br>
+<b style="color:#c4b5fd">하은:</b> "2 &lt; 3이에요. 양변에 −1을 곱하면 −2와 −3이에요. 수직선에서 −2는 −3보다 오른쪽에 있어요. 즉 −2 &gt; −3. 부등호가 뒤집혔어요."<br><br>
+<b style="color:#86efac">서연:</b> "음수를 곱하면 수직선에서 순서가 뒤집히는 거군요. 크기의 순서가 바뀌는 거예요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "방정식의 등호는 양쪽이 '같다'는 것이라 뒤집어도 여전히 같아요. 하지만 부등식은 '크다/작다'는 방향 정보를 담고 있어서 뒤집으면 방향도 바뀌는 거예요."<br><br>
+<b style="color:#fde68a">지호:</b> "그러면 부등식은 방정식보다 더 많은 정보를 담고 있는 거네요. 크기뿐 아니라 방향도요."<br><br>
+<b style="color:#2dd4bf">유나:</b> "결국 방정식은 '정확히 어디'를 묻고, 부등식은 '어느 쪽에 있는가'를 묻는 거예요. 다른 질문에 다른 수학이에요."<br><br>
+<div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px;margin-top:14px">
+<b style="color:#a78bfa">선생님 (수업 종료 시 유일한 발언):</b><br>
+"레온하르트 오일러: 수학은 자연의 언어다. 자연은 방정식보다 부등식을 더 많이 말한다. 온도는 '정확히 37도'가 아니라 '36~38도 사이'이고, 안전은 '정확히 0의 위험'이 아니라 '위험이 충분히 작은' 것이다."
+</div>
+<div style="margin-top:12px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px">
+<b style="color:#f87171">수업 후에도 열린 질문들:</b><br>
+• 0을 곱하면 부등호는 어떻게 되는가? 왜 그런가?<br>
+• x² &gt; 0의 해는 무엇인가? x=0은 포함되는가?<br>
+• 부등식의 해가 무한히 많다는 것이 방정식의 해가 하나인 것보다 덜 유용한가?
+</div>
+<div style="margin-top:12px;background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:12px">
+<b style="color:#2dd4bf">🔙 이 단원의 출발점으로:</b><br>
+부등식의 핵심 규칙: 음수를 곱하거나 나누면 부등호 방향이 뒤집힌다<br>
+해가 무한히 많음 = 범위로 나타냄 (수직선 위의 구간)<br>
+방정식 = '정확히 어디', 부등식 = '어느 쪽에'<br><br>
+<b style="color:#a78bfa">부등식은 방정식보다 불완전한 것이 아니라, 다른 질문에 답하는 것이다.</b>
+</div>
+</div>` }
 ],
 
 /* ── 일차함수 개념 가이드 (3장) ─────────────── */
@@ -3051,7 +3356,58 @@ A−B = (30−2x)−(20−x) = 10−x<br><br>
   { tag:'💬 일차함수 토론 8/8 — 현실의 모델링: 속력·거리·시간의 삼각관계', tagColor:'#34d399',
     bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">● [현실의 모델링] 동생이 출발한 지 10분 후 형이 자전거를 타고 쫓아갈 때, 두 사람이 만나는 지점 구하기.</div><div style="font-size:.72rem;color:#aaa;font-style:italic">토로: "형은 왜 늦게 출발했을까? 하지만 속도(기울기)가 더 빠르지. 이 경주는 결국 누가 이길까?"</div>`,
-    ans:`<b style="color:#34d399">논리 전개:</b><br>1. 시작점: "동생은 이미 앞에서 출발했으니 y절편이 양수야. 형은 원점(0)에서 시작하지."<br>2. 추격: "형의 기울기가 동생보다 가파르다면, 두 선은 반드시 만나. 그 만나는 찰나가 바로 '추월'의 순간이야."<br>3. 해결: "두 식을 나란히 놓고 '값이 같아지는 순간'을 찾는 것, 그게 바로 우리가 방정식을 푸는 이유란다."<br><br><b style="color:#fde68a">원장님 코칭 팁:</b><br>• "그래프를 그리지 않고는 입도 뻥긋하지 마라"<br>• 식 세우기 전에 손가락으로 허공에 선을 그려보게 하기<br>• "기울기가 2배가 되면 넓이는 어떻게 변할 것 같니?" 질문으로 변화 감각 깨우기` }
+    ans:`<b style="color:#34d399">논리 전개:</b><br>1. 시작점: "동생은 이미 앞에서 출발했으니 y절편이 양수야. 형은 원점(0)에서 시작하지."<br>2. 추격: "형의 기울기가 동생보다 가파르다면, 두 선은 반드시 만나. 그 만나는 찰나가 바로 '추월'의 순간이야."<br>3. 해결: "두 식을 나란히 놓고 '값이 같아지는 순간'을 찾는 것, 그게 바로 우리가 방정식을 푸는 이유란다."<br><br><b style="color:#fde68a">원장님 코칭 팁:</b><br>• "그래프를 그리지 않고는 입도 뻥긋하지 마라"<br>• 식 세우기 전에 손가락으로 허공에 선을 그려보게 하기<br>• "기울기가 2배가 되면 넓이는 어떻게 변할 것 같니?" 질문으로 변화 감각 깨우기` },
+
+  { tag:'🏛️ 하크니스 원탁 — 기울기가 같은 두 직선은 왜 영원히 만나지 않는가', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(167,139,250,.12);border-left:3px solid #a78bfa;border-radius:0 10px 10px 0;padding:11px 14px;margin-bottom:14px;font-size:.76rem;color:#c4b5fd;line-height:1.7">
+<b style="color:#a78bfa">하크니스 규칙</b><br>
+선생님은 질문만 한다. 절대 설명하지 않는다.<br>
+학생은 서로의 발언을 이어받거나 반박해야 한다.<br>
+정답은 없다. 더 좋은 질문이 있을 뿐이다.
+</div>
+<b style="color:#fde68a">오늘의 출발 질문</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:13px;margin:8px 0 14px;font-size:.84rem;line-height:1.9;color:#e2e8f0">
+y = 2x + 1 과 y = 2x + 5 는 기울기가 같다.<br>
+이 두 직선은 <b style="color:#f87171">"영원히"</b> 만나지 않는다고 한다.<br><br>
+"영원히"라는 것을 수학적으로 어떻게 증명할 수 있는가?<br>
+그리고 만약 두 직선이 만난다면 어떤 일이 벌어지는가?<br><br>
+<span style="color:#aaa;font-size:.78rem">기울기란 무엇인지, 그 의미에서 출발하라.</span>
+</div>
+<div style="font-size:.76rem;color:#888;line-height:1.6">참가자: 민준 · 서연 · 지호 · 유나 · 준혁 · 하은<br>풀이 보기를 눌러 원탁 토론 전체를 읽어라.</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<div style="color:#a78bfa;font-family:'Jua',sans-serif;font-size:.84rem;margin-bottom:12px">─── 원탁 토론 전문 ───</div>
+
+<b style="color:#86efac">서연:</b> "두 직선을 연립방정식으로 풀면 되지 않나요? 2x+1 = 2x+5 → 1=5. 거짓이에요. 해가 없으니까 안 만나요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "1=5가 거짓이라는 건 알겠는데, 그게 '영원히' 안 만난다는 걸 어떻게 보증해요? 그냥 지금 범위에서 안 만나는 거 아닌가요?"<br><br>
+<b style="color:#fde68a">지호:</b> "기울기의 의미에서 생각해봐요. 기울기가 2라는 건 x가 1 늘 때 y가 2씩 늘어난다는 거예요. 두 직선 모두 '같은 속도로 올라가는' 거예요."<br><br>
+<b style="color:#2dd4bf">유나:</b> "같은 속도로 올라가면 둘 사이의 y 차이가 항상 일정해요. y = 2x+1과 y = 2x+5의 차이는 항상 4예요. x가 얼마가 되어도요."<br><br>
+<b style="color:#f87171">준혁:</b> "그러면 거리가 줄어들지 않으니까 영원히 안 만나는 게 수학적으로 증명된 거네요."<br><br>
+<b style="color:#c4b5fd">하은:</b> "그런데 만약 두 직선이 만난다면, y값이 같은 x가 존재한다는 거잖아요. 2x+1 = 2x+5 → 1=5. 1이 5와 같아지는 x는 없어요. 이것이 불능이에요."<br><br>
+<b style="color:#86efac">서연:</b> "1=5라는 게 단순히 계산이 안 맞는 게 아니라, '이런 상황은 수학적으로 불가능하다'는 선언이네요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "평행이라는 개념이 '연립방정식의 불능'과 같은 거군요. 기하학의 언어와 대수학의 언어가 같은 걸 말해요."<br><br>
+<b style="color:#fde68a">지호:</b> "그럼 평행이 아닌 경우 — 기울기가 다른 두 직선은 반드시 만나나요?"<br><br>
+<b style="color:#2dd4bf">유나:</b> "y = ax+b와 y = cx+d, a≠c이면 ax+b = cx+d → (a-c)x = d-b → x = (d-b)/(a-c). a≠c이면 분모가 0이 아니니까 x가 항상 존재해요. 반드시 만나요."<br><br>
+<div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px;margin-top:14px">
+<b style="color:#a78bfa">선생님 (수업 종료 시 유일한 발언):</b><br>
+"데카르트(1637): 기하학의 문제를 대수학으로 번역하면 새로운 힘이 생긴다. 평행이라는 기하학적 직관이 '연립방정식의 불능'이라는 대수적 사실과 같다는 것 — 이것이 해석기하학의 핵심이다."
+</div>
+<div style="margin-top:12px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px">
+<b style="color:#f87171">수업 후에도 열린 질문들:</b><br>
+• 기울기가 다른 두 직선은 반드시 만나는가? 평면이 아닌 3차원 공간에서도 그런가?<br>
+• y절편이 같고 기울기가 다른 두 직선은 어디서 만나는가?<br>
+• y = 2x+1 과 y = −(1/2)x+3은 어떤 관계인가? (수직 조건 탐구)
+</div>
+<div style="margin-top:12px;background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:12px">
+<b style="color:#2dd4bf">🔙 이 단원의 출발점으로:</b><br>
+기울기 = x가 1 변할 때 y의 변화량 = 변화율<br>
+기울기 같음 = 같은 속도로 변한다 = 평행<br>
+두 직선의 교점 = 연립방정식의 해<br><br>
+<b style="color:#a78bfa">함수의 그래프는 방정식의 해를 기하학으로 보여준다.</b>
+</div>
+</div>` }
 ],
 
 /* ── 제곱근과 실수 — 3개국 개념 가이드 (3장) ── */
@@ -4782,7 +5138,58 @@ q = −D/4a: 최대·최솟값 = 꼭짓점의 y좌표 = D의 기하학적 의미
   { tag:'💬 이차방정식 토론 1/1 — 공을 던졌을 때 답이 두 개인 이유', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">● 공을 하늘로 던졌을 때 높이가 10m가 되는 지점을 구했더니 시간이 1초와 3초, 이렇게 두 개가 나왔어. 왜 답이 두 개일까? 시계가 고장 난 걸까?</div><div style="font-size:.72rem;color:#aaa;margin-bottom:6px;font-style:italic">학생: "공이 올라갈 때 한 번 10m를 지나고, 내려올 때 다시 한번 지나니까 두 번인 것 같아요!"</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "천재적인 통찰이야! 이차방정식은 바로 그 '대칭의 미학'을 담고 있어."<br><br><b style="color:#d8b4fe">논리:</b> 일차방정식이 앞만 보고 가는 직선이라면, 이차방정식은 위로 올라갔다 내려오는 곡선의 흐름을 담고 있지. 그래서 똑같은 높이(y)에 도달하는 순간이 두 번 생기는 거야.<br><br><b style="color:#86efac">결론:</b> 수학에서 답이 두 개라는 건, 하나의 현상에 두 가지 순간이 존재한다는 뜻이야. 인생도 비슷해. 올라갈 때가 있으면 내려갈 때가 있고, 그 두 지점은 수학적으로 연결되어 있지. 이차방정식은 우리에게 '전체적인 흐름'을 보라고 말해주는 거란다.` }
+    ans:`<b style="color:#fde68a">토로:</b> "천재적인 통찰이야! 이차방정식은 바로 그 '대칭의 미학'을 담고 있어."<br><br><b style="color:#d8b4fe">논리:</b> 일차방정식이 앞만 보고 가는 직선이라면, 이차방정식은 위로 올라갔다 내려오는 곡선의 흐름을 담고 있지. 그래서 똑같은 높이(y)에 도달하는 순간이 두 번 생기는 거야.<br><br><b style="color:#86efac">결론:</b> 수학에서 답이 두 개라는 건, 하나의 현상에 두 가지 순간이 존재한다는 뜻이야. 인생도 비슷해. 올라갈 때가 있으면 내려갈 때가 있고, 그 두 지점은 수학적으로 연결되어 있지. 이차방정식은 우리에게 '전체적인 흐름'을 보라고 말해주는 거란다.` },
+
+  { tag:'🏛️ 하크니스 원탁 — 해가 두 개인 이유: 이차방정식의 대칭 구조', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<div style="background:rgba(167,139,250,.12);border-left:3px solid #a78bfa;border-radius:0 10px 10px 0;padding:11px 14px;margin-bottom:14px;font-size:.76rem;color:#c4b5fd;line-height:1.7">
+<b style="color:#a78bfa">하크니스 규칙</b><br>
+선생님은 질문만 한다. 절대 설명하지 않는다.<br>
+학생은 서로의 발언을 이어받거나 반박해야 한다.<br>
+정답은 없다. 더 좋은 질문이 있을 뿐이다.
+</div>
+<b style="color:#fde68a">오늘의 출발 질문</b>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:13px;margin:8px 0 14px;font-size:.84rem;line-height:1.9;color:#e2e8f0">
+일차방정식의 해는 최대 <b style="color:#86efac">1개</b>다.<br>
+이차방정식의 해는 최대 <b style="color:#7dd3fc">2개</b>다.<br><br>
+이것이 우연인가?<br>
+이차방정식의 해가 왜 <b>정확히 2개 이하</b>인지 설명할 수 있는가?<br><br>
+<span style="color:#aaa;font-size:.78rem">그리고 왜 3개가 될 수는 없는가?</span>
+</div>
+<div style="font-size:.76rem;color:#888;line-height:1.6">참가자: 민준 · 서연 · 지호 · 유나 · 준혁 · 하은<br>풀이 보기를 눌러 원탁 토론 전체를 읽어라.</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<div style="color:#a78bfa;font-family:'Jua',sans-serif;font-size:.84rem;margin-bottom:12px">─── 원탁 토론 전문 ───</div>
+
+<b style="color:#86efac">서연:</b> "근의공식에서 ±√D 니까 두 개 나오는 거잖아요. 공식에 ±가 있으니까 자연스럽게 두 개예요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "그런데 왜 공식에 ±가 생기는 건가요? 공식이 그렇게 생겨서라고 하면 순환 논리예요."<br><br>
+<b style="color:#fde68a">지호:</b> "배방완성법으로 생각해봐요. ax²+bx+c=0을 변환하면 (x+p)²=q 형태가 돼요. 이제 '어떤 수의 제곱이 q이다'를 풀어야 해요."<br><br>
+<b style="color:#2dd4bf">유나:</b> "제곱해서 q가 되는 수는 +√q와 -√q 두 개예요. 그게 이유예요. 제곱은 양수와 음수 모두 양수를 만드니까, 두 방향에서 같은 값이 나와요."<br><br>
+<b style="color:#f87171">준혁:</b> "그럼 왜 3개는 안 되나요? 제곱에서 두 개가 나오는 건 이해했는데, 세 번째 방향은 없나요?"<br><br>
+<b style="color:#c4b5fd">하은:</b> "수직선에서 원점에서 같은 거리에 있는 점은 +와 - 딱 두 방향이에요. 세 번째 방향이 수직선에 없어요. 실수 범위에서는 두 개뿐이에요."<br><br>
+<b style="color:#86efac">서연:</b> "그래프로 보면 더 명확해요. 포물선은 좌우 대칭이에요. x축과 만나는 점은 대칭축 왼쪽과 오른쪽에 하나씩이에요. 대칭이라 2개가 최대예요."<br><br>
+<b style="color:#7dd3fc">민준:</b> "그러면 '이차방정식의 해가 최대 2개'인 것은 포물선의 대칭성에서 오는 거군요. 대칭이라 왼쪽에 하나, 오른쪽에 하나 — 정확히 두 개예요."<br><br>
+<b style="color:#fde68a">지호:</b> "삼차방정식 y=x³는 그래프가 S자예요. x축과 최대 3번 만날 수 있어요. 차수가 해의 최대 개수를 결정해요."<br><br>
+<b style="color:#2dd4bf">유나:</b> "이게 '대수학의 기본정리'예요. n차 방정식은 복소수 범위에서 정확히 n개의 근을 가져요. 이차는 2개, 삼차는 3개요."<br><br>
+<div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:12px;margin-top:14px">
+<b style="color:#a78bfa">선생님 (수업 종료 시 유일한 발언):</b><br>
+"가우스(1799, 박사논문): n차 다항방정식은 복소수 범위에서 정확히 n개의 근을 가진다. 이차방정식의 해가 2개인 것은 우연이 아니다. 방정식의 차수가 그 운명을 결정한다."
+</div>
+<div style="margin-top:12px;background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px">
+<b style="color:#f87171">수업 후에도 열린 질문들:</b><br>
+• x²=0의 해는 몇 개인가? 중근을 어떻게 셀 것인가?<br>
+• 삼차방정식 x³−x=0의 해는 몇 개인가? 직접 구하라.<br>
+• 이차방정식의 두 근이 항상 대칭축을 중심으로 대칭인 이유는 무엇인가?
+</div>
+<div style="margin-top:12px;background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:12px">
+<b style="color:#2dd4bf">🔙 이 단원의 출발점으로:</b><br>
+이차방정식의 해 = 포물선이 x축과 만나는 점<br>
+해가 2개 = 포물선의 좌우 대칭에서 필연<br>
+D &gt; 0 → 2개 | D = 0 → 1개(중근) | D &lt; 0 → 실수 해 없음<br><br>
+<b style="color:#a78bfa">n차 방정식의 해가 최대 n개인 것은 방정식의 차수가 가진 구조적 필연이다.</b>
+</div>
+</div>` }
 ]
 
 
