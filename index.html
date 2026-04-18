@@ -4322,8 +4322,88 @@ D&lt;0 → "실수 해 없음" → 복소수 체계의 필요<br>
 
 ],
 
-/* ── 중3-1학기 4단원: 이차함수 (6장) ── */
+/* ── 중3-1학기 4단원: 이차함수 (7장) ── */
 'mid3-quad-func': [
+  { tag:'🔗 함수의 계보 — 직선에서 포물선으로', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#a78bfa">함수란 무엇인가?</b><br>
+<span style="font-size:.78rem;color:#aaa">x에 값을 넣으면 y값이 딱 하나 정해지는 관계.</span><br><br>
+<div style="display:flex;flex-direction:column;gap:3px;margin-bottom:14px">
+  <div style="background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.25);border-radius:12px;padding:11px 14px">
+    <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.88rem">📏 일차함수 &nbsp; y = ax + b</div>
+    <div style="font-size:.76rem;color:#aaa;margin-top:4px;line-height:1.7">
+      그래프: <b style="color:#7dd3fc">직선</b><br>
+      x가 1 늘 때 y는 언제나 <b style="color:#7dd3fc">a만큼</b> 변한다<br>
+      <span style="color:#555">→ 변화율이 일정하다</span>
+    </div>
+  </div>
+  <div style="text-align:center;color:#666;font-size:1rem;line-height:1.4">↓ x항이 하나 더 생기면?</div>
+  <div style="background:rgba(167,139,250,.12);border:2px solid rgba(167,139,250,.45);border-radius:12px;padding:12px 14px">
+    <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.92rem">📈 이차함수 &nbsp; y = ax² + bx + c ← 지금 여기</div>
+    <div style="font-size:.76rem;color:#c4b5fd;margin-top:4px;line-height:1.7">
+      그래프: <b style="color:#a78bfa">포물선</b><br>
+      x가 1 늘 때 y의 변화량이 <b style="color:#a78bfa">매번 달라진다</b><br>
+      <span style="color:#555">→ 변화율 자체가 변한다</span>
+    </div>
+  </div>
+  <div style="text-align:center;color:#666;font-size:1rem;line-height:1.4">↓ 앞으로</div>
+  <div style="background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.2);border-radius:12px;padding:11px 14px;opacity:.75">
+    <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.84rem">🚀 고등 함수들</div>
+    <div style="font-size:.74rem;color:#aaa;margin-top:4px;line-height:1.7">
+      삼차함수 y=ax³+… &nbsp;|&nbsp; 지수함수 y=2ˣ &nbsp;|&nbsp; 삼각함수 y=sin x<br>
+      <span style="color:#555">변화율이 더 복잡해지거나, 무한히 커지거나, 반복된다</span>
+    </div>
+  </div>
+</div>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.2);border-radius:10px;padding:11px;font-size:.78rem;line-height:1.8">
+<b style="color:#fde68a">이차함수가 특별한 이유</b><br>
+일차함수처럼 식이 단순하지만,<br>
+최대·최솟값이 존재하고, 방정식(3단원)과 직접 연결된다.<br>
+<b style="color:#a78bfa">함수 세계로 가는 두 번째 계단이다.</b>
+</div>
+</div>`,
+    ans:`<div style="font-size:.79rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#7dd3fc">일차함수 vs 이차함수 — 핵심 비교</b><br><br>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;font-size:.76rem">
+  <div style="background:rgba(125,211,252,.08);border-radius:8px;padding:10px">
+    <b style="color:#7dd3fc">일차함수</b><br>
+    y = ax + b<br><br>
+    그래프: 직선<br>
+    꼭짓점: 없음<br>
+    최대·최솟값: 없음<br>
+    방정식 해: x = −b/a (1개)<br>
+    대칭: 없음
+  </div>
+  <div style="background:rgba(167,139,250,.08);border-radius:8px;padding:10px">
+    <b style="color:#a78bfa">이차함수</b><br>
+    y = ax² + bx + c<br><br>
+    그래프: 포물선<br>
+    꼭짓점: (−b/2a, −D/4a)<br>
+    최대·최솟값: 꼭짓점에서<br>
+    방정식 해: x절편 (0~2개)<br>
+    대칭: 축 x = −b/2a
+  </div>
+</div>
+<b style="color:#fde68a">이차방정식과 이차함수의 연결</b><br>
+<div style="background:rgba(253,230,138,.07);border-radius:8px;padding:10px;margin:6px 0;font-size:.78rem;line-height:1.8">
+y = ax²+bx+c 에서 <b>y = 0</b> 으로 놓으면<br>
+→ ax²+bx+c = 0 &nbsp; (이차방정식)<br>
+→ 해 = 포물선이 x축과 만나는 점<br><br>
+그래프로 보면:<br>
+D &gt; 0 → x축과 두 점에서 만남 → 근 2개<br>
+D = 0 → x축에 접함 → 중근<br>
+D &lt; 0 → x축과 안 만남 → 실수 근 없음
+</div>
+<b style="color:#f87171">앞으로 만날 함수들 (미리보기)</b><br>
+<div style="font-size:.76rem;color:#e2e8f0;margin-top:6px;line-height:1.9">
+삼차함수 y=x³ — S자 곡선, 최대·최소가 2개까지<br>
+지수함수 y=2ˣ — 폭발적 증가, 감소 (코로나 확산 곡선)<br>
+삼각함수 y=sinx — 파도처럼 반복 (음파, 진동)<br><br>
+<b style="color:#a78bfa">이 모든 함수의 공통 질문:<br>"x가 변할 때 y는 어떻게 변하는가?"<br>이차함수는 그 질문에 답하는 두 번째 모델이다.</b>
+</div>
+</div>` },
+
   { tag:'🗺️ 전체지도 — 이차함수의 위치', tagColor:'#a78bfa',
     bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.9">
