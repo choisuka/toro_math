@@ -226,6 +226,33 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 @keyframes seaWave{0%,100%{transform:translateX(0) scaleY(1)}50%{transform:translateX(-18px) scaleY(1.08)}}
 @keyframes seaGlow{0%,100%{opacity:.12}50%{opacity:.28}}
 @keyframes toroPopIn{0%{opacity:0;transform:scale(.85) translateY(10px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+
+/* ── 칸아카데미 패널 (Method A — equation) ── */
+.khan-panel{margin:0 0 12px;border-radius:14px;overflow:hidden;border:1px solid rgba(251,191,36,.22)}
+.khan-toggle{width:100%;background:rgba(251,191,36,.07);border:none;color:#fde68a;padding:11px 16px;font-family:'Jua',sans-serif;font-size:.85rem;cursor:pointer;text-align:left;display:flex;align-items:center;gap:8px;transition:.15s}
+.khan-toggle:hover{background:rgba(251,191,36,.13)}
+.khan-body{display:none;padding:14px 16px;background:rgba(0,0,0,.22)}
+.khan-why-title{font-family:'Jua',sans-serif;color:#fbbf24;font-size:.8rem;margin-bottom:5px}
+.khan-why-text{font-size:.8rem;color:#d0e0f0;line-height:1.75;margin-bottom:10px}
+.khan-visual{background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:6px 0 10px;font-size:.78rem}
+.khan-steps-list{display:flex;flex-direction:column;gap:6px;margin:6px 0 10px}
+.khan-step-row{display:flex;align-items:flex-start;gap:8px}
+.khan-step-num{width:20px;height:20px;border-radius:50%;background:rgba(251,191,36,.18);color:#fbbf24;font-size:.7rem;font-family:'Jua',sans-serif;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.khan-step-text{font-size:.79rem;color:#c0d0e0;line-height:1.6}
+.khan-check{background:rgba(46,204,113,.07);border:1px solid rgba(46,204,113,.2);border-radius:8px;padding:8px 12px;font-size:.78rem;color:#86efac;text-align:center}
+
+/* ── 칸아카데미 이해 점검 (Method B — inequality) ── */
+.khan-feedback{border-radius:12px;overflow:hidden;border:1px solid rgba(248,113,113,.28);margin-top:12px}
+.khan-fb-header{background:rgba(248,113,113,.1);padding:9px 14px;font-family:'Jua',sans-serif;color:#f87171;font-size:.82rem;display:flex;align-items:center;gap:6px}
+.khan-fb-body{padding:12px 14px;background:rgba(0,0,0,.18)}
+.khan-key-box{background:rgba(255,255,255,.04);border-radius:8px;padding:8px 10px;margin:7px 0;font-family:monospace;font-size:.77rem;color:#86efac;line-height:1.6}
+.khan-self-check{display:flex;gap:8px;margin-top:10px}
+.khan-self-btn{flex:1;padding:9px;border-radius:10px;border:none;font-family:'Jua',sans-serif;font-size:.78rem;cursor:pointer;transition:.15s}
+.khan-self-ok{background:rgba(46,204,113,.12);border:1px solid rgba(46,204,113,.28);color:#86efac}
+.khan-self-ok:hover{background:rgba(46,204,113,.22)}
+.khan-self-no{background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.28);color:#f87171}
+.khan-self-no:hover{background:rgba(248,113,113,.22)}
+.khan-self-msg{text-align:center;font-size:.78rem;padding:7px 0;min-height:22px;transition:.3s}
 </style>
 </head>
 <body>
@@ -10169,8 +10196,11 @@ function toggleCVAnswer() {
   const area = document.getElementById('cv-ans-area');
   const btn  = document.getElementById('cv-ans-btn');
   CS.showAns = !CS.showAns;
-  if (CS.showAns) { area.innerHTML = d.ans; area.style.display=''; btn.textContent='🙈 정답 숨기기'; }
-  else { area.style.display='none'; btn.textContent='💡 정답/풀이 보기'; }
+  if (CS.showAns) {
+    const khanHtml = CS.set==='ineq-word' ? khanIneqCheck(d) : '';
+    area.innerHTML = d.ans + khanHtml;
+    area.style.display=''; btn.textContent='🙈 정답 숨기기';
+  } else { area.style.display='none'; btn.textContent='💡 정답/풀이 보기'; }
 }
 
 function cvNav(dir) {
@@ -12118,7 +12148,9 @@ function renderQ(){
   }
   const vis=renderVisual(q);
   const hardBadge=ST.hardMode?`<div style="text-align:center;margin-bottom:8px"><span style="background:rgba(231,76,60,.2);border:1px solid rgba(231,76,60,.4);color:#e74c3c;border-radius:20px;padding:3px 14px;font-size:.8rem;font-family:'Jua',sans-serif">🔥 심화 도전 중</span></div>`:'';
+  const khanPanel=ST.topic==='equation'?khanExplainEq(q):'';
   document.getElementById('quiz-inner').innerHTML=`
+  ${khanPanel}
   ${hardBadge}
   <div class="toro-bubble">
     <span class="toro-face">🦕</span>
@@ -12132,6 +12164,232 @@ function renderQ(){
   <div id="q-hint-area"></div>`;
 
   renderQSteps();
+}
+
+// ══════════════════════════════════════════════════
+//  칸아카데미 Method A — 방정식 "왜 이렇게 하나요?" 패널
+// ══════════════════════════════════════════════════
+function toggleKhan(btn){
+  const body=btn.nextElementSibling;
+  const isOpen=body.style.display!=='none'&&body.style.display!=='';
+  body.style.display=isOpen?'none':'';
+  btn.innerHTML=btn.innerHTML.replace(isOpen?'▴':'▾', isOpen?'▾':'▴');
+}
+
+function khanExplainEq(q){
+  if(!q||q.type!=='equation') return '';
+  const sub=q.subtype||'simple';
+  const E={
+    simple:{
+      why:'방정식에서 x는 아직 모르는 수예요. x가 있는 항을 한쪽으로 모아서 등식을 유지하면 x를 구할 수 있어요!',
+      visual:`<div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 0;font-family:'Jua',sans-serif">
+        <div style="background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.3);border-radius:8px;padding:7px 14px;color:#d8b4fe">왼쪽</div>
+        <div style="color:var(--yellow);font-size:1.1rem;font-weight:700">=</div>
+        <div style="background:rgba(46,204,113,.15);border:1px solid rgba(46,204,113,.3);border-radius:8px;padding:7px 14px;color:#86efac">오른쪽</div>
+      </div>
+      <div style="text-align:center;color:var(--gray);margin-top:5px">⚖️ 저울처럼 — 양쪽이 항상 같아야 해요</div>`,
+      steps:['모르는 수를 x로 놓아요','x가 있는 항을 왼쪽으로 이항해요 (부호 바뀜!)','x의 계수로 나눠 x를 구해요']
+    },
+    rod:{
+      why:'두 조각을 더하면 전체가 돼요. "부분 + 부분 = 전체"를 식으로 쓰면 방정식 완성!',
+      visual:`<div style="padding:6px 0">
+        <div style="display:flex;border-radius:4px;overflow:hidden;height:28px">
+          <div style="flex:3;background:rgba(99,102,241,.3);display:flex;align-items:center;justify-content:center;color:#a5b4fc;font-family:'Jua',sans-serif;font-size:.78rem">x cm</div>
+          <div style="width:2px;background:#0d1f3a"></div>
+          <div style="flex:2;background:rgba(46,204,113,.3);display:flex;align-items:center;justify-content:center;color:#86efac;font-family:'Jua',sans-serif;font-size:.78rem">알고있는 수</div>
+        </div>
+        <div style="text-align:center;color:var(--gray);font-size:.72rem;margin-top:4px">⟵ 전체 길이 ⟶</div>
+      </div>`,
+      steps:['x + 알고있는 수 = 전체 식을 세워요','알고있는 수를 오른쪽으로 이항해요','x를 구해요']
+    },
+    age:{
+      why:'x년 후 모든 사람의 나이는 지금 나이에 x를 더한 값이에요. 나이 관계를 등식으로!',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:2">
+        <div>지금: 아버지 나이, 아들 나이</div>
+        <div><b style="color:#fbbf24">x년 후:</b> 아버지 <span style="color:#a5b4fc">지금+x</span>, 아들 <span style="color:#86efac">지금+x</span></div>
+        <div>→ 두 나이의 관계로 등식 세우기!</div>
+      </div>`,
+      steps:['x년 후 각자 나이를 x로 표현해요','나이 관계 조건으로 등식을 만들어요','이항해서 x를 구해요']
+    },
+    rect:{
+      why:'둘레 = 2 × (가로 + 세로). 이 공식에 x를 대입하면 방정식이 돼요!',
+      visual:`<div style="display:flex;justify-content:center;padding:6px 0">
+        <svg width="110" height="68" style="overflow:visible">
+          <rect x="8" y="8" width="94" height="52" fill="none" stroke="rgba(52,152,219,.5)" stroke-width="2" rx="3"/>
+          <text x="55" y="24" text-anchor="middle" font-size="10" fill="#7dd3fc" font-family="Jua,sans-serif">가로 = x+?</text>
+          <text x="100" y="40" text-anchor="middle" font-size="10" fill="#86efac" font-family="Jua,sans-serif">세로=x</text>
+        </svg>
+      </div>
+      <div style="text-align:center;color:var(--gray);font-size:.72rem">둘레 = 2×(가로+세로)</div>`,
+      steps:['세로를 x, 가로를 x+?로 표현해요','둘레 공식 2(가로+세로) = 주어진 값을 써요','풀어서 x를 구해요']
+    },
+    candy:{
+      why:'"나눠주는 방법이 다르더라도 총 사탕 수는 하나" — 두 식이 같다고 등식을 세워요!',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>방법 ①: <span style="color:#86efac">a개씩 × n명 + 남는 수</span></div>
+        <div>방법 ②: <span style="color:#7dd3fc">b개씩 × n명 − 부족한 수</span></div>
+        <div style="color:#fbbf24;margin-top:4px">⚖️ 방법① = 방법② → n 구하기</div>
+      </div>`,
+      steps:['각 상황으로 총 사탕을 x(명수)로 표현해요','두 표현이 같다는 등식을 세워요','x를 구하고 총 개수를 확인해요']
+    },
+    money:{
+      why:'"낸 돈 − 거스름돈 = 실제 물건 값"이에요. 물건 값 = 단가 × 개수(x)로 식을 세워요!',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>💵 낸 돈 − 💰 거스름돈 = 🛒 실제 물건 값</div>
+        <div style="color:#fbbf24">물건 값 = 단가 × 개수(x)</div>
+      </div>`,
+      steps:['실제 물건 값 = 낸 돈 − 거스름돈으로 계산해요','단가 × x = 물건 값 등식을 세워요','x를 구해요']
+    },
+    distance:{
+      why:'"시간 = 거리 ÷ 속력". 왕복 시간의 합이 주어지면 x(거리)로 분수 방정식을 세워요!',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>🏠 ─── x km ─── 🏫</div>
+        <div>갈 때: <span style="color:#86efac">x ÷ 속력₁</span> 시간</div>
+        <div>올 때: <span style="color:#7dd3fc">x ÷ 속력₂</span> 시간</div>
+        <div style="color:#fbbf24">⚠️ 분(min) → 시간(h) 변환 필수!</div>
+      </div>`,
+      steps:['거리를 x km로 설정해요','갈 때 시간 + 올 때 시간 = 총 시간 (분→시간 변환!)','분수를 없애고 x를 구해요']
+    },
+    salt:{
+      why:'소금물에 소금만 추가하면 소금 양이 늘어요. 물의 양은 그대로! 소금을 추적하세요.',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>🫙 처음 소금: 전체 × 농도%</div>
+        <div>소금 x g 추가 → <span style="color:#fbbf24">소금↑, 물은 그대로</span></div>
+        <div style="color:#a5b4fc">새 농도 = 새 소금 ÷ 새 전체</div>
+      </div>`,
+      steps:['처음 소금 양을 계산해요 (전체×농도÷100)','소금 추가 후 새 농도 조건으로 등식을 써요','풀어서 x를 구해요']
+    },
+    work:{
+      why:'전체 일을 1이라는 빵으로! A는 a일에 완성 → 하루에 1/a씩 진행.',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>🍞 전체 일 = 1</div>
+        <div>A: 하루에 <span style="color:#86efac">1/a</span> 진행</div>
+        <div>B: 하루에 <span style="color:#7dd3fc">1/b</span> 진행</div>
+        <div style="color:#fbbf24">함께: (1/a + 1/b) × x일 = 1</div>
+      </div>`,
+      steps:['각자 하루 일의 양을 분수로 표현해요','함께하면: (합) × x = 1 등식을 세워요','x = 1 ÷ 합 으로 계산해요']
+    },
+    profit:{
+      why:'정가 = 원가×(1+이익률), 판매가 = 정가×(1−할인율). 이 사슬을 x로 표현해요!',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>원가 x → ×(1+이익률) → 정가</div>
+        <div>정가 → ×(1−할인율) → 판매가</div>
+        <div style="color:#fbbf24">이익 = 판매가 − 원가 = 조건</div>
+      </div>`,
+      steps:['원가를 x로, 정가를 x×배율로 써요','판매가 = 정가 − 할인 금액으로 계산해요','이익 조건 등식을 세워 x를 구해요']
+    },
+    savings:{
+      why:'두 저금액이 역전되는 x달 후를 구해요. 불등호가 처음 바뀌는 순간!',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>📈 <span style="color:#7dd3fc">형</span>: 천천히 증가</div>
+        <div>📈 <span style="color:#f87171">동생</span>: 빠르게 증가</div>
+        <div style="color:#86efac">역전 조건: 동생 저금 > 형 저금</div>
+      </div>`,
+      steps:['x달 후 각자 저금액을 x로 표현해요','역전 조건: 동생 > 형 부등식을 세워요','처음 역전되는 정수 달을 찾아요']
+    },
+    chase:{
+      why:'만나는 순간 = 두 사람이 이동한 거리가 같은 순간이에요!',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>🚶 먼저 출발 (시간 앞섬)</div>
+        <div>🚗 나중 출발 (더 빠름)</div>
+        <div style="color:#fbbf24">만남: 두 이동 거리 = 같음!</div>
+      </div>`,
+      steps:['빠른 쪽 출발 후 x분 경과로 설정해요','각자의 이동 거리를 x로 표현해요','두 거리가 같다는 등식을 풀어요']
+    },
+    mix_salt:{
+      why:'두 소금물을 섞어도 소금 양의 합은 보존돼요. 섞기 전 소금 합 = 섞은 후 소금!',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>🫙A + 🫙B = 🫙결과</div>
+        <div style="color:#fbbf24">A의 소금 + B의 소금 = 전체 소금</div>
+        <div style="color:#86efac">전체 부피도 합산해요!</div>
+      </div>`,
+      steps:['각 소금물의 소금 양 = 전체×농도÷100으로 계산해요','소금 보존 등식을 세워요','x를 구해요']
+    },
+    digit:{
+      why:'두 자리 수 AB = 10A + B예요. 자리 바꿈 = 십의 자리와 일의 자리가 서로 바뀌는 것!',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>AB = <span style="color:#fbbf24">A×10</span> + <span style="color:#86efac">B×1</span></div>
+        <div>BA = <span style="color:#86efac">B×10</span> + <span style="color:#fbbf24">A×1</span></div>
+      </div>`,
+      steps:['십의 자리를 a, 일의 자리를 b로 놓아요','조건(합, 차)으로 연립 방정식을 세워요','두 식으로 a, b를 구해요']
+    },
+    hard_river:{
+      why:'배 속력 ± 강 유속 = 실제 속력. 하류는 +, 상류는 −!',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>🚤+🌊(하류): v+w 빠름</div>
+        <div>🚤−🌊(상류): v−w 느림</div>
+        <div style="color:#fbbf24">거리 = 속력×시간 → 연립방정식!</div>
+      </div>`,
+      steps:['배 속력 v, 유속 w로 설정해요','하류 조건: (v+w)×t₁=d','상류 조건: (v−w)×t₂=d','두 식을 연립해서 v, w를 구해요']
+    },
+    hard_taps:{
+      why:'수도꼭지는 각자 속도로 채워요. 배수구는 빼기(−). 모두 더하면 알짜 속도!',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>🚰A: 시간당 <span style="color:#86efac">1/a</span> 채움</div>
+        <div>🚰B: 시간당 <span style="color:#7dd3fc">1/b</span> 채움</div>
+        <div>🕳️C: 시간당 <span style="color:#f87171">−1/c</span> 비움</div>
+        <div style="color:#fbbf24">알짜: 1/a + 1/b − 1/c</div>
+      </div>`,
+      steps:['각자 시간당 작업량을 분수로 써요','배수구는 음수로 더해요','전체(1) ÷ 알짜 = 소요 시간']
+    },
+    hard_loss:{
+      why:'두 물건을 이익/손해로 팔 때, 각각의 손익을 더해서 전체 손익을 계산해요!',
+      visual:`<div style="font-size:.79rem;color:#c0d0e0;line-height:1.9">
+        <div>물건A: 원가×(1+이익률) = 판매가A</div>
+        <div>물건B: 원가×(1−손실률) = 판매가B</div>
+        <div style="color:#fbbf24">총손익 = 두 이익의 합</div>
+      </div>`,
+      steps:['원가를 x로 정가와 판매가를 표현해요','각각의 이익/손해 금액을 계산해요','전체 손익 조건으로 방정식을 풀어요']
+    }
+  };
+  const e=E[sub]||E.simple;
+  return `<div class="khan-panel">
+  <button class="khan-toggle" onclick="toggleKhan(this)">💡 왜 이렇게 푸나요? ▾</button>
+  <div class="khan-body">
+    <div class="khan-why-title">📌 핵심 개념</div>
+    <div class="khan-why-text">${e.why}</div>
+    <div class="khan-visual">${e.visual}</div>
+    <div class="khan-steps-list">${e.steps.map((s,i)=>`<div class="khan-step-row"><div class="khan-step-num">${i+1}</div><div class="khan-step-text">${s}</div></div>`).join('')}</div>
+    <div class="khan-check">✅ 이해됐나요? → 아래 문제를 풀어보세요!</div>
+  </div>
+</div>`;
+}
+
+// ══════════════════════════════════════════════════
+//  칸아카데미 Method B — 부등식 활용 이해 점검 패널
+// ══════════════════════════════════════════════════
+function khanIneqCheck(d){
+  const tag=d?d.tag||'':'';
+  const checks={
+    '예산':{concept:'총 비용 ≤ 예산 (이하)',key:'고정비 + 변동비×x ≤ 예산',tip:'소수점 결과는 내림 — 살 수 있는 최대 개수니까요!'},
+    '평균':{concept:'평균 목표 달성 조건',key:'(기존 합 + 새 점수) ÷ 횟수 ≥ 목표',tip:'양변에 횟수를 곱해서 분수를 없애면 쉬워요!'},
+    '거리':{concept:'속력×시간 ≤ 또는 ≥ 거리',key:'걸리는 시간 = 거리 ÷ 속력',tip:'단위 통일! km/h면 시간, m/s면 초로 맞춰요.'},
+    '농도':{concept:'소금 양 ÷ 전체 ≥ 목표 농도',key:'소금 = 전체 × 농도%',tip:'소금만 추가 시 물의 양은 변하지 않아요!'},
+    '이익':{concept:'판매가 − 원가 ≥ 목표 이익',key:'판매가 = 정가 × (1 − 할인율)',tip:'이익이 "이상"이면 ≥, "초과"이면 >를 써요.'},
+    '나이':{concept:'x년 후 = 지금 나이 + x',key:'나이 관계식에 x를 대입해요',tip:'x는 양의 정수여야 해요!'},
+    '개수':{concept:'단가 × 개수 ≤ 예산',key:'개수(x) ≤ 예산 ÷ 단가',tip:'개수는 정수 — 소수 결과는 내림!'},
+    '속력':{concept:'이동 거리 = 속력 × 시간',key:'목적에 따라 ≤ 또는 ≥를 결정해요',tip:'더 빠르려면 ≤, 늦지 않으려면 같은 방향!'},
+    '인원':{concept:'조건 × 인원 ≤ 또는 ≥ 총량',key:'인원 × 단위 조건 = 총 조건',tip:'인원수는 자연수예요 — 소수 나오면 올림/내림 확인!'},
+    '점수':{concept:'최소 점수 구하기',key:'(기존 + 새 점수) ÷ n ≥ 목표',tip:'목표의 "이상"이면 ≥, "초과"이면 >!'},
+  };
+  let m=null;
+  for(const[k,v]of Object.entries(checks)){if(tag.includes(k)){m=v;break;}}
+  if(!m) m={concept:'부등식 핵심 원리',key:'음수로 나누면 부등호 방향이 뒤집혀요!',tip:'결과가 소수이면 문제 조건에 따라 올림/내림을 결정해요.'};
+  return `<div class="khan-feedback">
+  <div class="khan-fb-header">💡 칸아카데미 이해 점검</div>
+  <div class="khan-fb-body">
+    <div style="font-size:.8rem;color:#c0d0e0;line-height:1.85">
+      <div><b style="color:#fde68a">📌 핵심 개념:</b> ${m.concept}</div>
+      <div class="khan-key-box">${m.key}</div>
+      <div><b style="color:#7dd3fc">⚠️ 자주 하는 실수:</b> ${m.tip}</div>
+    </div>
+    <div class="khan-self-check">
+      <button class="khan-self-btn khan-self-ok" onclick="document.getElementById('ksc-${CS.cur}').textContent='완벽해요! 다음으로 가요 🎉'">✅ 이해됐어요!</button>
+      <button class="khan-self-btn khan-self-no" onclick="document.getElementById('ksc-${CS.cur}').textContent='괜찮아요! 풀이를 다시 천천히 읽어봐요 💪'">🤔 좀 더 볼게요</button>
+    </div>
+    <div id="ksc-${CS.cur}" class="khan-self-msg"></div>
+  </div>
+</div>`;
 }
 
 function renderVisual(q){
