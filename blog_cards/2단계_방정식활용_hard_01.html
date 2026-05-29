@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>방정식 활용 심화 | 아르모니아 수학왕국</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 580px;
+  }
+
+  /* 헤더 */
+  .card-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid #334155;
+    border-radius: 16px 16px 0 0;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-header::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(253,230,138,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .badge-stage { background: rgba(253,230,138,0.15); color: #fde68a; border: 1px solid rgba(253,230,138,0.3); }
+  .badge-type  { background: rgba(134,239,172,0.15); color: #86efac; border: 1px solid rgba(134,239,172,0.3); }
+  .badge-level { background: rgba(248,113,113,0.15); color: #f87171; border: 1px solid rgba(248,113,113,0.3); }
+
+  .card-title {
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: #f8fafc;
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+  }
+  .card-subtitle {
+    font-size: 0.82rem;
+    color: #94a3b8;
+  }
+
+  /* 본문 공통 */
+  .card-body {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-top: none;
+    padding: 1.5rem;
+  }
+  .card-body:last-child {
+    border-radius: 0 0 16px 16px;
+  }
+
+  /* 섹션 타이틀 */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-title .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* 문제 박스 */
+  .problem-box {
+    background: #0f172a;
+    border: 1px solid #475569;
+    border-left: 4px solid #fde68a;
+    border-radius: 0 12px 12px 0;
+    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.9;
+    font-size: 0.95rem;
+  }
+  .problem-box .cond {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0.3rem 0;
+  }
+  .problem-box .cond-bullet {
+    color: #fde68a;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .problem-q {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #334155;
+    color: #7dd3fc;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  /* 구분선 */
+  .divider {
+    height: 1px;
+    background: #334155;
+    margin: 1.5rem 0;
+  }
+
+  /* 싱가포르 바 모델 */
+  .bar-model {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 1.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.8;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
+  .bar-label { color: #94a3b8; }
+  .bar-value { color: #fde68a; }
+  .bar-arrow { color: #86efac; }
+  .bar-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    margin-top: 0.75rem;
+  }
+  .bar-table th {
+    background: #1e293b;
+    color: #94a3b8;
+    font-weight: 600;
+    padding: 6px 10px;
+    text-align: center;
+    border: 1px solid #334155;
+    font-size: 0.78rem;
+  }
+  .bar-table td {
+    padding: 7px 10px;
+    text-align: center;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+  }
+  .bar-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .bar-table .hl { color: #fde68a; font-weight: 700; }
+  .bar-table .hl2 { color: #86efac; font-weight: 700; }
+
+  /* 핀란드 단계 */
+  .step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .step-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(125,211,252,0.15);
+    border: 1px solid rgba(125,211,252,0.4);
+    color: #7dd3fc;
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content { flex: 1; }
+  .step-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #7dd3fc;
+    margin-bottom: 0.35rem;
+  }
+  .step-body {
+    font-size: 0.88rem;
+    color: #cbd5e1;
+    line-height: 1.8;
+  }
+  .step-reason {
+    margin-top: 0.4rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(125,211,252,0.05);
+    border-left: 2px solid rgba(125,211,252,0.3);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.8rem;
+    color: #94a3b8;
+  }
+  .math {
+    font-family: 'JetBrains Mono', monospace;
+    color: #fde68a;
+    background: rgba(253,230,138,0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85em;
+  }
+  .math-block {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    color: #fde68a;
+    background: rgba(253,230,138,0.06);
+    border: 1px solid rgba(253,230,138,0.15);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    font-size: 0.88rem;
+    line-height: 1.8;
+    overflow-x: auto;
+  }
+
+  /* 정답 박스 */
+  .answer-box {
+    background: rgba(134,239,172,0.08);
+    border: 1px solid rgba(134,239,172,0.3);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .answer-label { font-size: 0.78rem; color: #86efac; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .answer-value { font-size: 1.6rem; font-weight: 900; color: #86efac; font-family: 'JetBrains Mono', monospace; }
+
+  /* details / summary */
+  details { margin-bottom: 0; }
+  summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.85rem 1rem;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #94a3b8;
+    transition: color 0.2s, border-color 0.2s;
+    margin-bottom: 0.5rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { color: #e2e8f0; border-color: #475569; }
+  details[open] summary { color: #fde68a; border-color: rgba(253,230,138,0.4); }
+  .summary-arrow {
+    margin-left: auto;
+    font-size: 0.7rem;
+    transition: transform 0.25s;
+  }
+  details[open] .summary-arrow { transform: rotate(180deg); }
+  .details-inner {
+    padding: 1rem 0 0.5rem;
+  }
+
+  /* 푸터 */
+  .card-footer {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-top: none;
+    border-radius: 0 0 16px 16px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .footer-logo {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #475569;
+  }
+  .footer-logo span { color: #fde68a; }
+  .footer-link {
+    font-size: 0.75rem;
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: #7dd3fc; }
+
+  /* 플래그 아이콘 */
+  .flag-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+  .flag-badge {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+  .flag-sg { background: rgba(125,211,252,0.12); color: #7dd3fc; }
+  .flag-fi { background: rgba(134,239,172,0.12); color: #86efac; }
+
+  hr.section-hr {
+    border: none;
+    border-top: 1px dashed #334155;
+    margin: 1.25rem 0;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 헤더 -->
+  <div class="card-header">
+    <div class="badge-row">
+      <span class="badge badge-stage">2단계 · 방정식</span>
+      <span class="badge badge-type">심화 문제</span>
+      <span class="badge badge-level">★★★☆☆</span>
+    </div>
+    <div class="card-title">미술관 입장료와<br>방정식 활용</div>
+    <div class="card-subtitle">미지수 선택 · 조건 번역 · 요금 구조 분석</div>
+  </div>
+
+  <!-- 문제 -->
+  <div class="card-body">
+    <div class="section-title">
+      <span class="dot" style="background:#fde68a;"></span>
+      <span style="color:#fde68a;">문제</span>
+    </div>
+    <div class="problem-box">
+      <div class="cond">
+        <span class="cond-bullet">①</span>
+        <span>평일 입장료: 어른은 청소년의 <strong style="color:#fde68a;">2배</strong></span>
+      </div>
+      <div class="cond">
+        <span class="cond-bullet">②</span>
+        <span>주말 입장료: 평일보다 어른은 <strong style="color:#fde68a;">1,200원↑</strong>, 청소년은 <strong style="color:#fde68a;">800원↑</strong></span>
+      </div>
+      <div class="cond">
+        <span class="cond-bullet">③</span>
+        <span>어느 주말, 어른 3명 + 청소년 5명 = 총 <strong style="color:#fde68a;">56,000원</strong></span>
+      </div>
+      <div class="problem-q">
+        🎯 같은 날 어른 5명 + 청소년 2명의 입장료 합계는?
+      </div>
+    </div>
+
+    <!-- 싱가포르 바 모델 -->
+    <details>
+      <summary>
+        <span class="flag-badge flag-sg">🇸🇬 싱가포르 바 모델</span>
+        <span style="color:#7dd3fc; margin-left:4px;">구조 시각화</span>
+        <span class="summary-arrow">▼</span>
+      </summary>
+      <div class="details-inner">
+        <div class="bar-model">
+<span class="bar-label">청소년 평일 = </span><span class="bar-value">x원</span>
+<span class="bar-label">  어른 평일 = </span><span class="bar-value">2x원</span>
+
+<span class="bar-label">청소년 주말 = </span><span class="bar-value">x + 800</span>
+<span class="bar-label">  어른 주말 = </span><span class="bar-value">2x + 1,200</span>
+        </div>
+        <table class="bar-table">
+          <thead>
+            <tr><th>구분</th><th>평일</th><th>주말</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>청소년</td><td class="hl">x</td><td class="hl">x + 800</td></tr>
+            <tr><td>어른</td><td class="hl2">2x</td><td class="hl2">2x + 1,200</td></tr>
+          </tbody>
+        </table>
+        <div class="bar-model" style="margin-top:0.75rem;">
+<span class="bar-label">주말 합계:</span>
+<span class="bar-value"> 3(2x+1200) + 5(x+800) = 56,000</span>
+        </div>
+      </div>
+    </details>
+
+    <hr class="section-hr">
+
+    <!-- 핀란드 단계별 풀이 -->
+    <details>
+      <summary>
+        <span class="flag-badge flag-fi">🇫🇮 핀란드 단계별 풀이</span>
+        <span style="color:#86efac; margin-left:4px;">논리 서술</span>
+        <span class="summary-arrow">▼</span>
+      </summary>
+      <div class="details-inner">
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <div class="step-title">미지수 설정 — 가장 기본 단위를 x로</div>
+              <div class="step-body">
+                모든 요금이 청소년 평일 요금을 기준으로 파생되므로<br>
+                <span class="math">x = 청소년 평일 입장료 (원)</span>
+              </div>
+              <div class="step-reason">💡 어른 = 2x로 바로 표현 가능. x를 어른으로 잡으면 청소년이 x/2가 되어 분수 계수 등장.</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <div class="step-title">주말 요금 표현 — 평일 기준에서 더하기</div>
+              <div class="step-body">
+                <span class="math">어른 주말 = 2x + 1,200</span><br>
+                <span class="math">청소년 주말 = x + 800</span>
+              </div>
+              <div class="step-reason">⚠️ 어른 주말 = 2x + 1,200 (평일 어른 기준). x + 1,200으로 혼동 주의!</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <div class="step-title">방정식 세우기 — 조건 번역</div>
+              <span class="math-block">3(2x + 1,200) + 5(x + 800) = 56,000</span>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <div class="step-title">풀기</div>
+              <span class="math-block">6x + 3,600 + 5x + 4,000 = 56,000
+11x + 7,600 = 56,000
+11x = 48,400
+x = 4,400</span>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <div class="step-title">요금 확인</div>
+              <table class="bar-table">
+                <thead><tr><th>구분</th><th>평일</th><th>주말</th></tr></thead>
+                <tbody>
+                  <tr><td>청소년</td><td>4,400원</td><td class="hl">5,200원</td></tr>
+                  <tr><td>어른</td><td>8,800원</td><td class="hl2">10,000원</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">6</div>
+            <div class="step-content">
+              <div class="step-title">구하는 값 — 어른 5명 + 청소년 2명</div>
+              <span class="math-block">5 × 10,000 + 2 × 5,200
+= 50,000 + 10,400
+= 60,400원</span>
+            </div>
+          </div>
+        </div>
+        <div class="answer-box" style="margin-top:1.25rem;">
+          <div class="answer-label">최종 정답</div>
+          <div class="answer-value">60,400원</div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 푸터 -->
+  <div class="card-footer">
+    <div class="footer-logo">⚡ <span>아르모니아</span> 수학왕국</div>
+    <a class="footer-link" href="https://choisuka.github.io/toro_math/" target="_blank">choisuka.github.io/toro_math →</a>
+  </div>
+
+</div>
+</body>
+</html>

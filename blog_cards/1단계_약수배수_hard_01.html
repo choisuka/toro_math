@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>약수와 배수 심화 | 아르모니아 수학왕국</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .card { width: 100%; max-width: 580px; }
+
+  .card-header {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px 16px 0 0;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-header::before {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(125,211,252,0.07) 0%, transparent 70%);
+  }
+
+  .badge-row { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .badge-stage { background: rgba(125,211,252,0.15); color: #7dd3fc; border: 1px solid rgba(125,211,252,0.3); }
+  .badge-type  { background: rgba(134,239,172,0.15); color: #86efac; border: 1px solid rgba(134,239,172,0.3); }
+  .badge-level { background: rgba(248,113,113,0.15); color: #f87171; border: 1px solid rgba(248,113,113,0.3); }
+
+  .card-title { font-size: 1.35rem; font-weight: 900; color: #f8fafc; line-height: 1.4; margin-bottom: 0.4rem; }
+  .card-subtitle { font-size: 0.82rem; color: #94a3b8; }
+
+  .card-body {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-top: none;
+    padding: 1.5rem;
+  }
+
+  .section-title {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-title .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* 문제 박스 */
+  .problem-box {
+    background: #0f172a;
+    border: 1px solid #475569;
+    border-left: 4px solid #7dd3fc;
+    border-radius: 0 12px 12px 0;
+    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .cond { display: flex; align-items: flex-start; gap: 8px; margin: 0.4rem 0; font-size: 0.92rem; line-height: 1.75; }
+  .cond-bullet { color: #7dd3fc; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .problem-q {
+    margin-top: 1rem; padding-top: 1rem;
+    border-top: 1px dashed #334155;
+    color: #86efac; font-weight: 700; font-size: 0.98rem;
+  }
+
+  hr.section-hr { border: none; border-top: 1px dashed #334155; margin: 1.25rem 0; }
+
+  /* 코드/수식 */
+  .math { font-family: 'JetBrains Mono', monospace; color: #fde68a; background: rgba(253,230,138,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
+  .math-block {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    color: #fde68a;
+    background: rgba(253,230,138,0.06);
+    border: 1px solid rgba(253,230,138,0.15);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    font-size: 0.85rem;
+    line-height: 1.9;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .math-block .cm { color: #64748b; }
+  .math-block .ok { color: #86efac; }
+  .math-block .no { color: #f87171; }
+
+  /* 바 모델 */
+  .bar-model {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 1.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 2;
+    overflow-x: auto;
+    margin-bottom: 0.75rem;
+  }
+  .bar-table {
+    width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 0.75rem;
+  }
+  .bar-table th {
+    background: #1e293b; color: #94a3b8; font-weight: 600;
+    padding: 6px 10px; text-align: center; border: 1px solid #334155; font-size: 0.78rem;
+  }
+  .bar-table td { padding: 7px 10px; text-align: center; border: 1px solid #334155; color: #e2e8f0; font-size: 0.82rem; }
+  .bar-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .hl { color: #fde68a; font-weight: 700; }
+  .hl2 { color: #86efac; font-weight: 700; }
+  .hl3 { color: #7dd3fc; font-weight: 700; }
+  .strike { text-decoration: line-through; color: #f87171; }
+
+  /* 핀란드 스텝 */
+  .step-list { display: flex; flex-direction: column; gap: 1rem; }
+  .step-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(134,239,172,0.15); border: 1px solid rgba(134,239,172,0.4);
+    color: #86efac; font-size: 0.78rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-content { flex: 1; }
+  .step-title { font-size: 0.82rem; font-weight: 700; color: #86efac; margin-bottom: 0.35rem; }
+  .step-body { font-size: 0.87rem; color: #cbd5e1; line-height: 1.8; }
+  .step-reason {
+    margin-top: 0.4rem; padding: 0.5rem 0.75rem;
+    background: rgba(134,239,172,0.05);
+    border-left: 2px solid rgba(134,239,172,0.3);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.78rem; color: #94a3b8;
+  }
+
+  /* details */
+  details { margin-bottom: 0.75rem; }
+  summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; gap: 8px;
+    padding: 0.85rem 1rem;
+    background: #0f172a; border: 1px solid #334155; border-radius: 10px;
+    font-size: 0.85rem; font-weight: 700; color: #94a3b8;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { color: #e2e8f0; border-color: #475569; }
+  details[open] summary { color: #86efac; border-color: rgba(134,239,172,0.4); border-radius: 10px 10px 0 0; }
+  .summary-arrow { margin-left: auto; font-size: 0.7rem; transition: transform 0.25s; }
+  details[open] .summary-arrow { transform: rotate(180deg); }
+  .details-inner { padding: 1rem 0 0.25rem; }
+
+  .flag-badge { font-size: 0.72rem; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+  .flag-sg { background: rgba(125,211,252,0.12); color: #7dd3fc; }
+  .flag-fi { background: rgba(134,239,172,0.12); color: #86efac; }
+
+  /* 정답 */
+  .answer-box {
+    background: rgba(134,239,172,0.08); border: 1px solid rgba(134,239,172,0.3);
+    border-radius: 12px; padding: 1rem 1.25rem; text-align: center; margin-top: 1rem;
+  }
+  .answer-label { font-size: 0.78rem; color: #86efac; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .answer-value { font-size: 1.6rem; font-weight: 900; color: #86efac; font-family: 'JetBrains Mono', monospace; }
+  .answer-sub { font-size: 0.78rem; color: #64748b; margin-top: 0.3rem; font-family: 'JetBrains Mono', monospace; }
+
+  /* 검증 */
+  .verify-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 0.75rem; }
+  .verify-item {
+    background: #0f172a; border: 1px solid #334155; border-radius: 8px;
+    padding: 0.6rem 0.75rem; text-align: center;
+  }
+  .verify-val { font-size: 1.1rem; font-weight: 900; font-family: 'JetBrains Mono', monospace; }
+  .verify-label { font-size: 0.68rem; color: #64748b; margin-top: 2px; }
+
+  .card-footer {
+    background: #0f172a; border: 1px solid #334155; border-top: none;
+    border-radius: 0 0 16px 16px; padding: 1rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo { font-size: 0.78rem; font-weight: 700; color: #475569; }
+  .footer-logo span { color: #7dd3fc; }
+  .footer-link { font-size: 0.75rem; color: #475569; text-decoration: none; transition: color 0.2s; }
+  .footer-link:hover { color: #86efac; }
+
+  .elim-badge {
+    display: inline-block; font-size: 0.7rem; padding: 1px 6px;
+    background: rgba(248,113,113,0.15); color: #f87171;
+    border: 1px solid rgba(248,113,113,0.3); border-radius: 4px;
+    margin-left: 4px; vertical-align: middle; font-weight: 700;
+  }
+  .pass-badge {
+    display: inline-block; font-size: 0.7rem; padding: 1px 6px;
+    background: rgba(134,239,172,0.15); color: #86efac;
+    border: 1px solid rgba(134,239,172,0.3); border-radius: 4px;
+    margin-left: 4px; vertical-align: middle; font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 헤더 -->
+  <div class="card-header">
+    <div class="badge-row">
+      <span class="badge badge-stage">1단계 · 약수와 배수</span>
+      <span class="badge badge-type">심화 문제</span>
+      <span class="badge badge-level">★★★★☆</span>
+    </div>
+    <div class="card-title">세 자연수 A, B, C —<br>최대공약수·최소공배수 연립</div>
+    <div class="card-subtitle">조건 번역 · 후보 교집합 · 순차 소거</div>
+  </div>
+
+  <!-- 문제 -->
+  <div class="card-body">
+    <div class="section-title">
+      <span class="dot" style="background:#7dd3fc;"></span>
+      <span style="color:#7dd3fc;">문제</span>
+    </div>
+    <div class="problem-box">
+      <div class="cond">
+        <span class="cond-bullet">①</span>
+        <span><span class="math">gcd(A, B) = 12</span>,&nbsp; <span class="math">lcm(A, B) = 180</span></span>
+      </div>
+      <div class="cond">
+        <span class="cond-bullet">②</span>
+        <span><span class="math">gcd(B, C) = B</span>,&nbsp; <span class="math">lcm(B, C) = 120</span></span>
+      </div>
+      <div class="cond">
+        <span class="cond-bullet">③</span>
+        <span><span class="math">A &lt; B &lt; C</span> &nbsp;(세 수 모두 자연수)</span>
+      </div>
+      <div class="problem-q">
+        🎯 A + B + C의 값을 구하여라.
+      </div>
+    </div>
+
+    <!-- 싱가포르 바 모델 -->
+    <details>
+      <summary>
+        <span class="flag-badge flag-sg">🇸🇬 싱가포르 바 모델</span>
+        <span style="color:#7dd3fc; margin-left:4px;">구조 시각화</span>
+        <span class="summary-arrow">▼</span>
+      </summary>
+      <div class="details-inner">
+        <div class="bar-model">
+<span style="color:#94a3b8;">조건① 구조 — A, B의 최대공약수 = 12</span>
+
+A = 12 × <span style="color:#fde68a;">m</span>
+B = 12 × <span style="color:#fde68a;">n</span>   (m과 n은 서로소)
+
+12 × m × n = 180
+         ↓
+     m × n = 15
+        </div>
+        <table class="bar-table">
+          <thead><tr><th>m</th><th>n</th><th>서로소?</th><th>A = 12m</th><th>B = 12n</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>15</td><td class="hl2">✅</td><td class="hl">12</td><td class="hl">180</td></tr>
+            <tr><td>3</td><td>5</td><td class="hl2">✅</td><td class="hl">36</td><td class="hl">60</td></tr>
+            <tr><td>5</td><td>3</td><td class="hl2">✅</td><td class="hl">60</td><td class="hl">36</td></tr>
+            <tr><td>15</td><td>1</td><td class="hl2">✅</td><td class="hl">180</td><td class="hl">12</td></tr>
+          </tbody>
+        </table>
+        <div class="bar-model" style="margin-top:0.75rem;">
+<span style="color:#94a3b8;">조건② 구조 — gcd(B,C) = B의 의미</span>
+
+gcd(B, C) = B
+     ↓
+  B | C  (B는 C의 약수)
+     ↓
+lcm(B, C) = C = 120
+
+따라서: B | 120  &  12 | B
+<span style="color:#86efac;">→ B의 후보 = {12, 24, 60}</span>
+        </div>
+      </div>
+    </details>
+
+    <hr class="section-hr">
+
+    <!-- 핀란드 단계별 풀이 -->
+    <details>
+      <summary>
+        <span class="flag-badge flag-fi">🇫🇮 핀란드 단계별 풀이</span>
+        <span style="color:#86efac; margin-left:4px;">논리 서술</span>
+        <span class="summary-arrow">▼</span>
+      </summary>
+      <div class="details-inner">
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <div class="step-title">조건② 번역 — "gcd(B, C) = B"의 진짜 의미</div>
+              <div class="step-body">
+                gcd(B, C) = B이면 B는 C의 약수. 따라서 <span class="math">lcm(B, C) = C = 120</span>
+              </div>
+              <div class="step-reason">💡 "최대공약수가 B"라는 말 = "B가 C를 나눈다" = "C는 B의 배수"</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <div class="step-title">B의 범위 결정 — 두 조건의 교집합</div>
+              <div class="step-body">
+                조건①: <span class="math">12 | B</span> &nbsp;·&nbsp; 조건②: <span class="math">B | 120</span><br>
+                → B는 12의 배수이면서 120의 약수
+              </div>
+              <span class="math-block">120의 약수: 1,2,3,4,5,6,8,10,12,15,20,24,30,40,60,120
+<span class="ok">이 중 12의 배수: 12, 24, 60</span>
+∴ B ∈ {12, 24, 60}</span>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <div class="step-title">B = 12 검토</div>
+              <div class="step-body">
+                gcd(A,12)=12, lcm(A,12)=180 → A = 180<br>
+                A &lt; B 조건: 180 &lt; 12 <span style="color:#f87171;">❌ 모순</span>
+              </div>
+              <span style="display:inline-block; font-size:0.78rem; color:#f87171; margin-top:4px;">B = 12 소거</span>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <div class="step-title">B = 24 검토</div>
+              <div class="step-body">
+                gcd(A,24)=12, lcm(A,24)=180<br>
+                <span class="math">A × 24 = 12 × 180 = 2160</span> → A = 90<br>
+                검증: gcd(90,24)=6 ≠ 12 <span style="color:#f87171;">❌ 모순</span>
+              </div>
+              <span style="display:inline-block; font-size:0.78rem; color:#f87171; margin-top:4px;">B = 24 소거</span>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <div class="step-title">B = 60 검토 ✅</div>
+              <div class="step-body">
+                <span class="math">A × 60 = 12 × 180 = 2160</span> → A = 36<br>
+                검증: gcd(36,60)=12 ✅ &nbsp; lcm(36,60)=180 ✅<br>
+                C = 120, 순서: 36 &lt; 60 &lt; 120 ✅
+              </div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">6</div>
+            <div class="step-content">
+              <div class="step-title">최종 합산</div>
+              <span class="math-block">A = 36,  B = 60,  C = 120
+A + B + C = 36 + 60 + 120 = <span class="ok">216</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 검증 -->
+        <div style="margin-top:1rem;">
+          <div style="font-size:0.75rem; color:#64748b; margin-bottom:8px; font-weight:700; letter-spacing:0.06em;">검증</div>
+          <div class="verify-grid">
+            <div class="verify-item">
+              <div class="verify-val" style="color:#fde68a;">A = 36</div>
+              <div class="verify-label">gcd(36,60)=12 ✓<br>lcm(36,60)=180 ✓</div>
+            </div>
+            <div class="verify-item">
+              <div class="verify-val" style="color:#7dd3fc;">B = 60</div>
+              <div class="verify-label">gcd(60,120)=60=B ✓<br>lcm(60,120)=120 ✓</div>
+            </div>
+            <div class="verify-item">
+              <div class="verify-val" style="color:#86efac;">C = 120</div>
+              <div class="verify-label">36 &lt; 60 &lt; 120 ✓</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="answer-box" style="margin-top:1rem;">
+          <div class="answer-label">최종 정답</div>
+          <div class="answer-value">216</div>
+          <div class="answer-sub">36 + 60 + 120 = 216</div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 푸터 -->
+  <div class="card-footer">
+    <div class="footer-logo">⚡ <span>아르모니아</span> 수학왕국</div>
+    <a class="footer-link" href="https://choisuka.github.io/toro_math/" target="_blank">choisuka.github.io/toro_math →</a>
+  </div>
+
+</div>
+</body>
+</html>

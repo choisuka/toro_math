@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>방정식 활용 하브루타 | 아르모니아 수학왕국</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .card { width: 100%; max-width: 580px; }
+
+  .card-header {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px 16px 0 0;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-header::after {
+    content: '🕍';
+    position: absolute;
+    right: 1.25rem; top: 1rem;
+    font-size: 2.5rem;
+    opacity: 0.12;
+  }
+
+  .badge-row { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .badge-stage { background: rgba(253,230,138,0.15); color: #fde68a; border: 1px solid rgba(253,230,138,0.3); }
+  .badge-type  { background: rgba(216,180,254,0.15); color: #d8b4fe; border: 1px solid rgba(216,180,254,0.3); }
+
+  .card-title { font-size: 1.35rem; font-weight: 900; color: #f8fafc; line-height: 1.4; margin-bottom: 0.4rem; }
+  .card-subtitle { font-size: 0.82rem; color: #94a3b8; }
+
+  .card-body {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-top: none;
+    padding: 1.5rem;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-title .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* 발문 카드 */
+  .q-card {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .q-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #d8b4fe;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .q-text {
+    font-size: 0.92rem;
+    color: #e2e8f0;
+    line-height: 1.75;
+  }
+  .q-hint {
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: #64748b;
+    font-style: italic;
+  }
+  .math { font-family: 'JetBrains Mono', monospace; color: #fde68a; background: rgba(253,230,138,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
+
+  hr.section-hr { border: none; border-top: 1px dashed #334155; margin: 1.25rem 0; }
+
+  /* 캐릭터 소개 */
+  .char-row { display: flex; gap: 10px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .char-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 999px;
+    padding: 5px 14px 5px 8px;
+    font-size: 0.8rem;
+  }
+  .char-avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 900;
+    flex-shrink: 0;
+  }
+  .av-mj { background: rgba(251,113,133,0.2); color: #fb7185; border: 1px solid rgba(251,113,133,0.4); }
+  .av-sy { background: rgba(125,211,252,0.2); color: #7dd3fc; border: 1px solid rgba(125,211,252,0.4); }
+  .av-jh { background: rgba(134,239,172,0.2); color: #86efac; border: 1px solid rgba(134,239,172,0.4); }
+  .char-name { font-weight: 700; }
+  .char-tag { color: #64748b; font-size: 0.72rem; }
+
+  /* 토론 details */
+  details { margin-bottom: 0.75rem; }
+  summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.9rem 1rem;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #94a3b8;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { color: #e2e8f0; border-color: #475569; }
+  details[open] summary { color: #d8b4fe; border-color: rgba(216,180,254,0.4); border-radius: 10px 10px 0 0; }
+  .summary-arrow { margin-left: auto; font-size: 0.7rem; transition: transform 0.25s; }
+  details[open] .summary-arrow { transform: rotate(180deg); }
+
+  /* 대화 버블 */
+  .debate-box {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .bubble-wrap {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .bubble-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.72rem; font-weight: 900;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .bubble-content { flex: 1; }
+  .bubble-name { font-size: 0.72rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .bubble-text {
+    font-size: 0.86rem;
+    line-height: 1.75;
+    background: #1e293b;
+    border-radius: 0 10px 10px 10px;
+    padding: 0.6rem 0.9rem;
+    color: #cbd5e1;
+    border: 1px solid #334155;
+  }
+  .bubble-mj .bubble-avatar { background: rgba(251,113,133,0.15); color: #fb7185; border: 1px solid rgba(251,113,133,0.3); }
+  .bubble-mj .bubble-name { color: #fb7185; }
+  .bubble-mj .bubble-text { border-left: 2px solid rgba(251,113,133,0.4); }
+  .bubble-sy .bubble-avatar { background: rgba(125,211,252,0.15); color: #7dd3fc; border: 1px solid rgba(125,211,252,0.3); }
+  .bubble-sy .bubble-name { color: #7dd3fc; }
+  .bubble-sy .bubble-text { border-left: 2px solid rgba(125,211,252,0.4); }
+  .bubble-jh .bubble-avatar { background: rgba(134,239,172,0.15); color: #86efac; border: 1px solid rgba(134,239,172,0.3); }
+  .bubble-jh .bubble-name { color: #86efac; }
+  .bubble-jh .bubble-text { border-left: 2px solid rgba(134,239,172,0.4); }
+
+  /* 전문가 관전평 */
+  .expert-section {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+  }
+  .expert-header {
+    padding: 0.75rem 1rem;
+    background: rgba(216,180,254,0.08);
+    border-bottom: 1px solid #334155;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #d8b4fe;
+    letter-spacing: 0.06em;
+  }
+  .expert-item {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid #1e293b;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .expert-item:last-child { border-bottom: none; }
+  .expert-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: #1e293b; border: 1px solid #334155;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; flex-shrink: 0;
+  }
+  .expert-body { flex: 1; }
+  .expert-role { font-size: 0.7rem; color: #64748b; margin-bottom: 0.25rem; }
+  .expert-comment { font-size: 0.82rem; color: #cbd5e1; line-height: 1.7; }
+  .star { color: #fde68a; font-size: 0.72rem; margin-left: 6px; }
+
+  /* 종합 총평 */
+  .summary-box {
+    background: rgba(253,230,138,0.05);
+    border: 1px solid rgba(253,230,138,0.2);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+  }
+  .summary-box .sum-title { font-size: 0.78rem; font-weight: 700; color: #fde68a; margin-bottom: 0.5rem; letter-spacing: 0.06em; }
+  .summary-box .sum-text { font-size: 0.84rem; color: #cbd5e1; line-height: 1.8; }
+
+  .card-footer {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-top: none;
+    border-radius: 0 0 16px 16px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo { font-size: 0.78rem; font-weight: 700; color: #475569; }
+  .footer-logo span { color: #fde68a; }
+  .footer-link { font-size: 0.75rem; color: #475569; text-decoration: none; transition: color 0.2s; }
+  .footer-link:hover { color: #7dd3fc; }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 헤더 -->
+  <div class="card-header">
+    <div class="badge-row">
+      <span class="badge badge-stage">2단계 · 방정식</span>
+      <span class="badge badge-type">하브루타 토론</span>
+    </div>
+    <div class="card-title">세 가지 질문으로<br>방정식을 해부하다</div>
+    <div class="card-subtitle">미지수 선택 · 계수 변화 · 해의 존재 조건</div>
+  </div>
+
+  <!-- 발문 3선 -->
+  <div class="card-body">
+    <div class="section-title">
+      <span class="dot" style="background:#d8b4fe;"></span>
+      <span style="color:#d8b4fe;">심화 발문 3선</span>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label">Q1 · 미지수 선택의 효율성</div>
+      <div class="q-text"><span class="math">x</span>를 "청소년 평일 요금" 대신 "어른 평일 요금"으로 설정하면 방정식은 어떻게 달라질까? 미지수 선택이 풀이의 복잡도에 실제로 영향을 주는가?</div>
+      <div class="q-hint">힌트: 어른을 x로 잡으면 청소년은 어떻게 표현될까?</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label">Q2 · 구조 변형 — 유리수 계수</div>
+      <div class="q-text">주말 할증이 "어른은 평일의 1.5배, 청소년은 평일의 1.2배"로 바뀐다면? 정수 계수가 유리수 계수로 바뀔 때 전략을 어떻게 수정해야 하는가?</div>
+      <div class="q-hint">힌트: 어른 주말 = 1.5 × 2x = 3x. 계산 후 x값이 정수가 되는가?</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label">Q3 · 해의 존재 조건 — 연립방정식 선행 사고</div>
+      <div class="q-text">이 문제는 "미지수 1개, 방정식 1개" 구조다. 만약 어른·청소년 사이의 배수 관계가 주어지지 않았다면 풀 수 있는가? 해가 유일하게 결정될 조건은 무엇인가?</div>
+      <div class="q-hint">힌트: 미지수 2개 → 방정식이 몇 개 필요할까?</div>
+    </div>
+
+    <hr class="section-hr">
+
+    <!-- 캐릭터 소개 -->
+    <div class="section-title">
+      <span class="dot" style="background:#d8b4fe;"></span>
+      <span style="color:#d8b4fe;">토론 참여자</span>
+    </div>
+    <div class="char-row">
+      <div class="char-chip">
+        <div class="char-avatar av-mj">민준</div>
+        <span><span class="char-name" style="color:#fb7185;">민준</span> <span class="char-tag">직관파 🔥</span></span>
+      </div>
+      <div class="char-chip">
+        <div class="char-avatar av-sy">서연</div>
+        <span><span class="char-name" style="color:#7dd3fc;">서연</span> <span class="char-tag">논리파 🔬</span></span>
+      </div>
+      <div class="char-chip">
+        <div class="char-avatar av-jh">지호</div>
+        <span><span class="char-name" style="color:#86efac;">지호</span> <span class="char-tag">신중파 🐢</span></span>
+      </div>
+    </div>
+
+    <!-- Q1 토론 -->
+    <details>
+      <summary>
+        <span style="color:#d8b4fe; font-size:0.8rem;">Q1</span>
+        미지수를 뭘로 잡느냐가 정말 중요한가?
+        <span class="summary-arrow">▼</span>
+      </summary>
+      <div class="debate-box">
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">솔직히 x를 어른으로 잡든 청소년으로 잡든 답은 똑같이 나오잖아. 그냥 아무거나 잡으면 되는 거 아니야?</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">결과가 같다고 과정도 같은 건 아니지. 어른을 x로 잡으면 청소년은 <span class="math">x/2</span>가 돼. 방정식 세우는 순간 분수 계수가 바로 튀어나와.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">맞아, 나도 어른을 x로 잡았다가 <span class="math">x/2</span> 나와서 혼란스러웠어. 결국 양변에 2 곱해서 정리하긴 했는데 — 청소년을 x로 잡는 게 처음부터 훨씬 깔끔하더라고.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">그럼 미지수는 '가장 기본 단위'가 되는 걸 잡아야 한다는 거네?</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">정확해. 다른 수량들이 전부 그 값을 기준으로 표현될 수 있는 것 — 그게 제일 좋은 미지수 선택이야. 이 문제에선 어른이 청소년에 종속되어 있으니 청소년이 '기준값'이지.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">근데 그 '기본 단위'가 항상 명확하게 보이는 건 아니잖아. 문제가 복잡해지면 관계도를 먼저 그려보는 게 나을 것 같아.</div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Q2 토론 -->
+    <details>
+      <summary>
+        <span style="color:#d8b4fe; font-size:0.8rem;">Q2</span>
+        계수가 분수로 바뀌면 전략도 바뀌어야 하는가?
+        <span class="summary-arrow">▼</span>
+      </summary>
+      <div class="debate-box">
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">1.5배, 1.2배로 바뀌면 어른 주말 = <span class="math">1.5 × 2x = 3x</span>, 청소년 주말 = <span class="math">1.2x</span>. 숫자만 바꾸면 되는 거 아니야?</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">원래 문제는 '평일보다 얼마 더' — 덧셈 관계. Q2는 '평일의 몇 배' — 곱셈 관계. 식의 형태가 완전히 달라져.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">방정식 세우면 <span class="math">3(3x) + 5(1.2x) = 56,000</span>, 즉 <span class="math">15x = 56,000</span>... x = 3,733.3̄?? 소수가 나오는데 맞아?</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">이상하다. 입장료가 딱 떨어지지 않는다고? 문제가 잘못된 건가?</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">문제가 잘못된 게 아니라 '조건을 임의로 바꿨기 때문에' 정수 해가 보장되지 않는 거야. 원래 문제는 해가 정수가 되도록 설계된 거고. 이게 바로 문제 설계의 핵심이야.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">그러면 출제자는 계수를 막 집어넣는 게 아니라, 해가 자연수가 되도록 역으로 계산해서 조건을 설정하는 거네. 답부터 정하고 문제를 만드는 셈이잖아.</div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Q3 토론 -->
+    <details>
+      <summary>
+        <span style="color:#d8b4fe; font-size:0.8rem;">Q3</span>
+        배수 관계가 없으면 정말 못 푸는가?
+        <span class="summary-arrow">▼</span>
+      </summary>
+      <div class="debate-box">
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">배수 관계가 없으면 미지수가 2개잖아. 조건이 하나니까 그냥 못 푸는 거 아니야?</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">맞아. 어른 주말을 a, 청소년 주말을 b로 놓으면 <span class="math">3a + 5b = 56,000</span> — 이 식 하나만으로는 (a, b)의 조합이 무한히 존재해.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">그럼 조건이 하나 더 있어야 하는 거잖아. 방정식도 2개가 필요하고. 그게 중2에서 배우는 연립방정식 아니야?</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">아! 그러면 '어른은 청소년의 2배'라는 조건이 사실상 두 번째 방정식 역할을 한 거네. <span class="math">a = 2b</span>라는 관계식이!</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">완벽해. 미지수 n개를 유일하게 결정하려면 독립적인 조건이 n개 필요해. 이 문제는 조건 2개로 미지수 2개를 결정한 거고, 중1 방정식으로 푼 건 a=2b를 미리 대입해 미지수를 1개로 줄인 덕분이야.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">근데 조건이 2개여도 두 조건이 같은 말이면 미지수를 결정 못하는 경우도 있잖아. <span class="math">3a+5b=56,000</span>이랑 <span class="math">6a+10b=112,000</span>은 완전히 같은 식이니까.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">그게 바로 '독립적인' 조건이어야 한다는 말의 의미야. 두 조건이 종속 관계면 사실상 조건 1개랑 같으니까. 중3 가면 이걸 연립방정식의 해의 개수 분류로 정식으로 배우게 돼.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">와... 이 문제 하나에 중2, 중3 내용이 다 숨어 있었네. 방정식이 그냥 계산 문제가 아니었구나.</div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <hr class="section-hr">
+
+    <!-- 전문가 관전평 -->
+    <div class="section-title">
+      <span class="dot" style="background:#fde68a;"></span>
+      <span style="color:#fde68a;">전문가 관전평</span>
+    </div>
+
+    <div class="expert-section">
+      <div class="expert-header">🎓 수학교육 전문가 AI 패널 · 종합 평가</div>
+
+      <div class="expert-item">
+        <div class="expert-icon">🧑‍🏫</div>
+        <div class="expert-body">
+          <div class="expert-role">수석 강사 · 콘텐츠 디렉터</div>
+          <div class="expert-comment">Q1에서 민준의 '아무거나 잡으면 된다'가 '기본 단위를 잡아야 한다'로 전환된 장면이 하이라이트. 지호가 제안한 '관계도 선작업'은 현장에서 즉시 활용 가능한 메타 전략이다.<span class="star">★★★★★</span></div>
+        </div>
+      </div>
+
+      <div class="expert-item">
+        <div class="expert-icon">👩‍💻</div>
+        <div class="expert-body">
+          <div class="expert-role">커리큘럼 설계 전문가</div>
+          <div class="expert-comment">Q2에서 지호가 비정수 해를 만났을 때 '문제가 잘못됐나?'로 반응하지 않고 '조건이 바뀌었기 때문'이라는 원인으로 수렴한 건 수학적 성숙도의 증거다. 유리수 계수 정수화 테크닉을 실제 시연하지 않은 점은 아쉬운 공백.<span class="star">★★★★☆</span></div>
+        </div>
+      </div>
+
+      <div class="expert-item">
+        <div class="expert-icon">👨‍🔬</div>
+        <div class="expert-body">
+          <div class="expert-role">논리·증명 교육 전문가</div>
+          <div class="expert-comment">Q3에서 서연이 '독립적인 조건'의 의미를 자연스럽게 짚어낸 것, 지호가 종속 방정식의 반례를 스스로 구성한 것은 중학생 수준을 넘어서는 사고다. 강사 개입 포인트로 활용 권장.<span class="star">★★★★★</span></div>
+        </div>
+      </div>
+
+      <div class="expert-item">
+        <div class="expert-icon">👨‍💼</div>
+        <div class="expert-body">
+          <div class="expert-role">교육심리 전문가</div>
+          <div class="expert-comment">신중파 지호의 역할이 돋보인다. 틀릴까봐 참여를 못 하는 학생에게 '지호처럼 예외 먼저 찾기'를 명시적 역할로 부여하는 수업 전략으로 직접 활용 가능하다.<span class="star">★★★★★</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-box">
+      <div class="sum-title">📌 종합 총평</div>
+      <div class="sum-text">이 토론은 <strong style="color:#fde68a;">미지수 선택의 합리성 → 계수 변화에 따른 해의 성질 → 해의 존재·유일성 조건</strong>이라는 수직적 사고 확장의 3단 로켓을 성공적으로 점화했다. 중1 방정식 단원에서 이 세 관점을 하나의 문항으로 연결한 토론 설계는 심화반뿐 아니라 개념을 단단히 다지고 싶은 모든 학생에게 유효하다.</div>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <div class="card-footer">
+    <div class="footer-logo">⚡ <span>아르모니아</span> 수학왕국</div>
+    <a class="footer-link" href="https://choisuka.github.io/toro_math/" target="_blank">choisuka.github.io/toro_math →</a>
+  </div>
+
+</div>
+</body>
+</html>

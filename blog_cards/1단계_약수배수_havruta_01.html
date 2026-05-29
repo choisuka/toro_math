@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>약수와 배수 하브루타 | 아르모니아 수학왕국</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .card { width: 100%; max-width: 580px; }
+
+  .card-header {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px 16px 0 0;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-header::after {
+    content: '🕍';
+    position: absolute;
+    right: 1.25rem; top: 1rem;
+    font-size: 2.5rem; opacity: 0.12;
+  }
+
+  .badge-row { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .badge-stage { background: rgba(125,211,252,0.15); color: #7dd3fc; border: 1px solid rgba(125,211,252,0.3); }
+  .badge-type  { background: rgba(216,180,254,0.15); color: #d8b4fe; border: 1px solid rgba(216,180,254,0.3); }
+
+  .card-title { font-size: 1.35rem; font-weight: 900; color: #f8fafc; line-height: 1.4; margin-bottom: 0.4rem; }
+  .card-subtitle { font-size: 0.82rem; color: #94a3b8; }
+
+  .card-body {
+    background: #1e293b; border: 1px solid #334155; border-top: none; padding: 1.5rem;
+  }
+
+  .section-title {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem;
+  }
+  .section-title .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .math { font-family: 'JetBrains Mono', monospace; color: #fde68a; background: rgba(253,230,138,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
+
+  .q-card {
+    background: #0f172a; border: 1px solid #334155; border-radius: 12px;
+    padding: 1rem 1.25rem; margin-bottom: 0.75rem;
+  }
+  .q-label { font-size: 0.72rem; font-weight: 700; color: #d8b4fe; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .q-text { font-size: 0.92rem; color: #e2e8f0; line-height: 1.75; }
+  .q-hint { margin-top: 0.5rem; font-size: 0.78rem; color: #64748b; font-style: italic; }
+
+  hr.section-hr { border: none; border-top: 1px dashed #334155; margin: 1.25rem 0; }
+
+  .char-row { display: flex; gap: 10px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .char-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: #0f172a; border: 1px solid #334155;
+    border-radius: 999px; padding: 5px 14px 5px 8px; font-size: 0.8rem;
+  }
+  .char-avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 900; flex-shrink: 0;
+  }
+  .av-mj { background: rgba(251,113,133,0.2); color: #fb7185; border: 1px solid rgba(251,113,133,0.4); }
+  .av-sy { background: rgba(125,211,252,0.2); color: #7dd3fc; border: 1px solid rgba(125,211,252,0.4); }
+  .av-jh { background: rgba(134,239,172,0.2); color: #86efac; border: 1px solid rgba(134,239,172,0.4); }
+
+  details { margin-bottom: 0.75rem; }
+  summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; gap: 10px;
+    padding: 0.9rem 1rem;
+    background: #0f172a; border: 1px solid #334155; border-radius: 10px;
+    font-size: 0.85rem; font-weight: 700; color: #94a3b8;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { color: #e2e8f0; border-color: #475569; }
+  details[open] summary { color: #d8b4fe; border-color: rgba(216,180,254,0.4); border-radius: 10px 10px 0 0; }
+  .summary-arrow { margin-left: auto; font-size: 0.7rem; transition: transform 0.25s; }
+  details[open] .summary-arrow { transform: rotate(180deg); }
+
+  .debate-box {
+    background: #0f172a; border: 1px solid #334155;
+    border-top: none; border-radius: 0 0 10px 10px;
+    padding: 1.25rem 1rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .bubble-wrap { display: flex; gap: 10px; align-items: flex-start; }
+  .bubble-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.72rem; font-weight: 900; flex-shrink: 0; margin-top: 2px;
+  }
+  .bubble-content { flex: 1; }
+  .bubble-name { font-size: 0.72rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .bubble-text {
+    font-size: 0.86rem; line-height: 1.75;
+    background: #1e293b; border-radius: 0 10px 10px 10px;
+    padding: 0.6rem 0.9rem; color: #cbd5e1; border: 1px solid #334155;
+  }
+  .bubble-mj .bubble-avatar { background: rgba(251,113,133,0.15); color: #fb7185; border: 1px solid rgba(251,113,133,0.3); }
+  .bubble-mj .bubble-name { color: #fb7185; }
+  .bubble-mj .bubble-text { border-left: 2px solid rgba(251,113,133,0.4); }
+  .bubble-sy .bubble-avatar { background: rgba(125,211,252,0.15); color: #7dd3fc; border: 1px solid rgba(125,211,252,0.3); }
+  .bubble-sy .bubble-name { color: #7dd3fc; }
+  .bubble-sy .bubble-text { border-left: 2px solid rgba(125,211,252,0.4); }
+  .bubble-jh .bubble-avatar { background: rgba(134,239,172,0.15); color: #86efac; border: 1px solid rgba(134,239,172,0.3); }
+  .bubble-jh .bubble-name { color: #86efac; }
+  .bubble-jh .bubble-text { border-left: 2px solid rgba(134,239,172,0.4); }
+
+  .expert-section {
+    background: #0f172a; border: 1px solid #334155;
+    border-radius: 12px; overflow: hidden; margin-top: 0.5rem;
+  }
+  .expert-header {
+    padding: 0.75rem 1rem;
+    background: rgba(216,180,254,0.08); border-bottom: 1px solid #334155;
+    font-size: 0.8rem; font-weight: 700; color: #d8b4fe; letter-spacing: 0.06em;
+  }
+  .expert-item {
+    padding: 0.9rem 1rem; border-bottom: 1px solid #1e293b;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .expert-item:last-child { border-bottom: none; }
+  .expert-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: #1e293b; border: 1px solid #334155;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; flex-shrink: 0;
+  }
+  .expert-body { flex: 1; }
+  .expert-role { font-size: 0.7rem; color: #64748b; margin-bottom: 0.25rem; }
+  .expert-comment { font-size: 0.82rem; color: #cbd5e1; line-height: 1.7; }
+  .star { color: #fde68a; font-size: 0.72rem; margin-left: 6px; }
+
+  .summary-box {
+    background: rgba(125,211,252,0.05); border: 1px solid rgba(125,211,252,0.2);
+    border-radius: 12px; padding: 1rem 1.25rem; margin-top: 1rem;
+  }
+  .summary-box .sum-title { font-size: 0.78rem; font-weight: 700; color: #7dd3fc; margin-bottom: 0.5rem; letter-spacing: 0.06em; }
+  .summary-box .sum-text { font-size: 0.84rem; color: #cbd5e1; line-height: 1.8; }
+
+  .card-footer {
+    background: #0f172a; border: 1px solid #334155; border-top: none;
+    border-radius: 0 0 16px 16px; padding: 1rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo { font-size: 0.78rem; font-weight: 700; color: #475569; }
+  .footer-logo span { color: #7dd3fc; }
+  .footer-link { font-size: 0.75rem; color: #475569; text-decoration: none; transition: color 0.2s; }
+  .footer-link:hover { color: #86efac; }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- 헤더 -->
+  <div class="card-header">
+    <div class="badge-row">
+      <span class="badge badge-stage">1단계 · 약수와 배수</span>
+      <span class="badge badge-type">하브루타 토론</span>
+    </div>
+    <div class="card-title">조건을 '읽는' 것과<br>'보는' 것의 차이</div>
+    <div class="card-subtitle">조건 번역 · 교집합 논리 · 공식의 적용 한계</div>
+  </div>
+
+  <!-- 발문 3선 -->
+  <div class="card-body">
+    <div class="section-title">
+      <span class="dot" style="background:#d8b4fe;"></span>
+      <span style="color:#d8b4fe;">심화 발문 3선</span>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label">Q1 · 조건의 수학적 번역</div>
+      <div class="q-text">"<span class="math">gcd(B, C) = B</span>이다"와 "B는 C의 약수이다"는 동치인가? 이 두 표현이 왜 같은 말인지 설명할 수 있는가?</div>
+      <div class="q-hint">힌트: gcd(B,C) = B라면 B보다 큰 공약수가 존재할 수 있는가?</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label">Q2 · 후보 소거의 논리</div>
+      <div class="q-text">B의 후보를 좁힐 때, 왜 "12의 배수이면서 동시에 120의 약수"라는 두 조건의 교집합을 구해야 하는가? 한 조건만 써도 되지 않는가?</div>
+      <div class="q-hint">힌트: 조건이 늘어날수록 후보 집합은 어떻게 변하는가?</div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-label">Q3 · 공식의 적용 한계</div>
+      <div class="q-text"><span class="math">gcd(A,B) × lcm(A,B) = A × B</span> 공식이 이 문제에서 활용되었다. 이 공식은 세 수 A, B, C 전체에 대해서도 성립하는가?</div>
+      <div class="q-hint">힌트: A=2, B=3, C=6으로 직접 확인해보자.</div>
+    </div>
+
+    <hr class="section-hr">
+
+    <div class="section-title">
+      <span class="dot" style="background:#d8b4fe;"></span>
+      <span style="color:#d8b4fe;">토론 참여자</span>
+    </div>
+    <div class="char-row">
+      <div class="char-chip">
+        <div class="char-avatar av-mj">민준</div>
+        <span><span style="color:#fb7185; font-weight:700;">민준</span> <span style="color:#64748b; font-size:0.72rem;">직관파 🔥</span></span>
+      </div>
+      <div class="char-chip">
+        <div class="char-avatar av-sy">서연</div>
+        <span><span style="color:#7dd3fc; font-weight:700;">서연</span> <span style="color:#64748b; font-size:0.72rem;">논리파 🔬</span></span>
+      </div>
+      <div class="char-chip">
+        <div class="char-avatar av-jh">지호</div>
+        <span><span style="color:#86efac; font-weight:700;">지호</span> <span style="color:#64748b; font-size:0.72rem;">신중파 🐢</span></span>
+      </div>
+    </div>
+
+    <!-- Q1 토론 -->
+    <details>
+      <summary>
+        <span style="color:#d8b4fe; font-size:0.8rem;">Q1</span>
+        "최대공약수가 B"라는 게 무슨 뜻인가?
+        <span class="summary-arrow">▼</span>
+      </summary>
+      <div class="debate-box">
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">최대공약수가 B라는 건... B가 되게 크다는 거 아니야? 공약수 중에 제일 큰 게 B니까.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">방향이 틀렸어. 최대공약수가 B라는 건 B 자체가 두 수의 공약수라는 뜻이야. 즉 <span class="math">B | C</span>. B가 C를 나눈다는 거지.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">잠깐, 그게 정말 동치인지 확인해보자. <span class="math">gcd(B,C)=B</span>라면 B보다 큰 공약수는 없다는 뜻이잖아. B|C이면 그보다 큰 공약수가 존재할 수 없는 건 자동으로 성립해?</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">성립해. B|C이면 더 큰 공약수가 존재하려면 그게 B의 배수여야 하는데, B 자신보다 큰 B의 배수는 B를 나눌 수 없으니까. 따라서 <span class="math">gcd(B,C) = B ⟺ B | C</span>. 완전히 동치야.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">그러면 이 조건은 사실 'C는 B의 배수'랑 똑같은 말이네. 왜 그냥 그렇게 안 쓰고 최대공약수로 표현했을까?</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">그게 이 문제의 설계 의도야. 'C는 B의 배수'라고 바로 주면 너무 쉬워지거든. 최대공약수 표현으로 감싸서 학생이 직접 번역하게 만드는 거지 — 조건 독해력 테스트야.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">그럼 수학 문제에서 '조건을 읽는 능력'이 '계산 능력'만큼 중요하다는 거잖아. 조건 번역에서 막히면 아무리 계산을 잘해도 식 자체를 못 세우니까.</div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Q2 토론 -->
+    <details>
+      <summary>
+        <span style="color:#d8b4fe; font-size:0.8rem;">Q2</span>
+        왜 두 조건의 교집합을 구해야 하는가?
+        <span class="summary-arrow">▼</span>
+      </summary>
+      <div class="debate-box">
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">나는 그냥 12의 배수 — 12, 24, 36, 60, 72... 다 써봤어. 다 따져보면 되는 거 아니야?</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">그 방법도 되긴 하는데, B가 클수록 후보가 무한히 늘어나서 '어디서 멈추지?'가 불분명해져.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">그래서 두 번째 조건을 동시에 적용해야 해. B|120이니까 B는 '12의 배수'이면서 '120의 약수'. 두 조건의 교집합을 구하면 후보가 {12, 24, 60}으로 확 줄어들어.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">아 그러면 조건이 두 개일 때는 각각 따로 보는 게 아니라 교집합을 먼저 구하는 게 훨씬 효율적이네.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">조건이 많을수록 후보가 줄어드는 게 당연한 거잖아. 연립방정식에서 조건이 늘어날수록 해의 공간이 좁아지는 원리랑 연결되는 것 같아.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">집합 언어로 하면 — 조건①이 만드는 B의 집합을 S₁, 조건②가 만드는 집합을 S₂라 하면 실제 B는 <span class="math">S₁ ∩ S₂</span>에 속해야 해. 조건이 늘어날수록 교집합이 작아지고, 원소가 딱 하나 남으면 유일해가 결정되는 거지.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">그럼 문제 풀 때 조건이 많다고 겁낼 게 아니라, 오히려 조건이 많을수록 답이 더 쉽게 좁혀지니까 반길 일이었네?</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">이론적으론 그렇지. 단, 조건들이 서로 독립적일 때만. 조건이 많아도 다 같은 말이면 후보가 안 줄어드는 건 방정식 단원에서 배운 종속 방정식이랑 같은 개념이야.</div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Q3 토론 -->
+    <details>
+      <summary>
+        <span style="color:#d8b4fe; font-size:0.8rem;">Q3</span>
+        gcd×lcm=A×B 공식, 세 수에도 성립하나?
+        <span class="summary-arrow">▼</span>
+      </summary>
+      <div class="debate-box">
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text"><span class="math">A × B = gcd × lcm</span> 진짜 편한데. 36×60 = 12×180 = 2160. 딱 맞아. 세 수에도 되는 거 아니야? A×B×C = gcd×lcm 이런 식으로?</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">안 돼. 반례: <span class="math">A=2, B=3, C=6</span>이면 A×B×C=36. gcd(2,3,6)=1, lcm(2,3,6)=6. 곱하면 6 ≠ 36.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">그럼 왜 두 수일 때는 성립하고 세 수일 때는 안 돼? 이유가 있을 것 같은데.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">소인수분해로 설명하면 — 두 수에서 각 소인수의 지수에 대해 min(a,b) + max(a,b) = a+b가 항상 성립해. 근데 세 수면 min(a,b,c) + max(a,b,c) ≠ a+b+c인 경우가 생겨.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">잠깐, 예시로 보여줘.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-sy">
+          <div class="bubble-avatar">서연</div>
+          <div class="bubble-content">
+            <div class="bubble-name">서연 🔬</div>
+            <div class="bubble-text">소인수 2만 보자. <span class="math">A=4=2², B=2=2¹, C=8=2³</span>이면 지수가 2,1,3. min=1, max=3. 합은 4. 근데 a+b+c=2+1+3=6. 달라.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-jh">
+          <div class="bubble-avatar">지호</div>
+          <div class="bubble-content">
+            <div class="bubble-name">지호 🐢</div>
+            <div class="bubble-text">공식을 외우는 것과 공식이 '작동하는 조건'을 아는 건 완전히 다른 수준이야. 그 차이가 결국 심화 문제에서 갈리는 거고.</div>
+          </div>
+        </div>
+        <div class="bubble-wrap bubble-mj">
+          <div class="bubble-avatar">민준</div>
+          <div class="bubble-content">
+            <div class="bubble-name">민준 🔥</div>
+            <div class="bubble-text">솔직히 이 공식 그냥 외웠는데... 왜 성립하는지 한 번도 생각 안 해봤어. 오늘 처음 이해한 것 같다.</div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <hr class="section-hr">
+
+    <!-- 전문가 관전평 -->
+    <div class="section-title">
+      <span class="dot" style="background:#fde68a;"></span>
+      <span style="color:#fde68a;">전문가 관전평</span>
+    </div>
+
+    <div class="expert-section">
+      <div class="expert-header">🎓 수학교육 전문가 AI 패널 · 종합 평가</div>
+
+      <div class="expert-item">
+        <div class="expert-icon">🧑‍🏫</div>
+        <div class="expert-body">
+          <div class="expert-role">수석 강사 · 콘텐츠 디렉터</div>
+          <div class="expert-comment">Q1에서 민준이 '최대공약수가 B라는 건 B가 크다는 것'이라고 한 첫 반응은 실제 교실에서 가장 빈번한 오개념의 정확한 재현이다. 이 장면 하나를 수업 도입부 발문으로 사용할 것을 적극 권장한다.<span class="star">★★★★★</span></div>
+        </div>
+      </div>
+
+      <div class="expert-item">
+        <div class="expert-icon">👩‍💻</div>
+        <div class="expert-body">
+          <div class="expert-role">커리큘럼 설계 전문가</div>
+          <div class="expert-comment">Q2에서 지호가 "조건이 많아도 다 같은 말이면 후보가 안 줄어든다"며 '종속 조건'의 개념을 자발적으로 떠올린 것은 중1 약수배수 → 중2 연립방정식 → 고등 선형대수로 이어지는 수직적 연결축을 학생 스스로 구성한 것이다.<span class="star">★★★★★</span></div>
+        </div>
+      </div>
+
+      <div class="expert-item">
+        <div class="expert-icon">👨‍🔬</div>
+        <div class="expert-body">
+          <div class="expert-role">논리·증명 교육 전문가</div>
+          <div class="expert-comment">Q3에서 서연이 소인수분해 지수 표현으로 공식의 작동 원리를 설명한 것은 중학생 수준을 상회한다. "세 수에서 성립하지 않는다"에서 멈추지 않고 '올바른 공식은 무엇인가?'로 나아가지 못한 점은 강사 개입 포인트로 활용하라.<span class="star">★★★★☆</span></div>
+        </div>
+      </div>
+
+      <div class="expert-item">
+        <div class="expert-icon">👩‍🎨</div>
+        <div class="expert-body">
+          <div class="expert-role">콘텐츠 스토리텔링 전문가</div>
+          <div class="expert-comment">학부모 칼럼 적합성 최고 등급. 민준의 마지막 발화 "공식을 외웠는데 왜 성립하는지 한 번도 생각 안 해봤어"는 학부모가 자녀에게 집에서 던질 수 있는 완벽한 대화 소재다. 칼럼 말미 콜투액션 추가 권장.<span class="star">★★★★★</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-box">
+      <div class="sum-title">📌 종합 총평</div>
+      <div class="sum-text">이 문항은 표면적으로는 약수·배수 계산 문제처럼 보이지만, 실제로는 <strong style="color:#7dd3fc;">조건의 수학적 번역 → 교집합을 통한 후보 소거 → 공식의 적용 범위 인식</strong>이라는 세 겹의 사고 훈련을 동시에 수행한다. 학부모에게는 "암기와 이해의 차이"를, 학생에게는 "조건을 읽는 능력이 계산 능력보다 먼저"라는 메시지를 전달하는 데 최적화된 문항이다.</div>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <div class="card-footer">
+    <div class="footer-logo">⚡ <span>아르모니아</span> 수학왕국</div>
+    <a class="footer-link" href="https://choisuka.github.io/toro_math/" target="_blank">choisuka.github.io/toro_math →</a>
+  </div>
+
+</div>
+</body>
+</html>
