@@ -1497,6 +1497,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
   <div id="quiz-inner" style="width:100%;max-width:580px"></div>
   <div id="feedback-area" class="feedback"></div>
   <div style="display:flex;gap:10px;margin-top:10px;width:100%;max-width:580px">
+    <button class="btn btn-sub" id="btn-prev" onclick="prevQ()" style="flex:1">← 이전</button>
     <button class="btn btn-sub" id="btn-skip" onclick="skipQ()" style="flex:1">건너뛰기</button>
     <button class="btn btn-sub" id="btn-next" onclick="nextQ()" style="flex:1;display:none">다음 →</button>
     <button class="btn btn-sub" id="btn-dok" onclick="showDok()" style="display:none">💡 사고력</button>
@@ -12761,6 +12762,16 @@ function nextQ(){
   ST.cur++;
   if(ST.cur>=ST.qs.length){ showResult(); return; }
   renderQ();
+}
+
+function prevQ(){
+  if(ST.cur<=0) return;
+  ST.cur--;
+  ST.score=Math.max(0,ST.score-1);
+  ST.answered=false;
+  renderQ();
+  const p=document.getElementById('btn-prev');
+  if(p) p.style.opacity=ST.cur===0?'.35':'1';
 }
 
 
