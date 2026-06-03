@@ -12569,6 +12569,16 @@ function checkEqFinal(){
   document.getElementById('btn-skip').style.display='none';
 }
 
+function makeStepChoices(ans){
+  const n=Number(ans);
+  const raw=isNaN(n)?[ans]:
+    [String(n+1),String(n-1>0?n-1:n+2),String(Math.round(n*2)),String(n+3)];
+  const choices=[ans];
+  raw.filter(v=>v!==ans&&Number(v)>0).forEach(v=>{if(choices.length<4)choices.push(v);});
+  while(choices.length<4) choices.push(String(Number(choices[choices.length-1])+1));
+  return shuffle([...choices]);
+}
+
 function renderQSteps(){
   const q=ST.qs[ST.cur];
   let h='';
@@ -12583,21 +12593,32 @@ function renderQSteps(){
     if(done!==null){
       h+=`<div style="font-size:.9rem;color:${done?'var(--green)':'var(--red)'}">${done?'정답!':'틀렸어요.'} 정답: <b>${s.ans}${s.unit}</b></div>`;
     } else if(isCurrent){
-      h+=`<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <input id="q-step-input" type="number" class="num-input" style="width:90px" placeholder="?" onkeydown="if(event.key==='Enter')checkQStep()">
-        <span style="color:var(--gray);font-size:.9rem">${s.unit}</span>
-        <button class="btn btn-main" onclick="checkQStep()" style="padding:8px 16px;font-size:.9rem">확인</button>
-        <button class="btn btn-sub" onclick="showQHint()" style="padding:8px 12px;font-size:.85rem">💡 힌트</button>
-      </div>`;
+      const ch=makeStepChoices(s.ans);
+      h+=`<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">
+        ${ch.map(c=>`<button class="choice-btn" onclick="checkQStepChoice('${c}')" style="min-width:60px;padding:8px 14px;font-size:1rem">${c}${s.unit}</button>`).join('')}
+      </div>
+      <div style="margin-top:6px"><button class="btn btn-sub" onclick="showQHint()" style="padding:6px 12px;font-size:.82rem">💡 힌트</button></div>`;
     } else {
       h+=`<div style="color:#334;font-size:.82rem">이전 단계를 먼저 완료해요</div>`;
     }
     h+='</div>';
   });
   document.getElementById('q-steps-wrap').innerHTML=h;
-  setTimeout(()=>document.getElementById('q-step-input')?.focus(),80);
   const qc=ST.qs[ST.cur];
   if(qc.type==='frac_add'||qc.type==='frac_sub') setTimeout(()=>updateFracVisual(qc),10);
+}
+
+function checkQStepChoice(val){
+  const q=ST.qs[ST.cur];
+  const s=q.qsteps[qStep];
+  const correct=val===s.ans;
+  qStepDone[qStep]=correct;
+  if(!correct){
+    setTimeout(()=>{ qStep++; advanceQStep(); },700);
+  } else {
+    qStep++; setTimeout(()=>advanceQStep(),300);
+  }
+  renderQSteps();
 }
 
 function showQHint(){
