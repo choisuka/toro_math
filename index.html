@@ -11581,8 +11581,33 @@ function genFmDivisorConcept(){
   return {type:'fm',subtype:'div_concept',story:q.q,data:{},answer:q.ans,choices:shuffle([...q.choices])};
 }
 
+function genFmFinnishScenario(){
+  const qs=[
+    { story:'🇫🇮 A 알약은 6시간마다, B 알약은 9시간마다 먹어요. 월요일 오전 9시부터 시작하면 수요일이 되기 전까지 두 알약을 동시에 먹는 횟수는?',
+      ans:'3번', exp:'최소공배수(6,9)=18시간 → 18시간마다 동시 복용<br>0h(월9시) → 18h(화3시) → 36h(화21시) → 54h는 수요일 이후 제외<br><b style="color:var(--yellow)">총 3번</b>',
+      choices:['2번','3번','4번','5번'] },
+    { story:'🇫🇮 셔틀버스는 15분마다, 지하철은 12분마다 와요. 오후 3시 18분에 동시 도착했다면 다음 동시 도착은?',
+      ans:'오후 4시 18분', exp:'최소공배수(15,12)=60분<br>3시 18분 + 60분 = <b style="color:var(--yellow)">오후 4시 18분</b>',
+      choices:['오후 3시 48분','오후 4시 18분','오후 4시 30분','오후 5시'] },
+    { story:'🇫🇮 가로등 A는 20초마다, B는 30초마다 반복해요. 동시에 켜지기 시작하면 다시 동시에 켜지는 데 걸리는 시간은?',
+      ans:'1분', exp:'A 주기 20초, B 주기 30초<br>최소공배수(20,30)=60초 = <b style="color:var(--yellow)">1분</b>',
+      choices:['30초','45초','1분','2분'] },
+    { story:'🇫🇮 준표는 8일마다 도서관, 민지는 12일마다 가요. 오늘 둘 다 갔다면 다음에 함께 가는 날은 며칠 후?',
+      ans:'24일', exp:'최소공배수(8,12)=<b style="color:var(--yellow)">24일</b><br>8의 배수: 8,16,<b style="color:var(--yellow)">24</b> / 12의 배수: 12,<b style="color:var(--yellow)">24</b>',
+      choices:['12일','18일','24일','48일'] },
+    { story:'🇫🇮 사과 24개와 귤 36개를 친구들에게 남김없이 같은 수로 나눌 때 최대 몇 명?',
+      ans:'12명', exp:'최대공약수(24,36)=12<br>24÷12=2개, 36÷12=3개씩 → <b style="color:var(--yellow)">12명</b>',
+      choices:['6명','9명','12명','18명'] },
+    { story:'🇫🇮 리본 30cm와 45cm를 남김없이 같은 길이로 자를 때 가장 긴 조각의 길이는?',
+      ans:'15cm', exp:'최대공약수(30,45)=15<br>30÷15=2조각, 45÷15=3조각 → <b style="color:var(--yellow)">15cm</b>',
+      choices:['5cm','10cm','15cm','20cm'] },
+  ];
+  const q=rnd(qs);
+  return {type:'fm',subtype:'fi_scenario',story:q.story,data:{exp:q.exp},answer:q.ans,choices:shuffle([...q.choices])};
+}
+
 function genQsFm(){
-  const fns=[genFmGCDBasic,genFmGCDConcept,genFmLCMBasic,genFmDivisorConcept,genFmGCDWord,genFmLCMWord];
+  const fns=[genFmGCDBasic,genFmGCDConcept,genFmLCMBasic,genFmDivisorConcept,genFmGCDWord,genFmLCMWord,genFmFinnishScenario];
   const qs=fns.map(f=>f());
   const extra=Array.from({length:5},()=>rnd(fns)());
   return shuffle([...qs,...extra]).slice(0,10);
@@ -12279,7 +12304,7 @@ function buildQCExplain(q){
   const B='color:#7dd3fc';
   let exp='';
 
-  if(subtype==='gcd_basic'){
+  if(subtype==='gcd'||subtype==='gcd_basic'){
     const {a,b,g}=data;
     const fa=primeFactorize(a), fb=primeFactorize(b);
     const primes=[...new Set([...Object.keys(fa),...Object.keys(fb)])].map(Number).sort((x,y)=>x-y);
@@ -12361,6 +12386,8 @@ function buildQCExplain(q){
       ${parts} = ${vals} = <b style="${Y}">${cnt}개</b><br><br>
       <span style="color:#a0aec0;font-size:.8rem">약수 하나 = 소인수마다 지수를 하나씩 고르는 것. 경우의 수를 모두 곱하면 약수의 총 개수!</span>`;
 
+  } else if(subtype==='fi_scenario'){
+    exp=data.exp||`정답: <b style="${Y}">${answer}</b>`;
   } else if(subtype==='gcd_concept'){
     exp=`<b style="${Y}">${answer}</b><br><br>
       <b style="${B}">서로소란?</b><br>
