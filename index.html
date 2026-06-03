@@ -11493,7 +11493,6 @@ function genFmGCDBasic(){
   const stories=[
     ()=>`🇸🇬 막대 모델: ${a}cm${gwa(a)} ${b}cm 막대를 남는 부분 없이 같은 길이로 자르려 해요. 가장 큰 조각 길이는?`,
     ()=>`🇫🇮 사과 ${a}개와 귤 ${b}개를 친구들에게 각각 같은 수씩 남김없이 나눌 때 최대 몇 명?`,
-    ()=>`✡️ ${a}${gwa(a)} ${b}의 최대공약수(GCD)는?`,
   ];
   const rawGcd=[String(g),String(g*2),String(g+3),String(g-1>0?g-1:g+4),String(a),String(b),String(a+b)];
   const choices=[...new Set(rawGcd.filter(v=>Number(v)>0))].slice(0,4);
@@ -11585,7 +11584,7 @@ function genFmDivisorConcept(){
 }
 
 function genQsFm(){
-  const fns=[genFmGCDConcept,genFmLCMBasic,genFmDivisorConcept,genFmGCDWord,genFmLCMWord];
+  const fns=[genFmGCDBasic,genFmGCDConcept,genFmLCMBasic,genFmDivisorConcept,genFmGCDWord,genFmLCMWord];
   const qs=fns.map(f=>f());
   const extra=Array.from({length:5},()=>rnd(fns)());
   return shuffle([...qs,...extra]).slice(0,10);
