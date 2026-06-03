@@ -12205,12 +12205,13 @@ function checkQChoice(val){
     b.disabled=true;
   });
 
-  // 결과
+  // 결과 + 풀이 자동 표시
+  const expHTML=buildQCExplain(q);
   document.getElementById('qc-result').innerHTML=
-    `<div style="font-size:.95rem;color:${ok?'var(--green)':'var(--red)'};margin-bottom:8px">
+    `<div style="font-size:.95rem;color:${ok?'var(--green)':'var(--red)'};margin-bottom:10px">
       ${ok?'✅ 정답!':'❌ 틀렸어요.'} 정답: <b style="color:var(--yellow)">${q.answer}</b>
     </div>
-    <button onclick="showQCExplain()" style="background:rgba(99,102,241,.2);border:1px solid #6366f1;color:#a5b4fc;border-radius:8px;padding:7px 16px;font-size:.85rem;cursor:pointer">📖 풀이 보기</button>`;
+    <div style="background:rgba(99,102,241,.1);border-left:3px solid #6366f1;padding:12px 14px;border-radius:8px;font-size:.88rem;line-height:1.8;color:#c0d0e0">${expHTML}</div>`;
 
   const fb=document.getElementById('feedback-area');
   fb.style.display='block';
@@ -12233,10 +12234,7 @@ function factorStr(n){
 }
 function superscript(e){ return ['','¹','²','³','⁴','⁵','⁶','⁷','⁸'][e]||'^'+e; }
 
-function showQCExplain(){
-  const q=ST.qs[ST.cur];
-  const el=document.getElementById('qc-explain');
-  el.style.display='block';
+function buildQCExplain(q){
   const {subtype,data,answer}=q;
   const Y='color:var(--yellow)';
   const G='color:#4ade80';
@@ -12279,26 +12277,18 @@ function showQCExplain(){
 
   } else if(subtype==='lcm'){
     const {a,b,L}=data;
-    const fa=primeFactorize(a), fb=primeFactorize(b);
-    const primes=[...new Set([...Object.keys(fa),...Object.keys(fb)])].map(Number).sort((x,y)=>x-y);
-    const G2=gcd(a,b);
-    const rows=primes.map(p=>{
-      const ea=fa[p]||0, eb=fb[p]||0, em=Math.max(ea,eb);
-      return `<tr><td style="padding:3px 8px;color:#a0aec0">${p}</td>
-        <td style="padding:3px 8px;color:#c0d0e0">${ea>0?`${p}${superscript(ea)}`:'-'}</td>
-        <td style="padding:3px 8px;color:#c0d0e0">${eb>0?`${p}${superscript(eb)}`:'-'}</td>
-        <td style="padding:3px 8px"><b style="${G}">${p}${superscript(em)}</b></td></tr>`;
-    }).join('');
-    exp=`<b style="${B}">① 소인수분해</b><br>
-      ${a} = <b>${factorStr(a)||a}</b><br>
-      ${b} = <b>${factorStr(b)||b}</b><br><br>
-      <b style="${B}">② 각 소인수의 큰 지수 선택</b><br>
-      <table style="border-collapse:collapse;font-size:.82rem;margin:6px 0">
-        <tr style="color:#888;font-size:.75rem"><td style="padding:3px 8px">소수</td><td style="padding:3px 8px">${a}</td><td style="padding:3px 8px">${b}</td><td style="padding:3px 8px">LCM(큰 쪽)</td></tr>
-        ${rows}
-      </table>
-      <b style="${B}">③ 검산</b><br>
-      ${a} × ${b} ÷ GCD(${G2}) = ${a*b} ÷ ${G2} = <b style="${Y}">${L}</b>`;
+    const ma=[], mb=[];
+    for(let i=a;i<=L;i+=a) ma.push(i);
+    for(let i=b;i<=L;i+=b) mb.push(i);
+    exp=`<b style="${B}">${a}의 배수</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:4px 0;font-size:.88rem">
+        ${ma.map(v=>v===L?`<b style="${Y}">${v}</b>`:v).join(', ')}
+      </div>
+      <b style="${B}">${b}의 배수</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:4px 0;font-size:.88rem">
+        ${mb.map(v=>v===L?`<b style="${Y}">${v}</b>`:v).join(', ')}
+      </div>
+      처음 만나는 수 → LCM(${a}, ${b}) = <b style="${Y}">${L}</b>`;
   } else if(subtype==='lcm_word'){
     const {a,b,L}=data;
     // 배수 나열 방식 — 더 직관적
@@ -12336,7 +12326,7 @@ function showQCExplain(){
   } else {
     exp=`정답: <b style="${Y}">${answer}</b>`;
   }
-  el.innerHTML=exp;
+  return exp;
 }
 
 // ══════════════════════════════════════════════════
