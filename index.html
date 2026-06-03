@@ -11495,9 +11495,10 @@ function genFmGCDBasic(){
     ()=>`🇫🇮 사과 ${a}개와 귤 ${b}개를 친구들에게 각각 같은 수씩 남김없이 나눌 때 최대 몇 명?`,
     ()=>`✡️ ${a}${gwa(a)} ${b}의 최대공약수(GCD)는?`,
   ];
-  const choices=[String(g)];
-  [String(g*2),String(g+2<a?g+2:g-2>0?g-2:g+3),String(a),String(b)].filter(v=>!choices.includes(v)&&Number(v)>0).forEach(w=>choices.push(w));
-  return {type:'fm',subtype:'gcd',story:rnd(stories)(),data:{a,b,g},answer:String(g),choices:shuffle(choices.slice(0,4))};
+  const rawGcd=[String(g),String(g*2),String(g+3),String(g-1>0?g-1:g+4),String(a),String(b),String(a+b)];
+  const choices=[...new Set(rawGcd.filter(v=>Number(v)>0))].slice(0,4);
+  while(choices.length<4) choices.push(String(Number(choices[choices.length-1])+1));
+  return {type:'fm',subtype:'gcd',story:rnd(stories)(),data:{a,b,g},answer:String(g),choices:shuffle(choices)};
 }
 function genFmLCMBasic(){
   const cases=[
@@ -11512,9 +11513,10 @@ function genFmLCMBasic(){
     ()=>`🇫🇮 버스는 ${a}분마다, 지하철은 ${b}분마다 와요. 방금 동시 출발했다면 다음 동시 출발까지 몇 분?`,
     ()=>`✡️ ${a}${gwa(a)} ${b}의 최소공배수(LCM)는?`,
   ];
-  const choices=[String(L)];
-  [String(a*b),String(L+a),String(L-b>0?L-b:L+b+1)].filter(v=>!choices.includes(v)&&Number(v)>0).forEach(w=>choices.push(w));
-  return {type:'fm',subtype:'lcm',story:rnd(stories)(),data:{a,b,L},answer:String(L),choices:shuffle(choices.slice(0,4))};
+  const rawLcm=[String(L),String(a*b),String(L+a),String(L+b),String(L-a>0?L-a:L+a+1)];
+  const choicesL=[...new Set(rawLcm.filter(v=>Number(v)>0))].slice(0,4);
+  while(choicesL.length<4) choicesL.push(String(Number(choicesL[choicesL.length-1])+1));
+  return {type:'fm',subtype:'lcm',story:rnd(stories)(),data:{a,b,L},answer:String(L),choices:shuffle(choicesL)};
 }
 function genFmDivisorCount(){
   const nums=[
