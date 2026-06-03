@@ -11510,7 +11510,6 @@ function genFmLCMBasic(){
   const stories=[
     ()=>`🇸🇬 막대 기차: ${a}cm 막대와 ${b}cm 막대를 이어 붙여요. 처음으로 길이가 같아지는 지점은?`,
     ()=>`🇫🇮 버스는 ${a}분마다, 지하철은 ${b}분마다 와요. 방금 동시 출발했다면 다음 동시 출발까지 몇 분?`,
-    ()=>`✡️ ${a}${gwa(a)} ${b}의 최소공배수(LCM)는?`,
   ];
   const rawLcm=[String(L),String(a*b),String(L+a),String(L+b),String(L-a>0?L-a:L+a+1)];
   const choicesL=[...new Set(rawLcm.filter(v=>Number(v)>0))].slice(0,4);
@@ -11526,7 +11525,6 @@ function genFmDivisorCount(){
   const {n,cnt}=rnd(nums);
   const stories=[
     ()=>`🇫🇮 ${n}개의 사탕을 남김없이 나눠 갖는 방법은 몇 가지? (1명, ${n}명 포함)`,
-    ()=>`✡️ ${n}의 약수는 모두 몇 개인가요?`,
     ()=>`🇸🇬 ${n}을 나누어 떨어지게 하는 자연수는 몇 개인가요?`,
   ];
   const choices=[String(cnt)];
@@ -11562,10 +11560,10 @@ function genFmLCMWord(){
 function genFmGCDConcept(){
   const qs=[
     {q:'🇫🇮 두 수의 최대공약수가 1일 때 두 수의 관계는?', ans:'두 수는 서로소다', choices:['한 수가 다른 수의 약수다','두 수는 서로소다','두 수는 모두 소수다','두 수의 합이 소수다']},
-    {q:'✡️ 다음 중 서로소인 쌍은? (GCD = 1)', ans:'8과 15', choices:['6과 9','8과 15','4과 10','6과 15']},
-    {q:'🇸🇬 GCD(a, b) = 6일 때 a, b가 될 수 없는 쌍은?', ans:'9와 15', choices:['6과 12','12와 18','9와 15','18과 24']},
+    {q:'✡️ 다음 중 서로소인 쌍은? (최대공약수 = 1)', ans:'8과 15', choices:['6과 9','8과 15','4과 10','6과 15']},
+    {q:'🇸🇬 두 수의 최대공약수가 6일 때 두 수가 될 수 없는 쌍은?', ans:'9와 15', choices:['6과 12','12와 18','9와 15','18과 24']},
     {q:'🇫🇮 두 소수의 최대공약수는 항상?', ans:'1', choices:['1','두 수 중 작은 것','두 수의 합','알 수 없다']},
-    {q:'✡️ GCD(12, 18) = 6이다. GCD(24, 36)은?', ans:'12', choices:['6','10','12','18']},
+    {q:'✡️ 12와 18의 최대공약수가 6이다. 24와 36의 최대공약수는?', ans:'12', choices:['6','10','12','18']},
   ];
   const q=rnd(qs);
   return {type:'fm',subtype:'gcd_concept',story:q.q,data:{},answer:q.ans,choices:shuffle([...q.choices])};
