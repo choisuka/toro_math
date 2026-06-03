@@ -12147,6 +12147,10 @@ function renderQ(){
     const eqHints={distance:'거리 = 속력×시간, 왕복 조심! ⚖️',salt:'농도 문제: 소금만 늘어요! 💪',work:'일의 양 전체=1이라는 빵! 🔥',profit:'정가 = 원가×(1+이익률), 할인 주의! 💰',savings:'역전 조건: 동생 저금액 > 형 저금액! 📈'};
     lines=[eqHints[q.subtype]||lines[0]];
   }
+  if(ST.topic==='fm'&&q.subtype){
+    const fmHints={gcd_basic:'공약수 중 가장 큰 것 = 최대공약수(GCD)! 🪵',gcd_word:'공통으로 나눌 수 있는 가장 큰 수를 찾아! 🪵',lcm:'공배수 중 가장 작은 것 = 최소공배수(LCM)! 🌳',lcm_word:'두 주기가 처음으로 같이 만나는 시간! 🌳',div_count:'약수 개수 = (지수+1) 곱하기! 🦕'};
+    lines=[fmHints[q.subtype]||lines[0]];
+  }
   const vis=renderVisual(q);
   const hardBadge=ST.hardMode?`<div style="text-align:center;margin-bottom:8px"><span style="background:rgba(231,76,60,.2);border:1px solid rgba(231,76,60,.4);color:#e74c3c;border-radius:20px;padding:3px 14px;font-size:.8rem;font-family:'Jua',sans-serif">🔥 심화 도전 중</span></div>`:'';
   const khanPanel=ST.topic==='equation'?khanExplainEq(q):'';
@@ -12239,7 +12243,7 @@ function showQCExplain(){
   const B='color:#7dd3fc';
   let exp='';
 
-  if(subtype==='gcd_basic'||subtype==='gcd_word'){
+  if(subtype==='gcd_basic'){
     const {a,b,g}=data;
     const fa=primeFactorize(a), fb=primeFactorize(b);
     const primes=[...new Set([...Object.keys(fa),...Object.keys(fb)])].map(Number).sort((x,y)=>x-y);
@@ -12261,8 +12265,19 @@ function showQCExplain(){
       </table>
       <b style="${B}">③ 결론</b><br>
       GCD(${a}, ${b}) = <b style="${Y}">${g}</b>`;
+  } else if(subtype==='gcd_word'){
+    const {a,b,g}=data;
+    // 공약수 나열 방식 — 더 직관적
+    const divisors=[];
+    for(let i=1;i<=Math.min(a,b);i++) if(a%i===0&&b%i===0) divisors.push(i);
+    exp=`<b style="${B}">① ${a}와 ${b}의 공약수 나열</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:6px 0;font-size:.88rem">
+        ${divisors.map(d=>d===g?`<b style="${Y}">${d}</b>`:d).join(', ')}
+      </div>
+      <b style="${B}">② 공약수 중 가장 큰 것 = 최대공약수</b><br>
+      GCD(${a}, ${b}) = <b style="${Y}">${g}</b>`;
 
-  } else if(subtype==='lcm'||subtype==='lcm_word'){
+  } else if(subtype==='lcm'){
     const {a,b,L}=data;
     const fa=primeFactorize(a), fb=primeFactorize(b);
     const primes=[...new Set([...Object.keys(fa),...Object.keys(fb)])].map(Number).sort((x,y)=>x-y);
@@ -12284,6 +12299,21 @@ function showQCExplain(){
       </table>
       <b style="${B}">③ 검산</b><br>
       ${a} × ${b} ÷ GCD(${G2}) = ${a*b} ÷ ${G2} = <b style="${Y}">${L}</b>`;
+  } else if(subtype==='lcm_word'){
+    const {a,b,L}=data;
+    // 배수 나열 방식 — 더 직관적
+    const ma=[], mb=[];
+    for(let i=a;i<=L;i+=a) ma.push(i);
+    for(let i=b;i<=L;i+=b) mb.push(i);
+    exp=`<b style="${B}">① ${a}의 배수</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:4px 0;font-size:.88rem">
+        ${ma.map(v=>v===L?`<b style="${Y}">${v}</b>`:v).join(', ')}
+      </div>
+      <b style="${B}">② ${b}의 배수</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:4px 0;font-size:.88rem">
+        ${mb.map(v=>v===L?`<b style="${Y}">${v}</b>`:v).join(', ')}
+      </div>
+      처음으로 만나는 수 = LCM(${a}, ${b}) = <b style="${Y}">${L}</b>`;
 
   } else if(subtype==='div_count'){
     const {n,cnt}=data;
