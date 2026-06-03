@@ -11560,8 +11560,32 @@ function genFmLCMWord(){
   [String(a*b),String(L+a),String(L-b>0?L-b:L+b+1)].filter(v=>!choices.includes(v)&&Number(v)>0).forEach(w=>choices.push(w));
   return {type:'fm',subtype:'lcm_word',story,data:{a,b,L},answer:String(L),choices:shuffle(choices.slice(0,4))};
 }
+function genFmGCDConcept(){
+  const qs=[
+    {q:'🇫🇮 두 수의 최대공약수가 1일 때 두 수의 관계는?', ans:'두 수는 서로소다', choices:['한 수가 다른 수의 약수다','두 수는 서로소다','두 수는 모두 소수다','두 수의 합이 소수다']},
+    {q:'✡️ 다음 중 서로소인 쌍은? (GCD = 1)', ans:'8과 15', choices:['6과 9','8과 15','4과 10','6과 15']},
+    {q:'🇸🇬 GCD(a, b) = 6일 때 a, b가 될 수 없는 쌍은?', ans:'9와 15', choices:['6과 12','12와 18','9와 15','18과 24']},
+    {q:'🇫🇮 두 소수의 최대공약수는 항상?', ans:'1', choices:['1','두 수 중 작은 것','두 수의 합','알 수 없다']},
+    {q:'✡️ GCD(12, 18) = 6이다. GCD(24, 36)은?', ans:'12', choices:['6','10','12','18']},
+  ];
+  const q=rnd(qs);
+  return {type:'fm',subtype:'gcd_concept',story:q.q,data:{},answer:q.ans,choices:shuffle([...q.choices])};
+}
+
+function genFmDivisorConcept(){
+  const qs=[
+    {q:'🇸🇬 약수의 개수가 홀수인 수는 어떤 수인가?', ans:'완전제곱수', choices:['소수','짝수','완전제곱수','3의 배수']},
+    {q:'🇫🇮 다음 중 약수의 개수가 홀수인 수는?', ans:'36', choices:['12','24','36','30']},
+    {q:'✡️ 약수가 정확히 3개인 수의 형태는?', ans:'소수²', choices:['소수×2','소수²','소수+1','소수³']},
+    {q:'🇸🇬 16의 약수 개수가 홀수인 이유는?', ans:'16이 완전제곱수(4²)이기 때문', choices:['16이 짝수이기 때문','16이 2의 배수이기 때문','16이 완전제곱수(4²)이기 때문','16이 합성수이기 때문']},
+    {q:'🇫🇮 (지수+1)의 곱이 홀수가 되려면?', ans:'모든 지수가 짝수여야 한다', choices:['지수가 모두 1이어야 한다','모든 지수가 짝수여야 한다','소인수가 하나여야 한다','지수의 합이 짝수여야 한다']},
+  ];
+  const q=rnd(qs);
+  return {type:'fm',subtype:'div_concept',story:q.q,data:{},answer:q.ans,choices:shuffle([...q.choices])};
+}
+
 function genQsFm(){
-  const fns=[genFmGCDBasic,genFmLCMBasic,genFmDivisorCount,genFmGCDWord,genFmLCMWord];
+  const fns=[genFmGCDConcept,genFmLCMBasic,genFmDivisorConcept,genFmGCDWord,genFmLCMWord];
   const qs=fns.map(f=>f());
   const extra=Array.from({length:5},()=>rnd(fns)());
   return shuffle([...qs,...extra]).slice(0,10);
@@ -12340,6 +12364,18 @@ function buildQCExplain(q){
       ${parts} = ${vals} = <b style="${Y}">${cnt}개</b><br><br>
       <span style="color:#a0aec0;font-size:.8rem">약수 하나 = 소인수마다 지수를 하나씩 고르는 것. 경우의 수를 모두 곱하면 약수의 총 개수!</span>`;
 
+  } else if(subtype==='gcd_concept'){
+    exp=`<b style="${Y}">${answer}</b><br><br>
+      <b style="${B}">서로소란?</b><br>
+      두 수의 최대공약수가 1인 관계. 공약수가 1밖에 없다.<br>
+      예: GCD(8, 15) = 1 → 서로소<br>
+      예: GCD(6, 9) = 3 → 서로소 아님`;
+  } else if(subtype==='div_concept'){
+    exp=`<b style="${Y}">${answer}</b><br><br>
+      <b style="${B}">왜 완전제곱수의 약수 개수는 홀수인가?</b><br>
+      약수는 보통 쌍(a × b = n)으로 나타남.<br>
+      완전제곱수는 √n × √n = n → 가운데 약수가 혼자.<br>
+      예: 36의 약수: 1,2,3,4,<b style="${Y}">6</b>,9,12,18,36 → 9개(홀수)`;
   } else {
     exp=`정답: <b style="${Y}">${answer}</b>`;
   }
