@@ -12163,7 +12163,78 @@ function renderQ(){
   <div id="q-steps-wrap"></div>
   <div id="q-hint-area"></div>`;
 
-  if(ST.topic==='equation') renderQReveal(); else renderQSteps();
+  if(ST.topic==='equation') renderQReveal();
+  else if(q.choices && q.choices.length) renderQChoices();
+  else renderQSteps();
+}
+
+function renderQChoices(){
+  const q=ST.qs[ST.cur];
+  const letters=['①','②','③','④'];
+  const h=`<div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+    ${q.choices.map((c,i)=>`
+      <button class="choice-btn" id="cb-${i}" onclick="checkQChoice('${c}')"
+        style="text-align:left;padding:12px 16px;font-size:1rem;border-radius:10px">
+        ${letters[i]} ${c}
+      </button>`).join('')}
+  </div>
+  <div id="qc-result" style="margin-top:12px"></div>
+  <div id="qc-explain" style="display:none;margin-top:10px;background:rgba(99,102,241,.1);border-left:3px solid #6366f1;padding:12px 14px;border-radius:8px;font-size:.9rem;line-height:1.7;color:#c0d0e0"></div>`;
+  document.getElementById('q-steps-wrap').innerHTML=h;
+}
+
+function checkQChoice(val){
+  if(ST.answered) return;
+  ST.answered=true;
+  const q=ST.qs[ST.cur];
+  const ok=val===q.answer;
+  if(ok) ST.score++;
+  const earn=ok?2:1;
+  ST.points+=earn; updatePoints();
+
+  // 선택한 버튼 색상
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    const bval=b.textContent.trim().replace(/^[①②③④]\s*/,'');
+    if(bval===val) b.style.borderColor=ok?'var(--green)':'var(--red)';
+    if(bval===q.answer && !ok) b.style.borderColor='var(--green)';
+    b.disabled=true;
+  });
+
+  // 결과
+  document.getElementById('qc-result').innerHTML=
+    `<div style="font-size:.95rem;color:${ok?'var(--green)':'var(--red)'};margin-bottom:8px">
+      ${ok?'✅ 정답!':'❌ 틀렸어요.'} 정답: <b style="color:var(--yellow)">${q.answer}</b>
+    </div>
+    <button onclick="showQCExplain()" style="background:rgba(99,102,241,.2);border:1px solid #6366f1;color:#a5b4fc;border-radius:8px;padding:7px 16px;font-size:.85rem;cursor:pointer">📖 풀이 보기</button>`;
+
+  const fb=document.getElementById('feedback-area');
+  fb.style.display='block';
+  fb.className=`feedback ${ok?'correct':'wrong'}`;
+  fb.innerHTML=`<div class="feedback-title">${ok?`🎉 정답! +${earn}P`:`👏 수고했어! +${earn}P`}</div>`;
+  document.getElementById('btn-next').style.display='';
+  document.getElementById('btn-skip').style.display='none';
+}
+
+function showQCExplain(){
+  const q=ST.qs[ST.cur];
+  const el=document.getElementById('qc-explain');
+  el.style.display='block';
+  // 유형별 풀이 생성
+  const {type,subtype,data,answer}=q;
+  let exp='';
+  if(subtype==='gcd_basic'||subtype==='gcd_word'){
+    const {a,b,g}=data;
+    exp=`GCD(${a}, ${b}) = <b style="color:var(--yellow)">${g}</b><br>소인수분해 후 공통 소인수의 작은 지수를 곱합니다.`;
+  } else if(subtype==='lcm'||subtype==='lcm_word'){
+    const {a,b,L}=data;
+    exp=`LCM(${a}, ${b}) = <b style="color:var(--yellow)">${L}</b><br>GCD를 이용: ${a} × ${b} ÷ GCD = ${L}`;
+  } else if(subtype==='div_count'){
+    const {n,cnt}=data;
+    exp=`${n}의 약수 개수 = <b style="color:var(--yellow)">${cnt}개</b><br>소인수분해 후 각 (지수+1)을 곱합니다.`;
+  } else {
+    exp=`정답: <b style="color:var(--yellow)">${answer}</b>`;
+  }
+  el.innerHTML=exp;
 }
 
 // ══════════════════════════════════════════════════
