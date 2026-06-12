@@ -1377,6 +1377,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     <div class="nav-bar" style="max-width:620px">
       <button class="nav-back" onclick="showScreen(CS.from)">← 뒤로</button>
       <h2 id="cv-title" style="flex:1;font-family:'Jua',sans-serif;font-size:.8rem;text-align:center;color:#d8b4fe;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></h2>
+      <button onclick="printCards()" title="전체 인쇄" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#aaa;border-radius:8px;padding:4px 9px;font-size:.8rem;cursor:pointer;margin-right:4px">🖨️</button>
       <div id="cv-num" style="font-family:'Jua',sans-serif;color:#aaa;font-size:.8rem;min-width:50px;text-align:right">1 / 1</div>
     </div>
     <div style="height:5px;background:rgba(255,255,255,.08);border-radius:3px;margin-bottom:14px">
@@ -13688,6 +13689,46 @@ function renderNotebook(){
     </div>`;
   }).join('');
   list.innerHTML=html;
+}
+
+function printCards() {
+  const cards = CS.cards;
+  const setTitle = document.getElementById('cv-title').textContent.replace(/\d+\s*\/\s*\d+/,'').trim();
+  const cardsHtml = cards.map((c,i) => {
+    const extra = c.ans || c.extra || '';
+    return `<div class="card">
+      <div class="card-meta">${i+1} / ${cards.length}</div>
+      <div class="card-tag">${c.tag}</div>
+      <div class="card-body">${c.body}</div>
+      ${extra?`<div class="card-extra"><div class="extra-lbl">💡 설명 / 풀이</div>${extra}</div>`:''}
+    </div>`;
+  }).join('');
+  const w = window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8">
+<title>토로의 수학왕국 — 인쇄</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a1a1a;padding:20px;font-size:13px;line-height:1.65}
+h1{text-align:center;font-size:15px;margin-bottom:18px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ccc;border-radius:8px;padding:13px 15px;margin-bottom:14px;break-inside:avoid;page-break-inside:avoid}
+.card-meta{font-size:10px;color:#999;margin-bottom:3px}
+.card-tag{font-size:12px;font-weight:700;color:#4c1d95;margin-bottom:7px}
+.card-body{font-size:12px;line-height:1.8}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:9px;padding-top:9px;border-top:1px dashed #bbb;font-size:11px;color:#333;line-height:1.7}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{font-size:10px;font-weight:700;color:#666!important;margin-bottom:5px}
+.print-btn{display:block;margin:0 auto 16px;padding:7px 22px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px}
+@media print{.print-btn{display:none}body{padding:8px}}
+</style></head><body>
+<button class="print-btn" onclick="window.print()">🖨️ 인쇄하기</button>
+<h1>🦕 토로의 수학왕국 · ${setTitle}</h1>
+${cardsHtml}
+</body></html>`);
+  w.document.close();
 }
 </script>
 </body>
