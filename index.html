@@ -8,6 +8,8 @@
 <meta http-equiv="Expires" content="0">
 <title>🏰 아르모니아 수학왕국</title>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script src="toro_ai.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -253,6 +255,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 .khan-self-no{background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.28);color:#f87171}
 .khan-self-no:hover{background:rgba(248,113,113,.22)}
 .khan-self-msg{text-align:center;font-size:.78rem;padding:7px 0;min-height:22px;transition:.3s}
+.katex{color:inherit!important;font-size:1em!important}
 </style>
 </head>
 <body>
@@ -415,6 +418,23 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
           <span class="tag" style="background:rgba(134,239,172,.15);color:#86efac;border:1px solid rgba(134,239,172,.35);margin-top:6px">초5 ★아르모니아</span>
         </div>
       </div>
+      <!-- 섹션 4.5 — 중3 -->
+      <div style="display:flex;align-items:center;gap:10px;margin:18px 0 10px">
+        <div style="font-size:1.5rem">🔭</div>
+        <div>
+          <div style="font-family:'Jua',sans-serif;color:#2dd4bf;font-size:.9rem">4.5단계: 수의 확장</div>
+          <div style="font-size:.68rem;color:#888">중3 · 제곱근과 실수</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
+        <div class="topic-card" onclick="startCards('sqrt-fi-guide','home')" style="border:1px solid rgba(45,212,191,.3);background:linear-gradient(155deg,#071e1c,#0d2e2a);grid-column:1/-1">
+          <div class="ico">√</div>
+          <div class="name" style="color:#2dd4bf">제곱근과 실수</div>
+          <div class="desc">🇫🇮 핀란드식 3차시 수업 · 탐색→발견→체계 완성</div>
+          <span class="tag" style="background:rgba(45,212,191,.15);color:#2dd4bf;border:1px solid rgba(45,212,191,.35);margin-top:6px">중3 ★아르모니아</span>
+        </div>
+      </div>
+
       <!-- 섹션 5 -->
       <div style="display:flex;align-items:center;gap:10px;margin:18px 0 10px">
         <div style="font-size:1.5rem">🏔️</div>
@@ -764,6 +784,12 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     </div>
     <button onclick="startCards('eq-guide','equation-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       📖 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
+    </button>
+    <button onclick="startCards('eq-havruta-lesson','equation-hub')" style="width:100%;margin-bottom:8px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      ✡️ 하브루타 수업안 <span style="font-size:.72rem;opacity:.7">(8장)</span> →
+    </button>
+    <button onclick="startCards('eq-zero-div','equation-hub')" style="width:100%;margin-bottom:8px;background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      ✡️ 0으로 나누면 안 되는 이유 <span style="font-size:.72rem;opacity:.7">(4장)</span> →
     </button>
     <button onclick="startCards('eq-basic','equation-hub')" style="width:100%;margin-bottom:8px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       📚 기본 문제 ★ <span style="font-size:.72rem;opacity:.7">(10문항)</span> →
@@ -1312,6 +1338,15 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     <button onclick="startCards('sqrt-guide','sqrt-hub')" style="width:100%;margin-bottom:8px;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);color:#2dd4bf;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🌱 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
     </button>
+    <button onclick="startCards('sqrt-fi-guide','sqrt-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🇫🇮 핀란드식 수업 (3차시) <span style="font-size:.72rem;opacity:.7">(10장)</span> →
+    </button>
+    <button onclick="startCards('sqrt-def-lesson','sqrt-hub')" style="width:100%;margin-bottom:8px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📐 제곱근 정의 수업 — SFH 6단계 <span style="font-size:.72rem;opacity:.7">(PDF판)</span> →
+    </button>
+    <button onclick="startCards('sqrt-fh-lesson','sqrt-hub')" style="width:100%;margin-bottom:8px;background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.25);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🇫🇮✡️ 제곱근 정의 수업 — 핀란드×하브루타 5단계 <span style="font-size:.72rem;opacity:.7">(원본판)</span> →
+    </button>
     <button onclick="startCards('sqrt-basic','sqrt-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.08);border:1px solid rgba(134,239,172,.25);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       📝 기본 문제 <span style="font-size:.72rem;opacity:.7">(9문항)</span> →
     </button>
@@ -1549,18 +1584,306 @@ const CARD_DATA = {
 
 /* ── 3개국 개념 가이드 (3장) ──────────────────── */
 'eq-guide': [
-  { tag:'🇫🇮 핀란드식 — 현실 연결', tagColor:'#86efac',
+  { tag:'🇫🇮 핀란드식 1/3 — 이미 쓰고 있었어', tagColor:'#86efac',
     bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
-    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.8">방정식을 <b style="color:#86efac">'시소'나 '양팔 저울'</b>로 이해합니다.<br><br>왼쪽과 오른쪽의 무게가 같아야 평형을 이룬다는 직관을 통해, 양변에 같은 수를 더하거나 빼도 등식이 성립함을 배웁니다.<br><br><span style="color:#fde68a">핵심 질문:</span> "이 시소의 양쪽을 동시에 평형으로 만드는 수는 무엇일까?"</div>`,
-    ans: null },
-  { tag:'🇸🇬 싱가포르식 — 막대 모델링', tagColor:'#7dd3fc',
-    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
-    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.8">모르는 수(x)를 <b style="color:#7dd3fc">'빈 칸의 막대기'</b>로 그립니다.<br><br>전체 길이는 알고 있는데 일부분을 모를 때, 그 빈 조각을 찾아가는 과정을 시각화합니다.<br><br><span style="color:#fde68a">핵심 질문:</span> "막대의 빈 부분이 얼마일 때 전체 길이가 맞아떨어질까?"</div>`,
-    ans: null },
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.95rem">"방정식이 처음이라고? 이미 쓰고 있었는걸."</b><br><br>
+편의점에서 5,000원으로 음료(1,500원)를 한 개 샀어요.<br>
+남은 돈: 5,000 − 1,500 = 3,500원<br><br>
+이번엔 500원짜리 과자를 <b>여러 개</b> 사고 싶은데, 남은 돈도 똑같이 3,500원이어야 해요.<br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.9rem;line-height:2.2;text-align:center">
+5,000 − 500 × <b style="color:#fde68a;font-size:1.05rem">□</b> = 3,500
+</div>
+<b style="color:#86efac">□에 들어갈 수를 찾는 것 — 이게 방정식이에요.</b><br><br>
+<span style="font-size:.8rem;color:#aaa">계산하지 않아도 머릿속에서 이미 하고 있던 것, 방정식은 그 과정을 식으로 쓴 것뿐이에요.</span>
+</div>`,
+    ans:`<b style="color:#86efac">□ = 3</b> (과자 3개)<br><br>
+5,000 − 500 × 3 = 5,000 − 1,500 = 3,500 ✓<br><br>
+<b style="color:#fde68a">변수 x로 쓰면:</b><br>
+5,000 − 500x = 3,500<br>
+500x = 1,500<br>
+x = 3` },
+
+  { tag:'🇫🇮 핀란드식 2/3 — 이항의 비밀', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.95rem">"넘기면 왜 부호가 바뀔까?"</b><br><br>
+x + 5 = 12를 풀 때 대부분 이렇게 해요:<br>
+"5를 오른쪽으로 넘기면 x = 12 − 5 = 7"<br><br>
+<b style="color:#fde68a">토로의 질문:</b> "왜 + 5가 − 5가 됐어? 그냥 약속이야?"<br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.83rem;line-height:2.1">
+저울: 왼쪽 x+5 ⚖️ 오른쪽 12<br>
+→ <b style="color:#86efac">양쪽에서 5를 동시에 꺼내요</b><br>
+→ 왼쪽: x &nbsp;&nbsp; 오른쪽: 12 − 5 = 7
+</div>
+<b style="color:#86efac">이항은 "넘기기"가 아니라 "양변에 같은 수 빼기"의 결과예요.</b><br>
+부호가 바뀌는 건 <b>등식 유지</b>의 흔적입니다.
+</div>`,
+    ans:`<b style="color:#86efac">이항 규칙의 진짜 이유</b><br><br>
+x + 5 = 12<br>
+양변에 −5: x + 5 − 5 = 12 − 5<br>
+x = 7<br><br>
+<b style="color:#fde68a">핵심:</b> "이항"이라는 단어가 생략한 것 — 양변에서 빼는 과정.<br>
+부호가 바뀌는 건 약속이 아니라 <b>등식의 성질</b>입니다.` },
+
+  { tag:'🇫🇮 핀란드식 3/3 — 일상 속 방정식', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.95rem">"오늘 학교 오는 길에 방정식이 있었나요?"</b><br><br>
+핀란드 선생님은 이 질문으로 수업을 시작해요.<br>
+학생들이 찾아낸 것들:<br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.83rem;line-height:2.3">
+🚌 <b style="color:#c4b5fd">①</b> 정류장까지 600m예요. 분속 100m로 뛰면 몇 분?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;→ 100 × □ = 600<br>
+🚌 <b style="color:#c4b5fd">②</b> 버스가 6분 후 출발. 분속 60m로 3분 걷다가 분속 100m로 뛰었더니 딱 도착. 정류장까지 거리는?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;→ 60×3 + 100×□ = 전체 거리<br>
+👓 <b style="color:#c4b5fd">③</b> 반 32명 중 안경 쓴 학생이 안 쓴 학생보다 4명 적어요.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;→ □ + (□ + 4) = 32
+</div>
+<b style="color:#fde68a">질문:</b> 각 □에 들어갈 수를 구해보세요.<br><br>
+<span style="font-size:.8rem;color:#aaa">방정식의 출발은 교과서가 아니라 내 주변이에요.</span>
+</div>`,
+    ans:`<b style="color:#86efac">풀이</b><br><br>
+🚌 ① 100 × □ = 600<br>
+&nbsp;&nbsp;&nbsp;&nbsp;□ = <b style="color:#fde68a">6분</b><br><br>
+🚌 ② 걷는 거리: 60×3 = 180m<br>
+&nbsp;&nbsp;&nbsp;&nbsp;남은 시간: 6−3 = 3분, 뛰는 거리: 100×3 = 300m<br>
+&nbsp;&nbsp;&nbsp;&nbsp;전체: 180 + 300 = <b style="color:#fde68a">480m</b><br><br>
+👓 ③ □ + (□+4) = 32<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2□ = 28 → □ = <b style="color:#fde68a">14명</b> (안경 쓴 학생), 18명 (안 쓴 학생)` },
   { tag:'✡️ 유대인식 — 질문과 반전', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.8"><b style="color:#fde68a">"정답 x를 구하는 게 목적일까, 관계를 정의하는 게 목적일까?"</b>를 묻습니다.<br><br>조건이 하나라도 바뀌면 평형이 어떻게 깨지는지 추론하며 <b style="color:#fde68a">'변수'의 개념</b>을 익힙니다.<br><br><span style="color:#fde68a">핵심 질문:</span> "만약 조건 하나가 바뀐다면, 이 등식은 어떻게 달라질까?"</div>`,
-    ans: null }
+    ans: null },
+
+  { tag:'✡️ 유대인식 1/2 — 조건을 바꾸면?', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a;font-size:.95rem">"정답을 구하는 게 목적일까, 관계를 이해하는 게 목적일까?"</b><br><br>
+x + 5 = 12 → x = 7<br><br>
+<b style="color:#c4b5fd">하브루타 토론:</b> 조건 하나를 바꾸면 x는 어떻게 될까?<br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.83rem;line-height:2.2">
+  x + <b style="color:#fde68a">5</b> = 12 → x = 7<br>
+  x + <b style="color:#fde68a">8</b> = 12 → x = 4 &nbsp;<span style="color:#aaa">(5가 3 커지면 x는 3 줄어)</span><br>
+  x + 5 = <b style="color:#fde68a">20</b> → x = 15 &nbsp;<span style="color:#aaa">(12가 8 커지면 x도 8 늘어)</span><br>
+  x <b style="color:#fde68a">−</b> 5 = 12 → x = 17 &nbsp;<span style="color:#aaa">(부호가 바뀌면?)</span>
+</div>
+<b style="color:#fde68a">발견:</b> x는 혼자 존재하는 수가 아니에요.<br>
+다른 수들과의 <b>관계 속에서만</b> 의미를 가져요.
+</div>`,
+    ans:`<b style="color:#fde68a">패턴 정리</b><br><br>
+x + a = b 에서<br>
+• a가 1 커지면 → x는 1 줄어요<br>
+• b가 1 커지면 → x는 1 늘어요<br>
+• a와 b가 같이 1씩 커지면 → x는 그대로<br><br>
+<b style="color:#86efac">핵심:</b> 방정식은 x 하나의 값이 아니라 <b>세 수 사이의 관계</b>예요.` },
+
+  { tag:'✡️ 유대인식 2/2 — 같은 x, 다른 식', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a;font-size:.95rem">"x = 5를 만족하는 방정식을 직접 만들어봐요."</b><br><br>
+보통 수업은 식을 주고 x를 구해요.<br>
+유대인식은 반대로 묻습니다 — <b style="color:#fde68a">x를 주고 식을 만들어봐.</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.83rem;line-height:2.2">
+  x + 3 = 8 &nbsp;✓<br>
+  2x − 1 = 9 &nbsp;✓<br>
+  3(x + 2) = 21 &nbsp;✓<br>
+  <span style="color:#c4b5fd">x를 5로 만드는 식은 무한히 많아요.</span>
+</div>
+<b style="color:#c4b5fd">토론 질문:</b> "방정식을 푸는 것과 만드는 것 중 어느 게 더 어려울까? 왜?"
+</div>`,
+    ans:`<b style="color:#fde68a">왜 이게 중요한가</b><br><br>
+식을 <b>만들 수 있다</b>는 건 구조를 이해했다는 뜻이에요.<br><br>
+• 푸는 것 → 주어진 관계에서 x를 찾기<br>
+• 만드는 것 → 원하는 x가 되는 관계를 설계하기<br><br>
+<b style="color:#86efac">핵심:</b> 방정식을 만들 줄 알면 문장제(활용 문제)도 겁나지 않아요.<br>
+현실 상황을 식으로 <b>'번역'</b>하는 능력이 바로 이것이에요.` }
+],
+
+/* ── 하브루타 수업안 (8장) ──────────────────────── */
+'eq-havruta-lesson': [
+
+  { tag:'✡️ 교사 4원칙 — 하브루타 수업 전 확인', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#fde68a;font-size:.95rem">교사가 지켜야 할 4가지</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.9rem 1.1rem;margin:.4rem 0;font-size:.83rem;line-height:2.3">
+1. <b style="color:#86efac">답을 주지 않는다.</b> 학생이 답하면 곧바로 "왜?"로 되묻는다.<br>
+2. <b style="color:#86efac">먼저 짝과, 그다음 전체.</b> 모든 질문은 짝 토론 → 공유 순서.<br>
+3. <b style="color:#86efac">틀린 답을 환영한다.</b> 오답은 개념이 자라는 토양. 고쳐주지 말고 다시 질문으로 흔든다.<br>
+4. <b style="color:#86efac">충돌을 일부러 설계한다.</b> "어? 이상한데?" 하는 순간을 만든다.
+</div>
+<span style="font-size:.81rem;color:#aaa">핵심: 학생이 정의·규칙을 외우는 게 아니라 <b style="color:#fde68a">스스로 만들어내게</b> 하는 것.</span>
+</div>`, ans:null },
+
+  { tag:'✡️ 0. 도입 — 양팔저울 이야기 (5분)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">"양팔저울이 평형이야. 왼쪽엔 사과 3개, 오른쪽엔 추 1개랑 사과 1개. 사과 하나 무게는?"</b><br><br>
+답이 나오면:<br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.84rem;line-height:2.1">
+→ <b style="color:#c4b5fd">"어떻게 알았어?"</b><br>
+→ <b style="color:#c4b5fd">"양쪽에서 사과를 1개씩 동시에 덜어내도 저울은 그대로일까? 왜?"</b><br>
+→ <b style="color:#c4b5fd">"한쪽만 덜어내면?"</b>
+</div>
+<span style="font-size:.81rem;color:#aaa">→ 등식의 성질을 숫자가 아니라 <b style="color:#fde68a">몸의 직관</b>으로 먼저 만나게 하는 장치.<br>아직 'x'라는 말을 꺼내지 않습니다.</span>
+</div>`, ans:null },
+
+  { tag:'✡️ 1. 탐구 — 등식이란 무엇인가 (8분)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">짝 토론: "2+3=5 와 x+3=5 는 뭐가 다를까?"</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.83rem;line-height:2.1">
+"x가 있다" → <b style="color:#c4b5fd">"x가 있으면 뭐가 달라져? 아래 식도 항상 참이야?"</b><br>
+→ <b style="color:#c4b5fd">"x에 0을 넣으면? 2를 넣으면? 어떤 건 참이고 어떤 건 거짓이야?"</b>
+</div>
+<div style="background:rgba(253,230,138,.07);border:1px solid rgba(253,230,138,.25);border-radius:8px;padding:.7rem 1rem;margin:.4rem 0;font-size:.82rem">
+<b style="color:#fde68a">⚡ 충돌 장치</b><br>
+<i>"x+3 = x+3 은 어때? 어떤 x를 넣어도 참이야. 이건 x+3=5 랑 같은 종류일까, 다른 종류일까?"</i>
+</div>
+<span style="font-size:.81rem;color:#aaa">→ 방정식 vs 항등식의 차이를 <b style="color:#fde68a">학생 입으로</b> 끌어냅니다.</span>
+</div>`, ans:null },
+
+  { tag:'✡️ 2. 탐구 — "푼다"는 무슨 뜻 (5분)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">"x+3=5 를 참으로 만드는 x는 몇 개일까?"</b><br>
+<b style="color:#fde68a">"x를 '푼다'는 건 결국 무엇을 찾는 일이야?"</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.84rem;line-height:1.9;font-style:italic;color:#c4b5fd">
+학생: "식을 참으로 만드는 값을 찾는 거요."
+</div>
+<span style="font-size:.81rem;color:#aaa">→ '해(근)'라는 단어를 교사가 정의해주기 <b style="color:#fde68a">전에</b>,<br>학생이 "식을 참으로 만드는 값"이라고 말하게 합니다.<br>그다음에 이름표(해·근)를 붙여줍니다.</span>
+</div>`, ans:null },
+
+  { tag:'✡️ 3. 탐구 — 등식의 성질 (10분)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">"x+3=5. 양변에서 3을 빼도 될까? 왜 돼? 아까 저울이랑 무슨 상관이야?"</b><br>
+<b style="color:#fde68a">"양변에 2를 곱하면 평형이 깨질까?"</b><br><br>
+<div style="background:rgba(253,230,138,.07);border:1px solid rgba(253,230,138,.25);border-radius:8px;padding:.7rem 1rem;margin:.4rem 0;font-size:.82rem">
+<b style="color:#fde68a">⚡ 충돌 장치</b><br>
+<i>"양변을 0으로 나누면 어떻게 될까?"</i><br><br>
+학생이 직접 0÷0, 5÷0 같은 걸 만나며 막히게 둡니다.<br>
+<b style="color:#c4b5fd">"왜 0만 안 될까? 다른 수는 다 되는데?"</b>
+</div>
+<span style="font-size:.81rem;color:#aaa">→ "0으로 나누기 금지"를 규칙으로 받지 않고<br><b style="color:#fde68a">스스로 부딪혀 발견</b>하게 합니다.</span>
+</div>`, ans:null },
+
+  { tag:'✡️ 4. 탐구 — 이항의 정체 (7분)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">"x+3=5 에서 양변에 3을 빼서 x=5-3 이 됐어.<br>그런데 옆 반 친구는 '+3을 반대편으로 넘기면 -3이 된다'고 외웠대.<br>이 둘은 같은 거야, 다른 거야?"</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.84rem;line-height:1.9">
+<b style="color:#c4b5fd">"'넘긴다'는 건 사실 뭘 한 거지? 마법이야, 아니면 아까 그 성질이야?"</b>
+</div>
+<span style="font-size:.81rem;color:#aaa">→ <b style="color:#fde68a">이항 = 등식의 성질을 줄여 부르는 말</b>임을 발견.<br>암기 규칙이 아니라 이해의 결과임을 못 박습니다.<br>(외운 학생일수록 여기서 흔들어주는 게 효과적)</span>
+</div>`, ans:null },
+
+  { tag:'✡️ 5–6. 탐구 — 정의 만들기 + 적용 (12분)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">칠판에 모아 적기: x+3=5, 2x=8, 3x-1=5</b><br>
+<b style="color:#fde68a">"이것들의 공통점은? 한 문장으로 정의해봐."</b><br><br>
+<div style="background:rgba(253,230,138,.07);border:1px solid rgba(253,230,138,.25);border-radius:8px;padding:.7rem 1rem;margin:.4rem 0;font-size:.82rem">
+<b style="color:#fde68a">⚡ 충돌 장치</b><br>
+<i>"x²+1=5 는 같은 무리야? 3=5 는? 0·x=8 은?"</i>
+</div>
+→ 반례를 걸러내며 정의를 직접 다듬습니다.<br><br>
+<b style="color:#86efac">적용 (짝이 서로 검사)</b><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.7rem 1rem;margin:.4rem 0;font-size:.83rem;line-height:2">
+보통: 3(x-2) = 2x+1<br>
+<b style="color:#f87171">함정 ①</b> 0·x = 5 → 해가 없음<br>
+<b style="color:#f87171">함정 ②</b> 0·x = 0 → 해가 무수히 많음
+</div>
+<span style="font-size:.81rem;color:#aaa">"이것도 일차방정식일까? 아까 만든 정의에 비춰보면?"</span>
+</div>`, ans:null },
+
+  { tag:'✡️ 마무리 + 되물음 은행 (3분)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">"오늘 배운 걸 짝에게 '선생님처럼' 설명해봐.<br>듣는 짝은 계속 '왜?'라고만 물어봐."</b><br><br>
+<span style="font-size:.81rem;color:#aaa">가장 잘 배우는 방법은 가르치는 것.<br>설명하다 막히는 지점이 그 학생이 아직 모르는 지점입니다.</span>
+</div>`,
+    extra:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#fde68a">되물음 은행 — 어떤 답에도 쓸 수 있는 질문</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;font-size:.82rem;line-height:2.2">
+• "왜 그렇게 생각해?"<br>
+• "어떻게 확인할 수 있어?"<br>
+• "반대로 틀린 경우는 없을까?"<br>
+• "짝은 다르게 풀었던데, 누가 맞아? 왜?"<br>
+• "한 단어만 바꾸면 답이 달라지는 부분이 있어?"<br>
+• "이걸 모르는 동생한테는 어떻게 설명할래?"<br>
+• "이 규칙이 안 통하는 경우를 만들 수 있어?"
+</div>
+<br><b style="color:#86efac">평가 관점 (정답률이 아니라)</b><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.82rem;line-height:2.1">
+• 자기 풀이의 <b style="color:#fde68a">근거</b>를 말로 댈 수 있는가<br>
+• 짝의 오답을 <b style="color:#fde68a">질문으로</b> 짚어낼 수 있는가<br>
+• 이항을 '넘기기'가 아니라 <b style="color:#fde68a">등식의 성질</b>로 설명하는가
+</div>
+</div>` }
+],
+
+/* ── 0으로 나누면 안 되는 이유 (4장) ──────────── */
+'eq-zero-div': [
+
+  { tag:'✡️ 1 — 나눗셈의 정체', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">"6 ÷ 2 = 3. 이게 맞는 걸 어떻게 확인해?"</b><br><br>
+학생: <i>"3 × 2 = 6 이니까요."</i><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1.1rem;margin:.5rem 0;font-size:.88rem;text-align:center;line-height:2.2">
+a ÷ b = c<br>
+⟺<br>
+<b style="color:#fde68a">c × b = a</b>
+</div>
+<span style="font-size:.82rem;color:#aaa">→ 나눗셈은 항상 곱셈으로 확인할 수 있어요.<br>이게 나눗셈의 정의입니다.</span>
+</div>`, ans:null },
+
+  { tag:'✡️ 2 — 6 ÷ 0 을 구해봐', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">"6 ÷ 0 = □ 라면, □ × 0 = 6 이어야 해.<br>□에 뭘 넣으면 될까?"</b><br><br>
+학생이 시도한다.<br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.84rem;line-height:2.1;font-family:monospace">
+1 × 0 = <span style="color:#f87171">0</span> &nbsp;(6 아님)<br>
+100 × 0 = <span style="color:#f87171">0</span> &nbsp;(6 아님)<br>
+999 × 0 = <span style="color:#f87171">0</span> &nbsp;(6 아님)
+</div>
+학생: <i style="color:#c4b5fd">"어떤 수를 넣어도 0이 나와요. 6이 안 나와요."</i><br><br>
+<span style="font-size:.82rem;color:#aaa">교사는 아무 말 하지 않는다.</span>
+</div>`, ans:null },
+
+  { tag:'✡️ 3 — 0 ÷ 0 은 다를까?', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">"그럼 0 ÷ 0 = □ 라면, □ × 0 = 0 이면 돼. 이번엔 □에 뭘 넣을 수 있어?"</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.84rem;line-height:2.1;font-family:monospace">
+1 × 0 = <span style="color:#86efac">0</span> &nbsp;✓<br>
+2 × 0 = <span style="color:#86efac">0</span> &nbsp;✓<br>
+5 × 0 = <span style="color:#86efac">0</span> &nbsp;✓<br>
+<span style="color:#c4b5fd">뭐든 다 돼요...</span>
+</div>
+<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.25);border-radius:8px;padding:.7rem 1rem;margin:.5rem 0;font-size:.83rem">
+<b style="color:#fde68a">교사:</b> "6÷0은 답이 하나도 없고,<br>0÷0은 답이 너무 많아.<br>이 둘은 어떻게 달라?"
+</div>
+<span style="font-size:.81rem;color:#aaa">→ 짝과 토론한다.</span>
+</div>`, ans:null },
+
+  { tag:'✡️ 4 — 충돌 장치 & 결론', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">"만약 억지로 6 ÷ 0 = a 라고 정하면?"</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.84rem;line-height:2.2">
+6 ÷ 0 = a &nbsp;&nbsp;이고<br>
+1 ÷ 0 = a &nbsp;&nbsp;이면<br>
+6 ÷ 0 = 1 ÷ 0<br>
+양변에 0을 곱하면 →&nbsp; <b style="color:#f87171">6 = 1</b>
+</div>
+학생: <i style="color:#c4b5fd">"말이 안 돼요."</i><br><br>
+<b style="color:#fde68a">교사:</b> "선생님이 '안 된다'는 규칙을 준 게 아니야.<br>너희가 방금 이유를 찾은 거야.<br>한 문장으로 말해봐."<br><br>
+<span style="font-size:.81rem;color:#aaa">→ 학생: "0으로 나누면 수학이 망가져요."<br>→ 그게 '정의할 수 없다'의 진짜 의미입니다.</span>
+</div>`, ans:null }
 ],
 
 /* ── 기본 문제 (10문항) ───────────────────────── */
@@ -1823,9 +2146,12 @@ x + 3 = 10 에서 등호(=)는 <b style="color:#7dd3fc">"조건을 만족한다"
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 <b style="color:#86efac;font-size:.95rem">"숫자를 쪼개면 숨어 있던 비밀이 보여요."</b><br><br>
 핀란드는 소인수분해를 <b style="color:#86efac">'숫자 블록 해체'</b>로 가르쳐요. 레고 블록처럼 어떤 수든 가장 작은 소수 블록으로 분해할 수 있다고 생각하는 거예요.<br><br>
-<b style="color:#fde68a">예시:</b> 12개의 달걀을 가장 작은 소수 묶음으로 나눠봐요.<br>
-12 = 2 × 6 = 2 × 2 × 3<br>
-→ 12의 소인수: <b style="color:#86efac">2, 3</b><br><br>
+달걀 12개를 두 친구가 각자 다른 방법으로 소수끼리의 곱으로 나타냈어요.<br><br>
+<div style="background:rgba(0,0,0,.2);border-radius:8px;padding:.7rem 1rem;margin:.4rem 0;line-height:2.1">
+<b style="color:#fde68a">지수:</b> 12 = 2 × 6 = 2 × 2 × 3<br>
+<b style="color:#c4b5fd">민준:</b> 12 = 3 × 4 = 3 × 2 × 2
+</div>
+<b style="color:#86efac">둘의 결과가 같나요, 다른가요?</b><br><br>
 <b style="color:#fde68a">핀란드식 질문:</b> "이 블록들을 다시 조립하면 항상 12가 될까? 순서가 달라도?"<br>
 2×3×2 = 3×2×2 = 2×2×3 = 12 ✓<br><br>
 <b style="color:#86efac">핵심:</b> 소인수분해의 결과는 순서가 달라도 <b>항상 유일</b>해요. 이걸 '산술의 기본 정리'라고 불러요.
@@ -3203,15 +3529,107 @@ y = 3 × 5 = 15
   { tag:'🇫🇮 핀란드식 — 마법의 상자', tagColor:'#86efac',
     bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
     body:`<div style="font-size:.78rem;color:#34d399;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);border-radius:10px;padding:8px 12px;margin-bottom:10px;line-height:1.6">📌 이 가이드는 총 16장입니다.<br>1~3장: 3개국 핵심 요약 · 4~6장: 상세 설명 · 7장~: 실전 미션</div><div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🇫🇮 핀란드식 (직관): 함수를 '마법의 상자'나 '자판기'로 이해합니다.</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">100원을 넣으면 콜라가 나오듯, x가 변할 때 y가 어떻게 규칙적으로 변하는지 실생활의 흐름으로 체득합니다.<br><br>예시: 양초가 타는 길이, 택시 요금, 핸드폰 배터리<br><b style="color:#86efac">핵심:</b> 함수는 '입력→출력'의 약속이다!`,
-    ans:null },
+    extra:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">자판기로 이해하는 함수</b><br><br>
+자판기에 500원을 넣으면 → 항상 콜라 1개<br>
+자판기에 1,000원을 넣으면 → 항상 콜라 2개<br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.7rem 1rem;margin:.4rem 0;font-size:.83rem;line-height:2">
+  입력 x → <b style="color:#86efac">[ 함수 상자 ]</b> → 출력 y<br>
+  x = 1분 → y = 남은 양초 18cm (20−2×1)<br>
+  x = 3분 → y = 남은 양초 14cm (20−2×3)
+</div>
+<b style="color:#fde68a">함수가 되는 조건:</b> 같은 x를 넣으면 항상 같은 y가 나와야 해요.<br><br>
+<b style="color:#f87171">함수가 아닌 예:</b> 같은 500원을 넣었는데 어떨 때는 콜라, 어떨 때는 사이다 → 함수 아님!<br><br>
+<b style="color:#86efac">실생활 함수들:</b><br>
+• 🕯️ 양초: y = 20 − 2x (타는 시간 x분, 남은 길이 y cm)<br>
+• 🚕 택시: y = 3000 + 500x (km 수 x, 요금 y원)<br>
+• 🔋 배터리: y = 100 − 5x (사용 시간 x, 잔량 y%)
+</div>` },
+
   { tag:'🇸🇬 싱가포르식 — 기울기 계단', tagColor:'#7dd3fc',
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🇸🇬 싱가포르식 (시각화): '기울기 계단(Slope Stairs)' 모델을 사용합니다.</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">x가 한 칸 갈 때 y가 몇 칸 올라가는지 계단을 그리며, 기울기(a)와 y절편(b)이 그래프의 '모양'과 '시작점'을 어떻게 결정하는지 시각화합니다.<br><br><b style="color:#7dd3fc">핵심:</b> a = 계단의 가파름 / b = 시작 위치</div>`,
-    ans:null },
+    extra:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc">기울기 = 오른쪽 1칸 갈 때 위로 몇 칸?</b><br><br>
+<svg viewBox="0 0 200 155" style="display:block;margin:6px auto;max-width:210px">
+  <rect width="200" height="155" fill="#0d1a28" rx="8"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <line x1="30" y1="15" x2="30" y2="130"/><line x1="50" y1="15" x2="50" y2="130"/>
+    <line x1="70" y1="15" x2="70" y2="130"/><line x1="90" y1="15" x2="90" y2="130"/>
+    <line x1="110" y1="15" x2="110" y2="130"/><line x1="130" y1="15" x2="130" y2="130"/>
+    <line x1="150" y1="15" x2="150" y2="130"/><line x1="170" y1="15" x2="170" y2="130"/>
+    <line x1="25" y1="130" x2="175" y2="130"/><line x1="25" y1="110" x2="175" y2="110"/>
+    <line x1="25" y1="90" x2="175" y2="90"/><line x1="25" y1="70" x2="175" y2="70"/>
+    <line x1="25" y1="50" x2="175" y2="50"/><line x1="25" y1="30" x2="175" y2="30"/>
+  </g>
+  <line x1="25" y1="130" x2="175" y2="130" stroke="#475569" stroke-width="2"/>
+  <line x1="30" y1="15" x2="30" y2="135" stroke="#475569" stroke-width="2"/>
+  <text x="178" y="134" fill="#64748b" font-size="9" font-family="sans-serif">x</text>
+  <text x="26" y="13" fill="#64748b" font-size="9" font-family="sans-serif">y</text>
+  <text x="46" y="142" fill="#64748b" font-size="8">1</text>
+  <text x="66" y="142" fill="#64748b" font-size="8">2</text>
+  <text x="86" y="142" fill="#64748b" font-size="8">3</text>
+  <text x="106" y="142" fill="#64748b" font-size="8">4</text>
+  <text x="21" y="132" fill="#64748b" font-size="8">0</text>
+  <text x="21" y="112" fill="#64748b" font-size="8">1</text>
+  <text x="21" y="92" fill="#64748b" font-size="8">2</text>
+  <text x="21" y="72" fill="#64748b" font-size="8">3</text>
+  <text x="21" y="52" fill="#64748b" font-size="8">4</text>
+  <g stroke="#5eead4" stroke-width="1.5" stroke-dasharray="4,2" opacity=".8">
+    <line x1="30" y1="110" x2="50" y2="110"/>
+    <line x1="50" y1="110" x2="50" y2="90"/>
+    <line x1="50" y1="90" x2="70" y2="90"/>
+    <line x1="70" y1="90" x2="70" y2="70"/>
+    <line x1="70" y1="70" x2="90" y2="70"/>
+    <line x1="90" y1="70" x2="90" y2="50"/>
+  </g>
+  <line x1="30" y1="110" x2="130" y2="10" stroke="#7dd3fc" stroke-width="2.5"/>
+  <circle cx="30" cy="110" r="3.5" fill="#7dd3fc"/>
+  <circle cx="50" cy="90" r="3.5" fill="#7dd3fc"/>
+  <circle cx="70" cy="70" r="3.5" fill="#7dd3fc"/>
+  <circle cx="90" cy="50" r="3.5" fill="#7dd3fc"/>
+  <text x="34" y="124" fill="#5eead4" font-size="8">+1→</text>
+  <text x="52" y="102" fill="#fde68a" font-size="8">↑+1</text>
+  <text x="145" y="28" fill="#7dd3fc" font-size="9" font-family="Jua,sans-serif">기울기=1</text>
+  <g stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,2" opacity=".7">
+    <line x1="110" y1="130" x2="130" y2="130"/>
+    <line x1="130" y1="130" x2="130" y2="90"/>
+  </g>
+  <line x1="110" y1="130" x2="160" y2="30" stroke="#f97316" stroke-width="2" stroke-dasharray="5,2"/>
+  <circle cx="110" cy="130" r="3" fill="#f97316"/>
+  <circle cx="130" cy="90" r="3" fill="#f97316"/>
+  <text x="114" y="144" fill="#f97316" font-size="8">+1→</text>
+  <text x="132" y="112" fill="#fde68a" font-size="8">↑+2</text>
+  <text x="155" y="52" fill="#f97316" font-size="9" font-family="Jua,sans-serif">기울기=2</text>
+</svg>
+<div style="display:flex;gap:12px;margin-top:4px;font-size:.78rem">
+  <div><span style="color:#7dd3fc">━</span> 기울기 1: 오른쪽 1, 위로 1</div>
+  <div><span style="color:#f97316">━</span> 기울기 2: 오른쪽 1, 위로 2</div>
+</div>
+<br><b style="color:#fde68a">b (y절편)</b> = 직선이 y축을 만나는 점<br>
+같은 기울기라도 b가 다르면 직선이 위아래로 이동해요.
+</div>` },
+
   { tag:'✡️ 유대인식 — 세상의 모든 변화는 직선일까?', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">✡️ 유대인식 (논리): "세상의 모든 변화는 직선일까?"라는 질문을 던집니다.</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">일정한 속도로 변하는 것(일차함수)과 그렇지 않은 것의 차이를 토론하며, 함수의 본질인 '대응'과 '변화'의 철학을 배웁니다.<br><br><b style="color:#fde68a">핵심:</b> 직선은 예측 가능한 세계. 우리 삶은 직선인가, 곡선인가?</div>`,
-    ans:null },
+    extra:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">직선인 것 vs 직선이 아닌 것</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.81rem;line-height:2.1">
+  <b style="color:#86efac">직선 (일차함수):</b><br>
+  🚶 일정한 속도로 걷기 → 거리 = 속력 × 시간<br>
+  🕯️ 일정하게 타는 양초 → 길이 = 20 − 2x<br><br>
+  <b style="color:#f87171">곡선 (일차함수 아님):</b><br>
+  💰 복리 이자 → 갈수록 빠르게 증가<br>
+  📱 SNS 퍼짐 → 처음엔 느리다가 폭발적으로<br>
+  🏋️ 운동 효과 → 처음엔 빠르게, 나중엔 천천히
+</div>
+<b style="color:#c4b5fd">토론 질문:</b><br>
+"내 성적 향상 그래프는 직선일까 곡선일까?"<br>
+"직선이 되려면 어떤 조건이 필요할까?"<br><br>
+<b style="color:#fde68a">핵심:</b> 일차함수(직선)는 자연에서 드문 특별한 경우예요.<br>
+<span style="font-size:.78rem;color:#aaa">→ 그래서 더 강력한 도구: 복잡한 현상도 짧은 구간에선 직선으로 근사할 수 있어요.</span>
+</div>` },
 
   { tag:'🇫🇮 핀란드식 — 마법의 자판기 규칙 (상세판)', tagColor:'#86efac',
     bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
@@ -3461,22 +3879,48 @@ y = 2x + 1 과 y = 2x + 5 는 기울기가 같다.<br>
     ans:`<b style="color:#86efac">풀이:</b><br>넓이 36 → 한 변 = √36 = <b style="color:#fde68a">6</b><br>넓이 7 → 한 변 = √7<br><br>√7 ≈ 2.6457... 로 끝없이 이어지며 분수로 쓸 수 없습니다.<br>→ <b style="color:#2dd4bf">무리수</b>` },
   { tag:'🇸🇬 기본 2/9 — 수 분류', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">다음 수를 유리수와 무리수로 분류하라.<br>√4,　√5,　0.333...,　π,　-√9,　√(1/4)</div>`,
-    ans:`<b style="color:#7dd3fc">분류:</b><br><b style="color:#86efac">유리수:</b> √4=2, 0.333...=1/3, -√9=-3, √(1/4)=1/2<br><b style="color:#2dd4bf">무리수:</b> √5, π<br><br>포인트: √4, -√9, √(1/4) 처럼 결과가 정수·분수면 유리수!` },
+    ans:`<b style="color:#7dd3fc">분류:</b><br>
+<b style="color:#86efac">유리수:</b><br>
+√4 = 2, &nbsp; 0.333... = 1/3, &nbsp; -√9 = -3, &nbsp; √(1/4) = 1/2<br><br>
+<b style="color:#2dd4bf">무리수:</b> √5, π<br><br>
+포인트: √4, -√9, √(1/4)처럼 계산 결과가 정수·분수면 유리수!` },
   { tag:'✡️ 기본 3/9 — 개념 토론', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">-√9 과 √(-9) 은 같은가, 다른가?<br>각각 계산이 가능한가? 이유를 설명하라.</div>`,
-    ans:`<b style="color:#fde68a">답: 전혀 다르다!</b><br><br>-√9 = -(√9) = -3 → <b style="color:#86efac">계산 가능</b> (실수)<br>√(-9) = ? → 음수의 제곱근 → <b style="color:#f87171">실수 범위에서 불가</b><br><br>핵심: √ 기호 안에 음수를 넣으면 실수에서 답이 없다.<br>(나중에 복소수에서 √(-1) = i 로 정의됩니다)` },
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">−√9 과 √(−9) 은 같은가, 다른가?<br>각각 계산이 가능한가? 이유를 설명하라.</div>`,
+    ans:`<b style="color:#fde68a">답: 전혀 다르다!</b><br><br>
+<b style="color:#86efac">−√9</b> = −(√9) = −3 &nbsp;→ <b style="color:#86efac">계산 가능</b> (음의 제곱근)<br>
+<b style="color:#f87171">√(−9)</b> = ? &nbsp;→ 음수의 제곱근 → <b style="color:#f87171">실수 범위에서 정의되지 않음</b><br><br>
+핵심: <b>√ 기호 안(근호 안)에 음수를 넣으면 실수에서 답이 없다.</b><br>
+a &lt; 0이면 √a 는 실수가 아니다.` },
   { tag:'🇫🇮 기본 4/9 — 곱셈 법칙', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">√3 × √3 = ?<br>√2 × √8 = ?<br>√(4×9) = ?　와　√4 × √9 = ?<br><span style="font-size:.76rem;color:#86efac;font-weight:400">(세 번째와 네 번째는 같은가요?)</span></div>`,
-    ans:`<b style="color:#86efac">풀이:</b><br>√3 × √3 = (√3)² = <b style="color:#fde68a">3</b><br>√2 × √8 = √(2×8) = √16 = <b style="color:#fde68a">4</b><br>√(4×9) = √36 = 6<br>√4 × √9 = 2 × 3 = 6 → <b style="color:#2dd4bf">같다!</b><br><br>법칙: √a × √b = √(ab) (a≥0, b≥0)` },
+    ans:`<b style="color:#86efac">풀이:</b><br>
+√3 × √3 = (√3)² = <b style="color:#fde68a">3</b><br>
+√2 × √8 = √(2×8) = √16 = <b style="color:#fde68a">4</b><br>
+√(4×9) = √36 = 6<br>
+√4 × √9 = 2 × 3 = 6 → <b style="color:#2dd4bf">같다!</b><br><br>
+<b style="color:#86efac">법칙:</b> √a × √b = √(ab) &nbsp;(a≥0, b≥0)` },
   { tag:'🇸🇬 기본 5/9 — 근호 변환', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">√8 = a√b (a, b는 자연수, b는 가장 작게)로 나타내라.<br><span style="font-size:.76rem;color:#7dd3fc;font-weight:400">(√8을 작은 제곱수로 쪼개보세요.)</span></div>`,
-    ans:`<b style="color:#7dd3fc">풀이:</b><br>8 = 4 × 2<br>√8 = √(4×2) = √4 × √2 = 2 × √2<br><br>∴ <b style="color:#fde68a">√8 = 2√2</b><br><br>같은 방법: √12 = 2√3, √18 = 3√2, √50 = 5√2` },
+    ans:`<b style="color:#7dd3fc">풀이:</b><br>
+8 = 4 × 2 이므로<br>
+√8 = √4 × √2 = 2 × √2<br><br>
+∴ <b style="color:#fde68a">√8 = 2√2</b><br><br>
+같은 방법:<br>
+√12 = √4 × √3 = 2√3<br>
+√18 = √9 × √2 = 3√2<br>
+√50 = √25 × √2 = 5√2` },
   { tag:'✡️ 기본 6/9 — 함정 토론', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">√2 + √8 = √10 인가?<br>맞으면 이유를, 틀리면 올바른 답을 구하라.</div>`,
     ans:`<b style="color:#fde68a">틀렸다!</b><br><br>√2 + √8 ≠ √10<br><br>√8 = 2√2 이므로<br>√2 + √8 = √2 + 2√2 = <b style="color:#fde68a">3√2</b><br><br>핵심: 근호 안을 더하면 안 된다. 근호 밖 계수를 맞춰서 더해야 한다.<br>(마치 2x + 3x = 5x 처럼!)` },
   { tag:'🇫🇮 기본 7/9 — 현실 적용', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">직각을 낀 두 변이 각각 3cm, 4cm인 직각삼각형의 빗변은?<br>넓이가 20cm²인 정사각형의 한 변은?</div>`,
-    ans:`<b style="color:#86efac">풀이 1:</b> 빗변 = √(3²+4²) = √(9+16) = √25 = <b style="color:#fde68a">5cm</b><br><br><b style="color:#86efac">풀이 2:</b> 한 변 = √20 = √(4×5) = 2√5 cm<br>≈ 2 × 2.236 ≈ <b style="color:#fde68a">4.47cm</b>` },
+    ans:`<b style="color:#86efac">풀이 1:</b><br>
+빗변² = 3² + 4² = 9 + 16 = 25<br>
+빗변 = √25 = <b style="color:#fde68a">5cm</b><br><br>
+<b style="color:#86efac">풀이 2:</b><br>
+한 변² = 20 &nbsp;→ 한 변 = √20<br>
+√20 = √4 × √5 = 2√5<br>
+≈ 2 × 2.236 ≈ <b style="color:#fde68a">4.47cm</b>` },
   { tag:'🇸🇬 기본 8/9 — 대소 비교', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">다음 수를 수직선 위에 순서대로 배열하라.<br>0, 1, √2, √3, 2, √5, √6<br><span style="font-size:.76rem;color:#7dd3fc;font-weight:400">(제곱해서 비교하면 쉬워요.)</span></div>`,
     ans:`<b style="color:#7dd3fc">제곱 비교:</b><br>0 &lt; 1 &lt; √2 &lt; √3 &lt; 2 &lt; √5 &lt; √6<br>(각각 0, 1, 2, 3, 4, 5, 6 의 제곱근)<br><br>수직선: <b style="color:#fde68a">0 — 1 — √2 — √3 — 2 — √5 — √6</b><br><br>유리수(0,1,2) 사이에 무리수(√2,√3,√5,√6)가 촘촘히 존재!` },
@@ -6646,10 +7090,10 @@ A=6a, B=6b, ab=12, gcd(a,b)=1<br>
 <b style="color:#86efac">🇫🇮 핀란드식 통찰:</b> 1층은 '세기', 2층은 '구조 파악'. 구조를 알면 세지 않아도 된다.
 </div>`, ans:null },
 
-  { tag:'🧮 2/9 — 약수 개수 공식 (2^a × 3^b)', tagColor:'#fde68a',
+  { tag:'🧮 2/9 — 약수 개수 공식 (2ᵃ × 3ᵇ)', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
-<b style="color:#fde68a;font-size:.92rem">2^a × 3^b 형태(a≥1, b≥1)에서 약수가 12개인 수를 모두 구하여라.</b><br><br>
+<b style="color:#fde68a;font-size:.92rem">2<sup>a</sup> × 3<sup>b</sup> 형태(a≥1, b≥1)에서 약수가 12개인 수를 모두 구하여라.</b><br><br>
 <b style="color:#86efac">🇫🇮 핀란드식 — 약수 개수 원리</b><br>
 <span style="font-size:.78rem;color:#aaa">"지수만 올려서 경우를 센다."</span><br>
 약수 개수 = (a+1)(b+1) = 12<br><br>
@@ -6658,14 +7102,14 @@ A=6a, B=6b, ab=12, gcd(a,b)=1<br>
 → (a,b) = (1,5), (2,3), (3,2), (5,1)<br>
 → 2¹×3⁵=486, 2²×3³=108, 2³×3²=72, 2⁵×3¹=96
 </div>
-<b style="color:#c4b5fd">💬 현우가 물었다:</b> "왜 (a+1)인가요? 2^0도 약수 아닌가요?"<br>
-<span style="font-size:.79rem;color:#aaa">2^a의 약수는 2⁰, 2¹, ..., 2^a → a+1가지. 0도 지수가 될 수 있어서!</span><br><br>
+<b style="color:#c4b5fd">💬 현우가 물었다:</b> "왜 (a+1)인가요? 2⁰도 약수 아닌가요?"<br>
+<span style="font-size:.79rem;color:#aaa">2<sup>a</sup>의 약수는 2⁰, 2¹, ..., 2<sup>a</sup> → a+1가지. 0도 지수가 될 수 있어서!</span><br><br>
 <div style="background:rgba(253,230,138,.08);border:1px dashed rgba(253,230,138,.4);border-radius:8px;padding:10px;margin-top:4px">
 <b style="color:#fde68a">➕ 추가 문제</b><br>
 약수의 개수가 정확히 6개인 수 중 가장 작은 두 자리 자연수는?<br>
 <span style="font-size:.78rem;color:#aaa">힌트: 6 = 6×1 또는 2×3</span>
 </div>
-</div>`, ans:`약수 12개인 수: 72, 96, 108, 486 (모두 2^a×3^b 형태)
+</div>`, ans:`약수 12개인 수: 72, 96, 108, 486 (모두 2ᵃ×3ᵇ 형태)
 
 추가 문제 풀이:
 약수 6개 형태: p^5 또는 p^2×q
@@ -10090,6 +10534,447 @@ C=69−44=25, A=69−56=13, B=69−38=31<br>
 
 ],
 
+/* ── 제곱근과 실수 — 핀란드식 수업 완성본 (중3) ─── */
+'sqrt-fi-guide': [
+
+  { tag:'🇫🇮 1차시 — 도입 ① 정사각형: 패턴 → 막힘', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.95rem">"넓이를 알면 한 변도 알 수 있어."</b><br><br>
+<div style="display:flex;gap:8px;justify-content:center;align-items:flex-end;padding:10px 0;flex-wrap:wrap">
+  <div style="text-align:center">
+    <div style="width:32px;height:32px;background:rgba(134,239,172,.15);border:1.5px solid #86efac;border-radius:3px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#86efac">4</div>
+    <div style="font-size:.75rem;color:#aaa;margin-top:2px">넓이</div>
+    <div style="font-size:.95rem;color:#fde68a;font-weight:700">→ 2</div>
+  </div>
+  <div style="text-align:center">
+    <div style="width:44px;height:44px;background:rgba(134,239,172,.15);border:1.5px solid #86efac;border-radius:3px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#86efac">9</div>
+    <div style="font-size:.75rem;color:#aaa;margin-top:2px">넓이</div>
+    <div style="font-size:.95rem;color:#fde68a;font-weight:700">→ 3</div>
+  </div>
+  <div style="text-align:center">
+    <div style="width:56px;height:56px;background:rgba(134,239,172,.15);border:1.5px solid #86efac;border-radius:3px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#86efac">25</div>
+    <div style="font-size:.75rem;color:#aaa;margin-top:2px">넓이</div>
+    <div style="font-size:.95rem;color:#fde68a;font-weight:700">→ 5</div>
+  </div>
+  <div style="text-align:center">
+    <div style="width:38px;height:38px;background:rgba(125,211,252,.1);border:2px dashed #7dd3fc;border-radius:3px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#7dd3fc">2</div>
+    <div style="font-size:.75rem;color:#aaa;margin-top:2px">넓이</div>
+    <div style="font-size:1.2rem;color:#f87171;font-weight:700">→ ?</div>
+  </div>
+</div>
+학생: <i style="color:#c4b5fd">"분명히 있는데... 이름을 못 쓰겠어요."</i><br><br>
+<span style="font-size:.82rem;color:#aaa">→ 교사는 설명하지 않는다. 이 막힘이 수업의 시작이다.<br>
+이 단계에서 √ 기호는 절대 나오지 않는다.</span>
+</div>`, ans:null },
+
+  { tag:'🇫🇮 1차시 — 도입 ② 대각선: 두 번째 막힘', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">"한 변이 1인 정사각형의 대각선 길이는?"</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:1rem;margin:.4rem 0;text-align:center">
+  <div style="display:inline-block;position:relative;width:80px;height:80px;margin-bottom:8px">
+    <div style="position:absolute;inset:0;border:2px solid #7dd3fc;background:rgba(125,211,252,.08);border-radius:3px"></div>
+    <div style="position:absolute;top:50%;left:-18px;transform:translateY(-50%);color:#86efac;font-size:.85rem;font-family:Jua,sans-serif">1</div>
+    <div style="position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);color:#86efac;font-size:.85rem;font-family:Jua,sans-serif">1</div>
+    <div style="position:absolute;inset:0;overflow:visible">
+      <div style="position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(135deg,#fde68a,#fde68a);transform:rotate(45deg);transform-origin:0 0;width:113px;border-top:2px dashed #fde68a"></div>
+    </div>
+    <div style="position:absolute;top:30%;right:-28px;color:#f87171;font-size:1.4rem;font-weight:700;font-family:Jua,sans-serif">?</div>
+  </div>
+  <div style="font-size:.84rem;line-height:2;color:#e2e8f0;margin-top:10px">
+    피타고라스: 대각선² = 1² + 1² = <b style="color:#fde68a">2</b><br>
+    그럼 대각선 = <b style="color:#f87171;font-size:1.1rem">?</b>
+  </div>
+</div>
+학생: <i style="color:#c4b5fd">"제곱하면 2가 되는 수인데 쓸 방법이 없어요."</i><br><br>
+<span style="font-size:.82rem;color:#aaa">→ 두 번째 막힘. 갈증이 정점에 오를 때까지 기다린다.</span>
+</div>`, ans:null },
+
+  { tag:'🇫🇮 1차시 — 탐색: 끝이 안 나요', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">"1보다 크고 1.5보다 작겠네. 더 좁혀볼 수 있을까?"</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.83rem;line-height:2.1;font-family:monospace">
+1.4²    = 1.96 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f87171">→ 작다</span><br>
+1.5²    = 2.25 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f87171">→ 크다</span><br>
+1.41²   = 1.9881 &nbsp;&nbsp;&nbsp;<span style="color:#fde68a">→ 더 가깝다</span><br>
+1.42²   = 2.0164 &nbsp;&nbsp;&nbsp;<span style="color:#f87171">→ 넘었다</span><br>
+1.414²  = 1.999396 &nbsp;<span style="color:#86efac">→ 거의 왔다</span><br>
+1.4142² = 1.99999164<span style="color:#86efac"> → 더 가깝다</span><br>
+1.41421²= 1.9999897 <span style="color:#86efac"> → 끝이 없다</span>
+</div>
+학생: <i style="color:#c4b5fd">"끝이 안 나요."</i><br><br>
+<span style="font-size:.82rem;color:#aaa">→ 무한소수의 존재를 규칙이 아니라 탐색으로 발견한다.</span>
+</div>`, ans:null },
+
+  { tag:'🇫🇮 1차시 — √2 이름 붙이기 & 정의 도달', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">"매번 '넓이 2인 정사각형의 변'이라 쓰기 불편하지? 이 수에 이름을 붙이자."</b><br><br>
+<div style="background:rgba(134,239,172,.08);border:1px solid rgba(134,239,172,.3);border-radius:8px;padding:1rem;margin:.5rem 0;text-align:center;font-size:2.2rem;line-height:1.6">
+√2
+</div>
+→ 필요성을 느낀 뒤 기호를 준다.<br><br>
+<b style="color:#86efac">"√2를 제곱하면?"</b><br>
+학생: <i>"2가 돼요."</i><br>
+<b style="color:#86efac">"그럼 √2는 어떤 수야?"</b><br>
+학생: <i>"제곱해서 2가 되는 수요."</i><br>
+교사: <i>"그게 정의야."</i><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.7rem 1rem;font-size:.83rem;color:#fde68a;text-align:center">
+제곱해서 a가 되는 수 = a의 제곱근
+</div>
+<span style="font-size:.82rem;color:#aaa">→ 정의를 교사가 주는 게 아니라 학생이 말한다.</span>
+</div>`, ans:null },
+
+  { tag:'🇫🇮 1차시 — 양·음의 제곱근', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">"−1.414...를 제곱하면?"</b><br>
+학생: <i>"그것도 2가 돼요."</i><br>
+<b style="color:#86efac">"그럼 2의 제곱근이 두 개네."</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.84rem;line-height:2.1;text-align:center">
+양의 제곱근: <b style="color:#86efac">+√2</b> = 1.414...<br>
+음의 제곱근: <b style="color:#f87171">−√2</b> = −1.414...
+</div>
+<b style="color:#fde68a">"넓이에서 변의 길이를 구할 때 음수는 쓸 수 없어. 그래서 양의 제곱근만 택한 거야."</b><br><br>
+<span style="font-size:.82rem;color:#aaa">→ 기호 √2가 양의 값임을 맥락에서 자연스럽게 확정한다.</span>
+</div>`, ans:null },
+
+  { tag:'🇫🇮 2차시 — 무리수의 발견', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">"√2 = 1.41421356... 이걸 분수로 쓸 수 있을까?"</b><br>
+학생이 시도한다.<br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.84rem;line-height:2;font-style:italic;color:#c4b5fd">
+"141/100? → 1.41이지 √2가 아니에요."<br>
+"어떤 분수도 딱 안 맞아요."
+</div>
+<b style="color:#fde68a">교사:</b> <i>"맞아. √2는 어떤 분수로도 나타낼 수 없다는 게 증명돼 있어. 고대 그리스 사람들이 이미 증명했지."</i><br><br>
+<b style="color:#86efac">"분수로 못 쓰는 수. 유리수가 아니지. 뭐라고 부를까?"</b><br><br>
+<div style="background:rgba(134,239,172,.08);border:1px solid rgba(134,239,172,.3);border-radius:8px;padding:.7rem 1rem;font-size:.9rem;text-align:center;color:#86efac;font-weight:700">
+무리수(無理數)
+</div>
+</div>`, ans:null },
+
+  { tag:'🇫🇮 3차시 — 학생이 수 체계를 완성한다', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">"우리가 아는 수를 칠판에 정리해봐."</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.82rem;line-height:2">
+자연수: 1, 2, 3...<br>
+정수:   ...−1, 0, 1...<br>
+유리수: 분수로 쓸 수 있는 수<br>
+√2는? → <b style="color:#f87171">어디에도 안 들어감</b>
+</div>
+<b style="color:#fde68a">교사:</b> <i>"√2가 들어갈 칸이 없네."</i><br>
+학생: <i>"새 칸이 필요해요."</i><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.8rem;line-height:2;font-family:monospace">
+실수<br>
+├─ <b style="color:#7dd3fc">유리수</b> (분수로 표현 가능)<br>
+│&nbsp;&nbsp;├─ 정수 ─ 자연수<br>
+│&nbsp;&nbsp;└─ 정수 아닌 유리수<br>
+└─ <b style="color:#fde68a">무리수</b> (√2, √3, π...)
+</div>
+<span style="font-size:.82rem;color:#aaa">→ 체계를 교사가 주는 게 아니라 학생이 완성한다.</span>
+</div>`, ans:null },
+
+  { tag:'🇫🇮 3차시 — 수직선에서 √2 찾기', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">"√2는 수직선 위에 실제로 표시할 수 있을까?"</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.83rem;line-height:2">
+① 가로 1, 세로 1인 직각삼각형을 그린다<br>
+② 피타고라스 정리: 빗변² = 1² + 1² = 2<br>
+③ 빗변의 길이 = √2<br>
+④ 컴퍼스로 빗변의 길이를 수직선 위에 옮긴다<br>
+⑤ → 수직선 위의 <b style="color:#86efac">정확한 √2 위치</b>
+</div>
+학생: <i>"눈금 사이 어딘가에 딱 찍히네요."</i><br><br>
+<b style="color:#fde68a">"유리수만으로 수직선을 다 채울 수 있을까?"</b><br>
+학생: <i>"√2 같은 수 자리가 비어요."</i><br>
+교사: <i>"그 빈틈까지 채운 게 실수야."</i>
+</div>`, ans:null },
+
+  { tag:'✡️ 3차시 — π 닫기 & 교사 주의사항', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">"π도 무리수야."</b><br>
+<i>"단, π가 무리수라는 증명은 고등학교에서 배운다. 지금은 '무리수다'까지만."</i><br><br>
+<span style="font-size:.82rem;color:#aaa">→ 호기심은 열어두되, 답 못 주는 질문으로 끝내지 않는다.</span>
+</div>`,
+    extra:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#fde68a">교사 주의사항</b><br><br>
+이 수업은 학생의 막힘을 교사가 견디는 것을 전제로 한다.<br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.82rem;line-height:2">
+❌ 학생이 모른다 → 즉시 설명<br>
+✅ 학생이 모른다 → 기다린다 → 다음 질문을 학생이 만든다
+</div>
+각 막힘 지점에서 교사가 먼저 말하면 발견의 기회가 사라진다.<br><br>
+<b style="color:#86efac">3차시 핵심 한 줄</b><br>
+제곱근은 기호가 아니라 질문이다.<br>
+<span style="color:#aaa">"이 넓이의 변은 얼마인가?"라는 질문이 답을 못 찾을 때 새로운 수가 탄생한다.</span>
+</div>` }
+],
+
+/* ── 제곱근의 정의 수업 (핀란드×하브루타, 45분) ── */
+'sqrt-def-lesson': [
+
+  { tag:'📐 설계 원리 — 왜 이 순서인가', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#2dd4bf;font-size:.95rem">SFH 프레임 · 45분</b><br>
+<span style="font-size:.78rem;color:#aaa">F 탐구 10분 → S 시각화 12분 → 정의·근호 8분 → H 하브루타 10분 → 점검 5분</span><br><br>
+<b style="color:#fde68a">이 차시의 핵심:</b> 근호(√)를 <b>'필요'</b>로 만들기<br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.83rem;line-height:1.9">
+넓이 4·9 → 한 변이 딱 떨어져 새 기호 불필요<br>
+넓이 2·대각선 → 길이는 분명 존재하는데 아는 수로 못 씀 → <b style="color:#f87171">막힘</b>
+</div>
+이 답답함이 정점에 올랐을 때 √를 <b>"그 길이를 적는 약속된 기호"</b>로 도입한다.<br><br>
+<b style="color:#f87171">핵심 규칙:</b> 도입 단계 그림에는 √를 절대 쓰지 않는다 → <b>?</b>로 둔다.
+</div>`, ans:null },
+
+  { tag:'🇫🇮 F · 탐구 (10분) — 현상 제시', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">정의를 먼저 주지 않는다. 상황만 던진다.</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.84rem;line-height:1.9;font-style:italic;color:#c4b5fd">
+"넓이가 36m²인 정사각형 화단을 만들려 한다. 한 변의 길이는?"
+</div>
+학생이 6×6=36을 떠올린다. 교사가 한 번 더 민다:<br><br>
+<div style="background:rgba(253,230,138,.07);border:1px solid rgba(253,230,138,.25);border-radius:8px;padding:.7rem 1rem;margin:.4rem 0;font-size:.83rem">
+<b style="color:#fde68a">"넓이 36인데 한 변이 −6일 수도 있을까? 수학적으로 x²=36의 답은 몇 개?"</b>
+</div>
+→ "+6도, −6도 되네"를 학생이 스스로 발견하게 둔다.<br>
+넓이 4→2, 넓이 9→3. 넓이 2→한 변은 <b>"제곱해서 2가 되는 양수"</b>.<br><br>
+<span style="font-size:.81rem;color:#f87171">이 시점엔 √없이 <b>?</b>로만. 학생이 "1.4쯤?""1.41…?" 하며 못 적는 경험이 핵심.</span>
+</div>`, ans:null },
+
+  { tag:'🇸🇬 S · 시각화 (12분) — 넓이 모델 + 대각선', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc">넓이↔한 변 관계를 그림으로 고정한다.</b><br><br>
+<div style="display:flex;gap:8px;justify-content:center;align-items:flex-end;padding:6px 0;flex-wrap:wrap">
+  <div style="text-align:center">
+    <div style="width:30px;height:30px;background:rgba(134,239,172,.15);border:1.5px solid #86efac;border-radius:2px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#86efac">4</div>
+    <div style="font-size:.8rem;color:#fde68a;margin-top:3px">→ 2</div>
+  </div>
+  <div style="text-align:center">
+    <div style="width:42px;height:42px;background:rgba(134,239,172,.15);border:1.5px solid #86efac;border-radius:2px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#86efac">9</div>
+    <div style="font-size:.8rem;color:#fde68a;margin-top:3px">→ 3</div>
+  </div>
+  <div style="text-align:center">
+    <div style="width:36px;height:36px;background:rgba(125,211,252,.1);border:2px dashed #7dd3fc;border-radius:2px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#7dd3fc">2</div>
+    <div style="font-size:1.1rem;color:#f87171;font-weight:700;margin-top:2px">→ ?</div>
+  </div>
+</div>
+<br><b style="color:#7dd3fc">대각선:</b> 피타고라스로 1²+1²=2 까지만 가고 멈춘다.<br><br>
+<div style="display:flex;align-items:center;gap:16px;padding:8px 0">
+  <div style="position:relative;width:70px;height:70px;flex-shrink:0">
+    <div style="position:absolute;inset:0;border:2px solid #7dd3fc;background:rgba(125,211,252,.08);border-radius:2px"></div>
+    <div style="position:absolute;top:50%;left:-14px;transform:translateY(-50%);color:#86efac;font-size:.85rem">1</div>
+    <div style="position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);color:#86efac;font-size:.85rem">1</div>
+    <div style="position:absolute;top:0;left:0;width:99px;height:2px;background:#fde68a;transform:rotate(45deg);transform-origin:0 0"></div>
+    <div style="position:absolute;top:28%;right:-22px;color:#f87171;font-size:1.2rem;font-weight:700">?</div>
+  </div>
+  <div style="font-size:.82rem;line-height:2;color:#e2e8f0">
+    대각선² = 1² + 1² = 2<br>
+    대각선 = <b style="color:#f87171;font-size:1rem">?</b> (아는 수로 못 씀)
+  </div>
+</div>
+<br>
+<div style="background:rgba(253,230,138,.07);border:1px solid rgba(253,230,138,.2);border-radius:8px;padding:.6rem 1rem;font-size:.79rem;color:#fde68a">
+⚠️ 대각선 그림은 피타고라스 정리를 배운 뒤라야 성립.<br>
+미선행이면 넓이 모델(넓이 2)만 쓰고 대각선은 무리수 차시로 미룰 것.
+</div>
+</div>`, ans:null },
+
+  { tag:'📖 정의·근호 (8분) — 이름과 기호 약속', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#c4b5fd">갈증이 정점에 올랐을 때 기호를 준다.</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;overflow:hidden;font-size:.82rem">
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:rgba(255,255,255,.05)">
+  <div style="padding:6px 8px;color:#94a3b8;font-weight:700">표현</div>
+  <div style="padding:6px 8px;color:#94a3b8;font-weight:700">뜻</div>
+  <div style="padding:6px 8px;color:#94a3b8;font-weight:700">a=9 예시</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #1e293b">
+  <div style="padding:6px 8px;color:#7dd3fc">a의 제곱근</div>
+  <div style="padding:6px 8px;color:#e2e8f0;font-size:.78rem">x²=a인 모든 x</div>
+  <div style="padding:6px 8px;color:#fde68a">+3, −3 (둘)</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #1e293b">
+  <div style="padding:6px 8px;color:#7dd3fc">제곱근 a</div>
+  <div style="padding:6px 8px;color:#e2e8f0;font-size:.78rem">양수만 (= √a)</div>
+  <div style="padding:6px 8px;color:#fde68a">3 (하나)</div>
+</div>
+</div><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.7rem 1rem;font-size:.83rem;line-height:2.2">
+a > 0 → 제곱근 두 개: +√a, −√a<br>
+a = 0 → 제곱근 하나: 0<br>
+a &lt; 0 → 제곱근 없다 (실수 범위)
+</div><br>
+<b style="color:#f87171">함정:</b> √(a²) = |a|<br>
+(-4)² = 16 → √16 = <b style="color:#fde68a">4</b> (−4가 아님)
+</div>`, ans:null },
+
+  { tag:'✡️ H · 하브루타 (10분) — 도발 질문', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">2인 1조. 질문자 ↔ 설명자. 중간에 역할 교체.</b><br>
+교사는 정답을 바로 주지 않는다. 충돌 → 다른 조에게 판정 넘기기.<br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.83rem;line-height:2.3">
+① "'9의 제곱근'과 '제곱근 9'는 같은 말이야, 다른 말이야? 왜?"<br>
+② "−16의 제곱근은 −4다 — 맞아? 설득하거나 반박해봐."<br>
+③ "√((-5)²)는 −5야 5야? 근거를 대봐."
+</div>
+<b style="color:#86efac">하브루타 규칙 3가지</b><br>
+① 친구 말 끝까지 듣기 &nbsp;② "왜?"로 되묻기 &nbsp;③ 한 번은 반드시 반박
+</div>`,
+    extra:`<b style="color:#fde68a">도발 질문 정답 (교사용)</b><br><br>
+① <b style="color:#86efac">다르다.</b> "9의 제곱근" = ±3 (두 개), "제곱근 9 = √9" = 3 (양수 하나)<br><br>
+② <b style="color:#f87171">틀렸다.</b> −16은 음수 → 실수에서 제곱근 없음 (제곱하면 음수 불가)<br><br>
+③ <b style="color:#86efac">5.</b> √((-5)²) = √25 = 5 &nbsp;(√(a²) = |a|)` },
+
+  { tag:'✡️ 점검 (5분) — 개별 확인 문제', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">기초</b><br>
+1. 49의 제곱근을 구하시오.<br>
+2. 제곱근 49를 구하시오.<br>
+3. 16의 양의 제곱근과 음의 제곱근을 각각 쓰시오.<br>
+4. −9의 제곱근을 구하시오.<br><br>
+<b style="color:#f87171">개념 구분 (함정)</b><br>
+5. (−5)²의 제곱근을 구하시오.<br>
+6. √(3²) = ?<br>
+7. √((-4)²) = ?<br>
+8. x²=7일 때 x의 값은?<br><br>
+<b style="color:#c4b5fd">서술 (하브루타용)</b><br>
+10. "a의 제곱근은 항상 두 개다"가 틀린 이유를 예를 들어 설명하시오.
+</div>`,
+    extra:`<b style="color:#fde68a">정답</b><br><br>
+1. ±7<br>
+2. 7 &nbsp;<span style="color:#aaa;font-size:.8rem">(제곱근 49 = √49 는 양수)</span><br>
+3. 양의 제곱근 4, 음의 제곱근 −4<br>
+4. 없다 &nbsp;<span style="color:#aaa;font-size:.8rem">(음수는 실수 제곱근 없음)</span><br><br>
+5. (−5)²=25의 제곱근 → ±5<br>
+6. √(3²) = √9 = 3<br>
+7. √((-4)²) = √16 = 4 &nbsp;<span style="color:#f87171">(−4 아님!)</span><br>
+8. x = ±√7<br><br>
+10. a=0이면 0 하나, a&lt;0이면 없음 → 항상 두 개가 아님.` }
+],
+
+/* ── 제곱근 정의 — 핀란드×하브루타 5단계 (원본판) ── */
+'sqrt-fh-lesson': [
+
+  { tag:'✡️ 핵심 — 두 표현 구분', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a;font-size:.95rem">학생이 100% 헷갈리는 두 표현</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;overflow:hidden;font-size:.82rem">
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:rgba(255,255,255,.05)">
+  <div style="padding:7px 8px;color:#94a3b8;font-weight:700">표현</div>
+  <div style="padding:7px 8px;color:#94a3b8;font-weight:700">뜻</div>
+  <div style="padding:7px 8px;color:#94a3b8;font-weight:700">a=9 예시</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #1e293b">
+  <div style="padding:7px 8px;color:#7dd3fc">a의 제곱근</div>
+  <div style="padding:7px 8px;color:#e2e8f0;font-size:.78rem">x²=a인 모든 x</div>
+  <div style="padding:7px 8px;color:#fde68a">+3, −3 (두 개)</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #1e293b">
+  <div style="padding:7px 8px;color:#7dd3fc">제곱근 a</div>
+  <div style="padding:7px 8px;color:#e2e8f0;font-size:.78rem">그중 양수만 (= √a)</div>
+  <div style="padding:7px 8px;color:#fde68a">3 (한 개)</div>
+</div>
+</div><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.7rem 1rem;font-size:.83rem;line-height:2.2">
+a > 0 → 제곱근 두 개: +√a, −√a<br>
+a = 0 → 제곱근 하나: 0<br>
+a &lt; 0 → 제곱근 없다 (실수 범위)
+</div><br>
+<b style="color:#f87171">함정 핵심:</b> √(a²) = |a|<br>
+즉 √((-4)²) = 4 이지 −4가 아니다.
+</div>`, ans:null },
+
+  { tag:'🇫🇮 1단계 — 핀란드식 도입 (10분)', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">정의를 먼저 주지 않는다. 상황만 던진다.</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.84rem;line-height:1.9;font-style:italic;color:#c4b5fd">
+"넓이가 36m²인 정사각형 화단을 만들려고 한다. 한 변의 길이는?"
+</div>
+학생들은 6×6=36을 떠올린다. 교사가 한 번 더 민다:<br><br>
+<div style="background:rgba(253,230,138,.07);border:1px solid rgba(253,230,138,.25);border-radius:8px;padding:.7rem 1rem;margin:.4rem 0;font-size:.83rem">
+<b style="color:#fde68a">"그럼 넓이가 36인데 한 변이 −6일 수도 있을까? 길이는 안 되지만, 수학적으로 x²=36의 답은 몇 개일까?"</b>
+</div>
+이 순간 학생이 스스로 "+6도, −6도 되네"를 발견하게 둔다.<br>
+정의는 그다음에 학생 입에서 나온 말을 교사가 정리해주는 형태로.<br><br>
+<span style="font-size:.81rem;color:#aaa">(핀란드식: 답을 빨리 주지 않고 헤매는 시간을 허용)</span>
+</div>`, ans:null },
+
+  { tag:'✡️ 2단계 — 하브루타 짝 질문 (15분)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fde68a">2인 1조. 질문자 ↔ 설명자. 중간에 역할 교체.</b><br><br>
+<b style="color:#c4b5fd">도발 질문 카드 (정답 일부러 안 줌, 짝끼리 결론 내게)</b><br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.4rem 0;font-size:.83rem;line-height:2.3">
+① "'9의 제곱근'과 '제곱근 9'는 같은 말이야, 다른 말이야? 왜?"<br>
+② "−16의 제곱근은 −4다 — 이거 맞아? 친구를 설득하거나 반박해봐."<br>
+③ "√((-5)²)는 −5야 5야? 근거를 대봐."
+</div>
+<b style="color:#86efac">하브루타 핵심 규칙 3가지</b><br>
+① 친구 말 끝까지 듣기<br>
+② "왜?"로 되묻기<br>
+③ 동의하지 말고 한 번은 반드시 반박해보기
+</div>`,
+    extra:`<b style="color:#fde68a">도발 질문 정답</b><br><br>
+① 다르다. "9의 제곱근" = ±3 (두 개), "제곱근 9 = √9" = 3 (양수 하나)<br><br>
+② 틀렸다. −16은 음수 → 실수 범위에서 제곱근 없음<br><br>
+③ 5. √((-5)²) = √25 = 5. (√(a²) = |a|)` },
+
+  { tag:'🇫🇮 3단계 — 발표·정리 (10분)', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">짝마다 "우리가 합의한 정의 한 문장"을 발표.</b><br><br>
+충돌하는 답이 나오면 교사가 정리하지 말고<br>
+→ <b style="color:#fde68a">다른 조에게 판정을 넘긴다.</b><br><br>
+마지막에 위 표(두 표현 구분)로 봉합.<br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.7rem 1rem;font-size:.83rem;line-height:2.2">
+a > 0 → 제곱근 두 개: +√a, −√a<br>
+a = 0 → 제곱근 하나: 0<br>
+a &lt; 0 → 제곱근 없다 (실수 범위)
+</div>
+</div>`, ans:null },
+
+  { tag:'✡️ 4단계 — 개별 확인 문제 (10분)', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">기초</b><br>
+1. 49의 제곱근을 구하시오.<br>
+2. 제곱근 49를 구하시오.<br>
+3. 0.04의 제곱근을 구하시오.<br>
+4. 16의 양의 제곱근과 음의 제곱근을 각각 쓰시오.<br><br>
+<b style="color:#f87171">개념 구분 (함정)</b><br>
+5. 제곱근이 없는 것은? ① 25 ② 0 ③ −9<br>
+6. (−5)²의 제곱근을 구하시오.<br>
+7. √(3²) = ?<br>
+8. √((-4)²) = ?<br>
+9. x²=7일 때 x의 값을 구하시오.<br><br>
+<b style="color:#c4b5fd">서술 (하브루타용)</b><br>
+10. "a의 제곱근은 항상 두 개다"라는 주장이 틀린 이유를 예를 들어 설명하시오.
+</div>`,
+    extra:`<b style="color:#fde68a">정답</b><br><br>
+1. ±7 &nbsp; 2. 7 &nbsp; 3. ±0.2 &nbsp; 4. 양 4, 음 −4<br><br>
+5. ③ (−9는 음수, 실수 제곱근 없음)<br>
+6. (−5)²=25의 제곱근 → ±5<br>
+7. √(3²) = √9 = 3<br>
+8. √((-4)²) = √16 = 4 &nbsp;(−4 아님!)<br>
+9. x = ±√7<br><br>
+10. a=0이면 0 하나뿐, a&lt;0이면 없음 → 항상 두 개가 아님.` }
+],
+
 }; // end CARD_DATA
 
 // ── FM 나라별 방: 퀴즈 카드를 개념/연습 사이에 삽입 ──────
@@ -10117,6 +11002,40 @@ function buildFMRooms(){
   });
 }
 
+function fixRadicals(html) {
+  const K = s => katex.renderToString(s, {throwOnError:false, displayMode:false});
+  return html
+    // -√숫자 / −√숫자 (음의 제곱근)
+    .replace(/[−-]√(\d+)/g, (_, n) => K('-\\sqrt{' + n + '}'))
+    // +√숫자
+    .replace(/\+√(\d+)/g, (_, n) => K('+\\sqrt{' + n + '}'))
+    // √(정수/정수) — 분수 근호
+    .replace(/√\((\d+)\/(\d+)\)/g, (_, a, b) => K('\\sqrt{\\dfrac{' + a + '}{' + b + '}}'))
+    // √(−정수) 또는 √(-정수) — 음수 근호
+    .replace(/√\([−-](\d+)\)/g, (_, n) => K('\\sqrt{-' + n + '}'))
+    // √(정수×정수) 또는 √(정수x정수) — 곱셈 근호
+    .replace(/√\((\d+)\s*[×x*]\s*(\d+)\)/g, (_, a, b) => K('\\sqrt{' + a + '\\times ' + b + '}'))
+    // √(정수+정수) 또는 √(정수-정수) — 덧뺄셈 근호
+    .replace(/√\((\d+)\s*([+\-])\s*(\d+)\)/g, (_, a, op, b) => K('\\sqrt{' + a + op + b + '}'))
+    // √(정수) — 괄호 있는 단순 근호
+    .replace(/√\((\d+)\)/g, (_, n) => K('\\sqrt{' + n + '}'))
+    // √(숫자²) — 숫자 제곱
+    .replace(/√\((\d+)²\)/g, (_, n) => K('\\sqrt{' + n + '^2}'))
+    // √(변수²) — 변수 제곱
+    .replace(/√\(([a-zA-Z])²\)/g, (_, v) => K('\\sqrt{' + v + '^2}'))
+    // √((-숫자)²) — 음수 제곱
+    .replace(/√\(\([−-](\d+)\)²\)/g, (_, n) => K('\\sqrt{(-' + n + ')^2}'))
+    // √(변수들) — 괄호 안에 영문자
+    .replace(/√\(([a-zA-Z]+)\)/g, (_, v) => K('\\sqrt{' + v + '}'))
+    // √정수
+    .replace(/√(\d+)/g, (_, n) => K('\\sqrt{' + n + '}'))
+    // −√변수, +√변수
+    .replace(/[−-]√([a-zA-Z])\b/g, (_, v) => K('-\\sqrt{' + v + '}'))
+    .replace(/\+√([a-zA-Z])\b/g, (_, v) => K('+\\sqrt{' + v + '}'))
+    // √변수 — 단일 영문자
+    .replace(/√([a-zA-Z])\b/g, (_, v) => K('\\sqrt{' + v + '}'));
+}
+
 function startCards(set, from) {
   CS.set = set; CS.cards = CARD_DATA[set];
   CS.cur = 0; CS.from = from; CS.showAns = false;
@@ -10130,10 +11049,10 @@ function renderCard() {
   document.getElementById('cv-title').textContent = d.tag;
   document.getElementById('cv-num').textContent = (CS.cur+1) + ' / ' + tot;
   document.getElementById('cv-prog-fill').style.width = ((CS.cur+1)/tot*100) + '%';
-  document.getElementById('cv-inner').innerHTML =
+  document.getElementById('cv-inner').innerHTML = fixRadicals(
     '<div style="background:'+d.bg+';border:1px solid '+d.bd+';border-radius:12px;padding:16px;min-height:170px">'
     +'<div style="font-family:Jua,sans-serif;color:'+d.tagColor+';font-size:.72rem;margin-bottom:10px">'+d.tag+'</div>'
-    +d.body+'</div>';
+    +d.body+'</div>');
   const ansArea = document.getElementById('cv-ans-area');
   const ansBtn  = document.getElementById('cv-ans-btn');
   const iDiv    = document.getElementById('cv-interactive');
@@ -10142,6 +11061,9 @@ function renderCard() {
   if (d.choices) {
     ansBtn.style.display = 'none';
     iDiv.style.display = ''; iDiv.innerHTML = cvITeaseHTML(d);
+  } else if (d.extra) {
+    ansBtn.style.display = ''; ansBtn.textContent = '💡 더 알아보기';
+    iDiv.style.display = 'none'; iDiv.innerHTML = '';
   } else if (d.ans) {
     ansBtn.style.display = ''; ansBtn.textContent = '💡 정답/풀이 보기';
     iDiv.style.display = 'none'; iDiv.innerHTML = '';
@@ -10198,10 +11120,15 @@ function toggleCVAnswer() {
   const btn  = document.getElementById('cv-ans-btn');
   CS.showAns = !CS.showAns;
   if (CS.showAns) {
+    const content = d.extra || d.ans;
     const khanHtml = CS.set==='ineq-word' ? khanIneqCheck(d) : '';
-    area.innerHTML = d.ans + khanHtml;
-    area.style.display=''; btn.textContent='🙈 정답 숨기기';
-  } else { area.style.display='none'; btn.textContent='💡 정답/풀이 보기'; }
+    area.innerHTML = fixRadicals(content + khanHtml);
+    area.style.display='';
+    btn.textContent = d.extra ? '🙈 숨기기' : '🙈 정답 숨기기';
+  } else {
+    area.style.display='none';
+    btn.textContent = d.extra ? '💡 더 알아보기' : '💡 정답/풀이 보기';
+  }
 }
 
 function cvNav(dir) {
@@ -10210,6 +11137,49 @@ function cvNav(dir) {
   CS.showAns = false; renderCard();
 }
 function cvSkip() { cvNav(1); }
+
+function printCards() {
+  const cards = CS.cards;
+  const setTitle = document.getElementById('cv-title').textContent.replace(/\d+\s*\/\s*\d+/,'').trim();
+  const cardsHtml = cards.map((c,i) => {
+    const extra = c.ans || c.extra || '';
+    return `<div class="card">
+      <div class="card-meta">${i+1} / ${cards.length}</div>
+      <div class="card-tag">${c.tag}</div>
+      <div class="card-body">${c.body}</div>
+      ${extra?`<div class="card-extra"><div class="extra-lbl">💡 설명 / 풀이</div>${extra}</div>`:''}
+    </div>`;
+  }).join('');
+  const w = window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8">
+<title>아르모니아 수학왕국 — 인쇄</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a1a1a;padding:20px;font-size:13px;line-height:1.65}
+h1{text-align:center;font-size:15px;margin-bottom:18px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ccc;border-radius:8px;padding:13px 15px;margin-bottom:14px;break-inside:avoid;page-break-inside:avoid}
+.card-meta{font-size:10px;color:#999;margin-bottom:3px}
+.card-tag{font-size:12px;font-weight:700;color:#4c1d95;margin-bottom:7px}
+.card-body{font-size:12px;line-height:1.8}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:9px;padding-top:9px;border-top:1px dashed #bbb;font-size:11px;color:#333;line-height:1.7}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{font-size:10px;font-weight:700;color:#666!important;margin-bottom:5px}
+svg text{fill:#333!important}
+svg line{stroke:#aaa!important}
+svg rect{stroke:#aaa!important}
+.print-btn{display:block;margin:0 auto 16px;padding:7px 22px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px}
+@media print{.print-btn{display:none}body{padding:8px}}
+</style></head><body>
+<button class="print-btn" onclick="window.print()">🖨️ 인쇄하기</button>
+<h1>🏰 아르모니아 수학왕국 · ${setTitle}</h1>
+${cardsHtml}
+</body></html>`);
+  w.document.close();
+}
 
 
 function toggleConcept(id){
@@ -10567,7 +11537,7 @@ function genPercent(){
 // ─── 소인수분해 유틸리티 ────────────────────────────────────
 const _isPrime = n => { if(n<2)return false; for(let i=2;i*i<=n;i++)if(n%i===0)return false; return true; };
 const _pf = n => { const f={}; let d=2; while(d*d<=n){while(n%d===0){f[d]=(f[d]||0)+1;n/=d;}d++;} if(n>1)f[n]=(f[n]||0)+1; return f; };
-const _sup = e => ({'2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷'}[e]||'^'+e);
+const _sup = e => ({'1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷'}[e]||'^'+e);
 const _fStr = n => { const f=_pf(n); return Object.keys(f).map(Number).sort((a,b)=>a-b).map(p=>f[p]>1?`${p}${_sup(f[p])}`:`${p}`).join(' × '); };
 const _divCnt = n => { const f=_pf(n); return Object.values(f).reduce((a,e)=>a*(e+1),1); };
 const _pfList = n => Object.keys(_pf(n)).map(Number).sort((a,b)=>a-b);
@@ -10687,6 +11657,12 @@ function genPerfectSquare(){
   const needed=Object.entries(f).filter(([p,e])=>e%2!==0).map(([p])=>Number(p));
   const minN=needed.reduce((a,b)=>a*b,1); const result=n*minN;
   const sqrtRes=Math.round(Math.sqrt(result));
+  if(n===28){
+    return {type:'prime',subtype:'perfect_sq',
+      story:`🇫🇮 어떤 자연수 <i>n</i>에 대해 28 × <i>n</i>이 완전제곱수가 되려면 <i>n</i>의 최솟값은?<br><span style="font-size:.8em;color:#aaa">(28 = 2² × 7)</span>`,
+      data:{n:28,f:{2:2,7:1},fStr:'2² × 7',minN:7,result:196,sqrtRes:14},
+      answer:'7',choices:shuffle(['2','7','14','28'])};
+  }
   const stories=[
     ()=>`✡️ [하브루타] ${n} = ${fStr}. ${n}에 자연수 n을 곱해서 완전제곱수가 되게 하는 가장 작은 n은?\n(힌트: 모든 소인수의 지수가 짝수여야 해요!)`,
     ()=>`✡️ ${n} × n = 어떤 수의 제곱이 되려면? 지수가 홀수인 소인수를 찾아요. 최소 n은? (${n} = ${fStr})`,
@@ -10727,8 +11703,8 @@ function genDivisorEq(){
   ];
   const {b,target,a}=rnd(cases);
   const stories=[
-    ()=>`🇸🇬 2ᵃ × 3${_sup(b)}의 약수의 개수가 ${target}개일 때, 자연수 a의 값은?\n(약수 개수 = (a+1) × (${b}+1))`,
-    ()=>`🇸🇬 (a+1) × ${b+1} = ${target}. 약수 개수 공식을 이용해 a를 구하세요.`,
+    ()=>`🇸🇬 2<sup>a</sup> × 3${_sup(b)}의 약수의 개수가 ${target}개일 때, 자연수 a의 값은?<br>(약수 개수 = (a+1) × (${b}+1))`,
+    ()=>`🇸🇬 어떤 수를 소인수분해하면 2<sup>a</sup> × 3${_sup(b)}이에요. 이 수의 약수가 ${target}개라면, a는 얼마일까요?`,
   ];
   const choices=[String(a)];
   [String(a-1),String(a+1),String(target/(b+1)),String(a+2)].filter(v=>Number(v)>0).forEach(w=>{if(!choices.includes(w))choices.push(w);});
@@ -12400,6 +13376,128 @@ function buildQCExplain(q){
     exp=`<b style="${Y}">${answer}</b><br><br>${data.exp||''}`;
   } else if(subtype==='div_concept'){
     exp=`<b style="${Y}">${answer}</b><br><br>${data.exp||''}`;
+  } else if(subtype==='identify'){
+    const {set,comp}=data;
+    let fac=2; while(comp%fac!==0) fac++;
+    exp=`<b style="${B}">소수 = 1과 자신으로만 나눠지는 수</b><br><br>`+
+      set.map(n=>{
+        const ip=_isPrime(n);
+        let lf=2; while(n%lf!==0&&lf*lf<=n) lf++;
+        const composite=!ip&&lf>1&&lf<n;
+        return `<div style="background:rgba(99,102,241,.1);border-radius:6px;padding:5px 10px;margin:3px 0;font-size:.84rem">`+
+          (ip?`<b style="${G}">${n}</b> : 1과 ${n}으로만 → 소수 ✓`:
+              `<b style="color:#f87171">${n}</b> : ${fac} × ${n/fac}로 나눠짐 → 합성수 ✗`)+
+          `</div>`;
+      }).join('')+
+      `<br>정답: <b style="${Y}">${comp}</b>`;
+  } else if(subtype==='factorize'){
+    const {n,f,fStr,fList}=data;
+    let divSteps=''; let cur=n;
+    fList.forEach(p=>{
+      const e=f[p];
+      for(let i=0;i<e;i++){
+        const nxt=cur/p;
+        divSteps+=`<div style="font-size:.84rem;padding:3px 0"><b style="color:#e2e8f0">${cur}</b> ÷ <b style="${G}">${p}</b> = <b style="${Y}">${nxt}</b></div>`;
+        cur=nxt;
+      }
+    });
+    exp=`<b style="${B}">가장 작은 소수부터 차례로 나누기</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:8px 12px;margin:6px 0">${divSteps}</div>
+      <b style="${Y}">${n} = ${fStr}</b>`;
+  } else if(subtype==='prime_sum'){
+    const {n,fList,sum}=data;
+    exp=`<b style="${B}">① 소인수분해</b><br>
+      ${n} = <b>${_fStr(n)}</b><br><br>
+      <b style="${B}">② 소인수 (중복 없이 한 번씩)</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:4px 0;font-size:.88rem">
+        ${fList.join(' , ')}
+      </div>
+      <b style="${B}">③ 합산</b><br>
+      ${fList.join(' + ')} = <b style="${Y}">${sum}</b>`;
+  } else if(subtype==='lcm_three'){
+    const {a,b,c,L}=data;
+    const L12=lcm(a,b);
+    const ma=[],mb=[];
+    for(let i=a;i<=L12;i+=a) ma.push(i);
+    for(let i=b;i<=L12;i+=b) mb.push(i);
+    exp=`<b style="${B}">① 먼저 두 수의 최소공배수</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:5px 10px;margin:4px 0;font-size:.82rem">
+        ${a}의 배수: ${ma.map(v=>v===L12?`<b style="${Y}">${v}</b>`:v).join(', ')}<br>
+        ${b}의 배수: ${mb.map(v=>v===L12?`<b style="${Y}">${v}</b>`:v).join(', ')}<br>
+        LCM(${a},${b}) = <b style="${Y}">${L12}</b>
+      </div>
+      <b style="${B}">② LCM(${L12}, ${c}) = ?</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:5px 10px;margin:4px 0;font-size:.82rem">
+        ${L12}의 배수 중 ${c}의 배수: <b style="${Y}">${L}</b>
+      </div>
+      LCM(${a}, ${b}, ${c}) = <b style="${Y}">${L}</b>`;
+  } else if(subtype==='coprime'){
+    const {a,b,g,isCop}=data;
+    const fA=_fStr(a), fB=_fStr(b);
+    exp=`<b style="${B}">① 소인수분해</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:4px 0;font-size:.84rem">
+        ${a} = <b>${fA}</b><br>
+        ${b} = <b>${fB}</b>
+      </div>
+      <b style="${B}">② 최대공약수(GCD)</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:4px 0;font-size:.84rem">
+        ${isCop?`공통 소인수 없음 → GCD = 1`:`GCD(${a},${b}) = <b style="${Y}">${g}</b>`}
+      </div>
+      <b style="${Y}">${isCop?`서로소 ✓ (GCD = 1)`:`서로소 아님 — GCD = ${g}`}</b>`;
+  } else if(subtype==='perfect_sq'){
+    const {n,f,fStr,minN,result,sqrtRes}=data;
+    const oddEntries=Object.entries(f).filter(([p,e])=>e%2!==0);
+    exp=`<b style="${B}">① 소인수분해</b><br>
+      ${n} = <b>${fStr}</b><br><br>
+      <b style="${B}">② 지수가 홀수인 소인수 찾기</b><br>
+      <div style="display:flex;flex-direction:column;gap:3px;margin:4px 0">
+        ${Object.entries(f).map(([p,e])=>`<div style="background:rgba(99,102,241,.1);border-radius:6px;padding:4px 10px;font-size:.83rem">
+          ${p}의 지수 = ${e} → ${e%2===0?`<b style="color:#4ade80">짝수 ✓</b>`:`<b style="color:#f87171">홀수 ✗ → ${p}를 한 번 더 곱해야</b>`}
+        </div>`).join('')}
+      </div>
+      <b style="${B}">③ 최소 n</b><br>
+      ${oddEntries.map(([p])=>p).join(' × ')} = <b style="${Y}">${minN}</b><br><br>
+      확인: ${n} × ${minN} = ${result} = ${sqrtRes}²`;
+  } else if(subtype==='lcm_gcd_pair'){
+    const {g,L,a,b}=data;
+    exp=`<b style="${B}">공식: 두 수의 곱 = GCD × LCM</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:4px 0;font-size:.84rem">
+        A × B = ${g} × ${L} = ${g*L}
+      </div>
+      <b style="${B}">② 두 수 = g×a, g×b (gcd(a,b)=1)</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:4px 0;font-size:.84rem">
+        a × b = LCM ÷ GCD = ${L} ÷ ${g} = ${L/g}<br>
+        서로소이면서 곱이 ${L/g}인 쌍: (${a/g}, ${b/g})
+      </div>
+      두 수: <b style="${Y}">${a}</b>${g>1?` (${g}×${a/g})`:''}과 <b style="${Y}">${b}</b>${g>1?` (${g}×${b/g})`:''}<br>
+      합: <b style="${Y}">${a+b}</b>`;
+  } else if(subtype==='div_eq'){
+    const {a,b,target}=data;
+    exp=`<b style="${B}">약수 개수 공식: (각 지수+1)의 곱</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:4px 0;font-size:.84rem">
+        2ᵃ × 3${_sup(b)}의 약수 개수 = (a+1) × (${b}+1) = ${target}
+      </div>
+      <b style="${B}">② a+1 구하기</b><br>
+      a+1 = ${target} ÷ ${b+1} = <b style="${Y}">${target/(b+1)}</b><br><br>
+      <b style="${B}">③ a = </b><b style="${Y}">${a}</b>`;
+  } else if(subtype==='rem_gcd'){
+    const {a,ra,b,rb,ans}=data;
+    exp=`<b style="${B}">① 나머지를 빼면 공약수</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:4px 0;font-size:.84rem">
+        ${a} − ${ra} = <b>${a-ra}</b><br>
+        ${b} − ${rb} = <b>${b-rb}</b>
+      </div>
+      구하는 수는 두 값의 공약수이고 나머지(${ra})보다 커야 해요.<br><br>
+      <b style="${B}">② GCD(${a-ra}, ${b-rb}) = </b><b style="${Y}">${ans}</b>`;
+  } else if(subtype==='tree_plant'){
+    const {w,h,G,count,peri}=data;
+    exp=`<b style="${B}">① 간격 = GCD(${w}, ${h})</b><br>
+      <div style="background:rgba(99,102,241,.1);border-radius:6px;padding:6px 10px;margin:4px 0;font-size:.84rem">
+        네 모퉁이에 반드시 오려면 간격이 두 변 모두의 약수여야 해요<br>
+        GCD(${w}, ${h}) = <b style="${Y}">${G}</b>m
+      </div>
+      <b style="${B}">② 둘레 = 2 × (${w} + ${h}) = ${peri}m</b><br><br>
+      <b style="${B}">③ 그루 수 = ${peri} ÷ ${G} = </b><b style="${Y}">${count}그루</b>`;
   } else {
     exp=`정답: <b style="${Y}">${answer}</b>`;
   }
@@ -13689,46 +14787,6 @@ function renderNotebook(){
     </div>`;
   }).join('');
   list.innerHTML=html;
-}
-
-function printCards() {
-  const cards = CS.cards;
-  const setTitle = document.getElementById('cv-title').textContent.replace(/\d+\s*\/\s*\d+/,'').trim();
-  const cardsHtml = cards.map((c,i) => {
-    const extra = c.ans || c.extra || '';
-    return `<div class="card">
-      <div class="card-meta">${i+1} / ${cards.length}</div>
-      <div class="card-tag">${c.tag}</div>
-      <div class="card-body">${c.body}</div>
-      ${extra?`<div class="card-extra"><div class="extra-lbl">💡 설명 / 풀이</div>${extra}</div>`:''}
-    </div>`;
-  }).join('');
-  const w = window.open('','_blank');
-  w.document.write(`<!DOCTYPE html><html lang="ko"><head>
-<meta charset="UTF-8">
-<title>토로의 수학왕국 — 인쇄</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a1a1a;padding:20px;font-size:13px;line-height:1.65}
-h1{text-align:center;font-size:15px;margin-bottom:18px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
-.card{border:1px solid #ccc;border-radius:8px;padding:13px 15px;margin-bottom:14px;break-inside:avoid;page-break-inside:avoid}
-.card-meta{font-size:10px;color:#999;margin-bottom:3px}
-.card-tag{font-size:12px;font-weight:700;color:#4c1d95;margin-bottom:7px}
-.card-body{font-size:12px;line-height:1.8}
-.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
-.card-body b{color:#333!important;font-weight:700}
-.card-extra{margin-top:9px;padding-top:9px;border-top:1px dashed #bbb;font-size:11px;color:#333;line-height:1.7}
-.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
-.extra-lbl{font-size:10px;font-weight:700;color:#666!important;margin-bottom:5px}
-.print-btn{display:block;margin:0 auto 16px;padding:7px 22px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px}
-@media print{.print-btn{display:none}body{padding:8px}}
-</style></head><body>
-<button class="print-btn" onclick="window.print()">🖨️ 인쇄하기</button>
-<h1>🦕 토로의 수학왕국 · ${setTitle}</h1>
-${cardsHtml}
-</body></html>`);
-  w.document.close();
 }
 </script>
 </body>
