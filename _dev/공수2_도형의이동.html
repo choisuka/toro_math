@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학2 · 도형의 이동 — 빌드 파일</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card:not(:last-child){page-break-after:always}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:16px;padding-top:16px;border-top:1px dashed #bbb;font-size:12.5px;color:#333;line-height:1.95}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{font-size:11px;font-weight:700;color:#666!important;margin-bottom:8px}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em;line-height:1.3}
+.frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
+.frac .den{padding:1px 4px 0}
+@media print{
+svg text{fill:#333!important}
+svg line{stroke:#aaa!important}
+svg rect{stroke:#aaa!important}
+svg circle{stroke:#aaa!important;fill:#999!important}
+svg polygon{stroke:#aaa!important;fill:#eee!important}
+svg path{stroke:#aaa!important}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 공통수학2 · 도형의 이동</div>
+    <div class="toolbar-sub">기본(싱가포르식)→지도1~5(실제기출 기반, 5번=하브루타)→심화(핀란드식 실생활: 거울반사·당구·지도앱)→연습문제 8제(7=대칭이동+원, 8=탐정스토리 최단경로) · 직선의 방정식과 동일 패턴</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 도형의 이동</h1>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:0 0 10px;padding-top:0">📍 주제 0 — 평행이동</div>
+
+<div class="card">
+  <div class="card-meta">평행이동 — 기본설명 (싱가포르식·시각화)</div>
+  <div class="card-tag">🇸🇬 싱가포르식 — 모양은 그대로, 위치만 슬라이드</div>
+  <div class="card-body">
+평행이동은 도형을 돌리거나 뒤집지 않고, <b>모양·크기 그대로 밀기만</b> 하는 거예요.<br><br>
+
+<svg viewBox="0 0 160 160" width="100%" style="max-width:140px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#eee" stroke-width="1">
+    <line x1="20" y1="10" x2="20" y2="150"/><line x1="60" y1="10" x2="60" y2="150"/>
+    <line x1="100" y1="10" x2="100" y2="150"/><line x1="140" y1="10" x2="140" y2="150"/>
+    <line x1="20" y1="150" x2="140" y2="150"/><line x1="20" y1="110" x2="140" y2="110"/>
+    <line x1="20" y1="70" x2="140" y2="70"/><line x1="20" y1="30" x2="140" y2="30"/>
+  </g>
+  <circle cx="60" cy="110" r="4.5" fill="#1a1a1a"/>
+  <circle cx="120" cy="70" r="4.5" fill="#f97316"/>
+  <line x1="60" y1="110" x2="120" y2="70" stroke="#6366f1" stroke-width="2" stroke-dasharray="5 3"/>
+  <text x="30" y="128" font-size="10" fill="#1a1a1a" font-weight="700">A(2,3)</text>
+  <text x="122" y="66" font-size="10" fill="#f97316" font-weight="700">A′(5,2)</text>
+  <text x="72" y="84" font-size="9" fill="#6366f1">x축 +3, y축 −1</text>
+</svg>
+
+A(2,3)을 x축 방향으로 3, y축 방향으로 −1만큼 밀면 A′(2+3, 3−1) = A′(5, 2)가 돼요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b>점의 평행이동</b><br>
+점 (x, y)를 x축 방향으로 a, y축 방향으로 b만큼 평행이동한 점:<br>
+<b style="font-size:1.05em">(x + a, y + b)</b>
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">평행이동 — 기본문제</div>
+  <div class="card-tag">기본 1 — 점의 평행이동</div>
+  <div class="card-body" style="font-weight:600">
+점 (−3, 5)를 x축 방향으로 4, y축 방향으로 −2만큼 평행이동한 점의 좌표를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+(x+a, y+b) = (−3+4, 5−2) = <b>(1, 3)</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">평행이동 — 개념 (도형의 평행이동)</div>
+  <div class="card-tag">🇸🇬 싱가포르식 — 방정식은 "거꾸로" 대입</div>
+  <div class="card-body">
+도형(직선, 원 등)을 평행이동할 땐, 방정식에서 <b>x 대신 (x−a), y 대신 (y−b)</b>를 대입해요. 더하기가 아니라 <b>빼기</b>라는 게 헷갈리기 쉬운 포인트예요.<br><br>
+
+<svg viewBox="0 0 200 200" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="170" x2="200" y2="170" stroke="#999" stroke-width="1"/>
+  <line x1="50" y1="0" x2="50" y2="200" stroke="#999" stroke-width="1"/>
+  <line x1="32" y1="188" x2="86" y2="80" stroke="#6366f1" stroke-width="2"/>
+  <line x1="95" y1="188" x2="140" y2="98" stroke="#f97316" stroke-width="2"/>
+  <circle cx="50" cy="152" r="3" fill="#6366f1"/>
+  <circle cx="104" cy="170" r="3" fill="#f97316"/>
+  <line x1="50" y1="152" x2="104" y2="170" stroke="#999" stroke-width="1" stroke-dasharray="2 2"/>
+  <text x="14" y="145" font-size="9" fill="#6366f1" font-weight="700">y=2x+1</text>
+  <text x="107" y="105" font-size="9" fill="#f97316" font-weight="700">y=2x−6</text>
+  <text x="26" y="164" font-size="8" fill="#555">(0,1)</text>
+  <text x="107" y="182" font-size="8" fill="#555">(3,0)</text>
+</svg>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b>왜 빼기일까?</b><br>
+새 도형 위의 점 (x,y)는 원래 도형의 점 (x−a, y−b)가 이동해서 생긴 거예요. 그러니까 원래 방정식에 <b>(x−a, y−b)를 대입</b>해야 새 방정식이 나옵니다.
+</div>
+예: 직선 y=2x+1을 x축 방향 3, y축 방향 −1만큼 평행이동하면?<br>
+y 대신 (y+1), x 대신 (x−3) 대입 (b=−1이니까 y−b = y+1):<br>
+(y+1) = 2(x−3)+1 → y+1 = 2x−6+1 → <b>y = 2x−6</b><br><br>
+<span style="font-size:.85em;color:#555">검산: 원래 직선 위의 점 (0,1)을 직접 이동하면 (3,0). 새 직선 y=2x−6에 x=3 대입 → y=0 ✓ 맞아요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">평행이동 — 기본문제</div>
+  <div class="card-tag">기본 2 — 도형의 평행이동</div>
+  <div class="card-body" style="font-weight:600">
+원 x²+y²=9를 x축 방향으로 2, y축 방향으로 −3만큼 평행이동한 도형의 방정식을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+x 대신 (x−2), y 대신 (y+3) 대입:<br>
+<b>(x−2)² + (y+3)² = 9</b>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📍 주제 1 — 대칭이동</div>
+
+<div class="card">
+  <div class="card-meta">대칭이동 — 개념 (싱가포르식·시각화)</div>
+  <div class="card-tag">🇸🇬 싱가포르식 — 네 방향 거울</div>
+  <div class="card-body">
+대칭이동은 점을 <b>거울에 비추듯</b> 뒤집는 거예요. 거울을 어디에 두느냐(x축, y축, 원점, 직선 y=x)에 따라 4가지가 있어요.<br><br>
+
+<svg viewBox="0 0 180 180" width="100%" style="max-width:160px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="10" y1="90" x2="170" y2="90" stroke="#999" stroke-width="1.3"/>
+  <line x1="90" y1="10" x2="90" y2="170" stroke="#999" stroke-width="1.3"/>
+  <line x1="20" y1="160" x2="160" y2="20" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="3 3"/>
+  <circle cx="135" cy="30" r="4" fill="#1a1a1a"/>
+  <circle cx="135" cy="150" r="3.5" fill="#f97316"/>
+  <circle cx="45" cy="30" r="3.5" fill="#10b981"/>
+  <circle cx="45" cy="150" r="3.5" fill="#6366f1"/>
+  <circle cx="150" cy="45" r="3.5" fill="#eab308"/>
+  <text x="139" y="26" font-size="9" fill="#1a1a1a" font-weight="700">P(3,4)</text>
+  <text x="139" y="164" font-size="9" fill="#f97316" font-weight="700">x축(3,−4)</text>
+  <text x="2" y="26" font-size="9" fill="#10b981" font-weight="700">y축(−3,4)</text>
+  <text x="2" y="164" font-size="9" fill="#6366f1" font-weight="700">원점(−3,−4)</text>
+  <text x="152" y="42" font-size="9" fill="#eab308" font-weight="700">y=x(4,3)</text>
+</svg>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+점 (x, y)를 대칭이동하면:<br>
+<b>x축 대칭</b> → (x, −y) &nbsp;&nbsp;<span style="color:#999">(y만 부호 반대)</span><br>
+<b>y축 대칭</b> → (−x, y) &nbsp;&nbsp;<span style="color:#999">(x만 부호 반대)</span><br>
+<b>원점 대칭</b> → (−x, −y) &nbsp;&nbsp;<span style="color:#999">(둘 다 부호 반대)</span><br>
+<b>직선 y=x 대칭</b> → (y, x) &nbsp;&nbsp;<span style="color:#999">(x와 y 자리 바꿈)</span>
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">대칭이동 — 기본문제</div>
+  <div class="card-tag">기본 3 — 점의 대칭이동</div>
+  <div class="card-body" style="font-weight:600">
+점 (−2, 5)를 ① x축 ② y축 ③ 원점 ④ 직선 y=x에 대하여 각각 대칭이동한 점의 좌표를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+① x축: (−2, −5) &nbsp; ② y축: (2, 5) &nbsp; ③ 원점: (2, −5) &nbsp; ④ y=x: <b>(5, −2)</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">대칭이동 — 개념 (도형의 대칭이동)</div>
+  <div class="card-tag">🇸🇬 싱가포르식 — 도형도 같은 규칙으로 치환</div>
+  <div class="card-body">
+도형의 방정식도 점과 똑같은 규칙으로 x, y를 바꿔치기하면 돼요.<br><br>
+
+<svg viewBox="0 0 200 200" width="100%" style="max-width:160px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="100" x2="200" y2="100" stroke="#999" stroke-width="1.3"/>
+  <line x1="60" y1="0" x2="60" y2="200" stroke="#999" stroke-width="1"/>
+  <circle cx="96" cy="46" r="36" fill="none" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="96" cy="154" r="36" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="4 3"/>
+  <circle cx="96" cy="46" r="2.5" fill="#6366f1"/>
+  <circle cx="96" cy="154" r="2.5" fill="#f97316"/>
+  <text x="100" y="42" font-size="9" fill="#6366f1" font-weight="700">중심(2,3)</text>
+  <text x="100" y="158" font-size="9" fill="#f97316" font-weight="700">중심(2,−3)</text>
+  <text x="4" y="97" font-size="8" fill="#777">x축</text>
+</svg>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b>x축 대칭</b> → y 대신 −y &nbsp;&nbsp; <b>y축 대칭</b> → x 대신 −x<br>
+<b>원점 대칭</b> → x 대신 −x, y 대신 −y &nbsp;&nbsp; <b>y=x 대칭</b> → x와 y를 통째로 교환
+</div>
+예: 원 (x−2)²+(y−3)²=4를 x축에 대칭이동하면?<br>
+y 대신 −y 대입: (x−2)²+(−y−3)²=4 → <b>(x−2)²+(y+3)²=4</b><br>
+중심이 (2,3)→(2,−3)으로 옮겨갔을 뿐, 반지름은 그대로예요 — 대칭이동은 모양과 크기를 안 바꾸니까요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">대칭이동 — 기본문제</div>
+  <div class="card-tag">기본 4 — 도형의 대칭이동</div>
+  <div class="card-body" style="font-weight:600">
+직선 y = 3x − 2를 원점에 대하여 대칭이동한 직선의 방정식을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+x 대신 −x, y 대신 −y 대입:<br>
+−y = 3(−x) − 2 → −y = −3x − 2 → <b>y = 3x + 2</b>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">🗺️ 심화문제 들어가기 전에</div>
+
+<div class="card">
+  <div class="card-meta">지도 1/5</div>
+  <div class="card-tag">① 평행이동 전·후로 이동량 역추적</div>
+  <div class="card-body">
+문제에 "평행이동했더니 ~와 일치했다"는 표현이 나오면?<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+조건: 도형(또는 점)을 평행이동했더니 다른 도형(점)과 일치<br>
+필요한 도구: 계수 비교 (같은 도형이면 x, y의 계수·상수항이 각각 같아야 함)<br>
+공식: 이동 후 식 = 주어진 식이 되도록 a, b를 역산
+</div>
+"평행이동량 a, b를 구하라"는 문제는 사실 "이동시킨 식"과 "목표 식"을 나란히 놓고 <b>같은 자리끼리 비교</b>하는 문제예요.<br><br>
+
+<svg viewBox="0 0 200 190" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="120" x2="200" y2="120" stroke="#999" stroke-width="1"/>
+  <line x1="50" y1="0" x2="50" y2="190" stroke="#999" stroke-width="1"/>
+  <circle cx="68" cy="156" r="22" fill="none" stroke="#6366f1" stroke-width="1.6" stroke-dasharray="3 3"/>
+  <circle cx="68" cy="156" r="3" fill="#6366f1"/>
+  <circle cx="122" cy="102" r="22" fill="none" stroke="#f97316" stroke-width="1.6" stroke-dasharray="3 3"/>
+  <circle cx="122" cy="102" r="3" fill="#f97316"/>
+  <line x1="68" y1="156" x2="122" y2="102" stroke="#999" stroke-width="1.2" stroke-dasharray="2 2"/>
+  <text x="8" y="172" font-size="9" fill="#6366f1" font-weight="700">중심(1,−2)</text>
+  <text x="126" y="96" font-size="9" fill="#f97316" font-weight="700">중심(4,1)</text>
+  <text x="80" y="122" font-size="8" fill="#666">(+3,+3) 만큼 이동</text>
+</svg>
+
+예: 원 (x−1)²+(y+2)²=9를 평행이동했더니 (x−4)²+(y−1)²=9가 되었어요. 중심이 (1,−2)→(4,1)로 옮겨갔으니, 이동량은 x축 방향 <b>+3</b>, y축 방향 <b>+3</b>이에요.<br>
+→ 주제0 (평행이동) 참고
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 2/5</div>
+  <div class="card-tag">② 반복되는 대칭이동 — 규칙 찾기</div>
+  <div class="card-body">
+문제에 "x축 → y축 → 원점 → 직선 y=x 순서로 반복해서 대칭이동"처럼 여러 번 이동시키는 표현이 나오면?<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+조건: 대칭이동을 여러 번 반복<br>
+필요한 도구: 한 번씩 순서대로 직접 적용 → 몇 번째마다 원래 자리로 돌아오는지 <b>주기</b> 찾기<br>
+공식: (전체 반복 횟수) mod (주기)로 최종 위치 계산
+</div>
+100번, 1000번처럼 큰 숫자가 나오면 절대 100번을 다 계산하라는 뜻이 아니에요 — 몇 번 반복하면 처음 자리로 돌아오는지 주기를 찾으라는 신호입니다.<br><br>
+
+<svg viewBox="0 0 200 200" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="150" x2="200" y2="150" stroke="#999" stroke-width="1"/>
+  <line x1="90" y1="0" x2="90" y2="200" stroke="#999" stroke-width="1"/>
+  <circle cx="144" cy="132" r="4" fill="#6366f1"/>
+  <circle cx="108" cy="96" r="4" fill="#f97316"/>
+  <path d="M144,132 Q126,80 108,96" fill="none" stroke="#999" stroke-width="1.3" stroke-dasharray="3 3"/>
+  <text x="148" y="128" font-size="9" fill="#6366f1" font-weight="700">P₀(3,1)</text>
+  <text x="45" y="90" font-size="9" fill="#f97316" font-weight="700">4단계 후 (1,3)</text>
+  <text x="10" y="20" font-size="8" fill="#666">8단계 후 다시 P₀로 복귀!</text>
+</svg>
+
+예: P₀(3,1)에서 "x축→y축→원점→y=x" 순서를 반복 적용하면?<br>
+1단계 (3,−1) → 2단계 (−3,−1) → 3단계 (3,1) → 4단계 <b>(1,3)</b> → … → 8단계에서 다시 <b>(3,1)</b>로 복귀! 즉 <b>주기는 8</b>이에요. "100단계 후 위치는?"이라 물으면 100÷8=12···4이므로 4단계 후 위치인 (1,3)이 답입니다.<br>
+→ 주제1 (대칭이동) 참고
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 3/5</div>
+  <div class="card-tag">③ 평행이동 + 대칭이동 결합</div>
+  <div class="card-body">
+문제에 "평행이동한 후 대칭이동" 또는 "대칭이동한 후 평행이동"처럼 두 가지가 같이 나오면?<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+조건: 평행이동 + 대칭이동이 순서대로 적용<br>
+필요한 도구: 각 단계를 <b>순서 그대로</b> 하나씩 적용 (순서를 바꾸면 다른 결과가 나올 수 있음!)<br>
+공식: 1단계 결과를 다음 단계의 "원래 도형"으로 놓고 이어서 치환
+</div>
+평행이동과 대칭이동은 순서를 바꾸면 답이 달라질 수 있어요 — "무슨 순서로 시켰는지" 문제 문장을 정확히 따라가는 게 중요합니다.<br><br>
+
+<svg viewBox="0 0 200 220" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="120" x2="200" y2="120" stroke="#999" stroke-width="1"/>
+  <line x1="60" y1="0" x2="60" y2="220" stroke="#999" stroke-width="1"/>
+  <circle cx="96" cy="66" r="4" fill="#333"/>
+  <circle cx="114" cy="210" r="4" fill="#6366f1"/>
+  <circle cx="114" cy="138" r="4" fill="#f97316"/>
+  <path d="M96,66 L114,210" stroke="#6366f1" stroke-width="1.3" stroke-dasharray="3 3"/>
+  <path d="M96,66 L114,138" stroke="#f97316" stroke-width="1.3" stroke-dasharray="3 3"/>
+  <text x="98" y="60" font-size="9" fill="#333" font-weight="700">P(2,3)</text>
+  <text x="4" y="212" font-size="9" fill="#6366f1" font-weight="700">평행→대칭: (3,−5)</text>
+  <text x="118" y="134" font-size="9" fill="#f97316" font-weight="700">대칭→평행: (3,−1)</text>
+</svg>
+
+예: P(2,3)를 x축 방향 1, y축 방향 2만큼 평행이동한 뒤 x축에 대칭이동하면 (3,5)→<b>(3,−5)</b>. 반대로 x축에 먼저 대칭이동한 뒤 같은 평행이동을 하면 (2,−3)→<b>(3,−1)</b>. 시작점은 같아도 순서에 따라 완전히 다른 점에 도착해요.<br>
+→ 주제0+주제1 결합
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 4/5</div>
+  <div class="card-tag">④ 대칭이동한 직선이 원의 중심을 지난다</div>
+  <div class="card-body">
+문제에 "직선을 대칭이동했더니 원의 넓이를 이등분했다"는 표현이 나오면?<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+조건: 대칭이동한 직선이 원의 넓이를 이등분<br>
+필요한 도구: "넓이를 이등분" = "그 직선이 원의 중심을 지난다"는 사실<br>
+공식: 대칭이동한 직선의 식에 원의 중심 좌표를 대입해서 미지수를 구함
+</div>
+원을 정확히 반으로 나누는 직선은 무조건 <b>중심을 지나야</b> 해요. "넓이 이등분"이라는 말을 보면 자동으로 "중심을 대입하자"고 떠올리면 됩니다 — 원의 방정식 단원과 이 단원이 만나는 대표적인 지점이에요.<br><br>
+
+<svg viewBox="0 0 200 220" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="120" x2="200" y2="120" stroke="#999" stroke-width="1"/>
+  <line x1="60" y1="0" x2="60" y2="220" stroke="#999" stroke-width="1"/>
+  <circle cx="96" cy="138" r="54" fill="rgba(99,102,241,.08)" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="96" cy="138" r="3" fill="#4c1d95"/>
+  <line x1="42" y1="30" x2="132" y2="210" stroke="#f97316" stroke-width="2"/>
+  <text x="98" y="132" font-size="9" fill="#4c1d95" font-weight="700">중심(2,−1)</text>
+  <text x="6" y="24" font-size="9" fill="#f97316" font-weight="700">y=−2x+3</text>
+</svg>
+
+예: 직선 y=kx−3을 x축에 대칭이동한 직선이 원 (x−2)²+(y+1)²=9(중심(2,−1))의 넓이를 이등분할 때, k를 구하세요.<br>
+x축 대칭: y=kx−3 → −y=kx−3 → y=−kx+3. 이 직선이 중심(2,−1)을 지나야 하므로: −1=−2k+3 → <b>k=2</b><br>
+검산: k=2일 때 대칭이동한 직선은 y=−2x+3, x=2 대입 → y=−1 ✓ 중심을 정확히 지나요.<br>
+→ 원의 방정식(중심) + 대칭이동 결합
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 5/5 (⑤ 두 학생이 스스로 찾아가는 문제)</div>
+  <div class="card-tag">스토리 — 대칭을 두 번 하면 무슨 일이 생길까?</div>
+  <div class="card-body">
+점 P(2, 5)를 x축에 대해 대칭이동한 다음, 그 결과를 다시 y축에 대해 대칭이동하면 어디로 갈까요? 두 학생의 대화를 들어볼까요:<br><br>
+
+<svg viewBox="0 0 200 200" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="110" x2="200" y2="110" stroke="#999" stroke-width="1"/>
+  <line x1="70" y1="0" x2="70" y2="200" stroke="#999" stroke-width="1"/>
+  <circle cx="98" cy="40" r="4" fill="#333"/>
+  <circle cx="98" cy="180" r="4" fill="#6366f1"/>
+  <circle cx="42" cy="180" r="4" fill="#f87171"/>
+  <line x1="98" y1="40" x2="98" y2="180" stroke="#6366f1" stroke-width="1.3" stroke-dasharray="3 3"/>
+  <line x1="98" y1="180" x2="42" y2="180" stroke="#f87171" stroke-width="1.3" stroke-dasharray="3 3"/>
+  <text x="102" y="36" font-size="9" fill="#333" font-weight="700">P(2,5)</text>
+  <text x="102" y="176" font-size="9" fill="#6366f1" font-weight="700">x축대칭 (2,−5)</text>
+  <text x="4" y="196" font-size="9" fill="#f87171" font-weight="700">y축대칭 (−2,−5)</text>
+</svg>
+그림에서 보듯, 파란 화살표(x축 대칭)와 빨간 화살표(y축 대칭)를 순서대로 따라가면 최종 도착점 (−2,−5)는 원점을 정확히 대칭시킨 자리와 같아요.<br><br>
+
+<div style="background:rgba(0,0,0,.03);border-radius:6px;padding:10px 12px;margin:6px 0;font-size:.95em;line-height:1.9">
+<b style="color:#4c1d95">민준:</b> 순서대로 해보자. x축 대칭이면 (2,5)→(2,−5). 그다음 y축 대칭이면 (2,−5)→(−2,−5).<br>
+<b style="color:#f87171">유나:</b> 어? (−2,−5)면... 그거 원점 대칭이랑 결과가 똑같지 않아? 원점 대칭은 (x,y)→(−x,−y)잖아.<br>
+<b style="color:#4c1d95">민준:</b> 진짜네! 우연인가? 다른 점으로도 확인해볼까?<br>
+</div>
+
+점 Q(4, −1)로도 확인: x축 대칭 → (4,1) → y축 대칭 → (−4,1). 원점 대칭을 바로 하면 (4,−1)→(−4,1). <b>똑같아요!</b><br><br>
+
+<div style="background:rgba(0,0,0,.03);border-radius:6px;padding:10px 12px;margin:6px 0;font-size:.95em;line-height:1.9">
+<b style="color:#f87171">유나:</b> 왜 그런지 알겠어 — x축 대칭은 y부호만 바꾸고, y축 대칭은 x부호만 바꾸잖아. 두 개를 순서대로 하면 결국 x, y 둘 다 부호가 바뀌니까 원점 대칭이랑 같은 거네!<br>
+<b style="color:#4c1d95">민준:</b> 그럼 "x축 대칭 + y축 대칭"을 따로따로 두 번 할 필요 없이, 그냥 원점 대칭 한 번만 하면 되는 거였어.<br>
+</div>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b>정리:</b> x축 대칭 → y축 대칭(또는 순서를 바꿔도)을 연달아 하면, 결과는 항상 <b>원점 대칭</b>과 같습니다.
+</div>
+<div class="toro-note">🦕 토로: "우연히 똑같이 나왔네"에서 끝내지 않고 "왜 그런지"까지 파고든 게 핵심이에요 — 부호가 바뀌는 규칙을 하나씩 뜯어보면 우연이 아니라 필연이라는 걸 알 수 있어요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body" style="font-size:12.5px;color:#666">
+🦕 토로: 지도 5개를 지금 다 외울 필요는 없어요. 문제를 풀다가 막히면 그때 이 페이지로 돌아와서 "몇 번 서랍이지?"만 확인하면 충분해요.
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">🎯 심화 — 이 단원이 실제 세상에서 하는 일 (모든 개념을 배운 뒤 보는 마지막 카드)</div>
+
+<div class="card">
+  <div class="card-meta">도형의 이동 — 심화 (핀란드식·직관, 실제 연구 결과 포함)</div>
+  <div class="card-tag">🪞 거울과 빛의 반사 — 대칭이동으로 광학 문제 풀기</div>
+  <div class="card-body">
+빛이 거울에 부딪히면 "입사각 = 반사각"으로 튕겨 나가요(반사 법칙). 그런데 이 반사 경로를 직접 계산하려면 각도를 재야 해서 꽤 번거로워요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+광학에서 실제로 쓰는 방법: 도착점을 거울 면에 대해 <b>대칭이동</b>시켜서 거울 반대편에 옮겨놓으면, 출발점과 그 대칭점을 <b>직선으로 잇기만</b> 해도 실제 빛의 경로(광로)가 나옵니다.
+</div>
+반사각을 하나하나 계산하는 대신, 오늘 배운 "대칭이동해서 직선 긋기"로 바꿔버리는 거예요 — 망원경, 카메라, 레이저 장치가 전부 이 원리를 씁니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">도형의 이동 — 심화 (핀란드식·직관, 결과 제시형)</div>
+  <div class="card-tag">🎱 당구공의 최단 경로 — 반사를 대칭이동으로 바꾸기</div>
+  <div class="card-body">
+당구대 벽에 공을 한 번 튕겨서 다른 공을 맞히는 최단 경로를 찾는 문제는, 거울 반사와 똑같은 방식으로 풀립니다.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+목표 공의 위치를 벽(직선)에 대해 <b>대칭이동</b>시킨 다음, 출발점에서 그 대칭점까지 직선을 그으면 — 그 직선이 벽과 만나는 지점이 바로 "튕겨야 할 자리"이고, 전체 경로 길이가 최단 거리가 됩니다.
+</div>
+직접 여러 번 튕기는 경로를 하나하나 재보는 대신, 대칭이동 한 번으로 "최단 경로 찾기"를 "두 점 사이의 최단 거리(직선)"라는 훨씬 쉬운 문제로 바꿔버리는 거예요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">도형의 이동 — 심화 (핀란드식·직관, 결과 제시형)</div>
+  <div class="card-tag">🗺️ 지도 앱을 손가락으로 밀 때</div>
+  <div class="card-body">
+스마트폰 지도 앱에서 화면을 손가락으로 드래그하면, 지도 위의 모든 건물·도로가 <b>모양은 그대로, 위치만</b> 화면 반대 방향으로 이동해요 — 이게 정확히 오늘 배운 평행이동이에요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+내부적으로는 화면에 보이는 모든 좌표에 (x+a, y+b)를 적용하는 것뿐이에요. 지도가 커지거나 회전하지 않고 그대로 미끄러지듯 움직이는 게 바로 "모양·크기는 안 바뀌고 위치만 바뀐다"는 평행이동의 정의 그대로입니다.
+</div>
+GPS로 내 위치(심화 카드 참고, 원의 방정식 단원)를 찾고 나면, 그 위치를 화면 중앙에 맞추기 위해 지도 전체를 평행이동시키는 계산이 매초 일어나고 있는 거예요.
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">✏️ 직접 풀어보기 — 정답은 각 문제 다음 페이지에</div>
+
+<div class="card">
+  <div class="card-meta">도형의 이동 — 연습문제</div>
+  <div class="card-tag">📝 풀기 전에 읽어주세요</div>
+  <div class="card-body">
+각 문항 위 빈칸에, 풀기 전에 이 문제가 어떤 개념을 쓰는지 먼저 적어보세요. 정답은 다음 페이지에 있으니, 미리 넘겨보지 말고 끝까지 풀어본 뒤에 확인하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 1 — 점의 평행이동</div>
+  <div class="card-tag">문항 1</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+점 A(4, −2)를 x축 방향으로 −3, y축 방향으로 5만큼 평행이동한 점 A′의 좌표를 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 1 — 풀이</div>
+  <div class="card-tag">💡 정답 A′(1, 3)</div>
+  <div class="card-body">
+x좌표: 4+(−3)=1, y좌표: −2+5=3<br>
+<b>A′(1, 3)</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 2 — 도형의 평행이동</div>
+  <div class="card-tag">문항 2</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 (x+1)²+(y−2)²=9를 x축 방향으로 2, y축 방향으로 −4만큼 평행이동한 도형의 방정식을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 2 — 풀이</div>
+  <div class="card-tag">💡 정답 (x−1)²+(y+2)²=9</div>
+  <div class="card-body">
+x 대신 (x−2), y 대신 (y+4) 대입:<br>
+(x−2+1)²+(y+4−2)²=9 → <b>(x−1)² + (y+2)² = 9</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 3 — 점의 대칭이동</div>
+  <div class="card-tag">문항 3</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+점 (−3, 6)을 직선 y=x에 대하여 대칭이동한 점의 좌표를 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 3 — 풀이</div>
+  <div class="card-tag">💡 정답 (6, −3)</div>
+  <div class="card-body">
+y=x 대칭은 x와 y의 자리를 바꾸는 것 → <b>(6, −3)</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 4 — 도형의 대칭이동</div>
+  <div class="card-tag">문항 4</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+직선 y=−2x+5를 y축에 대하여 대칭이동한 직선의 방정식을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 4 — 풀이</div>
+  <div class="card-tag">💡 정답 y=2x+5</div>
+  <div class="card-body">
+x 대신 −x 대입: y=−2(−x)+5 → <b>y = 2x + 5</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 5 — 평행이동 + 대칭이동 결합</div>
+  <div class="card-tag">문항 5</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+점 P(2, −5)를 x축 방향으로 −1, y축 방향으로 3만큼 평행이동한 후, 그 점을 원점에 대하여 대칭이동한 점의 좌표를 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 5 — 풀이</div>
+  <div class="card-tag">💡 정답 (−1, 2)</div>
+  <div class="card-body">
+① 평행이동: (2−1, −5+3) = (1, −2)<br>
+② 원점 대칭: (−1, 2) → <b>(−1, 2)</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 6 — 대칭이동 두 번의 정체</div>
+  <div class="card-tag">문항 6</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+점 (3, −1)을 x축에 대하여 대칭이동한 후, 그 점을 다시 y축에 대하여 대칭이동하세요. 그 결과가 원래 점 (3, −1)을 어떤 대칭이동 한 번으로 바로 옮긴 것과 같은지도 말하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 6 — 풀이</div>
+  <div class="card-tag">💡 정답 (−3, 1), 원점 대칭과 같다</div>
+  <div class="card-body">
+① x축 대칭: (3, 1)<br>
+② y축 대칭: (−3, 1)<br>
+원점 대칭 공식으로 바로 확인: (3,−1) → (−3, 1) 동일 → <b>x축 대칭 + y축 대칭 = 원점 대칭</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 7 — 대칭이동 + 원, 최단 경로 결합 · 난이도 최고난도</div>
+  <div class="card-tag">문항 7</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+점 A(6, 2)와 원 (x−1)²+(y−8)²=1 위를 움직이는 점 P가 있어요. x축 위의 점 Q에 대하여 AQ+QP의 최솟값을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 7 — 풀이</div>
+  <div class="card-tag">💡 정답 5√5 − 1</div>
+  <div class="card-body">
+<svg viewBox="0 0 130 150" width="100%" style="max-width:130px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="110" x2="130" y2="110" stroke="#999" stroke-width="1"/>
+  <circle cx="38" cy="46" r="8" fill="rgba(99,102,241,.15)" stroke="#6366f1" stroke-width="2"/>
+  <line x1="78" y1="126" x2="38" y2="46" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="78" y1="94" x2="70" y2="110" stroke="#f97316" stroke-width="2"/>
+  <line x1="70" y1="110" x2="38" y2="46" stroke="#f97316" stroke-width="2"/>
+  <circle cx="78" cy="94" r="4" fill="#f97316"/>
+  <circle cx="78" cy="126" r="3.5" fill="#94a3b8"/>
+  <circle cx="70" cy="110" r="3.5" fill="#4c1d95"/>
+  <text x="82" y="90" font-size="9" fill="#f97316" font-weight="700">A(6,2)</text>
+  <text x="82" y="130" font-size="9" fill="#94a3b8" font-weight="700">A′(6,−2)</text>
+  <text x="50" y="106" font-size="9" fill="#4c1d95" font-weight="700">Q</text>
+  <text x="10" y="40" font-size="8" fill="#6366f1" font-weight="700">원(중심(1,8),r=1)</text>
+</svg>
+<b>1단계 — x축 대칭으로 꺾인 경로 펴기</b>: A를 x축에 대칭이동한 점 A′(6,−2)를 만들면, x축 위의 어떤 Q에서도 AQ = A′Q가 성립해요(대칭이동은 거리를 보존하니까). 그래서 AQ+QP = A′Q+QP가 돼요.<br><br>
+<b>2단계 — 직선으로 최단 거리 만들기</b>: A′Q+QP의 최솟값은, A′과 P를 잇는 경로가 <b>일직선</b>이 될 때예요(삼각부등식). P가 원 위를 움직이니, A′에서 원의 중심 C(1,8)까지 거리에서 반지름만 빼면 됩니다.<br><br>
+A′C = √((6−1)²+(−2−8)²) = √(25+100) = √125 = <b>5√5</b><br>
+최솟값 = A′C − r = <b>5√5 − 1</b><br><br>
+<span style="font-size:.85em;color:#555">이 문제는 심화 카드 "거울과 빛의 반사"에서 배운 반사 원리(대칭이동으로 꺾인 경로를 직선으로 펴기)와 원의 방정식(중심까지 거리−반지름=최단거리)을 그대로 결합한 거예요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">🕵️ 사건 파일 — 최단 경로를 찾아라 (대칭이동 활용)</div>
+  <div class="card-tag">문항 8 — 탐정의 사건 수사</div>
+  <div class="card-body" style="font-weight:600">
+<b>사건 개요:</b> 점 A(1, 5)에서 출발해 직선 y=x 위의 점 P를 반드시 거쳐, 점 B(2, 4)까지 가는 가장 짧은 경로 AP+PB의 최솟값을 구하라.
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:10px 0 0;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">🕵️ 사건 해결 — 최단 경로를 찾아라</div>
+  <div class="card-tag">💡 정답 3√2</div>
+  <div class="card-body">
+<svg viewBox="0 0 130 150" width="100%" style="max-width:120px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="140" x2="110" y2="50" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="95" y1="125" x2="65" y2="95" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="3 2"/>
+  <line x1="35" y1="65" x2="65" y2="95" stroke="#f97316" stroke-width="2.2"/>
+  <line x1="65" y1="95" x2="50" y2="80" stroke="#f97316" stroke-width="2.2"/>
+  <circle cx="35" cy="65" r="4" fill="#4c1d95"/>
+  <circle cx="50" cy="80" r="4" fill="#4c1d95"/>
+  <circle cx="65" cy="95" r="3.5" fill="#f97316"/>
+  <circle cx="95" cy="125" r="3.5" fill="#94a3b8"/>
+  <text x="12" y="60" font-size="9" fill="#4c1d95" font-weight="700">A(1,5)</text>
+  <text x="26" y="78" font-size="9" fill="#4c1d95" font-weight="700">B(2,4)</text>
+  <text x="68" y="93" font-size="8" fill="#f97316" font-weight="700">P</text>
+  <text x="98" y="122" font-size="8" fill="#94a3b8" font-weight="700">A′(5,1)</text>
+</svg>
+<b>단서 1 — 꺾인 경로는 계산이 어렵다</b><br>
+A→P→B처럼 꺾인 길은 거리를 한 번에 재기 어려워요. 곧게 펴는 방법이 필요합니다.<br><br>
+<b>단서 2 — 거울의 법칙(대칭이동)</b><br>
+직선 y=x를 거울이라고 생각하면, A(1,5)를 이 거울에 비춘 점 A′(5,1)(y=x 대칭은 x,y를 맞바꾸면 돼요)에 대해 <b>AP = A′P</b>가 항상 성립해요(거울선 위의 어떤 점에서 재도 원래 점까지의 거리와 거울상까지의 거리는 같으니까요). 그래서 AP+PB = A′P+PB가 됩니다.<br><br>
+<b>단서 3 — 곧은 길이 최短(최단)</b><br>
+A′P+PB의 최솟값은 A′, P, B가 <b>일직선</b>일 때예요(삼각부등식). A′(5,1)과 B(2,4)를 그대로 이으면 됩니다.<br><br>
+<b>사건 해결:</b><br>
+A′B = √((2−5)²+(4−1)²) = √(9+9) = √18 = <b>3√2</b><br><br>
+<span style="font-size:.85em;color:#555">검산: A′와 B를 잇는 직선과 y=x의 교점은 P(3,3). AP=√((3−1)²+(3−5)²)=√8=2√2, PB=√((2−3)²+(4−3)²)=√2. 합=2√2+√2=3√2 ✓ — 꺾어서 재도 결국 곧게 편 거리와 똑같이 나와요.</span><br><br>
+<div class="toro-note">🦕 토로: 이 문제는 A, B가 거울선의 <b>같은 쪽</b>에 있을 때만 이 방법이 통해요 — 만약 둘이 이미 반대쪽에 있다면 대칭이동 없이 그냥 AB를 직선으로 이으면 답이 나옵니다. 먼저 어느 쪽에 있는지부터 확인하는 습관을 들이세요.</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학2 · 도형의 방정식 — 빌드 파일</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+
+/* ── 빌드 툴바 (인쇄 안 됨) ── */
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+
+/* ── 이 아래부터 index.html printCards()와 동일한 인쇄 스타일 (+ 여유 있는 레이아웃) ── */
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card:not(:last-child){page-break-after:always}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:16px;padding-top:16px;border-top:1px dashed #bbb;font-size:12.5px;color:#333;line-height:1.95}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{font-size:11px;font-weight:700;color:#666!important;margin-bottom:8px}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 2px;line-height:1.15;font-size:.92em;position:relative;top:.15em}
+.frac .num,.frac .den{padding:0 4px;display:block}
+.frac .num{border-bottom:1.4px solid #1a1a1a!important;padding-bottom:1px}
+.frac .den{padding-top:1px}
+@media print{
+svg text{fill:#333!important}
+svg line{stroke:#aaa!important}
+svg rect{stroke:#aaa!important}
+svg circle{stroke:#aaa!important;fill:#999!important}
+svg polygon{stroke:#aaa!important;fill:#eee!important}
+svg path{stroke:#aaa!important}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 공통수학2 · 도형의 방정식</div>
+    <div class="toolbar-sub">주제별 그룹(거리/내분점 각 개념+기본문제) + 지도 8쪽 + 심화 1/11 + 시험대비 5문항 · 승인된 카드만 이 파일에 누적됩니다</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 평면좌표 — 두 점 사이의 거리 · 내분점</h1>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:0 0 10px;padding-top:0">📍 주제 1 — 두 점 사이의 거리</div>
+
+<div class="card">
+  <div class="card-meta">거리 — 개념</div>
+  <div class="card-tag">🇫🇮 핀란드식 1/? — 새가 나는 길</div>
+  <div class="card-body">
+"지도 위에서 가장 짧은 거리는 어떻게 잴까?"<br><br>
+좌표평면 위에 우리 집 A(1, 1)과 도서관 B(4, 5)가 있어요.<br>
+길이 바둑판처럼 나 있는 동네라서, 걸어가려면 오른쪽으로 3칸, 위로 4칸 — 이렇게 꺾어서 가야 해요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1;text-align:center">
+걸어가는 거리: 3칸 + 4칸 = <b>7칸</b><br>
+그런데 새는 꺾지 않고 <b>A에서 B로 일직선</b>으로 날아가요.
+</div>
+<b>질문:</b> 새가 나는 그 직선 거리는 몇 칸일까요? (7칸보다 짧을까, 길까요?)<br><br>
+
+<svg viewBox="0 0 274 300" width="100%" style="max-width:190px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#ddd" stroke-width="1">
+    <line x1="40" y1="26" x2="40" y2="266"/><line x1="80" y1="26" x2="80" y2="266"/>
+    <line x1="120" y1="26" x2="120" y2="266"/><line x1="160" y1="26" x2="160" y2="266"/>
+    <line x1="200" y1="26" x2="200" y2="266"/><line x1="240" y1="26" x2="240" y2="266"/>
+    <line x1="40" y1="266" x2="240" y2="266"/><line x1="40" y1="226" x2="240" y2="226"/>
+    <line x1="40" y1="186" x2="240" y2="186"/><line x1="40" y1="146" x2="240" y2="146"/>
+    <line x1="40" y1="106" x2="240" y2="106"/><line x1="40" y1="66" x2="240" y2="66"/>
+    <line x1="40" y1="26" x2="240" y2="26"/>
+  </g>
+  <path d="M 80 226 L 200 226 L 200 66" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="6 4"/>
+  <line x1="80" y1="226" x2="200" y2="66" stroke="#6366f1" stroke-width="3"/>
+  <path d="M 192 226 L 192 218 L 200 218" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+  <circle cx="80" cy="226" r="4" fill="#1a1a1a"/>
+  <circle cx="200" cy="66" r="4" fill="#1a1a1a"/>
+  <text x="52" y="244" font-size="11" fill="#1a1a1a" font-weight="700">A(1,1)</text>
+  <text x="204" y="58" font-size="11" fill="#1a1a1a" font-weight="700">B(4,5)</text>
+  <text x="130" y="242" font-size="11" fill="#64748b">3칸</text>
+  <text x="206" y="150" font-size="11" fill="#64748b">4칸</text>
+  <text x="120" y="138" font-size="14" fill="#4c1d95" font-weight="700">?</text>
+</svg>
+
+<span style="font-size:.9em;color:#555">힌트: 가로 3칸, 세로 4칸을 두 변으로 하는 직각삼각형을 그려보세요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">거리 — 개념 풀이</div>
+  <div class="card-tag">💡 새가 나는 길 — 설명 / 풀이</div>
+  <div class="card-body">
+<b>직선 거리 = 5칸</b> (7칸보다 짧아요 — 꺾어가면 항상 손해예요)<br><br>
+<b>왜 5일까?</b><br>
+가로 변 3, 세로 변 4인 직각삼각형의 빗변이 바로 A와 B를 잇는 직선이에요.<br><br>
+
+<svg viewBox="0 0 274 300" width="100%" style="max-width:190px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#eee" stroke-width="1">
+    <line x1="40" y1="26" x2="40" y2="266"/><line x1="80" y1="26" x2="80" y2="266"/>
+    <line x1="120" y1="26" x2="120" y2="266"/><line x1="160" y1="26" x2="160" y2="266"/>
+    <line x1="200" y1="26" x2="200" y2="266"/><line x1="240" y1="26" x2="240" y2="266"/>
+    <line x1="40" y1="266" x2="240" y2="266"/><line x1="40" y1="226" x2="240" y2="226"/>
+    <line x1="40" y1="186" x2="240" y2="186"/><line x1="40" y1="146" x2="240" y2="146"/>
+    <line x1="40" y1="106" x2="240" y2="106"/><line x1="40" y1="66" x2="240" y2="66"/>
+    <line x1="40" y1="26" x2="240" y2="26"/>
+  </g>
+  <path d="M 80 226 L 200 226 L 200 66 Z" fill="#6366f1" fill-opacity="0.07" stroke="none"/>
+  <line x1="80" y1="226" x2="200" y2="226" stroke="#94a3b8" stroke-width="2.5"/>
+  <line x1="200" y1="226" x2="200" y2="66" stroke="#94a3b8" stroke-width="2.5"/>
+  <line x1="80" y1="226" x2="200" y2="66" stroke="#6366f1" stroke-width="3"/>
+  <path d="M 192 226 L 192 218 L 200 218" fill="none" stroke="#64748b" stroke-width="1.5"/>
+  <circle cx="80" cy="226" r="4" fill="#1a1a1a"/>
+  <circle cx="200" cy="66" r="4" fill="#1a1a1a"/>
+  <circle cx="200" cy="226" r="3" fill="#94a3b8"/>
+  <text x="52" y="244" font-size="11" fill="#1a1a1a" font-weight="700">A(1,1)</text>
+  <text x="204" y="58" font-size="11" fill="#1a1a1a" font-weight="700">B(4,5)</text>
+  <text x="130" y="242" font-size="11" fill="#64748b">3</text>
+  <text x="206" y="150" font-size="11" fill="#64748b">4</text>
+  <text x="118" y="138" font-size="14" fill="#4c1d95" font-weight="700">5</text>
+</svg>
+
+피타고라스 정리: 빗변² = 3² + 4² = 9 + 16 = 25 → 빗변 = <b>5</b><br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+<b>일반화 — 두 점 사이의 거리 공식</b><br>
+A(x₁, y₁), B(x₂, y₂)라 하면<br>
+가로 차: |x₂ − x₁|, 세로 차: |y₂ − y₁|<br>
+이 둘을 두 변으로 하는 직각삼각형의 빗변이 AB의 거리예요.<br><br>
+<b style="font-size:1.05em">AB = √{ (x₂ − x₁)² + (y₂ − y₁)² }</b>
+</div>
+<span style="font-size:.9em;color:#555">특별한 경우 — 원점 O(0,0)과 점 (x, y) 사이의 거리는 OB = √(x² + y²)</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">거리 — 기본문제</div>
+  <div class="card-tag">기본 1 — 두 점 사이의 거리</div>
+  <div class="card-body" style="font-weight:600">
+두 점 A(2, 3), B(6, 6) 사이의 거리를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+가로 차: |6−2| = 4, 세로 차: |6−3| = 3<br>
+AB = √(4² + 3²) = √(16+9) = √25 = <b>5</b>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📍 주제 2 — 내분점</div>
+
+<div class="card">
+  <div class="card-meta">내분점 — 개념</div>
+  <div class="card-tag">🇸🇬 싱가포르식 — 막대모델로 나누기</div>
+  <div class="card-body">
+"이번엔 두 점을 잇는 길 위의 한 지점을 찾아볼까요?"<br><br>
+학교 A(1, 2)와 놀이터 B(10, 5) 사이에 일직선 도로가 있어요.<br>
+이 도로 위에 정류장을 세우려는데, 학교 쪽으로 더 가깝게 — 정확히 <b>AP : PB = 1 : 2</b>가 되는 지점에 세우고 싶어요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1;text-align:center">
+싱가포르식 막대모델: 도로 전체를 <b>3칸</b>으로 나눠보면?<br>(1칸 + 2칸 = 3칸)
+</div>
+
+<svg viewBox="0 0 300 194" width="100%" style="max-width:195px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#ddd" stroke-width="1">
+    <line x1="30" y1="20" x2="30" y2="164"/><line x1="54" y1="20" x2="54" y2="164"/>
+    <line x1="78" y1="20" x2="78" y2="164"/><line x1="102" y1="20" x2="102" y2="164"/>
+    <line x1="126" y1="20" x2="126" y2="164"/><line x1="150" y1="20" x2="150" y2="164"/>
+    <line x1="174" y1="20" x2="174" y2="164"/><line x1="198" y1="20" x2="198" y2="164"/>
+    <line x1="222" y1="20" x2="222" y2="164"/><line x1="246" y1="20" x2="246" y2="164"/>
+    <line x1="270" y1="20" x2="270" y2="164"/>
+    <line x1="30" y1="164" x2="270" y2="164"/><line x1="30" y1="140" x2="270" y2="140"/>
+    <line x1="30" y1="116" x2="270" y2="116"/><line x1="30" y1="92" x2="270" y2="92"/>
+    <line x1="30" y1="68" x2="270" y2="68"/><line x1="30" y1="44" x2="270" y2="44"/>
+    <line x1="30" y1="20" x2="270" y2="20"/>
+  </g>
+  <line x1="54" y1="116" x2="270" y2="44" stroke="#6366f1" stroke-width="2.5"/>
+  <circle cx="54" cy="116" r="4" fill="#1a1a1a"/>
+  <circle cx="270" cy="44" r="4" fill="#1a1a1a"/>
+  <circle cx="126" cy="92" r="5" fill="#fff" stroke="#4c1d95" stroke-width="2"/>
+  <circle cx="198" cy="68" r="2.5" fill="#94a3b8"/>
+  <text x="30" y="132" font-size="11" fill="#1a1a1a" font-weight="700">A(1,2)</text>
+  <text x="238" y="36" font-size="11" fill="#1a1a1a" font-weight="700">B(10,5)</text>
+  <text x="112" y="112" font-size="12" fill="#4c1d95" font-weight="700">P?</text>
+  <text x="76" y="94" font-size="11" fill="#64748b">1</text>
+  <text x="192" y="86" font-size="11" fill="#64748b">2</text>
+</svg>
+
+<b>질문:</b> 정류장 P의 좌표는 무엇일까요?<br><br>
+<span style="font-size:.9em;color:#555">힌트: x좌표와 y좌표를 각각 3등분해서 생각해보세요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">내분점 — 개념 풀이</div>
+  <div class="card-tag">💡 막대모델로 나누기 — 설명 / 풀이</div>
+  <div class="card-body">
+<b>P(4, 3)</b><br><br>
+<b>막대모델 풀이</b><br>
+x좌표: A의 x=1에서 B의 x=10까지 변화량 9를 3칸으로 나누면 한 칸 = 3. A에서 1칸(=AP만큼) 이동 → 1+3 = <b>4</b><br>
+y좌표: A의 y=2에서 B의 y=5까지 변화량 3을 3칸으로 나누면 한 칸 = 1. A에서 1칸 이동 → 2+1 = <b>3</b><br><br>
+
+<svg viewBox="0 0 300 194" width="100%" style="max-width:195px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#eee" stroke-width="1">
+    <line x1="30" y1="20" x2="30" y2="164"/><line x1="54" y1="20" x2="54" y2="164"/>
+    <line x1="78" y1="20" x2="78" y2="164"/><line x1="102" y1="20" x2="102" y2="164"/>
+    <line x1="126" y1="20" x2="126" y2="164"/><line x1="150" y1="20" x2="150" y2="164"/>
+    <line x1="174" y1="20" x2="174" y2="164"/><line x1="198" y1="20" x2="198" y2="164"/>
+    <line x1="222" y1="20" x2="222" y2="164"/><line x1="246" y1="20" x2="246" y2="164"/>
+    <line x1="270" y1="20" x2="270" y2="164"/>
+    <line x1="30" y1="164" x2="270" y2="164"/><line x1="30" y1="140" x2="270" y2="140"/>
+    <line x1="30" y1="116" x2="270" y2="116"/><line x1="30" y1="92" x2="270" y2="92"/>
+    <line x1="30" y1="68" x2="270" y2="68"/><line x1="30" y1="44" x2="270" y2="44"/>
+    <line x1="30" y1="20" x2="270" y2="20"/>
+  </g>
+  <line x1="54" y1="116" x2="270" y2="44" stroke="#6366f1" stroke-width="2.5"/>
+  <circle cx="54" cy="116" r="4" fill="#1a1a1a"/>
+  <circle cx="270" cy="44" r="4" fill="#1a1a1a"/>
+  <circle cx="198" cy="68" r="2.5" fill="#94a3b8"/>
+  <circle cx="126" cy="92" r="5" fill="#4c1d95"/>
+  <text x="30" y="132" font-size="11" fill="#1a1a1a" font-weight="700">A(1,2)</text>
+  <text x="238" y="36" font-size="11" fill="#1a1a1a" font-weight="700">B(10,5)</text>
+  <text x="98" y="112" font-size="11" fill="#4c1d95" font-weight="700">P(4,3)</text>
+  <text x="76" y="94" font-size="11" fill="#64748b">1</text>
+  <text x="192" y="86" font-size="11" fill="#64748b">2</text>
+</svg>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+<b>일반화 — 내분점 공식</b><br>
+선분 AB를 m : n으로 내분하는 점 P의 좌표<br>
+(A(x₁,y₁), B(x₂,y₂)):<br><br>
+<b style="font-size:1.05em">P = ( <span class="frac"><span class="num">n·x₁ + m·x₂</span><span class="den">m+n</span></span>,  <span class="frac"><span class="num">n·y₁ + m·y₂</span><span class="den">m+n</span></span> )</b><br><br>
+검산 (m=1, n=2): Px = <span class="frac"><span class="num">2·1 + 1·10</span><span class="den">3</span></span> = 4, Py = <span class="frac"><span class="num">2·2 + 1·5</span><span class="den">3</span></span> = 3 ✓
+</div>
+<span style="font-size:.9em;color:#555"><b>헷갈리기 쉬운 포인트:</b> x₁에는 m이 아니라 <b>n</b>이 곱해져요. P가 A에 가까울수록(=A쪽 조각이 짧을수록) 오히려 A의 가중치(n, B쪽 조각의 크기)는 커져야 무게중심이 맞습니다 — "가까운 점일수록 먼 쪽 비율이 곱해진다"고 기억하세요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">내분점 — 기본문제</div>
+  <div class="card-tag">기본 2 — 내분점 직접 대입</div>
+  <div class="card-body" style="font-weight:600">
+두 점 A(2, 1), B(8, 7)에 대하여 선분 AB를 2 : 1로 내분하는 점 P의 좌표를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+m : n = 2 : 1이므로<br>
+Px = <span class="frac"><span class="num">1·2 + 2·8</span><span class="den">3</span></span> = <span class="frac"><span class="num">2+16</span><span class="den">3</span></span> = <span class="frac"><span class="num">18</span><span class="den">3</span></span> = <b>6</b><br>
+Py = <span class="frac"><span class="num">1·1 + 2·7</span><span class="den">3</span></span> = <span class="frac"><span class="num">1+14</span><span class="den">3</span></span> = <span class="frac"><span class="num">15</span><span class="den">3</span></span> = <b>5</b><br><br>
+<b>P(6, 5)</b>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">🗺️ 심화문제 들어가기 전에</div>
+
+<div class="card">
+  <div class="card-meta">지도 0/7 — 시작하기 전에</div>
+  <div class="card-tag">✡️ 유대인식 — 계산 전에 지도부터</div>
+  <div class="card-body">
+<b>"공식 2개로 대체 문제가 몇 개나 나올까?"</b><br><br>
+거리공식이랑 내분점 공식, 이 두 개만 알면 계산은 다 되는데 — 문제집을 펴면 왜 이렇게 낯설어 보일까요?<br><br>
+이유는 하나예요. <b>공식은 그대로인데, 공식이 "숨어있는 위치"가 다른 것뿐</b>이에요. 재료(밀가루, 물)는 두 개뿐이어도 빵도 되고 국수도 되고 수제비도 되는 것처럼요.<br><br>
+
+<svg viewBox="0 0 300 150" width="100%" style="max-width:280px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="12" width="115" height="34" rx="8" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="72" y="33" font-size="12" fill="#333" font-weight="700" text-anchor="middle">거리공식</text>
+  <rect x="170" y="12" width="115" height="34" rx="8" fill="#6366f1" fill-opacity="0.08" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="227" y="33" font-size="12" fill="#333" font-weight="700" text-anchor="middle">내분점공식</text>
+  <line x1="72" y1="46" x2="150" y2="78" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="227" y1="46" x2="150" y2="78" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="150" y1="78" x2="150" y2="93" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8"/></marker></defs>
+  <rect x="80" y="95" width="140" height="34" rx="8" fill="#4c1d95" fill-opacity="0.07" stroke="#4c1d95" stroke-width="1.5"/>
+  <text x="150" y="116" font-size="12" fill="#333" font-weight="700" text-anchor="middle">7가지 문제 유형</text>
+</svg>
+
+계산부터 시작하지 말고, 먼저 이 지도를 서랍 7개로 나눠서 하나씩 볼 거예요 — <b>"이 문제는 어느 서랍에서 나왔을까?"</b>부터 알아채는 연습이에요. 어디로 가야 할지 알면 계산은 훨씬 쉬워져요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 1/7</div>
+  <div class="card-tag">① 좌표평면조차 없는 문제</div>
+  <div class="card-body">
+격자도 축도 안 줘요. 각도(45°, 60°, 120°...)와 길이 하나만 있는 순수한 도형만 있어요.<br><br>
+
+<b>경우 1 — 그대로 축에 놓으면 되는 경우</b> (회전 필요 없음):
+
+<svg viewBox="0 0 180 130" width="100%" style="max-width:170px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="105" x2="110" y2="105" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="40" y1="105" x2="40" y2="35" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="110" y1="105" x2="40" y2="35" stroke="#1a1a1a" stroke-width="1.5"/>
+  <path d="M 50 105 L 50 95 L 40 95" fill="none" stroke="#6366f1" stroke-width="1.2"/>
+  <path d="M 95 105 A 15 15 0 0 1 99.4 94.4" fill="none" stroke="#94a3b8" stroke-width="1"/>
+  <text x="78" y="100" font-size="9" fill="#4c1d95" font-weight="700">45°</text>
+  <text x="66" y="100" font-size="9" fill="#1a1a1a" font-weight="700">6</text>
+  <circle cx="40" cy="105" r="2.5" fill="#1a1a1a"/><circle cx="110" cy="105" r="2.5" fill="#1a1a1a"/><circle cx="40" cy="35" r="2.5" fill="#1a1a1a"/>
+  <text x="26" y="118" font-size="10" fill="#1a1a1a" font-weight="700">C</text>
+  <text x="116" y="109" font-size="10" fill="#1a1a1a" font-weight="700">A</text>
+  <text x="26" y="32" font-size="10" fill="#1a1a1a" font-weight="700">B</text>
+</svg>
+
+이건 두 변이 이미 가로·세로 방향이에요 — 그냥 이 모양 그대로 C를 원점에 놓기만 하면 끝이에요.<br><br>
+
+<b>경우 2 — 기울어져 있는 경우</b> (회전이 필요함, 심화1이 바로 이 경우예요):
+
+<svg viewBox="0 0 180 130" width="100%" style="max-width:170px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="55" x2="140" y2="55" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="40" y1="55" x2="90" y2="105" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="140" y1="55" x2="90" y2="105" stroke="#1a1a1a" stroke-width="1.5"/>
+  <path d="M 82.9 97.9 L 90 90.9 L 97.1 97.9" fill="none" stroke="#6366f1" stroke-width="1.2"/>
+  <path d="M 50.6 65.6 A 15 15 0 0 1 55 55" fill="none" stroke="#94a3b8" stroke-width="1"/>
+  <text x="58" y="68" font-size="9" fill="#4c1d95" font-weight="700">45°</text>
+  <text x="52" y="78" font-size="9" fill="#1a1a1a" font-weight="700">6</text>
+  <circle cx="40" cy="55" r="2.5" fill="#1a1a1a"/><circle cx="140" cy="55" r="2.5" fill="#1a1a1a"/><circle cx="90" cy="105" r="2.5" fill="#1a1a1a"/>
+  <text x="26" y="50" font-size="10" fill="#1a1a1a" font-weight="700">A</text>
+  <text x="146" y="50" font-size="10" fill="#1a1a1a" font-weight="700">B</text>
+  <text x="85" y="122" font-size="10" fill="#1a1a1a" font-weight="700">C</text>
+</svg>
+
+이건 두 변이 대각선 방향이에요 — 이럴 땐 C를 고정하고 통째로 돌려서 두 변을 가로·세로에 맞춰야 해요. (심화1 풀이의 "↻ 돌리면" 그림 참고)<br><br>
+
+두 경우 다 순서는 같아요:<br>
+각도가 주어진다 → 이 각도 조합이 <b>어떤 특수삼각형</b>인지 알아챈다(정삼각형은 60·60·60, 직각이등변삼각형은 45·45·90 같은 식으로) → 특수삼각형이면 변의 <b>길이비</b>를 이미 알고 있다(1:1:√2, 1:1:√3 등) → 길이비를 알면 <b>좌표를 내가 직접 정할 수 있다</b> → 좌표가 생기면 그제서야 거리공식·내분점 공식을 쓸 수 있다.<br>
+즉 이 유형의 진짜 첫 단계는 계산이 아니라 <b>"이 도형 뭔지 알아보기"</b>예요.<br>
+→ 심화 1 (좌표평면 스스로 만들기)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 2/7</div>
+  <div class="card-tag">② 자로 재는 문제</div>
+  <div class="card-body">
+"이 삼각형 진짜 이등변일까?"<br>
+이등변삼각형인지 알려면 → 세 변의 <b>길이</b>를 비교해야 해요.<br>
+길이를 알려면 → <b>자</b>가 필요하죠?<br>
+그런데 좌표평면 위에는 진짜 자를 댈 수 없어요. 대신 <b>거리공식이 좌표평면의 자</b>예요:<br>
+<span style="display:block;text-align:center;margin:4px 0;color:#4c1d95;font-weight:700">AB = √{ (x₂−x₁)² + (y₂−y₁)² }</span>
+그러니까 "이등변삼각형인가?"라는 질문은 사실 "이 자로 세 번 재서 두 값이 같은가?"라는 질문일 뿐이에요.<br>
+→ 심화 2, 3 (이등변·직각삼각형 판별)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 3/7</div>
+  <div class="card-tag">③ 암호를 방정식으로 바꾸는 문제</div>
+  <div class="card-body">
+"평행사변형이다", "정삼각형이다"는 도형의 이름이 아니라 <b>암호</b>예요. 같은 도형도 암호를 푸는 방법이 여러 가지예요. 암호를 하나씩 풀어드릴게요:<br><br>
+
+<div style="background:rgba(0,0,0,.03);border-radius:6px;padding:8px 10px;margin:6px 0">
+<b style="color:#4c1d95">"평행사변형이다"</b> — 이걸 증명하는 방법이 3가지나 있어요:<br>
+<span style="display:block;margin:4px 0 4px 8px">· 두 쌍의 대변이 각각 <b>평행</b>하다 → 평행 = 기울기가 같다 → <b>기울기</b>가 필요해요 <span style="color:#999">(다음 소단원에서 배울 도구 — 지금은 예고편)</span></span>
+<span style="display:block;margin:4px 0 4px 8px">· 두 쌍의 대변의 <b>길이</b>가 각각 같다 → 길이 = 자가 필요하죠? → <b>거리공식</b> √{(x₂−x₁)²+(y₂−y₁)²}</span>
+<span style="display:block;margin:4px 0 4px 8px">· 두 대각선이 서로 다른 것을 <b>이등분</b>한다 → 이등분 = 정확히 절반 지점 = <b>중점</b> → 내분점 공식에서 m:n = 1:1인 특수한 경우가 바로 중점공식이에요</span>
+</div>
+
+<div style="background:rgba(0,0,0,.03);border-radius:6px;padding:8px 10px;margin:6px 0">
+<b style="color:#4c1d95">"정삼각형이다"</b> — 세 변의 <b>길이</b>가 모두 같다 → 역시 자, 즉 <b>거리공식</b>이 필요해요. 다만 이번엔 세 쌍(AB=BC, BC=CA)을 전부 같다고 놓아야 해요.
+</div>
+
+우리는 아직 기울기를 안 배웠으니, 지금은 <b>길이(거리공식)</b>와 <b>중점(내분점 특수케이스)</b>으로 푸는 암호부터 풀어볼 거예요.<br>
+→ 심화 4, 5, 6 (거리조건·평행사변형·정삼각형)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 4/7</div>
+  <div class="card-tag">④ 레고처럼 쌓는 문제</div>
+  <div class="card-body">
+공식을 한 번 쓰고 끝이 아니라, 그 결과를 가지고 <b>한 번 더</b> 써야 답이 나와요. 두 가지가 있어요:<br><br>
+
+<div style="background:rgba(0,0,0,.03);border-radius:6px;padding:8px 10px;margin:6px 0">
+<b style="color:#4c1d95">무게중심</b> — 무게중심이 뭘까요? 세 꼭짓점을 잇는 세 "중선"이 만나는 점이에요.<br>
+중선 하나 = 한 꼭짓점과 <b>대변의 중점</b>을 잇는 선 → 중점은 내분점의 특수케이스(1:1)니까, 먼저 <b>내분점 공식 1번째</b>로 대변의 중점을 구해요.<br>
+그 다음 그 중점과 나머지 꼭짓점을 <b>2:1로 내분</b>하는 점을 구하면 그게 무게중심 → <b>내분점 공식 2번째</b> 사용.<br>
+<span style="color:#999">내분점 공식을 두 번 겹쳐 써야 나오는 값이에요.</span>
+</div>
+
+<div style="background:rgba(0,0,0,.03);border-radius:6px;padding:8px 10px;margin:6px 0">
+<b style="color:#4c1d95">삼등분점</b> — 선분 하나를 3등분하려면 점이 몇 개 필요할까요? <b>2개</b>예요 (<span class="frac"><span class="num">1</span><span class="den">3</span></span> 지점, <span class="frac"><span class="num">2</span><span class="den">3</span></span> 지점).<br>
+첫 점은 <b>1:2 내분점</b>, 둘째 점은 <b>2:1 내분점</b> → 같은 공식을 비율만 바꿔서 두 번 쓰는 것뿐이에요.
+</div>
+→ 심화 7, 8 (무게중심·삼등분점)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 5/7</div>
+  <div class="card-tag">⑤ 움직이는 점 문제</div>
+  <div class="card-body">
+점의 좌표에 숫자 대신 문자 <b>t</b>가 들어있어요. 예를 들어 점 P(t, t+1).<br><br>
+
+<div style="background:rgba(0,0,0,.03);border-radius:6px;padding:8px 10px;margin:6px 0">
+<b style="color:#4c1d95">이거 알아채야 해요:</b> 아래 세 문장은 <b>전부 같은 말</b>이에요. 그런데 학생들은 이걸 세 가지 다른 문제로 느껴요 — 표현만 다르지 가리키는 점은 완전히 똑같은데도요.<br><br>
+<div style="display:flex;flex-direction:column;gap:4px;margin:6px 0">
+<div style="background:#fff;border:1px solid #ddd;border-radius:6px;padding:6px 10px;font-size:.92em">① "점 P의 좌표는 (t, t+1)이다" <span style="color:#999">— 변수 문제처럼 보임</span></div>
+<div style="background:#fff;border:1px solid #ddd;border-radius:6px;padding:6px 10px;font-size:.92em">② "점 P는 직선 y = x+1 위의 점이다" <span style="color:#999">— 도형 문제처럼 보임</span></div>
+<div style="background:#fff;border:1px solid #ddd;border-radius:6px;padding:6px 10px;font-size:.92em">③ "f(x) = x+1일 때, 점 P는 (t, f(t))이다" <span style="color:#999">— 함수 문제처럼 보임</span></div>
+</div>
+셋 다 "x좌표를 t로 두면 y좌표는 자동으로 t+1(=f(t))이 되는 점"이라는 <b>같은 그림</b>을 가리켜요. f(x)는 그냥 "x를 넣으면 y값을 계산해주는 기계"라는 뜻이니, f(t) = t+1도 결국 "t를 넣었을 때 나오는 y값"일 뿐이에요.
+</div>
+
+실제로 대입해볼게요. 고정점 A(4, 1)이 있고, P(t, t+1)이 이 직선 위를 움직인다고 해요. AP 거리는:<br>
+<span style="display:block;text-align:center;margin:4px 0">AP² = (t−4)² + (t+1−1)² = (t−4)² + t²</span>
+<span style="display:block;text-align:center;margin:4px 0">= t²−8t+16+t² = <b>2t² − 8t + 16</b></span>
+이게 바로 <b>t에 대한 이차식</b>이에요! 완전제곱식으로 바꾸면:<br>
+<span style="display:block;text-align:center;margin:4px 0;color:#4c1d95;font-weight:700">AP² = 2(t−2)² + 8</span>
+t = 2일 때 최솟값 8 → AP의 최솟값은 √8 = <b>2√2</b>, 그때 P(2, 3).
+
+<svg viewBox="0 0 164 174" width="100%" style="max-width:170px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#eee" stroke-width="1">
+    <line x1="22" y1="10" x2="22" y2="164"/><line x1="44" y1="10" x2="44" y2="164"/>
+    <line x1="66" y1="10" x2="66" y2="164"/><line x1="88" y1="10" x2="88" y2="164"/>
+    <line x1="110" y1="10" x2="110" y2="164"/><line x1="132" y1="10" x2="132" y2="164"/>
+    <line x1="154" y1="10" x2="154" y2="164"/>
+    <line x1="22" y1="164" x2="154" y2="164"/><line x1="22" y1="142" x2="154" y2="142"/>
+    <line x1="22" y1="120" x2="154" y2="120"/><line x1="22" y1="98" x2="154" y2="98"/>
+    <line x1="22" y1="76" x2="154" y2="76"/><line x1="22" y1="54" x2="154" y2="54"/>
+    <line x1="22" y1="32" x2="154" y2="32"/><line x1="22" y1="10" x2="154" y2="10"/>
+  </g>
+  <line x1="22" y1="142" x2="154" y2="10" stroke="#6366f1" stroke-width="2"/>
+  <line x1="110" y1="142" x2="66" y2="98" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <circle cx="110" cy="142" r="3.5" fill="#1a1a1a"/>
+  <circle cx="66" cy="98" r="3.5" fill="#4c1d95"/>
+  <text x="116" y="146" font-size="9" fill="#1a1a1a" font-weight="700">A(4,1)</text>
+  <text x="30" y="94" font-size="9" fill="#4c1d95" font-weight="700">P(2,3) — 최소일 때</text>
+  <text x="126" y="22" font-size="9" fill="#6366f1">y=x+1</text>
+</svg>
+
+→ 심화 9 (매개변수·최솟값)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 6/7</div>
+  <div class="card-tag">⑥ 다음 이야기를 예고하는 문제</div>
+  <div class="card-body">
+두 점 A(1,1), B(5,3)에서 <b>같은 거리</b>에 있는 점 (x, y)를 조건으로 써볼게요:<br>
+<span style="display:block;text-align:center;margin:4px 0;font-size:.95em">(x−1)² + (y−1)² = (x−5)² + (y−3)²</span>
+양변을 전개해서 정리하면(지금까지 배운 계산만으로 충분해요):<br>
+<span style="display:block;text-align:center;margin:4px 0;color:#4c1d95;font-weight:700">2x + y − 8 = 0</span>
+숫자를 넣어 확인해볼까요? M(3,2): 2(3)+2−8=0 ✓ / (4,0): 2(4)+0−8=0 ✓ / (2,4): 2(2)+4−8=0 ✓ — 세 점 다 만족해요. 그림으로 찍어보면:
+
+<svg viewBox="0 0 210 168" width="100%" style="max-width:190px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#eee" stroke-width="1">
+    <line x1="28" y1="14" x2="28" y2="154"/><line x1="56" y1="14" x2="56" y2="154"/>
+    <line x1="84" y1="14" x2="84" y2="154"/><line x1="112" y1="14" x2="112" y2="154"/>
+    <line x1="140" y1="14" x2="140" y2="154"/><line x1="168" y1="14" x2="168" y2="154"/>
+    <line x1="196" y1="14" x2="196" y2="154"/>
+    <line x1="28" y1="154" x2="196" y2="154"/><line x1="28" y1="126" x2="196" y2="126"/>
+    <line x1="28" y1="98" x2="196" y2="98"/><line x1="28" y1="70" x2="196" y2="70"/>
+    <line x1="28" y1="42" x2="196" y2="42"/><line x1="28" y1="14" x2="196" y2="14"/>
+  </g>
+  <line x1="84" y1="42" x2="140" y2="154" stroke="#a5b4fc" stroke-width="2"/>
+  <circle cx="56" cy="126" r="3.5" fill="#1a1a1a"/>
+  <circle cx="168" cy="70" r="3.5" fill="#1a1a1a"/>
+  <circle cx="112" cy="98" r="3" fill="#4c1d95"/>
+  <circle cx="140" cy="154" r="3" fill="#4c1d95"/>
+  <circle cx="84" cy="42" r="3" fill="#4c1d95"/>
+  <text x="34" y="122" font-size="9" fill="#1a1a1a" font-weight="700">A(1,1)</text>
+  <text x="172" y="66" font-size="9" fill="#1a1a1a" font-weight="700">B(5,3)</text>
+  <text x="116" y="94" font-size="9" fill="#4c1d95">M(3,2)</text>
+</svg>
+
+점 세 개가 <b>일직선</b>으로 늘어서죠? 등거리인 점을 전부 모으면 결국 하나의 <b>직선</b>이 된다는 뜻이에요.<br>
+문제는, 지금은 점을 하나씩 대입해서 확인만 할 뿐, 이 직선을 <b>한 번에 식으로 쓰는 공식</b>은 아직 안 배웠다는 거예요 → 이 아쉬움이 바로 다음 소단원 "직선의 방정식"이 필요한 이유예요. (이 직선의 정체는 심화10에서 자세히 밝혀요.)<br>
+→ 심화 10 (등거리 조건)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 7/7</div>
+  <div class="card-tag">⑦ 답이 하나가 아닌 문제</div>
+  <div class="card-body">
+학교 A(0,0), 도서관 B(6,0), 놀이터 C(3,6) 세 곳에서 <b>모두 가까운</b> 곳에 떡볶이 트럭을 세우고 싶어요. 두 학생의 대화를 들어볼까요:<br><br>
+
+<div style="background:rgba(0,0,0,.03);border-radius:6px;padding:10px 12px;margin:6px 0;font-size:.95em;line-height:1.9">
+<b style="color:#4c1d95">민준:</b> 그냥 세 점의 한가운데, 무게중심에 놓으면 되지 않을까?<br>
+<b style="color:#f87171">유나:</b> 무게중심이 뭔데?<br>
+<b style="color:#4c1d95">민준:</b> x좌표 평균, y좌표 평균! <span class="frac"><span class="num">0+6+3</span><span class="den">3</span></span>=3, <span class="frac"><span class="num">0+0+6</span><span class="den">3</span></span>=2 → G(3, 2)<br>
+<b style="color:#f87171">유나:</b> 근데 그게 진짜 "거리 합"이 제일 작은 지점이라는 보장 있어? 그냥 가운데스러워 보이는 거 아니야?<br>
+<b style="color:#4c1d95">민준:</b> 어... 그러네. 확인은 해볼 수 있잖아. 거리공식으로!<br>
+</div>
+
+거리공식으로 실제 계산: GA = √(3²+2²) = √13 ≈ 3.6, GB = √(3²+2²) = √13 ≈ 3.6, GC = √(0²+4²) = 4<br>
+합 ≈ <b>11.2</b><br><br>
+
+<div style="background:rgba(0,0,0,.03);border-radius:6px;padding:10px 12px;margin:6px 0;font-size:.95em;line-height:1.9">
+<b style="color:#f87171">유나:</b> 이게 진짜 최솟값인지는 어떻게 확신해?<br>
+<b style="color:#4c1d95">민준:</b> ...모르겠다. 다른 점도 넣어봐야 하나?<br>
+<b style="color:#f87171">유나:</b> 완벽하게 증명하려면 지금 배운 것보다 더 센 도구가 필요할 것 같아. 근데 우리가 "무게중심 아닐까?" 하고 추측한 다음, 계산으로 직접 확인해본 것 자체는 의미 있지 않아?<br>
+</div>
+
+<b>정확한 증명은 고등 과정 밖의 도구(벡터, 미분)가 필요해요</b> — 그래서 이 문제의 진짜 정답은 숫자가 아니라, <b>"추측하고 → 계산으로 검증하려는 태도"</b> 그 자체예요.<br>
+→ 심화 11 (최적 입지 토론)<br><br>
+<div class="toro-note">🦕 토로: 7개를 지금 다 외울 필요는 없어요. 문제를 풀다가 막히면 그때 이 페이지로 돌아와서 "몇 번 서랍이지?"만 확인하면 충분해요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">심화 1 (① 좌표평면 스스로 만들기)</div>
+  <div class="card-tag">심화 1 — 좌표축이 없는 도형</div>
+  <div class="card-body" style="font-weight:600">
+아래 그림에는 좌표축도, 격자도 없어요. 각도와 길이 하나만 있습니다.
+
+<svg viewBox="0 0 300 220" width="100%" style="max-width:190px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="70" y1="90" x2="230" y2="90" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="70" y1="90" x2="150" y2="170" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="230" y1="90" x2="150" y2="170" stroke="#1a1a1a" stroke-width="2"/>
+  <path d="M 139.4 159.4 L 150 148.8 L 160.6 159.4" fill="none" stroke="#6366f1" stroke-width="1.5"/>
+  <path d="M 87.7 107.7 A 25 25 0 0 1 95 90" fill="none" stroke="#94a3b8" stroke-width="1.3"/>
+  <text x="100" y="106" font-size="11" fill="#4c1d95" font-weight="700">45°</text>
+  <text x="118" y="142" font-size="11" fill="#1a1a1a" font-weight="700">6</text>
+  <circle cx="70" cy="90" r="3.5" fill="#1a1a1a"/>
+  <circle cx="230" cy="90" r="3.5" fill="#1a1a1a"/>
+  <circle cx="150" cy="170" r="3.5" fill="#1a1a1a"/>
+  <text x="48" y="82" font-size="13" fill="#1a1a1a" font-weight="700">A</text>
+  <text x="238" y="82" font-size="13" fill="#1a1a1a" font-weight="700">B</text>
+  <text x="145" y="192" font-size="13" fill="#1a1a1a" font-weight="700">C</text>
+</svg>
+
+각 C는 직각(90°), 각 A는 45°예요.<br><br>
+천천히 순서대로 따라가볼까요?<br><br>
+<b>1)</b> 먼저 각 B가 몇 도인지 구하고, 이 삼각형이 어떤 특수한 삼각형인지 알아채보세요.<br><br>
+<b>2)</b> 이 삼각형을 좌표평면 위에 올려놓는다면, 축을 어디에 두는 게 편할지 스스로 정해보세요. (정답은 하나가 아니에요!)
+
+<div class="toro-note">🦕 토로: 축을 어디 둘지 막막해도 괜찮아요. 힌트 — 직각이 있는 점을 원점에 놓으면 계산이 훨씬 쉬워져요.</div>
+
+<b>3)</b> 정한 좌표로 거리공식을 써서 빗변 AB의 길이를 구하고, 처음에 예상한 값과 맞는지 확인해보세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">심화 1 풀이 (1/2)</div>
+  <div class="card-tag">💡 풀이 — 도형 정체 확인 · 좌표 만들기</div>
+  <div class="card-body">
+<b>1단계 — 삼각형 정체 확인</b><br>
+각 B = 180° − 90° − 45° = 45°<br>
+각 A = 각 B = 45° → 두 밑각이 같으니 <b>이등변삼각형</b>, 게다가 직각까지 있으니 <b>직각이등변삼각형</b>이에요.<br>
+직각이등변삼각형의 길이비는 <b>1 : 1 : √2</b> (변–변–빗변) — CA = CB = 6이니까 빗변 AB는 예상상 6√2가 되어야 해요.<br><br>
+
+<b>2단계 — 좌표평면은 내가 만드는 것 (정답은 하나가 아니에요)</b><br>
+왜 하필 <b>빗변(AB)이 아니라 두 변(CA, CB)</b>을 축으로 잡을까요?<br>
+빗변을 축 위에 놓으면 → 직각 꼭짓점 C는 축 위에 있지 않아서 좌표가 지저분해져요.<br>
+두 변(CA, CB)을 축으로 잡으면 → 이미 직각(90°)이니까 그 두 변이 x축·y축과 딱 맞아떨어져요. C는 원점, A·B는 각각 축 위에 정확히 놓여요.<br><br>
+
+<b>원래 그림을 "돌려서" 축에 붙여보면:</b>
+
+<svg viewBox="0 0 320 150" width="100%" style="max-width:230px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="28" y1="55" x2="108" y2="55" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="28" y1="55" x2="68" y2="95" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="108" y1="55" x2="68" y2="95" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="16" y="50" font-size="10" fill="#1a1a1a" font-weight="700">A</text>
+  <text x="112" y="50" font-size="10" fill="#1a1a1a" font-weight="700">B</text>
+  <text x="63" y="112" font-size="10" fill="#1a1a1a" font-weight="700">C</text>
+  <text x="30" y="130" font-size="9" fill="#999">원래 그림 (축 없음)</text>
+
+  <defs><marker id="rotarrow" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6366f1"/></marker></defs>
+  <path d="M 118 58 Q 165 15 208 58" fill="none" stroke="#6366f1" stroke-width="1.8" marker-end="url(#rotarrow)"/>
+  <text x="140" y="18" font-size="10" fill="#4c1d95" font-weight="700">↻ 돌리면</text>
+
+  <line x1="230" y1="118" x2="300" y2="118" stroke="#999" stroke-width="1.3"/>
+  <line x1="230" y1="118" x2="230" y2="55" stroke="#999" stroke-width="1.3"/>
+  <line x1="230" y1="118" x2="288" y2="118" stroke="#6366f1" stroke-width="2"/>
+  <line x1="230" y1="118" x2="230" y2="60" stroke="#6366f1" stroke-width="2"/>
+  <line x1="288" y1="118" x2="230" y2="60" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="230" cy="118" r="3" fill="#1a1a1a"/><circle cx="288" cy="118" r="3" fill="#1a1a1a"/><circle cx="230" cy="60" r="3" fill="#1a1a1a"/>
+  <text x="216" y="132" font-size="9" fill="#1a1a1a" font-weight="700">C(0,0)</text>
+  <text x="290" y="132" font-size="9" fill="#1a1a1a" font-weight="700">A(6,0)</text>
+  <text x="206" y="56" font-size="9" fill="#1a1a1a" font-weight="700">B(0,6)</text>
+  <text x="222" y="140" font-size="9" fill="#999">축에 붙인 그림</text>
+</svg>
+
+같은 삼각형이에요 — 모양도 길이도 하나도 안 바뀌었고, 그냥 <b>C를 고정한 채 통째로 돌려서</b> 두 변이 축 위에 오도록 놓은 것뿐이에요. 돌리기(회전)는 길이와 각도를 그대로 보존하니까, 원래 그림에서 구한 답과 축에 붙인 그림에서 구한 답은 항상 같아요.
+
+<svg viewBox="0 0 260 220" width="100%" style="max-width:190px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#eee" stroke-width="1">
+    <line x1="30" y1="20" x2="30" y2="190"/><line x1="72" y1="20" x2="72" y2="190"/>
+    <line x1="114" y1="20" x2="114" y2="190"/><line x1="156" y1="20" x2="156" y2="190"/>
+    <line x1="198" y1="20" x2="198" y2="190"/><line x1="240" y1="20" x2="240" y2="190"/>
+    <line x1="30" y1="190" x2="240" y2="190"/><line x1="30" y1="148" x2="240" y2="148"/>
+    <line x1="30" y1="106" x2="240" y2="106"/><line x1="30" y1="64" x2="240" y2="64"/>
+    <line x1="30" y1="22" x2="240" y2="22"/>
+  </g>
+  <line x1="30" y1="190" x2="30" y2="20" stroke="#999" stroke-width="1.5"/>
+  <line x1="30" y1="190" x2="240" y2="190" stroke="#999" stroke-width="1.5"/>
+  <line x1="30" y1="190" x2="240" y2="190" stroke="#6366f1" stroke-width="2.5"/>
+  <line x1="30" y1="190" x2="30" y2="22" stroke="#6366f1" stroke-width="2.5"/>
+  <line x1="240" y1="190" x2="30" y2="22" stroke="#6366f1" stroke-width="2.5"/>
+  <circle cx="30" cy="190" r="4" fill="#1a1a1a"/>
+  <circle cx="240" cy="190" r="4" fill="#1a1a1a"/>
+  <circle cx="30" cy="22" r="4" fill="#1a1a1a"/>
+  <text x="14" y="204" font-size="11" fill="#1a1a1a" font-weight="700">C(0,0)</text>
+  <text x="200" y="204" font-size="11" fill="#1a1a1a" font-weight="700">A(6,0)</text>
+  <text x="6" y="16" font-size="11" fill="#1a1a1a" font-weight="700">B(0,6)</text>
+</svg>
+
+C(0, 0), A(6, 0), B(0, 6) <span style="color:#999">(축을 반대로 잡아 A(0,6), B(6,0)이 되어도 답의 길이는 똑같아요)</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">심화 1 풀이 (2/2)</div>
+  <div class="card-tag">💡 풀이 — 거리공식으로 검산</div>
+  <div class="card-body">
+<b>3단계 — 거리공식으로 검산</b><br>
+AB = √{(6−0)² + (0−6)²} = √(36+36) = √72 = <b>6√2</b><br>
+예상했던 6√2와 정확히 일치! 각도로 예측한 길이비가 좌표로도 확인됐어요.<br><br>
+
+<span style="font-size:.9em;color:#555"><b>한 걸음 더:</b> 빗변 AB의 중점 M은 내분점(중점) 공식으로 M(3,3). CM = √(3²+3²) = 3√2를 구해보면, AM과 BM도 똑같이 3√2예요. 즉 <b>직각삼각형의 빗변의 중점은 세 꼭짓점 모두로부터 같은 거리</b>에 있어요 — 이 사실은 나중에 "원의 방정식" 단원에서 다시 만나게 됩니다.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">심화 7 (④ 레고처럼 쌓는 문제)</div>
+  <div class="card-tag">심화 7 — 무게중심, 공식 말고 증명으로</div>
+  <div class="card-body">
+"무게중심 = (x좌표 평균, y좌표 평균)" — 이 공식, 외우기는 쉬운데 <b>왜 그런지</b> 아는 사람은 많지 않아요. 이번엔 공식을 외워서 쓰지 말고, 내분점 공식만으로 처음부터 직접 증명하듯이 구해볼게요.
+
+<svg viewBox="0 0 220 208" width="100%" style="max-width:200px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#eee" stroke-width="1">
+    <line x1="26" y1="14" x2="26" y2="194"/><line x1="56" y1="14" x2="56" y2="194"/>
+    <line x1="86" y1="14" x2="86" y2="194"/><line x1="116" y1="14" x2="116" y2="194"/>
+    <line x1="146" y1="14" x2="146" y2="194"/><line x1="176" y1="14" x2="176" y2="194"/>
+    <line x1="206" y1="14" x2="206" y2="194"/>
+    <line x1="26" y1="194" x2="206" y2="194"/><line x1="26" y1="164" x2="206" y2="164"/>
+    <line x1="26" y1="134" x2="206" y2="134"/><line x1="26" y1="104" x2="206" y2="104"/>
+    <line x1="26" y1="74" x2="206" y2="74"/><line x1="26" y1="44" x2="206" y2="44"/>
+    <line x1="26" y1="14" x2="206" y2="14"/>
+  </g>
+  <line x1="26" y1="194" x2="206" y2="194" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="26" y1="194" x2="116" y2="14" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="206" y1="194" x2="116" y2="14" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="26" cy="194" r="3.5" fill="#1a1a1a"/><circle cx="206" cy="194" r="3.5" fill="#1a1a1a"/><circle cx="116" cy="14" r="3.5" fill="#1a1a1a"/>
+  <text x="10" y="207" font-size="10" fill="#1a1a1a" font-weight="700">A(0,0)</text>
+  <text x="190" y="207" font-size="10" fill="#1a1a1a" font-weight="700">B(6,0)</text>
+  <text x="104" y="10" font-size="10" fill="#1a1a1a" font-weight="700">C(3,6)</text>
+</svg>
+
+<b>1)</b> 변 AB의 중점 M의 좌표를 구하세요. (내분점 공식, 1:1)<br><br>
+<b>2)</b> 무게중심 G는 중선 CM(꼭짓점 C와 중점 M을 잇는 선) 위에 있는데, <b>꼭짓점 쪽에서부터 2 : 1</b>로 내분하는 점이에요 — 이건 중2 때 배운 "삼각형의 무게중심" 성질이에요. 이 성질을 이용해 내분점 공식으로 G의 좌표를 구하세요.
+
+<div class="toro-note">🦕 토로: "2:1"이 어디서 왔는지 지금 증명할 필요는 없어요 — 그건 중2 도형 단원에서 이미 증명한 성질이에요. 지금은 그 성질 + 내분점 공식을 "조립"하는 연습이에요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">심화 7 풀이 (1/2)</div>
+  <div class="card-tag">💡 풀이 — 중점 M 구하기</div>
+  <div class="card-body">
+<b>1단계 — 변 AB의 중점 M</b><br>
+A(0,0), B(6,0)의 중점(1:1 내분점):<br>
+Mx = <span class="frac"><span class="num">0+6</span><span class="den">2</span></span> = 3, My = <span class="frac"><span class="num">0+0</span><span class="den">2</span></span> = 0 → <b>M(3, 0)</b>
+
+<svg viewBox="0 0 220 208" width="100%" style="max-width:200px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#eee" stroke-width="1">
+    <line x1="26" y1="14" x2="26" y2="194"/><line x1="56" y1="14" x2="56" y2="194"/>
+    <line x1="86" y1="14" x2="86" y2="194"/><line x1="116" y1="14" x2="116" y2="194"/>
+    <line x1="146" y1="14" x2="146" y2="194"/><line x1="176" y1="14" x2="176" y2="194"/>
+    <line x1="206" y1="14" x2="206" y2="194"/>
+    <line x1="26" y1="194" x2="206" y2="194"/><line x1="26" y1="164" x2="206" y2="164"/>
+    <line x1="26" y1="134" x2="206" y2="134"/><line x1="26" y1="104" x2="206" y2="104"/>
+    <line x1="26" y1="74" x2="206" y2="74"/><line x1="26" y1="44" x2="206" y2="44"/>
+    <line x1="26" y1="14" x2="206" y2="14"/>
+  </g>
+  <line x1="26" y1="194" x2="206" y2="194" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="26" y1="194" x2="116" y2="14" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="206" y1="194" x2="116" y2="14" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="116" y1="14" x2="116" y2="194" stroke="#6366f1" stroke-width="2.5" stroke-dasharray="5 3"/>
+  <circle cx="26" cy="194" r="3.5" fill="#1a1a1a"/><circle cx="206" cy="194" r="3.5" fill="#1a1a1a"/><circle cx="116" cy="14" r="3.5" fill="#1a1a1a"/>
+  <circle cx="116" cy="194" r="4" fill="#4c1d95"/>
+  <text x="10" y="207" font-size="10" fill="#1a1a1a" font-weight="700">A</text>
+  <text x="200" y="207" font-size="10" fill="#1a1a1a" font-weight="700">B</text>
+  <text x="104" y="10" font-size="10" fill="#1a1a1a" font-weight="700">C</text>
+  <text x="120" y="207" font-size="10" fill="#4c1d95" font-weight="700">M(3,0)</text>
+</svg>
+
+<span style="font-size:.9em;color:#555">점선이 중선 CM이에요. 무게중심 G는 이 선 위 어딘가에 있어요 — 다음 페이지에서 정확한 위치를 구해요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">심화 7 풀이 (2/2)</div>
+  <div class="card-tag">💡 풀이 — 무게중심 G 구하기</div>
+  <div class="card-body">
+<b>2단계 — 중선 CM을 2 : 1로 내분</b><br>
+C(3, 6)에서 M(3, 0) 쪽으로 CG : GM = 2 : 1이 되는 점을 구해요 (m:n = 2:1):<br>
+Gx = <span class="frac"><span class="num">1·3 + 2·3</span><span class="den">3</span></span> = <span class="frac"><span class="num">9</span><span class="den">3</span></span> = <b>3</b><br>
+Gy = <span class="frac"><span class="num">1·6 + 2·0</span><span class="den">3</span></span> = <span class="frac"><span class="num">6</span><span class="den">3</span></span> = <b>2</b><br>
+→ <b>G(3, 2)</b>
+
+<svg viewBox="0 0 220 208" width="100%" style="max-width:200px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#eee" stroke-width="1">
+    <line x1="26" y1="14" x2="26" y2="194"/><line x1="56" y1="14" x2="56" y2="194"/>
+    <line x1="86" y1="14" x2="86" y2="194"/><line x1="116" y1="14" x2="116" y2="194"/>
+    <line x1="146" y1="14" x2="146" y2="194"/><line x1="176" y1="14" x2="176" y2="194"/>
+    <line x1="206" y1="14" x2="206" y2="194"/>
+    <line x1="26" y1="194" x2="206" y2="194"/><line x1="26" y1="164" x2="206" y2="164"/>
+    <line x1="26" y1="134" x2="206" y2="134"/><line x1="26" y1="104" x2="206" y2="104"/>
+    <line x1="26" y1="74" x2="206" y2="74"/><line x1="26" y1="44" x2="206" y2="44"/>
+    <line x1="26" y1="14" x2="206" y2="14"/>
+  </g>
+  <line x1="26" y1="194" x2="206" y2="194" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="26" y1="194" x2="116" y2="14" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="206" y1="194" x2="116" y2="14" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="116" y1="14" x2="116" y2="194" stroke="#6366f1" stroke-width="2.5" stroke-dasharray="5 3"/>
+  <circle cx="26" cy="194" r="3.5" fill="#1a1a1a"/><circle cx="206" cy="194" r="3.5" fill="#1a1a1a"/><circle cx="116" cy="14" r="3.5" fill="#1a1a1a"/>
+  <circle cx="116" cy="194" r="3.5" fill="#94a3b8"/>
+  <circle cx="116" cy="134" r="4.5" fill="#4c1d95"/>
+  <text x="10" y="207" font-size="10" fill="#1a1a1a" font-weight="700">A</text>
+  <text x="200" y="207" font-size="10" fill="#1a1a1a" font-weight="700">B</text>
+  <text x="104" y="10" font-size="10" fill="#1a1a1a" font-weight="700">C</text>
+  <text x="120" y="207" font-size="9" fill="#94a3b8">M</text>
+  <text x="122" y="130" font-size="10" fill="#4c1d95" font-weight="700">G(3,2)</text>
+  <text x="119" y="80" font-size="9" fill="#666">2</text>
+  <text x="119" y="170" font-size="9" fill="#666">1</text>
+</svg>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+<b>검산 — 평균 공식과 비교</b><br>
+"x좌표 평균, y좌표 평균": ( <span class="frac"><span class="num">0+6+3</span><span class="den">3</span></span>, <span class="frac"><span class="num">0+0+6</span><span class="den">3</span></span> ) = (3, 2)<br>
+증명으로 구한 값과 <b>정확히 일치</b>해요! 그 유명한 공식이 사실은 내분점 공식을 두 번 조립한 결과였던 거예요.
+</div>
+<span style="font-size:.9em;color:#555">다른 중선(A→BC의 중점, B→AC의 중점)으로 구해도 항상 같은 G(3,2)가 나와요 — 세 중선이 진짜로 한 점에서 만난다는 뜻이에요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">심화 10 (⑥ 다음 이야기를 예고하는 문제)</div>
+  <div class="card-tag">심화 10 — 등거리인 점을 전부 모으면?</div>
+  <div class="card-body">
+두 점 A(1, 1), B(5, 3)이 있어요.
+
+<svg viewBox="0 0 210 168" width="100%" style="max-width:190px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#eee" stroke-width="1">
+    <line x1="28" y1="14" x2="28" y2="154"/><line x1="56" y1="14" x2="56" y2="154"/>
+    <line x1="84" y1="14" x2="84" y2="154"/><line x1="112" y1="14" x2="112" y2="154"/>
+    <line x1="140" y1="14" x2="140" y2="154"/><line x1="168" y1="14" x2="168" y2="154"/>
+    <line x1="196" y1="14" x2="196" y2="154"/>
+    <line x1="28" y1="154" x2="196" y2="154"/><line x1="28" y1="126" x2="196" y2="126"/>
+    <line x1="28" y1="98" x2="196" y2="98"/><line x1="28" y1="70" x2="196" y2="70"/>
+    <line x1="28" y1="42" x2="196" y2="42"/><line x1="28" y1="14" x2="196" y2="14"/>
+  </g>
+  <circle cx="56" cy="126" r="3.5" fill="#1a1a1a"/>
+  <circle cx="168" cy="70" r="3.5" fill="#1a1a1a"/>
+  <text x="34" y="122" font-size="9" fill="#1a1a1a" font-weight="700">A(1,1)</text>
+  <text x="172" y="66" font-size="9" fill="#1a1a1a" font-weight="700">B(5,3)</text>
+</svg>
+
+<b>1)</b> A와 B에서 <b>같은 거리</b>에 있는 점 (x, y)가 만족해야 하는 조건을 거리공식으로 식을 세워보세요.<br><br>
+<b>2)</b> 그 식을 전개해서 정리해보세요 — 지금까지 배운 계산만으로 충분해요. 정리하고 나면 어떤 모양의 식이 되나요?
+
+<div class="toro-note">🦕 토로: 제곱근이 있는 식이라고 겁먹지 마세요. 양변에 이미 √가 없는 형태(거리의 제곱=거리의 제곱)로 시작하면 그냥 전개+정리 문제예요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">심화 10 풀이 (1/2)</div>
+  <div class="card-tag">💡 풀이 — 식 세우고 정리하기</div>
+  <div class="card-body">
+<b>1단계 — 조건을 식으로</b><br>
+AP = BP → AP² = BP² (양변 제곱해도 등호는 유지돼요)<br>
+<span style="display:block;text-align:center;margin:4px 0;font-size:.95em">(x−1)² + (y−1)² = (x−5)² + (y−3)²</span>
+
+<b>2단계 — 전개해서 정리</b><br>
+좌변: x²−2x+1+y²−2y+1<br>
+우변: x²−10x+25+y²−6y+9<br>
+좌변−우변=0으로 정리하면 x², y² 항은 서로 없어지고:<br>
+<span style="display:block;text-align:center;margin:4px 0;color:#4c1d95;font-weight:700">2x + y − 8 = 0</span>
+
+숫자로 검산: M(3,2) → 2(3)+2−8=0 ✓ / (4,0) → 2(4)+0−8=0 ✓ / (2,4) → 2(2)+4−8=0 ✓
+
+<svg viewBox="0 0 210 168" width="100%" style="max-width:190px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#eee" stroke-width="1">
+    <line x1="28" y1="14" x2="28" y2="154"/><line x1="56" y1="14" x2="56" y2="154"/>
+    <line x1="84" y1="14" x2="84" y2="154"/><line x1="112" y1="14" x2="112" y2="154"/>
+    <line x1="140" y1="14" x2="140" y2="154"/><line x1="168" y1="14" x2="168" y2="154"/>
+    <line x1="196" y1="14" x2="196" y2="154"/>
+    <line x1="28" y1="154" x2="196" y2="154"/><line x1="28" y1="126" x2="196" y2="126"/>
+    <line x1="28" y1="98" x2="196" y2="98"/><line x1="28" y1="70" x2="196" y2="70"/>
+    <line x1="28" y1="42" x2="196" y2="42"/><line x1="28" y1="14" x2="196" y2="14"/>
+  </g>
+  <line x1="84" y1="42" x2="140" y2="154" stroke="#a5b4fc" stroke-width="2"/>
+  <circle cx="56" cy="126" r="3.5" fill="#1a1a1a"/>
+  <circle cx="168" cy="70" r="3.5" fill="#1a1a1a"/>
+  <circle cx="112" cy="98" r="3" fill="#4c1d95"/>
+  <circle cx="140" cy="154" r="3" fill="#4c1d95"/>
+  <circle cx="84" cy="42" r="3" fill="#4c1d95"/>
+  <text x="34" y="122" font-size="9" fill="#1a1a1a" font-weight="700">A(1,1)</text>
+  <text x="172" y="66" font-size="9" fill="#1a1a1a" font-weight="700">B(5,3)</text>
+  <text x="116" y="94" font-size="9" fill="#4c1d95">M(3,2)</text>
+</svg>
+
+세 점이 <b>일직선</b>으로 늘어서죠? 등거리인 점을 전부 모으면 결국 하나의 <b>직선</b>이 돼요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">심화 10 풀이 (2/2)</div>
+  <div class="card-tag">💡 풀이 — 이 직선의 정체</div>
+  <div class="card-body">
+<b>사실 이 직선, 이름이 있어요</b> — <b>선분 AB의 수직이등분선</b>이에요.<br><br>
+중1 때 배운 정의를 떠올려보세요: "선분을 수직으로 이등분하는 직선 위의 모든 점은 두 끝점에서 같은 거리에 있다." 방금 우리가 방정식으로 확인한 게 정확히 그거예요.<br><br>
+
+이 개념은 중2에서 <b>한 번 더</b> 나와요 — 삼각형의 세 변 각각에 수직이등분선을 그으면, 신기하게도 <b>세 직선이 정확히 한 점에서 만나요</b>. 그 점이 <b>외심</b>이에요. 외심은 "세 변의 수직이등분선의 교점"인 동시에 "세 꼭짓점 모두로부터 같은 거리에 있는 점"이기도 해요 — 이 두 정의가 결국 같은 이유가 바로 지금 확인한 성질(수직이등분선 위의 점은 두 끝점에서 등거리) 때문이에요.
+
+<div class="toro-note">🦕 토로: 기억나나요? 심화1의 "한 걸음 더"에서 직각삼각형의 빗변의 중점이 세 꼭짓점과 같은 거리라고 했었죠 — 그게 바로 직각삼각형의 외심이 빗변의 중점에 오는 특별한 경우였던 거예요. 무게중심(심화7)에 이어 외심까지, 삼각형의 "특별한 점"들이 전부 내분점·거리공식으로 설명되고 있어요.</div>
+
+<b>남은 아쉬움:</b> 지금은 점을 하나씩 대입해서 이 직선 위에 있는지 확인만 할 수 있어요. "이 직선을 한 번에 식으로 딱 쓰는 방법"은 아직 안 배웠죠 — 그게 바로 다음 소단원 <b>"직선의 방정식"</b>이 필요한 이유예요.
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📝 시험대비 — 평면좌표 (강남권 내신 수준)</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 사용법</div>
+  <div class="card-tag">📝 풀기 전에 읽어주세요</div>
+  <div class="card-body">
+각 문항 위에 있는 빈칸에, 계산을 시작하기 <b>전에</b> 이 문제가 어떤 개념을 쓰는 문제인지 이름을 먼저 적어보세요. (두 점 사이의 거리 / 내분점 / 둘 다 사용)<br><br>
+정답과 풀이는 다음 페이지에 있습니다. 정답을 맞혔는지보다, <b>개념 이름을 먼저 맞혔는지</b>를 확인해보세요.<br><br>
+2번과 3번 문항은 겉모습(두 점, 문자 a가 양쪽 좌표에 들어있음)이 서로 닮았지만 실제로 쓰는 공식은 다릅니다. 둘 다 풀고 나서 무엇이 다른 신호였는지 비교해보세요.<br><br>
+5번 문항은 〈보기〉 ㄱㄴㄷㄹ을 전부 검증해야 하는 형식입니다. 하나라도 대충 넘기면 안 됩니다 — "그럴듯해 보인다"와 "실제로 계산해서 맞다"는 다릅니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 평면좌표 · 문항 1</div>
+  <div class="card-tag">문항 1 (객관식 5지선다) · 3점</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________ (먼저 적어보세요)</div>
+세 점 A(2, 1), B(6, 4), C(4, 10)을 꼭짓점으로 하는 삼각형이 있다. 변 BC의 중점을 M이라 하고, 선분 AM을 2 : 1로 내분하는 점을 P(p, q)라 하자. p + q의 값은?
+    <div style="margin-top:10px;font-size:.98em;line-height:2.1;font-weight:400">
+      ① 6 &nbsp;&nbsp; ② 9 &nbsp;&nbsp; ③ 12 &nbsp;&nbsp; ④ 18 &nbsp;&nbsp; ⑤ 27
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 문항 1 풀이</div>
+  <div class="card-tag">💡 문항 1 풀이 · 정답 ②</div>
+  <div class="card-body">
+<b>1단계 — 중점 M 구하기</b><br>
+M = ( <span class="frac"><span class="num">6+4</span><span class="den">2</span></span>, <span class="frac"><span class="num">4+10</span><span class="den">2</span></span> ) = <b>(5, 7)</b><br><br>
+<b>2단계 — 선분 AM을 2:1로 내분</b><br>
+A(2,1)를 x₁, M(5,7)을 x₂로 놓으면 m=2, n=1이므로<br>
+Px = <span class="frac"><span class="num">n·x₁ + m·x₂</span><span class="den">m+n</span></span> = <span class="frac"><span class="num">1·2 + 2·5</span><span class="den">3</span></span> = <span class="frac"><span class="num">12</span><span class="den">3</span></span> = <b>4</b><br>
+Py = <span class="frac"><span class="num">1·1 + 2·7</span><span class="den">3</span></span> = <span class="frac"><span class="num">15</span><span class="den">3</span></span> = <b>5</b><br><br>
+<b>p + q = 4 + 5 = 9 → 정답 ②</b>
+
+<div style="border-top:1px dashed #bbb;padding-top:10px;margin-top:14px">
+<b style="color:#666;font-size:.9em">🔎 오답 선택지 설계</b><br>
+① 6 — 가중치 m, n을 반대로 넣은 값 (Px=<span class="frac"><span class="num">2·2+1·5</span><span class="den">3</span></span>=3, Py=<span class="frac"><span class="num">2·1+1·7</span><span class="den">3</span></span>=3, 합 6). "A에 가까운 점일수록 A 자신의 가중치가 커야 할 것 같다"는 직관적 착각.<br>
+③ 12 — 2단계를 빼먹고 1단계 중간 결과 M(5,7)의 좌표 합만 답한 값 (5+7=12). 체이닝 문제에서 중간값을 최종 답으로 착각하는 실수.<br>
+④ 18 — 분모(m+n)로 나누는 것을 잊고, 가중치까지 반대로 넣은 값.<br>
+⑤ 27 — 분모(m+n)로 나누는 것만 잊은 값 ((1·2+2·5)+(1·1+2·7)=12+15=27).
+</div>
+
+<div style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:10px 14px;margin-top:14px;font-size:.94em;line-height:1.85">
+🔗 구조 신호: "변 BC의 <b>중점</b>"은 내분점의 m:n=1:1인 특수한 경우예요(정류장 카드의 일반화 박스 참고). "선분 AM을 2:1로 <b>내분</b>"처럼 비율(:)이 주어지면 → 내분점 공식. 이 문제는 내분점 공식을 <b>두 번</b> 겹쳐 쓰는 유형입니다.
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 평면좌표 · 문항 2</div>
+  <div class="card-tag">문항 2 (주관식 단답형) · 4점</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________ (먼저 적어보세요)</div>
+두 점 A(a, 1), B(4, a)에 대하여 두 점 사이의 거리가 √13일 때, 이를 만족시키는 모든 실수 a의 값의 합을 구하시오.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 문항 2 풀이</div>
+  <div class="card-tag">💡 문항 2 풀이 · 정답 5</div>
+  <div class="card-body">
+<b>1단계 — 거리공식으로 식 세우기</b><br>
+AB² = (4−a)² + (a−1)² = 13<br><br>
+<b>2단계 — 전개·정리</b><br>
+(16−8a+a²) + (a²−2a+1) = 13 → 2a² − 10a + 17 = 13 → 2a² − 10a + 4 = 0 → <b>a² − 5a + 2 = 0</b><br><br>
+<b>3단계 — 근과 계수의 관계</b><br>
+판별식 D = 25 − 8 = 17 &gt; 0 이므로 서로 다른 두 실근이 존재하지만, 두 근은 <span class="frac"><span class="num">5±√17</span><span class="den">2</span></span>로 무리수예요. 직접 구하지 않고 <b>근과 계수의 관계</b>로 합만 구하면:<br>
+두 근의 합 = 5<br><br>
+<b>정답: 5</b>
+
+<div style="border-top:1px dashed #bbb;padding-top:10px;margin-top:14px">
+<b style="color:#666;font-size:.9em">🔎 검증 근거</b><br>
+Node.js로 두 근을 직접 계산해 각각 대입하면 AB = √13 ≈ 3.605551...이 두 근 모두에서 정확히 성립함을 확인했다.
+</div>
+
+<div style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:10px 14px;margin-top:14px;font-size:.94em;line-height:1.85">
+🔗 구조 신호: "두 점 사이의 <b>거리</b>가 ~이다" → 거리공식 (새가 나는 길 카드 참고). 전개했더니 이차식이 나오고, 답이 딱 떨어지는 정수를 묻는다면 — 실제 근을 구하지 말고 <b>근과 계수의 관계</b>로 합/곱만 구할 수 있다는 신호일 수 있어요.
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 평면좌표 · 문항 3</div>
+  <div class="card-tag">문항 3 (객관식 5지선다) · 3점</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________ (먼저 적어보세요)</div>
+두 점 A(a, −2), B(2, a)에 대하여 선분 AB를 3 : 1로 내분하는 점이 직선 y = 2x − 3 위에 있을 때, 실수 a의 값은?
+    <div style="margin-top:10px;font-size:.98em;line-height:2.1;font-weight:400">
+      ① 0 &nbsp;&nbsp; ② <span class="frac"><span class="num">2</span><span class="den">5</span></span> &nbsp;&nbsp; ③ 2 &nbsp;&nbsp; ④ 11 &nbsp;&nbsp; ⑤ 26
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 문항 3 풀이</div>
+  <div class="card-tag">💡 문항 3 풀이 · 정답 ③</div>
+  <div class="card-body">
+<b>1단계 — 내분점 공식으로 P 표현하기</b><br>
+A(a,−2)를 x₁, B(2,a)를 x₂로 놓으면 m=3, n=1이므로<br>
+Px = <span class="frac"><span class="num">n·x₁+m·x₂</span><span class="den">m+n</span></span> = <span class="frac"><span class="num">1·a + 3·2</span><span class="den">4</span></span> = <span class="frac"><span class="num">a+6</span><span class="den">4</span></span><br>
+Py = <span class="frac"><span class="num">1·(−2)+3·a</span><span class="den">4</span></span> = <span class="frac"><span class="num">3a−2</span><span class="den">4</span></span><br><br>
+<b>2단계 — 직선 위에 있다는 조건 대입</b><br>
+Py = 2Px − 3 이므로<br>
+<span class="frac"><span class="num">3a−2</span><span class="den">4</span></span> = 2·<span class="frac"><span class="num">a+6</span><span class="den">4</span></span> − 3 → 3a−2 = 2(a+6) − 12 = 2a → <b>a = 2</b><br><br>
+<b>정답: ③</b>
+
+<div style="border-top:1px dashed #bbb;padding-top:10px;margin-top:14px">
+<b style="color:#666;font-size:.9em">🔎 오답 선택지 설계</b><br>
+① 0 — 3:1이라는 비율 조건을 놓치고 습관적으로 <b>중점</b> 공식(Px=<span class="frac"><span class="num">a+2</span><span class="den">2</span></span>, Py=<span class="frac"><span class="num">a−2</span><span class="den">2</span></span>)을 써서 나온 값.<br>
+② <span class="frac"><span class="num">2</span><span class="den">5</span></span> — 가중치 m, n을 반대로 넣은 값(3:1을 1:3처럼 계산). 문항 1의 ①번과 같은 종류의 실수.<br>
+④ 11 — 분모(m+n=4)로 나누는 것을 잊은 값.<br>
+⑤ 26 — 직선의 식 "y=2x−3"의 부호를 "y=2x+3"으로 잘못 읽은 값.
+</div>
+
+<div style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:10px 14px;margin-top:14px;font-size:.94em;line-height:1.85">
+🔗 구조 신호: "선분 AB를 3:1로 <b>내분</b>하는 점"처럼 비율(:) 조건이 나오면 → 내분점 공식 (정류장 카드 참고). 문항 2와 표면구조(두 점, 문자 a가 양쪽 좌표에 숨어있음)는 거의 똑같아 보이지만, 문항 2의 조건은 "<b>거리</b>가 ~이다"였고 이 문항의 조건은 "<b>내분하는 점</b>이 ~위에 있다"입니다 — 조건 문장에서 실제로 무엇을 묻는지 다시 확인해보세요.
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 평면좌표 · 문항 4</div>
+  <div class="card-tag">문항 4 (주관식 단답형) · 5점</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________ (먼저 적어보세요)</div>
+두 점 A(−2, 5), B(6, −3)에 대하여 선분 AB를 3 : 5로 내분하는 점을 P라 하자. 점 P와 점 C(a, 2) 사이의 거리가 5일 때, 모든 실수 a의 값의 곱을 구하시오.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 문항 4 풀이</div>
+  <div class="card-tag">💡 문항 4 풀이 · 정답 −24</div>
+  <div class="card-body">
+<b>1단계 — 내분점 P 구하기</b><br>
+A(−2,5)를 x₁, B(6,−3)을 x₂로 놓으면 m=3, n=5이므로<br>
+Px = <span class="frac"><span class="num">5·(−2)+3·6</span><span class="den">8</span></span> = <span class="frac"><span class="num">−10+18</span><span class="den">8</span></span> = <b>1</b><br>
+Py = <span class="frac"><span class="num">5·5+3·(−3)</span><span class="den">8</span></span> = <span class="frac"><span class="num">25−9</span><span class="den">8</span></span> = <b>2</b> → P(1, 2)<br><br>
+<b>2단계 — 거리공식으로 a에 대한 방정식 세우기</b><br>
+PC = 5이므로 (a−1)² + (2−2)² = 25 → (a−1)² = 25<br>
+a−1 = ±5 → <b>a = 6 또는 a = −4</b><br><br>
+<b>3단계 — 곱 계산</b><br>
+6 × (−4) = <b>−24</b><br><br>
+<b>정답: −24</b>
+
+<div style="border-top:1px dashed #bbb;padding-top:10px;margin-top:14px">
+<b style="color:#666;font-size:.9em">🔎 검증 근거</b><br>
+Node.js로 P(1,2)를 구한 뒤 C(6,2), C(−4,2) 각각에 대해 PC 거리가 정확히 5임을 직접 계산해 확인했다.
+</div>
+
+<div style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:10px 14px;margin-top:14px;font-size:.94em;line-height:1.85">
+🔗 구조 신호: 이 문제는 신호가 두 개 연달아 나와요 — 먼저 "선분 ~을 ~로 <b>내분</b>하는 점"(→ 내분점 공식, 정류장 카드), 그다음 "두 점 사이의 <b>거리</b>가 ~이다"(→ 거리공식, 새가 나는 길 카드). 한 문제 안에서 두 카드를 순서대로 다 써야 할 수도 있다는 것, 그리고 (a−1)²=25처럼 <b>제곱이 풀리는 조건은 항상 ± 두 경우</b>로 갈라진다는 것도 놓치지 마세요.
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 평면좌표 · 문항 5</div>
+  <div class="card-tag">문항 5 (〈보기〉 참거짓) · 4점</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________ (먼저 적어보세요)</div>
+좌표평면 위의 두 점 A(2, 1), B(14, 7)에 대하여 네 점 P(4, 2), Q(6, 3), R(8, 4), S(10, 5)가 있다. <보기>에서 옳은 것만을 있는 대로 고른 것은?
+    <div style="margin-top:12px;font-size:.98em;line-height:1.9;font-weight:400;border:1px solid #ddd;border-radius:8px;padding:12px 16px">
+<보기><br>
+ㄱ. 점 R은 선분 AB의 중점이다.<br>
+ㄴ. 점 Q는 선분 AB를 1 : 2로 내분하는 점이다.<br>
+ㄷ. 점 S는 선분 AB를 1 : 2로 내분하는 점이다.<br>
+ㄹ. 점 P는 선분 AB를 1 : 5로 내분하는 점이다.
+    </div>
+    <div style="margin-top:12px;font-size:.98em;line-height:2.1;font-weight:400">
+      ① ㄱ, ㄴ &nbsp;&nbsp; ② ㄱ, ㄹ &nbsp;&nbsp; ③ ㄴ, ㄷ &nbsp;&nbsp; ④ ㄱ, ㄴ, ㄹ &nbsp;&nbsp; ⑤ ㄱ, ㄴ, ㄷ, ㄹ
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 문항 5 풀이</div>
+  <div class="card-tag">💡 문항 5 풀이 · 정답 ④</div>
+  <div class="card-body">
+<b>네 보기를 전부 독립적으로 검증해야 하는 문제입니다. 하나씩 직접 계산합니다.</b><br><br>
+<b>ㄱ — 중점(1:1)</b><br>
+( <span class="frac"><span class="num">2+14</span><span class="den">2</span></span>, <span class="frac"><span class="num">1+7</span><span class="den">2</span></span> ) = (8, 4) = R → <b>참</b><br><br>
+<b>ㄴ — 1:2 내분점</b><br>
+m=1, n=2이므로 Px=<span class="frac"><span class="num">2·2+1·14</span><span class="den">3</span></span>=6, Py=<span class="frac"><span class="num">2·1+1·7</span><span class="den">3</span></span>=3 → (6,3) = Q → <b>참</b><br><br>
+<b>ㄷ — S가 1:2 내분점인가?</b><br>
+ㄴ에서 이미 1:2 내분점은 (6,3)=Q임을 확인했습니다. S(10,5)는 다른 점이므로 <b>거짓</b>. (참고: S를 역산하면 실제로는 2:1로 내분하는 점입니다 — m=2,n=1일 때 Px=<span class="frac"><span class="num">1·2+2·14</span><span class="den">3</span></span>=10, Py=<span class="frac"><span class="num">1·1+2·7</span><span class="den">3</span></span>=5로 정확히 일치.)<br><br>
+<b>ㄹ — 1:5 내분점</b><br>
+m=1, n=5이므로 Px=<span class="frac"><span class="num">5·2+1·14</span><span class="den">6</span></span>=4, Py=<span class="frac"><span class="num">5·1+1·7</span><span class="den">6</span></span>=2 → (4,2) = P → <b>참</b><br><br>
+<b>참인 것: ㄱ, ㄴ, ㄹ → 정답 ④</b>
+
+<div style="border-top:1px dashed #bbb;padding-top:10px;margin-top:14px">
+<b style="color:#666;font-size:.9em">🔎 오답 선택지 설계</b><br>
+① ㄱ,ㄴ — ㄹ을 계산 실수로 거짓 처리하거나, 시간에 쫓겨 마지막 보기를 검증하지 않고 넘어간 경우.<br>
+② ㄱ,ㄹ — ㄴ 계산에서 가중치를 반대로 넣어(2:1로 계산) Q와 안 맞는다고 착각, 거짓 처리한 경우.<br>
+③ ㄴ,ㄷ — 이 문제가 정확히 노리는 함정입니다. "1:2로 내분"이라는 문구만 보고 ㄷ도 그대로 참으로 판정 — <b>ㄴ과 ㄷ의 좌표가 다르다는 것 자체를 확인하지 않은 경우</b>. ㄱ도 놓쳐서 중점 판정을 빠뜨림.<br>
+⑤ ㄱ,ㄴ,ㄷ,ㄹ 모두 — 네 개 다 그럴듯해 보인다고 검증 없이 전부 참 처리(보기형 문제에서 가장 흔한 실수 패턴).
+</div>
+
+<div style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:10px 14px;margin-top:14px;font-size:.94em;line-height:1.85">
+🔗 구조 신호: 이 문제에 "내분"이라는 단어는 한 번만 나오지만, 실제로는 <b>같은 공식을 비율만 바꿔 네 번</b> 적용해야 풀립니다(정류장 카드 참고). ㄴ과 ㄷ처럼 "m:n"과 "n:m"을 헷갈리면 완전히 다른 점이 나온다는 것 — 정류장 카드에서 이미 경고한 <b>1:2 ↔ 2:1 반전 실수</b>가 여기서는 "말로만 그럴듯한 보기"로 위장해서 나온다는 점이 이 문항의 핵심 훈련 포인트입니다. 문항 1~4는 계산을 끝까지 밀어붙이는 훈련이었다면, 이 문항은 <b>"다 맞는 것 같은데 정말 다 확인했는가"</b>를 훈련합니다.
+</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

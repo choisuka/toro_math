@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \":*)",
+      "Bash(python -c ':*)",
+      "Bash(grep -n \"^'fm-prime-link'\\\\|^],$\\\\|^];\" c:/Users/USER/toro_math/index.html)",
+      "Bash(awk 'NR>=4600 && NR<=4650' c:/Users/USER/toro_math/index.html)",
+      "Bash(node -e ':*)",
+      "Bash(grep -n \"^}; *$\\\\|^};\" c:/Users/USER/toro_math/index.html)",
+      "WebSearch",
+      "WebFetch(domain:developers.upstage.ai)",
+      "WebFetch(domain:console.upstage.ai)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:upstage-ai-education.gitbook.io)",
+      "WebFetch(domain:www.ohmynews.com)",
+      "WebFetch(domain:www.aitimes.com)",
+      "PowerShell(playwright install chromium)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\USER"
+    ]
+  }
+}
