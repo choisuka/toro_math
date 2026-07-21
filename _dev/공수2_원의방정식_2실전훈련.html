@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학2 · 원의 방정식 (2/2 실전훈련) — 빌드 파일</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.unit-header{font-size:16px;font-weight:800;color:#4c1d95;text-align:center;padding:9px 0;margin:26px 0 16px;border-top:3px solid #4c1d95;border-bottom:3px solid #4c1d95;letter-spacing:.02em}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card:not(:last-child){page-break-after:always}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:16px;padding-top:16px;border-top:1px dashed #bbb;font-size:12.5px;color:#333;line-height:1.95}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{font-size:11px;font-weight:700;color:#666!important;margin-bottom:8px}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.key-term{font-size:1.2em;font-weight:800;color:#4c1d95!important;letter-spacing:-.01em}
+@media print{
+svg text{fill:#333!important}
+svg line{stroke:#aaa!important}
+svg rect{stroke:#aaa!important}
+svg circle{stroke:#aaa!important;fill:#999!important}
+svg polygon{stroke:#aaa!important;fill:#eee!important}
+svg path{stroke:#aaa!important}
+}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em;line-height:1.3}
+.frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
+.frac .den{padding:1px 4px 0}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 공통수학2 · 원의 방정식 (2/2 실전훈련)</div>
+    <div class="toolbar-sub">판별 드릴(사전 준비용, 서랍 9개+이전단원 6개 워밍업)→연습문제 20제(하4·중4·상3·고난도3·최고난도6) · 개념/지도/서랍문제는 파일1(공수2_원의방정식.html) 참고</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 원의 방정식 (2/2 실전훈련)</h1>
+
+<div class="unit-header" style="margin-top:0">🔍 판별 드릴 (사전 준비용) — 본 문제 풀기 전 워밍업</div>
+
+<div class="card">
+  <div class="card-meta">판별 드릴 — 사전 준비용</div>
+  <div class="card-tag">📝 계산 안 해도 됩니다 — 이 단원 서랍 전체를 워밍업합니다</div>
+  <div class="card-body">
+파일1의 지도1~6에서 배운 서랍(A1~A4, B1~B4)에 더해, 아직 지도 카드가 없는 서랍(B5, B6, B7)까지 <b>이 단원 서랍 전체 9개</b>를 대상으로 합니다. 풀지 말고 서랍만 골라보세요 — 처음 보는 서랍이 있어도 괜찮아요, 연습문제에서 바로 만나게 됩니다.<br><br>
+원 문제는 이전 단원(평면좌표·직선의 방정식) 도구를 몰래 다시 쓰는 경우가 많아요. 그래서 아래 <b>P(이전단원) 목록</b>도 같이 골라보세요 — <b>한 문제에 여러 개를 체크해도 됩니다.</b><br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.9em;color:#555;line-height:1.8">
+서랍 목록: <b>A1</b>(세 점을 지나는 원) · <b>A2</b>(원과 직선의 위치관계) · <b>A3</b>(접선-원 위의 점) · <b>A4</b>(접선-기울기/원 밖의 점) · <b>B1</b>(지름의 양 끝점) · <b>B2</b>(좌표축에 접함) · <b>B3</b>(중심이 직선 위) · <b>B4</b>(원+직선+넓이) · <b>B5</b>(원 위 점-정점 거리 최대최소) · <b>B6</b>(원 위 점-직선 거리 최대최소) · <b>B7</b>(두 원의 위치 관계)<br><br>
+P(이전단원) 목록: <b>P1</b>(내분점) · <b>P2</b>(두 점 사이의 거리) · <b>P3</b>(두 직선의 위치관계) · <b>P4</b>(점과 직선 사이의 거리) · <b>P5</b>(직선의 방정식) · <b>P6</b>(자취)
+</div>
+<b>①</b> 세 점 (1,0), (5,0), (1,6)을 지나는 원의 중심은? → 서랍 ___ (+P ___)<br><br>
+<b>②</b> 원 x²+y²=12와 직선 x+y=1의 위치 관계는? → 서랍 ___ (+P ___)<br><br>
+<b>③</b> 원 x²+y²=8 위의 점 (2,2)에서의 접선의 방정식은? → 서랍 ___ (+P ___)<br><br>
+<b>④</b> 원 x²+y²=6에 접하고 기울기가 −1인 접선의 방정식은? → 서랍 ___ (+P ___)<br><br>
+<b>⑤</b> 두 점 (3,7), (3,−1)을 지름의 양 끝점으로 하는 원의 반지름은? → 서랍 ___ (+P ___)<br><br>
+<b>⑥</b> 반지름이 4이고 y축에만 접하며 중심이 제2사분면에 있는 원의 중심은? → 서랍 ___ (+P ___)<br><br>
+<b>⑦</b> 원의 중심이 직선 y=3x 위에 있고 x축에 접하며 반지름이 2일 때, 중심의 좌표 후보는? → 서랍 ___ (+P ___)<br><br>
+<b>⑧</b> 원 x²+y²=1 위의 점과 직선 x+y=10 사이 거리의 최댓값은? → 서랍 ___ (+P ___)<br><br>
+<b>⑨</b> 두 원 x²+y²=1과 (x−10)²+y²=4의 위치 관계는? → 서랍 ___ (+P ___)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">판별 드릴 — 사전 준비용 정답</div>
+  <div class="card-tag">💡 정답 및 근거</div>
+  <div class="card-body">
+① <b>A1</b> — "세 점을 지나는 원"이 직접 신호<br>
+② <b>A2</b> (+<b>P4</b>) — 원과 직선, 만나는지만 물음. 실제 판정 도구는 점과 직선 사이의 거리 공식<br>
+③ <b>A3</b> (+<b>P5</b>) — 원 위의 점이 주어짐 → x₁x+y₁y=r². 접선도 결국 하나의 직선의 방정식<br>
+④ <b>A4</b> (+<b>P4</b>) — 기울기만 주어짐, 접점은 모름. "중심에서 거리=반지름" 자체가 점과 직선 사이의 거리 공식<br>
+⑤ <b>B1</b> (+<b>P1</b>, <b>P2</b>) — "지름의 양 끝점"이 직접 신호. 중점(=내분점 1:1)과 두 점 사이의 거리를 둘 다 씀<br>
+⑥ <b>B2</b> — "y축에만 접함"이 직접 신호. 이 문제 자체엔 이전단원 도구가 따로 필요 없음<br>
+⑦ <b>B3</b> (+<b>P5</b>, <b>P6</b>) — <span style="color:#a855f7;font-weight:700">주의</span>: "축에 접함"(B2)과 "중심이 직선 위"(B3)가 동시에 걸린 결합형. "중심이 직선 위"라는 조건 자체가 직선의 방정식에 대입하는 것이고, 중심을 매개변수로 놓는 발상은 자취 기법과 같음<br>
+⑧ <b>B6</b> (+<b>P4</b>) — 대상이 정점이 아니라 직선 — B5와 헷갈리기 쉬움. 거리 계산 자체는 점과 직선 사이의 거리 공식<br>
+⑨ <b>B7</b> (+<b>P2</b>) — "두 원"의 관계를 묻는 것 자체가 신호. 중심 사이의 거리를 구할 때 두 점 사이의 거리 공식을 씀<br><br>
+<div class="toro-note">🦕 토로: ⑧·⑨번을 못 맞혔어도 괜찮아요 — 파일1에는 이 두 서랍을 다루는 지도 카드가 아직 없으니까요. P(이전단원) 목록 중 <b>P3(두 직선의 위치관계)</b>은 이번 9문항 중엔 안 나왔어요 — 나온다면 "두 접선끼리의 관계를 비교" 같은 문제일 텐데, 아직 이 파일엔 없는 유형이라는 뜻이니 참고만 하세요.</div>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">✏️ 직접 풀어보기 — 정답은 각 문제 다음 페이지에</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 연습문제</div>
+  <div class="card-tag">📝 풀기 전에 읽어주세요</div>
+  <div class="card-body">
+각 문항 위 빈칸에, 풀기 전에 이 문제가 어떤 개념을 쓰는지 먼저 적어보세요. 정답은 다음 페이지에 있으니, 미리 넘겨보지 말고 끝까지 풀어본 뒤에 확인하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 1 · 난이도 하</div>
+  <div class="card-tag">문항 1</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+중심이 (2, −1)이고 반지름이 5인 원이 x축과 만나는 두 점 사이의 거리를 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 1 — 풀이</div>
+  <div class="card-tag">💡 정답 4√6</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 표준형 원의 방정식 + x절편 구하기</div>
+원의 방정식: (x−2)²+(y+1)²=25<br>
+x축과 만나는 점은 y=0 대입: (x−2)²+1=25 → (x−2)²=24 → x=2±2√6<br>
+두 점 (2+2√6, 0), (2−2√6, 0) 사이의 거리 = <b>4√6</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 2 · 난이도 하</div>
+  <div class="card-tag">문항 2</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 x² + y² − 6x + 4y − 3 = 0의 중심과 반지름을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 2 — 풀이</div>
+  <div class="card-tag">💡 정답 중심(3,−2), 반지름 4</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 일반형을 완전제곱식으로 바꿔 표준형 찾기</div>
+(x²−6x+9) + (y²+4y+4) = 3+9+4<br>
+(x−3)² + (y+2)² = 16<br>
+<b>중심 (3, −2), 반지름 4</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 3 · 난이도 하</div>
+  <div class="card-tag">문항 3</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 x²+y²=25와 직선 4x+3y−25=0의 위치 관계를 판별하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 3 — 풀이</div>
+  <div class="card-tag">💡 정답 접한다 (d=r)</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 중심-직선 거리와 반지름 비교</div>
+중심(0,0), 반지름 5<br>
+d = <span class="frac"><span class="num">|4(0)+3(0)−25|</span><span class="den">√(4²+3²)</span></span> = <span class="frac"><span class="num">25</span><span class="den">5</span></span> = 5<br>
+d = r → <b>한 점에서 접한다</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 4 · 난이도 하</div>
+  <div class="card-tag">문항 4</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 x²+y²=17 위의 점 (1, 4)에서의 접선의 방정식을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 4 — 풀이</div>
+  <div class="card-tag">💡 정답 x+4y=17</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 원 위의 점에서의 접선 공식(x₁x+y₁y=r²)</div>
+x₁x+y₁y=r² 에 (1,4), r²=17 대입:<br>
+<b>x + 4y = 17</b><br>
+검산: (1,4) 대입 → 1+16=17 ✓
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 5 · 난이도 중</div>
+  <div class="card-tag">문항 5</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+세 점 (6, 2), (4, 6), (−3, −1)을 지나는 원의 방정식을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 5 — 풀이</div>
+  <div class="card-tag">💡 정답 (x−1)²+(y−2)²=25</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 세 점을 지나는 원(외접원) — 일반형에 대입하는 표준적인 방법</div>
+<div style="border:1px solid #999;border-radius:6px;padding:8px 12px;margin:2px 0 12px;font-size:.9em;background:#f5f5f5;text-align:center;font-weight:400">📐 일반형: <b>x² + y² + Dx + Ey + F = 0</b></div>
+일반형 x²+y²+Dx+Ey+F=0에 세 점을 각각 대입:<br>
+(6,2): 6D+2E+F=−40 … ①<br>
+(4,6): 4D+6E+F=−52 … ②<br>
+(−3,−1): −3D−E+F=−10 … ③<br><br>
+①−②: 2D−4E=12 → D−2E=6 … ④<br>
+①−③: 9D+3E=−30 → 3D+E=−10 … ⑤<br>
+④,⑤ 연립: ⑤×2+④ → 7D=−14 → D=−2, E=−4, F=−20<br><br>
+x²+y²−2x−4y−20=0 → <b>(x−1)²+(y−2)²=25</b> (중심(1,2), 반지름5)<br>
+<span style="font-size:.85em;color:#555">검산: 세 점 모두 대입하면 성립. 이 삼각형은 직각삼각형이 아니라서(어느 두 변도 수직으로 안 만남), 다음 문제(문항6)의 지름길이 여기선 안 통해요 — 그래서 일반형 대입이 기본값입니다.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 6 · 난이도 중 (+ 플러스: 직각삼각형 특수꼴)</div>
+  <div class="card-tag">문항 6</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+세 점 (0,0), (6,0), (0,8)을 지나는 원의 중심과 반지름을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 6 — 풀이</div>
+  <div class="card-tag">💡 정답 중심(3,4), 반지름 5</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 세 점을 지나는 원(외접원) — 직각삼각형이면 빗변의 중점이 지름길 (문항5의 일반형 방법도 항상 통하지만, 이번엔 더 빠른 지름길이 있어요)</div>
+<b>중2 때 배운 원주각 정리, 기억나요?</b> "원에 내접하는 삼각형에서 한 변이 지름이면, 그 변을 마주보는 각은 항상 90°"였죠. 오늘은 이걸 <b>거꾸로</b> 씁니다 — 삼각형이 직각삼각형이면, 그 빗변이 바로 외접원의 지름이에요. 그래서 빗변의 중점이 곧 원의 중심(외심)이 됩니다.<br>
+<div style="text-align:center;margin:10px 0">
+<svg viewBox="0 0 140 150" width="200" height="215" xmlns="http://www.w3.org/2000/svg">
+<circle cx="66" cy="78" r="60" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
+<line x1="30" y1="126" x2="102" y2="126" stroke="#333" stroke-width="1.5"/>
+<line x1="30" y1="126" x2="30" y2="30" stroke="#333" stroke-width="1.5"/>
+<line x1="102" y1="126" x2="30" y2="30" stroke="#e05" stroke-width="1.5" stroke-dasharray="4 3"/>
+<path d="M30,118 L38,118 L38,126" fill="none" stroke="#333" stroke-width="1"/>
+<circle cx="66" cy="78" r="2.5" fill="#e05"/>
+<text x="66" y="93" font-size="9" fill="#e05" text-anchor="middle">중심(외심)</text>
+<text x="16" y="140" font-size="10">O(0,0)</text>
+<text x="94" y="140" font-size="10">P(6,0)</text>
+<text x="4" y="24" font-size="10">Q(0,8)</text>
+<text x="76" y="52" font-size="9" fill="#e05">빗변=지름</text>
+</svg>
+</div>
+원점에서 두 변이 각각 x축·y축 방향이므로 원점의 각은 90° → 빗변은 (6,0)과 (0,8)을 잇는 선분<br>
+직각삼각형의 외심은 빗변의 중점: 중심 = <span class="frac"><span class="num">6+0</span><span class="den">2</span></span>, <span class="frac"><span class="num">0+8</span><span class="den">2</span></span> = <b>(3, 4)</b><br>
+빗변 길이 = √(6²+8²) = 10 → 반지름 = <b>5</b><br>
+<span style="font-size:.85em;color:#555">검산: 일반형에 세 점 대입해도 F=0, D=−6, E=−8 → 동일한 결과</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 7 · 난이도 중</div>
+  <div class="card-tag">문항 7</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+중심이 직선 y=x+1 위에 있고, x축에 접하며 반지름이 3인 원 중 <b>제1사분면</b>에 있는 것의 방정식을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 7 — 풀이</div>
+  <div class="card-tag">💡 정답 (x−2)²+(y−3)²=9</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 중심이 직선 위(매개변수화) + 좌표축에 접함, 두 서랍 결합</div>
+중심을 직선 위의 점 (a, a+1)로 놓기<br>
+x축에 접함 → |a+1| = 3 → a+1=3 또는 a+1=−3 → a=2 또는 a=−4<br>
+a=2 → 중심(2,3): 제1사분면 ✓<br>
+a=−4 → 중심(−4,−3): 제3사분면, 조건에 안 맞음 → 제외<br>
+<b>(x−2)² + (y−3)² = 9</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 8 · 난이도 중</div>
+  <div class="card-tag">문항 8</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 x²+y²=13에 접하고 기울기가 −<span class="frac"><span class="num">2</span><span class="den">3</span></span>인 접선의 방정식을 모두 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 8 — 풀이</div>
+  <div class="card-tag">💡 정답 2x+3y±13=0</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 기울기가 주어진 접선 — 중심에서 거리=반지름</div>
+기울기 −<span class="frac"><span class="num">2</span><span class="den">3</span></span>인 직선을 2x+3y+c=0 꼴로 놓으면<br>
+거리 = <span class="frac"><span class="num">|c|</span><span class="den">√(2²+3²)</span></span> = <span class="frac"><span class="num">|c|</span><span class="den">√13</span></span> = √13 (반지름) → |c|=13 → c=±13<br>
+<b>2x+3y+13=0 또는 2x+3y−13=0</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 9 · 난이도 상</div>
+  <div class="card-tag">문항 9</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 x²+y²=25와 직선 3x−4y−15=0이 만나서 생기는 현의 길이를 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 9 — 풀이</div>
+  <div class="card-tag">💡 정답 8</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 원+직선+길이 결합 — 중심-직선 거리 + 피타고라스</div>
+중심(0,0)에서 직선까지 거리: d = <span class="frac"><span class="num">|−15|</span><span class="den">5</span></span> = 3<br>
+<div style="text-align:center;margin:10px 0">
+<svg viewBox="0 0 220 220" width="220" height="220" xmlns="http://www.w3.org/2000/svg">
+<circle cx="111" cy="111" r="80" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
+<polygon points="111,111 139.8,149.4 191,111" fill="#e8a33d" fill-opacity="0.3"/>
+<path d="M136.2,144.6 L141,141 L144.6,145.8" fill="none" stroke="#333" stroke-width="1"/>
+<line x1="88.6" y1="187.8" x2="191" y2="111" stroke="#e05" stroke-width="1.8"/>
+<line x1="111" y1="111" x2="139.8" y2="149.4" stroke="#333" stroke-width="1.4"/>
+<line x1="111" y1="111" x2="191" y2="111" stroke="#333" stroke-width="1.2"/>
+<circle cx="111" cy="111" r="2.5" fill="#4a90d9"/>
+<circle cx="139.8" cy="149.4" r="2" fill="#333"/>
+<circle cx="191" cy="111" r="2.5" fill="#e05"/>
+<circle cx="88.6" cy="187.8" r="2.5" fill="#e05"/>
+<text x="98" y="105" font-size="10" fill="#4a90d9">O</text>
+<text x="143" y="146" font-size="9">F</text>
+<text x="152" y="88" font-size="9" font-weight="700">r=5</text>
+<text x="118" y="134" font-size="9" font-weight="700">d=3</text>
+<text x="158" y="140" font-size="9" fill="#e05" font-weight="700">반현=4</text>
+</svg>
+</div>
+<div style="font-size:.85em;color:#c9791f;font-weight:600;margin-top:2px">↑ 색칠된 삼각형 OF-끝점이 피타고라스를 쓰는 직각삼각형(직각은 F, 중심에서 현에 내린 발)</div>
+반현(半弦) = √(r²−d²) = √(25−9) = 4<br>
+현의 길이 = 2×4 = <b>8</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 10 · 난이도 상</div>
+  <div class="card-tag">문항 10</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 x²+y²=9 밖의 점 P(5, 0)에서 원에 그은 접선의 길이를 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 10 — 풀이</div>
+  <div class="card-tag">💡 정답 4</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 원 밖의 점에서 그은 접선의 길이 — 피타고라스 정리 (문항9의 현의 길이와 헷갈리기 쉬우니 비교: 현의 길이는 √(r²−d²), 접선의 길이는 √(d²−r²))</div>
+중심 O(0,0)에서 점 P까지의 거리 d=5, 반지름 r=3<br>
+접점을 T라 하면 반지름 OT는 접선과 항상 수직(OT⊥TP, 원의 접선의 정의 그 자체) → 삼각형 OTP는 직각삼각형이고, 직각을 낀 두 변이 <b>r(=OT, 반지름)</b>과 <b>L(=TP, 구하려는 접선의 길이)</b>, 빗변이 <b>d(=OP, 중심과 점 사이의 거리)</b><br>
+P에서는 접선을 두 개 그을 수 있는데(그림의 T₁, T₂), d와 r이 같은 값을 공유하니 두 삼각형 OT₁P·OT₂P는 합동 → 두 접선의 길이는 항상 같습니다(문항15에서 다시 쓰는 성질)<br>
+<div style="text-align:center;margin:10px 0">
+<svg viewBox="0 0 160 120" width="220" height="165" xmlns="http://www.w3.org/2000/svg">
+<circle cx="60" cy="60" r="48" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
+<polygon points="60,60 88.8,21.6 140,60" fill="#e8a33d" fill-opacity="0.28"/>
+<path d="M85.2,26.4 L90,30 L93.6,25.2" fill="none" stroke="#333" stroke-width="1"/>
+<line x1="60" y1="60" x2="140" y2="60" stroke="#ccc" stroke-width="1" stroke-dasharray="3 2"/>
+<line x1="60" y1="60" x2="88.8" y2="21.6" stroke="#333" stroke-width="1.4"/>
+<line x1="88.8" y1="21.6" x2="140" y2="60" stroke="#e05" stroke-width="1.8"/>
+<line x1="60" y1="60" x2="88.8" y2="98.4" stroke="#333" stroke-width="1.2"/>
+<line x1="88.8" y1="98.4" x2="140" y2="60" stroke="#e05" stroke-width="1.5"/>
+<circle cx="60" cy="60" r="2" fill="#4a90d9"/>
+<circle cx="140" cy="60" r="2.5" fill="#333"/>
+<circle cx="88.8" cy="21.6" r="2" fill="#333"/>
+<circle cx="88.8" cy="98.4" r="2" fill="#333"/>
+<text x="55" y="74" font-size="10" fill="#4a90d9">O</text>
+<text x="142" y="64" font-size="10">P(5,0)</text>
+<text x="90" y="16" font-size="9">T₁</text>
+<text x="90" y="112" font-size="9">T₂</text>
+<text x="68" y="35" font-size="9" font-weight="700">r</text>
+<text x="116" y="35" font-size="9" fill="#e05" font-weight="700">L</text>
+<text x="95" y="55" font-size="9" fill="#999">d</text>
+<text x="66" y="70" font-size="14" font-weight="700" fill="#c9791f">△</text>
+</svg>
+<div style="font-size:.85em;color:#c9791f;font-weight:600;margin-top:2px">↑ 색칠된 삼각형 OT₁P가 피타고라스 정리를 쓰는 직각삼각형이에요 (직각은 T₁에서)</div>
+</div>
+피타고라스: OT²+TP²=OP² → r²+L²=d² → 3²+L²=5² → L²=25−9=16 → <b>L=4</b> (T₁, T₂ 어느 쪽으로 재도 결과는 같음)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 11 · 난이도 상</div>
+  <div class="card-tag">문항 11</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 (x+1)²+(y−2)²=10 위의 점 P와 정점 A(5,−1) 사이 거리의 최댓값과 최솟값의 곱을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 11 — 풀이</div>
+  <div class="card-tag">💡 정답 35</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 원 위의 점과 정점 사이 거리의 최대·최소</div>
+중심(−1,2), 반지름√10. 중심에서 A(5,−1)까지 거리:<br>
+OA = √{(5−(−1))²+(−1−2)²} = √(36+9) = √45 = 3√5<br>
+최댓값 = 3√5+√10, 최솟값 = 3√5−√10<br>
+곱 = (3√5)²−(√10)² = 45−10 = <b>35</b><br>
+<span style="font-size:.85em;color:#555">(최댓값×최솟값은 각각 구하지 않고 (합)(차) 꼴로 바로 계산하면 빨라요)</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 12 · 난이도 고난도</div>
+  <div class="card-tag">문항 12</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+두 원 x²+y²=r²과 (x−6)²+(y−8)²=r² (반지름이 서로 같다)이 외접할 때, 양수 r의 값을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 12 — 풀이</div>
+  <div class="card-tag">💡 정답 5</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 두 원의 위치 관계 — 외접 조건(d=r₁+r₂)</div>
+두 중심 (0,0), (6,8) 사이의 거리: d = √(6²+8²) = √100 = 10<br>
+외접 조건: d = r+r = 2r → 10 = 2r → <b>r = 5</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 13 · 난이도 고난도</div>
+  <div class="card-tag">문항 13</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+두 원 x²+y²−4=0, x²+y²−2x+4y−4=0의 교점과 점 (1, 0)을 지나는 원의 방정식을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 13 — 풀이</div>
+  <div class="card-tag">💡 정답 x²+y²+3x−6y−4=0</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 두 원의 교점을 지나는 원 (C₁+k·C₂=0)</div>
+C₁=x²+y²−4, C₂=x²+y²−2x+4y−4 라 하면<br>
+C₁(1,0)=1+0−4=−3, C₂(1,0)=1−2+0−4=−5<br>
+C₁+k·C₂=0 → −3+k(−5)=0 → k=−<span class="frac"><span class="num">3</span><span class="den">5</span></span><br>
+5C₁−3C₂=0 → 5(x²+y²−4)−3(x²+y²−2x+4y−4)=0<br>
+→ 2x²+2y²+6x−12y−8=0 → 나누기2:<br>
+<b>x²+y²+3x−6y−4=0</b><br>
+<span style="font-size:.85em;color:#555">검산: (1,0) 대입 → 1+3−4=0 ✓</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 14 · 난이도 고난도</div>
+  <div class="card-tag">문항 14</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+두 원 x²+y²=25와 (x−6)²+y²=13의 공통현의 길이를 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 14 — 풀이</div>
+  <div class="card-tag">💡 정답 6</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 두 원의 공통현(C₁−C₂=0) + 원과 직선이 만드는 현의 길이, 두 서랍 결합</div>
+<b>1단계 — 공통현의 직선 방정식 구하기</b>: 두 원을 일반형으로 바꿔서 빼면 됩니다 (문항13과 같은 원리, k=−1인 경우).<br>
+C₁: x²+y²−25=0, C₂: x²+y²−12x+23=0<br>
+C₁−C₂: 12x−48=0 → <b>x=4</b> (공통현은 이 직선)<br><br>
+<b>2단계 — 현의 길이 구하기</b>: 문항9와 똑같은 방법이에요. 원 C₁의 중심(0,0)에서 직선 x=4까지 거리 d=4, 반지름 r=5<br>
+<div style="text-align:center;margin:10px 0">
+<svg viewBox="0 0 220 160" width="240" height="175" xmlns="http://www.w3.org/2000/svg">
+<circle cx="80" cy="80" r="65" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
+<circle cx="158" cy="80" r="46.9" fill="none" stroke="#22aa77" stroke-width="1.3" stroke-dasharray="4 2"/>
+<polygon points="80,80 132,80 132,41" fill="#e8a33d" fill-opacity="0.3"/>
+<rect x="125" y="73" width="7" height="7" fill="none" stroke="#333" stroke-width="1"/>
+<line x1="132" y1="41" x2="132" y2="119" stroke="#e05" stroke-width="1.8"/>
+<line x1="80" y1="80" x2="132" y2="80" stroke="#333" stroke-width="1.2"/>
+<line x1="80" y1="80" x2="132" y2="41" stroke="#333" stroke-width="1.4"/>
+<circle cx="80" cy="80" r="2.5" fill="#4a90d9"/>
+<circle cx="158" cy="80" r="2.5" fill="#22aa77"/>
+<circle cx="132" cy="80" r="2" fill="#333"/>
+<circle cx="132" cy="41" r="2.5" fill="#e05"/>
+<circle cx="132" cy="119" r="2.5" fill="#e05"/>
+<text x="66" y="95" font-size="10" fill="#4a90d9">O₁(0,0)</text>
+<text x="163" y="95" font-size="10" fill="#22aa77">O₂(6,0)</text>
+<text x="118" y="94" font-size="9">F(4,0)</text>
+<text x="103" y="58" font-size="9" font-weight="700">r=5</text>
+<text x="93" y="94" font-size="9" font-weight="700">d=4</text>
+<text x="136" y="35" font-size="9" fill="#e05" font-weight="700">공통현(x=4)</text>
+</svg>
+</div>
+<div style="font-size:.85em;color:#c9791f;font-weight:600;margin-top:2px">↑ 색칠된 삼각형 O₁-F-끝점이 피타고라스를 쓰는 직각삼각형(직각은 F에서) — 초록 점선은 두 번째 원 C₂</div>
+반현(半弦) = √(r²−d²) = √(25−16) = 3 → 현의 길이 = 2×3 = <b>6</b><br>
+<span style="font-size:.85em;color:#555">검산(C₂로도 확인): 중심(6,0)에서 x=4까지 거리=2, 반지름√13 → 반현=√(13−4)=3 → 현의 길이=6, 일치</span>
+  </div>
+</div>
+
+<div class="unit-header">🔥 최고난도 6제 — 실전 심화 결합</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 15 · 난이도 최고난도</div>
+  <div class="card-tag">문항 15</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+점 P(a, b)에서 원 x²+y²=9에 그은 두 접선이 서로 수직일 때, 점 P가 그리는 도형의 둘레의 길이를 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 15 — 풀이</div>
+  <div class="card-tag">💡 정답 6√2π</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 접선+자취 결합(파일1 기본7과 같은 설정) + 원의 둘레 공식</div>
+원의 중심 O, 두 접점 T₁·T₂, 점 P를 이으면 사각형 OT₁PT₂가 만들어져요. 이게 왜 정사각형인지 하나씩 확인해볼게요.<br><br>
+<b>① 반지름이 같다</b>: OT₁ = OT₂ = r = 3 (같은 원의 반지름이니까 당연히 같음)<br>
+<b>② 직각이다 (2개는 기본, 1개는 문제 조건)</b>: 반지름은 접점에서 접선과 항상 수직이므로 ∠OT₁P = ∠OT₂P = 90°. 여기에 문제 조건 "두 접선이 서로 수직"이므로 ∠T₁PT₂ = 90°도 성립. 사각형 내각의 합은 360°이니 나머지 ∠T₁OT₂ = 360°−90°−90°−90° = 90° → <b>네 각이 전부 90°인 직사각형</b><br>
+<b>③ 접선의 길이가 같다</b>: 문항10의 공식 L=√(d²−r²)을 떠올려보면, 같은 점 P에서 그은 두 접선은 d(=OP), r이 모두 같으니 <b>T₁P = T₂P</b>도 자동으로 성립(= "원 밖의 한 점에서 그은 두 접선의 길이는 같다"는 정리)<br>
+②에서 직사각형임을 확인했으니 마주보는 변도 이미 같고(OT₁=T₂P, OT₂=T₁P), 여기에 ①의 OT₁=OT₂(이웃한 두 변)까지 겹치면 <b>네 변이 모두 r=3으로 같은 직사각형 = 정사각형</b>이 됩니다.<br>
+<div style="text-align:center;margin:10px 0">
+<svg viewBox="0 0 200 180" width="230" height="207" xmlns="http://www.w3.org/2000/svg">
+<circle cx="100" cy="90" r="84.9" fill="none" stroke="#22aa77" stroke-width="1.3" stroke-dasharray="4 2"/>
+<circle cx="100" cy="90" r="60" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
+<polygon points="100,90 142.4,47.6 184.9,90" fill="#e8a33d" fill-opacity="0.3"/>
+<path d="M137.45,52.55 L142.41,57.49 L147.36,52.54" fill="none" stroke="#333" stroke-width="1"/>
+<line x1="100" y1="90" x2="142.4" y2="47.6" stroke="#333" stroke-width="1.2"/>
+<line x1="100" y1="90" x2="142.4" y2="132.4" stroke="#333" stroke-width="1.2"/>
+<line x1="142.4" y1="47.6" x2="184.9" y2="90" stroke="#e05" stroke-width="1.8"/>
+<line x1="142.4" y1="132.4" x2="184.9" y2="90" stroke="#e05" stroke-width="1.5"/>
+<line x1="100" y1="90" x2="184.9" y2="90" stroke="#c9791f" stroke-width="1.3" stroke-dasharray="3 2"/>
+<circle cx="100" cy="90" r="2.5" fill="#333"/>
+<circle cx="184.9" cy="90" r="2.5" fill="#e05"/>
+<circle cx="142.4" cy="47.6" r="2" fill="#333"/>
+<circle cx="142.4" cy="132.4" r="2" fill="#333"/>
+<text x="88" y="105" font-size="10">O</text>
+<text x="188" y="94" font-size="10">P(a,b)</text>
+<text x="146" y="42" font-size="9">T₁</text>
+<text x="146" y="142" font-size="9">T₂</text>
+<text x="112" y="64" font-size="9" font-weight="700">r=3</text>
+<text x="150" y="70" font-size="9" fill="#e05" font-weight="700">L=3</text>
+<text x="128" y="103" font-size="9" fill="#c9791f" font-weight="700">OP(대각선)</text>
+<text x="150" y="24" font-size="9" fill="#22aa77">P의 자취(반지름 3√2)</text>
+</svg>
+<div style="font-size:.85em;color:#c9791f;font-weight:600;margin-top:2px">↑ 색칠된 삼각형 OT₁P가 피타고라스를 쓰는 직각삼각형(직각은 T₁), 점선이 구하려는 대각선 OP예요</div>
+</div>
+정사각형 OT₁PT₂의 대각선이므로 대각선 = 변×√2 = 3×√2 = 3√2 (또는 피타고라스로 OP²=OT₁²+T₁P²=9+9=18)<br>
+점 P는 원점에서 항상 3√2만큼 떨어진 점들의 모임 → a²+b²=18 (반지름 3√2인 원)<br>
+둘레의 길이 = 2πr = 2π×3√2 = <b>6√2π</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 16 · 난이도 최고난도</div>
+  <div class="card-tag">문항 16</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+두 점 A(−4, 0), B(2, 0)으로부터의 거리의 비가 2:1인 점 P에 대하여, 삼각형 ABP의 넓이의 최댓값을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 16 — 풀이</div>
+  <div class="card-tag">💡 정답 12</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 아폴로니오스 원(파일1 개념카드와 같은 점) + 삼각형 넓이 최댓값</div>
+자취: PA=2PB → PA²=4PB² → (x+4)²+y²=4{(x−2)²+y²} → 정리하면 <b>(x−4)²+y²=16</b><br>
+밑변 AB = 6 (x축 위, 고정)<br>
+중심(4,0)이 x축(=AB가 놓인 직선) 위에 있으므로, P의 y좌표가 최대일 때(=반지름만큼) 높이도 최대: 높이 = 반지름 = 4<br>
+<div style="text-align:center;margin:10px 0">
+<svg viewBox="0 0 300 205" width="260" height="178" xmlns="http://www.w3.org/2000/svg">
+<line x1="20" y1="115" x2="280" y2="115" stroke="#999" stroke-width="1"/>
+<circle cx="195" cy="115" r="80" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
+<polygon points="35,115 155,115 195,35" fill="#e8a33d" fill-opacity="0.18" stroke="none"/>
+<line x1="35" y1="115" x2="155" y2="115" stroke="#333" stroke-width="1.5"/>
+<line x1="35" y1="115" x2="195" y2="35" stroke="#333" stroke-width="1.2"/>
+<line x1="155" y1="115" x2="195" y2="35" stroke="#333" stroke-width="1.2"/>
+<line x1="195" y1="115" x2="195" y2="35" stroke="#e05" stroke-width="1.3" stroke-dasharray="3 2"/>
+<circle cx="35" cy="115" r="2.5" fill="#333"/>
+<circle cx="155" cy="115" r="2.5" fill="#333"/>
+<circle cx="195" cy="115" r="2" fill="#4a90d9"/>
+<circle cx="195" cy="35" r="2.5" fill="#e05"/>
+<text x="20" y="130" font-size="10">A(−4,0)</text>
+<text x="140" y="130" font-size="10">B(2,0)</text>
+<text x="200" y="129" font-size="9" fill="#4a90d9">중심(4,0)</text>
+<text x="199" y="30" font-size="10" fill="#e05">P(4,4)</text>
+<text x="85" y="130" font-size="9">밑변 AB=6</text>
+<text x="200" y="75" font-size="9" fill="#e05">높이=4</text>
+</svg>
+</div>
+넓이 = <span class="frac"><span class="num">1</span><span class="den">2</span></span>×6×4 = <b>12</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 17 · 난이도 최고난도 (문항16의 원 위에서 살펴보기)</div>
+  <div class="card-tag">문항 17</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+문항16의 아폴로니오스 원 위의 점 P에 대하여, 각 PAB(꼭짓점 A에서 잰 각)의 최댓값을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 17 — 풀이</div>
+  <div class="card-tag">💡 정답 30°</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 아폴로니오스 원(문항16) + 원 밖의 점에서 그은 접선(문항10과 같은 원리) — 각이 최대가 되는 위치는 접점</div>
+<span style="font-size:.85em;color:#777">(참고: 같은 원에서 꼭짓점을 P로 바꾼 "각 APB의 최댓값"은 사실 존재하지 않아요 — 이 원이 선분 AB의 내분점을 지나기 때문에 그 점에서 180°가 되어버리거든요. 하지만 꼭짓점을 A로 바꾸면 얘기가 완전히 달라집니다: A는 원 밖의 고정된 점이라, 원 위의 점 P를 어디로 옮기든 각 PAB는 딱 두 접선 사이의 범위를 벗어날 수 없어요. 그래서 이번엔 최댓값이 확실히 존재하고, 그 값은 접점에서 나옵니다.)</span><br><br>
+<b>1단계</b> — A(−4,0)는 원 밖의 점인지 확인: 중심(4,0)까지 거리 d=8, 반지름 r=4 → d&gt;r, 원 밖 ✓. 또한 B(2,0)는 A와 중심을 잇는 선분 위에 있으므로(−4&lt;2&lt;4), <b>각 PAB = 각 PA중심</b>과 같은 각이에요.<br>
+<b>2단계</b> — A에서 그은 두 접선 중 하나가 AP와 겹칠 때, 즉 P가 접점일 때 각이 가장 크게 벌어져요(원 위 다른 점은 모두 두 접선 사이에 있으니까). 접선과 중심선 AO 사이의 각을 θ라 하면:<br>
+sinθ = <span class="frac"><span class="num">r</span><span class="den">d</span></span> = <span class="frac"><span class="num">4</span><span class="den">8</span></span> = <span class="frac"><span class="num">1</span><span class="den">2</span></span> → <b>θ = 30°</b><br>
+<div style="text-align:center;margin:10px 0">
+<svg viewBox="0 0 260 175" width="280" height="189" xmlns="http://www.w3.org/2000/svg">
+<line x1="36" y1="87" x2="228" y2="87" stroke="#999" stroke-width="1"/>
+<circle cx="164" cy="87" r="64" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
+<polygon points="36,87 132,31.6 164,87" fill="#e8a33d" fill-opacity="0.3"/>
+<path d="M125.94,35.1 L129.44,41.16 L135.5,37.66" fill="none" stroke="#333" stroke-width="1"/>
+<line x1="164" y1="87" x2="132" y2="31.6" stroke="#333" stroke-width="1.4"/>
+<line x1="164" y1="87" x2="132" y2="142.4" stroke="#bbb" stroke-width="1" stroke-dasharray="3 2"/>
+<line x1="36" y1="87" x2="132" y2="31.6" stroke="#e05" stroke-width="1.8"/>
+<line x1="36" y1="87" x2="132" y2="142.4" stroke="#e05" stroke-width="1.5" stroke-opacity="0.4"/>
+<path d="M 58 87 A 22 22 0 0 0 55.5 65.4" fill="none" stroke="#e05" stroke-width="1.3"/>
+<circle cx="36" cy="87" r="2.5" fill="#333"/>
+<circle cx="164" cy="87" r="2" fill="#4a90d9"/>
+<circle cx="132" cy="87" r="2.5" fill="#333"/>
+<circle cx="132" cy="31.6" r="2.5" fill="#e05"/>
+<text x="20" y="102" font-size="10">A(−4,0)</text>
+<text x="150" y="102" font-size="10" fill="#4a90d9">중심(4,0)</text>
+<text x="122" y="102" font-size="10">B(2,0)</text>
+<text x="136" y="24" font-size="10" fill="#e05">P(2, 2√3)</text>
+<text x="62" y="75" font-size="9" fill="#e05">30°</text>
+<text x="140" y="60" font-size="9" font-weight="700">r=4</text>
+<text x="72" y="52" font-size="9" fill="#e05" font-weight="700">L=4√3</text>
+</svg>
+<div style="font-size:.85em;color:#c9791f;font-weight:600;margin-top:2px">↑ 색칠된 삼각형 A-P-중심이 sinθ=r/d(=피타고라스와 같은 뿌리)를 쓰는 직각삼각형(직각은 P에서)</div>
+</div>
+<b>3단계 — 검산 (접점 좌표)</b>: 접선의 길이 L=√(d²−r²)=√(64−16)=4√3. A에서 x축 방향으로 30° 회전한 방향으로 L만큼 이동 →<br>
+P = (−4+4√3×cos30°, 4√3×sin30°) = (−4+4√3×<span class="frac"><span class="num">√3</span><span class="den">2</span></span>, 4√3×<span class="frac"><span class="num">1</span><span class="den">2</span></span>) = <b>(2, 2√3)</b><br>
+중심(4,0)에서 거리 확인: √{(2−4)²+(2√3)²} = √(4+12) = 4 = r ✓<br><br>
+<b>최댓값 = 30°</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 18 · 난이도 최고난도 (문항16과 관계있는 문제)</div>
+  <div class="card-tag">문항 18</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+문항16과 같은 두 점 A(−4, 0), B(2, 0)이 있다. 점 P가 직선 y=3 위를 움직일 때, 각 APB가 최대가 되는 점 P의 좌표와 그때의 각의 크기를 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 18 — 풀이</div>
+  <div class="card-tag">💡 정답 P(−1, 3), 최댓값 90°</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 각이 90°인 점의 자취(지름에 대한 원주각, 문항6과 같은 원리) + 원과 직선의 위치 관계(접함)</div>
+<b>1단계 — 각 APB=90°인 점들의 자취는?</b> 문항6에서 배운 원주각 정리를 거꾸로 쓰면, "AB를 빗변으로 하는 직각삼각형의 꼭짓점"의 자취는 <b>AB를 지름으로 하는 원</b>이에요.<br>
+AB의 중점 = (−1, 0), 반지름 = <span class="frac"><span class="num">6</span><span class="den">2</span></span> = 3 → 원: <b>(x+1)²+y²=9</b><br><br>
+<b>2단계 — 이 원과 직선 y=3의 위치 관계</b>: 중심(−1,0)에서 직선 y=3까지 거리 = 3 = 반지름 → <b>접한다</b>!<br>
+<div style="text-align:center;margin:10px 0">
+<svg viewBox="0 0 140 150" width="220" height="236" xmlns="http://www.w3.org/2000/svg">
+<line x1="0" y1="90" x2="130" y2="90" stroke="#ccc" stroke-width="1"/>
+<line x1="0" y1="42" x2="130" y2="42" stroke="#999" stroke-width="1"/>
+<text x="112" y="38" font-size="9" fill="#999">y=3</text>
+<circle cx="54" cy="90" r="48" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
+<line x1="54" y1="42" x2="6" y2="90" stroke="#e05" stroke-width="1.3"/>
+<line x1="54" y1="42" x2="102" y2="90" stroke="#e05" stroke-width="1.3"/>
+<circle cx="6" cy="90" r="2.5" fill="#333"/>
+<circle cx="102" cy="90" r="2.5" fill="#333"/>
+<circle cx="54" cy="90" r="2" fill="#4a90d9"/>
+<circle cx="54" cy="42" r="2.5" fill="#e05"/>
+<text x="-4" y="104" font-size="10">A(−4,0)</text>
+<text x="94" y="104" font-size="10">B(2,0)</text>
+<text x="58" y="38" font-size="10" fill="#e05">P(−1,3)</text>
+<text x="44" y="80" font-size="9" fill="#4a90d9">중심(−1,0)</text>
+<text x="58" y="58" font-size="9">90°</text>
+</svg>
+</div>
+직선이 원과 접하므로, 직선 위의 점 중 이 원에 닿는 점은 접점 하나뿐이에요. 원 위(=접점)에서 각은 정확히 90°, 원 안쪽으로 들어갈수록 90°보다 커지고 원 바깥으로 멀어질수록 90°보다 작아지는데, 이 직선은 원 안으로 들어가지 않고 접하기만 하므로 <b>접점에서 각이 최대</b>가 돼요.<br><br>
+<b>3단계 — 접점 좌표</b>: 중심(−1,0)에서 직선 y=3에 수직으로 내린 점이므로 x좌표는 중심과 같음 → <b>P(−1, 3)</b><br>
+<b>최댓값 = 90°</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 19 · 난이도 최고난도</div>
+  <div class="card-tag">문항 19</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 x²+y²−2x−4y−4=0 위의 점 P와 직선 3x−4y+24=0 사이의 거리의 최솟값을 m, 최댓값을 M이라 할 때, m×M의 값을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 19 — 풀이</div>
+  <div class="card-tag">💡 정답 136/25</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 원 위의 점과 직선 사이 거리의 최대·최소 (정점이 아니라 직선 버전)</div>
+원 정리: (x−1)²+(y−2)²=9 → 중심(1,2), 반지름3<br>
+중심에서 직선까지 거리: d = <span class="frac"><span class="num">|3(1)−4(2)+24|</span><span class="den">5</span></span> = <span class="frac"><span class="num">19</span><span class="den">5</span></span> = 3.8<br>
+d(3.8) &gt; r(3) → 직선이 원과 안 만남 → 최솟값 존재<br>
+<div style="text-align:center;margin:10px 0">
+<svg viewBox="0 0 230 220" width="220" height="210" xmlns="http://www.w3.org/2000/svg">
+<line x1="27.96" y1="140.28" x2="171.96" y2="32.28" stroke="#e05" stroke-width="1.5"/>
+<circle cx="141" cy="141" r="54" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
+<line x1="173.4" y1="184.2" x2="99.96" y2="86.28" stroke="#333" stroke-width="1.2" stroke-dasharray="3 2"/>
+<circle cx="141" cy="141" r="2" fill="#4a90d9"/>
+<circle cx="108.6" cy="97.8" r="2.5" fill="#22aa77"/>
+<circle cx="173.4" cy="184.2" r="2.5" fill="#e05"/>
+<text x="128" y="156" font-size="9" fill="#4a90d9">중심(1,2)</text>
+<text x="70" y="93" font-size="9" fill="#22aa77">P(m 최소, d−r)</text>
+<text x="177" y="188" font-size="9" fill="#e05">P(M 최대, d+r)</text>
+<text x="70" y="60" font-size="9" fill="#e05">직선 3x−4y+24=0</text>
+</svg>
+</div>
+m = 3.8−3 = 0.8, M = 3.8+3 = 6.8<br>
+m×M = 0.8×6.8 = <b>136/25</b> (=5.44)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 20 · 난이도 최고난도</div>
+  <div class="card-tag">문항 20</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+점 A(6, 2)와, 원 (x−1)²+(y−8)²=1 위를 움직이는 점 P가 있다. x축 위의 점 Q에 대하여 AQ+QP의 최솟값을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 20 — 풀이</div>
+  <div class="card-tag">💡 정답 5√5−1</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 도형의 이동(대칭이동) + 원 위의 점까지 최단거리, 두 단원 결합</div>
+<b>1단계 — 대칭이동</b>: A(6,2)를 x축에 대칭이동 → A′(6,−2). x축 위의 점 Q에 대해 AQ=A′Q이므로<br>
+AQ+QP = A′Q+QP ≥ A′P (일직선일 때 최소)<br><br>
+<div style="text-align:center;margin:10px 0">
+<svg viewBox="0 0 130 200" width="185" height="285" xmlns="http://www.w3.org/2000/svg">
+<line x1="10" y1="150" x2="118" y2="150" stroke="#999" stroke-width="1"/>
+<text x="120" y="153" font-size="9" fill="#999">x축</text>
+<line x1="100" y1="122" x2="100" y2="178" stroke="#e05" stroke-width="1" stroke-dasharray="3 2"/>
+<line x1="100" y1="178" x2="30" y2="38" stroke="#bbb" stroke-width="1" stroke-dasharray="3 2"/>
+<circle cx="30" cy="38" r="14" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
+<line x1="100" y1="122" x2="86" y2="150" stroke="#333" stroke-width="1.8"/>
+<line x1="86" y1="150" x2="36.3" y2="50.5" stroke="#333" stroke-width="1.8"/>
+<circle cx="100" cy="122" r="2.5" fill="#333"/>
+<circle cx="100" cy="178" r="2.5" fill="#e05"/>
+<circle cx="30" cy="38" r="2" fill="#4a90d9"/>
+<circle cx="86" cy="150" r="2.5" fill="#333"/>
+<circle cx="36.3" cy="50.5" r="2.5" fill="#333"/>
+<text x="104" y="120" font-size="10">A(6,2)</text>
+<text x="104" y="184" font-size="10" fill="#e05">A′(6,−2)</text>
+<text x="8" y="34" font-size="10" fill="#4a90d9">중심(1,8)</text>
+<text x="90" y="146" font-size="10">Q(5,0)</text>
+<text x="10" y="52" font-size="10">P</text>
+</svg>
+</div>
+빨간 점선은 A를 x축에 대칭이동해서 A′을 만드는 과정, 회색 점선은 A′에서 원의 중심까지 그은 직선(=Q와 P가 그 직선 위에 있음을 보여줌)이고, 굵은 실선 A→Q→P가 실제 이동 경로예요. 꺾여 있지만 길이는 곧게 편 A′→P와 같습니다.<br><br>
+<b>2단계 — 원 위의 점까지 최단거리</b>: A′(6,−2)에서 원의 중심(1,8)까지 거리:<br>
+d = √{(6−1)²+(−2−8)²} = √(25+100) = √125 = 5√5<br>
+최솟값 = d−r = 5√5−1<br><br>
+<b>최솟값 = 5√5−1</b>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
