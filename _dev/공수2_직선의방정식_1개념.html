@@ -14,9 +14,13 @@ body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padd
 @media print{.toolbar{display:none}body{background:#fff;padding:8px}}
 .sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
 @media print{.sheet{box-shadow:none;padding:0}}
-h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+h1{text-align:center;font-size:14px;margin-bottom:10px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:6px}
 .card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
-.card:not(:last-child){page-break-after:always}
+.card.compact{padding:12px 16px;margin-bottom:12px}
+.card.compact .card-meta{font-size:9px;margin-bottom:3px}
+.card.compact .card-tag{font-size:11.5px;margin-bottom:8px}
+.card.compact .card-body{font-size:12px;line-height:1.6}
+.card.compact .card-extra{margin-top:8px;padding-top:8px;font-size:11px;line-height:1.55}
 .card-meta{font-size:10px;color:#999;margin-bottom:5px}
 .card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
 .card-body{font-size:13.5px;line-height:2.0}
@@ -29,7 +33,7 @@ h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:
 .key-term{font-size:1.2em;font-weight:800;color:#4c1d95!important;letter-spacing:-.01em}
 .unit-header{font-size:16px;font-weight:800;color:#4c1d95;text-align:center;padding:9px 0;margin:26px 0 16px;border-top:3px solid #4c1d95;border-bottom:3px solid #4c1d95;letter-spacing:.02em}
 .type-badge{display:inline-flex;align-items:center;justify-content:center;width:1.5em;height:1.5em;border-radius:50%;background:#4c1d95;color:#fff!important;font-weight:800;font-size:1.15em;margin-right:.35em;vertical-align:middle}
-.problem-label{display:inline-block;font-size:1.15em;font-weight:800;color:#1d4ed8!important;background:rgba(29,78,216,.08);padding:3px 12px;border-radius:6px;margin-bottom:10px}
+.problem-label{display:inline-block;font-size:.95em;font-weight:800;color:#1d4ed8!important;background:rgba(29,78,216,.08);padding:2px 10px;border-radius:6px;margin-bottom:8px}
 .solution-label{display:inline-block;font-size:1.15em;font-weight:800;color:#15803d!important;background:rgba(21,128,61,.08);padding:3px 12px;border-radius:6px;margin-bottom:10px}
 .idea-label{display:inline-block;font-size:1.1em;font-weight:800;color:#b45309!important;background:rgba(245,158,11,.1);padding:3px 12px;border-radius:6px;margin:6px 0 8px}
 .box-formula{border:1.5px solid #c4b5fd;background:rgba(139,92,246,.06);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1}
@@ -63,21 +67,21 @@ svg path{stroke:#aaa!important}
 <div class="unit-header" style="margin-top:0">📍 주제 0 — 기울기가 뭐지?</div>
 
 <div class="card">
-  <div class="card-meta">기울기 — 기본설명 (정의 + 싱가포르식 시각화)</div>
+  <div class="card-meta">기울기 — 기본설명 (정의 + 시각화)</div>
   <div class="card-tag">📐 기울기가 뭐지?</div>
-  <div class="card-body">
+  <div class="card-body" style="line-height:1.7">
 직선의 <b>기울기(m)</b>는 x가 변한 양에 대해 y가 얼마나 변했는지를 나타내는 비율이에요. <span class="key-term">세 가지 방식</span>으로 표현할 수 있어요.<br><br>
 
-<div class="box-formula">
+<div class="box-formula" style="padding:.5rem .8rem;margin:.35rem 0">
 <span class="type-badge">1</span><b>비율 정의</b><br>
 <b style="font-size:1.05em">m = <span class="frac"><span class="num">y의 변화량</span><span class="den">x의 변화량</span></span></b><br>
 <span style="font-size:.9em;color:#555">오른쪽으로 Δx칸 갈 때 위로 Δy칸 움직이면, m = <span class="frac"><span class="num">Δy</span><span class="den">Δx</span></span></span></div>
 
-<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
-<b style="color:#0369a1">🇸🇬 기울기 계단으로 보면</b><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.5rem .8rem;margin:.35rem 0;font-size:.95em;line-height:1.6">
+<b style="color:#0369a1">📐 기울기 계단으로 보면</b><br>
 숫자로만 보면 헷갈리니 계단으로 직접 그려볼게요.<br>
 
-<svg viewBox="0 0 276 200" width="100%" style="max-width:190px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 276 200" width="100%" style="max-width:120px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
   <g stroke="#ddd" stroke-width="1">
     <line x1="30" y1="10" x2="30" y2="190"/><line x1="66" y1="10" x2="66" y2="190"/>
     <line x1="102" y1="10" x2="102" y2="190"/><line x1="138" y1="10" x2="138" y2="190"/>
@@ -104,13 +108,13 @@ svg path{stroke:#aaa!important}
 <span style="font-size:.85em;color:#555">기울기가 음수면, 계단이 오른쪽으로 갈수록 아래로 내려가는 모양이 돼요.</span>
 </div>
 
-<div class="box-formula">
+<div class="box-formula" style="padding:.5rem .8rem;margin:.35rem 0;line-height:1.6">
 <span class="type-badge">2</span><b>두 점으로 구하기</b><br>
 두 점 A(x₁,y₁), B(x₂,y₂)를 지나는 직선이라면<br>
 <b style="font-size:1.05em">m = <span class="frac"><span class="num">y₂ − y₁</span><span class="den">x₂ − x₁</span></span></b>
 </div>
 
-<div class="box-formula">
+<div class="box-formula" style="padding:.5rem .8rem;margin:.35rem 0;line-height:1.6">
 <span class="type-badge">3</span><b>각도로 구하기 (중3 삼각비 연결)</b><br>
 직선이 x축의 양의 방향과 이루는 각을 θ라 하면<br>
 <b style="font-size:1.05em">m = tan θ</b><br>
@@ -123,13 +127,13 @@ svg path{stroke:#aaa!important}
 
 
 <div class="card">
-  <div class="card-meta">직선의 방정식 — 개념 (싱가포르식·계단 이어그리기)</div>
-  <div class="card-tag">🇸🇬 싱가포르식 — 계단 잇기</div>
+  <div class="card-meta">직선의 방정식 — 개념 (계단 이어그리기)</div>
+  <div class="card-tag">📐 계단 잇기</div>
   <div class="card-body">
 <div class="problem-label">❓ 문제</div><br>
 점 P(1, 3)에서 시작해서 기울기 2인 직선을 그려요. <b>x=1에서 x=4까지 가려면 오른쪽으로 3칸</b> 가야 하니, 계단(오른쪽1·위로2)을 <b>3번</b> 반복하면 돼요.<br><br>
 
-<svg viewBox="0 0 200 220" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 200 220" width="100%" style="max-width:110px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
   <g stroke="#ddd" stroke-width="1">
     <line x1="30" y1="10" x2="30" y2="220"/><line x1="66" y1="10" x2="66" y2="220"/>
     <line x1="102" y1="10" x2="102" y2="220"/><line x1="138" y1="10" x2="138" y2="220"/>
@@ -154,12 +158,7 @@ svg path{stroke:#aaa!important}
 ①②③이 각각 "오른쪽1·위로2"짜리 계단 한 번이에요. <b>가로 3칸, 세로 몇 칸</b> 움직였는지 세어보세요.<br><br>
 <span style="font-size:.9em;color:#555">힌트: 계단 하나가 세로로 2칸이니, 3번이면 세로로 몇 칸일까요?</span>
   </div>
-</div>
-
-<div class="card">
-  <div class="card-meta">직선의 방정식 — 개념 풀이</div>
-  <div class="card-tag">계단 잇기 — 설명 / 풀이</div>
-  <div class="card-body">
+  <div class="card-extra">
 <div class="solution-label">✅ 풀이</div><br>
 <b>1단계 — 그림에서 세기</b><br>
 ①②③ 계단 3번 = 가로 3칸, 세로는 한 계단(2칸)씩 3번이니 2×3=<b>6칸</b>. P(1,3)에서 가로 3·세로 6만큼 이동한 점은 (1+3, 3+6) = <b>(4, 9)</b><br><br>
@@ -180,7 +179,7 @@ y − 3 = 2(x − 1) → x=4 대입 → y − 3 = 2×3 = 6 → <b>y = 9</b> (①
   </div>
 </div>
 
-<div class="card">
+<div class="card compact">
   <div class="card-meta">직선의 방정식 — 기본문제</div>
   <div class="card-tag">기본 1 — 한 점과 기울기로 직선의 방정식 세우기</div>
   <div class="card-body" style="font-weight:600">
@@ -195,8 +194,8 @@ y − 5 = −3(x − 2) → y − 5 = −3x + 6 → <b>y = −3x + 11</b>
 </div>
 
 <div class="card">
-  <div class="card-meta">직선의 방정식 — 개념 (싱가포르식·계단으로 두 점 연결)</div>
-  <div class="card-tag">🇸🇬 싱가포르식 — 계단 세기</div>
+  <div class="card-meta">직선의 방정식 — 개념 (계단으로 두 점 연결)</div>
+  <div class="card-tag">📐 계단 세기</div>
   <div class="card-body">
 <div class="problem-label">❓ 문제</div><br>
 이번엔 기울기를 안 주고, 점 두 개만 줄게요: A(1, 2), B(4, 8). 두 점 사이를 계단으로 이으면 기울기가 몇인지 셀 수 있을까요?<br><br>
@@ -224,12 +223,7 @@ y − 5 = −3(x − 2) → y − 5 = −3x + 6 → <b>y = −3x + 11</b>
 계단이 <b>몇 번</b> 반복되는지, 계단 한 칸의 <b>가로·세로</b>가 몇 칸인지 세어보세요.<br><br>
 <span style="font-size:.9em;color:#555">힌트: A에서 B까지 가로로 몇 칸, 세로로 몇 칸 이동했는지 먼저 세고, 계단 하나 크기로 나눠보세요.</span>
   </div>
-</div>
-
-<div class="card">
-  <div class="card-meta">직선의 방정식 — 개념 풀이</div>
-  <div class="card-tag">계단 세기 — 설명 / 풀이</div>
-  <div class="card-body">
+  <div class="card-extra">
 <div class="solution-label">✅ 풀이</div><br>
 <b>1단계 — 전체 이동량 세기</b><br>
 A(1,2)에서 B(4,8)까지 가로로 <b>3칸</b>, 세로로 <b>6칸</b> 이동했어요.<br><br>
@@ -254,7 +248,7 @@ m = <span class="frac"><span class="num">8−2</span><span class="den">4−1</sp
   </div>
 </div>
 
-<div class="card">
+<div class="card compact">
   <div class="card-meta">직선의 방정식 — 기본문제</div>
   <div class="card-tag">기본 2 — 두 점을 지나는 직선의 방정식</div>
   <div class="card-body" style="font-weight:600">
@@ -267,11 +261,11 @@ y − 4 = 3(x − 1) → y − 4 = 3x − 3 → <b>y = 3x + 1</b>
   </div>
 </div>
 
-<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📍 주제 1 — x절편·y절편</div>
+<div class="unit-header">📍 주제 1 — x절편·y절편</div>
 
 <div class="card">
-  <div class="card-meta">절편 — 개념 (싱가포르식·시각화)</div>
-  <div class="card-tag">🇸🇬 싱가포르식 — 직선이 축을 가로지르는 지점</div>
+  <div class="card-meta">절편 — 개념 (시각화)</div>
+  <div class="card-tag">📐 직선이 축을 가로지르는 지점</div>
   <div class="card-body">
 직선이 <b>y축과 만나는 점</b>의 y좌표를 <b>y절편</b>, <b>x축과 만나는 점</b>의 x좌표를 <b>x절편</b>이라고 해요.<br><br>
 
@@ -294,7 +288,7 @@ x절편: y=0일 때의 x값 (0 = mx+b → x = <span class="frac"><span class="nu
   </div>
 </div>
 
-<div class="card">
+<div class="card compact">
   <div class="card-meta">절편 — 기본문제</div>
   <div class="card-tag">기본 3 — x절편·y절편 구하기</div>
   <div class="card-body" style="font-weight:600">
@@ -308,11 +302,11 @@ x절편: y=0 대입 → 0 = 3x−9 → x = 3<br>
   </div>
 </div>
 
-<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📍 주제 2 — 두 직선의 평행과 수직</div>
+<div class="unit-header">📍 주제 2 — 두 직선의 평행과 수직</div>
 
 <div class="card">
-  <div class="card-meta">평행·수직 — 개념 (싱가포르식·계단 비교)</div>
-  <div class="card-tag">🇸🇬 싱가포르식 — 계단 모양을 비교하면</div>
+  <div class="card-meta">평행·수직 — 개념 (계단 비교)</div>
+  <div class="card-tag">📐 계단 모양을 비교하면</div>
   <div class="card-body">
 <b>평행</b>: 두 직선의 계단이 <b>완전히 똑같은 모양</b>이면(가로·세로 비율이 같으면) 두 직선은 절대 안 만나요 — 기울기가 같다는 뜻이에요.<br><br>
 
@@ -361,7 +355,7 @@ x절편: y=0 대입 → 0 = 3x−9 → x = 3<br>
   </div>
 </div>
 
-<div class="card">
+<div class="card compact">
   <div class="card-meta">평행·수직 — 기본문제</div>
   <div class="card-tag">기본 4 — 평행·수직 조건으로 직선 구하기</div>
   <div class="card-body" style="font-weight:600">
@@ -374,7 +368,7 @@ x절편: y=0 대입 → 0 = 3x−9 → x = 3<br>
   </div>
 </div>
 
-<div class="card">
+<div class="card compact">
   <div class="card-meta">평행·수직 — 기본문제 (수직 전용 예제 추가)</div>
   <div class="card-tag">기본 4-2 — 수직 조건만 따로 연습</div>
   <div class="card-body" style="font-weight:600">
@@ -398,7 +392,7 @@ y − (−1) = <span class="frac"><span class="num">1</span><span class="den">2<
   </div>
 </div>
 
-<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📍 주제 3 — 점과 직선 사이의 거리</div>
+<div class="unit-header">📍 주제 3 — 점과 직선 사이의 거리</div>
 
 <div class="card">
   <div class="card-meta">점과 직선 사이의 거리 — 개념</div>
@@ -434,7 +428,7 @@ d = <span class="frac"><span class="num">|ax₀+by₀+c|</span><span class="den"
   </div>
 </div>
 
-<div class="card">
+<div class="card compact">
   <div class="card-meta">점과 직선 사이의 거리 — 기본문제</div>
   <div class="card-tag">기본 5 — 점과 직선 사이의 거리</div>
   <div class="card-body" style="font-weight:600">
@@ -447,11 +441,11 @@ d = <span class="frac"><span class="num">|3(1)+4(2)−6|</span><span class="den"
   </div>
 </div>
 
-<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📍 주제 4 — 자취의 방정식</div>
+<div class="unit-header">📍 주제 4 — 자취의 방정식</div>
 
 <div class="card">
   <div class="card-meta">자취의 방정식 — 개념</div>
-  <div class="card-tag">🇸🇬 싱가포르식 — 조건을 만족하는 점을 전부 모으면?</div>
+  <div class="card-tag">📐 조건을 만족하는 점을 전부 모으면?</div>
   <div class="card-body">
 <span class="key-term">자취</span>란 어떤 <b>조건을 만족하는 점을 전부 모은 도형</b>이에요. 구하는 방법은 항상 똑같아요 — 그 점을 P(x,y)라고 이름 붙이고, 조건을 식으로 세운 뒤 정리하면 됩니다.<br><br>
 
@@ -476,7 +470,7 @@ PA = PB → PA² = PB² (제곱해서 근호를 없애는 게 핵심 요령)<br>
   </div>
 </div>
 
-<div class="card">
+<div class="card compact">
   <div class="card-meta">자취의 방정식 — 기본문제</div>
   <div class="card-tag">기본 6 — 자취의 방정식 구하기</div>
   <div class="card-body" style="font-weight:600">
@@ -496,7 +490,7 @@ x²+y² = x²−12x+36+y²−4y+4<br>
   </div>
 </div>
 
-<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📍 주제 5 — 일반형으로 보는 두 직선의 관계</div>
+<div class="unit-header">📍 주제 5 — 일반형으로 보는 두 직선의 관계</div>
 
 <div class="card">
   <div class="card-meta">일반형과 위치관계 — 개념</div>
@@ -549,7 +543,7 @@ a₁a₂+b₁b₂ = 2×3 + 3×(−2) = 6−6 = 0 → <b>수직</b><br>
   </div>
 </div>
 
-<div class="card">
+<div class="card compact">
   <div class="card-meta">일반형과 위치관계 — 기본문제</div>
   <div class="card-tag">기본 7 — 계수만으로 판정하기</div>
   <div class="card-body" style="font-weight:600">
@@ -564,7 +558,24 @@ a₁/a₂ = b₁/b₂(=2) 인데 c₁/c₂는 다르니까 → <b>평행</b><br>
   </div>
 </div>
 
-<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📍 주제 6 — 정점을 지나는 직선</div>
+<div class="card compact">
+  <div class="card-meta">일반형과 위치관계 — 기본문제 (구성하기)</div>
+  <div class="card-tag">기본 7-2 — 교점을 지나는 직선 만들기</div>
+  <div class="card-body" style="font-weight:600">
+두 직선 x−y−1=0, 2x+y−5=0 의 교점을 지나고, 점 (1, 4)도 함께 지나는 직선의 방정식을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+k(x−y−1)+(2x+y−5)=0 꼴로 놓고, 점 (1,4)를 대입해요.<br>
+k(1−4−1)+(2×1+4−5)=0 → k(−4)+(1)=0 → −4k+1=0 → k=<span class="frac"><span class="num">1</span><span class="den">4</span></span><br><br>
+대입해서 정리: <span class="frac"><span class="num">1</span><span class="den">4</span></span>(x−y−1)+(2x+y−5)=0 → 양변에 4를 곱하면<br>
+(x−y−1)+4(2x+y−5)=0 → x−y−1+8x+4y−20=0 → 9x+3y−21=0<br><br>
+<b>→ 3x+y−7=0</b><br><br>
+<span style="font-size:.9em;color:#555">검산: 교점(2,1) 대입 → 6+1−7=0 ✓ / (1,4) 대입 → 3+4−7=0 ✓</span>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 6 — 정점을 지나는 직선</div>
 
 <div class="card">
   <div class="card-meta">정점을 지나는 직선 — 개념</div>
@@ -610,7 +621,7 @@ k(a₁x+b₁y+c₁) + (a₂x+b₂y+c₂) = 0 꼴의 직선은, k값과 관계없
   </div>
 </div>
 
-<div class="card">
+<div class="card compact">
   <div class="card-meta">정점을 지나는 직선 — 기본문제</div>
   <div class="card-tag">기본 8 — 고정점 찾기</div>
   <div class="card-body" style="font-weight:600">
@@ -835,14 +846,16 @@ l₁ 위의 다른 점 B(3, 7)에서 l₂까지: d = <span class="frac"><span cl
   <div class="card-meta">판별 드릴 — 훈련용</div>
   <div class="card-tag">📝 계산 안 해도 됩니다 — 핵심 아이디어만 적어보세요</div>
   <div class="card-body">
-아래 4개는 <b>풀 필요가 없어요.</b> 각 문제를 풀 때 어떤 핵심 아이디어부터 떠올려야 하는지만 적어보세요.<br><br>
+아래 6개는 <b>풀 필요가 없어요.</b> 각 문제를 풀 때 어떤 핵심 아이디어부터 떠올려야 하는지만 적어보세요.<br><br>
 <div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.9em;color:#555;line-height:1.8">
-지금까지 배운 지도: <b>지도1</b>(각도→기울기) · <b>지도2</b>(삼각형이 안 되는 조건) · <b>지도3</b>(수직이등분선) · <b>지도4</b>(평행선 사이의 거리)
+지금까지 배운 지도: <b>지도1</b>(각도→기울기) · <b>지도2</b>(삼각형이 안 되는 조건) · <b>지도3</b>(수직이등분선) · <b>지도4</b>(평행선 사이의 거리) · <b>주제5</b>(일반형과 위치관계) · <b>주제6</b>(정점을 지나는 직선)
 </div>
-<b>①</b> 직선 l이 x축의 양의 방향과 45°의 각을 이루고 점 (3,0)을 지날 때 l의 기울기는? → 핵심 아이디어: ________________<br><br>
-<b>②</b> 세 직선 y=−x+2, y=3x−2, y=mx+1이 삼각형을 이루지 않도록 하는 m의 값을 모두 구하면? → 핵심 아이디어: ________________<br><br>
-<b>③</b> 두 점 A(0,4), B(6,0)을 잇는 선분의 수직이등분선의 방정식은? → 핵심 아이디어: ________________<br><br>
-<b>④</b> 두 평행선 y=3x+2, y=3x−4 사이의 거리는? → 핵심 아이디어: ________________
+<b>①</b> 직선 k(x−y−1)+(2x+y−5)=0 이 k값에 관계없이 항상 지나는 점을 구하는 것과, 두 직선 x−y−1=0, 2x+y−5=0의 교점을 구하는 것은 같은 작업일까요, 다른 작업일까요? → 핵심 아이디어: ________________<br><br>
+<b>②</b> 직선 l이 x축의 양의 방향과 45°의 각을 이루고 점 (3,0)을 지날 때 l의 기울기는? → 핵심 아이디어: ________________<br><br>
+<b>③</b> 세 직선 y=−x+2, y=3x−2, y=mx+1이 삼각형을 이루지 않도록 하는 m의 값을 모두 구하면? → 핵심 아이디어: ________________<br><br>
+<b>④</b> 두 점 A(0,4), B(6,0)을 잇는 선분의 수직이등분선의 방정식은? → 핵심 아이디어: ________________<br><br>
+<b>⑤</b> 두 평행선 y=3x+2, y=3x−4 사이의 거리는? → 핵심 아이디어: ________________<br><br>
+<b>⑥</b> 직선 2x+3y−12=0이 x축, y축과 만나는 두 점과 원점이 이루는 삼각형의 넓이는? → 핵심 아이디어: ________________
   </div>
 </div>
 
@@ -850,11 +863,13 @@ l₁ 위의 다른 점 B(3, 7)에서 l₂까지: d = <span class="frac"><span cl
   <div class="card-meta">판별 드릴 — 훈련용 정답</div>
   <div class="card-tag">💡 정답 및 근거</div>
   <div class="card-body">
-① 각도를 tanθ로 바꿔 기울기부터 구하기 — "각을 이룬다"는 표현이 신호예요<br><br>
-② 평행인 경우와 세 직선이 한 점에서 만나는 경우, 두 가지로 나눠서 확인하기 — "삼각형을 이루지 않는다"는 표현이 신호예요<br><br>
-③ 중점을 구하고, 그 점을 지나며 원래 선분과 수직인 직선을 세우기 — "수직이등분선"이라는 단어 자체가 신호예요<br><br>
-④ 새 공식 없이, 한 직선 위의 점 하나를 골라 점과 직선 사이의 거리 공식에 그대로 대입하기 — "두 평행선 사이의 거리"라는 표현이 신호예요<br><br>
-<div class="toro-note">🦕 토로: 핵심 아이디어가 바로 안 떠오르면, 지도1~4로 돌아가서 같은 표현이 있는지 다시 찾아보세요.</div>
+① 같은 작업이에요 — "정점"은 결국 k가 곱해진 부분(x−y−1)과 그렇지 않은 부분(2x+y−5)을 각각 0으로 놓았을 때 나오는 교점과 정확히 같은 점이에요 (주제5→6 연결 내용 그대로예요)<br><br>
+② 각도를 tanθ로 바꿔 기울기부터 구하기 — "각을 이룬다"는 표현이 신호예요<br><br>
+③ 평행인 경우와 세 직선이 한 점에서 만나는 경우, 두 가지로 나눠서 확인하기 — "삼각형을 이루지 않는다"는 표현이 신호예요<br><br>
+④ 중점을 구하고, 그 점을 지나며 원래 선분과 수직인 직선을 세우기 — "수직이등분선"이라는 단어 자체가 신호예요<br><br>
+⑤ 새 공식 없이, 한 직선 위의 점 하나를 골라 점과 직선 사이의 거리 공식에 그대로 대입하기 — "두 평행선 사이의 거리"라는 표현이 신호예요<br><br>
+⑥ 절편 두 개(x절편, y절편)를 구해서 삼각형 넓이 공식에 바로 대입하기(주제1) — <span style="color:#a855f7;font-weight:700">주의</span>: "삼각형"이라는 단어만 보고 ③(지도2)과 같은 유형이라 착각하기 쉬워요. 하지만 이건 세 직선의 관계가 아니라, 절편 두 개로 만든 <b>하나의</b> 삼각형 넓이를 구하는 문제예요 — "삼각형을 이루지 않는다"가 아니라 "삼각형의 넓이"를 묻고 있다는 차이를 보세요.<br><br>
+<div class="toro-note">🦕 토로: 핵심 아이디어가 바로 안 떠오르면, 지도1~4나 주제5~6로 돌아가서 같은 표현이 있는지 다시 찾아보세요. 특히 ③과 ⑥처럼 "삼각형"이라는 같은 단어가 나와도, 무엇을 묻는지(관계인지 넓이인지)에 따라 완전히 다른 접근이 필요할 수 있어요.</div>
   </div>
 </div>
 

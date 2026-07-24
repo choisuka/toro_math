@@ -37,7 +37,7 @@
 
 `_dev/examprep_reference_*.txt` 파일이 있으면, 문제나 카드를 새로 만들기 전에 **반드시 먼저 Read해서 훑어본다**. 기억이나 짐작으로 "이 정도면 어렵겠지"를 재구성하지 않는다.
 
-- 현재 파일: `examprep_reference_도형의방정식_2026.txt`, `examprep_reference_집합과명제_함수_2026.txt` (`examprep_reference_gangnam_2026.txt`는 보조자료)
+- 현재 파일: `examprep_reference_도형의방정식_2026.txt`, `examprep_reference_집합과명제_함수_2026.txt`, `examprep_reference_다항식_2026.txt` (`examprep_reference_gangnam_2026.txt`는 보조자료)
 - 출처: `D:\내신기출`의 실제 학교 기출 hwp 파일을 `pyhwp`(`hwp5txt` CLI)로 텍스트 추출. 강남권 내신 기준, 숫자·수식 일부는 추출 과정에서 유실될 수 있지만 문제 구조·조건 조합 패턴은 실제 그대로다.
 - `.claude/agents/`의 세 에이전트(`toro-variant-generator`, `toro-advanced-generator`, `toro-examprep-generator`)는 이미 이 참고자료를 절차에 반영해 자동으로 읽는다(글롭 패턴이라 새 파일이 추가돼도 별도 수정 없이 인식됨).
 - 새 단원의 참고자료 파일이 필요한데 없다면, 사용자에게 D:\내신기출에서 관련 hwp 파일을 더 추출할지 먼저 확인한다(hwp5txt는 2013~2017년 학교명 표기 파일에서 잘 동작하고, 2018년 이후 코드명 파일은 추출 실패가 잦으니 배치 작업 전 개별 테스트 필요).
