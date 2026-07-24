@@ -1096,6 +1096,40 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 </div>
 
 <!-- ══════════════════════════════════
+     도형의 이동 허브 — 고1
+══════════════════════════════════ -->
+<div id="transform-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="showScreen('home')">← 수학왕국</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#a5b4fc">🔄 도형의 이동</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-family:'Jua',sans-serif;color:#a5b4fc;font-size:.95rem;text-align:center;margin-bottom:10px">🔄 "왜 +a인데 식은 −a일까?"</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
+      <div style="background:linear-gradient(155deg,rgba(134,239,172,.08),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.25);border-radius:12px;padding:10px 8px;text-align:center">
+        <div style="font-size:1.4rem">🇫🇮</div>
+        <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.78rem;margin:4px 0">핀란드</div>
+        <div style="font-size:.68rem;color:#aaa;line-height:1.4">직관<br>편의점 이사</div>
+      </div>
+      <div style="background:linear-gradient(155deg,rgba(251,191,36,.08),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.25);border-radius:12px;padding:10px 8px;text-align:center">
+        <div style="font-size:1.4rem">🧠</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.78rem;margin:4px 0">칸아카데미</div>
+        <div style="font-size:.68rem;color:#aaa;line-height:1.4">엄밀한 논리<br>5단계 증명</div>
+      </div>
+      <div style="background:linear-gradient(155deg,rgba(253,230,138,.08),rgba(253,230,138,.03));border:1px solid rgba(253,230,138,.25);border-radius:12px;padding:10px 8px;text-align:center">
+        <div style="font-size:1.4rem">✡️</div>
+        <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.78rem;margin:4px 0">유대인</div>
+        <div style="font-size:.68rem;color:#aaa;line-height:1.4">질문식<br>하브루타 대화</div>
+      </div>
+    </div>
+    <button onclick="startCards('transform-guide','transform-hub')" style="width:100%;margin-bottom:8px;background:rgba(165,180,252,.1);border:1px solid rgba(165,180,252,.3);color:#a5b4fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📖 평행이동, 왜 (x−a)일까? <span style="font-size:.72rem;opacity:.7">(4장)</span> →
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
      연립방정식 허브
 ══════════════════════════════════ -->
 <div id="simultaneous-hub" class="screen">
@@ -10973,6 +11007,74 @@ a &lt; 0 → 제곱근 없다 (실수 범위)
 8. √((-4)²) = √16 = 4 &nbsp;(−4 아님!)<br>
 9. x = ±√7<br><br>
 10. a=0이면 0 하나뿐, a&lt;0이면 없음 → 항상 두 개가 아님.` }
+],
+
+/* ── 도형의 이동: 평행이동 방정식이 왜 (x-a)인가 (4장) ── */
+'transform-guide': [
+  { tag:'🇫🇮 핀란드식 — 실생활 연결 1/4', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.95rem">"편의점이 통째로 이사를 갔어요."</b><br><br>
+우리 동네 편의점이 원래 <b style="color:#fde68a">5번지</b>에 있었는데, 도로 공사로 건물 전체가 오른쪽으로 <b style="color:#fde68a">3칸(a=3)</b> 밀려서 이사했어요. 진열대 배치(어느 칸에 뭐가 있는지)는 하나도 안 바뀌고, 건물만 통째로 옮겨졌어요.<br><br>
+친구가 물어봐요: <b style="color:#7dd3fc">"8번지 건물에 가면 라면이 있어?"</b><br><br>
+확인하는 방법: 지금 8번지에 있는 건 <b style="color:#86efac">원래 몇 번지였던 건물</b>인지부터 거꾸로 찾아야 해요. 오른쪽으로 3칸 이사했으니, 지금 8번지 = 원래 5번지(8−3=5) 건물이 이사 온 거예요. 그러니 "원래 5번지엔 라면이 있었나?"를 확인하면 답이 나와요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:8px 0">
+<b style="color:#fde68a">핵심:</b> "지금 위치(x)에 뭐가 있나?"는 항상 "그 자리가 원래 몇 번지였나(x−a)"부터 되짚는 질문이에요. 그래서 새 방정식엔 x 대신 <b style="color:#86efac">(x−a)</b>를 넣는 거예요.
+</div>
+</div>`, ans:null },
+
+  { tag:'🧠 칸아카데미 — 한 단계도 빠짐없는 증명 2/4', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fbbf24;font-size:.95rem">비유 말고, 순수 논리로만 가보자.</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+<b style="color:#7dd3fc">전제(정의)</b>: 점 (p,q)를 x축 방향 a만큼 평행이동한 점은 정확히 <b>(p+a, q)</b>다. — "평행이동"이라는 말의 뜻 그 자체.
+</div>
+<b style="color:#fbbf24">① </b>새 도형 C′ 위의 점 (X,Y)가 있다고 하자. C′은 C를 이동시켜 만든 도형이므로, 이 점은 <b style="color:#86efac">반드시</b> C 위의 어떤 점 (p,q)가 이동해서 나온 결과다: <b>(X,Y)=(p+a, q)</b><br><br>
+<b style="color:#fbbf24">② </b>이 등식에서 p+a=X. 양변에서 a를 빼면 <b style="color:#86efac">p = X−a</b>. (등식의 성질. p=X+a가 나올 방법은 없음 — 그건 산수 오류.)<br><br>
+<b style="color:#fbbf24">③ </b>(p,q)는 C 위의 점이므로 C의 방정식을 만족: <b>f(p,q)=0</b><br><br>
+<b style="color:#fbbf24">④ </b>②의 p=X−a, q=Y를 대입: <b style="color:#7dd3fc">f(X−a, Y) = 0</b><br><br>
+<b style="color:#fbbf24">⑤ </b>이게 C′의 방정식. X,Y를 x,y로 다시 쓰면: <b style="color:#86efac">f(x−a, y) = 0</b><br><br>
+<div style="background:rgba(251,191,36,.08);border-radius:10px;padding:10px 12px">
+①은 정의, ②는 등식 풀이(초등 수준), ③은 C의 정의, ④는 대입 — 어디에도 "선택"이 없어요. f(x+a,y)=0이 나오려면 ②에서 산수를 틀려야만 합니다.
+</div>
+</div>`, ans:null },
+
+  { tag:'✡️ 하브루타식 — 질문으로 스스로 도달하기 3/4', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.95">
+<b style="color:#7dd3fc">학생A:</b> 이동은 +a인데 왜 식은 −a야? 논리적으로 이해가 안 돼.<br>
+<b style="color:#fde68a">학생B:</b> 새 그래프 위에 점 (X,Y)가 있다고 하자. 이 점, 어디서 왔을까?<br>
+<b style="color:#7dd3fc">A:</b> C를 이동시켜 만든 거니까... C 위의 어떤 점이 이동해서 왔겠지.<br>
+<b style="color:#fde68a">B:</b> 그 원래 점을 (p,q)라 하면, 이동 정의상 (p,q)랑 (X,Y)는 무슨 관계야?<br>
+<b style="color:#7dd3fc">A:</b> p+a=X, 그리고 q=Y.<br>
+<b style="color:#fde68a">B:</b> 그럼 p는 얼마야?<br>
+<b style="color:#7dd3fc">A:</b> ...p+a=X니까, p=X−a네. 이거 말고 다른 답이 없잖아.<br>
+<b style="color:#fde68a">B:</b> 맞아. 근데 (p,q)는 원래 C 위의 점이었으니까 뭘 만족해야 해?<br>
+<b style="color:#7dd3fc">A:</b> f(p,q)=0.<br>
+<b style="color:#fde68a">B:</b> 방금 구한 p=X−a를 넣으면?<br>
+<b style="color:#7dd3fc">A:</b> f(X−a, Y)=0... 어 이게 새 방정식이네. p+a=X를 푼 거니까 −a 말고는 답이 나올 수가 없구나.<br><br>
+<div style="background:rgba(253,230,138,.08);border-radius:10px;padding:10px 12px">
+<b style="color:#fde68a">A:</b> +a로 이동했다는 사실이랑, 새 점의 "원래 자리"를 구하는 계산은 서로 <b>반대 연산</b>이라서 그런 거였네.
+</div>
+</div>`, ans:null },
+
+  { tag:'📋 정리 + 숫자로 최종 검산 4/4', tagColor:'#a5b4fc',
+    bg:'rgba(165,180,252,.06)', bd:'rgba(165,180,252,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#a5b4fc;font-size:.95rem">y=x²을 x축 방향으로 2만큼 이동 (a=2)</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-family:monospace;font-size:.78rem;line-height:2">
+원래 점 (x,y) → 이동 후 새 점<br>
+(0,0) → (2,0) &nbsp;|&nbsp; (x−2)²=<b style="color:#86efac">0</b>✓ &nbsp;|&nbsp; (x+2)²=16✗<br>
+(1,1) → (3,1) &nbsp;|&nbsp; (x−2)²=<b style="color:#86efac">1</b>✓ &nbsp;|&nbsp; (x+2)²=25✗<br>
+(3,9) → (5,9) &nbsp;|&nbsp; (x−2)²=<b style="color:#86efac">9</b>✓ &nbsp;|&nbsp; (x+2)²=49✗
+</div>
+세 점 전부 (x−2)²만 살아남아요 — 우연이 아니라, 칸아카데미 카드에서 본 것처럼 <b style="color:#fbbf24">"p+a=X를 풀면 p=X−a 하나뿐"</b>이라는 대수적 필연 때문입니다.<br><br>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;text-align:center">
+<b style="color:#c4b5fd">📌 최종 규칙</b><br>
+<span style="color:#e2e8f0;font-size:.85rem">도형을 x축 방향 a, y축 방향 b만큼 평행이동 → 방정식의 x 대신 (x−a), y 대신 (y−b)를 대입</span>
+</div>
+</div>`, ans:null }
 ],
 
 }; // end CARD_DATA
