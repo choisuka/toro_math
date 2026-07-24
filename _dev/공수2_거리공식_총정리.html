@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학2 · 거리 공식 총정리 — 빌드 파일</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.formula-box{border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.6rem 0;font-size:.98em;line-height:2.0}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em;line-height:1.3}
+.frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
+.frac .den{padding:1px 4px 0}
+@media print{
+svg text{fill:#333!important}
+svg line{stroke:#aaa!important}
+svg rect{stroke:#aaa!important}
+svg circle{stroke:#aaa!important}
+svg path{stroke:#aaa!important}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 공통수학2 · 거리 공식 총정리 (개념카드 전용)</div>
+    <div class="toolbar-sub">두 점 사이의 거리(수직선→평면) → 점과 직선·직선과 직선의 거리 → 원과 점·원과 직선·원과 원의 거리 — 개념 7개, 문제 유형 없이 단원 순서로 누적 정리</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 거리 공식 총정리</h1>
+
+<div class="card" style="background:rgba(99,102,241,.04);border:1.5px solid #6366f1">
+  <div class="card-meta">이 교재 전체를 관통하는 한 문장</div>
+  <div class="card-tag">아래 7개 카드는 전부 이 문장 하나를 풀어쓴 것뿐입니다</div>
+  <div class="card-body">
+<div class="formula-box" style="background:rgba(99,102,241,.06);font-size:1em;line-height:2.3">
+<b>평면좌표:</b> 수직선 위의 두 점 사이의 거리, 평면 위의 두 점 사이의 거리<br>
+<b>직선의 방정식:</b> 점과 직선 사이의 거리, 두 직선 사이의 거리<br>
+<b>원의 방정식:</b> 원과 점 사이의 거리, 원과 직선 사이의 거리, 원과 원 사이의 거리
+</div>
+이 세 줄이 이 교재의 뼈대예요. 각 단원 이름 그대로, 뒤에 나오는 개념 1~7이 정확히 이 순서(평면좌표→직선의 방정식→원의 방정식)로 나오고, <b>바로 앞 번호를 그대로 이어받아</b> 만들어져요 — 그래서 어떤 개념을 보든 "이건 어느 단원, 몇 번째 응용이지?"라고 스스로 물으면 전체 지도 안에서 위치를 바로 찾을 수 있어요.<br><br>
+<div class="toro-note">🦕 토로: 새 개념을 만날 때마다 이 세 줄로 돌아와서 "지금 이게 1번이야, 2번이야, 3번이야?"부터 확인하는 습관을 들이세요. 일곱 개의 서로 다른 공식이 아니라, <b>세 줄짜리 지도 위에서 계속 확장되는 하나의 이야기</b>예요.</div>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:0">📍 평면좌표 단원 — 두 점 사이의 거리</div>
+
+<div class="card">
+  <div class="card-meta">평면좌표 단원 — 거리 공식 개념 1</div>
+  <div class="card-tag">수직선 위, 두 점 사이의 거리</div>
+  <div class="card-body">
+가장 단순한 경우부터: 수직선(1차원) 위에 두 점 A(a), B(b)가 있으면, 거리는 그냥 <b>두 좌표의 차의 절댓값</b>이에요.<br><br>
+<svg viewBox="0 0 200 60" width="100%" style="max-width:200px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="10" y1="30" x2="190" y2="30" stroke="#333" stroke-width="1.6"/>
+  <circle cx="50" cy="30" r="4" fill="#6366f1"/>
+  <circle cx="150" cy="30" r="4" fill="#f97316"/>
+  <line x1="50" y1="18" x2="150" y2="18" stroke="#999" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="44" y="48" font-size="10" fill="#6366f1" font-weight="700">A(a)</text>
+  <text x="140" y="48" font-size="10" fill="#f97316" font-weight="700">B(b)</text>
+  <text x="90" y="14" font-size="9" fill="#999">|b−a|</text>
+</svg>
+<div class="formula-box">
+<b>AB = |b − a|</b>
+</div>
+예: A(2), B(7) → AB = |7−2| = 5. A(−3), B(4) → AB = |4−(−3)| = 7.<br><br>
+<span style="font-size:.85em;color:#555">순서를 바꿔 |a−b|로 써도 결과는 같아요 — 절댓값이 부호를 없애주니까요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">평면좌표 단원 — 거리 공식 개념 2 (1의 확장)</div>
+  <div class="card-tag">평면 위, 두 점 사이의 거리</div>
+  <div class="card-body">
+이제 2차원(평면)으로 넘어가면? x축 방향 차이와 y축 방향 차이를 <b>각각 수직선 거리(개념 1)로</b> 구한 다음, 피타고라스 정리로 합쳐요.<br><br>
+<svg viewBox="0 0 200 160" width="100%" style="max-width:170px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="40" cy="130" r="4" fill="#6366f1"/>
+  <circle cx="160" cy="30" r="4" fill="#f97316"/>
+  <circle cx="160" cy="130" r="3" fill="#999"/>
+  <line x1="40" y1="130" x2="160" y2="130" stroke="#999" stroke-width="1.4" stroke-dasharray="3 2"/>
+  <line x1="160" y1="130" x2="160" y2="30" stroke="#999" stroke-width="1.4" stroke-dasharray="3 2"/>
+  <line x1="40" y1="130" x2="160" y2="30" stroke="#6366f1" stroke-width="2"/>
+  <text x="20" y="146" font-size="10" fill="#6366f1" font-weight="700">A(x₁,y₁)</text>
+  <text x="150" y="20" font-size="10" fill="#f97316" font-weight="700">B(x₂,y₂)</text>
+  <text x="90" y="146" font-size="9" fill="#999">|x₂−x₁|</text>
+  <text x="167" y="82" font-size="9" fill="#999">|y₂−y₁|</text>
+</svg>
+<div class="formula-box">
+<b>AB = √{(x₂−x₁)² + (y₂−y₁)²}</b>
+</div>
+예: A(1,2), B(4,6) → AB = √{(4−1)²+(6−2)²} = √(9+16) = √25 = <b>5</b><br><br>
+<div class="toro-note">🦕 토로: 사실 (x₂−x₁)과 (y₂−y₁) 자체가 각각 "x축 방향 수직선 거리", "y축 방향 수직선 거리"예요 — 개념 1을 두 번 쓰고 피타고라스로 묶은 것뿐, 완전히 새로운 공식이 아니에요.</div>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc;page-break-before:always;break-before:page">📏 직선의 방정식 단원 — 직선과 관련된 거리</div>
+
+<div class="card">
+  <div class="card-meta">직선의 방정식 단원 — 거리 공식 개념 3 (2의 응용)</div>
+  <div class="card-tag">점과 직선 사이의 거리</div>
+  <div class="card-body">
+점에서 직선까지의 거리는, 점에서 직선에 <b>수선을 내려 만나는 점까지의 거리</b>예요 — 결국 "두 점 사이의 거리"(개념 2)인데, 그 발까지의 좌표를 직접 구하는 대신 훨씬 빠른 공식을 써요.<br><br>
+<svg viewBox="0 0 200 140" width="100%" style="max-width:170px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="120" x2="180" y2="30" stroke="#f97316" stroke-width="2"/>
+  <circle cx="150" cy="40" r="4" fill="#4c1d95"/>
+  <line x1="150" y1="40" x2="112" y2="60" stroke="#6366f1" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <circle cx="112" cy="60" r="3" fill="#999"/>
+  <text x="154" y="36" font-size="10" fill="#4c1d95" font-weight="700">P(x₀,y₀)</text>
+  <text x="24" y="112" font-size="9" fill="#f97316">ax+by+c=0</text>
+  <text x="118" y="55" font-size="8" fill="#999">d</text>
+</svg>
+<div class="formula-box">
+점 P(x₀, y₀)와 직선 ax+by+c=0 사이의 거리:<br>
+<b style="font-size:1.05em">d = <span class="frac"><span class="num">|ax₀+by₀+c|</span><span class="den">√(a²+b²)</span></span></b>
+</div>
+예: 점 (1,2)와 직선 3x+4y−6=0 사이의 거리 = <span class="frac"><span class="num">|3(1)+4(2)−6|</span><span class="den">√(9+16)</span></span> = <span class="frac"><span class="num">|5|</span><span class="den">5</span></span> = <b>1</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">직선의 방정식 단원 — 거리 공식 개념 4 (3의 확장)</div>
+  <div class="card-tag">직선과 직선 사이의 거리 (평행할 때)</div>
+  <div class="card-body">
+두 직선이 <b>평행</b>할 때만 "직선 사이의 거리"가 의미 있어요(만나는 두 직선은 거리가 0이니까). 방법은 간단 — 한 직선 위에서 점 하나를 아무거나 잡아서, 개념 3(점과 직선 거리)을 그대로 쓰면 돼요.<br><br>
+<svg viewBox="0 0 200 100" width="100%" style="max-width:170px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="80" x2="150" y2="20" stroke="#6366f1" stroke-width="2"/>
+  <line x1="50" y1="90" x2="180" y2="30" stroke="#f97316" stroke-width="2"/>
+  <circle cx="85" cy="50" r="3" fill="#6366f1"/>
+  <line x1="85" y1="50" x2="102" y2="61" stroke="#999" stroke-width="1.3" stroke-dasharray="2 2"/>
+  <text x="20" y="72" font-size="9" fill="#6366f1">ax+by+c₁=0</text>
+  <text x="50" y="98" font-size="9" fill="#f97316">ax+by+c₂=0</text>
+</svg>
+<div class="formula-box">
+두 평행선 ax+by+c₁=0, ax+by+c₂=0 사이의 거리:<br>
+<b style="font-size:1.05em">d = <span class="frac"><span class="num">|c₁−c₂|</span><span class="den">√(a²+b²)</span></span></b>
+</div>
+예: 3x+4y−2=0과 3x+4y+8=0 사이의 거리 = <span class="frac"><span class="num">|−2−8|</span><span class="den">5</span></span> = <span class="frac"><span class="num">10</span><span class="den">5</span></span> = <b>2</b><br><br>
+<span style="font-size:.85em;color:#555">이 공식이 성립하는 이유: 한 직선 위의 아무 점이나 잡아 개념 3에 대입하면, 항상 |c₁−c₂|/√(a²+b²)로 정리돼요 — 어느 점을 잡아도 같은 값이 나오는 게 "평행"의 성질이에요.</span>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc;page-break-before:always;break-before:page">🔵 원의 방정식 단원 — 원과 관련된 거리</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 단원 — 거리 공식 개념 5 (2의 응용)</div>
+  <div class="card-tag">원과 점 사이의 거리</div>
+  <div class="card-body">
+원 밖의 한 점 P에서 원 위의 점까지 거리는 <b>어디를 재느냐에 따라 달라져요</b> — 그래서 "최단 거리"와 "최장 거리"를 따로 구해요. 핵심은 먼저 <b>중심 C와 점 P 사이의 거리(개념 2)</b>부터 구하는 거예요.<br><br>
+<svg viewBox="0 0 200 140" width="100%" style="max-width:170px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="90" cy="70" r="40" fill="rgba(99,102,241,.06)" stroke="#6366f1" stroke-width="1.8"/>
+  <circle cx="90" cy="70" r="3" fill="#4c1d95"/>
+  <circle cx="180" cy="70" r="4" fill="#f97316"/>
+  <line x1="90" y1="70" x2="180" y2="70" stroke="#999" stroke-width="1.3" stroke-dasharray="2 2"/>
+  <line x1="130" y1="70" x2="180" y2="70" stroke="#f97316" stroke-width="2"/>
+  <circle cx="130" cy="70" r="3" fill="#333"/>
+  <text x="80" y="60" font-size="9" fill="#4c1d95" font-weight="700">C</text>
+  <text x="184" y="66" font-size="10" fill="#f97316" font-weight="700">P</text>
+  <text x="145" y="86" font-size="8" fill="#999">최단거리</text>
+</svg>
+<div class="formula-box">
+점 P가 원 밖에 있고, 중심 C, 반지름 r, CP = d 일 때<br>
+<b>최단 거리 = d − r</b> &nbsp;&nbsp; <b>최장 거리 = d + r</b>
+</div>
+예: 원 (x−2)²+(y−1)²=9(중심(2,1), r=3), 점 P(2,9)일 때<br>
+CP = √{(2−2)²+(9−1)²} = √64 = 8 (개념 2 그대로 사용) → 최단거리 = 8−3=<b>5</b>, 최장거리 = 8+3=<b>11</b><br><br>
+<span style="font-size:.85em;color:#555">만약 점이 원 안에 있으면(d&lt;r)? 최단거리는 r−d, 최장거리는 d+r로 바뀌어요 — 그림을 그려보면 부호가 왜 바뀌는지 바로 보여요.</span><br><br>
+<span style="font-size:.85em;color:#4c1d95">🔗 바로 다음 개념 6(원과 직선)에서, 재는 대상이 "점"에서 "직선"으로 바뀌어도 <b>이 d−r, d+r 공식이 글자 그대로 다시 나와요</b> — 미리 기억해두세요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 단원 — 개념 5 예제</div>
+  <div class="card-tag">최단·최장거리로 "자연수인 점의 개수" 세기</div>
+  <div class="card-body">
+<svg viewBox="0 0 220 160" width="100%" style="max-width:190px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="90" cy="80" r="40" fill="rgba(99,102,241,.06)" stroke="#6366f1" stroke-width="1.8"/>
+  <circle cx="90" cy="80" r="3" fill="#4c1d95"/>
+  <circle cx="200" cy="80" r="4" fill="#f97316"/>
+  <line x1="90" y1="80" x2="200" y2="80" stroke="#999" stroke-width="1" stroke-dasharray="2 2"/>
+  <circle cx="130" cy="80" r="3" fill="#333"/>
+  <circle cx="50" cy="80" r="3" fill="#333"/>
+  <circle cx="118" cy="55" r="3" fill="#10b981"/>
+  <circle cx="118" cy="105" r="3" fill="#10b981"/>
+  <text x="70" y="70" font-size="9" fill="#4c1d95" font-weight="700">O</text>
+  <text x="204" y="76" font-size="10" fill="#f97316" font-weight="700">A(5,0)</text>
+  <text x="120" y="72" font-size="8" fill="#333">최단(3)</text>
+  <text x="10" y="72" font-size="8" fill="#333">최장(7)</text>
+  <text x="122" y="50" font-size="8" fill="#10b981">중간값 2점씩</text>
+</svg>
+원 x²+y²=4(중심 O, r=2) 위를 움직이는 점 P와 고정점 A(5,0)이 있어요. 선분 AP의 길이가 자연수가 되는 점 P는 몇 개일까요?<br><br>
+<div class="formula-box">
+OA=5(개념 2) → 최단거리=5−2=<b>3</b>, 최장거리=5+2=<b>7</b>(개념 5)<br>
+P가 원을 한 바퀴 돌 때 AP는 3→7→3으로 연속 변화하므로 [3,7]의 모든 값을 지나가요.<br>
+양 끝(3, 7)은 직선 OA 위의 점에서 각 1개씩, 중간값(4,5,6)은 직선 OA 기준 대칭인 두 점에서 각 2개씩.<br>
+<b>개수 = 1+1+2+2+2 = 8개</b>
+</div>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.7rem 1rem;margin:.5rem 0;font-size:.92em;line-height:1.9">
+<b>최단·최장거리가 자연수일 때 vs 아닐 때</b><br>
+Case A(자연수): 원 (x−3)²+(y−4)²=4, 점 (0,0) → 중심거리=√(9+16)=<b>5</b> → 최단=5−2=3, 최장=5+2=7 (둘 다 자연수)<br>
+Case B(자연수 아님): 원 x²+y²=9, 점 (4,4) → 중심거리=√(16+16)=<b>4√2</b>≈5.66 → 최단=4√2−3≈<b>2.66</b>, 최장=4√2+3≈<b>8.66</b> (둘 다 자연수 아님)
+</div>
+<span style="font-size:.85em;color:#555">최단·최장거리가 자연수가 되려면, 먼저 <b>중심과 점 사이의 거리(개념 2) 자체가 자연수</b>여야 해요 — 3-4-5 같은 "피타고라스 세 쌍"이 되는지부터 확인하는 습관을 들이세요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 단원 — 거리 공식 개념 6 (3,5의 응용)</div>
+  <div class="card-tag">원과 직선 사이의 거리</div>
+  <div class="card-body">
+"원과 직선 사이의 거리"는 사실 원과 점(개념 5)과 똑같은 아이디어예요 — 다만 재는 대상이 점 P 대신 <b>중심에서 직선까지의 거리</b>로 바뀔 뿐이에요.<br><br>
+<svg viewBox="0 0 200 140" width="100%" style="max-width:170px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="80" cy="70" r="36" fill="rgba(99,102,241,.06)" stroke="#6366f1" stroke-width="1.8"/>
+  <circle cx="80" cy="70" r="3" fill="#4c1d95"/>
+  <line x1="160" y1="10" x2="120" y2="130" stroke="#f97316" stroke-width="2"/>
+  <line x1="80" y1="70" x2="141" y2="65" stroke="#999" stroke-width="1.3" stroke-dasharray="2 2"/>
+  <text x="70" y="60" font-size="9" fill="#4c1d95" font-weight="700">C</text>
+  <text x="162" y="14" font-size="9" fill="#f97316" font-weight="700">직선</text>
+  <text x="95" y="60" font-size="8" fill="#999">d</text>
+</svg>
+<div class="formula-box">
+중심 C(a,b), 반지름 r, 직선 px+qy+s=0까지의 거리 d = <span class="frac"><span class="num">|pa+qb+s|</span><span class="den">√(p²+q²)</span></span> (개념 3의 점과 직선 사이 거리 공식) 을 구한 뒤:<br><br>
+<b>d &lt; r</b> → 서로 다른 두 점에서 만남<br>
+<b>d = r</b> → 한 점에서 만남(접함)<br>
+<b>d &gt; r</b> → 만나지 않음
+</div>
+예: 원 x²+y²=4(중심(0,0), r=2), 직선 x+y−4=0일 때<br>
+d = <span class="frac"><span class="num">|0+0−4|</span><span class="den">√2</span></span> = <span class="frac"><span class="num">4</span><span class="den">√2</span></span> = 2√2 ≈ 2.83 &gt; 2 → <b>만나지 않음</b><br><br>
+<div class="toro-note">🦕 토로: 여기서 쓰는 "점과 직선 사이의 거리 공식"은 바로 위 개념 3에서 배운 걸 그대로 가져오는 거예요 — 새로 외울 건 "d와 r을 비교한다"는 판정 규칙뿐이에요.</div>
+<br>
+<div style="border:2px solid #6366f1;border-radius:8px;padding:.8rem 1rem;margin:.6rem 0;font-size:.95em;line-height:2.0;background:rgba(99,102,241,.04)">
+<b style="color:#4c1d95">🔗 개념 5(원과 점)와 완전히 똑같은 도구</b><br>
+원 위를 움직이는 점 X에서 직선까지의 <b>최단·최장 거리</b>도 구할 수 있어요 — 방법은 개념 5에서 "점 P" 대신 "직선"으로 재는 대상만 바꾼 것뿐:<br><br>
+<b>최단 거리 = d − r</b> &nbsp;&nbsp; <b>최장 거리 = d + r</b><br><br>
+예: 위와 같은 원(중심(0,0), r=2), 직선 x+y−4=0(d=2√2)일 때, 원 위의 점에서 이 직선까지<br>
+최단 거리 = 2√2−2, 최장 거리 = 2√2+2
+</div>
+<span style="font-size:.85em;color:#555">개념 5의 "d−r, d+r"과 여기 "d−r, d+r"이 글자 그대로 똑같죠 — d를 구하는 방법(두 점 사이 거리 vs 점과 직선 사이 거리)만 다를 뿐, <b>원 관련 최단·최장 거리는 결국 하나의 도구</b>예요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 단원 — 개념 6 예제</div>
+  <div class="card-tag">최단·최장거리를 삼각형 넓이 최대·최소로 확장하기</div>
+  <div class="card-body">
+<svg viewBox="0 0 200 180" width="100%" style="max-width:190px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="10" y1="150" x2="190" y2="150" stroke="#333" stroke-width="1.6"/>
+  <circle cx="69" cy="85" r="26" fill="rgba(99,102,241,.06)" stroke="#6366f1" stroke-width="1.8"/>
+  <circle cx="69" cy="85" r="3" fill="#4c1d95"/>
+  <circle cx="30" cy="150" r="4" fill="#f97316"/>
+  <circle cx="108" cy="150" r="4" fill="#f97316"/>
+  <circle cx="69" cy="59" r="3.5" fill="#10b981"/>
+  <circle cx="69" cy="111" r="3.5" fill="#333"/>
+  <line x1="30" y1="150" x2="108" y2="150" stroke="#f97316" stroke-width="2"/>
+  <line x1="69" y1="59" x2="30" y2="150" stroke="#10b981" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <line x1="69" y1="59" x2="108" y2="150" stroke="#10b981" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <line x1="69" y1="59" x2="69" y2="150" stroke="#999" stroke-width="1" stroke-dasharray="2 2"/>
+  <text x="4" y="145" font-size="10" fill="#f97316" font-weight="700">A(0,0)</text>
+  <text x="112" y="145" font-size="10" fill="#f97316" font-weight="700">B(6,0)</text>
+  <text x="72" y="55" font-size="9" fill="#10b981" font-weight="700">P(최장, 넓이 최대)</text>
+  <text x="72" y="120" font-size="8" fill="#333">P(최단, 넓이 최소)</text>
+</svg>
+두 점 A(0,0), B(6,0)이 있고, 원 (x−3)²+(y−5)²=4 위를 점 P가 움직여요. 삼각형 PAB의 넓이의 최댓값과 최솟값은?<br><br>
+<div class="formula-box">
+밑변 AB=6(고정)이므로 넓이 = <span class="frac"><span class="num">1</span><span class="den">2</span></span>×6×(P에서 직선 AB까지의 거리) — 결국 필요한 건 P에서 직선 AB(x축)까지의 <b>최단·최장거리(개념 6)</b>예요.<br><br>
+중심(3,5)에서 x축까지 거리 d=5, r=2 → 최단거리=5−2=<b>3</b>, 최장거리=5+2=<b>7</b><br><br>
+최소 넓이 = <span class="frac"><span class="num">1</span><span class="den">2</span></span>×6×3 = <b>9</b> &nbsp;&nbsp; 최대 넓이 = <span class="frac"><span class="num">1</span><span class="den">2</span></span>×6×7 = <b>21</b>
+</div>
+<span style="font-size:.85em;color:#555">"넓이의 최대·최소"라고 물어봐도 결국 밑변은 고정이니, <b>높이의 최대·최소(=개념 6의 최단·최장거리)</b>로 바꿔 생각하면 끝이에요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 단원 — 거리 공식 개념 7 (2와 6의 결합)</div>
+  <div class="card-tag">원과 원 사이의 거리 (두 원의 위치 관계)</div>
+  <div class="card-body">
+두 원의 위치 관계는 <b>두 중심 사이의 거리(개념 2)</b>와 두 반지름을 비교해서 판정해요. 중심거리를 d, 반지름을 r₁, r₂(r₁≥r₂)라 하면 다섯 가지 경우가 있어요.<br><br>
+<svg viewBox="0 0 200 100" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="28" fill="none" stroke="#6366f1" stroke-width="1.8"/>
+  <circle cx="115" cy="50" r="18" fill="none" stroke="#f97316" stroke-width="1.8"/>
+  <circle cx="50" cy="50" r="2.5" fill="#6366f1"/>
+  <circle cx="115" cy="50" r="2.5" fill="#f97316"/>
+  <line x1="50" y1="50" x2="115" y2="50" stroke="#999" stroke-width="1.1" stroke-dasharray="2 2"/>
+  <text x="76" y="46" font-size="8" fill="#999">d</text>
+</svg>
+<div class="formula-box" style="line-height:2.15">
+<b>d &gt; r₁+r₂</b> → 서로 밖에 (안 만남)<br>
+<b>d = r₁+r₂</b> → 외접 (한 점, 밖에서 접함)<br>
+<b>r₁−r₂ &lt; d &lt; r₁+r₂</b> → 서로 다른 두 점에서 만남<br>
+<b>d = r₁−r₂</b> → 내접 (한 점, 안에서 접함)<br>
+<b>d &lt; r₁−r₂</b> → 한 원이 다른 원 안에 (안 만남)
+</div>
+예: 중심 (0,0), r₁=5인 원과 중심 (8,0), r₂=2인 원 → d=8, r₁+r₂=7, r₁−r₂=3. d(8) &gt; r₁+r₂(7)이므로 <b>서로 밖에 있고 만나지 않음</b><br><br>
+<span style="font-size:.85em;color:#555">외접·내접의 "접한다"는 두 원이 딱 한 점만 공유한다는 뜻이에요 — 경계값(=)일 때만 일어나는 특수한 경우.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body" style="font-size:12.5px;color:#666">
+🦕 토로: 일곱 개념이 전부 따로따로가 아니에요 — 개념1(수직선 거리) → 개념2(피타고라스로 확장) → 개념3,4(점·직선 사이의 거리로 응용) → 개념5,6,7(전부 "중심에서 뭔가까지의 거리를 구한 다음 반지름과 비교") 순서로, <b>매번 앞 개념 위에 한 겹씩 쌓아올린 것뿐</b>이에요. 막히면 "지금 재는 게 결국 개념 몇 번이지?"부터 확인하세요.
+  </div>
+</div>
+
+</div>
+</body>
+</html>

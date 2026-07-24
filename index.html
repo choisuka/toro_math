@@ -492,6 +492,12 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
           <div class="desc">🇫🇮 변환의 직관 · 🇸🇬 이동 모델 · ✡️ 변환의 기술</div>
           <span class="tag" style="background:rgba(165,180,252,.15);color:#a5b4fc;border:1px solid rgba(165,180,252,.35);margin-top:6px">고1 수학 상 ★아르모니아</span>
         </div>
+        <div class="topic-card" onclick="showScreen('distance-hub')" style="border:1px solid rgba(251,191,36,.3);background:linear-gradient(155deg,#1f1608,#2e1e0d);grid-column:1/-1">
+          <div class="ico">📏</div>
+          <div class="name" style="color:#fbbf24">거리 공식 총정리</div>
+          <div class="desc">두 점 → 점·직선 → 원 관련 거리, 하나로 연결된 도구</div>
+          <span class="tag" style="background:rgba(251,191,36,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.35);margin-top:6px">고1 수학 상 ★아르모니아</span>
+        </div>
       </div>
 
       <!-- 섹션 6 -->
@@ -1107,11 +1113,6 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     </div>
     <div style="font-family:'Jua',sans-serif;color:#a5b4fc;font-size:.95rem;text-align:center;margin-bottom:10px">🔄 "왜 +a인데 식은 −a일까?"</div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
-      <div style="background:linear-gradient(155deg,rgba(134,239,172,.08),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">🇫🇮</div>
-        <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.78rem;margin:4px 0">핀란드</div>
-        <div style="font-size:.68rem;color:#aaa;line-height:1.4">직관<br>편의점 이사</div>
-      </div>
       <div style="background:linear-gradient(155deg,rgba(251,191,36,.08),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.25);border-radius:12px;padding:10px 8px;text-align:center">
         <div style="font-size:1.4rem">🧠</div>
         <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.78rem;margin:4px 0">칸아카데미</div>
@@ -1122,9 +1123,34 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
         <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.78rem;margin:4px 0">유대인</div>
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">질문식<br>하브루타 대화</div>
       </div>
+      <div style="background:linear-gradient(155deg,rgba(134,239,172,.08),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.25);border-radius:12px;padding:10px 8px;text-align:center">
+        <div style="font-size:1.4rem">🇫🇮</div>
+        <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.78rem;margin:4px 0">핀란드</div>
+        <div style="font-size:.68rem;color:#aaa;line-height:1.4">직관<br>편의점 이사</div>
+      </div>
     </div>
     <button onclick="startCards('transform-guide','transform-hub')" style="width:100%;margin-bottom:8px;background:rgba(165,180,252,.1);border:1px solid rgba(165,180,252,.3);color:#a5b4fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📖 평행이동, 왜 (x−a)일까? <span style="font-size:.72rem;opacity:.7">(4장)</span> →
+      📖 평행이동, 왜 (x−a)일까? <span style="font-size:.72rem;opacity:.7">(7장)</span> →
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     거리 공식 총정리 허브
+══════════════════════════════════ -->
+<div id="distance-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="showScreen('home')">← 수학왕국</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#fbbf24">📏 거리 공식 총정리</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.95rem;text-align:center;margin-bottom:10px">📏 "일곱 개가 아니라 하나의 도구"</div>
+    <div style="background:linear-gradient(155deg,rgba(251,191,36,.08),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.25);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:.78rem;color:#e2e8f0;line-height:1.7">
+1. 두 점 사이의 거리(수직선→평면) → 2. 점과 직선, 직선과 직선의 거리 → 3. 원과 점, 원과 직선, 원과 원의 거리 — 전부 이 세 줄 위에서 확장돼요.
+    </div>
+    <button onclick="startCards('distance-guide','distance-hub')" style="width:100%;margin-bottom:8px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);color:#fbbf24;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      📖 거리 공식 하나로 연결하기 <span style="font-size:.72rem;opacity:.7">(10장)</span> →
     </button>
   </div>
 </div>
@@ -11011,19 +11037,7 @@ a &lt; 0 → 제곱근 없다 (실수 범위)
 
 /* ── 도형의 이동: 평행이동 방정식이 왜 (x-a)인가 (4장) ── */
 'transform-guide': [
-  { tag:'🇫🇮 핀란드식 — 실생활 연결 1/4', tagColor:'#86efac',
-    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
-    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-<b style="color:#86efac;font-size:.95rem">"편의점이 통째로 이사를 갔어요."</b><br><br>
-우리 동네 편의점이 원래 <b style="color:#fde68a">5번지</b>에 있었는데, 도로 공사로 건물 전체가 오른쪽으로 <b style="color:#fde68a">3칸(a=3)</b> 밀려서 이사했어요. 진열대 배치(어느 칸에 뭐가 있는지)는 하나도 안 바뀌고, 건물만 통째로 옮겨졌어요.<br><br>
-친구가 물어봐요: <b style="color:#7dd3fc">"8번지 건물에 가면 라면이 있어?"</b><br><br>
-확인하는 방법: 지금 8번지에 있는 건 <b style="color:#86efac">원래 몇 번지였던 건물</b>인지부터 거꾸로 찾아야 해요. 오른쪽으로 3칸 이사했으니, 지금 8번지 = 원래 5번지(8−3=5) 건물이 이사 온 거예요. 그러니 "원래 5번지엔 라면이 있었나?"를 확인하면 답이 나와요.<br><br>
-<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:8px 0">
-<b style="color:#fde68a">핵심:</b> "지금 위치(x)에 뭐가 있나?"는 항상 "그 자리가 원래 몇 번지였나(x−a)"부터 되짚는 질문이에요. 그래서 새 방정식엔 x 대신 <b style="color:#86efac">(x−a)</b>를 넣는 거예요.
-</div>
-</div>`, ans:null },
-
-  { tag:'🧠 칸아카데미 — 한 단계도 빠짐없는 증명 2/4', tagColor:'#fbbf24',
+  { tag:'🧠 칸아카데미 — 한 단계도 빠짐없는 증명 1/7', tagColor:'#fbbf24',
     bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 <b style="color:#fbbf24;font-size:.95rem">비유 말고, 순수 논리로만 가보자.</b><br><br>
@@ -11040,7 +11054,7 @@ a &lt; 0 → 제곱근 없다 (실수 범위)
 </div>
 </div>`, ans:null },
 
-  { tag:'✡️ 하브루타식 — 질문으로 스스로 도달하기 3/4', tagColor:'#fde68a',
+  { tag:'✡️ 하브루타식 — 질문으로 스스로 도달하기 2/7', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.95">
 <b style="color:#7dd3fc">학생A:</b> 이동은 +a인데 왜 식은 −a야? 논리적으로 이해가 안 돼.<br>
@@ -11059,7 +11073,78 @@ a &lt; 0 → 제곱근 없다 (실수 범위)
 </div>
 </div>`, ans:null },
 
-  { tag:'📋 정리 + 숫자로 최종 검산 4/4', tagColor:'#a5b4fc',
+  { tag:'🇫🇮 핀란드식 — 실생활 연결 3/7', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac;font-size:.95rem">"편의점이 통째로 이사를 갔어요."</b><br><br>
+우리 동네 편의점이 원래 <b style="color:#fde68a">5번지</b>에 있었는데, 도로 공사로 건물 전체가 오른쪽으로 <b style="color:#fde68a">3칸(a=3)</b> 밀려서 이사했어요. 진열대 배치(어느 칸에 뭐가 있는지)는 하나도 안 바뀌고, 건물만 통째로 옮겨졌어요.<br><br>
+친구가 물어봐요: <b style="color:#7dd3fc">"8번지 건물에 가면 라면이 있어?"</b><br><br>
+확인하는 방법: 지금 8번지에 있는 건 <b style="color:#86efac">원래 몇 번지였던 건물</b>인지부터 거꾸로 찾아야 해요. 오른쪽으로 3칸 이사했으니, 지금 8번지 = 원래 5번지(8−3=5) 건물이 이사 온 거예요. 그러니 "원래 5번지엔 라면이 있었나?"를 확인하면 답이 나와요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:8px 0">
+<b style="color:#fde68a">핵심:</b> "지금 위치(x)에 뭐가 있나?"는 항상 "그 자리가 원래 몇 번지였나(x−a)"부터 되짚는 질문이에요. 그래서 새 방정식엔 x 대신 <b style="color:#86efac">(x−a)</b>를 넣는 거예요.
+</div>
+</div>`, ans:null },
+
+  { tag:'y=f(x) 꼴에서는? 4/7', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#7dd3fc;font-size:.95rem">x 하나에 y가 딱 하나 — 함수 그래프의 표준형</b><br><br>
+y=x², y=2x+1처럼 x값 하나에 y값이 하나씩 대응하는 게 <b>y=f(x)</b> 꼴이에요.<br><br>
+새 도형 위의 점 (X,Y)는 원래 점 (p,q)=(X−a, Y−b)에서 왔고, (p,q)가 원래 곡선 위에 있으므로 q=f(p). 그대로 대입하면:<br>
+<b style="color:#86efac">Y−b = f(X−a)</b> → x,y로 다시 쓰면 <b style="color:#86efac">y = f(x−a) + b</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:8px 0">
+예: y=x²을 x축 방향 2, y축 방향 3만큼 평행이동 → y−3=(x−2)² → <b>y=(x−2)²+3</b><br>
+검산: 꼭짓점 (0,0)→(2,3). x=2 대입 → y=(2−2)²+3=3 ✓
+</div>
+<span style="font-size:.8rem;color:#fca5a5">⚠️ x만 (x−a)로 바꾸고 끝내면 안 돼요 — y도 반드시 (y−b)로 이항해서 b를 더해줘야 해요.</span>
+</div>`, ans:null },
+
+  { tag:'f(x,y)=0 꼴에서는? 5/7', tagColor:'#fca5a5',
+    bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#fca5a5;font-size:.95rem">x,y 관계 전체를 담은 일반형</b><br><br>
+원(x²+y²=9)처럼 x값 하나에 y값이 여러 개 대응해서 함수가 아닌 도형도 표현할 수 있는 게 <b>f(x,y)=0</b> 꼴이에요.<br><br>
+새 도형 위의 점 (X,Y)는 원래 점 (p,q)=(X−a,Y−b)에서 왔고, (p,q)가 원래 도형 위에 있으므로 f(p,q)=0. 그대로 대입하면:<br>
+<b style="color:#86efac">f(X−a, Y−b) = 0</b> → x,y로 다시 쓰면 <b style="color:#86efac">f(x−a, y−b) = 0</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:8px 0">
+예: 원 x²+y²=9를 x축 방향 2, y축 방향 −3만큼 평행이동 → <b>(x−2)²+(y+3)²=9</b><br>
+검산: 중심 (0,0)→(2,−3). 새 식의 중심이 정확히 (2,−3) ✓
+</div>
+<span style="font-size:.8rem;color:#86efac">x와 y를 동시에, 대칭적으로 (x−a),(y−b)로 바꿔 넣기만 하면 끝 — 따로 챙길 게 없어요.</span>
+</div>`, ans:null },
+
+  { tag:'두 꼴, 같은 원리 다른 표현 6/7', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<table style="width:100%;border-collapse:collapse;font-size:.82rem;margin-bottom:10px">
+<tr style="border-bottom:1px solid rgba(255,255,255,.15)">
+  <th style="text-align:left;padding:5px 4px;color:#94a3b8"></th>
+  <th style="text-align:left;padding:5px 4px;color:#7dd3fc">y=f(x)</th>
+  <th style="text-align:left;padding:5px 4px;color:#fca5a5">f(x,y)=0</th>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.08)">
+  <td style="padding:5px 4px;color:#94a3b8">표현 대상</td>
+  <td style="padding:5px 4px">함수만(수직선 검사 통과)</td>
+  <td style="padding:5px 4px">함수 아닌 도형도 가능</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,.08)">
+  <td style="padding:5px 4px;color:#94a3b8">치환 규칙</td>
+  <td style="padding:5px 4px">x→x−a + y를 (y−b)로 이항</td>
+  <td style="padding:5px 4px">x,y 동시 대입, 끝</td>
+</tr>
+<tr>
+  <td style="padding:5px 4px;color:#94a3b8">자주 하는 실수</td>
+  <td style="padding:5px 4px">y 이동을 깜빡함</td>
+  <td style="padding:5px 4px">대칭적이라 실수 적음</td>
+</tr>
+</table>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+사실 y=f(x)도 f(x,y)=0의 <b style="color:#86efac">특수한 경우</b>예요 — g(x,y)=y−f(x)라고 두면 y=f(x)는 정확히 g(x,y)=0. 일반 규칙 g(x−a,y−b)=0을 그대로 적용하면 (y−b)−f(x−a)=0, 즉 <b style="color:#86efac">y−b=f(x−a)</b> — 4/7 카드와 완전히 같은 결과예요!
+</div>
+<span style="font-size:.8rem;color:#c4b5fd">"다른 규칙"이 아니라, 같은 규칙을 어떤 자리에 y가 끼어 있느냐에 따라 다르게 적어야 할 뿐이에요.</span>
+</div>`, ans:null },
+
+  { tag:'📋 정리 + 숫자로 최종 검산 7/7', tagColor:'#a5b4fc',
     bg:'rgba(165,180,252,.06)', bd:'rgba(165,180,252,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
 <b style="color:#a5b4fc;font-size:.95rem">y=x²을 x축 방향으로 2만큼 이동 (a=2)</b><br><br>
@@ -11073,6 +11158,150 @@ a &lt; 0 → 제곱근 없다 (실수 범위)
 <div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;text-align:center">
 <b style="color:#c4b5fd">📌 최종 규칙</b><br>
 <span style="color:#e2e8f0;font-size:.85rem">도형을 x축 방향 a, y축 방향 b만큼 평행이동 → 방정식의 x 대신 (x−a), y 대신 (y−b)를 대입</span>
+</div>
+</div>`, ans:null }
+],
+
+/* ── 거리 공식 총정리: 수직선→평면→직선→원, 하나로 연결된 도구 (8장) ── */
+'distance-guide': [
+  { tag:'📏 이 카드 전체를 관통하는 한 문장 1/10', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.9">
+<b style="color:#fbbf24;font-size:.95rem">아래 7개 카드는 전부 이 문장 하나를 풀어쓴 것뿐이에요.</b><br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px 14px;margin-bottom:10px;line-height:2.1">
+<b style="color:#86efac">평면좌표:</b> 수직선 위의 두 점 사이의 거리, 평면 위의 두 점 사이의 거리<br>
+<b style="color:#7dd3fc">직선의 방정식:</b> 점과 직선 사이의 거리, 두 직선 사이의 거리<br>
+<b style="color:#fca5a5">원의 방정식:</b> 원과 점 사이의 거리, 원과 직선 사이의 거리, 원과 원 사이의 거리
+</div>
+각 단원 이름 그대로, 뒤에 나오는 개념 1~7이 정확히 이 순서(평면좌표→직선의 방정식→원의 방정식)로 나오고, <b style="color:#fbbf24">바로 앞 번호를 그대로 이어받아</b> 만들어져요. 새 개념을 만날 때마다 "이건 어느 단원, 몇 번째 응용이지?"부터 확인하세요.<br><br>
+<div style="background:rgba(251,191,36,.08);border-radius:10px;padding:10px 12px">
+일곱 개의 서로 다른 공식이 아니라, <b>세 줄짜리 지도 위에서 계속 확장되는 하나의 이야기</b>예요.
+</div>
+</div>`, ans:null },
+
+  { tag:'평면좌표 — 수직선 위 두 점 사이의 거리 2/10', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+가장 단순한 경우: 수직선(1차원) 위에 두 점 A(a), B(b)가 있으면, 거리는 <b style="color:#86efac">두 좌표의 차의 절댓값</b>이에요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">AB = |b − a|</b>
+</div>
+예: A(2), B(7) → AB = |7−2| = 5<br>
+예: A(−3), B(4) → AB = |4−(−3)| = 7<br><br>
+<span style="font-size:.8rem;color:#94a3b8">순서를 바꿔 |a−b|로 써도 결과는 같아요 — 절댓값이 부호를 없애주니까요.</span>
+</div>`, ans:null },
+
+  { tag:'평면좌표 — 평면 위 두 점 사이의 거리 (1의 확장) 3/10', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+2차원(평면)으로 넘어가면? x축 방향 차이와 y축 방향 차이를 <b style="color:#86efac">각각 수직선 거리(개념 1)로</b> 구한 다음, 피타고라스 정리로 합쳐요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">AB = √{(x₂−x₁)² + (y₂−y₁)²}</b>
+</div>
+예: A(1,2), B(4,6) → AB = √{(4−1)²+(6−2)²} = √25 = <b>5</b><br><br>
+<div style="background:rgba(134,239,172,.08);border-radius:10px;padding:10px 12px">
+(x₂−x₁)과 (y₂−y₁) 자체가 각각 "x축 방향 수직선 거리", "y축 방향 수직선 거리"예요 — 개념 1을 두 번 쓰고 피타고라스로 묶은 것뿐, 완전히 새로운 공식이 아니에요.
+</div>
+</div>`, ans:null },
+
+  { tag:'직선의 방정식 — 점과 직선 사이의 거리 (2의 응용) 4/10', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+점에서 직선까지의 거리는, 점에서 직선에 <b style="color:#7dd3fc">수선을 내려 만나는 점까지의 거리</b>예요 — 결국 "두 점 사이의 거리"(개념 2)인데, 발의 좌표를 직접 구하는 대신 훨씬 빠른 공식을 써요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.02rem">d = |ax₀+by₀+c| / √(a²+b²)</b>
+</div>
+점 P(x₀,y₀)와 직선 ax+by+c=0 사이의 거리예요.<br><br>
+예: 점 (1,2)와 직선 3x+4y−6=0 → d = |3+8−6|/√25 = 5/5 = <b>1</b>
+</div>`, ans:null },
+
+  { tag:'직선의 방정식 — 두 직선 사이의 거리 (3의 확장) 5/10', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+두 직선이 <b style="color:#7dd3fc">평행</b>할 때만 "직선 사이의 거리"가 의미 있어요(만나는 두 직선은 거리가 0). 방법: 한 직선 위에서 점 하나를 아무거나 잡아 개념 3(점과 직선 거리)을 그대로 쓰면 돼요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.02rem">d = |c₁−c₂| / √(a²+b²)</b>
+</div>
+두 평행선 ax+by+c₁=0, ax+by+c₂=0 사이의 거리예요.<br><br>
+예: 3x+4y−2=0과 3x+4y+8=0 → d = |−2−8|/5 = 10/5 = <b>2</b><br><br>
+<span style="font-size:.8rem;color:#94a3b8">한 직선 위의 아무 점이나 잡아 개념 3에 대입해도 항상 같은 값이 나와요 — 그게 "평행"의 성질이에요.</span>
+</div>`, ans:null },
+
+  { tag:'원의 방정식 — 원과 점 사이의 거리 (2의 응용) 6/10', tagColor:'#fca5a5',
+    bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 밖의 한 점 P에서 원 위의 점까지 거리는 <b style="color:#fca5a5">어디를 재느냐에 따라 달라져요</b> — "최단 거리"와 "최장 거리"를 따로 구해요. 먼저 <b>중심 C와 점 P 사이의 거리(개념 2)</b>부터 구해요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">최단 거리 = d − r &nbsp;&nbsp; 최장 거리 = d + r</b>
+</div>
+예: 원 중심(2,1), r=3, 점 P(2,9) → CP=√{0²+8²}=8 (개념 2) → 최단=8−3=<b>5</b>, 최장=8+3=<b>11</b><br><br>
+<span style="font-size:.8rem;color:#94a3b8">점이 원 안에 있으면(d&lt;r) 최단거리는 r−d로 바뀌어요.</span><br><br>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
+🔗 바로 다음 개념(원과 직선)에서, 재는 대상이 "점"에서 "직선"으로 바뀌어도 <b style="color:#c4b5fd">이 d−r, d+r 공식이 글자 그대로 다시 나와요</b>.
+</div>
+</div>`, ans:null },
+
+  { tag:'원과 점 예제 — 자연수인 점의 개수 세기 7/10', tagColor:'#fca5a5',
+    bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 x²+y²=4(중심 O, r=2) 위를 움직이는 점 P와 고정점 A(5,0)이 있어요. 선분 AP의 길이가 자연수가 되는 점 P는 몇 개일까요?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+OA=5(개념 2) → 최단=5−2=<b>3</b>, 최장=5+2=<b>7</b> (개념 6)<br>
+P가 원을 한 바퀴 돌 때 AP는 3→7→3으로 연속 변화 → [3,7]의 모든 값을 지나가요.<br>
+양 끝(3,7)은 직선 OA 위 점에서 1개씩, 중간값(4,5,6)은 대칭인 두 점에서 2개씩.<br>
+<b style="color:#fca5a5">개수 = 1+1+2+2+2 = 8개</b>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>최단·최장이 자연수일 때 vs 아닐 때</b><br>
+Case A: 원 (x−3)²+(y−4)²=4, 점(0,0) → 중심거리=√25=<b>5</b>(자연수) → 최단·최장 둘 다 자연수<br>
+Case B: 원 x²+y²=9, 점(4,4) → 중심거리=√32=<b>4√2</b>≈5.66(무리수) → 최단≈<b>2.66</b>, 최장≈<b>8.66</b>, 둘 다 자연수 아님
+</div><br>
+<span style="font-size:.8rem;color:#94a3b8">최단·최장이 자연수가 되려면, 먼저 중심-점 거리(개념 2) 자체가 자연수여야 해요 — 3-4-5 같은 "피타고라스 세 쌍"인지부터 확인하세요.</span>
+</div>`, ans:null },
+
+  { tag:'원의 방정식 — 원과 직선 사이의 거리 (3,6의 응용) 8/10', tagColor:'#fca5a5',
+    bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+"원과 직선 사이의 거리"는 원과 점(개념 6)과 <b style="color:#fca5a5">똑같은 아이디어</b>예요 — 재는 대상이 점 P 대신 중심에서 직선까지의 거리로 바뀔 뿐.<br><br>
+중심에서 직선까지 거리 d(개념 3의 공식)를 구한 뒤:<br>
+<b>d &lt; r</b> → 서로 다른 두 점에서 만남 &nbsp; <b>d = r</b> → 접함 &nbsp; <b>d &gt; r</b> → 안 만남<br><br>
+예: 원 중심(0,0), r=2, 직선 x+y−4=0 → d=4/√2=2√2≈2.83 &gt; 2 → <b>안 만남</b><br><br>
+<div style="background:rgba(196,181,253,.1);border:2px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
+<b style="color:#c4b5fd">🔗 개념 6과 완전히 똑같은 도구</b><br>
+원 위의 점에서 이 직선까지의 <b>최단·최장 거리</b>도 똑같이 구해져요:<br>
+<b>최단 거리 = d − r &nbsp; 최장 거리 = d + r</b><br>
+위 예에서 → 최단=2√2−2, 최장=2√2+2<br><br>
+<span style="font-size:.8rem">개념 6의 "d−r, d+r"과 글자 그대로 똑같죠 — d를 구하는 방법만 다를 뿐, <b>원 관련 최단·최장 거리는 결국 하나의 도구</b>예요.</span>
+</div>
+</div>`, ans:null },
+
+  { tag:'원과 직선 예제 — 삼각형 넓이 최대·최소로 확장 9/10', tagColor:'#fca5a5',
+    bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+두 점 A(0,0), B(6,0)이 있고, 원 (x−3)²+(y−5)²=4 위를 점 P가 움직여요. 삼각형 PAB의 넓이의 최댓값과 최솟값은?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+밑변 AB=6(고정)이므로 넓이 = ½×6×(P에서 직선 AB까지의 거리) — 결국 필요한 건 <b style="color:#fca5a5">P에서 직선 AB(x축)까지의 최단·최장거리(개념 8)</b>예요.<br><br>
+중심(3,5)에서 x축까지 거리 d=5, r=2 → 최단=5−2=<b>3</b>, 최장=5+2=<b>7</b><br><br>
+최소 넓이 = ½×6×3 = <b>9</b> &nbsp;&nbsp; 최대 넓이 = ½×6×7 = <b>21</b>
+</div><br>
+<span style="font-size:.8rem;color:#94a3b8">"넓이의 최대·최소"도 결국 밑변은 고정이니, <b>높이의 최대·최소(=최단·최장거리)</b>로 바꿔 생각하면 끝이에요.</span>
+</div>`, ans:null },
+
+  { tag:'원의 방정식 — 원과 원 사이의 거리 (2,7의 결합) 10/10', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.06)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+두 원의 위치 관계는 <b style="color:#c4b5fd">두 중심 사이의 거리(개념 2)</b>와 두 반지름을 비교해서 판정해요. 중심거리 d, 반지름 r₁≥r₂:<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;font-size:.85rem;line-height:2">
+d &gt; r₁+r₂ → 서로 밖에(안 만남)<br>
+d = r₁+r₂ → 외접<br>
+r₁−r₂ &lt; d &lt; r₁+r₂ → 두 점에서 만남<br>
+d = r₁−r₂ → 내접<br>
+d &lt; r₁−r₂ → 한 원이 다른 원 안에(안 만남)
+</div>
+예: 중심(0,0) r₁=5, 중심(8,0) r₂=2 → d=8, r₁+r₂=7 → d&gt;r₁+r₂ → <b>서로 밖에, 안 만남</b><br><br>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;text-align:center">
+<b style="color:#c4b5fd">📌 전체 정리</b><br>
+<span style="color:#e2e8f0;font-size:.85rem">개념1(수직선)→개념2(피타고라스)→개념3,4(점·직선)→개념6,7,8(원, 전부 "거리 구하고 반지름과 비교") — 매번 앞 개념 위에 한 겹씩 쌓아올린 것뿐입니다.</span>
 </div>
 </div>`, ans:null }
 ],
