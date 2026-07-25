@@ -44,7 +44,7 @@ svg path{stroke:#aaa!important}
 <div class="toolbar">
   <div>
     <div class="toolbar-label">🚧 빌드 중 — 공통수학2 · 집합과 명제</div>
-    <div class="toolbar-sub">기본(싱가포르식)→지도1~6(실제기출 그라운딩, 6번=하브루타)→심화(핀란드식 실생활: 논리회로·자격요건·여론조사)→연습문제 6제</div>
+    <div class="toolbar-sub">기본→지도1~6(실제기출 그라운딩, 6번=하브루타)→심화(실생활: 논리회로·자격요건·여론조사)→연습문제 6제</div>
   </div>
   <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
 </div>
@@ -56,7 +56,7 @@ svg path{stroke:#aaa!important}
 
 <div class="card">
   <div class="card-meta">집합 — 개념</div>
-  <div class="card-tag">🇸🇬 싱가포르식 — 동그라미 안에 원소를 담기</div>
+  <div class="card-tag">동그라미 안에 원소를 담기</div>
   <div class="card-body">
 집합은 "범위가 확실한 것들의 모임"이에요. 원소를 나타내는 방법은 두 가지입니다.<br><br>
 
@@ -79,22 +79,241 @@ svg path{stroke:#aaa!important}
 
 <div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
 <b>원소나열법</b> — 원소를 직접 나열: A = {2, 4, 6}<br>
-<b>조건제시법</b> — 원소가 만족하는 조건을 씀: A = {x | x는 10보다 작은 짝수}
+<b>조건제시법</b> — 원소가 만족하는 조건을 씀: A = {x | x는 10보다 작은 짝수}<br>
+<b>벤다이어그램</b> — 동그라미 안에 원소를 그려서 나타냄(위 그림처럼)
 </div>
-전체집합 U 안에 있는 원소들 중, 조건을 만족하는 것만 모은 작은 동그라미가 A예요. A 안의 원소는 <b>전부 U 안에도</b> 있죠 — 이게 바로 다음에 배울 "부분집합"의 그림입니다.
+전체집합 U 안에 있는 원소들 중, 조건을 만족하는 것만 모은 작은 동그라미가 A예요. A 안의 원소는 <b>전부 U 안에도</b> 있죠 — 이게 바로 다음에 배울 "부분집합"의 그림입니다.<br><br>
+기호 <b>x∈A</b>는 "x는 A의 원소", <b>x∉A</b>는 "x는 A의 원소가 아니다"라는 뜻이에요.<br><br>
+원소가 유한개인 집합을 <b>유한집합</b>, 무한개인 집합을 <b>무한집합</b>이라 해요. 원소가 하나도 없는 집합은 <b>공집합(∅)</b>이고, 공집합도 유한집합으로 봐요(원소 0개). 유한집합 A의 원소 개수는 <b>n(A)</b>로 나타내요.<br>
+예: A={2,4,6} → n(A)=3, n(∅)=0
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">활동 1 — 스스로 판별해보기</div>
+  <div class="card-tag">집합인지 아닌지, 그리고 아니라면 고쳐 써보기</div>
+  <div class="card-body" style="font-weight:600">
+집합이 되려면 "원소인지 아닌지를 <b>명확한 기준</b>으로 판별할 수 있어야" 해요. 아래 10개 문장을 보고 집합이면 O, 아니면 X를 쓰고, X인 것은 명확한 기준으로 고쳐 써보세요.<br><br>
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:8px 10px;font-size:.92em;color:#333;font-weight:400;line-height:2.3">
+① 1부터 10까지 자연수 중 짝수의 모임 &nbsp;→ (&nbsp;&nbsp;&nbsp;)<br>
+② 1부터 10까지 자연수 중 작은 수들의 모임 &nbsp;→ (&nbsp;&nbsp;&nbsp;) 고쳐 쓰기: ________________<br>
+③ ○○고등학교 2026년 3학년 학생들의 모임 &nbsp;→ (&nbsp;&nbsp;&nbsp;)<br>
+④ 공부를 열심히 하는 학생들의 모임 &nbsp;→ (&nbsp;&nbsp;&nbsp;) 고쳐 쓰기: ________________<br>
+⑤ √2보다 작은 자연수의 모임 &nbsp;→ (&nbsp;&nbsp;&nbsp;)<br>
+⑥ √2에 가까운 자연수의 모임 &nbsp;→ (&nbsp;&nbsp;&nbsp;) 고쳐 쓰기: ________________<br>
+⑦ 20보다 작은 소수의 모임 &nbsp;→ (&nbsp;&nbsp;&nbsp;)<br>
+⑧ 20보다 작은, 계산하기 쉬운 수의 모임 &nbsp;→ (&nbsp;&nbsp;&nbsp;) 고쳐 쓰기: ________________<br>
+⑨ 10보다 크고 11보다 작은 자연수의 모임 &nbsp;→ (&nbsp;&nbsp;&nbsp;)<br>
+⑩ 10에 아주 가까운 자연수의 모임 &nbsp;→ (&nbsp;&nbsp;&nbsp;) 고쳐 쓰기: ________________
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">활동 1 — 풀이</div>
+  <div class="card-tag">💡 정답과 이유</div>
+  <div class="card-body">
+① <b>O</b> — 짝수인지는 누가 봐도 명확 (2,4,6,8,10)<br>
+② <b>X</b> — "작다"의 기준이 사람마다 다름 → 예: <i>5보다 작은 자연수의 모임</i><br>
+③ <b>O</b> — 명단으로 확정 가능한 명확한 기준<br>
+④ <b>X</b> — "열심히"는 주관적 판단 → 예: <i>이번 학기 결석이 0번인 학생들의 모임</i><br>
+⑤ <b>O</b> — 원소가 {1} 하나뿐이지만(1.41…<2인 자연수는 1뿐) 기준은 명확<br>
+⑥ <b>X</b> — 1과 2 중 어느 게 "가깝다"인지 기준이 없음 → 예: <i>√2와의 차가 0.5보다 작은 자연수의 모임</i><br>
+⑦ <b style="color:#4c1d95">O — 함정!</b> "소수"는 수학적으로 완벽히 명확한 정의예요. 하나씩 확인해야 해서 번거로울 뿐이지, 기준이 모호한 건 아니에요(2,3,5,7,11,13,17,19). <b>"판별이 번거로움"과 "기준이 모호함"을 헷갈리지 마세요.</b><br>
+⑧ <b>X</b> — "계산하기 쉽다"는 사람마다 다름 → 예: <i>20보다 작은 자연수 중 한 자리 수의 모임</i><br>
+⑨ <b style="color:#4c1d95">O — 함정!</b> 조건을 만족하는 자연수가 하나도 없어서(공집합) 원소가 0개지만, <b>공집합도 집합</b>이에요 — 조건 자체는 명확하니까요.<br>
+⑩ <b>X</b> — "아주 가깝다"의 기준이 없음 → 예: <i>10과의 차가 1 이하인 자연수의 모임</i>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">활동 2 — 스스로 기호화해보기</div>
+  <div class="card-tag">우리말 조건을 조건제시법으로 써보기</div>
+  <div class="card-body" style="font-weight:600">
+"15의 약수를 원소로 갖는 집합 A"를 조건제시법으로 나타내보세요.<br><br>
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:8px 10px;font-size:.95em;color:#333;font-weight:400">
+A = { x | ________________________ }
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">활동 2 — 풀이</div>
+  <div class="card-tag">💡 정답 A = {x | x는 15의 약수}</div>
+  <div class="card-body">
+<b>A = { x | x는 15의 약수 }</b><br>
+원소나열법으로 확인: 15의 약수는 1,3,5,15 → A={1,3,5,15}
   </div>
 </div>
 
 <div class="card">
   <div class="card-meta">집합 — 기본문제</div>
-  <div class="card-tag">기본 1 — 부분집합 구하기</div>
+  <div class="card-tag">기본 1 — 원소나열법과 원소의 개수</div>
   <div class="card-body" style="font-weight:600">
-집합 A={1, 2, 3}의 부분집합을 모두 구하고, 그중 진부분집합의 개수를 구하세요.
+집합 A={x | x는 15 이하의 자연수 중 3의 배수}를 원소나열법으로 나타내고, n(A)를 구하세요.
   </div>
   <div class="card-extra">
     <div class="extra-lbl">💡 풀이</div>
-부분집합: ∅, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3} → 2³=<b>8개</b><br>
-진부분집합(자기 자신은 제외): 8−1=<b>7개</b>
+15 이하의 자연수 중 3의 배수: 3,6,9,12,15 → <b>A={3,6,9,12,15}, n(A)=5</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">집합 사이의 포함관계 — 개념</div>
+  <div class="card-tag">작은 동그라미가 큰 동그라미 안에</div>
+  <div class="card-body">
+두 집합 A, B에서 A의 <b>모든 원소가 B에도 속하면</b>, A는 B의 부분집합이라 하고 <b>A⊂B</b>로 나타내요.<br><br>
+
+<svg viewBox="0 0 220 150" width="100%" style="max-width:190px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="110" cy="75" r="65" fill="rgba(249,115,22,.08)" stroke="#f97316" stroke-width="2"/>
+  <circle cx="85" cy="75" r="28" fill="rgba(99,102,241,.15)" stroke="#6366f1" stroke-width="2"/>
+  <text x="70" y="80" font-size="11" fill="#6366f1" font-weight="700">A</text>
+  <text x="160" y="30" font-size="11" fill="#f97316" font-weight="700">B</text>
+</svg>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+<b>진부분집합</b> — A⊂B이고 A≠B일 때, A는 B의 진부분집합<br>
+<b>서로 같다</b> — A⊂B 이고 B⊂A 이면 A=B<br>
+<b>공집합의 성질</b> — 공집합은 모든 집합의 부분집합(∅⊂A)
+</div>
+예: A={1,2}, B={1,2,3} → A⊂B이고 A≠B이므로 A는 B의 <b>진부분집합</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">집합 사이의 포함관계 — 기본문제</div>
+  <div class="card-tag">기본 2 — 포함관계 판별</div>
+  <div class="card-body" style="font-weight:600">
+세 집합 A={1,2,3}, B={1,2,3,4}, C={2,3}에 대하여, 세 집합 사이의 포함관계를 모두 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+C의 원소 2,3은 A와 B에도 모두 있음 → C⊂A, C⊂B<br>
+A의 원소 1,2,3은 B에도 모두 있음 → A⊂B<br>
+따라서 <b>C⊂A⊂B</b> (전부 진부분집합 관계)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">부분집합의 개수 — 개념</div>
+  <div class="card-tag">원소 하나마다 "포함 or 제외" 두 갈래</div>
+  <div class="card-body">
+원소가 n개인 집합의 부분집합을 만들 때, <b>각 원소마다</b> "포함한다/안 한다" 두 가지 선택이 있어요. A={1,2}로 직접 가지를 쳐볼게요.<br><br>
+
+<svg viewBox="0 0 300 190" width="100%" style="max-width:260px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="150" cy="15" r="4" fill="#333"/>
+  <line x1="150" y1="15" x2="70" y2="60" stroke="#6366f1" stroke-width="1.6"/>
+  <line x1="150" y1="15" x2="230" y2="60" stroke="#999" stroke-width="1.6"/>
+  <text x="90" y="40" font-size="9" fill="#6366f1">1 포함</text>
+  <text x="185" y="40" font-size="9" fill="#999">1 제외</text>
+  <circle cx="70" cy="60" r="3.5" fill="#333"/>
+  <circle cx="230" cy="60" r="3.5" fill="#333"/>
+  <line x1="70" y1="60" x2="35" y2="110" stroke="#6366f1" stroke-width="1.6"/>
+  <line x1="70" y1="60" x2="105" y2="110" stroke="#999" stroke-width="1.6"/>
+  <line x1="230" y1="60" x2="195" y2="110" stroke="#6366f1" stroke-width="1.6"/>
+  <line x1="230" y1="60" x2="265" y2="110" stroke="#999" stroke-width="1.6"/>
+  <text x="8" y="88" font-size="8" fill="#6366f1">2 포함</text>
+  <text x="78" y="88" font-size="8" fill="#999">2 제외</text>
+  <text x="168" y="88" font-size="8" fill="#6366f1">2 포함</text>
+  <text x="238" y="88" font-size="8" fill="#999">2 제외</text>
+  <rect x="15" y="130" width="46" height="24" rx="5" fill="rgba(99,102,241,.12)" stroke="#6366f1"/>
+  <rect x="85" y="130" width="46" height="24" rx="5" fill="rgba(99,102,241,.12)" stroke="#6366f1"/>
+  <rect x="175" y="130" width="46" height="24" rx="5" fill="rgba(99,102,241,.12)" stroke="#6366f1"/>
+  <rect x="245" y="130" width="46" height="24" rx="5" fill="rgba(99,102,241,.12)" stroke="#6366f1"/>
+  <text x="22" y="146" font-size="9" fill="#4c1d95" font-weight="700">{1,2}</text>
+  <text x="98" y="146" font-size="9" fill="#4c1d95" font-weight="700">{1}</text>
+  <text x="192" y="146" font-size="9" fill="#4c1d95" font-weight="700">{2}</text>
+  <text x="260" y="146" font-size="9" fill="#4c1d95" font-weight="700">∅</text>
+  <text x="90" y="178" font-size="9" fill="#666">가지 2개 × 2개 = 4개의 부분집합</text>
+</svg>
+
+원소가 하나 더 늘어나면(A={1,2,3}), 가지가 한 단계 더 갈라져서 <b>2×2×2=8개</b>가 돼요 — 직접 끝까지 그려볼게요.<br><br>
+
+<svg viewBox="0 0 520 145" width="100%" style="max-width:100%;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <text x="245" y="8" font-size="8" fill="#999">왼쪽=포함, 오른쪽=제외</text>
+  <circle cx="257" cy="15" r="3" fill="#333"/>
+  <line x1="257" y1="15" x2="127" y2="45" stroke="#6366f1" stroke-width="1.3"/>
+  <line x1="257" y1="15" x2="387" y2="45" stroke="#999" stroke-width="1.3"/>
+  <circle cx="127" cy="45" r="2.8" fill="#333"/>
+  <circle cx="387" cy="45" r="2.8" fill="#333"/>
+  <line x1="127" y1="45" x2="62" y2="75" stroke="#6366f1" stroke-width="1.2"/>
+  <line x1="127" y1="45" x2="192" y2="75" stroke="#999" stroke-width="1.2"/>
+  <line x1="387" y1="45" x2="322" y2="75" stroke="#6366f1" stroke-width="1.2"/>
+  <line x1="387" y1="45" x2="452" y2="75" stroke="#999" stroke-width="1.2"/>
+  <circle cx="62" cy="75" r="2.5" fill="#333"/>
+  <circle cx="192" cy="75" r="2.5" fill="#333"/>
+  <circle cx="322" cy="75" r="2.5" fill="#333"/>
+  <circle cx="452" cy="75" r="2.5" fill="#333"/>
+  <line x1="62" y1="75" x2="30" y2="105" stroke="#6366f1" stroke-width="1.1"/>
+  <line x1="62" y1="75" x2="95" y2="105" stroke="#999" stroke-width="1.1"/>
+  <line x1="192" y1="75" x2="160" y2="105" stroke="#6366f1" stroke-width="1.1"/>
+  <line x1="192" y1="75" x2="225" y2="105" stroke="#999" stroke-width="1.1"/>
+  <line x1="322" y1="75" x2="290" y2="105" stroke="#6366f1" stroke-width="1.1"/>
+  <line x1="322" y1="75" x2="355" y2="105" stroke="#999" stroke-width="1.1"/>
+  <line x1="452" y1="75" x2="420" y2="105" stroke="#6366f1" stroke-width="1.1"/>
+  <line x1="452" y1="75" x2="485" y2="105" stroke="#999" stroke-width="1.1"/>
+  <rect x="12" y="108" width="36" height="18" rx="3" fill="rgba(99,102,241,.12)" stroke="#6366f1"/>
+  <rect x="77" y="108" width="36" height="18" rx="3" fill="rgba(99,102,241,.12)" stroke="#6366f1"/>
+  <rect x="142" y="108" width="36" height="18" rx="3" fill="rgba(99,102,241,.12)" stroke="#6366f1"/>
+  <rect x="207" y="108" width="30" height="18" rx="3" fill="rgba(99,102,241,.12)" stroke="#6366f1"/>
+  <rect x="272" y="108" width="36" height="18" rx="3" fill="rgba(99,102,241,.12)" stroke="#6366f1"/>
+  <rect x="337" y="108" width="30" height="18" rx="3" fill="rgba(99,102,241,.12)" stroke="#6366f1"/>
+  <rect x="402" y="108" width="30" height="18" rx="3" fill="rgba(99,102,241,.12)" stroke="#6366f1"/>
+  <rect x="467" y="108" width="26" height="18" rx="3" fill="rgba(99,102,241,.12)" stroke="#6366f1"/>
+  <text x="16" y="121" font-size="8" fill="#4c1d95" font-weight="700">{1,2,3}</text>
+  <text x="82" y="121" font-size="8" fill="#4c1d95" font-weight="700">{1,2}</text>
+  <text x="147" y="121" font-size="8" fill="#4c1d95" font-weight="700">{1,3}</text>
+  <text x="214" y="121" font-size="8" fill="#4c1d95" font-weight="700">{1}</text>
+  <text x="277" y="121" font-size="8" fill="#4c1d95" font-weight="700">{2,3}</text>
+  <text x="345" y="121" font-size="8" fill="#4c1d95" font-weight="700">{2}</text>
+  <text x="410" y="121" font-size="8" fill="#4c1d95" font-weight="700">{3}</text>
+  <text x="475" y="121" font-size="8" fill="#4c1d95" font-weight="700">∅</text>
+  <text x="200" y="140" font-size="9" fill="#666">가지 2×2×2 = 8개의 부분집합</text>
+</svg>
+
+원소 개수가 늘어날 때마다 부분집합이 <b>크기별로 몇 개씩</b> 생기는지도 볼까요? A={1,2,3}의 부분집합 8개를 원소 개수별로 나눠보면:<br><br>
+
+<svg viewBox="0 0 260 110" width="100%" style="max-width:220px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="90" x2="240" y2="90" stroke="#999" stroke-width="1"/>
+  <rect x="30" y="75" width="30" height="15" fill="rgba(99,102,241,.5)"/>
+  <rect x="85" y="45" width="30" height="45" fill="rgba(99,102,241,.5)"/>
+  <rect x="140" y="45" width="30" height="45" fill="rgba(99,102,241,.5)"/>
+  <rect x="195" y="75" width="30" height="15" fill="rgba(99,102,241,.5)"/>
+  <text x="40" y="102" font-size="8" fill="#333">0개</text>
+  <text x="95" y="102" font-size="8" fill="#333">1개</text>
+  <text x="150" y="102" font-size="8" fill="#333">2개</text>
+  <text x="205" y="102" font-size="8" fill="#333">3개</text>
+  <text x="40" y="70" font-size="9" fill="#4c1d95" font-weight="700">1</text>
+  <text x="95" y="40" font-size="9" fill="#4c1d95" font-weight="700">3</text>
+  <text x="150" y="40" font-size="9" fill="#4c1d95" font-weight="700">3</text>
+  <text x="205" y="70" font-size="9" fill="#4c1d95" font-weight="700">1</text>
+</svg>
+원소 개수 0,1,2,3개짜리 부분집합이 각각 1,3,3,1개 — 다 더하면 1+3+3+1=<b>8개</b>, 역시 2³과 일치해요. (이 1,3,3,1 패턴은 나중에 "조합" 단원에서 다시 만나게 돼요.)<br><br>
+
+원소 1개마다 가지가 <b>2배</b>로 늘어나요. 원소가 3개면 2×2×2, 4개면 2×2×2×2… 원소 n개면 2를 n번 곱한 값이 나와요:<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+원소 n개인 집합의 <b>부분집합의 개수 = 2ⁿ</b><br>
+<b>진부분집합의 개수 = 2ⁿ − 1</b> (자기 자신 제외)
+</div>
+<div style="border:1px dashed #bbb;border-radius:8px;padding:.6rem 1rem;margin:.5rem 0;font-size:.88em;line-height:1.9;color:#555">
+n=1 → 2¹=2개 &nbsp;|&nbsp; n=2 → 2²=4개 &nbsp;|&nbsp; n=3 → 2³=8개 &nbsp;|&nbsp; n=4 → 2⁴=16개
+</div>
+특정 원소를 반드시 포함(또는 제외)해야 하면, 그 원소는 가지치기에서 <b>한쪽 가지가 잘려나가요</b> — 선택권이 없다는 뜻이에요. <b>나머지 원소만</b> 자유롭게 가지를 쳐서 2^(자유원소 개수).<br><br>
+예: A={1,2,3,4,5}의 부분집합 중 1은 포함하고 2는 포함하지 않는 것의 개수는?<br>
+1,2는 가지 하나로 고정(선택권 없음), 나머지 3,4,5만 자유롭게 가지침 → 2³=<b>8개</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">부분집합의 개수 — 기본문제</div>
+  <div class="card-tag">기본 3 — 부분집합·진부분집합의 개수</div>
+  <div class="card-body" style="font-weight:600">
+집합 A={a,b,c,d}의 부분집합의 개수와 진부분집합의 개수를 각각 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+원소 4개 → 부분집합 개수 = 2⁴=<b>16개</b><br>
+진부분집합 개수 = 16−1=<b>15개</b>
   </div>
 </div>
 
@@ -102,19 +321,50 @@ svg path{stroke:#aaa!important}
 
 <div class="card">
   <div class="card-meta">집합의 연산 — 개념</div>
-  <div class="card-tag">🇸🇬 싱가포르식 — 겹치는 두 동그라미</div>
+  <div class="card-tag">겹치는 두 동그라미</div>
   <div class="card-body">
 두 집합 A, B를 겹쳐 그리면 네 구역이 생겨요. 각 구역에 이름을 붙인 게 집합의 연산입니다.<br><br>
 
-<svg viewBox="0 0 220 150" width="100%" style="max-width:200px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="90" cy="75" r="55" fill="rgba(99,102,241,.12)" stroke="#6366f1" stroke-width="2"/>
-  <circle cx="150" cy="75" r="55" fill="rgba(249,115,22,.12)" stroke="#f97316" stroke-width="2"/>
-  <text x="55" y="45" font-size="11" fill="#6366f1" font-weight="700">A</text>
-  <text x="175" y="45" font-size="11" fill="#f97316" font-weight="700">B</text>
-  <text x="112" y="78" font-size="9" fill="#4c1d95" font-weight="700">A∩B</text>
-  <text x="8" y="14" font-size="10" fill="#666" font-weight="700">U</text>
-  <rect x="4" y="4" width="212" height="142" fill="none" stroke="#aaa" stroke-width="1.3"/>
-</svg>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0">
+  <div style="text-align:center">
+    <svg viewBox="0 0 140 100" width="100%" style="max-width:130px" xmlns="http://www.w3.org/2000/svg">
+      <defs><clipPath id="clipInt"><circle cx="55" cy="50" r="32"/></clipPath></defs>
+      <circle cx="55" cy="50" r="32" fill="none" stroke="#6366f1" stroke-width="1.6"/>
+      <circle cx="85" cy="50" r="32" fill="none" stroke="#f97316" stroke-width="1.6"/>
+      <circle cx="85" cy="50" r="32" fill="#7c3aed" fill-opacity=".45" clip-path="url(#clipInt)"/>
+      <text x="20" y="30" font-size="9" fill="#6366f1" font-weight="700">A</text>
+      <text x="112" y="30" font-size="9" fill="#f97316" font-weight="700">B</text>
+    </svg>
+    <div style="font-size:.85em;font-weight:700;color:#4c1d95">A∩B (교집합)</div>
+  </div>
+  <div style="text-align:center">
+    <svg viewBox="0 0 140 100" width="100%" style="max-width:130px" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="55" cy="50" r="32" fill="#7c3aed" fill-opacity=".3" stroke="#6366f1" stroke-width="1.6"/>
+      <circle cx="85" cy="50" r="32" fill="#7c3aed" fill-opacity=".3" stroke="#f97316" stroke-width="1.6"/>
+      <text x="20" y="30" font-size="9" fill="#6366f1" font-weight="700">A</text>
+      <text x="112" y="30" font-size="9" fill="#f97316" font-weight="700">B</text>
+    </svg>
+    <div style="font-size:.85em;font-weight:700;color:#4c1d95">A∪B (합집합)</div>
+  </div>
+  <div style="text-align:center">
+    <svg viewBox="0 0 140 100" width="100%" style="max-width:130px" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="4" width="132" height="92" fill="#7c3aed" fill-opacity=".3" stroke="#999" stroke-width="1.2"/>
+      <circle cx="70" cy="50" r="32" fill="#fff" stroke="#6366f1" stroke-width="1.6"/>
+      <text x="60" y="55" font-size="9" fill="#6366f1" font-weight="700">A</text>
+      <text x="10" y="16" font-size="8" fill="#666" font-weight="700">U</text>
+    </svg>
+    <div style="font-size:.85em;font-weight:700;color:#4c1d95">A<sup>c</sup> (여집합)</div>
+  </div>
+  <div style="text-align:center">
+    <svg viewBox="0 0 140 100" width="100%" style="max-width:130px" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="55" cy="50" r="32" fill="#7c3aed" fill-opacity=".4" stroke="#6366f1" stroke-width="1.6"/>
+      <circle cx="85" cy="50" r="32" fill="#fff" stroke="#f97316" stroke-width="1.6"/>
+      <text x="20" y="30" font-size="9" fill="#6366f1" font-weight="700">A</text>
+      <text x="112" y="30" font-size="9" fill="#f97316" font-weight="700">B</text>
+    </svg>
+    <div style="font-size:.85em;font-weight:700;color:#4c1d95">A−B (차집합)</div>
+  </div>
+</div>
 
 <div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
 <b>A∩B (교집합)</b> — 겹치는 부분 (A 그리고 B)<br>
@@ -128,7 +378,7 @@ svg path{stroke:#aaa!important}
 
 <div class="card">
   <div class="card-meta">집합의 연산 — 기본문제</div>
-  <div class="card-tag">기본 2 — 집합의 연산</div>
+  <div class="card-tag">기본 4 — 집합의 연산</div>
   <div class="card-body" style="font-weight:600">
 전체집합 U={1,2,…,10}, A={1,2,3,4,5}, B={4,5,6,7,8}일 때, A∩B, A∪B, A<sup>c</sup>, A−B를 각각 구하세요.
   </div>
@@ -139,11 +389,276 @@ A<sup>c</sup> = <b>{6,7,8,9,10}</b> &nbsp; A−B = <b>{1,2,3}</b>
   </div>
 </div>
 
+<div class="card">
+  <div class="card-meta">서로소 — 개념</div>
+  <div class="card-tag">겹치는 부분이 하나도 없을 때</div>
+  <div class="card-body">
+두 집합 A, B의 <b>교집합이 공집합</b>이면(A∩B=∅), A와 B는 <b>서로소</b>라고 해요 — 공통 원소가 하나도 없다는 뜻이에요.<br><br>
+
+<svg viewBox="0 0 240 120" width="100%" style="max-width:200px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="232" height="112" fill="none" stroke="#aaa" stroke-width="1.2"/>
+  <circle cx="60" cy="60" r="40" fill="rgba(99,102,241,.15)" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="180" cy="60" r="40" fill="rgba(249,115,22,.15)" stroke="#f97316" stroke-width="2"/>
+  <text x="48" y="65" font-size="11" fill="#6366f1" font-weight="700">A</text>
+  <text x="172" y="65" font-size="11" fill="#f97316" font-weight="700">B</text>
+  <text x="8" y="16" font-size="9" fill="#666" font-weight="700">U</text>
+  <text x="90" y="105" font-size="8" fill="#999">겹치는 부분이 없음</text>
+</svg>
+
+예: A={1,3,5}, B={2,4,6} → A∩B=∅ → A와 B는 <b>서로소</b><br><br>
+<span style="font-size:.85em;color:#555">서로소는 "안 겹친다"는 뜻이지, "관계가 없다"는 뜻이 아니에요 — 둘 다 같은 전체집합 U 안에 있을 수 있어요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">서로소 — 기본문제</div>
+  <div class="card-tag">기본 5 — 서로소 판별</div>
+  <div class="card-body" style="font-weight:600">
+A={x | x는 6의 약수}, B={x | x는 7 이상 10 이하의 자연수}일 때, A와 B가 서로소인지 판별하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+A={1,2,3,6}, B={7,8,9,10} → A∩B=∅ → <b>서로소이다</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">집합의 연산법칙 — 개념</div>
+  <div class="card-tag">교환·결합·분배, 숫자 계산과 똑같은 규칙</div>
+  <div class="card-body">
+집합의 연산(∪, ∩)에도 수의 계산처럼 교환·결합·분배법칙이 성립해요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.2">
+<b>교환법칙</b>: A∪B=B∪A, A∩B=B∩A<br>
+<b>결합법칙</b>: (A∪B)∪C=A∪(B∪C), (A∩B)∩C=A∩(B∩C)<br>
+<b>분배법칙</b>: A∩(B∪C)=(A∩B)∪(A∩C)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A∪(B∩C)=(A∪B)∩(A∪C)
+</div>
+예: A={1,2,3}, B={2,3,4}, C={3,4,5}일 때<br>
+B∪C={2,3,4,5} → A∩(B∪C)=A∩{2,3,4,5}=<b>{2,3}</b><br>
+A∩B={2,3}, A∩C={3} → (A∩B)∪(A∩C)={2,3}∪{3}=<b>{2,3}</b> ✓ 일치<br><br>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b>거꾸로도 성립해요</b> — (A∩B)∪(A∩C) 처럼 나눠진 모습으로 문제가 나오면, 공통으로 들어있는 A를 <b>밖으로 묶어내서</b> A∩(B∪C)로 합칠 수 있어요.
+</div>
+<span style="font-size:.85em;color:#4c1d95">🦕 토로: 이거 사실 <b>인수분해랑 완전히 같은 구조</b>예요! 숫자에서 ab+ac = a(b+c)로 공통인수 a를 묶어내는 것처럼, 집합에서도 (A∩B)∪(A∩C)에서 공통으로 들어있는 A를 <b>"묶어서"</b> A∩(B∪C)로 만들 수 있어요. ∩는 숫자의 곱셈(×)과, ∪는 덧셈(+)과 비슷하게 행동한다고 생각하면 기억하기 쉬워요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">인수분해 방식 연산 — 문제 1 (기호만)</div>
+  <div class="card-tag">다음 식을 인수분해(묶어내기)하듯 간단히 하시오</div>
+  <div class="card-body" style="font-weight:600">
+(X∩Y) ∪ (X∩Z) 를 공통인수 X로 묶어서 더 간단한 하나의 식으로 나타내세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+공통으로 들어있는 X를 밖으로 묶어내면: <b>X∩(Y∪Z)</b><br>
+(숫자로 비유: XY+XZ = X(Y+Z)와 정확히 같은 구조)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">인수분해 방식 연산 — 문제 2 (기호만)</div>
+  <div class="card-tag">다음 식을 인수분해(묶어내기)하듯 간단히 하시오</div>
+  <div class="card-body" style="font-weight:600">
+(P∪Q) ∩ (P∪R) 를 공통인수 P로 묶어서 더 간단한 하나의 식으로 나타내세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+공통으로 들어있는 P를 밖으로 묶어내면: <b>P∪(Q∩R)</b><br>
+<span style="font-size:.85em;color:#555">주의: ∪가 밖에 있으면 묶인 뒤 안쪽은 ∩로 바뀌어요 — 무작정 똑같이 바뀌는 게 아니라, 분배법칙의 두 형태(교∪교, 합∩합) 중 어느 쪽인지 먼저 확인해야 해요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">인수분해 방식 연산 — 문제 3 (숫자로 직접 적용)</div>
+  <div class="card-tag">먼저 인수분해부터 한 다음 계산하세요</div>
+  <div class="card-body" style="font-weight:600">
+A={1,2,3,4,5,6}, B={1,2,7}, C={1,3,8}일 때, (A∩B)∪(A∩C)를 <b>바로 계산하지 말고</b> 먼저 인수분해(묶기)해서 더 간단한 식으로 만든 뒤 계산하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+인수분해: (A∩B)∪(A∩C) = <b>A∩(B∪C)</b><br>
+B∪C={1,2,3,7,8} → A∩(B∪C) = {1,2,3,4,5,6}∩{1,2,3,7,8} = <b>{1,2,3}</b><br><br>
+<span style="font-size:.85em;color:#555">검산(직접 계산): A∩B={1,2}, A∩C={1,3} → 합치면 {1,2,3} ✓ 일치. 하지만 인수분해로 풀면 B∪C 한 번만 구하면 돼서 <b>계산이 더 짧아요</b>.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">인수분해 방식 연산 — 문제 4 (숫자로 직접 적용)</div>
+  <div class="card-tag">먼저 인수분해부터 한 다음 계산하세요</div>
+  <div class="card-body" style="font-weight:600">
+A={1,2,3}, B={2,3,4,5}, C={1,3,6,7}일 때, (A∪B)∩(A∪C)를 <b>바로 계산하지 말고</b> 먼저 인수분해(묶기)해서 더 간단한 식으로 만든 뒤 계산하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+인수분해: (A∪B)∩(A∪C) = <b>A∪(B∩C)</b><br>
+B∩C={3} → A∪(B∩C) = {1,2,3}∪{3} = <b>{1,2,3}</b><br><br>
+<span style="font-size:.85em;color:#555">검산(직접 계산): A∪B={1,2,3,4,5}, A∪C={1,2,3,6,7} → 겹치는 부분 {1,2,3} ✓ 일치. B∩C={3}이 A에 이미 포함돼 있어서 결과가 A 그대로 나온 것도 확인해보세요(흡수법칙과 비슷한 상황).</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">흡수법칙 — 개념</div>
+  <div class="card-tag">이미 안에 있는 걸 더하거나 걸러내도 그대로</div>
+  <div class="card-body">
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+<b>흡수법칙</b>: A∪(A∩B) = A &nbsp;&nbsp; A∩(A∪B) = A
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0">
+  <div style="text-align:center">
+    <svg viewBox="0 0 160 120" width="100%" style="max-width:150px" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="65" cy="60" r="40" fill="rgba(99,102,241,.18)" stroke="#6366f1" stroke-width="2"/>
+      <circle cx="95" cy="60" r="40" fill="rgba(249,115,22,.1)" stroke="#f97316" stroke-width="2"/>
+      <text x="35" y="30" font-size="10" fill="#6366f1" font-weight="700">A</text>
+      <text x="118" y="30" font-size="10" fill="#f97316" font-weight="700">B</text>
+      <text x="72" y="63" font-size="8" fill="#4c1d95">A∩B</text>
+    </svg>
+    <div style="font-size:.82em;font-weight:700;color:#4c1d95">A∪(A∩B)=보라색 전체=A</div>
+  </div>
+  <div style="text-align:center">
+    <svg viewBox="0 0 160 120" width="100%" style="max-width:150px" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="65" cy="60" r="40" fill="rgba(99,102,241,.18)" stroke="#6366f1" stroke-width="2"/>
+      <circle cx="95" cy="60" r="40" fill="none" stroke="#f97316" stroke-width="1.6" stroke-dasharray="3 3"/>
+      <text x="35" y="30" font-size="10" fill="#6366f1" font-weight="700">A</text>
+      <text x="118" y="30" font-size="10" fill="#f97316" font-weight="700">B</text>
+    </svg>
+    <div style="font-size:.82em;font-weight:700;color:#4c1d95">A∩(A∪B)=보라색=A</div>
+  </div>
+  <div style="text-align:center">
+    <svg viewBox="0 0 160 120" width="100%" style="max-width:150px" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="4" width="152" height="102" fill="rgba(99,102,241,.18)" stroke="#999" stroke-width="1.2"/>
+      <circle cx="80" cy="55" r="35" fill="rgba(99,102,241,.35)" stroke="#6366f1" stroke-width="2"/>
+      <text x="70" y="59" font-size="10" fill="#6366f1" font-weight="700">A</text>
+      <text x="10" y="18" font-size="8" fill="#666" font-weight="700">U</text>
+    </svg>
+    <div style="font-size:.82em;font-weight:700;color:#4c1d95">A∪A<sup>c</sup>=보라색 전체=U</div>
+  </div>
+  <div style="text-align:center">
+    <svg viewBox="0 0 160 120" width="100%" style="max-width:150px" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="4" width="152" height="102" fill="none" stroke="#999" stroke-width="1.2"/>
+      <circle cx="80" cy="55" r="35" fill="rgba(99,102,241,.18)" stroke="#6366f1" stroke-width="2"/>
+      <text x="70" y="59" font-size="10" fill="#6366f1" font-weight="700">A</text>
+      <text x="10" y="18" font-size="8" fill="#666" font-weight="700">U</text>
+      <text x="55" y="100" font-size="8" fill="#999">A와 A<sup>c</sup>는 안 겹침</text>
+    </svg>
+    <div style="font-size:.82em;font-weight:700;color:#4c1d95">A∩A<sup>c</sup>=색칠된 곳 없음=∅</div>
+  </div>
+  <div style="text-align:center">
+    <svg viewBox="0 0 160 120" width="100%" style="max-width:150px" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="65" cy="60" r="40" fill="rgba(99,102,241,.3)" stroke="#6366f1" stroke-width="2"/>
+      <circle cx="95" cy="60" r="40" fill="rgba(99,102,241,.3)" stroke="#f97316" stroke-width="2"/>
+      <text x="35" y="30" font-size="10" fill="#6366f1" font-weight="700">A</text>
+      <text x="118" y="30" font-size="10" fill="#f97316" font-weight="700">B</text>
+    </svg>
+    <div style="font-size:.82em;font-weight:700;color:#4c1d95">A∪(A∪B)=보라색 전체=A∪B</div>
+  </div>
+  <div style="text-align:center">
+    <svg viewBox="0 0 160 120" width="100%" style="max-width:150px" xmlns="http://www.w3.org/2000/svg">
+      <defs><clipPath id="clipAiAiB"><circle cx="65" cy="60" r="40"/></clipPath></defs>
+      <circle cx="65" cy="60" r="40" fill="none" stroke="#6366f1" stroke-width="2"/>
+      <circle cx="95" cy="60" r="40" fill="none" stroke="#f97316" stroke-width="2"/>
+      <circle cx="95" cy="60" r="40" fill="rgba(99,102,241,.4)" clip-path="url(#clipAiAiB)"/>
+      <text x="35" y="30" font-size="10" fill="#6366f1" font-weight="700">A</text>
+      <text x="118" y="30" font-size="10" fill="#f97316" font-weight="700">B</text>
+    </svg>
+    <div style="font-size:.82em;font-weight:700;color:#4c1d95">A∩(A∩B)=보라색=A∩B</div>
+  </div>
+</div>
+
+① A∩B(겹치는 부분)는 <b>이미 A 안에</b> 있어요. A에 "A∩B를 더해도"(∪) 넓이가 안 늘어나요 — 그대로 A.<br>
+② A∪B(둘을 합친 영역)는 <b>A를 전부 포함</b>해요. A와 A∪B를 "겹치는 부분만 걸러내도"(∩) A는 안 깎여요 — 그대로 A.<br>
+③ A와 A<sup>c</sup>(A가 아닌 나머지)를 합치면 <b>전체(U)를 정확히 다 채워요</b> — 빈틈이 없어요.<br>
+④ A와 A<sup>c</sup>는 정의상 <b>겹치는 부분이 있을 수 없어요</b> — A 안이면서 동시에 A 밖일 수는 없으니까요.<br>
+⑤ A∪(A∪B): 이미 있는 A를 <b>또 합쳐도</b>(멱등법칙) 늘어나지 않아요 — 그냥 A∪B.<br>
+⑥ A∩(A∩B): 이미 있는 A로 <b>또 걸러도</b> 줄어들지 않아요 — 그냥 A∩B.<br><br>
+<span style="font-size:.85em;color:#555">①②는 A로 수렴, ③④는 U/∅로 수렴, ⑤⑥은 A가 그냥 흡수돼서 A∪B·A∩B로 남는 경우예요 — "A가 겹쳐서 나오면 뭐가 되는지"를 상황별로 정리한 거예요.</span><br><br>
+예: A={1,2,3}, B={2,3,4}일 때<br>
+A∩B={2,3} → A∪(A∩B) = {1,2,3}∪{2,3} = <b>{1,2,3}</b> = A ✓<br>
+A∪B={1,2,3,4} → A∩(A∪B) = {1,2,3}∩{1,2,3,4} = <b>{1,2,3}</b> = A ✓
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">흡수법칙 — 기본문제</div>
+  <div class="card-tag">기본 6-2 — 흡수법칙 확인하기</div>
+  <div class="card-body" style="font-weight:600">
+A={1,2,3,4}, B={3,4,5}일 때, A∪(A∩B)와 A∩(A∪B)를 각각 구하고, 두 결과가 모두 A와 같음을 확인하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+A∩B={3,4} → A∪(A∩B) = {1,2,3,4}∪{3,4} = <b>{1,2,3,4}</b> = A ✓<br>
+A∪B={1,2,3,4,5} → A∩(A∪B) = {1,2,3,4}∩{1,2,3,4,5} = <b>{1,2,3,4}</b> = A ✓
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">집합의 항등법칙 모음 — 개념</div>
+  <div class="card-tag">U, ∅, ⊂를 넣으면 흡수법칙 말고도 더 있다</div>
+  <div class="card-body">
+흡수법칙처럼 "당연해 보이지만 이름 붙여진" 규칙이 여러 개 더 있어요. 전체집합 U, 공집합 ∅, 여집합, 부분집합을 넣어서 정리해볼게요. (전체집합 U={1,...,10}, A={1,2,3,4,5} 기준)<br><br>
+<table style="width:100%;border-collapse:collapse;font-size:.85em;margin:.5rem 0">
+<tr style="border-bottom:1px solid #ccc"><th style="text-align:left;padding:5px 4px">이름</th><th style="text-align:left;padding:5px 4px">규칙</th><th style="text-align:left;padding:5px 4px">확인</th></tr>
+<tr style="border-bottom:1px dashed #ddd"><td style="padding:5px 4px"><b>항등법칙</b></td><td style="padding:5px 4px">A∪∅=A<br>A∩U=A</td><td style="padding:5px 4px">아무것도 없는 것(∅)을 더하거나, 전체(U)로 걸러도 그대로</td></tr>
+<tr style="border-bottom:1px dashed #ddd"><td style="padding:5px 4px"><b>지배법칙</b></td><td style="padding:5px 4px">A∪U=U<br>A∩∅=∅</td><td style="padding:5px 4px">전체(U)를 더하면 전체, 아무것도 없는 것(∅)으로 걸러도 아무것도 없음</td></tr>
+<tr style="border-bottom:1px dashed #ddd"><td style="padding:5px 4px"><b>멱등법칙</b></td><td style="padding:5px 4px">A∪A=A<br>A∩A=A</td><td style="padding:5px 4px">자기 자신을 더하거나 걸러도 그대로</td></tr>
+<tr style="border-bottom:1px dashed #ddd"><td style="padding:5px 4px"><b>여집합법칙</b></td><td style="padding:5px 4px">A∪A<sup>c</sup>=U<br>A∩A<sup>c</sup>=∅<br>(A<sup>c</sup>)<sup>c</sup>=A</td><td style="padding:5px 4px">A={1,2,3,4,5} → A<sup>c</sup>={6,...,10} → 합치면 U, 겹치는 건 없음(∅)</td></tr>
+<tr style="border-bottom:1px dashed #ddd"><td style="padding:5px 4px"><b>차집합의 재정의</b></td><td style="padding:5px 4px">A−B = A∩B<sup>c</sup></td><td style="padding:5px 4px">"B가 아닌 것들 중 A"라는 뜻 — 차집합도 결국 교집합+여집합 조합</td></tr>
+<tr><td style="padding:5px 4px"><b>부분집합 관계</b></td><td style="padding:5px 4px">A⊂B이면<br>A∩B=A, A∪B=B</td><td style="padding:5px 4px">작은 원이 큰 원 안에 있으면, 교집합은 작은 원, 합집합은 큰 원 그대로</td></tr>
+</table>
+예(차집합 재정의 검산): A={1,2,3,4,5}, B={4,5,6,7,8}, B<sup>c</sup>={1,2,3,9,10}<br>
+A−B(직접 계산)=<b>{1,2,3}</b>, A∩B<sup>c</sup>={1,2,3,4,5}∩{1,2,3,9,10}=<b>{1,2,3}</b> ✓ 일치<br><br>
+<span style="font-size:.85em;color:#555">이 규칙들 대부분은 벤다이어그램을 그려서 "당연히 그렇겠다"를 눈으로 먼저 확인하고, 필요할 때 이름만 기억해두면 충분해요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">대칭차집합 — 개념</div>
+  <div class="card-tag">서로 안 겹치는 부분만 모으기</div>
+  <div class="card-body">
+두 집합 A, B에서 <b>한쪽에만 있는 원소들</b>(겹치는 부분은 빼고)을 모은 걸 <b>대칭차집합</b>이라 하고 <b>A△B</b>로 나타내요.<br><br>
+
+<svg viewBox="0 0 160 110" width="100%" style="max-width:150px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <defs><clipPath id="clipSym"><circle cx="60" cy="55" r="35"/></clipPath></defs>
+  <circle cx="60" cy="55" r="35" fill="#7c3aed" fill-opacity=".4" stroke="#6366f1" stroke-width="1.6"/>
+  <circle cx="90" cy="55" r="35" fill="#7c3aed" fill-opacity=".4" stroke="#f97316" stroke-width="1.6"/>
+  <circle cx="90" cy="55" r="35" fill="#fff" clip-path="url(#clipSym)"/>
+  <text x="25" y="30" font-size="9" fill="#6366f1" font-weight="700">A</text>
+  <text x="118" y="30" font-size="9" fill="#f97316" font-weight="700">B</text>
+</svg>
+
+<b>세 가지 방법으로 똑같이 표현</b>돼요:<br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+① A△B = (A−B)∪(B−A) &nbsp; <span style="color:#888">(각자 상대에게 없는 것만 모으기)</span><br>
+② A△B = (A∪B)−(A∩B) &nbsp; <span style="color:#888">(합집합에서 겹친 부분 빼기)</span><br>
+③ A△B = (A∪B)∩(A∩B)<sup>c</sup> &nbsp; <span style="color:#888">(차집합의 재정의를 적용한 버전)</span>
+</div>
+예: A={1,2,3}, B={2,3,4}일 때<br>
+① A−B={1}, B−A={4} → (A−B)∪(B−A)=<b>{1,4}</b><br>
+② A∪B={1,2,3,4}, A∩B={2,3} → (A∪B)−(A∩B)=<b>{1,4}</b> ✓ 일치<br><br>
+<span style="font-size:.85em;color:#555">이름의 "대칭"은 A,B 둘 중 어느 쪽이 먼저 와도 결과가 같다는 뜻이에요(A△B = B△A) — 교환법칙이 성립해요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">대칭차집합 — 기본문제</div>
+  <div class="card-tag">기본 6-3 — 대칭차집합 구하기</div>
+  <div class="card-body" style="font-weight:600">
+A={1,2,3,4,5}, B={4,5,6,7}일 때, A△B를 두 가지 방법(①,②)으로 각각 구하고 같은지 확인하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+① A−B={1,2,3}, B−A={6,7} → (A−B)∪(B−A)=<b>{1,2,3,6,7}</b><br>
+② A∪B={1,2,3,4,5,6,7}, A∩B={4,5} → (A∪B)−(A∩B)=<b>{1,2,3,6,7}</b> ✓ 일치
+  </div>
+</div>
+
 <div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📍 주제 2 — 명제와 조건</div>
 
 <div class="card">
   <div class="card-meta">명제와 조건 — 개념</div>
-  <div class="card-tag">🇸🇬 싱가포르식 — 참/거짓을 판별할 수 있는 문장</div>
+  <div class="card-tag">참/거짓을 판별할 수 있는 문장</div>
   <div class="card-body">
 <b>명제</b>는 참·거짓을 분명히 가릴 수 있는 문장이에요. "3은 소수다"(참), "5는 짝수다"(거짓)는 명제지만, "x는 크다"는 x가 뭔지 몰라서 명제가 아니에요 — 이런 문장을 <b>조건</b>이라 부릅니다.<br><br>
 조건에 특정 범위(전체집합)를 정해주면, 그 조건을 <b>참으로 만드는 원소들의 모임</b>을 <b>진리집합</b>이라고 해요.<br><br>
@@ -169,7 +684,7 @@ A<sup>c</sup> = <b>{6,7,8,9,10}</b> &nbsp; A−B = <b>{1,2,3}</b>
 
 <div class="card">
   <div class="card-meta">명제와 조건 — 기본문제</div>
-  <div class="card-tag">기본 3 — 진리집합 구하기</div>
+  <div class="card-tag">기본 7 — 진리집합 구하기</div>
   <div class="card-body" style="font-weight:600">
 전체집합 U={1,2,3,4,5,6}에서 조건 p: "x는 6의 약수이다"의 진리집합을 구하세요.
   </div>
@@ -183,7 +698,7 @@ A<sup>c</sup> = <b>{6,7,8,9,10}</b> &nbsp; A−B = <b>{1,2,3}</b>
 
 <div class="card">
   <div class="card-meta">역·이·대우 — 개념</div>
-  <div class="card-tag">🇸🇬 싱가포르식 — 화살표를 뒤집고 부정하기</div>
+  <div class="card-tag">화살표를 뒤집고 부정하기</div>
   <div class="card-body">
 명제 p→q("p이면 q이다")에서 화살표를 뒤집거나 부정하면 세 가지 새 명제가 나와요.<br><br>
 
@@ -212,7 +727,7 @@ A<sup>c</sup> = <b>{6,7,8,9,10}</b> &nbsp; A−B = <b>{1,2,3}</b>
 
 <div class="card">
   <div class="card-meta">역·이·대우 — 기본문제</div>
-  <div class="card-tag">기본 4 — 대우 구하고 참·거짓 판별</div>
+  <div class="card-tag">기본 8 — 대우 구하고 참·거짓 판별</div>
   <div class="card-body" style="font-weight:600">
 명제 "자연수 n이 4의 배수이면 n은 2의 배수이다"의 대우를 말하고, 참·거짓을 판별하세요.
   </div>
@@ -227,7 +742,7 @@ A<sup>c</sup> = <b>{6,7,8,9,10}</b> &nbsp; A−B = <b>{1,2,3}</b>
 
 <div class="card">
   <div class="card-meta">필요·충분조건 — 개념</div>
-  <div class="card-tag">🇸🇬 싱가포르식 — 작은 동그라미가 큰 동그라미 안에</div>
+  <div class="card-tag">작은 동그라미가 큰 동그라미 안에</div>
   <div class="card-body">
 p→q가 참이면, 진리집합 사이에는 <b>P⊂Q</b> 관계가 생겨요. 그림으로 보면 작은 원(P)이 큰 원(Q) 안에 쏙 들어가는 모습이에요.<br><br>
 
@@ -250,7 +765,7 @@ P=Q이면 서로 <b>필요충분조건</b>
 
 <div class="card">
   <div class="card-meta">필요·충분조건 — 기본문제</div>
-  <div class="card-tag">기본 5 — 무슨 조건인지 판별</div>
+  <div class="card-tag">기본 9 — 무슨 조건인지 판별</div>
   <div class="card-body" style="font-weight:600">
 두 조건 p: |x|&lt;2, q: −3&lt;x&lt;3에 대하여 p는 q이기 위한 무슨 조건인지 말하세요.
   </div>
@@ -265,7 +780,7 @@ x=2.5는 Q엔 있지만 P엔 없으므로 Q⊄P → <b>p는 q이기 위한 충�
 
 <div class="card">
   <div class="card-meta">명제의 증명 — 개념</div>
-  <div class="card-tag">🇸🇬 싱가포르식 — 두 가지 우회 증명법</div>
+  <div class="card-tag">두 가지 우회 증명법</div>
   <div class="card-body">
 어떤 명제는 직접 증명하기 어려워요. 그럴 때 쓰는 두 가지 우회 전략이 있습니다.<br><br>
 <div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
@@ -281,7 +796,7 @@ n=2k+1(k는 정수)이라 하면 n²=4k²+4k+1=2(2k²+2k)+1 → 홀수 ✓<br>
 
 <div class="card">
   <div class="card-meta">명제의 증명 — 기본문제</div>
-  <div class="card-tag">기본 6 — 대우를 이용한 증명</div>
+  <div class="card-tag">기본 10 — 대우를 이용한 증명</div>
   <div class="card-body" style="font-weight:600">
 "자연수 n에 대하여 n²이 3의 배수이면 n도 3의 배수이다"를 대우를 이용하여 증명하세요.
   </div>
@@ -373,7 +888,7 @@ n=40일 때: 40²+40+41 = 1681 = 41×41 → 소수가 아님!<br>
 <div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">🎯 심화 — 실생활 속 집합과 명제</div>
 
 <div class="card">
-  <div class="card-meta">심화 1 — 🇫🇮 핀란드식(실생활)</div>
+  <div class="card-meta">심화 1 — 실생활</div>
   <div class="card-tag">🔌 드모르간의 법칙이 여러분 스마트폰 속에도 있다</div>
   <div class="card-body">
 전자회로를 설계할 때 AND, OR, NOT을 조합한 논리회로를 만들어요. 그런데 실제 반도체 칩 안에서는 거의 대부분 <b>NAND 게이트</b>(AND 다음에 NOT을 붙인 것) 하나만 대량으로 사용됩니다.<br><br>
@@ -383,7 +898,7 @@ NAND 게이트는 구조가 단순하고 입력이 늘어나도 회로가 크게
 </div>
 
 <div class="card">
-  <div class="card-meta">심화 2 — 🇫🇮 핀란드식(실생활)</div>
+  <div class="card-meta">심화 2 — 실생활</div>
   <div class="card-tag">🚕 "필요조건"이라는 말, 사실 매일 쓰고 있었다</div>
   <div class="card-body">
 "자격 요건"이라는 말, 한 번쯤 들어봤을 거예요. 사실 "요건(要件)"이 바로 필요조건이에요.<br><br>
@@ -394,7 +909,7 @@ NAND 게이트는 구조가 단순하고 입력이 늘어나도 회로가 크게
 </div>
 
 <div class="card">
-  <div class="card-meta">심화 3 — 🇫🇮 핀란드식(실생활)</div>
+  <div class="card-meta">심화 3 — 실생활</div>
   <div class="card-tag">📊 여론조사에서 지지율을 다 더치면 안 되는 이유</div>
   <div class="card-body">
 여러 정당·후보를 중복으로 지지할 수 있는 설문조사에서, "A정당 지지자 수 + B정당 지지자 수"를 그냥 더하면 틀린 값이 나와요. 두 정당을 동시에 지지하는 사람이 <b>두 번 세어지기</b> 때문이에요.<br><br>
@@ -426,6 +941,7 @@ NAND 게이트는 구조가 단순하고 입력이 늘어나도 회로가 크게
   <div class="card-meta">연습문제 1 — 풀이</div>
   <div class="card-tag">💡 정답 A={1,2,3,4,6,12}, 6개</div>
   <div class="card-body">
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: 원소나열법</span><br><br>
 12의 양의 약수: 1,2,3,4,6,12 → <b>A={1,2,3,4,6,12}, 원소 6개</b>
   </div>
 </div>
@@ -443,6 +959,7 @@ NAND 게이트는 구조가 단순하고 입력이 늘어나도 회로가 크게
   <div class="card-meta">연습문제 2 — 풀이</div>
   <div class="card-tag">💡 정답 {1,4,6,8,9}</div>
   <div class="card-body">
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: 여집합</span><br><br>
 1~9 중 소수: 2,3,5,7 → A={2,3,5,7}<br>
 <b>A<sup>c</sup> = {1,4,6,8,9}</b>
   </div>
@@ -461,6 +978,7 @@ NAND 게이트는 구조가 단순하고 입력이 늘어나도 회로가 크게
   <div class="card-meta">연습문제 3 — 풀이</div>
   <div class="card-tag">💡 정답 "a²≠b²이면 a≠b이다", 참</div>
   <div class="card-body">
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: 명제의 대우</span><br><br>
 대우: <b>"a²≠b²이면 a≠b이다"</b><br>
 원명제가 참이므로(등식 양변 제곱은 항상 성립) 대우도 <b>참</b>
   </div>
@@ -479,6 +997,7 @@ NAND 게이트는 구조가 단순하고 입력이 늘어나도 회로가 크게
   <div class="card-meta">연습문제 4 — 풀이</div>
   <div class="card-tag">💡 정답 충분조건</div>
   <div class="card-body">
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: 필요조건과 충분조건</span><br><br>
 x²−3x+2=0 → (x−1)(x−2)=0 → x=1 또는 x=2 → Q={1,2}<br>
 P={1}, P⊂Q이지만 Q⊄P(x=2가 반례) → <b>p는 q이기 위한 충분조건</b>
   </div>
@@ -497,6 +1016,7 @@ P={1}, P⊂Q이지만 Q⊄P(x=2가 반례) → <b>p는 q이기 위한 충분조�
   <div class="card-meta">연습문제 5 — 풀이</div>
   <div class="card-tag">💡 정답 {1,2}, {1,3}, {2,3}</div>
   <div class="card-body">
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: 부분집합의 개수</span><br><br>
 3개 중 2개를 고르는 경우 → <b>{1,2}, {1,3}, {2,3}</b>
   </div>
 </div>
@@ -514,8 +1034,109 @@ P={1}, P⊂Q이지만 Q⊄P(x=2가 반례) → <b>p는 q이기 위한 충분조�
   <div class="card-meta">연습문제 6 — 풀이</div>
   <div class="card-tag">💡 정답 "n이 3의 배수가 아니면 n²도 3의 배수가 아니다"</div>
   <div class="card-body">
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: 대우를 이용한 증명</span><br><br>
 원명제 "n²이 3의 배수 → n이 3의 배수"의 대우:<br>
 <b>"n이 3의 배수가 아니면 n²도 3의 배수가 아니다"</b>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc;page-break-before:always;break-before:page">🧩 종합 활동 — 집합이 실제로 쓰이는 곳 (가장 어려운 내용, 맨 뒤에)</div>
+
+<div class="card">
+  <div class="card-meta">활동 3 — 데이터에서 집합 추출하기</div>
+  <div class="card-tag">여러 조건을 동시에 만족하는 사람 찾기</div>
+  <div class="card-body" style="font-weight:600">
+다음은 회원 명단이에요.<br><br>
+    <div style="border:1px solid #ccc;border-radius:8px;padding:.6rem 1rem;margin:.4rem 0;font-size:.88em;font-family:monospace;line-height:1.9">
+Alice — 서울, 22세<br>
+Bob — 부산, 17세<br>
+Charlie — 서울, 25세<br>
+David — 서울, 19세
+    </div>
+"서울에 살면서 나이가 20세 이상인 사람"의 모임을 조건제시법으로 쓰고, 해당하는 사람을 모두 찾으세요.<br><br>
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;font-size:.92em;color:#666;font-weight:400">
+조건제시법: S = { x | ________________________ }<br>
+정답: S = { __________________________ }
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">활동 3 — 풀이</div>
+  <div class="card-tag">💡 정답 S = {Alice, Charlie}</div>
+  <div class="card-body">
+조건제시법: S = { x | x는 서울에 살고, x의 나이는 20세 이상 }<br><br>
+서울 거주 집합을 C, 20세 이상 집합을 G라 하면 <b>S = C∩G</b>(교집합)예요 — "그리고"는 항상 교집합에 대응돼요.<br><br>
+확인: Alice(서울,22) ✓✓ 통과, Bob(부산,17) 둘 다 탈락, Charlie(서울,25) ✓✓ 통과, David(서울,19) 서울은 O 나이는 X → 탈락<br>
+<b>S = {Alice, Charlie}</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">활동 4 — 벤다이어그램으로 실전 계산하기</div>
+  <div class="card-tag">전체 인원에서 교집합 인원 역산하기</div>
+  <div class="card-body" style="font-weight:600">
+학생 20명 중 스마트폰을 가진 학생이 12명, 태블릿을 가진 학생이 9명, 둘 다 안 가진 학생이 3명이다. 스마트폰과 태블릿을 <b>둘 다</b> 가진 학생 수를 구하세요.<br><br>
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;font-size:.92em;color:#666;font-weight:400">▶ 힌트: 먼저 "적어도 하나 가진 사람 수"부터 구해보세요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">활동 4 — 풀이</div>
+  <div class="card-tag">💡 정답 4명</div>
+  <div class="card-body">
+<svg viewBox="0 0 220 140" width="100%" style="max-width:190px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="212" height="132" fill="none" stroke="#aaa" stroke-width="1.3"/>
+  <circle cx="90" cy="70" r="55" fill="rgba(99,102,241,.12)" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="150" cy="70" r="55" fill="rgba(249,115,22,.12)" stroke="#f97316" stroke-width="2"/>
+  <text x="50" y="45" font-size="10" fill="#6366f1" font-weight="700">스마트폰</text>
+  <text x="165" y="45" font-size="10" fill="#f97316" font-weight="700">태블릿</text>
+  <text x="65" y="75" font-size="11" fill="#333" font-weight="700">8</text>
+  <text x="115" y="75" font-size="11" fill="#4c1d95" font-weight="700">4</text>
+  <text x="168" y="75" font-size="11" fill="#333" font-weight="700">5</text>
+  <text x="10" y="16" font-size="9" fill="#666" font-weight="700">3(둘 다 없음)</text>
+</svg>
+<b>1단계</b>: 적어도 하나 가진 사람 = 전체 20 − 둘 다 없음 3 = <b>17명</b><br>
+<b>2단계</b>: n(A∪B) = n(A) + n(B) − n(A∩B) 공식을 이용<br>
+17 = 12 + 9 − n(A∩B) → <b>n(A∩B) = 4명</b><br><br>
+<span style="font-size:.85em;color:#555">검산: 스마트폰만 = 12−4=8명, 태블릿만 = 9−4=5명. 8+5+4(둘다)+3(둘다없음) = <b>20명</b> ✓ 전체와 일치</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">활동 5 — 마무리: 네 가지 언어로 다시 말해보기</div>
+  <div class="card-tag">앞에서 푼 문제, 표현 방식만 바꿔서 다시 확인</div>
+  <div class="card-body">
+앞에서 푼 활동 2·3·4를 다시 꺼내서, <b>우리말 / 조건제시법 / 파이썬 필터 / 벤다이어그램</b> 네 가지로 각각 어떻게 표현되는지 스스로 채워보세요. 같은 대상을 다른 언어로 계속 옮겨보는 연습이에요.<br><br>
+    <table style="width:100%;border-collapse:collapse;font-size:.82em;margin-top:8px">
+<tr style="border-bottom:1px solid #ccc"><th style="text-align:left;padding:5px 4px">문제</th><th style="text-align:left;padding:5px 4px">조건제시법</th><th style="text-align:left;padding:5px 4px">파이썬 필터</th><th style="text-align:left;padding:5px 4px">벤다이어그램 어디?</th></tr>
+<tr style="border-bottom:1px dashed #ccc"><td style="padding:8px 4px">활동2 (15의 약수)</td><td style="padding:8px 4px">{ x | ______ }</td><td style="padding:8px 4px">______________</td><td style="padding:8px 4px">______</td></tr>
+<tr style="border-bottom:1px dashed #ccc"><td style="padding:8px 4px">활동3 (서울·20세↑)</td><td style="padding:8px 4px">{ x | ______ }</td><td style="padding:8px 4px">______________</td><td style="padding:8px 4px">______</td></tr>
+<tr><td style="padding:8px 4px">활동4 (스마트폰∩태블릿)</td><td style="padding:8px 4px">______________</td><td style="padding:8px 4px">______________</td><td style="padding:8px 4px">______</td></tr>
+</table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">활동 5 — 풀이</div>
+  <div class="card-tag">💡 정답 및 설명</div>
+  <div class="card-body" style="font-size:.92em;line-height:1.95">
+<b>① 활동2 (15의 약수)</b><br>
+조건제시법: A = { x | x는 15의 약수 } (원소나열법: A={1,3,5,15})<br>
+파이썬: [x for x in range(1,16) if 15 % x == 0] → [1, 3, 5, 15]<br>
+벤다이어그램: 전체집합 U(자연수) 안에 원 A를 그리고, 그 안에 1·3·5·15 네 점<br><br>
+
+<b>② 활동3 (서울 거주·20세 이상)</b><br>
+조건제시법: S = { x | x는 서울에 살고, x의 나이는 20세 이상 } = C∩G<br>
+파이썬: [name for name,city,age in members if city=="서울" and age>=20] → ['Alice','Charlie']<br>
+검산: Bob(부산·17) 둘 다 탈락, David(서울·19) 나이만 탈락 → Alice, Charlie만 통과 ✓<br>
+벤다이어그램: "서울" 원과 "20세 이상" 원의 교집합에 Alice·Charlie. David는 서울 원 안이지만 교집합 밖(나이 원 밖). Bob은 두 원 다 밖<br><br>
+
+<b>③ 활동4 (스마트폰∩태블릿)</b><br>
+조건제시법: 스마트폰 소지자 A, 태블릿 소지자 B라 하면 구하는 건 n(A∩B)<br>
+계산: n(A∪B)=n(A)+n(B)−n(A∩B) → 17=12+9−n(A∩B) → n(A∩B)=<b>4명</b><br>
+벤다이어그램: 두 원 교집합에 4, A만 8, B만 5, 원 바깥에 3 → 8+5+4+3=20 ✓<br><br>
+<div class="toro-note">🦕 토로: 활동4는 개별 명단이 아니라 집계 숫자만 주어졌으니 실제 파이썬 필터 코드는 못 써요 — 대신 개념적으로는 <span style="font-family:monospace;font-size:.9em">[p for p in students if p.smartphone and p.tablet]</span> 형태이고, 실제 값은 벤다이어그램 계산으로 구한 4명이라는 걸 기억하세요.</div>
   </div>
 </div>
 
