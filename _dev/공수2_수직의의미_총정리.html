@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학2 · 수직의 의미 총정리 — 빌드 파일</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.formula-box{border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.6rem 0;font-size:.98em;line-height:2.0}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em;line-height:1.3}
+.frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
+.frac .den{padding:1px 4px 0}
+@media print{
+svg text{fill:#333!important}
+svg line{stroke:#aaa!important}
+svg rect{stroke:#aaa!important}
+svg circle{stroke:#aaa!important}
+svg path{stroke:#aaa!important}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 공통수학2 · 수직의 의미 총정리 (개념카드 전용)</div>
+    <div class="toolbar-sub">기울기·넓이·피타고라스·수직이등분선 — 네 가지 얼굴 → 점과 직선 거리·원의 접선·원의 현 세 응용 → 실전문제 3제(검산 포함)</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 수직의 의미 총정리</h1>
+
+<div class="card" style="background:rgba(99,102,241,.04);border:1.5px solid #6366f1">
+  <div class="card-meta">이 교재 전체를 관통하는 한 문장</div>
+  <div class="card-tag">"수직"이라는 한 단어가 네 가지 얼굴로 나타납니다</div>
+  <div class="card-body">
+🦕 <b>토로: 이 교재 전체에서 제일 중요한 문장이에요!</b><br><br>
+<div class="formula-box" style="background:rgba(99,102,241,.08);border:1.5px solid #6366f1;font-size:1em;font-weight:800">
+<div style="color:#4c1d95;line-height:2.1">1. 기울기로 본 수직: 기울기의 곱 = −1</div>
+<div style="color:#1d4ed8;line-height:2.1">2. 넓이로 본 수직: 밑변×높이가 통하려면 수직이어야</div>
+<div style="color:#15803d;line-height:2.1">3. 피타고라스로 본 수직: 직각이 있어야 a²+b²=c²</div>
+<div style="color:#b91c1c;line-height:2.1">4. 수직이등분선: 수직 + 이등분이 만나면 "같은 거리"</div>
+<div style="color:#92400e;margin-top:6px">→ 점과 직선의 거리, 원의 접선, 원의 현 — 전부 이 네 얼굴의 응용이에요.</div>
+</div>
+같은 "수직"이라는 성질이 상황에 따라 다른 도구로 나타날 뿐이에요. 뒤에서 개념 하나씩 확인한 다음, 실제 문제(개념 5~7)에서 어떤 얼굴이 쓰이는지 찾아보세요.
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:0">📍 수직의 네 가지 얼굴</div>
+
+<div class="card">
+  <div class="card-meta">수직의 의미 — 개념 1</div>
+  <div class="card-tag">기울기로 본 수직</div>
+  <div class="card-body">
+  <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:180px">
+두 직선이 수직이면, 한 직선을 90° 돌려야 다른 직선과 겹쳐요. 이걸 기울기로 표현하면:<br><br>
+<div class="formula-box">
+직선 l₁의 기울기 m₁, 직선 l₂의 기울기 m₂일 때<br>
+<b>l₁ ⊥ l₂ ⟺ m₁ × m₂ = −1</b>
+</div>
+예: y=2x+1과 y=−½x+3 → 기울기 곱 = 2×(−½) = <b>−1</b> → 수직<br><br>
+<span style="font-size:.85em;color:#555">한쪽 기울기를 알면 다른 쪽은 "역수 취하고 부호 반대"로 바로 나와요 — 2의 수직 방향 기울기는 −½.</span>
+    </div>
+    <svg viewBox="0 0 180 160" width="190" height="169" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="90" y1="10" x2="90" y2="150" stroke="#999" stroke-width="1"/>
+  <line x1="10" y1="80" x2="170" y2="80" stroke="#999" stroke-width="1"/>
+  <line x1="30" y1="150" x2="150" y2="20" stroke="#6366f1" stroke-width="2.5"/>
+  <line x1="30" y1="20" x2="150" y2="150" stroke="#f97316" stroke-width="2.5"/>
+  <text x="34" y="145" font-size="10" fill="#6366f1" font-weight="700">y=2x+b</text>
+  <text x="100" y="145" font-size="10" fill="#f97316" font-weight="700">y=−½x+b</text>
+</svg>
+  </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">수직의 의미 — 개념 2</div>
+  <div class="card-tag">넓이로 본 수직</div>
+  <div class="card-body">
+  <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:180px">
+삼각형 넓이 = ½×밑변×높이 공식은, 밑변과 높이가 <b>서로 수직</b>일 때만 그대로 쓸 수 있어요. 수직이 아닌 두 변의 길이를 곱해서 ½을 곱하면 틀린 답이 나와요.<br><br>
+<div class="formula-box">
+<b>넓이 = ½ × 밑변 × 높이</b> (밑변⊥높이일 때만)
+</div>
+예: 밑변 3, 높이 4(서로 수직) → 넓이 = ½×3×4 = <b>6</b><br><br>
+<span style="font-size:.85em;color:#555">두 변이 수직이 아니면, 높이를 따로 구해야 해요(수선을 내려서) — 그래서 "수직인 두 변"을 밑변·높이로 잡는 게 제일 편해요.</span>
+    </div>
+    <svg viewBox="0 0 160 140" width="170" height="149" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="110" x2="140" y2="110" stroke="#333" stroke-width="1.8"/>
+  <line x1="20" y1="110" x2="20" y2="30" stroke="#333" stroke-width="1.8"/>
+  <line x1="20" y1="30" x2="140" y2="110" stroke="#6366f1" stroke-width="2.5"/>
+  <rect x="20" y="100" width="10" height="10" fill="none" stroke="#999" stroke-width="1"/>
+  <text x="70" y="126" font-size="10" fill="#333">밑변(3)</text>
+  <text x="2" y="72" font-size="10" fill="#333">높이(4)</text>
+</svg>
+  </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">수직의 의미 — 개념 3</div>
+  <div class="card-tag">피타고라스로 본 수직</div>
+  <div class="card-body">
+  <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:180px">
+직각삼각형에서만 성립하는 식이 피타고라스 정리예요. <b>직각(수직)이 있어야만</b> 변의 길이들을 이 식으로 연결할 수 있어요.<br><br>
+<div class="formula-box">
+직각삼각형의 두 직각변 a,b, 빗변 c일 때<br>
+<b>a² + b² = c²</b>
+</div>
+예: 직각을 낀 두 변 3, 4 → 빗변 c = √(3²+4²) = √25 = <b>5</b><br><br>
+<span style="font-size:.85em;color:#555">3-4-5, 5-12-13처럼 정수로 딱 떨어지는 조합을 "피타고라스 세 쌍"이라고 불러요 — 익숙해지면 계산이 훨씬 빨라져요.</span>
+    </div>
+    <svg viewBox="0 0 160 140" width="170" height="149" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="110" x2="140" y2="110" stroke="#333" stroke-width="1.8"/>
+  <line x1="20" y1="110" x2="20" y2="30" stroke="#333" stroke-width="1.8"/>
+  <line x1="20" y1="30" x2="140" y2="110" stroke="#f97316" stroke-width="2.5"/>
+  <rect x="20" y="100" width="10" height="10" fill="none" stroke="#999" stroke-width="1"/>
+  <text x="70" y="126" font-size="10" fill="#333">3</text>
+  <text x="4" y="72" font-size="10" fill="#333">4</text>
+  <text x="78" y="66" font-size="10" fill="#f97316" font-weight="700">c</text>
+</svg>
+  </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">수직의 의미 — 개념 4</div>
+  <div class="card-tag">수직이등분선 — 수직과 이등분이 만나면?</div>
+  <div class="card-body">
+  <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:180px">
+선분 AB의 <b>수직이등분선</b>은 AB와 수직으로 만나면서 동시에 AB를 정확히 반으로 나누는 직선이에요. 이 선 위의 어떤 점에서 재도, A까지 거리와 B까지 거리가 항상 같아요.<br><br>
+<div class="formula-box">
+P가 선분 AB의 수직이등분선 위의 점이면 <b>PA = PB</b>
+</div>
+증명: △PMA와 △PMB는 PM 공통, MA=MB(이등분), ∠PMA=∠PMB=90°(수직) → SAS 합동 → PA=PB<br><br>
+<span style="font-size:.85em;color:#555">"수직"만으로는 못 만드는 성질이에요 — 반드시 "이등분"까지 같이 있어야 PA=PB가 성립해요.</span>
+    </div>
+    <svg viewBox="0 0 180 140" width="190" height="148" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="90" x2="150" y2="90" stroke="#f97316" stroke-width="2.5"/>
+  <line x1="90" y1="20" x2="90" y2="130" stroke="#6366f1" stroke-width="2.5"/>
+  <circle cx="30" cy="90" r="4.5" fill="#f97316"/>
+  <circle cx="150" cy="90" r="4.5" fill="#f97316"/>
+  <circle cx="90" cy="90" r="3.5" fill="#333"/>
+  <circle cx="90" cy="40" r="4" fill="#4c1d95"/>
+  <line x1="90" y1="40" x2="30" y2="90" stroke="#999" stroke-width="1.3" stroke-dasharray="3 2"/>
+  <line x1="90" y1="40" x2="150" y2="90" stroke="#999" stroke-width="1.3" stroke-dasharray="3 2"/>
+  <rect x="83" y="83" width="9" height="9" fill="none" stroke="#999" stroke-width="1"/>
+  <text x="14" y="84" font-size="10" fill="#f97316" font-weight="700">A</text>
+  <text x="154" y="84" font-size="10" fill="#f97316" font-weight="700">B</text>
+  <text x="96" y="88" font-size="9" fill="#333">M(중점)</text>
+  <text x="96" y="34" font-size="10" fill="#4c1d95" font-weight="700">P</text>
+</svg>
+  </div>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc;page-break-before:always;break-before:page">🎯 수직이 실제로 쓰이는 곳</div>
+
+<div class="card">
+  <div class="card-meta">수직의 의미 — 개념 5 (2,3의 응용)</div>
+  <div class="card-tag">점과 직선 사이의 거리 — 왜 수선이 최단일까</div>
+  <div class="card-body">
+  <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:190px">
+점과 직선 사이의 거리 공식은 사실 "점에서 직선에 내린 <b>수선</b>의 길이"예요. 왜 수선이 최단 거리인지, 피타고라스로 증명해볼게요.<br><br>
+직선 위의 임의의 다른 점 Q를 잡으면, 삼각형 PHQ는 H에서 직각이에요(PH⊥직선). 피타고라스에 의해:<br><br>
+<div class="formula-box">
+<b>PQ² = PH² + HQ²</b> → HQ≠0이면 PQ &gt; PH
+</div>
+즉 수선의 발 H가 아닌 다른 점 Q는 항상 PH보다 <b>더 먼</b> 거리를 만들어요 — 그래서 수선의 길이(PH)가 최단 거리예요.<br><br>
+예: 점 (1,2)와 직선 3x+4y−6=0 → d = <span class="frac"><span class="num">|3+8−6|</span><span class="den">5</span></span> = <b>1</b> (거리공식 총정리 개념3과 동일)
+    </div>
+    <svg viewBox="0 0 210 140" width="220" height="147" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="15" y1="110" x2="200" y2="110" stroke="#333" stroke-width="2"/>
+  <circle cx="130" cy="35" r="4.5" fill="#4c1d95"/>
+  <line x1="130" y1="35" x2="130" y2="110" stroke="#6366f1" stroke-width="2.5"/>
+  <line x1="130" y1="35" x2="60" y2="110" stroke="#f97316" stroke-width="2" stroke-dasharray="4 3"/>
+  <circle cx="130" cy="110" r="3.5" fill="#333"/>
+  <circle cx="60" cy="110" r="3.5" fill="#f97316"/>
+  <rect x="122" y="102" width="8" height="8" fill="none" stroke="#999" stroke-width="1"/>
+  <text x="136" y="32" font-size="10" fill="#4c1d95" font-weight="700">P</text>
+  <text x="134" y="75" font-size="9" fill="#6366f1" font-weight="700">PH(수선)</text>
+  <text x="132" y="122" font-size="9" fill="#333">H(수선의 발)</text>
+  <text x="30" y="122" font-size="10" fill="#f97316" font-weight="700">Q(다른 점)</text>
+</svg>
+  </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">수직의 의미 — 개념 6 (3의 응용)</div>
+  <div class="card-tag">원의 접선의 길이</div>
+  <div class="card-body">
+  <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:190px">
+원의 접선은 반드시 그 접점에서의 <b>반지름과 수직</b>이에요. 이 성질 하나로 접선의 길이를 구할 수 있어요.<br><br>
+삼각형 CTP는 T에서 직각(반지름⊥접선)이에요. 피타고라스(개념 3)를 그대로 적용:<br><br>
+<div class="formula-box">
+중심 C, 반지름 r, 외부점 P, CP=d일 때<br>
+<b>접선의 길이 PT = √(d² − r²)</b>
+</div>
+예: 원 중심(0,0), r=3, 외부점 P(5,0) → CP=5 → PT = √(5²−3²) = √16 = <b>4</b><br><br>
+<span style="font-size:.85em;color:#555">이것도 거리공식 총정리 개념 2(두 점 사이 거리)로 CP부터 구하고, 개념 3(피타고라스)로 마무리하는 구조예요.</span>
+    </div>
+    <svg viewBox="0 0 190 140" width="200" height="147" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="70" cy="90" r="60" fill="rgba(99,102,241,.06)" stroke="#6366f1" stroke-width="1.8"/>
+  <circle cx="70" cy="90" r="4" fill="#4c1d95"/>
+  <circle cx="170" cy="90" r="4.5" fill="#f97316"/>
+  <circle cx="106" cy="42" r="3.5" fill="#333"/>
+  <line x1="70" y1="90" x2="106" y2="42" stroke="#6366f1" stroke-width="2"/>
+  <line x1="106" y1="42" x2="170" y2="90" stroke="#f97316" stroke-width="2.5"/>
+  <line x1="70" y1="90" x2="170" y2="90" stroke="#999" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="98" y="47" width="9" height="9" fill="none" stroke="#999" stroke-width="1" transform="rotate(53 106 42)"/>
+  <text x="58" y="84" font-size="10" fill="#4c1d95" font-weight="700">C</text>
+  <text x="174" y="86" font-size="10" fill="#f97316" font-weight="700">P</text>
+  <text x="110" y="38" font-size="9" fill="#333">T(접점)</text>
+</svg>
+  </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">수직의 의미 — 개념 7 (3,4의 응용)</div>
+  <div class="card-tag">원의 현의 길이</div>
+  <div class="card-body">
+  <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:190px">
+원의 중심에서 현(chord)에 내린 수선은 그 현을 <b>정확히 반으로 나눠요</b> — 개념 4(수직이등분선)의 반대 방향 응용이에요.<br><br>
+삼각형 CMA는 M에서 직각(수선⊥현)이에요. 빗변 CA=r, 한 변 CM=d(중심-현 거리), 나머지 변 MA(현의 절반)를 피타고라스로 구하고 2배 하면 끝:<br><br>
+<div class="formula-box">
+반지름 r, 중심에서 현까지 거리 d일 때<br>
+<b>현의 길이 = 2√(r² − d²)</b>
+</div>
+예: 반지름 r=5, 중심-현 거리 d=3 → 현의 절반 = √(5²−3²)=4 → <b>현의 길이 = 8</b><br><br>
+<div class="toro-note">🦕 토로: 접선(개념 6)은 반지름이 빗변, 현(개념 7)은 반지름이 빗변인 게 같아요 — 딱 하나 다른 건 직각이 어디 있느냐(접점 vs 현의 중점)뿐이에요. 결국 <b>"수직이 만든 직각삼각형 + 피타고라스"</b>라는 같은 이야기의 두 버전입니다.</div>
+    </div>
+    <svg viewBox="0 0 180 140" width="190" height="148" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="90" cy="70" r="50" fill="rgba(99,102,241,.06)" stroke="#6366f1" stroke-width="1.8"/>
+  <circle cx="90" cy="70" r="3.5" fill="#4c1d95"/>
+  <line x1="46" y1="98" x2="134" y2="98" stroke="#f97316" stroke-width="2.5"/>
+  <circle cx="46" cy="98" r="4" fill="#f97316"/>
+  <circle cx="134" cy="98" r="4" fill="#f97316"/>
+  <circle cx="90" cy="98" r="3.5" fill="#333"/>
+  <line x1="90" y1="70" x2="90" y2="98" stroke="#6366f1" stroke-width="2"/>
+  <rect x="82" y="90" width="8" height="8" fill="none" stroke="#999" stroke-width="1"/>
+  <text x="80" y="62" font-size="10" fill="#4c1d95" font-weight="700">C</text>
+  <text x="96" y="86" font-size="9" fill="#333">M</text>
+  <text x="30" y="112" font-size="10" fill="#f97316" font-weight="700">A</text>
+  <text x="138" y="112" font-size="10" fill="#f97316" font-weight="700">B</text>
+</svg>
+  </div>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc;page-break-before:always;break-before:page">✏️ 직접 풀어보기 — 정답과 풀이는 각 문제 바로 뒤에</div>
+
+<div class="card">
+  <div class="card-meta">수직의 의미 — 실전문제 1 (개념 5 응용)</div>
+  <div class="card-tag">문제 1 — 점과 직선 사이의 거리로 삼각형 넓이 구하기</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+직선 3x+4y−12=0이 x축, y축과 만나는 점을 각각 A, B라 하자. 원점 O에서 직선 AB까지의 거리를 이용하여 삼각형 OAB의 넓이를 구하시오.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">실전문제 1 — 풀이</div>
+  <div class="card-tag">💡 정답 6</div>
+  <div class="card-body">
+  <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:190px">
+<b>1단계 — 절편 구하기</b>: y=0 대입 → 3x=12 → A(4,0). x=0 대입 → 4y=12 → B(0,3).<br><br>
+<b>2단계 — 원점에서 직선까지의 거리(개념 5)</b>: d = <span class="frac"><span class="num">|3(0)+4(0)−12|</span><span class="den">√(3²+4²)</span></span> = <span class="frac"><span class="num">12</span><span class="den">5</span></span> = <b>2.4</b><br><br>
+<b>3단계 — 넓이 계산</b>: AB = √(4²+3²) = 5, 넓이 = ½×AB×d = ½×5×2.4 = <b>6</b><br><br>
+<span style="font-size:.85em;color:#555">검산: 삼각형 OAB는 O에서 직각인 직각삼각형이니까, 넓이 = ½×OA×OB = ½×4×3 = 6 ✓ — 두 가지 방법(직접 계산 vs 점과 직선 거리)이 같은 답을 줘요. "밑변×높이"의 높이가 사실 점과 직선 사이의 거리였던 거예요.</span>
+    </div>
+    <svg viewBox="0 0 180 160" width="190" height="169" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="15" y1="140" x2="165" y2="140" stroke="#999" stroke-width="1"/>
+  <line x1="30" y1="150" x2="30" y2="30" stroke="#999" stroke-width="1"/>
+  <line x1="150" y1="140" x2="30" y2="50" stroke="#f97316" stroke-width="2.5"/>
+  <line x1="30" y1="140" x2="150" y2="140" stroke="#333" stroke-width="1.6"/>
+  <line x1="30" y1="140" x2="30" y2="50" stroke="#333" stroke-width="1.6"/>
+  <circle cx="30" cy="140" r="4" fill="#333"/>
+  <circle cx="150" cy="140" r="4" fill="#4c1d95"/>
+  <circle cx="30" cy="50" r="4" fill="#4c1d95"/>
+  <circle cx="73" cy="82" r="3.5" fill="#6366f1"/>
+  <line x1="30" y1="140" x2="73" y2="82" stroke="#6366f1" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <rect x="66" y="80" width="8" height="8" fill="none" stroke="#999" stroke-width="1" transform="rotate(53 73 82)"/>
+  <text x="16" y="152" font-size="10" fill="#333" font-weight="700">O</text>
+  <text x="154" y="144" font-size="10" fill="#4c1d95" font-weight="700">A(4,0)</text>
+  <text x="8" y="46" font-size="10" fill="#4c1d95" font-weight="700">B(0,3)</text>
+  <text x="46" y="96" font-size="9" fill="#6366f1" font-weight="700">d=2.4</text>
+</svg>
+  </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">수직의 의미 — 실전문제 2 (개념 6 응용)</div>
+  <div class="card-tag">문제 2 — 원의 접선의 길이</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+중심이 원점이고 반지름이 6인 원이 있다. 점 P(8,6)에서 이 원에 그은 접선의 길이를 구하시오.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">실전문제 2 — 풀이</div>
+  <div class="card-tag">💡 정답 8</div>
+  <div class="card-body">
+  <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:190px">
+<b>1단계 — 중심에서 P까지의 거리(개념 2)</b>: CP = √(8²+6²) = √100 = <b>10</b><br><br>
+<b>2단계 — 접선의 길이(개념 6)</b>: PT = √(CP²−r²) = √(10²−6²) = √64 = <b>8</b><br><br>
+<span style="font-size:.85em;color:#555">검산: 6-8-10은 3-4-5의 2배 — 피타고라스 세 쌍이라 계산이 딱 떨어져요. 반지름(6), 접선(8), CP(10)이 정확히 직각삼각형을 이룹니다.</span>
+    </div>
+    <svg viewBox="0 0 170 160" width="180" height="169" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="70" cy="90" r="60" fill="rgba(99,102,241,.06)" stroke="#6366f1" stroke-width="1.8"/>
+  <circle cx="70" cy="90" r="4" fill="#4c1d95"/>
+  <circle cx="70" cy="30" r="4" fill="#333"/>
+  <circle cx="150" cy="30" r="4.5" fill="#f97316"/>
+  <line x1="70" y1="90" x2="70" y2="30" stroke="#6366f1" stroke-width="2"/>
+  <line x1="70" y1="30" x2="150" y2="30" stroke="#f97316" stroke-width="2.5"/>
+  <line x1="70" y1="90" x2="150" y2="30" stroke="#999" stroke-width="1.1" stroke-dasharray="3 2"/>
+  <rect x="70" y="30" width="8" height="8" fill="none" stroke="#999" stroke-width="1"/>
+  <text x="30" y="84" font-size="10" fill="#4c1d95" font-weight="700">O(0,0)</text>
+  <text x="30" y="22" font-size="10" fill="#333" font-weight="700">T(0,6)</text>
+  <text x="154" y="26" font-size="10" fill="#f97316" font-weight="700">P(8,6)</text>
+</svg>
+  </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">수직의 의미 — 실전문제 3 (개념 7 응용)</div>
+  <div class="card-tag">문제 3 — 원의 현의 길이</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+중심이 점 (5,3)이고 y축에 접하는 원이 있다. 이 원이 x축에 의하여 잘리는 현의 길이를 구하시오.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">실전문제 3 — 풀이</div>
+  <div class="card-tag">💡 정답 8</div>
+  <div class="card-body">
+  <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:190px">
+<b>1단계 — 반지름 구하기</b>: y축에 접하므로 반지름 r = 중심의 x좌표 = <b>5</b><br><br>
+<b>2단계 — 중심에서 x축까지의 거리</b>: 중심 (5,3)에서 x축까지 거리 d = <b>3</b><br><br>
+<b>3단계 — 현의 길이(개념 7)</b>: 현의 길이 = 2√(r²−d²) = 2√(5²−3²) = 2√16 = 2×4 = <b>8</b><br><br>
+<span style="font-size:.85em;color:#555">검산: 원의 방정식 (x−5)²+(y−3)²=25에 y=0 대입 → (x−5)²=16 → x=1 또는 x=9. 두 교점 (1,0), (9,0) 사이 거리 = 9−1 = 8 ✓</span>
+    </div>
+    <svg viewBox="0 0 200 170" width="200" height="170" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="10" y1="120" x2="190" y2="120" stroke="#999" stroke-width="1"/>
+  <line x1="20" y1="150" x2="20" y2="10" stroke="#999" stroke-width="1"/>
+  <circle cx="95" cy="75" r="75" fill="rgba(99,102,241,.06)" stroke="#6366f1" stroke-width="1.8"/>
+  <circle cx="95" cy="75" r="4" fill="#4c1d95"/>
+  <line x1="35" y1="120" x2="155" y2="120" stroke="#f97316" stroke-width="2.5"/>
+  <circle cx="35" cy="120" r="4" fill="#f97316"/>
+  <circle cx="155" cy="120" r="4" fill="#f97316"/>
+  <circle cx="95" cy="120" r="3.5" fill="#333"/>
+  <line x1="95" y1="75" x2="95" y2="120" stroke="#6366f1" stroke-width="2"/>
+  <rect x="87" y="112" width="8" height="8" fill="none" stroke="#999" stroke-width="1"/>
+  <text x="98" y="70" font-size="10" fill="#4c1d95" font-weight="700">C(5,3)</text>
+  <text x="98" y="112" font-size="9" fill="#333">M(5,0)</text>
+  <text x="16" y="134" font-size="10" fill="#f97316" font-weight="700">(1,0)</text>
+  <text x="158" y="134" font-size="10" fill="#f97316" font-weight="700">(9,0)</text>
+</svg>
+  </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
