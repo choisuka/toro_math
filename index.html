@@ -335,8 +335,8 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
         <div class="topic-card" onclick="showScreen('grade-gs2')" style="border:1px solid rgba(125,211,252,.35);background:linear-gradient(155deg,#071520,#0d1f2e);grid-column:1/-1">
           <div class="ico">📍</div>
           <div class="name" style="color:#7dd3fc">공통수학2</div>
-          <div class="desc">평면좌표·직선의 방정식 · 원의 방정식 · 도형의 이동</div>
-          <span class="tag" style="background:rgba(125,211,252,.15);color:#7dd3fc;border:1px solid rgba(125,211,252,.35);margin-top:6px">6개 주제</span>
+          <div class="desc">평면좌표 · 직선의 방정식 · 원의 방정식 · 도형의 이동</div>
+          <span class="tag" style="background:rgba(125,211,252,.15);color:#7dd3fc;border:1px solid rgba(125,211,252,.35);margin-top:6px">7개 주제</span>
         </div>
       </div>
 
@@ -657,9 +657,15 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       <div style="width:60px"></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
-      <div class="topic-card" onclick="showScreen('coord-hub')" style="border:1px solid rgba(125,211,252,.3);background:linear-gradient(155deg,#071520,#0d1f2e);grid-column:1/-1">
+      <div class="topic-card" onclick="showScreen('plane-hub')" style="border:1px solid rgba(134,239,172,.3);background:linear-gradient(155deg,#071a10,#0d2318);grid-column:1/-1">
         <div class="ico">📍</div>
-        <div class="name" style="color:#7dd3fc">평면좌표·직선의 방정식</div>
+        <div class="name" style="color:#86efac">평면좌표</div>
+        <div class="desc">두 점 사이의 거리 · 내분점 — 도형의 방정식의 출발점</div>
+        <span class="tag" style="background:rgba(134,239,172,.15);color:#86efac;border:1px solid rgba(134,239,172,.35);margin-top:6px">공통수학2 ★아르모니아</span>
+      </div>
+      <div class="topic-card" onclick="showScreen('coord-hub')" style="border:1px solid rgba(125,211,252,.3);background:linear-gradient(155deg,#071520,#0d1f2e);grid-column:1/-1">
+        <div class="ico">✏️</div>
+        <div class="name" style="color:#7dd3fc">직선의 방정식</div>
         <div class="desc">🇫🇮 위치의 표현 · 🇸🇬 좌표 모델 · ✡️ 기하의 대수화</div>
         <span class="tag" style="background:rgba(125,211,252,.15);color:#7dd3fc;border:1px solid rgba(125,211,252,.35);margin-top:6px">공통수학2 ★아르모니아</span>
       </div>
@@ -1217,6 +1223,192 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
         <div style="font-size:.62rem;color:#aaa;line-height:1.4">원과 점·직선·원<br>+실전 예제</div>
         <div style="font-size:.6rem;color:#fca5a5;opacity:.8;margin-top:5px">5장 →</div>
       </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     평면좌표 허브
+══════════════════════════════════ -->
+<div id="plane-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 수학왕국</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#86efac">📍 평면좌표</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">주제별로 나뉘어 있어요 — 제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button onclick="startCards('distance-plane','plane-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(134,239,172,.1),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📏</div>
+        <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.75rem;margin:5px 0 4px;line-height:1.3">두 점 사이의 거리</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">수직선 → 평면</div>
+        <div style="font-size:.6rem;color:#86efac;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('plane-section','plane-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(134,239,172,.1),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📌</div>
+        <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.75rem;margin:5px 0 4px;line-height:1.3">내분점</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">공식+중점<br>(외분점은 개정에서 제외)</div>
+        <div style="font-size:.6rem;color:#86efac;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('plane-ideas','plane-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(196,181,253,.1),rgba(196,181,253,.03));border:1px solid rgba(196,181,253,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🗺️</div>
+        <div style="font-family:'Jua',sans-serif;color:#c4b5fd;font-size:.75rem;margin:5px 0 4px;line-height:1.3">아이디어 모음</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">이등변·직각·정삼각형<br>평행사변형·무게중심·외심</div>
+        <div style="font-size:.6rem;color:#c4b5fd;opacity:.8;margin-top:5px">1장 →</div>
+      </button>
+      <button onclick="startCards('plane-practice','plane-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">✏️</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.75rem;margin:5px 0 4px;line-height:1.3">실전연습</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">외심·정수거리<br>+결합형 최고난도</div>
+        <div style="font-size:.6rem;color:#fbbf24;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     직선의 방정식 허브
+══════════════════════════════════ -->
+<div id="coord-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 수학왕국</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#7dd3fc">✏️ 직선의 방정식</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">주제별로 나뉘어 있어요 — 제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="startCards('coord-slope','coord-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📐</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.72rem;margin:5px 0 4px;line-height:1.3">① 기울기란?</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">비율·두점·각도</div>
+        <div style="font-size:.58rem;color:#7dd3fc;opacity:.8;margin-top:5px">1장 →</div>
+      </button>
+      <button onclick="startCards('coord-forms','coord-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">✏️</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.72rem;margin:5px 0 4px;line-height:1.3">② 직선의 방정식</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">점+기울기·두점<br>절편형·일반형</div>
+        <div style="font-size:.58rem;color:#7dd3fc;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('coord-relation','coord-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">✕</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.72rem;margin:5px 0 4px;line-height:1.3">③ 두 직선의 위치관계</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">평행·일치<br>교차·수직</div>
+        <div style="font-size:.58rem;color:#7dd3fc;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+      <button onclick="startCards('coord-vertex','coord-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(167,139,250,.1),rgba(167,139,250,.03));border:1px solid rgba(167,139,250,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📌</div>
+        <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.72rem;margin:5px 0 4px;line-height:1.3">④ 정점을 지나는 직선</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">항등식 원리<br>+심화3제</div>
+        <div style="font-size:.58rem;color:#a78bfa;opacity:.8;margin-top:5px">5장 →</div>
+      </button>
+      <button onclick="startCards('coord-ptdist','coord-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📏</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.72rem;margin:5px 0 4px;line-height:1.3">⑤ 점과 직선 거리</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">공식+심화3제<br>+산술기하평균</div>
+        <div style="font-size:.58rem;color:#fbbf24;opacity:.8;margin-top:5px">6장 →</div>
+      </button>
+      <button onclick="startCards('coord-locus','coord-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(244,114,182,.1),rgba(244,114,182,.03));border:1px solid rgba(244,114,182,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🌀</div>
+        <div style="font-family:'Jua',sans-serif;color:#f472b6;font-size:.72rem;margin:5px 0 4px;line-height:1.3">⑥ 자취의 방정식</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">조건→식 세우기</div>
+        <div style="font-size:.58rem;color:#f472b6;opacity:.8;margin-top:5px">1장 →</div>
+      </button>
+      <button onclick="startCards('coord-ideas','coord-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(196,181,253,.1),rgba(196,181,253,.03));border:1px solid rgba(196,181,253,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🗺️</div>
+        <div style="font-family:'Jua',sans-serif;color:#c4b5fd;font-size:.72rem;margin:5px 0 4px;line-height:1.3">아이디어 모음</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">이런 표현이<br>나오면 이 도구</div>
+        <div style="font-size:.58rem;color:#c4b5fd;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+      <button onclick="startCards('coord-summary','coord-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(148,163,184,.1),rgba(148,163,184,.03));border:1px solid rgba(148,163,184,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🗂️</div>
+        <div style="font-family:'Jua',sans-serif;color:#cbd5e1;font-size:.72rem;margin:5px 0 4px;line-height:1.3">총정리·판별드릴</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">한눈에 보기<br>+용어·개념 확인</div>
+        <div style="font-size:.58rem;color:#cbd5e1;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+      <button onclick="showScreen('coord-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(52,211,153,.1),rgba(52,211,153,.03));border:1px solid rgba(52,211,153,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">✏️</div>
+        <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.72rem;margin:5px 0 4px;line-height:1.3">실전훈련</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">문항 17제<br>+실생활 연결</div>
+        <div style="font-size:.58rem;color:#34d399;opacity:.8;margin-top:5px">5장 →</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     평면좌표·직선의 방정식: 실전훈련 서브허브
+══════════════════════════════════ -->
+<div id="coord-practice-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 직선의 방정식</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#34d399">✏️ 직선의 방정식 실전훈련</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">난이도별로 나뉘어 있어요 — 제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button onclick="startCards('coord-drill2','coord-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(148,163,184,.1),rgba(148,163,184,.03));border:1px solid rgba(148,163,184,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📝</div>
+        <div style="font-family:'Jua',sans-serif;color:#cbd5e1;font-size:.75rem;margin:5px 0 4px;line-height:1.3">판별 드릴</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">서랍 8개 워밍업</div>
+        <div style="font-size:.6rem;color:#cbd5e1;opacity:.8;margin-top:5px">1장 →</div>
+      </button>
+      <button onclick="startCards('coord-basic','coord-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">①</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">기본 (문항1~6)</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">난이도 하</div>
+        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">6장 →</div>
+      </button>
+      <button onclick="startCards('coord-inter','coord-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(167,139,250,.1),rgba(167,139,250,.03));border:1px solid rgba(167,139,250,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">②</div>
+        <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.75rem;margin:5px 0 4px;line-height:1.3">응용 (문항7~12)</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">난이도 중~고난도</div>
+        <div style="font-size:.6rem;color:#a78bfa;opacity:.8;margin-top:5px">6장 →</div>
+      </button>
+      <button onclick="startCards('coord-advanced','coord-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,146,60,.1),rgba(251,146,60,.03));border:1px solid rgba(251,146,60,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🔥</div>
+        <div style="font-family:'Jua',sans-serif;color:#fb923c;font-size:.75rem;margin:5px 0 4px;line-height:1.3">최고난도 (13~17)</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">기출 최상위권</div>
+        <div style="font-size:.6rem;color:#fb923c;opacity:.8;margin-top:5px">6장 →</div>
+      </button>
+      <button onclick="startCards('coord-real','coord-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit;grid-column:1/-1">
+        <div style="font-size:1.4rem">🌊</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">실생활 연결 — 해수면·북극곰·인구감소</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">이 단원이 실제로 하는 일 (3장)</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     원의 방정식 허브
+══════════════════════════════════ -->
+<div id="circle-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 수학왕국</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#34d399">⭕ 원의 방정식</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">주제별로 나뉘어 있어요 — 제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button onclick="startCards('circle-def','circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(52,211,153,.1),rgba(52,211,153,.03));border:1px solid rgba(52,211,153,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">⭕</div>
+        <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.75rem;margin:5px 0 4px;line-height:1.3">원의 방정식이란?</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">표준형<br>일반형→표준형</div>
+        <div style="font-size:.6rem;color:#34d399;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('circle-tangent','circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(52,211,153,.1),rgba(52,211,153,.03));border:1px solid rgba(52,211,153,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📐</div>
+        <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.75rem;margin:5px 0 4px;line-height:1.3">접선의 방정식</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">기울기로 구하기<br>원 위의 점에서</div>
+        <div style="font-size:.6rem;color:#34d399;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+    </div>
+    <div style="margin-top:14px;background:rgba(196,181,253,.08);border:1px solid rgba(196,181,253,.35);border-radius:12px;padding:10px 14px;font-size:.72rem;color:#c4b5fd;line-height:1.7">
+      🔗 원과 직선의 위치관계(d와 r 비교), 접선의 길이, 두 원의 위치관계는 <b>거리 공식 총정리 / 수직의 의미 총정리</b>에서 이미 다뤘어요.
     </div>
   </div>
 </div>
@@ -11455,6 +11647,770 @@ d &lt; r₁−r₂ → 한 원이 다른 원 안에(안 만남)
 </div>`, ans:null }
 ],
 
+/* ── 평면좌표 ── */
+'plane-section': [
+{ tag:'내분점 — 개념과 공식', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+선분 AB를 m:n으로 <b style="color:#86efac">내분</b>한다는 건, 점 P가 선분 AB 위에서 AP:PB=m:n이 되도록 나누는 거예요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">P = (<span class="frac"><span class="num">nx₁+mx₂</span><span class="den">m+n</span></span>, <span class="frac"><span class="num">ny₁+my₂</span><span class="den">m+n</span></span>)</b>
+</div>
+A(x₁,y₁), B(x₂,y₂)를 m:n으로 내분하는 점이에요.<br><br>
+예: A(1,2), B(7,8)를 2:1로 내분하는 점은?<br>
+x=<span class="frac"><span class="num">1×1+2×7</span><span class="den">2+1</span></span>=<span class="frac"><span class="num">15</span><span class="den">3</span></span>=5, y=<span class="frac"><span class="num">1×2+2×8</span><span class="den">3</span></span>=<span class="frac"><span class="num">18</span><span class="den">3</span></span>=6 → <b>P(5,6)</b><br><br>
+<span style="font-size:.8rem;color:#94a3b8">m:n에서 큰 쪽 비율이 곱해지는 좌표는 <b>반대쪽</b> 점이에요(2:1이면 x₁에 1이, x₂에 2가 곱해짐) — P가 B 쪽으로 더 가깝다는 뜻이니까, B의 가중치(m)가 커지는 게 맞아요.</span>
+</div>`, ans:null },
+
+{ tag:'중점 — 내분점의 특수한 경우(1:1)', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+중점은 <b style="color:#86efac">m=n=1(1:1로 내분)</b>인 특수한 경우예요 — 새 공식이 아니라 내분점 공식에 그대로 대입한 결과.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">M = (<span class="frac"><span class="num">x₁+x₂</span><span class="den">2</span></span>, <span class="frac"><span class="num">y₁+y₂</span><span class="den">2</span></span>)</b>
+</div>
+예: A(1,2), B(7,8)의 중점 → M=(4,5)<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>기본예제</b>: A(−2,3), B(4,−3)를 1:2로 내분하는 점은?<br>
+x=<span class="frac"><span class="num">2×(−2)+1×4</span><span class="den">3</span></span>=<span class="frac"><span class="num">0</span><span class="den">3</span></span>=0, y=<span class="frac"><span class="num">2×3+1×(−3)</span><span class="den">3</span></span>=<span class="frac"><span class="num">3</span><span class="den">3</span></span>=1 → <b>(0,1)</b>
+</div><br>
+<span style="font-size:.8rem;color:#94a3b8">⚠️ 2022 개정 교육과정에서는 외분점이 빠졌어요 — 이 단원에서는 <b>내분점(과 그 특수경우인 중점)</b>까지만 다룹니다.</span>
+</div>`, ans:null }
+],
+
+'plane-ideas': [
+{ tag:'평면좌표 — 아이디어 모음(이런 표현이 나오면)', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.95">
+평면좌표 단원은 "두 점 사이의 거리"와 "내분점" 두 도구만으로 다양한 도형을 판별해요.<br><br>
+<b style="color:#c4b5fd">이등변삼각형 판별</b>: AB=BC, BC=CA, CA=AB 중 어느 게 같은지 직접 다 확인(케이스분류)<br>
+<b style="color:#c4b5fd">직각삼각형 판별</b>: 피타고라스 역 a²+b²=c², 어느 변이 빗변인지 케이스분류<br>
+<b style="color:#c4b5fd">정삼각형 조건</b>: AB=BC=CA를 동시에(연립)<br>
+<b style="color:#c4b5fd">평행사변형 판별</b>: "대각선이 서로를 이등분" → 두 대각선의 중점이 같음(내분점 1:1)<br>
+<b style="color:#c4b5fd">무게중심</b>: 대변의 중점(내분 1회) → 그 중점과 꼭짓점을 2:1 내분(내분 2회, 중첩)<br>
+<b style="color:#c4b5fd">외심</b>: 세 꼭짓점으로부터 등거리 → PA²=PB², PB²=PC² 두 식을 연립<br>
+<b style="color:#c4b5fd">정수좌표·정수거리</b>: 거리가 자연수가 되려면 3-4-5, 6-8-10, 5-12-13 같은 피타고라스 수인지 확인<br>
+<b style="color:#c4b5fd">일직선 위 조건</b>: 직선의 방정식 없이도 AB+BC=AC이면 세 점이 일직선 위에 있음
+</div>`, ans:null }
+],
+
+'plane-practice': [
+{ tag:'실전① — 외심', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+세 점 A(0,0), B(8,0), C(2,6)을 꼭짓점으로 하는 삼각형의 외심을 P(p,q)라 할 때, p+q의 값은?
+</div>`,
+    ans:`외심 P(x,y)는 세 꼭짓점으로부터 같은 거리 → PA²=PB²=PC²<br><br>
+PA²=PB²: x²+y²=(x−8)²+y² → 16x=64 → <b>x=4</b><br>
+PA²=PC²: x²+y²=(x−2)²+(y−6)² → 4x+12y=40 → x+3y=10 → x=4 대입 → <b>y=2</b><br>
+P(4,2) → <b>p+q=6</b>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
+🔗 "세 꼭짓점으로부터 같은 거리"라는 표현이 나오면 외심 — PA²=PB², PA²=PC² 두 식을 직접 연립해야 진짜 외심 정의를 쓴 게 돼요(직각삼각형이면 빗변의 중점이 바로 외심이라는 지름길도 있지만, 이 삼각형은 직각삼각형이 아니라서 못 씀).
+</div>` },
+
+{ tag:'실전② — 정수좌표·정수거리', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+두 자연수 x, y가 x+y=14를 만족시킨다. 두 점 O(0,0), A(x,y) 사이의 거리 OA가 자연수가 되도록 하는 순서쌍 (x,y)의 개수는?
+</div>`,
+    ans:`OA²=x²+y², y=14−x (x는 1~13인 자연수)<br>
+x²+(14−x)²이 완전제곱수가 되는 x를 하나씩 확인하면:<br>
+x=6: 36+64=100=10² 성립 / x=8: 64+36=100=10² 성립 (x=6의 대칭)<br>
+나머지 x=1~5,7,9~13은 전부 완전제곱수 아님<br>
+→ (6,8),(8,6) <b>개수=2</b>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
+🔗 "거리가 <b>자연수</b>가 되도록"이라는 조건은 거리공식만으로 안 끝나고, 나온 식이 <b>완전제곱수</b>인지 확인하는 정수조건이 하나 더 붙는다는 신호예요. 3:4:5, 6:8:10 같은 익숙한 피타고라스 수를 알아두면 빨리 알아채요.
+</div>` },
+
+{ tag:'실전③ — 이등변삼각형 + 정수변 (결합형)', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 두 점 A(0,0), B(10,0)과 자연수 a,b에 대하여 점 C(a,b)가 있다. 삼각형 ABC가 이등변삼각형이고 세 변의 길이가 모두 자연수일 때, 둘레의 길이는?
+</div>`,
+    ans:`이등변삼각형이니 AB=AC / AB=BC / AC=BC, 세 경우를 전부 검토해야 해요(어느 변이 같은지 안 알려줬으니까).<br><br>
+<b>① AB=AC(=10)</b>: a²+b²=100 → (a,b)=(6,8),(8,6)뿐 → 각각 BC=√80,√40 → 둘 다 무리수 → <b>해 없음</b><br><br>
+<b>② AB=BC(=10)</b>: (a−10)²+b²=100 → (a,b)=(10,10),(16,8),(4,8),(18,6),(2,6) 5개 → 각각 AC 계산하면 전부 무리수 → <b>해 없음</b><br><br>
+<b>③ AC=BC</b>: a²+b²=(a−10)²+b² → 20a=100 → <b>a=5</b> (b와 무관)<br>
+AC=√(25+b²)가 자연수 → 25+b²=k² → (k−b)(k+b)=25 → (1,25)→k=13,b=12 (5,5는 b=0이라 제외)<br>
+C(5,12), AC=BC=13, AB=10 → <b>둘레=10+13+13=36</b>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
+🔗 이 문제는 "이등변삼각형 케이스분류"(실전①과 같은 도구)와 "정수좌표·정수거리"(실전②와 같은 도구)를 <b>동시에</b> 써요 — 세 경우 중 두 경우가 "해 없음"임을 직접 증명해야, 나머지 한 경우가 유일한 답임을 확신할 수 있어요. "케이스를 버리는 것도 계산으로 증명해야 한다"는 실전 감각이에요.
+</div>` }
+],
+
+/* ── 직선의 방정식 ── */
+'coord-slope': [
+{ tag:'기울기란? — 세 가지 표현', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+직선의 <b style="color:#7dd3fc">기울기(m)</b>는 x가 변한 양에 대해 y가 얼마나 변했는지의 비율이에요. 세 가지 방식으로 구할 수 있어요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+① 비율: <b>m = <span class="frac"><span class="num">Δy</span><span class="den">Δx</span></span></b><br>
+② 두 점 A(x₁,y₁), B(x₂,y₂): <b>m = <span class="frac"><span class="num">y₂−y₁</span><span class="den">x₂−x₁</span></span></b><br>
+③ 각도(x축과 이루는 각 θ): <b>m = tan θ</b>
+</div>
+예: A(1,2), B(4,8) → m = <span class="frac"><span class="num">8−2</span><span class="den">4−1</span></span> = <span class="frac"><span class="num">6</span><span class="den">3</span></span> = <b>2</b><br><br>
+<span style="font-size:.8rem;color:#94a3b8">셋 다 "세로로 움직인 양 ÷ 가로로 움직인 양"이라는 같은 이야기를 다르게 표현한 것뿐이에요.</span>
+</div>`, ans:null }
+],
+
+'coord-forms': [
+{ tag:'직선의 방정식 — 점과 기울기 1/3', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+점 (x₁,y₁)을 지나고 기울기가 m인 직선:<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">y − y₁ = m(x − x₁)</b>
+</div>
+예: 점(2,3), m=4 → y−3=4(x−2) → <b>y=4x−5</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>기본예제</b>: 기울기가 −3이고 점(2,5)를 지나는 직선은?<br>
+y−5=−3(x−2) → y−5=−3x+6 → <b>y=−3x+11</b>
+</div>
+</div>`, ans:null },
+
+{ tag:'직선의 방정식 — 두 점 2/3', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+두 점 (x₁,y₁),(x₂,y₂)을 지나는 직선(x₁≠x₂)은 새 공식이 아니라 <b style="color:#7dd3fc">개념1을 그대로 재사용</b>해요.<br><br>
+① 먼저 두 점으로 기울기부터: m=<span class="frac"><span class="num">y₂−y₁</span><span class="den">x₂−x₁</span></span><br>
+② 이 m과 점 하나를 y−y₁=m(x−x₁)에 대입<br><br>
+예: (1,2),(3,6) → m=<span class="frac"><span class="num">6−2</span><span class="den">3−1</span></span>=2 → y−2=2(x−1) → <b>y=2x</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>기본예제</b>: 두 점(1,4),(3,10)을 지나는 직선은?<br>
+m=<span class="frac"><span class="num">10−4</span><span class="den">3−1</span></span>=3 → y−4=3(x−1) → <b>y=3x+1</b>
+</div>
+</div>`, ans:null },
+
+{ tag:'직선의 방정식 — 절편형과 일반형 3/3', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+직선이 x축과 만나는 점의 x좌표를 <b>x절편</b>, y축과 만나는 점의 y좌표를 <b>y절편</b>이라고 해요. x절편 a, y절편 b(a,b≠0)인 직선은, 결국 두 점 (a,0),(0,b)를 지나니까 <b style="color:#7dd3fc">개념2를 재사용</b>해서 유도돼요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem"><span class="frac"><span class="num">x</span><span class="den">a</span></span> + <span class="frac"><span class="num">y</span><span class="den">b</span></span> = 1</b>
+</div>
+예: x절편3, y절편2 → <span class="frac"><span class="num">x</span><span class="den">3</span></span>+<span class="frac"><span class="num">y</span><span class="den">2</span></span>=1 → 양변에 6 곱하면 <b>2x+3y=6</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>기본예제①</b>: x절편4, y절편−2인 직선은?<br>
+<span class="frac"><span class="num">x</span><span class="den">4</span></span>+<span class="frac"><span class="num">y</span><span class="den">−2</span></span>=1 → 4곱 → x−2y=4 → <b>x−2y−4=0</b><br><br>
+<b>기본예제②(반대 방향)</b>: 직선 y=3x−9의 x절편·y절편은?<br>
+y절편(x=0): y=−9 / x절편(y=0): x=3 → <b>y절편 −9, x절편 3</b>
+</div><br>
+결국 모든 직선은 <b>ax+by+c=0</b>(일반형) 하나로 정리돼요 — 점기울기형·절편형은 상황에 맞게 빨리 세우는 지름길일 뿐이에요.<br><br>
+<span style="font-size:.8rem;color:#94a3b8">단, x=k 같은 수직선은 기울기가 없어 y=mx+n 형태로는 못 써요 — 일반형(a=1,b=0)만 가능해요.</span>
+</div>`, ans:null }
+],
+
+'coord-relation': [
+{ tag:'두 직선의 위치관계 — 평행·일치·수직 1/4', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+두 직선 l₁: y=m₁x+n₁, l₂: y=m₂x+n₂가 있을 때, 기울기·y절편만 비교하면 바로 판단할 수 있어요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;line-height:2">
+<b style="color:#7dd3fc">평행(안 만남)</b>: m₁=m₂, n₁≠n₂<br>
+<b style="color:#7dd3fc">일치(같은 직선)</b>: m₁=m₂, n₁=n₂<br>
+<b style="color:#7dd3fc">수직</b>: m₁×m₂=−1 <span style="font-size:.85em;color:#94a3b8">(왜 −1인지는 "수직의 의미 총정리" 참고)</span>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>기본예제</b>: 점(2,1)을 지나고 y=4x+3에 평행한 직선과 수직인 직선은?<br>
+평행(m=4): y−1=4(x−2) → <b>y=4x−7</b><br>
+수직(4×m=−1→m=−¼): y−1=−¼(x−2) → <b>y=−¼x+3/2</b>
+</div>
+</div>`, ans:null },
+
+{ tag:'두 직선의 위치관계 — 수직 조건 연습 2/4', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b>기본예제</b>: 직선 y=−2x+5에 수직이고 점(4,−1)을 지나는 직선은?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+기존 기울기 m₁=−2 → 수직조건 −2×m₂=−1 → m₂=½<br>
+y−(−1)=½(x−4) → y+1=½x−2 → <b>y=½x−3</b>
+</div><br>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
+🔗 점과 직선 사이 거리·원의 접선까지 이 수직 도구가 어떻게 이어지는지는 <b style="color:#c4b5fd">"수직의 의미 총정리"</b>에 자세히 있어요.
+</div>
+</div>`, ans:null },
+
+{ tag:'두 직선의 위치관계 — 일반형 계수로 판정 3/4', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+일반형 l₁: a₁x+b₁y+c₁=0, l₂: a₂x+b₂y+c₂=0의 <b style="color:#7dd3fc">계수만 비교</b>해도 위치관계를 알 수 있어요 (기울기 형태로 바꿔 생각한 것과 같은 결론).<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;line-height:2">
+한 점에서 만남: <span class="frac"><span class="num">a₁</span><span class="den">a₂</span></span> ≠ <span class="frac"><span class="num">b₁</span><span class="den">b₂</span></span><br>
+평행: <span class="frac"><span class="num">a₁</span><span class="den">a₂</span></span> = <span class="frac"><span class="num">b₁</span><span class="den">b₂</span></span> ≠ <span class="frac"><span class="num">c₁</span><span class="den">c₂</span></span><br>
+일치: <span class="frac"><span class="num">a₁</span><span class="den">a₂</span></span> = <span class="frac"><span class="num">b₁</span><span class="den">b₂</span></span> = <span class="frac"><span class="num">c₁</span><span class="den">c₂</span></span>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>기본예제</b>: 4x−2y+3=0 과 2x−y−5=0 은?<br>
+a₁/a₂=4/2=2, b₁/b₂=−2/−1=2, c₁/c₂=3/−5=−3/5 → a₁/a₂=b₁/b₂인데 c₁/c₂는 다름 → <b>평행</b>
+</div>
+</div>`, ans:null },
+
+{ tag:'두 직선의 위치관계 — 일반형 수직 조건 4/4', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+기울기 곱 m₁×m₂=−1을 일반형으로 다시 쓰면 훨씬 간단해져요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">수직 조건: a₁a₂ + b₁b₂ = 0</b>
+</div>
+예: 2x+3y−6=0 과 3x−2y+4=0 → a₁a₂+b₁b₂=2×3+3×(−2)=6−6=0 → <b>수직</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>기본예제</b>: 3x+y−2=0 과 x−3y+7=0 은 수직인가요?<br>
+3×1+1×(−3)=3−3=0 → <b>네, 수직 맞습니다</b>
+</div><br>
+<span style="font-size:.8rem;color:#94a3b8">기울기로 풀든 계수로 풀든 항상 같은 결론이 나와요 — 같은 사실을 보는 두 가지 도구일 뿐이에요.</span>
+</div>`, ans:null }
+],
+
+/* ── 정점을 지나는 직선 ── */
+'coord-vertex': [
+{ tag:'정점을 지나는 직선 — 개념 1/5', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+두 직선 l₁: x−y−1=0, l₂: 2x+y−5=0의 교점을 지나는 또 다른 직선을 만들고 싶다면, 교점을 직접 구하지 않고도 빠르게 만드는 방법이 있어요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b style="color:#a78bfa">k·l₁ + l₂ = 0</b>, 즉 k(x−y−1)+(2x+y−5)=0 은 k가 어떤 값이든 항상 두 직선의 교점을 지나요! (l₂ 자기 자신만 빼고요.)
+</div><br>
+<span style="font-size:.8rem;color:#94a3b8">이유: 교점 (x₀,y₀)는 l₁=0과 l₂=0을 동시에 만족하니, k·l₁(x₀,y₀)+l₂(x₀,y₀)=k×0+0=0 — k를 아무리 바꿔도 이 점에서는 항상 0이에요.</span>
+</div>`, ans:null },
+
+{ tag:'정점을 지나는 직선 — 항등식으로 거꾸로 찾기 2/5', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+거꾸로, "k값에 관계없이 항상 지나는 점(정점)을 구하라"는 문제가 나오면 <b style="color:#a78bfa">두 부분을 각각 0으로 놓고 연립</b>하면 돼요 — 방정식 단원의 <b>항등식</b> 원리 그대로예요(ax+b=0이 모든 x에서 성립하려면 a=0,b=0이어야 하는 것과 같은 원리).<br><br>
+예: k(x−y−1)+(2x+y−5)=0 → x−y−1=0, 2x+y−5=0 연립 → <b>정점(2,1)</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>기본예제</b>: k(2x−y+1)+(x+y−4)=0이 항상 지나는 점은?<br>
+2x−y+1=0 ··①, x+y−4=0 ··②<br>
+①+②: 3x−3=0 → x=1, ②대입 y=3 → <b>정점(1,3)</b>
+</div><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>응용(반대 방향)</b>: 두 직선 x−y−1=0, 2x+y−5=0의 교점과 점(1,4)를 지나는 직선은?<br>
+k(x−y−1)+(2x+y−5)=0에 (1,4) 대입: k(1−4−1)+(2+4−5)=0 → −4k+1=0 → k=¼<br>
+대입 정리: ¼(x−y−1)+(2x+y−5)=0 → 4곱 → 9x+3y−21=0 → <b>3x+y−7=0</b>
+</div>
+</div>`, ans:null },
+
+{ tag:'정점을 지나는 직선 — 심화① 정점+거리 결합 3/5', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.06)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 직선 k(2x−y−3)+(x+2y−4)=0이 k값에 관계없이 항상 지나는 점을 P라 하자. 점 P와 직선 3x−4y+5=0 사이의 거리는?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>1단계</b> 정점 P: 2x−y−3=0, x+2y−4=0 연립 → y=2x−3 대입 → x+2(2x−3)−4=0 → 5x=10 → x=2,y=1 → <b>P(2,1)</b><br>
+<b>2단계</b> 점과 직선 거리: d=<span class="frac"><span class="num">|3(2)−4(1)+5|</span><span class="den">√(3²+4²)</span></span>=<span class="frac"><span class="num">7</span><span class="den">5</span></span>
+</div>
+</div>`, ans:null },
+
+{ tag:'정점을 지나는 직선 — 심화② 회전하는 직선의 최댓값 4/5', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.06)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 직선 k(x+2y−5)+(2x−y)=0이 k값에 관계없이 항상 지나는 점을 P라 하자. 원점 O에서 이 직선까지 거리의 최댓값은?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>1단계</b> 정점 P: x+2y−5=0, 2x−y=0(y=2x) → x+4x−5=0 → x=1,y=2 → <b>P(1,2)</b><br>
+<b>2단계</b> k가 바뀌면 직선은 P를 축으로 회전해요. O에서 이 직선까지 거리는 <b>OP를 넘을 수 없고</b>, 직선이 OP에 수직일 때 딱 OP만큼이 돼요.<br>
+<b>3단계</b> 최댓값 = OP = √(1²+2²) = <b>√5</b>
+</div>
+</div>`, ans:null },
+
+{ tag:'정점을 지나는 직선 — 심화③ 사분면 조건 5/5', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.06)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 직선 l: y=kx−2 (k는 실수)가 제1사분면을 지나지 않도록 하는 k의 범위는?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+l은 k값과 관계없이 항상 점(0,−2)를 지나요(y절편 고정, y축 음의 부분).<br>
+<b>k&gt;0</b>이면 x가 커질수록 y=kx−2도 결국 양수가 됨 → 제1사분면 진입<br>
+<b>k≤0</b>이면 x&gt;0일 때 kx≤0이므로 y=kx−2≤−2&lt;0 → 제1사분면에 못 들어감<br>
+→ <b>k ≤ 0</b>
+</div><br>
+<span style="font-size:.8rem;color:#94a3b8">검산: k=0이면 y=−2(수평선), 항상 y=−2&lt;0이라 제1사분면을 절대 못 지나요 ✓</span>
+</div>`, ans:null }
+],
+
+/* ── 점과 직선 사이의 거리 (직선의방정식 단원 버전) ── */
+'coord-ptdist': [
+{ tag:'점과 직선 사이의 거리 — 개념 1/6', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+점에서 직선까지 거리 중 가장 짧은 건, 점에서 직선에 <b style="color:#fbbf24">수직으로 내린 선분</b>의 길이예요 — 수직이 아닌 다른 경로는 전부 이보다 길어요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">d = <span class="frac"><span class="num">|ax₀+by₀+c|</span><span class="den">√(a²+b²)</span></span></b>
+</div>
+점 (x₀,y₀)와 직선 ax+by+c=0 사이의 거리예요. 분자에 절댓값이 있는 이유: 점이 직선 어느 쪽에 있든 거리는 항상 양수여야 하니까요.
+</div>`, ans:null },
+
+{ tag:'점과 직선 사이의 거리 — 기본예제 2/6', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b>기본예제</b>: 점(1,2)와 직선 3x+4y−6=0 사이의 거리는?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+a=3,b=4,c=−6, (x₀,y₀)=(1,2)<br>
+d=<span class="frac"><span class="num">|3(1)+4(2)−6|</span><span class="den">√(3²+4²)</span></span>=<span class="frac"><span class="num">5</span><span class="den">5</span></span>=<b>1</b>
+</div>
+</div>`, ans:null },
+
+{ tag:'점과 직선 사이의 거리 — 심화① y=mx+b는 일반형으로 3/6', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.06)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 직선 y=2x−3과 점(0,5) 사이의 거리는?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+공식은 ax+by+c=0 꼴에만 바로 쓸 수 있어요 — 먼저 <b>2x−y−3=0</b>으로 바꿔요.<br>
+a=2,b=−1,c=−3, (0,5)<br>
+d=<span class="frac"><span class="num">|2(0)−1(5)−3|</span><span class="den">√(2²+1²)</span></span>=<span class="frac"><span class="num">8</span><span class="den">√5</span></span>=<b><span class="frac"><span class="num">8√5</span><span class="den">5</span></span></b>
+</div>
+</div>`, ans:null },
+
+{ tag:'점과 직선 사이의 거리 — 심화② 역산으로 미지수 찾기 4/6', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.06)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 점(2,k)와 직선 3x−4y+1=0 사이의 거리가 2일 때, 양수 k는?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+d=<span class="frac"><span class="num">|3(2)−4k+1|</span><span class="den">5</span></span>=<span class="frac"><span class="num">|7−4k|</span><span class="den">5</span></span>=2 → |7−4k|=10<br>
+7−4k=10→k=−¾ 또는 7−4k=−10→k=17/4<br>
+양수 조건 → <b>k=17/4</b>
+</div>
+</div>`, ans:null },
+
+{ tag:'점과 직선 사이의 거리 — 심화③ 삼각형 넓이 5/6', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.06)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 세 점 O(0,0), A(4,0), B(1,3)을 꼭짓점으로 하는 △OAB의 넓이를 이 거리 공식으로 구하면?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+밑변 OA=4(x축 위 선분). 높이는 B에서 직선 OA(=x축, y=0)까지 거리.<br>
+직선 OA: 0x+1y+0=0 → d=|0(1)+1(3)+0|/√(0²+1²)=<b>3</b><br>
+넓이 = ½×4×3 = <b>6</b>
+</div>
+</div>`, ans:null },
+
+{ tag:'점과 직선 사이의 거리 — 보충도구: 산술기하평균 6/6', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.06)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+넓이·길이의 최솟값 문제에서 식을 정리하면 <b style="color:#fbbf24">"양수+그 역수"</b> 꼴(예: m+1/m)이 나올 때가 있어요. 원래는 부등식 단원 도구지만 미리 알아두면 여기서도 바로 써요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center">
+a,b&gt;0일 때: <b>a+b ≥ 2√(ab)</b>, 등호는 <b>a=b</b>일 때
+</div><br>
+예: m&gt;0일 때 m+1/m의 최솟값은? → ab=1이므로 m+1/m ≥ 2√1=<b>2</b>, 등호는 m=1일 때<br><br>
+<span style="font-size:.8rem;color:#94a3b8">m&lt;0이면 부호가 반대로 뒤집혀 최댓값 문제가 돼요(m=−1일 때 최댓값 −2).</span>
+</div>`, ans:null }
+],
+
+/* ── 자취의 방정식 ── */
+'coord-locus': [
+{ tag:'자취의 방정식 — 개념과 기본예제', tagColor:'#f472b6',
+    bg:'rgba(244,114,182,.07)', bd:'rgba(244,114,182,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#f472b6">자취</b>란 어떤 조건을 만족하는 점을 전부 모은 도형이에요. 구하는 방법은 항상 같아요 — 그 점을 P(x,y)라 이름 붙이고, 조건을 식으로 세운 뒤 정리하면 됩니다.<br><br>
+예: 두 점 A(1,2), B(5,−2)로부터 같은 거리에 있는 점 P(x,y)의 자취는?<br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+PA=PB → PA²=PB² (제곱해서 근호 없애기가 핵심)<br>
+(x−1)²+(y−2)²=(x−5)²+(y+2)² → 전개 정리 → <b>x−y−3=0</b>
+</div><br>
+<span style="font-size:.8rem;color:#94a3b8">검산: 이 결과는 선분 AB의 수직이등분선과 정확히 같아요(중점(3,0), AB기울기−1과 수직인 기울기1) — "자취"라는 새 이름이 붙었을 뿐, 방법은 항상 조건→식세우기→정리예요.</span><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>기본예제</b>: 두 점 A(0,0), B(6,2)로부터 같은 거리에 있는 점 P의 자취는?<br>
+x²+y²=(x−6)²+(y−2)² → 0=−12x−4y+40 → <b>3x+y−10=0</b>
+</div><br>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
+🔗 지금은 "같은 거리" 조건이라 결과가 직선(수직이등분선)이 됐지만, 조건이 "한 정점으로부터 일정한 거리"로 바뀌면 결과가 <b style="color:#c4b5fd">원</b>이 돼요 — 원의 방정식 단원에서 이 자취 기법을 그대로 다시 써요.
+</div>
+</div>`, ans:null }
+],
+
+/* ── 직선의 방정식: 도구가 될 아이디어 (지도1~4) ── */
+'coord-ideas': [
+{ tag:'아이디어① — 각도로 오는 기울기', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+문제에 "직선이 x축의 양의 방향과 어떤 각을 이룬다"는 표현이 나오면? → 중3 삼각비 <b style="color:#c4b5fd">m=tanθ</b>가 신호예요. 각도로 기울기를 감춰놓는 건 시험에 자주 나오는 위장술이에요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>예제</b>: 직선 l이 x축 양의 방향과 60°를 이루고 점(0,2)를 지날 때 l의 방정식은?<br>
+1단계(각→기울기): m=tan60°=√3<br>
+2단계(점+기울기): y−2=√3(x−0) → <b>y=√3x+2</b>
+</div>
+</div>`, ans:null },
+
+{ tag:'아이디어② — 삼각형을 못 만드는 세 직선', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+"세 직선이 삼각형을 만들지 않는다"는 조건이 나오면? 딱 두 경우뿐이에요: <b style="color:#c4b5fd">(a) 둘 이상이 평행</b> 하거나 <b style="color:#c4b5fd">(b) 셋이 한 점에서 만남</b>.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>예제</b>: l₁:y=2x−1, l₂:y=−x+5가 있다. 원점을 지나는 l₃을 그어 세 직선이 삼각형을 이루지 않게 하려면?<br>
+① l₃∥l₁(m=2): <b>y=2x</b> (y절편 다르니 겹치지 않음)<br>
+② l₃∥l₂(m=−1): <b>y=−x</b><br>
+③ 세 직선이 한 점: l₁∩l₂ 먼저 구하면 2x−1=−x+5→x=2,y=3 → l₃이 원점과 (2,3) 지남 → m=3/2 → <b>y=3/2x</b><br>
+→ 답은 <b>3개</b>: y=2x, y=−x, y=3/2x
+</div>
+</div>`, ans:null },
+
+{ tag:'아이디어③ — 수직이등분선(두 단원이 만나는 지점)', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+"선분 AB의 수직이등분선"이라는 표현엔 <b style="color:#c4b5fd">두 단원이 동시에</b> 숨어있어요 — 평면좌표의 중점(내분점 1:1) + 이 단원의 수직조건(m₁×m₂=−1).<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>예제</b>: 두 점 A(1,1), B(5,3)을 잇는 선분의 수직이등분선은?<br>
+1단계 중점: M=((1+5)/2,(1+3)/2)=(3,2)<br>
+2단계 AB의 기울기: (3−1)/(5−1)=1/2<br>
+3단계 수직조건: 수직인 기울기=−2<br>
+4단계 점+기울기: y−2=−2(x−3) → <b>2x+y−8=0</b>
+</div>
+</div>`, ans:null },
+
+{ tag:'아이디어④ — 평행선 사이의 거리는 어디서 잴까', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+두 평행선 l₁:y=2x+1, l₂:y=2x−9 사이의 거리를 구하고 싶은데, "평행선 사이의 거리" 공식은 따로 배운 적이 없어요. 어떻게 할까요?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+l₁ 위의 점 A(0,1)에서 l₂(2x−y−9=0)까지: d=|2(0)−1(1)−9|/√5=10/√5=2√5<br>
+l₁ 위의 다른 점 B(3,7)에서 l₂까지: d=|2(3)−1(7)−9|/√5=10/√5=2√5<br>
+→ <b>같은 값</b>이에요! 평행선은 어디서 재도 간격이 똑같기 때문이에요.
+</div><br>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
+🎯 <b>정리</b>: 새 공식 없이, 한 직선 위의 아무 점이나 골라 "점과 직선 사이의 거리" 공식에 대입하면 끝 — 이미 배운 두 도구(평행조건+점직선거리)를 조립해서 새 문제를 푼 거예요.
+</div>
+</div>`, ans:null }
+],
+
+/* ── 직선의 방정식: 총정리·판별 훈련 ── */
+'coord-summary': [
+{ tag:'전체 흐름 정리', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.8rem;color:#e2e8f0;line-height:1.95">
+<b style="color:#7dd3fc">① 기울기</b>: m=<span class="frac"><span class="num">Δy</span><span class="den">Δx</span></span>=<span class="frac"><span class="num">y₂−y₁</span><span class="den">x₂−x₁</span></span>=tanθ<br>
+<b style="color:#7dd3fc">② 직선의 방정식</b>: y−y₁=m(x−x₁) (모든 유형이 이걸 재사용) &nbsp; x/a+y/b=1<br>
+<b style="color:#7dd3fc">③ 두 직선의 위치관계</b>: 평행 m₁=m₂ &nbsp; 수직 m₁×m₂=−1 &nbsp; 일반형 수직: a₁a₂+b₁b₂=0<br>
+<b style="color:#a78bfa">④ 정점을 지나는 직선</b>: k(a₁x+b₁y+c₁)+(a₂x+b₂y+c₂)=0은 k값과 무관하게 두 직선의 교점을 지남(항등식 원리)<br>
+<b style="color:#fbbf24">⑤ 점과 직선 사이의 거리</b>: d=<span class="frac"><span class="num">|ax₀+by₀+c|</span><span class="den">√(a²+b²)</span></span><br>
+<b style="color:#f472b6">⑥ 자취의 방정식</b>: 조건을 만족하는 점을 P(x,y)로 놓고 식을 세워 정리
+</div>`, ans:null },
+
+{ tag:'이런 표현이 나오면 이 유형', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.8rem;color:#e2e8f0;line-height:2">
+"x축과 각을 이룬다" → tanθ=기울기<br>
+"평행하다/수직이다" → m₁=m₂ 또는 m₁×m₂=−1<br>
+"계수만으로 판정" → 일반형 비율 비교<br>
+"k값에 관계없이 항상 지나는 점" → 정점, 항등식<br>
+"점과 직선 사이의 거리" → 공식에 바로 대입<br>
+"두 평행선 사이의 거리" → 한 직선 위 점 하나 골라 거리공식<br>
+"같은 거리에 있는 점" → 자취, PA=PB → PA²=PB²<br>
+"세 직선이 삼각형을 이루지 않는다" → 평행 or 한 점에서 만남<br>
+"수직이등분선" → 중점 + 수직조건 결합<br>
+"절편이 a,b" → x/a+y/b=1
+</div>`, ans:null },
+
+{ tag:'판별 드릴 — 계산 없이 핵심 아이디어만', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.9">
+① k(x−y−1)+(2x+y−5)=0이 항상 지나는 점을 구하는 것과 x−y−1=0, 2x+y−5=0의 교점을 구하는 건 <b>같은 작업</b> — k가 곱해진 부분/아닌 부분을 각각 0으로 놓으면 정확히 그 교점이 나와요.<br><br>
+② l이 x축과 45°를 이루고 (3,0) 지날 때 기울기는? → "각을 이룬다" = tanθ부터<br><br>
+③ y=−x+2, y=3x−2, y=mx+1이 삼각형을 못 이루는 m은? → 평행 경우 / 한 점에서 만나는 경우, 두 갈래로 확인<br><br>
+④ A(0,4), B(6,0)의 수직이등분선은? → "수직이등분선" 자체가 신호(중점+수직조건)<br><br>
+⑤ y=3x+2, y=3x−4 사이 거리는? → "두 평행선 사이의 거리" = 점 하나 골라 거리공식<br><br>
+⑥ 2x+3y−12=0이 x,y축과 원점으로 만드는 삼각형 넓이는? → 절편 두 개로 넓이 공식(주의: "삼각형"이라는 말만 보고 ③유형으로 착각하기 쉬워요 — 이건 관계가 아니라 넓이를 묻는 문제)
+</div>`, ans:null },
+
+{ tag:'용어 빈칸 테스트', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:2">
+① y=mx+b 꼴에서 b를 뭐라고 부르나요?<br>
+② ax+by+c=0 꼴에서 기울기, x절편, y절편을 각각 a,b,c로 나타내면?<br>
+③ k값에 관계없이 항상 지나는 점을 뭐라고 부르나요?<br>
+④ 조건을 만족하는 점을 전부 모은 도형을 뭐라고 부르나요?<br>
+⑤ 두 직선이 이루는 각이 90°일 때, 이 관계를 뭐라고 부르나요?
+</div>`,
+    ans:`<div style="line-height:1.9">
+① y절편 &nbsp;&nbsp; ② 기울기=−a/b, x절편=−c/a, y절편=−c/b &nbsp;&nbsp; ③ 정점(고정점) &nbsp;&nbsp; ④ 자취 &nbsp;&nbsp; ⑤ 수직
+</div>` },
+
+{ tag:'개념 이해 테스트 — 왜 그런지 설명할 수 있나요?', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.8rem;color:#e2e8f0;line-height:1.95">
+① y−y₁=m(x−x₁) 공식에서 왜 (x−x₁)을 곱하는지, 기울기의 정의를 이용해 한 문장으로 설명하세요.<br><br>
+② 절편형 공식 x/a+y/b=1이 두 점 공식에서 어떻게 유도되는지 설명하세요.<br><br>
+③ 정점을 지나는 직선에서 "k·l₁+l₂=0"이 k값에 관계없이 항상 교점을 지나는 이유를, <b>항등식</b>이라는 단어를 써서 설명하세요.<br><br>
+④ (O/X) 두 직선의 위치관계를 판정할 때, 기울기로 비교하는 것과 일반형 계수로 비교하는 것은 서로 다른 결론을 줄 수 있다.
+</div>`,
+    ans:`<div style="line-height:1.9">
+① 기울기의 정의가 (세로변화량)/(가로변화량)=m이므로, 양변에 가로변화량(x−x₁)을 곱하면 세로변화량(y−y₁)이 그대로 나오기 때문이에요.<br><br>
+② 절편형은 두 점 (a,0), (0,b)를 지나는 직선이므로, 두 점 공식 그대로 기울기 −b/a를 구하고 점 (a,0)을 대입해서 정리하면 나와요 — 새 공식이 아니라 재사용이에요.<br><br>
+③ k·l₁+l₂=0은 x,y가 무엇이든 상관없이 k에 대한 항등식으로 볼 수 있어요. 두 직선의 교점에서는 l₁=0, l₂=0이 동시에 성립하니, k가 어떤 값이든 그 점에서 식은 항상 0이 돼요.<br><br>
+④ <b>X</b> — 두 방법은 같은 사실을 다른 도구로 보는 것뿐이라 항상 같은 결론이 나와요.
+</div>` },
+
+{ tag:'영역 인식 테스트 — 이 문제는 어느 영역?', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.8rem;color:#e2e8f0;line-height:1.95">
+① 직선이 x축과 이루는 각이 30°일 때 기울기는?<br><br>
+② 다음 네 쌍의 직선이 각각 <b>일치·평행·수직·한 점에서 만남</b> 중 무엇인지, 계수만 보고 판단하세요.<br>
+(가) 2x+y−3=0, 4x+2y−6=0<br>
+(나) x−2y+1=0, 2x−4y+5=0<br>
+(다) x+2y−4=0, 2x−y+3=0<br>
+(라) 3x−y+1=0, x+y−2=0<br><br>
+③ 직선 k(x−3)+(y−1)=0이 항상 지나는 점은?<br><br>
+④ 점 (0,0)과 직선 4x+3y−10=0 사이의 거리는?
+</div>`,
+    ans:`<div style="line-height:1.9">
+① 기울기 = tan30° = <span class="frac"><span class="num">1</span><span class="den">√3</span></span> = <span class="frac"><span class="num">√3</span><span class="den">3</span></span><br><br>
+② (가) <b>일치</b> <span style="font-size:.85em;color:#94a3b8">(a₁/a₂=b₁/b₂=c₁/c₂=1/2)</span> &nbsp; (나) <b>평행</b> <span style="font-size:.85em;color:#94a3b8">(a₁/a₂=b₁/b₂=1/2≠c₁/c₂)</span> &nbsp; (다) <b>수직</b> <span style="font-size:.85em;color:#94a3b8">(a₁a₂+b₁b₂=1×2+2×(−1)=0)</span> &nbsp; (라) <b>한 점에서 만남</b> <span style="font-size:.85em;color:#94a3b8">(a₁/a₂=3≠b₁/b₂=−1)</span><br><br>
+③ 정점 <b>(3, 1)</b><br><br>
+④ d = <span class="frac"><span class="num">|4(0)+3(0)−10|</span><span class="den">√(4²+3²)</span></span> = <span class="frac"><span class="num">10</span><span class="den">5</span></span> = <b>2</b>
+</div>` }
+],
+
+/* ── 직선의 방정식 실전훈련 (파일2) ── */
+'coord-drill2': [
+{ tag:'판별 드릴 — 워밍업 (계산 없이 서랍만)', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.9">
+서랍: <b>A1</b>절편+넓이 · <b>A2</b>평행+수직 · <b>A3</b>점직선거리 · <b>A4</b>수직이등분선 · <b>B1</b>삼각형이 안 되는 조건 · <b>B2</b>매개변수 직선의 고정점 · <b>B3</b>매개변수 직선과 선분의 교차 · <b>B4</b>넓이 이등분<br><br>
+① x+3y−9=0이 축과 만드는 삼각형 넓이는? → 서랍 ___<br><br>
+② y=−4x+2와 평행, y=¼x−1과 수직인 l의 기울기는? → 서랍 ___<br><br>
+③ (−1,3)과 2x+y−5=0 사이 거리는? → 서랍 ___<br><br>
+④ (0,4),(6,0) 수직이등분선은? → 서랍 ___<br><br>
+⑤ y=−x+3, y=2x, y=mx−1이 삼각형 안 됨 → 서랍 ___<br><br>
+⑥ k(2x−y+1)+(x+3y−7)=0이 항상 지나는 점은? → 서랍 ___<br><br>
+⑦ y=kx−2가 A(1,3),B(4,9) 선분과 만나려면? → 서랍 ___<br><br>
+⑧ O(0,0),A(6,0),B(0,8) 삼각형에서 A를 지나며 넓이를 이등분하는 직선은? → 서랍 ___
+</div>`,
+    ans:`<div style="line-height:1.9">
+① <b>A1</b> &nbsp;&nbsp; ② <b>A2</b> &nbsp;&nbsp; ③ <b>A3</b> &nbsp;&nbsp; ④ <b>A4</b> &nbsp;&nbsp; ⑤ <b>B1</b><br><br>
+⑥ <b>B2</b> (k값 무관하게 지나는 점=매개변수 직선의 고정점, 정점과 같은 도구)<br><br>
+⑦ <b>B3</b> (고정점에서 A,B를 보는 두 기울기 사이)<br><br>
+⑧ <b>B4</b> <span style="color:#c4b5fd">(주의: "절편+삼각형"이라 A1처럼 보이지만, 핵심 신호는 "넓이 이등분" — 대변의 중점을 지나야 해요)</span>
+</div>` }
+],
+
+'coord-basic': [
+{ tag:'실전1 — 각도로 오는 기울기', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+직선이 x축 양의 방향과 45°를 이루고 점(2,1)을 지날 때, y축과 만나는 점의 y좌표는?
+</div>`,
+    ans:`tan45°=1이므로 m=1. y−1=1(x−2) → y=x−1<br>x=0 대입 → <b>y=−1</b>` },
+
+{ tag:'실전2 — 한 점과 기울기', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+기울기 −2, 점(3,−1)을 지나는 직선이 x축과 만나는 점은?
+</div>`,
+    ans:`y+1=−2(x−3) → y=−2x+5<br>y=0 → x=<span class="frac"><span class="num">5</span><span class="den">2</span></span> → <b>(5/2, 0)</b>` },
+
+{ tag:'실전3 — 두 점을 지나는 직선', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+두 점 (−1,4), (3,−4)를 지나는 직선의 방정식과 기울기는?
+</div>`,
+    ans:`m=<span class="frac"><span class="num">−4−4</span><span class="den">3−(−1)</span></span>=<span class="frac"><span class="num">−8</span><span class="den">4</span></span>=−2<br>y−4=−2(x+1) → <b>y=−2x+2</b>, 기울기 <b>−2</b><br>검산: x=3 → y=−6+2=−4 ✓` },
+
+{ tag:'실전4 — 절편과 도형의 결합', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+직선 2x+3y−12=0이 x축,y축과 만나는 점을 A,B라 하자. △OAB(O원점)의 넓이는?
+</div>`,
+    ans:`x절편: 2x=12→x=6→A(6,0)<br>y절편: 3y=12→y=4→B(0,4)<br>넓이=½×6×4=<b>12</b>` },
+
+{ tag:'실전5 — 수직 조건', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+점(1,2)를 지나고 직선 3x−y+5=0에 수직인 직선은?
+</div>`,
+    ans:`3x−y+5=0 → y=3x+5, m₁=3<br>m₁×m₂=−1 → m₂=−<span class="frac"><span class="num">1</span><span class="den">3</span></span><br>y−2=−<span class="frac"><span class="num">1</span><span class="den">3</span></span>(x−1) → <b>y=−x/3+7/3</b>` },
+
+{ tag:'실전6 — 점과 직선 사이의 거리', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+점(3,−2)와 직선 4x−3y+1=0 사이의 거리는?
+</div>`,
+    ans:`d=<span class="frac"><span class="num">|4(3)−3(−2)+1|</span><span class="den">√(4²+3²)</span></span>=<span class="frac"><span class="num">|12+6+1|</span><span class="den">5</span></span>=<b>19/5</b>` }
+],
+
+'coord-inter': [
+{ tag:'실전7 — 두 직선의 교점을 지나는 직선', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+두 직선 x+y=5, 2x−y=1의 교점을 지나고 기울기가 3인 직선은?
+</div>`,
+    ans:`k(x+y−5)+(2x−y−1)=0 → (k+2)x+(k−1)y−(5k+1)=0<br>
+기울기 3: −<span class="frac"><span class="num">k+2</span><span class="den">k−1</span></span>=3 → −(k+2)=3(k−1) → k=1/4<br>
+대입정리 → <b>y=3x−3</b><br>
+검산: 교점(2,3), y=3(2)−3=3 ✓
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
+🔗 교점 좌표를 몰라도 조건(여기선 기울기)만으로 k를 바로 구할 수 있는 게 이 항등식 기법의 핵심이에요 — 뒤에 나올 정점+거리 결합 문제에서 훨씬 빛을 발해요.
+</div>` },
+
+{ tag:'실전8 — 평행·수직 동시조건', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+직선 l:2x+ay−3=0이 m:bx−y+1=0과 평행하고, n:x+2y−4=0과 수직일 때 a+b는?
+</div>`,
+    ans:`n 기울기=−½. l⊥n: (−2/a)×(−½)=−1 → 1/a=−1 → <b>a=−1</b><br>l: 2x−y−3=0, 기울기2. l∥m → <b>b=2</b><br>a+b=−1+2=<b>1</b>` },
+
+{ tag:'실전9 — 삼각형 넓이 이등분', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+A(0,6),B(−2,0),C(4,0). 점A를 지나며 △ABC 넓이를 이등분하는 직선은?
+</div>`,
+    ans:`꼭짓점 지나며 넓이 이등분 → <b>대변(BC)의 중점</b>을 지나야 함<br>M=BC중점=(1,0). A(0,6)–M(1,0) 기울기=−6<br><b>y=−6x+6</b><br>검산: △ABC=½×6×6=18, △ABM=½×3×6=9=절반 ✓` },
+
+{ tag:'실전10 — 원점과의 거리가 최대인 직선', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+x+2y−4=0, 2x−y−3=0의 교점을 지나는 직선 중, 원점과의 거리가 최대인 직선은?
+</div>`,
+    ans:`교점 P: 연립 → <b>P(2,1)</b><br>원점에서 P를 지나는 직선까지 거리는 항상 |OP| 이하, <b>직선⊥OP</b>일 때 최댓값=|OP|<br>OP기울기=½ → 수직기울기=−2. y−1=−2(x−2) → <b>2x+y−5=0</b><br>검산: d=5/√5=√5=|OP|=√5 ✓` },
+
+{ tag:'실전11 — 수직이등분선+수직조건+교점', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+A(1,5),B(5,1)의 수직이등분선을 l, l⊥m(y=kx+3)이 점P에서 만날 때 k와 P는?
+</div>`,
+    ans:`① AB중점(3,3), AB기울기=−1 → l기울기=1 → <b>l: y=x</b><br>② l⊥m → 1×k=−1 → <b>k=−1</b> → m:y=−x+3<br>③ 교점: x=−x+3 → x=3/2 → <b>P(3/2, 3/2)</b>` },
+
+{ tag:'실전12 — 삼각형이 안 되는 조건(케이스 소거)', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.06)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 l₁:y=2x+1, l₂:y=(k−1)x+3, l₃:y=−x+k가 삼각형을 못 이루는 모든 k의 합은? (세 직선 중 어느 둘도 일치하지 않음)
+</div>`,
+    ans:`l₁∥l₂: 2=k−1 → <b>k=3</b><br>l₁∥l₃: 2=−1 → 불가능<br>l₂∥l₃: k−1=−1 → <b>k=0</b><br>세 직선 한 점에서 만남: 판별식&lt;0이라 실수해 없음<br>합 = 3+0 = <b>3</b>` }
+],
+
+'coord-advanced': [
+{ tag:'실전13 — 고정점+거리 최댓값', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 l: k(2x−y+1)+(x+y−7)=0 (k는 실수)과 원점 사이 거리의 최댓값은?
+</div>`,
+    ans:`고정점: 2x−y+1=0, x+y−7=0 연립 → y=2x+1 대입 → 3x=6 → <b>P(2,5)</b><br>l은 항상 P를 지나므로 원점-l 거리는 |OP| 이하, l⊥OP일 때 최댓값<br>|OP|=√(4+25)=<b>√29</b> (k=−1/4일 때)` },
+
+{ tag:'실전14 — 매개변수 직선과 선분의 교차', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 A(2,4),B(3,10)을 잇는 선분과 l:y=kx+1이 만나는 자연수 k의 최솟값은?
+</div>`,
+    ans:`l은 항상 Q(0,1)을 지남. Q→A 기울기=3/2=1.5, Q→B 기울기=3<br>선분과 만나려면 <b>1.5≤k≤3</b> → 자연수 중 최솟값 <b>2</b><br>검산: k=1.5→정확히 A, k=3→정확히 B 통과 ✓` },
+
+{ tag:'실전14-변형 — 특정 사분면을 지나지 않는 조건', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 l:y=kx−2가 제1사분면을 지나지 않을 k의 범위는?
+</div>`,
+    ans:`l은 항상 (0,−2)를 지남(y축 음의 부분)<br>k&gt;0이면 x가 커질수록 y도 양수화 → 1사분면 진입<br>k≤0이면 x&gt;0에서 y=kx−2≤−2&lt;0 → 못 들어감<br>→ <b>k ≤ 0</b>` },
+
+{ tag:'실전15 — 두 직선으로부터 같은 거리(각의 이등분선)', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 x+2y−1=0과 2x+y+2=0으로부터 같은 거리에 있는 점들의 자취는?
+</div>`,
+    ans:`자취기법: P(x,y) → |x+2y−1|=|2x+y+2| (분모 √5로 동일하니 소거)<br>① 부호 같음: x+2y−1=2x+y+2 → <b>x−y+3=0</b><br>② 부호 반대: x+2y−1=−(2x+y+2) → <b>3x+3y+1=0</b><br><br><span style="font-size:.8rem;color:#94a3b8">두 직선이 만나 생기는 각은 항상 두 쌍(맞꼭지각)이라, 이등분선도 서로 수직인 두 직선으로 나와요.</span>` },
+
+{ tag:'실전16 — 수직인 두 직선과 최소 넓이', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 점(1,1)에서 만나고 서로 수직인 두 직선이 x축과 만드는 두 점을 A,B라 하면, △(1,1)AB 넓이의 최솟값은?
+</div>`,
+    ans:`기울기m: x절편=1−1/m &nbsp; 기울기−1/m: x절편=1+m<br>밑변=|m+1/m|, 높이=1 → S=½|m+1/m|<br>산술기하평균: m+1/m ≥ 2 (m&gt;0, 등호 m=1)<br>최솟값 S=½×2=<b>1</b><br>검산: m=1 → (1,1),(0,0),(2,0), 밑변2·높이1 → 넓이1 ✓` },
+
+{ tag:'실전17 — 세 점이 한 직선 위(공선점)', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 A(−1,3), B(2,k), C(k,7)이 삼각형을 못 이루는 모든 k의 합은?
+</div>`,
+    ans:`세 점이 한 직선 위(공선) → <b>두 점 사이 기울기가 같음</b>으로 세움 (직선식이 아니라 점 좌표만 주어졌으니)<br>
+AB기울기=(k−3)/3, AC기울기=4/(k+1)<br>
+(k−3)/3=4/(k+1) → (k−3)(k+1)=12 → k²−2k−15=0 → (k−5)(k+3)=0<br>
+k=5 또는 k=−3 → 합=<b>2</b>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
+🔗 같은 "삼각형이 안 된다"는 말이라도 <b>직선 3개가 주어졌으면</b> 평행/한점만남(실전12), <b>점 3개만 주어졌으면</b> 기울기 비교(이 문제) — 무엇이 주어졌는지에 따라 다른 서랍이에요.
+</div>` }
+],
+
+'coord-real': [
+{ tag:'실생활 연결① — 해수면 상승', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+지구 평균 해수면은 최근 10여 년간 매년 약 <b style="color:#7dd3fc">4.75mm</b>씩 상승했어요. 지금을 x=0으로 두면 <b>y=4.75x</b>.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+10년 후(x=10): 47.5mm 상승<br>
+2100년쯤(x=76): 361.5mm(약 36cm) 상승
+</div><br>
+그런데 한국해양수산부의 실제 예측은 2100년까지 <b>82cm~1.1m</b> — 계산값보다 훨씬 큽니다. 실제 상승 속도가 <b>갈수록 빨라지고 있기 때문</b>이에요(1993~2011년 연 2.65mm → 2012~2025년 연 4.75mm) — "기울기가 일정하다"는 가정이 현실과 완전히 맞진 않는다는 걸 보여줘요.<br><br>
+<span style="font-size:.8rem;color:#94a3b8">네덜란드는 국토의 26%가 이미 해수면보다 낮아서, 암스테르담·로테르담 같은 도시가 이미 해수면 높이에 있어요.</span>
+</div>`, ans:null },
+
+{ tag:'실생활 연결② — 북극 해빙 감소', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+북극 해빙은 매년 평균 약 <b style="color:#7dd3fc">5만 4천 km²</b>(스위스 국토 크기)씩 줄어요. <b>y=−54000x</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+1년 후: −54000km² &nbsp; 10년 후: −540000km²
+</div><br>
+토론토대 연구팀이 서부 허드슨만 북극곰을 1979~2021년(42년) 추적한 결과: 해빙↓ → 사냥기간↓ → 에너지 부족 → 번식률·생존율↓ → 이 지역 개체수가 <b>42년 만에 약 50% 감소</b>. 특히 어미와 새끼가 가장 큰 영향을 받았어요.<br><br>
+<span style="font-size:.8rem;color:#94a3b8">이 수치는 서부 허드슨만 한 지역의 연구 결과이고, 전 세계 모든 북극곰이 같은 속도로 준다는 뜻은 아니에요.</span>
+</div>`, ans:null },
+
+{ tag:'실생활 연결③ — 인구 감소', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+한국의 생산연령인구(15~64세)는 향후 10년간 매년 약 <b style="color:#7dd3fc">25만 명</b>씩 줄어들 전망이에요. <b>y=−25x</b>(단위 만 명)<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+10년 후(x=10): −250(만 명), 즉 250만 명 감소
+</div><br>
+생산가능인구 비율이 0.1%p만 줄어도 연평균 GDP가 0.30% 감소한다는 연구가 있어요(투자 0.96%↓, 노동 0.22%↓ 동반). 인구가 줄면 일할 사람도, 물건 사는 사람도 줄고, 연금·의료비 같은 사회적 비용은 늘어나요 — 작아 보이는 기울기 하나(−25)가 나라 전체의 미래를 계산하는 식이 되는 거죠.
+</div>`, ans:null }
+],
+
+/* ── 원의 방정식 ── */
+'circle-def': [
+{ tag:'원의 방정식 — 표준형 1/2', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+중심 (a,b), 반지름 r인 원은, "중심에서 거리가 항상 r인 점들의 모임"이에요 — 두 점 사이의 거리 공식(이미 배운 도구) 그대로 써서 유도돼요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">(x − a)² + (y − b)² = r²</b>
+</div>
+예: 중심(2,−1), r=3 → <b>(x−2)²+(y+1)²=9</b><br><br>
+<span style="font-size:.8rem;color:#94a3b8">중심이 원점(0,0)이면 x²+y²=r²로 더 간단해져요.</span>
+</div>`, ans:null },
+
+{ tag:'원의 방정식 — 일반형에서 표준형으로 2/2', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원의 방정식은 종종 <b style="color:#34d399">일반형</b> x²+y²+Ax+By+C=0 꼴로 나와요. 완전제곱으로 묶으면 표준형이 나와요.<br><br>
+예: x²+y²−4x+2y−4=0<br>
+→ (x²−4x) + (y²+2y) = 4<br>
+→ (x−2)²−4 + (y+1)²−1 = 4<br>
+→ <b>(x−2)²+(y+1)²=9</b> → 중심(2,−1), r=3<br><br>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
+⚠️ 우변이 <b>양수</b>여야 진짜 원이 돼요. 0이면 점 하나, 음수면 원이 존재하지 않아요.
+</div>
+</div>`, ans:null }
+],
+
+'circle-tangent': [
+{ tag:'원의 접선의 방정식 — 기울기가 주어질 때 1/2', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 x²+y²=r²에 접하고 기울기가 m인 직선은 항상 <b style="color:#34d399">두 개</b>예요(원의 위아래).<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">y = mx ± r√(1+m²)</b>
+</div>
+예: 원 x²+y²=25(r=5), m=¾ → y=¾x ± 5×<span class="frac"><span class="num">5</span><span class="den">4</span></span> = ¾x ± <span class="frac"><span class="num">25</span><span class="den">4</span></span> → <b>3x−4y±25=0</b><br><br>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
+🔗 이 공식은 "중심에서 접선까지 거리 = 반지름"(원과 직선 위치관계에서 배운 d=r 조건)을 그대로 풀어서 나온 거예요 — 새 공식이 아니라 앞서 배운 도구의 결과예요.
+</div>
+</div>`, ans:null },
+
+{ tag:'원의 접선의 방정식 — 원 위의 한 점에서 2/2', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 x²+y²=r² 위의 점 (x₀,y₀)에서 그은 접선은, 그 점만 대입하면 바로 나와요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">x₀x + y₀y = r²</b>
+</div>
+예: 원 x²+y²=25, 점(3,4)(3²+4²=25로 원 위의 점 맞음) → <b>3x+4y=25</b><br><br>
+<span style="font-size:.8rem;color:#94a3b8">이유: 반지름(중심→접점)과 접선은 항상 수직이에요("수직의 의미"의 기울기 얼굴) — 접선의 기울기는 반지름 기울기(y₀/x₀)의 음의 역수인 −x₀/y₀가 돼요.</span>
+</div>`, ans:null }
+],
+
 /* ── 수직의 의미: 네 가지 얼굴 (4장) ── */
 'perp-faces': [
   { tag:'기울기로 본 수직 1/4', tagColor:'#34d399',
@@ -12184,8 +13140,10 @@ function activateScreen(name){
   window.scrollTo(0,0);
 }
 let navStack = ['home'];
+const NAV_STATEFUL_SCREENS = ['cardviewer','quiz','result','fm-quiz','fm-report'];
 function showScreen(name){
   activateScreen(name);
+  if(NAV_STATEFUL_SCREENS.includes(name)) return;
   if(navStack[navStack.length-1] !== name) navStack.push(name);
 }
 function goBack(){
