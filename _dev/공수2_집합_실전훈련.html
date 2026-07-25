@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학2 · 집합 (실전훈련) — 검토용</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.unit-header{font-size:16px;font-weight:800;color:#4c1d95;text-align:center;padding:9px 0;margin:26px 0 16px;border-top:3px solid #4c1d95;border-bottom:3px solid #4c1d95;letter-spacing:.02em}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card:not(:last-child){page-break-after:always}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:16px;padding-top:16px;border-top:1px dashed #bbb;font-size:12.5px;color:#333;line-height:1.95}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{font-size:11px;font-weight:700;color:#666!important;margin-bottom:8px}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.signal-box{border:1.5px solid #a78bfa!important;background:rgba(167,139,250,.08)!important;border-radius:8px;padding:10px 14px;margin-top:12px;font-size:.92em;line-height:1.85}
+.signal-box *{color:#3730a3!important;background:transparent!important}
+.blank{border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400}
+.drawer-box{border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.9em;color:#555;line-height:1.9}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 검토용 — 공통수학2 · 집합 (실전훈련)</div>
+    <div class="toolbar-sub">명제 파트 제외, 집합(원소·부분집합·연산·서로소·연산법칙·원소의 개수) 전용 16문항 · 개념 그라운딩은 공수2_집합과명제.html(주제0~1) 참고</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 집합 (실전훈련)</h1>
+
+<div class="card" style="border:2px solid #6366f1">
+  <div class="card-meta">이 문제지, 이렇게 써요</div>
+  <div class="card-tag" style="font-size:15px">📌 풀기 전에 읽어주세요</div>
+  <div class="card-body">
+각 문항 위 <b>"▶ 이 문제가 사용하는 개념: ___"</b> 빈칸에, 계산을 시작하기 전에 먼저 어떤 개념(서랍)을 쓸지 적어보세요. 정답은 계산 결과뿐 아니라, 이 빈칸을 얼마나 잘 채웠는지가 진짜 목표예요.<br><br>
+이 문제지는 일부러 같은 개념을 연달아 배치하지 않았어요 — 매번 "이번엔 뭘 써야 하지?"를 새로 판단하는 연습이에요.<br><br>
+<b style="color:#4c1d95">문항 6·7은 짝을 이루는 문제</b>예요. 둘 다 "개수를 구하시오"라는 비슷한 말투지만, 쓰는 도구는 완전히 달라요 — 표면적인 말투에 속지 말고 조건을 끝까지 읽으세요.
+  </div>
+</div>
+
+<div class="unit-header" style="margin-top:0">🔍 판별 드릴 (사전 준비용) — 계산 안 해도 됩니다</div>
+
+<div class="card">
+  <div class="card-meta">판별 드릴 — 사전 준비용</div>
+  <div class="card-tag">📝 서랍만 골라보세요 — 이 단원 서랍 전체(S1~S8) 워밍업</div>
+  <div class="card-body">
+아래 8개 문항은 <b>끝까지 계산하지 않아도 됩니다.</b> 어떤 서랍을 써야 할지, 그리고 <b>무슨 표현이 그 신호였는지</b>까지 한 줄로 적어보세요.
+<div class="drawer-box">
+서랍 목록: <b>S1</b>(원소나열법/조건제시법) · <b>S2</b>(포함관계 A⊂B 판별) · <b>S3</b>(부분집합의 개수, 2ⁿ) · <b>S4</b>(집합의 연산 ∩∪−ᶜ 직접 계산) · <b>S5</b>(서로소 판별) · <b>S6</b>(연산법칙·드모르간) · <b>S7</b>(원소의 개수 공식·포함배제의 원리) · <b>S8</b>(조건을 만족하는 집합의 개수 세기·케이스분류)
+</div>
+<b>①</b> 집합 A={x | x는 12 이하의 자연수 중 소수}를 원소나열법으로 나타내면? → 서랍 ___<br><br>
+<b>②</b> 집합 A={1,2,3,4,5}의 부분집합 중 원소의 개수가 3개인 것은 모두 몇 개인가? → 서랍 ___<br><br>
+<b>③</b> 두 집합 A={x|x는 30의 약수}, B={x|x는 20의 약수}에 대하여 A∩B의 원소의 개수는? → 서랍 ___<br><br>
+<b>④</b> 학생 100명 중 안경을 쓴 학생 40명, 모자를 쓴 학생 35명, 안경과 모자를 모두 쓴 학생이 10명일 때, 안경도 모자도 안 쓴 학생 수는? → 서랍 ___<br><br>
+<b>⑤</b> 전체집합 U={1,...,10}의 두 부분집합 A,B에 대하여 A∩B=∅이고 A∪B=U일 때, B를 A로 나타내면? → 서랍 ___<br><br>
+<b>⑥</b> (A∪B)<sup>c</sup>를 A, B만으로 다시 나타내면? → 서랍 ___<br><br>
+<b>⑦</b> 집합 A={1,2,3,4}의 부분집합 중, 1은 포함하지 않고 2는 포함하는 것의 개수는? → 서랍 ___<br><br>
+<b>⑧</b> 전체집합 U={1,...,9}의 부분집합 X 중, X∩{2,4,6}≠∅을 만족시키는 것의 개수는? → 서랍 ___
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">판별 드릴 — 사전 준비용 정답</div>
+  <div class="card-tag">💡 정답 및 근거</div>
+  <div class="card-body">
+① <b>S1</b> — "원소나열법으로 나타내면"이 직접 신호<br>
+② <b>S3</b> — "부분집합"·"몇 개"가 신호. 5개 중 3개를 고르는 조합(C(5,3)=10)도 결국 부분집합 개수 세기의 한 종류<br>
+③ <b>S4</b> — <span style="color:#a855f7;font-weight:700">주의(근접 오답 함정)</span>: "원소의 개수"라는 말 때문에 S7(포함배제 공식)이 먼저 떠오르기 쉬워요. 하지만 A, B를 각각 원소나열해서 바로 교집합을 셀 수 있으므로 실제로는 S4(직접 계산)예요. 공식이 필요한 건 A, B를 직접 나열하기 어려울 때뿐입니다<br>
+④ <b>S7</b> — 안경·모자 "모두"와 "둘 다 아닌"이 겹치는 인원 계산의 신호. n(A∪B)를 구한 뒤 전체에서 빼는 여집합 결합형<br>
+⑤ <b>S5</b> — "서로소이고 합쳐서 U"라는 조건 자체가 서로소의 정의. (사실 이 조건은 여집합의 정의와 똑같아요 — B=Aᶜ)<br>
+⑥ <b>S6</b> — 드모르간의 법칙 그 자체<br>
+⑦ <b>S3</b> — "포함하지 않고 ~는 포함"이 자유원소 고정 신호<br>
+⑧ <b>S8</b> — "적어도 하나"(≠∅)가 케이스분류(여사건) 신호<br><br>
+<div class="toro-note">🦕 토로: ③번이 이 드릴의 핵심이에요 — "원소의 개수"라는 말만 보고 바로 공식을 떠올리면 안 돼요. 조건을 끝까지 읽고, "직접 나열이 가능한가?"부터 먼저 판단하세요. 이 판단이 뒤쪽 문항 6·7 대비쌍에서 또 나옵니다.</div>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">✏️ 직접 풀어보기 — 정답은 각 문제 바로 다음에</div>
+
+<div class="unit-header" style="margin-top:0">📍 기본 (1~4)</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 1 · 난이도 기본</div>
+  <div class="card-tag">문항 1</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+집합 A = {x | x는 30 이하의 자연수, x는 4의 배수 또는 6의 배수}를 원소나열법으로 나타내고, n(A)를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S1 원소나열법</span><br><br>
+4의 배수(30 이하): 4,8,12,16,20,24,28 (7개)<br>
+6의 배수(30 이하): 6,12,18,24,30 (5개)<br>
+겹치는 것(12의 배수): 12,24 (2개)<br>
+<b>A = {4,6,8,12,16,18,20,24,28,30}, n(A) = 10</b>
+<div class="signal-box">🔗 <b>구조 신호</b>: "또는"으로 이어진 조건 → 원소를 직접 나열하면서 겹치는 것을 한 번만 세기(공수2_집합과명제.html의 "집합 — 개념" 카드, 원소나열법). 뒤에 나올 문항7의 포함배제 공식은 이걸 숫자만으로 빠르게 하는 지름길이에요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 2 · 난이도 기본</div>
+  <div class="card-tag">문항 2</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+집합 A = {1,2,3,4,5,6}의 부분집합 중, 1과 2는 포함하고 5는 포함하지 않는 부분집합의 개수를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S3 부분집합의 개수</span><br><br>
+1, 2는 반드시 포함(선택권 없음), 5는 반드시 제외(선택권 없음)<br>
+자유롭게 정할 수 있는 원소: 3, 4, 6 (3개)<br>
+<b>2³ = 8개</b>
+<div class="signal-box">🔗 <b>구조 신호</b>: "포함하고 ~는 포함하지 않는"이라는 조건 → 그 원소들은 가지치기에서 선택권이 없고, 나머지만 자유(공수2_집합과명제.html의 지도1/6 "부분집합 개수 세기" 참고).</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 3 · 난이도 기본</div>
+  <div class="card-tag">문항 3</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+세 집합 A = {x | x는 8의 약수}, B = {x | x는 24의 약수}, C = {x | x는 16의 약수}에 대하여, 다음 중 옳은 것은?<br><br>
+① A⊂B⊂C &nbsp; ② A⊂C⊂B &nbsp; ③ B⊂C &nbsp; ④ A⊂B 이고 A⊂C &nbsp; ⑤ C⊂A
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S2 포함관계 판별</span><br><br>
+A={1,2,4,8}, B={1,2,3,4,6,8,12,24}, C={1,2,4,8,16}<br>
+A의 원소 1,2,4,8은 B와 C에 모두 있음 → A⊂B, A⊂C 둘 다 성립<br>
+하지만 B에는 3이 있는데 C엔 없고(B⊄C 아님, 반대로 C⊂B가 성립하려면 16∈B여야 하는데 24의 약수가 아니라서 불가능) → B, C는 서로 포함관계가 없음<br>
+<b>정답: ④</b><br><br>
+<span style="font-size:.9em;color:#555">오답 설계: ①·②는 B와 C 사이에 포함관계가 있다고 착각(16&lt;24이니까 "16의 약수가 24의 약수 안에 있겠지"라는 크기 직관의 함정). ③은 그 착각을 그대로 답으로 고른 경우. ⑤는 C⊂A로 방향을 반대로 읽은 경우(16∈C이지만 16∉A).</span>
+<div class="signal-box">🔗 <b>구조 신호</b>: "다음 중 옳은 것은"+세 집합 포함관계 → 원소를 전부 나열해서 하나씩 직접 대조(공수2_집합과명제.html의 "집합 사이의 포함관계" 개념 카드). 약수 개수가 많다고 포함관계가 성립하는 게 아니라는 점이 핵심 함정.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 4 · 난이도 기본</div>
+  <div class="card-tag">문항 4</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+전체집합 U = {1,2,...,10}, A = {2,3,5,7}, B = {1,2,4,5,8}일 때, A−B, B−A, A<sup>c</sup>를 각각 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S4 집합의 연산(직접 계산)</span><br><br>
+A−B (A에는 있고 B에는 없는 것): <b>{3, 7}</b><br>
+B−A (B에는 있고 A에는 없는 것): <b>{1, 4, 8}</b><br>
+A<sup>c</sup> (U에서 A를 뺀 나머지): <b>{1, 4, 6, 8, 9, 10}</b>
+<div class="signal-box">🔗 <b>구조 신호</b>: 집합을 직접 나열해서 ∩,∪,−,ᶜ를 계산 → 공식 없이 벤다이어그램 그림 그대로 세기(공수2_집합과명제.html의 "집합의 연산" 개념 카드, 기본4).</div>
+  </div>
+</div>
+
+<div class="unit-header">📍 응용 (5~9)</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 5 · 난이도 응용</div>
+  <div class="card-tag">문항 5</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+두 집합 A = {x | x²−5x+6=0}, B = {x | x²−(a+1)x+a=0}이 있다. 10 이하의 자연수 a 중, A와 B가 서로소가 되도록 하는 a의 개수는?<br><br>
+① 6개 &nbsp; ② 7개 &nbsp; ③ 8개 &nbsp; ④ 9개 &nbsp; ⑤ 10개
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S5 서로소 판별</span><br><br>
+A: x²−5x+6=(x−2)(x−3)=0 → A={2,3}<br>
+B: x²−(a+1)x+a=(x−1)(x−a)=0 → B={1,a} (a=1이면 B={1})<br>
+A와 B가 서로소 ⟺ A∩B=∅ ⟺ a가 2도 3도 아니어야 함 (1은 항상 B의 원소지만 A엔 없으므로 문제 없음)<br>
+10 이하 자연수 중 2, 3만 제외 → <b>8개 (정답 ③)</b><br><br>
+<span style="font-size:.9em;color:#555">오답 설계: ⑤10은 B의 근을 못 구해 처음부터 서로소라고 오판한 경우. ④9는 a=2, a=3 중 하나만 제외한 경우(인수분해 부호 실수). ②7은 a=1일 때 B={1}로 원소가 1개뿐인 특수한 경우까지 조건 범위에서 잘못 제외한 경우. ①6은 그 실수에 더해 a=6까지 근거 없이 제외한 경우.</span>
+<div class="signal-box">🔗 <b>구조 신호</b>: "서로소가 되도록 하는"이라는 말 → A∩B=∅ 조건으로 바로 번역(공수2_집합과명제.html의 "서로소" 개념 카드). 여기선 미지수 a가 껴 있어서, 먼저 두 집합을 각각 인수분해로 나열한 뒤에야 서로소 조건을 걸 수 있다는 점이 다단계 포인트.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 6 · 난이도 응용 (문항7과 짝)</div>
+  <div class="card-tag">문항 6</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+집합 A = {1,2,3,4,5,6,7}의 부분집합 B가 다음 조건을 모두 만족시킬 때, 집합 B의 개수는?<br>
+(가) 1∈B, 7∉B<br>
+(나) B∩{2,3,4}≠∅<br><br>
+① 4개 &nbsp; ② 24개 &nbsp; ③ 28개 &nbsp; ④ 30개 &nbsp; ⑤ 32개
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S8 조건을 만족하는 집합의 개수(케이스분류)</span><br><br>
+1은 고정 포함, 7은 고정 제외 → 자유원소는 {2,3,4,5,6} (5개), 전체 자유 조합 2⁵=32<br>
+조건(나)를 안 지키는 경우(B∩{2,3,4}=∅): 2,3,4는 전부 제외 고정, 남은 자유원소는 {5,6}뿐 → 2²=4<br>
+<b>32−4=28개 (정답 ③)</b><br><br>
+<span style="font-size:.9em;color:#555">오답 설계: ⑤32는 조건(나)를 통째로 빠뜨린 경우. ②24는 제외 경우의 수를 2³=8로 잘못 세어(자유원소가 여전히 5개 남았다고 착각) 32−8을 계산한 경우. ④30은 "적어도 하나"를 "정확히 하나만 제외"로 착각해 2가지만 뺀 경우. ①4는 제외 경우의 수 자체를 최종 답으로 잘못 낸 경우.</span>
+<div class="signal-box">🔗 <b>구조 신호</b>: "부분집합 B의 개수"+ "∩...≠∅"(적어도 하나) → 전체 자유원소 개수에서 <b>조건을 안 만족하는 경우를 통째로 빼는</b> 여사건 방식(공수2_집합과명제.html의 지도1/6과 같은 도구지만, 여기선 "적어도 하나" 조건이 추가돼서 한 단계 더 계산해야 해요). 문항7과 비교: 둘 다 "개수를 구하시오"지만, 이 문제는 <b>부분집합이라는 대상 자체의 개수</b>를 세는 거고, 문항7은 <b>집합의 원소 개수</b>를 세는 거예요 — 완전히 다른 질문입니다.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 7 · 난이도 응용 (문항6과 짝)</div>
+  <div class="card-tag">문항 7</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+학생 40명 중 수학을 좋아하는 학생이 25명, 영어를 좋아하는 학생이 20명이다. 수학과 영어를 모두 좋아하는 학생 수의 최댓값과 최솟값의 합을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S7 원소의 개수 공식(포함배제의 원리)</span><br><br>
+n(A∪B)=n(A)+n(B)−n(A∩B) ≤ 40 (전체 학생 수를 넘을 수 없음)<br>
+25+20−n(A∩B) ≤ 40 → n(A∩B) ≥ 5 (<b>최솟값 5</b>)<br>
+n(A∩B)는 두 집합 중 작은 쪽 크기를 넘을 수 없음 → n(A∩B) ≤ 20 (<b>최댓값 20</b>)<br>
+<b>5+20 = 25</b>
+<div class="signal-box">🔗 <b>구조 신호</b>: "모두 좋아하는 학생 수"(교집합)의 <b>범위</b>를 묻는 문제 → n(A∪B)=n(A)+n(B)−n(A∩B) 공식과 "전체 학생 수를 넘을 수 없다"는 부등식 결합(공수2_집합과명제.html의 심화3 "여론조사에서 지지율을 다 더하면 안 되는 이유" 스토리 그대로). 문항6과 비교: 여기서는 A,B를 직접 나열할 수 없으니(원소가 뭔지 모름) 공식으로 갈 수밖에 없어요 — 이게 문항6·판별드릴③번과 이어지는 핵심 판단 기준입니다.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 8 · 난이도 응용</div>
+  <div class="card-tag">문항 8</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+전체집합 U = {1,2,...,9}, A = {x | x는 소수}, B = {x | x는 8의 약수}일 때, (A∪B)<sup>c</sup>를 구하세요. (드모르간의 법칙을 이용해도 좋습니다.)
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S6 연산법칙(드모르간의 법칙)</span><br><br>
+A={2,3,5,7}, B={1,2,4,8}<br>
+드모르간: (A∪B)<sup>c</sup> = A<sup>c</sup>∩B<sup>c</sup><br>
+A<sup>c</sup>={1,4,6,8,9}, B<sup>c</sup>={3,5,6,7,9}<br>
+<b>A<sup>c</sup>∩B<sup>c</sup> = {6, 9}</b> (직접 A∪B={1,2,3,4,5,7,8}를 구하고 U에서 빼도 같은 결과)
+<div class="signal-box">🔗 <b>구조 신호</b>: "(A∪B)의 여집합"을 A,B 각각의 여집합으로 바꿔 계산 → 드모르간의 법칙(공수2_집합과명제.html의 심화1 "드모르간의 법칙이 여러분 스마트폰 속에도 있다" — NAND 게이트 스토리 그대로). "그리고의 부정은 또는, 또는의 부정은 그리고"라는 규칙이 여기선 반대 방향(∪의 여집합→∩)으로 쓰였어요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 9 · 난이도 응용</div>
+  <div class="card-tag">문항 9</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+A = {x | x는 10 이하의 자연수}, B = {x∈A | x는 짝수}, C = {x∈A | x는 3의 배수}일 때, A∩(B∪C)의 원소의 개수는? (분배법칙을 이용해도 좋습니다.)<br><br>
+① 5개 &nbsp; ② 6개 &nbsp; ③ 7개 &nbsp; ④ 8개 &nbsp; ⑤ 9개
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S6 연산법칙(분배법칙)</span><br><br>
+B={2,4,6,8,10}(5개), C={3,6,9}(3개), B∩C={6}(1개)<br>
+B,C는 이미 A의 부분집합이므로 A∩(B∪C)=B∪C<br>
+n(B∪C)=n(B)+n(C)−n(B∩C)=5+3−1=<b>7개 (정답 ③)</b><br><br>
+<span style="font-size:.9em;color:#555">오답 설계: ④8은 겹치는 원소 6을 안 빼고 5+3을 그대로 더한 경우. ⑤9는 반대로 겹치는 원소를 두 번 더한 경우(부호 실수). ②6은 B를 "10 이하"가 아니라 "9 이하"로 잘못 세어 4개로 계산한 경우. ①5는 C를 아예 빠뜨리고 B만 답한 경우.</span>
+<div class="signal-box">🔗 <b>구조 신호</b>: "A∩(B∪C)" 형태 → 분배법칙 A∩(B∪C)=(A∩B)∪(A∩C)로 풀 수도 있지만(공수2_집합과명제.html의 "집합의 연산법칙" 개념 카드, 인수분해 방식 연산 문제3), 여기선 B,C가 이미 A의 부분집합이라 더 빠르게 B∪C만 구하면 끝나요 — 똑같은 도구도 조건에 따라 지름길이 생긴다는 걸 보여주는 문제.</div>
+  </div>
+</div>
+
+<div class="unit-header">📍 고난도 (10~12)</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 10 · 난이도 고난도</div>
+  <div class="card-tag">문항 10</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+전체집합 U의 두 부분집합 A, B에 대하여 연산 ☆를 A☆B = (A−B)∪(B−A)로 정의한다. 다음 &lt;보기&gt; 중 항상 옳은 것만을 있는 대로 고른 것은?<br><br>
+&lt;보기&gt;<br>
+ㄱ. A☆B = B☆A<br>
+ㄴ. A☆A = ∅<br>
+ㄷ. n(A☆B) = n(A)+n(B)<br>
+ㄹ. A∩B=∅ 이면 A☆B = A∪B<br><br>
+① ㄱ, ㄴ &nbsp; ② ㄱ, ㄹ &nbsp; ③ ㄱ, ㄴ, ㄹ &nbsp; ④ ㄴ, ㄷ, ㄹ &nbsp; ⑤ ㄱ, ㄴ, ㄷ, ㄹ
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S4 집합의 연산(정의를 뜯어서 직접 확인)</span><br><br>
+ㄱ. A−B와 B−A를 바꿔 합쳐도 결과(합집합)는 같음 → <b>참</b><br>
+ㄴ. A−A=∅, 이므로 A☆A=∅∪∅=∅ → <b>참</b><br>
+ㄷ. 반례: A={1,2}, B={2,3}이면 A☆B={1,3}, n=2인데 n(A)+n(B)=4로 다름 → <b>거짓</b> (A∩B가 있으면 그 원소는 A−B, B−A 어디에도 안 들어가서 두 번씩 빠지기 때문)<br>
+ㄹ. A,B가 서로소면 A−B=A, B−A=B이므로 A☆B=A∪B → <b>참</b><br>
+옳은 것: ㄱ, ㄴ, ㄹ → <b>정답 ③</b><br><br>
+<span style="font-size:.9em;color:#555">오답 설계: ⑤는 ㄷ까지 옳다고 착각(겉보기엔 그럴듯한 덧셈 공식이라 낚이기 쉬움). ④는 ㄱ이 당연해서 오히려 의심하고 뺀 경우. ①·②는 검증을 절반만 하고 고른 경우.</span>
+<div class="signal-box">🔗 <b>구조 신호</b>: "새로운 기호 ☆를 정의한다" → 낯선 기호에 겁먹지 말고, 이미 아는 ∩,∪,−로 뜯어서 하나씩 대입 확인(공수2_집합과명제.html의 "집합의 연산" 개념 카드 도구를 그대로 조합). ㄷ처럼 "그럴듯한 공식"은 항상 구체적인 숫자로 반례를 먼저 찾아보는 습관이 중요해요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 11 · 난이도 고난도</div>
+  <div class="card-tag">문항 11</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+자연수 n에 대하여 집합 A<sub>n</sub> = {x | x는 60 이하의 자연수 중 n의 배수}라 하자. A₄∩A₆ = A<sub>k</sub>를 만족시키는 자연수 k의 값은?<br><br>
+① 2 &nbsp; ② 6 &nbsp; ③ 10 &nbsp; ④ 12 &nbsp; ⑤ 24
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S4 집합의 연산(교집합 직접 나열)</span><br>
+<span style="color:#a855f7;font-weight:700">▶ 서랍2 — 이웃의 아이디어: 최소공배수(배수와 약수 단원)</span><br><br>
+A₄∩A₆의 원소는 "4의 배수이면서 6의 배수" → 4와 6의 최소공배수인 12의 배수<br>
+A₄∩A₆ = {12,24,36,48,60} = A₁₂<br>
+<b>k=12 (정답 ④)</b><br><br>
+<span style="font-size:.9em;color:#555">오답 설계: ①2는 최대공약수를 답으로 낸 경우(교집합이니까 "공통"이라는 말에서 최대공약수를 떠올린 실수). ②6은 두 배수 중 큰 쪽 숫자를 그냥 답으로 쓴 경우. ③10은 4+6을 계산한 경우. ⑤24는 최소공배수를 구하지 않고 4×6을 그대로 곱한 경우(최대공약수로 나눠야 하는 걸 빠뜨림).</span>
+<div class="signal-box">🔗 <b>구조 신호</b>: 자연수 파라미터 n이 붙은 조건제시법 집합(A_n 꼴) → 각 A_n을 실제로 원소나열해보면 "배수 집합의 교집합=최소공배수의 배수 집합"이라는 패턴이 보임(공수2_집합과명제.html의 "집합 — 개념" 조건제시법 카드를 파라미터가 있는 버전으로 확장한 것). 새 단원 유형이라 아직 전용 지도 카드는 없어요 — 이번 문제로 처음 만나는 패턴입니다.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 12 · 난이도 고난도</div>
+  <div class="card-tag">문항 12</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+전체집합 U의 세 부분집합 A, B, C에 대하여, 다음 중 A−(B∪C)와 항상 같은 집합은?<br><br>
+① (A−B)∩(A−C) &nbsp; ② (A−B)∪(A−C) &nbsp; ③ A∩B∩C &nbsp; ④ A−(B∩C) &nbsp; ⑤ (A−B)∪C
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S6 연산법칙(드모르간의 법칙)</span><br><br>
+A−(B∪C) = A∩(B∪C)<sup>c</sup> = A∩(B<sup>c</sup>∩C<sup>c</sup>) = (A∩B<sup>c</sup>)∩(A∩C<sup>c</sup>) = (A−B)∩(A−C)<br>
+<b>정답 ①</b> (전체집합 U의 임의의 부분집합 조합에 대해 전수 검증 완료 — Node.js로 6개 원소 전체집합 기준 모든 A,B,C 조합(64³가지)을 대입해 확인)<br><br>
+<span style="font-size:.9em;color:#555">오답 설계: ②는 교집합(∩)이어야 할 자리에 합집합(∪)을 쓴, "드모르간 방향"을 헷갈린 가장 흔한 실수. ③·④·⑤는 B∪C 대신 B∩C나 다른 조합으로 잘못 전개한 경우.</span>
+<div class="signal-box">🔗 <b>구조 신호</b>: "A−(B∪C)"처럼 여러 집합이 섞인 식을 다른 식으로 바꿔 쓰는 문제 → A−X = A∩Xᶜ로 먼저 바꾼 뒤 드모르간을 적용(공수2_집합과명제.html의 "집합의 연산" 개념 카드 속 드모르간 공식, 심화1과 같은 도구). "또는의 부정은 그리고"가 여기선 B∪C의 여집합을 쪼갤 때 쓰였어요.</div>
+  </div>
+</div>
+
+<div class="unit-header">🔥 최고난도 (13~16)</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 13 · 난이도 최고난도</div>
+  <div class="card-tag">문항 13 (서술형)</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+어느 학급 학생 50명을 대상으로 스마트폰 앱 A, B, C의 사용 여부를 조사하였다. A를 사용하는 학생 32명, B를 사용하는 학생 28명, C를 사용하는 학생 25명이고, A와 B를 모두 사용하는 학생 18명, B와 C를 모두 사용하는 학생 15명, C와 A를 모두 사용하는 학생 16명이다. 세 앱을 모두 사용하는 학생 수의 최댓값과 최솟값의 합을 구하는 풀이과정을 쓰고 답을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S7 원소의 개수 공식(포함배제의 원리, 3집합 확장)</span><br><br>
+세 앱을 모두 사용하는 학생 수를 x라 하면<br>
+n(A∪B∪C) = 32+28+25−18−15−16+x = 36+x<br><br>
+<b>최댓값</b>: n(A∪B∪C) ≤ 50 (전체 학생 수) → 36+x ≤ 50 → x ≤ 14<br><br>
+<b>최솟값</b>: A만 쓰는 학생 수 = 32−18−16+x = x−2 ≥ 0 → x ≥ 2<br>
+B만 쓰는 학생 수 = 28−18−15+x = x−5 ≥ 0 → x ≥ 5<br>
+C만 쓰는 학생 수 = 25−15−16+x = x−6 ≥ 0 → x ≥ 6<br>
+세 조건을 모두 만족해야 하므로 x ≥ 6<br><br>
+따라서 최댓값 14, 최솟값 6 → <b>14+6 = 20</b>
+<div class="signal-box">🔗 <b>구조 신호</b>: "모두 사용" "두 개씩 모두 사용"이라는 표현이 겹치는 3개 집합 → 포함배제의 원리를 3집합으로 확장(공수2_집합과명제.html의 심화3 "여론조사" 스토리, 문항7의 2집합 버전을 3집합으로 키운 것). 여기선 전체 인원 제한(≤50)뿐 아니라 "각자만 쓰는 인원이 음수가 될 수 없다"는 조건까지 같이 써야 최솟값이 나온다는 게 핵심 — 조건 하나만 쓰면 최솟값을 놓쳐요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 14 · 난이도 최고난도</div>
+  <div class="card-tag">문항 14</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+전체집합 U = {1,2,...,9}의 부분집합 X가 다음 조건을 모두 만족시킬 때, 집합 X의 개수는?<br>
+(가) 1∈X, 9∉X<br>
+(나) X는 짝수(2,4,6,8) 중 적어도 하나를 포함한다.<br>
+(다) X는 홀수(3,5,7) 중 적어도 하나를 포함한다.<br><br>
+① 12개 &nbsp; ② 105개 &nbsp; ③ 112개 &nbsp; ④ 120개 &nbsp; ⑤ 128개
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S8 조건을 만족하는 집합의 개수(케이스분류)</span><br><br>
+1, 9는 고정. 짝수 4개(2,4,6,8) 중 "하나도 안 고르는" 경우만 빼면: 2⁴−1=15<br>
+홀수 3개(3,5,7) 중 "하나도 안 고르는" 경우만 빼면: 2³−1=7<br>
+짝수 선택과 홀수 선택은 서로 독립 → <b>15×7=105개 (정답 ②)</b><br><br>
+<span style="font-size:.9em;color:#555">오답 설계: ⑤128(16×8)은 (나)(다) 조건을 둘 다 빠뜨린 경우. ④120(15×8)은 (다)를 빠뜨린 경우. ③112(16×7)은 (나)를 빠뜨린 경우. ①12(4×3)는 "적어도 하나"를 "정확히 하나"로 잘못 읽고 조합수를 계산한 경우.</span>
+<div class="signal-box">🔗 <b>구조 신호</b>: "적어도 하나를 포함한다"는 조건 두 개가 동시에 걸린 경우 → 각각 여사건(전체−0개 포함)으로 따로 계산한 뒤 곱하기(문항6·판별드릴⑧과 같은 도구, 공수2_집합과명제.html의 지도1/6). 조건이 두 그룹(짝수/홀수)으로 완전히 나뉘어 있어서 곱의 법칙이 그대로 적용된다는 걸 알아채는 게 핵심.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 15 · 난이도 최고난도</div>
+  <div class="card-tag">문항 15 (서술형)</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+전체집합 U = {1,2,...,8}의 두 부분집합 A, B가 다음 조건을 모두 만족한다.<br>
+(가) A∩B = {4,5}<br>
+(나) A∪B = U<br>
+(다) n(A) = 6<br>
+집합 A의 모든 원소의 합의 최댓값을 구하는 풀이과정을 쓰고 답을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S3 부분집합의 개수(자유원소 발상의 확장)</span><br><br>
+A∩B={4,5}이므로 4, 5는 항상 A의 원소.<br>
+A∪B=U이고 A∩B={4,5}뿐이므로, 나머지 원소 {1,2,3,6,7,8}은 A와 B 중 정확히 한쪽에만 속해야 함(둘 다 속하면 교집합이 {4,5}보다 커짐).<br>
+n(A)=6이므로, A는 4,5 외에 {1,2,3,6,7,8} 중 4개를 더 가져야 함.<br>
+합을 최대로 하려면 가장 큰 4개를 골라야 함: 8,7,6,3 (합=24)<br>
+<b>A의 원소의 합 최댓값 = 4+5+24 = 33</b>
+<div class="signal-box">🔗 <b>구조 신호</b>: 교집합·합집합 조건 + 원소 개수 조건이 동시에 걸려서 "자유롭게 고를 수 있는 원소"의 범위부터 먼저 좁혀야 하는 문제(공수2_집합과명제.html의 "집합의 연산" 개념 카드 도구 + 문항2의 "자유원소" 발상을 최적화 문제로 확장). 부분집합 개수를 셀 때 썼던 "고정 vs 자유" 구분이 여기선 "합을 최대화할 자유원소 고르기"로 이어져요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 16 · 난이도 최고난도 (종합)</div>
+  <div class="card-tag">문항 16 (서술형)</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+전체집합 U = {1,2,...,10}의 두 부분집합 A, B가 다음 조건을 모두 만족한다.<br>
+(가) n(A)=6, n(B)=5<br>
+(나) A와 B는 서로소가 아니다.<br>
+(다) A∩B의 원소는 모두 짝수이다.<br>
+n(A∩B)의 최댓값과 최솟값의 합을 구하는 풀이과정을 쓰고 답을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<span style="color:#4c1d95;font-weight:700">▶ 사용한 개념: S4+S5+S7 종합(연산·서로소·원소개수 공식)</span><br><br>
+n(A∪B) = n(A)+n(B)−n(A∩B) = 11−n(A∩B)<br><br>
+<b>최솟값</b>: n(A∪B) ≤ n(U) = 10 → 11−n(A∩B) ≤ 10 → n(A∩B) ≥ 1<br>
+(나) 조건(서로소가 아님)도 n(A∩B) ≥ 1과 같은 뜻 — 실제로 n(A∩B)=1이 되도록 A,B를 만들 수 있으므로 <b>최솟값 1</b><br><br>
+<b>최댓값</b>: (다)에 의해 A∩B는 U의 짝수 {2,4,6,8,10}(5개) 안에서만 고를 수 있으므로 n(A∩B) ≤ 5<br>
+n(A)=6, n(B)=5이므로 n(A∩B) ≤ min(6,5)=5도 성립<br>
+실제로 A∩B={2,4,6,8,10}(B 전체), A=B∪{홀수 1개}로 두면 조건을 모두 만족 → <b>최댓값 5</b><br><br>
+<b>1+5 = 6</b>
+<div class="signal-box">🔗 <b>구조 신호</b>: "서로소가 아니다"(문항5의 반대 조건) + 원소의 개수 공식(문항7·13) + 원소 범위 제한(짝수만) 세 가지가 한 문제에 다 들어있는 종합형. 이 세트에서 배운 서랍(S4·S5·S7)을 한 문제 안에서 순서대로 조합해야 풀려요 — "서로소가 아니다"를 부등식으로 바꾸는 것부터, 짝수 제한으로 상한을 다시 잡는 것까지 두 단계를 거칩니다.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+<div class="toro-note">🦕 토로: 16문제를 다 풀어봤다면, 문항6·7 대비쌍을 다시 한번 펴 보세요 — "개수를 구하시오"라는 말투만으로 서랍을 정하면 안 된다는 걸 이 세트에서 가장 확실하게 보여준 두 문제예요. 실전에서 시간이 없을수록 말투에 낚이기 쉬우니, 조건에 원소가 직접 나열 가능한지부터 확인하는 습관을 들이세요.</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
