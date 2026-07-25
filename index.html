@@ -1393,22 +1393,89 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       <div style="width:60px"></div>
     </div>
     <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">주제별로 나뉘어 있어요 — 제목을 눌러보세요</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
       <button onclick="startCards('circle-def','circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(52,211,153,.1),rgba(52,211,153,.03));border:1px solid rgba(52,211,153,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
         <div style="font-size:1.4rem">⭕</div>
-        <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.75rem;margin:5px 0 4px;line-height:1.3">원의 방정식이란?</div>
-        <div style="font-size:.62rem;color:#aaa;line-height:1.4">표준형<br>일반형→표준형</div>
-        <div style="font-size:.6rem;color:#34d399;opacity:.8;margin-top:5px">2장 →</div>
+        <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.72rem;margin:5px 0 4px;line-height:1.3">①원의 방정식이란?</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">표준형·일반형<br>존재조건</div>
+        <div style="font-size:.58rem;color:#34d399;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('circle-line','circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(52,211,153,.1),rgba(52,211,153,.03));border:1px solid rgba(52,211,153,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📏</div>
+        <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.72rem;margin:5px 0 4px;line-height:1.3">②원과 직선의 관계</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">d vs r</div>
+        <div style="font-size:.58rem;color:#34d399;opacity:.8;margin-top:5px">2장 →</div>
       </button>
       <button onclick="startCards('circle-tangent','circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(52,211,153,.1),rgba(52,211,153,.03));border:1px solid rgba(52,211,153,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
         <div style="font-size:1.4rem">📐</div>
-        <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.75rem;margin:5px 0 4px;line-height:1.3">접선의 방정식</div>
-        <div style="font-size:.62rem;color:#aaa;line-height:1.4">기울기로 구하기<br>원 위의 점에서</div>
-        <div style="font-size:.6rem;color:#34d399;opacity:.8;margin-top:5px">2장 →</div>
+        <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.72rem;margin:5px 0 4px;line-height:1.3">③접선의 방정식</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">원위의점·기울기<br>원밖의점+근과계수</div>
+        <div style="font-size:.58rem;color:#34d399;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+      <button onclick="startCards('circle-locus','circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(244,114,182,.1),rgba(244,114,182,.03));border:1px solid rgba(244,114,182,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🌀</div>
+        <div style="font-family:'Jua',sans-serif;color:#f472b6;font-size:.72rem;margin:5px 0 4px;line-height:1.3">④원이 되는 자취</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">아폴로니오스 원</div>
+        <div style="font-size:.58rem;color:#f472b6;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('circle-twocircles','circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">⭕⭕</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.72rem;margin:5px 0 4px;line-height:1.3">⑤두 원의 관계</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">다섯 가지 위치관계</div>
+        <div style="font-size:.58rem;color:#7dd3fc;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('circle-combine','circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(167,139,250,.1),rgba(167,139,250,.03));border:1px solid rgba(167,139,250,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🔗</div>
+        <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.72rem;margin:5px 0 4px;line-height:1.3">⑥두 원의 조합</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">공통현·교점을<br>지나는 원</div>
+        <div style="font-size:.58rem;color:#a78bfa;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('circle-ideas','circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(196,181,253,.1),rgba(196,181,253,.03));border:1px solid rgba(196,181,253,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🗺️</div>
+        <div style="font-family:'Jua',sans-serif;color:#c4b5fd;font-size:.72rem;margin:5px 0 4px;line-height:1.3">아이디어 모음</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">지도1~9<br>+개념확장 3제</div>
+        <div style="font-size:.58rem;color:#c4b5fd;opacity:.8;margin-top:5px">8장 →</div>
+      </button>
+      <button onclick="startCards('circle-summary','circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(148,163,184,.1),rgba(148,163,184,.03));border:1px solid rgba(148,163,184,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🗂️</div>
+        <div style="font-family:'Jua',sans-serif;color:#cbd5e1;font-size:.72rem;margin:5px 0 4px;line-height:1.3">총정리</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">한눈에 보기<br>+용어 확인</div>
+        <div style="font-size:.58rem;color:#cbd5e1;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="showScreen('circle-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">✏️</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.72rem;margin:5px 0 4px;line-height:1.3">실전훈련</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">문항 6제<br>+실생활 연결</div>
+        <div style="font-size:.58rem;color:#fbbf24;opacity:.8;margin-top:5px">9장 →</div>
       </button>
     </div>
-    <div style="margin-top:14px;background:rgba(196,181,253,.08);border:1px solid rgba(196,181,253,.35);border-radius:12px;padding:10px 14px;font-size:.72rem;color:#c4b5fd;line-height:1.7">
-      🔗 원과 직선의 위치관계(d와 r 비교), 접선의 길이, 두 원의 위치관계는 <b>거리 공식 총정리 / 수직의 의미 총정리</b>에서 이미 다뤘어요.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     원의 방정식: 실전훈련 서브허브
+══════════════════════════════════ -->
+<div id="circle-practice-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 원의 방정식</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#fbbf24">✏️ 원의 방정식 실전훈련</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button onclick="startCards('circle-practice','circle-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📝</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">연습문제 1~6</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">주제0~2 전체 활용</div>
+        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">6장 →</div>
+      </button>
+      <button onclick="startCards('circle-real','circle-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🌍</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">실생활 연결</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">지진·GPS·태풍</div>
+        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
     </div>
   </div>
 </div>
@@ -12360,54 +12427,412 @@ k=5 또는 k=−3 → 합=<b>2</b>
 
 /* ── 원의 방정식 ── */
 'circle-def': [
-{ tag:'원의 방정식 — 표준형 1/2', tagColor:'#34d399',
+{ tag:'원의 방정식 — 표준형 1/3', tagColor:'#34d399',
     bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-중심 (a,b), 반지름 r인 원은, "중심에서 거리가 항상 r인 점들의 모임"이에요 — 두 점 사이의 거리 공식(이미 배운 도구) 그대로 써서 유도돼요.<br><br>
+원은 "한 점(중심)에서 <b style="color:#34d399">똑같은 거리</b>(반지름)에 있는 점들을 전부 모은 도형"이에요 — 컴퍼스로 원을 그릴 때랑 똑같은 생각.<br><br>
 <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
 <b style="font-size:1.05rem">(x − a)² + (y − b)² = r²</b>
 </div>
-예: 중심(2,−1), r=3 → <b>(x−2)²+(y+1)²=9</b><br><br>
-<span style="font-size:.8rem;color:#94a3b8">중심이 원점(0,0)이면 x²+y²=r²로 더 간단해져요.</span>
-</div>`, ans:null },
+중심 (a,b), 반지름 r인 원이에요 — 이건 사실 두 점 사이의 거리 공식을 그대로 쓴 것뿐이에요(원 위의 점 (x,y)에서 중심까지 거리가 항상 r).<br><br>
+<span style="font-size:.8rem;color:#94a3b8">중심이 원점(0,0)이면 x²+y²=r²로 더 간단해져요.</span><br><br>
+<b>기본예제</b>: 중심(−1,2), 반지름4인 원은?
+</div>`,
+    ans:`a=−1,b=2,r=4 대입 → <b>(x+1)²+(y−2)²=16</b>` },
 
-{ tag:'원의 방정식 — 일반형에서 표준형으로 2/2', tagColor:'#34d399',
+{ tag:'원의 방정식 — 일반형에서 표준형으로 2/3', tagColor:'#34d399',
     bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-원의 방정식은 종종 <b style="color:#34d399">일반형</b> x²+y²+Ax+By+C=0 꼴로 나와요. 완전제곱으로 묶으면 표준형이 나와요.<br><br>
-예: x²+y²−4x+2y−4=0<br>
-→ (x²−4x) + (y²+2y) = 4<br>
-→ (x−2)²−4 + (y+1)²−1 = 4<br>
-→ <b>(x−2)²+(y+1)²=9</b> → 중심(2,−1), r=3<br><br>
+표준형 (x−a)²+(y−b)²=r²을 그냥 전개하면:<br>
+x²−2ax+a²+y²−2by+b²=r² → x²+y²−2ax−2by+(a²+b²−r²)=0<br><br>
+이게 바로 <b style="color:#34d399">일반형</b> x²+y²+Ax+By+C=0이에요 — 표준형을 곱셈해서 펼친 모양일 뿐, 겁먹을 필요 없어요.<br><br>
+<span style="font-size:.8rem;color:#94a3b8">A=−2a, B=−2b, C=a²+b²−r² 관계식은 외울 필요 없어요 — 완전제곱식으로 되돌리는 방법만 알면 충분해요.</span><br><br>
+<b>기본예제</b>: 원 x²+y²−4x+6y−3=0의 중심과 반지름은?
+</div>`,
+    ans:`(x²−4x+4)+(y²+6y+9)=3+4+9 → (x−2)²+(y+3)²=16<br><b>중심(2,−3), 반지름4</b>` },
+
+{ tag:'원의 방정식 — 존재 조건 3/3', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+일반형 x²+y²+Ax+By+C=0을 완전제곱으로 정리하면:<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+(x+<span class="frac"><span class="num">A</span><span class="den">2</span></span>)² + (y+<span class="frac"><span class="num">B</span><span class="den">2</span></span>)² = <span class="frac"><span class="num">A²+B²−4C</span><span class="den">4</span></span>
+</div>
 <div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
-⚠️ 우변이 <b>양수</b>여야 진짜 원이 돼요. 0이면 점 하나, 음수면 원이 존재하지 않아요.
+⚠️ 우변(=r²)이 <b>양수</b>여야 진짜 원이 돼요. 0이면 점 하나(반지름 0인 퇴화원), 음수면 원이 아예 존재하지 않아요.
 </div>
 </div>`, ans:null }
 ],
 
-'circle-tangent': [
-{ tag:'원의 접선의 방정식 — 기울기가 주어질 때 1/2', tagColor:'#34d399',
+/* ── 원과 직선의 위치 관계 ── */
+'circle-line': [
+{ tag:'원과 직선의 위치 관계 — 개념', tagColor:'#34d399',
     bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-원 x²+y²=r²에 접하고 기울기가 m인 직선은 항상 <b style="color:#34d399">두 개</b>예요(원의 위아래).<br><br>
-<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
-<b style="font-size:1.05rem">y = mx ± r√(1+m²)</b>
+원과 직선이 어떻게 만나는지는 <b style="color:#34d399">중심에서 직선까지의 거리 d</b>와 <b>반지름 r</b>을 비교하면 바로 알 수 있어요(점과 직선 사이의 거리 공식 그대로).<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;line-height:2.1">
+<b>d &lt; r</b> → 서로 다른 두 점에서 만남(교차)<br>
+<b>d = r</b> → 한 점에서만 만남(접함, 이 직선을 <b>접선</b>이라 부름)<br>
+<b>d &gt; r</b> → 만나지 않음
 </div>
-예: 원 x²+y²=25(r=5), m=¾ → y=¾x ± 5×<span class="frac"><span class="num">5</span><span class="den">4</span></span> = ¾x ± <span class="frac"><span class="num">25</span><span class="den">4</span></span> → <b>3x−4y±25=0</b><br><br>
-<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
-🔗 이 공식은 "중심에서 접선까지 거리 = 반지름"(원과 직선 위치관계에서 배운 d=r 조건)을 그대로 풀어서 나온 거예요 — 새 공식이 아니라 앞서 배운 도구의 결과예요.
-</div>
-</div>`, ans:null },
+<span style="font-size:.8rem;color:#94a3b8">직선과 원을 연립해서 나오는 이차방정식의 판별식(D&gt;0, D=0, D&lt;0)으로도 똑같이 판단할 수 있어요 — 두 방법 다 같은 답을 줘요.</span><br><br>
+<b>기본예제</b>: 원 x²+y²=9와 직선 x+y=5는?
+</div>`,
+    ans:`중심(0,0), r=3. d=|0+0−5|/√2=5/√2≈3.54 &gt; 3 → <b>만나지 않는다</b>` },
 
-{ tag:'원의 접선의 방정식 — 원 위의 한 점에서 2/2', tagColor:'#34d399',
+{ tag:'원과 직선의 위치 관계 — 판별 실전예제', tagColor:'#34d399',
     bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-원 x²+y²=r² 위의 점 (x₀,y₀)에서 그은 접선은, 그 점만 대입하면 바로 나와요.<br><br>
+<b>기본예제</b>: 원 x²+y²=8과 직선 x−y+4=0의 위치 관계는?
+</div>`,
+    ans:`중심(0,0), 반지름 √8=2√2<br>d = |0−0+4|/√(1²+1²) = 4/√2 = 2√2<br>d = r → <b>한 점에서 접한다</b>` }
+],
+
+/* ── 원의 접선의 방정식 ── */
+'circle-tangent': [
+{ tag:'접선 — 원 위의 한 점에서 1/4', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 위의 한 점에서 그은 접선은, 그 점까지 이은 <b style="color:#34d399">반지름과 항상 직각</b>으로 만나요. 이 성질 하나로 접선의 방정식을 바로 만들 수 있어요.<br><br>
+원 x²+y²=25(중심 원점, r=5) 위의 점 P(3,4)에서의 접선: 반지름 OP의 기울기=4/3 → 접선은 수직이므로 기울기=−3/4. y−4=−¾(x−3) → <b>3x+4y=25</b><br><br>
 <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
 <b style="font-size:1.05rem">x₀x + y₀y = r²</b>
 </div>
-예: 원 x²+y²=25, 점(3,4)(3²+4²=25로 원 위의 점 맞음) → <b>3x+4y=25</b><br><br>
-<span style="font-size:.8rem;color:#94a3b8">이유: 반지름(중심→접점)과 접선은 항상 수직이에요("수직의 의미"의 기울기 얼굴) — 접선의 기울기는 반지름 기울기(y₀/x₀)의 음의 역수인 −x₀/y₀가 돼요.</span>
+중심 원점인 원 x²+y²=r² 위의 점 (x₀,y₀)에서의 접선 공식이에요(방금 구한 과정을 한 번 해두면 공식이 되는 거예요). 확인: 3x+4y=25에 (3,4) 대입하면 9+16=25 ✓<br><br>
+<b>기본예제</b>: 원 x²+y²=13 위의 점(2,3)에서의 접선은?
+</div>`,
+    ans:`x₀x+y₀y=r² 공식에 (2,3), r²=13 대입 → <b>2x+3y=13</b>` },
+
+{ tag:'접선 — 기울기가 주어질 때 / 원 밖의 점 2/4', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+이번엔 원 위의 점이 아니라, <b style="color:#34d399">기울기가 주어지거나 원 밖의 점에서</b> 접선을 그어야 할 때예요. 접점을 몰라도 "중심에서 직선까지 거리=반지름" 조건 하나면 풀려요. <b>실제 시험에서 원의 접선 문제는 압도적으로 이 유형이에요</b> — 원 위의 점에서의 접선(앞 카드)보다 훨씬 중요해요.<br><br>
+원 밖의 점에서는 접선이 항상 <b>2개</b> 그어져요. 접점을 몰라도 상관없어요 — 구하는 건 접선의 방정식이지 접점의 좌표가 아니니까요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;line-height:2">
+<b>절차(반드시 이 순서)</b><br>
+① 접선을 y=mx+n 꼴로 놓는다<br>
+② 중심에서 이 직선까지 거리=반지름 방정식을 세운다<br>
+③ 양변을 제곱해서 정리하면 <b>m에 대한 이차방정식</b><br>
+④ 근과 계수의 관계로 두 접선의 기울기 합·곱을 바로 구한다
+</div>
+④번이 핵심이에요 — "기울기의 합/곱"만 물으면 m을 직접 풀 필요 없이 한 번에 답이 나와요. "접선의 방정식 자체"를 물으면 이차방정식을 끝까지 풀어야 해요.<br><br>
+<b>기본예제</b>: 원 x²+y²=4에 접하고 기울기가 √3인 접선은?
+</div>`,
+    ans:`① m=√3 → √3x−y+n=0<br>② 거리=|n|/√(3+1)=|n|/2=2(반지름)<br>③ |n|=4 → n=±4<br>④ <b>y=√3x+4 또는 y=√3x−4</b>` },
+
+{ tag:'접선 — 원 밖의 점에서 그은 두 접선(완전풀이) 3/4', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 x²+y²=9 밖의 점 P(5,0)에서 원에 그은 두 접선의 방정식을 모두 구하면?
+</div>`,
+    ans:`<b>1단계</b> P(5,0) 지나는 직선: y=m(x−5), 즉 mx−y−5m=0<br>
+<b>2단계</b> 중심(0,0)에서 거리=반지름: |−5m|/√(m²+1)=3<br>
+<b>3단계</b> 제곱해서 정리: 25m²=9(m²+1) → 16m²=9 → m=±¾<br>
+<b>4단계</b> m=¾: <b>y=¾x−15/4</b> &nbsp; m=−¾: <b>y=−¾x+15/4</b>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
+🔗 만약 "두 접선의 기울기 곱"만 물었다면, 3단계의 16m²−9=0에서 근과 계수의 관계로 곱=−9/16을 바로 구할 수 있었어요 — 4단계까지 갈 필요가 없었던 거죠.
+</div>` },
+
+{ tag:'접선 — 기울기 합·곱만 구하기(근과 계수의 관계) 4/4', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.06)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 원 x²+y²=4, 점(0,4)에서 그은 두 접선의 기울기의 합과 곱을 각각 구하세요.
+</div>`,
+    ans:`접선을 y=mx+4, 즉 mx−y+4=0으로 놓으면<br>
+중심(0,0)에서 거리=반지름: |4|/√(m²+1)=2 → 16=4(m²+1) → 4m²−12=0 → <b>m²−3=0</b><br>
+이건 m에 대한 이차방정식 1·m²+0·m−3=0 → 근과 계수의 관계로 <b>합=0, 곱=−3</b>` }
+],
+
+/* ── 원이 되는 자취 (아폴로니오스 원) ── */
+'circle-locus': [
+{ tag:'원이 되는 자취 — 개념과 예제', tagColor:'#f472b6',
+    bg:'rgba(244,114,182,.07)', bd:'rgba(244,114,182,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+직선의 방정식 단원에서 배운 <b style="color:#f472b6">자취</b> 기법(점을 P(x,y)로 놓고 조건을 식으로 세워 정리)을 그대로 다시 써요. 조건이 "같은 거리"면 직선(수직이등분선)이 나왔는데, 조건을 <b>거리의 비</b>로 바꾸면 어떻게 될까요?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+예: A(−4,0), B(2,0)로부터 거리의 비가 2:1(PA:PB=2:1)인 점 P의 자취는?<br>
+PA=2PB → PA²=4PB² → (x+4)²+y²=4[(x−2)²+y²]<br>
+전개·정리 → <b>(x−4)²+y²=16</b> (중심(4,0), 반지름4)
+</div><br>
+x²,y² 항이 이번엔 <b>사라지지 않고 남아서</b> 원의 방정식이 나왔어요! 방법은 직선 때와 똑같은데, "거리의 비"라는 조건 때문에 결과가 원으로 바뀐 거예요. 이렇게 두 점으로부터 거리의 비가 일정한 점들의 자취를, 특별히 <span class="key-term">아폴로니오스 원</span>이라 불러요.<br><br>
+<b>기본예제</b>: A(0,0), B(9,0)로부터 거리의 비가 1:2인 점 P의 자취는?
+</div>`,
+    ans:`PB=2PA → PB²=4PA² → (x−9)²+y²=4(x²+y²)<br>정리 → <b>(x+3)²+y²=36</b> (중심(−3,0), 반지름6)` },
+
+{ tag:'접선+자취 결합 — 수직인 두 접선을 그을 수 있는 점의 자취', tagColor:'#f472b6',
+    bg:'rgba(244,114,182,.06)', bd:'rgba(244,114,182,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 점 P(a,b)에서 원 x²+y²=9에 그은 두 접선이 서로 수직일 때, 점 P가 만족하는 자취의 방정식은?
+</div>`,
+    ans:`원의 중심 O, 두 접점 T₁·T₂, 점 P를 이으면: OT₁⊥PT₁, OT₂⊥PT₂(반지름은 항상 접선과 수직), 문제에서 ∠T₁PT₂=90°까지 주어졌으니 사각형 O-T₁-P-T₂는 세 각이 이미 90°인 직사각형 — OT₁=OT₂=r(반지름)이므로 사실은 <b>정사각형</b>이에요.<br><br>
+정사각형의 대각선 OP=변×√2=<b>3√2</b>(반지름3)<br>
+원점에서 P까지 거리가 항상 3√2 → <b>a²+b²=18</b>` }
+],
+
+/* ── 두 원의 위치 관계 ── */
+'circle-twocircles': [
+{ tag:'두 원의 위치 관계 — 다섯 가지', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+두 원이 어떻게 놓여있는지는 <b style="color:#7dd3fc">두 중심 사이의 거리 d</b>와 두 반지름(r₁,r₂)을 비교하면 알 수 있어요 — 원과 직선의 위치 관계와 완전히 같은 방식이에요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;line-height:2.05">
+<b>d &gt; r₁+r₂</b> → 서로 만나지 않음(밖에서)<br>
+<b>d = r₁+r₂</b> → 외접(한 점에서 접함)<br>
+<b>|r₁−r₂| &lt; d &lt; r₁+r₂</b> → 두 점에서 만남(교차)<br>
+<b>d = |r₁−r₂|</b> → 내접(작은 원이 안쪽에서 닿음)<br>
+<b>d &lt; |r₁−r₂|</b> → 한 원이 다른 원 안에 완전히 들어있음
+</div>
+<span style="font-size:.8rem;color:#94a3b8">중심을 잇는 선(길이d)이 두 반지름 구간과 겹치는지·모자라는지·딱 맞는지를 보면 다섯 경우가 자연스럽게 나와요.</span><br><br>
+예: x²+y²=9(중심(0,0),r=3)와 (x−1)²+y²=1(중심(1,0),r=1) → d=1, |r₁−r₂|=2 → d&lt;|r₁−r₂| → <b>내부포함</b>(서로 안 닿음)
+</div>`, ans:null },
+
+{ tag:'두 원의 위치 관계 — 판별 실전예제', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b>기본예제</b>: 두 원 x²+y²=4와 (x−1)²+(y−1)²=9의 위치 관계는?
+</div>`,
+    ans:`중심(0,0), r₁=2 / 중심(1,1), r₂=3<br>d=√(1²+1²)=√2≈1.41<br>|r₁−r₂|=1, r₁+r₂=5 → 1 &lt; √2 &lt; 5<br><b>두 점에서 만난다(교차)</b>` }
+],
+
+/* ── 두 원의 조합 ── */
+'circle-combine': [
+{ tag:'두 원을 조합하면? — C₁+k·C₂=0', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+두 원이 두 점에서 만나면, 직선의 방정식 단원의 "두 직선의 교점을 지나는 직선 k·l₁+l₂=0"과 <b style="color:#a78bfa">똑같은 원리</b>가 통해요 — 두 원의 일반형 C₁, C₂를 C₁+k·C₂=0 꼴로 묶으면 돼요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>[직선]</b> l₁:x−y−1=0, l₂:2x+y−5=0의 교점+점(1,4)를 지나는 직선: k·l₁+l₂=0에 (1,4)대입 → k=¼ → <b>3x+y−7=0</b><br><br>
+<b>[원]</b> C₁:x²+y²=10, C₂:x²+y²−4x−2y+4=0의 교점을 지나는 도형: C₁−C₂=0(k=−1) → <b>2x+y−7=0</b>(직선, 공통현)
+</div><br>
+두 식이 똑같은 방법이죠? 교점에서는 두 식이 동시에 0이니, 어떤 비율(k)로 묶어 더해도 결과가 0 — 그래서 결합식은 항상 원래 교점을 지나요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b>k=−1</b> → x²,y² 항이 사라져서 <b>직선</b>(두 원의 교점을 잇는 <span class="key-term">공통현</span>)<br>
+<b>k≠−1</b> → x²,y² 항이 안 사라지고 <b>또 다른 원</b>(똑같이 교점을 지남)
+</div>
+</div>`, ans:null },
+
+{ tag:'공통현의 길이로 미지수 구하기', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b>기본예제</b>: 두 원 x²+y²=20과 (x−a)²+y²=20의 공통현의 길이가 8일 때, 양수 a는?
+</div>`,
+    ans:`두 식을 빼면 공통현: x²+y²−[(x−a)²+y²]=0 → 2ax−a²=0 → <b>x=a/2</b><br>
+중심(0,0)에서 이 공통현까지 거리=a/2, 반지름√20, 반현(半弦)길이=4(현8의 절반)<br>
+피타고라스: (a/2)²+4²=20 → (a/2)²=4 → a/2=2 → <b>a=4</b>` },
+
+{ tag:'교점을 지나는 원 구하기', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b>기본예제</b>: 두 원 x²+y²−4=0, x²+y²−2x−2y=0의 교점과 점(−2,2)를 지나는 원은?
+</div>`,
+    ans:`C₁(−2,2)=4+4−4=4, C₂(−2,2)=4+4+4−4=8<br>C₁+k·C₂=0 → 4+8k=0 → k=−½<br>2C₁−C₂=0 → 2(x²+y²−4)−(x²+y²−2x−2y)=0<br><b>→ x²+y²+2x+2y−8=0</b>` }
+],
+
+/* ── 원의 방정식: 아이디어 모음(지도1~9 + 개념확장) ── */
+'circle-ideas': [
+{ tag:'아이디어①② — 세 점을 지나는 원 / 지름의 양 끝점', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#c4b5fd">① "세 점을 지나는 원"</b>이라는 표현이 나오면? → 일반형 x²+y²+Dx+Ey+F=0에 세 점을 각각 대입, 세 방정식을 연립해서 D,E,F를 구한 뒤 표준형으로 변환.<br>
+예: O(0,0),A(4,0),B(0,6) 대입 → F=0, D=−4, E=−6 → 중심(2,3), 반지름√13.<br>
+<span style="font-size:.8rem;color:#94a3b8">세 점 중 하나가 직각삼각형의 직각 꼭짓점이면, 외심은 그냥 빗변의 중점이에요(평면좌표에서 배운 지름길) — 매번 연립할 필요는 없어요.</span><br><br>
+<b style="color:#c4b5fd">② "두 점을 지름의 양 끝점으로 하는 원"</b>이 나오면? → 중심=두 점의 중점(내분점1:1), 반지름=두 점 사이 거리의 절반.<br>
+예: A(1,1), B(5,3) → 중심=중점(3,2), 반지름=거리(A,B)/2=√20/2=√5.
+</div>`, ans:null },
+
+{ tag:'아이디어③ — 좌표축에 접하는 원', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+중심을 (a,b)로 두면, "접한다"는 조건은 축까지의 거리가 곧 반지름이라는 뜻이에요. 제곱하면 부호가 사라지니 위/아래·좌/우를 나눌 필요 없이 <b style="color:#c4b5fd">식 하나</b>로 충분해요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;line-height:2">
+<b>x축에 접함</b>: (x−a)²+(y−b)²=b²<br>
+<b>y축에 접함</b>: (x−a)²+(y−b)²=a²<br>
+<b>x축·y축 둘 다 접함</b>: |a|=|b|=r → 중심이 y=x 위(a=b) 또는 y=−x 위(a=−b)<br>
+&nbsp;&nbsp;→ (x−a)²+(y−a)²=a² 또는 (x−a)²+(y+a)²=a²
+</div>
+<span style="font-size:.8rem;color:#94a3b8">양축접함은 사분면 4개지만 식으로는 두 그룹(y=x, y=−x)으로 묶여요 — "몇 사분면"이라는 말이 없으면 원이 여러 개 나올 수 있다는 뜻이에요.</span>
+</div>`, ans:null },
+
+{ tag:'아이디어④⑤ — 중심이 좌표축·직선 위에 있음(접함과는 다른 조건!)', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#c4b5fd">④ "중심이 축 위에 있다"</b>는 "접한다"와 완전히 다른 조건이에요 — 좌표 하나가 0으로 <b>고정</b>될 뿐, 반지름 r은 축과 무관하게 자유로워요.<br>
+중심이 x축 위(a,0): (x−a)²+y²=r² &nbsp; 중심이 y축 위(0,b): x²+(y−b)²=r²<br>
+"한 점을 더 지난다" 같은 조건이 추가되면 남은 미지수의 방정식이 나와요.<br><br>
+<b style="color:#c4b5fd">⑤ "중심이 직선 위에 있다"</b>는? → 중심을 (a,b)로 놓고 직선 방정식에 대입해 관계식 하나를 얻은 뒤, 다른 조건(두 점을 지남 등)과 연립.<br>
+예: 원이 A(1,0),B(0,3)을 지나고 중심이 y=x 위 → 중심(t,t)로 놓고 "중심-A거리=중심-B거리": (t−1)²+t²=t²+(t−3)² → t=2 → 중심(2,2), r²=5 → <b>(x−2)²+(y−2)²=5</b><br>
+<span style="font-size:.8rem;color:#94a3b8">이건 평면좌표의 "AB 수직이등분선 위에 중심" 이야기와 같아요 — 직선 조건이 하나 더 얹히면 그 교점으로 중심이 정해져요.</span>
+</div>`, ans:null },
+
+{ tag:'아이디어⑥⑦ — 원+직선+넓이 / 원 밖의 점 두 접선', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#c4b5fd">⑥ 원+직선이 만드는 삼각형의 넓이</b>는? → 중심-직선 거리(점직선거리 공식)를 밑변·높이 활용.<br>
+예: 원 x²+y²=25, 직선 3x+4y−15=0 → d=|−15|/5=3, 반현=√(25−9)=4→현(밑변)=8, 높이=d=3 → 넓이=½×8×3=<b>12</b><br><br>
+<b style="color:#c4b5fd">⑦ 원 밖의 점에서 그은 두 접선의 기울기 합·곱</b>은? → 거리조건(중심-거리=반지름)을 세우면 m에 대한 <b>이차방정식</b> → 근과 계수의 관계로 합·곱을 바로.<br>
+예: 원 x²+y²=4, 점(0,4) → 거리조건 정리하면 m²−3=0 → 합=0, 곱=−3 (접점을 몰라도 괜찮아요 — 이게 핵심).
+</div>`, ans:null },
+
+{ tag:'아이디어⑧⑨ — 둘레를 이등분하는 직선 / 원 위 점까지 거리의 최대·최소', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#c4b5fd">⑧ "직선이 원의 둘레(넓이)를 이등분한다"</b>는? → 원을 정확히 반으로 나누려면 반드시 지름(중심을 지나는 직선)이어야 해요 — <b>"중심을 지난다"</b>는 조건과 완전히 같은 뜻. 중심 좌표를 직선 방정식에 대입하는 것만으로 끝나는 경우가 많아요.<br><br>
+<b style="color:#c4b5fd">⑨ 원 위를 움직이는 점 P와 고정점 A 사이 거리의 최대·최소</b>는? → 삼각부등식 |OA−OP|≤AP≤OA+OP (O=중심, OP=반지름으로 고정)<br>
+예: 원 x²+y²=9(r=3), A(5,0) → OA=5 → <b>최댓값=5+3=8, 최솟값=5−3=2</b> (O,A,P가 일직선일 때 등호)
+</div>`, ans:null },
+
+{ tag:'개념확장① — 양축접함 + 중심이 직선 위 (결합)', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🧩 중심이 직선 y=x 위에 있고, x축·y축에 모두 접하는 원 중 반지름이 4인 것을 모두 구하세요.
+</div>`,
+    ans:`<b>1단계</b>(양축접함, 아이디어③): 반지름4가 양축에 접하려면 중심의 x,y좌표가 각각 ±4 → 후보 (4,4),(4,−4),(−4,4),(−4,−4) 4개<br>
+<b>2단계</b>(y=x 위, 아이디어⑤): x좌표=y좌표인 것만 남기면 (4,4)와 (−4,−4) 2개뿐<br>
+<b>3단계</b>: <b>(x−4)²+(y−4)²=16</b>, <b>(x+4)²+(y+4)²=16</b>` },
+
+{ tag:'개념확장② — 지름의 양 끝점 + 원과 직선의 넓이 (결합)', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🧩 두 점 A(2,2), B(8,10)을 지름의 양 끝점으로 하는 원이 직선 y=3과 만나서 생기는 현의 길이와, 그 현과 원의 중심이 이루는 삼각형의 넓이를 구하세요.
+</div>`,
+    ans:`<b>1단계</b>(지름의 양끝점, 아이디어②): 중심=중점=(5,6), 반지름=½×√{(8−2)²+(10−2)²}=½×10=<b>5</b> → 원(x−5)²+(y−6)²=25<br>
+<b>2단계</b>(원+직선+넓이, 아이디어⑥): 중심-직선(y=3) 거리 d=|6−3|=3<br>
+<b>3단계</b>: 반현=√(25−9)=4 → <b>현의 길이=8</b><br>
+<b>4단계</b>: 넓이=½×8×3=<b>12</b>` },
+
+{ tag:'개념확장③ — 중심이 좌표축 위 + 원 밖의 점 두 접선 (결합)', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🧩 중심이 x축 위에 있고(x좌표는 양수), 원점을 지나며, 반지름이 3인 원이 있다. 이 원 밖의 점 (7,4)에서 그은 두 접선의 기울기의 곱을 구하세요.
+</div>`,
+    ans:`<b>1단계</b>(중심이 축 위, 아이디어④): 중심(a,0), 원점을 지나므로 반지름=|a|=3 → 양수조건에서 a=3 → 원(x−3)²+y²=9<br>
+<b>2단계</b>(원 밖의 점 두 접선, 아이디어⑦): 접선 y−4=m(x−7), 즉 mx−y+(4−7m)=0<br>
+<b>3단계</b>: |3m+4−7m|/√(m²+1)=3 → |4−4m|=3√(m²+1)<br>
+<b>4단계</b>: (4−4m)²=9(m²+1) → <b>7m²−32m+7=0</b><br>
+<b>5단계</b>: 근과 계수의 관계로 곱=7/7=<b>1</b>` }
+],
+
+/* ── 원의 방정식: 총정리 ── */
+'circle-summary': [
+{ tag:'전체 흐름 정리', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.95">
+<b style="color:#34d399">① 원의 방정식이란?</b>: 표준형(x−a)²+(y−b)²=r², 일반형 x²+y²+Ax+By+C=0<br>
+<b style="color:#34d399">② 원과 직선의 위치관계</b>: d&lt;r 교차 / d=r 접함 / d&gt;r 안만남<br>
+<b style="color:#34d399">③ 접선의 방정식</b>: 원위의점(x₀,y₀) → x₀x+y₀y=r² &nbsp; 기울기·원밖의점 → 거리=반지름 조건<br>
+<b style="color:#f472b6">④ 원이 되는 자취</b>: 두 점으로부터 거리의 "비"가 일정 → 아폴로니오스 원<br>
+<b style="color:#7dd3fc">⑤ 두 원의 관계</b>: d&gt;r₁+r₂ 안만남 / d=r₁+r₂ 외접 / |r₁−r₂|&lt;d&lt;r₁+r₂ 교차 / d=|r₁−r₂| 내접 / d&lt;|r₁−r₂| 내부포함<br>
+<b style="color:#a78bfa">⑥ 두 원의 조합</b>: C₁+k·C₂=0 — k=−1이면 공통현(직선), k≠−1이면 교점을 지나는 또 다른 원
+</div>`, ans:null },
+
+{ tag:'이런 표현이 나오면 이 유형', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.78rem;color:#e2e8f0;line-height:2">
+"세 점을 지나는 원" → 일반형에 세 점 대입, D·E·F 연립<br>
+"지름의 양 끝점" → 중점=중심, 두 점 사이 거리/2=반지름<br>
+"좌표축에 접한다" → x축만/y축만/양축, 세 종류부터 구분<br>
+"중심이 x축·y축·y=x·y=−x 위" → 접한다와 다른 조건! 좌표 고정, 반지름은 자유<br>
+"중심이 직선 위에 있다" → 중심을 매개변수로 놓고 다른 조건과 연립<br>
+"원+직선이 만드는 삼각형의 넓이" → 중심-직선 거리를 밑변·높이로<br>
+"원 밖의 점에서 그은 두 접선의 기울기 합/곱" → 근과 계수의 관계<br>
+"원 위의 점까지 거리의 최대·최소" → 삼각부등식<br>
+"직선이 원의 둘레(넓이)를 이등분" → 그 직선은 반드시 중심을 지난다
+</div>`, ans:null },
+
+{ tag:'용어 빈칸 테스트', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:2">
+① 중심과 반지름으로 나타낸 (x−a)²+(y−b)²=r² 꼴의 이름은?<br>
+② 그 식을 전개해서 펼친 x²+y²+Ax+By+C=0 꼴의 이름은?<br>
+③ 원과 한 점에서만 만나 스치듯 지나가는 직선은?<br>
+④ 두 점으로부터 거리의 "비"가 일정한 점들이 그리는 원의 이름은?<br>
+⑤ 두 원이 두 점에서 만날 때, 그 두 점을 잇는 공통인 직선의 이름은?<br>
+⑥ 삼각형의 세 꼭짓점을 모두 지나는 원의 이름은?<br>
+⑦ 원 위의 한 점에서 중심까지의 거리는?<br>
+⑧ 원의 모든 점까지 같은 거리를 유지하는 기준점은?
+</div>`,
+    ans:`① 표준형 &nbsp;&nbsp; ② 일반형 &nbsp;&nbsp; ③ 접선 &nbsp;&nbsp; ④ 아폴로니오스 원<br><br>⑤ 공통현 &nbsp;&nbsp; ⑥ 외접원 &nbsp;&nbsp; ⑦ 반지름 &nbsp;&nbsp; ⑧ 중심` }
+],
+
+/* ── 원의 방정식 실전훈련 ── */
+'circle-practice': [
+{ tag:'실전1 — 표준형으로 원의 방정식 세우기', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+중심이 (3,−1)이고 점 (5,2)를 지나는 원의 방정식을 구하세요.
+</div>`,
+    ans:`반지름²=(5−3)²+(2−(−1))²=4+9=13<br><b>(x−3)²+(y+1)²=13</b>` },
+
+{ tag:'실전2 — 일반형에서 중심·반지름 찾기', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 x²+y²+6x−2y+6=0의 중심과 반지름을 구하세요.
+</div>`,
+    ans:`(x²+6x+9)+(y²−2y+1)=−6+9+1<br>(x+3)²+(y−1)²=4<br><b>중심(−3,1), 반지름2</b>` },
+
+{ tag:'실전3 — 원과 직선의 위치 관계 판별', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 x²+y²=8과 직선 x−y+4=0의 위치 관계를 판별하세요.
+</div>`,
+    ans:`중심(0,0), 반지름√8=2√2<br>d=|0−0+4|/√(1²+1²)=4/√2=2√2<br>d=r → <b>한 점에서 접한다</b>` },
+
+{ tag:'실전4 — 원 위의 점에서의 접선', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 x²+y²=20 위의 점 (2,4)에서의 접선의 방정식을 구하세요.
+</div>`,
+    ans:`x₁x+y₁y=r² 공식에 (2,4), r²=20 대입:<br>2x+4y=20 → <b>x+2y=10</b>` },
+
+{ tag:'실전5 — 기울기가 주어진 접선', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 x²+y²=5에 접하고 기울기가 2인 접선의 방정식을 모두 구하세요.
+</div>`,
+    ans:`접선을 y=2x+n, 즉 2x−y+n=0으로 놓으면<br>거리=|n|/√5=√5(반지름) → |n|=5 → n=±5<br><b>y=2x+5 또는 y=2x−5</b>` },
+
+{ tag:'실전6 — 세 점을 지나는 원', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+세 점 (0,0), (2,0), (0,4)를 지나는 원의 중심과 반지름을 구하세요.
+</div>`,
+    ans:`x²+y²+Dx+Ey+F=0에 대입:<br>(0,0): F=0<br>(2,0): 4+2D=0 → D=−2<br>(0,4): 16+4E=0 → E=−4<br>x²+y²−2x−4y=0 → (x−1)²+(y−2)²=5<br><b>중심(1,2), 반지름√5</b>` }
+],
+
+'circle-real': [
+{ tag:'실생활 연결① — 지진 진앙지 찾기', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+지진이 나면 관측소는 P파와 S파(두 지진파)의 도착 시간차로 <b style="color:#7dd3fc">관측소부터 진앙까지의 거리</b>를 계산해요(S−P 시간차 1초≈8km).<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+관측소A 거리80km → 중심A, 반지름80km인 원<br>
+관측소B 거리60km → 중심B, 반지름60km인 원<br>
+관측소C 거리100km → 중심C, 반지름100km인 원
+</div><br>
+관측소 하나만으로는 "이 원 위 어딘가"까지만 알 수 있어요. 세 관측소의 원을 동시에 그리면, <b>세 원이 겹치는 딱 한 점</b>이 나오고 — 그게 진앙이에요. "여러 조건을 동시에 만족하는 원/점 찾기"(세 점을 지나는 원과 같은 발상)가 실제 지진학에서 매일 쓰이는 방법이에요.
+</div>`, ans:null },
+
+{ tag:'실생활 연결② — GPS 삼변측량', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+스마트폰 지도가 내 위치를 찾는 원리는 지진 진앙 찾기와 같아요 — 이름도 <b style="color:#7dd3fc">삼변측량(trilateration)</b>으로 똑같아요.<br><br>
+GPS 위성이 신호를 보내면, 도착 시간으로 "위성부터 내 위치까지 거리"를 계산해요. 위성 하나당 원(정확히는 구) 하나가 생기고, <b>위성 3개의 원이 만나는 한 점</b>이 내 위치예요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+실제로는 시계 오차 보정을 위해 위성을 4개 이상 써요. 그래도 실제 GPS 오차는 약 3~5m 정도 남아요.
+</div>
+"세 원의 교점 하나"라는 수학 개념이, 오차 3~5m짜리 실제 위치 측정 기술의 뼈대예요.
+</div>`, ans:null },
+
+{ tag:'실생활 연결③ — 태풍 위험반경', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+기상청은 태풍 정보에서 <b style="color:#7dd3fc">폭풍반경</b>(중심으로부터 초속25m 이상 바람이 부는 범위)을 원으로 표시해요 — 더 넓은 강풍반경(초속15m 이상)도 함께.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+태풍 중심을 원의 중심(a,b), 폭풍반경을 r이라 하면<br>
+어떤 도시 (x₀,y₀)가 위험권인지는<br>
+(x₀−a)²+(y₀−b)²을 r²과 비교(작으면 안, 크면 밖)
+</div>
+이게 정확히 "원의 방정식에 점을 대입해서 원 안/밖 판단하기"예요. 태풍이 다가올 때 화면에 뜨는 그 동그란 원이, 방금 배운 (x−a)²+(y−b)²=r² 그 자체예요.
 </div>`, ans:null }
 ],
 
