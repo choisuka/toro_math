@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>시험대비 테스트 세트 · 평면좌표 (패턴 서랍 시범)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px}
+.card:not(:last-child){page-break-after:always}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🧪 시범 세트 — 문항1(외심)·문항2(정수거리)·문항3(결합형·난이도 상) 테스트</div>
+    <div class="toolbar-sub">검토용 초안. 문항1 오답 선택지 일부는 근거 완성도가 낮음(완료 보고 참고) — 병합 전 재검토 필요</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 시험대비 시범 세트 · 평면좌표</h1>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 사용법</div>
+  <div class="card-tag">📝 풀기 전에 읽어주세요</div>
+  <div class="card-body">
+각 문항 위 빈칸에, 계산을 시작하기 <b>전에</b> 이 문제가 어떤 개념을 쓰는 문제인지 이름을 먼저 적어보세요.<br><br>
+이 세트는 패턴 서랍 목록(A그룹: 기존 개념카드 연결 / B그룹: 새 서랍)에서 하나씩 골라 만든 시범입니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 평면좌표 · 문항 1 (서랍 A6 · 외심)</div>
+  <div class="card-tag">문항 1 (객관식 5지선다) · 4점</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________ (먼저 적어보세요)</div>
+세 점 A(0, 0), B(8, 0), C(2, 6)을 꼭짓점으로 하는 삼각형의 외심을 P(p, q)라 할 때, p + q의 값은?
+    <div style="margin-top:10px;font-size:.98em;line-height:2.1;font-weight:400">
+      ① 2 &nbsp;&nbsp; ② 4 &nbsp;&nbsp; ③ 6 &nbsp;&nbsp; ④ 8 &nbsp;&nbsp; ⑤ 10
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 문항 1 풀이</div>
+  <div class="card-tag">💡 문항 1 풀이 · 정답 ③</div>
+  <div class="card-body">
+<b>1단계 — 외심의 정의</b><br>
+외심 P(x,y)는 세 꼭짓점으로부터 같은 거리에 있는 점이므로 PA² = PB² = PC²<br><br>
+<b>2단계 — PA² = PB²</b><br>
+x² + y² = (x−8)² + y² → x² = x² −16x + 64 → 16x = 64 → <b>x = 4</b><br><br>
+<b>3단계 — PA² = PC²</b><br>
+x² + y² = (x−2)² + (y−6)² → 0 = −4x + 4 − 12y + 36 → 4x + 12y = 40 → <b>x + 3y = 10</b><br><br>
+<b>4단계 — x=4 대입</b><br>
+4 + 3y = 10 → y = 2 → P(4, 2)<br><br>
+<b>p + q = 4 + 2 = 6 → 정답 ③</b>
+
+<div style="border-top:1px dashed #bbb;padding-top:10px;margin-top:14px">
+<b style="color:#666;font-size:.9em">🔎 오답 선택지 설계 (검증 상태 — 완료 보고 참고)</b><br>
+① 2 — PA²=PC² 전개 시 부호를 반대로 이항하는 실수(x−3y=10)를 하면 x=4에서 y=−2가 나와 합이 2. (Node.js로 검증함)<br>
+② 4 — x=4까지는 맞게 구했지만 두 번째 조건식을 세우지 못해 y=0으로 답한 경우. (실수 유형은 타당하나, 학생이 실제로 이 값을 고를지는 검증 안 됨 — 근거 약함)<br>
+④ 8, ⑤ 10 — 현재는 "그럴듯한 정수"로 채운 자리표시자. 실제 오답 경로 역산 필요 — <b>병합 전 재작업 대상</b>.
+</div>
+
+<div style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:10px 14px;margin-top:14px;font-size:.94em;line-height:1.85">
+🔗 구조 신호: "세 꼭짓점으로부터 같은 거리"라는 표현이 나오면 → 외심 (심화1 "한 걸음 더" 참고). 그 카드에서는 직각삼각형이라 빗변의 중점이 바로 외심이었지만, 이 문제는 <b>직각삼각형이 아니라서 지름길을 못 씁니다</b> — PA²=PB², PA²=PC² 두 식을 직접 연립해야 진짜 외심 정의를 쓴 게 됩니다.
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 평면좌표 · 문항 2 (서랍 B1 · 정수좌표·정수거리)</div>
+  <div class="card-tag">문항 2 (주관식 단답형) · 4점</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________ (먼저 적어보세요)</div>
+두 자연수 x, y가 x + y = 14를 만족시킨다. 두 점 O(0, 0), A(x, y) 사이의 거리 OA가 자연수가 되도록 하는 순서쌍 (x, y)의 개수를 구하시오.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 문항 2 풀이</div>
+  <div class="card-tag">💡 문항 2 풀이 · 정답 2</div>
+  <div class="card-body">
+<b>1단계 — 거리공식으로 식 세우기</b><br>
+OA² = x² + y² 이고, x + y = 14이므로 y = 14 − x (x는 1부터 13까지의 자연수)<br><br>
+<b>2단계 — x² + y²이 완전제곱수가 되는 x 찾기</b><br>
+x = 1부터 13까지 하나씩 대입해서 x² + (14−x)²이 어떤 자연수의 제곱인지 확인합니다.<br>
+x=6일 때: 6² + 8² = 36 + 64 = 100 = 10² → 성립<br>
+x=8일 때: 8² + 6² = 64 + 36 = 100 = 10² → 성립 (x=6의 순서쌍을 뒤집은 것)<br>
+나머지 x=1~5, 7, 9~13은 모두 완전제곱수가 아님<br><br>
+<b>3단계 — 개수 세기</b><br>
+(x,y) = (6,8), (8,6) → <b>개수 = 2</b>
+
+<div style="border-top:1px dashed #bbb;padding-top:10px;margin-top:14px">
+<b style="color:#666;font-size:.9em">🔎 검증 근거</b><br>
+Node.js로 x=1..13 전체를 순회하며 x²+(14−x)²의 제곱근이 정수인 경우만 필터링해 (6,8,10), (8,6,10) 두 개뿐임을 확인했다(다른 x값은 전부 비정수 제곱근).
+</div>
+
+<div style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:10px 14px;margin-top:14px;font-size:.94em;line-height:1.85">
+🔗 구조 신호: "거리가 <b>자연수</b>가 되도록"이라는 조건은 거리공식만으로 안 끝나고, 나온 식이 <b>완전제곱수</b>인지 확인하는 정수 조건이 하나 더 붙는다는 신호예요. 3:4:5, 6:8:10 같은 익숙한 직각삼각형의 변의 비를 알아두면 빨리 알아챌 수 있습니다.
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 평면좌표 · 문항 3 (서랍 결합 · 이등변삼각형 케이스분류 + 정수변)</div>
+  <div class="card-tag">문항 3 (주관식 단답형) · 5점 · 난이도 상</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________ (먼저 적어보세요)</div>
+두 점 A(0, 0), B(10, 0)과 자연수 a, b에 대하여 점 C(a, b)가 있다. 삼각형 ABC가 이등변삼각형이고 세 변의 길이가 모두 자연수일 때, 삼각형 ABC의 둘레의 길이를 구하시오.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">시험대비 — 문항 3 풀이</div>
+  <div class="card-tag">💡 문항 3 풀이 · 정답 36</div>
+  <div class="card-body">
+<b>1단계 — 이등변삼각형의 세 가지 경우 나누기</b><br>
+어느 두 변이 같은지 문제에서 안 알려줬으므로, AB=AC / AB=BC / AC=BC 세 경우를 전부 검토해야 합니다.<br><br>
+
+<b>2단계 — 경우① AB=AC (AC=10)</b><br>
+a²+b²=100을 만족하는 자연수 (a,b)는 (6,8), (8,6)뿐입니다.<br>
+각각 BC를 계산하면 BC=√80, √40 — 둘 다 정수가 아니므로 <b>이 경우는 해가 없습니다.</b><br><br>
+
+<b>3단계 — 경우② AB=BC (BC=10)</b><br>
+(a−10)²+b²=100을 만족하는 자연수 (a,b)는 (2,6), (4,8), (10,10), (16,8), (18,6) 다섯 개입니다.<br>
+각각 AC를 계산해보면 전부 무리수 — <b>이 경우도 해가 없습니다.</b><br><br>
+
+<b>4단계 — 경우③ AC=BC</b><br>
+a²+b² = (a−10)²+b² → 20a = 100 → <b>a = 5</b> (b값과 무관하게 항상 성립)<br><br>
+
+<b>5단계 — 세 변 모두 자연수 조건 적용</b><br>
+AC = √(25+b²)가 자연수여야 하므로 25+b² = k² 로 놓으면 (k−b)(k+b) = 25.<br>
+25는 홀수라 두 인수 모두 홀수: (1,25) → k=13, b=12. (5,5)는 b=0이라 자연수 조건에서 제외.<br>
+→ <b>b = 12</b>가 유일한 해<br><br>
+
+<b>6단계 — 둘레 계산</b><br>
+C(5, 12)이고 AC = BC = 13, AB = 10 → <b>둘레 = 10 + 13 + 13 = 36</b>
+
+<div style="border-top:1px dashed #bbb;padding-top:10px;margin-top:14px">
+<b style="color:#666;font-size:.9em">🔎 검증 근거</b><br>
+Node.js로 세 경우를 전수조사했다. 경우①은 후보 2개, 경우②는 후보 5개(a=10,b=10 포함 — 손 계산에서 놓치기 쉬운 대칭 해) 전부 세 번째 변이 무리수임을 확인했고, 경우③만 유일하게 정수해 b=12를 가짐을 확인했다.
+</div>
+
+<div style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:10px 14px;margin-top:14px;font-size:.94em;line-height:1.85">
+🔗 구조 신호: 이 문제는 서랍 A1(이등변삼각형 케이스분류·심화2)과 서랍 B1(정수좌표·정수거리)을 <b>동시에</b> 씁니다. "이등변삼각형"이라는 말만 보고 바로 한 경우로 단정하면 안 되고, 세 경우를 다 검토하되 <b>두 경우가 답 없음을 직접 확인해야</b> 나머지 한 경우가 유일한 답임을 확신할 수 있어요 — 이게 "케이스를 버리는 것도 계산으로 증명해야 한다"는 실전 감각입니다.
+</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

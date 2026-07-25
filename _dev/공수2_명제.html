@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학2 · 명제 — 빌드 파일</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card:not(:last-child){page-break-after:always}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:16px;padding-top:16px;border-top:1px dashed #bbb;font-size:12.5px;color:#333;line-height:1.95}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{font-size:11px;font-weight:700;color:#666!important;margin-bottom:8px}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em;line-height:1.3}
+.frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
+.frac .den{padding:1px 4px 0}
+@media print{
+svg text{fill:#333!important}
+svg line{stroke:#aaa!important}
+svg rect{stroke:#aaa!important}
+svg circle{stroke:#aaa!important;fill:#999!important}
+svg polygon{stroke:#aaa!important;fill:#eee!important}
+svg path{stroke:#aaa!important}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 공통수학2 · 명제</div>
+    <div class="toolbar-sub">공수2_집합과명제.html에서 명제 파트(주제2~5)만 복사해서 분리 · 주제1(명제와 조건)~주제4(명제의 증명)</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 명제</h1>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:0 0 10px">📍 주제 1 — 명제와 조건</div>
+
+<div class="card">
+  <div class="card-meta">명제와 조건 — 개념</div>
+  <div class="card-tag">참/거짓을 판별할 수 있는 문장</div>
+  <div class="card-body">
+<b>명제</b>는 참·거짓을 분명히 가릴 수 있는 문장이에요. "3은 소수다"(참), "5는 짝수다"(거짓)는 명제지만, "x는 크다"는 x가 뭔지 몰라서 명제가 아니에요 — 이런 문장을 <b>조건</b>이라 부릅니다.<br><br>
+조건에 특정 범위(전체집합)를 정해주면, 그 조건을 <b>참으로 만드는 원소들의 모임</b>을 <b>진리집합</b>이라고 해요.<br><br>
+
+<svg viewBox="0 0 220 60" width="100%" style="max-width:200px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="15" y1="30" x2="205" y2="30" stroke="#999" stroke-width="1.3"/>
+  <circle cx="30" cy="30" r="9" fill="#6366f1"/>
+  <circle cx="70" cy="30" r="9" fill="#6366f1"/>
+  <circle cx="110" cy="30" r="9" fill="#6366f1"/>
+  <circle cx="150" cy="30" r="9" fill="none" stroke="#bbb" stroke-width="1.3"/>
+  <circle cx="190" cy="30" r="9" fill="none" stroke="#bbb" stroke-width="1.3"/>
+  <text x="27" y="34" font-size="9" fill="#fff" font-weight="700">1</text>
+  <text x="67" y="34" font-size="9" fill="#fff" font-weight="700">2</text>
+  <text x="107" y="34" font-size="9" fill="#fff" font-weight="700">3</text>
+  <text x="147" y="34" font-size="9" fill="#777" font-weight="700">4</text>
+  <text x="187" y="34" font-size="9" fill="#777" font-weight="700">5</text>
+</svg>
+
+전체집합 U={1,2,3,4,5}에서 조건 p: "x²&lt;10"의 진리집합은 보라색으로 칠해진 <b>{1,2,3}</b>이에요 (4²=16, 5²=25는 10보다 크니 제외).<br><br>
+<b>한정 기호</b>: "모든 x에 대하여"(∀, all)는 원소 하나라도 거짓이면 전체가 거짓, "어떤 x에 대하여"(∃, some)는 하나라도 참이면 전체가 참이 돼요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">명제와 조건 — 기본문제</div>
+  <div class="card-tag">기본 1 — 진리집합 구하기</div>
+  <div class="card-body" style="font-weight:600">
+전체집합 U={1,2,3,4,5,6}에서 조건 p: "x는 6의 약수이다"의 진리집합을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+6의 약수: 1,2,3,6 → 진리집합 = <b>{1,2,3,6}</b>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📍 주제 2 — 명제의 역·이·대우</div>
+
+<div class="card">
+  <div class="card-meta">역·이·대우 — 개념</div>
+  <div class="card-tag">화살표를 뒤집고 부정하기</div>
+  <div class="card-body">
+명제 p→q("p이면 q이다")에서 화살표를 뒤집거나 부정하면 세 가지 새 명제가 나와요.<br><br>
+
+<svg viewBox="0 0 220 140" width="100%" style="max-width:220px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <text x="15" y="20" font-size="10" fill="#333" font-weight="700">p → q</text>
+  <text x="140" y="20" font-size="9" fill="#999">(원명제)</text>
+  <line x1="30" y1="35" x2="30" y2="55" stroke="#999" stroke-width="1.3" marker-end="url(#a1)"/>
+  <line x1="190" y1="35" x2="190" y2="55" stroke="#999" stroke-width="1.3"/>
+  <text x="15" y="75" font-size="10" fill="#6366f1" font-weight="700">q → p</text>
+  <text x="120" y="75" font-size="9" fill="#999">(역 — 화살표 반대)</text>
+  <text x="15" y="105" font-size="10" fill="#f97316" font-weight="700">~p → ~q</text>
+  <text x="140" y="105" font-size="9" fill="#999">(이 — 둘 다 부정)</text>
+  <text x="15" y="135" font-size="10" fill="#10b981" font-weight="700">~q → ~p</text>
+  <text x="140" y="135" font-size="9" fill="#999">(대우 — 반대+부정)</text>
+</svg>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+가장 중요한 사실: <b>원명제와 대우는 참·거짓이 항상 같아요.</b> (역과 이도 서로 참·거짓이 같아요 — 역의 대우가 이니까요.) 그래서 원명제를 증명하기 어려우면 대우를 증명해도 됩니다.
+</div>
+예: "x=2이면 x²=4이다" (참)<br>
+역: "x²=4이면 x=2이다" → x=−2도 있으니 <b>거짓</b><br>
+이: "x≠2이면 x²≠4이다" → x=−2가 반례라 <b>거짓</b> (역과 같은 진리값)<br>
+대우: "x²≠4이면 x≠2이다" → <b>참</b> (원명제와 같은 진리값)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">역·이·대우 — 기본문제</div>
+  <div class="card-tag">기본 2 — 대우 구하고 참·거짓 판별</div>
+  <div class="card-body" style="font-weight:600">
+명제 "자연수 n이 4의 배수이면 n은 2의 배수이다"의 대우를 말하고, 참·거짓을 판별하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+대우: <b>"n이 2의 배수가 아니면 n은 4의 배수가 아니다"</b><br>
+원명제가 참이므로(4의 배수는 항상 2의 배수) 대우도 <b>참</b>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📍 주제 3 — 필요조건과 충분조건</div>
+
+<div class="card">
+  <div class="card-meta">필요·충분조건 — 개념</div>
+  <div class="card-tag">작은 동그라미가 큰 동그라미 안에</div>
+  <div class="card-body">
+p→q가 참이면, 진리집합 사이에는 <b>P⊂Q</b> 관계가 생겨요. 그림으로 보면 작은 원(P)이 큰 원(Q) 안에 쏙 들어가는 모습이에요.<br><br>
+
+<svg viewBox="0 0 220 150" width="100%" style="max-width:190px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="110" cy="75" r="65" fill="rgba(249,115,22,.08)" stroke="#f97316" stroke-width="2"/>
+  <circle cx="85" cy="75" r="28" fill="rgba(99,102,241,.15)" stroke="#6366f1" stroke-width="2"/>
+  <text x="70" y="80" font-size="11" fill="#6366f1" font-weight="700">P</text>
+  <text x="160" y="30" font-size="11" fill="#f97316" font-weight="700">Q</text>
+</svg>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+P⊂Q일 때:<br>
+<b>p는 q이기 위한 충분조건</b> — p이면 무조건 q (작은 원 안에 있으면 큰 원 안에도 있으니까)<br>
+<b>q는 p이기 위한 필요조건</b> — q이려면 최소한 p 자리(큰 원) 안에는 있어야 함<br>
+P=Q이면 서로 <b>필요충분조건</b>
+</div>
+예: p: x=3, q: x²=9 → P={3}, Q={3,−3}. P⊂Q이므로 <b>p는 q이기 위한 충분조건</b>이지만, q는 p이기 위한 충분조건이 아니에요(x=−3은 q를 만족해도 p는 아니니까).
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">필요·충분조건 — 기본문제</div>
+  <div class="card-tag">기본 3 — 무슨 조건인지 판별</div>
+  <div class="card-body" style="font-weight:600">
+두 조건 p: |x|&lt;2, q: −3&lt;x&lt;3에 대하여 p는 q이기 위한 무슨 조건인지 말하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+P=(−2,2), Q=(−3,3). 모든 P의 원소는 Q에도 속하므로 P⊂Q.<br>
+x=2.5는 Q엔 있지만 P엔 없으므로 Q⊄P → <b>p는 q이기 위한 충분조건 (필요조건은 아님)</b>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">📍 주제 4 — 명제의 증명</div>
+
+<div class="card">
+  <div class="card-meta">명제의 증명 — 개념</div>
+  <div class="card-tag">두 가지 우회 증명법</div>
+  <div class="card-body">
+어떤 명제는 직접 증명하기 어려워요. 그럴 때 쓰는 두 가지 우회 전략이 있습니다.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+<b>① 대우를 이용한 증명</b> — 원명제 대신, 참·거짓이 똑같은 대우를 증명<br>
+<b>② 귀류법</b> — 결론이 거짓이라고 가정하고 시작해서, 모순이 생기는 것을 보여 원래 결론이 참임을 증명
+</div>
+예 (대우 이용): "자연수 n에 대해 n²이 짝수이면 n은 짝수이다"<br>
+→ 대우: "n이 홀수이면 n²은 홀수이다"를 증명하는 게 더 쉬워요.<br>
+n=2k+1(k는 정수)이라 하면 n²=4k²+4k+1=2(2k²+2k)+1 → 홀수 ✓<br>
+대우가 참이므로 원명제도 참.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">명제의 증명 — 기본문제</div>
+  <div class="card-tag">기본 4 — 대우를 이용한 증명</div>
+  <div class="card-body" style="font-weight:600">
+"자연수 n에 대하여 n²이 3의 배수이면 n도 3의 배수이다"를 대우를 이용하여 증명하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+대우: "n이 3의 배수가 아니면 n²도 3의 배수가 아니다"<br>
+n=3k+1이면 n²=9k²+6k+1=3(3k²+2k)+1 → 3의 배수 아님<br>
+n=3k+2이면 n²=9k²+12k+4=3(3k²+4k+1)+1 → 3의 배수 아님<br>
+두 경우 모두 성립 → 대우가 참 → <b>원명제도 참</b>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">🆕 신규 추가 — 참고자료에서 새로 발견된 유형 (2026-07-25)</div>
+
+<div class="card">
+  <div class="card-meta">필요·충분조건 역산 — 개념</div>
+  <div class="card-tag">포함조건에서 거꾸로 미지수를 구하기</div>
+  <div class="card-body">
+지금까지(주제3 기본3)는 p, q가 이미 정해진 조건일 때 "p는 q이기 위한 무슨 조건인가"를 <b>판별</b>했어요. 그런데 실제 시험에는 방향이 반대인 문제가 자주 나와요: 조건 안에 미지수 a가 들어있고, <b>"p가 q이기 위한 충분조건이 되도록 하는 상수 a의 범위(또는 최댓값·최솟값)를 구하라"</b>처럼 거꾸로 미지수를 찾아내는 유형이에요.<br><br>
+쓰는 원리는 똑같아요 — 충분조건이면 P⊂Q, 필요조건이면 Q⊂P. 다만 이번엔 P나 Q의 "모양"에 미지수가 들어있으니, 구간의 양 끝을 부등식으로 비교해서 미지수의 범위를 역산합니다.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+예: p: a≤x≤a+1, q: 0≤x≤5. p가 q이기 위한 충분조건이려면 P⊂Q<br>
+→ a≥0 <b>그리고</b> a+1≤5 → <b>0≤a≤4</b>
+</div>
+주의: "이상/이하"(≤, 등호포함)와 "초과/미만"(&lt;, 등호제외)을 섞어 쓰면 경계값 포함 여부가 달라져요 — 문제에 등호가 있는지 반드시 확인하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">필요·충분조건 역산 — 신규문제</div>
+  <div class="card-tag">신규 1 — 충분조건이 되도록 하는 상수 역산</div>
+  <div class="card-body" style="font-weight:600">
+실수 x에 대한 두 조건 p: x²−(2a+4)x+a(a+4)≤0, q: −1≤x≤7이 있다. p가 q이기 위한 충분조건이 되도록 하는 정수 a의 최댓값과 최솟값의 합을 구하여라. [4점]
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+p를 인수분해하면 (x−a){x−(a+4)}≤0 → <b>a≤x≤a+4</b> (진리집합 P=[a, a+4])<br>
+q의 진리집합 Q=[−1, 7]<br>
+p가 q이기 위한 충분조건 ⟺ P⊂Q ⟺ a≥−1 <b>그리고</b> a+4≤7 ⟺ −1≤a≤3<br>
+정수 a: −1, 0, 1, 2, 3 → 최댓값 3, 최솟값 −1 → <b>합 = 2</b>
+<div class="toro-note">🦕 <b>구조 신호</b>: "충분조건이 되도록 하는 상수의 범위/최댓값·최솟값"이라는 표현이 나오면 → 주제3(필요·충분조건)에서 배운 P⊂Q 판정을 <b>거꾸로</b> 쓰는 문제예요. P, Q 중 어느 쪽에 미지수가 있는지 먼저 확인하고, 구간의 왼쪽 끝·오른쪽 끝을 각각 부등식으로 비교하세요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">반례 개수 세기 — 개념</div>
+  <div class="card-tag">반례가 하나가 아니라 몇 개인지 세어보기</div>
+  <div class="card-body">
+주제4(기본4)에서 배운 반례 찾기는 "반례를 하나만 찾아도 명제가 거짓임을 보일 수 있다"는 원리였어요. 그런데 시험에는 한 걸음 더 나가서 <b>"그 반례가 정확히 몇 개인지 세어보라"</b>는 문제가 나와요.<br><br>
+이때는 반례를 하나씩 찾는 게 아니라, 조건 p를 만족하는 전체에서 결론 q까지 만족하는 것들을 <b>빼는</b> 방식으로 접근해요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+반례의 개수 = (p를 만족하는 것의 개수) − (p와 q를 모두 만족하는 것의 개수)
+</div>
+예: "n이 자연수이고 n&lt;50일 때, n이 4의 배수이면 n은 8의 배수이다"의 반례 개수는?<br>
+4의 배수(1~49): 4,8,…,48 → 12개 / 8의 배수: 8,16,…,48 → 6개 → 반례 개수 = 12−6 = <b>6개</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">반례 개수 세기 — 신규문제</div>
+  <div class="card-tag">신규 2 — 반례의 개수 구하기</div>
+  <div class="card-body" style="font-weight:600">
+100보다 작은 자연수 n에 대하여 명제 "n이 4의 배수이면 n은 6의 배수이다"가 거짓임을 보여주는 반례는 모두 몇 가지인지 구하여라. [4점]
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+반례는 "4의 배수이면서 6의 배수가 아닌 자연수"<br>
+1≤n≤99 범위에서 4의 배수: ⌊99/4⌋ = 24개<br>
+4의 배수이면서 <b>동시에</b> 6의 배수 → 4와 6의 최소공배수인 12의 배수: ⌊99/12⌋ = 8개<br>
+반례 개수 = 24 − 8 = <b>16개</b>
+<div class="toro-note">🦕 <b>구조 신호</b>: "반례는 모두 몇 가지인가"라는 표현이 나오면 → 반례 하나만 찾는 주제4 기본문제와 달리 <b>전체 개수를 세는</b> 문제예요. "p를 만족하는 개수 − p,q를 모두 만족하는 개수"로 접근하세요 (겹치는 부분을 빼는 방식은 집합의 차집합 계산과 원리가 같아요).</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">대우 연쇄추론 — 개념</div>
+  <div class="card-tag">대우를 새 정보로 써서 참거짓을 이어 붙이기</div>
+  <div class="card-body">
+주제2(기본2)에서는 명제 하나의 대우를 구했어요. 그런데 시험에는 명제 여러 개가 동시에 참이라고 주어지고, 그 대우들을 조합해서 &lt;보기&gt; 속 다른 명제들이 참인지 판단하는 문제가 나와요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+<b>① 삼단논법</b> — p→q와 q→r이 모두 참이면 p→r도 참 (화살표를 이어 붙일 수 있음)<br>
+<b>② 대우</b> — p→r이 참이면 그 대우 ~r→~p도 항상 참
+</div>
+주의: <b>역</b>(q→p)이나 원래 없던 방향(r→p)은 참일 수도 있지만 <b>반드시 참인 건 아니에요</b> — 근거 없이 화살표를 뒤집으면 안 됩니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">대우 연쇄추론 — 신규문제</div>
+  <div class="card-tag">신규 3 — 여러 명제의 대우를 조합해 참·거짓 판단</div>
+  <div class="card-body" style="font-weight:600">
+네 조건 p, q, r, s에 대하여 세 명제 p→q, q→r, r→s가 모두 참이라고 하자. &lt;보기&gt;에서 반드시 참인 명제만을 있는 대로 고른 것은? [4점]<br><br>
+&lt;보기&gt;<br>
+ㄱ. p→s<br>
+ㄴ. q→p<br>
+ㄷ. ~s→~p<br>
+ㄹ. s→r<br><br>
+① ㄱ &nbsp; ② ㄴ &nbsp; ③ ㄱ, ㄷ &nbsp; ④ ㄴ, ㄹ &nbsp; ⑤ ㄱ, ㄴ, ㄷ, ㄹ
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+p→q, q→r, r→s가 모두 참 → 진리집합 P⊂Q⊂R⊂S<br>
+ㄱ. p→s: P⊂S이므로 <b>참</b><br>
+ㄴ. q→p: Q⊂P는 보장 안 됨(Q가 P보다 클 수 있음) → 반드시 참은 아님<br>
+ㄷ. ~s→~p: ㄱ(p→s)의 <b>대우</b>이므로 <b>참</b><br>
+ㄹ. s→r: S⊂R은 보장 안 됨(주어진 방향과 반대) → 반드시 참은 아님<br>
+반드시 참인 것은 <b>ㄱ, ㄷ → 정답 ③</b><br><br>
+(오답 설계) ① ㄱ만 고름 — ㄷ이 ㄱ의 대우라는 걸 놓친 경우 / ② ㄴ — 역방향을 참으로 착각 / ④ ㄴ,ㄹ — 두 역방향 오답만 정답이라 착각(가장 흔한 함정) / ⑤ 전부 참 — 대우와 역을 구분하지 않고 화살표만 보고 다 참이라 판단한 경우
+<div class="toro-note">🦕 <b>구조 신호</b>: "여러 명제가 모두 참일 때 &lt;보기&gt;에서 고르시오"라는 표현이 나오면 → 대우(주제2)와 P⊂Q 포함관계(주제3)를 동시에 써야 하는 결합문제예요. 원래 주어진 화살표 방향과 그 <b>대우만</b> 참으로 인정하고, 역이나 반대 방향은 근거 없이 참으로 넘겨짚지 마세요.</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

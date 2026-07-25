@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학2 · 원의 방정식 1부 — 정의와 접선</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:16px;padding-top:16px;border-top:1px dashed #bbb;font-size:12.5px;color:#333;line-height:1.95}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{font-size:11px;font-weight:700;color:#666!important;margin-bottom:8px}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.key-term{font-size:1.2em;font-weight:800;color:#4c1d95!important;letter-spacing:-.01em}
+.unit-header{font-size:16px;font-weight:800;color:#4c1d95;text-align:center;padding:9px 0;margin:26px 0 16px;border-top:3px solid #4c1d95;border-bottom:3px solid #4c1d95;letter-spacing:.02em;page-break-before:always;break-before:page}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em;line-height:1.3}
+.frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
+.frac .den{padding:1px 4px 0}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 공통수학2 · 원의 방정식 (1/3부)</div>
+    <div class="toolbar-sub">주제0~2(정의·직선과의 위치관계·접선) · 다음: 2부(자취·두 원)</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 원의 방정식 1부 — 정의와 접선</h1>
+
+<div class="unit-header" style="margin-top:0;page-break-before:auto;break-before:auto">📍 주제 0 — 원의 방정식이 뭐지?</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 기본설명 (시각화)</div>
+  <div class="card-tag">📐 정의 그 자체 — 중심에서 같은 거리인 점들의 모임</div>
+  <div class="card-body">
+원은 "한 점(중심)에서 <b>똑같은 거리</b>(반지름)에 있는 점들을 전부 모은 도형"이에요. 컴퍼스로 원을 그릴 때랑 똑같은 생각이에요.<br><br>
+
+<svg viewBox="0 0 160 200" width="100%" style="max-width:150px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#eee" stroke-width="1">
+    <line x1="10" y1="50" x2="10" y2="170"/><line x1="30" y1="50" x2="30" y2="170"/>
+    <line x1="50" y1="50" x2="50" y2="170"/><line x1="70" y1="50" x2="70" y2="170"/>
+    <line x1="90" y1="50" x2="90" y2="170"/><line x1="110" y1="50" x2="110" y2="170"/>
+    <line x1="130" y1="50" x2="130" y2="170"/>
+    <line x1="10" y1="170" x2="130" y2="170"/><line x1="10" y1="150" x2="130" y2="150"/>
+    <line x1="10" y1="130" x2="130" y2="130"/><line x1="10" y1="110" x2="130" y2="110"/>
+    <line x1="10" y1="90" x2="130" y2="90"/><line x1="10" y1="70" x2="130" y2="70"/>
+    <line x1="10" y1="50" x2="130" y2="50"/>
+  </g>
+  <circle cx="70" cy="110" r="60" fill="none" stroke="#6366f1" stroke-width="3"/>
+  <line x1="70" y1="110" x2="130" y2="110" stroke="#f97316" stroke-width="2" stroke-dasharray="4 3"/>
+  <line x1="70" y1="110" x2="70" y2="50" stroke="#f97316" stroke-width="2" stroke-dasharray="4 3"/>
+  <circle cx="70" cy="110" r="4" fill="#1a1a1a"/>
+  <circle cx="130" cy="110" r="3.5" fill="#4c1d95"/>
+  <circle cx="70" cy="50" r="3.5" fill="#4c1d95"/>
+  <circle cx="10" cy="110" r="3.5" fill="#4c1d95"/>
+  <text x="46" y="104" font-size="10" fill="#1a1a1a" font-weight="700">C(2,3)</text>
+  <text x="94" y="106" font-size="9" fill="#f97316" font-weight="700">r=3</text>
+</svg>
+
+중심 C(2,3)에서 반지름 3만큼 떨어진 점은 전부 이 원 위에 있어요 — 오른쪽으로 3, 위로 3, 왼쪽으로 3... 방향은 달라도 <b>거리는 항상 3</b>이에요.<br><br>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b>원의 방정식 (표준형)</b><br>
+중심 (a, b), 반지름 r인 원:<br>
+<b style="font-size:1.05em">(x−a)² + (y−b)² = r²</b><br>
+<span style="font-size:.85em;color:#555">이건 사실 "두 점 사이의 거리 공식"을 그대로 쓴 거예요 — 원 위의 점 (x,y)에서 중심 (a,b)까지의 거리가 항상 r이라는 뜻이니까요.</span>
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 기본문제</div>
+  <div class="card-tag">기본 1 — 표준형으로 원의 방정식 세우기</div>
+  <div class="card-body" style="font-weight:600">
+중심이 (−1, 2)이고 반지름이 4인 원의 방정식을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+(x−a)²+(y−b)²=r²에 a=−1, b=2, r=4 대입:<br>
+<b>(x+1)² + (y−2)² = 16</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 개념 (일반형)</div>
+  <div class="card-tag">📐 일반형은 표준형을 "풀어 헤친" 것뿐</div>
+  <div class="card-body">
+표준형 (x−a)²+(y−b)²=r²을 그냥 전개하면 어떻게 될까요?<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+x²−2ax+a² + y²−2by+b² = r²<br>
+→ x² + y² − 2ax − 2by + (a²+b²−r²) = 0
+</div>
+이게 바로 <b>일반형</b>이에요 — 겁먹을 필요 없어요, 그냥 표준형을 곱셈해서 펼친 모양일 뿐이에요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b>일반형</b><br>
+x² + y² + Ax + By + C = 0<br>
+<span style="font-size:.85em;color:#999">(참고로 A=−2a, B=−2b, C=a²+b²−r² 라는 관계식인데, <b>이건 외울 필요 없어요</b> — 완전제곱식으로 되돌리는 방법만 알면 충분해요)</span>
+</div>
+반대로 일반형이 주어지면, <b>완전제곱식</b>을 만들어서 표준형으로 되돌리면 중심과 반지름을 알 수 있어요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 기본문제</div>
+  <div class="card-tag">기본 2 — 일반형에서 중심·반지름 찾기</div>
+  <div class="card-body" style="font-weight:600">
+원 x² + y² − 4x + 6y − 3 = 0의 중심과 반지름을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+x, y 각각 완전제곱식 만들기:<br>
+(x²−4x+4) + (y²+6y+9) = 3 + 4 + 9<br>
+(x−2)² + (y+3)² = 16<br>
+<b>중심 (2, −3), 반지름 4</b>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 1 — 원과 직선의 위치 관계</div>
+
+<div class="card">
+  <div class="card-meta">원과 직선 — 개념 (거리 비교)</div>
+  <div class="card-tag">📐 중심에서 직선까지 거리를 반지름과 비교</div>
+  <div class="card-body">
+원과 직선이 어떻게 만나는지는 <b>중심에서 직선까지의 거리 d</b>와 <b>반지름 r</b>을 비교하면 바로 알 수 있어요. (점과 직선 사이의 거리 공식 기억나죠?)<br><br>
+
+<svg viewBox="0 0 180 180" width="100%" style="max-width:160px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="90" cy="90" r="50" fill="none" stroke="#333" stroke-width="2"/>
+  <line x1="10" y1="70" x2="170" y2="70" stroke="#6366f1" stroke-width="2.3"/>
+  <line x1="10" y1="40" x2="170" y2="40" stroke="#f97316" stroke-width="2.3"/>
+  <line x1="10" y1="10" x2="170" y2="10" stroke="#94a3b8" stroke-width="2.3"/>
+  <text x="4" y="66" font-size="9" fill="#6366f1" font-weight="700">d&lt;r (두 점)</text>
+  <text x="4" y="36" font-size="9" fill="#f97316" font-weight="700">d=r (접함)</text>
+  <text x="4" y="8" font-size="9" fill="#94a3b8" font-weight="700">d&gt;r (안만남)</text>
+</svg>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+<b>d &lt; r</b> → 서로 다른 두 점에서 만남 (교차)<br>
+<b>d = r</b> → 한 점에서만 만남 (접함, 이 직선을 <b>접선</b>이라 부름)<br>
+<b>d &gt; r</b> → 만나지 않음
+</div>
+직선과 원을 연립해서 나오는 이차방정식의 <b>판별식</b>으로도 똑같이 판단할 수 있어요(D&gt;0, D=0, D&lt;0) — 두 방법 다 같은 답을 줍니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원과 직선 — 기본문제</div>
+  <div class="card-tag">기본 3 — 위치 관계 판별</div>
+  <div class="card-body" style="font-weight:600">
+원 x²+y²=9와 직선 x+y=5는 어떤 위치 관계인가요?
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+중심(0,0), 반지름 3. 직선 x+y−5=0까지의 거리:<br>
+d = <span class="frac"><span class="num">|0+0−5|</span><span class="den">√(1²+1²)</span></span> = <span class="frac"><span class="num">5</span><span class="den">√2</span></span> ≈ 3.54<br>
+d(≈3.54) &gt; r(3) → <b>만나지 않는다</b>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 2 — 원의 접선의 방정식</div>
+
+<div class="card">
+  <div class="card-meta">접선 — 개념 (수직인 반지름)</div>
+  <div class="card-tag">📐 접선은 반지름과 항상 수직</div>
+  <div class="card-body">
+원 위의 한 점에서 그은 접선은, 그 점까지 이은 <b>반지름과 항상 직각</b>으로 만나요. 이 성질 하나로 접선의 방정식을 바로 만들 수 있어요.<br><br>
+
+<svg viewBox="0 0 200 230" width="100%" style="max-width:170px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="70" cy="150" r="75" fill="none" stroke="#333" stroke-width="2"/>
+  <line x1="70" y1="150" x2="115" y2="90" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 3"/>
+  <line x1="55" y1="45" x2="175" y2="135" stroke="#6366f1" stroke-width="3"/>
+  <circle cx="70" cy="150" r="4" fill="#1a1a1a"/>
+  <circle cx="115" cy="90" r="4" fill="#f97316"/>
+  <text x="30" y="166" font-size="10" fill="#1a1a1a" font-weight="700">중심(0,0)</text>
+  <text x="120" y="86" font-size="10" fill="#f97316" font-weight="700">P(3,4)</text>
+</svg>
+
+원 x²+y²=25(중심 원점, 반지름 5) 위의 점 P(3,4)에서의 접선을 구해볼게요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+반지름 OP의 기울기 = 4/3 → 접선은 수직이므로 기울기 = −3/4<br>
+점 P(3,4)를 지나므로: y−4 = −<span class="frac"><span class="num">3</span><span class="den">4</span></span>(x−3) → <b>3x + 4y = 25</b>
+</div>
+사실 <b>중심이 원점인 원 x²+y²=r² 위의 점 (x₁,y₁)에서의 접선은 x₁x + y₁y = r²</b>이라는 공식으로 바로 쓸 수 있어요 (방금 구한 과정을 한 번만 해두면 공식이 되는 거예요). 확인: 3x+4y=25는 (3,4)를 대입하면 9+16=25 ✓
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">접선 — 기본문제</div>
+  <div class="card-tag">기본 4 — 원 위의 점에서의 접선</div>
+  <div class="card-body" style="font-weight:600">
+원 x²+y²=13 위의 점 (2, 3)에서의 접선의 방정식을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+x₁x+y₁y=r² 공식에 (x₁,y₁)=(2,3), r²=13 대입:<br>
+<b>2x + 3y = 13</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">접선 — 개념 (기울기가 주어진 경우 / 원 밖의 점)</div>
+  <div class="card-tag">📐 기울기로 접선 구하기 — 실전에서 접선 문제는 거의 이 유형</div>
+  <div class="card-body">
+이번엔 원 위의 점이 아니라, 기울기가 주어지거나 <span class="key-term">원 밖의 점에서 접선</span>을 그어야 할 때예요. 접점을 몰라도, "중심에서 직선까지 거리 = 반지름" 조건 하나면 풀립니다. <b>실제 시험에서 원의 접선 문제는 압도적으로 이 유형이 나옵니다</b> — "원 위의 점에서의 접선"(앞 카드)보다 이쪽이 훨씬 중요해요.<br><br>
+
+<svg viewBox="0 0 200 180" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="70" cy="90" r="45" fill="none" stroke="#333" stroke-width="2"/>
+  <line x1="70" y1="90" x2="97" y2="54" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <line x1="70" y1="90" x2="97" y2="126" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <line x1="145" y1="90" x2="97" y2="54" stroke="#6366f1" stroke-width="2.5"/>
+  <line x1="145" y1="90" x2="97" y2="126" stroke="#f97316" stroke-width="2.5"/>
+  <circle cx="70" cy="90" r="3.5" fill="#1a1a1a"/>
+  <circle cx="145" cy="90" r="4" fill="#1a1a1a"/>
+  <circle cx="97" cy="54" r="3" fill="#6366f1"/>
+  <circle cx="97" cy="126" r="3" fill="#f97316"/>
+  <text x="148" y="94" font-size="10" fill="#1a1a1a" font-weight="700">P(5,0)</text>
+</svg>
+<span style="font-size:.85em;color:#555">원 밖의 점 P에서는 접선이 항상 <b>2개</b> 그어집니다(그림의 파란 선·주황 선). 접점(점선이 닿는 위치)은 몰라도 상관없어요 — 우리가 구하는 건 접선의 방정식이지, 접점의 좌표가 아니니까요.</span><br><br>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+<b>절차 (반드시 이 순서)</b><br>
+① 접선을 y=mx+n 꼴로 놓는다 (원 밖의 점을 지난다는 조건을 미리 대입해서 n을 m으로 표현해두면 편함)<br>
+② 원의 중심에서 이 직선까지의 거리 = 반지름 이라는 방정식을 세운다<br>
+③ 양변을 제곱해서 정리하면 <b>m에 대한 이차방정식</b>이 나온다<br>
+④ 이 이차방정식을 풀거나, <b>근과 계수의 관계</b>로 두 접선의 기울기의 합·곱을 바로 구한다
+</div>
+④번이 핵심이에요 — "두 접선의 기울기의 합/곱"을 물어보면 굳이 m을 직접 풀 필요 없이 근과 계수의 관계로 한 번에 답이 나옵니다. 반면 "접선의 방정식 자체"를 물어보면 이차방정식을 끝까지 풀어서 m 두 값을 다 구해야 해요.<br><br>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+<b>🔎 실제 예제로 절차 그대로 따라가보기</b><br><br>
+<b>문제</b>: 원 x²+y²=4에 접하고 기울기가 √3인 접선의 방정식을 구하세요.<br><br>
+<b>① 접선을 y=mx+n 꼴로 놓기</b>: 기울기가 √3으로 주어졌으니 m=√3 → y=√3x+n, 즉 √3x−y+n=0<br>
+<b>② 중심에서 거리=반지름 방정식 세우기</b>: 중심(0,0)에서 거리 = <span class="frac"><span class="num">|n|</span><span class="den">√(3+1)</span></span> = <span class="frac"><span class="num">|n|</span><span class="den">2</span></span> = 반지름 2<br>
+<b>③ 정리</b>: |n|=4 → n=±4<br>
+<b>④ 답 완성</b>: <b>y = √3x + 4 또는 y = √3x − 4</b>
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">접선 — 기본문제 (원 밖의 점에서 그은 두 접선, 완전 풀이)</div>
+  <div class="card-tag">기본 6 — 원 밖의 점에서 그은 두 접선의 방정식</div>
+  <div class="card-body" style="font-weight:600">
+원 x²+y²=9 밖의 점 P(5, 0)에서 원에 그은 두 접선의 방정식을 모두 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<b>1단계 — 접선을 점 P를 지나는 직선으로 놓기</b><br>
+P(5,0)을 지나는 직선: y = m(x−5), 즉 mx − y − 5m = 0<br><br>
+<b>2단계 — 중심에서 거리 = 반지름</b><br>
+중심(0,0)에서 이 직선까지 거리 = <span class="frac"><span class="num">|−5m|</span><span class="den">√(m²+1)</span></span> = 3 (반지름)<br><br>
+<b>3단계 — 제곱해서 정리 (이차방정식)</b><br>
+25m² = 9(m²+1) → 25m² − 9m² = 9 → 16m² = 9 → m² = <span class="frac"><span class="num">9</span><span class="den">16</span></span> → m = ±<span class="frac"><span class="num">3</span><span class="den">4</span></span><br><br>
+<b>4단계 — 두 접선의 방정식</b><br>
+m=3/4: y = <span class="frac"><span class="num">3</span><span class="den">4</span></span>(x−5) → <b>y = <span class="frac"><span class="num">3</span><span class="den">4</span></span>x − <span class="frac"><span class="num">15</span><span class="den">4</span></span></b><br>
+m=−3/4: <b>y = −<span class="frac"><span class="num">3</span><span class="den">4</span></span>x + <span class="frac"><span class="num">15</span><span class="den">4</span></span></b><br><br>
+<span style="font-size:.85em;color:#555">만약 "두 접선의 기울기의 곱"만 물었다면, 3단계의 16m²−9=0에서 근과 계수의 관계로 곱 = −9/16을 바로 구할 수 있었어요 — 4단계까지 갈 필요가 없었던 거죠.</span>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

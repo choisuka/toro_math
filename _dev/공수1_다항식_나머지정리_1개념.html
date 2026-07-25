@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학1 · 다항식 — 나머지정리 (1/2 개념·도구) — 빌드 파일</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:16px;padding-top:16px;border-top:1px dashed #bbb;font-size:12.5px;color:#333;line-height:1.95}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{display:inline-block;font-size:1.15em;font-weight:800;color:#15803d!important;background:rgba(21,128,61,.08);padding:3px 12px;border-radius:6px;margin-bottom:10px}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.key-term{font-size:1.2em;font-weight:800;color:#4c1d95!important;letter-spacing:-.01em}
+.unit-header{font-size:16px;font-weight:800;color:#4c1d95;text-align:center;padding:9px 0;margin:26px 0 16px;border-top:3px solid #4c1d95;border-bottom:3px solid #4c1d95;letter-spacing:.02em}
+.type-badge{display:inline-flex;align-items:center;justify-content:center;width:1.5em;height:1.5em;border-radius:50%;background:#4c1d95;color:#fff!important;font-weight:800;font-size:1.15em;margin-right:.35em;vertical-align:middle}
+.problem-label{display:inline-block;font-size:1.15em;font-weight:800;color:#1d4ed8!important;background:rgba(29,78,216,.08);padding:3px 12px;border-radius:6px;margin-bottom:10px}
+.solution-label{display:inline-block;font-size:1.15em;font-weight:800;color:#15803d!important;background:rgba(21,128,61,.08);padding:3px 12px;border-radius:6px;margin-bottom:10px}
+.idea-label{display:inline-block;font-size:1.1em;font-weight:800;color:#b45309!important;background:rgba(245,158,11,.1);padding:3px 12px;border-radius:6px;margin:6px 0 8px}
+.box-formula{border:1.5px solid #c4b5fd;background:rgba(139,92,246,.06);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1}
+.box-note{border:1.5px solid #93c5fd;background:rgba(59,130,246,.05);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0}
+@media print{
+svg text{fill:#333!important}
+svg line{stroke:#aaa!important}
+svg rect{stroke:#aaa!important}
+svg circle{stroke:#aaa!important;fill:#999!important}
+svg polygon{stroke:#aaa!important;fill:#eee!important}
+svg path{stroke:#aaa!important}
+}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em;line-height:1.3}
+.frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
+.frac .den{padding:1px 4px 0}
+.synth-table{border-collapse:collapse;margin:10px auto;font-size:.95em}
+.synth-table td{border:1px solid #bbb;padding:6px 12px;text-align:center;min-width:36px}
+.synth-table .synth-head{background:#f3f0ff;font-weight:700;color:#4c1d95}
+.synth-table .synth-result{background:rgba(21,128,61,.08);font-weight:700;color:#15803d}
+.drawer-box{border:1.5px solid #fbbf24;background:rgba(251,191,36,.06);border-radius:8px;padding:.7rem 1rem;margin:.6rem 0;font-size:.92em;line-height:1.85}
+.drawer-title{display:block;font-weight:800;color:#b45309;font-size:1.05em;margin-bottom:2px}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 공통수학1 · 다항식 (나머지정리, 1/2 개념·도구)</div>
+    <div class="toolbar-sub">개념(주제0~4: 항등식→다항식 나눗셈→나머지정리→인수정리→조립제법)→다음 파일(실전훈련)에서 조건 여러 개 연립·이차식으로 나눈 나머지로 이어집니다</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 다항식 — 나머지정리 (1/2 개념·도구)</h1>
+
+<div class="unit-header" style="margin-top:0">📍 주제 0 — 항등식: x자리에 뭘 넣어도 참인 식</div>
+
+<div class="card">
+  <div class="card-meta">항등식 — 개념 (방정식과 비교)</div>
+  <div class="card-tag">🤔 이 두 식, 뭐가 다를까?</div>
+  <div class="card-body">
+<div class="problem-label">❓ 던지는 질문</div><br>
+두 식을 비교해볼게요.<br><br>
+① x+2=5<br>
+② (x+1)²=x²+2x+1<br><br>
+①은 x=3을 넣어야만 참이 돼요. x=0이면 2=5로 거짓이죠. 그런데 ②는 x에 <b>아무 숫자나</b> 넣어봐도 항상 참이에요 (직접 x=0, x=2 등 대입해서 확인해보세요). 뭐가 다를까요?<br><br>
+
+<div class="box-note">
+<b>방정식</b>: 특정 x에서만 참 (①처럼, x=3일 때만)<br>
+<b>항등식</b>: x에 어떤 값을 넣어도 <b>항상</b> 참 (②처럼)
+</div>
+
+P(x)=(x−a)Q(x)+R 같은 나눗셈 검산식도 사실 항등식이에요 — Q(x), R이 무엇이든 상관없이, x자리에 어떤 수를 넣어도 등호가 깨지지 않아요. 그래서 <b>대입할 x를 우리가 마음대로 고를 수 있는 자유</b>가 생겨요. 이 성질을 이용하는 두 가지 방법을 배워볼게요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">항등식 — 계수비교법</div>
+  <div class="card-tag">🤔 양변의 같은 자리 숫자는 서로 같지 않을까?</div>
+  <div class="card-body">
+<div class="problem-label">❓ 던지는 질문</div><br>
+ax²+bx+c = 2x²−3x+5 가 x에 대한 항등식이라면, a, b, c는 각각 뭘까요?<br><br>
+잠깐 생각해보세요 — 양변이 <b>모든 x에서 완전히 같은 식</b>이라면, x² 자리 숫자끼리도 같아야 하고, x 자리·상수 자리도 각각 같아야 하지 않을까요?<br><br>
+
+<div class="box-note">
+<b>계수비교법</b><br>
+두 다항식이 x에 대한 항등식이면, 양변에서 <b>같은 차수 항의 계수는 서로 같다.</b>
+</div>
+
+그대로 적용하면: x²자리 a=2, x자리 b=−3, 상수자리 c=5.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">항등식 — 수치대입법</div>
+  <div class="card-tag">🤔 굳이 전개 안 해도, x에 숫자를 넣으면?</div>
+  <div class="card-body">
+<div class="problem-label">❓ 던지는 질문</div><br>
+(x−1)³ = ax³+bx²+cx+d 가 x에 대한 항등식일 때, a+b+c+d의 값은?<br><br>
+직접 좌변을 전개해서 a,b,c,d를 하나씩 구해도 되지만, 더 빠른 길이 있어요 — 구하려는 건 결국 <b>a+b+c+d</b>인데, 우변에 <b>x=1</b>을 넣으면 a·1+b·1+c·1+d = a+b+c+d 가 그대로 나오지 않나요? 그럼 좌변에도 x=1을 넣어보면?<br><br>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.7rem 1rem;margin:.5rem 0;font-size:.95em;line-height:1.9">
+좌변에 x=1 대입: (1−1)³ = 0<br>
+우변에 x=1 대입: a+b+c+d<br>
+항등식이니 둘은 같다 → <b>a+b+c+d = 0</b>
+</div>
+
+<div class="box-note">
+<b>수치대입법</b><br>
+항등식은 x에 어떤 값을 넣어도 성립하므로, <b>구하려는 값이 그대로 나오게 만드는 특별한 x</b>를 골라 대입하면 전개하지 않고도 빠르게 답을 얻을 수 있다.
+</div>
+
+<div class="toro-note">🦕 토로: 계수비교법과 수치대입법은 경쟁 관계가 아니라 <b>같은 목적(미지수 구하기)을 위한 두 가지 도구</b>예요. 식이 복잡하면 수치대입법이, 각 계수를 전부 알아야 하면 계수비교법이 더 편할 때가 많아요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">항등식 — 기본문제 (계수비교법)</div>
+  <div class="card-tag">기본 0-1 — 계수비교법으로 미지수 구하기</div>
+  <div class="card-body" style="font-weight:600">
+등식 2x²+ax−3 = bx²−5x+c 가 x에 대한 항등식일 때, a+b+c의 값을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+계수비교: x²자리 2=b, x자리 a=−5, 상수자리 −3=c<br>
+b=2, a=−5, c=−3 → <b>a+b+c = −6</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">항등식 — 기본문제 (수치대입법)</div>
+  <div class="card-tag">기본 0-2 — 수치대입법으로 미지수 구하기</div>
+  <div class="card-body" style="font-weight:600">
+등식 (2x−1)² = ax²+bx+c 가 x에 대한 항등식일 때, a+b+c의 값을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+구하는 값 a+b+c는 우변에 x=1을 대입한 값과 같다<br>
+좌변에 x=1 대입: (2−1)² = 1<br>
+<b>a+b+c = 1</b>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 1 — 다항식도 나눗셈이 될까?</div>
+
+<div class="card">
+  <div class="card-meta">다항식의 나눗셈 — 기본설명 (초등 나눗셈과 연결)</div>
+  <div class="card-tag">📐 몫과 나머지, 다항식도 똑같아요</div>
+  <div class="card-body">
+초등학교 때 배운 <b>13 ÷ 4</b>부터 떠올려볼게요. 13개를 4개씩 묶으면 3묶음이 되고 1개가 남아요.<br><br>
+
+<svg viewBox="0 0 300 90" width="100%" style="max-width:280px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="25" width="70" height="30" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <rect x="90" y="25" width="70" height="30" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <rect x="170" y="25" width="70" height="30" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <rect x="250" y="25" width="18" height="30" fill="#fed7aa" stroke="#f97316" stroke-width="1.5"/>
+  <text x="45" y="45" font-size="11" fill="#4c1d95" font-weight="700" text-anchor="middle">4개</text>
+  <text x="125" y="45" font-size="11" fill="#4c1d95" font-weight="700" text-anchor="middle">4개</text>
+  <text x="205" y="45" font-size="11" fill="#4c1d95" font-weight="700" text-anchor="middle">4개</text>
+  <text x="259" y="45" font-size="9" fill="#c2410c" font-weight="700" text-anchor="middle">1</text>
+  <text x="125" y="75" font-size="10" fill="#555" text-anchor="middle">4씩 3묶음 (몫 3)</text>
+  <text x="259" y="75" font-size="10" fill="#c2410c" font-weight="700" text-anchor="middle">나머지 1</text>
+</svg>
+
+<div class="box-formula" style="text-align:center">
+<b>13 = 4 × 3 + 1</b><br>
+<span style="font-size:.85em;color:#555">(나누어지는 수) = (나누는 수) × (몫) + (나머지), 단 <b>나머지 &lt; 나누는 수</b></span>
+</div>
+
+다항식도 <b>완전히 같은 구조</b>예요. 다만 "나머지 &lt; 나누는 수"라는 조건이 다항식에서는 <b>"나머지의 차수 &lt; 나누는 식의 차수"</b>로 바뀔 뿐이에요.
+
+<div class="box-formula" style="text-align:center">
+<b>P(x) = D(x) × Q(x) + R(x)</b><br>
+<span style="font-size:.85em;color:#555">P(x): 다항식, D(x): 나누는 식, Q(x): 몫, R(x): 나머지 (단, R(x)의 차수 &lt; D(x)의 차수)</span>
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">다항식의 나눗셈 — 계산 과정 (세로 나눗셈 예제)</div>
+  <div class="card-tag">📐 실제로 나눠보기 — x³ + 3x² − 2x − 1 ÷ (x − 1)</div>
+  <div class="card-body">
+<div class="problem-label">❓ 예제</div><br>
+정수 나눗셈을 세로로 적었던 것처럼, 다항식도 <b>아래로 내려쓰면서</b> 나눠요 (핀란드 lukio 교재에서도 이 "jakokulma"라는 세로 나눗셈 표기를 그대로 씁니다). 규칙은 매 단계 <b>"몫 자리 채우기 → 곱해서 빼기 → 다음 항 내리기"</b>의 반복이에요.<br><br>
+
+<svg viewBox="0 0 300 195" width="100%" style="max-width:280px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+  <text x="75" y="20" font-size="12" text-anchor="middle" fill="#1a1a1a" font-weight="700">x²</text>
+  <text x="130" y="20" font-size="12" text-anchor="middle" fill="#1a1a1a" font-weight="700">+4x</text>
+  <text x="185" y="20" font-size="12" text-anchor="middle" fill="#1a1a1a" font-weight="700">+2</text>
+
+  <path d="M 45 28 L 45 62 M 45 28 L 275 28" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="38" y="53" font-size="11" text-anchor="end" fill="#4c1d95" font-weight="700">x−1</text>
+
+  <text x="75" y="48" font-size="12" text-anchor="middle" fill="#1a1a1a">x³</text>
+  <text x="130" y="48" font-size="12" text-anchor="middle" fill="#1a1a1a">+3x²</text>
+  <text x="185" y="48" font-size="12" text-anchor="middle" fill="#1a1a1a">−2x</text>
+  <text x="235" y="48" font-size="12" text-anchor="middle" fill="#1a1a1a">−1</text>
+
+  <text x="52" y="67" font-size="11" text-anchor="end" fill="#c2410c">−</text>
+  <text x="75" y="67" font-size="11" text-anchor="middle" fill="#c2410c">x³</text>
+  <text x="130" y="67" font-size="11" text-anchor="middle" fill="#c2410c">−x²</text>
+  <line x1="55" y1="73" x2="155" y2="73" stroke="#c2410c" stroke-width="1.2"/>
+
+  <text x="130" y="91" font-size="12" text-anchor="middle" fill="#1a1a1a" font-weight="700">4x²</text>
+  <text x="185" y="91" font-size="12" text-anchor="middle" fill="#1a1a1a">−2x</text>
+
+  <text x="107" y="109" font-size="11" text-anchor="end" fill="#c2410c">−</text>
+  <text x="130" y="109" font-size="11" text-anchor="middle" fill="#c2410c">4x²</text>
+  <text x="185" y="109" font-size="11" text-anchor="middle" fill="#c2410c">−4x</text>
+  <line x1="110" y1="115" x2="210" y2="115" stroke="#c2410c" stroke-width="1.2"/>
+
+  <text x="185" y="133" font-size="12" text-anchor="middle" fill="#1a1a1a" font-weight="700">2x</text>
+  <text x="235" y="133" font-size="12" text-anchor="middle" fill="#1a1a1a">−1</text>
+
+  <text x="162" y="151" font-size="11" text-anchor="end" fill="#c2410c">−</text>
+  <text x="185" y="151" font-size="11" text-anchor="middle" fill="#c2410c">2x</text>
+  <text x="235" y="151" font-size="11" text-anchor="middle" fill="#c2410c">−2</text>
+  <line x1="165" y1="157" x2="260" y2="157" stroke="#c2410c" stroke-width="1.2"/>
+
+  <text x="235" y="177" font-size="13" text-anchor="middle" fill="#15803d" font-weight="800">1</text>
+  <text x="10" y="177" font-size="9" fill="#15803d" font-weight="700">← 나머지</text>
+</svg>
+
+맨 위 줄(x²+4x+2)이 몫, 맨 아래 남은 1이 나머지예요. 각 단계는 "그 자리 몫을 정하고 → x−1에 곱해서 → 빼고 → 다음 항을 내려서 잇기"의 반복입니다.
+
+<div class="box-formula" style="text-align:center">
+<b>몫: x² + 4x + 2,  나머지: 1</b><br>
+<span style="font-size:.85em;color:#555">x³+3x²−2x−1 = (x−1)(x²+4x+2) + 1</span>
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">다항식의 나눗셈 — 기본문제</div>
+  <div class="card-tag">기본 1 — 직접 나눠서 몫과 나머지 구하기</div>
+  <div class="card-body" style="font-weight:600">
+다항식 2x³ − 3x² + 4x − 1 을 x − 1 로 나눈 몫과 나머지를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<svg viewBox="0 0 300 195" width="100%" style="max-width:280px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+  <text x="75" y="20" font-size="12" text-anchor="middle" fill="#1a1a1a" font-weight="700">2x²</text>
+  <text x="130" y="20" font-size="12" text-anchor="middle" fill="#1a1a1a" font-weight="700">−x</text>
+  <text x="185" y="20" font-size="12" text-anchor="middle" fill="#1a1a1a" font-weight="700">+3</text>
+
+  <path d="M 45 28 L 45 62 M 45 28 L 275 28" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="38" y="53" font-size="11" text-anchor="end" fill="#4c1d95" font-weight="700">x−1</text>
+
+  <text x="75" y="48" font-size="12" text-anchor="middle" fill="#1a1a1a">2x³</text>
+  <text x="130" y="48" font-size="12" text-anchor="middle" fill="#1a1a1a">−3x²</text>
+  <text x="185" y="48" font-size="12" text-anchor="middle" fill="#1a1a1a">+4x</text>
+  <text x="235" y="48" font-size="12" text-anchor="middle" fill="#1a1a1a">−1</text>
+
+  <text x="52" y="67" font-size="11" text-anchor="end" fill="#c2410c">−</text>
+  <text x="75" y="67" font-size="11" text-anchor="middle" fill="#c2410c">2x³</text>
+  <text x="130" y="67" font-size="11" text-anchor="middle" fill="#c2410c">−2x²</text>
+  <line x1="55" y1="73" x2="155" y2="73" stroke="#c2410c" stroke-width="1.2"/>
+
+  <text x="130" y="91" font-size="12" text-anchor="middle" fill="#1a1a1a" font-weight="700">−x²</text>
+  <text x="185" y="91" font-size="12" text-anchor="middle" fill="#1a1a1a">+4x</text>
+
+  <text x="107" y="109" font-size="11" text-anchor="end" fill="#c2410c">−</text>
+  <text x="130" y="109" font-size="11" text-anchor="middle" fill="#c2410c">−x²</text>
+  <text x="185" y="109" font-size="11" text-anchor="middle" fill="#c2410c">+x</text>
+  <line x1="110" y1="115" x2="210" y2="115" stroke="#c2410c" stroke-width="1.2"/>
+
+  <text x="185" y="133" font-size="12" text-anchor="middle" fill="#1a1a1a" font-weight="700">3x</text>
+  <text x="235" y="133" font-size="12" text-anchor="middle" fill="#1a1a1a">−1</text>
+
+  <text x="162" y="151" font-size="11" text-anchor="end" fill="#c2410c">−</text>
+  <text x="185" y="151" font-size="11" text-anchor="middle" fill="#c2410c">3x</text>
+  <text x="235" y="151" font-size="11" text-anchor="middle" fill="#c2410c">−3</text>
+  <line x1="165" y1="157" x2="260" y2="157" stroke="#c2410c" stroke-width="1.2"/>
+
+  <text x="235" y="177" font-size="13" text-anchor="middle" fill="#15803d" font-weight="800">2</text>
+  <text x="10" y="177" font-size="9" fill="#15803d" font-weight="700">← 나머지</text>
+</svg>
+<b>몫: 2x²−x+3, 나머지: 2</b><br>
+<span style="font-size:.9em;color:#555">검산: 2x³−3x²+4x−1 = (x−1)(2x²−x+3) + 2</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">다항식의 나눗셈 — 기본문제 (이차식으로 나누기)</div>
+  <div class="card-tag">기본 1-2 — 나누는 식이 이차식일 때</div>
+  <div class="card-body" style="font-weight:600">
+다항식 2x³ + x² − 4x + 3 을 x² + x − 1 로 나눈 몫과 나머지를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+방법은 똑같아요 — 나누는 식이 두 항 이상이어도 "맨 앞끼리 나누기 → 곱해서 빼기 → 내리기"를 반복하면 돼요.<br><br>
+1단계: 2x³÷x²=2x → 2x(x²+x−1)=2x³+2x²−2x → (2x³+x²)−(2x³+2x²−2x) = −x²+2x, −4x 내려서 −x²−2x+3<br>
+2단계: −x²÷x²=−1 → −1(x²+x−1)=−x²−x+1 → (−x²−2x+3)−(−x²−x+1) = −x+2 → 더 내릴 항 없음, 끝(차수1 &lt; 나누는 식의 차수2)<br><br>
+<b>몫: 2x−1, 나머지: −x+2</b><br>
+<span style="font-size:.9em;color:#555">검산: (x²+x−1)(2x−1) + (−x+2) = 2x³+x²−4x+3</span>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 2 — 나머지정리: 나눗셈 없이 나머지 구하기</div>
+
+<div class="card">
+  <div class="card-meta">나머지정리 — 개념 (핀란드식·질문에서 출발하는 발견)</div>
+  <div class="card-tag">🤔 나눗셈을 안 하고도 나머지를 알 수 있을까?</div>
+  <div class="card-body">
+<div class="problem-label">❓ 던지는 질문</div><br>
+P(x) = x³ − 2x² + 3x − 4 를 x−2로 나눈 <b>나머지</b>가 궁금해요. 세로 나눗셈을 끝까지 안 하고도 알아낼 방법이 있을까요?<br><br>
+<span style="font-size:.9em;color:#555">잠깐 멈추고 직접 생각해보세요 — 힌트: P(x) = (x−2)Q(x) + R 이라는 건 이미 알고 있어요. 이 식에서 <b>Q(x)를 통째로 없애버릴 수 있는 x값</b>이 있을까요?</span>
+
+<div class="box-formula" style="text-align:center">
+P(x) = (x−2) × Q(x) + R
+</div>
+
+<b>1단계 — 관찰</b><br>
+이 식은 <b>어떤 x를 넣어도</b> 항상 성립해요 — 주제0에서 배운 <b>항등식</b> 그대로예요. 그래서 아무 x나(원하는 값을 우리가 골라서!) 대입해도 여전히 참인 식이 나와요.<br><br>
+
+<b>2단계 — 시도</b><br>
+x−2 뒤에 곱해진 Q(x)를 통째로 사라지게 하려면, x−2 자체가 <b>0</b>이 되면 돼요. x−2=0이 되는 x는? → <b>x=2</b><br><br>
+
+<b>3단계 — 대입해서 확인</b><br>
+x=2를 대입하면:<br>
+P(2) = (2−2) × Q(2) + R = <b>0</b> × Q(2) + R = R<br><br>
+
+<svg viewBox="0 0 300 60" width="100%" style="max-width:280px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <text x="10" y="15" font-size="9" fill="#4c1d95" font-weight="700">방금 발견한 걸 그림으로 확인하면 —</text>
+  <rect x="10" y="25" width="0" height="25" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <rect x="10" y="25" width="24" height="25" fill="#fed7aa" stroke="#f97316" stroke-width="1.5"/>
+  <text x="40" y="42" font-size="9" fill="#94a3b8">(x−2)Q(x) 블록은 폭이 0이 돼서 사라지고,</text>
+  <text x="22" y="60" font-size="9" fill="#c2410c" font-weight="700" text-anchor="middle">R</text>
+  <text x="40" y="59" font-size="9" fill="#94a3b8">R만 남음</text>
+</svg>
+
+<b>4단계 — 일반화</b><br>
+방금은 x−2에서만 확인했지만, 나누는 식이 <b>x−a</b> 어떤 형태든 <b>같은 논리</b>가 그대로 통해요. x=a를 넣으면 x−a가 0이 되니까요.
+
+<div class="box-note">
+<b>나머지정리</b><br>
+다항식 P(x)를 x−a로 나눈 나머지는 <b>P(a)</b>이다.<br>
+x−b로 나눈 나머지는 마찬가지로 <span class="frac"><span class="num">bx−c</span><span class="den">b</span></span> 형태 대신, bx−c=0 → x=c/b를 대입한 <b>P(c/b)</b>이다.
+</div>
+
+<div class="toro-note">🦕 토로: 공식을 외운 게 아니라 <b style="font-size:1.25em">"Q(x)를 사라지게 하려면?"</b>이라는 질문 하나에서 직접 이끌어낸 결과예요. 이렇게 얻은 건 잊어버려도 같은 질문을 다시 던지면 언제든 재구성할 수 있어요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">나머지정리 — 기본문제</div>
+  <div class="card-tag">기본 2 — 나눗셈 없이 나머지 구하기</div>
+  <div class="card-body" style="font-weight:600">
+다항식 P(x) = x³ − 3x² + 2x + 5 를 x−2로 나눈 나머지를 나눗셈 없이 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+나머지정리: x−2로 나눈 나머지는 P(2)<br>
+P(2) = 2³ − 3(2²) + 2(2) + 5 = 8 − 12 + 4 + 5 = <b>5</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">나머지정리 — 기본문제 (미정계수)</div>
+  <div class="card-tag">기본 2-2 — 나머지 조건으로 미지수 구하기</div>
+  <div class="card-body" style="font-weight:600">
+다항식 P(x) = x³ + ax + 3 을 x−1로 나눈 나머지가 7일 때, 상수 a의 값을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+나머지정리: x−1로 나눈 나머지는 P(1)<br>
+P(1) = 1 + a + 3 = a + 4<br>
+조건: a + 4 = 7 → <b>a = 3</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">나머지정리 — 기본문제 (분수 근)</div>
+  <div class="card-tag">기본 2-3 — 나누는 식이 2x−1처럼 계수가 1이 아닐 때</div>
+  <div class="card-body" style="font-weight:600">
+다항식 P(x) = 2x³ + ax² − x + 3 을 2x−1로 나눈 나머지가 4일 때, 상수 a의 값을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+2x−1=0 → x=1/2 (나머지정리는 나누는 식이 0이 되는 x를 대입하는 게 핵심 — 계수가 1이 아니어도 원리는 같아요)<br>
+P(1/2) = 2(1/8) + a(1/4) − 1/2 + 3 = 1/4 + a/4 − 1/2 + 3 = a/4 + 11/4<br>
+조건: a/4 + 11/4 = 4 → a/4 = 5/4 → <b>a = 5</b>
+  </div>
+</div>
+
+<div class="unit-header">📍 나머지정리 연습문제 7제</div>
+
+<div class="card">
+  <div class="card-meta">나머지정리 연습 — 직접 대입 (기본)</div>
+  <div class="card-tag">연습 1</div>
+  <div class="card-body" style="font-weight:600">
+P(x) = x³ − 2x² + x + 4 를 x−1로 나눈 나머지를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+P(1) = 1 − 2 + 1 + 4 = <b>4</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">나머지정리 연습 — 분수 근</div>
+  <div class="card-tag">연습 2</div>
+  <div class="card-body" style="font-weight:600">
+P(x) = x³ − 4x + 1 을 (2x − 1)로 나눈 나머지를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+2x−1=0 → x=1/2 대입<br>
+P(1/2) = 1/8 − 4×(1/2) + 1 = 1/8 − 2 + 1 = <b>−7/8</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">나머지정리 연습 — 합성식의 나머지 (개념인식 훈련)</div>
+  <div class="card-tag">연습 3</div>
+  <div class="card-body" style="font-weight:600">
+P(x) = x³ + 2x² − x + 3 일 때, P(x−1)을 x로 나눈 나머지를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+g(x)=P(x−1)이라 하면, g(x)를 x(=x−0)로 나눈 나머지는 나머지정리에 의해 g(0)<br>
+g(0) = P(0−1) = P(−1) = −1+2+1+3 = <b>5</b><br>
+<span style="font-size:.9em;color:#555">함정: P(x−1)을 전개해서 풀 필요 없이, "무엇으로 나누는가"만 알아채면 바로 대입 한 번으로 끝나요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">나머지정리 연습 — 몫과 나머지의 관계식 (개념인식 훈련)</div>
+  <div class="card-tag">연습 4</div>
+  <div class="card-body" style="font-weight:600">
+다항식 P(x)를 x−1로 나누면 나머지가 3이고, 그 몫을 Q(x)라 하면 Q(x)를 x−2로 나눈 나머지가 5이다. P(x)를 x−2로 나눈 나머지를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+조건을 그대로 식으로: P(x) = (x−1)Q(x) + 3<br>
+양변에 x=2 대입: P(2) = (2−1)Q(2) + 3 = Q(2) + 3<br>
+Q(2)는 나머지정리에 의해 Q(x)를 x−2로 나눈 나머지, 즉 5<br>
+P(2) = 5 + 3 = <b>8</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">나머지정리 연습 — 곱과 합의 나머지</div>
+  <div class="card-tag">연습 5</div>
+  <div class="card-body" style="font-weight:600">
+두 다항식 P(x), Q(x)에 대해 P(1)=3, Q(1)=−2일 때, 다항식 P(x)Q(x) + 2P(x)를 x−1로 나눈 나머지를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+R(x)=P(x)Q(x)+2P(x)라 하면 나머지는 R(1)<br>
+R(1) = P(1)Q(1) + 2P(1) = 3×(−2) + 2×3 = −6+6 = <b>0</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">나머지정리 연습 — 나머지가 같다는 조건</div>
+  <div class="card-tag">연습 6</div>
+  <div class="card-body" style="font-weight:600">
+P(x) = x³ + ax + b 를 x−1로 나눈 나머지와 x−2로 나눈 나머지가 서로 같다고 한다. 상수 a의 값을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+P(1)=1+a+b, P(2)=8+2a+b<br>
+1+a+b = 8+2a+b → 1+a = 8+2a → <b>a=−7</b><br>
+<span style="font-size:.9em;color:#555">(b는 조건에서 저절로 사라짐 — 양변에서 소거되니까요)</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">나머지정리 연습 — 이차식으로 나눈 나머지 (실전훈련 맛보기)</div>
+  <div class="card-tag">연습 7</div>
+  <div class="card-body" style="font-weight:600">
+다항식 P(x)를 x−1로 나누면 나머지가 3, x+2로 나누면 나머지가 −3이다. P(x)를 (x−1)(x+2)로 나눈 나머지를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+나누는 식이 이차식이므로 나머지는 일차식 이하: R(x)=ax+b로 놓는다.<br>
+P(1)=a+b=3<br>
+P(−2)=−2a+b=−3<br>
+빼면: 3a=6 → a=2, b=3−a=1<br>
+<b>나머지: 2x+1</b><br>
+<span style="font-size:.9em;color:#555">이 유형(이차식으로 나눈 나머지, 조건 2개 연립)이 다음 파일(실전훈련)에서 본격적으로 다뤄져요.</span>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 3 — 인수정리: 나머지가 0이 될 때</div>
+
+<div class="card">
+  <div class="card-meta">인수정리 — 개념</div>
+  <div class="card-tag">📐 나머지 0 = 나누어떨어짐 = 인수</div>
+  <div class="card-body">
+방금 배운 그림에서, 만약 <b>R = 0</b>이라면 어떻게 될까요? 오른쪽의 작은 블록이 아예 없어지고, P(x) 전체가 (x−a)×Q(x) 하나로만 딱 맞아떨어져요.<br><br>
+
+<svg viewBox="0 0 260 60" width="100%" style="max-width:240px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="15" width="240" height="30" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="130" y="35" font-size="10" fill="#4c1d95" font-weight="700" text-anchor="middle">(x−a) × Q(x)   (나머지 없음, 딱 맞음)</text>
+</svg>
+
+이건 "P(x)가 x−a로 <b>나누어떨어진다</b>" = "x−a는 P(x)의 <b>인수</b>이다"라는 뜻이에요. 나머지정리에서 나머지가 P(a)였으니, 그대로 이어집니다.
+
+<div class="box-note">
+<b>인수정리</b><br>
+다항식 P(x)에 대해, <b>P(a) = 0</b>  ⟺  <b>x−a는 P(x)의 인수</b>
+</div>
+
+<span style="font-size:.9em;color:#555">즉 인수정리는 나머지정리의 <b>특수한 경우</b>(나머지가 하필 0인 경우)일 뿐, 새로운 공식이 아니에요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">인수정리 — 기본문제 (인수분해까지 연결)</div>
+  <div class="card-tag">기본 3 — 인수 확인하고 완전히 인수분해하기</div>
+  <div class="card-body" style="font-weight:600">
+다항식 P(x) = x³ − 2x² − 5x + 6 이 x−1을 인수로 갖는지 확인하고, 갖는다면 P(x)를 완전히 인수분해하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<b>1단계 — 인수정리로 확인</b><br>
+P(1) = 1 − 2 − 5 + 6 = 0 → <b>x−1은 P(x)의 인수 맞음</b><br><br>
+<b>2단계 — 몫 구하기(나눗셈)</b><br>
+P(x) ÷ (x−1) = x² − x − 6 (나머지 0)<br><br>
+<b>3단계 — 남은 이차식 인수분해</b><br>
+x² − x − 6 = (x−3)(x+2)<br><br>
+<b>→ P(x) = (x−1)(x−3)(x+2)</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">인수정리 — 기본문제 (미정계수+인수분해 결합)</div>
+  <div class="card-tag">기본 3-2 — 인수 조건으로 미지수부터 구하고 인수분해</div>
+  <div class="card-body" style="font-weight:600">
+다항식 P(x) = x³ + ax² − 4 가 x−1을 인수로 가질 때, 상수 a의 값을 구하고 P(x)를 완전히 인수분해하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+<b>1단계 — 인수정리로 a부터 구하기</b><br>
+x−1이 인수이므로 P(1)=0: 1 + a − 4 = a − 3 = 0 → <b>a = 3</b><br><br>
+<b>2단계 — 조립제법으로 몫 구하기</b><br>
+P(x) = x³ + 3x² − 4, 계수 1,3,0,−4를 조립제법(a=1)으로 나누면 몫의 계수 1,4,4 → x²+4x+4<br><br>
+<b>3단계 — 남은 이차식 인수분해</b><br>
+x²+4x+4 = (x+2)²<br><br>
+<b>→ P(x) = (x−1)(x+2)²</b>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 4 — 조립제법: 나눗셈을 빠르게</div>
+
+<div class="card">
+  <div class="card-meta">조립제법 — 계수만으로 빠르게 나누기</div>
+  <div class="card-tag">📐 세로 나눗셈을 표 하나로 압축하기</div>
+  <div class="card-body">
+아까 세로 나눗셈으로 x³+3x²−2x−1 을 x−1로 나눠서 <b>몫 x²+4x+2, 나머지 1</b>을 구했어요. 이번엔 <b>계수만</b> 뽑아서 표로 훨씬 빠르게 같은 답을 구해볼게요.<br><br>
+
+<div class="box-note">
+<b>조립제법 절차</b><br>
+① 계수를 순서대로 적고, 나누는 값 a를 왼쪽에 적는다.<br>
+② 맨 앞 계수를 그대로 내려쓴다.<br>
+③ 내려온 수 × a를 다음 계수 아래에 적고 더한다.<br>
+④ ③을 마지막 칸까지 반복한다 — 마지막 칸이 나머지, 그 앞까지가 몫의 계수.
+</div>
+
+계수 1, 3, −2, −1 을 놓고, a=1로 실제 해볼게요:
+
+<table class="synth-table">
+<tr><td class="synth-head">1</td><td>1</td><td>3</td><td>−2</td><td>−1</td></tr>
+<tr><td></td><td></td><td>1</td><td>4</td><td>2</td></tr>
+<tr><td class="synth-head">↓</td><td class="synth-result">1</td><td class="synth-result">4</td><td class="synth-result">2</td><td class="synth-result">1</td></tr>
+</table>
+
+결과: 몫의 계수 1, 4, 2 → <b>x²+4x+2</b>, 나머지 <b>1</b>.<br>
+세로 나눗셈에서 구했던 답과 <b>정확히 똑같아요</b> — 계산이 짧아졌을 뿐, 답은 항상 세로 나눗셈과 일치해요.
+
+<div class="toro-note">🦕 토로: 왜 하필 이 절차가 세로 나눗셈과 같은 답을 주는지는 지금 안 파고들어도 돼요. 지금은 "절차대로 하면 항상 같은 답이 나온다"는 걸 믿고 빠르게 쓸 수 있으면 충분해요. (참고로 핀란드에서는 이 방법을 Hornerin menetelmä라고 불러요 — 실제로 검색해서 확인함.)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">조립제법 — 기본문제</div>
+  <div class="card-tag">기본 4 — 조립제법으로 몫과 나머지 구하기</div>
+  <div class="card-body" style="font-weight:600">
+조립제법을 이용하여 (x³ − 4x² + x + 6) ÷ (x − 3)의 몫과 나머지를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+계수를 순서대로 1, −4, 1, 6 으로 놓고, a=3으로 조립제법:<br>
+
+<table class="synth-table">
+<tr><td class="synth-head">3</td><td>1</td><td>−4</td><td>1</td><td>6</td></tr>
+<tr><td></td><td></td><td>3</td><td>−3</td><td>−6</td></tr>
+<tr><td class="synth-head">↓</td><td class="synth-result">1</td><td class="synth-result">−1</td><td class="synth-result">−2</td><td class="synth-result">0</td></tr>
+</table>
+
+맨 아래 줄이 결과예요: 앞 세 개(1, −1, −2)는 몫의 계수, 마지막(0)은 나머지.<br><br>
+<b>몫: x² − x − 2, 나머지: 0</b><br>
+<span style="font-size:.9em;color:#555">검산(나머지정리): P(3) = 27 − 36 + 3 + 6 = 0 ✓ (몫·나머지 둘 다 일치)</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">조립제법 — 기본문제 (음수 a, 최고차항 계수 1 아님)</div>
+  <div class="card-tag">기본 4-2 — a가 음수이고 최고차항 계수가 1이 아닐 때</div>
+  <div class="card-body" style="font-weight:600">
+조립제법을 이용하여 (2x³ + 5x² − x + 2) ÷ (x + 2)의 몫과 나머지를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+x+2=0 → a=−2 (음수여도 절차는 똑같아요, 그냥 그 값을 그대로 곱해서 더하면 돼요)<br>
+계수 2, 5, −1, 2 를 놓고, a=−2로 조립제법:<br>
+
+<table class="synth-table">
+<tr><td class="synth-head">−2</td><td>2</td><td>5</td><td>−1</td><td>2</td></tr>
+<tr><td></td><td></td><td>−4</td><td>−2</td><td>6</td></tr>
+<tr><td class="synth-head">↓</td><td class="synth-result">2</td><td class="synth-result">1</td><td class="synth-result">−3</td><td class="synth-result">8</td></tr>
+</table>
+
+<b>몫: 2x² + x − 3, 나머지: 8</b><br>
+<span style="font-size:.9em;color:#555">검산: (x+2)(2x²+x−3) + 8 = 2x³+5x²−x+2</span>
+  </div>
+</div>
+
+<div class="unit-header">📍 나머지정리 문제 해결 서랍</div>
+
+<div class="card">
+  <div class="card-meta">나머지정리 — 문제 유형별 해결 서랍 (총정리)</div>
+  <div class="card-tag">🗄️ "이 문제는 어느 서랍에 넣지?"</div>
+  <div class="card-body">
+지금까지 배운 걸 <b>문제를 만났을 때 바로 꺼내 쓸 수 있는 서랍</b>으로 정리해요. 복잡해 보이는 문제도 "이거 몇 번 서랍이지?"부터 떠올리면 길이 보여요.<br><br>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 0 — R(x)는 이름표일 뿐, 반드시 실제 다항식으로 바꾸기</span>
+<b>꺼내 쓰는 순간</b>: 검산식을 세우는 바로 그 순간, 항상<br>
+문제에 "나머지 R(x)를 구하라"고 적혀 있어도, R(x)라는 글자 자체로는 대입도 계수비교도 할 수 없어요. <b>나누는 식의 차수</b>를 보고 바로 구체적인 식으로 바꿔야 풀이가 시작돼요.<br>
+・일차식으로 나눔 → 나머지는 상수 → R(x)=r<br>
+・이차식으로 나눔 → 나머지는 일차 이하 → R(x)=ax+b<br>
+・삼차식으로 나눔 → 나머지는 이차 이하 → R(x)=ax²+bx+c<br>
+<span style="font-size:.9em;color:#666">(나머지의 차수가 나누는 식의 차수보다 항상 작아야 한다는, 주제1에서 배운 원칙 그대로예요.)</span>
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 1 — 검산식부터 무조건 쓰고 시작</span>
+<b>꺼내 쓰는 순간</b>: 뭘 어떻게 시작해야 할지 막막할 때<br>
+P(x) = (나누는 식) × Q(x) + R(x) 형태부터 일단 적는다. (R(x)는 서랍 0의 규칙대로 즉시 구체화한다.)
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 2 — Q(x)를 지우는 값 대입 (나머지정리·인수정리)</span>
+<b>꺼내 쓰는 순간</b>: 미정계수를 구해야 하거나 Q(x)가 거추장스러울 때<br>
+나누는 식이 0이 되는 x를 대입해서 Q(x)를 통째로 없앤다. 그 결과가 0이면 인수정리로 인수분해까지 연결한다.
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 3 — 몫 Q(x)도 하나의 다항식, 다시 나머지정리를 걸 수 있다</span>
+<b>꺼내 쓰는 순간</b>: 검산식에 등장하는 몫 Q(x)에 대한 조건이 <b>따로 하나 더</b> 주어질 때 (연습 4가 이 유형이었죠)<br>
+Q(x)도 결국 다항식이니, 서랍1(검산식)·서랍2(값 대입)를 Q(x)에다 <b>한 번 더</b> 적용하면 된다.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.6rem .9rem;margin:.4rem 0;font-size:.92em;line-height:1.85">
+<b>예</b>: P(x)를 x−1로 나누면 나머지가 3이고, 그 몫을 Q(x)라 하자. Q(x)를 x−2로 나누면 나머지가 5이다. P(x)를 x−2로 나눈 나머지는?<br>
+① 서랍1: P(x) = (x−1)Q(x) + 3<br>
+② 구하려는 건 P(2). 식에 x=2를 대입: P(2) = (2−1)Q(2) + 3 = Q(2) + 3<br>
+③ Q(2)는 "Q(x)를 x−2로 나눈 나머지" 그 자체 → 조건에서 5<br>
+→ P(2) = 5 + 3 = <b>8</b>
+</div>
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 4 — 합성식은 "무엇을 구하는 문제인지"부터 재정의</span>
+<b>꺼내 쓰는 순간</b>: P(2x−1), P(x+3)처럼 괄호 안이 변형된 식이 나올 때 (연습 3이 이 유형)<br>
+겉모습에 겁먹지 말고 "이 문제가 결국 P(무슨 값)을 구하는 문제인지"부터 정확히 정의한다. 괄호 안이 원하는 숫자가 되도록 x를 거꾸로 추적해서 대입한다.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.6rem .9rem;margin:.4rem 0;font-size:.92em;line-height:1.85">
+<b>예</b>: P(x)를 x+2로 나눈 나머지가 9일 때, P(x−2)를 x로 나눈 나머지는?<br>
+① 목표 재정의: "x로 나눈 나머지"는 x=0을 대입한 값 → 구하는 건 <b>P(0−2) = P(−2)</b><br>
+② 겉보기엔 새 계산 같지만, "x+2로 나눈 나머지"가 이미 P(−2)와 같은 것(나머지정리)이므로<br>
+→ 조건에서 P(−2) = <b>9</b>
+</div>
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 5 — 나머지가 같거나 규칙이 보이면 통째로 이항</span>
+<b>꺼내 쓰는 순간</b>: P(1)=P(2)=P(3)=k 처럼 나머지가 같을 때, 또는 P(1)=2, P(2)=3, P(3)=4처럼 규칙이 보일 때<br>
+규칙식을 좌변으로 이항해서 P(x) − (규칙식) = 0 꼴로 만든다. 이 식은 x=1,2,3에서 모두 0이 되니까 (x−1)(x−2)(x−3)을 인수로 갖는다 → P(x) = (x−1)(x−2)(x−3)Q(x) + (규칙식) 형태로 통째로 다시 쓴다.
+</div>
+
+<div class="toro-note">🦕 토로: 실전 문제는 서랍 하나로 안 끝나고 두세 개가 섞여 나올 때가 많아요 — "서랍 1(검산식)로 시작했는데 알고 보니 서랍 4(합성식)"인 경우처럼요. 문제를 풀 때마다 "이건 몇 번 서랍이었지?"를 적어보는 연습이 다음 파일(실전훈련)에서 훨씬 도움이 될 거예요. 다음 파일에서는 "P(x)를 (x−1)(x−2)로 나눈 나머지" 같은 <b>조건이 여러 개 동시에 걸리는 문제</b>(연습 7 참고)를 조립제법과 함께 본격적으로 다룹니다.</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

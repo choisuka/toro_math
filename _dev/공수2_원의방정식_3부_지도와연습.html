@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학2 · 원의 방정식 3부 — 지도·연습문제·심화</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:16px;padding-top:16px;border-top:1px dashed #bbb;font-size:12.5px;color:#333;line-height:1.95}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{font-size:11px;font-weight:700;color:#666!important;margin-bottom:8px}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.key-term{font-size:1.2em;font-weight:800;color:#4c1d95!important;letter-spacing:-.01em}
+.unit-header{font-size:16px;font-weight:800;color:#4c1d95;text-align:center;padding:9px 0;margin:26px 0 16px;border-top:3px solid #4c1d95;border-bottom:3px solid #4c1d95;letter-spacing:.02em;page-break-before:always;break-before:page}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em;line-height:1.3}
+.frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
+.frac .den{padding:1px 4px 0}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 공통수학2 · 원의 방정식 (3/3부)</div>
+    <div class="toolbar-sub">지도1~9→지도 결합 문제1→연습문제 6제(그림 포함)→심화→한눈에 보기+용어테스트 · 이전: 2부</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 원의 방정식 3부 — 지도·연습문제·심화</h1>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">🗺️ 원의 방정식의 등장인물 미리 보기 — 문제 풀기 전에 한 번 쭉 읽어두기</div>
+
+<div class="card">
+  <div class="card-meta">지도 1/9</div>
+  <div class="card-tag">① 세 점을 지나는 원 (외접원)</div>
+  <div class="card-body">
+문제에 "세 점을 지나는 원"이라는 표현이 나오면?<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+조건: 세 점을 지나는 원<br>
+필요한 도구: 일반형 x²+y²+Dx+Ey+F=0에 세 점을 각각 대입<br>
+공식: 세 방정식을 연립해서 D, E, F를 구한 뒤 표준형으로 변환
+</div>
+예: O(0,0), A(4,0), B(0,6)을 대입하면 F=0, D=−4, E=−6 → 중심(2,3), 반지름 √13.<br>
+세 점 중 하나가 직각삼각형의 직각 꼭짓점이라면, 외심은 그냥 빗변의 중점이에요(평면좌표에서 이미 배운 지름길) — 매번 연립방정식을 풀 필요는 없어요.<br>
+→ 평면좌표(외심) 참고
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 2/9</div>
+  <div class="card-tag">② 지름의 양 끝점으로 원 구하기</div>
+  <div class="card-body">
+문제에 "두 점을 지름의 양 끝점으로 하는 원"이라는 표현이 나오면?<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+조건: 지름의 양 끝점 A, B<br>
+필요한 도구: 중점(내분점 1:1) + 두 점 사이의 거리<br>
+공식: 중심 = AB의 중점, 반지름 = AB 길이의 절반
+</div>
+예: A(1,1), B(5,3) → 중심 = 중점 (3,2), 반지름 = 거리(A,B)/2 = √20/2 = √5.<br>
+"지름의 양 끝점"도 결국 평면좌표에서 배운 중점 공식을 그대로 재사용하는 신호예요.<br>
+→ 평면좌표(중점) 참고
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 3/9 (1/3)</div>
+  <div class="card-tag">③-1 x축에 접함 — 두 가지 (중심이 위/아래)</div>
+  <div class="card-body">
+중심에서 x축까지의 수직 거리가 곧 반지름이에요. 중심이 축 위쪽에 있을 수도, 아래쪽에 있을 수도 있으니 <b>그림은 두 가지</b>를 다 볼게요 — 그런데 식은 하나면 충분해요, 이유를 같이 볼까요.<br><br>
+
+<b>(a) 중심이 위쪽 — 중심(a, b), b&gt;0</b><br>
+<svg viewBox="0 0 90 90" width="100%" style="max-width:120px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="4" y1="61" x2="86" y2="61" stroke="#999" stroke-width="1.1"/>
+  <polygon points="88,61 79,57 79,65" fill="#999"/>
+  <text x="72" y="57" font-size="8" fill="#666" font-style="italic">x</text>
+  <circle cx="55" cy="33" r="28" fill="none" stroke="#6366f1" stroke-width="2"/>
+  <line x1="55" y1="33" x2="55" y2="61" stroke="#6366f1" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <circle cx="55" cy="33" r="2.3" fill="#6366f1"/>
+</svg>
+x축까지 거리 = b (양수 그대로) = r<br><br>
+
+<b>(b) 중심이 아래쪽 — 중심(a, b), b&lt;0</b><br>
+<svg viewBox="0 0 90 90" width="100%" style="max-width:120px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="4" y1="29" x2="86" y2="29" stroke="#999" stroke-width="1.1"/>
+  <polygon points="88,29 79,25 79,33" fill="#999"/>
+  <text x="72" y="25" font-size="8" fill="#666" font-style="italic">x</text>
+  <circle cx="55" cy="57" r="28" fill="none" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="55" y1="57" x2="55" y2="29" stroke="#4f46e5" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <circle cx="55" cy="57" r="2.3" fill="#4f46e5"/>
+</svg>
+x축까지 거리 = −b (음수라서 부호를 뒤집어야 양수 거리) = r<br><br>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+중심을 처음부터 <b>(a, b)</b>로 일반적으로 두면, 두 경우를 굳이 나눌 필요가 없어요 — 거리는 항상 <b>|b| = r</b>이고, 양변을 제곱하면 부호가 사라져서 <b>b² = r²</b>가 위/아래 두 경우 모두에서 그대로 성립하거든요. 그래서 원의 방정식도 하나로 충분합니다:<br><br>
+<b style="font-size:1.05em">(x−a)² + (y−b)² = b²</b>
+</div>
+a는 자유롭게 움직여도 돼요 — b의 부호가 중심이 위인지 아래인지를 저절로 나타내줍니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 3/9 (2/3)</div>
+  <div class="card-tag">③-2 y축에 접함 — 두 가지 (중심이 오른쪽/왼쪽)</div>
+  <div class="card-body">
+이번엔 중심에서 y축까지의 수평 거리가 반지름이에요. 중심이 y축 오른쪽에 있을 수도, 왼쪽에 있을 수도 있어요 — 그림은 두 가지, 식은 하나예요.<br><br>
+
+<b>(a) 중심이 오른쪽 — 중심(a, b), a&gt;0</b><br>
+<svg viewBox="0 0 90 90" width="100%" style="max-width:120px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="24" y1="4" x2="24" y2="86" stroke="#999" stroke-width="1.1"/>
+  <polygon points="24,2 20,11 28,11" fill="#999"/>
+  <text x="29" y="13" font-size="8" fill="#666" font-style="italic">y</text>
+  <circle cx="52" cy="40" r="28" fill="none" stroke="#f97316" stroke-width="2"/>
+  <line x1="24" y1="40" x2="52" y2="40" stroke="#f97316" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <circle cx="52" cy="40" r="2.3" fill="#f97316"/>
+</svg>
+y축까지 거리 = a (양수 그대로) = r<br><br>
+
+<b>(b) 중심이 왼쪽 — 중심(a, b), a&lt;0</b><br>
+<svg viewBox="0 0 90 90" width="100%" style="max-width:120px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="61" y1="4" x2="61" y2="86" stroke="#999" stroke-width="1.1"/>
+  <polygon points="61,2 57,11 65,11" fill="#999"/>
+  <text x="66" y="13" font-size="8" fill="#666" font-style="italic">y</text>
+  <circle cx="33" cy="40" r="28" fill="none" stroke="#ea580c" stroke-width="2"/>
+  <line x1="61" y1="40" x2="33" y2="40" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <circle cx="33" cy="40" r="2.3" fill="#ea580c"/>
+</svg>
+y축까지 거리 = −a (음수라서 부호를 뒤집어야 양수 거리) = r<br><br>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+중심을 <b>(a, b)</b>로 일반적으로 두면 거리는 항상 <b>|a| = r</b>, 제곱하면 <b>a² = r²</b>가 두 경우 모두에서 성립해요. 하나의 식으로 충분합니다:<br><br>
+<b style="font-size:1.05em">(x−a)² + (y−b)² = a²</b>
+</div>
+b는 자유롭게 움직여도 돼요 — a의 부호가 중심이 오른쪽인지 왼쪽인지를 저절로 나타내줍니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 3/9 (3/3)</div>
+  <div class="card-tag">③-3 x축·y축 둘 다 접함 — 네 사분면, 그런데 식은 두 개</div>
+  <div class="card-body">
+가로·세로 거리가 <b>둘 다</b> r이어야 하니 |a|=|b|=r인데, 이건 결국 <b>a=b</b>이거나 <b>a=−b</b>라는 뜻이에요 — 즉 중심이 직선 <b>y=x</b> 위(지도5(a)와 똑같은 조건!)에 있거나, 직선 <b>y=−x</b> 위(지도5(b)와 똑같은 조건!)에 있는 경우예요. 사분면은 4개지만, 식으로는 <b>두 그룹</b>으로 묶여요.<br><br>
+
+<b>그룹1 — y=x 위 (a=b), 1·3사분면</b><br>
+<b>(a) 1사분면 — 중심(a, a), a&gt;0</b><br>
+<svg viewBox="0 0 104 104" width="100%" style="max-width:110px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="52" y1="2" x2="52" y2="102" stroke="#999" stroke-width="1.1"/>
+  <polygon points="52,0 48,9 56,9" fill="#999"/>
+  <text x="57" y="11" font-size="8" fill="#666" font-style="italic">y</text>
+  <line x1="2" y1="52" x2="102" y2="52" stroke="#999" stroke-width="1.1"/>
+  <polygon points="104,52 95,48 95,56" fill="#999"/>
+  <text x="88" y="48" font-size="8" fill="#666" font-style="italic">x</text>
+  <line x1="2" y1="102" x2="102" y2="2" stroke="#a855f7" stroke-width="1.3" stroke-dasharray="2 2"/>
+  <text x="82" y="14" font-size="7" fill="#a855f7">y=x</text>
+  <circle cx="76" cy="28" r="24" fill="none" stroke="#10b981" stroke-width="2"/>
+  <line x1="76" y1="28" x2="76" y2="52" stroke="#10b981" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <line x1="52" y1="28" x2="76" y2="28" stroke="#10b981" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <circle cx="76" cy="28" r="2.3" fill="#10b981"/>
+</svg>
+
+<b>(c) 3사분면 — 중심(a, a), a&lt;0</b><br>
+<svg viewBox="0 0 104 104" width="100%" style="max-width:110px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="52" y1="2" x2="52" y2="102" stroke="#999" stroke-width="1.1"/>
+  <polygon points="52,0 48,9 56,9" fill="#999"/>
+  <text x="57" y="11" font-size="8" fill="#666" font-style="italic">y</text>
+  <line x1="2" y1="52" x2="102" y2="52" stroke="#999" stroke-width="1.1"/>
+  <polygon points="104,52 95,48 95,56" fill="#999"/>
+  <text x="88" y="48" font-size="8" fill="#666" font-style="italic">x</text>
+  <line x1="2" y1="102" x2="102" y2="2" stroke="#a855f7" stroke-width="1.3" stroke-dasharray="2 2"/>
+  <text x="82" y="14" font-size="7" fill="#a855f7">y=x</text>
+  <circle cx="28" cy="76" r="24" fill="none" stroke="#0d9488" stroke-width="2"/>
+  <line x1="28" y1="76" x2="28" y2="52" stroke="#0d9488" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <line x1="52" y1="76" x2="28" y2="76" stroke="#0d9488" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <circle cx="28" cy="76" r="2.3" fill="#0d9488"/>
+</svg>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+a&gt;0이면 1사분면, a&lt;0이면 3사분면 — 부호 하나로 두 사분면이 다 표현돼요:<br>
+<b style="font-size:1.05em">(x−a)² + (y−a)² = a²</b>
+</div>
+
+<b>그룹2 — y=−x 위 (a=−b), 2·4사분면</b><br>
+<b>(b) 2사분면 — 중심(a, −a), a&lt;0</b><br>
+<svg viewBox="0 0 104 104" width="100%" style="max-width:110px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="52" y1="2" x2="52" y2="102" stroke="#999" stroke-width="1.1"/>
+  <polygon points="52,0 48,9 56,9" fill="#999"/>
+  <text x="57" y="11" font-size="8" fill="#666" font-style="italic">y</text>
+  <line x1="2" y1="52" x2="102" y2="52" stroke="#999" stroke-width="1.1"/>
+  <polygon points="104,52 95,48 95,56" fill="#999"/>
+  <text x="88" y="48" font-size="8" fill="#666" font-style="italic">x</text>
+  <line x1="2" y1="2" x2="102" y2="102" stroke="#a855f7" stroke-width="1.3" stroke-dasharray="2 2"/>
+  <text x="80" y="98" font-size="7" fill="#a855f7">y=−x</text>
+  <circle cx="28" cy="28" r="24" fill="none" stroke="#059669" stroke-width="2"/>
+  <line x1="28" y1="28" x2="28" y2="52" stroke="#059669" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <line x1="52" y1="28" x2="28" y2="28" stroke="#059669" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <circle cx="28" cy="28" r="2.3" fill="#059669"/>
+</svg>
+
+<b>(d) 4사분면 — 중심(a, −a), a&gt;0</b><br>
+<svg viewBox="0 0 104 104" width="100%" style="max-width:110px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="52" y1="2" x2="52" y2="102" stroke="#999" stroke-width="1.1"/>
+  <polygon points="52,0 48,9 56,9" fill="#999"/>
+  <text x="57" y="11" font-size="8" fill="#666" font-style="italic">y</text>
+  <line x1="2" y1="52" x2="102" y2="52" stroke="#999" stroke-width="1.1"/>
+  <polygon points="104,52 95,48 95,56" fill="#999"/>
+  <text x="88" y="48" font-size="8" fill="#666" font-style="italic">x</text>
+  <line x1="2" y1="2" x2="102" y2="102" stroke="#a855f7" stroke-width="1.3" stroke-dasharray="2 2"/>
+  <text x="80" y="98" font-size="7" fill="#a855f7">y=−x</text>
+  <circle cx="76" cy="76" r="24" fill="none" stroke="#0891b2" stroke-width="2"/>
+  <line x1="76" y1="76" x2="76" y2="52" stroke="#0891b2" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <line x1="52" y1="76" x2="76" y2="76" stroke="#0891b2" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <circle cx="76" cy="76" r="2.3" fill="#0891b2"/>
+</svg>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+a&gt;0이면 4사분면, a&lt;0이면 2사분면:<br>
+<b style="font-size:1.05em">(x−a)² + (y+a)² = a²</b>
+</div>
+"몇 사분면"이라는 말이 문제에 없으면, 조건에 맞는 원이 보통 <b>여러 개</b> 나올 수 있다는 뜻이에요 — 두 그룹(y=x, y=−x) 다 확인해야 할 때도 있어요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 4/9</div>
+  <div class="card-tag">④ 중심이 좌표축 위에 있음 — 두 가지 (접함과는 다른 조건!)</div>
+  <div class="card-body">
+"중심이 축 위에 있다"는 "접한다"와 완전히 다른 조건이에요 — 좌표 하나가 <b>0으로 고정</b>될 뿐, 반지름 r은 축과 무관하게 자유로워요. x축·y축뿐 아니라 y=x, y=−x 위에 있는 경우까지 네 가지를 볼게요.<br><br>
+
+<b>(a) 중심이 x축 위 — 중심(a, 0)</b><br>
+<svg viewBox="0 0 90 90" width="100%" style="max-width:110px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="4" y1="45" x2="86" y2="45" stroke="#999" stroke-width="1.1"/>
+  <polygon points="88,45 79,41 79,49" fill="#999"/>
+  <text x="72" y="41" font-size="8" fill="#666" font-style="italic">x</text>
+  <circle cx="55" cy="45" r="26" fill="none" stroke="#818cf8" stroke-width="2"/>
+  <circle cx="55" cy="45" r="2.3" fill="#4338ca"/>
+</svg>
+y좌표가 0 → (x−a)²+y²=r² (a, r 모두 다른 조건으로 결정)<br><br>
+
+<b>(b) 중심이 y축 위 — 중심(0, b)</b><br>
+<svg viewBox="0 0 90 90" width="100%" style="max-width:110px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="45" y1="4" x2="45" y2="86" stroke="#999" stroke-width="1.1"/>
+  <polygon points="45,2 41,11 49,11" fill="#999"/>
+  <text x="50" y="13" font-size="8" fill="#666" font-style="italic">y</text>
+  <circle cx="45" cy="45" r="26" fill="none" stroke="#fb7185" stroke-width="2"/>
+  <circle cx="45" cy="45" r="2.3" fill="#be123c"/>
+</svg>
+x좌표가 0 → x²+(y−b)²=r²<br><br>
+(a)(b) 둘 다 축 하나에 좌표 하나가 묶일 뿐, 반지름 r은 다른 조건으로 따로 결정돼요. <b>한 점을 더 지난다</b>는 조건이 추가되면 남은 미지수에 대한 방정식이 나옵니다.<br>
+→ 주제0 (표준형) 참고
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 5/9</div>
+  <div class="card-tag">⑤ 원의 중심이 어떤 직선 위에 있다</div>
+  <div class="card-body">
+문제에 "원의 중심이 직선 ~ 위에 있다"는 조건이 나오면?<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+조건: 원의 중심이 특정 직선 위<br>
+필요한 도구: 중심을 (a,b)로 놓고, 직선의 방정식에 대입해서 a,b 사이의 관계식 하나를 얻음<br>
+공식: 이 관계식을 다른 조건(예: 두 점을 지남, 접함 등)과 연립해서 중심을 확정
+</div>
+<b>예 (직접 계산으로 확인)</b>: 원이 두 점 A(1,0), B(0,3)을 지나고 중심이 직선 y=x 위에 있을 때, 원의 방정식은?<br>
+중심을 (t,t)로 놓으면 "중심에서 A까지 거리 = 중심에서 B까지 거리"(반지름이 같으니까):<br>
+(t−1)²+t² = t²+(t−3)² → (t−1)² = (t−3)² → −2t+1 = −6t+9 → 4t=8 → <b>t=2</b><br>
+중심 (2,2), 반지름² = (2−1)²+2² = 5 → <b>(x−2)²+(y−2)²=5</b><br>
+<span style="font-size:.85em;color:#555">검산: B(0,3) 대입 → (0−2)²+(3−2)²=4+1=5 ✓</span><br><br>
+이건 사실 평면좌표에서 배운 "AB의 수직이등분선 위에 중심이 있다"는 것과 똑같은 이야기예요 — 직선 조건이 하나 더 얹히면 그 교점으로 중심이 딱 정해집니다.<br>
+→ 지도6(수직이등분선, 직선의 방정식 단원) 참고<br><br>
+
+<b>대표적인 두 직선 — y=x, y=−x 위에 있는 경우</b><br>
+<b>(a) 중심이 직선 y=x 위 — 중심(t, t)</b><br>
+<svg viewBox="0 0 90 90" width="100%" style="max-width:110px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="45" y1="4" x2="45" y2="86" stroke="#999" stroke-width="1.1"/>
+  <polygon points="45,2 41,11 49,11" fill="#999"/>
+  <text x="50" y="13" font-size="8" fill="#666" font-style="italic">y</text>
+  <line x1="4" y1="45" x2="86" y2="45" stroke="#999" stroke-width="1.1"/>
+  <polygon points="88,45 79,41 79,49" fill="#999"/>
+  <text x="72" y="41" font-size="8" fill="#666" font-style="italic">x</text>
+  <line x1="5" y1="85" x2="85" y2="5" stroke="#a855f7" stroke-width="1.3" stroke-dasharray="2 2"/>
+  <circle cx="65" cy="25" r="22" fill="none" stroke="#a78bfa" stroke-width="2"/>
+  <circle cx="65" cy="25" r="2.3" fill="#6d28d9"/>
+</svg>
+바로 위 예제가 이 경우예요 — 중심(2,2)도 t=2인 (t,t) 꼴이죠. 일반형: (x−t)²+(y−t)²=r²<br>
+<span style="font-size:.85em;color:#888">→ 이건 지도3(3/3)의 "그룹1(1·3사분면)"과 똑같은 직선이에요. 거기서는 여기에 반지름 조건 r=|t|(=양축접함)까지 하나 더 걸려있는 것뿐, 같은 직선 위의 이야기입니다.</span><br><br>
+
+<b>(b) 중심이 직선 y=−x 위 — 중심(t, −t)</b><br>
+<svg viewBox="0 0 90 90" width="100%" style="max-width:110px;display:block;margin:4px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="45" y1="4" x2="45" y2="86" stroke="#999" stroke-width="1.1"/>
+  <polygon points="45,2 41,11 49,11" fill="#999"/>
+  <text x="50" y="13" font-size="8" fill="#666" font-style="italic">y</text>
+  <line x1="4" y1="45" x2="86" y2="45" stroke="#999" stroke-width="1.1"/>
+  <polygon points="88,45 79,41 79,49" fill="#999"/>
+  <text x="72" y="41" font-size="8" fill="#666" font-style="italic">x</text>
+  <line x1="5" y1="5" x2="85" y2="85" stroke="#a855f7" stroke-width="1.3" stroke-dasharray="2 2"/>
+  <circle cx="65" cy="65" r="22" fill="none" stroke="#f0abfc" stroke-width="2"/>
+  <circle cx="65" cy="65" r="2.3" fill="#a21caf"/>
+</svg>
+방법은 완전히 똑같아요, 중심만 (t,−t)로 놓으면 됩니다: (x−t)²+(y+t)²=r²<br>
+<span style="font-size:.85em;color:#888">→ 이건 지도3(3/3)의 "그룹2(2·4사분면)"과 똑같은 직선이에요. 마찬가지로 반지름 조건 r=|t|가 더해지면 양축접함이 됩니다.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 6/9</div>
+  <div class="card-tag">⑥ 원과 직선 + 넓이 결합</div>
+  <div class="card-body">
+문제에 원과 직선이 만드는 <b>삼각형의 넓이</b>를 물어보면?<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+조건: 원 + 직선 + 넓이<br>
+필요한 도구: 중심에서 직선까지의 거리(점과 직선 사이의 거리 공식) + 삼각형 넓이 공식<br>
+공식: 거리를 밑변·높이 중 하나로 활용해서 넓이 = (1/2)×밑변×높이
+</div>
+<b>예 (직접 계산으로 확인)</b>: 원 x²+y²=25와 직선 3x+4y−15=0이 만나서 생기는 두 교점과, 원의 중심이 이루는 삼각형의 넓이는?<br>
+중심(0,0)에서 직선까지 거리: d=|−15|/5=3<br>
+반현(半弦)=√(25−9)=4 → 현(밑변)의 길이=8<br>
+삼각형의 높이는 중심에서 현까지의 거리, 즉 d=3 그대로예요(중심과 현이 만드는 삼각형은 이등변삼각형이고, 중심에서 현에 내린 수선의 발이 바로 그 거리니까요)<br>
+넓이 = <span class="frac"><span class="num">1</span><span class="den">2</span></span>×8×3 = <b>12</b><br><br>
+원과 직선이 나오는 문제의 8~9할은 결국 "중심에서 직선까지 거리"를 구하는 게 첫 단추예요. 그다음은 이미 배운 도형 공식을 이어 붙이면 됩니다.<br>
+→ 주제1 (원과 직선의 위치 관계) 참고
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 7/9</div>
+  <div class="card-tag">⑦ 원 밖의 점에서 그은 두 접선</div>
+  <div class="card-body">
+문제에 "원 밖의 한 점에서 그은 두 접선"이 나오고 <b>기울기의 합·곱</b>을 물어보면?<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+조건: 원 밖의 점 + 두 접선의 기울기 합/곱<br>
+필요한 도구: 거리조건(중심에서 거리=반지름)을 세우면 기울기 m에 대한 <b>이차방정식</b>이 나옴<br>
+공식: 근과 계수의 관계로 두 접선의 기울기 합·곱을 한 번에 구함
+</div>
+예: 원 x²+y²=4, 점(0,4)에서 그은 접선 y=mx+4 → 거리조건 정리하면 m²−3=0. 두 접선의 기울기 합=0, 곱=−3 (직접 두 접선을 다 구하지 않고도 답이 나와요).<br>
+이 유형은 "접점을 몰라도 괜찮다"는 게 핵심이에요 — 기울기를 미지수로 놓고 조건식만 세우면 됩니다.<br>
+→ 주제2 (접선) 참고
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 8/9</div>
+  <div class="card-tag">⑧ 원둘레(또는 넓이)를 이등분하는 직선</div>
+  <div class="card-body">
+문제에 "이 직선이 원의 둘레를 이등분한다" 또는 "원의 넓이를 이등분한다"는 조건이 나오면?<br><br>
+
+<svg viewBox="0 0 220 115" width="100%" style="max-width:200px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 55 15 A 40 40 0 0 1 55 95 Z" fill="rgba(99,102,241,.15)"/>
+  <path d="M 55 15 A 40 40 0 0 0 55 95 Z" fill="rgba(249,115,22,.12)"/>
+  <circle cx="55" cy="55" r="40" fill="none" stroke="#333" stroke-width="1.5"/>
+  <line x1="55" y1="5" x2="55" y2="105" stroke="#4c1d95" stroke-width="2"/>
+  <circle cx="55" cy="55" r="2.5" fill="#4c1d95"/>
+  <text x="30" y="112" font-size="9" fill="#333" font-weight="700">중심을 지남 → 정확히 반반 ✓</text>
+
+  <path d="M 180 17.9 A 40 40 0 0 1 180 92.1 Z" fill="rgba(99,102,241,.25)"/>
+  <path d="M 180 17.9 A 40 40 0 0 0 180 92.1 Z" fill="rgba(249,115,22,.08)"/>
+  <circle cx="165" cy="55" r="40" fill="none" stroke="#333" stroke-width="1.5"/>
+  <line x1="180" y1="5" x2="180" y2="105" stroke="#c2410c" stroke-width="2" stroke-dasharray="4 3"/>
+  <circle cx="165" cy="55" r="2.5" fill="#4c1d95"/>
+  <text x="140" y="112" font-size="9" fill="#333" font-weight="700">중심을 벗어남 → 반반 아님 ✗</text>
+</svg>
+
+왼쪽처럼 <b>중심을 지나는 직선(지름)</b>만 원을 완전히 대칭인 두 부분으로 나눠요. 오른쪽처럼 직선이 중심을 살짝이라도 벗어나면, 두 조각의 넓이도 둘레도 서로 달라져요 — 그래서 "이등분한다"는 조건은 곧 "중심을 지난다"는 조건과 완전히 같은 뜻이에요.<br><br>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+조건: 직선이 원의 둘레(또는 넓이)를 이등분함<br>
+필요한 도구: "원을 정확히 반으로 나누려면 반드시 지름을 지나야 한다"는 사실<br>
+공식: 그 직선은 반드시 원의 <b>중심</b>을 지난다 → 중심 좌표를 직선의 방정식에 대입
+</div>
+"둘레를 이등분"이라는 표현이 어렵게 들려도, 결국 "원의 중심을 지나는 직선"이라는 한 문장으로 바뀌어요 — 반지름이나 넓이 계산은 전혀 필요 없이, 중심 좌표를 대입하는 것만으로 끝나는 경우가 많습니다.<br>
+→ 주제0 (표준형) 참고
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">지도 9/9 (⑨ 두 학생이 스스로 찾아가는 문제)</div>
+  <div class="card-tag">스토리 — 원 위를 움직이는 점까지의 거리, 무한히 많은 점을 다 확인해야 할까?</div>
+  <div class="card-body">
+원 x²+y²=9(중심 원점, 반지름 3) 위를 점 P가 움직여요. 고정된 점 A(5,0)에 대해, PA의 길이는 P의 위치에 따라 계속 바뀌겠죠. 이 거리의 <b>최댓값과 최솟값</b>을 구하고 싶은데, P가 원 위 어디로든 갈 수 있어서 막막해요. 두 학생의 대화를 들어볼까요:<br><br>
+
+<div style="background:rgba(0,0,0,.03);border-radius:6px;padding:10px 12px;margin:6px 0;font-size:.95em;line-height:1.9">
+<b style="color:#4c1d95">민준:</b> P가 원 위 아무 데나 갈 수 있으니까, 몇 개 점 넣어보고 그중 최댓값·최솟값을 찾으면 안 될까?<br>
+<b style="color:#f87171">유나:</b> 근데 원 위에 점이 무한히 많은데 몇 개만 넣어서 확신할 수 있어? 놓치는 점이 있으면 어떡해.<br>
+<b style="color:#4c1d95">민준:</b> 그럼... 중심 O, 점 A, 점 P를 한번 그려볼까? 셋이 삼각형을 이루잖아.<br>
+</div>
+
+세 점 O(0,0), A(5,0), P(원 위의 점)를 그려보면, 삼각형의 <b>한 변(OP)은 항상 3</b>(반지름)로 고정이에요.<br><br>
+
+<div style="background:rgba(0,0,0,.03);border-radius:6px;padding:10px 12px;margin:6px 0;font-size:.95em;line-height:1.9">
+<b style="color:#f87171">유나:</b> 삼각형의 세 변 중에서... OA(고정, 5)와 OP(고정, 3)는 안 변하는데, AP만 변하네?<br>
+<b style="color:#4c1d95">민준:</b> 그럼 삼각형의 변의 길이 관계(삼각부등식)를 쓸 수 있지 않을까? 세 변의 길이는 |OA−OP| ≤ AP ≤ OA+OP 아니었어?<br>
+<b style="color:#f87171">유나:</b> 맞다! O, A, P가 일직선이 될 때(P가 A 쪽 원 위 끝, 또는 반대쪽 끝) 등호가 성립하겠네.<br>
+</div>
+
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b>최댓값</b> = OA + OP = 5 + 3 = <b>8</b> (P가 A의 반대쪽 끝에 있을 때)<br>
+<b>최솟값</b> = OA − OP = 5 − 3 = <b>2</b> (P가 A와 같은 쪽 끝에 있을 때)
+</div>
+<div class="toro-note">🦕 토로: 무한히 많은 점을 하나씩 대입하는 대신, "중심까지의 거리는 항상 반지름만큼 흔들린다"는 사실 하나로 최댓값·최솟값을 바로 찾은 거예요 — 이런 순간이 수학에서 제일 짜릿해요. (나중에 배우게 될 "미분"이라는 도구를 쓰면 이런 최댓값·최솟값 문제를 훨씬 더 일반적인 상황에서도 풀 수 있게 돼요 — 지금은 오늘 배운 삼각부등식이라는 똑똑한 지름길로 충분해요.)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body" style="font-size:12.5px;color:#666">
+🦕 토로: 지도 9개를 지금 다 외울 필요는 없어요. 문제를 풀다가 막히면 그때 이 페이지로 돌아와서 "몇 번 지도였지?"만 확인하면 충분해요.
+  </div>
+</div>
+
+<div style="text-align:center;background:linear-gradient(135deg,#f97316,#fb923c);color:#fff;font-size:21px;font-weight:800;letter-spacing:.02em;padding:18px 14px 16px;margin:38px 0 20px;border-radius:12px;box-shadow:0 4px 14px rgba(249,115,22,.28)">
+🧩 개념 확장
+<div style="font-size:13px;font-weight:600;opacity:.92;margin-top:5px;letter-spacing:0">지도 두 개를 엮어서 한 단계 넓히기</div>
+</div>
+
+<div class="card" style="border:2px solid #f97316;background:linear-gradient(180deg,rgba(249,115,22,.06),rgba(249,115,22,0) 90px)">
+  <div style="font-size:17px;font-weight:800;color:#f97316;margin-bottom:3px">🧩 개념 확장 1</div>
+  <div style="font-size:12.5px;color:#78716c;margin-bottom:14px;line-height:1.6">지도3(양축접함) + 지도5(중심이 직선 위) 결합 — 두 조건을 동시에 만족하는 원을 모두 찾는 문제</div>
+  <div class="card-body" style="font-weight:600">
+<svg viewBox="0 0 160 160" width="100%" style="max-width:150px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="80" x2="160" y2="80" stroke="#999" stroke-width="1"/>
+  <line x1="80" y1="0" x2="80" y2="160" stroke="#999" stroke-width="1"/>
+  <line x1="32" y1="128" x2="128" y2="32" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="3 3"/>
+  <text x="130" y="30" font-size="8" fill="#666">y=x</text>
+</svg>
+중심이 직선 y=x 위에 있고, x축과 y축에 <b>모두</b> 접하는 원 중 반지름이 4인 것의 방정식을 모두 구하세요.<br><br>
+<span style="font-weight:400;font-size:.9em;color:#666">(몇 개가 나올지 먼저 예상해본 다음 풀어보세요!)</span>
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:10px 0;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+<div class="toro-note">🦕 토로: 지도3(좌표축에 접하는 원)에서 배운 "양축에 접하면 중심이 (±r,±r)"이라는 사실을 먼저 떠올려보세요. 그 다음, 그 후보들 중 실제로 y=x 위에 있는 것만 골라내면 됩니다.</div>
+  </div>
+</div>
+
+<div class="card" style="border-left:4px solid #f97316">
+  <div style="font-size:15px;font-weight:800;color:#f97316;margin-bottom:3px">🧩 개념 확장 1 — 풀이</div>
+  <div style="font-size:12.5px;color:#78716c;margin-bottom:14px">💡 정답 (x−4)²+(y−4)²=16, (x+4)²+(y+4)²=16</div>
+  <div class="card-body">
+▶ 이 문제는 지도3(3/3, 양축접함)과 지도5(a, 중심이 y=x 위)에서 배운 내용이 결합된 문제입니다.<br><br>
+<svg viewBox="0 0 160 160" width="100%" style="max-width:150px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="80" x2="160" y2="80" stroke="#999" stroke-width="1"/>
+  <line x1="80" y1="0" x2="80" y2="160" stroke="#999" stroke-width="1"/>
+  <line x1="32" y1="128" x2="128" y2="32" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="3 3"/>
+  <circle cx="112" cy="48" r="32" fill="none" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="48" cy="112" r="32" fill="none" stroke="#f97316" stroke-width="2"/>
+  <text x="86" y="44" font-size="8" fill="#6366f1" font-weight="700">중심(4,4)</text>
+  <text x="6" y="106" font-size="8" fill="#f97316" font-weight="700">중심(−4,−4)</text>
+</svg>
+<b>1단계 — 양축에 접하는 원의 중심 후보</b>: 반지름 4인 원이 x축과 y축에 모두 접하려면, 중심의 x좌표·y좌표가 각각 ±4여야 해요. 네 사분면마다 하나씩, 후보는 (4,4), (4,−4), (−4,4), (−4,−4) <b>총 4개</b>입니다.<br><br>
+<b>2단계 — y=x 위에 있는 것만 남기기</b>: y=x는 "x좌표=y좌표"인 점들의 모임이에요. 네 후보 중 이 조건을 만족하는 건 (4,4)와 (−4,−4) <b>2개뿐</b> — (4,−4)와 (−4,4)는 x좌표와 y좌표의 부호가 반대라 y=x 위에 있지 않아요.<br><br>
+<b>3단계 — 방정식 완성</b><br>
+중심(4,4), r=4: <b>(x−4)² + (y−4)² = 16</b><br>
+중심(−4,−4), r=4: <b>(x+4)² + (y+4)² = 16</b>
+  </div>
+</div>
+
+<div class="card" style="border:2px solid #f97316;background:linear-gradient(180deg,rgba(249,115,22,.06),rgba(249,115,22,0) 90px)">
+  <div style="font-size:17px;font-weight:800;color:#f97316;margin-bottom:3px">🧩 개념 확장 2</div>
+  <div style="font-size:12.5px;color:#78716c;margin-bottom:14px;line-height:1.6">지도2(지름의 양 끝점) + 지도6(원+직선+넓이) 결합 — 현의 길이와 삼각형의 넓이를 함께 구하는 문제</div>
+  <div class="card-body" style="font-weight:600">
+두 점 A(2, 2), B(8, 10)을 지름의 양 끝점으로 하는 원이 직선 y=3과 만나서 생기는 현의 길이와, 그 현과 원의 중심이 이루는 삼각형의 넓이를 각각 구하세요.<br><br>
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:10px 0;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+<div class="toro-note">🦕 토로: 먼저 지도2(중점=중심, 거리의 절반=반지름)로 원을 완성한 다음, 지도6(중심-직선 거리+피타고라스)으로 넘어가면 돼요. "원을 먼저 확정해야 그다음 걸 물을 수 있다"는 순서에 주목하세요.</div>
+  </div>
+</div>
+
+<div class="card" style="border-left:4px solid #f97316">
+  <div style="font-size:15px;font-weight:800;color:#f97316;margin-bottom:3px">🧩 개념 확장 2 — 풀이</div>
+  <div style="font-size:12.5px;color:#78716c;margin-bottom:14px">💡 정답 현의 길이 8, 삼각형 넓이 12</div>
+  <div class="card-body">
+▶ 이 문제는 지도2(지름의 양 끝점)와 지도6(원+직선+넓이)에서 배운 내용이 결합된 문제입니다.<br><br>
+<b>1단계 — 원의 방정식 완성 (지도2)</b>: 중심 = AB의 중점 = (<span class="frac"><span class="num">2+8</span><span class="den">2</span></span>, <span class="frac"><span class="num">2+10</span><span class="den">2</span></span>) = (5, 6)<br>
+반지름 = <span class="frac"><span class="num">1</span><span class="den">2</span></span>×AB = <span class="frac"><span class="num">1</span><span class="den">2</span></span>×√{(8−2)²+(10−2)²} = <span class="frac"><span class="num">1</span><span class="den">2</span></span>×√100 = <b>5</b> → 원: (x−5)²+(y−6)²=25<br><br>
+<b>2단계 — 중심에서 직선까지 거리 (지도6)</b>: 직선 y=3까지 거리 d = |6−3| = 3<br>
+<b>3단계 — 현의 길이</b>: 반현 = √(r²−d²) = √(25−9) = 4 → 현의 길이 = <b>8</b><br>
+<b>4단계 — 삼각형 넓이</b>: 밑변(현)=8, 높이(=d)=3 → 넓이 = <span class="frac"><span class="num">1</span><span class="den">2</span></span>×8×3 = <b>12</b>
+  </div>
+</div>
+
+<div class="card" style="border:2px solid #f97316;background:linear-gradient(180deg,rgba(249,115,22,.06),rgba(249,115,22,0) 90px)">
+  <div style="font-size:17px;font-weight:800;color:#f97316;margin-bottom:3px">🧩 개념 확장 3</div>
+  <div style="font-size:12.5px;color:#78716c;margin-bottom:14px;line-height:1.6">지도4(중심이 좌표축 위) + 지도7(원 밖의 점, 두 접선) 결합 — 원을 먼저 확정한 뒤 접선의 기울기 곱을 구하는 문제</div>
+  <div class="card-body" style="font-weight:600">
+중심이 x축 위에 있고, 원점을 지나며, 반지름이 3인 원이 있다(중심의 x좌표는 양수). 이 원 밖의 점 (7, 4)에서 그은 두 접선의 기울기의 곱을 구하세요.<br><br>
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:10px 0;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+<div class="toro-note">🦕 토로: "중심이 x축 위"라는 말만으로는 원이 하나로 안 정해져요 — 지도4로 중심을 (a,0)로 놓고, "원점을 지난다"는 조건을 대입해서 a부터 먼저 확정하세요. 그다음에야 지도7(두 접선)을 쓸 수 있어요.</div>
+  </div>
+</div>
+
+<div class="card" style="border-left:4px solid #f97316">
+  <div style="font-size:15px;font-weight:800;color:#f97316;margin-bottom:3px">🧩 개념 확장 3 — 풀이</div>
+  <div style="font-size:12.5px;color:#78716c;margin-bottom:14px">💡 정답 1</div>
+  <div class="card-body">
+▶ 이 문제는 지도4(중심이 좌표축 위)와 지도7(원 밖의 점, 두 접선)에서 배운 내용이 결합된 문제입니다.<br><br>
+<b>1단계 — 원의 방정식 확정 (지도4)</b>: 중심을 (a, 0)로 놓으면, 원점을 지나므로 반지름 = 중심에서 원점까지 거리 = |a|. 반지름이 3이므로 |a|=3 → a=3 또는 a=−3. 중심의 x좌표가 양수라는 조건에서 <b>a=3</b> → 원: (x−3)²+y²=9<br><br>
+<b>2단계 — 접선을 점 (7,4)를 지나는 직선으로 놓기 (지도7)</b>: y−4=m(x−7), 즉 mx−y+(4−7m)=0<br>
+<b>3단계 — 중심에서 거리=반지름</b>: <span class="frac"><span class="num">|3m−0+4−7m|</span><span class="den">√(m²+1)</span></span> = 3 → |4−4m| = 3√(m²+1)<br>
+<b>4단계 — 제곱해서 정리</b>: (4−4m)² = 9(m²+1) → 16−32m+16m² = 9m²+9 → <b>7m²−32m+7=0</b><br>
+<b>5단계 — 근과 계수의 관계로 곱만 바로 구하기</b>: 두 접선의 기울기의 곱 = <span class="frac"><span class="num">7</span><span class="den">7</span></span> = <b>1</b><br>
+<span style="font-size:.85em;color:#555">(합까지 구하라고 했다면 32/7이 나와요 — 이 문제는 곱만 물었으니 여기서 끝!)</span>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">✏️ 직접 풀어보기 — 정답은 각 문제 다음 페이지에</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 연습문제</div>
+  <div class="card-tag">📝 풀기 전에 읽어주세요</div>
+  <div class="card-body">
+각 문항 위 빈칸에, 풀기 전에 이 문제가 어떤 개념을 쓰는지 먼저 적어보세요. 정답은 다음 페이지에 있으니, 미리 넘겨보지 말고 끝까지 풀어본 뒤에 확인하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 1</div>
+  <div class="card-tag">문항 1</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+중심이 (3, −1)이고 점 (5, 2)를 지나는 원의 방정식을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 1 — 풀이</div>
+  <div class="card-tag">💡 정답 (x−3)²+(y+1)²=13</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 표준형으로 원의 방정식 세우기</div>
+<svg viewBox="0 0 160 150" width="100%" style="max-width:150px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="75" cy="95" r="54" fill="none" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="75" cy="95" r="3" fill="#4c1d95"/>
+  <circle cx="105" cy="50" r="3.5" fill="#f97316"/>
+  <line x1="75" y1="95" x2="105" y2="50" stroke="#999" stroke-width="1.3" stroke-dasharray="3 3"/>
+  <text x="46" y="90" font-size="9" fill="#4c1d95" font-weight="700">중심(3,−1)</text>
+  <text x="108" y="48" font-size="9" fill="#f97316" font-weight="700">(5,2)</text>
+</svg>
+반지름² = (5−3)² + (2−(−1))² = 4 + 9 = 13<br>
+<b>(x−3)² + (y+1)² = 13</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 2</div>
+  <div class="card-tag">문항 2</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 x² + y² + 6x − 2y + 6 = 0의 중심과 반지름을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 2 — 풀이</div>
+  <div class="card-tag">💡 정답 중심(−3,1), 반지름 2</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 일반형을 완전제곱식으로 바꿔 표준형 찾기</div>
+<svg viewBox="0 0 140 130" width="100%" style="max-width:130px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="45" cy="65" r="30" fill="none" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="45" cy="65" r="3" fill="#4c1d95"/>
+  <text x="8" y="60" font-size="9" fill="#4c1d95" font-weight="700">중심(−3,1)</text>
+  <text x="50" y="50" font-size="9" fill="#6366f1" font-weight="700">r=2</text>
+</svg>
+(x²+6x+9) + (y²−2y+1) = −6+9+1<br>
+(x+3)² + (y−1)² = 4<br>
+<b>중심 (−3, 1), 반지름 2</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 3</div>
+  <div class="card-tag">문항 3</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 x²+y²=8과 직선 x−y+4=0의 위치 관계를 판별하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 3 — 풀이</div>
+  <div class="card-tag">💡 정답 접한다 (d=r)</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 중심-직선 거리와 반지름 비교 (원과 직선의 위치 관계)</div>
+<svg viewBox="0 0 140 145" width="100%" style="max-width:130px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="90" r="51" fill="none" stroke="#6366f1" stroke-width="2"/>
+  <line x1="14" y1="54" x2="68" y2="0" stroke="#f97316" stroke-width="2"/>
+  <circle cx="14" cy="54" r="3.5" fill="#333"/>
+  <text x="18" y="52" font-size="9" fill="#333" font-weight="700">접점(−2,2)</text>
+  <text x="30" y="12" font-size="8" fill="#f97316" font-weight="700">x−y+4=0</text>
+</svg>
+중심(0,0), 반지름 √8 = 2√2<br>
+d = <span class="frac"><span class="num">|0−0+4|</span><span class="den">√(1²+1²)</span></span> = <span class="frac"><span class="num">4</span><span class="den">√2</span></span> = 2√2<br>
+d = r → <b>한 점에서 접한다</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 4</div>
+  <div class="card-tag">문항 4</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 x²+y²=20 위의 점 (2, 4)에서의 접선의 방정식을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 4 — 풀이</div>
+  <div class="card-tag">💡 정답 x+2y=10</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 원 위의 점에서의 접선 공식(x₁x+y₁y=r²)</div>
+<svg viewBox="0 0 160 140" width="100%" style="max-width:150px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="70" cy="80" r="54" fill="none" stroke="#6366f1" stroke-width="2"/>
+  <line x1="70" y1="20" x2="118" y2="44" stroke="#f97316" stroke-width="2"/>
+  <circle cx="94" cy="32" r="3.5" fill="#333"/>
+  <text x="98" y="30" font-size="9" fill="#333" font-weight="700">(2,4)</text>
+  <text x="30" y="16" font-size="8" fill="#f97316" font-weight="700">x+2y=10</text>
+</svg>
+x₁x+y₁y=r² 공식에 (2,4), r²=20 대입:<br>
+2x+4y=20 → <b>x + 2y = 10</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 5</div>
+  <div class="card-tag">문항 5</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+원 x²+y²=5에 접하고 기울기가 2인 접선의 방정식을 모두 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 5 — 풀이</div>
+  <div class="card-tag">💡 정답 y=2x±5</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 기울기가 주어진 접선 — 중심에서 거리=반지름</div>
+<svg viewBox="0 0 140 140" width="100%" style="max-width:130px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="70" cy="90" r="34" fill="none" stroke="#6366f1" stroke-width="2"/>
+  <line x1="40" y1="75" x2="70" y2="15" stroke="#f97316" stroke-width="2"/>
+  <line x1="100" y1="105" x2="130" y2="45" stroke="#f97316" stroke-width="2"/>
+  <circle cx="40" cy="75" r="3" fill="#333"/>
+  <circle cx="100" cy="105" r="3" fill="#333"/>
+  <text x="10" y="20" font-size="8" fill="#f97316" font-weight="700">y=2x+5</text>
+  <text x="96" y="132" font-size="8" fill="#f97316" font-weight="700">y=2x−5</text>
+</svg>
+접선을 y=2x+n, 즉 2x−y+n=0으로 놓으면<br>
+거리 = <span class="frac"><span class="num">|n|</span><span class="den">√5</span></span> = √5 (반지름) → |n|=5 → n=±5<br>
+<b>y = 2x + 5 또는 y = 2x − 5</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 6</div>
+  <div class="card-tag">문항 6</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+세 점 (0, 0), (2, 0), (0, 4)를 지나는 원의 중심과 반지름을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 6 — 풀이</div>
+  <div class="card-tag">💡 정답 중심(1,2), 반지름 √5</div>
+  <div class="card-body">
+<div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#555">✔ 이 문제가 사용하는 개념: 세 점을 지나는 원 — 일반형에 대입 후 D·E·F 연립</div>
+<svg viewBox="0 0 140 140" width="100%" style="max-width:130px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="48" cy="74" r="40" fill="none" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="30" cy="110" r="3.5" fill="#333"/>
+  <circle cx="66" cy="110" r="3.5" fill="#333"/>
+  <circle cx="30" cy="38" r="3.5" fill="#333"/>
+  <circle cx="48" cy="74" r="3" fill="#4c1d95"/>
+  <text x="8" y="124" font-size="9" fill="#333" font-weight="700">O(0,0)</text>
+  <text x="68" y="124" font-size="9" fill="#333" font-weight="700">(2,0)</text>
+  <text x="4" y="34" font-size="9" fill="#333" font-weight="700">(0,4)</text>
+  <text x="52" y="70" font-size="8" fill="#4c1d95" font-weight="700">중심(1,2)</text>
+</svg>
+x²+y²+Dx+Ey+F=0에 대입:<br>
+(0,0): F=0<br>
+(2,0): 4+2D=0 → D=−2<br>
+(0,4): 16+4E=0 → E=−4<br>
+x²+y²−2x−4y=0 → (x−1)²+(y−2)²=5<br>
+<b>중심 (1, 2), 반지름 √5</b>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">🎯 심화 — 이 단원이 실제 세상에서 하는 일 (모든 개념을 배운 뒤 보는 마지막 카드)</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 심화 (핀란드식·직관, 실제 연구 결과 포함)</div>
+  <div class="card-tag">🌍 지진 진앙지 찾기 — 원 세 개의 교점</div>
+  <div class="card-body">
+지진이 나면 여러 관측소가 P파와 S파(두 종류의 지진파)가 도착하는 시간 차이를 측정해요. 이 시간 차이로 <b>관측소부터 진앙까지의 거리</b>를 계산할 수 있어요 — S−P 시간차 1초가 대략 8km에 해당한다고 해요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+관측소 A에서 거리 80km → 중심 A, 반지름 80km인 원<br>
+관측소 B에서 거리 60km → 중심 B, 반지름 60km인 원<br>
+관측소 C에서 거리 100km → 중심 C, 반지름 100km인 원
+</div>
+관측소 하나만으로는 "이 원 위 어딘가"까지만 알 수 있어요. 그런데 <b>관측소 세 곳의 원을 동시에 그리면, 세 원이 겹치는 딱 한 점</b>이 나오고 — 그게 바로 진앙이에요. 방금 지도1에서 배운 "여러 조건을 동시에 만족하는 원/점 찾기"가 실제로 지진학에서 매일 쓰이는 방법입니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 심화 (핀란드식·직관, 실제 연구 결과 포함)</div>
+  <div class="card-tag">📍 GPS — 매일 쓰는 삼변측량</div>
+  <div class="card-body">
+스마트폰 지도가 내 위치를 어떻게 알아낼까요? 원리는 지진 진앙 찾기와 완전히 같아요 — 이름도 <b>삼변측량(trilateration)</b>으로 똑같습니다.<br><br>
+GPS 위성이 신호를 보내면, 신호가 도착하는 데 걸린 시간으로 "위성부터 내 위치까지의 거리"를 계산해요. 위성 하나당 원(정확히는 구) 하나가 생기고, <b>위성 3개의 원이 만나는 한 점</b>이 내 위치가 됩니다.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+실제로는 시계 오차를 보정하려고 위성을 <b>4개 이상</b> 써요. 그렇게 해도 실제 GPS 오차는 약 <b>3~5m</b> 정도 남습니다.
+</div>
+"세 원의 교점 하나"라는 순수한 수학 개념이, 오차 3~5m짜리 실제 위치 측정 기술의 뼈대라는 게 신기하지 않나요?
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 심화 (핀란드식·직관, 실제 연구 결과 포함)</div>
+  <div class="card-tag">🌀 태풍 위험반경 — 점이 원 안에 있는지 없는지</div>
+  <div class="card-body">
+기상청은 태풍 정보를 발표할 때 "폭풍반경"이라는 걸 원으로 표시해요 — <b>태풍 중심으로부터 초속 25m 이상의 바람이 부는 범위</b>를 뜻하고, 그보다 넓게 "강풍반경"(초속 15m 이상)도 함께 표시돼요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+태풍 중심을 원의 중심 (a,b), 폭풍반경을 r이라 하면<br>
+어떤 도시 (x₀,y₀)가 위험권인지 아닌지는<br>
+(x₀−a)²+(y₀−b)² 을 r²과 비교하면 됩니다 (작으면 안, 크면 밖)
+</div>
+이게 정확히 오늘 배운 "원의 방정식에 점을 대입해서 원 안/밖 판단하기"예요. 태풍이 다가올 때 기상청 화면에 뜨는 그 동그란 원이, 여러분이 방금 배운 (x−a)²+(y−b)²=r² 그 자체입니다.
+  </div>
+</div>
+
+<div class="unit-header">📚 이 단원 한눈에 보기</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 이 단원 한눈에 보기</div>
+  <div class="card-tag">🗂️ 전체 흐름 정리</div>
+  <div class="card-body">
+이 단원은 이렇게 흘러가요:<br><br>
+<b>① 원의 방정식이 뭐지?</b> — 원은 "중심에서 같은 거리인 점들의 모임"이라는 정의에서 출발해서 표준형·일반형 두 가지 표현을 배워요.<br><br>
+<b>② 원과 직선의 위치 관계</b> — 원 하나만으로는 부족하니, 직선과 만나면 어떻게 되는지(중심-직선 거리 vs 반지름)를 봐요.<br><br>
+<b>③ 접선의 방정식</b> — "만난다"의 특수한 경우인 "접한다"를 깊이 파고들어요. 원 위의 점에서 그을 때와, 원 밖의 점에서 그을 때는 완전히 다른 방법을 씁니다.<br><br>
+<b>④ 원이 되는 자취</b> — 직선의 방정식 단원에서 배운 "자취" 기법을 다시 꺼내와서, 조건에 따라 원이 만들어지는 경우(아폴로니오스 원)를 봐요.<br><br>
+<b>⑤ 두 원의 관계</b> — 마지막으로, 원이 하나 더 있으면 어떻게 되는지를 봐요. 두 원의 위치 관계(중심 사이 거리로 판단)와, 두 원을 조합하는 방법(C₁+k·C₂=0 — k=−1이면 공통현이라는 직선, k≠−1이면 교점을 지나는 또 다른 원. 직선 단원의 "교점을 지나는 직선"과 같은 원리)까지 다룹니다.<br><br>
+이 다섯 가지 주제 다음에는 "지도"(실전에서 이 표현이 나오면 어떤 도구를 쓸지 미리 보는 유형 정리, 9가지)와 연습문제가 이어집니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 이 단원 한눈에 보기</div>
+  <div class="card-tag">📋 공식 총정리</div>
+  <div class="card-body">
+<b>표준형</b>: (x−a)²+(y−b)²=r² (중심 (a,b), 반지름 r)<br>
+<b>일반형</b>: x²+y²+Ax+By+C=0 <span style="font-size:.85em;color:#999">(A,B,C와 a,b,r의 관계식은 외울 필요 없음 — 완전제곱식 변환만 알면 됨)</span><br><br>
+<b>원과 직선의 위치관계</b> (d=중심-직선 거리, r=반지름)<br>
+d&lt;r → 교차(두 점) / d=r → 접함 / d&gt;r → 안 만남<br><br>
+<b>접선의 방정식</b><br>
+원 위의 점 (x₁,y₁)에서: x₁x+y₁y=r²<br>
+기울기 m 또는 원 밖의 점: "중심에서 거리=반지름" 조건 → m에 대한 이차방정식 (필요하면 근과 계수의 관계로 합·곱 단축)<br><br>
+<b>아폴로니오스 원</b>: 두 점으로부터 거리의 "비"가 일정한 점의 자취 → 원<br><br>
+<b>두 원을 조합하기</b>: C₁+k·C₂=0 — k=−1이면 공통현(직선), k≠−1이면 교점을 지나는 또 다른 원<br><br>
+<b>두 원의 위치 관계</b> (d=중심 사이 거리)<br>
+d&gt;r₁+r₂ 안만남 / d=r₁+r₂ 외접 / |r₁−r₂|&lt;d&lt;r₁+r₂ 교차 / d=|r₁−r₂| 내접 / d&lt;|r₁−r₂| 내부포함<br><br>
+<b>두 원의 교점을 지나는 원</b>: C₁+k·C₂=0 (k≠−1)<br><br>
+<b>원 위의 점 P와 정점 A 사이 거리의 최대·최소</b><br>
+최대 = (중심-A 거리) + 반지름 / 최소 = (중심-A 거리) − 반지름
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 이 단원 한눈에 보기</div>
+  <div class="card-tag">🗺️ 이런 표현이 나오면 이 유형</div>
+  <div class="card-body">
+"세 점을 지나는 원" → 일반형에 세 점 대입, D·E·F 연립<br><br>
+"지름의 양 끝점" → 중점=중심, 두 점 사이 거리/2=반지름<br><br>
+"좌표축에 접한다" → x축만 / y축만 / 양축, 세 종류부터 구분<br><br>
+"중심이 x축·y축·y=x·y=−x 위에 있다" → 접한다와 다른 조건! 좌표 하나(또는 둘)가 고정될 뿐 반지름은 자유<br><br>
+"원의 중심이 (일반적인) 직선 위에 있다" → 중심을 매개변수로 놓고 다른 조건과 연립<br><br>
+"원+직선이 만드는 삼각형의 넓이" → 중심-직선 거리를 밑변·높이로 활용<br><br>
+"원 밖의 점에서 그은 두 접선의 기울기 합/곱" → 근과 계수의 관계<br><br>
+"원 위의 점까지 거리의 최대·최소" → 삼각부등식(|OA−OP|≤AP≤OA+OP)<br><br>
+"직선이 원의 둘레(넓이)를 이등분한다" → 그 직선은 반드시 원의 중심을 지난다
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 — 이 단원 한눈에 보기</div>
+  <div class="card-tag">✏️ 용어 빈칸 테스트 — 배운 단어, 정확히 기억하나요?</div>
+  <div class="card-body">
+① 중심과 반지름으로 나타낸 (x−a)²+(y−b)²=r² 꼴의 이름은? ________<br><br>
+② 그 식을 전개해서 펼친 x²+y²+Ax+By+C=0 꼴의 이름은? ________<br><br>
+③ 원과 한 점에서만 만나 스치듯 지나가는 직선은? ________<br><br>
+④ 두 점으로부터 거리의 "비"가 일정한 점들이 그리는 원의 이름은? ________<br><br>
+⑤ 두 원이 두 점에서 만날 때, 그 두 점을 잇는 공통인 직선의 이름은? ________<br><br>
+⑥ 삼각형의 세 꼭짓점을 모두 지나는 원의 이름은? ________<br><br>
+⑦ 원 위의 한 점에서 중심까지의 거리는? ________<br><br>
+⑧ 원의 모든 점까지 같은 거리를 유지하는 기준점은? ________
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">용어 빈칸 테스트 — 정답</div>
+  <div class="card-tag">💡 정답 확인</div>
+  <div class="card-body">
+① 표준형 &nbsp;&nbsp; ② 일반형 &nbsp;&nbsp; ③ 접선 &nbsp;&nbsp; ④ 아폴로니오스 원<br><br>
+⑤ 공통현 &nbsp;&nbsp; ⑥ 외접원 &nbsp;&nbsp; ⑦ 반지름 &nbsp;&nbsp; ⑧ 중심
+  </div>
+</div>
+
+</div>
+</body>
+</html>

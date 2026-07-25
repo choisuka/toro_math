@@ -226,6 +226,63 @@ n(A∪B)=n(A)+n(B)−n(A∩B) ≤ 40 (전체 학생 수를 넘을 수 없음)<br
 25+20−n(A∩B) ≤ 40 → n(A∩B) ≥ 5 (<b>최솟값 5</b>)<br>
 n(A∩B)는 두 집합 중 작은 쪽 크기를 넘을 수 없음 → n(A∩B) ≤ 20 (<b>최댓값 20</b>)<br>
 <b>5+20 = 25</b>
+<div style="display:flex;gap:10px;justify-content:center;margin:14px 0 4px;flex-wrap:wrap">
+  <div style="text-align:center">
+    <div style="font-size:.85em;color:#4c1d95;font-weight:700;margin-bottom:4px">최솟값 경우 (겹침 5명)</div>
+    <svg viewBox="0 0 200 130" width="100%" style="max-width:220px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="15" width="190" height="100" rx="8" fill="none" stroke="#999" stroke-width="1.2"/>
+      <text x="100" y="10" font-size="8" fill="#666" text-anchor="middle">전체 40명</text>
+      <defs><clipPath id="clipMin7"><circle cx="68" cy="65" r="42"/></clipPath></defs>
+      <circle cx="68" cy="65" r="42" fill="rgba(99,102,241,.15)" stroke="#6366f1" stroke-width="1.8"/>
+      <circle cx="128" cy="65" r="38" fill="rgba(249,115,22,.12)" stroke="#f97316" stroke-width="1.8"/>
+      <circle cx="128" cy="65" r="38" fill="#7c3aed" fill-opacity=".5" clip-path="url(#clipMin7)"/>
+      <text x="40" y="68" font-size="9" fill="#4c1d95" font-weight="700">20</text>
+      <text x="92" y="68" font-size="8" fill="#fff" font-weight="700">5</text>
+      <text x="153" y="68" font-size="9" fill="#c2410c" font-weight="700">15</text>
+      <text x="68" y="98" font-size="7.5" fill="#6366f1" text-anchor="middle">수학(25)</text>
+      <text x="128" y="98" font-size="7.5" fill="#f97316" text-anchor="middle">영어(20)</text>
+    </svg>
+    <div style="font-size:.78em;color:#888;margin:6px 0 2px">↓ 정확한 비율로 다시 그리면(빈틈 없음)</div>
+    <svg viewBox="0 0 200 100" width="100%" style="max-width:220px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="15" width="180" height="55" fill="none" stroke="#999" stroke-width="1.2"/>
+      <rect x="10" y="15" width="90" height="55" fill="rgba(99,102,241,.25)" stroke="#6366f1" stroke-width="1.4"/>
+      <rect x="100" y="15" width="22.5" height="55" fill="#7c3aed" fill-opacity=".55"/>
+      <rect x="122.5" y="15" width="67.5" height="55" fill="rgba(249,115,22,.2)" stroke="#f97316" stroke-width="1.4"/>
+      <text x="55" y="47" font-size="10" fill="#4c1d95" font-weight="700" text-anchor="middle">20</text>
+      <text x="111" y="47" font-size="9" fill="#fff" font-weight="700" text-anchor="middle">5</text>
+      <text x="156" y="47" font-size="10" fill="#c2410c" font-weight="700" text-anchor="middle">15</text>
+      <text x="55" y="83" font-size="7.5" fill="#6366f1" text-anchor="middle">수학만</text>
+      <text x="111" y="83" font-size="7.5" fill="#555" text-anchor="middle">겹침</text>
+      <text x="156" y="83" font-size="7.5" fill="#f97316" text-anchor="middle">영어만</text>
+    </svg>
+  </div>
+  <div style="text-align:center">
+    <div style="font-size:.85em;color:#4c1d95;font-weight:700;margin-bottom:4px">최댓값 경우 (겹침 20명, B⊂A)</div>
+    <svg viewBox="0 0 200 130" width="100%" style="max-width:220px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="15" width="190" height="100" rx="8" fill="none" stroke="#999" stroke-width="1.2"/>
+      <text x="100" y="10" font-size="8" fill="#666" text-anchor="middle">전체 40명</text>
+      <circle cx="95" cy="65" r="42" fill="rgba(99,102,241,.15)" stroke="#6366f1" stroke-width="1.8"/>
+      <circle cx="103" cy="65" r="32" fill="#7c3aed" fill-opacity=".45" stroke="#f97316" stroke-width="1.8"/>
+      <text x="103" y="68" font-size="9" fill="#fff" font-weight="700" text-anchor="middle">20</text>
+      <text x="62" y="50" font-size="9" fill="#4c1d95" font-weight="700">5</text>
+      <text x="162" y="95" font-size="8" fill="#666" text-anchor="middle">나머지 15명</text>
+      <text x="95" y="112" font-size="7.5" fill="#6366f1" text-anchor="middle">수학(25)</text>
+    </svg>
+    <div style="font-size:.78em;color:#888;margin:6px 0 2px">↓ 정확한 비율로 다시 그리면</div>
+    <svg viewBox="0 0 200 100" width="100%" style="max-width:220px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="15" width="180" height="55" fill="none" stroke="#999" stroke-width="1.2"/>
+      <rect x="10" y="15" width="22.5" height="55" fill="rgba(99,102,241,.25)" stroke="#6366f1" stroke-width="1.4"/>
+      <rect x="32.5" y="15" width="90" height="55" fill="#7c3aed" fill-opacity=".55"/>
+      <rect x="122.5" y="15" width="67.5" height="55" fill="#eee" stroke="#bbb" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="21" y="47" font-size="9" fill="#4c1d95" font-weight="700" text-anchor="middle">5</text>
+      <text x="77" y="47" font-size="10" fill="#fff" font-weight="700" text-anchor="middle">20</text>
+      <text x="156" y="47" font-size="9" fill="#888" font-weight="700" text-anchor="middle">15</text>
+      <text x="21" y="83" font-size="7" fill="#6366f1" text-anchor="middle">A만</text>
+      <text x="77" y="83" font-size="7.5" fill="#555" text-anchor="middle">겹침(B전체)</text>
+      <text x="156" y="83" font-size="7" fill="#888" text-anchor="middle">둘다 아님</text>
+    </svg>
+  </div>
+</div>
 <div class="signal-box">🔗 <b>구조 신호</b>: "모두 좋아하는 학생 수"(교집합)의 <b>범위</b>를 묻는 문제 → n(A∪B)=n(A)+n(B)−n(A∩B) 공식과 "전체 학생 수를 넘을 수 없다"는 부등식 결합(공수2_집합과명제.html의 심화3 "여론조사에서 지지율을 다 더하면 안 되는 이유" 스토리 그대로). 문항6과 비교: 여기서는 A,B를 직접 나열할 수 없으니(원소가 뭔지 모름) 공식으로 갈 수밖에 없어요 — 이게 문항6·판별드릴③번과 이어지는 핵심 판단 기준입니다.</div>
   </div>
 </div>
