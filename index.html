@@ -1164,6 +1164,11 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     <div style="font-family:'Jua',sans-serif;color:#a5b4fc;font-size:.95rem;text-align:center;margin-bottom:10px">🔄 "왜 +a인데 식은 −a일까?"</div>
     <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">주제별로 나뉘어 있어요 — 궁금한 것부터 눌러보세요</div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="startCards('transform-basic','transform-hub')" style="background:linear-gradient(155deg,rgba(134,239,172,.1),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.3rem">➡️</div>
+        <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.72rem;margin:4px 0;line-height:1.3">평행이동 기본</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">점·도형의<br>평행이동 (2장)</div>
+      </button>
       <button onclick="startCards('transform-why','transform-hub')" style="background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
         <div style="font-size:1.3rem">🤔</div>
         <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.72rem;margin:4px 0;line-height:1.3">왜 (x−a)일까?</div>
@@ -1174,10 +1179,63 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
         <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.72rem;margin:4px 0;line-height:1.3">두 가지 표현법</div>
         <div style="font-size:.62rem;color:#aaa;line-height:1.3">y=f(x)와<br>f(x,y)=0 (3장)</div>
       </button>
+      <button onclick="startCards('transform-symmetry','transform-hub')" style="background:linear-gradient(155deg,rgba(244,114,182,.1),rgba(244,114,182,.03));border:1px solid rgba(244,114,182,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.3rem">🪞</div>
+        <div style="font-family:'Jua',sans-serif;color:#f472b6;font-size:.72rem;margin:4px 0;line-height:1.3">대칭이동</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">네 방향 거울<br>점·도형 (2장)</div>
+      </button>
       <button onclick="startCards('transform-summary','transform-hub')" style="background:linear-gradient(155deg,rgba(165,180,252,.1),rgba(165,180,252,.03));border:1px solid rgba(165,180,252,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
         <div style="font-size:1.3rem">📋</div>
         <div style="font-family:'Jua',sans-serif;color:#a5b4fc;font-size:.72rem;margin:4px 0;line-height:1.3">정리 + 검산</div>
         <div style="font-size:.62rem;color:#aaa;line-height:1.3">최종 규칙<br>(1장)</div>
+      </button>
+      <button onclick="startCards('transform-ideas','transform-hub')" style="background:linear-gradient(155deg,rgba(196,181,253,.1),rgba(196,181,253,.03));border:1px solid rgba(196,181,253,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.3rem">🗺️</div>
+        <div style="font-family:'Jua',sans-serif;color:#c4b5fd;font-size:.72rem;margin:4px 0;line-height:1.3">아이디어 모음</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">원의 중심·대칭<br>두 번 (2장)</div>
+      </button>
+      <button onclick="startCards('transform-deep','transform-hub')" style="background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.3rem">🪩</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.72rem;margin:4px 0;line-height:1.3">심화·실생활</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">거울반사·당구<br>지도앱 (3장)</div>
+      </button>
+      <button onclick="startCards('transform-mirror','transform-hub')" style="background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.3rem">🧭</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.72rem;margin:4px 0;line-height:1.3">대칭·최단거리</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">초등~고1<br>4단계 (4장)</div>
+      </button>
+      <button onclick="showScreen('transform-practice-hub')" style="background:linear-gradient(155deg,rgba(52,211,153,.1),rgba(52,211,153,.03));border:1px solid rgba(52,211,153,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.3rem">✏️</div>
+        <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.72rem;margin:4px 0;line-height:1.3">실전훈련</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">문항 12제<br>(2세트)</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     도형의 이동: 실전훈련 서브허브
+══════════════════════════════════ -->
+<div id="transform-practice-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 도형의 이동</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#34d399">✏️ 도형의 이동 실전훈련</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button onclick="startCards('transform-practice-basic','transform-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(134,239,172,.1),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📝</div>
+        <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.75rem;margin:5px 0 4px;line-height:1.3">기본 (문항1~6)</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">평행·대칭 기본기</div>
+        <div style="font-size:.6rem;color:#86efac;opacity:.8;margin-top:5px">6장 →</div>
+      </button>
+      <button onclick="startCards('transform-practice-adv','transform-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,146,60,.1),rgba(251,146,60,.03));border:1px solid rgba(251,146,60,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🔥</div>
+        <div style="font-family:'Jua',sans-serif;color:#fb923c;font-size:.75rem;margin:5px 0 4px;line-height:1.3">응용·최고난도 (7~12)</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">최단경로·결합문제</div>
+        <div style="font-size:.6rem;color:#fb923c;opacity:.8;margin-top:5px">6장 →</div>
       </button>
     </div>
   </div>
@@ -11450,6 +11508,65 @@ a &lt; 0 → 제곱근 없다 (실수 범위)
 ],
 
 /* ── 도형의 이동: 평행이동 방정식이 왜 (x-a)인가 (4장) ── */
+'transform-basic': [
+{ tag:'평행이동 — 모양은 그대로, 위치만 슬라이드', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+평행이동은 도형을 돌리거나 뒤집지 않고, <b style="color:#86efac">모양·크기 그대로 밀기만</b> 하는 거예요.<br><br>
+A(2,3)을 x축 방향으로 3, y축 방향으로 −1만큼 밀면 A′(2+3,3−1)=A′(5,2)가 돼요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">점 (x,y) → (x+a, y+b)</b>
+</div>
+x축 방향 a, y축 방향 b만큼 평행이동한 점이에요.<br><br>
+<b>기본예제</b>: 점(−3,5)를 x축 방향4, y축 방향−2만큼 평행이동한 점은?
+</div>`,
+    ans:`(x+a,y+b) = (−3+4, 5−2) = <b>(1,3)</b>` },
+
+{ tag:'평행이동 — 방정식은 "거꾸로" 대입', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+도형(직선, 원 등)을 평행이동할 땐, 방정식에서 <b style="color:#86efac">x 대신 (x−a), y 대신 (y−b)</b>를 대입해요. 더하기가 아니라 <b>빼기</b>라는 게 헷갈리기 쉬운 포인트예요 — 왜 그런지는 다음 카드(칸아카데미·하브루타)에서 확인해요.<br><br>
+예: 직선 y=2x+1을 x축 방향3, y축 방향−1만큼 평행이동하면?<br>
+y 대신 (y+1), x 대신 (x−3) 대입(b=−1이니까 y−b=y+1): (y+1)=2(x−3)+1 → <b>y=2x−6</b><br>
+<span style="font-size:.8rem;color:#94a3b8">검산: 원래 직선 위의 점(0,1)을 직접 이동 → (3,0). 새 직선에 x=3 대입 → y=0 ✓</span><br><br>
+<b>기본예제</b>: 원 x²+y²=9를 x축 방향2, y축 방향−3만큼 평행이동한 도형의 방정식은?
+</div>`,
+    ans:`x 대신 (x−2), y 대신 (y+3) 대입:<br><b>(x−2)²+(y+3)²=9</b>` }
+],
+
+/* ── 대칭이동 ── */
+'transform-symmetry': [
+{ tag:'대칭이동 — 네 방향 거울', tagColor:'#f472b6',
+    bg:'rgba(244,114,182,.07)', bd:'rgba(244,114,182,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+대칭이동은 점을 <b style="color:#f472b6">거울에 비추듯</b> 뒤집는 거예요. 거울을 어디에 두느냐(x축, y축, 원점, 직선 y=x)에 따라 4가지가 있어요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;line-height:2.1">
+점 (x,y)를 대칭이동하면:<br>
+<b>x축 대칭</b> → (x,−y) <span style="color:#94a3b8">(y만 부호 반대)</span><br>
+<b>y축 대칭</b> → (−x,y) <span style="color:#94a3b8">(x만 부호 반대)</span><br>
+<b>원점 대칭</b> → (−x,−y) <span style="color:#94a3b8">(둘 다 부호 반대)</span><br>
+<b>직선 y=x 대칭</b> → (y,x) <span style="color:#94a3b8">(x와 y 자리 바꿈)</span>
+</div><br>
+<b>기본예제</b>: 점(−2,5)를 ①x축 ②y축 ③원점 ④직선y=x에 대하여 각각 대칭이동한 점은?
+</div>`,
+    ans:`① x축: (−2,−5) &nbsp; ② y축: (2,5) &nbsp; ③ 원점: (2,−5) &nbsp; ④ y=x: <b>(5,−2)</b>` },
+
+{ tag:'대칭이동 — 도형도 같은 규칙으로 치환', tagColor:'#f472b6',
+    bg:'rgba(244,114,182,.07)', bd:'rgba(244,114,182,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+도형의 방정식도 점과 똑같은 규칙으로 x,y를 바꿔치기하면 돼요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;line-height:2">
+<b>x축 대칭</b> → y 대신 −y &nbsp; <b>y축 대칭</b> → x 대신 −x<br>
+<b>원점 대칭</b> → x,y 모두 부호 반대 &nbsp; <b>y=x 대칭</b> → x와 y를 통째로 교환
+</div>
+예: 원 (x−2)²+(y−3)²=4를 x축에 대칭이동하면?<br>
+y 대신 −y 대입: (x−2)²+(−y−3)²=4 → <b>(x−2)²+(y+3)²=4</b><br>
+<span style="font-size:.8rem;color:#94a3b8">중심이 (2,3)→(2,−3)으로 옮겨갔을 뿐, 반지름은 그대로예요 — 대칭이동은 모양과 크기를 안 바꾸니까요.</span><br><br>
+<b>기본예제</b>: 직선 y=3x−2를 원점에 대하여 대칭이동한 직선의 방정식은?
+</div>`,
+    ans:`x 대신 −x, y 대신 −y 대입:<br>−y=3(−x)−2 → −y=−3x−2 → <b>y=3x+2</b>` }
+],
+
 'transform-why': [
 { tag:'🧠 칸아카데미 — 한 단계도 빠짐없는 증명 1/3', tagColor:'#fbbf24',
     bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
@@ -11578,6 +11695,210 @@ y=x², y=2x+1처럼 x값 하나에 y값이 하나씩 대응하는 게 <b>y=f(x)<
 <span style="color:#e2e8f0;font-size:.85rem">도형을 x축 방향 a, y축 방향 b만큼 평행이동 → 방정식의 x 대신 (x−a), y 대신 (y−b)를 대입</span>
 </div>
 </div>`, ans:null }
+],
+
+/* ── 도형의 이동: 아이디어 모음 ── */
+'transform-ideas': [
+{ tag:'아이디어 — 대칭이동한 직선이 원의 중심을 지난다', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+문제에 "직선을 대칭이동했더니 원의 넓이를 이등분했다"는 표현이 나오면? → <b style="color:#c4b5fd">"넓이를 이등분" = "그 직선이 원의 중심을 지난다"</b>는 사실이 핵심이에요. 원을 정확히 반으로 나누는 직선은 무조건 중심을 지나야 해요 — 대칭이동한 직선의 식에 원의 중심 좌표를 대입해서 미지수를 구하면 끝. 원의 방정식 단원과 이 단원이 만나는 대표 지점이에요.<br><br>
+<b>기본예제</b>: 직선 y=kx−3을 x축에 대칭이동한 직선이 원 (x−2)²+(y+1)²=9(중심(2,−1))의 넓이를 이등분할 때, k는?
+</div>`,
+    ans:`x축 대칭: y=kx−3 → −y=kx−3 → y=−kx+3<br>
+이 직선이 중심(2,−1)을 지나야 함: −1=−2k+3 → <b>k=2</b><br>
+검산: k=2일 때 대칭이동한 직선 y=−2x+3, x=2 대입 → y=−1 ✓ 중심을 정확히 지나요.` },
+
+{ tag:'아이디어 — 대칭을 두 번 하면?', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+x축 대칭 → y축 대칭(순서를 바꿔도 결과는 같음)을 연달아 하면, 결과는 항상 <b style="color:#c4b5fd">원점 대칭</b>과 같아요 — x축 대칭은 y부호만, y축 대칭은 x부호만 바꾸니, 둘을 합치면 결국 (x,y)→(−x,−y)가 되기 때문이에요.
+</div>`, ans:null }
+],
+
+/* ── 도형의 이동: 심화(실생활) ── */
+'transform-deep': [
+{ tag:'심화① — 거울과 빛의 반사', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+빛이 거울에 부딪히면 "입사각=반사각"으로 튕겨 나가요(반사 법칙). 이 경로를 직접 계산하려면 각도를 재야 해서 번거로워요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+광학에서 실제로 쓰는 방법: 도착점을 거울 면에 대해 <b style="color:#7dd3fc">대칭이동</b>시켜서 거울 반대편에 옮겨놓으면, 출발점과 그 대칭점을 <b>직선으로 잇기만</b> 해도 실제 빛의 경로(광로)가 나와요.
+</div><br>
+반사각을 하나하나 계산하는 대신, "대칭이동해서 직선 긋기"로 바꿔버리는 거예요 — 망원경, 카메라, 레이저 장치가 전부 이 원리를 씁니다.
+</div>`, ans:null },
+
+{ tag:'심화② — 당구공의 최단 경로(벽 두 번 튕기기)', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.06)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 꼭짓점이 (0,0)~(6,8)인 직사각형 당구대. 공이 왼쪽 벽의 A(0,4)에서 출발해 아래쪽 벽→오른쪽 벽 순서로 튕긴 뒤 위쪽 벽의 B(3,8)에 도착. 최단 경로의 길이는?
+</div>`,
+    ans:`벽마다 한 번씩 대칭이동을 반복해요(튕기는 순서의 반대로).<br><br>
+<b>1단계</b> B(3,8)를 오른쪽 벽(x=6)에 대칭이동 → B′(9,8)<br>
+<b>2단계</b> B′을 아래쪽 벽(y=0)에 대칭이동 → B″(9,−8)<br>
+<b>3단계</b> A(0,4)와 B″(9,−8)을 직선으로 잇기 — 이 직선이 두 벽을 지나가는 자리가 실제 튕기는 지점<br>
+최단거리 = AB″ = √{(9−0)²+(−8−4)²} = √(81+144) = √225 = <b>15</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">검산: 아래벽 P₁(3,0), 오른쪽벽 P₂(6,4). AP₁=5, P₁P₂=5, P₂B=5 → 합=15 ✓ 세 구간이 전부 5로 똑같아요.</span>` },
+
+{ tag:'심화③ — 지도 앱을 손가락으로 밀 때', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+스마트폰 지도 앱에서 화면을 손가락으로 드래그하면, 지도 위 모든 건물·도로가 <b style="color:#7dd3fc">모양은 그대로, 위치만</b> 화면 반대 방향으로 이동해요 — 정확히 평행이동이에요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+내부적으로는 화면에 보이는 모든 좌표에 (x+a, y+b)를 적용하는 것뿐이에요. 지도가 커지거나 회전하지 않고 그대로 미끄러지듯 움직이는 게 "모양·크기는 안 바뀌고 위치만 바뀐다"는 평행이동의 정의 그대로예요.
+</div><br>
+GPS로 내 위치를 찾고 나면, 그 위치를 화면 중앙에 맞추기 위해 지도 전체를 평행이동시키는 계산이 매초 일어나고 있는 거예요.
+</div>`, ans:null }
+],
+
+/* ── 도형의 이동: 대칭이동과 최단거리(어디서 온 개념일까) ── */
+'transform-mirror': [
+{ tag:'대칭이동과 최단거리 — ① 초등학교: 대칭축', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+곧 나올 "거리의 합의 최소" 문제들, 사실 완전히 새로운 게 아니에요 — 훨씬 오래전부터 배워온 개념이 좌표평면 위에서 다시 나타난 거예요. 출발점부터 짚어볼게요.<br><br>
+선대칭도형의 <b style="color:#fbbf24">대칭축</b>: "반으로 접으면 완전히 겹치는 선"이에요. 대칭축 위의 어떤 점 M에서 재도, 접히는 두 점까지의 거리 <b>MP와 MP′는 항상 같아요</b> — 손으로 접어보면 바로 확인되는 직관적인 사실이었죠.
+</div>`, ans:null },
+
+{ tag:'대칭이동과 최단거리 — ② 중1-2: 작도', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+이 성질을 도구로 <b style="color:#fbbf24">직접 그려봐요</b>. 두 점 A,B에서 같은 길이만큼 컴퍼스를 벌려 호를 그리면(양쪽에서), 두 호가 만나는 두 점을 지나는 선이 바로 <b>선분 AB의 수직이등분선</b>이에요. 같은 방식으로 <b>각의 이등분선</b>도 작도할 수 있어요.<br><br>
+<span style="font-size:.8rem;color:#94a3b8">단, 이 단계에서는 "이렇게 그리면 된다"는 방법만 배워요 — "왜 이 선 위의 점들이 A, B로부터 같은 거리인지"는 아직 증명하지 않습니다.</span>
+</div>`, ans:null },
+
+{ tag:'대칭이동과 최단거리 — ③ 중2-2: 드디어 증명', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+"접으면 겹친다"는 직관을 이제 <b style="color:#fbbf24">삼각형의 합동</b>으로 증명해요: 수직이등분선 위의 점 P는 △PMA≡△PMB(SAS 합동)이므로 반드시 <b>PA=PB</b>. 각의 이등분선 위의 점도 같은 방식(RHA 합동)으로 두 변까지의 거리가 같음을 증명해요.<br><br>
+<span style="font-size:.8rem;color:#94a3b8">초등학교 땐 "접어보니 그렇더라"였다면, 이제는 "논리적으로 반드시 그렇다"로 업그레이드된 거예요.</span>
+</div>`, ans:null },
+
+{ tag:'대칭이동과 최단거리 — ④ 고1 공통수학2: 좌표평면에서 다시 만나다', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+이 성질이 <b style="color:#fbbf24">좌표평면+방정식</b>으로 다시 등장해요. 직선 위를 움직이는 점 P와 다른 두 점 A,B를 잇는 <b>거리의 합 AP+PB의 최솟값</b>을 구할 때 써요. 점 A를 거울선에 대칭이동해서 A′을 만들면, 거울선 위의 <b>어떤 점 M에서도 MA=MA′</b> — ①에서 접어 확인하고 ③에서 증명까지 마친 바로 그 성질이에요.<br><br>
+<b>기본예제</b>: A(1,4), B(7,2), 거울선이 x축. x축 위의 점 P에 대하여 AP+PB의 최솟값은?
+</div>`,
+    ans:`<b>1단계</b> A를 x축에 대칭이동 → A′(1,−4)<br>
+<b>2단계</b> A′과 B를 직선으로 잇기: 기울기=(2−(−4))/(7−1)=1, y−2=1(x−7) → y=x−5. y=0 대입 → <b>P(5,0)</b><br>
+<b>3단계</b> 최솟값 = A′B = √{(7−1)²+(2−(−4))²} = √72 = <b>6√2</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">검산: AP=√32=4√2, PB=√8=2√2, 합=6√2 ✓</span>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
+🦕 새로운 기술이 아니에요 — 초등학교 때부터 알던 "대칭=같은 거리"라는 사실 하나를, 좌표평면이라는 새 도구 위에서 다시 쓰는 것뿐입니다.
+</div>` }
+],
+
+/* ── 도형의 이동 실전훈련: 기본 1~6 ── */
+'transform-practice-basic': [
+{ tag:'실전1 — 점의 평행이동', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+점 A(4,−2)를 x축 방향으로 −3, y축 방향으로 5만큼 평행이동한 점 A′의 좌표는?
+</div>`,
+    ans:`x좌표: 4+(−3)=1, y좌표: −2+5=3<br><b>A′(1, 3)</b>` },
+
+{ tag:'실전2 — 도형의 평행이동', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 (x+1)²+(y−2)²=9를 x축 방향으로 2, y축 방향으로 −4만큼 평행이동한 도형의 방정식은?
+</div>`,
+    ans:`x 대신 (x−2), y 대신 (y+4) 대입:<br>(x−2+1)²+(y+4−2)²=9 → <b>(x−1)²+(y+2)²=9</b>` },
+
+{ tag:'실전3 — 점의 대칭이동', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+점 (−3,6)을 직선 y=x에 대하여 대칭이동한 점의 좌표는?
+</div>`,
+    ans:`y=x 대칭은 x와 y의 자리를 바꾸는 것 → <b>(6, −3)</b>` },
+
+{ tag:'실전4 — 도형의 대칭이동', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+직선 y=−2x+5를 y축에 대하여 대칭이동한 직선의 방정식은?
+</div>`,
+    ans:`x 대신 −x 대입: y=−2(−x)+5 → <b>y=2x+5</b>` },
+
+{ tag:'실전5 — 평행이동+대칭이동 결합', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+점 P(2,−5)를 x축 방향으로 −1, y축 방향으로 3만큼 평행이동한 후, 그 점을 원점에 대하여 대칭이동한 점의 좌표는?
+</div>`,
+    ans:`① 평행이동: (2−1, −5+3)=(1,−2)<br>② 원점 대칭: <b>(−1, 2)</b>` },
+
+{ tag:'실전6 — 대칭이동 두 번의 정체', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+점 (3,−1)을 x축에 대하여 대칭이동한 후, 그 점을 다시 y축에 대하여 대칭이동하세요. 그 결과가 원래 점을 어떤 대칭이동 한 번으로 바로 옮긴 것과 같은지도 말하세요.
+</div>`,
+    ans:`① x축 대칭: (3,1)<br>② y축 대칭: (−3,1)<br>원점 대칭 공식으로 확인: (3,−1)→(−3,1) 동일 → <b>x축 대칭+y축 대칭=원점 대칭</b>` }
+],
+
+/* ── 도형의 이동 실전훈련: 응용·최고난도 7~12 ── */
+'transform-practice-adv': [
+{ tag:'실전7 — 대칭이동+원, 최단 경로 결합', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 점 A(6,2)와 원 (x−1)²+(y−8)²=1 위를 움직이는 점 P가 있다. x축 위의 점 Q에 대하여 AQ+QP의 최솟값은?
+</div>`,
+    ans:`<b>1단계</b> A를 x축에 대칭이동 → A′(6,−2) — x축 위 어떤 Q에서도 AQ=A′Q이므로 AQ+QP=A′Q+QP<br>
+<b>2단계</b> A′Q+QP의 최솟값은 A′,Q,P가 일직선일 때(삼각부등식). P가 원 위를 움직이므로 A′-중심거리에서 반지름을 빼면 됨<br>
+A′C=√((6−1)²+(−2−8)²)=√125=<b>5√5</b><br>
+최솟값 = 5√5 − 1` },
+
+{ tag:'실전8 — 탐정의 사건 수사(최단 경로)', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 점 A(1,5)에서 출발해 직선 y=x 위의 점 P를 반드시 거쳐 점 B(2,4)까지 가는 가장 짧은 경로 AP+PB의 최솟값은?
+</div>`,
+    ans:`A(1,5)를 y=x에 대칭이동 → A′(5,1)(x,y 맞바꿈). 거울선 위 어떤 점에서도 AP=A′P이므로 AP+PB=A′P+PB<br>
+최솟값은 A′,P,B가 일직선일 때: A′B=√((2−5)²+(4−1)²)=√18=<b>3√2</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">검산: 교점 P(3,3). AP=2√2, PB=√2, 합=3√2 ✓</span>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
+🦕 A,B가 거울선의 같은 쪽에 있을 때만 이 방법이 통해요 — 반대쪽이면 대칭이동 없이 그냥 AB를 직선으로 이으면 끝.
+</div>` },
+
+{ tag:'실전9 — 일반 직선에 대한 점의 대칭이동', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 점 A(2,4)를 직선 y=−x+3에 대하여 대칭이동한 점 A′의 좌표는?
+</div>`,
+    ans:`거울선이 축이나 45°가 아닌 일반 직선이면, 공식 대신 대칭이동의 정의(중점 조건+수직 조건)를 직접 세워요.<br><br>
+A′(a,b)라 하면<br>
+<b>① 중점 조건</b>: 중점((a+2)/2,(b+4)/2)이 y=−x+3 위 → a+b=0 ⋯(가)<br>
+<b>② 수직 조건</b>: 직선AA′ 기울기 (b−4)/(a−2)와 거울선 기울기(−1)의 곱=−1 → a−b=−2 ⋯(나)<br><br>
+(가)+(나): 2a=−2 → a=−1, b=1 → <b>A′(−1, 1)</b>` },
+
+{ tag:'실전10 — 동전 던지기와 평행이동', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 동전을 7번 던져 앞면이면 x축 방향으로 1, 뒷면이면 y축 방향으로 1만큼 점을 평행이동. P₀(2,−1)에서 출발해 앞면3번·뒷면4번이 나와 P에 도착. 선분 P₀P의 길이는?
+</div>`,
+    ans:`평행이동은 순서를 바꿔도 결과가 같아요(교환법칙) — 앞면3번=x축+3, 뒷면4번=y축+4만 알면 충분해요.<br><br>
+P=P₀+(3,4) → P₀P=√(3²+4²)=√25=<b>5</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">P₀의 실제 좌표는 중요하지 않아요 — 어디서 출발하든 이동량(3,4)만큼 움직인 거리는 항상 5예요.</span>` },
+
+{ tag:'실전11 — 평행이동한 직선과 원의 위치 관계', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 직선 y=x를 x축 방향으로 k만큼 평행이동한 직선이 원 x²+y²=25와 서로 다른 두 점에서 만나도록 하는 정수 k의 개수는?
+</div>`,
+    ans:`<b>1단계</b> 평행이동: x 대신(x−k) 대입 → y=x−k, 즉 x−y−k=0<br>
+<b>2단계</b> 두 점에서 만남 → 중심-직선거리 &lt; 반지름: d=|−k|/√2=|k|/√2 &lt; 5 → |k| &lt; 5√2≈7.07<br>
+<b>3단계</b> 정수 개수: −7,−6,…,6,7 → <b>총 15개</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">검산: k=7일 때 d≈4.95&lt;5(만남), k=8일 때 d≈5.66&gt;5(안만남) — 경계가 7과 8 사이.</span>` },
+
+{ tag:'실전12 — 강 위에 다리 놓기, 최단 경로', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 폭이 일정하게 3인 강, 양쪽 기슭은 평행한 두 직선. A는 가까운 기슭에서 수직으로 4, B는 먼 기슭에서 수직으로 1(+A와 기슭 평행방향으로 12) 떨어져 있다. 기슭에 수직으로 다리를 놓아 A→다리→B로 가는 최단 거리는?
+</div>`,
+    ans:`다리 폭(3)은 어디에 놓든 고정값이라, 다리 구간 3은 항상 답에 그대로 더해지고 나머지 구간만 최소화하면 돼요.<br><br>
+<b>아이디어</b>: B를 강물 방향(기슭에 수직)으로 강폭만큼(3) 미리 평행이동시켜 다리 거리를 곧은 직선 거리로 바꿔요.<br><br>
+좌표: 가까운기슭 y=0, 먼기슭 y=−3 → A(0,4), B(12,−4)<br>
+<b>1단계</b> B를 강폭3만큼 이동 → B′(12,−1)<br>
+<b>2단계</b> AB′=√(12²+5²)=√169=<b>13</b><br>
+<b>3단계</b> 최단거리 = AB′+3 = <b>16</b>` }
 ],
 
 
