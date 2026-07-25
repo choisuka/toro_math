@@ -21,6 +21,9 @@
 }
 body{background:var(--bg);color:var(--white);font-family:'Nanum Gothic',sans-serif;min-height:100vh;overflow-x:hidden}
 h1,h2,h3,.jua{font-family:'Jua',sans-serif}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em;line-height:1.3}
+.frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
+.frac .den{padding:1px 4px 0}
 
 /* ── 공통 ── */
 .screen{display:none;min-height:100vh;padding:20px}
@@ -497,6 +500,18 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
           <div class="name" style="color:#fbbf24">거리 공식 총정리</div>
           <div class="desc">두 점 → 점·직선 → 원 관련 거리, 하나로 연결된 도구</div>
           <span class="tag" style="background:rgba(251,191,36,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.35);margin-top:6px">고1 수학 상 ★아르모니아</span>
+        </div>
+        <div class="topic-card" onclick="showScreen('perp-hub')" style="border:1px solid rgba(52,211,153,.3);background:linear-gradient(155deg,#071e14,#0d2e1e);grid-column:1/-1">
+          <div class="ico">📐</div>
+          <div class="name" style="color:#34d399">수직의 의미 총정리</div>
+          <div class="desc">기울기·넓이·피타고라스·수직이등분선, 네 얼굴 하나의 도구</div>
+          <span class="tag" style="background:rgba(52,211,153,.15);color:#34d399;border:1px solid rgba(52,211,153,.35);margin-top:6px">고1 수학 상 ★아르모니아</span>
+        </div>
+        <div class="topic-card" onclick="showScreen('line-circle-hub')" style="border:1px solid rgba(196,181,253,.3);background:linear-gradient(155deg,#140f20,#1e1830);grid-column:1/-1">
+          <div class="ico">🔮</div>
+          <div class="name" style="color:#c4b5fd">직선→원, 깜짝 연결</div>
+          <div class="desc">자취·정점·수직 — 직선에서 배운 도구가 원에서 그대로</div>
+          <span class="tag" style="background:rgba(196,181,253,.15);color:#c4b5fd;border:1px solid rgba(196,181,253,.35);margin-top:6px">고1 수학 상 ★아르모니아</span>
         </div>
       </div>
 
@@ -1112,26 +1127,24 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       <div style="width:60px"></div>
     </div>
     <div style="font-family:'Jua',sans-serif;color:#a5b4fc;font-size:.95rem;text-align:center;margin-bottom:10px">🔄 "왜 +a인데 식은 −a일까?"</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
-      <div style="background:linear-gradient(155deg,rgba(251,191,36,.08),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">🧠</div>
-        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.78rem;margin:4px 0">칸아카데미</div>
-        <div style="font-size:.68rem;color:#aaa;line-height:1.4">엄밀한 논리<br>5단계 증명</div>
-      </div>
-      <div style="background:linear-gradient(155deg,rgba(253,230,138,.08),rgba(253,230,138,.03));border:1px solid rgba(253,230,138,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">✡️</div>
-        <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.78rem;margin:4px 0">유대인</div>
-        <div style="font-size:.68rem;color:#aaa;line-height:1.4">질문식<br>하브루타 대화</div>
-      </div>
-      <div style="background:linear-gradient(155deg,rgba(134,239,172,.08),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">🇫🇮</div>
-        <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.78rem;margin:4px 0">핀란드</div>
-        <div style="font-size:.68rem;color:#aaa;line-height:1.4">직관<br>편의점 이사</div>
-      </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">주제별로 나뉘어 있어요 — 궁금한 것부터 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="startCards('transform-why','transform-hub')" style="background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.3rem">🤔</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.72rem;margin:4px 0;line-height:1.3">왜 (x−a)일까?</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">칸·하브루타<br>핀란드 (3장)</div>
+      </button>
+      <button onclick="startCards('transform-forms','transform-hub')" style="background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.3rem">📐</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.72rem;margin:4px 0;line-height:1.3">두 가지 표현법</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">y=f(x)와<br>f(x,y)=0 (3장)</div>
+      </button>
+      <button onclick="startCards('transform-summary','transform-hub')" style="background:linear-gradient(155deg,rgba(165,180,252,.1),rgba(165,180,252,.03));border:1px solid rgba(165,180,252,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.3rem">📋</div>
+        <div style="font-family:'Jua',sans-serif;color:#a5b4fc;font-size:.72rem;margin:4px 0;line-height:1.3">정리 + 검산</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.3">최종 규칙<br>(1장)</div>
+      </button>
     </div>
-    <button onclick="startCards('transform-guide','transform-hub')" style="width:100%;margin-bottom:8px;background:rgba(165,180,252,.1);border:1px solid rgba(165,180,252,.3);color:#a5b4fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📖 평행이동, 왜 (x−a)일까? <span style="font-size:.72rem;opacity:.7">(7장)</span> →
-    </button>
   </div>
 </div>
 
@@ -1146,12 +1159,125 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       <div style="width:60px"></div>
     </div>
     <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.95rem;text-align:center;margin-bottom:10px">📏 "일곱 개가 아니라 하나의 도구"</div>
-    <div style="background:linear-gradient(155deg,rgba(251,191,36,.08),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.25);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:.78rem;color:#e2e8f0;line-height:1.7">
-1. 두 점 사이의 거리(수직선→평면) → 2. 점과 직선, 직선과 직선의 거리 → 3. 원과 점, 원과 직선, 원과 원의 거리 — 전부 이 세 줄 위에서 확장돼요.
+    <div style="background:linear-gradient(155deg,rgba(251,191,36,.12),rgba(251,191,36,.04));border:2px solid rgba(251,191,36,.4);border-radius:14px;padding:14px 16px;margin-bottom:14px">
+      <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.8rem;margin-bottom:8px">🦕 토로: 이 카드 전체에서 제일 중요한 세 줄!</div>
+      <div style="font-size:.85rem;color:#fff;line-height:2;font-weight:800">
+        <div>1. 두 점 사이의 거리 <span style="color:#94a3b8;font-weight:600">(수직선→평면)</span></div>
+        <div>2. 점과 직선, 직선과 직선의 거리</div>
+        <div>3. 원과 점, 원과 직선, 원과 원의 거리</div>
+      </div>
+      <div style="font-size:.78rem;color:#fde68a;font-weight:700;margin-top:8px">→ 전부 이 세 줄 위에서 확장돼요.</div>
     </div>
-    <button onclick="startCards('distance-guide','distance-hub')" style="width:100%;margin-bottom:8px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);color:#fbbf24;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📖 거리 공식 하나로 연결하기 <span style="font-size:.72rem;opacity:.7">(10장)</span> →
-    </button>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">단원별로 나뉘어 있어요 — 제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="startCards('distance-plane','distance-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(134,239,172,.1),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📍</div>
+        <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.75rem;margin:5px 0 4px;line-height:1.3">평면좌표</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">수직선 → 평면<br>두 점 사이 거리</div>
+        <div style="font-size:.6rem;color:#86efac;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('distance-line','distance-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📏</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">직선의 방정식</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">점과 직선<br>두 직선 사이 거리</div>
+        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('distance-circle','distance-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(252,165,165,.1),rgba(252,165,165,.03));border:1px solid rgba(252,165,165,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">⭕</div>
+        <div style="font-family:'Jua',sans-serif;color:#fca5a5;font-size:.75rem;margin:5px 0 4px;line-height:1.3">원의 방정식</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">원과 점·직선·원<br>+실전 예제</div>
+        <div style="font-size:.6rem;color:#fca5a5;opacity:.8;margin-top:5px">5장 →</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     수직의 의미 총정리 허브
+══════════════════════════════════ -->
+<div id="perp-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="showScreen('home')">← 수학왕국</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#34d399">📐 수직의 의미 총정리</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.95rem;text-align:center;margin-bottom:10px">📐 "네 얼굴, 하나의 도구"</div>
+    <div style="background:linear-gradient(155deg,rgba(52,211,153,.12),rgba(52,211,153,.04));border:2px solid rgba(52,211,153,.4);border-radius:14px;padding:14px 16px;margin-bottom:14px">
+      <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.8rem;margin-bottom:8px">🦕 토로: 이 카드 전체에서 제일 중요한 네 줄!</div>
+      <div style="font-size:.85rem;color:#fff;line-height:2;font-weight:800">
+        <div>1. 기울기로 본 수직 <span style="color:#94a3b8;font-weight:600">(기울기의 곱=−1)</span></div>
+        <div>2. 넓이로 본 수직 <span style="color:#94a3b8;font-weight:600">(밑변×높이)</span></div>
+        <div>3. 피타고라스로 본 수직 <span style="color:#94a3b8;font-weight:600">(a²+b²=c²)</span></div>
+        <div>4. 수직이등분선 <span style="color:#94a3b8;font-weight:600">(PA=PB)</span></div>
+      </div>
+      <div style="font-size:.78rem;color:#86efac;font-weight:700;margin-top:8px">→ 점과 직선의 거리, 원의 접선, 원의 현 — 전부 이 네 얼굴의 응용이에요.</div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="startCards('perp-faces','perp-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(52,211,153,.1),rgba(52,211,153,.03));border:1px solid rgba(52,211,153,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🎭</div>
+        <div style="font-family:'Jua',sans-serif;color:#34d399;font-size:.72rem;margin:5px 0 3px;line-height:1.3">네 가지 얼굴</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.3">기울기·넓이<br>피타고라스·수직이등분선</div>
+        <div style="font-size:.58rem;color:#34d399;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+      <button onclick="startCards('perp-apply','perp-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🎯</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.72rem;margin:5px 0 3px;line-height:1.3">실전 응용</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.3">점과 직선 거리<br>접선·현의 길이</div>
+        <div style="font-size:.58rem;color:#fbbf24;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('perp-practice','perp-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(248,113,113,.1),rgba(248,113,113,.03));border:1px solid rgba(248,113,113,.3);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">✏️</div>
+        <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.72rem;margin:5px 0 3px;line-height:1.3">직접 풀어보기</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.3">실전문제<br>3제+풀이</div>
+        <div style="font-size:.58rem;color:#f87171;opacity:.8;margin-top:5px">6장 →</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     직선→원 깜짝 연결 허브
+══════════════════════════════════ -->
+<div id="line-circle-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="showScreen('home')">← 수학왕국</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#c4b5fd">🔮 직선→원, 깜짝 연결</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-family:'Jua',sans-serif;color:#c4b5fd;font-size:.95rem;text-align:center;margin-bottom:10px">🔮 "원의 방정식은 정말 새 단원일까?"</div>
+    <div style="background:linear-gradient(155deg,rgba(196,181,253,.12),rgba(196,181,253,.04));border:2px solid rgba(196,181,253,.4);border-radius:14px;padding:14px 16px;margin-bottom:14px">
+      <div style="font-family:'Jua',sans-serif;color:#c4b5fd;font-size:.8rem;margin-bottom:8px">🦕 토로: 직선의 방정식에서 만든 도구가, 원의 방정식에서 글자 하나 안 바뀌고 다시 나와요!</div>
+      <div style="font-size:.85rem;color:#fff;line-height:2;font-weight:800">
+        <div>1. 자취 기법 <span style="color:#94a3b8;font-weight:600">(같은 거리→일정한 거리)</span></div>
+        <div>2. 정점(항등식) <span style="color:#94a3b8;font-weight:600">(k·l₁+l₂=0→C₁+k·C₂=0)</span></div>
+        <div>3. 수직 조건 <span style="color:#94a3b8;font-weight:600">(m₁×m₂=−1→접선⊥반지름)</span></div>
+      </div>
+      <div style="font-size:.78rem;color:#ddd6fe;font-weight:700;margin-top:8px">→ 도구가 늘어난 게 아니라, 같은 도구를 다시 쓴 것뿐이에요. (거리 연결은 📏 거리 공식 총정리에서!)</div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">제목을 눌러보세요 — 각 2장씩(직선→원)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="startCards('line-circle-locus','line-circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🔍</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">자취의 방정식</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">PA=PB(직선)<br>CP=r(원)</div>
+        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('line-circle-fixed','line-circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📌</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.75rem;margin:5px 0 4px;line-height:1.3">정점을 지나는 도형</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">k·l₁+l₂=0<br>C₁+k·C₂=0</div>
+        <div style="font-size:.6rem;color:#fbbf24;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('line-circle-tangent','line-circle-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(252,165,165,.1),rgba(252,165,165,.03));border:1px solid rgba(252,165,165,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📐</div>
+        <div style="font-family:'Jua',sans-serif;color:#fca5a5;font-size:.75rem;margin:5px 0 4px;line-height:1.3">수직 조건 → 접선</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">m₁×m₂=−1<br>접선⊥반지름</div>
+        <div style="font-size:.6rem;color:#fca5a5;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -11036,8 +11162,8 @@ a &lt; 0 → 제곱근 없다 (실수 범위)
 ],
 
 /* ── 도형의 이동: 평행이동 방정식이 왜 (x-a)인가 (4장) ── */
-'transform-guide': [
-  { tag:'🧠 칸아카데미 — 한 단계도 빠짐없는 증명 1/7', tagColor:'#fbbf24',
+'transform-why': [
+{ tag:'🧠 칸아카데미 — 한 단계도 빠짐없는 증명 1/3', tagColor:'#fbbf24',
     bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 <b style="color:#fbbf24;font-size:.95rem">비유 말고, 순수 논리로만 가보자.</b><br><br>
@@ -11054,7 +11180,7 @@ a &lt; 0 → 제곱근 없다 (실수 범위)
 </div>
 </div>`, ans:null },
 
-  { tag:'✡️ 하브루타식 — 질문으로 스스로 도달하기 2/7', tagColor:'#fde68a',
+{ tag:'✡️ 하브루타식 — 질문으로 스스로 도달하기 2/3', tagColor:'#fde68a',
     bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.95">
 <b style="color:#7dd3fc">학생A:</b> 이동은 +a인데 왜 식은 −a야? 논리적으로 이해가 안 돼.<br>
@@ -11073,7 +11199,7 @@ a &lt; 0 → 제곱근 없다 (실수 범위)
 </div>
 </div>`, ans:null },
 
-  { tag:'🇫🇮 핀란드식 — 실생활 연결 3/7', tagColor:'#86efac',
+{ tag:'🇫🇮 핀란드식 — 실생활 연결 3/3', tagColor:'#86efac',
     bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 <b style="color:#86efac;font-size:.95rem">"편의점이 통째로 이사를 갔어요."</b><br><br>
@@ -11083,9 +11209,11 @@ a &lt; 0 → 제곱근 없다 (실수 범위)
 <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:8px 0">
 <b style="color:#fde68a">핵심:</b> "지금 위치(x)에 뭐가 있나?"는 항상 "그 자리가 원래 몇 번지였나(x−a)"부터 되짚는 질문이에요. 그래서 새 방정식엔 x 대신 <b style="color:#86efac">(x−a)</b>를 넣는 거예요.
 </div>
-</div>`, ans:null },
+</div>`, ans:null }
+],
 
-  { tag:'y=f(x) 꼴에서는? 4/7', tagColor:'#7dd3fc',
+'transform-forms': [
+{ tag:'y=f(x) 꼴에서는? 1/3', tagColor:'#7dd3fc',
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 <b style="color:#7dd3fc;font-size:.95rem">x 하나에 y가 딱 하나 — 함수 그래프의 표준형</b><br><br>
@@ -11099,7 +11227,7 @@ y=x², y=2x+1처럼 x값 하나에 y값이 하나씩 대응하는 게 <b>y=f(x)<
 <span style="font-size:.8rem;color:#fca5a5">⚠️ x만 (x−a)로 바꾸고 끝내면 안 돼요 — y도 반드시 (y−b)로 이항해서 b를 더해줘야 해요.</span>
 </div>`, ans:null },
 
-  { tag:'f(x,y)=0 꼴에서는? 5/7', tagColor:'#fca5a5',
+{ tag:'f(x,y)=0 꼴에서는? 2/3', tagColor:'#fca5a5',
     bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 <b style="color:#fca5a5;font-size:.95rem">x,y 관계 전체를 담은 일반형</b><br><br>
@@ -11113,7 +11241,7 @@ y=x², y=2x+1처럼 x값 하나에 y값이 하나씩 대응하는 게 <b>y=f(x)<
 <span style="font-size:.8rem;color:#86efac">x와 y를 동시에, 대칭적으로 (x−a),(y−b)로 바꿔 넣기만 하면 끝 — 따로 챙길 게 없어요.</span>
 </div>`, ans:null },
 
-  { tag:'두 꼴, 같은 원리 다른 표현 6/7', tagColor:'#c4b5fd',
+{ tag:'두 꼴, 같은 원리 다른 표현 3/3', tagColor:'#c4b5fd',
     bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 <table style="width:100%;border-collapse:collapse;font-size:.82rem;margin-bottom:10px">
@@ -11142,9 +11270,11 @@ y=x², y=2x+1처럼 x값 하나에 y값이 하나씩 대응하는 게 <b>y=f(x)<
 사실 y=f(x)도 f(x,y)=0의 <b style="color:#86efac">특수한 경우</b>예요 — g(x,y)=y−f(x)라고 두면 y=f(x)는 정확히 g(x,y)=0. 일반 규칙 g(x−a,y−b)=0을 그대로 적용하면 (y−b)−f(x−a)=0, 즉 <b style="color:#86efac">y−b=f(x−a)</b> — 4/7 카드와 완전히 같은 결과예요!
 </div>
 <span style="font-size:.8rem;color:#c4b5fd">"다른 규칙"이 아니라, 같은 규칙을 어떤 자리에 y가 끼어 있느냐에 따라 다르게 적어야 할 뿐이에요.</span>
-</div>`, ans:null },
+</div>`, ans:null }
+],
 
-  { tag:'📋 정리 + 숫자로 최종 검산 7/7', tagColor:'#a5b4fc',
+'transform-summary': [
+{ tag:'📋 정리 + 숫자로 최종 검산 1/1', tagColor:'#a5b4fc',
     bg:'rgba(165,180,252,.06)', bd:'rgba(165,180,252,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
 <b style="color:#a5b4fc;font-size:.95rem">y=x²을 x축 방향으로 2만큼 이동 (a=2)</b><br><br>
@@ -11162,24 +11292,10 @@ y=x², y=2x+1처럼 x값 하나에 y값이 하나씩 대응하는 게 <b>y=f(x)<
 </div>`, ans:null }
 ],
 
-/* ── 거리 공식 총정리: 수직선→평면→직선→원, 하나로 연결된 도구 (8장) ── */
-'distance-guide': [
-  { tag:'📏 이 카드 전체를 관통하는 한 문장 1/10', tagColor:'#fbbf24',
-    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
-    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.9">
-<b style="color:#fbbf24;font-size:.95rem">아래 7개 카드는 전부 이 문장 하나를 풀어쓴 것뿐이에요.</b><br><br>
-<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px 14px;margin-bottom:10px;line-height:2.1">
-<b style="color:#86efac">평면좌표:</b> 수직선 위의 두 점 사이의 거리, 평면 위의 두 점 사이의 거리<br>
-<b style="color:#7dd3fc">직선의 방정식:</b> 점과 직선 사이의 거리, 두 직선 사이의 거리<br>
-<b style="color:#fca5a5">원의 방정식:</b> 원과 점 사이의 거리, 원과 직선 사이의 거리, 원과 원 사이의 거리
-</div>
-각 단원 이름 그대로, 뒤에 나오는 개념 1~7이 정확히 이 순서(평면좌표→직선의 방정식→원의 방정식)로 나오고, <b style="color:#fbbf24">바로 앞 번호를 그대로 이어받아</b> 만들어져요. 새 개념을 만날 때마다 "이건 어느 단원, 몇 번째 응용이지?"부터 확인하세요.<br><br>
-<div style="background:rgba(251,191,36,.08);border-radius:10px;padding:10px 12px">
-일곱 개의 서로 다른 공식이 아니라, <b>세 줄짜리 지도 위에서 계속 확장되는 하나의 이야기</b>예요.
-</div>
-</div>`, ans:null },
 
-  { tag:'평면좌표 — 수직선 위 두 점 사이의 거리 2/10', tagColor:'#86efac',
+/* ── 거리 공식 총정리: 수직선→평면→직선→원, 하나로 연결된 도구 (8장) ── */
+'distance-plane': [
+{ tag:'평면좌표 — 수직선 위 두 점 사이의 거리 1/2', tagColor:'#86efac',
     bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 가장 단순한 경우: 수직선(1차원) 위에 두 점 A(a), B(b)가 있으면, 거리는 <b style="color:#86efac">두 좌표의 차의 절댓값</b>이에요.<br><br>
@@ -11191,7 +11307,7 @@ y=x², y=2x+1처럼 x값 하나에 y값이 하나씩 대응하는 게 <b>y=f(x)<
 <span style="font-size:.8rem;color:#94a3b8">순서를 바꿔 |a−b|로 써도 결과는 같아요 — 절댓값이 부호를 없애주니까요.</span>
 </div>`, ans:null },
 
-  { tag:'평면좌표 — 평면 위 두 점 사이의 거리 (1의 확장) 3/10', tagColor:'#86efac',
+{ tag:'평면좌표 — 평면 위 두 점 사이의 거리 (1의 확장) 2/2', tagColor:'#86efac',
     bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 2차원(평면)으로 넘어가면? x축 방향 차이와 y축 방향 차이를 <b style="color:#86efac">각각 수직선 거리(개념 1)로</b> 구한 다음, 피타고라스 정리로 합쳐요.<br><br>
@@ -11202,32 +11318,36 @@ y=x², y=2x+1처럼 x값 하나에 y값이 하나씩 대응하는 게 <b>y=f(x)<
 <div style="background:rgba(134,239,172,.08);border-radius:10px;padding:10px 12px">
 (x₂−x₁)과 (y₂−y₁) 자체가 각각 "x축 방향 수직선 거리", "y축 방향 수직선 거리"예요 — 개념 1을 두 번 쓰고 피타고라스로 묶은 것뿐, 완전히 새로운 공식이 아니에요.
 </div>
-</div>`, ans:null },
+</div>`, ans:null }
+],
 
-  { tag:'직선의 방정식 — 점과 직선 사이의 거리 (2의 응용) 4/10', tagColor:'#7dd3fc',
+'distance-line': [
+{ tag:'직선의 방정식 — 점과 직선 사이의 거리 (2의 응용) 1/2', tagColor:'#7dd3fc',
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 점에서 직선까지의 거리는, 점에서 직선에 <b style="color:#7dd3fc">수선을 내려 만나는 점까지의 거리</b>예요 — 결국 "두 점 사이의 거리"(개념 2)인데, 발의 좌표를 직접 구하는 대신 훨씬 빠른 공식을 써요.<br><br>
 <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
-<b style="font-size:1.02rem">d = |ax₀+by₀+c| / √(a²+b²)</b>
+<b style="font-size:1.05rem">d = <span class="frac"><span class="num">|ax₀+by₀+c|</span><span class="den">√(a²+b²)</span></span></b>
 </div>
 점 P(x₀,y₀)와 직선 ax+by+c=0 사이의 거리예요.<br><br>
-예: 점 (1,2)와 직선 3x+4y−6=0 → d = |3+8−6|/√25 = 5/5 = <b>1</b>
+예: 점 (1,2)와 직선 3x+4y−6=0 → d = <span class="frac"><span class="num">|3+8−6|</span><span class="den">√25</span></span> = <span class="frac"><span class="num">5</span><span class="den">5</span></span> = <b>1</b>
 </div>`, ans:null },
 
-  { tag:'직선의 방정식 — 두 직선 사이의 거리 (3의 확장) 5/10', tagColor:'#7dd3fc',
+{ tag:'직선의 방정식 — 두 직선 사이의 거리 (3의 확장) 2/2', tagColor:'#7dd3fc',
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 두 직선이 <b style="color:#7dd3fc">평행</b>할 때만 "직선 사이의 거리"가 의미 있어요(만나는 두 직선은 거리가 0). 방법: 한 직선 위에서 점 하나를 아무거나 잡아 개념 3(점과 직선 거리)을 그대로 쓰면 돼요.<br><br>
 <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
-<b style="font-size:1.02rem">d = |c₁−c₂| / √(a²+b²)</b>
+<b style="font-size:1.05rem">d = <span class="frac"><span class="num">|c₁−c₂|</span><span class="den">√(a²+b²)</span></span></b>
 </div>
 두 평행선 ax+by+c₁=0, ax+by+c₂=0 사이의 거리예요.<br><br>
-예: 3x+4y−2=0과 3x+4y+8=0 → d = |−2−8|/5 = 10/5 = <b>2</b><br><br>
+예: 3x+4y−2=0과 3x+4y+8=0 → d = <span class="frac"><span class="num">|−2−8|</span><span class="den">5</span></span> = <span class="frac"><span class="num">10</span><span class="den">5</span></span> = <b>2</b><br><br>
 <span style="font-size:.8rem;color:#94a3b8">한 직선 위의 아무 점이나 잡아 개념 3에 대입해도 항상 같은 값이 나와요 — 그게 "평행"의 성질이에요.</span>
-</div>`, ans:null },
+</div>`, ans:null }
+],
 
-  { tag:'원의 방정식 — 원과 점 사이의 거리 (2의 응용) 6/10', tagColor:'#fca5a5',
+'distance-circle': [
+{ tag:'원의 방정식 — 원과 점 사이의 거리 (2의 응용) 1/5', tagColor:'#fca5a5',
     bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 원 밖의 한 점 P에서 원 위의 점까지 거리는 <b style="color:#fca5a5">어디를 재느냐에 따라 달라져요</b> — "최단 거리"와 "최장 거리"를 따로 구해요. 먼저 <b>중심 C와 점 P 사이의 거리(개념 2)</b>부터 구해요.<br><br>
@@ -11241,7 +11361,7 @@ y=x², y=2x+1처럼 x값 하나에 y값이 하나씩 대응하는 게 <b>y=f(x)<
 </div>
 </div>`, ans:null },
 
-  { tag:'원과 점 예제 — 자연수인 점의 개수 세기 7/10', tagColor:'#fca5a5',
+{ tag:'원과 점 예제 — 자연수인 점의 개수 세기 2/5', tagColor:'#fca5a5',
     bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 원 x²+y²=4(중심 O, r=2) 위를 움직이는 점 P와 고정점 A(5,0)이 있어요. 선분 AP의 길이가 자연수가 되는 점 P는 몇 개일까요?<br><br>
@@ -11259,13 +11379,13 @@ Case B: 원 x²+y²=9, 점(4,4) → 중심거리=√32=<b>4√2</b>≈5.66(무�
 <span style="font-size:.8rem;color:#94a3b8">최단·최장이 자연수가 되려면, 먼저 중심-점 거리(개념 2) 자체가 자연수여야 해요 — 3-4-5 같은 "피타고라스 세 쌍"인지부터 확인하세요.</span>
 </div>`, ans:null },
 
-  { tag:'원의 방정식 — 원과 직선 사이의 거리 (3,6의 응용) 8/10', tagColor:'#fca5a5',
+{ tag:'원의 방정식 — 원과 직선 사이의 거리 (3,6의 응용) 3/5', tagColor:'#fca5a5',
     bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 "원과 직선 사이의 거리"는 원과 점(개념 6)과 <b style="color:#fca5a5">똑같은 아이디어</b>예요 — 재는 대상이 점 P 대신 중심에서 직선까지의 거리로 바뀔 뿐.<br><br>
 중심에서 직선까지 거리 d(개념 3의 공식)를 구한 뒤:<br>
 <b>d &lt; r</b> → 서로 다른 두 점에서 만남 &nbsp; <b>d = r</b> → 접함 &nbsp; <b>d &gt; r</b> → 안 만남<br><br>
-예: 원 중심(0,0), r=2, 직선 x+y−4=0 → d=4/√2=2√2≈2.83 &gt; 2 → <b>안 만남</b><br><br>
+예: 원 중심(0,0), r=2, 직선 x+y−4=0 → d=<span class="frac"><span class="num">4</span><span class="den">√2</span></span>=2√2≈2.83 &gt; 2 → <b>안 만남</b><br><br>
 <div style="background:rgba(196,181,253,.1);border:2px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
 <b style="color:#c4b5fd">🔗 개념 6과 완전히 똑같은 도구</b><br>
 원 위의 점에서 이 직선까지의 <b>최단·최장 거리</b>도 똑같이 구해져요:<br>
@@ -11275,7 +11395,7 @@ Case B: 원 x²+y²=9, 점(4,4) → 중심거리=√32=<b>4√2</b>≈5.66(무�
 </div>
 </div>`, ans:null },
 
-  { tag:'원과 직선 예제 — 삼각형 넓이 최대·최소로 확장 9/10', tagColor:'#fca5a5',
+{ tag:'원과 직선 예제 — 삼각형 넓이 최대·최소로 확장 4/5', tagColor:'#fca5a5',
     bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 두 점 A(0,0), B(6,0)이 있고, 원 (x−3)²+(y−5)²=4 위를 점 P가 움직여요. 삼각형 PAB의 넓이의 최댓값과 최솟값은?<br><br>
@@ -11287,7 +11407,7 @@ Case B: 원 x²+y²=9, 점(4,4) → 중심거리=√32=<b>4√2</b>≈5.66(무�
 <span style="font-size:.8rem;color:#94a3b8">"넓이의 최대·최소"도 결국 밑변은 고정이니, <b>높이의 최대·최소(=최단·최장거리)</b>로 바꿔 생각하면 끝이에요.</span>
 </div>`, ans:null },
 
-  { tag:'원의 방정식 — 원과 원 사이의 거리 (2,7의 결합) 10/10', tagColor:'#c4b5fd',
+{ tag:'원의 방정식 — 원과 원 사이의 거리 (2,7의 결합) 5/5', tagColor:'#c4b5fd',
     bg:'rgba(196,181,253,.06)', bd:'rgba(196,181,253,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
 두 원의 위치 관계는 <b style="color:#c4b5fd">두 중심 사이의 거리(개념 2)</b>와 두 반지름을 비교해서 판정해요. 중심거리 d, 반지름 r₁≥r₂:<br><br>
@@ -11303,6 +11423,493 @@ d &lt; r₁−r₂ → 한 원이 다른 원 안에(안 만남)
 <b style="color:#c4b5fd">📌 전체 정리</b><br>
 <span style="color:#e2e8f0;font-size:.85rem">개념1(수직선)→개념2(피타고라스)→개념3,4(점·직선)→개념6,7,8(원, 전부 "거리 구하고 반지름과 비교") — 매번 앞 개념 위에 한 겹씩 쌓아올린 것뿐입니다.</span>
 </div>
+</div>`, ans:null }
+],
+
+/* ── 수직의 의미: 네 가지 얼굴 (4장) ── */
+'perp-faces': [
+  { tag:'기울기로 본 수직 1/4', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:150px">
+두 직선이 수직이면, 한 직선을 90° 돌려야 다른 직선과 겹쳐요. 이걸 기울기로 표현하면:<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">l₁ ⊥ l₂ ⟺ m₁ × m₂ = −1</b>
+</div>
+예: y=2x+1과 y=−½x+3 → 기울기 곱 = 2×(−½) = <b style="color:#34d399">−1</b> → 수직<br><br>
+<span style="font-size:.8rem;color:#94a3b8">한쪽 기울기를 알면 다른 쪽은 "역수 취하고 부호 반대"로 바로 나와요 — 2의 수직 방향 기울기는 −½.</span>
+    </div>
+    <svg viewBox="0 0 180 160" width="150" height="133" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="90" y1="10" x2="90" y2="150" stroke="#475569" stroke-width="1"/>
+  <line x1="10" y1="80" x2="170" y2="80" stroke="#475569" stroke-width="1"/>
+  <line x1="30" y1="150" x2="150" y2="20" stroke="#7dd3fc" stroke-width="2.5"/>
+  <line x1="30" y1="20" x2="150" y2="150" stroke="#fbbf24" stroke-width="2.5"/>
+  <text x="34" y="145" font-size="9" fill="#7dd3fc" font-weight="700">y=2x+b</text>
+  <text x="96" y="145" font-size="9" fill="#fbbf24" font-weight="700">y=−½x+b</text>
+</svg>
+  </div>
+</div>`, ans:null },
+
+  { tag:'넓이로 본 수직 2/4', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:150px">
+삼각형 넓이 = ½×밑변×높이 공식은, 밑변과 높이가 <b style="color:#34d399">서로 수직</b>일 때만 그대로 쓸 수 있어요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">넓이 = ½ × 밑변 × 높이</b> (밑변⊥높이일 때만)
+</div>
+예: 밑변 3, 높이 4(서로 수직) → 넓이 = ½×3×4 = <b>6</b><br><br>
+<span style="font-size:.8rem;color:#94a3b8">두 변이 수직이 아니면 높이를 따로 구해야 해요(수선을 내려서) — 그래서 "수직인 두 변"을 밑변·높이로 잡는 게 제일 편해요.</span>
+    </div>
+    <svg viewBox="0 0 160 140" width="140" height="123" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="110" x2="140" y2="110" stroke="#cbd5e1" stroke-width="1.8"/>
+  <line x1="20" y1="110" x2="20" y2="30" stroke="#cbd5e1" stroke-width="1.8"/>
+  <line x1="20" y1="30" x2="140" y2="110" stroke="#7dd3fc" stroke-width="2.5"/>
+  <rect x="20" y="100" width="10" height="10" fill="none" stroke="#94a3b8" stroke-width="1"/>
+  <text x="70" y="126" font-size="9" fill="#e2e8f0">밑변(3)</text>
+  <text x="2" y="72" font-size="9" fill="#e2e8f0">높이(4)</text>
+</svg>
+  </div>
+</div>`, ans:null },
+
+  { tag:'피타고라스로 본 수직 3/4', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:150px">
+직각삼각형에서만 성립하는 식이 피타고라스 정리예요. <b style="color:#34d399">직각(수직)이 있어야만</b> 변의 길이들을 이 식으로 연결할 수 있어요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">a² + b² = c²</b> (직각삼각형, c=빗변)
+</div>
+예: 직각을 낀 두 변 3, 4 → 빗변 c = √(3²+4²) = √25 = <b>5</b><br><br>
+<span style="font-size:.8rem;color:#94a3b8">3-4-5, 5-12-13처럼 정수로 딱 떨어지는 조합을 "피타고라스 세 쌍"이라고 불러요 — 익숙해지면 계산이 훨씬 빨라져요.</span>
+    </div>
+    <svg viewBox="0 0 160 140" width="140" height="123" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="110" x2="140" y2="110" stroke="#cbd5e1" stroke-width="1.8"/>
+  <line x1="20" y1="110" x2="20" y2="30" stroke="#cbd5e1" stroke-width="1.8"/>
+  <line x1="20" y1="30" x2="140" y2="110" stroke="#fbbf24" stroke-width="2.5"/>
+  <rect x="20" y="100" width="10" height="10" fill="none" stroke="#94a3b8" stroke-width="1"/>
+  <text x="70" y="126" font-size="9" fill="#e2e8f0">3</text>
+  <text x="4" y="72" font-size="9" fill="#e2e8f0">4</text>
+  <text x="78" y="66" font-size="9" fill="#fbbf24" font-weight="700">c</text>
+</svg>
+  </div>
+</div>`, ans:null },
+
+  { tag:'수직이등분선 — 수직과 이등분이 만나면? 4/4', tagColor:'#34d399',
+    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:150px">
+선분 AB의 <b style="color:#34d399">수직이등분선</b>은 AB와 수직으로 만나면서 동시에 AB를 정확히 반으로 나누는 직선이에요. 이 선 위의 어떤 점에서 재도, A까지 거리와 B까지 거리가 항상 같아요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">P가 AB의 수직이등분선 위 → PA = PB</b>
+</div>
+증명: △PMA와 △PMB는 PM 공통, MA=MB(이등분), ∠PMA=∠PMB=90°(수직) → SAS 합동 → PA=PB<br><br>
+<span style="font-size:.8rem;color:#94a3b8">"수직"만으로는 못 만드는 성질이에요 — 반드시 "이등분"까지 같이 있어야 PA=PB가 성립해요.</span>
+    </div>
+    <svg viewBox="0 0 180 140" width="150" height="117" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="90" x2="150" y2="90" stroke="#fbbf24" stroke-width="2.5"/>
+  <line x1="90" y1="20" x2="90" y2="130" stroke="#7dd3fc" stroke-width="2.5"/>
+  <circle cx="30" cy="90" r="4" fill="#fbbf24"/>
+  <circle cx="150" cy="90" r="4" fill="#fbbf24"/>
+  <circle cx="90" cy="90" r="3" fill="#e2e8f0"/>
+  <circle cx="90" cy="40" r="3.5" fill="#a5b4fc"/>
+  <line x1="90" y1="40" x2="30" y2="90" stroke="#64748b" stroke-width="1.1" stroke-dasharray="3 2"/>
+  <line x1="90" y1="40" x2="150" y2="90" stroke="#64748b" stroke-width="1.1" stroke-dasharray="3 2"/>
+  <rect x="83" y="83" width="9" height="9" fill="none" stroke="#94a3b8" stroke-width="1"/>
+  <text x="14" y="84" font-size="9" fill="#fbbf24" font-weight="700">A</text>
+  <text x="154" y="84" font-size="9" fill="#fbbf24" font-weight="700">B</text>
+  <text x="96" y="88" font-size="8" fill="#e2e8f0">M(중점)</text>
+  <text x="96" y="34" font-size="9" fill="#a5b4fc" font-weight="700">P</text>
+</svg>
+  </div>
+</div>`, ans:null }
+],
+
+/* ── 수직의 의미: 실전 응용 (3장) ── */
+'perp-apply': [
+  { tag:'점과 직선 사이의 거리 — 왜 수선이 최단일까 1/3', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:160px">
+점과 직선 사이의 거리 공식은 사실 "점에서 직선에 내린 <b style="color:#fbbf24">수선</b>의 길이"예요. 왜 수선이 최단 거리인지, 피타고라스로 증명해볼게요.<br><br>
+직선 위의 임의의 다른 점 Q를 잡으면, 삼각형 PHQ는 H(수선의 발)에서 직각이에요. 피타고라스에 의해:<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1rem">PQ² = PH² + HQ²</b> → HQ≠0이면 PQ &gt; PH
+</div>
+수선의 발 H가 아닌 다른 점 Q는 항상 PH보다 <b>더 먼</b> 거리를 만들어요 — 그래서 수선의 길이가 최단 거리예요.<br><br>
+예: 점 (1,2)와 직선 3x+4y−6=0 → d = |3+8−6|/5 = <b>1</b> (거리공식 총정리 개념3과 동일)
+    </div>
+    <svg viewBox="0 0 210 140" width="180" height="120" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="15" y1="110" x2="200" y2="110" stroke="#cbd5e1" stroke-width="2"/>
+  <circle cx="130" cy="35" r="4.5" fill="#a5b4fc"/>
+  <line x1="130" y1="35" x2="130" y2="110" stroke="#7dd3fc" stroke-width="2.5"/>
+  <line x1="130" y1="35" x2="60" y2="110" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4 3"/>
+  <circle cx="130" cy="110" r="3.5" fill="#e2e8f0"/>
+  <circle cx="60" cy="110" r="3.5" fill="#fbbf24"/>
+  <rect x="122" y="102" width="8" height="8" fill="none" stroke="#94a3b8" stroke-width="1"/>
+  <text x="136" y="32" font-size="9" fill="#a5b4fc" font-weight="700">P</text>
+  <text x="134" y="75" font-size="8" fill="#7dd3fc" font-weight="700">PH(수선)</text>
+  <text x="132" y="122" font-size="8" fill="#e2e8f0">H</text>
+  <text x="30" y="122" font-size="9" fill="#fbbf24" font-weight="700">Q(다른 점)</text>
+</svg>
+  </div>
+</div>`, ans:null },
+
+  { tag:'원의 접선의 길이 2/3', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:160px">
+원의 접선은 반드시 그 접점에서의 <b style="color:#fbbf24">반지름과 수직</b>이에요. 삼각형(중심C-접점T-외부점P)은 T에서 직각이므로 피타고라스를 그대로 적용:<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1rem">접선의 길이 PT = √(d² − r²)</b> (d=CP)
+</div>
+예: 원 중심(0,0), r=3, 외부점 P(5,0) → CP=5 → PT = √(5²−3²) = √16 = <b>4</b><br><br>
+<span style="font-size:.8rem;color:#94a3b8">거리공식 총정리 개념2(두 점 사이 거리)로 CP부터 구하고, 방금 개념 3(피타고라스)로 마무리하는 구조예요.</span>
+    </div>
+    <svg viewBox="0 0 190 140" width="160" height="118" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="70" cy="90" r="60" fill="rgba(125,211,252,.06)" stroke="#7dd3fc" stroke-width="1.8"/>
+  <circle cx="70" cy="90" r="4" fill="#a5b4fc"/>
+  <circle cx="170" cy="90" r="4.5" fill="#fbbf24"/>
+  <circle cx="106" cy="42" r="3.5" fill="#e2e8f0"/>
+  <line x1="70" y1="90" x2="106" y2="42" stroke="#7dd3fc" stroke-width="2"/>
+  <line x1="106" y1="42" x2="170" y2="90" stroke="#fbbf24" stroke-width="2.5"/>
+  <line x1="70" y1="90" x2="170" y2="90" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <rect x="98" y="47" width="9" height="9" fill="none" stroke="#94a3b8" stroke-width="1" transform="rotate(53 106 42)"/>
+  <text x="58" y="84" font-size="9" fill="#a5b4fc" font-weight="700">C</text>
+  <text x="174" y="86" font-size="9" fill="#fbbf24" font-weight="700">P</text>
+  <text x="110" y="38" font-size="8" fill="#e2e8f0">T(접점)</text>
+</svg>
+  </div>
+</div>`, ans:null },
+
+  { tag:'원의 현의 길이 3/3', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:160px">
+원의 중심에서 현(chord)에 내린 수선은 그 현을 <b style="color:#fbbf24">정확히 반으로 나눠요</b> — 수직이등분선의 반대 방향 응용이에요.<br><br>
+삼각형(중심C-중점M-현의끝A)은 M에서 직각, 빗변 CA=r, 한 변 CM=d(중심-현 거리):<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1rem">현의 길이 = 2√(r² − d²)</b>
+</div>
+예: 반지름 r=5, 중심-현 거리 d=3 → 현의 절반 = √(5²−3²)=4 → <b>현의 길이 = 8</b><br><br>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
+🦕 토로: 접선은 반지름이 빗변, 현도 반지름이 빗변 — 직각의 위치(접점 vs 현의 중점)만 다를 뿐, 결국 <b style="color:#c4b5fd">"수직이 만든 직각삼각형 + 피타고라스"</b>라는 같은 이야기예요.
+</div>
+    </div>
+    <svg viewBox="0 0 180 140" width="150" height="117" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="90" cy="70" r="50" fill="rgba(125,211,252,.06)" stroke="#7dd3fc" stroke-width="1.8"/>
+  <circle cx="90" cy="70" r="3.5" fill="#a5b4fc"/>
+  <line x1="46" y1="98" x2="134" y2="98" stroke="#fbbf24" stroke-width="2.5"/>
+  <circle cx="46" cy="98" r="4" fill="#fbbf24"/>
+  <circle cx="134" cy="98" r="4" fill="#fbbf24"/>
+  <circle cx="90" cy="98" r="3.5" fill="#e2e8f0"/>
+  <line x1="90" y1="70" x2="90" y2="98" stroke="#7dd3fc" stroke-width="2"/>
+  <rect x="82" y="90" width="8" height="8" fill="none" stroke="#94a3b8" stroke-width="1"/>
+  <text x="80" y="62" font-size="9" fill="#a5b4fc" font-weight="700">C</text>
+  <text x="96" y="86" font-size="8" fill="#e2e8f0">M</text>
+  <text x="30" y="112" font-size="9" fill="#fbbf24" font-weight="700">A</text>
+  <text x="138" y="112" font-size="9" fill="#fbbf24" font-weight="700">B</text>
+</svg>
+  </div>
+</div>`, ans:null }
+],
+
+/* ── 직선→원 깜짝 연결: 자취의 방정식 (2장) ── */
+'line-circle-locus': [
+  { tag:'직선의 방정식 — 같은 거리의 자취 1/2', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+자취 기법을 다시 떠올려봐요: 조건을 만족하는 점을 P(x,y)라 놓고, 그 조건을 그대로 식으로 세운 뒤 정리하면 자취의 방정식이 나와요.<br><br>
+<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:8px">
+<div style="text-align:center">
+<svg viewBox="0 0 170 110" width="140" height="90" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="55" x2="140" y2="55" stroke="#fbbf24" stroke-width="2"/>
+  <line x1="85" y1="15" x2="85" y2="95" stroke="#7dd3fc" stroke-width="2"/>
+  <rect x="85" y="47" width="8" height="8" fill="none" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="54" y1="51" x2="60" y2="59" stroke="#fbbf24" stroke-width="1.4"/>
+  <line x1="109" y1="51" x2="115" y2="59" stroke="#fbbf24" stroke-width="1.4"/>
+  <circle cx="30" cy="55" r="4" fill="#fbbf24"/>
+  <circle cx="140" cy="55" r="4" fill="#fbbf24"/>
+  <circle cx="85" cy="55" r="3" fill="#e2e8f0"/>
+  <text x="18" y="46" font-size="10" fill="#fbbf24" font-weight="700">A</text>
+  <text x="146" y="46" font-size="10" fill="#fbbf24" font-weight="700">B</text>
+  <text x="89" y="70" font-size="8" fill="#e2e8f0">M(중점)</text>
+  <text x="90" y="24" font-size="9" fill="#7dd3fc" font-weight="700">수직이등분선</text>
+</svg>
+<div style="font-size:.66rem;color:#94a3b8;margin-top:2px">① AB를 수직으로 이등분하는 선</div>
+</div>
+<div style="text-align:center">
+<svg viewBox="0 0 170 130" width="140" height="107" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="90" x2="140" y2="90" stroke="#fbbf24" stroke-width="1.6"/>
+  <line x1="85" y1="20" x2="85" y2="110" stroke="#7dd3fc" stroke-width="1.6"/>
+  <line x1="85" y1="35" x2="30" y2="90" stroke="#64748b" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <line x1="85" y1="35" x2="140" y2="90" stroke="#64748b" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <line x1="54.7" y1="59.7" x2="60.3" y2="65.3" stroke="#94a3b8" stroke-width="1.4"/>
+  <line x1="109.7" y1="65.3" x2="115.3" y2="59.7" stroke="#94a3b8" stroke-width="1.4"/>
+  <circle cx="30" cy="90" r="4" fill="#fbbf24"/>
+  <circle cx="140" cy="90" r="4" fill="#fbbf24"/>
+  <circle cx="85" cy="35" r="3.5" fill="#a5b4fc"/>
+  <text x="18" y="82" font-size="10" fill="#fbbf24" font-weight="700">A</text>
+  <text x="146" y="82" font-size="10" fill="#fbbf24" font-weight="700">B</text>
+  <text x="90" y="30" font-size="10" fill="#a5b4fc" font-weight="700">P</text>
+  <text x="42" y="58" font-size="8" fill="#e2e8f0">PA</text>
+  <text x="110" y="58" font-size="8" fill="#e2e8f0">PB</text>
+</svg>
+<div style="font-size:.66rem;color:#94a3b8;margin-top:2px">② 이 선 위 어떤 점 P든 PA=PB</div>
+</div>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1rem">PA=PB인 점의 자취 → 수직이등분선(직선)</b>
+</div>
+예: A(0,0), B(4,0)로부터 같은 거리인 점 → PA=PB → x²+y²=(x−4)²+y² → 정리하면 <b style="color:#7dd3fc">x=2</b>(직선)<br><br>
+<span style="font-size:.8rem;color:#94a3b8">"두 점으로부터 같은 거리"라는 조건이 결과를 직선으로 만들어요.</span>
+</div>`, ans:null },
+
+  { tag:'원의 방정식 예고 — 일정한 거리의 자취 2/2', tagColor:'#fca5a5',
+    bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:150px">
+조건 딱 하나만 바꿔볼게요: "같은 거리"(두 점에서 똑같이) 대신, 한 점(중심)으로부터 <b style="color:#fca5a5">항상 일정한</b> 거리 r로 바꾸면?<br><br>
+절차는 완전히 똑같아요 — P(x,y)를 놓고, "중심 C(a,b)로부터 거리가 항상 r"이라는 조건을 두 점 사이의 거리 공식으로 세워요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+CP=r → √{(x−a)²+(y−b)²}=r → 양변 제곱<br>
+<b style="font-size:1.05rem">(x−a)² + (y−b)² = r²</b>
+</div>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
+🔗 <b style="color:#c4b5fd">원의 방정식(표준형) 자체가, 사실 자취의 방정식</b>이에요. 직선 단원의 자취 절차(①조건 세우기 ②P(x,y) ③거리공식 ④정리)를 한 단계도 안 바꾸고 그대로 따라간 결과예요.
+</div>
+    </div>
+    <svg viewBox="0 0 170 110" width="150" height="97" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="80" cy="55" r="38" fill="rgba(252,165,165,.06)" stroke="#fca5a5" stroke-width="1.8" stroke-dasharray="4 3"/>
+  <circle cx="80" cy="55" r="3.5" fill="#a5b4fc"/>
+  <circle cx="112" cy="33" r="3.5" fill="#e2e8f0"/>
+  <line x1="80" y1="55" x2="112" y2="33" stroke="#64748b" stroke-width="1.2" stroke-dasharray="2 2"/>
+  <text x="60" y="50" font-size="9" fill="#a5b4fc" font-weight="700">C(a,b)</text>
+  <text x="116" y="32" font-size="9" fill="#e2e8f0" font-weight="700">P</text>
+  <text x="90" y="42" font-size="8" fill="#94a3b8">r</text>
+</svg>
+  </div>
+</div>`, ans:null }
+],
+
+/* ── 직선→원 깜짝 연결: 정점을 지나는 도형 (2장) ── */
+'line-circle-fixed': [
+  { tag:'직선의 방정식 — 정점을 지나는 직선 1/2', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:150px">
+두 직선 l₁, l₂의 교점을 P라 하면, <b style="color:#7dd3fc">k(l₁)+l₂=0</b> 꼴의 식은 k값이 뭐든 항상 그 교점 P를 지나요 — k에 대한 항등식이기 때문이에요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1rem">k(a₁x+b₁y+c₁) + (a₂x+b₂y+c₂) = 0</b><br>
+<span style="font-size:.8rem;color:#94a3b8">→ k값과 무관하게 항상 l₁,l₂의 교점 P를 지남</span>
+</div>
+<span style="font-size:.8rem;color:#94a3b8">k가 어떤 값이든, 이 식이 지나는 점은 딱 하나(교점 P)로 고정돼 있어요.</span>
+    </div>
+    <svg viewBox="0 0 170 110" width="150" height="97" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="20" x2="140" y2="90" stroke="#7dd3fc" stroke-width="1.8"/>
+  <line x1="20" y1="90" x2="150" y2="15" stroke="#fbbf24" stroke-width="1.8"/>
+  <circle cx="85" cy="55" r="4" fill="#a5b4fc"/>
+  <text x="24" y="18" font-size="9" fill="#7dd3fc" font-weight="700">l₁</text>
+  <text x="140" y="14" font-size="9" fill="#fbbf24" font-weight="700">l₂</text>
+  <text x="90" y="50" font-size="9" fill="#a5b4fc" font-weight="700">P(정점)</text>
+</svg>
+  </div>
+</div>`, ans:null },
+
+  { tag:'원의 방정식 예고 — 두 원의 교점을 지나는 도형 2/2', tagColor:'#fca5a5',
+    bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:150px">
+이번엔 l₁, l₂ 자리에 <b style="color:#fca5a5">두 원</b>의 방정식을 넣어볼게요. 두 원 C₁, C₂가 두 점에서 만난다고 하면?<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1rem">C₁ + k·C₂ = 0</b> (k≠−1)<br>
+<span style="font-size:.8rem;color:#94a3b8">→ k값과 무관하게 두 원의 교점 2개를 항상 지나는 원</span>
+</div>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
+🔗 <b style="color:#c4b5fd">정점 논리와 완전히 똑같은 항등식 아이디어</b>예요. 딱 하나 특별한 경우: <b>k=−1</b>이면 x²,y² 항이 상쇄돼 원이 아니라 <b>직선</b>이 돼요 — 이걸 "공통현"이라고 불러요.
+</div>
+    </div>
+    <svg viewBox="0 0 190 110" width="160" height="93" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="75" cy="55" r="40" fill="none" stroke="#7dd3fc" stroke-width="1.8"/>
+  <circle cx="135" cy="55" r="32" fill="none" stroke="#fca5a5" stroke-width="1.8"/>
+  <circle cx="100" cy="26" r="3.5" fill="#a5b4fc"/>
+  <circle cx="100" cy="84" r="3.5" fill="#a5b4fc"/>
+  <text x="40" y="30" font-size="9" fill="#7dd3fc" font-weight="700">C₁</text>
+  <text x="150" y="30" font-size="9" fill="#fca5a5" font-weight="700">C₂</text>
+  <text x="104" y="20" font-size="8" fill="#a5b4fc">교점1</text>
+  <text x="104" y="98" font-size="8" fill="#a5b4fc">교점2</text>
+</svg>
+  </div>
+</div>`, ans:null }
+],
+
+/* ── 직선→원 깜짝 연결: 수직 조건 → 접선 (2장) ── */
+'line-circle-tangent': [
+  { tag:'직선의 방정식 — 두 직선의 수직 조건 1/2', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:150px">
+두 직선이 수직이라는 걸 판정하는 도구, 기억하죠? 기울기를 각각 m₁, m₂라 하면:<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+<b style="font-size:1.05rem">m₁ × m₂ = −1</b> ⟺ 두 직선은 수직
+</div>
+이 도구는 "두 직선"뿐 아니라, <b style="color:#7dd3fc">직선과 반지름</b> 사이에도 그대로 적용돼요.
+    </div>
+    <svg viewBox="0 0 160 140" width="140" height="123" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="90" y1="10" x2="90" y2="130" stroke="#475569" stroke-width="1"/>
+  <line x1="10" y1="70" x2="150" y2="70" stroke="#475569" stroke-width="1"/>
+  <line x1="30" y1="130" x2="140" y2="20" stroke="#7dd3fc" stroke-width="2.5"/>
+  <line x1="30" y1="20" x2="140" y2="130" stroke="#fbbf24" stroke-width="2.5"/>
+  <text x="34" y="126" font-size="9" fill="#7dd3fc" font-weight="700">m₁</text>
+  <text x="118" y="126" font-size="9" fill="#fbbf24" font-weight="700">m₂</text>
+</svg>
+  </div>
+</div>`, ans:null },
+
+  { tag:'원의 방정식 예고 — 접선은 반지름과 항상 수직 2/2', tagColor:'#fca5a5',
+    bg:'rgba(252,165,165,.07)', bd:'rgba(252,165,165,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:160px">
+원 위의 한 점 T에서 그은 접선은, <b style="color:#fca5a5">중심 C와 T를 잇는 반지름 CT와 항상 수직</b>이에요. "접한다"는 새 성질이 아니라, 이미 아는 수직 조건이 그대로 적용된 경우예요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:8px">
+반지름 CT의 기울기 m₁, 접선의 기울기 m₂ →<br><b style="font-size:1rem">m₁ × m₂ = −1</b>
+</div>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
+🔗 <b style="color:#c4b5fd">두 직선의 수직 조건과 완전히 똑같은 도구</b>예요. 예: 원 x²+y²=25 위의 점 T(3,4) → 반지름 기울기=4/3 → 접선 기울기=<span class="frac" style="font-size:.85em;margin:0 2px"><span class="num" style="border-bottom-width:1.3px;padding:0 5px 2px">−3</span><span class="den" style="padding:2px 5px 0">4</span></span>(곱이 −1) → 접선: y−4=<span class="frac" style="font-size:.85em;margin:0 2px"><span class="num" style="border-bottom-width:1.3px;padding:0 5px 2px">−3</span><span class="den" style="padding:2px 5px 0">4</span></span>(x−3)
+</div>
+    </div>
+    <svg viewBox="0 0 190 150" width="160" height="126" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="80" cy="90" r="45" fill="rgba(252,165,165,.06)" stroke="#fca5a5" stroke-width="1.8"/>
+  <circle cx="80" cy="90" r="3.5" fill="#a5b4fc"/>
+  <circle cx="115" cy="61" r="3.5" fill="#e2e8f0"/>
+  <line x1="80" y1="90" x2="115" y2="61" stroke="#7dd3fc" stroke-width="2"/>
+  <line x1="86" y1="26" x2="144" y2="96" stroke="#fbbf24" stroke-width="2.5"/>
+  <polyline points="109,66 114,72 120,67" fill="none" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="66" y="86" font-size="9" fill="#a5b4fc" font-weight="700">C</text>
+  <text x="119" y="58" font-size="9" fill="#e2e8f0" font-weight="700">T</text>
+  <text x="146" y="100" font-size="9" fill="#fbbf24" font-weight="700">접선</text>
+</svg>
+  </div>
+</div>`, ans:null }
+],
+
+/* ── 수직의 의미: 직접 풀어보기 (문제 3제 + 풀이, 6장) ── */
+'perp-practice': [
+  { tag:'문제 1 — 점과 직선 사이의 거리로 삼각형 넓이 구하기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.9;font-weight:600">
+직선 3x+4y−12=0이 x축, y축과 만나는 점을 각각 A, B라 하자. 원점 O에서 직선 AB까지의 거리를 이용하여 삼각형 OAB의 넓이를 구하시오.
+</div>`, ans:null },
+
+  { tag:'문제 1 — 풀이', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.9">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:160px">
+<b style="color:#f87171;font-size:.95rem">정답: 6</b><br><br>
+<b>1단계 — 절편 구하기</b>: y=0 대입 → 3x=12 → A(4,0). x=0 대입 → 4y=12 → B(0,3).<br><br>
+<b>2단계 — 원점에서 직선까지의 거리(개념5)</b>: d = |3(0)+4(0)−12| / √(3²+4²) = 12/5 = <b>2.4</b><br><br>
+<b>3단계 — 넓이 계산</b>: AB = √(4²+3²) = 5, 넓이 = ½×5×2.4 = <b>6</b><br><br>
+<span style="font-size:.8rem;color:#94a3b8">검산: △OAB는 O에서 직각이니까 넓이 = ½×4×3 = 6 ✓ — "밑변×높이"의 높이가 사실 점과 직선 사이의 거리였던 거예요.</span>
+    </div>
+    <svg viewBox="0 0 180 160" width="170" height="151" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="15" y1="140" x2="165" y2="140" stroke="#475569" stroke-width="1"/>
+  <line x1="30" y1="150" x2="30" y2="30" stroke="#475569" stroke-width="1"/>
+  <line x1="150" y1="140" x2="30" y2="50" stroke="#fbbf24" stroke-width="2.5"/>
+  <line x1="30" y1="140" x2="150" y2="140" stroke="#cbd5e1" stroke-width="1.6"/>
+  <line x1="30" y1="140" x2="30" y2="50" stroke="#cbd5e1" stroke-width="1.6"/>
+  <circle cx="30" cy="140" r="4" fill="#e2e8f0"/>
+  <circle cx="150" cy="140" r="4" fill="#a5b4fc"/>
+  <circle cx="30" cy="50" r="4" fill="#a5b4fc"/>
+  <circle cx="73" cy="82" r="3.5" fill="#7dd3fc"/>
+  <line x1="30" y1="140" x2="73" y2="82" stroke="#7dd3fc" stroke-width="1.8" stroke-dasharray="3 2"/>
+  <rect x="66" y="80" width="8" height="8" fill="none" stroke="#94a3b8" stroke-width="1" transform="rotate(53 73 82)"/>
+  <text x="16" y="152" font-size="9" fill="#e2e8f0" font-weight="700">O</text>
+  <text x="154" y="144" font-size="9" fill="#a5b4fc" font-weight="700">A(4,0)</text>
+  <text x="8" y="46" font-size="9" fill="#a5b4fc" font-weight="700">B(0,3)</text>
+  <text x="46" y="96" font-size="8" fill="#7dd3fc" font-weight="700">d=2.4</text>
+</svg>
+  </div>
+</div>`, ans:null },
+
+  { tag:'문제 2 — 원의 접선의 길이', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.9;font-weight:600">
+중심이 원점이고 반지름이 6인 원이 있다. 점 P(8,6)에서 이 원에 그은 접선의 길이를 구하시오.
+</div>`, ans:null },
+
+  { tag:'문제 2 — 풀이', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.9">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:150px">
+<b style="color:#f87171;font-size:.95rem">정답: 8</b><br><br>
+<b>1단계 — 중심에서 P까지의 거리(개념2)</b>: CP = √(8²+6²) = √100 = <b>10</b><br><br>
+<b>2단계 — 접선의 길이(개념6)</b>: PT = √(CP²−r²) = √(10²−6²) = √64 = <b>8</b><br><br>
+<span style="font-size:.8rem;color:#94a3b8">검산: 6-8-10은 3-4-5의 2배 — 피타고라스 세 쌍이라 계산이 딱 떨어져요.</span>
+    </div>
+    <svg viewBox="0 0 170 160" width="160" height="150" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="70" cy="90" r="60" fill="rgba(125,211,252,.06)" stroke="#7dd3fc" stroke-width="1.8"/>
+  <circle cx="70" cy="90" r="4" fill="#a5b4fc"/>
+  <circle cx="70" cy="30" r="4" fill="#e2e8f0"/>
+  <circle cx="150" cy="30" r="4.5" fill="#fbbf24"/>
+  <line x1="70" y1="90" x2="70" y2="30" stroke="#7dd3fc" stroke-width="2"/>
+  <line x1="70" y1="30" x2="150" y2="30" stroke="#fbbf24" stroke-width="2.5"/>
+  <line x1="70" y1="90" x2="150" y2="30" stroke="#64748b" stroke-width="1.1" stroke-dasharray="3 2"/>
+  <rect x="70" y="30" width="8" height="8" fill="none" stroke="#94a3b8" stroke-width="1"/>
+  <text x="26" y="84" font-size="9" fill="#a5b4fc" font-weight="700">O(0,0)</text>
+  <text x="26" y="22" font-size="9" fill="#e2e8f0" font-weight="700">T(0,6)</text>
+  <text x="154" y="26" font-size="9" fill="#fbbf24" font-weight="700">P(8,6)</text>
+</svg>
+  </div>
+</div>`, ans:null },
+
+  { tag:'문제 3 — 원의 현의 길이', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.9;font-weight:600">
+중심이 점 (5,3)이고 y축에 접하는 원이 있다. 이 원이 x축에 의하여 잘리는 현의 길이를 구하시오.
+</div>`, ans:null },
+
+  { tag:'문제 3 — 풀이', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.9">
+  <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:1;min-width:160px">
+<b style="color:#f87171;font-size:.95rem">정답: 8</b><br><br>
+<b>1단계 — 반지름 구하기</b>: y축에 접하므로 r = 중심의 x좌표 = <b>5</b><br><br>
+<b>2단계 — 중심에서 x축까지의 거리</b>: d = <b>3</b><br><br>
+<b>3단계 — 현의 길이(개념7)</b>: 2√(r²−d²) = 2√(5²−3²) = 2√16 = <b>8</b><br><br>
+<span style="font-size:.8rem;color:#94a3b8">검산: (x−5)²+(y−3)²=25에 y=0 대입 → x=1 또는 9, 두 점 사이 거리 = 8 ✓</span>
+    </div>
+    <svg viewBox="0 0 200 170" width="180" height="153" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+  <line x1="10" y1="120" x2="190" y2="120" stroke="#475569" stroke-width="1"/>
+  <line x1="20" y1="150" x2="20" y2="10" stroke="#475569" stroke-width="1"/>
+  <circle cx="95" cy="75" r="75" fill="rgba(125,211,252,.06)" stroke="#7dd3fc" stroke-width="1.8"/>
+  <circle cx="95" cy="75" r="4" fill="#a5b4fc"/>
+  <line x1="35" y1="120" x2="155" y2="120" stroke="#fbbf24" stroke-width="2.5"/>
+  <circle cx="35" cy="120" r="4" fill="#fbbf24"/>
+  <circle cx="155" cy="120" r="4" fill="#fbbf24"/>
+  <circle cx="95" cy="120" r="3.5" fill="#e2e8f0"/>
+  <line x1="95" y1="75" x2="95" y2="120" stroke="#7dd3fc" stroke-width="2"/>
+  <rect x="87" y="112" width="8" height="8" fill="none" stroke="#94a3b8" stroke-width="1"/>
+  <text x="98" y="70" font-size="9" fill="#a5b4fc" font-weight="700">C(5,3)</text>
+  <text x="98" y="112" font-size="8" fill="#e2e8f0">M(5,0)</text>
+  <text x="16" y="134" font-size="9" fill="#fbbf24" font-weight="700">(1,0)</text>
+  <text x="158" y="134" font-size="9" fill="#fbbf24" font-weight="700">(9,0)</text>
+</svg>
+  </div>
 </div>`, ans:null }
 ],
 

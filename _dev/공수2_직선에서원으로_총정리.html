@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학2 · 직선에서 원으로 — 깜짝 연결 카드</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.formula-box{border:1px solid #ccc;border-radius:8px;padding:.8rem 1rem;margin:.6rem 0;font-size:.98em;line-height:2.0}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 2px;font-size:.85em;line-height:1.15}
+.frac .num{border-bottom:1.3px solid currentColor;padding:0 5px 2px}
+.frac .den{padding:2px 5px 0}
+.same-box{border:2px solid #6366f1;border-radius:8px;padding:.8rem 1rem;margin:.6rem 0;font-size:.95em;line-height:2.0;background:rgba(99,102,241,.04)}
+@media print{
+svg text{fill:#333!important}
+svg line{stroke:#aaa!important}
+svg rect{stroke:#aaa!important}
+svg circle{stroke:#aaa!important}
+svg path{stroke:#aaa!important}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 직선에서 배운 게 원에서 어떻게 다시 나올까? (깜짝 연결 카드)</div>
+    <div class="toolbar-sub">거리 공식 연결(점과직선거리↔원과직선거리)은 <b>공수2_거리공식_총정리.html</b>에서 이미 다룸 — 이 파일은 나머지 3가지: 자취→원의 방정식, 정점→두 원의 교점, 평행·수직→접선</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 직선에서 배운 게, 원에서 다시 나온다?!</h1>
+
+<div class="card" style="background:rgba(99,102,241,.04);border:1.5px solid #6366f1">
+  <div class="card-meta">이 카드 시리즈 전체를 관통하는 질문</div>
+  <div class="card-tag">원의 방정식은 정말 "새 단원"일까?</div>
+  <div class="card-body">
+🦕 <b>토로: 원의 방정식을 배우기 시작하면 다들 "또 새로운 걸 외워야 하나" 하고 긴장해요. 그런데 사실은 아니에요!</b><br><br>
+직선의 방정식 단원에서 만든 도구들 — 자취를 세우는 법, 정점을 항등식으로 찾는 법, 평행·수직을 판정하는 법 — 이 그대로, 심지어 <b>글자 하나 안 바뀌고</b> 원의 방정식에서 다시 등장해요. 아래 3장의 카드에서 각각 확인해봐요.<br><br>
+<div class="toro-note">🦕 토로: "원의 방정식 = 새 단원"이 아니라 "직선의 방정식에서 배운 도구로, 원이라는 새 대상을 다루는 것"이라고 생각하면 훨씬 쉬워져요. 도구가 늘어난 게 아니라, 같은 도구를 다른 곳에 다시 쓰는 것뿐이에요.</div>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:0">🔍 연결 1 — 자취의 방정식</div>
+
+<div class="card">
+  <div class="card-meta">직선의 방정식 단원 — 주제6 자취의 방정식</div>
+  <div class="card-tag">"같은 거리"의 자취 → 직선</div>
+  <div class="card-body">
+직선의 방정식 단원에서 배운 자취 기법을 다시 떠올려봐요: 조건을 만족하는 점을 P(x,y)라 놓고, 그 조건을 그대로 식으로 세운 뒤 정리하면 자취의 방정식이 나와요.<br><br>
+<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:8px">
+<div style="text-align:center">
+<svg viewBox="0 0 170 110" width="100%" style="max-width:140px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="55" x2="140" y2="55" stroke="#f97316" stroke-width="2"/>
+  <line x1="85" y1="15" x2="85" y2="95" stroke="#10b981" stroke-width="2"/>
+  <rect x="85" y="47" width="8" height="8" fill="none" stroke="#999" stroke-width="1"/>
+  <line x1="54" y1="51" x2="60" y2="59" stroke="#f97316" stroke-width="1.4"/>
+  <line x1="109" y1="51" x2="115" y2="59" stroke="#f97316" stroke-width="1.4"/>
+  <circle cx="30" cy="55" r="4" fill="#6366f1"/>
+  <circle cx="140" cy="55" r="4" fill="#6366f1"/>
+  <circle cx="85" cy="55" r="3" fill="#333"/>
+  <text x="18" y="46" font-size="10" fill="#6366f1" font-weight="700">A</text>
+  <text x="146" y="46" font-size="10" fill="#6366f1" font-weight="700">B</text>
+  <text x="89" y="70" font-size="8" fill="#333">M(중점)</text>
+  <text x="90" y="24" font-size="9" fill="#10b981" font-weight="700">수직이등분선</text>
+</svg>
+<div style="font-size:11px;color:#666;margin-top:2px">① AB를 수직으로 이등분하는 선</div>
+</div>
+<div style="text-align:center">
+<svg viewBox="0 0 170 130" width="100%" style="max-width:140px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="90" x2="140" y2="90" stroke="#f97316" stroke-width="1.6"/>
+  <line x1="85" y1="20" x2="85" y2="110" stroke="#10b981" stroke-width="1.6"/>
+  <line x1="85" y1="35" x2="30" y2="90" stroke="#333" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <line x1="85" y1="35" x2="140" y2="90" stroke="#333" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <line x1="54.7" y1="59.7" x2="60.3" y2="65.3" stroke="#333" stroke-width="1.4"/>
+  <line x1="109.7" y1="65.3" x2="115.3" y2="59.7" stroke="#333" stroke-width="1.4"/>
+  <circle cx="30" cy="90" r="4" fill="#6366f1"/>
+  <circle cx="140" cy="90" r="4" fill="#6366f1"/>
+  <circle cx="85" cy="35" r="3.5" fill="#10b981"/>
+  <text x="18" y="82" font-size="10" fill="#6366f1" font-weight="700">A</text>
+  <text x="146" y="82" font-size="10" fill="#6366f1" font-weight="700">B</text>
+  <text x="90" y="30" font-size="10" fill="#10b981" font-weight="700">P</text>
+  <text x="42" y="58" font-size="8" fill="#333">PA</text>
+  <text x="110" y="58" font-size="8" fill="#333">PB</text>
+</svg>
+<div style="font-size:11px;color:#666;margin-top:2px">② 이 선 위 어떤 점 P든 PA=PB</div>
+</div>
+</div>
+<div class="formula-box">
+두 점 A, B로부터 <b>같은 거리</b>에 있는 점 P(x,y)의 자취 → 수직이등분선(직선)
+</div>
+예: A(0,0), B(4,0)로부터 같은 거리인 점의 자취 → PA=PB → x²+y² = (x−4)²+y² → 정리하면 <b>x=2</b>(직선)
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 단원 — 개념 예고 (자취 기법의 재사용)</div>
+  <div class="card-tag">"일정한" 거리의 자취 → 원</div>
+  <div class="card-body">
+조건 딱 하나만 바꿔볼게요: "같은 거리"(두 점으로부터 똑같은 거리) 대신, "<b>일정한</b> 거리"(한 점으로부터 항상 같은 값 r)로 바꾸면 어떻게 될까요?<br><br>
+<svg viewBox="0 0 200 100" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="50" r="3" fill="#4c1d95"/>
+  <circle cx="100" cy="50" r="35" fill="rgba(99,102,241,.06)" stroke="#6366f1" stroke-width="1.8" stroke-dasharray="4 3"/>
+  <circle cx="135" cy="50" r="3.5" fill="#10b981"/>
+  <line x1="100" y1="50" x2="135" y2="50" stroke="#10b981" stroke-width="1.5" stroke-dasharray="2 2"/>
+  <text x="90" y="42" font-size="9" fill="#4c1d95" font-weight="700">C(a,b)</text>
+  <text x="112" y="46" font-size="8" fill="#10b981">r (항상 일정)</text>
+</svg>
+쓰는 절차는 완전히 똑같아요 — 점 P(x,y)를 놓고, "중심 C(a,b)로부터 거리가 항상 r"이라는 조건을 두 점 사이의 거리 공식으로 그대로 식을 세워요.<br><br>
+<div class="formula-box">
+CP = r &nbsp;→&nbsp; √{(x−a)²+(y−b)²} = r &nbsp;→&nbsp; 양변 제곱<br>
+<b style="font-size:1.05em">(x−a)² + (y−b)² = r²</b>
+</div>
+<div class="same-box">
+<b style="color:#4c1d95">🔗 원의 방정식(표준형) 자체가, 사실 자취의 방정식이에요</b><br>
+직선의 방정식 단원의 자취 절차(①조건 세우기 ②P(x,y)로 놓기 ③거리공식으로 식 세우기 ④정리)를 <b>단 한 단계도 안 바꾸고</b> 그대로 따라간 결과가 원의 표준형 공식이에요. "조건이 달라지면 결과 도형도 달라진다"는 걸 직접 보여주는 예시예요.
+</div>
+<span style="font-size:.85em;color:#555">"자취를 구하라"는 문제를 만나면, "이게 직선이 되는 조건일까, 원이 되는 조건일까"부터 먼저 판단하는 습관을 들이세요 — 판단 기준은 "거리 조건이 두 대상 사이의 같음인가, 한 대상으로부터의 일정함인가"예요.</span>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc;page-break-before:always;break-before:page">🔍 연결 2 — 정점을 지나는 도형 (항등식)</div>
+
+<div class="card">
+  <div class="card-meta">직선의 방정식 단원 — 주제4 정점을 지나는 직선</div>
+  <div class="card-tag">k(l₁)+l₂=0 — k값과 상관없이 항상 지나는 점</div>
+  <div class="card-body">
+두 직선 l₁: a₁x+b₁y+c₁=0, l₂: a₂x+b₂y+c₂=0의 교점을 P라 하면, <b>k(l₁)+l₂=0</b> 꼴의 식은 k값이 뭐든 항상 그 교점 P를 지나요 — k에 대한 항등식이기 때문이에요.<br><br>
+<svg viewBox="0 0 200 100" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="20" x2="140" y2="90" stroke="#6366f1" stroke-width="1.8"/>
+  <line x1="20" y1="90" x2="150" y2="15" stroke="#f97316" stroke-width="1.8"/>
+  <line x1="10" y1="55" x2="180" y2="50" stroke="#10b981" stroke-width="1.4" stroke-dasharray="3 2"/>
+  <circle cx="83" cy="52" r="4" fill="#4c1d95"/>
+  <text x="30" y="18" font-size="9" fill="#6366f1" font-weight="700">l₁</text>
+  <text x="140" y="14" font-size="9" fill="#f97316" font-weight="700">l₂</text>
+  <text x="88" y="46" font-size="9" fill="#4c1d95" font-weight="700">P(정점)</text>
+</svg>
+<div class="formula-box">
+<b>k(a₁x+b₁y+c₁) + (a₂x+b₂y+c₂) = 0</b> → k값에 상관없이 항상 l₁, l₂의 교점 P를 지남
+</div>
+k가 어떤 값이든 이 식이 지나는 점은 딱 하나(교점 P)로 고정돼 있다는 게 핵심이에요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 단원 — 개념 예고 (항등식 논리의 재사용)</div>
+  <div class="card-tag">C₁+k·C₂=0 — 두 원의 교점을 지나는 도형</div>
+  <div class="card-body">
+이번엔 l₁, l₂ 자리에 <b>두 원</b>의 방정식을 넣어볼게요. 두 원 C₁: x²+y²+D₁x+E₁y+F₁=0, C₂: x²+y²+D₂x+E₂y+F₂=0이 두 점에서 만난다고 하면?<br><br>
+<svg viewBox="0 0 200 110" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="75" cy="55" r="40" fill="none" stroke="#6366f1" stroke-width="1.8"/>
+  <circle cx="135" cy="55" r="32" fill="none" stroke="#f97316" stroke-width="1.8"/>
+  <circle cx="100" cy="26" r="3.5" fill="#4c1d95"/>
+  <circle cx="100" cy="84" r="3.5" fill="#4c1d95"/>
+  <text x="40" y="30" font-size="9" fill="#6366f1" font-weight="700">C₁</text>
+  <text x="150" y="30" font-size="9" fill="#f97316" font-weight="700">C₂</text>
+  <text x="104" y="20" font-size="8" fill="#4c1d95">교점1</text>
+  <text x="104" y="98" font-size="8" fill="#4c1d95">교점2</text>
+</svg>
+<div class="formula-box">
+<b>C₁ + k·C₂ = 0</b> (k≠−1) → k값에 상관없이 두 원의 <b>교점 2개를 항상 지나는 원</b>
+</div>
+<div class="same-box">
+<b style="color:#4c1d95">🔗 정점 논리와 완전히 똑같은 항등식 아이디어</b><br>
+"교점을 지나는 도형이, k값과 무관하게 항상 나온다"는 원리가 직선(정점 1개)에서 원(교점 2개)으로 그대로 옮겨왔어요. 딱 하나 특별한 경우가 있는데, <b>k=−1</b>이면 x², y² 항이 서로 상쇄돼서 원이 아니라 <b>직선</b>이 돼요 — 이 직선을 "공통현"(두 원이 만나는 현을 포함하는 직선)이라고 불러요.
+</div>
+<span style="font-size:.85em;color:#555">정점 문제에서 "k에 대한 항등식"을 알아채야 했던 것처럼, 여기서도 "이 식이 k값과 무관하게 항상 성립하려면?"이라고 스스로 묻는 습관이 그대로 이어져요.</span>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc;page-break-before:always;break-before:page">🔍 연결 3 — 평행·수직 조건</div>
+
+<div class="card">
+  <div class="card-meta">직선의 방정식 단원 — 주제3 두 직선의 위치관계</div>
+  <div class="card-tag">기울기의 곱이 −1이면 수직</div>
+  <div class="card-body">
+두 직선이 수직이라는 걸 판정하는 도구, 기억하죠? 기울기를 각각 m₁, m₂라 하면:<br><br>
+<div class="formula-box">
+<b>m₁ × m₂ = −1</b> ⟺ 두 직선은 수직
+</div>
+이 도구는 "두 직선"뿐 아니라, <b>직선과 반지름</b> 사이에도 그대로 적용돼요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">원의 방정식 단원 — 개념 예고 (수직 조건의 재사용)</div>
+  <div class="card-tag">접선은 반지름과 항상 수직</div>
+  <div class="card-body">
+원 위의 한 점 T에서 그은 접선은, <b>중심 C와 T를 잇는 반지름 CT와 항상 수직</b>이에요. "접한다"는 새로운 성질이 아니라, 이미 아는 수직 조건이 그대로 적용된 경우예요.<br><br>
+<svg viewBox="0 0 200 130" width="100%" style="max-width:180px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="90" cy="65" r="38" fill="rgba(99,102,241,.06)" stroke="#6366f1" stroke-width="1.8"/>
+  <circle cx="90" cy="65" r="3" fill="#4c1d95"/>
+  <circle cx="119" cy="41" r="3.5" fill="#333"/>
+  <line x1="90" y1="65" x2="119" y2="41" stroke="#999" stroke-width="1.4" stroke-dasharray="2 2"/>
+  <line x1="90" y1="6" x2="148" y2="76" stroke="#f97316" stroke-width="2"/>
+  <polyline points="113,36 118,42 124,47" fill="none" stroke="#333" stroke-width="1.2"/>
+  <text x="76" y="60" font-size="9" fill="#4c1d95" font-weight="700">C</text>
+  <text x="123" y="38" font-size="9" fill="#333" font-weight="700">T</text>
+  <text x="150" y="72" font-size="9" fill="#f97316" font-weight="700">접선</text>
+</svg>
+<div class="formula-box">
+반지름 CT의 기울기를 m₁, 접선의 기울기를 m₂라 하면<br>
+<b>m₁ × m₂ = −1</b> (T가 원점이 아닐 때)
+</div>
+<div class="same-box">
+<b style="color:#4c1d95">🔗 두 직선의 수직 조건과 완전히 똑같은 도구</b><br>
+"어떤 두 직선이 수직이려면 기울기의 곱이 −1"이라는 판정법을, 대상만 "임의의 두 직선"에서 "반지름과 접선"으로 좁힌 것뿐이에요. 예: 원 x²+y²=25 위의 점 T(3,4)에서 그은 접선 → 반지름 CT의 기울기 = 4/3 → 접선의 기울기 = −3/4 (곱이 −1) → 접선의 방정식은 y−4=−<span class="frac"><span class="num">3</span><span class="den">4</span></span>(x−3)
+</div>
+<span style="font-size:.85em;color:#555">접선의 방정식을 구하는 문제를 만나면, "반지름의 기울기부터 구하고, 수직조건으로 접선의 기울기를 뒤집는다"는 순서가 여기서 나와요 — 직선 단원에서 이미 수백 번 써본 순서예요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body" style="font-size:12.5px;color:#666">
+🦕 토로: 세 가지 연결 모두 같은 패턴이에요 — <b>조건을 살짝 바꾸면(같은 거리→일정한 거리, 정점 1개→교점 2개, 임의의 두 직선→반지름과 접선), 도구는 그대로인데 결과 도형만 달라져요.</b> 원의 방정식 단원에서 "이거 처음 보는 건데?" 싶은 게 나오면, 먼저 "직선의 방정식에서 이거랑 닮은 도구가 있었나?"부터 떠올려보세요.
+  </div>
+</div>
+
+</div>
+</body>
+</html>
