@@ -34,9 +34,9 @@ svg circle{stroke:#aaa!important;fill:#999!important}
 svg polygon{stroke:#aaa!important;fill:#eee!important}
 svg path{stroke:#aaa!important}
 }
-.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em;line-height:1.3}
-.frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
-.frac .den{padding:1px 4px 0}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 2px;line-height:1.15;font-size:.92em}
+.frac .num{border-bottom:1.3px solid currentColor;padding:0 5px 2px}
+.frac .den{padding:2px 5px 0}
 </style>
 </head>
 <body>
@@ -44,7 +44,7 @@ svg path{stroke:#aaa!important}
 <div class="toolbar">
   <div>
     <div class="toolbar-label">🚧 빌드 중 — 공통수학2 · 직선의 방정식 (2/2 실전훈련)</div>
-    <div class="toolbar-sub">판별 드릴(사전 준비용)→연습문제 16제(하6·중2·상2·고난도2·최고난도2·심화연계2)→심화(핀란드식 실생활) · 개념/지도/서랍문제는 파일1(공수2_직선의방정식_1개념.html) 참고</div>
+    <div class="toolbar-sub">판별 드릴(사전 준비용)→연습문제 17제(하6·중2·상2·고난도2·최고난도2·심화연계2, 문항17 고난도 신규추가)→심화(핀란드식 실생활) · 개념/지도/서랍문제는 파일1(공수2_직선의방정식_1개념.html) 참고</div>
   </div>
   <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
 </div>
@@ -179,7 +179,7 @@ x축과 만나는 점(y=0): 0 = −2x+5 → x = <span class="frac"><span class="
   <text x="2" y="20" font-size="9" fill="#333" font-weight="700">(−1,4)</text>
   <text x="96" y="150" font-size="9" fill="#333" font-weight="700">(3,−4)</text>
 </svg>
-m = <span class="frac"><span class="num">−4−4</span><span class="den">3−(−1)</span></span> = <span class="frac"><span class="num">−8</span><span class="den">4</span></span> = −2<br>
+m = <span class="frac"><span class="num">(−4−4)</span><span class="den">(3−(−1))</span></span> = <span class="frac"><span class="num">(−8)</span><span class="den">4</span></span> = −2<br>
 y − 4 = −2(x−(−1)) = −2(x+1) → y = −2x + 2<br>
 검산: x=3 대입 → y=−6+2=−4 ✓
   </div>
@@ -263,7 +263,7 @@ y − 2 = −<span class="frac"><span class="num">1</span><span class="den">3</s
   <text x="149" y="164" font-size="9" fill="#f97316" font-weight="700">P(3,−2)</text>
   <text x="50" y="128" font-size="9" fill="#6366f1" font-weight="700">4x−3y+1=0</text>
 </svg>
-d = <span class="frac"><span class="num">|4(3)−3(−2)+1|</span><span class="den">√(4²+3²)</span></span> = <span class="frac"><span class="num">|12+6+1|</span><span class="den">√25</span></span> = <span class="frac"><span class="num">19</span><span class="den">5</span></span>
+d = <span class="frac"><span class="num">(|4(3)−3(−2)+1|)</span><span class="den">(√(4²+3²))</span></span> = <span class="frac"><span class="num">(|12+6+1|)</span><span class="den">√25</span></span> = <span class="frac"><span class="num">19</span><span class="den">5</span></span>
   </div>
 </div>
 
@@ -287,14 +287,19 @@ d = <span class="frac"><span class="num">|4(3)−3(−2)+1|</span><span class="d
   <line x1="20" y1="128" x2="74" y2="20" stroke="#f97316" stroke-width="1.8"/>
   <line x1="38" y1="110" x2="74" y2="2" stroke="#4c1d95" stroke-width="2.2" stroke-dasharray="5 3"/>
   <circle cx="56" cy="56" r="4" fill="#333"/>
-  <text x="60" y="52" font-size="9" fill="#333" font-weight="700">(2,3)</text>
+  <text x="60" y="52" font-size="9" fill="#333" font-weight="700">교점</text>
   <text x="78" y="96" font-size="8" fill="#6366f1" font-weight="700">x+y=5</text>
   <text x="2" y="46" font-size="8" fill="#f97316" font-weight="700">2x−y=1</text>
   <text x="74" y="16" font-size="8" fill="#4c1d95" font-weight="700">새 직선</text>
 </svg>
-두 식을 더하면 3x=6 → x=2, y=3 → 교점 (2, 3)<br>
-기울기 3, 점 (2,3): y−3 = 3(x−2) → <b>y = 3x − 3</b><br>
-검산: x=2 대입 → y=6−3=3 ✓
+두 직선의 교점을 지나는 직선은 <b>k(x+y−5) + (2x−y−1) = 0</b> 꼴로 나타낼 수 있어요 — k값과 무관하게 이 식은 항상 두 직선의 교점을 지나는 항등식이에요(파일1 주제4).<br><br>
+전개해서 x, y로 묶으면: (k+2)x + (k−1)y − (5k+1) = 0<br><br>
+기울기가 3이어야 하므로: −<span class="frac"><span class="num">k+2</span><span class="den">k−1</span></span> = 3 → −(k+2) = 3(k−1) → −4k = −1 → <b>k = 1/4</b><br><br>
+대입: <span class="frac"><span class="num">9</span><span class="den">4</span></span>x − <span class="frac"><span class="num">3</span><span class="den">4</span></span>y − <span class="frac"><span class="num">9</span><span class="den">4</span></span> = 0 → 양변에 <span class="frac"><span class="num">4</span><span class="den">3</span></span>을 곱하면 3x − y − 3 = 0 → <b>y = 3x − 3</b><br><br>
+검산: 두 직선을 직접 연립하면 교점은 (2,3) — y=3x−3에 x=2 대입 → y=3 ✓
+<div style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:10px 14px;margin-top:14px;font-size:.94em;line-height:1.85">
+🔗 구조 신호: "두 직선의 교점을 지나는 직선"이라는 표현은 두 식을 연립해서 교점 좌표부터 구하고 싶어지기 쉽지만(중등 방식), 이 단원의 핵심 도구는 <b>k(l₁)+l₂=0 항등식</b>이에요(파일1 주제4). 교점 좌표를 몰라도 바로 조건(여기선 기울기)을 대입해 k를 구할 수 있다는 게 이 기법의 핵심이고, 이후 배우는 심화 문제(정점+거리 결합 등)에서는 교점을 직접 구하는 게 훨씬 번거로워지기 때문에 지금부터 이 방식에 익숙해져야 해요.
+</div>
   </div>
 </div>
 
@@ -352,7 +357,7 @@ a+b = −1+2 = <b>1</b>
 </svg>
 꼭짓점을 지나는 직선이 넓이를 이등분하려면, 반드시 <b>대변(BC)의 중점</b>을 지나야 해요.<br>
 BC의 중점 M = (1, 0)<br>
-직선 A(0,6)–M(1,0)의 기울기 = <span class="frac"><span class="num">0−6</span><span class="den">1−0</span></span> = −6<br>
+직선 A(0,6)–M(1,0)의 기울기 = <span class="frac"><span class="num">(0−6)</span><span class="den">(1−0)</span></span> = −6<br>
 <b>y = −6x + 6</b><br>
 검산: △ABC 넓이 = <span class="frac"><span class="num">1</span><span class="den">2</span></span>×6×6=18, △ABM 넓이 = <span class="frac"><span class="num">1</span><span class="den">2</span></span>×3×6=9 → 정확히 절반 ✓
   </div>
@@ -422,7 +427,7 @@ P(2,1) 지나고 기울기 −2: y−1=−2(x−2) → <b>2x + y − 5 = 0</b><b
   <text x="4" y="104" font-size="9" fill="#f97316" font-weight="700">m: y=−x+3</text>
   <text x="34" y="132" font-size="8" fill="#4c1d95" font-weight="700">P</text>
 </svg>
-① AB의 중점 = (3,3), AB의 기울기 = <span class="frac"><span class="num">1−5</span><span class="den">5−1</span></span> = −1 → l의 기울기 = 1 (수직이등분선)<br>
+① AB의 중점 = (3,3), AB의 기울기 = <span class="frac"><span class="num">(1−5)</span><span class="den">(5−1)</span></span> = −1 → l의 기울기 = 1 (수직이등분선)<br>
 l: y − 3 = 1(x−3) → <b>l: y = x</b><br>
 ② l⊥m → 1×k = −1 → <b>k = −1</b> → m: y = −x+3<br>
 ③ 교점 P: l∩m → x = −x+3 → x=<span class="frac"><span class="num">3</span><span class="den">2</span></span> → <b>P(<span class="frac"><span class="num">3</span><span class="den">2</span></span>, <span class="frac"><span class="num">3</span><span class="den">2</span></span>)</b>
@@ -455,7 +460,7 @@ l: y − 3 = 1(x−3) → <b>l: y = x</b><br>
 ① l₁과 l₂가 평행: 2 = k−1 → <b>k=3</b><br>
 &nbsp;&nbsp;l₁과 l₃가 평행: 2 = −1 → 불가능(해 없음)<br>
 &nbsp;&nbsp;l₂와 l₃가 평행: k−1 = −1 → <b>k=0</b><br><br>
-② 세 직선이 한 점에서 만나는 경우: l₁∩l₃을 먼저 구하면 2x+1=−x+k → x=<span class="frac"><span class="num">k−1</span><span class="den">3</span></span>. 이 점이 l₂ 위에도 있어야 한다는 식을 정리하면 (k−1)²=−2k+9꼴이 되는데, 판별식이 음수라 실수 k가 존재하지 않음 → <b>이 경우는 없음</b><br><br>
+② 세 직선이 한 점에서 만나는 경우: l₁∩l₃을 먼저 구하면 2x+1=−x+k → x=<span class="frac"><span class="num">(k−1)</span><span class="den">3</span></span>. 이 점이 l₂ 위에도 있어야 한다는 식을 정리하면 (k−1)²=−2k+9꼴이 되는데, 판별식이 음수라 실수 k가 존재하지 않음 → <b>이 경우는 없음</b><br><br>
 따라서 유효한 값은 k=3, k=0 → 합 = <b>3</b>
   </div>
 </div>
@@ -519,11 +524,47 @@ l: y − 3 = 1(x−3) → <b>l: y = x</b><br>
   <text x="76" y="14" font-size="9" fill="#f97316" font-weight="700">B(3,10)</text>
 </svg>
 직선 l은 k값과 관계없이 항상 점 Q(0,1)을 지나요(y절편이 고정이니까). Q에서 A, B를 바라보는 <b>두 기울기 사이</b>에 k가 있어야 선분과 만나요.<br>
-Q(0,1)→A(2,4)의 기울기 = <span class="frac"><span class="num">4−1</span><span class="den">2−0</span></span> = <span class="frac"><span class="num">3</span><span class="den">2</span></span> = 1.5<br>
-Q(0,1)→B(3,10)의 기울기 = <span class="frac"><span class="num">10−1</span><span class="den">3−0</span></span> = 3<br>
+Q(0,1)→A(2,4)의 기울기 = <span class="frac"><span class="num">(4−1)</span><span class="den">(2−0)</span></span> = <span class="frac"><span class="num">3</span><span class="den">2</span></span> = 1.5<br>
+Q(0,1)→B(3,10)의 기울기 = <span class="frac"><span class="num">(10−1)</span><span class="den">(3−0)</span></span> = 3<br>
 → 1.5 ≤ k ≤ 3 이어야 선분 AB와 만나요.<br>
 이 범위의 자연수: k=2, k=3 → 최솟값은 <b>2</b><br><br>
 <span style="font-size:.85em;color:#555">검산: k=1.5일 때 l이 정확히 A(2,4)를 지나고(1.5×2+1=4 ✓), k=3일 때 정확히 B(3,10)을 지나요(3×3+1=10 ✓) — 딱 경계에서 맞닿는 것까지 확인했어요.</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 14-변형 — 매개변수 직선이 특정 사분면을 지나지 않는 조건 · 난이도 최고난도</div>
+  <div class="card-tag">문항 14-변형</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+직선 l: y = kx − 2 (k는 실수)가 제1사분면을 지나지 않도록 하는 실수 k의 값의 범위를 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 14-변형 — 풀이</div>
+  <div class="card-tag">💡 정답 k ≤ 0</div>
+  <div class="card-body">
+<svg viewBox="0 0 170 170" width="100%" style="max-width:150px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="85" x2="170" y2="85" stroke="#999" stroke-width="1"/>
+  <line x1="85" y1="0" x2="85" y2="170" stroke="#999" stroke-width="1"/>
+  <text x="150" y="80" font-size="9" fill="#999">Ⅰ</text>
+  <text x="12" y="80" font-size="9" fill="#999">Ⅱ</text>
+  <text x="12" y="100" font-size="9" fill="#999">Ⅲ</text>
+  <text x="150" y="100" font-size="9" fill="#999">Ⅳ</text>
+  <line x1="20" y1="145" x2="150" y2="145" stroke="#6366f1" stroke-width="2"/>
+  <line x1="85" y1="145" x2="150" y2="55" stroke="#f97316" stroke-width="2" stroke-dasharray="4 3"/>
+  <circle cx="85" cy="145" r="4" fill="#4c1d95"/>
+  <text x="90" y="158" font-size="9" fill="#4c1d95" font-weight="700">Q(0,−2)</text>
+  <text x="24" y="139" font-size="9" fill="#6366f1" font-weight="700">k=0일 때</text>
+  <text x="118" y="70" font-size="9" fill="#f97316" font-weight="700">k&gt;0이면 Ⅰ진입</text>
+</svg>
+l은 k값과 관계없이 항상 점 Q(0,−2)를 지나요(y절편 고정) — Q는 y축의 음의 부분, 제3·4사분면 경계에 있어요.<br><br>
+x&gt;0인 자리(제1사분면이 되려면 y도 양수여야 함)에서 y값을 살펴보면:<br>
+<b>k&gt;0</b>: x가 커질수록 y=kx−2도 결국 양수가 돼요 → 언젠가 반드시 제1사분면에 들어감<br>
+<b>k≤0</b>: x&gt;0일 때 kx≤0이므로 y=kx−2 ≤ −2 &lt; 0 → x&gt;0인 곳에서 y는 항상 음수, 제1사분면에 못 들어감<br><br>
+<b>→ k ≤ 0</b><br><br>
+<span style="font-size:.85em;color:#555">검산: k=0이면 l: y=−2 (수평선), 항상 y=−2&lt;0이라 제1사분면을 절대 못 지나요 ✓ (경계값도 포함)</span>
   </div>
 </div>
 
@@ -549,7 +590,7 @@ Q(0,1)→B(3,10)의 기울기 = <span class="frac"><span class="num">10−1</spa
   <text x="4" y="102" font-size="8" fill="#4c1d95" font-weight="700">이등분선 하나</text>
 </svg>
 자취 기법 그대로 — 점 P(x,y)를 놓고 "두 직선까지의 거리가 같다"를 식으로 세워요.<br>
-<span class="frac"><span class="num">|x+2y−1|</span><span class="den">√5</span></span> = <span class="frac"><span class="num">|2x+y+2|</span><span class="den">√5</span></span> → 분모가 같으니 <b>|x+2y−1| = |2x+y+2|</b><br><br>
+<span class="frac"><span class="num">(|x+2y−1|)</span><span class="den">√5</span></span> = <span class="frac"><span class="num">(|2x+y+2|)</span><span class="den">√5</span></span> → 분모가 같으니 <b>|x+2y−1| = |2x+y+2|</b><br><br>
 절댓값이 같다는 건 두 가지 경우가 있다는 뜻이에요 (부호가 같거나, 반대이거나):<br>
 <b>① x+2y−1 = 2x+y+2</b> → y−x−3=0 → <b>x−y+3=0</b><br>
 <b>② x+2y−1 = −(2x+y+2)</b> → x+2y−1+2x+y+2=0 → <b>3x+3y+1=0</b><br><br>
@@ -589,6 +630,42 @@ Q(0,1)→B(3,10)의 기울기 = <span class="frac"><span class="num">10−1</spa
 산술기하평균(m&gt;0일 때): m + <span class="frac"><span class="num">1</span><span class="den">m</span></span> ≥ 2√(m·<span class="frac"><span class="num">1</span><span class="den">m</span></span>) = 2, 등호는 m=1일 때(m&lt;0이면 m=−1일 때 같은 결과)<br>
 최솟값 S = <span class="frac"><span class="num">1</span><span class="den">2</span></span>×2 = <b>1</b><br><br>
 <span style="font-size:.85em;color:#555">검산: m=1일 때 직선①y=x(x절편0), 직선②y=−x+2(x절편2). 삼각형 (1,1),(0,0),(2,0) → 밑변2, 높이1, 넓이=1 ✓</span>
+  </div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:11px;font-weight:700;letter-spacing:.05em;margin:22px 0 10px;padding-top:10px;border-top:1px dashed #ccc">🆕 신규 추가 — 참고자료에서 새로 발견된 유형 (서랍 B5)</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 17 — 세 점이 한 직선 위에 있다(공선점) — 기울기 비교 (파일1의 주제1 참고) · 난이도 고난도</div>
+  <div class="card-tag">문항 17</div>
+  <div class="card-body" style="font-weight:600">
+    <div style="border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400">▶ 이 문제가 사용하는 개념: ________________________</div>
+세 점 A(−1, 3), B(2, k), C(k, 7)이 삼각형을 이루지 않도록 하는 모든 실수 k의 값의 합을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">연습문제 17 — 풀이</div>
+  <div class="card-tag">💡 정답 2</div>
+  <div class="card-body">
+<svg viewBox="0 0 200 140" width="100%" style="max-width:170px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="120" x2="180" y2="20" stroke="#6366f1" stroke-width="2"/>
+  <circle cx="20" cy="120" r="4" fill="#333"/>
+  <circle cx="90" cy="76" r="4" fill="#f97316"/>
+  <circle cx="180" cy="20" r="4" fill="#333"/>
+  <text x="2" y="134" font-size="9" fill="#333" font-weight="700">A(−1,3)</text>
+  <text x="94" y="72" font-size="9" fill="#f97316" font-weight="700">B(2,k)</text>
+  <text x="144" y="14" font-size="9" fill="#333" font-weight="700">C(k,7)</text>
+</svg>
+세 점이 삼각형을 이루지 못한다 = 세 점이 <b>한 직선 위(공선)</b>에 있다는 뜻이에요. 직선의 방정식이 아니라 <b>점 좌표만</b> 주어졌으니, <b>두 점 사이의 기울기</b>가 같다는 조건으로 세워요.<br><br>
+직선 AB의 기울기 = <span class="frac"><span class="num">k−3</span><span class="den">3</span></span>, 직선 AC의 기울기 = <span class="frac"><span class="num">4</span><span class="den">k+1</span></span><br>
+두 기울기가 같아야 하므로 <span class="frac"><span class="num">k−3</span><span class="den">3</span></span> = <span class="frac"><span class="num">4</span><span class="den">k+1</span></span> → (k−3)(k+1) = 12<br>
+전개하면 k²−2k−3 = 12 → k²−2k−15 = 0 → (k−5)(k+3) = 0 → k = 5 또는 k = −3<br><br>
+모든 k값의 합 = 5 + (−3) = <b>2</b><br><br>
+<span style="font-size:.85em;color:#555">검산: k=5일 때 A(−1,3),B(2,5),C(5,7) → 기울기AB=2/3, 기울기AC=4/6=2/3 ✓ / k=−3일 때 A(−1,3),B(2,−3),C(−3,7) → 기울기AB=−2, 기울기AC=4/(−2)=−2 ✓ (Node.js로 두 경우 모두 검증)</span>
+<div style="background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.25);border-radius:10px;padding:10px 14px;margin-top:14px;font-size:.94em;line-height:1.85">
+🔗 구조 신호: "삼각형을 이루지 않는다"는 표현이 나오면 문항12(서랍 B1, 파일1의 지도5)가 먼저 떠오르기 쉽지만, B1은 <b>직선의 방정식 3개</b>가 주어졌을 때(평행 또는 한 점에서 만남) 쓰는 기법이에요. 이 문제처럼 <b>점의 좌표만</b> 주어졌다면 직선을 세울 필요 없이, 두 점 사이의 기울기(파일1 주제1)가 같다는 식 하나로 바로 끝나요 — 같은 "삼각형이 안 된다"는 말이라도 <b>무엇이 주어졌는지</b>(직선 3개 vs 점 3개)에 따라 완전히 다른 서랍을 써야 합니다.
+</div>
   </div>
 </div>
 
