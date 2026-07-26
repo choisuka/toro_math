@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✡️ 유대인 수학 교육과정</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-height:100vh}
+.header{background:linear-gradient(135deg,#1a1000,#3d2b00);padding:18px 20px;border-bottom:2px solid #d4a017}
+.header h1{font-size:1.4rem;color:#f0c040}
+.header p{font-size:.8rem;color:#a08030;margin-top:4px}
+.tabs{display:flex;gap:0;overflow-x:auto;background:#161b22;border-bottom:1px solid #30363d}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:none;border:none;color:#8b949e;font-size:.82rem;font-weight:700;padding:12px 16px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}
+.tab.active{color:#f0c040;border-bottom-color:#f0c040}
+.tab:hover{color:#e6edf3}
+.content{padding:16px;max-width:900px;margin:0 auto}
+.grade-section{display:none}
+.grade-section.active{display:block}
+.unit-card{background:#161b22;border:1px solid #30363d;border-radius:14px;margin-bottom:14px;overflow:hidden}
+.unit-header{padding:16px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+.unit-header:hover{background:#1f2937}
+.unit-title{font-size:1rem;font-weight:700;color:#f0c040}
+.unit-sub{font-size:.76rem;color:#8b949e;margin-top:3px}
+.unit-arrow{color:#8b949e;transition:transform .3s;font-size:1rem}
+.unit-body{display:none;padding:18px;border-top:1px solid #30363d}
+.unit-body.open{display:block}
+.section{margin-bottom:20px}
+.section-title{font-size:.85rem;font-weight:700;padding:6px 12px;border-radius:20px;display:inline-block;margin-bottom:10px}
+.why .section-title{background:rgba(240,192,64,.15);color:#f0c040;border:1px solid rgba(240,192,64,.4)}
+.concept .section-title{background:rgba(88,166,255,.1);color:#58a6ff;border:1px solid rgba(88,166,255,.3)}
+.havruta .section-title{background:rgba(63,185,80,.1);color:#3fb950;border:1px solid rgba(63,185,80,.3)}
+.problems .section-title{background:rgba(188,140,255,.1);color:#bc8cff;border:1px solid rgba(188,140,255,.3)}
+.debate .section-title{background:rgba(248,81,73,.1);color:#f85149;border:1px solid rgba(248,81,73,.3)}
+.section p,.section li{font-size:.87rem;line-height:1.85;color:#c9d1d9}
+.section ul,.section ol{padding-left:18px}
+.section li{margin-bottom:5px}
+.q-item{background:#0d1117;border-left:3px solid #3fb950;padding:10px 14px;border-radius:0 8px 8px 0;margin-bottom:8px;font-size:.85rem;color:#c9d1d9}
+.q-item strong{color:#3fb950}
+.prob-box{background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-bottom:10px}
+.prob-box .prob-q{font-size:.9rem;font-weight:700;color:#bc8cff;margin-bottom:8px}
+.sol{background:#161b22;border-left:3px solid #bc8cff;padding:10px 14px;border-radius:0 8px 8px 0;margin-top:6px;font-size:.83rem;color:#c9d1d9}
+.sol strong{color:#bc8cff}
+.debate-item{background:#1a0d0d;border:1px solid rgba(248,81,73,.3);border-radius:10px;padding:12px 14px;margin-bottom:8px;font-size:.85rem;color:#c9d1d9}
+.debate-item::before{content:"🔥 ";font-size:.9rem}
+.story-line{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.story-avatar{flex:0 0 auto;font-size:1.3rem;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:#161b22;border:1px solid #30363d;border-radius:50%}
+.story-bubble{background:#1a0d0d;border:1px solid rgba(248,81,73,.25);border-radius:10px;padding:10px 14px;font-size:.85rem;color:#c9d1d9;flex:1}
+.story-bubble .story-name{font-weight:700;color:#f85149;margin-right:6px}
+.story-bubble.teacher{background:#0d1117;border-color:rgba(240,192,64,.3)}
+.story-bubble.teacher .story-name{color:#f0c040}
+.story-takeaway{margin-top:12px;background:rgba(63,185,80,.08);border:1px solid rgba(63,185,80,.3);border-radius:10px;padding:12px 14px;font-size:.85rem;color:#c9d1d9}
+.story-takeaway strong{color:#3fb950}
+.badge{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:10px;background:rgba(240,192,64,.2);color:#f0c040;border:1px solid rgba(240,192,64,.4);margin-left:8px;vertical-align:middle}
+
+/* ── 시험 ── */
+.exam-tab{color:#f85149 !important}
+.exam-tab.active{border-bottom-color:#f85149 !important;color:#f85149 !important}
+.exam-header{background:linear-gradient(135deg,#1a0d0d,#2d1010);border:1px solid rgba(248,81,73,.3);border-radius:14px;padding:16px 18px;margin-bottom:20px;text-align:center}
+.exam-header h2{color:#f85149;font-size:1.1rem;margin-bottom:4px}
+.exam-header p{color:#8b949e;font-size:.8rem}
+.exam-score-bar{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:10px 16px;display:flex;gap:16px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.exam-score-bar span{font-size:.82rem;color:#8b949e}
+.exam-score-bar strong{color:#f0c040}
+.q-block{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:16px;margin-bottom:14px}
+.q-block.correct{border-color:#3fb950;background:rgba(63,185,80,.06)}
+.q-block.wrong{border-color:#f85149;background:rgba(248,81,73,.06)}
+.q-num{font-size:.75rem;color:#8b949e;margin-bottom:6px}
+.q-text{font-size:.9rem;color:#e6edf3;font-weight:700;margin-bottom:12px;line-height:1.6}
+.q-opts{display:flex;flex-direction:column;gap:7px}
+.q-opt{background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:10px 14px;cursor:pointer;font-size:.85rem;color:#c9d1d9;transition:all .2s;text-align:left}
+.q-opt:hover{border-color:#f0c040;color:#f0c040}
+.q-opt.selected{border-color:#58a6ff;background:rgba(88,166,255,.1);color:#58a6ff}
+.q-opt.correct-ans{border-color:#3fb950 !important;background:rgba(63,185,80,.15) !important;color:#3fb950 !important}
+.q-opt.wrong-ans{border-color:#f85149 !important;background:rgba(248,81,73,.12) !important;color:#f85149 !important}
+.q-input{width:100%;background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:10px 14px;color:#e6edf3;font-size:.9rem;font-family:inherit;outline:none}
+.q-input:focus{border-color:#58a6ff}
+.q-feedback{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:.83rem;display:none}
+.q-feedback.show{display:block}
+.q-feedback.ok{background:rgba(63,185,80,.12);border:1px solid rgba(63,185,80,.3);color:#3fb950}
+.q-feedback.ng{background:rgba(248,81,73,.1);border:1px solid rgba(248,81,73,.3);color:#f85149}
+.exam-btns{display:flex;gap:10px;margin-top:20px}
+.btn-submit{flex:1;background:linear-gradient(135deg,#c0392b,#e74c3c);color:#fff;border:none;border-radius:12px;padding:14px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-submit:hover{filter:brightness(1.1)}
+.btn-retry{flex:1;background:rgba(255,255,255,.06);color:#94a3b8;border:none;border-radius:12px;padding:14px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-retry:hover{background:rgba(255,255,255,.12)}
+.result-box{background:linear-gradient(135deg,#1a1000,#2d2000);border:2px solid #f0c040;border-radius:16px;padding:24px;text-align:center;margin-top:20px;display:none}
+.result-box.show{display:block}
+.result-score{font-size:2.5rem;font-weight:900;color:#f0c040;margin-bottom:8px}
+.result-msg{font-size:1rem;color:#c9d1d9;margin-bottom:16px}
+.result-detail{font-size:.82rem;color:#8b949e}
+
+/* ── 카드뷰(전체 스크롤) ── */
+.cv-wrap{margin:0;display:flex;flex-direction:column;gap:14px}
+.havruta-opts{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.havruta-opt{text-align:left;background:#161b22;border:2px solid #30363d;color:#c9d1d9;border-radius:10px;padding:10px 14px;font-size:.83rem;cursor:pointer;font-family:inherit;box-shadow:0 3px 0 rgba(0,0,0,.3);transition:transform .08s,box-shadow .08s}
+.havruta-opt::before{content:"👉 "}
+.havruta-opt:hover{border-color:#3fb950;transform:translateY(-1px);box-shadow:0 4px 0 rgba(0,0,0,.3)}
+.havruta-opt:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.3)}
+.havruta-opt.selected{border-color:#3fb950;background:rgba(63,185,80,.1);box-shadow:0 1px 0 rgba(0,0,0,.3);transform:translateY(2px)}
+.havruta-fb{display:none;margin-top:8px;padding:10px 12px;border-radius:8px;font-size:.83rem;line-height:1.7}
+.havruta-fb.show{display:block}
+.havruta-fb.ok{background:rgba(63,185,80,.1);border:1px solid rgba(63,185,80,.3);color:#c9d1d9}
+.havruta-fb.think{background:rgba(240,192,64,.08);border:1px solid rgba(240,192,64,.3);color:#c9d1d9}
+.havruta-reveal{display:none;margin-top:4px}
+.havruta-reveal.show{display:block}
+.havruta-show-btn{margin-top:8px;background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.35);color:#f0c040;border-radius:8px;padding:8px 14px;font-size:.82rem;cursor:pointer;font-family:inherit}
+.havruta-show-btn:hover{background:rgba(240,192,64,.18)}
+.fb-diagram{margin-top:8px;background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:10px;font-size:.95rem;text-align:center;line-height:1.7}
+.fb-diagram .bundle{display:inline-block;border:1px dashed #58a6ff;border-radius:6px;padding:3px 6px;margin:2px}
+.fb-diagram .single{display:inline-block;border:1px solid #f85149;border-radius:6px;padding:3px 6px;margin:2px}
+.fb-diagram .arrow{color:#8b949e;margin:0 6px}
+.fb-diagram .cap{display:block;font-size:.72rem;color:#8b949e;margin-top:4px}
+.expr-item{background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:.82rem;color:#c9d1d9;line-height:1.6}
+.expr-num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:rgba(240,192,64,.15);color:#f0c040;border-radius:50%;font-size:.72rem;font-weight:700;margin-right:6px;flex:0 0 auto}
+.expr-item strong{color:#bc8cff}
+.expr-ans{color:#3fb950;font-weight:700}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="https://choisuka.github.io/toro_math/" style="display:inline-block;margin-bottom:8px;font-size:.8rem;color:rgba(255,255,255,.6);text-decoration:none;background:rgba(255,255,255,.08);padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.15)">← 토로매쓰 홈</a>
+  <h1>✡️ 유대인 수학 교육과정</h1>
+  <p>하브루타 · 소크라테스식 질문 · 왜(Why) 먼저 · 다양한 풀이법 · 심화 토론</p>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showGrade('e1')">초1</button>
+  <button class="tab" onclick="showGrade('e2')">초2</button>
+  <button class="tab" onclick="showGrade('e3')">초3</button>
+  <button class="tab" onclick="showGrade('e4')">초4</button>
+  <button class="tab" onclick="showGrade('e5')">초5</button>
+  <button class="tab" onclick="showGrade('e6')">초6</button>
+  <button class="tab" onclick="showGrade('m1')">중1</button>
+  <button class="tab" onclick="showGrade('m2')">중2</button>
+  <button class="tab" onclick="showGrade('m3')">중3</button>
+  <button class="tab exam-tab" onclick="showGrade('t1')">📝 중1시험</button>
+  <button class="tab exam-tab" onclick="showGrade('t2')">📝 중2시험</button>
+  <button class="tab exam-tab" onclick="showGrade('t3')">📝 중3시험</button>
+</div>
+
+<div class="content">
+
+<!-- ===== 초등 1학년 ===== -->
+<div id="g-e1" class="grade-section active">
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🔢 수와 숫자 <span class="badge">초1</span></div><div class="unit-sub">1~100까지 수 읽기·쓰기·순서</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>세상의 모든 것은 수로 표현된다. 사과 3개, 친구 5명, 나이 7살… 수를 알면 세상을 읽을 수 있다. 랍비들은 말했다: "숫자를 모르는 사람은 눈을 감고 시장을 걷는 것과 같다."</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>수(數)는 양을 나타내는 추상적 개념, 숫자는 수를 표현하는 기호(1,2,3…)</li>
+          <li>1~9: 한 자리 수 / 10~99: 두 자리 수(십의 자리 + 일의 자리) / 100: 세 자리의 시작</li>
+          <li>수직선: 수의 순서와 크기를 한눈에 보여주는 도구</li>
+          <li>홀수(1,3,5…)와 짝수(2,4,6…): 둘씩 나뉘는지 아닌지</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문 (짝과 함께 토론)</div>
+        <div class="q-item"><strong>Q1.</strong> 0은 수일까요, 아닐까요? 0이 없다면 어떤 문제가 생길까요?</div>
+        <div class="q-item"><strong>Q2.</strong> 10은 왜 두 자리 숫자로 쓸까요? 10을 한 자리로 쓸 방법이 있을까요?</div>
+        <div class="q-item"><strong>Q3.</strong> 가장 큰 수가 있을까요? 수는 끝이 있을까요, 없을까요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 47과 74 중 어느 것이 더 큰가요?</div>
+          <div class="sol"><strong>풀이①(자리값):</strong> 47의 십의 자리=4, 74의 십의 자리=7 → 7>4이므로 74가 더 크다</div>
+          <div class="sol"><strong>풀이②(수직선):</strong> 수직선에 47과 74를 표시하면 74가 오른쪽 → 74가 더 크다</div>
+          <div class="sol"><strong>풀이③(실생활):</strong> 47원짜리 사탕 vs 74원짜리 사탕 — 74원이 더 비싸다 = 74가 더 크다</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">수가 없던 시대에 사람들은 어떻게 양을 표현했을까? (돌멩이, 손가락, 눈금…) 지금 우리의 숫자 시스템이 최선일까?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">➕ 덧셈과 뺄셈 <span class="badge">초1</span></div><div class="unit-sub">합이 20 이하인 덧셈·뺄셈</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>덧셈은 "합치는 것", 뺄셈은 "나누거나 떠나는 것"이다. 시장에서 거스름돈을 계산하고, 친구와 사탕을 나눌 때 매일 쓰인다. 탈무드에서는 수학을 "정직한 언어"라고 불렀다 — 더하거나 빼도 진실은 변하지 않는다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>덧셈(+): 두 수를 합치는 연산 → 3+4=7 (3개와 4개를 한 묶음으로)</li>
+          <li>뺄셈(−): 전체에서 일부를 제거하는 연산 → 7−3=4</li>
+          <li>덧셈의 교환법칙: 3+5=5+3 (순서를 바꿔도 결과 같음)</li>
+          <li>덧셈과 뺄셈은 역연산: 3+4=7 ↔ 7−4=3</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 3+5와 5+3의 답이 같은 이유가 무엇일까요? 뺄셈도 순서를 바꿀 수 있나요?</div>
+        <div class="q-item"><strong>Q2.</strong> 0을 더하면 왜 수가 변하지 않을까요? 0을 빼면요?</div>
+        <div class="q-item"><strong>Q3.</strong> "사라지는 것"과 "빼는 것"은 같은 의미인가요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 어항에 금붕어 8마리가 있었는데 3마리가 다른 어항으로 옮겨갔습니다. 몇 마리 남았나요?</div>
+          <div class="sol"><strong>풀이①(직접 세기):</strong> ●●●●●●●● 에서 ●●● 지우기 → 5개</div>
+          <div class="sol"><strong>풀이②(수직선):</strong> 8에서 왼쪽으로 3칸 이동 → 5</div>
+          <div class="sol"><strong>풀이③(역연산):</strong> ?+3=8 → ?=8−3=5</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">빚(마이너스)은 뺄셈인가요? 가진 돈보다 더 쓰면 어떤 수가 될까요? 음수의 세계를 상상해보세요.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /e1 -->
+
+<!-- ===== 초등 2학년 ===== -->
+<div id="g-e2" class="grade-section">
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">✖️ 곱셈의 기초 <span class="badge">초2</span></div><div class="unit-sub">곱셈의 의미·구구단 2~5단</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>같은 수를 여러 번 더하는 것이 귀찮을 때 곱셈이 탄생했다. 3+3+3+3=12보다 3×4=12가 훨씬 빠르다. 고대 유대 상인들은 곱셈으로 상품 가격을 순식간에 계산했다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>곱셈 = 같은 수의 반복 덧셈: 3×4 = 3+3+3+3 = 12</li>
+          <li>3×4에서 3=피승수(묶음의 크기), 4=승수(묶음의 수)</li>
+          <li>교환법칙: 3×4 = 4×3 = 12 (묶음 방향만 다를 뿐)</li>
+          <li>구구단은 암기가 아닌 이해: 패턴을 찾아라!</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 3×4와 4×3의 그림(배열)을 그려보세요. 어떻게 다르고 어떻게 같나요?</div>
+        <div class="q-item"><strong>Q2.</strong> 2단의 모든 답은 짝수입니다. 왜 그럴까요?</div>
+        <div class="q-item"><strong>Q3.</strong> 곱셈이 없다면 어떤 불편함이 생길까요? 실생활 예를 3가지 드세요.</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 달걀이 한 줄에 4개씩 3줄로 놓여있습니다. 달걀은 모두 몇 개인가요?</div>
+          <div class="sol"><strong>풀이①(덧셈):</strong> 4+4+4=12개</div>
+          <div class="sol"><strong>풀이②(곱셈):</strong> 4×3=12개</div>
+          <div class="sol"><strong>풀이③(배열 그림):</strong> ●●●● / ●●●● / ●●●● → 가로 4, 세로 3 → 12</div>
+          <div class="sol"><strong>풀이④(교환):</strong> 3×4도 같은 값 = 12 (가로세로 방향만 다름)</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">구구단을 외우는 게 중요할까요, 이해하는 게 중요할까요? 계산기가 있는 세상에서 곱셈을 배워야 하는 이유는?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📏 길이와 단위 <span class="badge">초2</span></div><div class="unit-sub">cm·m 측정, 단위 변환</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>단위가 없으면 소통이 불가능하다. "조금만 잘라줘"는 사람마다 다르다. 고대에는 팔뚝(규빗)으로 재다 보니 왕의 팔뚝과 백성의 팔뚝이 달라 혼란이 생겼다. 표준 단위는 공정한 사회의 기반이다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>1cm = 엄지손가락 너비 정도 / 1m = 100cm</li>
+          <li>자(ruler)로 재기: 눈금의 0에 물체의 한쪽 끝을 맞춤</li>
+          <li>어림하기: 정확하지 않아도 "약 몇 cm"라고 추정하는 능력</li>
+          <li>실생활 단위: 연필 약 17cm, 교실 문 약 200cm(=2m)</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 왜 cm를 만들었을까요? cm가 없었다면 어떻게 길이를 표현했을까요?</div>
+        <div class="q-item"><strong>Q2.</strong> 1m와 100cm는 같은데 언제 m를 쓰고 언제 cm를 쓰는 게 편할까요?</div>
+        <div class="q-item"><strong>Q3.</strong> 세상 모든 나라가 같은 단위를 써야 할까요? 왜 미국은 인치를 쓸까요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 리본이 1m 35cm 있습니다. 58cm를 잘라내면 몇 cm가 남나요?</div>
+          <div class="sol"><strong>풀이①(cm로 통일):</strong> 1m35cm=135cm / 135−58=77cm</div>
+          <div class="sol"><strong>풀이②(단위별 계산):</strong> 35cm에서 58cm 불가 → 1m를 100cm로 분해 → 100+35=135cm → 135−58=77cm</div>
+          <div class="sol"><strong>풀이③(보수 이용):</strong> 58+42=100, 100+35=135, 135−58=42+35=77cm</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">1미터의 길이는 누가 정했을까요? 실제로 지구 둘레를 기준으로 정해졌습니다. 왜 지구를 기준으로 했을까요? 지금도 그 기준이 맞을까요?</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /e2 -->
+
+<!-- ===== 초등 3학년 ===== -->
+<div id="g-e3" class="grade-section">
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">➗ 나눗셈 <span class="badge">초3</span></div><div class="unit-sub">나눗셈의 의미·몫과 나머지</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e3div">
+        <div id="cv-e3div-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🔵 분수의 기초 <span class="badge">초3</span></div><div class="unit-sub">분수의 뜻·단위분수·크기비교</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>1보다 작은 부분을 표현해야 할 때 분수가 탄생했다. 피자 반 조각, 물 3분의 2컵… 분수 없이는 정밀한 요리도, 공정한 분배도 불가능하다. 고대 이집트인들도 분수를 사용했다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>분수: 전체를 똑같이 나눈 것의 일부 → 1/4 = 4등분 중 1개</li>
+          <li>분모(아래): 전체를 몇 등분했는가 / 분자(위): 그중 몇 개</li>
+          <li>단위분수: 분자가 1인 분수 (1/2, 1/3, 1/4…)</li>
+          <li>크기비교: 분모가 같으면 분자가 클수록 크다 (3/5 > 2/5)</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 1/2와 2/4는 같은 크기인가요? 그림으로 설명해보세요.</div>
+        <div class="q-item"><strong>Q2.</strong> 분모가 클수록 조각이 작아지는 이유는?</div>
+        <div class="q-item"><strong>Q3.</strong> 분수로 표현할 수 없는 수도 있을까요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 3/8과 5/8 중 어느 것이 더 큰가요?</div>
+          <div class="sol"><strong>풀이①(분자비교):</strong> 분모가 같으므로 분자 비교: 5>3 → 5/8이 더 크다</div>
+          <div class="sol"><strong>풀이②(그림):</strong> 8칸짜리 막대에서 3칸 vs 5칸 → 5칸이 더 길다</div>
+          <div class="sol"><strong>풀이③(뺄셈):</strong> 5/8−3/8=2/8>0 이므로 5/8이 크다</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">1/2과 1/3 중 어느 쪽이 클까요? 분모가 다르면 어떻게 비교할까요? 피자로 생각해보면 어떤가요?</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /e3 -->
+
+<!-- ===== 초등 4학년 ===== -->
+<div id="g-e4" class="grade-section">
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🔢 큰 수와 자릿값 <span class="badge">초4</span></div><div class="unit-sub">만·억·조 / 다섯 자리 이상 수</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>국가 예산은 수백조 원, 지구에서 태양까지는 약 1억 5천만km. 큰 수를 이해해야 뉴스를 읽고 세상을 이해할 수 있다. 탈무드는 "숫자를 알면 세상의 크기를 안다"고 했다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>만(10,000) = 1,0000 / 억(100,000,000) = 1,0000,0000 / 조 = 1,0000,0000,0000</li>
+          <li>한국식 4자리 단위 vs 서양식 3자리 단위(thousand, million, billion)</li>
+          <li>자릿값: 숫자의 위치에 따라 값이 다름 → 325에서 3은 300을 의미</li>
+          <li>수 읽기: 3,241,567 = 삼백이십사만 천오백육십칠</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 1억이 얼마나 큰 수인지 실감할 수 있는 예를 만들어보세요. (1억 초 = 몇 년?)</div>
+        <div class="q-item"><strong>Q2.</strong> 우리나라는 4자리마다 단위가 바뀌는데 미국은 3자리마다 바뀝니다. 어느 쪽이 더 편할까요?</div>
+        <div class="q-item"><strong>Q3.</strong> "무한대(∞)"는 가장 큰 수일까요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 3억 4천만을 숫자로 쓰시오.</div>
+          <div class="sol"><strong>풀이①(단위분해):</strong> 3억=300,000,000 / 4천만=40,000,000 → 합=340,000,000</div>
+          <div class="sol"><strong>풀이②(자릿값표):</strong> 억의 자리=3, 천만의 자리=4, 나머지=0 → 340,000,000</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">1조 원이 생긴다면 어떻게 쓸 것인가요? 하루에 100만 원씩 쓰면 다 쓰는 데 얼마나 걸릴까요? 계산해보세요.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📐 각도와 삼각형 <span class="badge">초4</span></div><div class="unit-sub">각도 측정·삼각형의 분류</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>건물을 짓고, 다리를 놓고, 피라미드를 세우는 데 모두 각도가 필요했다. 솔로몬의 성전을 짓는 데도 정밀한 각도 계산이 사용됐다. 각도는 "방향"을 수학으로 표현하는 언어다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>각: 두 반직선이 만나는 벌어짐의 크기 / 단위: 도(°)</li>
+          <li>직각=90° / 예각<90° / 둔각>90° / 평각=180°</li>
+          <li>삼각형 분류: 예각삼각형·직각삼각형·둔각삼각형 (각도 기준)</li>
+          <li>삼각형 세 각의 합 = 항상 180°</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 삼각형의 세 각의 합이 항상 180°인 이유를 종이를 접어서 증명해보세요.</div>
+        <div class="q-item"><strong>Q2.</strong> 직각보다 큰 각을 두 개 가진 삼각형이 존재할 수 있나요?</div>
+        <div class="q-item"><strong>Q3.</strong> 왜 360°를 한 바퀴로 정했을까요? 100°로 정하면 어떨까요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 삼각형의 두 각이 65°와 75°일 때 나머지 한 각은?</div>
+          <div class="sol"><strong>풀이①(공식):</strong> 180°−65°−75°=40°</div>
+          <div class="sol"><strong>풀이②(단계):</strong> 65+75=140, 180−140=40°</div>
+          <div class="sol"><strong>풀이③(검증):</strong> 65+75+40=180° ✓ 예각삼각형(세 각 모두 90° 미만)</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">지구 표면처럼 굽어진 공간에서는 삼각형의 세 각의 합이 180°를 넘는다고 합니다. 수학의 법칙이 공간에 따라 달라질 수 있다면, 수학은 절대적 진리일까요?</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /e4 -->
+
+<!-- ===== 초등 5학년 ===== -->
+<div id="g-e5" class="grade-section">
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🔵 약수와 배수 <span class="badge">초5</span></div><div class="unit-sub">약수·배수·최대공약수·최소공배수</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e5gcd">
+        <div id="cv-e5gcd-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📊 비율과 백분율 <span class="badge">초5</span></div><div class="unit-sub">비·비율·백분율·할인율</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>"30% 할인"은 얼마나 싸진 걸까? "투표율 65%"는 무엇을 의미할까? 비율은 현대 사회에서 가장 많이 쓰이는 수학 개념이다. 주식, 환율, 통계 모두 비율이다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>비(比): a:b → a를 b로 나눈 관계</li>
+          <li>비율: a÷b (소수 또는 분수로 표현)</li>
+          <li>백분율(%): 비율×100 → 0.3=30%</li>
+          <li>할인율 적용: 원가×(1−할인율) = 판매가</li>
+          <li>할인 후 금액 = 원가 × (100%−할인율%)/100</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 30% 할인과 1/3 할인은 같을까요 다를까요? 계산해보세요.</div>
+        <div class="q-item"><strong>Q2.</strong> 50% 할인 후 다시 50% 할인하면 공짜인가요? 왜 아닌가요?</div>
+        <div class="q-item"><strong>Q3.</strong> 뉴스에서 "실업률 3%"라고 할 때 실제로는 어떤 계산인가요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 정가 25,000원인 옷이 40% 할인 중입니다. 얼마를 내야 하나요?</div>
+          <div class="sol"><strong>풀이①(할인액 계산):</strong> 25,000×0.4=10,000 → 25,000−10,000=15,000원</div>
+          <div class="sol"><strong>풀이②(남은 비율):</strong> 100%−40%=60% → 25,000×0.6=15,000원</div>
+          <div class="sol"><strong>풀이③(분수):</strong> 40%=2/5 → 25,000×3/5=15,000원</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">마트에서 "원래 가격 100,000원 → 현재 60,000원"이라는 표시를 봤습니다. 실제로 원래 가격이 100,000원이었을까요? 소비자를 속이는 숫자 트릭에는 어떤 것이 있나요?</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /e5 -->
+
+<!-- ===== 초등 6학년 ===== -->
+<div id="g-e6" class="grade-section">
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">⭕ 원의 넓이와 원주 <span class="badge">초6</span></div><div class="unit-sub">원주율 π · 원의 둘레와 넓이</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>바퀴, 파이프, 동전, 피자 — 원은 자연과 인공물 어디에나 있다. π(파이)는 3,000년 전부터 계산되어온 가장 신비로운 수다. 원을 이해하면 우주의 행성 궤도도 이해할 수 있다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>원주율 π ≈ 3.14159… (원의 지름과 둘레의 비율, 무한소수)</li>
+          <li>원의 둘레(원주) = 2πr = πd</li>
+          <li>원의 넓이 = πr²</li>
+          <li>왜 πr²인가: 원을 무한히 잘게 잘라 직사각형으로 펴면 가로≈πr, 세로=r</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> π는 왜 3.14로 딱 떨어지지 않을까요? 이것이 수학적으로 어떤 의미인가요?</div>
+        <div class="q-item"><strong>Q2.</strong> 반지름이 2배가 되면 넓이는 몇 배가 될까요? 왜 그럴까요?</div>
+        <div class="q-item"><strong>Q3.</strong> 같은 둘레를 가진 도형 중 원의 넓이가 가장 크다고 합니다. 이것이 사실인지 정사각형과 비교해보세요.</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 반지름 5cm인 원의 넓이와 둘레를 구하시오. (π=3.14)</div>
+          <div class="sol"><strong>넓이:</strong> πr² = 3.14×5² = 3.14×25 = 78.5 cm²</div>
+          <div class="sol"><strong>둘레:</strong> 2πr = 2×3.14×5 = 31.4 cm</div>
+          <div class="sol"><strong>검증:</strong> 넓이 = 둘레/2 × r = 31.4/2 × 5 = 15.7×5 = 78.5 ✓</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">π는 소수점 이하가 절대 반복되지 않는 무리수입니다. 현재 100조 자리까지 계산했습니다. 이 계산이 실용적 의미가 있을까요? 수학을 위한 수학의 가치는 무엇인가요?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📊 비례식과 비례배분 <span class="badge">초6</span></div><div class="unit-sub">비례식·전항·후항·비례배분</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>지도에서 1cm가 실제 1km라면 서울-부산은 지도에서 얼마? 요리 레시피를 2인분→4인분으로 늘리는 것도 비례다. 비례는 "관계를 유지하면서 크기를 바꾸는" 수학이다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>비례식: a:b = c:d → ad = bc (내항의 곱 = 외항의 곱)</li>
+          <li>전항:후항 = 전항:후항 (같은 비율 유지)</li>
+          <li>비례배분: 전체를 주어진 비로 나누기 → 100을 3:2로 → 60:40</li>
+          <li>정비례: x가 2배 → y도 2배 / 반비례: x가 2배 → y는 1/2배</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> "내항의 곱 = 외항의 곱"이 되는 이유를 분수로 설명해보세요.</div>
+        <div class="q-item"><strong>Q2.</strong> 정비례와 반비례 관계를 실생활에서 각각 3가지씩 찾아보세요.</div>
+        <div class="q-item"><strong>Q3.</strong> 지도의 축척 1:25,000의 의미는? 지도에서 4cm는 실제로 몇 km인가요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 900원을 언니와 동생이 5:4로 나누면 각각 얼마인가요?</div>
+          <div class="sol"><strong>풀이①(비례배분):</strong> 전체=5+4=9 / 언니=900×5/9=500원 / 동생=900×4/9=400원</div>
+          <div class="sol"><strong>풀이②(1단위):</strong> 1단위=900÷9=100원 / 언니=100×5=500원 / 동생=100×4=400원</div>
+          <div class="sol"><strong>검증:</strong> 500+400=900원 ✓</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">황금비(1:1.618…)는 가장 아름다운 비율이라고 합니다. 파르테논 신전, 모나리자, 스마트폰 화면에 모두 쓰인다고 하는데, 수학이 아름다움을 결정할 수 있을까요?</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /e6 -->
+
+<!-- ===== 중학교 1학년 ===== -->
+<div id="g-m1" class="grade-section">
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🔢 정수와 유리수 <span class="badge">중1</span></div><div class="unit-sub">양수·음수·절댓값·사칙연산</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>온도가 영하로 내려가고, 은행 계좌에서 돈이 빠져나가고, 주식이 하락한다. 이 모든 것은 음수로 표현된다. 음수의 발명은 수학 역사의 혁명이었다 — 0 아래의 세계를 수로 표현한 것이다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>정수: …−3,−2,−1,0,1,2,3… (음의 정수 + 0 + 양의 정수)</li>
+          <li>유리수: 분수 p/q (q≠0, p·q는 정수)로 나타낼 수 있는 수</li>
+          <li>절댓값 |a|: 수직선에서 0까지의 거리 → |−5|=5, |3|=3</li>
+          <li>음수의 곱셈: (−)×(−)=(+) — 부호 규칙 이해가 핵심!</li>
+          <li>뺄셈→덧셈 변환: a−b = a+(−b)</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> (−)×(−)=(+)인 이유를 "빚의 빚"으로 설명해보세요. (빚이 없어지면?)</div>
+        <div class="q-item"><strong>Q2.</strong> |−7|=|7|=7 이지만 −7≠7입니다. 절댓값이 같다고 같은 수인가요?</div>
+        <div class="q-item"><strong>Q3.</strong> 유리수와 무리수의 차이는? √2는 왜 유리수가 아닌가요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: (−3)×(−4)+(−2)×5 를 계산하시오.</div>
+          <div class="sol"><strong>풀이①(순서대로):</strong> (−3)×(−4)=+12 / (−2)×5=−10 / 12+(−10)=2</div>
+          <div class="sol"><strong>풀이②(분배법칙 활용):</strong> −2×(−(−3)×2+5) → 직접 계산이 빠름: 12−10=2</div>
+          <div class="sol"><strong>검증:</strong> 12−10=2 ✓</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">고대 인도에서 음수를 "빚"으로 처음 사용했을 때 많은 수학자들이 "음수는 존재하지 않는다"고 반대했습니다. 실제로 존재하지 않는 것을 수로 표현하는 것이 올바른가요? 허수(i=√−1)는 어떻게 생각하나요?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🔡 문자와 식 <span class="badge">중1</span></div><div class="unit-sub">문자식·동류항·일차식의 계산</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>특정 숫자 하나가 아닌, "어떤 수든 통하는 법칙"을 표현하기 위해 문자를 쓴다. x+x=2x는 1+1=2도, 100+100=200도 모두 표현한다. 문자식은 수학의 언어를 무한히 확장했다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>항: 수 또는 문자의 곱으로 이루어진 식의 단위 (3x, −2, 5y²)</li>
+          <li>동류항: 문자와 차수가 같은 항 → 3x와 −5x는 동류항</li>
+          <li>동류항끼리만 덧셈·뺄셈 가능: 3x+5x=8x, 3x+5y≠8xy</li>
+          <li>계수: 문자 앞의 수 → 3x에서 계수=3</li>
+          <li>단항식 × 다항식: 분배법칙 → 3(x+2)=3x+6</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 3x+5y를 8xy 또는 8(x+y)로 계산할 수 없는 이유는?</div>
+        <div class="q-item"><strong>Q2.</strong> x²과 x는 왜 동류항이 아닌가요? 같은 문자인데요.</div>
+        <div class="q-item"><strong>Q3.</strong> 2(x+3)=2x+6 — 이 계산에서 분배법칙을 물리적으로 설명해보세요. (직사각형의 넓이로)</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 3(2x−1)−2(x+3)을 간단히 하시오.</div>
+          <div class="sol"><strong>풀이①(분배 후 동류항):</strong> 6x−3−2x−6 = (6x−2x)+(−3−6) = 4x−9</div>
+          <div class="sol"><strong>풀이②(순서 명시):</strong> 3×2x=6x, 3×(−1)=−3, (−2)×x=−2x, (−2)×3=−6 → 합산: 4x−9</div>
+          <div class="sol"><strong>검증(x=1):</strong> 3(2−1)−2(1+3)=3−8=−5 / 4(1)−9=−5 ✓</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">수학에서 "x"를 미지수로 쓰는 이유는? (데카르트가 알파벳 끝 글자 x,y,z를 미지수로, a,b,c를 알려진 수로 정했습니다) 수학의 표기법이 달랐다면 수학이 지금과 달랐을까요?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">⚖️ 일차방정식 <span class="badge">중1</span></div><div class="unit-sub">방정식의 풀이·이항·활용</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>"어떤 수에 3을 더하면 10이 된다 — 그 수는?" 이런 질문이 방정식이다. 3,500년 전 이집트 파피루스에도 방정식이 있었다. 방정식은 "모르는 것을 찾는" 가장 체계적인 방법이다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>방정식: 미지수를 포함한 등식 (특정 값에서만 참)</li>
+          <li>항등식: 모든 수에서 참인 등식 (2x+2x=4x)</li>
+          <li>이항: 등호 한쪽의 항을 부호를 바꿔 반대쪽으로 이동</li>
+          <li>풀이 원리: 등호 양쪽에 같은 연산 → 등호 유지</li>
+          <li>검산: 구한 값을 원래 방정식에 대입하여 확인</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 방정식과 항등식의 차이를 예를 들어 설명하세요. 2x=4는? 2x+0=2x는?</div>
+        <div class="q-item"><strong>Q2.</strong> "이항"은 왜 부호가 바뀌나요? 등호 양쪽에 같은 것을 하는 것을 이항이라고 볼 수 있나요?</div>
+        <div class="q-item"><strong>Q3.</strong> 방정식의 해가 없는 경우(불능)와 무한히 많은 경우(부정)는 어떤 경우인가요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 현재 아버지 나이는 42세, 아들 나이는 12세입니다. 아버지 나이가 아들 나이의 3배가 되는 것은 몇 년 후인가요?</div>
+          <div class="sol"><strong>풀이①(방정식):</strong> x년 후: 42+x=3(12+x) → 42+x=36+3x → 6=2x → x=3년 후</div>
+          <div class="sol"><strong>풀이②(표):</strong> 1년후:43/13, 2년후:44/14, 3년후:45/15=3× ✓</div>
+          <div class="sol"><strong>검증:</strong> 45=3×15 ✓</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">방정식으로 풀 수 없는 문제가 있을까요? 연립방정식, 이차방정식, 미적분 방정식… 수학은 어디까지 문제를 풀 수 있을까요? "증명 불가능한 진리"도 존재한다고 합니다 (괴델의 불완전성 정리).</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /m1 -->
+
+<!-- ===== 중학교 2학년 ===== -->
+<div id="g-m2" class="grade-section">
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📈 일차함수 <span class="badge">중2</span></div><div class="unit-sub">함수의 개념·기울기·y절편·그래프</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>휴대폰 요금은 사용 시간에 따라 일정하게 증가한다. 택시 요금은 거리에 따라 비례한다. 이런 규칙적 변화를 "함수"로 표현한다. 함수는 세상의 변화 패턴을 포착하는 도구다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>함수: x값 하나에 y값이 정확히 하나 대응하는 관계</li>
+          <li>일차함수: y=ax+b (a≠0) — 그래프가 직선</li>
+          <li>기울기(a): x가 1 증가할 때 y의 변화량 → 직선의 가파름</li>
+          <li>y절편(b): x=0일 때 y값 → 직선과 y축의 교점</li>
+          <li>기울기 = (y의 변화량)/(x의 변화량) = Δy/Δx</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 기울기가 음수인 함수는 어떤 현실을 나타낼 수 있나요?</div>
+        <div class="q-item"><strong>Q2.</strong> y=3x와 y=3x+2의 그래프는 어떻게 다른가요? b의 역할은?</div>
+        <div class="q-item"><strong>Q3.</strong> 함수와 "규칙"의 차이는? 모든 규칙이 함수인가요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 두 점 (1,3)과 (3,9)를 지나는 일차함수의 식을 구하시오.</div>
+          <div class="sol"><strong>풀이①(기울기 먼저):</strong> a=(9−3)/(3−1)=3 → y=3x+b → 3=3(1)+b → b=0 → y=3x</div>
+          <div class="sol"><strong>풀이②(연립방정식):</strong> {3=a+b, 9=3a+b} → 2a=6 → a=3, b=0 → y=3x</div>
+          <div class="sol"><strong>검증:</strong> x=1→y=3 ✓, x=3→y=9 ✓</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">모든 관계가 일차함수(직선)로 표현될까요? 코로나 확산, 인구 성장, 복리 이자는 왜 직선이 아닐까요? 비선형 세계를 선형으로 근사하는 것의 위험성은?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🔺 삼각형의 합동·닮음 <span class="badge">중2</span></div><div class="unit-sub">합동조건·닮음비·피타고라스 정리</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>건물 설계 도면은 실제의 축소판이다 — 닮음. 두 개의 창문 틀이 정확히 같은지 확인하는 것은 합동. 피타고라스 정리는 직각이 있는 모든 곳에 쓰인다 — GPS, 건축, 항법 모두.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>합동(≅): 모양과 크기가 완전히 같음 / 합동조건: SSS, SAS, ASA, AAS</li>
+          <li>닮음(∼): 모양은 같고 크기가 다름 / 닮음비: 대응하는 변의 비</li>
+          <li>피타고라스 정리: 직각삼각형에서 a²+b²=c² (c=빗변)</li>
+          <li>피타고라스 수: (3,4,5), (5,12,13), (8,15,17)…</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 합동과 닮음의 차이를 일상 물건으로 예를 들어 설명하세요.</div>
+        <div class="q-item"><strong>Q2.</strong> 피타고라스 정리를 정사각형의 넓이로 설명해보세요. (각 변에 정사각형을 그리면?)</div>
+        <div class="q-item"><strong>Q3.</strong> 피타고라스 정리의 증명 방법이 100가지 이상 있다고 합니다. 왜 수학자들은 이미 증명된 정리를 다시 증명하려 할까요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 직각삼각형에서 두 다리의 길이가 6cm, 8cm일 때 빗변의 길이는?</div>
+          <div class="sol"><strong>풀이①(피타고라스):</strong> c²=6²+8²=36+64=100 → c=10cm</div>
+          <div class="sol"><strong>풀이②(피타고라스 수):</strong> (6,8,10)은 (3,4,5)의 2배 → 빗변=10cm</div>
+          <div class="sol"><strong>풀이③(넓이 방법):</strong> 정사각형 넓이 6²+8²=100=10² → c=10</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">피타고라스 정리를 발견한 것은 피타고라스가 아니라 바빌로니아 수학자들이 1000년 먼저였다는 증거가 있습니다. 수학적 발견의 "소유권"은 누구에게 있어야 할까요?</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /m2 -->
+
+<!-- ===== 중학교 3학년 ===== -->
+<div id="g-m3" class="grade-section">
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🌀 이차방정식 <span class="badge">중3</span></div><div class="unit-sub">인수분해·근의 공식·판별식</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>공을 던지면 포물선을 그린다. 다리 케이블의 모양도 포물선. 이 포물선을 수식으로 표현하면 이차함수, 그 방정식이 이차방정식이다. 물리학, 공학의 기초다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>이차방정식: ax²+bx+c=0 (a≠0)</li>
+          <li>풀이①인수분해: x²+5x+6=(x+2)(x+3)=0 → x=−2 or −3</li>
+          <li>풀이②완전제곱식: (x+p)²=q → x=−p±√q</li>
+          <li>풀이③근의 공식: x=(−b±√(b²−4ac))/2a</li>
+          <li>판별식 D=b²−4ac: D>0 실근 2개, D=0 중근, D<0 실근 없음</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 판별식이 음수일 때 "실근이 없다"는 의미는? 복소수 범위에서는 어떻게 되나요?</div>
+        <div class="q-item"><strong>Q2.</strong> 인수분해와 근의 공식 중 언제 어느 것을 쓰는 게 효율적인가요?</div>
+        <div class="q-item"><strong>Q3.</strong> 이차방정식의 두 근의 합=−b/a, 곱=c/a (근과 계수의 관계) — 이것을 어디에 활용할 수 있을까요?</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: x²−5x+6=0을 풀어라.</div>
+          <div class="sol"><strong>풀이①(인수분해):</strong> (x−2)(x−3)=0 → x=2 또는 x=3</div>
+          <div class="sol"><strong>풀이②(근의 공식):</strong> x=(5±√(25−24))/2=(5±1)/2 → x=3 또는 x=2</div>
+          <div class="sol"><strong>풀이③(근과 계수):</strong> 두 근의 합=5, 곱=6 → 합이 5이고 곱이 6인 두 수: 2와 3</div>
+          <div class="sol"><strong>검증:</strong> 2²−10+6=0 ✓, 9−15+6=0 ✓</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">3차방정식, 4차방정식도 일반적인 풀이 공식이 있습니다. 그런데 5차 이상은 일반 공식이 없다는 것이 증명됐습니다(아벨-루피니 정리). 왜 어떤 수학 문제는 원리상 풀 수 없을까요?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📊 통계와 확률 <span class="badge">중3</span></div><div class="unit-sub">도수분포·상관관계·확률의 기본</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>코로나 확산 예측, 선거 여론조사, 보험료 계산, 날씨 예보 — 모두 통계와 확률이다. 데이터의 홍수 시대에 통계를 모르면 정보에 속게 된다. 탈무드는 말했다: "숫자는 거짓말 하지 않지만, 거짓말쟁이는 숫자를 이용한다."</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>도수분포표: 데이터를 계급으로 나눠 빈도 정리</li>
+          <li>평균·중앙값·최빈값: 대표값의 세 가지 — 어떤 상황에 무엇을 쓸까?</li>
+          <li>확률: P(A) = (사건 A가 일어나는 경우 수)/(전체 경우 수)</li>
+          <li>여사건: P(Aᶜ) = 1−P(A)</li>
+          <li>상관관계 ≠ 인과관계: 아이스크림 판매와 익사 사고는 상관있지만 인과 없음</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> 평균이 높아도 중앙값이 낮을 수 있나요? 어떤 상황에서 평균이 대표값으로 부적절한가요?</div>
+        <div class="q-item"><strong>Q2.</strong> 동전을 10번 던져서 10번 모두 앞면이 나왔습니다. 11번째도 앞면이 나올 확률은 얼마인가요? (독립시행)</div>
+        <div class="q-item"><strong>Q3.</strong> "상관관계는 인과관계가 아니다"의 예를 3가지 찾아보세요.</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 주머니에 빨간 공 3개, 파란 공 2개가 있습니다. 한 개를 꺼낼 때 파란 공일 확률은?</div>
+          <div class="sol"><strong>풀이①(기본):</strong> P(파란) = 2/(3+2) = 2/5 = 0.4 = 40%</div>
+          <div class="sol"><strong>풀이②(여사건):</strong> P(파란) = 1−P(빨간) = 1−3/5 = 2/5</div>
+          <div class="sol"><strong>의미:</strong> 100번 하면 약 40번 파란 공이 나온다 (기대값)</div>
+        </div>
+        <div class="prob-box">
+          <div class="prob-q">문제: 시험 점수 70, 80, 90, 60, 100의 평균과 중앙값을 구하시오.</div>
+          <div class="sol"><strong>평균:</strong> (70+80+90+60+100)/5 = 400/5 = 80점</div>
+          <div class="sol"><strong>중앙값:</strong> 정렬: 60,70,80,90,100 → 가운데=80점</div>
+          <div class="sol"><strong>참고:</strong> 이 경우 평균=중앙값=80으로 동일. 항상 그럴까요?</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">빅데이터 시대에 개인의 데이터가 기업과 정부에 수집됩니다. 통계는 개인을 "평균"으로 만들어버린다는 비판도 있습니다. 데이터 수집과 프라이버시, 통계적 차별 — 수학과 윤리는 어떻게 연결되나요?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🌀 이차함수 <span class="badge">중3</span></div><div class="unit-sub">y=ax²+bx+c · 포물선·꼭짓점·축</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
+        <p>야구공의 궤적, 음속 비행기의 충격파, 위성 안테나의 모양, 현수교 케이블 — 모두 포물선이다. 이차함수는 자연이 가장 사랑하는 곡선을 표현한다.</p>
+      </div>
+      <div class="section concept"><div class="section-title">📖 개념 설명</div>
+        <ul>
+          <li>이차함수: y=ax²+bx+c (a≠0) — 그래프가 포물선</li>
+          <li>a>0: 아래로 볼록(∪) / a<0: 위로 볼록(∩)</li>
+          <li>|a|가 클수록 더 좁은 포물선</li>
+          <li>꼭짓점 공식: x=−b/2a, 대입하여 y값 계산</li>
+          <li>표준형: y=a(x−p)²+q → 꼭짓점 (p,q), 축: x=p</li>
+        </ul>
+      </div>
+      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
+        <div class="q-item"><strong>Q1.</strong> y=x²과 y=−x²의 차이를 실생활 예로 설명하세요. (어떤 물체의 운동?)</div>
+        <div class="q-item"><strong>Q2.</strong> 포물선 모양의 다리(현수교)는 왜 직선보다 강할까요? 수학과 공학의 연결은?</div>
+        <div class="q-item"><strong>Q3.</strong> 이차함수의 최솟값 또는 최댓값을 이용해 "이익을 최대화"하는 문제를 만들어보세요.</div>
+      </div>
+      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
+        <div class="prob-box">
+          <div class="prob-q">문제: y=2x²−8x+5의 꼭짓점 좌표를 구하시오.</div>
+          <div class="sol"><strong>풀이①(공식):</strong> x=−(−8)/(2×2)=8/4=2 / y=2(4)−16+5=8−16+5=−3 → 꼭짓점 (2,−3)</div>
+          <div class="sol"><strong>풀이②(완전제곱):</strong> y=2(x²−4x)+5=2(x−2)²−8+5=2(x−2)²−3 → 꼭짓점 (2,−3)</div>
+          <div class="sol"><strong>검증:</strong> x=2 대입: 2(4)−16+5=−3 ✓</div>
+        </div>
+      </div>
+      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
+        <div class="debate-item">갈릴레오는 "수학은 신이 우주를 쓴 언어"라고 했습니다. 실제로 물리 법칙이 수학으로 완벽히 표현된다는 것은 우연일까요, 아니면 수학이 실재(Reality)의 본질을 담고 있는 걸까요? 유대 철학(카발라)에서는 수(數)에 신성한 의미를 부여합니다 — 수와 우주의 관계를 어떻게 생각하나요?</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /m3 -->
+
+<!-- ===== 중1 시험 ===== -->
+<div id="g-t1" class="grade-section">
+  <div class="exam-header">
+    <h2>📝 중1 수학 시험</h2>
+    <p>정수와 유리수 · 문자와 식 · 일차방정식 | 총 15문제</p>
+  </div>
+  <div class="exam-score-bar">
+    <span>맞은 문제: <strong id="t1-correct">0</strong></span>
+    <span>틀린 문제: <strong id="t1-wrong">0</strong></span>
+    <span>안 푼 문제: <strong id="t1-left">15</strong></span>
+  </div>
+  <div id="t1-questions"></div>
+  <div class="exam-btns">
+    <button class="btn-submit" onclick="submitExam('t1')">✅ 채점하기</button>
+    <button class="btn-retry" onclick="retryExam('t1')">🔄 다시 풀기</button>
+  </div>
+  <div class="result-box" id="t1-result">
+    <div class="result-score" id="t1-rscore"></div>
+    <div class="result-msg" id="t1-rmsg"></div>
+    <div class="result-detail" id="t1-rdetail"></div>
+  </div>
+</div>
+
+<!-- ===== 중2 시험 ===== -->
+<div id="g-t2" class="grade-section">
+  <div class="exam-header">
+    <h2>📝 중2 수학 시험</h2>
+    <p>일차함수 · 연립방정식 · 도형(합동·닮음·피타고라스) | 총 15문제</p>
+  </div>
+  <div class="exam-score-bar">
+    <span>맞은 문제: <strong id="t2-correct">0</strong></span>
+    <span>틀린 문제: <strong id="t2-wrong">0</strong></span>
+    <span>안 푼 문제: <strong id="t2-left">15</strong></span>
+  </div>
+  <div id="t2-questions"></div>
+  <div class="exam-btns">
+    <button class="btn-submit" onclick="submitExam('t2')">✅ 채점하기</button>
+    <button class="btn-retry" onclick="retryExam('t2')">🔄 다시 풀기</button>
+  </div>
+  <div class="result-box" id="t2-result">
+    <div class="result-score" id="t2-rscore"></div>
+    <div class="result-msg" id="t2-rmsg"></div>
+    <div class="result-detail" id="t2-rdetail"></div>
+  </div>
+</div>
+
+<!-- ===== 중3 시험 ===== -->
+<div id="g-t3" class="grade-section">
+  <div class="exam-header">
+    <h2>📝 중3 수학 시험</h2>
+    <p>이차방정식 · 이차함수 · 통계와 확률 | 총 15문제</p>
+  </div>
+  <div class="exam-score-bar">
+    <span>맞은 문제: <strong id="t3-correct">0</strong></span>
+    <span>틀린 문제: <strong id="t3-wrong">0</strong></span>
+    <span>안 푼 문제: <strong id="t3-left">15</strong></span>
+  </div>
+  <div id="t3-questions"></div>
+  <div class="exam-btns">
+    <button class="btn-submit" onclick="submitExam('t3')">✅ 채점하기</button>
+    <button class="btn-retry" onclick="retryExam('t3')">🔄 다시 풀기</button>
+  </div>
+  <div class="result-box" id="t3-result">
+    <div class="result-score" id="t3-rscore"></div>
+    <div class="result-msg" id="t3-rmsg"></div>
+    <div class="result-detail" id="t3-rdetail"></div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+// ── 카드뷰(한 장씩 넘기기) ──
+const CV_DATA = {
+  'e3div': [
+    { title:'🌟 왜 배우는가?', cls:'why', html:`
+      <p>친구들이랑 과자를 나눠 먹을 때, 누구는 많이 받고 누구는 적게 받으면 속상하죠? "공평하게 나누기"가 바로 나눗셈이 하는 일이에요.</p>
+      <p style="margin-top:10px">옛날부터 지혜로운 사람들(탈무드)도 "공평하게 나누는 것"을 세상에서 가장 중요한 일 중 하나라고 생각했어요.</p>
+      <p style="margin-top:10px">빵 12개를 친구 4명이서 공평하게 나누면 한 명당 몇 개일까요? 나눗셈이 없다면, 서로 "내가 더 가질래!" 하고 다투게 될지도 몰라요. 나눗셈은 이런 다툼을 막아주는 도구예요.</p>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">빵 12개를 친구 4명이 공평하게 나누면?</div>
+        <div style="display:flex;justify-content:space-around;font-size:1.15rem;text-align:center">
+          <div>🧒<br>🍞🍞🍞<br><span style="font-size:.68rem;color:#8b949e">😊 3개</span></div>
+          <div>🧒<br>🍞🍞🍞<br><span style="font-size:.68rem;color:#8b949e">😊 3개</span></div>
+          <div>🧒<br>🍞🍞🍞<br><span style="font-size:.68rem;color:#8b949e">😊 3개</span></div>
+          <div>🧒<br>🍞🍞🍞<br><span style="font-size:.68rem;color:#8b949e">😊 3개</span></div>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">모두 3개씩 — 아무도 속상하지 않아요!</div>
+      </div>
+    `},
+    { title:'📖 개념 설명', cls:'concept', html:`
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 딱 나누어떨어질 때 (12÷4=3)</div>
+      <ul>
+        <li><strong>나눠주기</strong>: 12개를 4명에게 똑같이 나누면 1인당 3개</li>
+        <li><strong>묶어보기</strong>: 12개를 4개씩 묶으면 3묶음. 4개씩 나눠주면 3명에게 나눠줄 수 있어요</li>
+      </ul>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin:14px 0">
+        <div style="flex:1;min-width:220px;background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px">
+          <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">나눠주기 — 4명에게 똑같이</div>
+          <div style="display:flex;justify-content:space-around;font-size:1.15rem">
+            <div style="text-align:center">🧑<br>🍬🍬🍬</div>
+            <div style="text-align:center">🧑<br>🍬🍬🍬</div>
+            <div style="text-align:center">🧑<br>🍬🍬🍬</div>
+            <div style="text-align:center">🧑<br>🍬🍬🍬</div>
+          </div>
+          <div style="text-align:center;font-size:.75rem;color:#8b949e;margin-top:8px">1인당 3개</div>
+        </div>
+        <div style="flex:1;min-width:220px;background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px">
+          <div style="font-size:.78rem;color:#58a6ff;font-weight:700;margin-bottom:8px;text-align:center">묶어보기 — 4개씩 묶으면?</div>
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:center;font-size:1.05rem">
+            <div style="display:flex;align-items:center;gap:8px"><div style="border:2px dashed #58a6ff;border-radius:8px;padding:4px 8px;background:rgba(88,166,255,.06)">🍬🍬🍬🍬</div><span>→ 🧑</span></div>
+            <div style="display:flex;align-items:center;gap:8px"><div style="border:2px dashed #58a6ff;border-radius:8px;padding:4px 8px;background:rgba(88,166,255,.06)">🍬🍬🍬🍬</div><span>→ 🧑</span></div>
+            <div style="display:flex;align-items:center;gap:8px"><div style="border:2px dashed #58a6ff;border-radius:8px;padding:4px 8px;background:rgba(88,166,255,.06)">🍬🍬🍬🍬</div><span>→ 🧑</span></div>
+          </div>
+          <div style="text-align:center;font-size:.75rem;color:#8b949e;margin-top:8px">한 묶음(점선 상자)=4개, 3묶음 = 3명에게 나눠줄 수 있음</div>
+        </div>
+      </div>
+      <div style="font-size:.78rem;color:#bc8cff;font-weight:700;margin:16px 0 6px">개념2 — 나머지가 있을 때 (13÷4)</div>
+      <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9;margin-bottom:8px">사탕이 13개면? 4개씩 3묶음(12개)까지만 묶이고 1개가 남아요.</p>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin-bottom:10px">
+        <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;font-size:1.05rem">
+          <div style="border:2px dashed #58a6ff;border-radius:8px;padding:4px 8px;background:rgba(88,166,255,.06)">🍬🍬🍬🍬</div>
+          <div style="border:2px dashed #58a6ff;border-radius:8px;padding:4px 8px;background:rgba(88,166,255,.06)">🍬🍬🍬🍬</div>
+          <div style="border:2px dashed #58a6ff;border-radius:8px;padding:4px 8px;background:rgba(88,166,255,.06)">🍬🍬🍬🍬</div>
+          <div style="border:2px solid #f85149;border-radius:8px;padding:4px 8px;background:rgba(248,81,73,.08);color:#f85149;font-weight:700">🍬</div>
+        </div>
+        <div style="text-align:center;font-size:.75rem;color:#8b949e;margin-top:8px">점선 상자(4개)×3묶음(12개) + 남은 1개(빨간 상자) → 13÷4=3…1</div>
+      </div>
+      <ul>
+        <li>나눗셈 = 곱셈의 역연산: 12÷4=3 ↔ 3×4=12</li>
+      </ul>
+    `},
+    { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+      <p>지금까지는 사탕 12개를 4명이 나누는 예로 나눗셈을 배웠죠? 사실 하나의 나눗셈도 물어보는 말에 따라 아주 다양하게 표현할 수 있어요. 이번엔 초콜릿 12개를 3명이 나누는 상황(12÷3=4)으로, 같은 계산이 몇 가지나 다른 질문이 될 수 있는지 함께 볼까요?</p>
+      <div class="expr-item"><span class="expr-num">1</span><strong>나눠주기 표현</strong><br>"12개의 사탕을 3명에게 똑같이 나누어 주면 한 사람이 몇 개씩 가지게 되나요?" → <span class="expr-ans">4개</span></div>
+      <div class="expr-item"><span class="expr-num">2</span><strong>묶어보기 표현 (몇 묶음인지 구하기)</strong><br>"12개의 쿠키를 한 명당 3개씩 나눠주려고 합니다. 몇 명에게 줄 수 있나요?" → <span class="expr-ans">4명</span></div>
+      <div class="expr-item"><span class="expr-num">3</span><strong>상자 표현</strong><br>"12개의 초콜릿을 상자 3개에 똑같이 나누어 담으려고 합니다. 한 상자에 몇 개씩 들어가나요?" → <span class="expr-ans">4개</span>
+        <div class="fb-diagram"><span class="bundle">🍫🍫🍫🍫</span><span class="bundle">🍫🍫🍫🍫</span><span class="bundle">🍫🍫🍫🍫</span><span class="cap">상자 3개에 초콜릿 12개를 똑같이 나누어 담으면 → 한 상자에 4개씩</span></div>
+      </div>
+      <div class="expr-item"><span class="expr-num">4</span><strong>한 명이 가진 양 구하기 표현</strong><br>"3명이서 똑같이 나누어 가져서 총 12개가 되었을 때, 한 명이 가진 양은 얼마인가요?" → <span class="expr-ans">4개</span></div>
+      <div class="expr-item"><span class="expr-num">5</span><strong>묶음 크기 구하기 표현</strong><br>"12를 3으로 똑같이 쪼갤 때, 한 묶음의 크기는 얼마인가요?" → <span class="expr-ans">4</span></div>
+      <div class="expr-item"><span class="expr-num">6</span><strong>몫을 묻는 표현</strong><br>"12 나누기 3의 몫은 얼마인가요?" → <span class="expr-ans">4</span></div>
+      <div class="expr-item"><span class="expr-num">7</span><strong>빼기(덜어내기)로 보는 표현</strong><br>"12에서 3을 몇 번 빼면 0이 되나요?" → <span class="expr-ans">4번</span></div>
+      <div class="expr-item"><span class="expr-num">8</span><strong>몇 배인지 묻는 표현</strong><br>"12는 3의 몇 배인가요?" → <span class="expr-ans">4배</span></div>
+      <div class="expr-item"><span class="expr-num">9</span><strong>몇 배인지 거꾸로 확인하는 표현</strong><br>"3의 4배가 12일 때, 12를 3으로 나눈 값은 얼마인가요?" → <span class="expr-ans">4</span></div>
+      <div class="expr-item"><span class="expr-num">10</span><strong>식 읽고 뜻 말하기 표현</strong><br>"12 나누기 3은 4와 같다를 식으로 쓰고 그 의미를 말해보세요." → <span class="expr-ans">12÷3=4</span></div>
+      <div class="expr-item"><span class="expr-num">11</span><strong>곱셈으로 거꾸로 구하는 표현</strong><br>"어떤 수에 3을 곱했더니 12가 되었습니다. 이때의 어떤 수를 구하시오." (3×□=12) → <span class="expr-ans">4</span></div>
+      <p style="margin-top:10px">이렇게 11가지나 되는 표현이 전부 <strong>같은 계산(12÷3=4)</strong>을 묻고 있어요. 그래서 문제를 풀 때는 말이 달라도 "결국 나눗셈이구나!"를 알아채는 게 제일 중요해요.</p>
+    `},
+    { title:'💬 하브루타 질문', cls:'havruta', html:`
+      <div class="q-item"><strong>Q1.</strong> 나눠주기와 묶어보기, 두 방식의 차이를 실생활 예를 들어 설명해보세요. 언제 어떤 방식을 쓰나요?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3div-h1',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e3div-h1">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e3div-h1',0,this)">몇 명에게 나눠줄지 알 때는 나눠주기를 써요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3div-h1',1,this)">한 묶음의 크기를 알 때는 묶어보기를 써요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3div-h1',2,this)">둘이 똑같아서 아무거나 써도 돼요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3div-h1',3,this)">나눠주기가 더 쉬우니까 항상 나눠주기만 써요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e3div-h1"></div>
+        </div>
+      </div>
+      <div class="q-item"><strong>Q2.</strong> 나머지가 나누는 수보다 항상 작아야 하는 이유는?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3div-h2',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e3div-h2">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e3div-h2',0,this)">나머지가 나누는 수보다 크거나 같으면, 그만큼 한 번 더 나눠줄 수 있으니까요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3div-h2',1,this)">그냥 정해진 규칙이라 외워야 해요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3div-h2',2,this)">나머지는 항상 0이어야 맞는 답이에요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e3div-h2"></div>
+        </div>
+      </div>
+      <div class="q-item"><strong>Q3.</strong> 0으로 나누면 어떻게 될까요? 왜 계산기는 "오류"를 표시할까요?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3div-h3',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e3div-h3">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e3div-h3',0,this)">몇 명에게 나눠줄지 정할 수 없으니까요 — "0명에게 나눈다"는 게 말이 안 돼요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3div-h3',1,this)">답이 무한대로 커져요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3div-h3',2,this)">그냥 0이 나와요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e3div-h3"></div>
+        </div>
+      </div>
+    `},
+    { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+      <div class="prob-box">
+        <div class="prob-q">문제: 사탕 25개를 4명이 똑같이 나누면 1인당 몇 개이고 몇 개가 남나요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3div-p1',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3div-p1">
+          <div class="fb-diagram"><span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span><span class="single">🍬</span><span class="cap">25개를 4개씩 묶으면 6묶음(24개) + 나머지 1개</span></div>
+          <div class="sol"><strong>풀이①(나눗셈):</strong> 25÷4=6…1 → 1인당 6개, 나머지 1개</div>
+          <div class="sol"><strong>풀이②(곱셈으로 확인):</strong> 4×6=24, 25−24=1 → 맞음</div>
+          <div class="sol"><strong>풀이③(직접 배분):</strong> 4명에게 1개씩×6번=24개 나눔, 1개 남음</div>
+        </div>
+      </div>
+    `},
+    { title:'🔥 심화 토론', cls:'debate', html:`
+      <div class="story-line">
+        <div class="story-avatar">🧒</div>
+        <div class="story-bubble"><span class="story-name">민준</span>선생님, 사탕 25개를 4명이 나누니까 6개씩이고 1개가 남았어요. 근데 그 1개는 누가 가져요?</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">👧</div>
+        <div class="story-bubble"><span class="story-name">서연</span>제일 어린 하은이가 가지면 안 돼요? 동생이니까 하나 더 줘도 되잖아요.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧒</div>
+        <div class="story-bubble"><span class="story-name">지호</span>에이, 그럼 불공평하죠! 그럴 땐 사다리 타기나 가위바위보로 정해야 공평해요.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">👧</div>
+        <div class="story-bubble"><span class="story-name">하은</span>저는 그냥 사탕 1개를 4조각으로 쪼개서 다 같이 나눠 먹으면 된다고 생각해요! 그럼 진짜 똑같아지잖아요.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>넷 다 훌륭한 생각이에요! 사실 수학은 "몫은 6, 나머지는 1"이라는 계산까지만 정확히 알려줘요. 그 나머지 1개를 어떻게 할지는 상황에 따라 사람이 직접 정해야 하는 부분이랍니다.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>예를 들어볼까요? 학생 22명이 소풍을 가는데 버스 한 대에 5명씩 탈 수 있어요. 22÷5=4…2 인데, 버스가 4대뿐이면 2명은 못 타겠죠? 그래서 이럴 땐 나머지를 "올려서" 버스 5대가 필요해요.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>반대로 사탕 22개를 5명에게 나눠줄 땐 22÷5=4…2, 이번엔 나머지 2개를 "그냥 남겨두는" 게 맞아요. 억지로 5번째 사람에게 몰아줄 순 없으니까요. 그리고 하은이 말처럼 나머지를 계속 쪼개 나누는 방법도 있어요 — 그게 바로 나중에 배울 분수랑 소수의 시작이에요!</div>
+      </div>
+      <div class="story-takeaway"><strong>정리:</strong> 나눗셈은 "몫"과 "나머지"를 정확하게 계산해 주지만, 그 나머지를 어떻게 다룰지는 상황에 맞게 우리가 판단해야 해요. 버스처럼 <strong>부족하면 올리고</strong>, 사탕처럼 <strong>더는 못 나누면 그대로 남기고</strong>, 하은이 아이디어처럼 <strong>계속 쪼개서 나눌</strong> 수도 있어요. 수학은 도구이고, 그 도구를 어떻게 쓸지는 우리의 몫이에요.</div>
+    `}
+  ],
+  'e5gcd': [
+    { title:'🌟 왜 배우는가?', cls:'why', html:`
+      <p>친구들과 12명이서 팀을 나눠 게임을 하고 싶은데, 몇 명씩 나눠야 딱 맞을까 고민해본 적 있나요? 4명씩 3팀? 3명씩 4팀? 이렇게 남는 사람 없이 딱 맞아떨어지게 나누는 방법을 아는 게 바로 <strong>약수</strong>예요.</p>
+      <p style="margin-top:10px">그리고 버스 A는 4분마다, 버스 B는 6분마다 온다면, 두 버스가 언제 동시에 도착할지 알 수 있을까요? 그걸 알려주는 게 바로 <strong>배수</strong>예요. 약수와 배수를 알면 "어떻게 나누면 딱 맞을까?", "언제 다시 만날까?" 같은 질문에 답할 수 있어요.</p>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">12명을 팀으로 나누는 여러 방법</div>
+        <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;font-size:.78rem;text-align:center">
+          <div>4팀×3명<br>🧑🧑🧑&nbsp; 🧑🧑🧑&nbsp; 🧑🧑🧑&nbsp; 🧑🧑🧑</div>
+          <div>3팀×4명<br>🧑🧑🧑🧑&nbsp; 🧑🧑🧑🧑&nbsp; 🧑🧑🧑🧑</div>
+          <div>2팀×6명<br>🧑🧑🧑🧑🧑🧑&nbsp; 🧑🧑🧑🧑🧑🧑</div>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">12를 남김없이 나눌 수 있는 수(1,2,3,4,6,12) — 이게 바로 "약수"예요</div>
+      </div>
+    `},
+    { title:'📖 개념 설명', cls:'concept', html:`
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 약수: 나누어떨어지게 하는 수</div>
+      <ul><li>12를 나머지 없이 나눌 수 있는 수 → 12의 약수: 1,2,3,4,6,12</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">12를 직사각형으로 딱 맞게 배열하면?</div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:center;font-size:.82rem;font-family:monospace">
+          <div>1×12: ⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛</div>
+          <div>2×6: ⬛⬛⬛⬛⬛⬛<br>&nbsp;&nbsp;&nbsp;&nbsp;⬛⬛⬛⬛⬛⬛</div>
+          <div>3×4: ⬛⬛⬛⬛<br>&nbsp;&nbsp;&nbsp;&nbsp;⬛⬛⬛⬛<br>&nbsp;&nbsp;&nbsp;&nbsp;⬛⬛⬛⬛</div>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">빈틈없이 직사각형이 되는 가로·세로 수(1,2,3,4,6,12)가 12의 약수예요</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 배수: 곱해서 나오는 수</div>
+      <ul><li>어떤 수를 1배, 2배, 3배… 한 수 → 4의 배수: 4,8,12,16…</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">4의 배수 — 4개씩 늘어나요</div>
+        <div style="text-align:center;font-size:1.05rem;line-height:2.1">
+          <span class="bundle">🍬🍬🍬🍬</span> → 4×1=4<br>
+          <span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span> → 4×2=8<br>
+          <span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span> → 4×3=12
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">4를 계속 더한(또는 곱한) 수들이 4의 배수예요</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 최대공약수: 공통 약수 중 가장 큰 수</div>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">24와 36의 공통 약수 찾기</div>
+        <div style="display:flex;justify-content:center;gap:8px;font-size:.72rem;text-align:center">
+          <div style="flex:1">24의 약수<br>1,2,3,4,6,8,12,24</div>
+          <div style="flex:1;background:rgba(63,185,80,.1);border:1px solid rgba(63,185,80,.3);border-radius:6px;padding:4px">공통 약수<br><strong style="color:#3fb950">1,2,3,4,6,12</strong></div>
+          <div style="flex:1">36의 약수<br>1,2,3,4,6,9,12,18,36</div>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">공통 약수 중 가장 큰 수 12가 최대공약수예요</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 최소공배수: 공통 배수 중 가장 작은 수</div>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">4분·6분마다 오는 버스, 언제 같이 올까?</div>
+        <div style="font-size:.78rem;text-align:center;line-height:1.9">
+          A버스(4분): 4, 8, <strong style="color:#3fb950">12</strong>, 16, 20, 24…<br>
+          B버스(6분): 6, <strong style="color:#3fb950">12</strong>, 18, 24…
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">두 버스가 처음 같이 오는 시각 12분 — 최소공배수예요</div>
+      </div>
+    `},
+    { title:'💬 하브루타 질문', cls:'havruta', html:`
+      <div class="q-item"><strong>Q1.</strong> 소수(素數)는 약수가 항상 정확히 2개(1과 자기 자신)입니다. 그런데 1은 소수일까요?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e5gcd-h1',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e5gcd-h1">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e5gcd-h1',0,this)">1은 약수가 1개(자기 자신)뿐이라 소수가 아니에요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e5gcd-h1',1,this)">1도 소수예요, 약수가 있긴 하니까요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e5gcd-h1',2,this)">소수는 약수가 적을수록, 아무튼 적으면 다 소수예요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e5gcd-h1"></div>
+        </div>
+      </div>
+      <div class="q-item"><strong>Q2.</strong> 최대공약수×최소공배수는 항상 두 수를 곱한 것과 같습니다. 왜 그럴까요?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e5gcd-h2',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e5gcd-h2">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e5gcd-h2',0,this)">실제 숫자로 넣어보면 항상 성립해요 — 여러 쌍으로 확인해볼 수 있어요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e5gcd-h2',1,this)">우연히 몇 번 맞은 거고, 외워야 하는 공식일 뿐이에요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e5gcd-h2',2,this)">최대공약수가 크면 최소공배수도 항상 더 커요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e5gcd-h2"></div>
+        </div>
+      </div>
+      <div class="q-item"><strong>Q3.</strong> "최대공약수는 최대 공평 분배, 최소공배수는 최초 동시 만남"이라는 표현, 맞는 비유일까요?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e5gcd-h3',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e5gcd-h3">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e5gcd-h3',0,this)">맞아요! 최대공약수는 남김없이 똑같이 나눌 수 있는 가장 큰 묶음, 최소공배수는 두 주기가 처음 겹치는 시점이니까요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e5gcd-h3',1,this)">최대공약수 비유만 맞고 최소공배수 비유는 틀렸어요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e5gcd-h3',2,this)">둘 다 틀린 비유예요, 공식으로만 외워야 해요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e5gcd-h3"></div>
+        </div>
+      </div>
+    `},
+    { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+      <div class="prob-box">
+        <div class="prob-q">문제: 사과 24개와 귤 36개를 최대한 많은 사람에게 똑같이 나누려 합니다. 몇 명에게 나눌 수 있나요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e5gcd-p1',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e5gcd-p1">
+          <div class="fb-diagram" style="text-align:left">
+            <div style="display:flex;justify-content:center;gap:8px;font-size:.72rem;text-align:center;margin-bottom:6px">
+              <div style="flex:1">24의 약수<br>1,2,3,4,6,8,12,24</div>
+              <div style="flex:1;background:rgba(63,185,80,.1);border:1px solid rgba(63,185,80,.3);border-radius:6px;padding:4px">공통 약수<br><strong style="color:#3fb950">1,2,3,4,6,12</strong></div>
+              <div style="flex:1">36의 약수<br>1,2,3,4,6,9,12,18,36</div>
+            </div>
+            <span class="cap">최대공약수 12 → 12명에게 나눌 수 있어요 (사과 2개씩, 귤 3개씩)</span>
+          </div>
+          <div class="sol"><strong>풀이①(공약수 나열):</strong> 24의 약수: 1,2,3,4,6,8,12,24 / 36의 약수: 1,2,3,4,6,9,12,18,36 → 공약수: 1,2,3,4,6,12 → 최대=12명</div>
+          <div class="sol"><strong>풀이②(소인수분해):</strong> 24=2³×3, 36=2²×3² → 최대공약수=2²×3=12명</div>
+          <div class="sol"><strong>풀이③(유클리드 호제법):</strong> 36=24×1+12 / 24=12×2+0 → 최대공약수=12</div>
+        </div>
+      </div>
+    `},
+    { title:'🔥 심화 토론', cls:'debate', html:`
+      <div class="story-line">
+        <div class="story-avatar">🧒</div>
+        <div class="story-bubble"><span class="story-name">민준</span>선생님, 소수가 무한히 많다는 걸 어떻게 알아요? 끝까지 다 세어본 것도 아니잖아요.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">👧</div>
+        <div class="story-bubble"><span class="story-name">서연</span>맞아요, 아무리 큰 수까지 가도 그 뒤에 또 소수가 있다는 걸 어떻게 확신해요?</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧒</div>
+        <div class="story-bubble"><span class="story-name">지호</span>선생님, 그런데 "증명"이 뭐예요? 그냥 선생님 말을 믿어야 하는 거예요?</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">👧</div>
+        <div class="story-bubble"><span class="story-name">하은</span>혹시... 어떤 수를 새로 만들어서, 그 수가 꼭 새로운 소수를 갖고 있다는 걸 보여주는 거 아니에요?</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>하은이가 핵심에 아주 가까이 갔어요! "증명"은 예를 몇 개 확인하고 믿는 게 아니라, 절대 반박할 수 없는 논리로 보여주는 거예요. 소수가 유한하다고 한번 가정해보고, 그게 왜 틀렸는지 볼까요?</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>예를 들어 소수가 딱 2, 3, 5 세 개뿐이라고 가정해봐요. 이 셋을 모두 곱하고 1을 더한 수를 만들면? 2×3×5+1=31이에요.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>31을 2로 나누면 나머지 1, 3으로 나눠도 나머지 1, 5로 나눠도 나머지 1이 남아요. 곱한 수에 1을 더했으니 당연하죠. 그런데 31은 소수예요! 처음에 "소수는 2,3,5뿐"이라고 했는데 새로운 소수 31이 나와버린 거죠 — 가정이 틀렸다는 증거예요.</div>
+      </div>
+      <div class="fb-diagram">2×3×5+1 = 31<span class="cap">31은 2, 3, 5 중 어느 것으로 나눠도 나머지가 1 → 31은 새로운 소수!</span></div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>이 방법은 소수가 몇 개든 똑같이 통해요. 아무리 많은 소수를 다 모아서 곱하고 1을 더해도, 그 수는 항상 기존 소수들로는 나누어떨어지지 않아서 새로운 소수를 품고 있어요. 그래서 소수는 "유한하다"고 가정하면 항상 모순이 생기고, 결국 소수는 무한히 많다는 게 증명돼요. 이게 2000년도 더 전에 유클리드가 보여준 방법이에요.</div>
+      </div>
+      <div class="story-takeaway"><strong>정리:</strong> 증명이란 몇 개의 예로 확인하는 게 아니라, "만약 틀렸다면 모순이 생긴다"는 걸 논리로 보여주는 것이에요. 유클리드는 "소수가 유한하다"고 가정했을 때 항상 새로운 소수가 튀어나온다는 걸 보여줘서, 소수가 무한히 많다는 걸 확실하게 증명했어요.</div>
+    `}
+  ]
+};
+const FB_DIAGRAM_H1A = '<div class="fb-diagram"><div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">'
+  + '<div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div>'
+  + '</div><span class="cap">사탕 15개를 5명에게 나눠주면 → 15÷5=3, 1인당 3개 (사람 수 5를 아니까 나눠주기)</span></div>';
+const FB_DIAGRAM_H1B = '<div class="fb-diagram"><span class="bundle">🍬🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬🍬</span>'
+  + '<span class="cap">사탕 15개를 5개씩 묶으면 → 15÷5=3, 3묶음(봉지 3개) (묶음 크기 5를 아니까 묶어보기)</span></div>';
+const FB_DIAGRAM_H1_SAME = '<div class="fb-diagram"><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;text-align:left">'
+  + '<div style="flex:1;min-width:150px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px">'
+  + '<div style="font-size:.7rem;color:#58a6ff;font-weight:700">문제 A (나눠주기로 물으면)</div>'
+  + '<div style="font-size:.75rem;margin:4px 0">사탕 15개를 5명에게 나눠주면 1인당 몇 개?</div>'
+  + '<div style="text-align:center">🧑<br>🍬🍬🍬</div>'
+  + '<div style="font-size:.72rem;color:#8b949e;text-align:center;margin-top:4px">15÷5=3 → 1인당 3개</div>'
+  + '</div>'
+  + '<div style="flex:1;min-width:150px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px">'
+  + '<div style="font-size:.7rem;color:#58a6ff;font-weight:700">문제 B (묶어보기로 물으면)</div>'
+  + '<div style="font-size:.75rem;margin:4px 0">사탕 15개를 5개씩 묶으면 몇 묶음?</div>'
+  + '<div style="text-align:center"><span class="bundle">🍬🍬🍬🍬🍬</span></div>'
+  + '<div style="font-size:.72rem;color:#8b949e;text-align:center;margin-top:4px">15÷5=3 → 3묶음</div>'
+  + '</div></div>'
+  + '<span class="cap">서로 다른 질문 A, B인데 계산식은 똑같이 15÷5=3 — 그래서 "답(몫)이 같다"고 하는 거예요</span></div>';
+const FB_DIAGRAM_H2 = '<div class="fb-diagram"><span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span><span class="single">🍬</span><span class="cap">13개를 4개씩 묶으면 3묶음 + 나머지 1개 (나머지 1 &lt; 나누는 수 4)</span></div>';
+const FB_DIAGRAM_H3 = '<div class="fb-diagram">🍬🍬🍬🍬🍬 <span class="arrow">➜</span> 0명 <span class="arrow">=</span> ❌<span class="cap">나눠줄 사람이 0명이면 "몇 개씩"이라는 질문 자체가 성립하지 않아요</span></div>';
+const FB_DIAGRAM_H3_ZERO = '<div class="fb-diagram">(사탕 없음) <span class="arrow">➜</span> 5명에게 나눠주면? <span class="arrow">➜</span> 각자 0개<span class="cap">0÷5=0 — 사탕 0개를 5명에게 나누면 한 명당 0개예요</span>'
+  + '<div style="margin-top:6px">(사탕 없음) <span class="arrow">➜</span> 3개씩 묶으면? <span class="arrow">➜</span> 0묶음</div><span class="cap">0÷3=0 — 사탕이 아예 없으면 3개씩 묶음도 하나도 못 만들어요</span>'
+  + '<span class="cap" style="margin-top:6px;color:#f0c040">"몫이 0"이 되는 건 <strong style="color:#f0c040">나눠지는 수(맨 앞의 수)가 0</strong>일 때예요. 지금 질문은 반대로 <strong style="color:#f0c040">나누는 수가 0</strong>인 경우라 달라요!</span></div>';
+const FB_DIAGRAM_H3_INF = '<div class="fb-diagram">🍬🍬🍬🍬🍬 (5개)<div style="margin:6px 0">5−0=5 <span class="arrow">➜</span> 5−0=5 <span class="arrow">➜</span> 5−0=5 <span class="arrow">➜</span> … <span style="color:#f85149">(영원히 안 끝남)</span></div>'
+  + '<span class="cap">나눗셈은 "같은 수를 몇 번 빼야 0이 되는지" 세는 거예요. 그런데 0을 아무리 빼도 5는 그대로라서, 컴퓨터도 세다가 끝을 못 찾고 "오류(Error)"를 내는 거예요 — "무한대"가 아니라 "셀 수 없음"이 맞아요</span></div>';
+const FB_DIAGRAM_GCD1_OK = '<div class="fb-diagram">7의 약수: 1, 7 (2개) <span class="arrow">|</span> 1의 약수: 1 (1개뿐)<span class="cap">소수는 약수가 정확히 2개(1과 자기 자신)인 수예요. 1은 약수가 1개뿐이라 소수가 아니에요</span></div>';
+const FB_DIAGRAM_GCD1_W1 = '<div class="fb-diagram">1의 약수: 1 (딱 1개)<span class="cap">소수가 되려면 약수가 "정확히 2개"여야 해요. 1은 약수가 1개뿐이라 조건에 맞지 않아요</span></div>';
+const FB_DIAGRAM_GCD1_W2 = '<div class="fb-diagram">12의 약수: 1,2,3,4,6,12 (6개, 소수 아님) <span class="arrow">|</span> 7의 약수: 1,7 (2개, 소수)<span class="cap">소수는 약수가 "많고 적음"이 아니라 "정확히 2개인가"로 정해져요</span></div>';
+const FB_DIAGRAM_GCD2_OK = '<div class="fb-diagram">12와 18의 최대공약수=6, 최소공배수=36<br>6×36=216 = 12×18=216<span class="cap">최대공약수×최소공배수 = 두 수를 곱한 것과 항상 같아요</span></div>';
+const FB_DIAGRAM_GCD2_W1 = '<div class="fb-diagram">8과 12의 최대공약수=4, 최소공배수=24<br>4×24=96 = 8×12=96<span class="cap">다른 숫자 쌍으로 확인해도 똑같이 성립해요. 하지만 이것도 "몇 개 확인"일 뿐, 모든 경우를 증명한 건 아니에요</span></div>';
+const FB_DIAGRAM_GCD2_W2 = '<div class="fb-diagram">6과 6: 최대공약수=6, 최소공배수=6 (최대공약수 큼 → 최소공배수 작음)<br>2와 3: 최대공약수=1, 최소공배수=6 (최대공약수 작음 → 최소공배수는 위와 같음)<span class="cap">최대공약수가 크다고 최소공배수도 항상 큰 건 아니에요 — 두 수가 무엇인지에 따라 달라요</span></div>';
+const FB_DIAGRAM_GCD3_OK = '<div class="fb-diagram">24와 36의 최대공약수=12 → 12명에게 "공평 분배" 가능<br>4와 6의 최소공배수=12 → 두 버스가 12분에 "동시 만남"<span class="cap">최대공약수는 남김없이 나누는 가장 큰 묶음, 최소공배수는 두 주기가 처음 겹치는 시점 — 둘 다 딱 맞는 비유예요</span></div>';
+const FB_DIAGRAM_GCD3_W1 = '<div class="fb-diagram">A버스(4분): 4,8,<strong style="color:#3fb950">12</strong>,16… <span class="arrow">|</span> B버스(6분): 6,<strong style="color:#3fb950">12</strong>,18…<span class="cap">두 버스가 처음 함께 오는 시각 12분이 최소공배수 — "최초 동시 만남"도 딱 맞는 비유예요</span></div>';
+const FB_DIAGRAM_GCD3_W2 = '<div class="fb-diagram">24와 36의 최대공약수=12 → "공평 분배"　|　4와 6의 최소공배수=12 → "동시 만남"<span class="cap">두 비유 모두 실제 뜻을 잘 담고 있어요 — 공식만 외우는 것보다 이렇게 이해하면 오래 기억돼요</span></div>';
+const HAVRUTA_FB = {
+  'e3div-h1': [
+    {ok:true, text:'맞아요! "몇 명에게 나눠줄까?"처럼 사람 수를 아는 상황에서는 나눠주기가 자연스러워요.', diagram:FB_DIAGRAM_H1A},
+    {ok:true, text:'맞아요! "한 봉지에 몇 개씩 담을까?"처럼 묶음의 크기를 아는 상황에서는 묶어보기가 자연스러워요.', diagram:FB_DIAGRAM_H1B},
+    {ok:false, text:'답(몫)은 같지만, 문제가 "몇 명"을 묻는지 "몇 묶음"을 묻는지에 따라 더 자연스럽게 떠올릴 수 있는 방법이 달라요. 다시 생각해볼까요?', diagram:FB_DIAGRAM_H1_SAME},
+    {ok:false, text:'항상 나눠주기만 쓰면, "한 묶음에 몇 개씩 담을까?"처럼 사람 수를 모를 때는 오히려 더 헷갈려요. 상황에 따라 골라 쓰는 게 좋아요.', diagram:FB_DIAGRAM_H1B}
+  ],
+  'e3div-h2': [
+    {ok:true, text:'맞아요! 만약 나머지가 나누는 수보다 크거나 같다면, 그 안에 나누는 수가 또 들어있다는 뜻이라 몫을 하나 더 늘려야 해요. 나머지는 "더 이상 못 나누고 남은 것"이라 나누는 수보다 항상 작아야 진짜 나머지예요.', diagram:FB_DIAGRAM_H2},
+    {ok:false, text:'규칙을 외우는 것도 좋지만, "왜" 그런지 알면 다음에 헷갈리지 않아요. 나머지가 나누는 수보다 크면 어떤 일이 생길지 한번 생각해볼까요?', diagram:FB_DIAGRAM_H2},
+    {ok:false, text:'나머지가 항상 0이어야 하는 건 아니에요(0이면 딱 나누어떨어지는 거예요). 나머지는 0 이상이면서 나누는 수보다 작기만 하면 돼요.', diagram:FB_DIAGRAM_H2}
+  ],
+  'e3div-h3': [
+    {ok:true, text:'맞아요! 나눗셈은 "몇 명에게 나누는가"인데, 0명에게 나눈다는 건 애초에 뜻이 성립하지 않아요. 그래서 수학에서는 "0으로 나누는 것은 정의되지 않는다"고 말해요.', diagram:FB_DIAGRAM_H3},
+    {ok:false, text:'"무한대"라는 생각도 흥미로운데, 사실 수학에서는 0으로 나누는 걸 아예 "정의하지 않음(undefined)"이라고 해요 — 무한대라는 답조차 정할 수 없다는 뜻이에요. 왜 그런지 뺄셈으로 확인해볼까요?', diagram:FB_DIAGRAM_H3_INF},
+    {ok:false, text:'0이 나오는 경우도 실제로 있어요! 다만 그건 "0을 어떤 수로 나눈" 경우(예: 0÷5=0)와 헷갈린 거예요. 지금 질문은 반대로 "어떤 수를 0으로" 나누는 경우라 달라요 — 두 상황을 비교해볼까요?', diagram:FB_DIAGRAM_H3_ZERO}
+  ],
+  'e5gcd-h1': [
+    {ok:true, text:'맞아요! 소수는 약수가 정확히 2개(1과 자기 자신)여야 해요. 1은 약수가 자기 자신 하나뿐이라 이 조건에 맞지 않아서 소수가 아니에요.', diagram:FB_DIAGRAM_GCD1_OK},
+    {ok:false, text:'1도 약수를 가지긴 하지만, 소수의 조건은 "약수가 정확히 2개"예요. 1은 약수가 1개뿐이라 조건을 만족하지 못해요.', diagram:FB_DIAGRAM_GCD1_W1},
+    {ok:false, text:'소수는 약수 개수가 적고 많음이 아니라 "정확히 2개인가"로 정해져요. 약수가 3개, 4개인 수는 아무리 적어도 소수가 아니에요.', diagram:FB_DIAGRAM_GCD1_W2}
+  ],
+  'e5gcd-h2': [
+    {ok:true, text:'좋은 출발이에요! 그런데 숫자 몇 개를 넣어서 맞았다고 해도, 그게 "우연히 맞은 것"인지 "항상 참인 것"인지는 확인만으로는 알 수 없어요. 그래서 수학자들은 모든 경우에 왜 성립하는지 논리로 보여주는 "증명"을 해요.', diagram:FB_DIAGRAM_GCD2_OK},
+    {ok:false, text:'"우연"이라고 단정할 수도 없어요! 숫자 몇 개를 확인해봐도 그게 우연인지 항상 참인지는 알 수 없거든요. 우연이라고 믿는 것도, 항상 맞다고 믿는 것도 둘 다 증거가 부족해요 — 그래서 증명이 필요해요.', diagram:FB_DIAGRAM_GCD2_W1},
+    {ok:false, text:'꼭 그렇지는 않아요. 두 수가 무엇이냐에 따라 최대공약수가 커도 최소공배수는 작을 수 있어요. 이렇게 반례를 하나만 찾아도 "항상 그렇다"는 주장은 틀렸다는 게 확실해져요 (반대로 "항상 참"이라는 건 예 몇 개로는 확신할 수 없어요 — 모든 경우를 다 보여줘야 하거든요).', diagram:FB_DIAGRAM_GCD2_W2}
+  ],
+  'e5gcd-h3': [
+    {ok:true, text:'맞아요! 최대공약수는 "남는 것 없이 똑같이 나눌 수 있는 가장 큰 단위", 최소공배수는 "서로 다른 주기가 처음으로 겹치는 순간"이라는 뜻을 정확히 담고 있는 비유예요.', diagram:FB_DIAGRAM_GCD3_OK},
+    {ok:false, text:'최소공배수 비유도 맞아요! "최초 동시 만남"은 두 주기가 처음 겹치는 시점을 정확히 표현하고 있어요.', diagram:FB_DIAGRAM_GCD3_W1},
+    {ok:false, text:'두 비유 모두 실제 개념의 의미를 잘 담고 있어요. 공식만 기계적으로 외우는 것보다 이런 비유로 이해하면 훨씬 오래 기억에 남아요.', diagram:FB_DIAGRAM_GCD3_W2}
+  ]
+};
+function cvInit(id){
+  const cards = CV_DATA[id];
+  document.getElementById('cv-'+id+'-body').innerHTML = cards.map(function(d){
+    return '<div class="section '+d.cls+'"><div class="section-title">'+d.title+'</div>'+d.html+'</div>';
+  }).join('');
+}
+function havrutaPick(qid, idx, btn){
+  const box = document.getElementById('fb-'+qid);
+  if(btn.classList.contains('selected')){
+    box.className = 'havruta-fb';
+    box.innerHTML = '';
+    btn.classList.remove('selected');
+    return;
+  }
+  const fb = HAVRUTA_FB[qid][idx];
+  box.innerHTML = '<div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>' + fb.text + '</div></div>' + (fb.diagram||'');
+  box.className = 'havruta-fb show';
+  const opts = btn.parentElement.querySelectorAll('.havruta-opt');
+  opts.forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+function havrutaReveal(qid, btn){
+  const box = document.getElementById('rv-'+qid);
+  const opening = !box.classList.contains('show');
+  box.classList.toggle('show', opening);
+  if(!opening){
+    const fb = document.getElementById('fb-'+qid);
+    if(fb){ fb.className = 'havruta-fb'; fb.innerHTML = ''; }
+    box.querySelectorAll('.havruta-opt.selected').forEach(b=>b.classList.remove('selected'));
+  }
+  if(!btn.dataset.openLabel){ btn.dataset.openLabel = btn.textContent; }
+  btn.textContent = opening ? '👆 접어두기' : btn.dataset.openLabel;
+}
+document.addEventListener('DOMContentLoaded', function(){
+  Object.keys(CV_DATA).forEach(cvInit);
+});
+
+// ── 탭 전환 ──
+function showGrade(id) {
+  document.querySelectorAll('.grade-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('g-' + id).classList.add('active');
+  const ids = ['e1','e2','e3','e4','e5','e6','m1','m2','m3','t1','t2','t3'];
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', ids[i] === id));
+  if(id==='t1'||id==='t2'||id==='t3') buildExam(id);
+}
+
+function toggle(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.unit-arrow');
+  const isOpen = body.classList.toggle('open');
+  arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+}
+
+// ── 시험 문제 데이터 ──
+const EXAMS = {
+  t1: [
+    // 정수와 유리수 (1-5)
+    { type:'mc', unit:'정수와 유리수', q:'다음 중 절댓값이 가장 큰 수는?', opts:['−9','7','−5','3','8'], ans:0, exp:'|−9|=9로 가장 크다.' },
+    { type:'mc', unit:'정수와 유리수', q:'(−3)×(−4)의 값은?', opts:['−12','12','−7','7','1'], ans:1, exp:'음수×음수=양수 → 3×4=12' },
+    { type:'mc', unit:'정수와 유리수', q:'(−2)³의 값은?', opts:['8','-8','6','-6','4'], ans:1, exp:'(−2)³=(−2)×(−2)×(−2)=4×(−2)=−8' },
+    { type:'mc', unit:'정수와 유리수', q:'수직선에서 −3과 5 사이의 거리는?', opts:['2','3','8','−2','15'], ans:2, exp:'|5−(−3)|=|5+3|=8' },
+    { type:'input', unit:'정수와 유리수', q:'(−6)÷(+2)+(−1)×(+3)을 계산하시오.', ans:'-6', exp:'(−6)÷2=−3, (−1)×3=−3 → −3+(−3)=−6', altAns:['-6'] },
+    // 문자와 식 (6-10)
+    { type:'mc', unit:'문자와 식', q:'3x − 2y + x + 5y를 간단히 하면?', opts:['4x+3y','2x+3y','4x−3y','2x−3y','4x+7y'], ans:0, exp:'(3x+x)+(−2y+5y)=4x+3y' },
+    { type:'mc', unit:'문자와 식', q:'2(3a−1)−3(a+2)를 간단히 하면?', opts:['3a−8','3a+8','6a−8','6a+8','3a−4'], ans:0, exp:'6a−2−3a−6=3a−8' },
+    { type:'mc', unit:'문자와 식', q:'x=2일 때 5x²−3x+1의 값은?', opts:['15','17','11','19','20'], ans:0, exp:'5×4−3×2+1=20−6+1=15' },
+    { type:'input', unit:'문자와 식', q:'4(x+2)−2(3x−1)을 간단히 하시오. (ax+b 형태)', ans:'-2x+10', altAns:['-2x + 10'] , exp:'4x+8−6x+2=−2x+10'},
+    { type:'mc', unit:'문자와 식', q:'다음 중 일차식이 아닌 것은?', opts:['3x+1','−2x','5x−7','x²+1','4x'], ans:3, exp:'x²+1은 이차식이다.' },
+    // 일차방정식 (11-15)
+    { type:'mc', unit:'일차방정식', q:'2x+3=11의 해는?', opts:['x=3','x=4','x=5','x=7','x=2'], ans:1, exp:'2x=8 → x=4' },
+    { type:'mc', unit:'일차방정식', q:'3(x−2)=x+4의 해는?', opts:['x=5','x=4','x=6','x=3','x=7'], ans:0, exp:'3x−6=x+4 → 2x=10 → x=5' },
+    { type:'input', unit:'일차방정식', q:'방정식 5x−7=3x+9의 해를 구하시오.', ans:'8', altAns:['x=8'], exp:'2x=16 → x=8' },
+    { type:'mc', unit:'일차방정식', q:'어떤 수의 3배에서 5를 빼면 19이다. 어떤 수는?', opts:['6','7','8','9','5'], ans:2, exp:'3x−5=19 → 3x=24 → x=8' },
+    { type:'mc', unit:'일차방정식', q:'현재 언니 나이는 20세, 동생은 12세이다. 언니 나이가 동생 나이의 정확히 1.5배가 되는 것은 몇 년 후인가?', opts:['3년 후','4년 후','5년 후','6년 후','절대 안 됨'], ans:1, exp:'20+x=1.5(12+x) → 20+x=18+1.5x → 2=0.5x → x=4' }
+  ],
+  t2: [
+    // 일차함수 (1-5)
+    { type:'mc', unit:'일차함수', q:'일차함수 y=3x−2에서 x=3일 때 y의 값은?', opts:['5','7','9','11','3'], ans:1, exp:'y=3×3−2=9−2=7' },
+    { type:'mc', unit:'일차함수', q:'두 점 (0,3)과 (2,7)을 지나는 일차함수의 식은?', opts:['y=2x+3','y=3x+2','y=2x−3','y=x+3','y=4x+3'], ans:0, exp:'기울기=(7−3)/(2−0)=2, y절편=3 → y=2x+3' },
+    { type:'mc', unit:'일차함수', q:'y=−2x+4의 그래프의 x절편은?', opts:['x=1','x=2','x=4','x=−2','x=−4'], ans:1, exp:'y=0 대입: 0=−2x+4 → x=2' },
+    { type:'input', unit:'일차함수', q:'y=ax+b에서 기울기가 −3이고 y절편이 5일 때, x=2에서의 y값은?', ans:'-1', altAns:['-1'], exp:'y=−3×2+5=−6+5=−1' },
+    { type:'mc', unit:'일차함수', q:'일차함수 y=2x+1과 y=−x+4의 교점의 x좌표는?', opts:['x=1','x=2','x=3','x=0','x=−1'], ans:0, exp:'2x+1=−x+4 → 3x=3 → x=1' },
+    // 연립방정식 (6-10)
+    { type:'mc', unit:'연립방정식', q:'{ x+y=7, x−y=3 }의 해는?', opts:['x=5,y=2','x=4,y=3','x=3,y=4','x=6,y=1','x=2,y=5'], ans:0, exp:'더하면 2x=10→x=5, 대입 y=2' },
+    { type:'mc', unit:'연립방정식', q:'{ 2x+y=8, x+2y=7 }에서 y의 값은?', opts:['y=1','y=2','y=3','y=4','y=5'], ans:1, exp:'x=8−y 대입: (8−y)+2y=7 → 8+y=7? 재계산: 2x+y=8①, x+2y=7② → ①×2−②: 4x+2y−x−2y=16−7 → 3x=9 → x=3, y=2' },
+    { type:'input', unit:'연립방정식', q:'{ 3x−y=5, x+y=3 }에서 x의 값을 구하시오.', ans:'2', altAns:['x=2'], exp:'더하면 4x=8→x=2' },
+    { type:'mc', unit:'연립방정식', q:'사과 2개와 배 1개의 가격이 1,700원, 사과 1개와 배 2개의 가격이 1,900원이다. 배 한 개의 가격은?', opts:['500원','600원','700원','800원','900원'], ans:2, exp:'2a+b=1700①, a+2b=1900② → ①×2−②: 3a=1500→a=500, b=700' },
+    { type:'mc', unit:'연립방정식', q:'해가 x=1, y=2인 연립방정식은?', opts:['{x+y=3, 2x+y=4}','{x+y=4, x−y=1}','{2x+y=3, x+2y=3}','{3x+y=4, x+y=4}','{x+2y=3, 2x−y=2}'], ans:0, exp:'x=1,y=2: 1+2=3✓, 2+2=4✓' },
+    // 도형 (11-15)
+    { type:'mc', unit:'삼각형', q:'직각삼각형에서 두 다리가 5cm, 12cm일 때 빗변은?', opts:['10cm','11cm','13cm','14cm','15cm'], ans:2, exp:'5²+12²=25+144=169=13²' },
+    { type:'mc', unit:'삼각형', q:'삼각형 ABC와 DEF가 SAS 합동이 되기 위한 조건이 아닌 것은?', opts:['AB=DE','BC=EF','∠B=∠E','AC=DF','∠A=∠D'], ans:3, exp:'SAS는 두 변과 끼인각. AC=DF는 SSS에 해당하는 조건' },
+    { type:'input', unit:'닮음', q:'닮음비가 2:3인 두 삼각형이 있다. 작은 삼각형의 넓이가 12cm²일 때 큰 삼각형의 넓이(cm²)는?', ans:'27', altAns:['27cm²'], exp:'넓이비=닮음비²=4:9 → 12×9/4=27cm²' },
+    { type:'mc', unit:'피타고라스', q:'정사각형의 대각선 길이가 10cm일 때 한 변의 길이는?', opts:['5cm','5√2 cm','10√2 cm','√5 cm','2√5 cm'], ans:1, exp:'a²+a²=100 → 2a²=100 → a=5√2' },
+    { type:'mc', unit:'피타고라스', q:'세 변이 7, 24, 25인 삼각형은?', opts:['예각삼각형','직각삼각형','둔각삼각형','정삼각형','이등변삼각형'], ans:1, exp:'7²+24²=49+576=625=25² → 직각삼각형' }
+  ],
+  t3: [
+    // 이차방정식 (1-5)
+    { type:'mc', unit:'이차방정식', q:'x²−5x+6=0의 해는?', opts:['x=1,x=6','x=2,x=3','x=−2,x=−3','x=1,x=−6','x=−1,x=6'], ans:1, exp:'(x−2)(x−3)=0 → x=2 또는 x=3' },
+    { type:'mc', unit:'이차방정식', q:'x²−4=0의 해는?', opts:['x=2','x=4','x=±2','x=±4','x=0'], ans:2, exp:'x²=4 → x=±2' },
+    { type:'input', unit:'이차방정식', q:'x²+6x+9=0의 해를 구하시오.', ans:'-3', altAns:['x=-3','−3'], exp:'(x+3)²=0 → x=−3 (중근)' },
+    { type:'mc', unit:'이차방정식', q:'2x²−7x+3=0의 해는?', opts:['x=3, x=1/2','x=1, x=3','x=−3, x=1/2','x=3, x=−1/2','x=1/2, x=2'], ans:0, exp:'(2x−1)(x−3)=0 → x=1/2 또는 x=3' },
+    { type:'mc', unit:'이차방정식', q:'x²+2x+k=0이 중근을 가지려면 k의 값은?', opts:['k=1','k=2','k=3','k=4','k=−1'], ans:0, exp:'판별식=0: 4−4k=0 → k=1' },
+    // 이차함수 (6-10)
+    { type:'mc', unit:'이차함수', q:'y=x²−4x+5의 꼭짓점 좌표는?', opts:['(2,1)','(−2,1)','(2,−1)','(4,5)','(1,2)'], ans:0, exp:'y=(x−2)²+1 → 꼭짓점(2,1)' },
+    { type:'mc', unit:'이차함수', q:'y=−2x²+4의 그래프로 옳은 것은?', opts:['위로 볼록, 꼭짓점(0,4)','아래로 볼록, 꼭짓점(0,4)','위로 볼록, 꼭짓점(0,−4)','위로 볼록, 꼭짓점(2,0)','아래로 볼록, 꼭짓점(0,2)'], ans:0, exp:'a=−2<0이므로 위로 볼록, b=0이므로 축x=0, 꼭짓점(0,4)' },
+    { type:'input', unit:'이차함수', q:'y=3(x−1)²−2의 꼭짓점의 y좌표는?', ans:'-2', altAns:['-2'], exp:'표준형 y=a(x−p)²+q에서 꼭짓점은 (p,q)=(1,−2)' },
+    { type:'mc', unit:'이차함수', q:'y=x²−6x+8에서 x=1일 때와 x=5일 때 y값의 합은?', opts:['2','4','6','8','10'], ans:2, exp:'x=1: 1−6+8=3 / x=5: 25−30+8=3 → 합=6' },
+    { type:'mc', unit:'이차함수', q:'이차함수 y=ax²+bx+c의 그래프가 위로 볼록이고 축이 x=2일 때 옳은 것은?', opts:['a>0, b>0','a<0, −b/2a=2','a>0, b=4a','a<0, b=4a','a<0, b>0'], ans:1, exp:'위로 볼록 → a<0. 축 x=−b/2a=2가 조건 그대로이므로 정답은 "a<0, −b/2a=2". (참고: 여기서 b=−4a가 유도되는데, b=4a라고 쓴 선택지는 부호가 반대라 오답)' },
+    // 통계와 확률 (11-15)
+    { type:'mc', unit:'확률', q:'주머니에 빨간 공 4개, 파란 공 6개가 있다. 한 개를 꺼낼 때 빨간 공일 확률은?', opts:['1/4','2/5','3/5','1/2','4/6'], ans:1, exp:'4/(4+6)=4/10=2/5' },
+    { type:'mc', unit:'확률', q:'동전을 2번 던질 때 적어도 한 번 앞면이 나올 확률은?', opts:['1/4','1/2','3/4','1','2/3'], ans:2, exp:'P(적어도 1번 앞)=1−P(모두 뒤)=1−1/4=3/4' },
+    { type:'input', unit:'통계', q:'자료 2, 4, 6, 8, 10의 평균과 중앙값이 모두 같을 때, 그 값은?', ans:'6', altAns:['6'], exp:'평균=(2+4+6+8+10)/5=30/5=6, 중앙값=6(가운데)' },
+    { type:'mc', unit:'통계', q:'다섯 개의 자료가 3, 5, 7, x, 9이고 평균이 6일 때 x의 값은?', opts:['4','5','6','7','8'], ans:2, exp:'(3+5+7+x+9)/5=6 → 24+x=30 → x=6' },
+    { type:'mc', unit:'통계', q:'A, B 두 사건이 서로 독립일 때 P(A)=1/3, P(B)=1/2이면 P(A∩B)는?', opts:['1/6','1/3','1/2','5/6','2/3'], ans:0, exp:'독립사건: P(A∩B)=P(A)×P(B)=1/3×1/2=1/6' }
+  ]
+};
+
+// ── 시험 렌더링 ──
+const examBuilt = {};
+function buildExam(tid) {
+  if(examBuilt[tid]) return;
+  examBuilt[tid] = true;
+  const qs = EXAMS[tid];
+  const container = document.getElementById(tid+'-questions');
+  container.innerHTML = qs.map((q,i) => renderQ(q,i,tid)).join('');
+  updateScore(tid);
+}
+
+function renderQ(q, i, tid) {
+  const num = i+1;
+  if(q.type==='mc') {
+    const opts = q.opts.map((o,j)=>
+      `<button class="q-opt" onclick="selectOpt('${tid}',${i},${j},this)">${String.fromCharCode(65+j)}. ${o}</button>`
+    ).join('');
+    return `<div class="q-block" id="${tid}-q${i}">
+      <div class="q-num">${num}번 · ${q.unit}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-opts" id="${tid}-opts${i}">${opts}</div>
+      <div class="q-feedback" id="${tid}-fb${i}"></div>
+    </div>`;
+  } else {
+    return `<div class="q-block" id="${tid}-q${i}">
+      <div class="q-num">${num}번 · ${q.unit} (단답형)</div>
+      <div class="q-text">${q.q}</div>
+      <input class="q-input" id="${tid}-inp${i}" placeholder="답을 입력하세요" oninput="updateScore('${tid}')">
+      <div class="q-feedback" id="${tid}-fb${i}"></div>
+    </div>`;
+  }
+}
+
+const selected = {}; // selected[tid][i] = j
+function selectOpt(tid, qi, oi, btn) {
+  if(!selected[tid]) selected[tid]={};
+  selected[tid][qi] = oi;
+  const opts = document.querySelectorAll(`#${tid}-opts${qi} .q-opt`);
+  opts.forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  updateScore(tid);
+}
+
+function updateScore(tid) {
+  const qs = EXAMS[tid];
+  let answered = 0;
+  qs.forEach((q,i) => {
+    if(q.type==='mc' && selected[tid] && selected[tid][i]!==undefined) answered++;
+    if(q.type==='input') {
+      const inp = document.getElementById(tid+'-inp'+i);
+      if(inp && inp.value.trim()) answered++;
+    }
+  });
+  document.getElementById(tid+'-left').textContent = qs.length - answered;
+}
+
+function submitExam(tid) {
+  const qs = EXAMS[tid];
+  let correct=0, wrong=0, unanswered=0;
+  qs.forEach((q,i) => {
+    const block = document.getElementById(tid+'-q'+i);
+    const fb = document.getElementById(tid+'-fb'+i);
+    block.classList.remove('correct','wrong');
+    if(q.type==='mc') {
+      const userAns = selected[tid]?.[i];
+      const opts = document.querySelectorAll(`#${tid}-opts${i} .q-opt`);
+      opts.forEach(b => b.classList.remove('correct-ans','wrong-ans','selected'));
+      opts[q.ans].classList.add('correct-ans');
+      if(userAns===undefined) {
+        unanswered++;
+        fb.className='q-feedback show ng';
+        fb.textContent='⚠️ 풀지 않음 | 정답: '+String.fromCharCode(65+q.ans)+'. '+q.opts[q.ans]+' | '+q.exp;
+      } else if(userAns===q.ans) {
+        correct++;
+        block.classList.add('correct');
+        fb.className='q-feedback show ok';
+        fb.textContent='✅ 정답! | '+q.exp;
+      } else {
+        wrong++;
+        opts[userAns].classList.add('wrong-ans');
+        block.classList.add('wrong');
+        fb.className='q-feedback show ng';
+        fb.textContent='❌ 오답 | 정답: '+String.fromCharCode(65+q.ans)+'. '+q.opts[q.ans]+' | '+q.exp;
+      }
+    } else {
+      const inp = document.getElementById(tid+'-inp'+i);
+      const userVal = inp ? inp.value.trim().replace(/\s+/g,'') : '';
+      const correctVal = q.ans.replace(/\s+/g,'');
+      const alts = (q.altAns||[]).map(a=>a.replace(/\s+/g,''));
+      const isCorrect = userVal===correctVal || alts.includes(userVal);
+      if(!userVal) {
+        unanswered++;
+        fb.className='q-feedback show ng';
+        fb.textContent='⚠️ 풀지 않음 | 정답: '+q.ans+' | '+q.exp;
+      } else if(isCorrect) {
+        correct++;
+        block.classList.add('correct');
+        fb.className='q-feedback show ok';
+        fb.textContent='✅ 정답! | '+q.exp;
+      } else {
+        wrong++;
+        block.classList.add('wrong');
+        fb.className='q-feedback show ng';
+        fb.textContent='❌ 오답 (입력: '+userVal+') | 정답: '+q.ans+' | '+q.exp;
+      }
+    }
+  });
+  document.getElementById(tid+'-correct').textContent = correct;
+  document.getElementById(tid+'-wrong').textContent = wrong;
+  document.getElementById(tid+'-left').textContent = unanswered;
+  // 결과
+  const total = qs.length;
+  const pct = Math.round(correct/total*100);
+  const msg = pct===100?'🏆 완벽합니다! 유대 랍비도 칭찬할 실력!'
+    :pct>=80?'🌟 훌륭합니다! 조금만 더 연습하면 만점!'
+    :pct>=60?'📚 잘했어요! 틀린 문제를 다시 풀어보세요.'
+    :pct>=40?'💪 더 노력이 필요해요. 개념을 다시 확인하세요.'
+    :'📖 기초부터 차근차근 다시 공부해봐요.';
+  document.getElementById(tid+'-rscore').textContent = correct+' / '+total+' ('+pct+'점)';
+  document.getElementById(tid+'-rmsg').textContent = msg;
+  document.getElementById(tid+'-rdetail').textContent = '정답 '+correct+'개 · 오답 '+wrong+'개 · 미응답 '+unanswered+'개';
+  const res = document.getElementById(tid+'-result');
+  res.classList.add('show');
+  res.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function retryExam(tid) {
+  selected[tid]={};
+  delete examBuilt[tid];
+  document.getElementById(tid+'-questions').innerHTML='';
+  document.getElementById(tid+'-result').classList.remove('show');
+  document.getElementById(tid+'-correct').textContent='0';
+  document.getElementById(tid+'-wrong').textContent='0';
+  buildExam(tid);
+}
+</script>
+</body>
+</html>
