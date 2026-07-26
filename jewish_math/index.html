@@ -54,45 +54,24 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 .story-takeaway strong{color:#3fb950}
 .badge{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:10px;background:rgba(240,192,64,.2);color:#f0c040;border:1px solid rgba(240,192,64,.4);margin-left:8px;vertical-align:middle}
 
-/* ── 시험 ── */
-.exam-tab{color:#f85149 !important}
-.exam-tab.active{border-bottom-color:#f85149 !important;color:#f85149 !important}
-.exam-header{background:linear-gradient(135deg,#1a0d0d,#2d1010);border:1px solid rgba(248,81,73,.3);border-radius:14px;padding:16px 18px;margin-bottom:20px;text-align:center}
-.exam-header h2{color:#f85149;font-size:1.1rem;margin-bottom:4px}
-.exam-header p{color:#8b949e;font-size:.8rem}
-.exam-score-bar{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:10px 16px;display:flex;gap:16px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
-.exam-score-bar span{font-size:.82rem;color:#8b949e}
-.exam-score-bar strong{color:#f0c040}
-.q-block{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:16px;margin-bottom:14px}
-.q-block.correct{border-color:#3fb950;background:rgba(63,185,80,.06)}
-.q-block.wrong{border-color:#f85149;background:rgba(248,81,73,.06)}
-.q-num{font-size:.75rem;color:#8b949e;margin-bottom:6px}
-.q-text{font-size:.9rem;color:#e6edf3;font-weight:700;margin-bottom:12px;line-height:1.6}
-.q-opts{display:flex;flex-direction:column;gap:7px}
-.q-opt{background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:10px 14px;cursor:pointer;font-size:.85rem;color:#c9d1d9;transition:all .2s;text-align:left}
-.q-opt:hover{border-color:#f0c040;color:#f0c040}
-.q-opt.selected{border-color:#58a6ff;background:rgba(88,166,255,.1);color:#58a6ff}
-.q-opt.correct-ans{border-color:#3fb950 !important;background:rgba(63,185,80,.15) !important;color:#3fb950 !important}
-.q-opt.wrong-ans{border-color:#f85149 !important;background:rgba(248,81,73,.12) !important;color:#f85149 !important}
-.q-input{width:100%;background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:10px 14px;color:#e6edf3;font-size:.9rem;font-family:inherit;outline:none}
-.q-input:focus{border-color:#58a6ff}
-.q-feedback{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:.83rem;display:none}
-.q-feedback.show{display:block}
-.q-feedback.ok{background:rgba(63,185,80,.12);border:1px solid rgba(63,185,80,.3);color:#3fb950}
-.q-feedback.ng{background:rgba(248,81,73,.1);border:1px solid rgba(248,81,73,.3);color:#f85149}
-.exam-btns{display:flex;gap:10px;margin-top:20px}
-.btn-submit{flex:1;background:linear-gradient(135deg,#c0392b,#e74c3c);color:#fff;border:none;border-radius:12px;padding:14px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit}
-.btn-submit:hover{filter:brightness(1.1)}
-.btn-retry{flex:1;background:rgba(255,255,255,.06);color:#94a3b8;border:none;border-radius:12px;padding:14px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit}
-.btn-retry:hover{background:rgba(255,255,255,.12)}
-.result-box{background:linear-gradient(135deg,#1a1000,#2d2000);border:2px solid #f0c040;border-radius:16px;padding:24px;text-align:center;margin-top:20px;display:none}
-.result-box.show{display:block}
-.result-score{font-size:2.5rem;font-weight:900;color:#f0c040;margin-bottom:8px}
-.result-msg{font-size:1rem;color:#c9d1d9;margin-bottom:16px}
-.result-detail{font-size:.82rem;color:#8b949e}
-
-/* ── 카드뷰(전체 스크롤) ── */
-.cv-wrap{margin:0;display:flex;flex-direction:column;gap:14px}
+/* ── 카드뷰(그리드→상세) ── */
+.cv-wrap{margin:0}
+.cv-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.cv-grid-btn{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:linear-gradient(155deg,#161b22,#0d1117);border:1px solid #30363d;border-radius:12px;padding:10px 8px;cursor:pointer;font-family:inherit;color:#c9d1d9;text-align:center;transition:border-color .15s}
+.cv-grid-btn:hover{border-color:#f0c040}
+.cv-grid-icon{font-size:1.6rem}
+.cv-grid-title{font-size:.72rem;font-weight:700;line-height:1.3}
+.cv-back-btn{background:rgba(255,255,255,.06);border:1px solid #30363d;color:#c9d1d9;border-radius:8px;padding:8px 14px;font-size:.8rem;cursor:pointer;font-family:inherit;margin-bottom:12px}
+.cv-back-btn:hover{border-color:#f0c040}
+.grade-section.unit-grid-mode.active{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:start}
+.grade-section.unit-grid-mode .unit-card{margin-bottom:0}
+.grade-section.unit-grid-mode .unit-card:has(.unit-body.open){grid-column:1/-1}
+.grade-section.unit-grid-mode .unit-header{flex-direction:column;justify-content:center;text-align:center;aspect-ratio:1;gap:6px;padding:10px 8px}
+.grade-section.unit-grid-mode .unit-header .unit-sub{display:none}
+.grade-section.unit-grid-mode .unit-header .unit-arrow{display:none}
+.grade-section.unit-grid-mode .unit-card:has(.unit-body.open) .unit-header{flex-direction:row;justify-content:space-between;aspect-ratio:auto;text-align:left;padding:16px 18px}
+.grade-section.unit-grid-mode .unit-card:has(.unit-body.open) .unit-header .unit-sub{display:block}
+.grade-section.unit-grid-mode .unit-card:has(.unit-body.open) .unit-header .unit-arrow{display:block}
 .havruta-opts{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .havruta-opt{text-align:left;background:#161b22;border:2px solid #30363d;color:#c9d1d9;border-radius:10px;padding:10px 14px;font-size:.83rem;cursor:pointer;font-family:inherit;box-shadow:0 3px 0 rgba(0,0,0,.3);transition:transform .08s,box-shadow .08s}
 .havruta-opt::before{content:"👉 "}
@@ -136,15 +115,12 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
   <button class="tab" onclick="showGrade('m1')">중1</button>
   <button class="tab" onclick="showGrade('m2')">중2</button>
   <button class="tab" onclick="showGrade('m3')">중3</button>
-  <button class="tab exam-tab" onclick="showGrade('t1')">📝 중1시험</button>
-  <button class="tab exam-tab" onclick="showGrade('t2')">📝 중2시험</button>
-  <button class="tab exam-tab" onclick="showGrade('t3')">📝 중3시험</button>
 </div>
 
 <div class="content">
 
 <!-- ===== 초등 1학년 ===== -->
-<div id="g-e1" class="grade-section active">
+<div id="g-e1" class="grade-section unit-grid-mode active">
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
@@ -221,7 +197,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 </div><!-- /e1 -->
 
 <!-- ===== 초등 2학년 ===== -->
-<div id="g-e2" class="grade-section">
+<div id="g-e2" class="grade-section unit-grid-mode">
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
@@ -299,7 +275,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 </div><!-- /e2 -->
 
 <!-- ===== 초등 3학년 ===== -->
-<div id="g-e3" class="grade-section">
+<div id="g-e3" class="grade-section unit-grid-mode">
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
@@ -308,7 +284,11 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
     </div>
     <div class="unit-body">
       <div class="cv-wrap" id="cv-e3div">
-        <div id="cv-e3div-body"></div>
+        <div class="cv-grid" id="cv-e3div-grid"></div>
+        <div class="cv-detail" id="cv-e3div-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e3div')">← 목록으로</button>
+          <div id="cv-e3div-detail-body"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -352,7 +332,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 </div><!-- /e3 -->
 
 <!-- ===== 초등 4학년 ===== -->
-<div id="g-e4" class="grade-section">
+<div id="g-e4" class="grade-section unit-grid-mode">
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
@@ -428,7 +408,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 </div><!-- /e4 -->
 
 <!-- ===== 초등 5학년 ===== -->
-<div id="g-e5" class="grade-section">
+<div id="g-e5" class="grade-section unit-grid-mode">
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
@@ -437,7 +417,11 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
     </div>
     <div class="unit-body">
       <div class="cv-wrap" id="cv-e5gcd">
-        <div id="cv-e5gcd-body"></div>
+        <div class="cv-grid" id="cv-e5gcd-grid"></div>
+        <div class="cv-detail" id="cv-e5gcd-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e5gcd')">← 목록으로</button>
+          <div id="cv-e5gcd-detail-body"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -482,7 +466,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 </div><!-- /e5 -->
 
 <!-- ===== 초등 6학년 ===== -->
-<div id="g-e6" class="grade-section">
+<div id="g-e6" class="grade-section unit-grid-mode">
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
@@ -559,7 +543,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 </div><!-- /e6 -->
 
 <!-- ===== 중학교 1학년 ===== -->
-<div id="g-m1" class="grade-section">
+<div id="g-m1" class="grade-section unit-grid-mode">
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
@@ -675,7 +659,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 </div><!-- /m1 -->
 
 <!-- ===== 중학교 2학년 ===== -->
-<div id="g-m2" class="grade-section">
+<div id="g-m2" class="grade-section unit-grid-mode">
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
@@ -753,7 +737,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 </div><!-- /m2 -->
 
 <!-- ===== 중학교 3학년 ===== -->
-<div id="g-m3" class="grade-section">
+<div id="g-m3" class="grade-section unit-grid-mode">
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
@@ -874,75 +858,6 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
   </div>
 
 </div><!-- /m3 -->
-
-<!-- ===== 중1 시험 ===== -->
-<div id="g-t1" class="grade-section">
-  <div class="exam-header">
-    <h2>📝 중1 수학 시험</h2>
-    <p>정수와 유리수 · 문자와 식 · 일차방정식 | 총 15문제</p>
-  </div>
-  <div class="exam-score-bar">
-    <span>맞은 문제: <strong id="t1-correct">0</strong></span>
-    <span>틀린 문제: <strong id="t1-wrong">0</strong></span>
-    <span>안 푼 문제: <strong id="t1-left">15</strong></span>
-  </div>
-  <div id="t1-questions"></div>
-  <div class="exam-btns">
-    <button class="btn-submit" onclick="submitExam('t1')">✅ 채점하기</button>
-    <button class="btn-retry" onclick="retryExam('t1')">🔄 다시 풀기</button>
-  </div>
-  <div class="result-box" id="t1-result">
-    <div class="result-score" id="t1-rscore"></div>
-    <div class="result-msg" id="t1-rmsg"></div>
-    <div class="result-detail" id="t1-rdetail"></div>
-  </div>
-</div>
-
-<!-- ===== 중2 시험 ===== -->
-<div id="g-t2" class="grade-section">
-  <div class="exam-header">
-    <h2>📝 중2 수학 시험</h2>
-    <p>일차함수 · 연립방정식 · 도형(합동·닮음·피타고라스) | 총 15문제</p>
-  </div>
-  <div class="exam-score-bar">
-    <span>맞은 문제: <strong id="t2-correct">0</strong></span>
-    <span>틀린 문제: <strong id="t2-wrong">0</strong></span>
-    <span>안 푼 문제: <strong id="t2-left">15</strong></span>
-  </div>
-  <div id="t2-questions"></div>
-  <div class="exam-btns">
-    <button class="btn-submit" onclick="submitExam('t2')">✅ 채점하기</button>
-    <button class="btn-retry" onclick="retryExam('t2')">🔄 다시 풀기</button>
-  </div>
-  <div class="result-box" id="t2-result">
-    <div class="result-score" id="t2-rscore"></div>
-    <div class="result-msg" id="t2-rmsg"></div>
-    <div class="result-detail" id="t2-rdetail"></div>
-  </div>
-</div>
-
-<!-- ===== 중3 시험 ===== -->
-<div id="g-t3" class="grade-section">
-  <div class="exam-header">
-    <h2>📝 중3 수학 시험</h2>
-    <p>이차방정식 · 이차함수 · 통계와 확률 | 총 15문제</p>
-  </div>
-  <div class="exam-score-bar">
-    <span>맞은 문제: <strong id="t3-correct">0</strong></span>
-    <span>틀린 문제: <strong id="t3-wrong">0</strong></span>
-    <span>안 푼 문제: <strong id="t3-left">15</strong></span>
-  </div>
-  <div id="t3-questions"></div>
-  <div class="exam-btns">
-    <button class="btn-submit" onclick="submitExam('t3')">✅ 채점하기</button>
-    <button class="btn-retry" onclick="retryExam('t3')">🔄 다시 풀기</button>
-  </div>
-  <div class="result-box" id="t3-result">
-    <div class="result-score" id="t3-rscore"></div>
-    <div class="result-msg" id="t3-rmsg"></div>
-    <div class="result-detail" id="t3-rdetail"></div>
-  </div>
-</div>
 
 </div><!-- /content -->
 
@@ -1323,9 +1238,29 @@ const HAVRUTA_FB = {
 };
 function cvInit(id){
   const cards = CV_DATA[id];
-  document.getElementById('cv-'+id+'-body').innerHTML = cards.map(function(d){
-    return '<div class="section '+d.cls+'"><div class="section-title">'+d.title+'</div>'+d.html+'</div>';
+  const grid = document.getElementById('cv-'+id+'-grid');
+  grid.innerHTML = cards.map(function(d, i){
+    const sp = d.title.indexOf(' ');
+    const icon = sp>0 ? d.title.slice(0,sp) : '📄';
+    const label = sp>0 ? d.title.slice(sp+1) : d.title;
+    return '<button class="cv-grid-btn" onclick="cvShowSection(\''+id+'\','+i+')">'
+      + '<div class="cv-grid-icon">'+icon+'</div>'
+      + '<div class="cv-grid-title">'+label+'</div>'
+      + '</button>';
   }).join('');
+}
+function cvShowSection(id, idx){
+  const d = CV_DATA[id][idx];
+  document.getElementById('cv-'+id+'-grid').style.display = 'none';
+  const detail = document.getElementById('cv-'+id+'-detail');
+  detail.style.display = '';
+  document.getElementById('cv-'+id+'-detail-body').innerHTML =
+    '<div class="section '+d.cls+'"><div class="section-title">'+d.title+'</div>'+d.html+'</div>';
+  detail.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function cvShowGrid(id){
+  document.getElementById('cv-'+id+'-detail').style.display = 'none';
+  document.getElementById('cv-'+id+'-grid').style.display = '';
 }
 function havrutaPick(qid, idx, btn){
   const box = document.getElementById('fb-'+qid);
@@ -1362,9 +1297,8 @@ document.addEventListener('DOMContentLoaded', function(){
 function showGrade(id) {
   document.querySelectorAll('.grade-section').forEach(s => s.classList.remove('active'));
   document.getElementById('g-' + id).classList.add('active');
-  const ids = ['e1','e2','e3','e4','e5','e6','m1','m2','m3','t1','t2','t3'];
+  const ids = ['e1','e2','e3','e4','e5','e6','m1','m2','m3'];
   document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', ids[i] === id));
-  if(id==='t1'||id==='t2'||id==='t3') buildExam(id);
 }
 
 function toggle(header) {
@@ -1374,205 +1308,6 @@ function toggle(header) {
   arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
 }
 
-// ── 시험 문제 데이터 ──
-const EXAMS = {
-  t1: [
-    // 정수와 유리수 (1-5)
-    { type:'mc', unit:'정수와 유리수', q:'다음 중 절댓값이 가장 큰 수는?', opts:['−9','7','−5','3','8'], ans:0, exp:'|−9|=9로 가장 크다.' },
-    { type:'mc', unit:'정수와 유리수', q:'(−3)×(−4)의 값은?', opts:['−12','12','−7','7','1'], ans:1, exp:'음수×음수=양수 → 3×4=12' },
-    { type:'mc', unit:'정수와 유리수', q:'(−2)³의 값은?', opts:['8','-8','6','-6','4'], ans:1, exp:'(−2)³=(−2)×(−2)×(−2)=4×(−2)=−8' },
-    { type:'mc', unit:'정수와 유리수', q:'수직선에서 −3과 5 사이의 거리는?', opts:['2','3','8','−2','15'], ans:2, exp:'|5−(−3)|=|5+3|=8' },
-    { type:'input', unit:'정수와 유리수', q:'(−6)÷(+2)+(−1)×(+3)을 계산하시오.', ans:'-6', exp:'(−6)÷2=−3, (−1)×3=−3 → −3+(−3)=−6', altAns:['-6'] },
-    // 문자와 식 (6-10)
-    { type:'mc', unit:'문자와 식', q:'3x − 2y + x + 5y를 간단히 하면?', opts:['4x+3y','2x+3y','4x−3y','2x−3y','4x+7y'], ans:0, exp:'(3x+x)+(−2y+5y)=4x+3y' },
-    { type:'mc', unit:'문자와 식', q:'2(3a−1)−3(a+2)를 간단히 하면?', opts:['3a−8','3a+8','6a−8','6a+8','3a−4'], ans:0, exp:'6a−2−3a−6=3a−8' },
-    { type:'mc', unit:'문자와 식', q:'x=2일 때 5x²−3x+1의 값은?', opts:['15','17','11','19','20'], ans:0, exp:'5×4−3×2+1=20−6+1=15' },
-    { type:'input', unit:'문자와 식', q:'4(x+2)−2(3x−1)을 간단히 하시오. (ax+b 형태)', ans:'-2x+10', altAns:['-2x + 10'] , exp:'4x+8−6x+2=−2x+10'},
-    { type:'mc', unit:'문자와 식', q:'다음 중 일차식이 아닌 것은?', opts:['3x+1','−2x','5x−7','x²+1','4x'], ans:3, exp:'x²+1은 이차식이다.' },
-    // 일차방정식 (11-15)
-    { type:'mc', unit:'일차방정식', q:'2x+3=11의 해는?', opts:['x=3','x=4','x=5','x=7','x=2'], ans:1, exp:'2x=8 → x=4' },
-    { type:'mc', unit:'일차방정식', q:'3(x−2)=x+4의 해는?', opts:['x=5','x=4','x=6','x=3','x=7'], ans:0, exp:'3x−6=x+4 → 2x=10 → x=5' },
-    { type:'input', unit:'일차방정식', q:'방정식 5x−7=3x+9의 해를 구하시오.', ans:'8', altAns:['x=8'], exp:'2x=16 → x=8' },
-    { type:'mc', unit:'일차방정식', q:'어떤 수의 3배에서 5를 빼면 19이다. 어떤 수는?', opts:['6','7','8','9','5'], ans:2, exp:'3x−5=19 → 3x=24 → x=8' },
-    { type:'mc', unit:'일차방정식', q:'현재 언니 나이는 20세, 동생은 12세이다. 언니 나이가 동생 나이의 정확히 1.5배가 되는 것은 몇 년 후인가?', opts:['3년 후','4년 후','5년 후','6년 후','절대 안 됨'], ans:1, exp:'20+x=1.5(12+x) → 20+x=18+1.5x → 2=0.5x → x=4' }
-  ],
-  t2: [
-    // 일차함수 (1-5)
-    { type:'mc', unit:'일차함수', q:'일차함수 y=3x−2에서 x=3일 때 y의 값은?', opts:['5','7','9','11','3'], ans:1, exp:'y=3×3−2=9−2=7' },
-    { type:'mc', unit:'일차함수', q:'두 점 (0,3)과 (2,7)을 지나는 일차함수의 식은?', opts:['y=2x+3','y=3x+2','y=2x−3','y=x+3','y=4x+3'], ans:0, exp:'기울기=(7−3)/(2−0)=2, y절편=3 → y=2x+3' },
-    { type:'mc', unit:'일차함수', q:'y=−2x+4의 그래프의 x절편은?', opts:['x=1','x=2','x=4','x=−2','x=−4'], ans:1, exp:'y=0 대입: 0=−2x+4 → x=2' },
-    { type:'input', unit:'일차함수', q:'y=ax+b에서 기울기가 −3이고 y절편이 5일 때, x=2에서의 y값은?', ans:'-1', altAns:['-1'], exp:'y=−3×2+5=−6+5=−1' },
-    { type:'mc', unit:'일차함수', q:'일차함수 y=2x+1과 y=−x+4의 교점의 x좌표는?', opts:['x=1','x=2','x=3','x=0','x=−1'], ans:0, exp:'2x+1=−x+4 → 3x=3 → x=1' },
-    // 연립방정식 (6-10)
-    { type:'mc', unit:'연립방정식', q:'{ x+y=7, x−y=3 }의 해는?', opts:['x=5,y=2','x=4,y=3','x=3,y=4','x=6,y=1','x=2,y=5'], ans:0, exp:'더하면 2x=10→x=5, 대입 y=2' },
-    { type:'mc', unit:'연립방정식', q:'{ 2x+y=8, x+2y=7 }에서 y의 값은?', opts:['y=1','y=2','y=3','y=4','y=5'], ans:1, exp:'x=8−y 대입: (8−y)+2y=7 → 8+y=7? 재계산: 2x+y=8①, x+2y=7② → ①×2−②: 4x+2y−x−2y=16−7 → 3x=9 → x=3, y=2' },
-    { type:'input', unit:'연립방정식', q:'{ 3x−y=5, x+y=3 }에서 x의 값을 구하시오.', ans:'2', altAns:['x=2'], exp:'더하면 4x=8→x=2' },
-    { type:'mc', unit:'연립방정식', q:'사과 2개와 배 1개의 가격이 1,700원, 사과 1개와 배 2개의 가격이 1,900원이다. 배 한 개의 가격은?', opts:['500원','600원','700원','800원','900원'], ans:2, exp:'2a+b=1700①, a+2b=1900② → ①×2−②: 3a=1500→a=500, b=700' },
-    { type:'mc', unit:'연립방정식', q:'해가 x=1, y=2인 연립방정식은?', opts:['{x+y=3, 2x+y=4}','{x+y=4, x−y=1}','{2x+y=3, x+2y=3}','{3x+y=4, x+y=4}','{x+2y=3, 2x−y=2}'], ans:0, exp:'x=1,y=2: 1+2=3✓, 2+2=4✓' },
-    // 도형 (11-15)
-    { type:'mc', unit:'삼각형', q:'직각삼각형에서 두 다리가 5cm, 12cm일 때 빗변은?', opts:['10cm','11cm','13cm','14cm','15cm'], ans:2, exp:'5²+12²=25+144=169=13²' },
-    { type:'mc', unit:'삼각형', q:'삼각형 ABC와 DEF가 SAS 합동이 되기 위한 조건이 아닌 것은?', opts:['AB=DE','BC=EF','∠B=∠E','AC=DF','∠A=∠D'], ans:3, exp:'SAS는 두 변과 끼인각. AC=DF는 SSS에 해당하는 조건' },
-    { type:'input', unit:'닮음', q:'닮음비가 2:3인 두 삼각형이 있다. 작은 삼각형의 넓이가 12cm²일 때 큰 삼각형의 넓이(cm²)는?', ans:'27', altAns:['27cm²'], exp:'넓이비=닮음비²=4:9 → 12×9/4=27cm²' },
-    { type:'mc', unit:'피타고라스', q:'정사각형의 대각선 길이가 10cm일 때 한 변의 길이는?', opts:['5cm','5√2 cm','10√2 cm','√5 cm','2√5 cm'], ans:1, exp:'a²+a²=100 → 2a²=100 → a=5√2' },
-    { type:'mc', unit:'피타고라스', q:'세 변이 7, 24, 25인 삼각형은?', opts:['예각삼각형','직각삼각형','둔각삼각형','정삼각형','이등변삼각형'], ans:1, exp:'7²+24²=49+576=625=25² → 직각삼각형' }
-  ],
-  t3: [
-    // 이차방정식 (1-5)
-    { type:'mc', unit:'이차방정식', q:'x²−5x+6=0의 해는?', opts:['x=1,x=6','x=2,x=3','x=−2,x=−3','x=1,x=−6','x=−1,x=6'], ans:1, exp:'(x−2)(x−3)=0 → x=2 또는 x=3' },
-    { type:'mc', unit:'이차방정식', q:'x²−4=0의 해는?', opts:['x=2','x=4','x=±2','x=±4','x=0'], ans:2, exp:'x²=4 → x=±2' },
-    { type:'input', unit:'이차방정식', q:'x²+6x+9=0의 해를 구하시오.', ans:'-3', altAns:['x=-3','−3'], exp:'(x+3)²=0 → x=−3 (중근)' },
-    { type:'mc', unit:'이차방정식', q:'2x²−7x+3=0의 해는?', opts:['x=3, x=1/2','x=1, x=3','x=−3, x=1/2','x=3, x=−1/2','x=1/2, x=2'], ans:0, exp:'(2x−1)(x−3)=0 → x=1/2 또는 x=3' },
-    { type:'mc', unit:'이차방정식', q:'x²+2x+k=0이 중근을 가지려면 k의 값은?', opts:['k=1','k=2','k=3','k=4','k=−1'], ans:0, exp:'판별식=0: 4−4k=0 → k=1' },
-    // 이차함수 (6-10)
-    { type:'mc', unit:'이차함수', q:'y=x²−4x+5의 꼭짓점 좌표는?', opts:['(2,1)','(−2,1)','(2,−1)','(4,5)','(1,2)'], ans:0, exp:'y=(x−2)²+1 → 꼭짓점(2,1)' },
-    { type:'mc', unit:'이차함수', q:'y=−2x²+4의 그래프로 옳은 것은?', opts:['위로 볼록, 꼭짓점(0,4)','아래로 볼록, 꼭짓점(0,4)','위로 볼록, 꼭짓점(0,−4)','위로 볼록, 꼭짓점(2,0)','아래로 볼록, 꼭짓점(0,2)'], ans:0, exp:'a=−2<0이므로 위로 볼록, b=0이므로 축x=0, 꼭짓점(0,4)' },
-    { type:'input', unit:'이차함수', q:'y=3(x−1)²−2의 꼭짓점의 y좌표는?', ans:'-2', altAns:['-2'], exp:'표준형 y=a(x−p)²+q에서 꼭짓점은 (p,q)=(1,−2)' },
-    { type:'mc', unit:'이차함수', q:'y=x²−6x+8에서 x=1일 때와 x=5일 때 y값의 합은?', opts:['2','4','6','8','10'], ans:2, exp:'x=1: 1−6+8=3 / x=5: 25−30+8=3 → 합=6' },
-    { type:'mc', unit:'이차함수', q:'이차함수 y=ax²+bx+c의 그래프가 위로 볼록이고 축이 x=2일 때 옳은 것은?', opts:['a>0, b>0','a<0, −b/2a=2','a>0, b=4a','a<0, b=4a','a<0, b>0'], ans:1, exp:'위로 볼록 → a<0. 축 x=−b/2a=2가 조건 그대로이므로 정답은 "a<0, −b/2a=2". (참고: 여기서 b=−4a가 유도되는데, b=4a라고 쓴 선택지는 부호가 반대라 오답)' },
-    // 통계와 확률 (11-15)
-    { type:'mc', unit:'확률', q:'주머니에 빨간 공 4개, 파란 공 6개가 있다. 한 개를 꺼낼 때 빨간 공일 확률은?', opts:['1/4','2/5','3/5','1/2','4/6'], ans:1, exp:'4/(4+6)=4/10=2/5' },
-    { type:'mc', unit:'확률', q:'동전을 2번 던질 때 적어도 한 번 앞면이 나올 확률은?', opts:['1/4','1/2','3/4','1','2/3'], ans:2, exp:'P(적어도 1번 앞)=1−P(모두 뒤)=1−1/4=3/4' },
-    { type:'input', unit:'통계', q:'자료 2, 4, 6, 8, 10의 평균과 중앙값이 모두 같을 때, 그 값은?', ans:'6', altAns:['6'], exp:'평균=(2+4+6+8+10)/5=30/5=6, 중앙값=6(가운데)' },
-    { type:'mc', unit:'통계', q:'다섯 개의 자료가 3, 5, 7, x, 9이고 평균이 6일 때 x의 값은?', opts:['4','5','6','7','8'], ans:2, exp:'(3+5+7+x+9)/5=6 → 24+x=30 → x=6' },
-    { type:'mc', unit:'통계', q:'A, B 두 사건이 서로 독립일 때 P(A)=1/3, P(B)=1/2이면 P(A∩B)는?', opts:['1/6','1/3','1/2','5/6','2/3'], ans:0, exp:'독립사건: P(A∩B)=P(A)×P(B)=1/3×1/2=1/6' }
-  ]
-};
-
-// ── 시험 렌더링 ──
-const examBuilt = {};
-function buildExam(tid) {
-  if(examBuilt[tid]) return;
-  examBuilt[tid] = true;
-  const qs = EXAMS[tid];
-  const container = document.getElementById(tid+'-questions');
-  container.innerHTML = qs.map((q,i) => renderQ(q,i,tid)).join('');
-  updateScore(tid);
-}
-
-function renderQ(q, i, tid) {
-  const num = i+1;
-  if(q.type==='mc') {
-    const opts = q.opts.map((o,j)=>
-      `<button class="q-opt" onclick="selectOpt('${tid}',${i},${j},this)">${String.fromCharCode(65+j)}. ${o}</button>`
-    ).join('');
-    return `<div class="q-block" id="${tid}-q${i}">
-      <div class="q-num">${num}번 · ${q.unit}</div>
-      <div class="q-text">${q.q}</div>
-      <div class="q-opts" id="${tid}-opts${i}">${opts}</div>
-      <div class="q-feedback" id="${tid}-fb${i}"></div>
-    </div>`;
-  } else {
-    return `<div class="q-block" id="${tid}-q${i}">
-      <div class="q-num">${num}번 · ${q.unit} (단답형)</div>
-      <div class="q-text">${q.q}</div>
-      <input class="q-input" id="${tid}-inp${i}" placeholder="답을 입력하세요" oninput="updateScore('${tid}')">
-      <div class="q-feedback" id="${tid}-fb${i}"></div>
-    </div>`;
-  }
-}
-
-const selected = {}; // selected[tid][i] = j
-function selectOpt(tid, qi, oi, btn) {
-  if(!selected[tid]) selected[tid]={};
-  selected[tid][qi] = oi;
-  const opts = document.querySelectorAll(`#${tid}-opts${qi} .q-opt`);
-  opts.forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  updateScore(tid);
-}
-
-function updateScore(tid) {
-  const qs = EXAMS[tid];
-  let answered = 0;
-  qs.forEach((q,i) => {
-    if(q.type==='mc' && selected[tid] && selected[tid][i]!==undefined) answered++;
-    if(q.type==='input') {
-      const inp = document.getElementById(tid+'-inp'+i);
-      if(inp && inp.value.trim()) answered++;
-    }
-  });
-  document.getElementById(tid+'-left').textContent = qs.length - answered;
-}
-
-function submitExam(tid) {
-  const qs = EXAMS[tid];
-  let correct=0, wrong=0, unanswered=0;
-  qs.forEach((q,i) => {
-    const block = document.getElementById(tid+'-q'+i);
-    const fb = document.getElementById(tid+'-fb'+i);
-    block.classList.remove('correct','wrong');
-    if(q.type==='mc') {
-      const userAns = selected[tid]?.[i];
-      const opts = document.querySelectorAll(`#${tid}-opts${i} .q-opt`);
-      opts.forEach(b => b.classList.remove('correct-ans','wrong-ans','selected'));
-      opts[q.ans].classList.add('correct-ans');
-      if(userAns===undefined) {
-        unanswered++;
-        fb.className='q-feedback show ng';
-        fb.textContent='⚠️ 풀지 않음 | 정답: '+String.fromCharCode(65+q.ans)+'. '+q.opts[q.ans]+' | '+q.exp;
-      } else if(userAns===q.ans) {
-        correct++;
-        block.classList.add('correct');
-        fb.className='q-feedback show ok';
-        fb.textContent='✅ 정답! | '+q.exp;
-      } else {
-        wrong++;
-        opts[userAns].classList.add('wrong-ans');
-        block.classList.add('wrong');
-        fb.className='q-feedback show ng';
-        fb.textContent='❌ 오답 | 정답: '+String.fromCharCode(65+q.ans)+'. '+q.opts[q.ans]+' | '+q.exp;
-      }
-    } else {
-      const inp = document.getElementById(tid+'-inp'+i);
-      const userVal = inp ? inp.value.trim().replace(/\s+/g,'') : '';
-      const correctVal = q.ans.replace(/\s+/g,'');
-      const alts = (q.altAns||[]).map(a=>a.replace(/\s+/g,''));
-      const isCorrect = userVal===correctVal || alts.includes(userVal);
-      if(!userVal) {
-        unanswered++;
-        fb.className='q-feedback show ng';
-        fb.textContent='⚠️ 풀지 않음 | 정답: '+q.ans+' | '+q.exp;
-      } else if(isCorrect) {
-        correct++;
-        block.classList.add('correct');
-        fb.className='q-feedback show ok';
-        fb.textContent='✅ 정답! | '+q.exp;
-      } else {
-        wrong++;
-        block.classList.add('wrong');
-        fb.className='q-feedback show ng';
-        fb.textContent='❌ 오답 (입력: '+userVal+') | 정답: '+q.ans+' | '+q.exp;
-      }
-    }
-  });
-  document.getElementById(tid+'-correct').textContent = correct;
-  document.getElementById(tid+'-wrong').textContent = wrong;
-  document.getElementById(tid+'-left').textContent = unanswered;
-  // 결과
-  const total = qs.length;
-  const pct = Math.round(correct/total*100);
-  const msg = pct===100?'🏆 완벽합니다! 유대 랍비도 칭찬할 실력!'
-    :pct>=80?'🌟 훌륭합니다! 조금만 더 연습하면 만점!'
-    :pct>=60?'📚 잘했어요! 틀린 문제를 다시 풀어보세요.'
-    :pct>=40?'💪 더 노력이 필요해요. 개념을 다시 확인하세요.'
-    :'📖 기초부터 차근차근 다시 공부해봐요.';
-  document.getElementById(tid+'-rscore').textContent = correct+' / '+total+' ('+pct+'점)';
-  document.getElementById(tid+'-rmsg').textContent = msg;
-  document.getElementById(tid+'-rdetail').textContent = '정답 '+correct+'개 · 오답 '+wrong+'개 · 미응답 '+unanswered+'개';
-  const res = document.getElementById(tid+'-result');
-  res.classList.add('show');
-  res.scrollIntoView({behavior:'smooth',block:'center'});
-}
-
-function retryExam(tid) {
-  selected[tid]={};
-  delete examBuilt[tid];
-  document.getElementById(tid+'-questions').innerHTML='';
-  document.getElementById(tid+'-result').classList.remove('show');
-  document.getElementById(tid+'-correct').textContent='0';
-  document.getElementById(tid+'-wrong').textContent='0';
-  buildExam(tid);
-}
 </script>
 </body>
 </html>
