@@ -66,6 +66,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 .grade-section.unit-grid-mode.active{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:start}
 .grade-section.unit-grid-mode .unit-card{margin-bottom:0}
 .grade-section.unit-grid-mode .unit-card:has(.unit-body.open){grid-column:1/-1}
+.grade-section.unit-grid-mode:has(.unit-body.open) .unit-card:not(:has(.unit-body.open)){display:none}
 .grade-section.unit-grid-mode .unit-header{flex-direction:column;justify-content:center;text-align:center;aspect-ratio:1;gap:6px;padding:10px 8px}
 .grade-section.unit-grid-mode .unit-header .unit-sub{display:none}
 .grade-section.unit-grid-mode .unit-header .unit-arrow{display:none}
@@ -95,6 +96,9 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 .expr-num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:rgba(240,192,64,.15);color:#f0c040;border-radius:50%;font-size:.72rem;font-weight:700;margin-right:6px;flex:0 0 auto}
 .expr-item strong{color:#bc8cff}
 .expr-ans{color:#3fb950;font-weight:700}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:.92em;line-height:1.15;margin:0 2px}
+.frac-n,.frac-d{display:block;padding:0 3px}
+.frac-n{border-bottom:1.5px solid currentColor}
 </style>
 </head>
 <body>
@@ -299,32 +303,76 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
       <span class="unit-arrow">▼</span>
     </div>
     <div class="unit-body">
-      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
-        <p>1보다 작은 부분을 표현해야 할 때 분수가 탄생했다. 피자 반 조각, 물 3분의 2컵… 분수 없이는 정밀한 요리도, 공정한 분배도 불가능하다. 고대 이집트인들도 분수를 사용했다.</p>
-      </div>
-      <div class="section concept"><div class="section-title">📖 개념 설명</div>
-        <ul>
-          <li>분수: 전체를 똑같이 나눈 것의 일부 → 1/4 = 4등분 중 1개</li>
-          <li>분모(아래): 전체를 몇 등분했는가 / 분자(위): 그중 몇 개</li>
-          <li>단위분수: 분자가 1인 분수 (1/2, 1/3, 1/4…)</li>
-          <li>크기비교: 분모가 같으면 분자가 클수록 크다 (3/5 > 2/5)</li>
-        </ul>
-      </div>
-      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
-        <div class="q-item"><strong>Q1.</strong> 1/2와 2/4는 같은 크기인가요? 그림으로 설명해보세요.</div>
-        <div class="q-item"><strong>Q2.</strong> 분모가 클수록 조각이 작아지는 이유는?</div>
-        <div class="q-item"><strong>Q3.</strong> 분수로 표현할 수 없는 수도 있을까요?</div>
-      </div>
-      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
-        <div class="prob-box">
-          <div class="prob-q">문제: 3/8과 5/8 중 어느 것이 더 큰가요?</div>
-          <div class="sol"><strong>풀이①(분자비교):</strong> 분모가 같으므로 분자 비교: 5>3 → 5/8이 더 크다</div>
-          <div class="sol"><strong>풀이②(그림):</strong> 8칸짜리 막대에서 3칸 vs 5칸 → 5칸이 더 길다</div>
-          <div class="sol"><strong>풀이③(뺄셈):</strong> 5/8−3/8=2/8>0 이므로 5/8이 크다</div>
+      <div class="cv-wrap" id="cv-e3frac">
+        <div class="cv-grid" id="cv-e3frac-grid"></div>
+        <div class="cv-detail" id="cv-e3frac-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e3frac')">← 목록으로</button>
+          <div id="cv-e3frac-detail-body"></div>
         </div>
       </div>
-      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
-        <div class="debate-item">1/2과 1/3 중 어느 쪽이 클까요? 분모가 다르면 어떻게 비교할까요? 피자로 생각해보면 어떤가요?</div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">✖️ 곱셈 <span class="badge">초3</span></div><div class="unit-sub">두 자리 수 곱셈·자리값의 원리</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e3mul">
+        <div class="cv-grid" id="cv-e3mul-grid"></div>
+        <div class="cv-detail" id="cv-e3mul-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e3mul')">← 목록으로</button>
+          <div id="cv-e3mul-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">⭕ 원 <span class="badge">초3</span></div><div class="unit-sub">원의 중심·반지름·지름</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e3circ">
+        <div class="cv-grid" id="cv-e3circ-grid"></div>
+        <div class="cv-detail" id="cv-e3circ-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e3circ')">← 목록으로</button>
+          <div id="cv-e3circ-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🧴 들이와 무게 <span class="badge">초3</span></div><div class="unit-sub">L·mL, kg·g의 단위와 계산</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e3msr">
+        <div class="cv-grid" id="cv-e3msr-grid"></div>
+        <div class="cv-detail" id="cv-e3msr-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e3msr')">← 목록으로</button>
+          <div id="cv-e3msr-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📊 자료의 정리 <span class="badge">초3</span></div><div class="unit-sub">표와 그림그래프</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e3data">
+        <div class="cv-grid" id="cv-e3data-grid"></div>
+        <div class="cv-detail" id="cv-e3data-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e3data')">← 목록으로</button>
+          <div id="cv-e3data-detail-body"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -432,33 +480,12 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
       <span class="unit-arrow">▼</span>
     </div>
     <div class="unit-body">
-      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
-        <p>"30% 할인"은 얼마나 싸진 걸까? "투표율 65%"는 무엇을 의미할까? 비율은 현대 사회에서 가장 많이 쓰이는 수학 개념이다. 주식, 환율, 통계 모두 비율이다.</p>
-      </div>
-      <div class="section concept"><div class="section-title">📖 개념 설명</div>
-        <ul>
-          <li>비(比): a:b → a를 b로 나눈 관계</li>
-          <li>비율: a÷b (소수 또는 분수로 표현)</li>
-          <li>백분율(%): 비율×100 → 0.3=30%</li>
-          <li>할인율 적용: 원가×(1−할인율) = 판매가</li>
-          <li>할인 후 금액 = 원가 × (100%−할인율%)/100</li>
-        </ul>
-      </div>
-      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
-        <div class="q-item"><strong>Q1.</strong> 30% 할인과 1/3 할인은 같을까요 다를까요? 계산해보세요.</div>
-        <div class="q-item"><strong>Q2.</strong> 50% 할인 후 다시 50% 할인하면 공짜인가요? 왜 아닌가요?</div>
-        <div class="q-item"><strong>Q3.</strong> 뉴스에서 "실업률 3%"라고 할 때 실제로는 어떤 계산인가요?</div>
-      </div>
-      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
-        <div class="prob-box">
-          <div class="prob-q">문제: 정가 25,000원인 옷이 40% 할인 중입니다. 얼마를 내야 하나요?</div>
-          <div class="sol"><strong>풀이①(할인액 계산):</strong> 25,000×0.4=10,000 → 25,000−10,000=15,000원</div>
-          <div class="sol"><strong>풀이②(남은 비율):</strong> 100%−40%=60% → 25,000×0.6=15,000원</div>
-          <div class="sol"><strong>풀이③(분수):</strong> 40%=2/5 → 25,000×3/5=15,000원</div>
+      <div class="cv-wrap" id="cv-e5pct">
+        <div class="cv-grid" id="cv-e5pct-grid"></div>
+        <div class="cv-detail" id="cv-e5pct-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e5pct')">← 목록으로</button>
+          <div id="cv-e5pct-detail-body"></div>
         </div>
-      </div>
-      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
-        <div class="debate-item">마트에서 "원래 가격 100,000원 → 현재 60,000원"이라는 표시를 봤습니다. 실제로 원래 가격이 100,000원이었을까요? 소비자를 속이는 숫자 트릭에는 어떤 것이 있나요?</div>
       </div>
     </div>
   </div>
@@ -862,6 +889,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 </div><!-- /content -->
 
 <script>
+function frac(n, d){ return '<span class="frac"><span class="frac-n">'+n+'</span><span class="frac-d">'+d+'</span></span>'; }
 // ── 카드뷰(한 장씩 넘기기) ──
 const CV_DATA = {
   'e3div': [
@@ -1057,6 +1085,7 @@ const CV_DATA = {
         <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">4를 계속 더한(또는 곱한) 수들이 4의 배수예요</div>
       </div>
       <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 최대공약수: 공통 약수 중 가장 큰 수</div>
+      <ul><li>사과 24개와 귤 36개를 최대한 많은 사람에게 남김없이 똑같이 나눠주려면 몇 명까지 나눠줄 수 있을까?</li></ul>
       <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
         <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">24와 36의 공통 약수 찾기</div>
         <div style="display:flex;justify-content:center;gap:8px;font-size:.72rem;text-align:center">
@@ -1064,7 +1093,7 @@ const CV_DATA = {
           <div style="flex:1;background:rgba(63,185,80,.1);border:1px solid rgba(63,185,80,.3);border-radius:6px;padding:4px">공통 약수<br><strong style="color:#3fb950">1,2,3,4,6,12</strong></div>
           <div style="flex:1">36의 약수<br>1,2,3,4,6,9,12,18,36</div>
         </div>
-        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">공통 약수 중 가장 큰 수 12가 최대공약수예요</div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">공통 약수 중 가장 큰 수 12가 최대공약수 → 최대 12명에게 나눠줄 수 있어요</div>
       </div>
       <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 최소공배수: 공통 배수 중 가장 작은 수</div>
       <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
@@ -1074,6 +1103,27 @@ const CV_DATA = {
           B버스(6분): 6, <strong style="color:#3fb950">12</strong>, 18, 24…
         </div>
         <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">두 버스가 처음 같이 오는 시각 12분 — 최소공배수예요</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 왜 두 수의 곱은 최대공약수×최소공배수와 같을까?</div>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">24와 36을 최대공약수 12로 쪼개보면</div>
+        <div style="text-align:center;font-size:.82rem;line-height:1.8">
+          24 = 12 × 2　　36 = 12 × 3
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin:6px 0">남은 2와 3은 더 이상 공통으로 나눌 수 있는 수가 없어요(공약수가 1뿐)</div>
+        <div style="display:grid;grid-template-columns:repeat(3,32px);gap:4px;justify-content:center;margin:10px auto">
+          <div style="background:rgba(63,185,80,.15);border:1px solid rgba(63,185,80,.4);border-radius:4px;text-align:center;font-size:.68rem;padding:4px 0">12</div>
+          <div style="background:rgba(63,185,80,.15);border:1px solid rgba(63,185,80,.4);border-radius:4px;text-align:center;font-size:.68rem;padding:4px 0">12</div>
+          <div style="background:rgba(63,185,80,.15);border:1px solid rgba(63,185,80,.4);border-radius:4px;text-align:center;font-size:.68rem;padding:4px 0">12</div>
+          <div style="background:rgba(63,185,80,.15);border:1px solid rgba(63,185,80,.4);border-radius:4px;text-align:center;font-size:.68rem;padding:4px 0">12</div>
+          <div style="background:rgba(63,185,80,.15);border:1px solid rgba(63,185,80,.4);border-radius:4px;text-align:center;font-size:.68rem;padding:4px 0">12</div>
+          <div style="background:rgba(63,185,80,.15);border:1px solid rgba(63,185,80,.4);border-radius:4px;text-align:center;font-size:.68rem;padding:4px 0">12</div>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e">2줄×3칸=6칸, 한 칸이 12 → 최소공배수 = 12×2×3 = 72</div>
+        <div style="text-align:center;font-size:.82rem;margin-top:10px;padding-top:10px;border-top:1px solid #30363d">
+          24×36 = (12×2)×(12×3) = 12×(12×2×3) = <strong style="color:#f0c040">12×72</strong><br>
+          <span style="color:#8b949e;font-size:.72rem">= 최대공약수 × 최소공배수</span>
+        </div>
       </div>
     `},
     { title:'💬 하브루타 질문', cls:'havruta', html:`
@@ -1166,8 +1216,1080 @@ const CV_DATA = {
       </div>
       <div class="story-takeaway"><strong>정리:</strong> 증명이란 몇 개의 예로 확인하는 게 아니라, "만약 틀렸다면 모순이 생긴다"는 걸 논리로 보여주는 것이에요. 유클리드는 "소수가 유한하다"고 가정했을 때 항상 새로운 소수가 튀어나온다는 걸 보여줘서, 소수가 무한히 많다는 걸 확실하게 증명했어요.</div>
     `}
+  ],
+  'e5pct': [
+    { title:'🌟 왜 배우는가?', cls:'why', html:`
+      <p>"이 옷 30% 할인!"이라는 말을 보면 얼마나 싸진 건지 바로 감이 오나요?</p>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:10px;margin:8px 0">
+        <div style="display:flex;justify-content:space-between;font-size:.62rem;color:#8b949e;margin-bottom:2px"><span>0%</span><span>전체(100%)</span></div>
+        <div style="background:#4b5563;border:1px solid #8b949e;border-radius:6px;height:22px;overflow:hidden;position:relative"><div style="background:#f0c040;height:100%;width:30%;display:flex;align-items:center;justify-content:flex-end;padding-right:3px;box-sizing:border-box;color:#1a1000;font-size:.62rem;font-weight:700">30%</div></div>
+        <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:6px">가격표에 "30%"라고만 쓰여 있으면, 전체(막대 전부) 중 얼마인지 감이 잘 안 와요</div>
+      </div>
+      <p style="margin-top:10px">뉴스에서 "투표율 65%"라고 하면 정확히 뭘 말하는 걸까요?</p>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:10px;margin:8px 0">
+        <div style="background:#4b5563;border-radius:6px;height:18px;overflow:hidden"><div style="background:linear-gradient(90deg,#3fb950,#2ea043);height:100%;width:65%"></div></div>
+        <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:6px">전체를 100칸으로 놓았을 때 65칸만큼 — "100명 중 65명"이 아니라 "전체를 100이라 했을 때 65만큼"이에요</div>
+      </div>
+      <p style="margin-top:10px">비율은 어른들이 매일 쓰는 말이에요.</p>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:10px;margin:8px 0;text-align:center;font-size:1.3rem">
+        🛒 📰 🏦 📊
+        <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:6px">마트 할인, 뉴스 통계, 은행 이자, 각종 그래프 — 어디서나 비율을 써요</div>
+      </div>
+      <p style="margin-top:10px">그런데 뜻을 정확히 모르면 손해를 볼 수도 있어요.</p>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:10px;margin:8px 0;text-align:center">
+        <span style="font-size:1.3rem">😕 % <span class="arrow">➜</span> 💸</span>
+        <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:6px">할인율이나 이자율의 뜻을 잘못 알면, 나도 모르게 돈을 더 쓰게 될 수 있어요</div>
+      </div>
+      <p style="margin-top:10px">비·비율·백분율을 알면 "이게 진짜 싼 건지" 스스로 판단할 수 있어요.</p>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:10px;margin:8px 0;text-align:center">
+        <span style="font-size:.85rem">"50% 할인" <span style="color:#8b949e">vs</span> "1개 사면 1개 더!"</span>
+        <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:6px">둘 중 뭐가 더 이득인지, 비율을 알면 직접 계산해서 비교할 수 있어요</div>
+      </div>
+      <p style="margin-top:10px">"이 숫자가 뭘 말하는 건지"도 스스로 알 수 있게 돼요.</p>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:10px;margin:8px 0;text-align:center">
+        <span style="font-size:1.3rem">🔍 65% <span class="arrow">➜</span> 😊</span>
+        <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:6px">숫자 뒤에 숨은 뜻을 남에게 물어보지 않고 스스로 읽어낼 수 있어요</div>
+      </div>
+    `},
+    { title:'📖 개념 설명', cls:'concept', html:`
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 두 수를 나란히 비교하는 "비"</div>
+      <ul><li>우리 반 30명 중 축구를 좋아하는 학생이 18명이라면, <strong style="font-size:1.15em;color:#f0c040">좋아하는 학생</strong>과 <strong style="font-size:1.15em;color:#58a6ff">안 좋아하는 학생</strong>을 어떻게 비교해서 나타낼 수 있을까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">축구 좋아함 18명, 안 좋아함 12명 → 18:12</div>
+        <div style="text-align:center;font-size:1.1rem">🙋🙋🙋🙋🙋🙋 <span style="color:#8b949e;font-size:.85rem">(×3=18명)</span> <span style="color:#8b949e">:</span> 🙅🙅🙅🙅 <span style="color:#8b949e;font-size:.85rem">(×3=12명)</span></div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">두 수를 그대로 나란히 놓고 비교하는 게 "비(比)"예요 → a:b</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 비를 하나의 숫자로 나타내기</div>
+      <ul><li>옆반은 24명 중 12명이 축구를 좋아해요. 18:30(우리 반)과 12:24(옆반) 중 어느 반이 축구를 더 좋아하는지, 비를 보기만 해서 바로 알 수 있을까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="display:flex;justify-content:center;gap:16px;font-size:.78rem;text-align:center">
+          <div>우리 반 18÷30<br><strong style="color:#f0c040">= 0.6</strong>
+            <div style="background:#4b5563;border-radius:6px;height:14px;overflow:hidden;margin-top:4px;width:80px"><div style="background:linear-gradient(90deg,#58a6ff,#388bfd);height:100%;width:60%"></div></div>
+          </div>
+          <div>옆반 12÷24<br><strong style="color:#f0c040">= 0.5</strong>
+            <div style="background:#4b5563;border-radius:6px;height:14px;overflow:hidden;margin-top:4px;width:80px"><div style="background:linear-gradient(90deg,#58a6ff,#388bfd);height:100%;width:50%"></div></div>
+          </div>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">18:30과 12:24는 봐서 바로 비교가 안 되지만, 나눗셈으로 하나의 숫자(0.6, 0.5)로 바꾸면 0.6>0.5로 바로 비교돼요 — 우리 반이 더 좋아해요. 이렇게 전체에 대한 부분을 나눗셈으로 나타낸 게 "비율"이에요 → 비율=a÷b</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 왜 비율 숫자 하나만으로는 부족할까?</div>
+      <ul><li>우리 반(30명)의 비율이 0.6이고, 다른 반(20명)도 비율이 0.6이라면, 두 반의 축구 좋아하는 학생 수는 같을까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="display:flex;justify-content:center;gap:14px;font-size:.78rem;text-align:center">
+          <div>우리 반 30명의 비율 0.6<br><strong style="color:#f0c040">18명</strong></div>
+          <div>다른 반 20명의 비율 0.6<br><strong style="color:#f0c040">12명</strong></div>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">같은 비율(0.6)이라도 "전체"가 다르면 실제 인원수는 달라요 — 비율은 항상 "무엇을 기준(전체)으로 하는가"와 함께 봐야 진짜 의미가 있어요</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 비율을 "백분율"로, 더 쉽게 비교하기</div>
+      <ul><li>0.6이라는 소수를, 누구나 한눈에 크기를 비교할 수 있게 나타내려면 어떻게 할까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">0.6 <span class="arrow">➜</span> ×100 <span class="arrow">➜</span> 60%</div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">비율에 100을 곱하고 %를 붙이면 "백분율"이에요 — 항상 100을 기준으로 놓고 비교하는 거예요</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — "할인율"로 원가에서 얼마나 빼는지 알아보기</div>
+      <ul><li>원가 10,000원인 물건을 20% 할인해서 판다면, 실제로 얼마를 받아야 할까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">원가 10,000원, 20% 할인</div>
+        <div style="text-align:center;font-size:.85rem"><s style="color:#8b949e">10,000원</s> <span class="arrow">➜</span> <strong style="color:#3fb950">8,000원</strong></div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">할인 후 금액 = 원가×(1−할인율) = 10,000×(1−0.2) = 10,000×0.8 = 8,000원</div>
+      </div>
+    `},
+    { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+      <p>학생 30명 중 18명이 축구를 좋아하는 상황(18:30, 비율 0.6, 백분율 60%) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 계산이 얼마나 다양하게 표현되는지 볼까요?</p>
+      <div class="expr-item"><span class="expr-num">1</span><strong>비 표현</strong><br>"30명 중 18명이 축구를 좋아해요. 좋아하는 학생과 안 좋아하는 학생의 비는?" → <span class="expr-ans">18:12</span></div>
+      <div class="expr-item"><span class="expr-num">2</span><strong>비율 표현</strong><br>"전체 학생 대비 축구를 좋아하는 학생의 비율은?" → <span class="expr-ans">0.6</span></div>
+      <div class="expr-item"><span class="expr-num">3</span><strong>백분율 표현</strong><br>"축구를 좋아하는 학생은 전체의 몇 %인가요?" → <span class="expr-ans">60%</span></div>
+      <div class="expr-item"><span class="expr-num">4</span><strong>분수 표현</strong><br>"축구를 좋아하는 학생의 비율을 가장 간단한 분수로 나타내면?" → <span class="expr-ans">3/5</span></div>
+      <div class="expr-item"><span class="expr-num">5</span><strong>인원 예측 표현</strong><br>"다른 반 학생이 100명이고 같은 비율이라면, 축구를 좋아하는 학생은 몇 명일까요?" → <span class="expr-ans">60명</span></div>
+      <div class="expr-item"><span class="expr-num">6</span><strong>할인율 표현</strong><br>"정가 20,000원인 물건을 12,000원에 판다면 할인율은?" → <span class="expr-ans">40%</span></div>
+      <div class="expr-item"><span class="expr-num">7</span><strong>판매가 표현</strong><br>"정가 20,000원에서 40% 할인하면 판매가는?" → <span class="expr-ans">12,000원</span></div>
+      <div class="expr-item"><span class="expr-num">8</span><strong>증가율 표현</strong><br>"가격이 10,000원에서 15,000원으로 오르면 몇 % 증가한 건가요?" → <span class="expr-ans">50%</span></div>
+      <div class="expr-item"><span class="expr-num">9</span><strong>전체 역산 표현</strong><br>"60%가 18명일 때, 전체 인원은 몇 명인가요?" → <span class="expr-ans">30명</span></div>
+      <div class="expr-item"><span class="expr-num">10</span><strong>두 비율 비교 표현</strong><br>"30%와 1/4 중 어느 게 더 큰가요?" → <span class="expr-ans">30% (1/4=25%)</span></div>
+      <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 관계(18:30=0.6=60%)</strong>를 묻고 있어요. 말이 달라도 "결국 비율 문제구나!"를 알아채는 게 중요해요.</p>
+    `},
+    { title:'💬 하브루타 질문', cls:'havruta', html:`
+      <div class="q-item"><strong>Q1.</strong> 30% 할인과 1/3 할인, 어느 쪽이 더 쌀까요?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e5pct-h1',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e5pct-h1">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e5pct-h1',0,this)">1/3 할인이 더 싸요 — 1/3은 약 33.3%라서 30%보다 더 많이 깎아요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e5pct-h1',1,this)">둘 다 똑같아요, 어차피 비슷한 숫자잖아요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e5pct-h1',2,this)">30%가 숫자가 더 크니까 30%가 더 싸요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e5pct-h1"></div>
+        </div>
+      </div>
+      <div class="q-item"><strong>Q2.</strong> 50% 할인한 다음 또 50% 할인하면 완전히 공짜(100% 할인)가 될까요?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e5pct-h2',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e5pct-h2">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e5pct-h2',0,this)">아니에요, 두 번째 50%는 이미 줄어든 가격에 적용돼서 공짜가 안 돼요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e5pct-h2',1,this)">맞아요, 50+50=100이니까 완전히 공짜예요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e5pct-h2',2,this)">오히려 더 비싸져요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e5pct-h2"></div>
+        </div>
+      </div>
+      <div class="q-item"><strong>Q3.</strong> 뉴스에서 "실업률 3%"라고 할 때, 이건 전체 국민 100명 중 3명이 실업자라는 뜻일까요?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e5pct-h3',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e5pct-h3">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e5pct-h3',0,this)">아니에요, 전체 국민이 아니라 "일할 수 있는 사람들" 중에서 3%예요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e5pct-h3',1,this)">맞아요, 전체 국민 100명 중 3명이에요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e5pct-h3',2,this)">그냥 대충 어림잡은 느낌적인 숫자예요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e5pct-h3"></div>
+        </div>
+      </div>
+    `},
+    { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+      <div class="prob-box">
+        <div class="prob-q">문제: 정가 25,000원인 옷이 40% 할인 중입니다. 얼마를 내야 하나요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e5pct-p1',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e5pct-p1">
+          <div class="fb-diagram">
+            <s style="color:#8b949e">25,000원</s> <span class="arrow">➜</span> <strong style="color:#3fb950">15,000원</strong>
+            <div style="background:#4b5563;border-radius:8px;height:20px;overflow:hidden;margin-top:8px">
+              <div style="background:linear-gradient(90deg,#3fb950,#2ea043);height:100%;width:60%"></div>
+            </div>
+            <span class="cap">100% 중 40%를 깎으면 60%가 남아요 → 25,000×0.6=15,000원</span>
+          </div>
+          <div class="sol"><strong>풀이①(할인액 계산):</strong> 25,000×0.4=10,000 → 25,000−10,000=15,000원</div>
+          <div class="sol"><strong>풀이②(남은 비율):</strong> 100%−40%=60% → 25,000×0.6=15,000원</div>
+          <div class="sol"><strong>풀이③(분수):</strong> 40%=2/5 → 25,000×3/5=15,000원</div>
+        </div>
+      </div>
+      <div class="prob-box">
+        <div class="prob-q">문제: 작년 놀이공원 관람객이 8,000명, 올해는 10,000명입니다. 몇 % 증가했나요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e5pct-p2',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e5pct-p2">
+          <div class="fb-diagram">
+            8,000명 <span class="arrow">➜</span> <strong style="color:#3fb950">10,000명</strong> (2,000명 증가)
+            <span class="cap">증가량 2,000 ÷ 원래값 8,000 = 0.25 = 25% 증가</span>
+          </div>
+          <div class="sol"><strong>풀이①(증가율 공식):</strong> 증가량÷원래값×100 = 2,000÷8,000×100 = 25%</div>
+          <div class="sol"><strong>풀이②(비율로 확인):</strong> 10,000÷8,000=1.25 → 원래의 125% → 25% 증가</div>
+        </div>
+      </div>
+      <div class="prob-box">
+        <div class="prob-q">문제: 어떤 물건의 할인가가 18,000원이고, 이건 정가의 60%입니다. 정가는 얼마인가요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e5pct-p3',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e5pct-p3">
+          <div class="fb-diagram">
+            정가의 60% <span class="arrow">➜</span> 18,000원
+            <span class="cap">18,000 ÷ 0.6 = 30,000원 (정가) → 검산: 30,000×0.6=18,000원 ✓</span>
+          </div>
+          <div class="sol"><strong>풀이①(방정식):</strong> 정가×0.6=18,000 → 정가=18,000÷0.6=30,000원</div>
+          <div class="sol"><strong>풀이②(비례식):</strong> 60%가 18,000원이면 100%는 18,000÷60×100=30,000원</div>
+        </div>
+      </div>
+    `},
+    { title:'🔥 심화 토론', cls:'debate', html:`
+      <div class="story-line">
+        <div class="story-avatar">🧒</div>
+        <div class="story-bubble"><span class="story-name">민준</span>선생님, 마트에서 "원래 가격 100,000원 → 지금 60,000원"이라고 써 있는 거 봤어요! 40% 할인이라는데 완전 대박 아니에요?</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">👧</div>
+        <div class="story-bubble"><span class="story-name">서연</span>근데 그 "원래 가격 100,000원"이 진짜 원래 가격이 맞을까요? 확인할 방법이 없잖아요.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧒</div>
+        <div class="story-bubble"><span class="story-name">지호</span>설마 일부러 원래 가격을 부풀려서 써놓은 거 아니에요? 그럼 할인율도 가짜잖아요!</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">👧</div>
+        <div class="story-bubble"><span class="story-name">하은</span>맞아요, 저희 엄마도 "정가"만 보지 말고 "실제로 얼마 내는지"를 보라고 하셨어요.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>다들 아주 예리해요! 실제로 "원래 가격"을 평소보다 높게 표시해뒀다가 할인율을 크게 보이게 만드는 마케팅 방식이 있어요. 40% 할인이라는 숫자 자체는 계산이 맞아도, 기준이 되는 "원래 가격"이 조작되면 그 숫자는 의미가 없어져요.</div>
+      </div>
+      <div class="fb-diagram">
+        진짜 원가 70,000원을 100,000원으로 부풀림 <span class="arrow">➜</span> "40% 할인" 표시 <span class="arrow">➜</span> 실제 판매가 60,000원(진짜 원가보다 오히려 비쌈!)
+        <span class="cap">할인율 계산은 맞아도, 기준(원래 가격)이 거짓이면 전체 숫자가 의미 없어요</span>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>그래서 숫자를 볼 때는 "계산이 맞는가"뿐 아니라 "기준이 정직한가"도 함께 봐야 해요. 이게 바로 하은이 어머니가 말씀하신 "정가 말고 실제 내는 돈을 보라"는 조언과 같은 뜻이에요.</div>
+      </div>
+      <div class="story-takeaway"><strong>정리:</strong> 할인율·비율 같은 숫자는 계산 자체가 틀리지 않아도, 그 기준이 되는 값이 조작되면 전체가 소비자를 속이는 도구가 될 수 있어요. 숫자를 볼 때는 "계산"만이 아니라 "기준이 믿을 만한가"까지 함께 따져보는 습관이 필요해요.</div>
+    `}
+  ],
+  'e3frac': [
+    { title:'🌟 왜 배우는가?', cls:'why', html:`
+      <p>피자를 나눠 먹을 때 "나는 반만 먹을래", "난 ${frac(1,3)}만 먹을래"처럼 1보다 작은 양을 말해야 할 때가 있어요. 이럴 때 필요한 게 분수예요. 분수가 없으면 "조금", "많이" 같은 애매한 말밖에 쓸 수 없어요.</p>
+      <p style="margin-top:10px">물 3분의 2컵, 케이크 반 조각처럼 분수는 정확하게 "얼마만큼"을 말할 수 있게 해줘요.</p>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">피자 한 판을 4조각으로 나누고 1조각 먹으면?</div>
+        <div style="display:flex;justify-content:center;gap:2px">
+          <div style="width:36px;height:36px;border-radius:50% 0 0 0;background:#f0c040;border:1px solid #30363d"></div>
+          <div style="width:36px;height:36px;border-radius:0 50% 0 0;background:#30363d;border:1px solid #30363d"></div>
+          <div style="width:36px;height:36px;border-radius:0 0 50% 0;background:#30363d;border:1px solid #30363d"></div>
+          <div style="width:36px;height:36px;border-radius:0 0 0 50%;background:#30363d;border:1px solid #30363d"></div>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">전체 4조각 중 색칠된 1조각 → ${frac(1,4)}</div>
+      </div>
+    `},
+    { title:'📖 개념 설명', cls:'concept', html:`
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 분수의 뜻</div>
+      <ul><li>피자 한 판을 4명이 똑같이 나누면, 한 사람 몫을 어떻게 나타낼 수 있을까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">${frac(1,4)} — 분모와 분자</div>
+        <div style="text-align:center;font-size:1.6rem">${frac(1,4)}</div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">분모(아래 4): 전체를 몇 등분했는가 / 분자(위 1): 그 중 몇 개인가</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 단위분수</div>
+      <ul><li>분자가 항상 1인 분수들을 나란히 놓으면 어떻게 달라질까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">${frac(1,2)}, ${frac(1,3)}, ${frac(1,4)} — 조각이 점점 작아져요</div>
+        <div style="display:flex;justify-content:center;gap:10px;font-size:.75rem;text-align:center">
+          <div style="width:44px;height:44px;border-radius:50%;background:conic-gradient(#f0c040 0deg 180deg,#30363d 180deg 360deg)"></div>
+          <div style="width:44px;height:44px;border-radius:50%;background:conic-gradient(#f0c040 0deg 120deg,#30363d 120deg 360deg)"></div>
+          <div style="width:44px;height:44px;border-radius:50%;background:conic-gradient(#f0c040 0deg 90deg,#30363d 90deg 360deg)"></div>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">분자가 1인 분수를 "단위분수"라고 해요 — 나누는 사람이 많아질수록(분모가 커질수록) 한 조각은 작아져요</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 크기 비교</div>
+      <ul><li>피자 8조각 중 3조각 먹은 사람과 5조각 먹은 사람, 누가 더 많이 먹었을까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">${frac(3,8)} vs ${frac(5,8)}</div>
+        <div style="display:flex;justify-content:center;gap:2px;margin-bottom:4px">${'<div style="width:16px;height:16px;background:#f0c040;border:1px solid #0d1117"></div>'.repeat(3)}${'<div style="width:16px;height:16px;background:#30363d;border:1px solid #0d1117"></div>'.repeat(5)}</div>
+        <div style="display:flex;justify-content:center;gap:2px">${'<div style="width:16px;height:16px;background:#3fb950;border:1px solid #0d1117"></div>'.repeat(5)}${'<div style="width:16px;height:16px;background:#30363d;border:1px solid #0d1117"></div>'.repeat(3)}</div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">분모(8)가 같으면, 분자가 클수록 더 커요 → ${frac(5,8)} > ${frac(3,8)}</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 크기가 같은 분수</div>
+      <ul><li>피자를 2조각으로 나눠 1조각 먹은 것과, 4조각으로 나눠 2조각 먹은 것 — 같은 양일까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">${frac(1,2)} = ${frac(2,4)}</div>
+        <div style="display:flex;justify-content:center;gap:16px">
+          <div><div style="width:48px;height:48px;border-radius:50%;background:conic-gradient(#f0c040 0deg 178deg,#0d1117 178deg 182deg,#30363d 182deg 358deg,#0d1117 358deg 360deg)"></div><div style="text-align:center;font-size:.62rem;color:#8b949e;margin-top:4px">2등분 중 1개</div></div>
+          <div><div style="width:48px;height:48px;border-radius:50%;background:conic-gradient(#f0c040 0deg 87deg,#0d1117 87deg 93deg,#f0c040 93deg 177deg,#0d1117 177deg 183deg,#30363d 183deg 267deg,#0d1117 267deg 273deg,#30363d 273deg 357deg,#0d1117 357deg 360deg)"></div><div style="text-align:center;font-size:.62rem;color:#8b949e;margin-top:4px">4등분 중 2개</div></div>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">분모와 분자에 똑같은 수를 곱해도(${frac(1,2)}의 위아래에 2를 곱하면 ${frac(2,4)}) 색칠된 넓이는 똑같아요</div>
+      </div>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">"반(半)"을 나타내는 더 많은 분수들</div>
+        <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;font-size:.68rem;text-align:center">
+          <div>${frac(1,2)}<div style="display:flex;gap:1px;margin-top:4px">${'<div style="width:12px;height:12px;background:#f0c040"></div>'.repeat(1)}${'<div style="width:12px;height:12px;background:#30363d"></div>'.repeat(1)}</div></div>
+          <div>${frac(2,4)}<div style="display:flex;gap:1px;margin-top:4px">${'<div style="width:12px;height:12px;background:#f0c040"></div>'.repeat(2)}${'<div style="width:12px;height:12px;background:#30363d"></div>'.repeat(2)}</div></div>
+          <div>${frac(3,6)}<div style="display:flex;gap:1px;margin-top:4px">${'<div style="width:12px;height:12px;background:#f0c040"></div>'.repeat(3)}${'<div style="width:12px;height:12px;background:#30363d"></div>'.repeat(3)}</div></div>
+          <div>${frac(4,8)}<div style="display:flex;gap:1px;margin-top:4px">${'<div style="width:12px;height:12px;background:#f0c040"></div>'.repeat(4)}${'<div style="width:12px;height:12px;background:#30363d"></div>'.repeat(4)}</div></div>
+          <div>${frac(5,10)}<div style="display:flex;gap:1px;margin-top:4px">${'<div style="width:12px;height:12px;background:#f0c040"></div>'.repeat(5)}${'<div style="width:12px;height:12px;background:#30363d"></div>'.repeat(5)}</div></div>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">색칠된 칸이 항상 전체의 절반이에요 — 숫자는 다 다르지만 모두 "반"을 나타내요</div>
+      </div>
+    `},
+    { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+      <p>피자 8조각 중 3조각을 먹은 상황 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 분수가 얼마나 다양하게 표현되는지 볼까요?</p>
+      <div class="expr-item"><span class="expr-num">1</span><strong>부분 표현</strong><br>"피자 8조각 중 3조각을 먹었어요. 먹은 양을 분수로 나타내면?" → <span class="expr-ans">${frac(3,8)}</span>
+        <div class="fb-diagram" style="text-align:center"><div style="display:inline-flex;gap:2px">${'<div style="width:16px;height:16px;background:#f0c040;border:1px solid #0d1117"></div>'.repeat(3)}${'<div style="width:16px;height:16px;background:#30363d;border:1px solid #0d1117"></div>'.repeat(5)}</div><span class="cap">8칸 중 먹은 3칸 → ${frac(3,8)}</span></div>
+      </div>
+      <div class="expr-item"><span class="expr-num">2</span><strong>나눗셈 표현</strong><br>"3÷8을 분수로 나타내면?" → <span class="expr-ans">${frac(3,8)}</span>
+        <div class="fb-diagram" style="text-align:center">3 ÷ 8<div style="display:inline-flex;gap:2px;margin-top:4px">${'<div style="width:16px;height:16px;background:#58a6ff;border:1px solid #0d1117"></div>'.repeat(3)}${'<div style="width:16px;height:16px;background:#30363d;border:1px solid #0d1117"></div>'.repeat(5)}</div><span class="cap">나눗셈 3÷8도 분수로 쓰면 그대로 ${frac(3,8)}이에요</span></div>
+      </div>
+      <div class="expr-item"><span class="expr-num">3</span><strong>비교 표현</strong><br>"${frac(3,8)}과 ${frac(5,8)} 중 어느 것이 더 큰가요?" → <span class="expr-ans">${frac(5,8)}</span>
+        <div class="fb-diagram" style="text-align:center"><div style="display:inline-flex;gap:2px">${'<div style="width:16px;height:16px;background:#f0c040;border:1px solid #0d1117"></div>'.repeat(3)}${'<div style="width:16px;height:16px;background:#30363d;border:1px solid #0d1117"></div>'.repeat(5)}</div><br><div style="display:inline-flex;gap:2px;margin-top:4px">${'<div style="width:16px;height:16px;background:#3fb950;border:1px solid #0d1117"></div>'.repeat(5)}${'<div style="width:16px;height:16px;background:#30363d;border:1px solid #0d1117"></div>'.repeat(3)}</div><span class="cap">초록 줄(${frac(5,8)})이 더 길어요</span></div>
+      </div>
+      <div class="expr-item"><span class="expr-num">4</span><strong>단위분수 개수 표현</strong><br>"${frac(3,8)}은 ${frac(1,8)}이 몇 개 모인 걸까요?" → <span class="expr-ans">3개</span>
+        <div class="fb-diagram" style="text-align:center"><span style="display:inline-block;border:1px dashed #58a6ff;border-radius:4px;padding:2px 6px;margin:2px">${frac(1,8)}</span><span style="display:inline-block;border:1px dashed #58a6ff;border-radius:4px;padding:2px 6px;margin:2px">${frac(1,8)}</span><span style="display:inline-block;border:1px dashed #58a6ff;border-radius:4px;padding:2px 6px;margin:2px">${frac(1,8)}</span><span class="cap">${frac(1,8)} 조각 3개를 모으면 ${frac(3,8)}</span></div>
+      </div>
+      <div class="expr-item"><span class="expr-num">5</span><strong>크기가 같은 분수 표현</strong><br>"${frac(6,16)}은 ${frac(3,8)}과 같은 크기인가요?" → <span class="expr-ans">네, 같아요</span>
+        <div class="fb-diagram" style="text-align:center">
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px">${
+            ('<div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div style="width:40px;height:16px;background:#f0c040;border:1px solid #0d1117"></div><div style="display:flex;gap:3px"><div style="width:19px;height:16px;background:#f0c040;border:1px solid #0d1117"></div><div style="width:19px;height:16px;background:#f0c040;border:1px solid #0d1117"></div></div></div>').repeat(3)
+            + ('<div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div style="width:40px;height:16px;background:#30363d;border:1px solid #0d1117"></div><div style="display:flex;gap:3px"><div style="width:19px;height:16px;background:#30363d;border:1px solid #0d1117"></div><div style="width:19px;height:16px;background:#30363d;border:1px solid #0d1117"></div></div></div>').repeat(5)
+          }</div>
+          <span class="cap">위 큰 칸 1개(${frac(1,8)}) = 아래 작은 칸 2개(${frac(2,16)}) — 같은 칸 안에 나란히 놓고 보면 크기가 똑같다는 게 보여요</span>
+        </div>
+      </div>
+      <div class="expr-item"><span class="expr-num">6</span><strong>남은 양 표현</strong><br>"피자 8조각 중 3조각을 먹었다면, 남은 조각은 전체의 얼마인가요?" → <span class="expr-ans">${frac(5,8)}</span>
+        <div class="fb-diagram" style="text-align:center"><div style="display:inline-flex;gap:2px">${'<div style="width:16px;height:16px;background:#f85149;opacity:.4;border:1px solid #0d1117"></div>'.repeat(3)}${'<div style="width:16px;height:16px;background:#3fb950;border:1px solid #0d1117"></div>'.repeat(5)}</div><span class="cap">빨간 3칸(먹음) 빼고 초록 5칸(남음) → ${frac(5,8)}</span></div>
+      </div>
+      <div class="expr-item"><span class="expr-num">7</span><strong>전체 회복 표현</strong><br>"${frac(1,8)}이 8개 모이면 얼마가 될까요?" → <span class="expr-ans">1 (피자 한 판 전체)</span>
+        <div class="fb-diagram" style="text-align:center"><div style="display:inline-flex;gap:2px">${'<div style="width:16px;height:16px;background:#f0c040;border:1px solid #0d1117"></div>'.repeat(8)}</div><span class="cap">8칸이 전부 채워지면 피자 한 판(1)이 완성돼요</span></div>
+        <div class="fb-diagram" style="text-align:center;margin-top:6px">
+          <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;font-size:.68rem">
+            <div>${frac(2,2)}<div style="display:flex;gap:1px;margin-top:4px">${'<div style="width:12px;height:12px;background:#f0c040"></div>'.repeat(2)}</div></div>
+            <div>${frac(3,3)}<div style="display:flex;gap:1px;margin-top:4px">${'<div style="width:12px;height:12px;background:#f0c040"></div>'.repeat(3)}</div></div>
+            <div>${frac(4,4)}<div style="display:flex;gap:1px;margin-top:4px">${'<div style="width:12px;height:12px;background:#f0c040"></div>'.repeat(4)}</div></div>
+            <div>${frac(6,6)}<div style="display:flex;gap:1px;margin-top:4px">${'<div style="width:12px;height:12px;background:#f0c040"></div>'.repeat(6)}</div></div>
+            <div>${frac(8,8)}<div style="display:flex;gap:1px;margin-top:4px">${'<div style="width:12px;height:12px;background:#f0c040"></div>'.repeat(8)}</div></div>
+          </div>
+          <span class="cap">분모와 분자가 같으면 전부 색칠돼요 — 숫자는 다 달라도 모두 "1(전체)"을 나타내요</span>
+        </div>
+      </div>
+      <div class="expr-item"><span class="expr-num">8</span><strong>그림 표현</strong><br>"${frac(3,8)}을 그림으로 나타내면?"
+        <div class="fb-diagram" style="text-align:center"><div style="display:inline-flex;gap:2px">${'<div style="width:16px;height:16px;background:#f0c040;border:1px solid #0d1117"></div>'.repeat(3)}${'<div style="width:16px;height:16px;background:#30363d;border:1px solid #0d1117"></div>'.repeat(5)}</div><span class="cap">8칸 중 3칸을 색칠하면 ${frac(3,8)}이에요</span></div>
+      </div>
+      <p style="margin-top:10px">이렇게 8가지나 되는 표현이 결국 <strong>같은 분수(${frac(3,8)})</strong>를 묻고 있어요. 말이 달라도 "결국 분수 문제구나!"를 알아채는 게 중요해요.</p>
+    `},
+    { title:'💬 하브루타 질문', cls:'havruta', html:`
+      <div class="q-item"><strong>Q1.</strong> ${frac(1,2)}와 ${frac(2,4)}는 같은 크기일까요?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3frac-h1',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e3frac-h1">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e3frac-h1',0,this)">네, 같아요! ${frac(2,4)}는 분모·분자를 둘 다 2로 나누면 ${frac(1,2)}이 되니까요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3frac-h1',1,this)">아니에요, 분자랑 분모 숫자가 다르니까 크기도 달라요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3frac-h1',2,this)">${frac(2,4)}가 숫자가 더 크니까 ${frac(2,4)}가 더 커요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e3frac-h1"></div>
+        </div>
+      </div>
+      <div class="q-item"><strong>Q2.</strong> 분모가 클수록 조각이 작아지는 이유는?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3frac-h2',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e3frac-h2">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e3frac-h2',0,this)">똑같은 크기를 더 많은 조각으로 나눌수록, 한 조각은 더 작아지니까요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3frac-h2',1,this)">그냥 규칙이라서 외워야 해요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3frac-h2',2,this)">분모가 크면 숫자가 크니까 조각도 커요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e3frac-h2"></div>
+        </div>
+      </div>
+      <div class="q-item"><strong>Q3.</strong> ${frac(5,4)}처럼 분자가 분모보다 큰 분수는 어떤 뜻일까요?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3frac-h3',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e3frac-h3">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e3frac-h3',0,this)">피자 한 판(4조각)을 다 먹고, 다른 판에서 1조각을 더 먹었다는 뜻이에요 — 1보다 큰 양이에요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3frac-h3',1,this)">그런 분수는 잘못된 표현이라 쓰면 안 돼요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3frac-h3',2,this)">${frac(5,4)}는 그냥 5−4=1과 같은 뜻이에요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e3frac-h3"></div>
+        </div>
+      </div>
+    `},
+    { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+      <div class="prob-box">
+        <div class="prob-q">문제: ${frac(3,8)}과 ${frac(5,8)} 중 어느 것이 더 큰가요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3frac-p1',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3frac-p1">
+          <div class="fb-diagram" style="text-align:center"><div style="display:inline-flex;gap:2px">${'<div style="width:16px;height:16px;background:#f0c040;border:1px solid #0d1117"></div>'.repeat(3)}${'<div style="width:16px;height:16px;background:#30363d;border:1px solid #0d1117"></div>'.repeat(5)}</div><br><div style="display:inline-flex;gap:2px;margin-top:4px">${'<div style="width:16px;height:16px;background:#3fb950;border:1px solid #0d1117"></div>'.repeat(5)}${'<div style="width:16px;height:16px;background:#30363d;border:1px solid #0d1117"></div>'.repeat(3)}</div><span class="cap">8칸 중 3칸 vs 5칸 — 초록 막대가 더 길어요</span></div>
+          <div class="sol"><strong>풀이①(분자비교):</strong> 분모가 같으므로 분자 비교: 5>3 → ${frac(5,8)}이 더 크다</div>
+          <div class="sol"><strong>풀이②(뺄셈):</strong> ${frac(5,8)}−${frac(3,8)}=${frac(2,8)}>0 이므로 ${frac(5,8)}이 크다</div>
+        </div>
+      </div>
+      <div class="prob-box">
+        <div class="prob-q">문제: ${frac(1,8)}이 5개 모이면 얼마인가요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3frac-p2',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3frac-p2">
+          <div class="fb-diagram">${frac(1,8)} + ${frac(1,8)} + ${frac(1,8)} + ${frac(1,8)} + ${frac(1,8)} = <strong style="color:#3fb950">${frac(5,8)}</strong><span class="cap">단위분수(${frac(1,8)})가 5번 모이면 분자가 5가 돼요</span></div>
+          <div class="sol"><strong>풀이:</strong> ${frac(1,8)}을 5번 더하면 분모는 그대로 8, 분자만 5가 되어 ${frac(5,8)}</div>
+        </div>
+      </div>
+      <div class="prob-box">
+        <div class="prob-q">문제: ${frac(6,8)}과 크기가 같으면서 가장 간단한 분수는 무엇일까요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3frac-p3',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3frac-p3">
+          <div class="fb-diagram">${frac(6,8)} <span class="arrow">➜</span> 분모·분자를 각각 2로 나누기 <span class="arrow">➜</span> <strong style="color:#3fb950">${frac(3,4)}</strong><span class="cap">분모와 분자를 같은 수로 나눠도 크기는 그대로예요</span></div>
+          <div class="sol"><strong>풀이:</strong> 6÷2=3, 8÷2=4 → ${frac(6,8)} = ${frac(3,4)}</div>
+          <div class="fb-diagram" style="margin-top:8px">
+            <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;font-size:.75rem;text-align:center">
+              <div>${frac(4,8)} ➜ ÷4 ➜ ${frac(1,2)}</div>
+              <div>${frac(2,6)} ➜ ÷2 ➜ ${frac(1,3)}</div>
+              <div>${frac(9,12)} ➜ ÷3 ➜ ${frac(3,4)}</div>
+              <div>${frac(10,15)} ➜ ÷5 ➜ ${frac(2,3)}</div>
+            </div>
+            <span class="cap">이렇게 분모·분자를 같은 수로 나눌 수 있으면, 더 간단한 분수로 바꿀 수 있어요 (더 나눌 수 없을 때까지가 "가장 간단한 분수")</span>
+          </div>
+        </div>
+      </div>
+    `},
+    { title:'🔥 심화 토론', cls:'debate', html:`
+      <div class="story-line">
+        <div class="story-avatar">🧒</div>
+        <div class="story-bubble"><span class="story-name">민준</span>선생님, ${frac(1,2)}이랑 ${frac(1,3)} 중에 뭐가 더 커요? 3이 2보다 크니까 ${frac(1,3)}이 더 큰 거 아니에요?</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">👧</div>
+        <div class="story-bubble"><span class="story-name">서연</span>어? 저는 반대로 생각했는데... 피자를 2조각으로 나누면 한 조각이 크고, 3조각으로 나누면 한 조각이 작아지지 않아요?</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧒</div>
+        <div class="story-bubble"><span class="story-name">지호</span>오 맞다! 나누는 사람이 많아질수록(분모가 클수록) 한 명이 받는 몫은 오히려 작아지는 거네요.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">👧</div>
+        <div class="story-bubble"><span class="story-name">하은</span>그럼 분모가 클수록 오히려 분수가 작아지는 거예요? 처음엔 저도 헷갈렸어요.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>다들 핵심을 잘 짚었어요! 분모는 "전체를 몇 조각으로 나눴는가"예요. 나누는 조각 수가 많아질수록 한 조각은 작아져요. 그래서 ${frac(1,3)}이 ${frac(1,2)}보다 작아요.</div>
+      </div>
+      <div class="fb-diagram">
+        <div style="display:flex;justify-content:center;gap:20px">
+          <div style="width:56px;height:56px;border-radius:50%;background:conic-gradient(#f0c040 0deg 180deg,#30363d 180deg 360deg)"></div>
+          <div style="width:56px;height:56px;border-radius:50%;background:conic-gradient(#f0c040 0deg 120deg,#30363d 120deg 360deg)"></div>
+        </div>
+        <span class="cap">${frac(1,2)}(왼쪽)의 색칠된 조각이 ${frac(1,3)}(오른쪽)보다 더 커요</span>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>이렇게 기억하면 쉬워요 — "나누는 사람이 적을수록 내 몫이 커진다." 분자가 같을 때는 분모가 작을수록 분수가 더 커요.</div>
+      </div>
+      <div class="story-takeaway"><strong>정리:</strong> 분수는 숫자가 클수록 무조건 큰 게 아니에요. 분모는 "몇 조각으로 나눴는가"를 뜻하기 때문에, 분자가 같다면 분모가 작을수록(적게 나눌수록) 한 조각이 더 커요 — 숫자만 보지 말고 그 뜻을 생각하는 게 중요해요.</div>
+    `}
+  ],
+  'e3mul': [
+    { title:'🌟 왜 배우는가?', cls:'why', html:`
+      <p>문구점에 색종이가 한 묶음에 24장씩, 13묶음 있어요. 색종이가 모두 몇 장인지 하나하나 세어보실래요?</p>
+      <p style="margin-top:10px">24를 13번 더하는 건 너무 오래 걸려요. 이럴 때 곱셈을 쓰면 훨씬 빠르고 정확하게 계산할 수 있어요.</p>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">24+24+24+…(13번) 대신</div>
+        <div style="text-align:center;font-size:.75rem;color:#8b949e;line-height:1.8">24+24+24+24+24+24+24+24+24+24+24+24+24 = ?<br><span class="arrow">➜</span><br><strong style="color:#f0c040;font-size:1rem">24 × 13 = 312</strong></div>
+        <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">긴 덧셈을 곱셈 하나로 순식간에 계산할 수 있어요</div>
+      </div>
+    `},
+    { title:'📖 개념 설명', cls:'concept', html:`
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — (몇십몇)×(몇)</div>
+      <ul><li>사탕 24개가 든 상자가 3상자 있으면 사탕은 모두 몇 개일까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">24 × 3</div>
+        <div style="text-align:center;font-size:.8rem;line-height:1.8">20×3=60 (십의 자리)<br>4×3=12 (일의 자리)<br>60+12=<strong style="color:#3fb950">72</strong></div>
+        <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">24를 20과 4로 나눠서 각각 곱한 뒤 더해요</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — (세 자리 수)×(한 자리 수)</div>
+      <ul><li>사탕이 124개씩 든 큰 상자가 3상자 있으면 모두 몇 개일까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">124 × 3</div>
+        <div style="text-align:center;font-size:.8rem;line-height:1.8">100×3=300 (백의 자리)<br>20×3=60 (십의 자리)<br>4×3=12 (일의 자리)<br>300+60+12=<strong style="color:#3fb950">372</strong></div>
+        <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">자리가 늘어나도 방법은 똑같아요 — 자리마다 나눠서 곱하고 더해요</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — (몇십)×(몇십)</div>
+      <ul><li>한 상자에 20개씩, 30상자가 있으면 사탕은 모두 몇 개일까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">20 × 30</div>
+        <div style="text-align:center;font-size:.8rem;line-height:1.8">2×3=6<br>0이 2개(20의 0 하나, 30의 0 하나) 붙어서<br><strong style="color:#3fb950">600</strong></div>
+        <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">뒤에 붙은 0끼리 모아서 맨 뒤에 그대로 붙이면 돼요</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — (두 자리 수)×(두 자리 수)</div>
+      <ul><li>사탕 24개가 든 상자가 13상자 있으면 사탕은 모두 몇 개일까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">24 × 13</div>
+        <div style="text-align:center;font-size:.8rem;line-height:1.8">24×10=240 (13을 10과 3으로 나눔)<br>24×3=72<br>240+72=<strong style="color:#3fb950">312</strong></div>
+        <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">13을 10과 3으로 쪼개서 각각 곱한 뒤 더해요</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 왜 나눠서 계산해도 답이 같을까?</div>
+      <ul><li>24×13을 24×10과 24×3으로 쪼개서 계산했는데, 왜 이렇게 해도 정확한 답이 나올까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="text-align:center;font-size:.8rem">24 × 13 = 24 × (10 + 3)</div>
+        <div style="text-align:center;font-size:.8rem;margin-top:4px">= (24×10) + (24×3)</div>
+        <div style="text-align:center;font-size:.8rem;margin-top:4px">= 240 + 72 = <strong style="color:#3fb950">312</strong></div>
+        <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">13상자를 "10상자 묶음"과 "3상자 묶음"으로 나눠서 세는 것과 같아요 — 나눠 세도 전체 개수는 변하지 않아요</div>
+      </div>
+    `},
+    { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+      <p>사탕 24개가 든 상자가 13상자 있는 상황(24×13=312) 하나를 여러 가지 다른 말로 물어볼 수 있어요.</p>
+      <div class="expr-item"><span class="expr-num">1</span><strong>곱셈 기본 표현</strong><br>"한 상자에 24개씩, 13상자면 사탕은 모두 몇 개인가요?" → <span class="expr-ans">312개</span></div>
+      <div class="expr-item"><span class="expr-num">2</span><strong>반복 덧셈 표현</strong><br>"24를 13번 더하면 얼마인가요?" → <span class="expr-ans">312</span></div>
+      <div class="expr-item"><span class="expr-num">3</span><strong>자리 분해 표현</strong><br>"24×13을 24×10과 24×3으로 나누면 각각 얼마인가요?" → <span class="expr-ans">240, 72</span></div>
+      <div class="expr-item"><span class="expr-num">4</span><strong>교환 표현</strong><br>"13×24는 24×13과 같은 답이 나올까요?" → <span class="expr-ans">네, 둘 다 312</span></div>
+      <div class="expr-item"><span class="expr-num">5</span><strong>배(倍) 표현</strong><br>"24의 13배는 얼마인가요?" → <span class="expr-ans">312</span></div>
+      <div class="expr-item"><span class="expr-num">6</span><strong>어림(추정) 표현</strong><br>"24×13은 대략 25×13=325에 가까운 값이에요. 실제 답은?" → <span class="expr-ans">312 (325에 가까움)</span></div>
+      <div class="expr-item"><span class="expr-num">7</span><strong>역산(나눗셈) 표현</strong><br>"312÷13은 얼마인가요?" → <span class="expr-ans">24</span></div>
+      <div class="expr-item"><span class="expr-num">8</span><strong>그림(배열) 표현</strong><br>"24×13을 격자 그림으로 나타내면?"
+        <div class="fb-diagram" style="text-align:left">
+          <div style="display:flex;gap:2px">
+            <div style="display:flex;flex-direction:column;gap:1px">${'<div style="width:60px;height:6px;background:#58a6ff"></div>'.repeat(10)}</div>
+          </div>
+          <div style="font-size:.68rem;color:#8b949e;margin-top:2px">10줄 × 24칸(가로) = 240</div>
+          <div style="display:flex;gap:2px;margin-top:6px">
+            <div style="display:flex;flex-direction:column;gap:1px">${'<div style="width:60px;height:6px;background:#3fb950"></div>'.repeat(3)}</div>
+          </div>
+          <div style="font-size:.68rem;color:#8b949e;margin-top:2px">3줄 × 24칸(가로) = 72</div>
+          <span class="cap">240+72=312 — 큰 직사각형을 두 조각으로 나눠서 센 것과 같아요</span>
+        </div>
+      </div>
+      <p style="margin-top:10px">이렇게 8가지나 되는 표현이 결국 <strong>같은 곱셈(24×13=312)</strong>을 묻고 있어요.</p>
+    `},
+    { title:'💬 하브루타 질문', cls:'havruta', html:`
+      <div class="q-item"><strong>Q1.</strong> 20×30을 계산할 때, 0은 몇 개 붙여야 할까요?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3mul-h1',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e3mul-h1">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e3mul-h1',0,this)">2×3=6을 먼저 계산하고, 20과 30에 있던 0을 그대로 2개 붙여서 600이에요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3mul-h1',1,this)">0은 항상 1개만 붙이면 돼요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3mul-h1',2,this)">20×30은 2×3처럼 그냥 6이에요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e3mul-h1"></div>
+        </div>
+      </div>
+      <div class="q-item"><strong>Q2.</strong> 13×24는 24×13과 같은 답이 나올까요?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3mul-h2',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e3mul-h2">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e3mul-h2',0,this)">네, 같아요! 곱셈은 순서를 바꿔도 답이 같아요(교환법칙)</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3mul-h2',1,this)">아니에요, 앞의 수가 더 큰 쪽이 먼저 와야 정확해요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3mul-h2',2,this)">둘 다 다른 계산이라 확인해봐야 알 수 있어요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e3mul-h2"></div>
+        </div>
+      </div>
+      <div class="q-item"><strong>Q3.</strong> 24×13을 24×10과 24×3으로 나눠서 계산해도 되는 이유는?
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3mul-h3',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e3mul-h3">
+          <div class="havruta-opts">
+            <button class="havruta-opt" onclick="havrutaPick('e3mul-h3',0,this)">13상자를 10상자 묶음과 3상자 묶음으로 나눠서 세는 것과 같아서, 나눠 세도 전체 개수는 그대로예요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3mul-h3',1,this)">계산이 편해지라고 정해놓은 규칙일 뿐, 사실은 다른 계산이에요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e3mul-h3',2,this)">두 자리 수는 원래 항상 나눠서 계산해야만 해요</button>
+          </div>
+          <div class="havruta-fb" id="fb-e3mul-h3"></div>
+        </div>
+      </div>
+    `},
+    { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+      <div class="prob-box">
+        <div class="prob-q">문제: 124×3을 계산하시오.</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3mul-p1',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3mul-p1">
+          <div class="fb-diagram">100×3=300, 20×3=60, 4×3=12<span class="cap">300+60+12=372</span></div>
+          <div class="sol"><strong>풀이:</strong> 124=100+20+4 → 각각 3을 곱해 300,60,12 → 합하면 372</div>
+        </div>
+      </div>
+      <div class="prob-box">
+        <div class="prob-q">문제: 30×40을 계산하시오.</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3mul-p2',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3mul-p2">
+          <div class="fb-diagram">3×4=12, 0이 2개 붙어서 <strong style="color:#3fb950">1200</strong><span class="cap">30×40=1,200</span></div>
+          <div class="sol"><strong>풀이:</strong> 3×4=12에 30과 40의 0을 2개 붙이면 1,200</div>
+        </div>
+      </div>
+      <div class="prob-box">
+        <div class="prob-q">문제: 24×13을 계산하시오.</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3mul-p3',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3mul-p3">
+          <div class="fb-diagram">24×10=240, 24×3=72<span class="cap">240+72=312</span></div>
+          <div class="sol"><strong>풀이①(자리분해):</strong> 24×13=24×10+24×3=240+72=312</div>
+          <div class="sol"><strong>풀이②(반복덧셈 확인):</strong> 24를 13번 더해도 312</div>
+        </div>
+      </div>
+    `},
+    { title:'🔥 심화 토론', cls:'debate', html:`
+      <div class="story-line">
+        <div class="story-avatar">🧒</div>
+        <div class="story-bubble"><span class="story-name">민준</span>선생님, 세로로 24×13을 계산하는데 왜 24×1(십의 자리) 줄은 한 칸 옆으로 밀어서 써야 해요? 그냥 붙여 쓰면 안 돼요?</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">👧</div>
+        <div class="story-bubble"><span class="story-name">서연</span>어? 저도 그거 헷갈렸어요. 24×3=72는 그냥 쓰는데, 24×1(십의 자리)은 왜 다르게 써야 하죠?</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧒</div>
+        <div class="story-bubble"><span class="story-name">지호</span>혹시... 13의 "1"이 사실은 "1"이 아니라 "10"이라서 그런 거 아니에요?</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">👧</div>
+        <div class="story-bubble"><span class="story-name">하은</span>아! 맞다, 십의 자리 1은 실제로는 10이니까, 24×10을 계산한 거네요.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 세로셈에서 "24×1"처럼 보이는 그 줄은 사실 24×10=240을 계산하는 거예요. 240은 끝이 0이라서, 0을 안 쓰고 그냥 한 칸을 밀어서 쓰는 거랍니다.</div>
+      </div>
+      <div class="fb-diagram">
+        24×3 = 72 (일의 자리 그대로)<br>
+        24×10 = 240 <span class="arrow">➜</span> 끝 0 생략하고 한 칸 밀어서 24<br>
+        72 + 240 = <strong style="color:#3fb950">312</strong>
+        <span class="cap">한 칸 밀어 쓴 "24"는 사실 "240"이에요</span>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>만약 한 칸을 안 밀고 그냥 더하면, 240을 24로 착각해서 24+72=96이라는 완전히 틀린 답이 나와요. 한 칸을 미는 건 "이 숫자는 사실 10배 더 크다"는 표시인 거예요.</div>
+      </div>
+      <div class="story-takeaway"><strong>정리:</strong> 두 자리 수 곱셈 세로셈에서 둘째 줄을 한 칸 밀어 쓰는 건 규칙을 위한 규칙이 아니라, 그 줄이 실제로는 "십의 자리 × 원래 수"라서 값이 10배 크기 때문이에요. 자리를 밀지 않으면 자릿값이 뭉개져서 완전히 다른(틀린) 답이 나와요.</div>
+    `}
   ]
 };
+const CV_DATA_E3CIRC = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>자전거 바퀴, 시계, 접시, 동전 — 우리 주변에는 동그란(원 모양) 물건이 정말 많아요.</p>
+    <p style="margin-top:10px">그런데 손으로 동그라미를 그리면 삐뚤빼뚤해지기 쉬워요. 정확한 원은 어떻게 그릴 수 있을까요?</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px">컴퍼스로 그린 원</div>
+      <div style="width:70px;height:70px;border-radius:50%;border:2px solid #f0c040;margin:0 auto;position:relative">
+        <div style="width:4px;height:4px;background:#f0c040;border-radius:50%;position:absolute;top:33px;left:33px"></div>
+      </div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">가운데 점(중심)에서 똑같은 거리를 유지하며 한 바퀴 돌면 완벽한 원이 그려져요</div>
+    </div>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 원의 중심</div>
+    <ul><li>컴퍼스로 원을 그릴 때, 바늘을 꽂고 움직이지 않는 점은 무엇일까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="width:70px;height:70px;border-radius:50%;border:2px solid #f0c040;margin:0 auto;position:relative">
+        <div style="width:5px;height:5px;background:#3fb950;border-radius:50%;position:absolute;top:32.5px;left:32.5px"></div>
+      </div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">원 한가운데 점(초록)이 "중심"이에요 — 원 위의 모든 점이 이 점에서 똑같은 거리에 있어요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 반지름</div>
+    <ul><li>원의 중심에서 원 위의 한 점까지 선을 그으면, 그 선분을 뭐라고 부를까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="width:70px;height:70px;border-radius:50%;border:2px solid #30363d;margin:0 auto;position:relative">
+        <div style="width:5px;height:5px;background:#3fb950;border-radius:50%;position:absolute;top:32.5px;left:32.5px"></div>
+        <div style="width:35px;height:2px;background:#f0c040;position:absolute;top:34px;left:35px;transform-origin:left"></div>
+      </div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">중심에서 원 위의 한 점까지의 거리(굵은 선)를 "반지름"이라고 해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 지름</div>
+    <ul><li>원 위의 한 점에서 중심을 지나 반대편 원 위의 점까지 쭉 이으면, 그 선분을 뭐라고 부를까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="width:70px;height:70px;border-radius:50%;border:2px solid #30363d;margin:0 auto;position:relative">
+        <div style="width:5px;height:5px;background:#3fb950;border-radius:50%;position:absolute;top:32.5px;left:32.5px"></div>
+        <div style="width:70px;height:2px;background:#58a6ff;position:absolute;top:34px;left:0"></div>
+      </div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">원을 반으로 가르며 중심을 지나는 선분(파란 선)을 "지름"이라고 해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 한 원에서 반지름은 모두 같다</div>
+    <ul><li>같은 원에서 반지름을 여러 개 그으면, 길이가 서로 다를까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="width:80px;height:80px;border-radius:50%;border:2px solid #30363d;margin:0 auto;position:relative">
+        <div style="width:5px;height:5px;background:#3fb950;border-radius:50%;position:absolute;top:37.5px;left:37.5px"></div>
+        <div style="width:40px;height:2px;background:#f0c040;position:absolute;top:39px;left:40px"></div>
+        <div style="width:40px;height:2px;background:#f0c040;position:absolute;top:39px;left:0;transform:rotate(60deg);transform-origin:right"></div>
+        <div style="width:40px;height:2px;background:#f0c040;position:absolute;top:39px;left:40px;transform:rotate(140deg);transform-origin:left"></div>
+      </div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">컴퍼스는 한 번 벌린 채로 움직이지 않으니까, 중심에서 원 위 어느 점까지도 항상 같은 거리예요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 왜 지름은 항상 반지름의 2배일까?</div>
+    <ul><li>반지름이 5cm인 원의 지름은 왜 10cm가 될까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="width:80px;height:80px;border-radius:50%;border:2px solid #30363d;margin:0 auto;position:relative">
+        <div style="width:5px;height:5px;background:#3fb950;border-radius:50%;position:absolute;top:37.5px;left:37.5px"></div>
+        <div style="width:40px;height:2px;background:#f0c040;position:absolute;top:39px;left:40px"></div>
+        <div style="width:40px;height:2px;background:#58a6ff;position:absolute;top:39px;left:0"></div>
+      </div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">지름은 반지름(금색) + 반지름(파란색) — 중심을 사이에 두고 반지름 두 개가 나란히 이어진 거예요</div>
+    </div>
+  `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>반지름이 5cm인 원 하나를 여러 가지 다른 말로 물어볼 수 있어요.</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>반지름 표현</strong><br>"원의 중심에서 원 위까지의 거리는?" → <span class="expr-ans">5cm</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>지름 표현</strong><br>"원을 반으로 가르며 중심을 지나는 선분의 길이는?" → <span class="expr-ans">10cm</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>반지름→지름 표현</strong><br>"반지름이 5cm면 지름은 얼마인가요?" → <span class="expr-ans">10cm</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>지름→반지름 표현</strong><br>"지름이 10cm면 반지름은 얼마인가요?" → <span class="expr-ans">5cm</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>배(倍) 표현</strong><br>"지름은 반지름의 몇 배인가요?" → <span class="expr-ans">2배</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>컴퍼스 표현</strong><br>"컴퍼스를 5cm만큼 벌려서 원을 그리면, 그 원의 반지름은?" → <span class="expr-ans">5cm</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>두 반지름 비교 표현</strong><br>"한 원 안에서 그은 서로 다른 두 반지름의 길이를 비교하면?" → <span class="expr-ans">항상 같다</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>그림 표현</strong><br>"반지름 5cm인 원을 그림으로 나타내면?"
+      <div class="fb-diagram" style="text-align:center">
+        <div style="width:60px;height:60px;border-radius:50%;border:2px solid #30363d;margin:4px auto;position:relative">
+          <div style="width:4px;height:4px;background:#3fb950;border-radius:50%;position:absolute;top:28px;left:28px"></div>
+          <div style="width:30px;height:2px;background:#f0c040;position:absolute;top:29px;left:30px"></div>
+        </div>
+        <span class="cap">중심에서 원 위까지 5cm(금색 선)</span>
+      </div>
+    </div>
+    <p style="margin-top:10px">이렇게 8가지 표현이 결국 <strong>같은 원(반지름 5cm)</strong>을 묻고 있어요.</p>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 한 원 안에서 반지름을 여러 개 그으면, 길이가 다 같을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3circ-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e3circ-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e3circ-h1',0,this)">네, 항상 같아요! 원은 "중심에서 같은 거리에 있는 점들의 모임"이라서 반지름은 어디서 그어도 길이가 같아요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3circ-h1',1,this)">아니에요, 그은 방향에 따라 길이가 조금씩 달라요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3circ-h1',2,this)">원이 클 때만 같고, 작은 원은 달라요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e3circ-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 지름은 왜 항상 반지름의 2배일까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3circ-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e3circ-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e3circ-h2',0,this)">지름은 중심을 사이에 두고 반지름 두 개가 나란히 이어진 거라서 항상 2배예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3circ-h2',1,this)">그냥 외워야 하는 공식일 뿐이에요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3circ-h2',2,this)">원이 클 때만 2배가 되고, 작은 원은 아니에요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e3circ-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 원 안에 그을 수 있는 가장 긴 선분은 무엇일까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3circ-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e3circ-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e3circ-h3',0,this)">지름이에요 — 중심을 지나면서 원 양쪽 끝을 잇는 선분이라 가장 길어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3circ-h3',1,this)">반지름이 가장 길어요, 중심에서 시작하니까요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3circ-h3',2,this)">원 위의 아무 두 점이나 이으면 다 길이가 똑같아요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e3circ-h3"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제: 반지름이 4cm인 원의 지름은 몇 cm인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3circ-p1',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e3circ-p1">
+        <div class="fb-diagram">반지름 4cm × 2 = <strong style="color:#3fb950">8cm</strong><span class="cap">지름 = 반지름 × 2</span></div>
+        <div class="sol"><strong>풀이:</strong> 지름=반지름×2=4×2=8cm</div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 지름이 14cm인 원의 반지름은 몇 cm인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3circ-p2',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e3circ-p2">
+        <div class="fb-diagram">지름 14cm ÷ 2 = <strong style="color:#3fb950">7cm</strong><span class="cap">반지름 = 지름 ÷ 2</span></div>
+        <div class="sol"><strong>풀이:</strong> 반지름=지름÷2=14÷2=7cm</div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 컴퍼스를 6cm 벌려서 원을 2개 그렸습니다. 두 원의 반지름을 비교하면?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3circ-p3',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e3circ-p3">
+        <div class="fb-diagram">두 원 모두 반지름 <strong style="color:#3fb950">6cm로 같음</strong><span class="cap">컴퍼스를 같은 길이로 벌렸으니 두 원의 반지름은 같아요</span></div>
+        <div class="sol"><strong>풀이:</strong> 컴퍼스를 벌린 길이가 곧 반지름이므로, 둘 다 6cm로 같다</div>
+      </div>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line">
+      <div class="story-avatar">🧒</div>
+      <div class="story-bubble"><span class="story-name">민준</span>선생님, 자전거 바퀴는 왜 꼭 동그라미(원) 모양이어야 해요? 네모 바퀴는 안 될까요?</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">👧</div>
+      <div class="story-bubble"><span class="story-name">서연</span>네모 바퀴면... 굴러갈 때 덜컹덜컹하지 않을까요? 모서리가 있으니까요.</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧒</div>
+      <div class="story-bubble"><span class="story-name">지호</span>맞아요! 네모는 중심에서 꼭짓점까지 거리랑 변까지 거리가 다르잖아요.</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">👧</div>
+      <div class="story-bubble"><span class="story-name">하은</span>아! 그럼 원은 중심에서 어디까지나 거리가 똑같으니까 안 덜컹거리는 거네요?</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 원은 중심에서 테두리까지 거리(반지름)가 항상 똑같아서, 바퀴 축(중심)이 땅으로부터 늘 같은 높이를 유지해요. 그래서 부드럽게 굴러가는 거예요.</div>
+    </div>
+    <div class="fb-diagram">
+      원 바퀴: 중심 높이 <strong style="color:#3fb950">항상 일정</strong> (반지름이 같으니까)<br>
+      네모 바퀴: 중심 높이 <strong style="color:#f85149">계속 오르락내리락</strong> (변까지 거리 ≠ 꼭짓점까지 거리)
+      <span class="cap">반지름이 일정한 원만이 축의 높이를 그대로 유지하며 굴러갈 수 있어요</span>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>이게 바로 "반지름이 모두 같다"는 원의 성질이 실제 세상에서 왜 중요한지 보여주는 예예요. 수학의 성질 하나가 우리 생활을 편리하게 만들어주고 있는 거죠.</div>
+    </div>
+    <div class="story-takeaway"><strong>정리:</strong> 원의 반지름이 어디서나 같다는 성질 덕분에, 원 모양 바퀴는 중심의 높이를 일정하게 유지하며 부드럽게 굴러갈 수 있어요. 수학에서 배우는 "성질"은 단순한 정의가 아니라, 실제 물건이 왜 그렇게 만들어졌는지를 설명해줘요.</div>
+  `}
+];
+CV_DATA['e3circ'] = CV_DATA_E3CIRC;
+const CV_DATA_E3MSR = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>"물병에 물이 많이 들어있어요"라고만 말하면, 정확히 얼마나 많은지 알 수 없어요.</p>
+    <p style="margin-top:10px">"가방이 무거워요"라고만 말해도 마찬가지예요. 들이(부피)와 무게에도 정확한 단위가 필요해요.</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px">"많이" 대신 정확한 숫자로</div>
+      <div style="font-size:.85rem">🧴 물 <strong style="color:#58a6ff">1L 500mL</strong> 　 🎒 가방 <strong style="color:#f0c040">2kg 300g</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">숫자와 단위가 있으면 누구나 똑같이 이해할 수 있어요</div>
+    </div>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 들이의 단위(L, mL)</div>
+    <ul><li>물병에 물이 1리터(L)보다 조금 더 들어있어요. 이 "조금 더"는 어떻게 나타낼까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px">1L 500mL</div>
+      <div style="font-size:.68rem;color:#8b949e">L(리터)는 큰 들이, mL(밀리리터)는 작은 들이를 나타내는 단위예요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 1L=1000mL</div>
+    <ul><li>1L 500mL를 전부 mL 단위로만 나타내면 얼마일까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.85rem">1L = 1000mL</div>
+      <div style="font-size:.85rem;margin-top:4px">1L 500mL = 1000mL + 500mL = <strong style="color:#3fb950">1500mL</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">1L는 항상 1000mL와 같아요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 무게의 단위(kg, g)</div>
+    <ul><li>가방이 2킬로그램(kg)보다 조금 더 무거워요. 이 "조금 더"는 어떻게 나타낼까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px">2kg 300g</div>
+      <div style="font-size:.68rem;color:#8b949e">kg(킬로그램)은 큰 무게, g(그램)은 작은 무게를 나타내는 단위예요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 1kg=1000g</div>
+    <ul><li>2kg 300g을 전부 g 단위로만 나타내면 얼마일까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.85rem">1kg = 1000g</div>
+      <div style="font-size:.85rem;margin-top:4px">2kg 300g = 2000g + 300g = <strong style="color:#3fb950">2300g</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">1kg은 항상 1000g과 같아요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 왜 1000을 기준으로 올려 셀까?</div>
+    <ul><li>물 800mL와 700mL를 더하면 1500mL인데, 왜 "1L 500mL"라고도 쓸까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.85rem">800mL + 700mL = 1500mL</div>
+      <div style="font-size:.85rem;margin-top:4px">1500mL = 1000mL + 500mL = <strong style="color:#3fb950">1L 500mL</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">10개 모으면 다음 자리로 올라가는 10진법처럼, mL도 1000개가 모이면 L 하나로 "올려 세는" 게 편해요</div>
+    </div>
+  `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>물병에 물이 1L 500mL 들어있는 상황(=1500mL) 하나를 여러 가지 다른 말로 물어볼 수 있어요.</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>복합단위 표현</strong><br>"물병에 물이 1L 500mL 들어있어요. mL로 나타내면?" → <span class="expr-ans">1500mL</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>단일단위→복합 표현</strong><br>"1500mL를 L와 mL로 나타내면?" → <span class="expr-ans">1L 500mL</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>비교 표현</strong><br>"1L 500mL와 1300mL 중 어느 것이 더 많나요?" → <span class="expr-ans">1L 500mL</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>덧셈 표현</strong><br>"800mL + 700mL는 몇 L 몇 mL인가요?" → <span class="expr-ans">1L 500mL</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>무게 복합단위 표현</strong><br>"가방이 2kg 300g이에요. g으로 나타내면?" → <span class="expr-ans">2300g</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>무게 단일→복합 표현</strong><br>"2300g을 kg과 g으로 나타내면?" → <span class="expr-ans">2kg 300g</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>무게 비교 표현</strong><br>"2kg 300g과 2500g 중 어느 것이 더 무거운가요?" → <span class="expr-ans">2500g</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>그림 표현</strong><br>"1L 500mL를 눈금으로 나타내면?"
+      <div class="fb-diagram" style="text-align:center">
+        <div style="width:40px;height:80px;border:2px solid #30363d;border-radius:0 0 6px 6px;margin:4px auto;position:relative;overflow:hidden">
+          <div style="position:absolute;bottom:0;width:100%;height:75%;background:#58a6ff"></div>
+        </div>
+        <span class="cap">눈금 2L짜리 그릇에 75%만큼(1L 500mL) 채워진 모습</span>
+      </div>
+    </div>
+    <p style="margin-top:10px">이렇게 8가지 표현이 결국 <strong>같은 양(1500mL)</strong>을 묻고 있어요.</p>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 1L와 1000mL 중 어느 것이 더 많을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e3msr-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e3msr-h1',0,this)">둘은 똑같아요! 1L=1000mL니까 같은 양을 다른 단위로 쓴 것뿐이에요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3msr-h1',1,this)">1000이라는 숫자가 더 크니까 1000mL가 더 많아요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3msr-h1',2,this)">L가 알파벳이라 더 큰 단위 같아서 1L가 더 많아요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e3msr-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 800mL+700mL=1500mL인데, 왜 "1L 500mL"로도 쓰는 게 좋을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e3msr-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e3msr-h2',0,this)">1000mL가 넘으면 L 단위로 묶어서 표현하는 게 숫자가 짧고 한눈에 크기를 이해하기 쉬워요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3msr-h2',1,this)">1500mL라고 쓰면 틀린 표현이라 꼭 바꿔야 해요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3msr-h2',2,this)">아무 이유 없이 그냥 두 가지로 다 쓸 수 있어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e3msr-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 무게를 잴 때 kg과 g, 언제 각각 쓰는 게 좋을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e3msr-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e3msr-h3',0,this)">몸무게처럼 큰 무게는 kg, 사탕 한 개처럼 가벼운 건 g을 쓰면 숫자가 너무 크거나 작아지지 않아 편해요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3msr-h3',1,this)">kg은 사람만, g은 물건만 쓰도록 정해져 있어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3msr-h3',2,this)">둘 중 아무거나 골라도 상관없고 규칙이 없어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e3msr-h3"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제: 1L 200mL + 800mL는 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-p1',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e3msr-p1">
+        <div class="fb-diagram">1200mL + 800mL = 2000mL = <strong style="color:#3fb950">2L</strong><span class="cap">mL끼리 더한 뒤 1000mL가 넘으면 L로 바꿔요</span></div>
+        <div class="sol"><strong>풀이:</strong> 1L200mL=1200mL, 1200+800=2000mL=2L</div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 2kg 500g − 800g은 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-p2',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e3msr-p2">
+        <div class="fb-diagram">2500g − 800g = 1700g = <strong style="color:#3fb950">1kg 700g</strong><span class="cap">g끼리 뺀 뒤 1000g이 넘는 부분을 kg으로 바꿔요</span></div>
+        <div class="sol"><strong>풀이:</strong> 2kg500g=2500g, 2500−800=1700g=1kg700g</div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 사과 한 상자는 3kg 100g, 배 한 상자는 3200g입니다. 어느 상자가 더 무거운가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-p3',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e3msr-p3">
+        <div class="fb-diagram">사과: 3kg100g=3100g　배: 3200g<span class="cap">3200g > 3100g → <strong style="color:#3fb950">배 상자가 더 무거워요</strong></span></div>
+        <div class="sol"><strong>풀이:</strong> 3kg100g을 g으로 바꾸면 3100g, 3200g과 비교하면 배가 더 무겁다</div>
+      </div>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line">
+      <div class="story-avatar">🧒</div>
+      <div class="story-bubble"><span class="story-name">민준</span>선생님, 왜 하필 1000mL가 1L예요? 100이나 10이면 더 계산하기 쉬울 것 같은데요.</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">👧</div>
+      <div class="story-bubble"><span class="story-name">서연</span>어? 그러고 보니 1kg도 1000g이고, 1L도 1000mL네요. 둘 다 1000이에요!</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧒</div>
+      <div class="story-bubble"><span class="story-name">지호</span>혹시 우리가 쓰는 숫자 체계랑 관계있는 거 아니에요? 10, 100, 1000...</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">👧</div>
+      <div class="story-bubble"><span class="story-name">하은</span>아! 10진법처럼요! 10개 모이면 다음 자리로 올라가잖아요.</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! mL·g처럼 작은 단위에 10, 100, 1000을 곱해서 큰 단위(L, kg)를 만드는 방식을 "미터법"이라고 해요. 우리가 쓰는 숫자가 10진법이라서, 단위도 10의 거듭제곱(10, 100, 1000)으로 맞춘 거예요.</div>
+    </div>
+    <div class="fb-diagram">
+      1, 10, 100, <strong style="color:#3fb950">1000</strong> — 전부 10을 계속 곱한 수<br>
+      1mL, 10mL, 100mL, <strong style="color:#3fb950">1000mL(=1L)</strong>
+      <span class="cap">숫자 자리가 10배씩 커지는 것과 똑같은 방식으로 단위도 커져요</span>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>그래서 mL를 L로 바꾸는 계산이, 나중에 배울 "받아올림"이랑 원리가 똑같은 거예요. 단위가 달라 보여도 결국 같은 10진법 규칙을 따르고 있어요.</div>
+    </div>
+    <div class="story-takeaway"><strong>정리:</strong> L·kg 같은 큰 단위와 mL·g 같은 작은 단위는 항상 1000 차이가 나도록 정해져 있어요. 이건 우리가 쓰는 숫자 체계(10진법)와 똑같은 원리라서, 단위를 바꾸는 계산도 자릿값을 다루는 것과 같은 방식으로 이해할 수 있어요.</div>
+  `}
+];
+CV_DATA['e3msr'] = CV_DATA_E3MSR;
+const CV_DATA_E3DATA = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>반 친구 23명에게 좋아하는 과일을 물어봤어요. "누가 뭘 좋아하는지" 한 명씩 다 기억하려면 너무 복잡해요.</p>
+    <p style="margin-top:10px">이럴 때 표나 그래프로 정리하면, 누가 봐도 한눈에 결과를 알 수 있어요.</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px">23명의 대답을 하나씩 말하는 대신</div>
+      <div style="font-size:1.1rem">🍎🍎🍎🍎🍎🍎🍎🍎 🍌🍌🍌🍌🍌 🍇🍇🍇🍇🍇🍇 🍓🍓🍓🍓</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">표나 그림그래프로 정리하면 한눈에 결과가 보여요</div>
+    </div>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 자료를 표로 나타내기</div>
+    <ul><li>23명이 좋아하는 과일을 조사했어요. 이 결과를 어떻게 정리하면 한눈에 보일까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <table style="width:100%;border-collapse:collapse;font-size:.75rem;text-align:center">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:4px;color:#8b949e">과일</td><td style="color:#8b949e">사과</td><td style="color:#8b949e">바나나</td><td style="color:#8b949e">포도</td><td style="color:#8b949e">딸기</td><td style="color:#f0c040">합계</td></tr>
+        <tr><td style="padding:4px;color:#8b949e">학생 수(명)</td><td>8</td><td>5</td><td>6</td><td>4</td><td style="color:#f0c040;font-weight:700">23</td></tr>
+      </table>
+      <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">조사한 수를 세어서 표에 숫자로 정리하는 게 "표"예요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 그림그래프란</div>
+    <ul><li>표의 숫자를 그림으로도 나타낼 수 있을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">🍎🍎🍎🍎🍎🍎🍎🍎 (사과 8명)</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">숫자 대신 그림을 개수만큼 그려서 나타낸 그래프를 "그림그래프"라고 해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 그림의 단위 정하기</div>
+    <ul><li>학생이 100명이라면, 그림을 100개 그려야 할까요? 더 편한 방법이 없을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.85rem">🍎(큰 그림)=10명　　🍏(작은 그림)=1명</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">그림 하나가 몇 명을 나타낼지 미리 정해두면, 그림 개수가 너무 많아지지 않아요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 그림그래프 그리기</div>
+    <ul><li>큰 그림=10명, 작은 그림=1명일 때, 13명은 그림을 어떻게 그릴까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">🍎 (큰 그림 1개=10명) 🍏🍏🍏 (작은 그림 3개=3명)</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">13=10+3 이니까, 큰 그림 1개와 작은 그림 3개를 그려요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 왜 그림그래프가 표보다 한눈에 보일까?</div>
+    <ul><li>표의 숫자(8,5,6,4)와 그림그래프의 그림 개수, 어느 쪽이 "가장 많은 것"을 더 빨리 찾을 수 있을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.85rem;line-height:1.9">🍎🍎🍎🍎🍎🍎🍎🍎 (8)<br>🍌🍌🍌🍌🍌 (5)<br>🍇🍇🍇🍇🍇🍇 (6)<br>🍓🍓🍓🍓 (4)</div>
+      <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">그림의 길이(개수)를 눈으로 바로 비교할 수 있어서, 숫자를 하나하나 안 읽어도 한눈에 크기 순서가 보여요</div>
+    </div>
+  `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>과일 좋아하기 조사(사과8, 바나나5, 포도6, 딸기4, 합계23) 하나를 여러 가지 다른 말로 물어볼 수 있어요.</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>표 읽기 표현</strong><br>"표에서 사과를 좋아하는 학생은 몇 명인가요?" → <span class="expr-ans">8명</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>합계 표현</strong><br>"조사에 참여한 학생은 모두 몇 명인가요?" → <span class="expr-ans">23명</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>최댓값 표현</strong><br>"가장 많은 학생이 좋아하는 과일은 무엇인가요?" → <span class="expr-ans">사과</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>그림 개수 표현</strong><br>"작은 그림 하나가 1명이라면, 사과(8명)는 그림을 몇 개 그리나요?" → <span class="expr-ans">8개</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>차이 표현</strong><br>"사과를 좋아하는 학생과 딸기를 좋아하는 학생의 차이는?" → <span class="expr-ans">4명</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>순위 표현</strong><br>"두 번째로 많이 좋아하는 과일은 무엇인가요?" → <span class="expr-ans">포도</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>그림→숫자 표현</strong><br>"큰 그림(10명) 1개와 작은 그림(1명) 3개를 그렸다면 모두 몇 명인가요?" → <span class="expr-ans">13명</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>그림 표현</strong><br>"바나나(5명)를 그림그래프로 나타내면?"
+      <div class="fb-diagram" style="text-align:center">🍌🍌🍌🍌🍌<span class="cap">작은 그림(1명) 5개</span></div>
+    </div>
+    <p style="margin-top:10px">이렇게 8가지 표현이 결국 <strong>같은 자료(과일 조사 결과)</strong>를 묻고 있어요.</p>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 표만 있어도 되는데, 왜 그림그래프도 배워야 할까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3data-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e3data-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e3data-h1',0,this)">표는 숫자를 하나하나 읽어야 하지만, 그림그래프는 길이(그림 수)를 보고 한눈에 크기를 비교할 수 있어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3data-h1',1,this)">그림그래프가 더 예뻐 보이려고 배우는 거예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3data-h1',2,this)">표와 그림그래프는 사실 같은 거라 아무거나 하나만 알면 돼요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e3data-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 그림그래프를 그릴 때 왜 "큰 그림=10명" 같은 단위를 미리 정해야 할까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3data-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e3data-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e3data-h2',0,this)">학생 수가 많으면 그림을 1명씩 다 그리기 힘드니까, 큰 단위를 정해두면 그림 개수를 줄일 수 있어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3data-h2',1,this)">그냥 규칙이라 무조건 정해야 해요, 이유는 없어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3data-h2',2,this)">단위를 안 정해도 그림그래프는 항상 똑같이 그려져요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e3data-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 그림그래프에서 과일 순서를 사과·바나나·포도·딸기 대신 다르게 나열해도 될까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3data-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e3data-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e3data-h3',0,this)">네, 순서는 자유예요. 다만 많은 것부터 나열하면 비교하기가 더 편해요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3data-h3',1,this)">아니에요, 항상 알파벳(가나다) 순서로만 그려야 해요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3data-h3',2,this)">순서를 바꾸면 학생 수도 달라져요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e3data-h3"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제: 위 표에서 포도와 딸기를 좋아하는 학생 수의 합은 몇 명인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3data-p1',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e3data-p1">
+        <div class="fb-diagram">포도 6명 + 딸기 4명 = <strong style="color:#3fb950">10명</strong></div>
+        <div class="sol"><strong>풀이:</strong> 6+4=10명</div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 큰 그림=10명, 작은 그림=1명일 때, 21명은 그림을 어떻게 그리나요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3data-p2',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e3data-p2">
+        <div class="fb-diagram">21 = 10+10+1<br>큰 그림 2개 + 작은 그림 <strong style="color:#3fb950">1개</strong></div>
+        <div class="sol"><strong>풀이:</strong> 21÷10=2···1 → 큰 그림 2개, 작은 그림 1개</div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 사과(8명), 바나나(5명), 포도(6명), 딸기(4명) 중 학생 수가 적은 것부터 순서대로 나열하면?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e3data-p3',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e3data-p3">
+        <div class="fb-diagram">4(딸기) < 5(바나나) < 6(포도) < 8(사과)</div>
+        <div class="sol"><strong>풀이:</strong> 딸기(4) → 바나나(5) → 포도(6) → 사과(8) 순서</div>
+      </div>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line">
+      <div class="story-avatar">🧒</div>
+      <div class="story-bubble"><span class="story-name">민준</span>선생님, 어떤 그림그래프를 봤는데 그림 크기가 서로 달랐어요! 사과 그림이 바나나 그림보다 훨씬 커서, 사과가 훨씬 많아 보였어요.</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">👧</div>
+      <div class="story-bubble"><span class="story-name">서연</span>어? 근데 개수를 세어보니 사과 6명, 바나나 5명이라서 별로 차이가 안 났는데요?</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧒</div>
+      <div class="story-bubble"><span class="story-name">지호</span>그림 "크기"를 다르게 그리면, 개수는 비슷해도 훨씬 많아 보이게 속일 수 있는 거네요!</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">👧</div>
+      <div class="story-bubble"><span class="story-name">하은</span>그럼 그림그래프는 항상 그림 "개수"로만 비교해야겠네요. 그림 "크기"를 보면 안 되고요.</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 이건 실제로 뉴스나 광고에서도 자주 쓰는 속임수예요. 그림그래프는 그림의 "개수"가 수량을 나타내야 하는데, 그림 "크기"를 다르게 그리면 보는 사람이 착각하게 돼요.</div>
+    </div>
+    <div class="fb-diagram">
+      🍎🍎🍎🍎🍎🍎 (사과 6명, 작은 그림 6개) 　 🍌🍌🍌🍌🍌 (바나나 5명, 작은 그림 5개)<br>
+      <span style="color:#f85149">잘못된 예: 🍎(크게) 6명 vs 🍌(작게) 5명 → 실제보다 훨씬 차이 나 보임</span>
+      <span class="cap">그림그래프는 그림의 크기가 아니라 개수로 수량을 비교해야 정직해요</span>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>그래프를 볼 때도, 그릴 때도 "그림의 크기가 똑같은가?", "단위가 명확한가?"를 확인하는 습관을 들이면, 숫자로 속이려는 그래프를 알아챌 수 있어요.</div>
+    </div>
+    <div class="story-takeaway"><strong>정리:</strong> 그림그래프는 그림의 "개수"가 실제 수량을 나타내야 정직한 그래프예요. 그림 크기를 다르게 그리면 개수(실제 값)는 비슷해도 훨씬 차이 나 보이게 만들 수 있어요 — 그래프를 볼 때는 항상 단위와 크기가 일정한지 확인하는 습관이 필요해요.</div>
+  `}
+];
+CV_DATA['e3data'] = CV_DATA_E3DATA;
 const FB_DIAGRAM_H1A = '<div class="fb-diagram"><div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">'
   + '<div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div>'
   + '</div><span class="cap">사탕 15개를 5명에게 나눠주면 → 15÷5=3, 1인당 3개 (사람 수 5를 아니까 나눠주기)</span></div>';
@@ -1203,6 +2325,40 @@ const FB_DIAGRAM_GCD2_W2 = '<div class="fb-diagram">6과 6: 최대공약수=6, �
 const FB_DIAGRAM_GCD3_OK = '<div class="fb-diagram">24와 36의 최대공약수=12 → 12명에게 "공평 분배" 가능<br>4와 6의 최소공배수=12 → 두 버스가 12분에 "동시 만남"<span class="cap">최대공약수는 남김없이 나누는 가장 큰 묶음, 최소공배수는 두 주기가 처음 겹치는 시점 — 둘 다 딱 맞는 비유예요</span></div>';
 const FB_DIAGRAM_GCD3_W1 = '<div class="fb-diagram">A버스(4분): 4,8,<strong style="color:#3fb950">12</strong>,16… <span class="arrow">|</span> B버스(6분): 6,<strong style="color:#3fb950">12</strong>,18…<span class="cap">두 버스가 처음 함께 오는 시각 12분이 최소공배수 — "최초 동시 만남"도 딱 맞는 비유예요</span></div>';
 const FB_DIAGRAM_GCD3_W2 = '<div class="fb-diagram">24와 36의 최대공약수=12 → "공평 분배"　|　4와 6의 최소공배수=12 → "동시 만남"<span class="cap">두 비유 모두 실제 뜻을 잘 담고 있어요 — 공식만 외우는 것보다 이렇게 이해하면 오래 기억돼요</span></div>';
+const FB_DIAGRAM_PCT1 = '<div class="fb-diagram">30% 할인<div style="background:#4b5563;border-radius:6px;height:16px;overflow:hidden;margin:4px 0"><div style="background:#f0c040;height:100%;width:30%"></div></div>'
+  + '1/3(≈33.3%) 할인<div style="background:#4b5563;border-radius:6px;height:16px;overflow:hidden;margin:4px 0"><div style="background:#3fb950;height:100%;width:33.3%"></div></div>'
+  + '<span class="cap">1/3(≈33.3%)이 30%보다 더 많이 깎아요 — 그래서 1/3 할인이 더 싸요</span></div>';
+const FB_DIAGRAM_PCT2 = '<div class="fb-diagram">10,000원 <span class="arrow">➜</span> 50%할인 <span class="arrow">➜</span> 5,000원 <span class="arrow">➜</span> 또 50%할인 <span class="arrow">➜</span> <strong style="color:#3fb950">2,500원</strong>'
+  + '<span class="cap">두 번째 50%는 이미 줄어든 5,000원에 적용돼요. 최종 2,500원은 원래(10,000원)의 25%만 남은 것 — 공짜(0원)가 아니에요</span></div>';
+const FB_DIAGRAM_PCT3 = '<div class="fb-diagram">전체 국민 100명<div style="background:#4b5563;border-radius:6px;height:16px;overflow:hidden;margin:4px 0"><div style="background:#30363d;height:100%;width:100%"></div></div>'
+  + '그 중 "경제활동인구"(일할 수 있는 사람들)<div style="background:#4b5563;border-radius:6px;height:16px;overflow:hidden;margin:4px 0"><div style="background:#58a6ff;height:100%;width:63%"></div></div>'
+  + '<span class="cap">실업률은 전체 국민 100명 기준이 아니라, "경제활동인구" 안에서만 계산한 비율이에요 — 기준이 다르면 같은 3%라도 실제 인원수는 달라져요</span></div>';
+const FB_DIAGRAM_FRAC1 = `<div class="fb-diagram"><div style="display:flex;justify-content:center;gap:16px;align-items:center">
+  <div><div style="width:44px;height:44px;border-radius:50%;background:conic-gradient(#f0c040 0deg 178deg,#0d1117 178deg 182deg,#30363d 182deg 358deg,#0d1117 358deg 360deg);margin:0 auto"></div><span class="cap">${frac(1,2)}</span></div>
+  <span style="color:#8b949e">=</span>
+  <div><div style="width:44px;height:44px;border-radius:50%;background:conic-gradient(#f0c040 0deg 87deg,#0d1117 87deg 93deg,#f0c040 93deg 177deg,#0d1117 177deg 183deg,#30363d 183deg 267deg,#0d1117 267deg 273deg,#30363d 273deg 357deg,#0d1117 357deg 360deg);margin:0 auto"></div><span class="cap">${frac(2,4)}</span></div>
+  </div><span class="cap">두 원의 색칠된 넓이가 똑같아요 — ${frac(1,2)}과 ${frac(2,4)}는 같은 크기예요</span></div>`;
+const FB_DIAGRAM_FRAC2 = `<div class="fb-diagram"><div style="display:flex;justify-content:center;gap:16px;align-items:center">
+  <div><div style="width:48px;height:48px;border-radius:50%;background:conic-gradient(#f0c040 0deg 180deg,#30363d 180deg 360deg);margin:0 auto"></div><span class="cap">${frac(1,2)} (2조각 중 1개)</span></div>
+  <div><div style="width:48px;height:48px;border-radius:50%;background:conic-gradient(#f0c040 0deg 90deg,#30363d 90deg 360deg);margin:0 auto"></div><span class="cap">${frac(1,4)} (4조각 중 1개)</span></div>
+  </div><span class="cap">같은 크기의 피자를 더 잘게 나눌수록(분모가 클수록) 한 조각은 작아져요</span></div>`;
+const FB_DIAGRAM_FRAC3 = `<div class="fb-diagram"><div style="display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap">
+  <div style="width:44px;height:44px;border-radius:50%;background:conic-gradient(#f0c040 0deg 87deg,#0d1117 87deg 93deg,#f0c040 93deg 177deg,#0d1117 177deg 183deg,#f0c040 183deg 267deg,#0d1117 267deg 273deg,#f0c040 273deg 357deg,#0d1117 357deg 360deg)"></div>
+  <span>(피자 한 판 ${frac(4,4)})</span> + <div style="width:44px;height:44px;border-radius:50%;background:conic-gradient(#f0c040 0deg 87deg,transparent 87deg 360deg)"></div> <span>(1조각 더)</span> = <strong style="color:#3fb950">${frac(5,4)}</strong>
+  </div><span class="cap">분자가 분모보다 크면 "전체(1)보다 많다"는 뜻이에요 — ${frac(5,4)}는 피자 한 판을 다 먹고 1조각을 더 먹은 양</span></div>`;
+const FB_DIAGRAM_MUL1 = '<div class="fb-diagram">2×3=6<div class="cap">0을 2개(20의 0, 30의 0) 그대로 붙여서</div><strong style="color:#3fb950;font-size:1.1rem">600</strong></div>';
+const FB_DIAGRAM_MUL1_W = '<div class="fb-diagram">20×30을 20×3처럼 계산하면 0을 빠뜨리게 돼요<div class="cap">2×3=6에서, 원래 있던 0(20의 0)과 0(30의 0)을 둘 다 붙여야 해요 → 600</div></div>';
+const FB_DIAGRAM_MUL2 = '<div class="fb-diagram">13×24 = 13×20 + 13×4 = 260+52 = <strong style="color:#3fb950">312</strong><br>24×13 = 24×10 + 24×3 = 240+72 = <strong style="color:#3fb950">312</strong><span class="cap">순서를 바꿔서 계산해도 똑같이 312가 나와요</span></div>';
+const FB_DIAGRAM_MUL3 = '<div class="fb-diagram">13상자 = 10상자 묶음 + 3상자 묶음<br>24×10=240 (10상자 묶음) + 24×3=72 (3상자 묶음) = <strong style="color:#3fb950">312</strong><span class="cap">전체를 두 묶음으로 나눠 세어도 총 개수는 변하지 않아요</span></div>';
+const FB_DIAGRAM_CIRC1 = '<div class="fb-diagram"><div style="width:70px;height:70px;border-radius:50%;border:2px solid #30363d;margin:0 auto;position:relative"><div style="width:5px;height:5px;background:#3fb950;border-radius:50%;position:absolute;top:32.5px;left:32.5px"></div><div style="width:35px;height:2px;background:#f0c040;position:absolute;top:34px;left:35px"></div><div style="width:35px;height:2px;background:#58a6ff;position:absolute;top:34px;left:0;transform:rotate(50deg);transform-origin:right"></div></div><span class="cap">중심에서 원 위 어느 점까지 그어도(금색, 파란색) 컴퍼스가 벌어진 채 그대로라서 길이가 항상 같아요</span></div>';
+const FB_DIAGRAM_CIRC2 = '<div class="fb-diagram"><div style="width:70px;height:70px;border-radius:50%;border:2px solid #30363d;margin:0 auto;position:relative"><div style="width:5px;height:5px;background:#3fb950;border-radius:50%;position:absolute;top:32.5px;left:32.5px"></div><div style="width:35px;height:2px;background:#f0c040;position:absolute;top:34px;left:35px"></div><div style="width:35px;height:2px;background:#58a6ff;position:absolute;top:34px;left:0"></div></div><span class="cap">지름은 반지름(금색)+반지름(파란색) — 중심 양쪽으로 반지름이 하나씩 이어진 거예요</span></div>';
+const FB_DIAGRAM_CIRC3 = '<div class="fb-diagram"><div style="width:70px;height:70px;border-radius:50%;border:2px solid #30363d;margin:0 auto;position:relative"><div style="width:70px;height:2px;background:#f85149;position:absolute;top:34px;left:0"></div></div><span class="cap">중심을 지나는 지름(빨간 선)이 원 안에서 그을 수 있는 가장 긴 선분이에요</span></div>';
+const FB_DIAGRAM_MSR1 = '<div class="fb-diagram">1L <span class="arrow">=</span> 1000mL<span class="cap">두 표현은 단위만 다를 뿐, 담긴 물의 양은 완전히 똑같아요</span></div>';
+const FB_DIAGRAM_MSR2 = '<div class="fb-diagram">1500mL <span class="arrow">➜</span> 1000mL+500mL <span class="arrow">➜</span> <strong style="color:#3fb950">1L 500mL</strong><span class="cap">숫자가 작아지고, "1리터 반"처럼 실생활에서 말하기도 훨씬 쉬워져요</span></div>';
+const FB_DIAGRAM_MSR3 = '<div class="fb-diagram">🚚 트럭 무게 → kg(더 큰 단위: t도 있음)　　🍬 사탕 무게 → g<span class="cap">숫자가 너무 크거나(예: 5000000g) 너무 작아지지(예: 0.005kg) 않도록 상황에 맞는 단위를 골라요</span></div>';
+const FB_DIAGRAM_DATA1 = '<div class="fb-diagram">표: 8, 5, 6, 4 (숫자를 하나씩 읽어야 함)<br>그림그래프: 🍎🍎🍎🍎🍎🍎🍎🍎 / 🍌🍌🍌🍌🍌 / 🍇🍇🍇🍇🍇🍇 / 🍓🍓🍓🍓<span class="cap">그림의 길이를 보면 숫자를 안 읽어도 어느 게 더 많은지 바로 보여요</span></div>';
+const FB_DIAGRAM_DATA2 = '<div class="fb-diagram">100명을 그림 100개로 그리면… 🍎×100 (너무 많아서 세기 힘들어요)<br>큰 그림(10명)+작은 그림(1명)으로 그리면 → 훨씬 적은 그림으로 표현 가능<span class="cap">단위를 크게 잡으면 그림 개수를 확 줄일 수 있어요</span></div>';
+const FB_DIAGRAM_DATA3 = '<div class="fb-diagram">적은 것부터: 🍓4 - 🍌5 - 🍇6 - 🍎8<br>많은 것부터: 🍎8 - 🍇6 - 🍌5 - 🍓4<span class="cap">두 경우 모두 개수는 안 바뀌어요 — 순서는 자유롭게 정할 수 있어요</span></div>';
 const HAVRUTA_FB = {
   'e3div-h1': [
     {ok:true, text:'맞아요! "몇 명에게 나눠줄까?"처럼 사람 수를 아는 상황에서는 나눠주기가 자연스러워요.', diagram:FB_DIAGRAM_H1A},
@@ -1234,6 +2390,96 @@ const HAVRUTA_FB = {
     {ok:true, text:'맞아요! 최대공약수는 "남는 것 없이 똑같이 나눌 수 있는 가장 큰 단위", 최소공배수는 "서로 다른 주기가 처음으로 겹치는 순간"이라는 뜻을 정확히 담고 있는 비유예요.', diagram:FB_DIAGRAM_GCD3_OK},
     {ok:false, text:'최소공배수 비유도 맞아요! "최초 동시 만남"은 두 주기가 처음 겹치는 시점을 정확히 표현하고 있어요.', diagram:FB_DIAGRAM_GCD3_W1},
     {ok:false, text:'두 비유 모두 실제 개념의 의미를 잘 담고 있어요. 공식만 기계적으로 외우는 것보다 이런 비유로 이해하면 훨씬 오래 기억에 남아요.', diagram:FB_DIAGRAM_GCD3_W2}
+  ],
+  'e5pct-h1': [
+    {ok:true, text:'맞아요! 1/3은 소수로 바꾸면 약 33.3%예요. 30%보다 더 많이 깎아주니까 1/3 할인이 더 싸요.', diagram:FB_DIAGRAM_PCT1},
+    {ok:false, text:'비슷해 보이지만 정확히 계산하면 달라요. 1/3을 %로 바꿔서 30%와 비교해볼까요?', diagram:FB_DIAGRAM_PCT1},
+    {ok:false, text:'숫자가 크다고 항상 더 할인되는 건 아니에요. 30%와 1/3(≈33.3%)을 같은 단위(%)로 맞춰서 비교해야 해요.', diagram:FB_DIAGRAM_PCT1}
+  ],
+  'e5pct-h2': [
+    {ok:true, text:'맞아요! 두 번째 50% 할인은 첫 번째 할인 후 이미 줄어든 가격에 적용돼요. 그래서 최종 가격은 원래의 25%만 남고, 공짜(0원)는 안 돼요.', diagram:FB_DIAGRAM_PCT2},
+    {ok:false, text:'50+50=100처럼 그냥 더하면 안 돼요! 두 번째 할인은 원래 가격이 아니라 "이미 한 번 깎인 가격"에 적용되거든요. 실제로 계산해볼까요?', diagram:FB_DIAGRAM_PCT2},
+    {ok:false, text:'할인을 두 번 하면 가격은 계속 낮아져요, 비싸지지 않아요. 실제 계산으로 확인해볼까요?', diagram:FB_DIAGRAM_PCT2}
+  ],
+  'e5pct-h3': [
+    {ok:true, text:'맞아요! 실업률은 전체 국민이 아니라 "경제활동인구"(일할 수 있고 일할 의사가 있는 사람들) 안에서 계산한 비율이에요. 기준 집단이 다르면 같은 숫자라도 뜻이 달라져요.', diagram:FB_DIAGRAM_PCT3},
+    {ok:false, text:'전체 국민 100명 기준이 아니에요! 아기, 학생, 은퇴한 어르신 등은 보통 "경제활동인구"에서 빠지기 때문에, 실업률은 훨씬 좁은 기준 집단 안에서 계산돼요.', diagram:FB_DIAGRAM_PCT3},
+    {ok:false, text:'그냥 느낌으로 정하는 게 아니라, "경제활동인구 중 실업자 수"를 정확히 나눠서 계산하는 숫자예요. 어떤 집단을 기준으로 하는지가 핵심이에요.', diagram:FB_DIAGRAM_PCT3}
+  ],
+  'e3frac-h1': [
+    {ok:true, text:'맞아요! '+frac(2,4)+'는 분모·분자를 둘 다 2로 나누면 '+frac(1,2)+'이 돼요. 숫자는 다르게 생겼어도 실제 크기(넓이)는 완전히 같아요.', diagram:FB_DIAGRAM_FRAC1},
+    {ok:false, text:'숫자가 다르게 보여도 크기는 같을 수 있어요! 그림으로 직접 겹쳐서 확인해볼까요?', diagram:FB_DIAGRAM_FRAC1},
+    {ok:false, text:'분수는 숫자가 크다고 항상 더 큰 게 아니에요. 두 분수를 그림으로 그려서 넓이를 비교해볼까요?', diagram:FB_DIAGRAM_FRAC1}
+  ],
+  'e3frac-h2': [
+    {ok:true, text:'맞아요! 같은 크기의 피자를 더 잘게(더 많은 조각으로) 나눌수록, 한 조각의 크기는 점점 작아져요.', diagram:FB_DIAGRAM_FRAC2},
+    {ok:false, text:'규칙을 외우는 것도 좋지만 "왜" 그런지 알면 절대 안 헷갈려요. 같은 피자를 2조각과 4조각으로 나누면 어느 쪽 조각이 더 클지 그려볼까요?', diagram:FB_DIAGRAM_FRAC2},
+    {ok:false, text:'분모 숫자가 크다고 조각도 큰 게 아니에요 — 오히려 반대예요! 같은 피자를 더 많이 나눌수록 한 조각은 작아져요.', diagram:FB_DIAGRAM_FRAC2}
+  ],
+  'e3frac-h3': [
+    {ok:true, text:'맞아요! '+frac(5,4)+'는 "1(피자 한 판 전체)"보다 큰 양이에요. 분자가 분모보다 크면 전체보다 많다는 뜻이에요.', diagram:FB_DIAGRAM_FRAC3},
+    {ok:false, text:'잘못된 표현이 아니에요! 분자가 분모보다 큰 분수(가분수)도 정확한 표현이에요 — "1보다 큰 양"을 나타낼 때 써요.', diagram:FB_DIAGRAM_FRAC3},
+    {ok:false, text:'5−4=1이 아니라, '+frac(5,4)+'는 "4조각으로 나눈 것 중 5개"라는 뜻이에요. 4조각(전체)을 넘어서 1조각을 더 가진 거예요.', diagram:FB_DIAGRAM_FRAC3}
+  ],
+  'e3mul-h1': [
+    {ok:true, text:'맞아요! 2×3=6을 먼저 계산하고, 20과 30에 있던 0을 그대로 2개 붙이면 600이에요.', diagram:FB_DIAGRAM_MUL1},
+    {ok:false, text:'0을 1개만 붙이면 60이 되는데, 20×30은 그보다 훨씬 커요. 20과 30 각각에 있는 0을 모두 붙여야 해요.', diagram:FB_DIAGRAM_MUL1_W},
+    {ok:false, text:'20×30은 2×3=6이 아니라, 20과 30 뒤에 있는 0까지 계산에 포함해야 해요.', diagram:FB_DIAGRAM_MUL1_W}
+  ],
+  'e3mul-h2': [
+    {ok:true, text:'맞아요! 곱셈은 두 수의 순서를 바꿔도 답이 같아요 — 이걸 "교환법칙"이라고 해요.', diagram:FB_DIAGRAM_MUL2},
+    {ok:false, text:'어느 수가 먼저 오든 상관없어요! 실제로 13×24와 24×13을 각각 계산해서 비교해볼까요?', diagram:FB_DIAGRAM_MUL2},
+    {ok:false, text:'확인해보면 둘 다 똑같이 312가 나와요. 곱셈은 순서를 바꿔도 항상 답이 같아요.', diagram:FB_DIAGRAM_MUL2}
+  ],
+  'e3mul-h3': [
+    {ok:true, text:'맞아요! 13상자를 10상자 묶음과 3상자 묶음으로 나눠서 세는 것과 똑같아서, 나눠 세도 전체 개수는 변하지 않아요.', diagram:FB_DIAGRAM_MUL3},
+    {ok:false, text:'그냥 정해진 규칙이 아니라 진짜 이유가 있어요! 13상자를 두 묶음으로 나눠서 각각 센 다음 합치면 어떻게 되는지 생각해볼까요?', diagram:FB_DIAGRAM_MUL3},
+    {ok:false, text:'항상 나눠야 하는 건 아니고, 계산을 더 쉽게 하려고 나누는 거예요. 나눠도 답이 똑같은 이유를 살펴볼까요?', diagram:FB_DIAGRAM_MUL3}
+  ],
+  'e3circ-h1': [
+    {ok:true, text:'맞아요! 원은 "중심에서 같은 거리에 있는 점들의 모임"이에요. 그래서 반지름은 어디서 그어도 길이가 같아요.', diagram:FB_DIAGRAM_CIRC1},
+    {ok:false, text:'방향과 상관없이 항상 같아요! 컴퍼스로 원을 그릴 때 벌린 채로 한 바퀴 돌리는 걸 떠올려볼까요?', diagram:FB_DIAGRAM_CIRC1},
+    {ok:false, text:'원의 크기와 상관없이, 같은 원 안에서는 반지름이 항상 같아요.', diagram:FB_DIAGRAM_CIRC1}
+  ],
+  'e3circ-h2': [
+    {ok:true, text:'맞아요! 지름은 중심을 사이에 두고 반지름 두 개가 나란히 이어진 거라서 항상 2배예요.', diagram:FB_DIAGRAM_CIRC2},
+    {ok:false, text:'그냥 외우는 공식이 아니라 진짜 이유가 있어요! 지름을 중심에서 반으로 잘라보면 무엇이 두 개 생기는지 볼까요?', diagram:FB_DIAGRAM_CIRC2},
+    {ok:false, text:'원의 크기와 상관없이, 지름은 항상 반지름의 정확히 2배예요.', diagram:FB_DIAGRAM_CIRC2}
+  ],
+  'e3circ-h3': [
+    {ok:true, text:'맞아요! 지름은 중심을 지나면서 원 양쪽 끝을 잇는 선분이라, 원 안에서 그을 수 있는 가장 긴 선분이에요.', diagram:FB_DIAGRAM_CIRC3},
+    {ok:false, text:'반지름은 중심에서 원 위까지만 가는 선이라 지름의 절반밖에 안 돼요. 더 긴 선분이 있어요.', diagram:FB_DIAGRAM_CIRC3},
+    {ok:false, text:'원 위의 두 점을 잇는 선분은 위치에 따라 길이가 다 달라요 — 그중 가장 긴 건 중심을 지나는 선분이에요.', diagram:FB_DIAGRAM_CIRC3}
+  ],
+  'e3msr-h1': [
+    {ok:true, text:'맞아요! 1L=1000mL니까 단위만 다를 뿐 정확히 같은 양이에요.', diagram:FB_DIAGRAM_MSR1},
+    {ok:false, text:'숫자가 크다고 양이 많은 게 아니에요! 1L와 1000mL는 단위가 다른 것뿐, 실제로는 같은 양이에요.', diagram:FB_DIAGRAM_MSR1},
+    {ok:false, text:'단위 이름의 크고 작음이 아니라, 실제로 1L=1000mL인지 확인해봐야 해요 — 확인해보면 완전히 같아요.', diagram:FB_DIAGRAM_MSR1}
+  ],
+  'e3msr-h2': [
+    {ok:true, text:'맞아요! 1000mL가 넘으면 L 단위로 묶어서 표현하는 게 숫자도 짧아지고 크기를 이해하기도 쉬워요.', diagram:FB_DIAGRAM_MSR2},
+    {ok:false, text:'1500mL도 정확한 표현이에요! 틀린 게 아니라, 1L 500mL로 바꾸면 더 이해하기 쉬워진다는 게 핵심이에요.', diagram:FB_DIAGRAM_MSR2},
+    {ok:false, text:'아무 이유 없는 게 아니라, 숫자가 작아지고 실생활에서 말하기 편해진다는 분명한 이유가 있어요.', diagram:FB_DIAGRAM_MSR2}
+  ],
+  'e3msr-h3': [
+    {ok:true, text:'맞아요! 무게가 클 때는 kg, 작을 때는 g을 쓰면 숫자가 너무 크거나 작아지지 않아서 이해하기 편해요.', diagram:FB_DIAGRAM_MSR3},
+    {ok:false, text:'kg과 g은 사람이냐 물건이냐가 아니라, 무게가 크냐 작냐에 따라 골라 써요.', diagram:FB_DIAGRAM_MSR3},
+    {ok:false, text:'아무거나 골라도 되는 건 아니에요! 숫자가 너무 커지거나(예: 5,000,000g) 너무 작아지지(예: 0.005kg) 않게 고르는 게 좋아요.', diagram:FB_DIAGRAM_MSR3}
+  ],
+  'e3data-h1': [
+    {ok:true, text:'맞아요! 표는 숫자를 하나하나 읽어야 하지만, 그림그래프는 그림의 길이를 보고 한눈에 크기를 비교할 수 있어요.', diagram:FB_DIAGRAM_DATA1},
+    {ok:false, text:'예쁘게 보이려는 게 목적이 아니에요! 그림그래프의 진짜 장점은 숫자를 안 읽어도 크기 비교가 바로 된다는 거예요.', diagram:FB_DIAGRAM_DATA1},
+    {ok:false, text:'표와 그림그래프는 같은 자료를 다르게 보여주는 거예요. 그림그래프만의 장점이 따로 있어요.', diagram:FB_DIAGRAM_DATA1}
+  ],
+  'e3data-h2': [
+    {ok:true, text:'맞아요! 학생 수가 많으면 그림을 1명씩 다 그리기 힘드니까, 큰 단위를 정해두면 그림 개수를 훨씬 줄일 수 있어요.', diagram:FB_DIAGRAM_DATA2},
+    {ok:false, text:'이유 없는 규칙이 아니에요! 100명을 그림 100개로 그리면 얼마나 복잡할지 생각해볼까요?', diagram:FB_DIAGRAM_DATA2},
+    {ok:false, text:'단위를 안 정하면 그림이 너무 많아지거나, 반대로 무엇을 나타내는지 알기 어려워져요.', diagram:FB_DIAGRAM_DATA2}
+  ],
+  'e3data-h3': [
+    {ok:true, text:'맞아요! 순서는 자유예요. 다만 많은 것부터 나열하면 비교하기가 더 편해요.', diagram:FB_DIAGRAM_DATA3},
+    {ok:false, text:'꼭 가나다 순서일 필요는 없어요! 어떤 순서로 나열해도 개수(값) 자체는 바뀌지 않아요.', diagram:FB_DIAGRAM_DATA3},
+    {ok:false, text:'순서를 바꿔도 학생 수는 그대로예요 — 나열 순서와 실제 개수는 서로 다른 문제예요.', diagram:FB_DIAGRAM_DATA3}
   ]
 };
 function cvInit(id){
