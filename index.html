@@ -3483,9 +3483,9 @@ k=105, k=34 → 합 <b style="color:#fde68a">139</b><br><br>
 → 각도=60° 또는 120° → 이차방정식과 연립하여 m 결정` }
 ],
 
-/* ── 복소수 거듭제곱 전용 가이드 (재구성, 13장 순차형) ─────────── */
+/* ── 복소수 거듭제곱 전용 가이드 (재구성, 레벨별 4장형) ─────────── */
 'complex-power': [
-  { tag:'🌀 ①i의 4마디 리듬 1/13 (기본)', tagColor:'#c4b5fd',
+  { tag:'🌀 ①i의 4마디 리듬 1/4 (기본)', tagColor:'#c4b5fd',
     bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🏛️ [토로매쓰 미션] 시간의 지배자: 복소수 거듭제곱 정복</div>
 <div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
@@ -3533,10 +3533,60 @@ i, −1, −i, 1을 시계처럼 네 방향에 하나씩 놓아볼게요 — i�
 <b>i²³의 값은?</b><br><button onclick="cpShowSolI('cp-l1-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
 </div>
 <button onclick="cpNextI('cp-l1-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">다음 예제 →</button>
+<hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:14px 0">
+<div style="font-size:.84rem;font-weight:600;margin-bottom:10px">📝 예제로 확인하기</div>
+<div style="background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.35);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+<b style="color:#7dd3fc">예제1</b> — i⁵⁷의 값은?<br>
+57 = 4×14+1<br>
+나머지 1 → 1번째 자리(i)<br>
+<b>i⁵⁷ = i</b>
+</div>
+<div style="background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.35);border-radius:10px;padding:10px 12px">
+<b style="color:#7dd3fc">예제2</b> — i¹³+i¹⁴+i¹⁵+i¹⁶의 값은?<br>
+연속한 4자리를 한 바퀴 다 더하면 항상 0이에요.<br>
+i+(−1)+(−i)+1 = <b>0</b>
+</div>
+<hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:14px 0">
+<div style="font-size:.84rem;font-weight:600;margin-bottom:10px">🎯 실전 유형</div>
+<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;margin:6px 0;font-size:.76rem">
+<b style="color:#7dd3fc">유형A</b> — 계수가 등차수열인 i의 합<br>
+i+2i²+3i³+⋯+100i¹⁰⁰의 값은?<br>
+100개를 4개씩 25묶음으로 나눠요.<br>
+첫 묶음: i+2i²+3i³+4i⁴ = i−2−3i+4 = <b>2−2i</b><br>
+어느 묶음이든 계수가 1씩 커지는 만큼만 남고 나머지는 지워져서, 매번 똑같이 2−2i가 나와요.<br>
+25×(2−2i) = <b style="color:#fde68a">50−50i</b><br><br>
++103개(나머지3 처리): 100개까지는 위에서 구한 50−50i<br>
+나머지(101,102,103) = 101i−102−103i = −102−2i<br>
+전체 합 = <b style="color:#fde68a">−52−52i</b>
+</div>
+<div id="cp-out-a1" style="margin:6px 0"></div>
+<button onclick="cpRegen('A','cp-out-a1')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer;margin-bottom:10px">🔄 숫자 바꿔서 새 문제(유형A)</button>
+<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;margin:6px 0;font-size:.76rem">
+<b style="color:#7dd3fc">유형B</b> — i의 짝수제곱만 더하기: i²+i⁴+i⁶+⋯<br>
+i²=−1, i⁴=1, ...로 번갈아요(주기2).<br>
+개수가 짝수면 완전히 짝지어 0, 홀수면 −1 하나 남아요.<br>
+i²+⋯+i¹⁰⁰(50개,짝수) = <b style="color:#fde68a">0</b><br>
+i²+⋯+i¹⁰²(51개,홀수) = <b style="color:#fde68a">−1</b>
+</div>
+<div id="cp-out-b1" style="margin:6px 0"></div>
+<button onclick="cpRegen('B','cp-out-b1')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer;margin-bottom:10px">🔄 숫자 바꿔서 새 문제(유형B)</button>
+<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;margin:6px 0;font-size:.76rem">
+<b style="color:#7dd3fc">종합</b> — 분모의 i + 계수, 100개 이상 더하기<br>
+<span class="frac"><span class="num">1</span><span class="den">i</span></span>+<span class="frac"><span class="num">2</span><span class="den">i²</span></span>+⋯+<span class="frac"><span class="num">100</span><span class="den">i¹⁰⁰</span></span>의 값은?<br>
+분모의 i는 부호가 반대예요.<br>
+<span class="frac"><span class="num">1</span><span class="den">i</span></span>=−i, <span class="frac"><span class="num">1</span><span class="den">i²</span></span>=−1, <span class="frac"><span class="num">1</span><span class="den">i³</span></span>=i, <span class="frac"><span class="num">1</span><span class="den">i⁴</span></span>=1<br>
+첫 묶음: 1(−i)+2(−1)+3(i)+4(1) = <b>2+2i</b><br>
+25묶음 → <b style="color:#fde68a">50+50i</b><br><br>
++103개(나머지3 처리): 100개까지는 위에서 구한 50+50i<br>
+나머지(101,102,103) = −101i−102+103i = −102+2i<br>
+전체 합 = <b style="color:#fde68a">−52+52i</b>
+</div>
+<div id="cp-out-d1" style="margin:6px 0"></div>
+<button onclick="cpRegen('D','cp-out-d1')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제(종합)</button>
 </div>`,
     ans: null },
 
-  { tag:'🌀 ②(1+i)ⁿ — 시계 바늘 돌리기 2/13 (기본)', tagColor:'#c4b5fd',
+  { tag:'🌀 ②(1+i)ⁿ — 시계 바늘 돌리기 2/4 (기본)', tagColor:'#c4b5fd',
     bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
     body:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
 <b style="color:#7dd3fc">Level 2 — (1+i)ⁿ, "8번째에 방향만 제자리, 크기는 점점 커짐"</b><br><br>
@@ -3584,10 +3634,61 @@ i, −1, −i, 1을 시계처럼 네 방향에 하나씩 놓아볼게요 — i�
 <b>(1+i)⁶의 값은?</b><br><button onclick="cpShowSolPlusI('cp-l2-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
 </div>
 <button onclick="cpNextPlusI('cp-l2-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">다음 예제 →</button>
+<hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:14px 0">
+<div style="font-size:.84rem;font-weight:600;margin-bottom:10px">📝 예제로 확인하기</div>
+<div style="background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.35);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+<b style="color:#7dd3fc">예제1</b> — (1+i)¹⁰의 값은?<br>
+10 = 8+2<br>
+8바퀴(제자리, 크기16)에 2단계(2i)를 더 돌린 거예요.<br>
+16×2i = <b>32i</b>
+<div style="text-align:center;margin-top:10px">
+<svg width="200" height="200" viewBox="0 0 280 280">
+  <defs><marker id="ax9" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
+  <line x1="12" y1="140" x2="272" y2="140" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#ax9)"/>
+  <line x1="140" y1="272" x2="140" y2="12" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#ax9)"/>
+  <polyline points="140,140 155,119 140,95 101,101 75,140 87,193 140,225 207,207 245,140"
+    fill="none" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <circle cx="140" cy="95" r="5" fill="#64748b"/>
+  <circle cx="245" cy="140" r="6" fill="#86efac"/>
+  <circle cx="140" cy="55" r="6" fill="#fde68a"/>
+  <line x1="245" y1="140" x2="140" y2="55" stroke="#fde68a" stroke-width="2" stroke-dasharray="2 2"/>
+  <text x="248" y="128" font-size="9.5" font-weight="800" fill="#86efac">n=8(16)</text>
+  <text x="146" y="94" font-size="9" fill="#64748b">(n2방향)</text>
+  <text x="95" y="50" font-size="9.5" font-weight="800" fill="#fde68a">n=10(32i)</text>
+</svg>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:4px">초록(n8=16, 실수축)에서 노란 점선처럼 2단계(90도) 더 돌면 n10 — 방향은 n2(2i)와 같고 크기만 16배 큼</div>
+</div>
+</div>
+<div style="background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.35);border-radius:10px;padding:10px 12px">
+<b style="color:#7dd3fc">예제2</b> — 100 이하 자연수 n 중 (1+i)ⁿ이 실수가 되는 n의 개수는?<br>
+45n이 180의 배수여야 해요.<br>
+그러려면 n이 4의 배수여야 해요.<br>
+n=4,8,...,100 → <b>25개</b>
+<div style="text-align:center;margin-top:10px">
+<svg width="180" height="180" viewBox="0 0 280 280">
+  <defs><marker id="ax10" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
+  <line x1="12" y1="140" x2="272" y2="140" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#ax10)"/>
+  <line x1="140" y1="272" x2="140" y2="12" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#ax10)"/>
+  <polyline points="140,140 155,119 140,95 101,101 75,140 87,193 140,225 207,207 245,140"
+    fill="none" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <circle cx="155" cy="119" r="4" fill="#64748b"/>
+  <circle cx="140" cy="95" r="4" fill="#64748b"/>
+  <circle cx="101" cy="101" r="4" fill="#64748b"/>
+  <circle cx="87" cy="193" r="4" fill="#64748b"/>
+  <circle cx="140" cy="225" r="4" fill="#64748b"/>
+  <circle cx="207" cy="207" r="4" fill="#64748b"/>
+  <circle cx="75" cy="140" r="6" fill="#fde68a"/>
+  <circle cx="245" cy="140" r="6" fill="#fde68a"/>
+  <text x="30" y="132" font-size="9.5" font-weight="800" fill="#fde68a">n=4(−4)</text>
+  <text x="248" y="132" font-size="9.5" font-weight="800" fill="#fde68a">n=8(16)</text>
+</svg>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:4px">가로축(실수축) 위에 딱 떨어지는 자리만 노란색 — n=4,8뿐이고 8마디마다 반복돼서 4의 배수만 해당</div>
+</div>
+</div>
 </div>`,
     ans: null },
 
-  { tag:'🌀 ③ω(오메가) — 시계 바늘 돌리기 3/13 (기본)', tagColor:'#c4b5fd',
+  { tag:'🌀 ③ω(오메가) — 시계 바늘 돌리기 3/4 (기본)', tagColor:'#c4b5fd',
     bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
     body:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
 <b style="color:#7dd3fc">Level 3 — 오메가(ω): 120도의 정삼각형</b><br><br>
@@ -3623,10 +3724,67 @@ i, −1, −i, 1을 시계처럼 네 방향에 하나씩 놓아볼게요 — i�
 • 실수:허수 = 1:1 → 45도<br>
 • 실수:허수 = 1:√3 → 60도 (또는 30도)<br>
 • "합이 4마디마다 0" → 90도짜리(i), "3마디마다 0" → 120도짜리(ω)
+<hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:14px 0">
+<div style="font-size:.84rem;font-weight:600;margin-bottom:10px">📝 예제로 확인하기</div>
+<b style="color:#fde68a">💡 핵심 원리 — 개수가 순환주기(여기선 3)의 배수면 딱 떨어지고, 아니면 나머지를 따로 처리</b><br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;margin:6px 0;font-size:.76rem">
+<b style="color:#7dd3fc">유형C</b> — ω(ω³=1)의 거듭제곱 합<br>
+ω+ω²+1=0 이에요.<br>
+연속한 3개를 더하면 항상 0(주기3)이에요.<br>
+ω+⋯+ω⁹⁹(99개,3배수) = <b style="color:#fde68a">0</b><br>
+ω+⋯+ω¹⁰¹(101개,나머지2) = ω+ω² = <b style="color:#fde68a">−1</b>
+<div style="text-align:center;margin:10px 0">
+<svg width="140" height="190" viewBox="0 0 170 230">
+  <defs><marker id="ax11" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
+  <line x1="10" y1="115" x2="160" y2="115" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax11)"/>
+  <line x1="80" y1="212" x2="80" y2="18" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax11)"/>
+  <text x="164" y="119" font-size="10" fill="#94a3b8">Re</text>
+  <text x="84" y="16" font-size="10" fill="#94a3b8">Im</text>
+  <circle cx="80" cy="115" r="40" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+  <polygon points="120,115 60,80 60,150" fill="rgba(134,239,172,.1)" stroke="#86efac" stroke-width="2"/>
+  <circle cx="120" cy="115" r="4" fill="#e2e8f0"/>
+  <circle cx="60" cy="80" r="4" fill="#e2e8f0"/>
+  <circle cx="60" cy="150" r="4" fill="#e2e8f0"/>
+  <text x="120" y="132" font-size="11" font-weight="700" fill="#e2e8f0" text-anchor="middle">1(=ω³)</text>
+  <text x="60" y="66" font-size="11" font-weight="700" fill="#e2e8f0" text-anchor="middle">ω</text>
+  <text x="60" y="168" font-size="11" font-weight="700" fill="#e2e8f0" text-anchor="middle">ω²</text>
+</svg>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">세 꼭짓점(ω,ω²,1)을 한 바퀴 다 더하면 항상 0으로 돌아와요</div>
+</div>
+</div>
+<div id="cp-out-c1" style="margin:6px 0"></div>
+<button onclick="cpRegen('C','cp-out-c1')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer;margin-bottom:10px">🔄 숫자 바꿔서 새 문제(유형C)</button>
+<div style="background:rgba(178,58,46,.1);border:1px solid rgba(178,58,46,.35);border-radius:10px;padding:10px 12px;font-size:.76rem">
+<b style="color:#f87171">🎁 보너스</b> — ω 패턴의 변형: z³=−1인 경우<br>
+"세제곱하면 1"(ω) 말고 "세제곱하면 −1"인 z는 어디 있을까요?<br>
+−1은 180도 자리예요.<br>
+z의 각도는 60°, 180°, 300°(180÷3)예요.<br>
+z=(1+√3i)/2(60°)라 하면:<br>
+z² = (−1+√3i)/2 = ω<br>
+z³ = ω×z = [(−1+√3i)(1+√3i)]/4 = [−1−3]/4 = <b style="color:#fde68a">−1</b> ✓
+<div style="text-align:center;margin:10px 0">
+<svg width="140" height="190" viewBox="0 0 170 230">
+  <defs><marker id="ax12" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
+  <line x1="10" y1="115" x2="160" y2="115" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax12)"/>
+  <line x1="80" y1="212" x2="80" y2="18" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax12)"/>
+  <text x="164" y="119" font-size="10" fill="#94a3b8">Re</text>
+  <text x="84" y="16" font-size="10" fill="#94a3b8">Im</text>
+  <circle cx="80" cy="115" r="40" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+  <polygon points="40,115 100,81 100,150" fill="rgba(178,58,46,.22)" stroke="#f87171" stroke-width="2.5"/>
+  <circle cx="40" cy="115" r="5" fill="#f87171"/>
+  <circle cx="100" cy="81" r="5" fill="#f87171"/>
+  <circle cx="100" cy="150" r="5" fill="#f87171"/>
+  <text x="40" y="132" font-size="11" font-weight="700" fill="#e2e8f0" text-anchor="middle">−1</text>
+  <text x="100" y="70" font-size="11" font-weight="700" fill="#e2e8f0" text-anchor="middle">z(60°)</text>
+  <text x="100" y="168" font-size="11" font-weight="700" fill="#e2e8f0" text-anchor="middle">z̄(300°)</text>
+</svg>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">ω 삼각형을 60도 돌린 모양 — 꼭짓점이 −1, z, z̄</div>
+</div>
+</div>
 </div>`,
     ans: null },
 
-  { tag:'🌀 ①거듭제곱 패턴 — 복습판(요약+수학자 Q&A) 4/13', tagColor:'#c4b5fd',
+  { tag:'🌀 ①거듭제곱 패턴 — 복습판(요약+수학자 Q&A) 4/4', tagColor:'#c4b5fd',
     bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
     body:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
 <div style="font-size:.84rem;color:#e2e8f0;font-weight:600;margin-bottom:10px">🌀 같은 내용, 한 번 더 — 다른 각도로 정리</div>
@@ -3668,198 +3826,7 @@ Q: <span style="font-size:1.02rem">"α³이 실수라는 게 왜 120도랑 관�
 [고1 버전] 두 화살표를 곱하면: <b style="font-size:1.05rem">길이×길이, 각도+각도.</b><br>
 1+i = 길이√2, 각도45° → (1+i)² → 길이2, 각도90° → <b style="font-size:1.1rem;color:#fde68a">2i ✓</b>
 </div>`,
-    ans: null },
-
-  { tag:'🌀 i의 거듭제곱 — 예제1 5/13', tagColor:'#c4b5fd', bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📝 i만 가지고 그림/패턴으로 빠르게 풀기</div>
-<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
-<div style="background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.35);border-radius:10px;padding:10px 12px">
-<b style="color:#7dd3fc">예제1</b> — i⁵⁷의 값은?<br>
-57 = 4×14+1<br>
-나머지 1 → 1번째 자리(i)<br>
-<b>i⁵⁷ = i</b>
-</div>
-</div>`, ans: null },
-
-  { tag:'🌀 i의 거듭제곱 — 예제2 6/13', tagColor:'#c4b5fd', bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📝 i만 가지고 그림/패턴으로 빠르게 풀기</div>
-<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
-<div style="background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.35);border-radius:10px;padding:10px 12px">
-<b style="color:#7dd3fc">예제2</b> — i¹³+i¹⁴+i¹⁵+i¹⁶의 값은?<br>
-연속한 4자리를 한 바퀴 다 더하면 항상 0이에요.<br>
-i+(−1)+(−i)+1 = <b>0</b>
-</div>
-</div>`, ans: null },
-
-  { tag:'🌀 i의 거듭제곱 — 유형A(계수 등차수열) 7/13', tagColor:'#c4b5fd', bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📝 유형A — 계수가 등차수열인 i의 합</div>
-<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
-<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;margin:6px 0;font-size:.76rem">
-i+2i²+3i³+⋯+100i¹⁰⁰의 값은?<br>
-100개를 4개씩 25묶음으로 나눠요.<br>
-첫 묶음: i+2i²+3i³+4i⁴ = i−2−3i+4 = <b>2−2i</b><br>
-어느 묶음이든 계수가 1씩 커지는 만큼만 남고 나머지는 지워져서, 매번 똑같이 2−2i가 나와요.<br>
-25×(2−2i) = <b style="color:#fde68a">50−50i</b><br><br>
-+103개(나머지3 처리): 100개까지는 위에서 구한 50−50i<br>
-나머지(101,102,103) = 101i−102−103i = −102−2i<br>
-전체 합 = <b style="color:#fde68a">−52−52i</b>
-</div>
-<div id="cp-out-a1" style="margin:6px 0"></div>
-<button onclick="cpRegen('A','cp-out-a1')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제(유형A)</button>
-</div>`, ans: null },
-
-  { tag:'🌀 i의 거듭제곱 — 유형B(짝수제곱만) 8/13', tagColor:'#c4b5fd', bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📝 유형B — i의 짝수제곱만 더하기: i²+i⁴+i⁶+⋯</div>
-<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
-<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;margin:6px 0;font-size:.76rem">
-i²=−1, i⁴=1, ...로 번갈아요(주기2).<br>
-개수가 짝수면 완전히 짝지어 0, 홀수면 −1 하나 남아요.<br>
-i²+⋯+i¹⁰⁰(50개,짝수) = <b style="color:#fde68a">0</b><br>
-i²+⋯+i¹⁰²(51개,홀수) = <b style="color:#fde68a">−1</b>
-</div>
-<div id="cp-out-b1" style="margin:6px 0"></div>
-<button onclick="cpRegen('B','cp-out-b1')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제(유형B)</button>
-</div>`, ans: null },
-
-  { tag:'🌀 (1+i)ⁿ의 거듭제곱 — 예제1 9/13', tagColor:'#c4b5fd', bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📝 (1+i)ⁿ으로 그림/패턴으로 빠르게 풀기</div>
-<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
-<div style="background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.35);border-radius:10px;padding:10px 12px">
-<b style="color:#7dd3fc">예제1</b> — (1+i)¹⁰의 값은?<br>
-10 = 8+2<br>
-8바퀴(제자리, 크기16)에 2단계(2i)를 더 돌린 거예요.<br>
-16×2i = <b>32i</b>
-</div>
-<div style="text-align:center;margin-top:10px">
-<svg width="200" height="200" viewBox="0 0 280 280">
-  <defs><marker id="ax9" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
-  <line x1="12" y1="140" x2="272" y2="140" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#ax9)"/>
-  <line x1="140" y1="272" x2="140" y2="12" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#ax9)"/>
-  <polyline points="140,140 155,119 140,95 101,101 75,140 87,193 140,225 207,207 245,140"
-    fill="none" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 3"/>
-  <circle cx="140" cy="95" r="5" fill="#64748b"/>
-  <circle cx="245" cy="140" r="6" fill="#86efac"/>
-  <circle cx="140" cy="55" r="6" fill="#fde68a"/>
-  <line x1="245" y1="140" x2="140" y2="55" stroke="#fde68a" stroke-width="2" stroke-dasharray="2 2"/>
-  <text x="248" y="128" font-size="9.5" font-weight="800" fill="#86efac">n=8(16)</text>
-  <text x="146" y="94" font-size="9" fill="#64748b">(n2방향)</text>
-  <text x="95" y="50" font-size="9.5" font-weight="800" fill="#fde68a">n=10(32i)</text>
-</svg>
-<div style="font-size:.68rem;color:#94a3b8;margin-top:4px">초록(n8=16, 실수축)에서 노란 점선처럼 2단계(90도) 더 돌면 n10 — 방향은 n2(2i)와 같고 크기만 16배 큼</div>
-</div>
-</div>`, ans: null },
-
-  { tag:'🌀 (1+i)ⁿ의 거듭제곱 — 예제2 10/13', tagColor:'#c4b5fd', bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📝 (1+i)ⁿ으로 그림/패턴으로 빠르게 풀기</div>
-<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
-<div style="background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.35);border-radius:10px;padding:10px 12px">
-<b style="color:#7dd3fc">예제2</b> — 100 이하 자연수 n 중 (1+i)ⁿ이 실수가 되는 n의 개수는?<br>
-45n이 180의 배수여야 해요.<br>
-그러려면 n이 4의 배수여야 해요.<br>
-n=4,8,...,100 → <b>25개</b>
-</div>
-<div style="text-align:center;margin-top:10px">
-<svg width="180" height="180" viewBox="0 0 280 280">
-  <defs><marker id="ax10" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
-  <line x1="12" y1="140" x2="272" y2="140" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#ax10)"/>
-  <line x1="140" y1="272" x2="140" y2="12" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#ax10)"/>
-  <polyline points="140,140 155,119 140,95 101,101 75,140 87,193 140,225 207,207 245,140"
-    fill="none" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 3"/>
-  <circle cx="155" cy="119" r="4" fill="#64748b"/>
-  <circle cx="140" cy="95" r="4" fill="#64748b"/>
-  <circle cx="101" cy="101" r="4" fill="#64748b"/>
-  <circle cx="87" cy="193" r="4" fill="#64748b"/>
-  <circle cx="140" cy="225" r="4" fill="#64748b"/>
-  <circle cx="207" cy="207" r="4" fill="#64748b"/>
-  <circle cx="75" cy="140" r="6" fill="#fde68a"/>
-  <circle cx="245" cy="140" r="6" fill="#fde68a"/>
-  <text x="30" y="132" font-size="9.5" font-weight="800" fill="#fde68a">n=4(−4)</text>
-  <text x="248" y="132" font-size="9.5" font-weight="800" fill="#fde68a">n=8(16)</text>
-</svg>
-<div style="font-size:.68rem;color:#94a3b8;margin-top:4px">가로축(실수축) 위에 딱 떨어지는 자리만 노란색 — n=4,8뿐이고 8마디마다 반복돼서 4의 배수만 해당</div>
-</div>
-</div>`, ans: null },
-
-  { tag:'🌀 ω(ω³=1)의 거듭제곱 — 유형C 11/13', tagColor:'#c4b5fd', bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📝 ω로 그림/패턴으로 빠르게 풀기</div>
-<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
-<b style="color:#fde68a">💡 핵심 원리 — 개수가 순환주기(여기선 3)의 배수면 딱 떨어지고, 아니면 나머지를 따로 처리</b><br><br>
-<b style="color:#7dd3fc">유형C — ω(ω³=1)의 거듭제곱 합</b><br>
-<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;margin:6px 0;font-size:.76rem">
-ω+ω²+1=0 이에요.<br>
-연속한 3개를 더하면 항상 0(주기3)이에요.<br>
-ω+⋯+ω⁹⁹(99개,3배수) = <b style="color:#fde68a">0</b><br>
-ω+⋯+ω¹⁰¹(101개,나머지2) = ω+ω² = <b style="color:#fde68a">−1</b>
-</div>
-<div style="text-align:center;margin:10px 0">
-<svg width="140" height="190" viewBox="0 0 170 230">
-  <defs><marker id="ax11" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
-  <line x1="10" y1="115" x2="160" y2="115" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax11)"/>
-  <line x1="80" y1="212" x2="80" y2="18" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax11)"/>
-  <text x="164" y="119" font-size="10" fill="#94a3b8">Re</text>
-  <text x="84" y="16" font-size="10" fill="#94a3b8">Im</text>
-  <circle cx="80" cy="115" r="40" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
-  <polygon points="120,115 60,80 60,150" fill="rgba(134,239,172,.1)" stroke="#86efac" stroke-width="2"/>
-  <circle cx="120" cy="115" r="4" fill="#e2e8f0"/>
-  <circle cx="60" cy="80" r="4" fill="#e2e8f0"/>
-  <circle cx="60" cy="150" r="4" fill="#e2e8f0"/>
-  <text x="120" y="132" font-size="11" font-weight="700" fill="#e2e8f0" text-anchor="middle">1(=ω³)</text>
-  <text x="60" y="66" font-size="11" font-weight="700" fill="#e2e8f0" text-anchor="middle">ω</text>
-  <text x="60" y="168" font-size="11" font-weight="700" fill="#e2e8f0" text-anchor="middle">ω²</text>
-</svg>
-<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">세 꼭짓점(ω,ω²,1)을 한 바퀴 다 더하면 항상 0으로 돌아와요</div>
-</div>
-<div id="cp-out-c1" style="margin:6px 0"></div>
-<button onclick="cpRegen('C','cp-out-c1')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제(유형C)</button>
-</div>`, ans: null },
-
-  { tag:'🌀 ω 패턴의 변형 — 보너스(z³=−1) 12/13', tagColor:'#c4b5fd', bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🎁 보너스 — ω 패턴의 변형: z³=−1인 경우</div>
-<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
-<div style="background:rgba(178,58,46,.1);border:1px solid rgba(178,58,46,.35);border-radius:10px;padding:10px 12px;font-size:.76rem">
-"세제곱하면 1"(ω) 말고 "세제곱하면 −1"인 z는 어디 있을까요?<br>
-−1은 180도 자리예요.<br>
-z의 각도는 60°, 180°, 300°(180÷3)예요.<br>
-z=(1+√3i)/2(60°)라 하면:<br>
-z² = (−1+√3i)/2 = ω<br>
-z³ = ω×z = [(−1+√3i)(1+√3i)]/4 = [−1−3]/4 = <b style="color:#fde68a">−1</b> ✓
-</div>
-<div style="text-align:center;margin:10px 0">
-<svg width="140" height="190" viewBox="0 0 170 230">
-  <defs><marker id="ax12" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
-  <line x1="10" y1="115" x2="160" y2="115" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax12)"/>
-  <line x1="80" y1="212" x2="80" y2="18" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax12)"/>
-  <text x="164" y="119" font-size="10" fill="#94a3b8">Re</text>
-  <text x="84" y="16" font-size="10" fill="#94a3b8">Im</text>
-  <circle cx="80" cy="115" r="40" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
-  <polygon points="40,115 100,81 100,150" fill="rgba(178,58,46,.22)" stroke="#f87171" stroke-width="2.5"/>
-  <circle cx="40" cy="115" r="5" fill="#f87171"/>
-  <circle cx="100" cy="81" r="5" fill="#f87171"/>
-  <circle cx="100" cy="150" r="5" fill="#f87171"/>
-  <text x="40" y="132" font-size="11" font-weight="700" fill="#e2e8f0" text-anchor="middle">−1</text>
-  <text x="100" y="70" font-size="11" font-weight="700" fill="#e2e8f0" text-anchor="middle">z(60°)</text>
-  <text x="100" y="168" font-size="11" font-weight="700" fill="#e2e8f0" text-anchor="middle">z̄(300°)</text>
-</svg>
-<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">ω 삼각형을 60도 돌린 모양 — 꼭짓점이 −1, z, z̄</div>
-</div>
-</div>`, ans: null },
-
-  { tag:'🌀 분모의 i + 계수 종합 — 연습문제 13/13', tagColor:'#c4b5fd', bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📝 분모의 i + 계수, 100개 이상 더하기</div>
-<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
-<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;margin:6px 0;font-size:.76rem">
-<span class="frac"><span class="num">1</span><span class="den">i</span></span>+<span class="frac"><span class="num">2</span><span class="den">i²</span></span>+⋯+<span class="frac"><span class="num">100</span><span class="den">i¹⁰⁰</span></span>의 값은?<br>
-분모의 i는 부호가 반대예요.<br>
-<span class="frac"><span class="num">1</span><span class="den">i</span></span>=−i, <span class="frac"><span class="num">1</span><span class="den">i²</span></span>=−1, <span class="frac"><span class="num">1</span><span class="den">i³</span></span>=i, <span class="frac"><span class="num">1</span><span class="den">i⁴</span></span>=1<br>
-첫 묶음: 1(−i)+2(−1)+3(i)+4(1) = <b>2+2i</b><br>
-25묶음 → <b style="color:#fde68a">50+50i</b><br><br>
-+103개(나머지3 처리): 100개까지는 위에서 구한 50+50i<br>
-나머지(101,102,103) = −101i−102+103i = −102+2i<br>
-전체 합 = <b style="color:#fde68a">−52+52i</b>
-</div>
-<div id="cp-out-d1" style="margin:6px 0"></div>
-<button onclick="cpRegen('D','cp-out-d1')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제(종합)</button>
-</div>`, ans: null }
+    ans: null }
 ],
 
 /* ── 복소수 하브루타 (1편) ─────────────── */
