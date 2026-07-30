@@ -1174,12 +1174,48 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     <button onclick="startCards('complex-guide','complex-hub')" style="width:100%;margin-bottom:8px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       📖 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(7장)</span> →
     </button>
-    <button onclick="startCards('complex-power','complex-hub')" style="width:100%;margin-bottom:8px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      🌀 복소수 거듭제곱 정복 <span style="font-size:.72rem;opacity:.7">(13장)</span> →
+    <button onclick="showScreen('complex-power-hub')" style="width:100%;margin-bottom:8px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+      🌀 복소수 거듭제곱 정복 <span style="font-size:.72rem;opacity:.7">(레벨 선택)</span> →
     </button>
     <button onclick="startCards('complex-havruta','complex-hub')" style="width:100%;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(3편)</span> →
     </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     복소수 거듭제곱 — 레벨 선택 허브
+══════════════════════════════════ -->
+<div id="complex-power-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 복소수</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#c4b5fd">🌀 거듭제곱 정복</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">레벨을 골라보세요 — 각 레벨 안에 예제·실전유형이 함께 있어요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button onclick="startCards('cp-level1','complex-power-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(134,239,172,.1),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🔁</div>
+        <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.78rem;margin:5px 0 4px;line-height:1.3">Level 1 — i의 4마디</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">예제·유형A·B·종합</div>
+      </button>
+      <button onclick="startCards('cp-level2','complex-power-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🌀</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.78rem;margin:5px 0 4px;line-height:1.3">Level 2 — (1+i)ⁿ</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">예제1·2</div>
+      </button>
+      <button onclick="startCards('cp-level3','complex-power-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(253,230,138,.1),rgba(253,230,138,.03));border:1px solid rgba(253,230,138,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🔺</div>
+        <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.78rem;margin:5px 0 4px;line-height:1.3">Level 3 — ω(오메가)</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">유형C·보너스</div>
+      </button>
+      <button onclick="startCards('cp-review','complex-power-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(196,181,253,.1),rgba(196,181,253,.03));border:1px solid rgba(196,181,253,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🌀</div>
+        <div style="font-family:'Jua',sans-serif;color:#c4b5fd;font-size:.78rem;margin:5px 0 4px;line-height:1.3">복습판</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">요약+Q&A+드무아브르</div>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -3483,9 +3519,9 @@ k=105, k=34 → 합 <b style="color:#fde68a">139</b><br><br>
 → 각도=60° 또는 120° → 이차방정식과 연립하여 m 결정` }
 ],
 
-/* ── 복소수 거듭제곱 전용 가이드 (재구성, 레벨별 4장형) ─────────── */
-'complex-power': [
-  { tag:'🌀 ①i의 4마디 리듬 1/4 (기본)', tagColor:'#c4b5fd',
+/* ── 복소수 거듭제곱 전용 가이드 (레벨별 개별 덱, 허브에서 타일 선택) ─── */
+'cp-level1': [
+  { tag:'🌀 ①i의 4마디 리듬 (기본)', tagColor:'#c4b5fd',
     bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🏛️ [토로매쓰 미션] 시간의 지배자: 복소수 거듭제곱 정복</div>
 <div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
@@ -3584,9 +3620,11 @@ i²+⋯+i¹⁰²(51개,홀수) = <b style="color:#fde68a">−1</b>
 <div id="cp-out-d1" style="margin:6px 0"></div>
 <button onclick="cpRegen('D','cp-out-d1')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제(종합)</button>
 </div>`,
-    ans: null },
+    ans: null }
+],
 
-  { tag:'🌀 ②(1+i)ⁿ — 시계 바늘 돌리기 2/4 (기본)', tagColor:'#c4b5fd',
+'cp-level2': [
+  { tag:'🌀 ②(1+i)ⁿ — 시계 바늘 돌리기 (기본)', tagColor:'#c4b5fd',
     bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
     body:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
 <b style="color:#7dd3fc">Level 2 — (1+i)ⁿ, "8번째에 방향만 제자리, 크기는 점점 커짐"</b><br><br>
@@ -3686,9 +3724,11 @@ n=4,8,...,100 → <b>25개</b>
 </div>
 </div>
 </div>`,
-    ans: null },
+    ans: null }
+],
 
-  { tag:'🌀 ③ω(오메가) — 시계 바늘 돌리기 3/4 (기본)', tagColor:'#c4b5fd',
+'cp-level3': [
+  { tag:'🌀 ③ω(오메가) — 시계 바늘 돌리기 (기본)', tagColor:'#c4b5fd',
     bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
     body:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
 <b style="color:#7dd3fc">Level 3 — 오메가(ω): 120도의 정삼각형</b><br><br>
@@ -3782,9 +3822,11 @@ z³ = ω×z = [(−1+√3i)(1+√3i)]/4 = [−1−3]/4 = <b style="color:#fde68a
 </div>
 </div>
 </div>`,
-    ans: null },
+    ans: null }
+],
 
-  { tag:'🌀 ①거듭제곱 패턴 — 복습판(요약+수학자 Q&A) 4/4', tagColor:'#c4b5fd',
+'cp-review': [
+  { tag:'🌀 거듭제곱 패턴 — 복습판(요약+수학자 Q&A)', tagColor:'#c4b5fd',
     bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
     body:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">
 <div style="font-size:.84rem;color:#e2e8f0;font-weight:600;margin-bottom:10px">🌀 같은 내용, 한 번 더 — 다른 각도로 정리</div>
