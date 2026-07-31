@@ -12648,6 +12648,10 @@ A(0, 4), B(12, −4) [먼 기슭에서 1만큼 더 떨어진 위치: −3−1=�
 예: A(2), B(7) → AB = |7−2| = 5<br>
 예: A(−3), B(4) → AB = |4−(−3)| = 7<br><br>
 <span style="font-size:.8rem;color:#94a3b8">순서를 바꿔 |a−b|로 써도 결과는 같아요 — 절댓값이 부호를 없애주니까요.</span>
+<div id="dist1d-out" data-a="-5" data-b="9" style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>A(−5), B(9)일 때 AB는?</b><br><button onclick="distShowLine1D('dist1d-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="distNextLine1D('dist1d-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제</button>
 </div>`, ans:null },
 
 { tag:'평면좌표 — 평면 위 두 점 사이의 거리 (1의 확장) 2/2', tagColor:'#86efac',
@@ -12661,6 +12665,10 @@ A(0, 4), B(12, −4) [먼 기슭에서 1만큼 더 떨어진 위치: −3−1=�
 <div style="background:rgba(134,239,172,.08);border-radius:10px;padding:10px 12px">
 (x₂−x₁)과 (y₂−y₁) 자체가 각각 "x축 방향 수직선 거리", "y축 방향 수직선 거리"예요 — 개념 1을 두 번 쓰고 피타고라스로 묶은 것뿐, 완전히 새로운 공식이 아니에요.
 </div>
+<div id="distplane-out" data-v="1,2,4,6" style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>A(1,2), B(4,6)일 때 AB는?</b><br><button onclick="distShowPlane('distplane-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="distNextPlane('distplane-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제</button>
 </div>`, ans:null }
 ],
 
@@ -12674,6 +12682,10 @@ A(0, 4), B(12, −4) [먼 기슭에서 1만큼 더 떨어진 위치: −3−1=�
 </div>
 점 P(x₀,y₀)와 직선 ax+by+c=0 사이의 거리예요.<br><br>
 예: 점 (1,2)와 직선 3x+4y−6=0 → d = <span class="frac"><span class="num">|3+8−6|</span><span class="den">√25</span></span> = <span class="frac"><span class="num">5</span><span class="den">5</span></span> = <b>1</b>
+<div id="ptline-out" data-v="3,4,-6,5,1,2" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>점(1,2)과 직선 3x+4y−6=0 사이의 거리는?</b><br><button onclick="distShowPtLine('ptline-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="distNextPtLine('ptline-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제</button>
 </div>`, ans:null },
 
 { tag:'직선의 방정식 — 두 직선 사이의 거리 (3의 확장) 2/2', tagColor:'#7dd3fc',
@@ -12686,6 +12698,10 @@ A(0, 4), B(12, −4) [먼 기슭에서 1만큼 더 떨어진 위치: −3−1=�
 두 평행선 ax+by+c₁=0, ax+by+c₂=0 사이의 거리예요.<br><br>
 예: 3x+4y−2=0과 3x+4y+8=0 → d = <span class="frac"><span class="num">|−2−8|</span><span class="den">5</span></span> = <span class="frac"><span class="num">10</span><span class="den">5</span></span> = <b>2</b><br><br>
 <span style="font-size:.8rem;color:#94a3b8">한 직선 위의 아무 점이나 잡아 개념 3에 대입해도 항상 같은 값이 나와요 — 그게 "평행"의 성질이에요.</span>
+<div id="parallel-out" data-v="3,4,-2,8,5" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>3x+4y−2=0과 3x+4y+8=0 사이의 거리는?</b><br><button onclick="distShowParallel('parallel-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="distNextParallel('parallel-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제</button>
 </div>`, ans:null }
 ],
 
@@ -12782,6 +12798,10 @@ A(x₁,y₁), B(x₂,y₂)를 m:n으로 내분하는 점이에요.<br><br>
 예: A(1,2), B(7,8)를 2:1로 내분하는 점은?<br>
 x=<span class="frac"><span class="num">1×1+2×7</span><span class="den">2+1</span></span>=<span class="frac"><span class="num">15</span><span class="den">3</span></span>=5, y=<span class="frac"><span class="num">1×2+2×8</span><span class="den">3</span></span>=<span class="frac"><span class="num">18</span><span class="den">3</span></span>=6 → <b>P(5,6)</b><br><br>
 <span style="font-size:.8rem;color:#94a3b8">m:n에서 큰 쪽 비율이 곱해지는 좌표는 <b>반대쪽</b> 점이에요(2:1이면 x₁에 1이, x₂에 2가 곱해짐) — P가 B 쪽으로 더 가깝다는 뜻이니까, B의 가중치(m)가 커지는 게 맞아요.</span>
+<div id="section-out" data-v="2,1,1,2,7,8" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>A(1,2), B(7,8)를 2:1로 내분하는 점은?</b><br><button onclick="secShowDiv('section-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="secNextDiv('section-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제</button>
 </div>`, ans:null },
 
 { tag:'중점 — 내분점의 특수한 경우(1:1)', tagColor:'#86efac',
@@ -12797,6 +12817,10 @@ x=<span class="frac"><span class="num">1×1+2×7</span><span class="den">2+1</sp
 x=<span class="frac"><span class="num">2×(−2)+1×4</span><span class="den">3</span></span>=<span class="frac"><span class="num">0</span><span class="den">3</span></span>=0, y=<span class="frac"><span class="num">2×3+1×(−3)</span><span class="den">3</span></span>=<span class="frac"><span class="num">3</span><span class="den">3</span></span>=1 → <b>(0,1)</b>
 </div><br>
 <span style="font-size:.8rem;color:#94a3b8">⚠️ 2022 개정 교육과정에서는 외분점이 빠졌어요 — 이 단원에서는 <b>내분점(과 그 특수경우인 중점)</b>까지만 다룹니다.</span>
+<div id="mid-out" data-v="1,2,7,8" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>A(1,2), B(7,8)의 중점은?</b><br><button onclick="secShowMid('mid-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="secNextMid('mid-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제</button>
 </div>`, ans:null }
 ],
 
@@ -14638,6 +14662,150 @@ function cpRegenD(){
 var CP_REGEN_FN = { A: cpRegenA, B: cpRegenB, C: cpRegenC, D: cpRegenD };
 function cpRegen(type, outId){
   document.getElementById(outId).innerHTML = CP_REGEN_FN[type]();
+}
+
+// ── 도형의방정식: 거리·내분점 재생성 헬퍼 ──────
+function gRandInt(min,max){ return min + Math.floor(Math.random()*(max-min+1)); }
+function gFmt(x){ return x<0 ? '−'+Math.abs(x) : String(x); }
+function gLineEq(a,b,c){
+  var cPart = c===0 ? '' : (c>0 ? '+'+c : '−'+Math.abs(c));
+  return a+'x+'+b+'y'+cPart+'=0';
+}
+function gSolBtn(fn,id){
+  return '<button onclick="'+fn+'(\''+id+'\')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>';
+}
+function gNextBtn(fn,id){
+  return '<button onclick="'+fn+'(\''+id+'\')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 숫자 바꿔서 새 문제</button>';
+}
+
+// 수직선 위 두 점 사이의 거리
+function distNextLine1D(id){
+  var el = document.getElementById(id);
+  var a = gRandInt(-10,10), b = gRandInt(-10,10);
+  while(b===a) b = gRandInt(-10,10);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b);
+  el.innerHTML = '<b>A('+gFmt(a)+'), B('+gFmt(b)+')일 때 AB는?</b><br>' + gSolBtn('distShowLine1D', id);
+}
+function distShowLine1D(id){
+  var el = document.getElementById(id);
+  var a = parseInt(el.getAttribute('data-a'),10), b = parseInt(el.getAttribute('data-b'),10);
+  var ab = Math.abs(b-a);
+  el.innerHTML = '<b>A('+gFmt(a)+'), B('+gFmt(b)+')일 때 AB는?</b><br>'
+    + 'AB = |b−a| = |'+gFmt(b)+'−('+gFmt(a)+')| = <b>'+ab+'</b>'
+    + gNextBtn('distNextLine1D', id);
+}
+
+// 평면 위 두 점 사이의 거리 (피타고라스 세 쌍으로 항상 정수 답)
+var G_TRIPLES = [[3,4,5],[6,8,10],[5,12,13],[8,15,17],[7,24,25],[20,21,29]];
+function distNextPlane(id){
+  var el = document.getElementById(id);
+  var t = G_TRIPLES[gRandInt(0,G_TRIPLES.length-1)];
+  var dx = t[0], dy = t[1];
+  if(Math.random()<0.5){ var tmp=dx; dx=dy; dy=tmp; }
+  if(Math.random()<0.5) dx=-dx;
+  if(Math.random()<0.5) dy=-dy;
+  var x1=gRandInt(-8,8), y1=gRandInt(-8,8);
+  var x2=x1+dx, y2=y1+dy;
+  el.setAttribute('data-v', [x1,y1,x2,y2].join(','));
+  el.innerHTML = '<b>A('+gFmt(x1)+','+gFmt(y1)+'), B('+gFmt(x2)+','+gFmt(y2)+')일 때 AB는?</b><br>' + gSolBtn('distShowPlane', id);
+}
+function distShowPlane(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var x1=v[0],y1=v[1],x2=v[2],y2=v[3];
+  var dx=x2-x1, dy=y2-y1;
+  var sq = dx*dx+dy*dy;
+  var ab = Math.round(Math.sqrt(sq));
+  el.innerHTML = '<b>A('+gFmt(x1)+','+gFmt(y1)+'), B('+gFmt(x2)+','+gFmt(y2)+')일 때 AB는?</b><br>'
+    + 'AB = √{('+gFmt(dx)+')²+('+gFmt(dy)+')²} = √'+sq+' = <b>'+ab+'</b>'
+    + gNextBtn('distNextPlane', id);
+}
+
+// 점과 직선 사이의 거리 (계수쌍을 피타고라스형으로 고정해 항상 정수 답)
+var G_LINE_TRIPLES = [[3,4,5],[4,3,5],[6,8,10],[8,6,10],[5,12,13],[12,5,13]];
+function distNextPtLine(id){
+  var el = document.getElementById(id);
+  var t = G_LINE_TRIPLES[gRandInt(0,G_LINE_TRIPLES.length-1)];
+  var a=t[0], b=t[1], denom=t[2];
+  var x0=gRandInt(-5,5), y0=gRandInt(-5,5);
+  var k=gRandInt(1,6), sign = Math.random()<0.5?1:-1;
+  var c = sign*k*denom - a*x0 - b*y0;
+  el.setAttribute('data-v', [a,b,c,denom,x0,y0].join(','));
+  el.innerHTML = '<b>점('+gFmt(x0)+','+gFmt(y0)+')과 직선 '+gLineEq(a,b,c)+' 사이의 거리는?</b><br>' + gSolBtn('distShowPtLine', id);
+}
+function distShowPtLine(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var a=v[0],b=v[1],c=v[2],denom=v[3],x0=v[4],y0=v[5];
+  var numVal = a*x0+b*y0+c;
+  var d = Math.abs(numVal)/denom;
+  el.innerHTML = '<b>점('+gFmt(x0)+','+gFmt(y0)+')과 직선 '+gLineEq(a,b,c)+' 사이의 거리는?</b><br>'
+    + 'd = |'+a+'×('+gFmt(x0)+')+'+b+'×('+gFmt(y0)+')+('+gFmt(c)+')| / √('+a+'²+'+b+'²)<br>'
+    + '= |'+gFmt(numVal)+'| / '+denom+' = <b>'+d+'</b>'
+    + gNextBtn('distNextPtLine', id);
+}
+
+// 두 평행선 사이의 거리
+function distNextParallel(id){
+  var el = document.getElementById(id);
+  var t = G_LINE_TRIPLES[gRandInt(0,G_LINE_TRIPLES.length-1)];
+  var a=t[0], b=t[1], denom=t[2];
+  var c1 = gRandInt(-10,10);
+  var k = gRandInt(1,8), sign = Math.random()<0.5?1:-1;
+  var c2 = c1 + sign*k*denom;
+  el.setAttribute('data-v', [a,b,c1,c2,denom].join(','));
+  el.innerHTML = '<b>'+gLineEq(a,b,c1)+'과 '+gLineEq(a,b,c2)+' 사이의 거리는?</b><br>' + gSolBtn('distShowParallel', id);
+}
+function distShowParallel(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var a=v[0],b=v[1],c1=v[2],c2=v[3],denom=v[4];
+  var d = Math.abs(c1-c2)/denom;
+  el.innerHTML = '<b>'+gLineEq(a,b,c1)+'과 '+gLineEq(a,b,c2)+' 사이의 거리는?</b><br>'
+    + 'd = |'+gFmt(c1)+'−('+gFmt(c2)+')| / '+denom+' = <b>'+d+'</b>'
+    + gNextBtn('distNextParallel', id);
+}
+
+// 내분점 (m+n의 배수로 좌표를 설계해 항상 정수 답)
+function secNextDiv(id){
+  var el = document.getElementById(id);
+  var m = gRandInt(1,4), n = gRandInt(1,4);
+  var s = m+n;
+  var x1=gRandInt(-6,6), y1=gRandInt(-6,6);
+  var tx=gRandInt(-4,4), ty=gRandInt(-4,4);
+  var x2=x1+s*tx, y2=y1+s*ty;
+  el.setAttribute('data-v', [m,n,x1,y1,x2,y2].join(','));
+  el.innerHTML = '<b>A('+gFmt(x1)+','+gFmt(y1)+'), B('+gFmt(x2)+','+gFmt(y2)+')를 '+m+':'+n+'로 내분하는 점은?</b><br>' + gSolBtn('secShowDiv', id);
+}
+function secShowDiv(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var m=v[0],n=v[1],x1=v[2],y1=v[3],x2=v[4],y2=v[5];
+  var s=m+n;
+  var px=(n*x1+m*x2)/s, py=(n*y1+m*y2)/s;
+  el.innerHTML = '<b>A('+gFmt(x1)+','+gFmt(y1)+'), B('+gFmt(x2)+','+gFmt(y2)+')를 '+m+':'+n+'로 내분하는 점은?</b><br>'
+    + 'x = ('+n+'×('+gFmt(x1)+')+'+m+'×('+gFmt(x2)+'))/'+s+' = <b>'+gFmt(px)+'</b><br>'
+    + 'y = ('+n+'×('+gFmt(y1)+')+'+m+'×('+gFmt(y2)+'))/'+s+' = <b>'+gFmt(py)+'</b><br>'
+    + '→ P('+gFmt(px)+', '+gFmt(py)+')'
+    + gNextBtn('secNextDiv', id);
+}
+
+// 중점 (내분점의 1:1 특수 경우)
+function secNextMid(id){
+  var el = document.getElementById(id);
+  var x1=gRandInt(-8,8), y1=gRandInt(-8,8);
+  var x2=x1+2*gRandInt(-4,4), y2=y1+2*gRandInt(-4,4);
+  el.setAttribute('data-v', [x1,y1,x2,y2].join(','));
+  el.innerHTML = '<b>A('+gFmt(x1)+','+gFmt(y1)+'), B('+gFmt(x2)+','+gFmt(y2)+')의 중점은?</b><br>' + gSolBtn('secShowMid', id);
+}
+function secShowMid(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var x1=v[0],y1=v[1],x2=v[2],y2=v[3];
+  var mx=(x1+x2)/2, my=(y1+y2)/2;
+  el.innerHTML = '<b>A('+gFmt(x1)+','+gFmt(y1)+'), B('+gFmt(x2)+','+gFmt(y2)+')의 중점은?</b><br>'
+    + 'M = (('+gFmt(x1)+'+'+gFmt(x2)+')/2, ('+gFmt(y1)+'+'+gFmt(y2)+')/2) = <b>('+gFmt(mx)+', '+gFmt(my)+')</b>'
+    + gNextBtn('secNextMid', id);
 }
 
 // ── FM 나라별 방: 퀴즈 카드를 개념/연습 사이에 삽입 ──────
