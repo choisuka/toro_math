@@ -63,6 +63,17 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 .cv-grid-title{font-size:.72rem;font-weight:700;line-height:1.3}
 .cv-back-btn{background:rgba(255,255,255,.06);border:1px solid #30363d;color:#c9d1d9;border-radius:8px;padding:8px 14px;font-size:.8rem;cursor:pointer;font-family:inherit;margin-bottom:12px}
 .cv-back-btn:hover{border-color:#f0c040}
+.tstar-bar{text-align:center;font-size:.85rem;color:#f0c040;font-weight:700;margin-bottom:10px;padding:8px;background:#0d1117;border:1px solid #30363d;border-radius:8px}
+.tinput{background:#0d1117;border:1px solid #30363d;border-radius:6px;color:#c9d1d9;padding:6px 8px;font-family:inherit;font-size:.9rem;text-align:center}
+.tinput:focus{outline:none;border-color:#f0c040}
+.tcolor-box{width:28px;height:28px;border:2px solid #30363d;border-radius:6px;cursor:pointer;background:#0d1117;transition:background .15s;display:inline-block}
+.tcolor-box.filled{background:#58a6ff;border-color:#58a6ff}
+.dtw-table{width:100%;border-collapse:collapse;font-size:.72rem;text-align:center;margin:6px 0;border:1px solid #30363d}
+.dtw-table th{padding:5px;color:#c9d1d9;background:#161b22;border:1px solid #30363d;font-weight:700}
+.dtw-table td{padding:5px;border:1px solid #30363d}
+.tver-badge{font-size:.7rem;font-weight:700;padding:6px 10px;border-radius:8px;margin-bottom:10px;display:inline-block}
+.tver-badge.basic{background:rgba(139,148,158,.15);color:#8b949e;border:1px solid #30363d}
+.tver-badge.story{background:rgba(240,192,64,.12);color:#f0c040;border:1px solid #f0c040}
 .grade-section.unit-grid-mode.active{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:start}
 .grade-section.unit-grid-mode .unit-card{margin-bottom:0}
 .grade-section.unit-grid-mode .unit-card:has(.unit-body.open){grid-column:1/-1}
@@ -352,6 +363,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
     </div>
     <div class="unit-body">
       <div class="cv-wrap" id="cv-e3msr">
+        <div class="tstar-bar" id="e3msr-starbar"></div>
         <div class="cv-grid" id="cv-e3msr-grid"></div>
         <div class="cv-detail" id="cv-e3msr-detail" style="display:none">
           <button class="cv-back-btn" onclick="cvShowGrid('e3msr')">← 목록으로</button>
@@ -460,6 +472,22 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">➕ 자연수의 혼합 계산 <span class="badge">초5</span></div><div class="unit-sub">덧셈·뺄셈·곱셈·나눗셈이 섞인 식</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e5mix">
+        <div class="cv-grid" id="cv-e5mix-grid"></div>
+        <div class="cv-detail" id="cv-e5mix-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e5mix')">← 목록으로</button>
+          <div id="cv-e5mix-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
       <div><div class="unit-title">🔵 약수와 배수 <span class="badge">초5</span></div><div class="unit-sub">약수·배수·최대공약수·최소공배수</div></div>
       <span class="unit-arrow">▼</span>
     </div>
@@ -474,26 +502,27 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
     </div>
   </div>
 
-  <div class="unit-card">
-    <div class="unit-header" onclick="toggle(this)">
-      <div><div class="unit-title">📊 비율과 백분율 <span class="badge">초5</span></div><div class="unit-sub">비·비율·백분율·할인율</div></div>
-      <span class="unit-arrow">▼</span>
-    </div>
-    <div class="unit-body">
-      <div class="cv-wrap" id="cv-e5pct">
-        <div class="cv-grid" id="cv-e5pct-grid"></div>
-        <div class="cv-detail" id="cv-e5pct-detail" style="display:none">
-          <button class="cv-back-btn" onclick="cvShowGrid('e5pct')">← 목록으로</button>
-          <div id="cv-e5pct-detail-body"></div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </div><!-- /e5 -->
 
 <!-- ===== 초등 6학년 ===== -->
 <div id="g-e6" class="grade-section unit-grid-mode">
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📊 비율과 백분율 <span class="badge">초6</span></div><div class="unit-sub">비·비율·백분율·할인율</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e6pct">
+        <div class="cv-grid" id="cv-e6pct-grid"></div>
+        <div class="cv-detail" id="cv-e6pct-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e6pct')">← 목록으로</button>
+          <div id="cv-e6pct-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
@@ -1045,6 +1074,59 @@ const CV_DATA = {
         <div class="story-bubble teacher"><span class="story-name">선생님</span>반대로 사탕 22개를 5명에게 나눠줄 땐 22÷5=4…2, 이번엔 나머지 2개를 "그냥 남겨두는" 게 맞아요. 억지로 5번째 사람에게 몰아줄 순 없으니까요. 그리고 하은이 말처럼 나머지를 계속 쪼개 나누는 방법도 있어요 — 그게 바로 나중에 배울 분수랑 소수의 시작이에요!</div>
       </div>
       <div class="story-takeaway"><strong>정리:</strong> 나눗셈은 "몫"과 "나머지"를 정확하게 계산해 주지만, 그 나머지를 어떻게 다룰지는 상황에 맞게 우리가 판단해야 해요. 버스처럼 <strong>부족하면 올리고</strong>, 사탕처럼 <strong>더는 못 나누면 그대로 남기고</strong>, 하은이 아이디어처럼 <strong>계속 쪼개서 나눌</strong> 수도 있어요. 수학은 도구이고, 그 도구를 어떻게 쓸지는 우리의 몫이에요.</div>
+    `},
+    { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+      <p>지금까지 배운 나눗셈을 실제 상황에 적용하는 조금 더 어려운 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+        <div id="dw-1" class="prob-q" data-y="6" data-q="7" data-r="5" data-item="사탕" data-qtext="사탕 47개를 6명에게 똑같이 나눠주려고 합니다. 한 명당 몇 개씩 받고, 남는 것은 몇 개인가요?" data-solfn="dwSol1">사탕 47개를 6명에게 똑같이 나눠주려고 합니다. 한 명당 몇 개씩 받고, 남는 것은 몇 개인가요?<br><button class="havruta-show-btn" onclick="dwSol1('dw-1')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="dwGen1('dw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+        <div id="dw-2" class="prob-q" data-x="53" data-y="8" data-qtext="학생 53명이 소풍을 갑니다. 버스 한 대에 8명까지 탈 수 있다면, 버스는 최소 몇 대 필요한가요?" data-solfn="dwSol2">학생 53명이 소풍을 갑니다. 버스 한 대에 8명까지 탈 수 있다면, 버스는 최소 몇 대 필요한가요?<br><button class="havruta-show-btn" onclick="dwSol2('dw-2')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="dwGen2('dw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+        <div id="dw-3" class="prob-q" data-y="8" data-tq="5" data-tr="7" data-name="민준" data-qtext="민준이가 47÷8을 계산했는데 몫을 4, 나머지를 15라고 했습니다. 이 계산이 왜 틀렸는지 설명하고 바르게 고쳐 보세요." data-solfn="dwSol3">민준이가 47÷8을 계산했는데 몫을 4, 나머지를 15라고 했습니다. 이 계산이 왜 틀렸는지 설명하고 바르게 고쳐 보세요.<br><button class="havruta-show-btn" onclick="dwSol3('dw-3')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="dwGen3('dw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+        <div id="dw-4" class="prob-q" data-y="6" data-q="7" data-qtext="사탕 42개가 있습니다. (a) 6명에게 똑같이 나누면 한 명당 몇 개인가요? (b) 한 사람에게 7개씩 나누면 몇 명에게 나눠줄 수 있나요?" data-solfn="dwSol4">사탕 42개가 있습니다. (a) 6명에게 똑같이 나누면 한 명당 몇 개인가요? (b) 한 사람에게 7개씩 나누면 몇 명에게 나눠줄 수 있나요?<br><button class="havruta-show-btn" onclick="dwSol4('dw-4')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="dwGen4('dw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+        <div id="dw-5" class="prob-q" data-div="17" data-q="18" data-total="306" data-item="색종이" data-qtext="미술 준비물로 색종이를 17장씩 담은 봉지를 여러 개 사서 총 306장을 만들었습니다. 봉지는 몇 개를 샀을까요? 곱셈으로 검산도 해 보세요." data-solfn="dwSol5">미술 준비물로 색종이를 17장씩 담은 봉지를 여러 개 사서 총 306장을 만들었습니다. 봉지는 몇 개를 샀을까요? 곱셈으로 검산도 해 보세요.<br><button class="havruta-show-btn" onclick="dwSol5('dw-5')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="dwGen5('dw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+        <div id="dw-6" class="prob-q" data-y="6" data-pd="1500" data-qtext="용돈 9000원을 6일 동안 똑같이 나눠 쓰려고 합니다. 하루에 얼마씩 쓸 수 있나요?" data-solfn="dwSol6">용돈 9000원을 6일 동안 똑같이 나눠 쓰려고 합니다. 하루에 얼마씩 쓸 수 있나요?<br><button class="havruta-show-btn" onclick="dwSol6('dw-6')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="dwGen6('dw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+        <div id="dw-7" class="prob-q" data-price="400" data-cnt="6" data-left="200" data-qtext="용돈 2600원으로 한 개에 400원인 젤리를 최대 몇 개 살 수 있나요? 그리고 얼마가 남나요?" data-solfn="dwSol7">용돈 2600원으로 한 개에 400원인 젤리를 최대 몇 개 살 수 있나요? 그리고 얼마가 남나요?<br><button class="havruta-show-btn" onclick="dwSol7('dw-7')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="dwGen7('dw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+        <div id="dw-8" class="prob-q" data-x="59" data-y="7" data-qtext="학생 59명을 한 반에 7명씩 배정하려고 합니다. 몇 개 반이 만들어지고, 마지막에 남는 학생은 몇 명인가요?" data-solfn="dwSol8">학생 59명을 한 반에 7명씩 배정하려고 합니다. 몇 개 반이 만들어지고, 마지막에 남는 학생은 몇 명인가요?<br><button class="havruta-show-btn" onclick="dwSol8('dw-8')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="dwGen8('dw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+        <div id="dw-9" class="prob-q" data-y="7" data-a="9" data-qtext="어떤 수에 7을 곱했더니 63이 되었습니다. 어떤 수는 얼마인가요?" data-solfn="dwSol9">어떤 수에 7을 곱했더니 63이 되었습니다. 어떤 수는 얼마인가요?<br><button class="havruta-show-btn" onclick="dwSol9('dw-9')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="dwGen9('dw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+        <div id="dw-10" class="prob-q" data-p="8" data-pt="5" data-z="4" data-qtext="공장에서 인형 160개를 만들어 한 상자에 8개씩 담았습니다. 상자가 다 만들어지면 트럭 4대에 똑같이 나눠 실을 계획입니다. 트럭 한 대에는 상자가 몇 개씩 실릴까요?" data-solfn="dwSol10">공장에서 인형 160개를 만들어 한 상자에 8개씩 담았습니다. 상자가 다 만들어지면 트럭 4대에 똑같이 나눠 실을 계획입니다. 트럭 한 대에는 상자가 몇 개씩 실릴까요?<br><button class="havruta-show-btn" onclick="dwSol10('dw-10')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="dwGen10('dw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
     `}
   ],
   'e5gcd': [
@@ -1217,7 +1299,7 @@ const CV_DATA = {
       <div class="story-takeaway"><strong>정리:</strong> 증명이란 몇 개의 예로 확인하는 게 아니라, "만약 틀렸다면 모순이 생긴다"는 걸 논리로 보여주는 것이에요. 유클리드는 "소수가 유한하다"고 가정했을 때 항상 새로운 소수가 튀어나온다는 걸 보여줘서, 소수가 무한히 많다는 걸 확실하게 증명했어요.</div>
     `}
   ],
-  'e5pct': [
+  'e6pct': [
     { title:'🌟 왜 배우는가?', cls:'why', html:`
       <p>"이 옷 30% 할인!"이라는 말을 보면 얼마나 싸진 건지 바로 감이 오나요?</p>
       <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:10px;margin:8px 0">
@@ -1311,44 +1393,44 @@ const CV_DATA = {
     `},
     { title:'💬 하브루타 질문', cls:'havruta', html:`
       <div class="q-item"><strong>Q1.</strong> 30% 할인과 1/3 할인, 어느 쪽이 더 쌀까요?
-        <button class="havruta-show-btn" onclick="havrutaReveal('e5pct-h1',this)">💬 친구들은 이렇게 답했어요</button>
-        <div class="havruta-reveal" id="rv-e5pct-h1">
+        <button class="havruta-show-btn" onclick="havrutaReveal('e6pct-h1',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e6pct-h1">
           <div class="havruta-opts">
-            <button class="havruta-opt" onclick="havrutaPick('e5pct-h1',0,this)">1/3 할인이 더 싸요 — 1/3은 약 33.3%라서 30%보다 더 많이 깎아요</button>
-            <button class="havruta-opt" onclick="havrutaPick('e5pct-h1',1,this)">둘 다 똑같아요, 어차피 비슷한 숫자잖아요</button>
-            <button class="havruta-opt" onclick="havrutaPick('e5pct-h1',2,this)">30%가 숫자가 더 크니까 30%가 더 싸요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e6pct-h1',0,this)">1/3 할인이 더 싸요 — 1/3은 약 33.3%라서 30%보다 더 많이 깎아요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e6pct-h1',1,this)">둘 다 똑같아요, 어차피 비슷한 숫자잖아요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e6pct-h1',2,this)">30%가 숫자가 더 크니까 30%가 더 싸요</button>
           </div>
-          <div class="havruta-fb" id="fb-e5pct-h1"></div>
+          <div class="havruta-fb" id="fb-e6pct-h1"></div>
         </div>
       </div>
       <div class="q-item"><strong>Q2.</strong> 50% 할인한 다음 또 50% 할인하면 완전히 공짜(100% 할인)가 될까요?
-        <button class="havruta-show-btn" onclick="havrutaReveal('e5pct-h2',this)">💬 친구들은 이렇게 답했어요</button>
-        <div class="havruta-reveal" id="rv-e5pct-h2">
+        <button class="havruta-show-btn" onclick="havrutaReveal('e6pct-h2',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e6pct-h2">
           <div class="havruta-opts">
-            <button class="havruta-opt" onclick="havrutaPick('e5pct-h2',0,this)">아니에요, 두 번째 50%는 이미 줄어든 가격에 적용돼서 공짜가 안 돼요</button>
-            <button class="havruta-opt" onclick="havrutaPick('e5pct-h2',1,this)">맞아요, 50+50=100이니까 완전히 공짜예요</button>
-            <button class="havruta-opt" onclick="havrutaPick('e5pct-h2',2,this)">오히려 더 비싸져요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e6pct-h2',0,this)">아니에요, 두 번째 50%는 이미 줄어든 가격에 적용돼서 공짜가 안 돼요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e6pct-h2',1,this)">맞아요, 50+50=100이니까 완전히 공짜예요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e6pct-h2',2,this)">오히려 더 비싸져요</button>
           </div>
-          <div class="havruta-fb" id="fb-e5pct-h2"></div>
+          <div class="havruta-fb" id="fb-e6pct-h2"></div>
         </div>
       </div>
       <div class="q-item"><strong>Q3.</strong> 뉴스에서 "실업률 3%"라고 할 때, 이건 전체 국민 100명 중 3명이 실업자라는 뜻일까요?
-        <button class="havruta-show-btn" onclick="havrutaReveal('e5pct-h3',this)">💬 친구들은 이렇게 답했어요</button>
-        <div class="havruta-reveal" id="rv-e5pct-h3">
+        <button class="havruta-show-btn" onclick="havrutaReveal('e6pct-h3',this)">💬 친구들은 이렇게 답했어요</button>
+        <div class="havruta-reveal" id="rv-e6pct-h3">
           <div class="havruta-opts">
-            <button class="havruta-opt" onclick="havrutaPick('e5pct-h3',0,this)">아니에요, 전체 국민이 아니라 "일할 수 있는 사람들" 중에서 3%예요</button>
-            <button class="havruta-opt" onclick="havrutaPick('e5pct-h3',1,this)">맞아요, 전체 국민 100명 중 3명이에요</button>
-            <button class="havruta-opt" onclick="havrutaPick('e5pct-h3',2,this)">그냥 대충 어림잡은 느낌적인 숫자예요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e6pct-h3',0,this)">아니에요, 전체 국민이 아니라 "일할 수 있는 사람들" 중에서 3%예요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e6pct-h3',1,this)">맞아요, 전체 국민 100명 중 3명이에요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e6pct-h3',2,this)">그냥 대충 어림잡은 느낌적인 숫자예요</button>
           </div>
-          <div class="havruta-fb" id="fb-e5pct-h3"></div>
+          <div class="havruta-fb" id="fb-e6pct-h3"></div>
         </div>
       </div>
     `},
     { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
       <div class="prob-box">
         <div class="prob-q">문제: 정가 25,000원인 옷이 40% 할인 중입니다. 얼마를 내야 하나요?</div>
-        <button class="havruta-show-btn" onclick="havrutaReveal('e5pct-p1',this)">💡 풀이 보기</button>
-        <div class="havruta-reveal" id="rv-e5pct-p1">
+        <button class="havruta-show-btn" onclick="havrutaReveal('e6pct-p1',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e6pct-p1">
           <div class="fb-diagram">
             <s style="color:#8b949e">25,000원</s> <span class="arrow">➜</span> <strong style="color:#3fb950">15,000원</strong>
             <div style="background:#4b5563;border-radius:8px;height:20px;overflow:hidden;margin-top:8px">
@@ -1363,8 +1445,8 @@ const CV_DATA = {
       </div>
       <div class="prob-box">
         <div class="prob-q">문제: 작년 놀이공원 관람객이 8,000명, 올해는 10,000명입니다. 몇 % 증가했나요?</div>
-        <button class="havruta-show-btn" onclick="havrutaReveal('e5pct-p2',this)">💡 풀이 보기</button>
-        <div class="havruta-reveal" id="rv-e5pct-p2">
+        <button class="havruta-show-btn" onclick="havrutaReveal('e6pct-p2',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e6pct-p2">
           <div class="fb-diagram">
             8,000명 <span class="arrow">➜</span> <strong style="color:#3fb950">10,000명</strong> (2,000명 증가)
             <span class="cap">증가량 2,000 ÷ 원래값 8,000 = 0.25 = 25% 증가</span>
@@ -1375,8 +1457,8 @@ const CV_DATA = {
       </div>
       <div class="prob-box">
         <div class="prob-q">문제: 어떤 물건의 할인가가 18,000원이고, 이건 정가의 60%입니다. 정가는 얼마인가요?</div>
-        <button class="havruta-show-btn" onclick="havrutaReveal('e5pct-p3',this)">💡 풀이 보기</button>
-        <div class="havruta-reveal" id="rv-e5pct-p3">
+        <button class="havruta-show-btn" onclick="havrutaReveal('e6pct-p3',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e6pct-p3">
           <div class="fb-diagram">
             정가의 60% <span class="arrow">➜</span> 18,000원
             <span class="cap">18,000 ÷ 0.6 = 30,000원 (정가) → 검산: 30,000×0.6=18,000원 ✓</span>
@@ -1630,6 +1712,59 @@ const CV_DATA = {
         <div class="story-bubble teacher"><span class="story-name">선생님</span>이렇게 기억하면 쉬워요 — "나누는 사람이 적을수록 내 몫이 커진다." 분자가 같을 때는 분모가 작을수록 분수가 더 커요.</div>
       </div>
       <div class="story-takeaway"><strong>정리:</strong> 분수는 숫자가 클수록 무조건 큰 게 아니에요. 분모는 "몇 조각으로 나눴는가"를 뜻하기 때문에, 분자가 같다면 분모가 작을수록(적게 나눌수록) 한 조각이 더 커요 — 숫자만 보지 말고 그 뜻을 생각하는 게 중요해요.</div>
+    `},
+    { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+      <p>지금까지 배운 분수를 실제 상황에 적용하는 조금 더 어려운 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+        <div id="fw-1" class="prob-q" data-d="6" data-n="4" data-qtext="피자 한 판을 6조각으로 나눠서 그중 4조각을 먹었습니다. 먹은 양을 분수로 나타내면?" data-solfn="fwSol1">피자 한 판을 6조각으로 나눠서 그중 4조각을 먹었습니다. 먹은 양을 분수로 나타내면?<br><button class="havruta-show-btn" onclick="fwSol1('fw-1')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="fwGen1('fw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+        <div id="fw-2" class="prob-q" data-d="8" data-n1="5" data-n2="3" data-qtext="같은 크기의 피자 한 판을 8조각으로 나눴습니다. 민준이는 5조각, 서연이는 3조각을 먹었습니다. 누가 더 많이 먹었나요?" data-solfn="fwSol2">같은 크기의 피자 한 판을 8조각으로 나눴습니다. 민준이는 5조각, 서연이는 3조각을 먹었습니다. 누가 더 많이 먹었나요?<br><button class="havruta-show-btn" onclick="fwSol2('fw-2')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="fwGen2('fw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+        <div id="fw-3" class="prob-q" data-d="5" data-n="3" data-qtext="피자 한 판을 5조각으로 나눴습니다. 단위분수(1/5)가 몇 개 모이면 이 피자의 3/5조각이 되나요?" data-solfn="fwSol3">피자 한 판을 5조각으로 나눴습니다. 단위분수(1/5)가 몇 개 모이면 이 피자의 3/5조각이 되나요?<br><button class="havruta-show-btn" onclick="fwSol3('fw-3')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="fwGen3('fw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+        <div id="fw-4" class="prob-q" data-d1="3" data-n1="1" data-d2="6" data-n2="2" data-qtext="피자를 3조각으로 나눠 1조각 먹은 것과, 피자를 6조각으로 나눠 2조각 먹은 것은 같은 양일까요?" data-solfn="fwSol4">피자를 3조각으로 나눠 1조각 먹은 것과, 피자를 6조각으로 나눠 2조각 먹은 것은 같은 양일까요?<br><button class="havruta-show-btn" onclick="fwSol4('fw-4')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="fwGen4('fw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+        <div id="fw-5" class="prob-q" data-d="5" data-n="2" data-qtext="피자 5조각짜리 한 판을 다 먹고, 또 다른 판에서 2조각을 더 먹었습니다. 총 먹은 양을 가분수로 나타내면?" data-solfn="fwSol5">피자 5조각짜리 한 판을 다 먹고, 또 다른 판에서 2조각을 더 먹었습니다. 총 먹은 양을 가분수로 나타내면?<br><button class="havruta-show-btn" onclick="fwSol5('fw-5')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="fwGen5('fw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+        <div id="fw-6" class="prob-q" data-d="10" data-n1="6" data-n2="3" data-n3="8" data-qtext="같은 피자(10조각)에서 민준이는 6조각, 서연이는 3조각, 지호는 8조각을 먹었습니다. 많이 먹은 순서대로 나열하세요." data-solfn="fwSol6">같은 피자(10조각)에서 민준이는 6조각, 서연이는 3조각, 지호는 8조각을 먹었습니다. 많이 먹은 순서대로 나열하세요.<br><button class="havruta-show-btn" onclick="fwSol6('fw-6')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="fwGen6('fw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+        <div id="fw-7" class="prob-q" data-d="7" data-n1="4" data-n2="3" data-qtext="피자를 7조각으로 나눴습니다. 민준이가 4조각, 서연이가 3조각을 먹었더니 피자가 다 없어졌습니다. 각자 먹은 양을 분수로 쓰고, 두 분수를 더하면 얼마인지 확인하세요." data-solfn="fwSol7">피자를 7조각으로 나눴습니다. 민준이가 4조각, 서연이가 3조각을 먹었더니 피자가 다 없어졌습니다. 각자 먹은 양을 분수로 쓰고, 두 분수를 더하면 얼마인지 확인하세요.<br><button class="havruta-show-btn" onclick="fwSol7('fw-7')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="fwGen7('fw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+        <div id="fw-8" class="prob-q" data-d="10" data-n="6" data-qtext="도화지를 10칸으로 나누고 6칸을 색칠했습니다. 색칠한 부분과 색칠하지 않은 부분을 각각 분수로 나타내세요." data-solfn="fwSol8">도화지를 10칸으로 나누고 6칸을 색칠했습니다. 색칠한 부분과 색칠하지 않은 부분을 각각 분수로 나타내세요.<br><button class="havruta-show-btn" onclick="fwSol8('fw-8')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="fwGen8('fw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+        <div id="fw-9" class="prob-q" data-d="3" data-n="4" data-qtext="리본 3m를 4명이 똑같이 나눠 가지려고 합니다. 한 명이 가지는 리본의 길이를 분수로 나타내면?" data-solfn="fwSol9">리본 3m를 4명이 똑같이 나눠 가지려고 합니다. 한 명이 가지는 리본의 길이를 분수로 나타내면?<br><button class="havruta-show-btn" onclick="fwSol9('fw-9')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="fwGen9('fw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+        <div id="fw-10" class="prob-q" data-d1="4" data-d2="7" data-d3="5" data-qtext="다음 세 단위분수 중 가장 큰 것은? 1/4, 1/7, 1/5" data-solfn="fwSol10">다음 세 단위분수 중 가장 큰 것은? 1/4, 1/7, 1/5<br><button class="havruta-show-btn" onclick="fwSol10('fw-10')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="fwGen10('fw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
     `}
   ],
   'e3mul': [
@@ -1682,27 +1817,39 @@ const CV_DATA = {
     `},
     { title:'📖 다양한 표현 익히기', cls:'concept', html:`
       <p>사탕 24개가 든 상자가 13상자 있는 상황(24×13=312) 하나를 여러 가지 다른 말로 물어볼 수 있어요.</p>
-      <div class="expr-item"><span class="expr-num">1</span><strong>곱셈 기본 표현</strong><br>"한 상자에 24개씩, 13상자면 사탕은 모두 몇 개인가요?" → <span class="expr-ans">312개</span></div>
+      <div class="expr-item"><span class="expr-num">1</span><strong>곱셈 기본 표현</strong><br>"한 상자에 24개씩, 13상자면 사탕은 모두 몇 개인가요?" → <span class="expr-ans">24 × 13 = 312개</span></div>
       <div class="expr-item"><span class="expr-num">2</span><strong>반복 덧셈 표현</strong><br>"24를 13번 더하면 얼마인가요?" → <span class="expr-ans">312</span></div>
       <div class="expr-item"><span class="expr-num">3</span><strong>자리 분해 표현</strong><br>"24×13을 24×10과 24×3으로 나누면 각각 얼마인가요?" → <span class="expr-ans">240, 72</span></div>
       <div class="expr-item"><span class="expr-num">4</span><strong>교환 표현</strong><br>"13×24는 24×13과 같은 답이 나올까요?" → <span class="expr-ans">네, 둘 다 312</span></div>
       <div class="expr-item"><span class="expr-num">5</span><strong>배(倍) 표현</strong><br>"24의 13배는 얼마인가요?" → <span class="expr-ans">312</span></div>
       <div class="expr-item"><span class="expr-num">6</span><strong>어림(추정) 표현</strong><br>"24×13은 대략 25×13=325에 가까운 값이에요. 실제 답은?" → <span class="expr-ans">312 (325에 가까움)</span></div>
       <div class="expr-item"><span class="expr-num">7</span><strong>역산(나눗셈) 표현</strong><br>"312÷13은 얼마인가요?" → <span class="expr-ans">24</span></div>
-      <div class="expr-item"><span class="expr-num">8</span><strong>그림(배열) 표현</strong><br>"24×13을 격자 그림으로 나타내면?"
+      <div class="expr-item"><span class="expr-num">8</span><strong>자리 분해 표현 — 어느 수를 나눌까?</strong><br>
+        큰 수를 곱할 때 나눠서 계산하는 진짜 이유는, 백·십·일의 자리를 따로 계산하면 각 계산이 쉬워지고, 그 결과를 더해도 답이 똑같기 때문이에요(분배법칙).
         <div class="fb-diagram" style="text-align:left">
-          <div style="display:flex;gap:2px">
-            <div style="display:flex;flex-direction:column;gap:1px">${'<div style="width:60px;height:6px;background:#58a6ff"></div>'.repeat(10)}</div>
-          </div>
-          <div style="font-size:.68rem;color:#8b949e;margin-top:2px">10줄 × 24칸(가로) = 240</div>
-          <div style="display:flex;gap:2px;margin-top:6px">
-            <div style="display:flex;flex-direction:column;gap:1px">${'<div style="width:60px;height:6px;background:#3fb950"></div>'.repeat(3)}</div>
-          </div>
-          <div style="font-size:.68rem;color:#8b949e;margin-top:2px">3줄 × 24칸(가로) = 72</div>
-          <span class="cap">240+72=312 — 큰 직사각형을 두 조각으로 나눠서 센 것과 같아요</span>
+          <div style="font-size:.7rem;color:#f0c040;font-weight:700;margin-bottom:4px">두 자리 × 두 자리: 34 × 26 = 884</div>
+          <div style="font-size:.75rem">34쪽을 나누면: 30×26=780, 4×26=104, 780+104=884</div>
+          <div style="font-size:.75rem;margin-top:4px">26쪽을 나누면: 34×20=680, 34×6=204, 680+204=884</div>
+          <span class="cap">둘 다 부분곱이 2번, 결과도 884로 똑같아요 — 두 수의 자릿수가 같으면(둘 다 두 자리) 어느 쪽을 나눠도 상관없어요</span>
+        </div>
+        <div class="fb-diagram" style="text-align:left;margin-top:8px">
+          <div style="font-size:.7rem;color:#58a6ff;font-weight:700;margin-bottom:4px">세 자리 × 두 자리: 124 × 13 = 1,612</div>
+          <div style="font-size:.75rem">13쪽(자릿수 적은 쪽)을 나누면: 124×10=1240, 124×3=372, 1240+372=1612 <span style="color:#3fb950">(부분곱 2번)</span></div>
+          <div style="font-size:.75rem;margin-top:4px">124쪽(자릿수 많은 쪽)을 나누면: 100×13=1300, 20×13=260, 4×13=52, 1300+260+52=1612 <span style="color:#f85149">(부분곱 3번)</span></div>
+          <span class="cap" style="color:#f0c040">자릿수가 다르면, 자릿수가 적은 쪽(13)을 나누는 게 부분곱 개수가 줄어서 더 편해요 — 답은 어느 쪽으로 계산해도 똑같이 1,612예요</span>
         </div>
       </div>
-      <p style="margin-top:10px">이렇게 8가지나 되는 표현이 결국 <strong>같은 곱셈(24×13=312)</strong>을 묻고 있어요.</p>
+      <div class="expr-item"><span class="expr-num">9</span><strong>묶음 그림 표현 (나눗셈과 비교)</strong><br>"24개씩 13묶음을 그림으로 나타내면?"
+        <div class="fb-diagram" style="text-align:center">
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:3px">${'<span class="bundle">24</span>'.repeat(13)}</div>
+          <span class="cap">묶음 13개(각 24개) → 곱셈으로 보면 24×13=312</span>
+        </div>
+        <div class="fb-diagram" style="text-align:center;margin-top:6px">
+          <span class="cap" style="color:#f0c040">거꾸로 보면?</span> 사탕 312개를 24개씩 묶으면 몇 묶음? <span class="arrow">➜</span> <strong style="color:#3fb950">13묶음</strong>
+          <span class="cap">같은 그림을 반대 방향으로 보면 나눗셈이에요 — 312÷24=13. 나눗셈의 "묶어보기"와 곱셈의 "묶음 세기"는 같은 그림을 양방향으로 보는 것과 같아요</span>
+        </div>
+      </div>
+      <p style="margin-top:10px">이렇게 9가지나 되는 표현이 결국 <strong>같은 곱셈(24×13=312)</strong>을 묻고 있어요.</p>
     `},
     { title:'💬 하브루타 질문', cls:'havruta', html:`
       <div class="q-item"><strong>Q1.</strong> 20×30을 계산할 때, 0은 몇 개 붙여야 할까요?
@@ -1767,37 +1914,109 @@ const CV_DATA = {
       </div>
     `},
     { title:'🔥 심화 토론', cls:'debate', html:`
-      <div class="story-line">
-        <div class="story-avatar">🧒</div>
-        <div class="story-bubble"><span class="story-name">민준</span>선생님, 세로로 24×13을 계산하는데 왜 24×1(십의 자리) 줄은 한 칸 옆으로 밀어서 써야 해요? 그냥 붙여 쓰면 안 돼요?</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start">
+        <div style="flex:2;min-width:200px">
+          <div class="story-line">
+            <div class="story-avatar">🧒</div>
+            <div class="story-bubble"><span class="story-name">민준</span>선생님, 세로로 24×13을 계산하는데 왜 24×1(십의 자리) 줄은 한 칸 옆으로 밀어서 써야 해요? 그냥 붙여 쓰면 안 돼요?</div>
+          </div>
+          <div class="story-line">
+            <div class="story-avatar">👧</div>
+            <div class="story-bubble"><span class="story-name">서연</span>어? 저도 그거 헷갈렸어요. 24×3=72는 그냥 쓰는데, 24×1(십의 자리)은 왜 다르게 써야 하죠?</div>
+          </div>
+          <div class="story-line">
+            <div class="story-avatar">🧒</div>
+            <div class="story-bubble"><span class="story-name">지호</span>혹시... 13의 "1"이 사실은 "1"이 아니라 "10"이라서 그런 거 아니에요?</div>
+          </div>
+          <div class="story-line">
+            <div class="story-avatar">👧</div>
+            <div class="story-bubble"><span class="story-name">하은</span>아! 맞다, 십의 자리 1은 실제로는 10이니까, 24×10을 계산한 거네요.</div>
+          </div>
+          <div class="story-line">
+            <div class="story-avatar">🧑‍🏫</div>
+            <div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 세로셈에서 "24×1"처럼 보이는 그 줄은 사실 24×10=240을 계산하는 거예요. 240은 끝이 0이라서, 0을 안 쓰고 그냥 한 칸을 밀어서 쓰는 거랍니다.</div>
+          </div>
+          <div class="fb-diagram">
+            24×3 = 72 (일의 자리 그대로)<br>
+            24×10 = 240 <span class="arrow">➜</span> 끝 0 생략하고 한 칸 밀어서 24<br>
+            72 + 240 = <strong style="color:#3fb950">312</strong>
+            <span class="cap">한 칸 밀어 쓴 "24"는 사실 "240"이에요</span>
+          </div>
+          <div class="story-line">
+            <div class="story-avatar">🧑‍🏫</div>
+            <div class="story-bubble teacher"><span class="story-name">선생님</span>만약 한 칸을 안 밀고 그냥 더하면, 240을 24로 착각해서 24+72=96이라는 완전히 틀린 답이 나와요. 한 칸을 미는 건 "이 숫자는 사실 10배 더 크다"는 표시인 거예요.</div>
+          </div>
+          <div class="story-line">
+            <div class="story-avatar">🧑‍🏫</div>
+            <div class="story-bubble teacher"><span class="story-name">선생님</span>이게 진짜인지는 나눗셈으로 바로 확인할 수 있어요. 오른쪽 그림을 같이 봐요.</div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:150px;position:sticky;top:0;background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px">
+          <div style="font-size:.75rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">나눗셈으로 확인하기</div>
+          <div style="font-size:.72rem;color:#f85149;line-height:1.7">
+            틀린 답 96 확인:<br>96÷24=4 <span class="arrow">➜</span> 13이 아님!<br><strong>96은 틀린 답</strong>
+          </div>
+          <div style="border-top:1px solid #30363d;margin:8px 0"></div>
+          <div style="font-size:.72rem;color:#3fb950;line-height:1.7">
+            제대로 밀어 쓴 답 312 확인:<br>312÷24=13 <span class="arrow">➜</span> 맞음!<br><strong>312가 정답</strong>
+          </div>
+          <div style="font-size:.65rem;color:#8b949e;margin-top:8px;text-align:center">곱셈이 맞았는지는 나눗셈(역산)으로 바로 확인할 수 있어요</div>
+        </div>
       </div>
-      <div class="story-line">
-        <div class="story-avatar">👧</div>
-        <div class="story-bubble"><span class="story-name">서연</span>어? 저도 그거 헷갈렸어요. 24×3=72는 그냥 쓰는데, 24×1(십의 자리)은 왜 다르게 써야 하죠?</div>
+      <div class="story-takeaway"><strong>정리:</strong> 두 자리 수 곱셈 세로셈에서 둘째 줄을 한 칸 밀어 쓰는 건 규칙을 위한 규칙이 아니라, 그 줄이 실제로는 "십의 자리 × 원래 수"라서 값이 10배 크기 때문이에요. 자리를 밀지 않으면 자릿값이 뭉개져서 완전히 다른(틀린) 답이 나오는데, 이건 나눗셈으로 거꾸로 계산해보면 바로 확인할 수 있어요.</div>
+    `},
+    { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+      <p>지금까지 배운 곱셈을 실제 상황에 적용하는 조금 더 어려운 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+        <div id="mw-1" class="prob-q" data-a="32" data-b="46" data-item="색연필" data-qtext="문구점에서 색연필이 32자루씩 들어있는 상자를 46상자 주문했습니다. 색연필은 모두 몇 자루인가요?" data-solfn="mwSol1">문구점에서 색연필이 32자루씩 들어있는 상자를 46상자 주문했습니다. 색연필은 모두 몇 자루인가요?<br><button class="havruta-show-btn" onclick="mwSol1('mw-1')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="mwGen1('mw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
       </div>
-      <div class="story-line">
-        <div class="story-avatar">🧒</div>
-        <div class="story-bubble"><span class="story-name">지호</span>혹시... 13의 "1"이 사실은 "1"이 아니라 "10"이라서 그런 거 아니에요?</div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+        <div id="mw-2" class="prob-q" data-x="24" data-y="18" data-qtext="체육관에 의자를 배치하는 두 가지 방법이 있습니다. 방법 A: 한 줄에 24개씩 18줄. 방법 B: 한 줄에 18개씩 24줄. 두 방법 중 어느 쪽이 의자가 더 많이 필요한가요? 이유도 설명해 보세요." data-solfn="mwSol2">체육관에 의자를 배치하는 두 가지 방법이 있습니다. 방법 A: 한 줄에 24개씩 18줄. 방법 B: 한 줄에 18개씩 24줄. 두 방법 중 어느 쪽이 의자가 더 많이 필요한가요? 이유도 설명해 보세요.<br><button class="havruta-show-btn" onclick="mwSol2('mw-2')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="mwGen2('mw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
       </div>
-      <div class="story-line">
-        <div class="story-avatar">👧</div>
-        <div class="story-bubble"><span class="story-name">하은</span>아! 맞다, 십의 자리 1은 실제로는 10이니까, 24×10을 계산한 거네요.</div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+        <div id="mw-3" class="prob-q" data-t="8" data-p="24" data-d="6" data-qtext="버스가 하루에 8번 운행하고, 매번 24명의 승객을 태웁니다. 이 버스가 6일 동안 운행하면 태운 승객은 모두 몇 명인가요? (두 가지 순서로 계산해서 확인해 보세요.)" data-solfn="mwSol3">버스가 하루에 8번 운행하고, 매번 24명의 승객을 태웁니다. 이 버스가 6일 동안 운행하면 태운 승객은 모두 몇 명인가요? (두 가지 순서로 계산해서 확인해 보세요.)<br><button class="havruta-show-btn" onclick="mwSol3('mw-3')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="mwGen3('mw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
       </div>
-      <div class="story-line">
-        <div class="story-avatar">🧑‍🏫</div>
-        <div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 세로셈에서 "24×1"처럼 보이는 그 줄은 사실 24×10=240을 계산하는 거예요. 240은 끝이 0이라서, 0을 안 쓰고 그냥 한 칸을 밀어서 쓰는 거랍니다.</div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+        <div id="mw-4" class="prob-q" data-b="27" data-tp="4" data-op="2" data-p1="1080" data-p2="54" data-wrong="1044" data-qtext="지호가 42×27을 다음과 같이 계산했습니다: &quot;40×27=1080, 2×27=54, 1080+54=1044.&quot; 이 계산에서 잘못된 부분을 찾아 바르게 고쳐 보세요." data-solfn="mwSol4">지호가 42×27을 다음과 같이 계산했습니다: "40×27=1080, 2×27=54, 1080+54=1044." 이 계산에서 잘못된 부분을 찾아 바르게 고쳐 보세요.<br><button class="havruta-show-btn" onclick="mwSol4('mw-4')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="mwGen4('mw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
       </div>
-      <div class="fb-diagram">
-        24×3 = 72 (일의 자리 그대로)<br>
-        24×10 = 240 <span class="arrow">➜</span> 끝 0 생략하고 한 칸 밀어서 24<br>
-        72 + 240 = <strong style="color:#3fb950">312</strong>
-        <span class="cap">한 칸 밀어 쓴 "24"는 사실 "240"이에요</span>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+        <div id="mw-5" class="prob-q" data-h="1" data-ta="4" data-oa="1" data-tb="2" data-ob="3" data-qtext="141×23을 계산하려고 합니다. 141을 분해하는 것과 23을 분해하는 것 중 어느 쪽이 계산이 더 간단할까요? 이유와 함께 계산해 보세요." data-solfn="mwSol5">141×23을 계산하려고 합니다. 141을 분해하는 것과 23을 분해하는 것 중 어느 쪽이 계산이 더 간단할까요? 이유와 함께 계산해 보세요.<br><button class="havruta-show-btn" onclick="mwSol5('mw-5')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="mwGen5('mw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
       </div>
-      <div class="story-line">
-        <div class="story-avatar">🧑‍🏫</div>
-        <div class="story-bubble teacher"><span class="story-name">선생님</span>만약 한 칸을 안 밀고 그냥 더하면, 240을 24로 착각해서 24+72=96이라는 완전히 틀린 답이 나와요. 한 칸을 미는 건 "이 숫자는 사실 10배 더 크다"는 표시인 거예요.</div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+        <div id="mw-6" class="prob-q" data-bp="15" data-c="24" data-item="팔찌" data-qtext="학교 축제에서 팔찌을(를) 만드는데, 구슬을 15개씩 꿰어 팔찌 하나를 만듭니다. 팔찌을(를) 24개 만들려면 구슬이 몇 개 필요한가요?" data-solfn="mwSol6">학교 축제에서 팔찌을(를) 만드는데, 구슬을 15개씩 꿰어 팔찌 하나를 만듭니다. 팔찌을(를) 24개 만들려면 구슬이 몇 개 필요한가요?<br><button class="havruta-show-btn" onclick="mwSol6('mw-6')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="mwGen6('mw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
       </div>
-      <div class="story-takeaway"><strong>정리:</strong> 두 자리 수 곱셈 세로셈에서 둘째 줄을 한 칸 밀어 쓰는 건 규칙을 위한 규칙이 아니라, 그 줄이 실제로는 "십의 자리 × 원래 수"라서 값이 10배 크기 때문이에요. 자리를 밀지 않으면 자릿값이 뭉개져서 완전히 다른(틀린) 답이 나와요.</div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+        <div id="mw-7" class="prob-q" data-x="29" data-y="31" data-tx="3" data-ty="3" data-qtext="29×31을 어림으로 먼저 계산해 보고(가까운 몇십끼리 곱하기), 실제 값과 비교해 보세요." data-solfn="mwSol7">29×31을 어림으로 먼저 계산해 보고(가까운 몇십끼리 곱하기), 실제 값과 비교해 보세요.<br><button class="havruta-show-btn" onclick="mwSol7('mw-7')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="mwGen7('mw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+        <div id="mw-8" class="prob-q" data-cols="12" data-rows="15" data-br="3" data-qtext="교실 사물함이 가로 12개, 세로 15줄로 배열되어 있습니다. 그런데 3줄(가로줄)이 고장 나서 사용할 수 없다면, 사용 가능한 사물함은 몇 개인가요?" data-solfn="mwSol8">교실 사물함이 가로 12개, 세로 15줄로 배열되어 있습니다. 그런데 3줄(가로줄)이 고장 나서 사용할 수 없다면, 사용 가능한 사물함은 몇 개인가요?<br><button class="havruta-show-btn" onclick="mwSol8('mw-8')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="mwGen8('mw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+        <div id="mw-9" class="prob-q" data-qty="12" data-pa="250" data-da="100" data-pb="230" data-qtext="문구점 A는 지우개 1개에 250원인데 12개를 사면 100원을 깎아줍니다. 문구점 B는 지우개 1개에 230원입니다. 지우개 12개를 산다면 어느 가게가 더 쌀까요?" data-solfn="mwSol9">문구점 A는 지우개 1개에 250원인데 12개를 사면 100원을 깎아줍니다. 문구점 B는 지우개 1개에 230원입니다. 지우개 12개를 산다면 어느 가게가 더 쌀까요?<br><button class="havruta-show-btn" onclick="mwSol9('mw-9')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="mwGen9('mw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+        <div id="mw-10" class="prob-q" data-n="24" data-base="3500" data-disc="500" data-qtext="체험학습에 학생 24명이 참가합니다. 한 명당 입장료는 3500원인데, 20명이 넘으면 단체할인으로 한 명당 500원씩 깎아줍니다. 학생들이 내야 할 총 입장료는 얼마인가요?" data-solfn="mwSol10">체험학습에 학생 24명이 참가합니다. 한 명당 입장료는 3500원인데, 20명이 넘으면 단체할인으로 한 명당 500원씩 깎아줍니다. 학생들이 내야 할 총 입장료는 얼마인가요?<br><button class="havruta-show-btn" onclick="mwSol10('mw-10')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="mwGen10('mw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
     `}
   ]
 };
@@ -1974,106 +2193,132 @@ const CV_DATA_E3CIRC = [
       <div class="story-bubble teacher"><span class="story-name">선생님</span>이게 바로 "반지름이 모두 같다"는 원의 성질이 실제 세상에서 왜 중요한지 보여주는 예예요. 수학의 성질 하나가 우리 생활을 편리하게 만들어주고 있는 거죠.</div>
     </div>
     <div class="story-takeaway"><strong>정리:</strong> 원의 반지름이 어디서나 같다는 성질 덕분에, 원 모양 바퀴는 중심의 높이를 일정하게 유지하며 부드럽게 굴러갈 수 있어요. 수학에서 배우는 "성질"은 단순한 정의가 아니라, 실제 물건이 왜 그렇게 만들어졌는지를 설명해줘요.</div>
+  `},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <p>지금까지 배운 원의 성질을 실제 상황에 적용하는 조금 더 어려운 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+      <div id="cw-1" class="prob-q" data-r="6" data-qtext="벽시계의 반지름이 6cm입니다. 이 시계의 지름은 몇 cm인가요?" data-solfn="cwSol1">벽시계의 반지름이 6cm입니다. 이 시계의 지름은 몇 cm인가요?<br><button class="havruta-show-btn" onclick="cwSol1('cw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen1('cw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+      <div id="cw-2" class="prob-q" data-d="14" data-qtext="접시의 지름이 14cm입니다. 이 접시의 반지름은 몇 cm인가요?" data-solfn="cwSol2">접시의 지름이 14cm입니다. 이 접시의 반지름은 몇 cm인가요?<br><button class="havruta-show-btn" onclick="cwSol2('cw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen2('cw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+      <div id="cw-3" class="prob-q" data-a="8" data-bd="14" data-qtext="원 A는 반지름이 8cm이고, 원 B는 지름이 14cm입니다. 어느 원이 더 큰가요?" data-solfn="cwSol3">원 A는 반지름이 8cm이고, 원 B는 지름이 14cm입니다. 어느 원이 더 큰가요?<br><button class="havruta-show-btn" onclick="cwSol3('cw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen3('cw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+      <div id="cw-4" class="prob-q" data-r1="5" data-r2="3" data-qtext="반지름 5cm인 원과 반지름 3cm인 원이 서로 겉에서 맞닿아 있습니다(외접). 두 원의 중심 사이의 거리는 몇 cm인가요?" data-solfn="cwSol4">반지름 5cm인 원과 반지름 3cm인 원이 서로 겉에서 맞닿아 있습니다(외접). 두 원의 중심 사이의 거리는 몇 cm인가요?<br><button class="havruta-show-btn" onclick="cwSol4('cw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen4('cw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+      <div id="cw-5" class="prob-q" data-bigr="12" data-smallr="5" data-qtext="큰 원(반지름 12cm) 안에 작은 원(반지름 5cm)이 안쪽에서 맞닿아 있습니다(내접). 두 원의 중심 사이의 거리는 몇 cm인가요?" data-solfn="cwSol5">큰 원(반지름 12cm) 안에 작은 원(반지름 5cm)이 안쪽에서 맞닿아 있습니다(내접). 두 원의 중심 사이의 거리는 몇 cm인가요?<br><button class="havruta-show-btn" onclick="cwSol5('cw-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen5('cw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+      <div id="cw-6" class="prob-q" data-r="9" data-qtext="반지름이 9cm인 원 안에 실을 팽팽하게 당겨 선분을 그으려고 합니다. 그을 수 있는 가장 긴 선분의 길이는 몇 cm인가요?" data-solfn="cwSol6">반지름이 9cm인 원 안에 실을 팽팽하게 당겨 선분을 그으려고 합니다. 그을 수 있는 가장 긴 선분의 길이는 몇 cm인가요?<br><button class="havruta-show-btn" onclick="cwSol6('cw-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen6('cw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+      <div id="cw-7" class="prob-q" data-s="14" data-d="4" data-qtext="두 원의 반지름을 더하면 14cm입니다. 한 원의 반지름이 다른 원보다 4cm 더 크다면, 두 원의 반지름은 각각 몇 cm인가요?" data-solfn="cwSol7">두 원의 반지름을 더하면 14cm입니다. 한 원의 반지름이 다른 원보다 4cm 더 크다면, 두 원의 반지름은 각각 몇 cm인가요?<br><button class="havruta-show-btn" onclick="cwSol7('cw-7')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen7('cw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+      <div id="cw-8" class="prob-q" data-span="7" data-qtext="컴퍼스를 7cm 벌려서 원을 그렸습니다. 이 원의 지름은 몇 cm인가요?" data-solfn="cwSol8">컴퍼스를 7cm 벌려서 원을 그렸습니다. 이 원의 지름은 몇 cm인가요?<br><button class="havruta-show-btn" onclick="cwSol8('cw-8')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen8('cw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+      <div id="cw-9" class="prob-q" data-a="5" data-b="9" data-c="7" data-qtext="세 원 A, B, C의 반지름이 각각 5cm, 9cm, 7cm입니다. 지름이 큰 순서대로 나열해 보세요." data-solfn="cwSol9">세 원 A, B, C의 반지름이 각각 5cm, 9cm, 7cm입니다. 지름이 큰 순서대로 나열해 보세요.<br><button class="havruta-show-btn" onclick="cwSol9('cw-9')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen9('cw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+      <div id="cw-10" class="prob-q" data-d="26" data-qtext="자전거 바퀴의 지름이 26cm입니다. 이 바퀴 2개의 지름을 나란히 이어 놓으면 전체 길이는 몇 cm인가요?" data-solfn="cwSol10">자전거 바퀴의 지름이 26cm입니다. 이 바퀴 2개의 지름을 나란히 이어 놓으면 전체 길이는 몇 cm인가요?<br><button class="havruta-show-btn" onclick="cwSol10('cw-10')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen10('cw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
   `}
 ];
 CV_DATA['e3circ'] = CV_DATA_E3CIRC;
 const CV_DATA_E3MSR = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
     <p>"물병에 물이 많이 들어있어요"라고만 말하면, 정확히 얼마나 많은지 알 수 없어요.</p>
-    <p style="margin-top:10px">"가방이 무거워요"라고만 말해도 마찬가지예요. 들이(부피)와 무게에도 정확한 단위가 필요해요.</p>
+    <p style="margin-top:10px">"가방이 무거워요"라고만 말해도 마찬가지예요. 들이와 무게에도 정확한 단위가 필요해요.</p>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
       <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px">"많이" 대신 정확한 숫자로</div>
       <div style="font-size:.85rem">🧴 물 <strong style="color:#58a6ff">1L 500mL</strong> 　 🎒 가방 <strong style="color:#f0c040">2kg 300g</strong></div>
       <div style="font-size:.68rem;color:#8b949e;margin-top:8px">숫자와 단위가 있으면 누구나 똑같이 이해할 수 있어요</div>
     </div>
   `},
-  { title:'📖 개념 설명', cls:'concept', html:`
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 들이의 단위(L, mL)</div>
-    <ul><li>물병에 물이 1리터(L)보다 조금 더 들어있어요. 이 "조금 더"는 어떻게 나타낼까요?</li></ul>
-    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
-      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px">1L 500mL</div>
-      <div style="font-size:.68rem;color:#8b949e">L(리터)는 큰 들이, mL(밀리리터)는 작은 들이를 나타내는 단위예요</div>
+  { title:'👨‍👩‍👧 학부모님께', cls:'why', html:`
+    <p>초등학교 3학년의 '들이와 무게' 단원은 초등 수학에서 가장 중요한 측정 영역 중 하나입니다. 많은 학부모가 단순히 "L와 mL를 배우는 단원"이라고 생각하지만, 실제로는 이후 수학과 과학을 이해하는 기초를 만드는 핵심 단원입니다.</p>
+
+    <p style="margin-top:14px"><strong>1. 눈으로 보이는 양을 '수'로 표현하는 첫 경험</strong></p>
+    <p style="margin-top:6px">학생들은 이전까지는 길이(cm, m)나 무게(g, kg)를 배웠습니다. 들이와 부피에서는 물이 얼마나 들어가는지, 통이 얼마나 담을 수 있는지, 공간이 얼마나 큰지를 숫자로 나타내기 시작합니다. 즉, "보이는 공간 → 수학적인 양"으로 연결하는 사고가 시작됩니다.</p>
+
+    <p style="margin-top:14px"><strong>2. 단위 감각이 평생 이어진다</strong></p>
+    <p style="margin-top:6px">예를 들어 우유 200mL, 생수 2L, 욕조 200L — 이 숫자를 보고 어느 정도인지 머릿속에 떠올릴 수 있어야 합니다. 이 감각이 없으면 과학 실험, 요리, 약 복용, 생활 속 계산에서 계속 어려움을 겪습니다.</p>
+
+    <p style="margin-top:14px"><strong>3. 큰 단위와 작은 단위의 관계를 이해한다</strong></p>
+    <p style="margin-top:6px">가장 중요한 개념은 1L = 1000mL입니다. 이 관계를 제대로 이해해야 km↔m, kg↔g, m²↔cm², m³↔cm³ 같은 단위 변환도 쉽게 배울 수 있습니다.</p>
+
+    <p style="margin-top:14px"><strong>4. 비례 개념의 시작</strong></p>
+    <p style="margin-top:6px">예를 들어 500mL가 들어가는 컵이 있다면 2컵은? 3컵은? 절반은? 이런 활동을 통해 나중에 배우는 곱셈, 나눗셈, 분수, 비례식의 기초가 만들어집니다.</p>
+
+    <p style="margin-top:14px"><strong>5. 공간 감각이 발달한다</strong></p>
+    <p style="margin-top:6px">들이와 부피는 단순 계산이 아니라 머릿속으로 입체를 상상하는 능력을 키워 줍니다. 이 능력은 직육면체, 정육면체, 부피, 전개도를 배울 때 매우 중요합니다.</p>
+
+    <p style="margin-top:14px"><strong>6. 5~6학년 부피 단원의 핵심 기초</strong></p>
+    <p style="margin-top:6px">초3에서 "얼마나 담을 수 있는가(들이)"를 이해하지 못하면 5~6학년에서 배우는 직육면체의 부피, 정육면체의 부피를 공식만 외우게 됩니다. 반대로 초3에서 개념을 제대로 잡으면 "왜 가로×세로×높이인지" 자연스럽게 이해합니다.</p>
+
+    <p style="margin-top:14px"><strong>7. 과학과도 직접 연결된다</strong></p>
+    <p style="margin-top:6px">과학에서는 액체의 양, 눈금실린더, 물의 부피, 용액 만들기 등을 계속 사용합니다. 따라서 들이 개념이 부족하면 과학에서도 어려움을 겪을 수 있습니다.</p>
+
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:16px">
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px">학부모가 가장 많이 오해하는 부분</div>
+      <p>들이: 액체나 물건이 <strong>얼마나 들어갈 수 있는 양(용량)</strong>을 말합니다.<br>부피: 물체가 <strong>차지하는 공간의 크기</strong>를 말합니다.</p>
+      <p style="margin-top:8px">예를 들어 빈 우유팩은 — 담을 수 있는 양 → 들이 / 우유팩 자체가 차지하는 공간 → 부피 입니다.</p>
     </div>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 1L=1000mL</div>
+
+    <div style="margin-top:16px">
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px">효과적인 학습 방법</div>
+      <p>아이들은 공식보다 직접 비교하고 경험하는 활동에서 가장 잘 배웁니다.</p>
+      <ul style="margin-top:6px;padding-left:18px;line-height:1.7">
+        <li>컵에 물을 옮겨 담아 보기</li>
+        <li>500mL 생수와 2L 생수 비교하기</li>
+        <li>우유팩, 주전자, 물병의 용량 예상하기</li>
+        <li>여러 용기를 큰 통에 부어 몇 번이면 가득 차는지 알아보기</li>
+      </ul>
+      <p style="margin-top:8px">이런 활동을 통해 단위 감각과 양감을 자연스럽게 익힐 수 있습니다.</p>
+    </div>
+
+    <div class="story-takeaway" style="margin-top:16px"><strong>결론:</strong> 초3의 들이와 부피 단원은 단순히 'L와 mL를 외우는 단원'이 아니라, 측정 감각, 단위 변환 능력, 공간 감각, 비례 사고를 키우는 출발점입니다. 이 단원을 깊이 이해한 학생은 이후 배우는 부피, 도형, 과학 실험, 단위 변환을 훨씬 쉽게 받아들이며, 실생활에서도 양을 정확하게 판단하는 능력을 갖추게 됩니다.</div>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 들이의 단위: 1L=1000mL</div>
     <ul><li>1L 500mL를 전부 mL 단위로만 나타내면 얼마일까요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
       <div style="font-size:.85rem">1L = 1000mL</div>
       <div style="font-size:.85rem;margin-top:4px">1L 500mL = 1000mL + 500mL = <strong style="color:#3fb950">1500mL</strong></div>
-      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">1L는 항상 1000mL와 같아요</div>
+      <div style="font-size:.85rem;margin-top:4px">거꾸로, 1500mL = 1000mL + 500mL = <strong style="color:#3fb950">1L 500mL</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">1L는 항상 1000mL와 같아서, 서로 자유롭게 바꿔 쓸 수 있어요</div>
     </div>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 무게의 단위(kg, g)</div>
-    <ul><li>가방이 2킬로그램(kg)보다 조금 더 무거워요. 이 "조금 더"는 어떻게 나타낼까요?</li></ul>
-    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
-      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px">2kg 300g</div>
-      <div style="font-size:.68rem;color:#8b949e">kg(킬로그램)은 큰 무게, g(그램)은 작은 무게를 나타내는 단위예요</div>
-    </div>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 1kg=1000g</div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 무게의 단위: 1kg=1000g</div>
     <ul><li>2kg 300g을 전부 g 단위로만 나타내면 얼마일까요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
       <div style="font-size:.85rem">1kg = 1000g</div>
       <div style="font-size:.85rem;margin-top:4px">2kg 300g = 2000g + 300g = <strong style="color:#3fb950">2300g</strong></div>
-      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">1kg은 항상 1000g과 같아요</div>
-    </div>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 왜 1000을 기준으로 올려 셀까?</div>
-    <ul><li>물 800mL와 700mL를 더하면 1500mL인데, 왜 "1L 500mL"라고도 쓸까요?</li></ul>
-    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
-      <div style="font-size:.85rem">800mL + 700mL = 1500mL</div>
-      <div style="font-size:.85rem;margin-top:4px">1500mL = 1000mL + 500mL = <strong style="color:#3fb950">1L 500mL</strong></div>
-      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">10개 모으면 다음 자리로 올라가는 10진법처럼, mL도 1000개가 모이면 L 하나로 "올려 세는" 게 편해요</div>
-    </div>
-  `},
-  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
-    <p>물병에 물이 1L 500mL 들어있는 상황(=1500mL) 하나를 여러 가지 다른 말로 물어볼 수 있어요.</p>
-    <div class="expr-item"><span class="expr-num">1</span><strong>복합단위 표현</strong><br>"물병에 물이 1L 500mL 들어있어요. mL로 나타내면?" → <span class="expr-ans">1500mL</span></div>
-    <div class="expr-item"><span class="expr-num">2</span><strong>단일단위→복합 표현</strong><br>"1500mL를 L와 mL로 나타내면?" → <span class="expr-ans">1L 500mL</span></div>
-    <div class="expr-item"><span class="expr-num">3</span><strong>비교 표현</strong><br>"1L 500mL와 1300mL 중 어느 것이 더 많나요?" → <span class="expr-ans">1L 500mL</span></div>
-    <div class="expr-item"><span class="expr-num">4</span><strong>덧셈 표현</strong><br>"800mL + 700mL는 몇 L 몇 mL인가요?" → <span class="expr-ans">1L 500mL</span></div>
-    <div class="expr-item"><span class="expr-num">5</span><strong>무게 복합단위 표현</strong><br>"가방이 2kg 300g이에요. g으로 나타내면?" → <span class="expr-ans">2300g</span></div>
-    <div class="expr-item"><span class="expr-num">6</span><strong>무게 단일→복합 표현</strong><br>"2300g을 kg과 g으로 나타내면?" → <span class="expr-ans">2kg 300g</span></div>
-    <div class="expr-item"><span class="expr-num">7</span><strong>무게 비교 표현</strong><br>"2kg 300g과 2500g 중 어느 것이 더 무거운가요?" → <span class="expr-ans">2500g</span></div>
-    <div class="expr-item"><span class="expr-num">8</span><strong>그림 표현</strong><br>"1L 500mL를 눈금으로 나타내면?"
-      <div class="fb-diagram" style="text-align:center">
-        <div style="width:40px;height:80px;border:2px solid #30363d;border-radius:0 0 6px 6px;margin:4px auto;position:relative;overflow:hidden">
-          <div style="position:absolute;bottom:0;width:100%;height:75%;background:#58a6ff"></div>
-        </div>
-        <span class="cap">눈금 2L짜리 그릇에 75%만큼(1L 500mL) 채워진 모습</span>
-      </div>
-    </div>
-    <p style="margin-top:10px">이렇게 8가지 표현이 결국 <strong>같은 양(1500mL)</strong>을 묻고 있어요.</p>
-  `},
-  { title:'💬 하브루타 질문', cls:'havruta', html:`
-    <div class="q-item"><strong>Q1.</strong> 1L와 1000mL 중 어느 것이 더 많을까요?
-      <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-h1',this)">💬 친구들은 이렇게 답했어요</button>
-      <div class="havruta-reveal" id="rv-e3msr-h1">
-        <div class="havruta-opts">
-          <button class="havruta-opt" onclick="havrutaPick('e3msr-h1',0,this)">둘은 똑같아요! 1L=1000mL니까 같은 양을 다른 단위로 쓴 것뿐이에요</button>
-          <button class="havruta-opt" onclick="havrutaPick('e3msr-h1',1,this)">1000이라는 숫자가 더 크니까 1000mL가 더 많아요</button>
-          <button class="havruta-opt" onclick="havrutaPick('e3msr-h1',2,this)">L가 알파벳이라 더 큰 단위 같아서 1L가 더 많아요</button>
-        </div>
-        <div class="havruta-fb" id="fb-e3msr-h1"></div>
-      </div>
-    </div>
-    <div class="q-item"><strong>Q2.</strong> 800mL+700mL=1500mL인데, 왜 "1L 500mL"로도 쓰는 게 좋을까요?
-      <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-h2',this)">💬 친구들은 이렇게 답했어요</button>
-      <div class="havruta-reveal" id="rv-e3msr-h2">
-        <div class="havruta-opts">
-          <button class="havruta-opt" onclick="havrutaPick('e3msr-h2',0,this)">1000mL가 넘으면 L 단위로 묶어서 표현하는 게 숫자가 짧고 한눈에 크기를 이해하기 쉬워요</button>
-          <button class="havruta-opt" onclick="havrutaPick('e3msr-h2',1,this)">1500mL라고 쓰면 틀린 표현이라 꼭 바꿔야 해요</button>
-          <button class="havruta-opt" onclick="havrutaPick('e3msr-h2',2,this)">아무 이유 없이 그냥 두 가지로 다 쓸 수 있어요</button>
-        </div>
-        <div class="havruta-fb" id="fb-e3msr-h2"></div>
-      </div>
-    </div>
-    <div class="q-item"><strong>Q3.</strong> 무게를 잴 때 kg과 g, 언제 각각 쓰는 게 좋을까요?
-      <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-h3',this)">💬 친구들은 이렇게 답했어요</button>
-      <div class="havruta-reveal" id="rv-e3msr-h3">
-        <div class="havruta-opts">
-          <button class="havruta-opt" onclick="havrutaPick('e3msr-h3',0,this)">몸무게처럼 큰 무게는 kg, 사탕 한 개처럼 가벼운 건 g을 쓰면 숫자가 너무 크거나 작아지지 않아 편해요</button>
-          <button class="havruta-opt" onclick="havrutaPick('e3msr-h3',1,this)">kg은 사람만, g은 물건만 쓰도록 정해져 있어요</button>
-          <button class="havruta-opt" onclick="havrutaPick('e3msr-h3',2,this)">둘 중 아무거나 골라도 상관없고 규칙이 없어요</button>
-        </div>
-        <div class="havruta-fb" id="fb-e3msr-h3"></div>
-      </div>
+      <div style="font-size:.85rem;margin-top:4px">거꾸로, 2300g = 2000g + 300g = <strong style="color:#3fb950">2kg 300g</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">1kg은 항상 1000g과 같아서, 서로 자유롭게 바꿔 쓸 수 있어요</div>
     </div>
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
@@ -2102,37 +2347,249 @@ const CV_DATA_E3MSR = [
       </div>
     </div>
   `},
-  { title:'🔥 심화 토론', cls:'debate', html:`
-    <div class="story-line">
-      <div class="story-avatar">🧒</div>
-      <div class="story-bubble"><span class="story-name">민준</span>선생님, 왜 하필 1000mL가 1L예요? 100이나 10이면 더 계산하기 쉬울 것 같은데요.</div>
+  { title:'🧮 계산 미션', cls:'group', items:[
+    { title:'📝 Mission 2 — 몇 번 부어야 할까? (기본형)', cls:'problems', html:`
+      <div class="tver-badge basic">📝 기본형 — 문제를 읽고 "풀이 보기"로 정답을 확인하는 방식 (별 보상 없음)</div>
+      <p>토로는 200mL 컵만 가지고 있어요.</p>
+      <div class="prob-box">
+        <div class="prob-q">문제: 1L 물통을 채우려면 몇 번 부어야 할까요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-m2',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3msr-m2">
+          <div class="fb-diagram">1L=1000mL, 1000÷200=<strong style="color:#3fb950">5번</strong></div>
+          <div class="sol"><strong>풀이:</strong> 200mL를 5번 부으면 200×5=1000mL=1L</div>
+        </div>
+      </div>
+      <div class="prob-box">
+        <div class="prob-q">심화: 500mL 컵이라면 몇 번 부어야 할까요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-m2b',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3msr-m2b">
+          <div class="fb-diagram">1000÷500=<strong style="color:#3fb950">2번</strong></div>
+          <div class="sol"><strong>풀이:</strong> 500mL를 2번 부으면 500×2=1000mL=1L</div>
+        </div>
+      </div>
+    `},
+    { title:'🐢 ① 물의 요정을 구하라! (이야기형)', cls:'problems', html:`
+      <div class="tver-badge story">🐢 이야기형 — 이야기 속에서 직접 입력하고 채점받는 방식. 정답을 맞히면 ⭐ 별 획득</div>
+      <p>🐢 토로가 숲을 걷고 있었어요.</p>
+      <p style="margin-top:6px">갑자기 울음소리가 들렸어요.</p>
+      <div class="story-line">
+        <div class="story-avatar">💧</div>
+        <div class="story-bubble">"흑흑... 샘물이 모두 사라졌어요."</div>
+      </div>
+      <p style="margin-top:6px">물의 요정이 울고 있었어요. 토로가 물었습니다. "무슨 일이에요?"</p>
+      <div class="story-line">
+        <div class="story-avatar">💧</div>
+        <div class="story-bubble">"마법 샘에 정확히 1L의 물을 넣어야 해요."</div>
+      </div>
+      <p style="margin-top:6px">하지만 주변에는 🥤 200mL 컵과 🧃 500mL 물병뿐입니다. 토로를 도와줄까요?</p>
+      <div class="prob-box">
+        <div class="prob-q">🎯 미션 1: 200mL 컵으로 1L를 만들려면 몇 번 부어야 할까요?</div>
+        <div style="text-align:center;margin:10px 0">
+          <input type="text" id="in-e3msr-m1n" class="tinput" style="width:50px" placeholder="?"> 번
+          <button class="havruta-show-btn" onclick="tCheckAnswer('e3msr-m1n','in-e3msr-m1n',5,'m1n')" style="margin-left:8px">확인</button>
+        </div>
+        <div style="text-align:center;font-size:.72rem;color:#8b949e">💡 생각해 보기 — 한 번 부을 때마다 아래 칸을 눌러 색칠해 보세요</div>
+        <div style="text-align:center;margin-top:8px">
+          <span class="tcolor-box" onclick="tToggleColor(this)"></span>
+          <span class="tcolor-box" onclick="tToggleColor(this)"></span>
+          <span class="tcolor-box" onclick="tToggleColor(this)"></span>
+          <span class="tcolor-box" onclick="tToggleColor(this)"></span>
+          <span class="tcolor-box" onclick="tToggleColor(this)"></span>
+        </div>
+        <div class="havruta-fb" id="fb-e3msr-m1n"></div>
+      </div>
+      <div class="prob-box">
+        <div class="prob-q">🎯 미션 2 (심화): 500mL 물병이라면 몇 번 부어야 할까요?</div>
+        <div style="text-align:center;margin:10px 0">
+          <input type="text" id="in-e3msr-m1b" class="tinput" style="width:50px" placeholder="?"> 번
+          <button class="havruta-show-btn" onclick="tCheckAnswer('e3msr-m1b','in-e3msr-m1b',2,'m1b')" style="margin-left:8px">확인</button>
+        </div>
+        <div style="text-align:center;margin-top:8px">
+          <span class="tcolor-box" onclick="tToggleColor(this)"></span>
+          <span class="tcolor-box" onclick="tToggleColor(this)"></span>
+        </div>
+        <div class="havruta-fb" id="fb-e3msr-m1b"></div>
+      </div>
+    `},
+    { title:'🌟 Mission 3 — 보물상자 열기', cls:'problems', html:`
+      <p>보물상자는 정확히 2L의 물이 들어가야 열려요.</p>
+      <div class="prob-box">
+        <div class="prob-q">문제: 토로가 가진 물은 500mL×4병이에요. 열릴까요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-m3',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3msr-m3">
+          <div class="fb-diagram">500mL×4=2000mL=<strong style="color:#3fb950">2L</strong> → 정확히 일치! <strong style="color:#3fb950">예, 열려요</strong></div>
+          <div class="sol"><strong>풀이:</strong> 500×4=2000mL, 2000mL=2L이므로 조건과 정확히 같아요</div>
+        </div>
+      </div>
+    `},
+    { title:'🌟 Mission 4 — 물약 만들기', cls:'problems', html:`
+      <p>마법사가 말했어요. "파란 물약 300mL와 노란 물약 500mL를 합쳐라!"</p>
+      <div class="prob-box">
+        <div class="prob-q">문제: 두 물약을 합치면 몇 mL일까요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-m4',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3msr-m4">
+          <div class="fb-diagram">300mL+500mL=<strong style="color:#3fb950">800mL</strong></div>
+        </div>
+      </div>
+      <div class="prob-box">
+        <div class="prob-q">조금 어려워요: 800mL는 몇 L 몇 mL일까요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-m4b',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3msr-m4b">
+          <div class="fb-diagram">800mL는 1000mL(1L)가 안 돼요 → <strong style="color:#3fb950">그냥 800mL</strong>(L로 바꿀 수 없어요)<span class="cap">1L=1000mL보다 적으면 "몇 L 몇 mL"로 안 나누고, mL 하나로만 나타내요</span></div>
+        </div>
+      </div>
+    `},
+    { title:'🌟 Mission 5 — 거짓말 탐정', cls:'problems', html:`
+      <p>토끼가 말했어요. "나는 1L 물을 마셨어!" 그런데 주변에는 200mL 병 4개만 있어요.</p>
+      <div class="prob-box">
+        <div class="prob-q">문제: 토끼의 말은 맞을까요, 거짓일까요? 왜 그럴까요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-m5',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3msr-m5">
+          <div class="fb-diagram">200mL×4=800mL, 1L=1000mL → 800mL &lt; 1000mL → <strong style="color:#f85149">거짓이다</strong><span class="cap">가진 병을 다 모아도 800mL뿐이라, 1L(1000mL)를 마셨다는 말은 사실일 수 없어요</span></div>
+        </div>
+      </div>
+    `},
+    { title:'🌟 Mission 6 — 물 배달', cls:'problems', html:`
+      <p>토로는 3L의 물을 옮겨야 해요. 가진 물병은 1L와 500mL뿐이에요.</p>
+      <div class="prob-box">
+        <div class="prob-q">문제: 어떻게 정확히 3L를 만들 수 있을까요? (답은 여러 개 가능해요)</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-m6',this)">💡 방법 보기</button>
+        <div class="havruta-reveal" id="rv-e3msr-m6">
+          <div class="fb-diagram">1L×3 = 3L<br>1L×2 + 500mL×2 = 2L+1L = 3L<br>1L×1 + 500mL×4 = 1L+2L = 3L<br>500mL×6 = 3L<span class="cap">이렇게 여러 가지 방법으로 3L를 만들 수 있어요 — 정답이 하나가 아니에요!</span></div>
+        </div>
+      </div>
+    `},
+    { title:'🌟 Final Mission — 왕국 구하기', cls:'problems', html:`
+      <p>마법의 샘에는 정확히 5L의 물이 필요해요. 토로가 가진 것은 1L 병×2, 500mL 병×4, 200mL 컵×5예요.</p>
+      <div class="prob-box">
+        <div class="prob-q">문제: 물을 모두 합치면 몇 L 몇 mL일까요? 왕국을 구할 수 있을까요?</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-final',this)">💡 풀이 보기</button>
+        <div class="havruta-reveal" id="rv-e3msr-final">
+          <div class="fb-diagram">1L×2=2000mL<br>500mL×4=2000mL<br>200mL×5=1000mL<br>합계: 2000+2000+1000=5000mL=<strong style="color:#3fb950">5L</strong><span class="cap">정확히 5L! 왕국을 구할 수 있어요 — <strong style="color:#3fb950">YES</strong></span></div>
+        </div>
+      </div>
+    `},
+    { title:'🎮 마지막 보스 — 물의 왕', cls:'problems', html:`
+      <p>물의 왕이 외칩니다. "정확히 3L 500mL를 만들어라!"</p>
+      <div class="prob-box">
+        <div class="prob-q">문제: 1L 병과 500mL 병을 조합해 정확히 3L 500mL를 만드는 방법을 찾아보세요. (답은 여러 개 가능해요)</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-boss',this)">💡 방법 보기</button>
+        <div class="havruta-reveal" id="rv-e3msr-boss">
+          <div class="fb-diagram">1L×3 + 500mL×1 = 3L+500mL = 3L 500mL<br>500mL×7 = 3500mL = 3L 500mL<span class="cap">이렇게 답이 하나가 아닌 문제를 풀면서 창의성과 수 감각을 함께 길러요</span></div>
+        </div>
+      </div>
+    `}
+  ]},
+  { title:'🎮 게임 & 탐험', cls:'group', items:[
+    { title:'📝 Mission 1 — 찾아서 알아보기 (기본형)', cls:'problems', html:`
+      <div class="tver-badge basic">📝 기본형 — 문제를 읽고 "확인해 보기"로 힌트를 보는 방식 (별 보상 없음)</div>
+      <p>어느 날, 토로가 물의 왕국에 도착했어요. 물의 요정이 울면서 말했어요. "마법 샘물이 모두 사라졌어요! 정확한 양의 물을 모아야 왕국을 구할 수 있어요."</p>
+      <div class="prob-box">
+        <div class="prob-q">문제: 우리 교실(또는 집)에서 아래 네 가지 그릇 — 컵, 물병, 우유팩, 주전자 — 을 직접 찾아보세요. 그리고 겉모습만 보고 짐작하지 말고, 그릇에 적힌 mL·L 표시를 찾아 읽은 뒤, 들이가 많은 순서대로 써 보세요.</div>
+        <div style="text-align:center;font-size:.85rem">① ___　② ___　③ ___　④ ___</div>
+        <button class="havruta-show-btn" onclick="havrutaReveal('e3msr-m1',this)">💡 확인해 보기</button>
+        <div class="havruta-reveal" id="rv-e3msr-m1">
+          <div class="fb-diagram">그릇에 적힌 숫자(예: 500mL, 1L)를 찾아 정확히 비교해 보세요!<span class="cap">겉모습(크기나 모양)만으로는 정확한 들이를 알 수 없어요 — 폭이 넓으면 낮아도 더 많이 들어갈 수 있어요. 표시된 숫자를 직접 확인해야 정확히 알 수 있어요</span></div>
+        </div>
+      </div>
+    `},
+    { title:'🐢 ② 어느 그릇이 더 클까? (이야기형)', cls:'problems', html:`
+      <div class="tver-badge story">🐢 이야기형 — 순서를 직접 입력하고 채점받는 방식. 정답을 맞히면 ⭐ 별 획득</div>
+      <p>토로는 네 가지 그릇을 발견했습니다: <strong>종이컵, 우유팩, 주전자, 양동이</strong></p>
+      <div class="prob-box">
+        <div class="prob-q">🎯 미션: 가장 많이 들어갈 것 같은 순서대로 번호를 써 보세요. (①이 가장 많이 들어가는 것)</div>
+        <div style="text-align:center;font-size:.8rem;color:#8b949e;margin:8px 0">종이컵=1, 우유팩=2, 주전자=3, 양동이=4</div>
+        <div style="text-align:center;margin:10px 0">
+          ① <input type="text" id="in-e3msr-m2-0" class="tinput" style="width:36px">
+          ② <input type="text" id="in-e3msr-m2-1" class="tinput" style="width:36px">
+          ③ <input type="text" id="in-e3msr-m2-2" class="tinput" style="width:36px">
+          ④ <input type="text" id="in-e3msr-m2-3" class="tinput" style="width:36px">
+        </div>
+        <div style="text-align:center"><button class="havruta-show-btn" onclick="tCheckOrder('e3msr-m2','in-e3msr-m2-',[4,3,2,1],'m2')">확인</button></div>
+        <div style="text-align:center;font-size:.72rem;color:#8b949e;margin-top:6px">먼저 예상해 보고, 정답을 보기 전에 친구와 이야기해 보세요 — "왜 그렇게 생각했어?"</div>
+        <div class="havruta-fb" id="fb-e3msr-m2"></div>
+        <div class="fb-diagram" style="margin-top:10px">실험! 실제로 mL·L 표시를 확인해 보면 — 종이컵 200mL, 우유팩 1L, 주전자 2L, 양동이 10L 정도예요.<span class="cap">양동이는 종이컵보다 무려 50배나 많이 들어가요! 겉모습을 상상하는 것과 실제 숫자를 확인하는 건 이렇게 다를 수 있어요</span></div>
+      </div>
+    `},
+    { title:'🌟 Mission 7 — 우리 집 탐험', cls:'problems', html:`
+      <p>다음 물건의 들이를 예상해 보고, 실제로 확인해 보세요.</p>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <table style="width:100%;border-collapse:collapse;font-size:.78rem;text-align:center">
+          <tr style="border-bottom:1px solid #30363d"><td style="padding:6px;color:#8b949e">물건</td><td style="color:#8b949e">예상</td><td style="color:#8b949e">실제</td></tr>
+          <tr><td style="padding:6px">🥛 우유</td><td></td><td></td></tr>
+          <tr><td style="padding:6px">💧 생수</td><td></td><td></td></tr>
+          <tr><td style="padding:6px">🧴 샴푸</td><td></td><td></td></tr>
+          <tr><td style="padding:6px">🫖 주전자</td><td></td><td></td></tr>
+          <tr><td style="padding:6px">🧺 세탁세제</td><td></td><td></td></tr>
+        </table>
+      </div>
+      <div class="fb-diagram">참고: 우유팩은 보통 200mL~1L, 생수는 500mL~2L, 샴푸는 200~500mL, 주전자는 1~2L, 세탁세제는 2~3L 정도예요<span class="cap">실제 물건을 보고 mL·L 표시를 확인해 보세요</span></div>
+    `},
+    { title:'⭐ 보너스 게임 1 — 들이 빙고', cls:'problems', html:`
+      <p>선생님이 들이를 말하면(예: "500mL!"), 학생들은 빙고판에서 알맞은 그림을 찾아요.</p>
+      <div class="fb-diagram">🧑‍🏫 "500mL!" → 학생들이 빙고판에서 500mL에 해당하는 그림을 찾아 표시해요<span class="cap">여러 번 반복하며 다양한 들이 감각을 익혀요</span></div>
+    `},
+    { title:'⭐ 보너스 게임 2 — 들이 경매', cls:'problems', html:`
+      <p>선생님이 물건을 보여주며 묻습니다. "이 병은 몇 mL일까요?"</p>
+      <div class="fb-diagram">학생들 "300mL!" "700mL!" "1L!" 외치며 맞혀요<br>가장 가까운 사람이 점수를 얻어요<span class="cap">눈대중으로 들이를 어림하는 감각을 키워요</span></div>
+    `},
+    { title:'⭐ 보너스 게임 3 — 물 빨리 만들기', cls:'problems', html:`
+      <p>카드를 섞습니다: 100mL, 200mL, 300mL, 500mL</p>
+      <div class="fb-diagram">선생님 "1L를 만들어!" → 가장 빨리 카드를 조합해 1L를 만드는 사람이 승리<span class="cap">예: 500+300+200=1000mL, 또는 500+500=1000mL 등 여러 방법이 있어요</span></div>
+    `}
+  ]},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <p>지금까지 배운 들이와 무게를 실제 상황에 적용하는 조금 더 어려운 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+      <div id="mrw-1" class="prob-q" data-water="400" data-milk="350" data-qtext="요리에 물 400mL와 우유 350mL를 넣습니다. 합쳐서 몇 mL인가요?" data-solfn="mrwSol1">요리에 물 400mL와 우유 350mL를 넣습니다. 합쳐서 몇 mL인가요?<br><button class="havruta-show-btn" onclick="mrwSol1('mrw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="mrwGen1('mrw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
-    <div class="story-line">
-      <div class="story-avatar">👧</div>
-      <div class="story-bubble"><span class="story-name">서연</span>어? 그러고 보니 1kg도 1000g이고, 1L도 1000mL네요. 둘 다 1000이에요!</div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+      <div id="mrw-2" class="prob-q" data-total="1800" data-use="600" data-qtext="물통에 1L 800mL의 물이 있었는데 600mL를 사용했습니다. 남은 물의 양은?" data-solfn="mrwSol2">물통에 1L 800mL의 물이 있었는데 600mL를 사용했습니다. 남은 물의 양은?<br><button class="havruta-show-btn" onclick="mrwSol2('mrw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="mrwGen2('mrw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
-    <div class="story-line">
-      <div class="story-avatar">🧒</div>
-      <div class="story-bubble"><span class="story-name">지호</span>혹시 우리가 쓰는 숫자 체계랑 관계있는 거 아니에요? 10, 100, 1000...</div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+      <div id="mrw-3" class="prob-q" data-a="250" data-b="400" data-c="350" data-qtext="가방 안에 필통(250g), 책(400g), 물병(350g)을 넣었습니다. 가방 안 물건들의 총 무게는?" data-solfn="mrwSol3">가방 안에 필통(250g), 책(400g), 물병(350g)을 넣었습니다. 가방 안 물건들의 총 무게는?<br><button class="havruta-show-btn" onclick="mrwSol3('mrw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="mrwGen3('mrw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
-    <div class="story-line">
-      <div class="story-avatar">👧</div>
-      <div class="story-bubble"><span class="story-name">하은</span>아! 10진법처럼요! 10개 모이면 다음 자리로 올라가잖아요.</div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+      <div id="mrw-4" class="prob-q" data-cap="300" data-n="5" data-avg="45" data-qtext="엘리베이터 무게 제한이 300kg입니다. 5명이 각각 평균 45kg이라면 한꺼번에 탈 수 있을까요?" data-solfn="mrwSol4">엘리베이터 무게 제한이 300kg입니다. 5명이 각각 평균 45kg이라면 한꺼번에 탈 수 있을까요?<br><button class="havruta-show-btn" onclick="mrwSol4('mrw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="mrwGen4('mrw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
-    <div class="story-line">
-      <div class="story-avatar">🧑‍🏫</div>
-      <div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! mL·g처럼 작은 단위에 10, 100, 1000을 곱해서 큰 단위(L, kg)를 만드는 방식을 "미터법"이라고 해요. 우리가 쓰는 숫자가 10진법이라서, 단위도 10의 거듭제곱(10, 100, 1000)으로 맞춘 거예요.</div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+      <div id="mrw-5" class="prob-q" data-total="2200" data-bottle="500" data-qtext="물 2200mL를 한 병에 500mL씩 담으려고 합니다. 병은 몇 개 필요할까요?" data-solfn="mrwSol5">물 2200mL를 한 병에 500mL씩 담으려고 합니다. 병은 몇 개 필요할까요?<br><button class="havruta-show-btn" onclick="mrwSol5('mrw-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="mrwGen5('mrw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
-    <div class="fb-diagram">
-      1, 10, 100, <strong style="color:#3fb950">1000</strong> — 전부 10을 계속 곱한 수<br>
-      1mL, 10mL, 100mL, <strong style="color:#3fb950">1000mL(=1L)</strong>
-      <span class="cap">숫자 자리가 10배씩 커지는 것과 똑같은 방식으로 단위도 커져요</span>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+      <div id="mrw-6" class="prob-q" data-akg="2" data-ag="300" data-bg="2800" data-qtext="가방 A는 2kg 300g, 가방 B는 2800g입니다. 어느 가방이 더 무거운가요?" data-solfn="mrwSol6">가방 A는 2kg 300g, 가방 B는 2800g입니다. 어느 가방이 더 무거운가요?<br><button class="havruta-show-btn" onclick="mrwSol6('mrw-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="mrwGen6('mrw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
-    <div class="story-line">
-      <div class="story-avatar">🧑‍🏫</div>
-      <div class="story-bubble teacher"><span class="story-name">선생님</span>그래서 mL를 L로 바꾸는 계산이, 나중에 배울 "받아올림"이랑 원리가 똑같은 거예요. 단위가 달라 보여도 결국 같은 10진법 규칙을 따르고 있어요.</div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+      <div id="mrw-7" class="prob-q" data-havel="3" data-use="700" data-cup="300" data-qtext="물 3L가 있습니다. 700mL를 사용하고, 남은 물을 300mL 컵에 나눠 담으면 몇 컵이 나올까요? (다 못 채우는 나머지는 세지 않아요)" data-solfn="mrwSol7">물 3L가 있습니다. 700mL를 사용하고, 남은 물을 300mL 컵에 나눠 담으면 몇 컵이 나올까요? (다 못 채우는 나머지는 세지 않아요)<br><button class="havruta-show-btn" onclick="mrwSol7('mrw-7')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="mrwGen7('mrw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
-    <div class="story-takeaway"><strong>정리:</strong> L·kg 같은 큰 단위와 mL·g 같은 작은 단위는 항상 1000 차이가 나도록 정해져 있어요. 이건 우리가 쓰는 숫자 체계(10진법)와 똑같은 원리라서, 단위를 바꾸는 계산도 자릿값을 다루는 것과 같은 방식으로 이해할 수 있어요.</div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+      <div id="mrw-8" class="prob-q" data-k1="3" data-g1="200" data-k2="2" data-g2="600" data-qtext="수박의 무게는 3kg 200g, 멜론의 무게는 2kg 600g입니다. 두 과일의 무게 차이는?" data-solfn="mrwSol8">수박의 무게는 3kg 200g, 멜론의 무게는 2kg 600g입니다. 두 과일의 무게 차이는?<br><button class="havruta-show-btn" onclick="mrwSol8('mrw-8')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="mrwGen8('mrw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+      <div id="mrw-9" class="prob-q" data-rk="1" data-rg="500" data-sg="600" data-fg="400" data-qtext="장바구니에 쌀 1kg 500g, 설탕 600g, 밀가루 400g을 담았습니다. 장바구니 안 물건들의 총 무게는?" data-solfn="mrwSol9">장바구니에 쌀 1kg 500g, 설탕 600g, 밀가루 400g을 담았습니다. 장바구니 안 물건들의 총 무게는?<br><button class="havruta-show-btn" onclick="mrwSol9('mrw-9')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="mrwGen9('mrw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+      <div id="mrw-10" class="prob-q" data-l1="1" data-m1="400" data-l2="2" data-m2="800" data-qtext="물통 A에는 1L 400mL, 물통 B에는 2L 800mL의 물이 있습니다. 두 물통의 물을 합치면 모두 몇 L 몇 mL인가요?" data-solfn="mrwSol10">물통 A에는 1L 400mL, 물통 B에는 2L 800mL의 물이 있습니다. 두 물통의 물을 합치면 모두 몇 L 몇 mL인가요?<br><button class="havruta-show-btn" onclick="mrwSol10('mrw-10')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="mrwGen10('mrw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
   `}
 ];
 CV_DATA['e3msr'] = CV_DATA_E3MSR;
@@ -2156,44 +2613,22 @@ const CV_DATA_E3DATA = [
       </table>
       <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">조사한 수를 세어서 표에 숫자로 정리하는 게 "표"예요</div>
     </div>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 그림그래프란</div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 그림그래프 그리기</div>
     <ul><li>표의 숫자를 그림으로도 나타낼 수 있을까요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
       <div style="font-size:.9rem">🍎🍎🍎🍎🍎🍎🍎🍎 (사과 8명)</div>
       <div style="font-size:.68rem;color:#8b949e;margin-top:8px">숫자 대신 그림을 개수만큼 그려서 나타낸 그래프를 "그림그래프"라고 해요</div>
     </div>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 그림의 단위 정하기</div>
-    <ul><li>학생이 100명이라면, 그림을 100개 그려야 할까요? 더 편한 방법이 없을까요?</li></ul>
+    <ul style="margin-top:10px"><li>그런데 만약 사과를 좋아하는 학생이 78명이나 된다면, 그림을 78개나 그려야 할까요? 더 편한 방법이 없을까요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
       <div style="font-size:.85rem">🍎(큰 그림)=10명　　🍏(작은 그림)=1명</div>
       <div style="font-size:.68rem;color:#8b949e;margin-top:8px">그림 하나가 몇 명을 나타낼지 미리 정해두면, 그림 개수가 너무 많아지지 않아요</div>
     </div>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 그림그래프 그리기</div>
-    <ul><li>큰 그림=10명, 작은 그림=1명일 때, 13명은 그림을 어떻게 그릴까요?</li></ul>
+    <ul style="margin-top:10px"><li>큰 그림=10명, 작은 그림=1명일 때, 78명은 그림을 어떻게 그릴까요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
-      <div style="font-size:.9rem">🍎 (큰 그림 1개=10명) 🍏🍏🍏 (작은 그림 3개=3명)</div>
-      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">13=10+3 이니까, 큰 그림 1개와 작은 그림 3개를 그려요</div>
+      <div style="font-size:.9rem">🍎🍎🍎🍎🍎🍎🍎 (큰 그림 7개=70명) 🍏🍏🍏🍏🍏🍏🍏🍏 (작은 그림 8개=8명)</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">78=70+8 이니까, 큰 그림 7개와 작은 그림 8개를 그려요</div>
     </div>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 왜 그림그래프가 표보다 한눈에 보일까?</div>
-    <ul><li>표의 숫자(8,5,6,4)와 그림그래프의 그림 개수, 어느 쪽이 "가장 많은 것"을 더 빨리 찾을 수 있을까요?</li></ul>
-    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
-      <div style="font-size:.85rem;line-height:1.9">🍎🍎🍎🍎🍎🍎🍎🍎 (8)<br>🍌🍌🍌🍌🍌 (5)<br>🍇🍇🍇🍇🍇🍇 (6)<br>🍓🍓🍓🍓 (4)</div>
-      <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">그림의 길이(개수)를 눈으로 바로 비교할 수 있어서, 숫자를 하나하나 안 읽어도 한눈에 크기 순서가 보여요</div>
-    </div>
-  `},
-  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
-    <p>과일 좋아하기 조사(사과8, 바나나5, 포도6, 딸기4, 합계23) 하나를 여러 가지 다른 말로 물어볼 수 있어요.</p>
-    <div class="expr-item"><span class="expr-num">1</span><strong>표 읽기 표현</strong><br>"표에서 사과를 좋아하는 학생은 몇 명인가요?" → <span class="expr-ans">8명</span></div>
-    <div class="expr-item"><span class="expr-num">2</span><strong>합계 표현</strong><br>"조사에 참여한 학생은 모두 몇 명인가요?" → <span class="expr-ans">23명</span></div>
-    <div class="expr-item"><span class="expr-num">3</span><strong>최댓값 표현</strong><br>"가장 많은 학생이 좋아하는 과일은 무엇인가요?" → <span class="expr-ans">사과</span></div>
-    <div class="expr-item"><span class="expr-num">4</span><strong>그림 개수 표현</strong><br>"작은 그림 하나가 1명이라면, 사과(8명)는 그림을 몇 개 그리나요?" → <span class="expr-ans">8개</span></div>
-    <div class="expr-item"><span class="expr-num">5</span><strong>차이 표현</strong><br>"사과를 좋아하는 학생과 딸기를 좋아하는 학생의 차이는?" → <span class="expr-ans">4명</span></div>
-    <div class="expr-item"><span class="expr-num">6</span><strong>순위 표현</strong><br>"두 번째로 많이 좋아하는 과일은 무엇인가요?" → <span class="expr-ans">포도</span></div>
-    <div class="expr-item"><span class="expr-num">7</span><strong>그림→숫자 표현</strong><br>"큰 그림(10명) 1개와 작은 그림(1명) 3개를 그렸다면 모두 몇 명인가요?" → <span class="expr-ans">13명</span></div>
-    <div class="expr-item"><span class="expr-num">8</span><strong>그림 표현</strong><br>"바나나(5명)를 그림그래프로 나타내면?"
-      <div class="fb-diagram" style="text-align:center">🍌🍌🍌🍌🍌<span class="cap">작은 그림(1명) 5개</span></div>
-    </div>
-    <p style="margin-top:10px">이렇게 8가지 표현이 결국 <strong>같은 자료(과일 조사 결과)</strong>를 묻고 있어요.</p>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
     <div class="q-item"><strong>Q1.</strong> 표만 있어도 되는데, 왜 그림그래프도 배워야 할까요?
@@ -2261,35 +2696,264 @@ const CV_DATA_E3DATA = [
       <div class="story-avatar">🧒</div>
       <div class="story-bubble"><span class="story-name">민준</span>선생님, 어떤 그림그래프를 봤는데 그림 크기가 서로 달랐어요! 사과 그림이 바나나 그림보다 훨씬 커서, 사과가 훨씬 많아 보였어요.</div>
     </div>
+    <div class="fb-diagram" style="text-align:center">
+      <span style="font-size:2rem">🍎🍎🍎🍎🍎🍎</span> (사과, 그림을 크게 그림)　　<span style="font-size:.85rem">🍌🍌🍌🍌🍌</span> (바나나, 그림을 작게 그림)
+      <span class="cap">민준이가 본 그래프 — 그림 크기가 달라서 사과가 훨씬 많아 보여요</span>
+    </div>
     <div class="story-line">
       <div class="story-avatar">👧</div>
       <div class="story-bubble"><span class="story-name">서연</span>어? 근데 개수를 세어보니 사과 6명, 바나나 5명이라서 별로 차이가 안 났는데요?</div>
+    </div>
+    <div class="fb-diagram" style="text-align:center">
+      🍎🍎🍎🍎🍎🍎 (사과 6개)　　🍌🍌🍌🍌🍌 (바나나 5개)
+      <span class="cap">그림을 같은 크기로 맞춰서 세어보면, 6개와 5개로 차이가 크지 않아요</span>
     </div>
     <div class="story-line">
       <div class="story-avatar">🧒</div>
       <div class="story-bubble"><span class="story-name">지호</span>그림 "크기"를 다르게 그리면, 개수는 비슷해도 훨씬 많아 보이게 속일 수 있는 거네요!</div>
     </div>
+    <div class="fb-diagram" style="text-align:center">
+      <div>왜곡된 그림: <span style="font-size:1.8rem">🍎</span>×6 (크게) vs <span style="font-size:.85rem">🍌</span>×5 (작게) → <span style="color:#f85149">실제보다 훨씬 차이 나 보임</span></div>
+      <div style="margin-top:6px">정직한 그림(같은 크기): 🍎×6 vs 🍌×5 → <span style="color:#3fb950">차이가 크지 않음</span></div>
+      <span class="cap">그림 "크기"를 다르게 그리면 개수는 비슷해도 완전히 다르게 보이게 만들 수 있어요</span>
+    </div>
     <div class="story-line">
       <div class="story-avatar">👧</div>
       <div class="story-bubble"><span class="story-name">하은</span>그럼 그림그래프는 항상 그림 "개수"로만 비교해야겠네요. 그림 "크기"를 보면 안 되고요.</div>
+    </div>
+    <div class="fb-diagram" style="text-align:center">
+      🍎🍎🍎🍎🍎🍎 (6개)　　🍌🍌🍌🍌🍌 (5개) — 모두 같은 크기!
+      <span class="cap">그림그래프를 볼 때는 항상 그림 "개수"만 비교하고, 그림 "크기"는 무시해야 해요</span>
     </div>
     <div class="story-line">
       <div class="story-avatar">🧑‍🏫</div>
       <div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 이건 실제로 뉴스나 광고에서도 자주 쓰는 속임수예요. 그림그래프는 그림의 "개수"가 수량을 나타내야 하는데, 그림 "크기"를 다르게 그리면 보는 사람이 착각하게 돼요.</div>
     </div>
-    <div class="fb-diagram">
-      🍎🍎🍎🍎🍎🍎 (사과 6명, 작은 그림 6개) 　 🍌🍌🍌🍌🍌 (바나나 5명, 작은 그림 5개)<br>
-      <span style="color:#f85149">잘못된 예: 🍎(크게) 6명 vs 🍌(작게) 5명 → 실제보다 훨씬 차이 나 보임</span>
-      <span class="cap">그림그래프는 그림의 크기가 아니라 개수로 수량을 비교해야 정직해요</span>
-    </div>
     <div class="story-line">
       <div class="story-avatar">🧑‍🏫</div>
       <div class="story-bubble teacher"><span class="story-name">선생님</span>그래프를 볼 때도, 그릴 때도 "그림의 크기가 똑같은가?", "단위가 명확한가?"를 확인하는 습관을 들이면, 숫자로 속이려는 그래프를 알아챌 수 있어요.</div>
     </div>
+    <div class="story-line">
+      <div class="story-avatar">🧒</div>
+      <div class="story-bubble"><span class="story-name">민준</span>선생님, 실제로 이런 그림이 있어요?</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>네, 멸종위기 동물을 보호하자는 홍보 자료에서도 이런 실수가 종종 일어나요. 예를 들어 판다는 6마리, 호랑이는 5마리로 큰 차이가 없는데, 판다 그림을 호랑이보다 훨씬 크게 그리면 어떻게 보일까요?</div>
+    </div>
+    <div class="fb-diagram" style="text-align:center">
+      <span style="font-size:2rem">🐼🐼🐼🐼🐼🐼</span> (판다 6마리, 그림을 크게 그림)　　<span style="font-size:.85rem">🐯🐯🐯🐯🐯</span> (호랑이 5마리, 그림을 작게 그림)
+      <span class="cap">실제로는 판다 6마리, 호랑이 5마리로 비슷한데, 그림 크기가 달라서 판다가 훨씬 많아 보여요</span>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">👧</div>
+      <div class="story-bubble"><span class="story-name">하은</span>동물을 지키자는 좋은 뜻으로 만든 자료도 이런 실수를 할 수 있군요! 그럼 이런 자료를 볼 때도 확인해야겠네요.</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! 좋은 뜻으로 만든 자료라도, 그림 크기를 정확히 맞추지 않으면 보는 사람이 실제 상황을 잘못 이해하게 될 수 있어요. 그래서 어떤 그림그래프든 항상 꼼꼼히 확인하는 습관이 중요해요.</div>
+    </div>
     <div class="story-takeaway"><strong>정리:</strong> 그림그래프는 그림의 "개수"가 실제 수량을 나타내야 정직한 그래프예요. 그림 크기를 다르게 그리면 개수(실제 값)는 비슷해도 훨씬 차이 나 보이게 만들 수 있어요 — 그래프를 볼 때는 항상 단위와 크기가 일정한지 확인하는 습관이 필요해요.</div>
+  `},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <p>지금까지 배운 표와 그림그래프를 실제 상황에 적용하는 조금 더 어려운 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+      <div id="dtw-1" class="prob-q" data-a="8" data-b="5" data-c="6" data-d="4" data-qtext="다음은 좋아하는 과일 조사 결과입니다. 조사에 참여한 학생은 모두 몇 명인가요?<table class='dtw-table'><tr><th>사과</th><th>바나나</th><th>포도</th><th>딸기</th></tr><tr><td>8</td><td>5</td><td>6</td><td>4</td></tr></table>" data-solfn="dtwSol1">다음은 좋아하는 과일 조사 결과입니다. 조사에 참여한 학생은 모두 몇 명인가요?<table class="dtw-table"><tr><th>사과</th><th>바나나</th><th>포도</th><th>딸기</th></tr><tr><td>8</td><td>5</td><td>6</td><td>4</td></tr></table><button class="havruta-show-btn" onclick="dtwSol1('dtw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="dtwGen1('dtw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+      <div id="dtw-2" class="prob-q" data-a="7" data-b="12" data-c="5" data-d="9" data-qtext="다음은 좋아하는 계절 조사 결과입니다. 가장 많이 좋아하는 계절과 가장 적게 좋아하는 계절의 학생 수 차이는?<table class='dtw-table'><tr><th>봄</th><th>여름</th><th>가을</th><th>겨울</th></tr><tr><td>7</td><td>12</td><td>5</td><td>9</td></tr></table>" data-solfn="dtwSol2">다음은 좋아하는 계절 조사 결과입니다. 가장 많이 좋아하는 계절과 가장 적게 좋아하는 계절의 학생 수 차이는?<table class="dtw-table"><tr><th>봄</th><th>여름</th><th>가을</th><th>겨울</th></tr><tr><td>7</td><td>12</td><td>5</td><td>9</td></tr></table><button class="havruta-show-btn" onclick="dtwSol2('dtw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="dtwGen2('dtw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+      <div id="dtw-3" class="prob-q" data-big="3" data-small="4" data-qtext="그림그래프에서 큰 그림(10명) 3개, 작은 그림(1명) 4개로 그려졌다면 실제 학생 수는 몇 명인가요?" data-solfn="dtwSol3">그림그래프에서 큰 그림(10명) 3개, 작은 그림(1명) 4개로 그려졌다면 실제 학생 수는 몇 명인가요?<br><button class="havruta-show-btn" onclick="dtwSol3('dtw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="dtwGen3('dtw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+      <div id="dtw-4" class="prob-q" data-a="6" data-b="9" data-c="7" data-total="29" data-qtext="아래 표에서 딸기를 좋아하는 학생 수가 빈칸입니다. 합계가 29명이라면 빈칸은 몇 명인가요?<table class='dtw-table'><tr><th>사과</th><th>바나나</th><th>포도</th><th>딸기</th><th>합계</th></tr><tr><td>6</td><td>9</td><td>7</td><td>?</td><td>29</td></tr></table>" data-solfn="dtwSol4">아래 표에서 딸기를 좋아하는 학생 수가 빈칸입니다. 합계가 29명이라면 빈칸은 몇 명인가요?<table class="dtw-table"><tr><th>사과</th><th>바나나</th><th>포도</th><th>딸기</th><th>합계</th></tr><tr><td>6</td><td>9</td><td>7</td><td>?</td><td>29</td></tr></table><button class="havruta-show-btn" onclick="dtwSol4('dtw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="dtwGen4('dtw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+      <div id="dtw-5" class="prob-q" data-a1="8" data-a2="5" data-qtext="1반에서 사과를 좋아하는 학생은 8명, 2반에서 사과를 좋아하는 학생은 5명입니다. 두 반을 합치면 사과를 좋아하는 학생은 모두 몇 명인가요?" data-solfn="dtwSol5">1반에서 사과를 좋아하는 학생은 8명, 2반에서 사과를 좋아하는 학생은 5명입니다. 두 반을 합치면 사과를 좋아하는 학생은 모두 몇 명인가요?<br><button class="havruta-show-btn" onclick="dtwSol5('dtw-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="dtwGen5('dtw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+      <div id="dtw-6" class="prob-q" data-a="9" data-b="14" data-c="7" data-qtext="다음은 좋아하는 간식 조사 결과입니다. 가장 인기있는 간식을 학생 1인당 2개씩 준비하려면, 총 몇 개를 준비해야 하나요?<table class='dtw-table'><tr><th>젤리</th><th>과자</th><th>초콜릿</th></tr><tr><td>9</td><td>14</td><td>7</td></tr></table>" data-solfn="dtwSol6">다음은 좋아하는 간식 조사 결과입니다. 가장 인기있는 간식을 학생 1인당 2개씩 준비하려면, 총 몇 개를 준비해야 하나요?<table class="dtw-table"><tr><th>젤리</th><th>과자</th><th>초콜릿</th></tr><tr><td>9</td><td>14</td><td>7</td></tr></table><button class="havruta-show-btn" onclick="dtwSol6('dtw-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="dtwGen6('dtw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+      <div id="dtw-7" class="prob-q" data-a1="10" data-b1="6" data-c1="8" data-a2="7" data-b2="12" data-c2="9" data-qtext="지난달과 이번달 좋아하는 운동 조사에서 1등이 바뀌었는지 확인해 보세요.<table class='dtw-table'><tr><th></th><th>축구</th><th>농구</th><th>줄넘기</th></tr><tr><td>지난달</td><td>10</td><td>6</td><td>8</td></tr><tr><td>이번달</td><td>7</td><td>12</td><td>9</td></tr></table>" data-solfn="dtwSol7">지난달과 이번달 좋아하는 운동 조사에서 1등이 바뀌었는지 확인해 보세요.<table class="dtw-table"><tr><th></th><th>축구</th><th>농구</th><th>줄넘기</th></tr><tr><td>지난달</td><td>10</td><td>6</td><td>8</td></tr><tr><td>이번달</td><td>7</td><td>12</td><td>9</td></tr></table><button class="havruta-show-btn" onclick="dtwSol7('dtw-7')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="dtwGen7('dtw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+      <div id="dtw-8" class="prob-q" data-n="23" data-qtext="표에서 23명이라는 값을 그림그래프로 나타내려고 합니다. 큰 그림(10명)과 작은 그림(1명)을 각각 몇 개씩 그려야 하나요?" data-solfn="dtwSol8">표에서 23명이라는 값을 그림그래프로 나타내려고 합니다. 큰 그림(10명)과 작은 그림(1명)을 각각 몇 개씩 그려야 하나요?<br><button class="havruta-show-btn" onclick="dtwSol8('dtw-8')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="dtwGen8('dtw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+      <div id="dtw-9" class="prob-q" data-mapple="5" data-mgrape="3" data-fapple="6" data-fgrape="4" data-qtext="남학생과 여학생이 좋아하는 과일을 조사했습니다. 사과를 좋아하는 학생은 전체 몇 명인가요?<table class='dtw-table'><tr><th></th><th>사과</th><th>포도</th></tr><tr><td>남학생</td><td>5</td><td>3</td></tr><tr><td>여학생</td><td>6</td><td>4</td></tr></table>" data-solfn="dtwSol9">남학생과 여학생이 좋아하는 과일을 조사했습니다. 사과를 좋아하는 학생은 전체 몇 명인가요?<table class="dtw-table"><tr><th></th><th>사과</th><th>포도</th></tr><tr><td>남학생</td><td>5</td><td>3</td></tr><tr><td>여학생</td><td>6</td><td>4</td></tr></table><button class="havruta-show-btn" onclick="dtwSol9('dtw-9')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="dtwGen9('dtw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+      <div id="dtw-10" class="prob-q" data-actual="6" data-shown="12" data-qtext="어떤 그림그래프에서 A항목의 실제 값은 6명인데, 그림을 크게 그려서 마치 12명인 것처럼 보이게 그렸습니다. 실제 값과 보이는 값의 차이는?" data-solfn="dtwSol10">어떤 그림그래프에서 A항목의 실제 값은 6명인데, 그림을 크게 그려서 마치 12명인 것처럼 보이게 그렸습니다. 실제 값과 보이는 값의 차이는?<br><button class="havruta-show-btn" onclick="dtwSol10('dtw-10')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="dtwGen10('dtw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
   `}
 ];
 CV_DATA['e3data'] = CV_DATA_E3DATA;
+const CV_DATA_E5MIX = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>문구점에서 500원짜리 지우개 3개를 사고 2000원을 냈어요. 거스름돈은 얼마일까요?</p>
+    <p style="margin-top:10px">식으로 쓰면 <strong>2000-3×500</strong>인데, 뺄셈과 곱셈이 섞여 있으면 어떤 걸 먼저 계산해야 할까요?</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px">계산 순서를 잘못 정하면</div>
+      <div style="font-size:1rem">2000-3=1997 을 먼저 하고 ×500... <span style="color:#f85149">뭔가 이상해요!</span></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">계산 순서에는 모두가 지켜야 하는 약속이 있어요</div>
+    </div>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 덧셈과 뺄셈만 있는 식</div>
+    <ul><li>5+3-2는 어떤 순서로 계산할까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">5+3-2 <span class="arrow">➜</span> (5+3)-2 <span class="arrow">➜</span> 8-2 <span class="arrow">➜</span> <strong style="color:#3fb950">6</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">덧셈과 뺄셈만 있으면 왼쪽부터 차례로 계산해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 곱셈과 나눗셈만 있는 식</div>
+    <ul><li>12÷4×2는 어떤 순서로 계산할까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">12÷4×2 <span class="arrow">➜</span> (12÷4)×2 <span class="arrow">➜</span> 3×2 <span class="arrow">➜</span> <strong style="color:#3fb950">6</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">곱셈과 나눗셈만 있으면 이것도 왼쪽부터 차례로 계산해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 덧셈/뺄셈과 곱셈/나눗셈이 섞인 식</div>
+    <ul><li>10-2×3은 얼마일까요? 왼쪽부터 계산해도 될까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">왼쪽부터: (10-2)×3=8×3=<strong style="color:#f85149">24</strong> (틀림)</div>
+      <div style="font-size:.9rem;margin-top:4px">곱셈 먼저: 10-(2×3)=10-6=<strong style="color:#3fb950">4</strong> (맞음)</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">덧셈/뺄셈과 곱셈/나눗셈이 섞여 있으면 곱셈·나눗셈을 먼저 계산해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 괄호가 있는 식</div>
+    <ul><li>(10-2)×3과 10-2×3은 같은 식일까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">(10-2)×3 = <strong style="color:#3fb950">24</strong> 　 10-2×3 = <strong style="color:#3fb950">4</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">괄호는 "이 부분을 가장 먼저 계산하라"는 약속이라, 괄호가 있고 없고에 따라 답이 완전히 달라져요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 왜 곱셈을 먼저 계산해야 할까?</div>
+    <ul><li>2000-3×500에서 3×500이 무엇을 나타내는지 생각해볼까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">3×500 = 지우개 3개의 값 = <strong style="color:#3fb950">1500원</strong> (하나의 묶음)</div>
+      <div style="font-size:.9rem;margin-top:4px">2000 - 1500 = <strong style="color:#3fb950">500원</strong> (거스름돈)</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">3×500을 먼저 계산해야 "지우개 3개의 진짜 값"을 알 수 있어요. 그래야 2000원에서 제대로 뺄 수 있어요</div>
+    </div>
+    <ul><li>만약 순서를 어기고 왼쪽부터(2000-3 먼저) 계산하면 어떻게 될까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">2000-3=1997 <span class="arrow">➜</span> 1997×500 = <strong style="color:#f85149">998,500원</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">지우개 3개 사고 거스름돈이 998,500원이라는 건 말이 안 돼요 — 이게 바로 곱셈을 먼저 해야 하는 이유예요</div>
+    </div>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 2000-3×500을 계산할 때, 왜 곱셈(3×500)을 뺄셈보다 먼저 해야 할까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5mix-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e5mix-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e5mix-h1',0,this)">3×500은 "지우개 3개의 값"이라는 하나의 묶음이라서, 먼저 계산해야 진짜 지우개 값을 알 수 있어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5mix-h1',1,this)">곱셈은 항상 가장 센 연산이라 무조건 먼저 계산해야 해요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5mix-h1',2,this)">뺄셈부터 하면 계산이 더 쉬워서 곱셈을 나중에 해요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e5mix-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 괄호가 있으면 왜 괄호 안을 가장 먼저 계산해야 할까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5mix-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e5mix-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e5mix-h2',0,this)">괄호는 "이 부분을 하나로 묶어서 먼저 계산하라"는 약속의 기호라서, 괄호 안을 먼저 계산해야 식이 뜻하는 대로 계산돼요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5mix-h2',1,this)">괄호는 그냥 보기 좋으라고 있는 기호라 계산 순서에는 영향이 없어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5mix-h2',2,this)">괄호 안에 곱셈이나 나눗셈이 있을 때만 먼저 계산하면 돼요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e5mix-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 덧셈·뺄셈·곱셈·나눗셈이 섞인 식에서 그냥 왼쪽부터 순서대로 계산하면 안 되는 이유는?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5mix-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e5mix-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e5mix-h3',0,this)">곱셈·나눗셈을 먼저 계산해야 각 부분이 나타내는 실제 값(묶음)을 올바르게 구할 수 있어요. 왼쪽부터 계산하면 아직 묶이지 않은 상태에서 잘못 더하거나 빼게 돼요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5mix-h3',1,this)">왼쪽부터 계산해도 항상 답이 똑같이 나와요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5mix-h3',2,this)">계산 순서는 사람마다 편한 대로 다르게 정해도 상관없어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e5mix-h3"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제: 500원짜리 지우개 3개를 사고 2000원을 냈습니다. 거스름돈은 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5mix-p1',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5mix-p1">
+        <div class="fb-diagram">3×500=1500 (지우개 3개 값) <span class="arrow">➜</span> 2000-1500=<strong style="color:#3fb950">500원</strong></div>
+        <div class="sol"><strong>풀이:</strong> 2000-3×500 = 2000-1500 = 500(원)</div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 10-2×3을 계산하면 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5mix-p2',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5mix-p2">
+        <div class="fb-diagram">2×3=6 (곱셈 먼저) <span class="arrow">➜</span> 10-6=<strong style="color:#3fb950">4</strong></div>
+        <div class="sol"><strong>풀이:</strong> 10-2×3 = 10-6 = 4</div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 24÷(4+2)를 계산하면 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5mix-p3',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5mix-p3">
+        <div class="fb-diagram">4+2=6 (괄호 먼저) <span class="arrow">➜</span> 24÷6=<strong style="color:#3fb950">4</strong><br>(괄호 없이 24÷4+2를 하면 6+2=8로 답이 달라져요)</div>
+        <div class="sol"><strong>풀이:</strong> 24÷(4+2) = 24÷6 = 4</div>
+      </div>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line">
+      <div class="story-avatar">🧒</div>
+      <div class="story-bubble"><span class="story-name">민준</span>선생님, 저 계산기에 "10-2×3"을 순서대로 눌렀는데 24가 나왔어요! 근데 학교에서는 4라고 배웠는데 계산기가 틀린 거예요?</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">👧</div>
+      <div class="story-bubble"><span class="story-name">서연</span>어? 저도 예전에 그런 적 있어요! 싼 계산기는 버튼을 누른 순서대로, 그러니까 왼쪽부터 그냥 계산해버려서 그런 거 아닐까요?</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧒</div>
+      <div class="story-bubble"><span class="story-name">지호</span>아! 간단한 계산기는 버튼을 누르는 순간마다 바로바로 계산해버려서 그래요. "10 빼기 2는?" 하자마자 바로 8을 답해버리고, 그다음에 "어, ×3이 있었네" 하고 8×3을 하는 거예요. 뒤에 곱셈이 기다리고 있다는 걸 미리 알고 참았어야 하는데, 그걸 못 하는 거죠.</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">👧</div>
+      <div class="story-bubble"><span class="story-name">하은</span>그럼 같은 식인데 계산기마다 답이 다르게 나올 수도 있다는 거네요? 그럼 너무 혼란스러울 것 같아요.</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>바로 그래서 수학에는 "곱셈·나눗셈을 먼저, 그다음 덧셈·뺄셈, 괄호는 제일 먼저"라는 계산 순서 약속이 정해져 있는 거예요. 신호등이 없으면 교차로가 뒤죽박죽되는 것처럼, 계산 순서 약속이 없으면 같은 식이라도 사람마다(또는 계산기마다) 답이 달라져 버려요.</div>
+    </div>
+    <div class="fb-diagram">
+      왼쪽부터(약속 무시): (10-2)×3 = <strong style="color:#f85149">24</strong><br>
+      순서 약속대로: 10-(2×3) = <strong style="color:#3fb950">4</strong>
+      <span class="cap">과학·공학용 계산기와 프로그래밍 언어는 모두 이 약속(연산 순서)을 따르도록 만들어져 있어요</span>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>그래서 "괄호 → 곱셈·나눗셈 → 덧셈·뺄셈" 순서는 누가 계산해도, 어떤 계산기로 계산해도 똑같은 답이 나오게 해주는 전 세계 공통의 약속이에요.</div>
+    </div>
+    <div class="story-takeaway"><strong>정리:</strong> 계산 순서 규칙(괄호 → 곱셈·나눗셈 → 덧셈·뺄셈)은 누가, 어떤 도구로 계산하든 항상 같은 답이 나오게 해주는 약속이에요. 이 약속을 지키지 않으면 같은 식인데도 사람마다, 계산기마다 다른 답이 나올 수 있어요.</div>
+  `}
+];
+CV_DATA['e5mix'] = CV_DATA_E5MIX;
 const FB_DIAGRAM_H1A = '<div class="fb-diagram"><div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">'
   + '<div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div>'
   + '</div><span class="cap">사탕 15개를 5명에게 나눠주면 → 15÷5=3, 1인당 3개 (사람 수 5를 아니까 나눠주기)</span></div>';
@@ -2353,12 +3017,27 @@ const FB_DIAGRAM_MUL3 = '<div class="fb-diagram">13상자 = 10상자 묶음 + 3�
 const FB_DIAGRAM_CIRC1 = '<div class="fb-diagram"><div style="width:70px;height:70px;border-radius:50%;border:2px solid #30363d;margin:0 auto;position:relative"><div style="width:5px;height:5px;background:#3fb950;border-radius:50%;position:absolute;top:32.5px;left:32.5px"></div><div style="width:35px;height:2px;background:#f0c040;position:absolute;top:34px;left:35px"></div><div style="width:35px;height:2px;background:#58a6ff;position:absolute;top:34px;left:0;transform:rotate(50deg);transform-origin:right"></div></div><span class="cap">중심에서 원 위 어느 점까지 그어도(금색, 파란색) 컴퍼스가 벌어진 채 그대로라서 길이가 항상 같아요</span></div>';
 const FB_DIAGRAM_CIRC2 = '<div class="fb-diagram"><div style="width:70px;height:70px;border-radius:50%;border:2px solid #30363d;margin:0 auto;position:relative"><div style="width:5px;height:5px;background:#3fb950;border-radius:50%;position:absolute;top:32.5px;left:32.5px"></div><div style="width:35px;height:2px;background:#f0c040;position:absolute;top:34px;left:35px"></div><div style="width:35px;height:2px;background:#58a6ff;position:absolute;top:34px;left:0"></div></div><span class="cap">지름은 반지름(금색)+반지름(파란색) — 중심 양쪽으로 반지름이 하나씩 이어진 거예요</span></div>';
 const FB_DIAGRAM_CIRC3 = '<div class="fb-diagram"><div style="width:70px;height:70px;border-radius:50%;border:2px solid #30363d;margin:0 auto;position:relative"><div style="width:70px;height:2px;background:#f85149;position:absolute;top:34px;left:0"></div></div><span class="cap">중심을 지나는 지름(빨간 선)이 원 안에서 그을 수 있는 가장 긴 선분이에요</span></div>';
-const FB_DIAGRAM_MSR1 = '<div class="fb-diagram">1L <span class="arrow">=</span> 1000mL<span class="cap">두 표현은 단위만 다를 뿐, 담긴 물의 양은 완전히 똑같아요</span></div>';
-const FB_DIAGRAM_MSR2 = '<div class="fb-diagram">1500mL <span class="arrow">➜</span> 1000mL+500mL <span class="arrow">➜</span> <strong style="color:#3fb950">1L 500mL</strong><span class="cap">숫자가 작아지고, "1리터 반"처럼 실생활에서 말하기도 훨씬 쉬워져요</span></div>';
-const FB_DIAGRAM_MSR3 = '<div class="fb-diagram">🚚 트럭 무게 → kg(더 큰 단위: t도 있음)　　🍬 사탕 무게 → g<span class="cap">숫자가 너무 크거나(예: 5000000g) 너무 작아지지(예: 0.005kg) 않도록 상황에 맞는 단위를 골라요</span></div>';
-const FB_DIAGRAM_DATA1 = '<div class="fb-diagram">표: 8, 5, 6, 4 (숫자를 하나씩 읽어야 함)<br>그림그래프: 🍎🍎🍎🍎🍎🍎🍎🍎 / 🍌🍌🍌🍌🍌 / 🍇🍇🍇🍇🍇🍇 / 🍓🍓🍓🍓<span class="cap">그림의 길이를 보면 숫자를 안 읽어도 어느 게 더 많은지 바로 보여요</span></div>';
+const FB_DIAGRAM_CIRC_CHORD = '<div class="fb-diagram"><svg width="140" height="140" viewBox="0 0 140 140" style="display:block;margin:0 auto">'
+  + '<circle cx="70" cy="70" r="60" fill="none" stroke="#30363d" stroke-width="2"/>'
+  + '<line x1="129" y1="60" x2="109" y2="24" stroke="#58a6ff" stroke-width="2.5"/>'
+  + '<line x1="100" y1="18" x2="18" y2="40" stroke="#f0c040" stroke-width="2.5"/>'
+  + '<line x1="10" y1="70" x2="130" y2="70" stroke="#f85149" stroke-width="2.5"/>'
+  + '<circle cx="70" cy="70" r="3" fill="#3fb950"/>'
+  + '</svg>'
+  + '<div style="font-size:.68rem;margin-top:4px"><span style="color:#58a6ff">━ 현1(짧음)</span>&nbsp;&nbsp;<span style="color:#f0c040">━ 현2(중간)</span>&nbsp;&nbsp;<span style="color:#f85149">━ 지름(중심을 지남, 가장 긺)</span></div>'
+  + '<span class="cap">원 위의 두 점을 잇는 선분을 "현"이라고 해요. 현은 어디를 잇느냐에 따라 길이가 다 달라요 — 그중 중심을 지나는 지름이 가장 긴 현이에요</span></div>';
+const FB_DIAGRAM_DATA1 = '<div class="fb-diagram" style="text-align:center">표: 8, 5, 6, 4 (숫자를 하나씩 읽어야 함)<br><br>그림그래프:'
+  + '<div style="display:inline-block;text-align:left;margin-top:4px">'
+  + '🍎🍎🍎🍎🍎🍎🍎🍎 (8)<br>🍌🍌🍌🍌🍌 (5)<br>🍇🍇🍇🍇🍇🍇 (6)<br>🍓🍓🍓🍓 (4)'
+  + '</div>'
+  + '<span class="cap">그림의 시작 위치를 맞춰서 보면, 길이만 봐도 숫자를 안 읽고 어느 게 더 많은지 바로 보여요</span></div>';
 const FB_DIAGRAM_DATA2 = '<div class="fb-diagram">100명을 그림 100개로 그리면… 🍎×100 (너무 많아서 세기 힘들어요)<br>큰 그림(10명)+작은 그림(1명)으로 그리면 → 훨씬 적은 그림으로 표현 가능<span class="cap">단위를 크게 잡으면 그림 개수를 확 줄일 수 있어요</span></div>';
 const FB_DIAGRAM_DATA3 = '<div class="fb-diagram">적은 것부터: 🍓4 - 🍌5 - 🍇6 - 🍎8<br>많은 것부터: 🍎8 - 🍇6 - 🍌5 - 🍓4<span class="cap">두 경우 모두 개수는 안 바뀌어요 — 순서는 자유롭게 정할 수 있어요</span></div>';
+const FB_DIAGRAM_MIX1 = '<div class="fb-diagram">3×500 = 지우개 3개 값(하나의 묶음) = <strong style="color:#3fb950">1500원</strong><br>2000-1500 = <strong style="color:#3fb950">500원</strong>(거스름돈)<span class="cap">3×500을 먼저 계산해야 "지우개 3개의 진짜 값"을 알 수 있어요</span></div>';
+const FB_DIAGRAM_MIX2 = '<div class="fb-diagram">(10-2)×3 = 8×3 = <strong style="color:#f85149">24</strong><br>10-2×3 = 10-6 = <strong style="color:#3fb950">4</strong><span class="cap">괄호가 있고 없고에 따라 완전히 다른 답이 나와요 — 괄호는 "이 부분을 먼저 계산하라"는 약속이에요</span></div>';
+const FB_DIAGRAM_MIX3 = '<div class="fb-diagram">왼쪽부터: (10-2)×3 = <strong style="color:#f85149">24</strong> (틀림)<br>곱셈 먼저: 10-(2×3) = <strong style="color:#3fb950">4</strong> (맞음)<span class="cap">곱셈·나눗셈을 먼저 계산해야 진짜 답이 나와요 — 왼쪽부터 그냥 계산하면 틀려요</span></div>';
+const FB_DIAGRAM_MIX1_CE = '<div class="fb-diagram">2×(3+4)에서 "곱셈이 무조건 먼저"라며 2×3부터 계산하면 → 6+4=<strong style="color:#f85149">10</strong> (틀림)<br>괄호 안(3+4=7)을 먼저 계산하면 → 2×7=<strong style="color:#3fb950">14</strong> (맞음)<span class="cap">반례: "곱셈이 항상 세다"는 말은 틀려요 — 괄호가 있으면 괄호 안이 곱셈보다 먼저예요</span></div>';
+const FB_DIAGRAM_MIX3_CE = '<div class="fb-diagram">2000-3×500을 왼쪽부터 계산하면: 2000-3=1997 <span class="arrow">➜</span> 1997×500=<strong style="color:#f85149">998,500원</strong><br>순서 규칙대로 계산하면: 2000-(3×500)=2000-1500=<strong style="color:#3fb950">500원</strong><span class="cap">반례: 거스름돈이 998,500원이라니 말이 안 돼요 — "왼쪽부터 해도 항상 같다"는 주장은 이 반례로 바로 깨져요</span></div>';
 const HAVRUTA_FB = {
   'e3div-h1': [
     {ok:true, text:'맞아요! "몇 명에게 나눠줄까?"처럼 사람 수를 아는 상황에서는 나눠주기가 자연스러워요.', diagram:FB_DIAGRAM_H1A},
@@ -2391,17 +3070,17 @@ const HAVRUTA_FB = {
     {ok:false, text:'최소공배수 비유도 맞아요! "최초 동시 만남"은 두 주기가 처음 겹치는 시점을 정확히 표현하고 있어요.', diagram:FB_DIAGRAM_GCD3_W1},
     {ok:false, text:'두 비유 모두 실제 개념의 의미를 잘 담고 있어요. 공식만 기계적으로 외우는 것보다 이런 비유로 이해하면 훨씬 오래 기억에 남아요.', diagram:FB_DIAGRAM_GCD3_W2}
   ],
-  'e5pct-h1': [
+  'e6pct-h1': [
     {ok:true, text:'맞아요! 1/3은 소수로 바꾸면 약 33.3%예요. 30%보다 더 많이 깎아주니까 1/3 할인이 더 싸요.', diagram:FB_DIAGRAM_PCT1},
     {ok:false, text:'비슷해 보이지만 정확히 계산하면 달라요. 1/3을 %로 바꿔서 30%와 비교해볼까요?', diagram:FB_DIAGRAM_PCT1},
     {ok:false, text:'숫자가 크다고 항상 더 할인되는 건 아니에요. 30%와 1/3(≈33.3%)을 같은 단위(%)로 맞춰서 비교해야 해요.', diagram:FB_DIAGRAM_PCT1}
   ],
-  'e5pct-h2': [
+  'e6pct-h2': [
     {ok:true, text:'맞아요! 두 번째 50% 할인은 첫 번째 할인 후 이미 줄어든 가격에 적용돼요. 그래서 최종 가격은 원래의 25%만 남고, 공짜(0원)는 안 돼요.', diagram:FB_DIAGRAM_PCT2},
     {ok:false, text:'50+50=100처럼 그냥 더하면 안 돼요! 두 번째 할인은 원래 가격이 아니라 "이미 한 번 깎인 가격"에 적용되거든요. 실제로 계산해볼까요?', diagram:FB_DIAGRAM_PCT2},
     {ok:false, text:'할인을 두 번 하면 가격은 계속 낮아져요, 비싸지지 않아요. 실제 계산으로 확인해볼까요?', diagram:FB_DIAGRAM_PCT2}
   ],
-  'e5pct-h3': [
+  'e6pct-h3': [
     {ok:true, text:'맞아요! 실업률은 전체 국민이 아니라 "경제활동인구"(일할 수 있고 일할 의사가 있는 사람들) 안에서 계산한 비율이에요. 기준 집단이 다르면 같은 숫자라도 뜻이 달라져요.', diagram:FB_DIAGRAM_PCT3},
     {ok:false, text:'전체 국민 100명 기준이 아니에요! 아기, 학생, 은퇴한 어르신 등은 보통 "경제활동인구"에서 빠지기 때문에, 실업률은 훨씬 좁은 기준 집단 안에서 계산돼요.', diagram:FB_DIAGRAM_PCT3},
     {ok:false, text:'그냥 느낌으로 정하는 게 아니라, "경제활동인구 중 실업자 수"를 정확히 나눠서 계산하는 숫자예요. 어떤 집단을 기준으로 하는지가 핵심이에요.', diagram:FB_DIAGRAM_PCT3}
@@ -2449,22 +3128,7 @@ const HAVRUTA_FB = {
   'e3circ-h3': [
     {ok:true, text:'맞아요! 지름은 중심을 지나면서 원 양쪽 끝을 잇는 선분이라, 원 안에서 그을 수 있는 가장 긴 선분이에요.', diagram:FB_DIAGRAM_CIRC3},
     {ok:false, text:'반지름은 중심에서 원 위까지만 가는 선이라 지름의 절반밖에 안 돼요. 더 긴 선분이 있어요.', diagram:FB_DIAGRAM_CIRC3},
-    {ok:false, text:'원 위의 두 점을 잇는 선분은 위치에 따라 길이가 다 달라요 — 그중 가장 긴 건 중심을 지나는 선분이에요.', diagram:FB_DIAGRAM_CIRC3}
-  ],
-  'e3msr-h1': [
-    {ok:true, text:'맞아요! 1L=1000mL니까 단위만 다를 뿐 정확히 같은 양이에요.', diagram:FB_DIAGRAM_MSR1},
-    {ok:false, text:'숫자가 크다고 양이 많은 게 아니에요! 1L와 1000mL는 단위가 다른 것뿐, 실제로는 같은 양이에요.', diagram:FB_DIAGRAM_MSR1},
-    {ok:false, text:'단위 이름의 크고 작음이 아니라, 실제로 1L=1000mL인지 확인해봐야 해요 — 확인해보면 완전히 같아요.', diagram:FB_DIAGRAM_MSR1}
-  ],
-  'e3msr-h2': [
-    {ok:true, text:'맞아요! 1000mL가 넘으면 L 단위로 묶어서 표현하는 게 숫자도 짧아지고 크기를 이해하기도 쉬워요.', diagram:FB_DIAGRAM_MSR2},
-    {ok:false, text:'1500mL도 정확한 표현이에요! 틀린 게 아니라, 1L 500mL로 바꾸면 더 이해하기 쉬워진다는 게 핵심이에요.', diagram:FB_DIAGRAM_MSR2},
-    {ok:false, text:'아무 이유 없는 게 아니라, 숫자가 작아지고 실생활에서 말하기 편해진다는 분명한 이유가 있어요.', diagram:FB_DIAGRAM_MSR2}
-  ],
-  'e3msr-h3': [
-    {ok:true, text:'맞아요! 무게가 클 때는 kg, 작을 때는 g을 쓰면 숫자가 너무 크거나 작아지지 않아서 이해하기 편해요.', diagram:FB_DIAGRAM_MSR3},
-    {ok:false, text:'kg과 g은 사람이냐 물건이냐가 아니라, 무게가 크냐 작냐에 따라 골라 써요.', diagram:FB_DIAGRAM_MSR3},
-    {ok:false, text:'아무거나 골라도 되는 건 아니에요! 숫자가 너무 커지거나(예: 5,000,000g) 너무 작아지지(예: 0.005kg) 않게 고르는 게 좋아요.', diagram:FB_DIAGRAM_MSR3}
+    {ok:false, text:'원 위의 두 점을 잇는 선분(현)은 어디를 잇느냐에 따라 길이가 다 달라요. 아래 그림처럼 짧은 현, 중간 현이 있고, 그중 중심을 지나는 지름이 가장 긴 현이에요.', diagram:FB_DIAGRAM_CIRC_CHORD}
   ],
   'e3data-h1': [
     {ok:true, text:'맞아요! 표는 숫자를 하나하나 읽어야 하지만, 그림그래프는 그림의 길이를 보고 한눈에 크기를 비교할 수 있어요.', diagram:FB_DIAGRAM_DATA1},
@@ -2480,6 +3144,21 @@ const HAVRUTA_FB = {
     {ok:true, text:'맞아요! 순서는 자유예요. 다만 많은 것부터 나열하면 비교하기가 더 편해요.', diagram:FB_DIAGRAM_DATA3},
     {ok:false, text:'꼭 가나다 순서일 필요는 없어요! 어떤 순서로 나열해도 개수(값) 자체는 바뀌지 않아요.', diagram:FB_DIAGRAM_DATA3},
     {ok:false, text:'순서를 바꿔도 학생 수는 그대로예요 — 나열 순서와 실제 개수는 서로 다른 문제예요.', diagram:FB_DIAGRAM_DATA3}
+  ],
+  'e5mix-h1': [
+    {ok:true, text:'맞아요! 3×500은 "지우개 3개의 값"이라는 하나의 묶음이에요. 먼저 계산해야 그 묶음의 진짜 값(1500원)을 알고, 2000원에서 제대로 뺄 수 있어요.', diagram:FB_DIAGRAM_MIX1},
+    {ok:false, text:'"곱셈이 항상 세다"는 말은 반례로 바로 깨져요 — 2×(3+4)에서 괄호를 무시하고 곱셈부터 하면 10이 나오지만 진짜 답은 14예요. 괄호가 있으면 괄호 안이 곱셈보다 먼저예요.', diagram:FB_DIAGRAM_MIX1_CE},
+    {ok:false, text:'계산이 쉬운 순서가 아니라, 3×500이 나타내는 의미(지우개 3개 값) 때문에 먼저 계산해야 하는 거예요. 뺄셈부터 하면 2000-3=1997처럼 뜻이 이상한 계산이 돼요.', diagram:FB_DIAGRAM_MIX1}
+  ],
+  'e5mix-h2': [
+    {ok:true, text:'맞아요! 괄호는 "이 부분을 하나로 묶어서 먼저 계산하라"는 약속의 기호예요. 그래서 괄호 안을 먼저 계산해야 식이 뜻하는 대로 계산돼요.', diagram:FB_DIAGRAM_MIX2},
+    {ok:false, text:'괄호는 장식이 아니에요! (10-2)×3=24와 10-2×3=4처럼, 괄호가 있고 없고에 따라 답이 완전히 달라져요.', diagram:FB_DIAGRAM_MIX2},
+    {ok:false, text:'괄호 안에 무엇이 있든 상관없이, 괄호가 있으면 항상 그 안을 가장 먼저 계산해요.', diagram:FB_DIAGRAM_MIX2}
+  ],
+  'e5mix-h3': [
+    {ok:true, text:'맞아요! 곱셈·나눗셈을 먼저 계산해야 각 부분이 나타내는 실제 값(묶음)을 올바르게 구할 수 있어요. 왼쪽부터 계산하면 아직 묶이지 않은 채로 잘못 더하거나 빼게 돼요.', diagram:FB_DIAGRAM_MIX3},
+    {ok:false, text:'"왼쪽부터 해도 항상 같다"는 말은 반례로 바로 깨져요 — 2000-3×500을 왼쪽부터 계산하면 998,500원이라는 말도 안 되는 값이 나와요. 곱셈을 먼저 해야 진짜 답(500원)이 나와요.', diagram:FB_DIAGRAM_MIX3_CE},
+    {ok:false, text:'사람마다 다르게 계산하면 같은 식인데도 답이 제각각이 돼요. 그래서 모두가 따르는 공통 순서 규칙이 필요해요.', diagram:FB_DIAGRAM_MIX3}
   ]
 };
 function cvInit(id){
@@ -2500,9 +3179,34 @@ function cvShowSection(id, idx){
   document.getElementById('cv-'+id+'-grid').style.display = 'none';
   const detail = document.getElementById('cv-'+id+'-detail');
   detail.style.display = '';
-  document.getElementById('cv-'+id+'-detail-body').innerHTML =
-    '<div class="section '+d.cls+'"><div class="section-title">'+d.title+'</div>'+d.html+'</div>';
+  if(d.items){
+    cvRenderGroupGrid(id, idx);
+  } else {
+    document.getElementById('cv-'+id+'-detail-body').innerHTML =
+      '<div class="section '+d.cls+'"><div class="section-title">'+d.title+'</div>'+d.html+'</div>';
+  }
   detail.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function cvRenderGroupGrid(id, groupIdx){
+  const group = CV_DATA[id][groupIdx];
+  const gridHtml = group.items.map(function(d, i){
+    const sp = d.title.indexOf(' ');
+    const icon = sp>0 ? d.title.slice(0,sp) : '📄';
+    const label = sp>0 ? d.title.slice(sp+1) : d.title;
+    return '<button class="cv-grid-btn" onclick="cvShowSubSection(\''+id+'\','+groupIdx+','+i+')">'
+      + '<div class="cv-grid-icon">'+icon+'</div>'
+      + '<div class="cv-grid-title">'+label+'</div>'
+      + '</button>';
+  }).join('');
+  document.getElementById('cv-'+id+'-detail-body').innerHTML =
+    '<div class="section-title" style="margin-bottom:10px">'+group.title+'</div>'
+    + '<div class="cv-grid">'+gridHtml+'</div>';
+}
+function cvShowSubSection(id, groupIdx, subIdx){
+  const d = CV_DATA[id][groupIdx].items[subIdx];
+  document.getElementById('cv-'+id+'-detail-body').innerHTML =
+    '<button class="cv-back-btn" onclick="cvShowSection(\''+id+'\','+groupIdx+')">← 미션 목록으로</button>'
+    + '<div class="section '+d.cls+'"><div class="section-title">'+d.title+'</div>'+d.html+'</div>';
 }
 function cvShowGrid(id){
   document.getElementById('cv-'+id+'-detail').style.display = 'none';
@@ -2537,7 +3241,1271 @@ function havrutaReveal(qid, btn){
 }
 document.addEventListener('DOMContentLoaded', function(){
   Object.keys(CV_DATA).forEach(cvInit);
+  tRenderStarBar();
 });
+// ── 토로 모험북: 별 모으기 ──
+function tStars(){
+  try{ return JSON.parse(localStorage.getItem('jm_e3msr_stars')||'[]'); }catch(e){ return []; }
+}
+function tAwardStar(starId){
+  const stars = tStars();
+  if(!stars.includes(starId)){
+    stars.push(starId);
+    localStorage.setItem('jm_e3msr_stars', JSON.stringify(stars));
+  }
+  tRenderStarBar();
+}
+function tRenderStarBar(){
+  const bar = document.getElementById('e3msr-starbar');
+  if(!bar) return;
+  const n = tStars().length;
+  const total = 10;
+  let html = '⭐'.repeat(Math.min(n,total)) + '☆'.repeat(Math.max(0,total-n)) + ' (' + n + '/' + total + ')';
+  if(n >= total) html += ' 🏅 물의 왕국 배지 획득!';
+  bar.innerHTML = html;
+}
+function tToggleColor(el){
+  el.classList.toggle('filled');
+}
+function tCheckOrder(id, prefix, correctArr, starId){
+  let allCorrect = true;
+  for(let i=0;i<correctArr.length;i++){
+    const el = document.getElementById(prefix+i);
+    if(!el || el.value.trim() !== String(correctArr[i])) allCorrect = false;
+  }
+  const fb = document.getElementById('fb-'+id);
+  if(allCorrect){
+    fb.innerHTML = '<div class="story-line"><div class="story-avatar">🐢</div><div class="story-bubble">"우와, 정확해! 순서를 딱 맞혔어!"</div></div>';
+    fb.className = 'havruta-fb show';
+    tAwardStar(starId);
+  } else {
+    fb.innerHTML = '<div class="story-line"><div class="story-avatar">🐢</div><div class="story-bubble">"음... 다시 한번 생각해볼까? 평소에 어떤 그릇이 더 큰지 떠올려보자!"</div></div>';
+    fb.className = 'havruta-fb show';
+  }
+}
+function tCheckAnswer(id, inputId, correct, starId){
+  const input = document.getElementById(inputId);
+  const val = input.value.trim();
+  const fb = document.getElementById('fb-'+id);
+  if(val === String(correct)){
+    fb.innerHTML = '<div class="story-line"><div class="story-avatar">🐢</div><div class="story-bubble">"아하! 정답이야! 정확히 '+correct+'(이)구나!"</div></div>';
+    fb.className = 'havruta-fb show';
+    tAwardStar(starId);
+  } else {
+    fb.innerHTML = '<div class="story-line"><div class="story-avatar">🐢</div><div class="story-bubble">"음... 다시 한번 세어볼까? 색칠 칸을 채워보면서 세어 보자!"</div></div>';
+    fb.className = 'havruta-fb show';
+  }
+}
+// ── 곱셈(e3mul) 문장제 심화 10선: 랜덤 생성 + 다음 문제 + 풀이 접기 ──
+function mwSetQuestion(el, qtext, solfn){
+  el.setAttribute('data-qtext', qtext);
+  el.setAttribute('data-solfn', solfn);
+  el.setAttribute('data-showing', '0');
+  el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+el.id+'\')">💡 풀이 보기</button>';
+}
+function mwRenderToggle(id, diagramHtml, solfn){
+  var el = document.getElementById(id);
+  var qtext = el.getAttribute('data-qtext');
+  var showing = el.getAttribute('data-showing') === '1';
+  if(showing){
+    el.setAttribute('data-showing', '0');
+    el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">💡 풀이 보기</button>';
+  } else {
+    el.setAttribute('data-showing', '1');
+    el.innerHTML = qtext + diagramHtml + '<button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')" style="width:100%;margin-top:8px">👆 접어두기</button>';
+  }
+}
+function mwGen1(id){
+  var items = ['색연필','지우개','공책','클립','스티커'];
+  var item = items[Math.floor(Math.random()*items.length)];
+  var a = 12 + Math.floor(Math.random()*34);
+  var bTen = 1 + Math.floor(Math.random()*4);
+  var bOne = 1 + Math.floor(Math.random()*9);
+  var b = bTen*10 + bOne;
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b); el.setAttribute('data-item', item);
+  mwSetQuestion(el, '문구점에서 '+item+'이(가) '+a+'개씩 들어있는 상자를 '+b+'상자 주문했습니다. '+item+'은(는) 모두 몇 개인가요?', 'mwSol1');
+}
+function mwSol1(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b');
+  var bTen = Math.floor(b/10)*10, bOne = b%10;
+  var p1=a*bTen, p2=a*bOne, ans=a*b;
+  mwRenderToggle(id, '<div class="fb-diagram">'+a+'×'+b+' = '+a+'×'+bTen+' + '+a+'×'+bOne+' = '+p1+'+'+p2+' = <strong style="color:#3fb950">'+ans+'개</strong></div>', 'mwSol1');
+}
+function mwGen2(id){
+  var x = 11 + Math.floor(Math.random()*25);
+  var y = 11 + Math.floor(Math.random()*25);
+  var tries = 0;
+  while(y===x && tries<10){ y = 11+Math.floor(Math.random()*25); tries++; }
+  var el = document.getElementById(id);
+  el.setAttribute('data-x', x); el.setAttribute('data-y', y);
+  mwSetQuestion(el, '체육관에 의자를 배치하는 두 가지 방법이 있습니다. 방법 A: 한 줄에 '+x+'개씩 '+y+'줄. 방법 B: 한 줄에 '+y+'개씩 '+x+'줄. 두 방법 중 어느 쪽이 의자가 더 많이 필요한가요? 이유도 설명해 보세요.', 'mwSol2');
+}
+function mwSol2(id){
+  var el = document.getElementById(id);
+  var x=+el.getAttribute('data-x'), y=+el.getAttribute('data-y');
+  var ans = x*y;
+  mwRenderToggle(id, '<div class="fb-diagram">A: '+x+'×'+y+' = <strong style="color:#3fb950">'+ans+'개</strong><br>B: '+y+'×'+x+' = <strong style="color:#3fb950">'+ans+'개</strong><br>두 방법 모두 '+ans+'개로 같아요 — 줄 수와 한 줄당 개수를 바꿔도(교환법칙) 전체 배치를 90도 돌린 것과 같아서 개수는 변하지 않아요</div>', 'mwSol2');
+}
+function mwGen3(id){
+  var t = 4 + Math.floor(Math.random()*6);
+  var p = 12 + Math.floor(Math.random()*19);
+  var d = 3 + Math.floor(Math.random()*7);
+  var el = document.getElementById(id);
+  el.setAttribute('data-t', t); el.setAttribute('data-p', p); el.setAttribute('data-d', d);
+  mwSetQuestion(el, '버스가 하루에 '+t+'번 운행하고, 매번 '+p+'명의 승객을 태웁니다. 이 버스가 '+d+'일 동안 운행하면 태운 승객은 모두 몇 명인가요? (두 가지 순서로 계산해서 확인해 보세요.)', 'mwSol3');
+}
+function mwSol3(id){
+  var el = document.getElementById(id);
+  var t=+el.getAttribute('data-t'), p=+el.getAttribute('data-p'), d=+el.getAttribute('data-d');
+  var tp=t*p, ans1=tp*d, pd=p*d, ans2=t*pd;
+  mwRenderToggle(id, '<div class="fb-diagram">('+t+'×'+p+')×'+d+' = '+tp+'×'+d+' = <strong style="color:#3fb950">'+ans1+'명</strong><br>'+t+'×('+p+'×'+d+') = '+t+'×'+pd+' = <strong style="color:#3fb950">'+ans2+'명</strong><br>어느 두 수를 먼저 묶어도 답은 같아요</div>', 'mwSol3');
+}
+function mwGen4(id){
+  var names = ['지호','서연','민준','하은'];
+  var name = names[Math.floor(Math.random()*names.length)];
+  var tenPart = 1 + Math.floor(Math.random()*8);
+  var onePart = 1 + Math.floor(Math.random()*9);
+  var a = tenPart*10 + onePart;
+  var b = 11 + Math.floor(Math.random()*34);
+  var p1 = tenPart*10*b, p2 = onePart*b;
+  var correctSum = p1+p2;
+  var deltas = [10,20,30,-10,-20,90,100,-90];
+  var delta = deltas[Math.floor(Math.random()*deltas.length)];
+  var wrongSum = correctSum + delta;
+  var el = document.getElementById(id);
+  el.setAttribute('data-tp', tenPart); el.setAttribute('data-op', onePart); el.setAttribute('data-b', b);
+  el.setAttribute('data-p1', p1); el.setAttribute('data-p2', p2); el.setAttribute('data-wrong', wrongSum);
+  mwSetQuestion(el, name+'가 '+a+'×'+b+'을 다음과 같이 계산했습니다: "'+(tenPart*10)+'×'+b+'='+p1+', '+onePart+'×'+b+'='+p2+', '+p1+'+'+p2+'='+wrongSum+'." 이 계산에서 잘못된 부분을 찾아 바르게 고쳐 보세요.', 'mwSol4');
+}
+function mwSol4(id){
+  var el = document.getElementById(id);
+  var tenPart=+el.getAttribute('data-tp'), onePart=+el.getAttribute('data-op'), b=+el.getAttribute('data-b');
+  var a = tenPart*10+onePart;
+  var p1=+el.getAttribute('data-p1'), p2=+el.getAttribute('data-p2'), wrongSum=+el.getAttribute('data-wrong');
+  var correctSum = p1+p2;
+  mwRenderToggle(id, '<div class="fb-diagram">'+(tenPart*10)+'×'+b+'='+p1+', '+onePart+'×'+b+'='+p2+'까지는 맞아요. 그런데 '+p1+'+'+p2+'='+wrongSum+'는 <strong style="color:#f85149">덧셈이 틀렸어요</strong>(올바른 합은 '+correctSum+')<br>'+a+'×'+b+' = <strong style="color:#3fb950">'+correctSum+'</strong></div>', 'mwSol4');
+}
+function mwGen5(id){
+  var hund = 1 + Math.floor(Math.random()*4);
+  var tenA = Math.floor(Math.random()*10);
+  var oneA = Math.floor(Math.random()*10);
+  if(tenA===0 && oneA===0){ tenA = 1+Math.floor(Math.random()*9); }
+  var A = hund*100 + tenA*10 + oneA;
+  var bTen = 1 + Math.floor(Math.random()*4);
+  var bOne = 1 + Math.floor(Math.random()*9);
+  var B = bTen*10 + bOne;
+  var el = document.getElementById(id);
+  el.setAttribute('data-h', hund); el.setAttribute('data-ta', tenA); el.setAttribute('data-oa', oneA);
+  el.setAttribute('data-tb', bTen); el.setAttribute('data-ob', bOne);
+  mwSetQuestion(el, A+'×'+B+'을 계산하려고 합니다. '+A+'을 분해하는 것과 '+B+'을 분해하는 것 중 어느 쪽이 계산이 더 간단할까요? 이유와 함께 계산해 보세요.', 'mwSol5');
+}
+function mwSol5(id){
+  var el = document.getElementById(id);
+  var hund=+el.getAttribute('data-h'), tenA=+el.getAttribute('data-ta'), oneA=+el.getAttribute('data-oa');
+  var bTen=+el.getAttribute('data-tb'), bOne=+el.getAttribute('data-ob');
+  var A = hund*100+tenA*10+oneA, B = bTen*10+bOne;
+  var ans = A*B;
+  var viaB_p1=A*(bTen*10), viaB_p2=A*bOne;
+  var viaA_p1=(hund*100)*B, viaA_p2=(tenA*10)*B, viaA_p3=oneA*B;
+  var diagram = '<div class="fb-diagram">'+B+'을 분해: '+A+'×'+(bTen*10)+'+'+A+'×'+bOne+' = '+viaB_p1+'+'+viaB_p2+' = <strong style="color:#3fb950">'+ans+'</strong> (부분곱 2개)<br>'
+    + A+'을 분해: '+(hund*100)+'×'+B+'+'+(tenA*10)+'×'+B+'+'+oneA+'×'+B+' = '+viaA_p1+'+'+viaA_p2+'+'+viaA_p3+' = <strong style="color:#3fb950">'+ans+'</strong> (부분곱 3개)<br>'
+    + '두 자리 수인 '+B+'을(를) 분해하면 부분곱이 2개뿐이라 더 간단해요</div>';
+  mwRenderToggle(id, diagram, 'mwSol5');
+}
+function mwGen6(id){
+  var items = ['팔찌','목걸이','열쇠고리'];
+  var item = items[Math.floor(Math.random()*items.length)];
+  var beadsPer = 12 + Math.floor(Math.random()*14);
+  var cTen = 1 + Math.floor(Math.random()*3);
+  var cOne = 1 + Math.floor(Math.random()*9);
+  var count = cTen*10 + cOne;
+  var el = document.getElementById(id);
+  el.setAttribute('data-bp', beadsPer); el.setAttribute('data-c', count); el.setAttribute('data-item', item);
+  mwSetQuestion(el, '학교 축제에서 '+item+'을(를) 만드는데, 구슬을 '+beadsPer+'개씩 꿰어 '+item+' 하나를 만듭니다. '+item+'을(를) '+count+'개 만들려면 구슬이 몇 개 필요한가요?', 'mwSol6');
+}
+function mwSol6(id){
+  var el = document.getElementById(id);
+  var beadsPer=+el.getAttribute('data-bp'), count=+el.getAttribute('data-c');
+  var cTen = Math.floor(count/10)*10, cOne = count%10;
+  var p1=beadsPer*cTen, p2=beadsPer*cOne, ans=beadsPer*count;
+  mwRenderToggle(id, '<div class="fb-diagram">'+beadsPer+'×'+count+' = '+beadsPer+'×'+cTen+' + '+beadsPer+'×'+cOne+' = '+p1+'+'+p2+' = <strong style="color:#3fb950">'+ans+'개</strong></div>', 'mwSol6');
+}
+function mwGen7(id){
+  var tensX = 2 + Math.floor(Math.random()*8);
+  var tensY = 2 + Math.floor(Math.random()*8);
+  var offs = [-2,-1,1,2];
+  var offX = offs[Math.floor(Math.random()*4)];
+  var offY = offs[Math.floor(Math.random()*4)];
+  var x = tensX*10+offX, y = tensY*10+offY;
+  var el = document.getElementById(id);
+  el.setAttribute('data-tx', tensX); el.setAttribute('data-ty', tensY);
+  mwSetQuestion(el, x+'×'+y+'을 어림으로 먼저 계산해 보고(가까운 몇십끼리 곱하기), 실제 값과 비교해 보세요.', 'mwSol7');
+  el.setAttribute('data-x', x); el.setAttribute('data-y', y);
+}
+function mwSol7(id){
+  var el = document.getElementById(id);
+  var x=+el.getAttribute('data-x'), y=+el.getAttribute('data-y'), tx=+el.getAttribute('data-tx'), ty=+el.getAttribute('data-ty');
+  var est=(tx*10)*(ty*10), act=x*y;
+  mwRenderToggle(id, '<div class="fb-diagram">어림: '+(tx*10)+'×'+(ty*10)+' = '+est+'<br>실제: '+x+'×'+y+' = <strong style="color:#3fb950">'+act+'</strong><br>어림값과 실제값이 비슷해서, 계산 결과가 맞는지 확인하는 데 어림이 유용해요</div>', 'mwSol7');
+}
+function mwGen8(id){
+  var cols = 8 + Math.floor(Math.random()*8);
+  var rows = 10 + Math.floor(Math.random()*11);
+  var brokenRows = 1 + Math.floor(Math.random()*Math.min(4, rows-1));
+  var el = document.getElementById(id);
+  el.setAttribute('data-cols', cols); el.setAttribute('data-rows', rows); el.setAttribute('data-br', brokenRows);
+  mwSetQuestion(el, '교실 사물함이 가로 '+cols+'개, 세로 '+rows+'줄로 배열되어 있습니다. 그런데 '+brokenRows+'줄(가로줄)이 고장 나서 사용할 수 없다면, 사용 가능한 사물함은 몇 개인가요?', 'mwSol8');
+}
+function mwSol8(id){
+  var el = document.getElementById(id);
+  var cols=+el.getAttribute('data-cols'), rows=+el.getAttribute('data-rows'), br=+el.getAttribute('data-br');
+  var total=cols*rows, brokenCount=cols*br, usable=total-brokenCount;
+  mwRenderToggle(id, '<div class="fb-diagram">전체: '+cols+'×'+rows+'='+total+'개<br>고장난 '+br+'줄: '+cols+'×'+br+'='+brokenCount+'개<br>'+total+'−'+brokenCount+' = <strong style="color:#3fb950">'+usable+'개</strong></div>', 'mwSol8');
+}
+function mwGen9(id){
+  var qty = 10 + Math.floor(Math.random()*11);
+  var priceA = (15 + Math.floor(Math.random()*21))*10;
+  var discA = (5 + Math.floor(Math.random()*11))*10;
+  var priceB = (15 + Math.floor(Math.random()*21))*10;
+  var totalA = priceA*qty - discA, totalB = priceB*qty;
+  var tries = 0;
+  while(totalA===totalB && tries<10){ priceB = (15+Math.floor(Math.random()*21))*10; totalB = priceB*qty; tries++; }
+  var el = document.getElementById(id);
+  el.setAttribute('data-qty', qty); el.setAttribute('data-pa', priceA); el.setAttribute('data-da', discA); el.setAttribute('data-pb', priceB);
+  mwSetQuestion(el, '문구점 A는 지우개 1개에 '+priceA+'원인데 '+qty+'개를 사면 '+discA+'원을 깎아줍니다. 문구점 B는 지우개 1개에 '+priceB+'원입니다. 지우개 '+qty+'개를 산다면 어느 가게가 더 쌀까요?', 'mwSol9');
+}
+function mwSol9(id){
+  var el = document.getElementById(id);
+  var qty=+el.getAttribute('data-qty'), priceA=+el.getAttribute('data-pa'), discA=+el.getAttribute('data-da'), priceB=+el.getAttribute('data-pb');
+  var totalA=priceA*qty-discA, totalB=priceB*qty;
+  var diff=Math.abs(totalA-totalB), cheaper = totalA<totalB ? 'A' : 'B';
+  mwRenderToggle(id, '<div class="fb-diagram">A: '+priceA+'×'+qty+'−'+discA+' = '+(priceA*qty)+'−'+discA+' = '+totalA+'원<br>B: '+priceB+'×'+qty+' = '+totalB+'원<br><strong style="color:#3fb950">'+cheaper+'가 '+diff+'원 더 싸요</strong></div>', 'mwSol9');
+}
+function mwGen10(id){
+  var n = 15 + Math.floor(Math.random()*21);
+  var base = (20 + Math.floor(Math.random()*31))*100;
+  var disc = (3 + Math.floor(Math.random()*6))*100;
+  var el = document.getElementById(id);
+  el.setAttribute('data-n', n); el.setAttribute('data-base', base); el.setAttribute('data-disc', disc);
+  mwSetQuestion(el, '체험학습에 학생 '+n+'명이 참가합니다. 한 명당 입장료는 '+base+'원인데, 20명이 넘으면 단체할인으로 한 명당 '+disc+'원씩 깎아줍니다. 학생들이 내야 할 총 입장료는 얼마인가요?', 'mwSol10');
+}
+function mwSol10(id){
+  var el = document.getElementById(id);
+  var n=+el.getAttribute('data-n'), base=+el.getAttribute('data-base'), disc=+el.getAttribute('data-disc');
+  var applies = n>20;
+  var unit = applies ? base-disc : base;
+  var total = unit*n;
+  var reasoning = applies ? (n+'명은 20명을 넘으므로 할인 적용: '+base+'−'+disc+'='+unit+'원') : (n+'명은 20명을 넘지 않으므로 할인 없음: '+unit+'원 그대로');
+  mwRenderToggle(id, '<div class="fb-diagram">'+reasoning+'<br>'+unit+'×'+n+' = <strong style="color:#3fb950">'+total.toLocaleString()+'원</strong></div>', 'mwSol10');
+}
+// ── 나눗셈(e3div) 문장제 심화 10선: 랜덤 생성 + 다음 문제 + 풀이 접기 ──
+function dwSetQuestion(el, qtext, solfn){
+  el.setAttribute('data-qtext', qtext);
+  el.setAttribute('data-solfn', solfn);
+  el.setAttribute('data-showing', '0');
+  el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+el.id+'\')">💡 풀이 보기</button>';
+}
+function dwRenderToggle(id, diagramHtml, solfn){
+  var el = document.getElementById(id);
+  var qtext = el.getAttribute('data-qtext');
+  var showing = el.getAttribute('data-showing') === '1';
+  if(showing){
+    el.setAttribute('data-showing', '0');
+    el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">💡 풀이 보기</button>';
+  } else {
+    el.setAttribute('data-showing', '1');
+    el.innerHTML = qtext + diagramHtml + '<button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')" style="width:100%;margin-top:8px">👆 접어두기</button>';
+  }
+}
+function dwGen1(id){
+  var items = ['사탕','구슬','딱지','색종이'];
+  var item = items[Math.floor(Math.random()*items.length)];
+  var y = 4 + Math.floor(Math.random()*6);
+  var q = 5 + Math.floor(Math.random()*11);
+  var r = 1 + Math.floor(Math.random()*(y-1));
+  var x = y*q + r;
+  var el = document.getElementById(id);
+  el.setAttribute('data-y', y); el.setAttribute('data-q', q); el.setAttribute('data-r', r); el.setAttribute('data-item', item);
+  dwSetQuestion(el, item+' '+x+'개를 '+y+'명에게 똑같이 나눠주려고 합니다. 한 명당 몇 개씩 받고, 남는 것은 몇 개인가요?', 'dwSol1');
+}
+function dwSol1(id){
+  var el = document.getElementById(id);
+  var y=+el.getAttribute('data-y'), q=+el.getAttribute('data-q'), r=+el.getAttribute('data-r');
+  var x = y*q+r;
+  dwRenderToggle(id, '<div class="fb-diagram">'+x+'÷'+y+' = <strong style="color:#3fb950">'+q+'개</strong>씩, 나머지 <strong style="color:#3fb950">'+r+'개</strong><br>검산: '+y+'×'+q+'+'+r+' = '+x+' ✓</div>', 'dwSol1');
+}
+function dwGen2(id){
+  var y = 6 + Math.floor(Math.random()*4);
+  var x = 25 + Math.floor(Math.random()*71);
+  var el = document.getElementById(id);
+  el.setAttribute('data-x', x); el.setAttribute('data-y', y);
+  dwSetQuestion(el, '학생 '+x+'명이 소풍을 갑니다. 버스 한 대에 '+y+'명까지 탈 수 있다면, 버스는 최소 몇 대 필요한가요?', 'dwSol2');
+}
+function dwSol2(id){
+  var el = document.getElementById(id);
+  var x=+el.getAttribute('data-x'), y=+el.getAttribute('data-y');
+  var q = Math.floor(x/y), r = x%y;
+  var buses = r>0 ? q+1 : q;
+  var reasoning = r>0 ? (x+'÷'+y+' = '+q+'…'+r+' → 몫만큼 태우면 '+r+'명이 못 타므로 버스를 1대 더 필요해요') : (x+'÷'+y+' = '+q+' → 나머지 없이 딱 맞아요');
+  dwRenderToggle(id, '<div class="fb-diagram">'+reasoning+'<br>버스는 최소 <strong style="color:#3fb950">'+buses+'대</strong> 필요해요</div>', 'dwSol2');
+}
+function dwGen3(id){
+  var names = ['민준','서연','지호','하은'];
+  var name = names[Math.floor(Math.random()*names.length)];
+  var y = 4 + Math.floor(Math.random()*6);
+  var tq = 4 + Math.floor(Math.random()*9);
+  var tr = 1 + Math.floor(Math.random()*(y-1));
+  var x = y*tq + tr;
+  var wq = tq-1, wr = x - y*wq;
+  var el = document.getElementById(id);
+  el.setAttribute('data-y', y); el.setAttribute('data-tq', tq); el.setAttribute('data-tr', tr); el.setAttribute('data-name', name);
+  dwSetQuestion(el, name+'이가 '+x+'÷'+y+'을 계산했는데 몫을 '+wq+', 나머지를 '+wr+'라고 했습니다. 이 계산이 왜 틀렸는지 설명하고 바르게 고쳐 보세요.', 'dwSol3');
+}
+function dwSol3(id){
+  var el = document.getElementById(id);
+  var y=+el.getAttribute('data-y'), tq=+el.getAttribute('data-tq'), tr=+el.getAttribute('data-tr');
+  var x = y*tq+tr;
+  var wq = tq-1, wr = x-y*wq;
+  dwRenderToggle(id, '<div class="fb-diagram">나머지 '+wr+'는 나누는 수 '+y+'보다 커요 — 나머지는 항상 나누는 수보다 작아야 해요<br>'+wr+'÷'+y+'을 한 번 더 나눌 수 있어서, 몫을 1 늘려야 해요<br>바른 계산: '+x+'÷'+y+' = <strong style="color:#3fb950">'+tq+'…'+tr+'</strong></div>', 'dwSol3');
+}
+function dwGen4(id){
+  var y = 3 + Math.floor(Math.random()*7);
+  var q = 4 + Math.floor(Math.random()*9);
+  var x = y*q;
+  var el = document.getElementById(id);
+  el.setAttribute('data-y', y); el.setAttribute('data-q', q);
+  dwSetQuestion(el, '사탕 '+x+'개가 있습니다. (a) '+y+'명에게 똑같이 나누면 한 명당 몇 개인가요? (b) 한 사람에게 '+q+'개씩 나누면 몇 명에게 나눠줄 수 있나요?', 'dwSol4');
+}
+function dwSol4(id){
+  var el = document.getElementById(id);
+  var y=+el.getAttribute('data-y'), q=+el.getAttribute('data-q');
+  var x = y*q;
+  dwRenderToggle(id, '<div class="fb-diagram">(a) 등분제: '+x+'÷'+y+' = <strong style="color:#3fb950">'+q+'개</strong> (몇 명에게 나눌지 알 때, 한 명 몫을 구해요)<br>(b) 포함제: '+x+'÷'+q+' = <strong style="color:#3fb950">'+y+'명</strong> (한 묶음 크기를 알 때, 몇 묶음(명)이 되는지 구해요)<br>같은 '+x+'과 같은 나눗셈 관계인데, 무엇을 구하냐에 따라 질문이 달라져요</div>', 'dwSol4');
+}
+function dwGen5(id){
+  var divisor = 12 + Math.floor(Math.random()*8);
+  var quotient = 12 + Math.floor(Math.random()*14);
+  var total = divisor*quotient;
+  var items = ['색종이','도화지','스티커','수수깡'];
+  var item = items[Math.floor(Math.random()*items.length)];
+  var el = document.getElementById(id);
+  el.setAttribute('data-div', divisor); el.setAttribute('data-q', quotient); el.setAttribute('data-total', total); el.setAttribute('data-item', item);
+  dwSetQuestion(el, '미술 준비물로 '+item+'을(를) '+divisor+'장씩 담은 봉지를 여러 개 사서 총 '+total+'장을 만들었습니다. 봉지는 몇 개를 샀을까요? 곱셈으로 검산도 해 보세요.', 'dwSol5');
+}
+function dwSol5(id){
+  var el = document.getElementById(id);
+  var divisor=+el.getAttribute('data-div'), quotient=+el.getAttribute('data-q'), total=+el.getAttribute('data-total');
+  dwRenderToggle(id, '<div class="fb-diagram">'+total+'÷'+divisor+' = <strong style="color:#3fb950">'+quotient+'개</strong><br>검산: '+quotient+'×'+divisor+'='+total+' ✓</div>', 'dwSol5');
+}
+function dwGen6(id){
+  var y = 5 + Math.floor(Math.random()*6);
+  var pd = (5 + Math.floor(Math.random()*16))*100;
+  var x = y*pd;
+  var el = document.getElementById(id);
+  el.setAttribute('data-y', y); el.setAttribute('data-pd', pd);
+  dwSetQuestion(el, '용돈 '+x.toLocaleString()+'원을 '+y+'일 동안 똑같이 나눠 쓰려고 합니다. 하루에 얼마씩 쓸 수 있나요?', 'dwSol6');
+}
+function dwSol6(id){
+  var el = document.getElementById(id);
+  var y=+el.getAttribute('data-y'), pd=+el.getAttribute('data-pd');
+  var x = y*pd;
+  dwRenderToggle(id, '<div class="fb-diagram">'+x.toLocaleString()+'÷'+y+' = <strong style="color:#3fb950">'+pd.toLocaleString()+'원</strong></div>', 'dwSol6');
+}
+function dwGen7(id){
+  var price = (2 + Math.floor(Math.random()*5))*100;
+  var cnt = 4 + Math.floor(Math.random()*7);
+  var left = Math.floor(Math.random()*price);
+  var budget = price*cnt + left;
+  var el = document.getElementById(id);
+  el.setAttribute('data-price', price); el.setAttribute('data-cnt', cnt); el.setAttribute('data-left', left); el.setAttribute('data-budget', budget);
+  dwSetQuestion(el, '용돈 '+budget.toLocaleString()+'원으로 한 개에 '+price+'원인 젤리를 최대 몇 개 살 수 있나요? 그리고 얼마가 남나요?', 'dwSol7');
+}
+function dwSol7(id){
+  var el = document.getElementById(id);
+  var price=+el.getAttribute('data-price'), cnt=+el.getAttribute('data-cnt'), left=+el.getAttribute('data-left'), budget=+el.getAttribute('data-budget');
+  dwRenderToggle(id, '<div class="fb-diagram">'+budget.toLocaleString()+'÷'+price+' = <strong style="color:#3fb950">'+cnt+'개</strong>, 남는 돈 <strong style="color:#3fb950">'+left.toLocaleString()+'원</strong><br>남은 돈으로는 하나를 더 살 수 없어서, 나머지는 그냥 남겨요(버림)</div>', 'dwSol7');
+}
+function dwGen8(id){
+  var y = 5 + Math.floor(Math.random()*5);
+  var x = 25 + Math.floor(Math.random()*71);
+  var el = document.getElementById(id);
+  el.setAttribute('data-x', x); el.setAttribute('data-y', y);
+  dwSetQuestion(el, '학생 '+x+'명을 한 반에 '+y+'명씩 배정하려고 합니다. 몇 개 반이 만들어지고, 마지막에 남는 학생은 몇 명인가요?', 'dwSol8');
+}
+function dwSol8(id){
+  var el = document.getElementById(id);
+  var x=+el.getAttribute('data-x'), y=+el.getAttribute('data-y');
+  var q = Math.floor(x/y), r = x%y;
+  dwRenderToggle(id, '<div class="fb-diagram">'+x+'÷'+y+' = <strong style="color:#3fb950">'+q+'개 반</strong>, 나머지 <strong style="color:#3fb950">'+r+'명</strong></div>', 'dwSol8');
+}
+function dwGen9(id){
+  var y = 3 + Math.floor(Math.random()*7);
+  var a = 4 + Math.floor(Math.random()*17);
+  var z = y*a;
+  var el = document.getElementById(id);
+  el.setAttribute('data-y', y); el.setAttribute('data-a', a);
+  dwSetQuestion(el, '어떤 수에 '+y+'을(를) 곱했더니 '+z+'이(가) 되었습니다. 어떤 수는 얼마인가요?', 'dwSol9');
+}
+function dwSol9(id){
+  var el = document.getElementById(id);
+  var y=+el.getAttribute('data-y'), a=+el.getAttribute('data-a');
+  var z = y*a;
+  dwRenderToggle(id, '<div class="fb-diagram">□×'+y+'='+z+' → □='+z+'÷'+y+' = <strong style="color:#3fb950">'+a+'</strong><br>검산: '+a+'×'+y+'='+z+' ✓</div>', 'dwSol9');
+}
+function dwGen10(id){
+  var p = 4 + Math.floor(Math.random()*7);
+  var pt = 3 + Math.floor(Math.random()*6);
+  var z = 2 + Math.floor(Math.random()*5);
+  var boxCount = pt*z;
+  var x = boxCount*p;
+  var el = document.getElementById(id);
+  el.setAttribute('data-p', p); el.setAttribute('data-pt', pt); el.setAttribute('data-z', z);
+  dwSetQuestion(el, '공장에서 인형 '+x+'개를 만들어 한 상자에 '+p+'개씩 담았습니다. 상자가 다 만들어지면 트럭 '+z+'대에 똑같이 나눠 실을 계획입니다. 트럭 한 대에는 상자가 몇 개씩 실릴까요?', 'dwSol10');
+}
+function dwSol10(id){
+  var el = document.getElementById(id);
+  var p=+el.getAttribute('data-p'), pt=+el.getAttribute('data-pt'), z=+el.getAttribute('data-z');
+  var boxCount = pt*z, x = boxCount*p;
+  dwRenderToggle(id, '<div class="fb-diagram">먼저 상자 개수: '+x+'÷'+p+' = <strong style="color:#3fb950">'+boxCount+'개</strong>(상자)<br>그다음 트럭당: '+boxCount+'÷'+z+' = <strong style="color:#3fb950">'+pt+'개</strong>(상자/트럭)</div>', 'dwSol10');
+}
+
+// ── 원(e3circ) 문장제 심화 10선: 랜덤 생성 + 다음 문제 + 풀이 접기(토글) ──
+function cwSetQuestion(el, qtext, solfn){
+  el.setAttribute('data-qtext', qtext);
+  el.setAttribute('data-solfn', solfn);
+  el.setAttribute('data-showing', '0');
+  el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+el.id+'\')">💡 풀이 보기</button>';
+}
+function cwRenderToggle(id, diagramHtml, solfn){
+  var el = document.getElementById(id);
+  var qtext = el.getAttribute('data-qtext');
+  var showing = el.getAttribute('data-showing') === '1';
+  if(showing){
+    el.setAttribute('data-showing', '0');
+    el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">💡 풀이 보기</button>';
+  } else {
+    el.setAttribute('data-showing', '1');
+    el.innerHTML = qtext + diagramHtml + '<button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')" style="width:100%;margin-top:8px">👆 접어두기</button>';
+  }
+}
+function cwSvgCompare(a, bd){
+  var ad = a*2, scale = 4;
+  var pA=(ad/2)*scale, pB=(bd/2)*scale, gap=14;
+  var cy=Math.max(pA,pB)+16, cx1=pA+4, cx2=cx1+pA+gap+pB;
+  var width=cx2+pB+4, height=cy+16;
+  return '<svg width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'" style="display:block;margin:8px auto">'
+    + '<circle cx="'+cx1+'" cy="'+cy+'" r="'+pA+'" fill="none" stroke="#58a6ff" stroke-width="2"/>'
+    + '<text x="'+cx1+'" y="'+(cy+pA+14)+'" font-size="11" fill="#8b949e" text-anchor="middle">A</text>'
+    + '<circle cx="'+cx2+'" cy="'+cy+'" r="'+pB+'" fill="none" stroke="#f0c040" stroke-width="2"/>'
+    + '<text x="'+cx2+'" y="'+(cy+pB+14)+'" font-size="11" fill="#8b949e" text-anchor="middle">B</text>'
+    + '</svg>';
+}
+function cwSvgExternal(r1, r2){
+  var scale = 4, pr1=r1*scale, pr2=r2*scale;
+  var cy=Math.max(pr1,pr2)+4, cx1=pr1+4, cx2=cx1+pr1+pr2;
+  var width=cx2+pr2+4, height=cy*2;
+  return '<svg width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'" style="display:block;margin:8px auto">'
+    + '<circle cx="'+cx1+'" cy="'+cy+'" r="'+pr1+'" fill="none" stroke="#58a6ff" stroke-width="2"/>'
+    + '<circle cx="'+cx2+'" cy="'+cy+'" r="'+pr2+'" fill="none" stroke="#f0c040" stroke-width="2"/>'
+    + '<circle cx="'+cx1+'" cy="'+cy+'" r="2.5" fill="#3fb950"/>'
+    + '<circle cx="'+cx2+'" cy="'+cy+'" r="2.5" fill="#3fb950"/>'
+    + '<line x1="'+cx1+'" y1="'+cy+'" x2="'+cx2+'" y2="'+cy+'" stroke="#f85149" stroke-width="2"/>'
+    + '</svg>';
+}
+function cwSvgInternal(bigr, smallr){
+  var scale = Math.min(5, 150/(bigr*2));
+  var pR=bigr*scale, pr=smallr*scale;
+  var cx1=pR+4, cy=pR+4, cx2=cx1+(pR-pr);
+  var width=cx1+pR+4, height=cy*2;
+  return '<svg width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'" style="display:block;margin:8px auto">'
+    + '<circle cx="'+cx1+'" cy="'+cy+'" r="'+pR+'" fill="none" stroke="#58a6ff" stroke-width="2"/>'
+    + '<circle cx="'+cx2+'" cy="'+cy+'" r="'+pr+'" fill="none" stroke="#f0c040" stroke-width="2"/>'
+    + '<line x1="'+cx1+'" y1="'+cy+'" x2="'+cx1+'" y2="'+(cy-pR)+'" stroke="#58a6ff" stroke-width="2.5"/>'
+    + '<line x1="'+cx2+'" y1="'+cy+'" x2="'+cx2+'" y2="'+(cy-pr)+'" stroke="#f0c040" stroke-width="2.5"/>'
+    + '<circle cx="'+cx1+'" cy="'+cy+'" r="2.5" fill="#3fb950"/>'
+    + '<circle cx="'+cx2+'" cy="'+cy+'" r="2.5" fill="#3fb950"/>'
+    + '<line x1="'+cx1+'" y1="'+cy+'" x2="'+cx2+'" y2="'+cy+'" stroke="#f85149" stroke-width="2"/>'
+    + '</svg>'
+    + '<div style="font-size:.65rem;color:#8b949e;text-align:center"><span style="color:#58a6ff">━ 큰 원 반지름</span>　<span style="color:#f0c040">━ 작은 원 반지름</span>　<span style="color:#f85149">━ 중심 사이 거리</span></div>';
+}
+function cwSvgDiameter(r){
+  var scale = Math.min(6, 80/r);
+  var pr = r*scale, cx=pr+4, cy=pr+4;
+  var width=cx*2, height=cy*2;
+  return '<svg width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'" style="display:block;margin:8px auto">'
+    + '<circle cx="'+cx+'" cy="'+cy+'" r="'+pr+'" fill="none" stroke="#30363d" stroke-width="2"/>'
+    + '<line x1="'+(cx-pr)+'" y1="'+cy+'" x2="'+(cx+pr)+'" y2="'+cy+'" stroke="#f85149" stroke-width="2.5"/>'
+    + '</svg>';
+}
+function cwSvgThree(a,b,c){
+  var scale = 4;
+  var radii=[a,b,c].map(function(v){return v*scale;});
+  var gap=10, cy=Math.max.apply(null, radii)+4, x=4, circles='';
+  var labels=['A','B','C'], colors=['#58a6ff','#f0c040','#3fb950'];
+  for(var i=0;i<3;i++){
+    var cx = x+radii[i];
+    circles += '<circle cx="'+cx+'" cy="'+cy+'" r="'+radii[i]+'" fill="none" stroke="'+colors[i]+'" stroke-width="2"/>';
+    circles += '<text x="'+cx+'" y="'+(cy+radii[i]+14)+'" font-size="11" fill="#8b949e" text-anchor="middle">'+labels[i]+'</text>';
+    x = cx+radii[i]+gap;
+  }
+  var width=x, height=cy*2+20;
+  return '<svg width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'" style="display:block;margin:8px auto">'+circles+'</svg>';
+}
+function cwSvgTwoRadii(r1, r2){
+  var scale = 4;
+  var p1=r1*scale, p2=r2*scale, gap=14;
+  var cy=Math.max(p1,p2)+16, cx1=p1+4, cx2=cx1+p1+gap+p2;
+  var width=cx2+p2+4, height=cy+16;
+  return '<svg width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'" style="display:block;margin:8px auto">'
+    + '<circle cx="'+cx1+'" cy="'+cy+'" r="'+p1+'" fill="none" stroke="#58a6ff" stroke-width="2"/>'
+    + '<text x="'+cx1+'" y="'+(cy+p1+14)+'" font-size="11" fill="#8b949e" text-anchor="middle">'+r1+'cm</text>'
+    + '<circle cx="'+cx2+'" cy="'+cy+'" r="'+p2+'" fill="none" stroke="#f0c040" stroke-width="2"/>'
+    + '<text x="'+cx2+'" y="'+(cy+p2+14)+'" font-size="11" fill="#8b949e" text-anchor="middle">'+r2+'cm</text>'
+    + '</svg>';
+}
+function cwSvgDoubleDiameter(d){
+  var r = d/2;
+  var scale = Math.min(4, 140/d);
+  var pr = r*scale;
+  var cy = pr+4, cx1 = pr+4, cx2 = cx1+pr*2;
+  var width = cx2+pr+4, height = cy+pr+20;
+  return '<svg width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'" style="display:block;margin:8px auto">'
+    + '<circle cx="'+cx1+'" cy="'+cy+'" r="'+pr+'" fill="none" stroke="#58a6ff" stroke-width="2"/>'
+    + '<circle cx="'+cx2+'" cy="'+cy+'" r="'+pr+'" fill="none" stroke="#f0c040" stroke-width="2"/>'
+    + '<line x1="'+(cx1-pr)+'" y1="'+cy+'" x2="'+(cx1+pr)+'" y2="'+cy+'" stroke="#58a6ff" stroke-width="2"/>'
+    + '<line x1="'+(cx2-pr)+'" y1="'+cy+'" x2="'+(cx2+pr)+'" y2="'+cy+'" stroke="#f0c040" stroke-width="2"/>'
+    + '<line x1="'+(cx1-pr)+'" y1="'+(cy+pr+10)+'" x2="'+(cx2+pr)+'" y2="'+(cy+pr+10)+'" stroke="#f85149" stroke-width="2"/>'
+    + '</svg>'
+    + '<div style="font-size:.65rem;color:#8b949e;text-align:center"><span style="color:#58a6ff">━ 바퀴1 지름</span>　<span style="color:#f0c040">━ 바퀴2 지름</span>　<span style="color:#f85149">━ 전체 길이</span></div>';
+}
+function cwGen1(id){
+  var items = ['벽시계','탁상시계','원형 액자','동전'];
+  var item = items[Math.floor(Math.random()*items.length)];
+  var r = 3 + Math.floor(Math.random()*13);
+  var el = document.getElementById(id);
+  el.setAttribute('data-r', r); el.setAttribute('data-item', item);
+  cwSetQuestion(el, item+'의 반지름이 '+r+'cm입니다. 이 '+item+'의 지름은 몇 cm인가요?', 'cwSol1');
+}
+function cwSol1(id){
+  var el = document.getElementById(id);
+  var r = +el.getAttribute('data-r');
+  cwRenderToggle(id, '<div class="fb-diagram">지름 = 반지름×2 = '+r+'×2 = <strong style="color:#3fb950">'+(r*2)+'cm</strong></div>', 'cwSol1');
+}
+function cwGen2(id){
+  var items = ['접시','쟁반','원형 식탁','프라이팬'];
+  var item = items[Math.floor(Math.random()*items.length)];
+  var r = 3 + Math.floor(Math.random()*18);
+  var d = r*2;
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d); el.setAttribute('data-item', item);
+  cwSetQuestion(el, item+'의 지름이 '+d+'cm입니다. 이 '+item+'의 반지름은 몇 cm인가요?', 'cwSol2');
+}
+function cwSol2(id){
+  var el = document.getElementById(id);
+  var d = +el.getAttribute('data-d');
+  cwRenderToggle(id, '<div class="fb-diagram">반지름 = 지름÷2 = '+d+'÷2 = <strong style="color:#3fb950">'+(d/2)+'cm</strong></div>', 'cwSol2');
+}
+function cwGen3(id){
+  var a = 4 + Math.floor(Math.random()*13);
+  var bd = (3 + Math.floor(Math.random()*13))*2;
+  var tries = 0;
+  while(a*2===bd && tries<10){ bd = (3+Math.floor(Math.random()*13))*2; tries++; }
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-bd', bd);
+  cwSetQuestion(el, '원 A는 반지름이 '+a+'cm이고, 원 B는 지름이 '+bd+'cm입니다. 어느 원이 더 큰가요?', 'cwSol3');
+}
+function cwSol3(id){
+  var el = document.getElementById(id);
+  var a = +el.getAttribute('data-a'), bd = +el.getAttribute('data-bd');
+  var ad = a*2;
+  var bigger = ad>bd ? 'A' : 'B';
+  cwRenderToggle(id, '<div class="fb-diagram">'+cwSvgCompare(a,bd)+'원 A의 지름 = '+a+'×2 = '+ad+'cm<br>원 B의 지름 = '+bd+'cm(그대로)<br><strong style="color:#3fb950">원 '+bigger+'가 더 커요</strong></div>', 'cwSol3');
+}
+function cwGen4(id){
+  var r1 = 3 + Math.floor(Math.random()*9);
+  var r2 = 3 + Math.floor(Math.random()*9);
+  var el = document.getElementById(id);
+  el.setAttribute('data-r1', r1); el.setAttribute('data-r2', r2);
+  cwSetQuestion(el, '반지름 '+r1+'cm인 원과 반지름 '+r2+'cm인 원이 서로 겉에서 맞닿아 있습니다(외접). 두 원의 중심 사이의 거리는 몇 cm인가요?', 'cwSol4');
+}
+function cwSol4(id){
+  var el = document.getElementById(id);
+  var r1 = +el.getAttribute('data-r1'), r2 = +el.getAttribute('data-r2');
+  cwRenderToggle(id, '<div class="fb-diagram">'+cwSvgExternal(r1,r2)+'중심 사이 거리 = 반지름+반지름 = '+r1+'+'+r2+' = <strong style="color:#3fb950">'+(r1+r2)+'cm</strong></div>', 'cwSol4');
+}
+function cwGen5(id){
+  var smallr = 3 + Math.floor(Math.random()*8);
+  var bigr = smallr + 4 + Math.floor(Math.random()*10);
+  var el = document.getElementById(id);
+  el.setAttribute('data-bigr', bigr); el.setAttribute('data-smallr', smallr);
+  cwSetQuestion(el, '큰 원(반지름 '+bigr+'cm) 안에 작은 원(반지름 '+smallr+'cm)이 안쪽에서 맞닿아 있습니다(내접). 두 원의 중심 사이의 거리는 몇 cm인가요?', 'cwSol5');
+}
+function cwSol5(id){
+  var el = document.getElementById(id);
+  var bigr = +el.getAttribute('data-bigr'), smallr = +el.getAttribute('data-smallr');
+  cwRenderToggle(id, '<div class="fb-diagram">'+cwSvgInternal(bigr,smallr)+'중심 사이 거리 = 큰 반지름−작은 반지름 = '+bigr+'−'+smallr+' = <strong style="color:#3fb950">'+(bigr-smallr)+'cm</strong></div>', 'cwSol5');
+}
+function cwGen6(id){
+  var r = 4 + Math.floor(Math.random()*15);
+  var el = document.getElementById(id);
+  el.setAttribute('data-r', r);
+  cwSetQuestion(el, '반지름이 '+r+'cm인 원 안에 실을 팽팽하게 당겨 선분을 그으려고 합니다. 그을 수 있는 가장 긴 선분의 길이는 몇 cm인가요?', 'cwSol6');
+}
+function cwSol6(id){
+  var el = document.getElementById(id);
+  var r = +el.getAttribute('data-r');
+  cwRenderToggle(id, '<div class="fb-diagram">'+cwSvgDiameter(r)+'원 안에서 가장 긴 선분은 중심을 지나는 지름이에요<br>지름 = '+r+'×2 = <strong style="color:#3fb950">'+(r*2)+'cm</strong></div>', 'cwSol6');
+}
+function cwGen7(id){
+  var small = 3 + Math.floor(Math.random()*8);
+  var diff = (1 + Math.floor(Math.random()*5))*2;
+  var big = small + diff;
+  var s = small + big;
+  var el = document.getElementById(id);
+  el.setAttribute('data-s', s); el.setAttribute('data-d', diff);
+  cwSetQuestion(el, '두 원의 반지름을 더하면 '+s+'cm입니다. 한 원의 반지름이 다른 원보다 '+diff+'cm 더 크다면, 두 원의 반지름은 각각 몇 cm인가요?', 'cwSol7');
+}
+function cwBarDiagram(small, big, diff){
+  var scale = Math.min(10, 180/big);
+  var bigPx = Math.round(big*scale), smallPx = Math.round(small*scale), diffPx = Math.round(diff*scale);
+  return '<div style="text-align:left;max-width:240px;margin:10px auto">'
+    + '<div style="display:flex;align-items:center;margin-bottom:6px"><div style="width:'+bigPx+'px;height:20px;background:#58a6ff;border-radius:4px"></div><span style="font-size:.65rem;color:#8b949e;margin-left:8px">큰 반지름 '+big+'cm</span></div>'
+    + '<div style="display:flex;align-items:center"><div style="width:'+smallPx+'px;height:20px;background:#f0c040;border-radius:4px 0 0 4px"></div><div style="width:'+diffPx+'px;height:20px;background:#f85149;border-radius:0 4px 4px 0"></div><span style="font-size:.65rem;color:#8b949e;margin-left:8px">작은 반지름 '+small+'cm + 차 '+diff+'cm</span></div>'
+    + '</div>'
+    + '<div style="font-size:.65rem;color:#8b949e;text-align:center">위·아래 막대의 길이가 같아요 → 큰 반지름 = 작은 반지름 + 차이</div>';
+}
+function cwSol7(id){
+  var el = document.getElementById(id);
+  var s = +el.getAttribute('data-s'), d = +el.getAttribute('data-d');
+  var big = (s+d)/2, small = (s-d)/2;
+  cwRenderToggle(id, '<div class="fb-diagram">'+cwBarDiagram(small,big,d)+'작은 반지름 = (합−차)÷2 = ('+s+'−'+d+')÷2 = <strong style="color:#3fb950">'+small+'cm</strong><br>큰 반지름 = (합+차)÷2 = ('+s+'+'+d+')÷2 = <strong style="color:#3fb950">'+big+'cm</strong></div>', 'cwSol7');
+}
+function cwGen8(id){
+  var span = 3 + Math.floor(Math.random()*13);
+  var el = document.getElementById(id);
+  el.setAttribute('data-span', span);
+  cwSetQuestion(el, '컴퍼스를 '+span+'cm 벌려서 원을 그렸습니다. 이 원의 지름은 몇 cm인가요?', 'cwSol8');
+}
+function cwSol8(id){
+  var el = document.getElementById(id);
+  var span = +el.getAttribute('data-span');
+  cwRenderToggle(id, '<div class="fb-diagram">컴퍼스를 벌린 길이가 반지름이에요<br>지름 = '+span+'×2 = <strong style="color:#3fb950">'+(span*2)+'cm</strong></div>', 'cwSol8');
+}
+function cwGen9(id){
+  var vals = [];
+  while(vals.length<3){
+    var v = 3 + Math.floor(Math.random()*13);
+    if(vals.indexOf(v)===-1) vals.push(v);
+  }
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', vals[0]); el.setAttribute('data-b', vals[1]); el.setAttribute('data-c', vals[2]);
+  cwSetQuestion(el, '세 원 A, B, C의 반지름이 각각 '+vals[0]+'cm, '+vals[1]+'cm, '+vals[2]+'cm입니다. 지름이 큰 순서대로 나열해 보세요.', 'cwSol9');
+}
+function cwSol9(id){
+  var el = document.getElementById(id);
+  var a = +el.getAttribute('data-a'), b = +el.getAttribute('data-b'), c = +el.getAttribute('data-c');
+  var arr = [{n:'A',d:a*2},{n:'B',d:b*2},{n:'C',d:c*2}].sort(function(p,q){ return q.d-p.d; });
+  var order = arr.map(function(o){ return o.n+'('+o.d+'cm)'; }).join(' > ');
+  cwRenderToggle(id, '<div class="fb-diagram">'+cwSvgThree(a,b,c)+'지름 = 반지름×2 → A='+(a*2)+'cm, B='+(b*2)+'cm, C='+(c*2)+'cm<br><strong style="color:#3fb950">'+order+'</strong></div>', 'cwSol9');
+}
+function cwGen10(id){
+  var d = (10 + Math.floor(Math.random()*21))*2;
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d);
+  cwSetQuestion(el, '자전거 바퀴의 지름이 '+d+'cm입니다. 이 바퀴 2개의 지름을 나란히 이어 놓으면 전체 길이는 몇 cm인가요?', 'cwSol10');
+}
+function cwSol10(id){
+  var el = document.getElementById(id);
+  var d = +el.getAttribute('data-d');
+  cwRenderToggle(id, '<div class="fb-diagram">'+cwSvgDoubleDiameter(d)+d+'×2 = <strong style="color:#3fb950">'+(d*2)+'cm</strong></div>', 'cwSol10');
+}
+
+// ── 분수의 기초(e3frac) 문장제 심화 10선: 랜덤 생성 + 다음 문제 + 풀이 접기(토글) ──
+function fracPieHtml(num, den, filledColor, sizePx){
+  filledColor = filledColor || '#f0c040';
+  sizePx = sizePx || 56;
+  var segDeg = 360/den;
+  var gapDeg = Math.min(4, segDeg*0.15);
+  var stops = [];
+  var cur = 0;
+  for(var i=0;i<den;i++){
+    var start = cur, end = cur+segDeg-gapDeg;
+    var color = i<num ? filledColor : '#30363d';
+    stops.push(color+' '+start.toFixed(1)+'deg '+end.toFixed(1)+'deg');
+    stops.push('#0d1117 '+end.toFixed(1)+'deg '+(cur+segDeg).toFixed(1)+'deg');
+    cur += segDeg;
+  }
+  return '<div style="width:'+sizePx+'px;height:'+sizePx+'px;border-radius:50%;background:conic-gradient('+stops.join(',')+');display:inline-block;vertical-align:middle;margin:4px"></div>';
+}
+function fracGridHtml(num, den, filledColor){
+  filledColor = filledColor || '#f0c040';
+  var boxes = '';
+  for(var i=0;i<den;i++){
+    var color = i<num ? filledColor : '#30363d';
+    boxes += '<div style="width:18px;height:18px;background:'+color+';border:1px solid #0d1117;display:inline-block"></div>';
+  }
+  return '<div style="line-height:0;margin:6px 0">'+boxes+'</div>';
+}
+function fwSetQuestion(el, qtext, solfn){
+  el.setAttribute('data-qtext', qtext);
+  el.setAttribute('data-solfn', solfn);
+  el.setAttribute('data-showing', '0');
+  el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+el.id+'\')">💡 풀이 보기</button>';
+}
+function fwRenderToggle(id, diagramHtml, solfn){
+  var el = document.getElementById(id);
+  var qtext = el.getAttribute('data-qtext');
+  var showing = el.getAttribute('data-showing') === '1';
+  if(showing){
+    el.setAttribute('data-showing', '0');
+    el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">💡 풀이 보기</button>';
+  } else {
+    el.setAttribute('data-showing', '1');
+    el.innerHTML = qtext + diagramHtml + '<button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')" style="width:100%;margin-top:8px">👆 접어두기</button>';
+  }
+}
+function fwGen1(id){
+  var d = 4 + Math.floor(Math.random()*6);
+  var n = 1 + Math.floor(Math.random()*(d-1));
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d); el.setAttribute('data-n', n);
+  fwSetQuestion(el, '피자 한 판을 '+d+'조각으로 나눠서 그중 '+n+'조각을 먹었습니다. 먹은 양을 분수로 나타내면?', 'fwSol1');
+}
+function fwSol1(id){
+  var el = document.getElementById(id);
+  var d=+el.getAttribute('data-d'), n=+el.getAttribute('data-n');
+  var diagram = '<div class="fb-diagram" style="text-align:center">'+fracPieHtml(n,d)+'<br>먹은 양 = '+frac(n,d)+'</div>';
+  fwRenderToggle(id, diagram, 'fwSol1');
+}
+function fwGen2(id){
+  var d = 5 + Math.floor(Math.random()*6);
+  var n1 = 1 + Math.floor(Math.random()*(d-1));
+  var n2 = 1 + Math.floor(Math.random()*(d-1));
+  var tries = 0;
+  while(n2===n1 && tries<10){ n2 = 1+Math.floor(Math.random()*(d-1)); tries++; }
+  var names = ['민준','서연','지호','하은'];
+  var name1 = names[Math.floor(Math.random()*names.length)];
+  var name2 = names[Math.floor(Math.random()*names.length)];
+  var tries2 = 0;
+  while(name2===name1 && tries2<10){ name2 = names[Math.floor(Math.random()*names.length)]; tries2++; }
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d); el.setAttribute('data-n1', n1); el.setAttribute('data-n2', n2);
+  el.setAttribute('data-name1', name1); el.setAttribute('data-name2', name2);
+  fwSetQuestion(el, '같은 크기의 피자 한 판을 '+d+'조각으로 나눴습니다. '+name1+'이는 '+n1+'조각, '+name2+'이는 '+n2+'조각을 먹었습니다. 누가 더 많이 먹었나요?', 'fwSol2');
+}
+function fwSol2(id){
+  var el = document.getElementById(id);
+  var d=+el.getAttribute('data-d'), n1=+el.getAttribute('data-n1'), n2=+el.getAttribute('data-n2');
+  var name1=el.getAttribute('data-name1'), name2=el.getAttribute('data-name2');
+  var winner = n1>n2 ? name1 : name2;
+  var diagram = '<div class="fb-diagram" style="text-align:center">'
+    + fracPieHtml(n1,d,'#58a6ff')+fracPieHtml(n2,d,'#f0c040')
+    + '<br>'+name1+': '+frac(n1,d)+' 　 '+name2+': '+frac(n2,d)
+    + '<br>분모가 같으면 분자가 클수록 더 커요 → <strong style="color:#3fb950">'+winner+'</strong>이가 더 많이 먹었어요</div>';
+  fwRenderToggle(id, diagram, 'fwSol2');
+}
+function fwGen3(id){
+  var d = 4 + Math.floor(Math.random()*6);
+  var n = 1 + Math.floor(Math.random()*(d-1));
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d); el.setAttribute('data-n', n);
+  fwSetQuestion(el, '피자 한 판을 '+d+'조각으로 나눴습니다. 단위분수(1/'+d+')가 몇 개 모이면 이 피자의 '+n+'/'+d+'조각이 되나요?', 'fwSol3');
+}
+function fwSol3(id){
+  var el = document.getElementById(id);
+  var d=+el.getAttribute('data-d'), n=+el.getAttribute('data-n');
+  var diagram = '<div class="fb-diagram" style="text-align:center">'+fracPieHtml(n,d)+'<br>'+frac(1,d)+'이(가) <strong style="color:#3fb950">'+n+'개</strong> 모이면 '+frac(n,d)+'이 돼요</div>';
+  fwRenderToggle(id, diagram, 'fwSol3');
+}
+function fwGen4(id){
+  var d1 = 2 + Math.floor(Math.random()*4);
+  var n1 = 1 + Math.floor(Math.random()*(d1-1));
+  var k = 2 + Math.floor(Math.random()*3);
+  var d2 = d1*k, n2 = n1*k;
+  var el = document.getElementById(id);
+  el.setAttribute('data-d1', d1); el.setAttribute('data-n1', n1);
+  el.setAttribute('data-d2', d2); el.setAttribute('data-n2', n2);
+  fwSetQuestion(el, '피자를 '+d1+'조각으로 나눠 '+n1+'조각 먹은 것과, 피자를 '+d2+'조각으로 나눠 '+n2+'조각 먹은 것은 같은 양일까요?', 'fwSol4');
+}
+function fwSol4(id){
+  var el = document.getElementById(id);
+  var d1=+el.getAttribute('data-d1'), n1=+el.getAttribute('data-n1'), d2=+el.getAttribute('data-d2'), n2=+el.getAttribute('data-n2');
+  var diagram = '<div class="fb-diagram" style="text-align:center">'
+    + fracPieHtml(n1,d1)+fracPieHtml(n2,d2)
+    + '<br>두 원의 색칠된 넓이가 똑같아요 — '+frac(n1,d1)+'과(와) '+frac(n2,d2)+'은(는) <strong style="color:#3fb950">같은 크기</strong>예요(동치분수)</div>';
+  fwRenderToggle(id, diagram, 'fwSol4');
+}
+function fwGen5(id){
+  var d = 3 + Math.floor(Math.random()*6);
+  var n = 1 + Math.floor(Math.random()*(d-1));
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d); el.setAttribute('data-n', n);
+  fwSetQuestion(el, '피자 '+d+'조각짜리 한 판을 다 먹고, 또 다른 판에서 '+n+'조각을 더 먹었습니다. 총 먹은 양을 가분수로 나타내면?', 'fwSol5');
+}
+function fwSol5(id){
+  var el = document.getElementById(id);
+  var d=+el.getAttribute('data-d'), n=+el.getAttribute('data-n');
+  var diagram = '<div class="fb-diagram" style="text-align:center">'+fracPieHtml(d,d)+' + '+fracPieHtml(n,d)
+    + '<br>한 판(전체) + '+n+'조각 더 = <strong style="color:#3fb950">'+frac(d+n,d)+'</strong></div>';
+  fwRenderToggle(id, diagram, 'fwSol5');
+}
+function fwGen6(id){
+  var d = 6 + Math.floor(Math.random()*7);
+  var vals = [];
+  while(vals.length<3){
+    var v = 1 + Math.floor(Math.random()*(d-1));
+    if(vals.indexOf(v)===-1) vals.push(v);
+  }
+  var names = ['민준','서연','지호'];
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d);
+  el.setAttribute('data-n1', vals[0]); el.setAttribute('data-n2', vals[1]); el.setAttribute('data-n3', vals[2]);
+  fwSetQuestion(el, '같은 피자('+d+'조각)에서 '+names[0]+'이는 '+vals[0]+'조각, '+names[1]+'이는 '+vals[1]+'조각, '+names[2]+'는 '+vals[2]+'조각을 먹었습니다. 많이 먹은 순서대로 나열하세요.', 'fwSol6');
+}
+function fwSol6(id){
+  var el = document.getElementById(id);
+  var d=+el.getAttribute('data-d'), n1=+el.getAttribute('data-n1'), n2=+el.getAttribute('data-n2'), n3=+el.getAttribute('data-n3');
+  var names = ['민준','서연','지호'];
+  var arr = [{n:names[0],v:n1},{n:names[1],v:n2},{n:names[2],v:n3}].sort(function(p,q){ return q.v-p.v; });
+  var order = arr.map(function(o){ return o.n+'('+o.v+'/'+d+')'; }).join(' > ');
+  var diagram = '<div class="fb-diagram" style="text-align:center">'
+    + fracPieHtml(n1,d,'#58a6ff')+fracPieHtml(n2,d,'#f0c040')+fracPieHtml(n3,d,'#3fb950')
+    + '<br>분모가 같으면 분자가 클수록 커요<br><strong style="color:#3fb950">'+order+'</strong></div>';
+  fwRenderToggle(id, diagram, 'fwSol6');
+}
+function fwGen7(id){
+  var d = 5 + Math.floor(Math.random()*6);
+  var n1 = 1 + Math.floor(Math.random()*(d-1));
+  var n2 = d - n1;
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d); el.setAttribute('data-n1', n1); el.setAttribute('data-n2', n2);
+  fwSetQuestion(el, '피자를 '+d+'조각으로 나눴습니다. 민준이가 '+n1+'조각, 서연이가 '+n2+'조각을 먹었더니 피자가 다 없어졌습니다. 각자 먹은 양을 분수로 쓰고, 두 분수를 더하면 얼마인지 확인하세요.', 'fwSol7');
+}
+function fwSol7(id){
+  var el = document.getElementById(id);
+  var d=+el.getAttribute('data-d'), n1=+el.getAttribute('data-n1'), n2=+el.getAttribute('data-n2');
+  var diagram = '<div class="fb-diagram" style="text-align:center">'+fracPieHtml(n1,d,'#58a6ff')
+    + '<br>민준: '+frac(n1,d)+' + 서연: '+frac(n2,d)+' = '+frac(n1+n2,d)+' = <strong style="color:#3fb950">1(전체)</strong></div>';
+  fwRenderToggle(id, diagram, 'fwSol7');
+}
+function fwGen8(id){
+  var d = 6 + Math.floor(Math.random()*7);
+  var n = 1 + Math.floor(Math.random()*(d-1));
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d); el.setAttribute('data-n', n);
+  fwSetQuestion(el, '도화지를 '+d+'칸으로 나누고 '+n+'칸을 색칠했습니다. 색칠한 부분과 색칠하지 않은 부분을 각각 분수로 나타내세요.', 'fwSol8');
+}
+function fwSol8(id){
+  var el = document.getElementById(id);
+  var d=+el.getAttribute('data-d'), n=+el.getAttribute('data-n');
+  var diagram = '<div class="fb-diagram" style="text-align:center">'+fracGridHtml(n,d)
+    + '색칠한 부분 = '+frac(n,d)+' 　 색칠 안 한 부분 = '+frac(d-n,d)+'</div>';
+  fwRenderToggle(id, diagram, 'fwSol8');
+}
+function fwGen9(id){
+  var d = 2 + Math.floor(Math.random()*7);
+  var n = 2 + Math.floor(Math.random()*5);
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d); el.setAttribute('data-n', n);
+  fwSetQuestion(el, '리본 '+d+'m를 '+n+'명이 똑같이 나눠 가지려고 합니다. 한 명이 가지는 리본의 길이를 분수로 나타내면?', 'fwSol9');
+}
+function fwSol9(id){
+  var el = document.getElementById(id);
+  var d=+el.getAttribute('data-d'), n=+el.getAttribute('data-n');
+  fwRenderToggle(id, '<div class="fb-diagram">'+d+'m ÷ '+n+'명 = <strong style="color:#3fb950">'+frac(d,n)+'m</strong></div>', 'fwSol9');
+}
+function fwGen10(id){
+  var vals = [];
+  while(vals.length<3){
+    var v = 3 + Math.floor(Math.random()*7);
+    if(vals.indexOf(v)===-1) vals.push(v);
+  }
+  var el = document.getElementById(id);
+  el.setAttribute('data-d1', vals[0]); el.setAttribute('data-d2', vals[1]); el.setAttribute('data-d3', vals[2]);
+  fwSetQuestion(el, '다음 세 단위분수 중 가장 큰 것은? 1/'+vals[0]+', 1/'+vals[1]+', 1/'+vals[2], 'fwSol10');
+}
+function fwSol10(id){
+  var el = document.getElementById(id);
+  var d1=+el.getAttribute('data-d1'), d2=+el.getAttribute('data-d2'), d3=+el.getAttribute('data-d3');
+  var minD = Math.min(d1,d2,d3);
+  var diagram = '<div class="fb-diagram" style="text-align:center">'
+    + fracPieHtml(1,d1)+fracPieHtml(1,d2)+fracPieHtml(1,d3)
+    + '<br>단위분수는 분모가 작을수록 커요<br>가장 작은 분모는 '+minD+' → <strong style="color:#3fb950">'+frac(1,minD)+'</strong>이 가장 커요</div>';
+  fwRenderToggle(id, diagram, 'fwSol10');
+}
+
+// ── 들이와무게(e3msr) 문장제 심화 10선: 랜덤 생성 + 다음 문제 + 풀이 접기(토글) ──
+function mlFmt(ml){
+  if(ml<1000) return ml+'mL';
+  var l=Math.floor(ml/1000), rem=ml%1000;
+  return rem>0 ? (l+'L '+rem+'mL') : (l+'L');
+}
+function gFmt(g){
+  if(g<1000) return g+'g';
+  var kg=Math.floor(g/1000), rem=g%1000;
+  return rem>0 ? (kg+'kg '+rem+'g') : (kg+'kg');
+}
+function msrBar(label, value, maxValue, color){
+  var pct = Math.min(100, Math.round(value/maxValue*100));
+  return '<div style="margin:4px 0;text-align:left"><div style="font-size:.65rem;color:#8b949e">'+label+'</div><div style="background:#4b5563;border-radius:6px;height:14px;overflow:hidden"><div style="background:'+color+';height:100%;width:'+pct+'%"></div></div></div>';
+}
+function mrwSetQuestion(el, qtext, solfn){
+  el.setAttribute('data-qtext', qtext);
+  el.setAttribute('data-solfn', solfn);
+  el.setAttribute('data-showing', '0');
+  el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+el.id+'\')">💡 풀이 보기</button>';
+}
+function mrwRenderToggle(id, diagramHtml, solfn){
+  var el = document.getElementById(id);
+  var qtext = el.getAttribute('data-qtext');
+  var showing = el.getAttribute('data-showing') === '1';
+  if(showing){
+    el.setAttribute('data-showing', '0');
+    el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">💡 풀이 보기</button>';
+  } else {
+    el.setAttribute('data-showing', '1');
+    el.innerHTML = qtext + diagramHtml + '<button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')" style="width:100%;margin-top:8px">👆 접어두기</button>';
+  }
+}
+function mrwGen1(id){
+  var water = (3+Math.floor(Math.random()*6))*100;
+  var milk = (2+Math.floor(Math.random()*6))*100;
+  var el = document.getElementById(id);
+  el.setAttribute('data-water', water); el.setAttribute('data-milk', milk);
+  mrwSetQuestion(el, '요리에 물 '+water+'mL와 우유 '+milk+'mL를 넣습니다. 합쳐서 몇 mL인가요?', 'mrwSol1');
+}
+function mrwSol1(id){
+  var el = document.getElementById(id);
+  var water=+el.getAttribute('data-water'), milk=+el.getAttribute('data-milk');
+  var sum = water+milk;
+  mrwRenderToggle(id, '<div class="fb-diagram">'+water+'+'+milk+' = '+sum+'mL = <strong style="color:#3fb950">'+mlFmt(sum)+'</strong></div>', 'mrwSol1');
+}
+function mrwGen2(id){
+  var total = (12+Math.floor(Math.random()*14))*100;
+  var use = (2+Math.floor(Math.random()*Math.floor(total/100-2)))*100;
+  var el = document.getElementById(id);
+  el.setAttribute('data-total', total); el.setAttribute('data-use', use);
+  mrwSetQuestion(el, '물통에 '+mlFmt(total)+'의 물이 있었는데 '+mlFmt(use)+'를 사용했습니다. 남은 물의 양은?', 'mrwSol2');
+}
+function mrwSol2(id){
+  var el = document.getElementById(id);
+  var total=+el.getAttribute('data-total'), use=+el.getAttribute('data-use');
+  var remain = total-use;
+  mrwRenderToggle(id, '<div class="fb-diagram">'+total+'−'+use+' = '+remain+'mL = <strong style="color:#3fb950">'+mlFmt(remain)+'</strong></div>', 'mrwSol2');
+}
+function mrwGen3(id){
+  var items = [['필통','책','물병'],['공책','우산','도시락'],['색연필세트','필통','간식']];
+  var names = items[Math.floor(Math.random()*items.length)];
+  var a = (2+Math.floor(Math.random()*6))*50;
+  var b = (3+Math.floor(Math.random()*7))*50;
+  var c = (2+Math.floor(Math.random()*7))*50;
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b); el.setAttribute('data-c', c);
+  el.setAttribute('data-n1', names[0]); el.setAttribute('data-n2', names[1]); el.setAttribute('data-n3', names[2]);
+  mrwSetQuestion(el, '가방 안에 '+names[0]+'('+a+'g), '+names[1]+'('+b+'g), '+names[2]+'('+c+'g)을 넣었습니다. 가방 안 물건들의 총 무게는?', 'mrwSol3');
+}
+function mrwSol3(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c');
+  var sum = a+b+c;
+  mrwRenderToggle(id, '<div class="fb-diagram">'+a+'+'+b+'+'+c+' = '+sum+'g = <strong style="color:#3fb950">'+gFmt(sum)+'</strong></div>', 'mrwSol3');
+}
+function mrwGen4(id){
+  var cap = (20+Math.floor(Math.random()*21))*10;
+  var n = 3+Math.floor(Math.random()*4);
+  var avg = (6+Math.floor(Math.random()*8))*5;
+  var el = document.getElementById(id);
+  el.setAttribute('data-cap', cap); el.setAttribute('data-n', n); el.setAttribute('data-avg', avg);
+  mrwSetQuestion(el, '엘리베이터 무게 제한이 '+cap+'kg입니다. '+n+'명이 각각 평균 '+avg+'kg이라면 한꺼번에 탈 수 있을까요?', 'mrwSol4');
+}
+function mrwSol4(id){
+  var el = document.getElementById(id);
+  var cap=+el.getAttribute('data-cap'), n=+el.getAttribute('data-n'), avg=+el.getAttribute('data-avg');
+  var total = n*avg;
+  var ok = total<=cap;
+  var diagram = '<div class="fb-diagram">'+msrBar('탑승 인원 무게 '+total+'kg', total, Math.max(cap,total), '#58a6ff')+msrBar('무게 제한 '+cap+'kg', cap, Math.max(cap,total), '#f0c040')
+    + n+'×'+avg+' = '+total+'kg vs 제한 '+cap+'kg<br><strong style="color:'+(ok?'#3fb950':'#f85149')+'">'+(ok?'탈 수 있어요':'탈 수 없어요')+'</strong></div>';
+  mrwRenderToggle(id, diagram, 'mrwSol4');
+}
+function mrwGen5(id){
+  var total = (10+Math.floor(Math.random()*21))*100;
+  var bottle = (2+Math.floor(Math.random()*6))*100;
+  var el = document.getElementById(id);
+  el.setAttribute('data-total', total); el.setAttribute('data-bottle', bottle);
+  mrwSetQuestion(el, '물 '+total+'mL를 한 병에 '+bottle+'mL씩 담으려고 합니다. 병은 몇 개 필요할까요?', 'mrwSol5');
+}
+function mrwSol5(id){
+  var el = document.getElementById(id);
+  var total=+el.getAttribute('data-total'), bottle=+el.getAttribute('data-bottle');
+  var q = Math.floor(total/bottle), r = total%bottle;
+  var need = r>0 ? q+1 : q;
+  var reasoning = r>0 ? (total+'÷'+bottle+' = '+q+'…'+r+' → 남은 '+r+'mL도 담아야 하니 병이 1개 더 필요해요') : (total+'÷'+bottle+' = '+q+' → 나머지 없이 딱 맞아요');
+  mrwRenderToggle(id, '<div class="fb-diagram">'+reasoning+'<br>병은 <strong style="color:#3fb950">'+need+'개</strong> 필요해요</div>', 'mrwSol5');
+}
+function mrwGen6(id){
+  var akg = 1+Math.floor(Math.random()*3);
+  var ag = (1+Math.floor(Math.random()*9))*100;
+  var bg = (10+Math.floor(Math.random()*30))*100;
+  var el = document.getElementById(id);
+  el.setAttribute('data-akg', akg); el.setAttribute('data-ag', ag); el.setAttribute('data-bg', bg);
+  mrwSetQuestion(el, '가방 A는 '+akg+'kg '+ag+'g, 가방 B는 '+bg+'g입니다. 어느 가방이 더 무거운가요?', 'mrwSol6');
+}
+function mrwSol6(id){
+  var el = document.getElementById(id);
+  var akg=+el.getAttribute('data-akg'), ag=+el.getAttribute('data-ag'), bg=+el.getAttribute('data-bg');
+  var atotal = akg*1000+ag;
+  var heavier = atotal>bg ? 'A' : 'B';
+  var maxV = Math.max(atotal,bg);
+  var diagram = '<div class="fb-diagram">'+msrBar('가방 A ('+gFmt(atotal)+')', atotal, maxV, '#58a6ff')+msrBar('가방 B ('+gFmt(bg)+')', bg, maxV, '#f0c040')
+    + '가방 A = '+akg+'×1000+'+ag+' = '+atotal+'g<br>가방 B = '+bg+'g<br><strong style="color:#3fb950">가방 '+heavier+'가 더 무거워요</strong></div>';
+  mrwRenderToggle(id, diagram, 'mrwSol6');
+}
+function mrwGen7(id){
+  var havel = 2+Math.floor(Math.random()*3);
+  var use = (3+Math.floor(Math.random()*6))*100;
+  var cup = (2+Math.floor(Math.random()*4))*100;
+  var el = document.getElementById(id);
+  el.setAttribute('data-havel', havel); el.setAttribute('data-use', use); el.setAttribute('data-cup', cup);
+  mrwSetQuestion(el, '물 '+havel+'L가 있습니다. '+use+'mL를 사용하고, 남은 물을 '+cup+'mL 컵에 나눠 담으면 몇 컵이 나올까요? (다 못 채우는 나머지는 세지 않아요)', 'mrwSol7');
+}
+function mrwSol7(id){
+  var el = document.getElementById(id);
+  var havel=+el.getAttribute('data-havel'), use=+el.getAttribute('data-use'), cup=+el.getAttribute('data-cup');
+  var haveMl = havel*1000;
+  var remain = haveMl-use;
+  var cups = Math.floor(remain/cup);
+  mrwRenderToggle(id, '<div class="fb-diagram">'+havel+'L = '+haveMl+'mL<br>'+haveMl+'−'+use+' = '+remain+'mL (남은 물)<br>'+remain+'÷'+cup+' = <strong style="color:#3fb950">'+cups+'컵</strong></div>', 'mrwSol7');
+}
+function mrwGen8(id){
+  var k1 = 2+Math.floor(Math.random()*3), g1 = (1+Math.floor(Math.random()*9))*100;
+  var k2 = 1+Math.floor(Math.random()*3), g2 = (1+Math.floor(Math.random()*9))*100;
+  var el = document.getElementById(id);
+  el.setAttribute('data-k1', k1); el.setAttribute('data-g1', g1);
+  el.setAttribute('data-k2', k2); el.setAttribute('data-g2', g2);
+  mrwSetQuestion(el, '수박의 무게는 '+k1+'kg '+g1+'g, 멜론의 무게는 '+k2+'kg '+g2+'g입니다. 두 과일의 무게 차이는?', 'mrwSol8');
+}
+function mrwSol8(id){
+  var el = document.getElementById(id);
+  var k1=+el.getAttribute('data-k1'), g1=+el.getAttribute('data-g1'), k2=+el.getAttribute('data-k2'), g2=+el.getAttribute('data-g2');
+  var t1 = k1*1000+g1, t2 = k2*1000+g2;
+  var diff = Math.abs(t1-t2);
+  var maxV = Math.max(t1,t2);
+  var diagram = '<div class="fb-diagram">'+msrBar('수박 '+gFmt(t1), t1, maxV, '#58a6ff')+msrBar('멜론 '+gFmt(t2), t2, maxV, '#f0c040')
+    + t1+'g − '+t2+'g = '+diff+'g = <strong style="color:#3fb950">'+gFmt(diff)+'</strong></div>';
+  mrwRenderToggle(id, diagram, 'mrwSol8');
+}
+function mrwGen9(id){
+  var rk = 1+Math.floor(Math.random()*2), rg = (1+Math.floor(Math.random()*9))*100;
+  var sg = (2+Math.floor(Math.random()*7))*100;
+  var fg = (2+Math.floor(Math.random()*7))*100;
+  var el = document.getElementById(id);
+  el.setAttribute('data-rk', rk); el.setAttribute('data-rg', rg);
+  el.setAttribute('data-sg', sg); el.setAttribute('data-fg', fg);
+  mrwSetQuestion(el, '장바구니에 쌀 '+rk+'kg '+rg+'g, 설탕 '+sg+'g, 밀가루 '+fg+'g을 담았습니다. 장바구니 안 물건들의 총 무게는?', 'mrwSol9');
+}
+function mrwSol9(id){
+  var el = document.getElementById(id);
+  var rk=+el.getAttribute('data-rk'), rg=+el.getAttribute('data-rg'), sg=+el.getAttribute('data-sg'), fg=+el.getAttribute('data-fg');
+  var rice = rk*1000+rg;
+  var sum = rice+sg+fg;
+  mrwRenderToggle(id, '<div class="fb-diagram">쌀 '+rice+'g + 설탕 '+sg+'g + 밀가루 '+fg+'g = '+sum+'g = <strong style="color:#3fb950">'+gFmt(sum)+'</strong></div>', 'mrwSol9');
+}
+function mrwGen10(id){
+  var l1 = 1+Math.floor(Math.random()*3), m1 = (1+Math.floor(Math.random()*9))*100;
+  var l2 = 1+Math.floor(Math.random()*3), m2 = (1+Math.floor(Math.random()*9))*100;
+  var el = document.getElementById(id);
+  el.setAttribute('data-l1', l1); el.setAttribute('data-m1', m1);
+  el.setAttribute('data-l2', l2); el.setAttribute('data-m2', m2);
+  mrwSetQuestion(el, '물통 A에는 '+l1+'L '+m1+'mL, 물통 B에는 '+l2+'L '+m2+'mL의 물이 있습니다. 두 물통의 물을 합치면 모두 몇 L 몇 mL인가요?', 'mrwSol10');
+}
+function mrwSol10(id){
+  var el = document.getElementById(id);
+  var l1=+el.getAttribute('data-l1'), m1=+el.getAttribute('data-m1'), l2=+el.getAttribute('data-l2'), m2=+el.getAttribute('data-m2');
+  var t1 = l1*1000+m1, t2 = l2*1000+m2, sum = t1+t2;
+  mrwRenderToggle(id, '<div class="fb-diagram">'+t1+'mL + '+t2+'mL = '+sum+'mL = <strong style="color:#3fb950">'+mlFmt(sum)+'</strong></div>', 'mrwSol10');
+}
+
+// ── 자료의정리(e3data) 문장제 심화 10선: 랜덤 생성 + 다음 문제 + 풀이 접기(토글) ──
+function dtwTable(headers, rows){
+  var thead = '<tr>'+headers.map(function(h){ return '<th>'+h+'</th>'; }).join('')+'</tr>';
+  var tbody = rows.map(function(r){ return '<tr>'+r.map(function(c){ return '<td>'+c+'</td>'; }).join('')+'</tr>'; }).join('');
+  return '<table class="dtw-table">'+thead+tbody+'</table>';
+}
+function dtwSetQuestion(el, qtext, solfn){
+  el.setAttribute('data-qtext', qtext);
+  el.setAttribute('data-solfn', solfn);
+  el.setAttribute('data-showing', '0');
+  el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+el.id+'\')">💡 풀이 보기</button>';
+}
+function dtwRenderToggle(id, diagramHtml, solfn){
+  var el = document.getElementById(id);
+  var qtext = el.getAttribute('data-qtext');
+  var showing = el.getAttribute('data-showing') === '1';
+  if(showing){
+    el.setAttribute('data-showing', '0');
+    el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">💡 풀이 보기</button>';
+  } else {
+    el.setAttribute('data-showing', '1');
+    el.innerHTML = qtext + diagramHtml + '<button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')" style="width:100%;margin-top:8px">👆 접어두기</button>';
+  }
+}
+function dtwGen1(id){
+  var a=3+Math.floor(Math.random()*13), b=3+Math.floor(Math.random()*13), c=3+Math.floor(Math.random()*13), d=3+Math.floor(Math.random()*13);
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b); el.setAttribute('data-c', c); el.setAttribute('data-d', d);
+  var tbl = dtwTable(['사과','바나나','포도','딸기'], [[a,b,c,d]]);
+  dtwSetQuestion(el, '다음은 좋아하는 과일 조사 결과입니다. 조사에 참여한 학생은 모두 몇 명인가요?'+tbl, 'dtwSol1');
+}
+function dtwSol1(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c'), d=+el.getAttribute('data-d');
+  var sum = a+b+c+d;
+  dtwRenderToggle(id, '<div class="fb-diagram">'+a+'+'+b+'+'+c+'+'+d+' = <strong style="color:#3fb950">'+sum+'명</strong></div>', 'dtwSol1');
+}
+function dtwGen2(id){
+  var vals = [];
+  while(vals.length<4){
+    var v = 4+Math.floor(Math.random()*14);
+    if(vals.indexOf(v)===-1) vals.push(v);
+  }
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', vals[0]); el.setAttribute('data-b', vals[1]); el.setAttribute('data-c', vals[2]); el.setAttribute('data-d', vals[3]);
+  var tbl = dtwTable(['봄','여름','가을','겨울'], [vals]);
+  dtwSetQuestion(el, '다음은 좋아하는 계절 조사 결과입니다. 가장 많이 좋아하는 계절과 가장 적게 좋아하는 계절의 학생 수 차이는?'+tbl, 'dtwSol2');
+}
+function dtwSol2(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c'), d=+el.getAttribute('data-d');
+  var vals=[a,b,c,d];
+  var max=Math.max.apply(null,vals), min=Math.min.apply(null,vals);
+  dtwRenderToggle(id, '<div class="fb-diagram">가장 많음 '+max+'명, 가장 적음 '+min+'명<br>'+max+'−'+min+' = <strong style="color:#3fb950">'+(max-min)+'명</strong></div>', 'dtwSol2');
+}
+function dtwGen3(id){
+  var big = 1+Math.floor(Math.random()*9);
+  var small = Math.floor(Math.random()*10);
+  var el = document.getElementById(id);
+  el.setAttribute('data-big', big); el.setAttribute('data-small', small);
+  dtwSetQuestion(el, '그림그래프에서 큰 그림(10명) '+big+'개, 작은 그림(1명) '+small+'개로 그려졌다면 실제 학생 수는 몇 명인가요?', 'dtwSol3');
+}
+function dtwSol3(id){
+  var el = document.getElementById(id);
+  var big=+el.getAttribute('data-big'), small=+el.getAttribute('data-small');
+  var total = big*10+small;
+  dtwRenderToggle(id, '<div class="fb-diagram">'+big+'×10 + '+small+' = <strong style="color:#3fb950">'+total+'명</strong></div>', 'dtwSol3');
+}
+function dtwGen4(id){
+  var a=3+Math.floor(Math.random()*10), b=3+Math.floor(Math.random()*10), c=3+Math.floor(Math.random()*10);
+  var blank = 3+Math.floor(Math.random()*10);
+  var total = a+b+c+blank;
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b); el.setAttribute('data-c', c); el.setAttribute('data-total', total);
+  var tbl = dtwTable(['사과','바나나','포도','딸기','합계'], [[a,b,c,'?',total]]);
+  dtwSetQuestion(el, '아래 표에서 딸기를 좋아하는 학생 수가 빈칸입니다. 합계가 '+total+'명이라면 빈칸은 몇 명인가요?'+tbl, 'dtwSol4');
+}
+function dtwSol4(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c'), total=+el.getAttribute('data-total');
+  var blank = total-a-b-c;
+  dtwRenderToggle(id, '<div class="fb-diagram">'+total+'−'+a+'−'+b+'−'+c+' = <strong style="color:#3fb950">'+blank+'명</strong></div>', 'dtwSol4');
+}
+function dtwGen5(id){
+  var a1 = 3+Math.floor(Math.random()*13), a2 = 3+Math.floor(Math.random()*13);
+  var el = document.getElementById(id);
+  el.setAttribute('data-a1', a1); el.setAttribute('data-a2', a2);
+  dtwSetQuestion(el, '1반에서 사과를 좋아하는 학생은 '+a1+'명, 2반에서 사과를 좋아하는 학생은 '+a2+'명입니다. 두 반을 합치면 사과를 좋아하는 학생은 모두 몇 명인가요?', 'dtwSol5');
+}
+function dtwSol5(id){
+  var el = document.getElementById(id);
+  var a1=+el.getAttribute('data-a1'), a2=+el.getAttribute('data-a2');
+  dtwRenderToggle(id, '<div class="fb-diagram">'+a1+'+'+a2+' = <strong style="color:#3fb950">'+(a1+a2)+'명</strong></div>', 'dtwSol5');
+}
+function dtwGen6(id){
+  var a,b,c,tries=0;
+  do {
+    a=5+Math.floor(Math.random()*14); b=5+Math.floor(Math.random()*14); c=5+Math.floor(Math.random()*14);
+    tries++;
+  } while(new Set([a,b,c]).size<3 && tries<10);
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b); el.setAttribute('data-c', c);
+  var tbl = dtwTable(['젤리','과자','초콜릿'], [[a,b,c]]);
+  dtwSetQuestion(el, '다음은 좋아하는 간식 조사 결과입니다. 가장 인기있는 간식을 학생 1인당 2개씩 준비하려면, 총 몇 개를 준비해야 하나요?'+tbl, 'dtwSol6');
+}
+function dtwSol6(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c');
+  var max = Math.max(a,b,c);
+  var need = max*2;
+  dtwRenderToggle(id, '<div class="fb-diagram">가장 인기있는 간식 = '+max+'명<br>'+max+'×2 = <strong style="color:#3fb950">'+need+'개</strong></div>', 'dtwSol6');
+}
+function dtwGen7(id){
+  var names = ['축구','농구','줄넘기'];
+  var s1vals, s2vals, tries=0;
+  do {
+    s1vals = [6+Math.floor(Math.random()*10), 6+Math.floor(Math.random()*10), 6+Math.floor(Math.random()*10)];
+    tries++;
+  } while(new Set(s1vals).size<3 && tries<10);
+  tries=0;
+  do {
+    s2vals = [6+Math.floor(Math.random()*10), 6+Math.floor(Math.random()*10), 6+Math.floor(Math.random()*10)];
+    tries++;
+  } while(new Set(s2vals).size<3 && tries<10);
+  var el = document.getElementById(id);
+  el.setAttribute('data-a1', s1vals[0]); el.setAttribute('data-b1', s1vals[1]); el.setAttribute('data-c1', s1vals[2]);
+  el.setAttribute('data-a2', s2vals[0]); el.setAttribute('data-b2', s2vals[1]); el.setAttribute('data-c2', s2vals[2]);
+  var tbl = dtwTable(['', names[0], names[1], names[2]], [['지난달'].concat(s1vals), ['이번달'].concat(s2vals)]);
+  dtwSetQuestion(el, '지난달과 이번달 좋아하는 운동 조사에서 1등이 바뀌었는지 확인해 보세요.'+tbl, 'dtwSol7');
+}
+function dtwSol7(id){
+  var el = document.getElementById(id);
+  var names = ['축구','농구','줄넘기'];
+  var s1 = [+el.getAttribute('data-a1'), +el.getAttribute('data-b1'), +el.getAttribute('data-c1')];
+  var s2 = [+el.getAttribute('data-a2'), +el.getAttribute('data-b2'), +el.getAttribute('data-c2')];
+  var top1idx = s1.indexOf(Math.max.apply(null,s1));
+  var top2idx = s2.indexOf(Math.max.apply(null,s2));
+  var changed = top1idx!==top2idx;
+  dtwRenderToggle(id, '<div class="fb-diagram">지난달 1등: '+names[top1idx]+'('+s1[top1idx]+'명)<br>이번달 1등: '+names[top2idx]+'('+s2[top2idx]+'명)<br><strong style="color:#3fb950">'+(changed?'1등이 바뀌었어요':'1등은 그대로예요')+'</strong></div>', 'dtwSol7');
+}
+function dtwGen8(id){
+  var n = 11+Math.floor(Math.random()*39);
+  var el = document.getElementById(id);
+  el.setAttribute('data-n', n);
+  dtwSetQuestion(el, '표에서 '+n+'명이라는 값을 그림그래프로 나타내려고 합니다. 큰 그림(10명)과 작은 그림(1명)을 각각 몇 개씩 그려야 하나요?', 'dtwSol8');
+}
+function dtwSol8(id){
+  var el = document.getElementById(id);
+  var n = +el.getAttribute('data-n');
+  var big = Math.floor(n/10), small = n%10;
+  dtwRenderToggle(id, '<div class="fb-diagram">'+n+' = '+big+'×10 + '+small+'<br>큰 그림 <strong style="color:#3fb950">'+big+'개</strong>, 작은 그림 <strong style="color:#3fb950">'+small+'개</strong></div>', 'dtwSol8');
+}
+function dtwGen9(id){
+  var mapple=2+Math.floor(Math.random()*8), mgrape=2+Math.floor(Math.random()*8);
+  var fapple=2+Math.floor(Math.random()*8), fgrape=2+Math.floor(Math.random()*8);
+  var el = document.getElementById(id);
+  el.setAttribute('data-mapple', mapple); el.setAttribute('data-mgrape', mgrape);
+  el.setAttribute('data-fapple', fapple); el.setAttribute('data-fgrape', fgrape);
+  var tbl = dtwTable(['','사과','포도'], [['남학생',mapple,mgrape],['여학생',fapple,fgrape]]);
+  dtwSetQuestion(el, '남학생과 여학생이 좋아하는 과일을 조사했습니다. 사과를 좋아하는 학생은 전체 몇 명인가요?'+tbl, 'dtwSol9');
+}
+function dtwSol9(id){
+  var el = document.getElementById(id);
+  var mapple=+el.getAttribute('data-mapple'), fapple=+el.getAttribute('data-fapple');
+  dtwRenderToggle(id, '<div class="fb-diagram">남학생 '+mapple+'명 + 여학생 '+fapple+'명 = <strong style="color:#3fb950">'+(mapple+fapple)+'명</strong></div>', 'dtwSol9');
+}
+function dtwGen10(id){
+  var actual = 4+Math.floor(Math.random()*7);
+  var mult = 2+Math.floor(Math.random()*2);
+  var shown = actual*mult;
+  var el = document.getElementById(id);
+  el.setAttribute('data-actual', actual); el.setAttribute('data-shown', shown);
+  dtwSetQuestion(el, '어떤 그림그래프에서 A항목의 실제 값은 '+actual+'명인데, 그림을 크게 그려서 마치 '+shown+'명인 것처럼 보이게 그렸습니다. 실제 값과 보이는 값의 차이는?', 'dtwSol10');
+}
+function dtwSol10(id){
+  var el = document.getElementById(id);
+  var actual=+el.getAttribute('data-actual'), shown=+el.getAttribute('data-shown');
+  dtwRenderToggle(id, '<div class="fb-diagram">'+shown+'−'+actual+' = <strong style="color:#3fb950">'+(shown-actual)+'명</strong> 차이만큼 과장됐어요</div>', 'dtwSol10');
+}
 
 // ── 탭 전환 ──
 function showGrade(id) {
