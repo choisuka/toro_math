@@ -2246,6 +2246,26 @@ const CV_DATA_E3CIRC = [
       <div id="cw-10" class="prob-q" data-d="26" data-qtext="자전거 바퀴의 지름이 26cm입니다. 이 바퀴 2개의 지름을 나란히 이어 놓으면 전체 길이는 몇 cm인가요?" data-solfn="cwSol10">자전거 바퀴의 지름이 26cm입니다. 이 바퀴 2개의 지름을 나란히 이어 놓으면 전체 길이는 몇 cm인가요?<br><button class="havruta-show-btn" onclick="cwSol10('cw-10')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cwGen10('cw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 11 (합-차 응용)</div>
+      <div id="cw-11" class="prob-q" data-s="16" data-d="6" data-qtext="정원에서 다리 개수가 다른 곤충 두 마리를 봤습니다. 두 마리의 다리를 합치면 총 16개이고, 한 마리가 다른 마리보다 6개 더 많습니다. 각각 다리가 몇 개인가요?" data-solfn="cwSol11">정원에서 다리 개수가 다른 곤충 두 마리를 봤습니다. 두 마리의 다리를 합치면 총 16개이고, 한 마리가 다른 마리보다 6개 더 많습니다. 각각 다리가 몇 개인가요?<br><button class="havruta-show-btn" onclick="cwSol11('cw-11')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen11('cw-11')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 12 (합-차 응용)</div>
+      <div id="cw-12" class="prob-q" data-s="20" data-d="8" data-qtext="민준이와 서연이가 게임을 했습니다. 두 사람의 점수를 더하면 총 20점이고, 민준이가 서연이보다 8점 더 많습니다. 두 사람의 점수는 각각 몇 점인가요?" data-solfn="cwSol12">민준이와 서연이가 게임을 했습니다. 두 사람의 점수를 더하면 총 20점이고, 민준이가 서연이보다 8점 더 많습니다. 두 사람의 점수는 각각 몇 점인가요?<br><button class="havruta-show-btn" onclick="cwSol12('cw-12')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen12('cw-12')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 13 (가정법 응용)</div>
+      <div id="cw-13" class="prob-q" data-n="10" data-legs="26" data-qtext="농장에 오리와 돼지가 합쳐서 10마리 있습니다. 다리 수를 세어보니 모두 26개였습니다. 오리와 돼지는 각각 몇 마리인가요?" data-solfn="cwSol13">농장에 오리와 돼지가 합쳐서 10마리 있습니다. 다리 수를 세어보니 모두 26개였습니다. 오리와 돼지는 각각 몇 마리인가요?<br><button class="havruta-show-btn" onclick="cwSol13('cw-13')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen13('cw-13')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 14 (가정법 응용)</div>
+      <div id="cw-14" class="prob-q" data-n="10" data-net="22" data-qtext="민준이가 구슬치기를 10번 했습니다. 이기면 5개를 받고 지면 2개를 줍니다. 10번 후 구슬이 22개 늘었다면, 이긴 횟수와 진 횟수는 각각 몇 번인가요?" data-solfn="cwSol14">민준이가 구슬치기를 10번 했습니다. 이기면 5개를 받고 지면 2개를 줍니다. 10번 후 구슬이 22개 늘었다면, 이긴 횟수와 진 횟수는 각각 몇 번인가요?<br><button class="havruta-show-btn" onclick="cwSol14('cw-14')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cwGen14('cw-14')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
   `}
 ];
 CV_DATA['e3circ'] = CV_DATA_E3CIRC;
@@ -3877,8 +3897,8 @@ function cwSol7(id){
     + s+' − '+d+' = <strong>'+(s-d)+'cm</strong> (작은 원 반지름의 2배)<br><br>'
     + '② 이걸 2로 나누면 작은 원의 반지름<br>'
     + (s-d)+' ÷ 2 = <strong style="color:#3fb950">'+small+'cm</strong> (작은 원)<br><br>'
-    + '③ 작은 원에 차이를 다시 더하면 큰 원의 반지름<br>'
-    + small+' + '+d+' = <strong style="color:#3fb950">'+big+'cm</strong> (큰 원)<br><br>'
+    + '③ 큰 원의 반지름 = 전체(합)에서 작은 원을 빼기<br>'
+    + s+' − '+small+' = <strong style="color:#3fb950">'+big+'cm</strong> (큰 원)<br><br>'
     + '확인: '+small+'+'+big+'='+s+' ✓　'+big+'−'+small+'='+d+' ✓<br><br>'
     + '<span style="color:#8b949e">(공식으로 바로 구하면) 작은 반지름 = (합−차)÷2, 큰 반지름 = (합+차)÷2</span>'
     + '</div>';
@@ -3922,6 +3942,94 @@ function cwSol10(id){
   var el = document.getElementById(id);
   var d = +el.getAttribute('data-d');
   cwRenderToggle(id, '<div class="fb-diagram">'+cwSvgDoubleDiameter(d)+d+'×2 = <strong style="color:#3fb950">'+(d*2)+'cm</strong></div>', 'cwSol10');
+}
+function cwGen11(id){
+  var small = 3+Math.floor(Math.random()*6);
+  var diff = (2+Math.floor(Math.random()*4))*2;
+  var big = small+diff;
+  var s = small+big;
+  var el = document.getElementById(id);
+  el.setAttribute('data-s', s); el.setAttribute('data-d', diff);
+  cwSetQuestion(el, '정원에서 다리 개수가 다른 곤충 두 마리를 봤습니다. 두 마리의 다리를 합치면 총 '+s+'개이고, 한 마리가 다른 마리보다 '+diff+'개 더 많습니다. 각각 다리가 몇 개인가요?', 'cwSol11');
+}
+function cwSol11(id){
+  var el = document.getElementById(id);
+  var s=+el.getAttribute('data-s'), d=+el.getAttribute('data-d');
+  var small=(s-d)/2, big=(s+d)/2;
+  var diagram = '<div class="fb-diagram" style="text-align:left">'
+    + '① 큰 쪽에서 차이('+d+'개)를 먼저 빼면 두 마리가 같아져요: '+s+'−'+d+'='+(s-d)+'개<br>'
+    + '② '+(s-d)+'÷2 = <strong style="color:#3fb950">'+small+'개</strong> (작은 곤충)<br>'
+    + '③ 큰 곤충 = 전체(합)에서 작은 곤충을 빼기: '+s+'−'+small+' = <strong style="color:#3fb950">'+big+'개</strong> (큰 곤충)<br>'
+    + '확인: '+small+'+'+big+'='+s+' ✓　'+big+'−'+small+'='+d+' ✓</div>';
+  cwRenderToggle(id, diagram, 'cwSol11');
+}
+function cwGen12(id){
+  var small = 4+Math.floor(Math.random()*8);
+  var diff = (2+Math.floor(Math.random()*5))*2;
+  var big = small+diff;
+  var s = small+big;
+  var el = document.getElementById(id);
+  el.setAttribute('data-s', s); el.setAttribute('data-d', diff);
+  cwSetQuestion(el, '민준이와 서연이가 게임을 했습니다. 두 사람의 점수를 더하면 총 '+s+'점이고, 민준이가 서연이보다 '+diff+'점 더 많습니다. 두 사람의 점수는 각각 몇 점인가요?', 'cwSol12');
+}
+function cwSol12(id){
+  var el = document.getElementById(id);
+  var s=+el.getAttribute('data-s'), d=+el.getAttribute('data-d');
+  var small=(s-d)/2, big=(s+d)/2;
+  var diagram = '<div class="fb-diagram" style="text-align:left">'
+    + '① 민준이 점수에서 차이('+d+'점)를 먼저 빼면 두 사람이 같아져요: '+s+'−'+d+'='+(s-d)+'점<br>'
+    + '② '+(s-d)+'÷2 = <strong style="color:#3fb950">'+small+'점</strong> (서연)<br>'
+    + '③ 민준 점수 = 전체(합)에서 서연 점수를 빼기: '+s+'−'+small+' = <strong style="color:#3fb950">'+big+'점</strong> (민준)<br>'
+    + '확인: '+small+'+'+big+'='+s+' ✓　'+big+'−'+small+'='+d+' ✓</div>';
+  cwRenderToggle(id, diagram, 'cwSol12');
+}
+function cwGen13(id){
+  var ducks = 3+Math.floor(Math.random()*6);
+  var pigs = 2+Math.floor(Math.random()*6);
+  var n = ducks+pigs;
+  var legs = ducks*2+pigs*4;
+  var el = document.getElementById(id);
+  el.setAttribute('data-n', n); el.setAttribute('data-legs', legs);
+  cwSetQuestion(el, '농장에 오리와 돼지가 합쳐서 '+n+'마리 있습니다. 다리 수를 세어보니 모두 '+legs+'개였습니다. 오리와 돼지는 각각 몇 마리인가요?', 'cwSol13');
+}
+function cwSol13(id){
+  var el = document.getElementById(id);
+  var n=+el.getAttribute('data-n'), legs=+el.getAttribute('data-legs');
+  var allDuckLegs = n*2;
+  var diff = legs-allDuckLegs;
+  var pigs = diff/2;
+  var ducks = n-pigs;
+  var diagram = '<div class="fb-diagram" style="text-align:left">'
+    + '① 모두 오리라면 다리는 '+n+'×2='+allDuckLegs+'개<br>'
+    + '② 실제 다리 수('+legs+'개)와 차이: '+legs+'−'+allDuckLegs+'='+diff+'개<br>'
+    + '③ 오리 한 마리를 돼지로 바꿀 때마다 다리가 2개씩 늘어요 → 돼지 수 = '+diff+'÷2 = <strong style="color:#3fb950">'+pigs+'마리</strong><br>'
+    + '④ 오리 수 = '+n+'−'+pigs+' = <strong style="color:#3fb950">'+ducks+'마리</strong><br>'
+    + '확인: 오리'+ducks+'×2+돼지'+pigs+'×4='+(ducks*2)+'+'+(pigs*4)+'='+legs+' ✓　'+ducks+'+'+pigs+'='+n+' ✓</div>';
+  cwRenderToggle(id, diagram, 'cwSol13');
+}
+function cwGen14(id){
+  var wins = 3+Math.floor(Math.random()*6);
+  var losses = 2+Math.floor(Math.random()*5);
+  var n = wins+losses;
+  var net = wins*5-losses*2;
+  var el = document.getElementById(id);
+  el.setAttribute('data-n', n); el.setAttribute('data-net', net);
+  cwSetQuestion(el, '민준이가 구슬치기를 '+n+'번 했습니다. 이기면 5개를 받고 지면 2개를 줍니다. '+n+'번 후 구슬이 '+net+'개 늘었다면, 이긴 횟수와 진 횟수는 각각 몇 번인가요?', 'cwSol14');
+}
+function cwSol14(id){
+  var el = document.getElementById(id);
+  var n=+el.getAttribute('data-n'), net=+el.getAttribute('data-net');
+  var allWinNet = n*5;
+  var diff = allWinNet-net;
+  var losses = diff/7;
+  var wins = n-losses;
+  var diagram = '<div class="fb-diagram" style="text-align:left">'
+    + '① 모두 이겼다면 구슬은 '+n+'×5='+allWinNet+'개 늘었을 거예요<br>'
+    + '② 실제로는 '+net+'개만 늘었으니 차이는 '+allWinNet+'−'+net+'='+diff+'개<br>'
+    + '③ 이긴 걸 진 걸로 바꿀 때마다 +5에서 −2로 바뀌어서 7개씩 줄어요 → 진 횟수 = '+diff+'÷7 = <strong style="color:#3fb950">'+losses+'번</strong><br>'
+    + '④ 이긴 횟수 = '+n+'−'+losses+' = <strong style="color:#3fb950">'+wins+'번</strong><br>'
+    + '확인: '+wins+'×5−'+losses+'×2='+(wins*5)+'−'+(losses*2)+'='+net+' ✓　'+wins+'+'+losses+'='+n+' ✓</div>';
+  cwRenderToggle(id, diagram, 'cwSol14');
 }
 
 // ── 분수의 기초(e3frac) 문장제 심화 10선: 랜덤 생성 + 다음 문제 + 풀이 접기(토글) ──
