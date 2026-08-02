@@ -2784,7 +2784,7 @@ const CV_DATA_E3DATA = [
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
-      <div id="dtw-6" class="prob-q" data-a="9" data-b="14" data-c="7" data-qtext="다음은 좋아하는 간식 조사 결과입니다. 가장 인기있는 간식을 학생 1인당 2개씩 준비하려면, 총 몇 개를 준비해야 하나요?<table class='dtw-table'><tr><th>젤리</th><th>과자</th><th>초콜릿</th></tr><tr><td>9</td><td>14</td><td>7</td></tr></table>" data-solfn="dtwSol6">다음은 좋아하는 간식 조사 결과입니다. 가장 인기있는 간식을 학생 1인당 2개씩 준비하려면, 총 몇 개를 준비해야 하나요?<table class="dtw-table"><tr><th>젤리</th><th>과자</th><th>초콜릿</th></tr><tr><td>9</td><td>14</td><td>7</td></tr></table><button class="havruta-show-btn" onclick="dtwSol6('dtw-6')">💡 풀이 보기</button></div>
+      <div id="dtw-6" class="prob-q" data-a="9" data-b="14" data-c="7" data-qtext="다음은 좋아하는 간식 조사 결과입니다. 조사에 참여한 학생 모두에게 간식을 1인당 2개씩 나눠주려면, 총 몇 개를 준비해야 하나요?<table class='dtw-table'><tr><th>젤리</th><th>과자</th><th>초콜릿</th></tr><tr><td>9</td><td>14</td><td>7</td></tr></table>" data-solfn="dtwSol6">다음은 좋아하는 간식 조사 결과입니다. 조사에 참여한 학생 모두에게 간식을 1인당 2개씩 나눠주려면, 총 몇 개를 준비해야 하나요?<table class="dtw-table"><tr><th>젤리</th><th>과자</th><th>초콜릿</th></tr><tr><td>9</td><td>14</td><td>7</td></tr></table><button class="havruta-show-btn" onclick="dtwSol6('dtw-6')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="dtwGen6('dtw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
@@ -4422,22 +4422,18 @@ function dtwSol5(id){
   dtwRenderToggle(id, '<div class="fb-diagram">'+a1+'+'+a2+' = <strong style="color:#3fb950">'+(a1+a2)+'명</strong></div>', 'dtwSol5');
 }
 function dtwGen6(id){
-  var a,b,c,tries=0;
-  do {
-    a=5+Math.floor(Math.random()*14); b=5+Math.floor(Math.random()*14); c=5+Math.floor(Math.random()*14);
-    tries++;
-  } while(new Set([a,b,c]).size<3 && tries<10);
+  var a=5+Math.floor(Math.random()*14), b=5+Math.floor(Math.random()*14), c=5+Math.floor(Math.random()*14);
   var el = document.getElementById(id);
   el.setAttribute('data-a', a); el.setAttribute('data-b', b); el.setAttribute('data-c', c);
   var tbl = dtwTable(['젤리','과자','초콜릿'], [[a,b,c]]);
-  dtwSetQuestion(el, '다음은 좋아하는 간식 조사 결과입니다. 가장 인기있는 간식을 학생 1인당 2개씩 준비하려면, 총 몇 개를 준비해야 하나요?'+tbl, 'dtwSol6');
+  dtwSetQuestion(el, '다음은 좋아하는 간식 조사 결과입니다. 조사에 참여한 학생 모두에게 간식을 1인당 2개씩 나눠주려면, 총 몇 개를 준비해야 하나요?'+tbl, 'dtwSol6');
 }
 function dtwSol6(id){
   var el = document.getElementById(id);
   var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c');
-  var max = Math.max(a,b,c);
-  var need = max*2;
-  dtwRenderToggle(id, '<div class="fb-diagram">가장 인기있는 간식 = '+max+'명<br>'+max+'×2 = <strong style="color:#3fb950">'+need+'개</strong></div>', 'dtwSol6');
+  var sum = a+b+c;
+  var need = sum*2;
+  dtwRenderToggle(id, '<div class="fb-diagram">전체 학생 수 = '+a+'+'+b+'+'+c+' = '+sum+'명<br>'+sum+'×2 = <strong style="color:#3fb950">'+need+'개</strong></div>', 'dtwSol6');
 }
 function dtwGen7(id){
   var names = ['축구','농구','줄넘기'];
