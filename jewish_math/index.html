@@ -3867,20 +3867,22 @@ function cwGen7(id){
   el.setAttribute('data-s', s); el.setAttribute('data-d', diff);
   cwSetQuestion(el, '두 원의 반지름을 더하면 '+s+'cm입니다. 한 원의 반지름이 다른 원보다 '+diff+'cm 더 크다면, 두 원의 반지름은 각각 몇 cm인가요?', 'cwSol7');
 }
-function cwBarDiagram(small, big, diff){
-  var scale = Math.min(10, 180/big);
-  var bigPx = Math.round(big*scale), smallPx = Math.round(small*scale), diffPx = Math.round(diff*scale);
-  return '<div style="text-align:left;max-width:240px;margin:10px auto">'
-    + '<div style="display:flex;align-items:center;margin-bottom:6px"><div style="width:'+bigPx+'px;height:20px;background:#58a6ff;border-radius:4px"></div><span style="font-size:.65rem;color:#8b949e;margin-left:8px">큰 반지름 '+big+'cm</span></div>'
-    + '<div style="display:flex;align-items:center"><div style="width:'+smallPx+'px;height:20px;background:#f0c040;border-radius:4px 0 0 4px"></div><div style="width:'+diffPx+'px;height:20px;background:#f85149;border-radius:0 4px 4px 0"></div><span style="font-size:.65rem;color:#8b949e;margin-left:8px">작은 반지름 '+small+'cm + 차 '+diff+'cm</span></div>'
-    + '</div>'
-    + '<div style="font-size:.65rem;color:#8b949e;text-align:center">위·아래 막대의 길이가 같아요 → 큰 반지름 = 작은 반지름 + 차이</div>';
-}
 function cwSol7(id){
   var el = document.getElementById(id);
   var s = +el.getAttribute('data-s'), d = +el.getAttribute('data-d');
   var big = (s+d)/2, small = (s-d)/2;
-  cwRenderToggle(id, '<div class="fb-diagram">'+cwBarDiagram(small,big,d)+'작은 반지름 = (합−차)÷2 = ('+s+'−'+d+')÷2 = <strong style="color:#3fb950">'+small+'cm</strong><br>큰 반지름 = (합+차)÷2 = ('+s+'+'+d+')÷2 = <strong style="color:#3fb950">'+big+'cm</strong></div>', 'cwSol7');
+  var diagram = '<div class="fb-diagram" style="text-align:left">'
+    + '전체(합) = '+s+'cm　차이 = '+d+'cm<br><br>'
+    + '① 큰 원에서 차이만큼('+d+'cm)을 먼저 빼면, 두 원의 반지름이 같아져요<br>'
+    + s+' − '+d+' = <strong>'+(s-d)+'cm</strong> (작은 원 반지름의 2배)<br><br>'
+    + '② 이걸 2로 나누면 작은 원의 반지름<br>'
+    + (s-d)+' ÷ 2 = <strong style="color:#3fb950">'+small+'cm</strong> (작은 원)<br><br>'
+    + '③ 작은 원에 차이를 다시 더하면 큰 원의 반지름<br>'
+    + small+' + '+d+' = <strong style="color:#3fb950">'+big+'cm</strong> (큰 원)<br><br>'
+    + '확인: '+small+'+'+big+'='+s+' ✓　'+big+'−'+small+'='+d+' ✓<br><br>'
+    + '<span style="color:#8b949e">(공식으로 바로 구하면) 작은 반지름 = (합−차)÷2, 큰 반지름 = (합+차)÷2</span>'
+    + '</div>';
+  cwRenderToggle(id, diagram, 'cwSol7');
 }
 function cwGen8(id){
   var span = 3 + Math.floor(Math.random()*13);
