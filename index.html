@@ -12990,6 +12990,10 @@ C(5,12), AC=BC=13, AB=10 → <b>둘레=10+13+13=36</b>
 </div>
 예: A(1,2), B(4,8) → m = <span class="frac"><span class="num">8−2</span><span class="den">4−1</span></span> = <span class="frac"><span class="num">6</span><span class="den">3</span></span> = <b>2</b><br><br>
 <span style="font-size:.8rem;color:#94a3b8">셋 다 "세로로 움직인 양 ÷ 가로로 움직인 양"이라는 같은 이야기를 다르게 표현한 것뿐이에요.</span>
+<div id="ln-slope-out" data-v="1,2,4,8" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>A(1,2), B(4,8)일 때 기울기는?</b><br><button onclick="lnShowSlope('ln-slope-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextSlope('ln-slope-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null }
 ],
 
@@ -13006,6 +13010,10 @@ C(5,12), AC=BC=13, AB=10 → <b>둘레=10+13+13=36</b>
 <b>기본예제</b>: 기울기가 −3이고 점(2,5)를 지나는 직선은?<br>
 y−5=−3(x−2) → y−5=−3x+6 → <b>y=−3x+11</b>
 </div>
+<div id="ln-ps-out" data-v="-3,2,5" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>기울기 −3, 점(2,5)을 지나는 직선은?</b><br><button onclick="lnShowPS('ln-ps-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextPS('ln-ps-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null },
 
 { tag:'직선의 방정식 — 두 점 2/3', tagColor:'#7dd3fc',
@@ -13019,6 +13027,10 @@ y−5=−3(x−2) → y−5=−3x+6 → <b>y=−3x+11</b>
 <b>기본예제</b>: 두 점(1,4),(3,10)을 지나는 직선은?<br>
 m=<span class="frac"><span class="num">10−4</span><span class="den">3−1</span></span>=3 → y−4=3(x−1) → <b>y=3x+1</b>
 </div>
+<div id="ln-twopt-out" data-v="1,4,3,10" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>두 점(1,4), (3,10)을 지나는 직선의 방정식과 기울기는?</b><br><button onclick="lnShowTwoPt('ln-twopt-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextTwoPt('ln-twopt-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null },
 
 { tag:'직선의 방정식 — 절편형과 일반형 3/3', tagColor:'#7dd3fc',
@@ -13037,6 +13049,10 @@ y절편(x=0): y=−9 / x절편(y=0): x=3 → <b>y절편 −9, x절편 3</b>
 </div><br>
 결국 모든 직선은 <b>ax+by+c=0</b>(일반형) 하나로 정리돼요 — 점기울기형·절편형은 상황에 맞게 빨리 세우는 지름길일 뿐이에요.<br><br>
 <span style="font-size:.8rem;color:#94a3b8">단, x=k 같은 수직선은 기울기가 없어 y=mx+n 형태로는 못 써요 — 일반형(a=1,b=0)만 가능해요.</span>
+<div id="ln-intercept-out" data-v="4,-2" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>x절편 4, y절편 −2인 직선은?</b><br><button onclick="lnShowIntercept('ln-intercept-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextIntercept('ln-intercept-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null }
 ],
 
@@ -13055,6 +13071,10 @@ y절편(x=0): y=−9 / x절편(y=0): x=3 → <b>y절편 −9, x절편 3</b>
 평행(m=4): y−1=4(x−2) → <b>y=4x−7</b><br>
 수직(4×m=−1→m=−¼): y−1=−¼(x−2) → <b>y=−¼x+3/2</b>
 </div>
+<div id="ln-parperp-out" data-v="4,2,1" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>점(2,1)을 지나고 기울기 4인 직선에 평행한 직선과 수직인 직선은?</b><br><button onclick="lnShowParPerp('ln-parperp-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextParPerp('ln-parperp-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null },
 
 { tag:'두 직선의 위치관계 — 수직 조건 연습 2/4', tagColor:'#7dd3fc',
@@ -13068,6 +13088,10 @@ y−(−1)=½(x−4) → y+1=½x−2 → <b>y=½x−3</b>
 <div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
 🔗 점과 직선 사이 거리·원의 접선까지 이 수직 도구가 어떻게 이어지는지는 <b style="color:#c4b5fd">"수직의 의미 총정리"</b>에 자세히 있어요.
 </div>
+<div id="ln-perponly-out" data-v="-2,5,4,-1" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>직선 y=−2x+5에 수직이고 점(4,−1)을 지나는 직선은?</b><br><button onclick="lnShowPerpOnly('ln-perponly-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextPerpOnly('ln-perponly-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null },
 
 { tag:'두 직선의 위치관계 — 일반형 계수로 판정 3/4', tagColor:'#7dd3fc',
@@ -13083,6 +13107,10 @@ y−(−1)=½(x−4) → y+1=½x−2 → <b>y=½x−3</b>
 <b>기본예제</b>: 4x−2y+3=0 과 2x−y−5=0 은?<br>
 a₁/a₂=4/2=2, b₁/b₂=−2/−1=2, c₁/c₂=3/−5=−3/5 → a₁/a₂=b₁/b₂인데 c₁/c₂는 다름 → <b>평행</b>
 </div>
+<div id="ln-classify-out" data-v="4,-2,3,2,-1,-5" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>4x−2y+3=0 과 2x−y−5=0 은?</b><br><button onclick="lnShowClassify('ln-classify-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextClassify('ln-classify-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null },
 
 { tag:'두 직선의 위치관계 — 일반형 수직 조건 4/4', tagColor:'#7dd3fc',
@@ -13098,6 +13126,10 @@ a₁/a₂=4/2=2, b₁/b₂=−2/−1=2, c₁/c₂=3/−5=−3/5 → a₁/a₂=b�
 3×1+1×(−3)=3−3=0 → <b>네, 수직 맞습니다</b>
 </div><br>
 <span style="font-size:.8rem;color:#94a3b8">기울기로 풀든 계수로 풀든 항상 같은 결론이 나와요 — 같은 사실을 보는 두 가지 도구일 뿐이에요.</span>
+<div id="ln-perpgen-out" data-v="3,1,-2,1,-3,7" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>3x+y−2=0 과 x−3y+7=0 은 수직인가요?</b><br><button onclick="lnShowPerpGen('ln-perpgen-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextPerpGen('ln-perpgen-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null }
 ],
 
@@ -13122,7 +13154,12 @@ a₁/a₂=4/2=2, b₁/b₂=−2/−1=2, c₁/c₂=3/−5=−3/5 → a₁/a₂=b�
 <b>기본예제</b>: k(2x−y+1)+(x+y−4)=0이 항상 지나는 점은?<br>
 2x−y+1=0 ··①, x+y−4=0 ··②<br>
 ①+②: 3x−3=0 → x=1, ②대입 y=3 → <b>정점(1,3)</b>
-</div><br>
+</div>
+<div id="ln-vertex-out" data-v="2,-1,1,1,1,-4" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>k(2x−y+1)+(x+y−4)=0이 k값에 관계없이 항상 지나는 점은?</b><br><button onclick="lnShowVertex('ln-vertex-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextVertex('ln-vertex-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
+<br>
 <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
 <b>응용(반대 방향)</b>: 두 직선 x−y−1=0, 2x+y−5=0의 교점과 점(1,4)를 지나는 직선은?<br>
 k(x−y−1)+(2x+y−5)=0에 (1,4) 대입: k(1−4−1)+(2+4−5)=0 → −4k+1=0 → k=¼<br>
@@ -13185,6 +13222,10 @@ l은 k값과 관계없이 항상 점(0,−2)를 지나요(y절편 고정, y축 �
 a=3,b=4,c=−6, (x₀,y₀)=(1,2)<br>
 d=<span class="frac"><span class="num">|3(1)+4(2)−6|</span><span class="den">√(3²+4²)</span></span>=<span class="frac"><span class="num">5</span><span class="den">5</span></span>=<b>1</b>
 </div>
+<div id="ln-ptline-out" data-v="3,4,-6,5,1,2" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>점(1,2)과 직선 3x+4y−6=0 사이의 거리는?</b><br><button onclick="distShowPtLine('ln-ptline-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="distNextPtLine('ln-ptline-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null },
 
 { tag:'점과 직선 사이의 거리 — 심화① y=mx+b는 일반형으로 3/6', tagColor:'#fbbf24',
@@ -13218,6 +13259,10 @@ d=<span class="frac"><span class="num">|3(2)−4k+1|</span><span class="den">5</
 직선 OA: 0x+1y+0=0 → d=|0(1)+1(3)+0|/√(0²+1²)=<b>3</b><br>
 넓이 = ½×4×3 = <b>6</b>
 </div>
+<div id="ln-triarea-out" data-v="4,1,3" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>O(0,0), A(4,0), B(1,3)를 꼭짓점으로 하는 △OAB의 넓이는?</b><br><button onclick="lnShowTriArea('ln-triarea-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextTriArea('ln-triarea-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null },
 
 { tag:'점과 직선 사이의 거리 — 보충도구: 산술기하평균 6/6', tagColor:'#fbbf24',
@@ -13251,6 +13296,10 @@ x²+y²=(x−6)²+(y−2)² → 0=−12x−4y+40 → <b>3x+y−10=0</b>
 <div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
 🔗 지금은 "같은 거리" 조건이라 결과가 직선(수직이등분선)이 됐지만, 조건이 "한 정점으로부터 일정한 거리"로 바뀌면 결과가 <b style="color:#c4b5fd">원</b>이 돼요 — 원의 방정식 단원에서 이 자취 기법을 그대로 다시 써요.
 </div>
+<div id="ln-locus-out" data-v="0,0,6,2" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>두 점 A(0,0), B(6,2)로부터 같은 거리에 있는 점 P의 자취는?</b><br><button onclick="lnShowLocus('ln-locus-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextLocus('ln-locus-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null }
 ],
 
@@ -13423,6 +13472,10 @@ l₁ 위의 다른 점 B(3,7)에서 l₂까지: d=|2(3)−1(7)−9|/√5=10/√5
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 직선이 x축 양의 방향과 45°를 이루고 점(2,1)을 지날 때, y축과 만나는 점의 y좌표는?
+<div id="ln-b1-out" data-v="1,2,1" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>직선이 x축 양의 방향과 45°를 이루고 점(2,1)을 지날 때, y축과 만나는 점의 y좌표는?</b><br><button onclick="lnShowAngleSlope('ln-b1-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextAngleSlope('ln-b1-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`,
     ans:`tan45°=1이므로 m=1. y−1=1(x−2) → y=x−1<br>x=0 대입 → <b>y=−1</b>` },
 
@@ -13430,6 +13483,10 @@ l₁ 위의 다른 점 B(3,7)에서 l₂까지: d=|2(3)−1(7)−9|/√5=10/√5
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 기울기 −2, 점(3,−1)을 지나는 직선이 x축과 만나는 점은?
+<div id="ln-b2-out" data-v="-2,3,-1" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>기울기 −2, 점(3,−1)을 지나는 직선이 x축과 만나는 점은?</b><br><button onclick="lnShowSlopeXInt('ln-b2-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextSlopeXInt('ln-b2-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`,
     ans:`y+1=−2(x−3) → y=−2x+5<br>y=0 → x=<span class="frac"><span class="num">5</span><span class="den">2</span></span> → <b>(5/2, 0)</b>` },
 
@@ -13437,6 +13494,10 @@ l₁ 위의 다른 점 B(3,7)에서 l₂까지: d=|2(3)−1(7)−9|/√5=10/√5
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 두 점 (−1,4), (3,−4)를 지나는 직선의 방정식과 기울기는?
+<div id="ln-b3-out" data-v="-1,4,3,-4" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>두 점(−1,4), (3,−4)를 지나는 직선의 방정식과 기울기는?</b><br><button onclick="lnShowTwoPt('ln-b3-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextTwoPt('ln-b3-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`,
     ans:`m=<span class="frac"><span class="num">−4−4</span><span class="den">3−(−1)</span></span>=<span class="frac"><span class="num">−8</span><span class="den">4</span></span>=−2<br>y−4=−2(x+1) → <b>y=−2x+2</b>, 기울기 <b>−2</b><br>검산: x=3 → y=−6+2=−4 ✓` },
 
@@ -13444,6 +13505,10 @@ l₁ 위의 다른 점 B(3,7)에서 l₂까지: d=|2(3)−1(7)−9|/√5=10/√5
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 직선 2x+3y−12=0이 x축,y축과 만나는 점을 A,B라 하자. △OAB(O원점)의 넓이는?
+<div id="ln-b4-out" data-v="2,3,-12" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>직선 2x+3y−12=0이 x축,y축과 만나는 점을 A,B라 하자. △OAB(O원점)의 넓이는?</b><br><button onclick="lnShowInterceptArea('ln-b4-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextInterceptArea('ln-b4-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`,
     ans:`x절편: 2x=12→x=6→A(6,0)<br>y절편: 3y=12→y=4→B(0,4)<br>넓이=½×6×4=<b>12</b>` },
 
@@ -13451,6 +13516,10 @@ l₁ 위의 다른 점 B(3,7)에서 l₂까지: d=|2(3)−1(7)−9|/√5=10/√5
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 점(1,2)를 지나고 직선 3x−y+5=0에 수직인 직선은?
+<div id="ln-b5-out" data-v="3,5,1,2" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>점(1,2)를 지나고 직선 3x−y+5=0에 수직인 직선은?</b><br><button onclick="lnShowPerpFromGen('ln-b5-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextPerpFromGen('ln-b5-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`,
     ans:`3x−y+5=0 → y=3x+5, m₁=3<br>m₁×m₂=−1 → m₂=−<span class="frac"><span class="num">1</span><span class="den">3</span></span><br>y−2=−<span class="frac"><span class="num">1</span><span class="den">3</span></span>(x−1) → <b>y=−x/3+7/3</b>` },
 
@@ -13458,6 +13527,10 @@ l₁ 위의 다른 점 B(3,7)에서 l₂까지: d=|2(3)−1(7)−9|/√5=10/√5
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 점(3,−2)와 직선 4x−3y+1=0 사이의 거리는?
+<div id="ln-b6-out" data-v="4,-3,1,5,3,-2" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>점(3,−2)와 직선 4x−3y+1=0 사이의 거리는?</b><br><button onclick="distShowPtLine('ln-b6-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="distNextPtLine('ln-b6-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`,
     ans:`d=<span class="frac"><span class="num">|4(3)−3(−2)+1|</span><span class="den">√(4²+3²)</span></span>=<span class="frac"><span class="num">|12+6+1|</span><span class="den">5</span></span>=<b>19/5</b>` }
 ],
@@ -14761,8 +14834,11 @@ function cpRegen(type, outId){
 function gRandInt(min,max){ return min + Math.floor(Math.random()*(max-min+1)); }
 function gFmt(x){ return x<0 ? '−'+Math.abs(x) : String(x); }
 function gLineEq(a,b,c){
+  var aPart = (a===1?'':a===-1?'−':gFmt(a))+'x';
+  var bAbs = Math.abs(b);
+  var bPart = (b>0?'+':'−')+(bAbs===1?'':bAbs)+'y';
   var cPart = c===0 ? '' : (c>0 ? '+'+c : '−'+Math.abs(c));
-  return a+'x+'+b+'y'+cPart+'=0';
+  return aPart+bPart+cPart+'=0';
 }
 function gSolBtn(fn,id){
   return '<button onclick="'+fn+'(\''+id+'\')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>';
@@ -14833,7 +14909,7 @@ function distShowPtLine(id){
   var numVal = a*x0+b*y0+c;
   var d = Math.abs(numVal)/denom;
   el.innerHTML = '<b>점('+gFmt(x0)+','+gFmt(y0)+')과 직선 '+gLineEq(a,b,c)+' 사이의 거리는?</b><br>'
-    + 'd = |'+a+'×('+gFmt(x0)+')+'+b+'×('+gFmt(y0)+')+('+gFmt(c)+')| / √('+a+'²+'+b+'²)<br>'
+    + 'd = |'+a+'×('+gFmt(x0)+')'+(b>=0?'+'+b:'−'+Math.abs(b))+'×('+gFmt(y0)+')+('+gFmt(c)+')| / √('+a+'²+'+Math.abs(b)+'²)<br>'
     + '= |'+gFmt(numVal)+'| / '+denom+' = <b>'+d+'</b>'
     + gNextBtn('distNextPtLine', id);
 }
@@ -15035,6 +15111,356 @@ function ideaShow(id, stage){
     var btn2 = document.getElementById(id+'-btn2');
     if(btn2) btn2.style.display = 'block';
   }
+}
+
+// ── 직선의방정식: 재생성 헬퍼 ──────
+function gGcd(a,b){ a=Math.abs(a); b=Math.abs(b); while(b){ var t=b; b=a%b; a=t; } return a||1; }
+function gFracHTML(n,d){
+  if(d<0){ n=-n; d=-d; }
+  var g = gGcd(n,d);
+  n=n/g; d=d/g;
+  if(d===1) return gFmt(n);
+  return '<span class="frac"><span class="num">'+gFmt(n)+'</span><span class="den">'+d+'</span></span>';
+}
+function gMxTerm(m){ return m===1?'x':m===-1?'−x':gFmt(m)+'x'; }
+function gNPart(n){ return n===0?'':(n>0?'+'+n:gFmt(n)); }
+
+// ① 기울기(두 점)
+function lnNextSlope(id){
+  var el = document.getElementById(id);
+  var x1=gRandInt(-8,8), y1=gRandInt(-8,8);
+  var dx=gRandInt(-6,6); while(dx===0) dx=gRandInt(-6,6);
+  var dy=gRandInt(-6,6);
+  var x2=x1+dx, y2=y1+dy;
+  el.setAttribute('data-v',[x1,y1,x2,y2].join(','));
+  el.innerHTML = '<b>A('+gFmt(x1)+','+gFmt(y1)+'), B('+gFmt(x2)+','+gFmt(y2)+')일 때 기울기는?</b><br>' + gSolBtn('lnShowSlope', id);
+}
+function lnShowSlope(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var x1=v[0],y1=v[1],x2=v[2],y2=v[3];
+  var dy=y2-y1, dx=x2-x1;
+  el.innerHTML = '<b>A('+gFmt(x1)+','+gFmt(y1)+'), B('+gFmt(x2)+','+gFmt(y2)+')일 때 기울기는?</b><br>'
+    + 'm = ('+gFmt(y2)+'−('+gFmt(y1)+')) / ('+gFmt(x2)+'−('+gFmt(x1)+')) = <b>'+gFracHTML(dy,dx)+'</b>'
+    + gNextBtn('lnNextSlope', id);
+}
+
+// ② 점과 기울기 → 직선의 방정식
+function lnNextPS(id){
+  var el = document.getElementById(id);
+  var m = gRandInt(-6,6); while(m===0) m=gRandInt(-6,6);
+  var x1=gRandInt(-6,6), y1=gRandInt(-6,6);
+  el.setAttribute('data-v',[m,x1,y1].join(','));
+  el.innerHTML = '<b>기울기 '+gFmt(m)+', 점('+gFmt(x1)+','+gFmt(y1)+')을 지나는 직선은?</b><br>' + gSolBtn('lnShowPS', id);
+}
+function lnShowPS(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var m=v[0],x1=v[1],y1=v[2];
+  var n = y1 - m*x1;
+  el.innerHTML = '<b>기울기 '+gFmt(m)+', 점('+gFmt(x1)+','+gFmt(y1)+')을 지나는 직선은?</b><br>'
+    + 'y−('+gFmt(y1)+') = '+gFmt(m)+'(x−('+gFmt(x1)+'))<br>'
+    + '→ <b>y = '+gMxTerm(m)+gNPart(n)+'</b>'
+    + gNextBtn('lnNextPS', id);
+}
+
+// ③ 두 점을 지나는 직선
+function lnNextTwoPt(id){
+  var el = document.getElementById(id);
+  var m = gRandInt(-6,6); while(m===0) m=gRandInt(-6,6);
+  var x1=gRandInt(-6,6), y1=gRandInt(-6,6);
+  var dx = gRandInt(-4,4); while(dx===0) dx=gRandInt(-4,4);
+  var x2 = x1+dx, y2 = y1+m*dx;
+  el.setAttribute('data-v',[x1,y1,x2,y2].join(','));
+  el.innerHTML = '<b>두 점('+gFmt(x1)+','+gFmt(y1)+'), ('+gFmt(x2)+','+gFmt(y2)+')을 지나는 직선의 방정식과 기울기는?</b><br>' + gSolBtn('lnShowTwoPt', id);
+}
+function lnShowTwoPt(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var x1=v[0],y1=v[1],x2=v[2],y2=v[3];
+  var m = (y2-y1)/(x2-x1);
+  var n = y1 - m*x1;
+  el.innerHTML = '<b>두 점('+gFmt(x1)+','+gFmt(y1)+'), ('+gFmt(x2)+','+gFmt(y2)+')을 지나는 직선의 방정식과 기울기는?</b><br>'
+    + 'm = ('+gFmt(y2)+'−('+gFmt(y1)+'))/('+gFmt(x2)+'−('+gFmt(x1)+')) = <b>'+gFmt(m)+'</b><br>'
+    + 'y−('+gFmt(y1)+')='+gFmt(m)+'(x−('+gFmt(x1)+')) → <b>y='+gMxTerm(m)+gNPart(n)+'</b>'
+    + gNextBtn('lnNextTwoPt', id);
+}
+
+// ④ 절편형 → 일반형
+function lnNextIntercept(id){
+  var el = document.getElementById(id);
+  var a = gRandInt(-8,8); while(a===0) a=gRandInt(-8,8);
+  var b = gRandInt(-8,8); while(b===0) b=gRandInt(-8,8);
+  el.setAttribute('data-v',[a,b].join(','));
+  el.innerHTML = '<b>x절편 '+gFmt(a)+', y절편 '+gFmt(b)+'인 직선은?</b><br>' + gSolBtn('lnShowIntercept', id);
+}
+function lnShowIntercept(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var a=v[0],b=v[1];
+  var g = gGcd(a,b);
+  var A = b/g, B = a/g, C = -(a*b)/g;
+  if(A<0){ A=-A; B=-B; C=-C; }
+  el.innerHTML = '<b>x절편 '+gFmt(a)+', y절편 '+gFmt(b)+'인 직선은?</b><br>'
+    + '<span class="frac"><span class="num">x</span><span class="den">'+gFmt(a)+'</span></span> + <span class="frac"><span class="num">y</span><span class="den">'+gFmt(b)+'</span></span> = 1 → '+gFmt(b)+'x+'+gFmt(a)+'y='+gFmt(a*b)+' 정리<br>'
+    + '→ <b>'+gLineEq(A,B,C)+'</b>'
+    + gNextBtn('lnNextIntercept', id);
+}
+
+// ⑤ 평행·수직 (기울기 기준, 점 지나기)
+function lnNextParPerp(id){
+  var el = document.getElementById(id);
+  var m0 = gRandInt(-5,5); while(m0===0) m0=gRandInt(-5,5);
+  var x1=gRandInt(-6,6), y1=gRandInt(-6,6);
+  el.setAttribute('data-v',[m0,x1,y1].join(','));
+  el.innerHTML = '<b>점('+gFmt(x1)+','+gFmt(y1)+')을 지나고 기울기 '+gFmt(m0)+'인 직선에 평행한 직선과 수직인 직선은?</b><br>' + gSolBtn('lnShowParPerp', id);
+}
+function lnShowParPerp(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var m0=v[0],x1=v[1],y1=v[2];
+  var n1 = y1-m0*x1;
+  el.innerHTML = '<b>점('+gFmt(x1)+','+gFmt(y1)+')을 지나고 기울기 '+gFmt(m0)+'인 직선에 평행한 직선과 수직인 직선은?</b><br>'
+    + '평행(m='+gFmt(m0)+'): y−('+gFmt(y1)+')='+gFmt(m0)+'(x−('+gFmt(x1)+')) → <b>y='+gMxTerm(m0)+gNPart(n1)+'</b><br>'
+    + '수직('+gFmt(m0)+'×m=−1 → m='+gFracHTML(-1,m0)+'): y−('+gFmt(y1)+')='+gFracHTML(-1,m0)+'(x−('+gFmt(x1)+'))'
+    + gNextBtn('lnNextParPerp', id);
+}
+
+// ⑥ 수직 조건 연습(기울기+y절편 있는 기준선)
+function lnNextPerpOnly(id){
+  var el = document.getElementById(id);
+  var m0 = gRandInt(-6,6); while(m0===0) m0=gRandInt(-6,6);
+  var n0 = gRandInt(-8,8);
+  var x1=gRandInt(-6,6), y1=gRandInt(-6,6);
+  el.setAttribute('data-v',[m0,n0,x1,y1].join(','));
+  el.innerHTML = '<b>직선 y='+gMxTerm(m0)+gNPart(n0)+'에 수직이고 점('+gFmt(x1)+','+gFmt(y1)+')을 지나는 직선은?</b><br>' + gSolBtn('lnShowPerpOnly', id);
+}
+function lnShowPerpOnly(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var m0=v[0],n0=v[1],x1=v[2],y1=v[3];
+  el.innerHTML = '<b>직선 y='+gMxTerm(m0)+gNPart(n0)+'에 수직이고 점('+gFmt(x1)+','+gFmt(y1)+')을 지나는 직선은?</b><br>'
+    + '기존 m₁='+gFmt(m0)+' → 수직조건 m₁×m₂=−1 → m₂='+gFracHTML(-1,m0)+'<br>'
+    + 'y−('+gFmt(y1)+') = '+gFracHTML(-1,m0)+'(x−('+gFmt(x1)+'))'
+    + gNextBtn('lnNextPerpOnly', id);
+}
+
+// ⑦ 일반형 계수로 판정 (평행/일치/한점)
+function lnNextClassify(id){
+  var el = document.getElementById(id);
+  var cats = ['평행','일치','한점'];
+  var cat = cats[gRandInt(0,2)];
+  var a1=gRandInt(1,6), b1=gRandInt(1,6)*(Math.random()<0.5?-1:1);
+  var c1=gRandInt(-8,8);
+  var a2,b2,c2;
+  if(cat==='평행'){
+    var t=gRandInt(2,4)*(Math.random()<0.5?-1:1);
+    a2=a1*t; b2=b1*t;
+    do{ c2 = gRandInt(-8,8); } while(c2===c1*t);
+  } else if(cat==='일치'){
+    var t2=gRandInt(2,4)*(Math.random()<0.5?-1:1);
+    a2=a1*t2; b2=b1*t2; c2=c1*t2;
+  } else {
+    a2=a1+gRandInt(1,3); b2=b1; c2=gRandInt(-8,8);
+  }
+  el.setAttribute('data-v',[a1,b1,c1,a2,b2,c2].join(','));
+  el.innerHTML = '<b>'+gLineEq(a1,b1,c1)+' 과 '+gLineEq(a2,b2,c2)+' 은?</b><br>' + gSolBtn('lnShowClassify', id);
+}
+function lnShowClassify(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var a1=v[0],b1=v[1],c1=v[2],a2=v[3],b2=v[4],c2=v[5];
+  var cross = a1*b2-a2*b1;
+  var rel;
+  if(cross!==0) rel='한 점에서 만남';
+  else rel = (a1*c2===a2*c1) ? '일치' : '평행';
+  el.innerHTML = '<b>'+gLineEq(a1,b1,c1)+' 과 '+gLineEq(a2,b2,c2)+' 은?</b><br>'
+    + 'a₁/a₂='+gFracHTML(a1,a2)+', b₁/b₂='+gFracHTML(b1,b2)+(cross===0 ? ', c₁/c₂='+gFracHTML(c1,c2) : '')+'<br>'
+    + '→ <b>'+rel+'</b>'
+    + gNextBtn('lnNextClassify', id);
+}
+
+// ⑧ 일반형 수직 조건
+function lnNextPerpGen(id){
+  var el = document.getElementById(id);
+  var a1=gRandInt(1,6)*(Math.random()<0.5?-1:1), b1=gRandInt(1,6)*(Math.random()<0.5?-1:1);
+  var k=gRandInt(1,4)*(Math.random()<0.5?-1:1);
+  var a2=k*b1, b2=-k*a1;
+  var c1=gRandInt(-8,8), c2=gRandInt(-8,8);
+  el.setAttribute('data-v',[a1,b1,c1,a2,b2,c2].join(','));
+  el.innerHTML = '<b>'+gLineEq(a1,b1,c1)+' 과 '+gLineEq(a2,b2,c2)+' 은 수직인가요?</b><br>' + gSolBtn('lnShowPerpGen', id);
+}
+function lnShowPerpGen(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var a1=v[0],b1=v[1],c1=v[2],a2=v[3],b2=v[4],c2=v[5];
+  var chk = a1*a2+b1*b2;
+  el.innerHTML = '<b>'+gLineEq(a1,b1,c1)+' 과 '+gLineEq(a2,b2,c2)+' 은 수직인가요?</b><br>'
+    + gFmt(a1)+'×'+gFmt(a2)+'+'+gFmt(b1)+'×'+gFmt(b2)+' = '+gFmt(chk)+'<br>'
+    + '→ <b>'+(chk===0?'네, 수직 맞습니다':'수직 아닙니다')+'</b>'
+    + gNextBtn('lnNextPerpGen', id);
+}
+
+// ⑨ 정점을 지나는 직선(항등식)
+function lnNextVertex(id){
+  var el = document.getElementById(id);
+  var p1=gRandInt(1,5)*(Math.random()<0.5?-1:1);
+  var p2=gRandInt(1,5)*(Math.random()<0.5?-1:1);
+  var q1=gRandInt(1,4)*(Math.random()<0.5?-1:1);
+  var x0=gRandInt(-5,5), y0=gRandInt(-5,5);
+  if(p1+p2===0) p2+=1;
+  var r1 = -(p1*x0+q1*y0);
+  var r2 = -(p2*x0-q1*y0);
+  el.setAttribute('data-v',[p1,q1,r1,p2,-q1,r2].join(','));
+  el.innerHTML = '<b>k('+gLineEqRaw(p1,q1,r1)+')+('+gLineEqRaw(p2,-q1,r2)+')=0이 k값에 관계없이 항상 지나는 점은?</b><br>' + gSolBtn('lnShowVertex', id);
+}
+function lnShowVertex(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var p1=v[0],q1=v[1],r1=v[2],p2=v[3],q2=v[4],r2=v[5];
+  var s=p1+p2, rsum=r1+r2;
+  var x0=-rsum/s;
+  var y0=(p1*x0+r1)/(-q1);
+  el.innerHTML = '<b>k('+gLineEqRaw(p1,q1,r1)+')+('+gLineEqRaw(p2,q2,r2)+')=0이 k값에 관계없이 항상 지나는 점은?</b><br>'
+    + gLineEqRaw(p1,q1,r1)+'=0 ··①, '+gLineEqRaw(p2,q2,r2)+'=0 ··②<br>'
+    + '①+②: '+gFmt(s)+'x+('+gFmt(rsum)+')=0 → x='+gFmt(x0)+', 대입 → y='+gFmt(y0)+'<br>'
+    + '→ <b>정점('+gFmt(x0)+', '+gFmt(y0)+')</b>'
+    + gNextBtn('lnNextVertex', id);
+}
+function gLineEqRaw(a,b,c){
+  var aPart = (a===1?'':a===-1?'−':gFmt(a))+'x';
+  var bAbs = Math.abs(b);
+  var bPart = (b>0?'+':'−')+(bAbs===1?'':bAbs)+'y';
+  var cPart = c===0?'':(c>0?'+'+c:'−'+Math.abs(c));
+  return aPart+bPart+cPart;
+}
+
+// ⑩ 삼각형 넓이 (O, A(a,0), B(bx,by))
+function lnNextTriArea(id){
+  var el = document.getElementById(id);
+  var aOpts=[4,6,8,10,12];
+  var a = aOpts[gRandInt(0,aOpts.length-1)];
+  var bx = gRandInt(-5,5), by = gRandInt(-6,6); while(by===0) by=gRandInt(-6,6);
+  el.setAttribute('data-v',[a,bx,by].join(','));
+  el.innerHTML = '<b>O(0,0), A('+a+',0), B('+gFmt(bx)+','+gFmt(by)+')를 꼭짓점으로 하는 △OAB의 넓이는?</b><br>' + gSolBtn('lnShowTriArea', id);
+}
+function lnShowTriArea(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var a=v[0],bx=v[1],by=v[2];
+  var area = 0.5*Math.abs(a)*Math.abs(by);
+  el.innerHTML = '<b>O(0,0), A('+a+',0), B('+gFmt(bx)+','+gFmt(by)+')를 꼭짓점으로 하는 △OAB의 넓이는?</b><br>'
+    + '밑변 OA='+a+'(x축 위 선분). 높이는 B에서 직선 OA(=x축)까지 거리.<br>'
+    + '직선 OA: 0x+1y+0=0 → d=|'+gFmt(by)+'| = '+Math.abs(by)+'<br>'
+    + '넓이 = ½×'+a+'×'+Math.abs(by)+' = <b>'+area+'</b>'
+    + gNextBtn('lnNextTriArea', id);
+}
+
+// ⑪ 자취의 방정식(수직이등분선)
+function lnNextLocus(id){
+  var el = document.getElementById(id);
+  var x1,y1,x2,y2;
+  do{
+    x1=gRandInt(-6,6); y1=gRandInt(-6,6); x2=gRandInt(-6,6); y2=gRandInt(-6,6);
+  } while(x1===x2 && y1===y2);
+  el.setAttribute('data-v',[x1,y1,x2,y2].join(','));
+  el.innerHTML = '<b>두 점 A('+gFmt(x1)+','+gFmt(y1)+'), B('+gFmt(x2)+','+gFmt(y2)+')로부터 같은 거리에 있는 점 P의 자취는?</b><br>' + gSolBtn('lnShowLocus', id);
+}
+function lnShowLocus(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var x1=v[0],y1=v[1],x2=v[2],y2=v[3];
+  var A=2*(x2-x1), B=2*(y2-y1), C=x1*x1+y1*y1-x2*x2-y2*y2;
+  var g = gGcd(gGcd(A,B),C);
+  var a=A/g,b=B/g,c=C/g;
+  if(a<0){ a=-a;b=-b;c=-c; }
+  el.innerHTML = '<b>두 점 A('+gFmt(x1)+','+gFmt(y1)+'), B('+gFmt(x2)+','+gFmt(y2)+')로부터 같은 거리에 있는 점 P의 자취는?</b><br>'
+    + 'PA²=PB² → (x−('+gFmt(x1)+'))²+(y−('+gFmt(y1)+'))²=(x−('+gFmt(x2)+'))²+(y−('+gFmt(y2)+'))²<br>'
+    + '전개 정리 → <b>'+gLineEq(a,b,c)+'</b>'
+    + gNextBtn('lnNextLocus', id);
+}
+
+// ⑫ 각도로 오는 기울기(45°/135°) → 절편
+function lnNextAngleSlope(id){
+  var el = document.getElementById(id);
+  var angle = Math.random()<0.5 ? 45 : 135;
+  var m = angle===45 ? 1 : -1;
+  var x1=gRandInt(-6,6), y1=gRandInt(-6,6);
+  el.setAttribute('data-v',[m,x1,y1].join(','));
+  el.innerHTML = '<b>직선이 x축 양의 방향과 '+angle+'°를 이루고 점('+gFmt(x1)+','+gFmt(y1)+')을 지날 때, y축과 만나는 점의 y좌표는?</b><br>' + gSolBtn('lnShowAngleSlope', id);
+}
+function lnShowAngleSlope(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var m=v[0],x1=v[1],y1=v[2];
+  var n = y1-m*x1;
+  var angle = m===1?45:135;
+  el.innerHTML = '<b>직선이 x축 양의 방향과 '+angle+'°를 이루고 점('+gFmt(x1)+','+gFmt(y1)+')을 지날 때, y축과 만나는 점의 y좌표는?</b><br>'
+    + 'tan'+angle+'°='+gFmt(m)+'이므로 m='+gFmt(m)+'. y−('+gFmt(y1)+')='+gFmt(m)+'(x−('+gFmt(x1)+')) → y='+gMxTerm(m)+gNPart(n)+'<br>'
+    + 'x=0 대입 → <b>y='+gFmt(n)+'</b>'
+    + gNextBtn('lnNextAngleSlope', id);
+}
+
+// ⑬ 기울기+점 → x절편
+function lnNextSlopeXInt(id){
+  var el = document.getElementById(id);
+  var m = gRandInt(-6,6); while(m===0) m=gRandInt(-6,6);
+  var x1=gRandInt(-6,6), y1=gRandInt(-6,6); while(y1===0) y1=gRandInt(-6,6);
+  el.setAttribute('data-v',[m,x1,y1].join(','));
+  el.innerHTML = '<b>기울기 '+gFmt(m)+', 점('+gFmt(x1)+','+gFmt(y1)+')을 지나는 직선이 x축과 만나는 점은?</b><br>' + gSolBtn('lnShowSlopeXInt', id);
+}
+function lnShowSlopeXInt(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var m=v[0],x1=v[1],y1=v[2];
+  var n = y1-m*x1;
+  el.innerHTML = '<b>기울기 '+gFmt(m)+', 점('+gFmt(x1)+','+gFmt(y1)+')을 지나는 직선이 x축과 만나는 점은?</b><br>'
+    + 'y−('+gFmt(y1)+')='+gFmt(m)+'(x−('+gFmt(x1)+')) → y='+gMxTerm(m)+gNPart(n)+'<br>'
+    + 'y=0 → x='+gFracHTML(-n,m)+' → <b>('+gFracHTML(-n,m)+', 0)</b>'
+    + gNextBtn('lnNextSlopeXInt', id);
+}
+
+// ⑭ 일반형 절편+삼각형 넓이
+function lnNextInterceptArea(id){
+  var el = document.getElementById(id);
+  var aOpts=[2,4,6,8];
+  var a=aOpts[gRandInt(0,aOpts.length-1)], b=gRandInt(1,4);
+  var m=gRandInt(2,3);
+  var c=-(a*b*m);
+  el.setAttribute('data-v',[a,b,c].join(','));
+  el.innerHTML = '<b>직선 '+gLineEq(a,b,c)+'이 x축,y축과 만나는 점을 A,B라 하자. △OAB(O원점)의 넓이는?</b><br>' + gSolBtn('lnShowInterceptArea', id);
+}
+function lnShowInterceptArea(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var a=v[0],b=v[1],c=v[2];
+  var xi=-c/a, yi=-c/b;
+  var area = 0.5*Math.abs(xi)*Math.abs(yi);
+  el.innerHTML = '<b>직선 '+gLineEq(a,b,c)+'이 x축,y축과 만나는 점을 A,B라 하자. △OAB(O원점)의 넓이는?</b><br>'
+    + 'x절편: '+a+'x='+(-c)+'→x='+xi+'→A('+xi+',0)<br>'
+    + 'y절편: '+b+'y='+(-c)+'→y='+yi+'→B(0,'+yi+')<br>'
+    + '넓이=½×'+xi+'×'+yi+' = <b>'+area+'</b>'
+    + gNextBtn('lnNextInterceptArea', id);
+}
+
+// ⑮ 일반형 기준선 + 점 → 수직인 직선
+function lnNextPerpFromGen(id){
+  var el = document.getElementById(id);
+  var m0 = gRandInt(-6,6); while(m0===0) m0=gRandInt(-6,6);
+  var c0 = gRandInt(-8,8);
+  var x1=gRandInt(-6,6), y1=gRandInt(-6,6);
+  el.setAttribute('data-v',[m0,c0,x1,y1].join(','));
+  el.innerHTML = '<b>점('+gFmt(x1)+','+gFmt(y1)+')를 지나고 직선 '+gLineEq(m0,-1,c0)+'에 수직인 직선은?</b><br>' + gSolBtn('lnShowPerpFromGen', id);
+}
+function lnShowPerpFromGen(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var m0=v[0],c0=v[1],x1=v[2],y1=v[3];
+  el.innerHTML = '<b>점('+gFmt(x1)+','+gFmt(y1)+')를 지나고 직선 '+gLineEq(m0,-1,c0)+'에 수직인 직선은?</b><br>'
+    + gLineEq(m0,-1,c0)+' → y='+gMxTerm(m0)+gNPart(c0)+', m₁='+gFmt(m0)+'<br>'
+    + 'm₁×m₂=−1 → m₂='+gFracHTML(-1,m0)+'<br>'
+    + 'y−('+gFmt(y1)+') = '+gFracHTML(-1,m0)+'(x−('+gFmt(x1)+'))'
+    + gNextBtn('lnNextPerpFromGen', id);
 }
 
 // ── FM 나라별 방: 퀴즈 카드를 개념/연습 사이에 삽입 ──────
