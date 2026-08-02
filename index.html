@@ -12852,34 +12852,76 @@ x=<span class="frac"><span class="num">2×(−2)+1×4</span><span class="den">3<
 AB=BC일 때<br>
 BC=CA일 때<br>
 CA=AB일 때<br>
-→ 이 중 어느 게 같은지 직접 다 확인(케이스분류)<br><br>
+→ 이 중 어느 게 같은지 직접 다 확인(케이스분류)<br>
+<button onclick="ideaEx('pl-ex-1')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-1" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>예제</b>: A(0,0), B(6,0), C(3,4)가 이등변삼각형인지 확인하려면?<br>
+<b>풀이과정</b>: AB, BC, CA 세 변의 길이를 각각 거리공식으로 구한 뒤, 두 개가 같은지 비교합니다.
+</div><br>
 <b style="color:#c4b5fd">📏 직각삼각형 판별</b><br>
 피타고라스 역: a²+b²=c²<br>
-→ 어느 변이 빗변인지 케이스분류<br><br>
+→ 어느 변이 빗변인지 케이스분류<br>
+<button onclick="ideaEx('pl-ex-2')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-2" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>예제</b>: A(0,0), B(3,0), C(0,4)가 직각삼각형인지 확인하려면?<br>
+<b>풀이과정</b>: 세 변의 길이를 구하고, 가장 긴 변을 빗변으로 놓아 피타고라스 역이 성립하는지 확인합니다.
+</div><br>
 <b style="color:#c4b5fd">🔺 정삼각형 조건</b><br>
-AB=BC=CA를 동시에(연립)<br><br>
+AB=BC=CA를 동시에(연립)<br>
+<button onclick="ideaEx('pl-ex-3')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-3" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>예제</b>: A(0,0), B(4,0), C(2,t)가 정삼각형이 되는 t(t&gt;0)를 구하려면?<br>
+<b>풀이과정</b>: C가 x=2 위(대칭)라 CA=CB는 이미 같으니, CA=AB 식 하나만 세워 풀면 됩니다.
+</div><br>
 <b style="color:#c4b5fd">🔷 평행사변형 판별</b><br>
 대각선이 서로를 이등분(내분점 1:1)<br>
 두 쌍의 대변이 각각 평행<br>
 두 쌍의 대변 길이가 각각 같음<br>
 한 쌍의 대변이 평행하면서 길이도 같음<br>
-→ 여러 판별법 중 하나만 확인하면 충분<br><br>
+→ 여러 판별법 중 하나만 확인하면 충분<br>
+→ "평행"인지는 <b>기울기가 같은지</b>로 확인<br>
+<button onclick="ideaEx('pl-ex-4')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-4" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>예제</b>: A(1,2), B(5,3), C(7,7), D(3,6)이 평행사변형(순서대로 ABCD)인지 확인하려면?<br>
+<b>풀이과정</b>: 대각선 AC와 BD 각각의 중점을 구해서 같은지 비교합니다.
+</div><br>
 <b style="color:#c4b5fd">⚖️ 무게중심</b><br>
-원래 공식: G = ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3)<br>
+원래 공식: G = (<span class="frac"><span class="num">x₁+x₂+x₃</span><span class="den">3</span></span>, <span class="frac"><span class="num">y₁+y₂+y₃</span><span class="den">3</span></span>)<br>
 대변의 중점을 먼저 구하고(내분 1회)<br>
 그 중점과 꼭짓점을 2:1로 내분(내분 2회, 중첩)<br>
-→ 두 방법 모두 같은 결과<br><br>
+→ 두 방법 모두 같은 결과<br>
+<button onclick="ideaEx('pl-ex-5')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-5" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>예제</b>: A(1,2), B(5,0), C(3,7)의 무게중심을 구하려면?<br>
+<b>풀이과정</b>: 세 좌표를 각각 더해 3으로 나누거나, 한 변의 중점을 구한 뒤 그 중점과 남은 꼭짓점을 2:1로 내분합니다.
+</div><br>
 <b style="color:#c4b5fd">🎯 외심(=외접원의 중심)</b><br>
 세 꼭짓점으로부터 등거리<br>
-→ PA²=PB², PB²=PC² 두 식을 연립<br><br>
+세 변의 수직이등분선의 교점<br>
+→ PA²=PB², PB²=PC² 두 식을 연립<br>
+<button onclick="ideaEx('pl-ex-6')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-6" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>예제</b>: A(0,0), B(6,0), C(0,8)의 외심을 구하려면?<br>
+<b>풀이과정</b>: PA²=PB², PB²=PC² 두 식을 세워 연립하거나, 두 변의 수직이등분선을 각각 구해 교점을 찾습니다.
+</div><br>
 <b style="color:#c4b5fd">🔢 정수좌표·정수거리</b><br>
 3-4-5<br>
 6-8-10<br>
 5-12-13<br>
-→ 이런 피타고라스 수가 거리로 나오는지 확인<br><br>
+→ 이런 피타고라스 수가 거리로 나오는지 확인<br>
+<button onclick="ideaEx('pl-ex-7')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-7" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>예제</b>: A(2,3), B(a,7) 사이 거리가 5가 되는 정수 a를 구하려면?<br>
+<b>풀이과정</b>: AB²=(a−2)²+4²=5² 식을 세우고, 4²+3²=5² 피타고라스 수를 떠올려 접근합니다.
+</div><br>
 <b style="color:#c4b5fd">➖ 일직선 위 조건</b><br>
 기울기가 같아야 해요(AB의 기울기 = BC의 기울기)<br>
-거리만으로 확인하려면 AB+BC=AC(B가 A,C 사이)
+거리만으로 확인하려면 AB+BC=AC(B가 A,C 사이)<br>
+<button onclick="ideaEx('pl-ex-8')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-8" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>예제</b>: A(0,0), B(3,4), C(6,8)이 일직선 위에 있는지 확인하려면?<br>
+<b>풀이과정</b>: AB와 BC의 기울기를 각각 구해서 같은지 비교합니다.
+</div>
 </div>`, ans:null }
 ],
 
@@ -15051,6 +15093,12 @@ function circShowTwo(id){
     + 'd='+d+', r₁+r₂='+sum+', |r₁−r₂|='+diff+'<br>'
     + '<b>→ '+rel+'</b>'
     + gNextBtn('circNextTwo', id);
+}
+
+// 아이디어 카드 — 예제 보기 토글(정답 없이 풀이과정만)
+function ideaEx(id){
+  var el = document.getElementById(id);
+  if(el) el.style.display = (el.style.display === 'block') ? 'none' : 'block';
 }
 
 // ── 직선의방정식: 재생성 헬퍼 ──────
