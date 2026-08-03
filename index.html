@@ -12874,32 +12874,40 @@ AB=BC=CA를 동시에(연립)<br>
 <b>풀이과정</b>: C가 x=2 위(대칭)라 CA=CB는 이미 같으니, CA=AB 식 하나만 세워 풀면 됩니다.
 </div><br>
 <b style="color:#c4b5fd">🔷 평행사변형 판별</b><br>
-→ 여러 판별법 중 하나만 확인하면 충분<br>
-→ "평행"인지는 <b>기울기가 같은지</b>로 확인<br>
-<span style="font-size:.72rem;color:#94a3b8">아래 네 예제 모두 A(1,2), B(5,3), C(7,7), D(3,6) 같은 사각형(순서대로 ABCD)이에요 — 어느 조건으로 확인해도 결론은 같아요.</span><br><br>
-대각선이 서로를 이등분(내분점 1:1)<br>
+판별법이 4가지예요 — 문제 상황에 따라 어느 게 더 빠른지가 달라져요.<br>
+"평행"인지는 <b>기울기가 같은지</b>로 확인해요.<br>
+<span style="font-size:.72rem;color:#94a3b8">아래 네 문제 모두 같은 사각형 A(1,2), B(5,3), C(7,7), D(3,6)(순서대로 ABCD)을 다루지만, 주어지는 정보가 달라서 최선의 방법도 달라져요.</span><br><br>
+
+<b>① 대각선이 서로를 이등분</b>(내분점 1:1)<br>
 <button onclick="ideaEx('pl-ex-4a')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
 <div id="pl-ex-4a" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
-<b>예제</b>: 대각선으로 평행사변형인지 확인하려면?<br>
-<b>풀이과정</b>: 대각선 AC와 BD 각각의 중점을 구해서 같은지 비교합니다.
+<b>문제</b>: 네 점 A(1,2), B(5,3), C(7,7), D(3,6)의 좌표가 모두 주어졌다. 평행사변형인지 가장 빨리 확인하려면?<br>
+<b>풀이</b>: 대각선 AC 중점=(4, 4.5), BD 중점=(4, 4.5) → 같음<br>
+<b>왜 ①이 최선인가</b>: 네 점이 다 있으니 중점 계산 2번이면 끝나요. 평행이나 길이를 확인하려면 4번씩 계산해야 해서 더 오래 걸려요.
 </div><br>
-두 쌍의 대변이 각각 평행<br>
+
+<b>② 두 쌍의 대변이 각각 평행</b><br>
 <button onclick="ideaEx('pl-ex-4b')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
 <div id="pl-ex-4b" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
-<b>예제</b>: 두 쌍의 대변이 평행한지로 확인하려면?<br>
-<b>풀이과정</b>: AB와 DC의 기울기를 비교하고, AD와 BC의 기울기를 비교합니다.
+<b>문제</b>: 네 변이 이미 직선의 방정식으로 주어졌다 — AB: y=¼x+7/4, DC: y=¼x+21/4, AD: y=2x, BC: y=2x−7. 평행사변형인지 확인하려면?<br>
+<b>풀이</b>: AB와 DC 기울기 ¼=¼(평행), AD와 BC 기울기 2=2(평행)<br>
+<b>왜 ②가 최선인가</b>: 이미 직선(기울기)으로 정보가 주어졌으니, 좌표로 되돌려 계산할 필요 없이 기울기만 비교하면 끝이에요.
 </div><br>
-두 쌍의 대변 길이가 각각 같음<br>
+
+<b>③ 두 쌍의 대변 길이가 각각 같음</b><br>
 <button onclick="ideaEx('pl-ex-4c')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
 <div id="pl-ex-4c" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
-<b>예제</b>: 두 쌍의 대변 길이가 같은지로 확인하려면?<br>
-<b>풀이과정</b>: AB와 DC의 길이를 거리공식으로 각각 구해 비교하고, AD와 BC도 마찬가지로 비교합니다.
+<b>문제</b>: 다른 문제를 풀다가 이미 AB=DC=√17, AD=BC=√20이라는 걸 구해놨다. 이 사각형이 평행사변형인지 확인하려면?<br>
+<b>풀이</b>: AB=DC(둘 다 √17), AD=BC(둘 다 √20) → 두 쌍의 대변 길이가 각각 같음<br>
+<b>왜 ③이 최선인가</b>: 이미 구해놓은 값을 그대로 재사용할 수 있어서, 새로 계산할 게 없어요.
 </div><br>
-한 쌍의 대변이 평행하면서 길이도 같음<br>
+
+<b>④ 한 쌍의 대변이 평행하면서 길이도 같음</b><br>
 <button onclick="ideaEx('pl-ex-4d')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
 <div id="pl-ex-4d" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
-<b>예제</b>: 한 쌍의 대변만으로 확인하려면?<br>
-<b>풀이과정</b>: AB와 DC의 기울기가 같은지(평행)와 길이가 같은지를 동시에 확인합니다. 이 조건 하나만 만족해도 평행사변형이 성립합니다.
+<b>문제</b>: 세 점 A(1,2), B(5,3), C(7,7)만 주어졌다. ABCD가 평행사변형이 되도록 나머지 점 D를 구하려면?<br>
+<b>풀이</b>: AB=DC 조건(벡터 B−A = C−D)에서 D = A+C−B = (1+7−5, 2+7−3) = (3,6)<br>
+<b>왜 ④가 최선인가</b>: 나머지 세 조건은 "이미 네 점이 다 있어야" 확인할 수 있는데, 여기선 점 하나가 없어요. ④는 벡터 덧셈으로 그 미지의 점을 바로 계산해내니까 유일하게 통하는 방법이에요.
 </div><br>
 <b style="color:#c4b5fd">⚖️ 무게중심</b><br>
 원래 공식: G = (<span class="frac"><span class="num">x₁+x₂+x₃</span><span class="den">3</span></span>, <span class="frac"><span class="num">y₁+y₂+y₃</span><span class="den">3</span></span>)<br>
@@ -12912,13 +12920,23 @@ AB=BC=CA를 동시에(연립)<br>
 <b>풀이과정</b>: 세 좌표를 각각 더해 3으로 나누거나, 한 변의 중점을 구한 뒤 그 중점과 남은 꼭짓점을 2:1로 내분합니다.
 </div><br>
 <b style="color:#c4b5fd">🎯 외심(=외접원의 중심)</b><br>
-세 꼭짓점으로부터 등거리<br>
-세 변의 수직이등분선의 교점<br>
-→ PA²=PB², PB²=PC² 두 식을 연립<br>
-<button onclick="ideaEx('pl-ex-6')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
-<div id="pl-ex-6" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
-<b>예제</b>: A(0,0), B(6,0), C(0,8)의 외심을 구하려면?<br>
-<b>풀이과정</b>: PA²=PB², PB²=PC² 두 식을 세워 연립하거나, 두 변의 수직이등분선을 각각 구해 교점을 찾습니다.
+세 꼭짓점으로부터 등거리 = 세 변의 수직이등분선의 교점<br>
+구하는 방법이 2가지예요 — 삼각형 모양에 따라 어느 게 더 빠른지가 달라져요.<br><br>
+
+<b>① PA²=PB², PB²=PC² 두 식을 연립</b><br>
+<button onclick="ideaEx('pl-ex-6a')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-6a" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>문제</b>: A(8,3), B(3,8), C(−1,6)의 외심을 구하려면?<br>
+<b>풀이</b>: PA²=PB² → y=x<br>PB²=PC² → 2x+y=9<br>연립 → <b>P(3,3)</b><br>
+<b>왜 ①이 최선인가</b>: 어느 변도 축과 평행하지 않은 "일반적인" 삼각형이에요. 이럴 땐 모양에 상관없이 항상 통하는 대수적 방법(연립방정식)이 안전해요.
+</div><br>
+
+<b>② 두 변의 수직이등분선의 교점</b><br>
+<button onclick="ideaEx('pl-ex-6b')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-6b" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>문제</b>: A(0,0), B(8,0), C(0,6)의 외심을 구하려면? (AB는 x축, AC는 y축 위)<br>
+<b>풀이</b>: AB의 수직이등분선: 중점(4,0)을 지나는 수직선 → x=4<br>AC의 수직이등분선: 중점(0,3)을 지나는 수평선 → y=3<br>교점 → <b>P(4,3)</b><br>
+<b>왜 ②가 최선인가</b>: 두 변이 이미 x축·y축과 나란해서, 수직이등분선이 방정식을 풀 필요도 없이 곧바로 수직선·수평선으로 나와요. ①(연립방정식)보다 훨씬 빨라요.
 </div><br>
 <b style="color:#c4b5fd">🔢 정수좌표·정수거리</b><br>
 3-4-5<br>
