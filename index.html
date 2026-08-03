@@ -13718,7 +13718,7 @@ A(1,5),B(5,1)의 수직이등분선을 l, l⊥m(y=kx+3)이 점P에서 만날 때
   <line x1="115" y1="150" x2="115" y2="8" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax13)"/>
   <text x="212" y="126" font-size="9" fill="#94a3b8">x</text>
   <text x="119" y="16" font-size="9" fill="#94a3b8">y</text>
-  <line x1="120.7" y1="39.3" x2="166" y2="130" stroke="#64748b" stroke-width="1.6"/>
+  <line x1="120.7" y1="39.3" x2="166" y2="130" stroke="#fde68a" stroke-width="2.2"/>
   <line x1="115" y1="130" x2="137.7" y2="73.3" stroke="#86efac" stroke-width="2.5"/>
   <line x1="115" y1="130" x2="155.8" y2="109.6" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="4 2"/>
   <polyline points="148.6,113.2 145.1,106 152.2,102.4" fill="none" stroke="#e2e8f0" stroke-width="1.3"/>
@@ -13730,9 +13730,9 @@ A(1,5),B(5,1)의 수직이등분선을 l, l⊥m(y=kx+3)이 점P에서 만날 때
   <text x="159" y="107" font-size="10" font-weight="700" fill="#7dd3fc">F</text>
   <text x="112" y="104" font-size="9.5" font-weight="700" fill="#86efac">OP=√29≈5.39</text>
   <text x="118" y="146" font-size="9.5" font-weight="700" fill="#7dd3fc">OF≈4.02</text>
-  <text x="122" y="34" font-size="8.5" fill="#64748b">수직 아닌 다른 직선(2x+y−9=0)</text>
+  <text x="70" y="34" font-size="8.5" fill="#fde68a">수직 아닌 다른 직선(2x+y−9=0)</text>
 </svg>
-<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">P를 지나는 회색 직선(수직 아님)에 O에서 내린 수선의 발이 F — 직각삼각형 OFP에서 빗변 OP(초록)가 다리 OF(파랑)보다 길어요</div>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">P를 지나는 노란 직선(수직 아님)에 O에서 내린 수선의 발이 F — 직각삼각형 OFP에서 빗변 OP(초록)가 다리 OF(파랑)보다 길어요</div>
 </div>
 <div id="ln-vertexdist13-out" data-v="lines,2,-1,1,1,1,-7,2,5" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
 <b>직선 k(2x−y+1)+(x+y−7)=0이 k값에 관계없이 항상 지나는 점을 P라 하자. 원점 O에서 이 직선까지 거리의 최댓값은?</b><br><button onclick="lnShowVertexDist('ln-vertexdist13-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
@@ -15766,11 +15766,27 @@ function svgVertexDistHTML(x0,y0){
   var extUnits = 70/scale;
   var maxA = px(x0+ux*extUnits, y0+uy*extUnits);
   var maxB = px(x0-ux*extUnits, y0-uy*extUnits);
-  var extUnits2 = 70/scale;
-  var horA = px(x0-extUnits2, y0);
-  var horB = px(x0+extUnits2, y0);
-  var footH = px(0,y0);
-  var horD = Math.abs(y0);
+  var mCandidates=[1,-1,2,-2,3,-3];
+  var m=1;
+  for(var mi=0; mi<mCandidates.length; mi++){
+    var mc=mCandidates[mi];
+    if(mc*x0!==y0 && mc*y0!==-x0){ m=mc; break; }
+  }
+  var c = y0 - m*x0;
+  var Fx = -c*m/(m*m+1), Fy = c/(m*m+1);
+  var d = Math.abs(c)/Math.sqrt(m*m+1);
+  var F = px(Fx,Fy);
+  var extL = maxExt*0.55;
+  var dirx = 1/Math.sqrt(1+m*m), diry = m/Math.sqrt(1+m*m);
+  var lA = px(x0-dirx*extL, y0-diry*extL);
+  var lB = px(x0+dirx*extL, y0+diry*extL);
+  function norm(vx,vy){ var len=Math.sqrt(vx*vx+vy*vy)||1; return [vx/len,vy/len]; }
+  var dAlongL = norm(lB[0]-F[0], lB[1]-F[1]);
+  var dAlongOF = norm(O[0]-F[0], O[1]-F[1]);
+  var s=8;
+  var rc1=[F[0]+s*dAlongL[0], F[1]+s*dAlongL[1]];
+  var rc2=[rc1[0]+s*dAlongOF[0], rc1[1]+s*dAlongOF[1]];
+  var rc3=[F[0]+s*dAlongOF[0], F[1]+s*dAlongOF[1]];
   return '<div style="text-align:center;margin:10px 0">'
     + '<svg width="230" height="260" viewBox="0 0 230 260">'
     + '<defs><marker id="axVD" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>'
@@ -15778,19 +15794,20 @@ function svgVertexDistHTML(x0,y0){
     + '<line x1="'+ox+'" y1="252" x2="'+ox+'" y2="8" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#axVD)"/>'
     + '<text x="212" y="'+(oy-4)+'" font-size="9" fill="#94a3b8">x</text>'
     + '<text x="'+(ox+4)+'" y="16" font-size="9" fill="#94a3b8">y</text>'
-    + '<line x1="'+horA[0]+'" y1="'+horA[1]+'" x2="'+horB[0]+'" y2="'+horB[1]+'" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>'
-    + '<line x1="'+maxA[0]+'" y1="'+maxA[1]+'" x2="'+maxB[0]+'" y2="'+maxB[1]+'" stroke="#fde68a" stroke-width="2.5"/>'
+    + '<line x1="'+lA[0]+'" y1="'+lA[1]+'" x2="'+lB[0]+'" y2="'+lB[1]+'" stroke="#fde68a" stroke-width="2.2"/>'
+    + '<line x1="'+maxA[0]+'" y1="'+maxA[1]+'" x2="'+maxB[0]+'" y2="'+maxB[1]+'" stroke="#a78bfa" stroke-width="1.6" stroke-dasharray="3 2"/>'
     + '<line x1="'+O[0]+'" y1="'+O[1]+'" x2="'+P[0]+'" y2="'+P[1]+'" stroke="#86efac" stroke-width="2.5"/>'
-    + '<line x1="'+O[0]+'" y1="'+O[1]+'" x2="'+footH[0]+'" y2="'+footH[1]+'" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="4 2"/>'
-    + '<circle cx="'+footH[0]+'" cy="'+footH[1]+'" r="3.5" fill="#7dd3fc"/>'
+    + '<line x1="'+O[0]+'" y1="'+O[1]+'" x2="'+F[0]+'" y2="'+F[1]+'" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="4 2"/>'
+    + '<polyline points="'+rc1[0]+','+rc1[1]+' '+rc2[0]+','+rc2[1]+' '+rc3[0]+','+rc3[1]+'" fill="none" stroke="#e2e8f0" stroke-width="1.2"/>'
+    + '<circle cx="'+F[0]+'" cy="'+F[1]+'" r="3.5" fill="#7dd3fc"/>'
     + '<circle cx="'+O[0]+'" cy="'+O[1]+'" r="4" fill="#e2e8f0"/>'
     + '<circle cx="'+P[0]+'" cy="'+P[1]+'" r="4.5" fill="#e2e8f0"/>'
     + '<text x="'+(O[0]-14)+'" y="'+(O[1]+14)+'" font-size="11" font-weight="700" fill="#e2e8f0">O</text>'
     + '<text x="'+(P[0]+6)+'" y="'+(P[1]-6)+'" font-size="11" font-weight="700" fill="#e2e8f0">P('+gFmt(x0)+','+gFmt(y0)+')</text>'
+    + '<text x="'+(F[0]-8)+'" y="'+(F[1]+14)+'" font-size="10" font-weight="700" fill="#7dd3fc">F</text>'
     + '<text x="'+((O[0]+P[0])/2+4)+'" y="'+((O[1]+P[1])/2)+'" font-size="9.5" font-weight="700" fill="#86efac">OP='+gSqrtHTML(x0*x0+y0*y0)+'</text>'
-    + '<text x="'+(footH[0]-34)+'" y="'+((O[1]+footH[1])/2)+'" font-size="9.5" font-weight="700" fill="#7dd3fc">d='+horD+'</text>'
     + '</svg>'
-    + '<div style="font-size:.68rem;color:#94a3b8;margin-top:4px">파란 점선=P를 지나는 수직 아닌 직선(y='+gFmt(y0)+')까지 거리 d='+horD+' · 초록=OP='+gSqrtHTML(x0*x0+y0*y0)+' → 수직일 때가 더 커요(최대)</div>'
+    + '<div style="font-size:.68rem;color:#94a3b8;margin-top:4px">노랑=P를 지나는 수직 아닌 직선(축과 평행하지 않음) · O에서 내린 수선의 발 F, OF≈'+(Math.round(d*100)/100)+' · 보라 점선=실제 최대가 되는 수직 방향 · 초록=OP='+gSqrtHTML(x0*x0+y0*y0)+' → 수직일 때가 더 커요(최대)</div>'
     + '</div>';
 }
 function gCoefK(x0,y0){
