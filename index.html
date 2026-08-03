@@ -13713,6 +13713,11 @@ A(1,5),B(5,1)의 수직이등분선을 l, l⊥m(y=kx+3)이 점P에서 만날 때
     ans:`고정점: 2x−y+1=0, x+y−7=0 연립 → y=2x+1 대입 → 3x=6 → <b>P(2,5)</b><br>O에서 직선에 내린 수선의 발 F가 P와 다르면 삼각형 OFP는 직각삼각형(직각은 F)이고 OP가 그 빗변 — 빗변이 가장 기니까 OF&lt;OP, F=P(직선⊥OP)일 때만 OF=OP<br>|OP|=√(4+25)=<b>√29</b> (k=−1/4일 때)
 <div style="text-align:center;margin:10px 0">
 <svg width="230" height="150" viewBox="0 0 230 150">
+  <defs><marker id="ax13" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
+  <line x1="15" y1="130" x2="222" y2="130" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax13)"/>
+  <line x1="115" y1="145" x2="115" y2="8" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax13)"/>
+  <text x="212" y="126" font-size="9" fill="#94a3b8">x</text>
+  <text x="119" y="16" font-size="9" fill="#94a3b8">y</text>
   <line x1="67.7" y1="73.3" x2="207.7" y2="73.3" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>
   <line x1="72.7" y1="47.3" x2="202.7" y2="99.3" stroke="#fde68a" stroke-width="2.5"/>
   <line x1="115" y1="130" x2="137.7" y2="73.3" stroke="#86efac" stroke-width="2.5"/>
@@ -13789,7 +13794,7 @@ A(1,5),B(5,1)의 수직이등분선을 l, l⊥m(y=kx+3)이 점P에서 만날 때
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
 🔥 x+2y−1=0과 2x+y+2=0으로부터 같은 거리에 있는 점들의 자취는?
 </div>`,
-    ans:`자취기법: P(x,y) → |x+2y−1|=|2x+y+2| (분모 √5로 동일하니 소거)<br>① 부호 같음: x+2y−1=2x+y+2 → <b>x−y+3=0</b><br>② 부호 반대: x+2y−1=−(2x+y+2) → <b>3x+3y+1=0</b><br><br><span style="font-size:.8rem;color:#94a3b8">두 직선이 만나 생기는 각은 항상 두 쌍(맞꼭지각)이라, 이등분선도 서로 수직인 두 직선으로 나와요.</span>
+    ans:`<b style="color:#fb923c">각의 이등분선의 성질</b>: 어떤 각을 이등분하는 직선 위의 점은, 그 각을 이루는 두 변(직선)으로부터 항상 <b>같은 거리</b>에 있어요(각의 꼭짓점에서 그은 두 선분이 대칭이라 수선의 길이도 똑같아지기 때문). 그래서 "두 직선으로부터 같은 거리에 있는 점들의 자취"를 구하면, 그게 바로 이 두 직선이 만드는 각의 이등분선이에요.<br><br>자취기법: P(x,y) → |x+2y−1|=|2x+y+2| (분모 √5로 동일하니 소거)<br>① 부호 같음: x+2y−1=2x+y+2 → <b>x−y+3=0</b><br>② 부호 반대: x+2y−1=−(2x+y+2) → <b>3x+3y+1=0</b><br><br><span style="font-size:.8rem;color:#94a3b8">두 직선이 만나 생기는 각은 항상 두 쌍(맞꼭지각)이라, 이등분선도 서로 수직인 두 직선으로 나와요.</span>
 <div style="text-align:center;margin:10px 0">
 <svg width="150" height="130" viewBox="0 0 150 130">
   <line x1="139.2" y1="91.6" x2="-19.2" y2="12.4" stroke="#7dd3fc" stroke-width="2.2"/>
@@ -13813,14 +13818,18 @@ A(1,5),B(5,1)의 수직이등분선을 l, l⊥m(y=kx+3)이 점P에서 만날 때
     ans:`기울기m: x절편=1−1/m &nbsp; 기울기−1/m: x절편=1+m<br>밑변=|m+1/m|, 높이=1 → S=½|m+1/m|<br>산술기하평균: m+1/m ≥ 2 (m&gt;0, 등호 m=1)<br>최솟값 S=½×2=<b>1</b><br>검산: m=1 → (1,1),(0,0),(2,0), 밑변2·높이1 → 넓이1 ✓
 <div style="text-align:center;margin:10px 0">
 <svg width="180" height="160" viewBox="0 0 180 160">
+  <defs><marker id="ax16" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
+  <line x1="10" y1="130" x2="160" y2="130" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax16)"/>
+  <line x1="30" y1="145" x2="30" y2="15" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax16)"/>
+  <text x="150" y="126" font-size="9" fill="#94a3b8">x</text>
+  <text x="34" y="22" font-size="9" fill="#94a3b8">y</text>
   <polygon points="80,80 30,130 130,130" fill="rgba(134,239,172,.12)" stroke="#86efac" stroke-width="2"/>
-  <line x1="10" y1="150" x2="150" y2="150" stroke="#94a3b8" stroke-width="1"/>
   <rect x="72" y="80" width="8" height="8" fill="none" stroke="#e2e8f0" stroke-width="1"/>
   <circle cx="80" cy="80" r="4" fill="#fde68a"/>
   <circle cx="30" cy="130" r="4" fill="#e2e8f0"/>
   <circle cx="130" cy="130" r="4" fill="#e2e8f0"/>
   <text x="86" y="76" font-size="10" font-weight="700" fill="#fde68a">(1,1) 최소일 때 m=1</text>
-  <text x="10" y="146" font-size="10" font-weight="700" fill="#e2e8f0">A(0,0)</text>
+  <text x="4" y="146" font-size="10" font-weight="700" fill="#e2e8f0">A(0,0)</text>
   <text x="134" y="146" font-size="10" font-weight="700" fill="#e2e8f0">B(2,0)</text>
 </svg>
 <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">m=1일 때(직각 표시) 밑변AB=2, 높이=1 → 최소넓이 1 — m을 다르게 잡으면 삼각형이 더 커져요</div>
@@ -13835,20 +13844,6 @@ A(1,5),B(5,1)의 수직이등분선을 l, l⊥m(y=kx+3)이 점P에서 만날 때
 AB기울기=(k−3)/3, AC기울기=4/(k+1)<br>
 (k−3)/3=4/(k+1) → (k−3)(k+1)=12 → k²−2k−15=0 → (k−5)(k+3)=0<br>
 k=5 또는 k=−3 → 합=<b>2</b>
-<div style="text-align:center;margin:10px 0">
-<svg width="150" height="160" viewBox="0 0 150 160">
-  <line x1="45" y1="55" x2="135" y2="-5" stroke="#86efac" stroke-width="2.2"/>
-  <line x1="45" y1="55" x2="15" y2="-5" stroke="#f87171" stroke-width="2.2" stroke-dasharray="3 2"/>
-  <circle cx="45" cy="55" r="4.5" fill="#e2e8f0"/>
-  <circle cx="90" cy="25" r="4" fill="#86efac"/>
-  <circle cx="135" cy="-5" r="4" fill="#86efac"/>
-  <circle cx="90" cy="145" r="4" fill="#f87171"/>
-  <text x="20" y="70" font-size="10" font-weight="700" fill="#e2e8f0">A(−1,3)</text>
-  <text x="94" y="21" font-size="8.5" font-weight="700" fill="#86efac">k=5: B(2,5),C(5,7)</text>
-  <text x="-8" y="140" font-size="8.5" font-weight="700" fill="#f87171">k=−3: B(2,−3)</text>
-</svg>
-<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">A는 고정, 초록(k=5)과 빨강(k=−3) 각각 A를 지나는 다른 직선 위에 B,C가 일직선으로 놓여요</div>
-</div>
 <div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
 🔗 같은 "삼각형이 안 된다"는 말이라도 <b>직선 3개가 주어졌으면</b> 평행/한점만남(실전12), <b>점 3개만 주어졌으면</b> 기울기 비교(이 문제) — 무엇이 주어졌는지에 따라 다른 서랍이에요.
 </div>` }
@@ -15559,6 +15554,27 @@ function lnNextTriArea(id){
   el.setAttribute('data-v',[a,bx,by].join(','));
   el.innerHTML = '<b>O(0,0), A('+a+',0), B('+gFmt(bx)+','+gFmt(by)+')를 꼭짓점으로 하는 △OAB의 넓이는?</b><br>' + gSolBtn('lnShowTriArea', id);
 }
+function svgTriAreaHTML(a,bx,by){
+  var maxExt = Math.max(Math.abs(a), Math.abs(bx), Math.abs(by))+2;
+  var scale = 90/maxExt, ox=100, oy=140;
+  function px(x,y){ return [Math.round((ox+scale*x)*10)/10, Math.round((oy-scale*y)*10)/10]; }
+  var O=px(0,0), A=px(a,0), B=px(bx,by), footB=px(bx,0);
+  return '<div style="text-align:center;margin:10px 0">'
+    + '<svg width="220" height="220" viewBox="0 0 220 220">'
+    + '<defs><marker id="axTA" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>'
+    + '<line x1="10" y1="'+oy+'" x2="212" y2="'+oy+'" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#axTA)"/>'
+    + '<line x1="'+ox+'" y1="212" x2="'+ox+'" y2="8" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#axTA)"/>'
+    + '<polygon points="'+O[0]+','+O[1]+' '+A[0]+','+A[1]+' '+B[0]+','+B[1]+'" fill="rgba(134,239,172,.12)" stroke="#86efac" stroke-width="2"/>'
+    + '<line x1="'+B[0]+'" y1="'+B[1]+'" x2="'+footB[0]+'" y2="'+footB[1]+'" stroke="#7dd3fc" stroke-width="1.6" stroke-dasharray="3 2"/>'
+    + '<circle cx="'+O[0]+'" cy="'+O[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<circle cx="'+A[0]+'" cy="'+A[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<circle cx="'+B[0]+'" cy="'+B[1]+'" r="4" fill="#fde68a"/>'
+    + '<text x="'+(O[0]-14)+'" y="'+(O[1]+16)+'" font-size="10" font-weight="700" fill="#e2e8f0">O</text>'
+    + '<text x="'+(A[0]-6)+'" y="'+(A[1]+16)+'" font-size="10" font-weight="700" fill="#e2e8f0">A('+a+',0)</text>'
+    + '<text x="'+(B[0]+6)+'" y="'+(B[1]-4)+'" font-size="10" font-weight="700" fill="#fde68a">B('+gFmt(bx)+','+gFmt(by)+')</text>'
+    + '<text x="'+(footB[0]+6)+'" y="'+((B[1]+footB[1])/2)+'" font-size="9" font-weight="700" fill="#7dd3fc">높이='+Math.abs(by)+'</text>'
+    + '</svg></div>';
+}
 function lnShowTriArea(id){
   var el = document.getElementById(id);
   var v = el.getAttribute('data-v').split(',').map(Number);
@@ -15568,6 +15584,7 @@ function lnShowTriArea(id){
     + '밑변 OA='+a+'(x축 위 선분). 높이는 B에서 직선 OA(=x축)까지 거리.<br>'
     + '직선 OA: 0x+1y+0=0 → d=|'+gFmt(by)+'| = '+Math.abs(by)+'<br>'
     + '넓이 = ½×'+a+'×'+Math.abs(by)+' = <b>'+area+'</b>'
+    + svgTriAreaHTML(a,bx,by)
     + gNextBtn('lnNextTriArea', id);
 }
 
@@ -15703,6 +15720,11 @@ function svgVertexDistHTML(x0,y0){
   var horD = Math.abs(y0);
   return '<div style="text-align:center;margin:10px 0">'
     + '<svg width="230" height="260" viewBox="0 0 230 260">'
+    + '<defs><marker id="axVD" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>'
+    + '<line x1="10" y1="'+oy+'" x2="222" y2="'+oy+'" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#axVD)"/>'
+    + '<line x1="'+ox+'" y1="252" x2="'+ox+'" y2="8" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#axVD)"/>'
+    + '<text x="212" y="'+(oy-4)+'" font-size="9" fill="#94a3b8">x</text>'
+    + '<text x="'+(ox+4)+'" y="16" font-size="9" fill="#94a3b8">y</text>'
     + '<line x1="'+horA[0]+'" y1="'+horA[1]+'" x2="'+horB[0]+'" y2="'+horB[1]+'" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>'
     + '<line x1="'+maxA[0]+'" y1="'+maxA[1]+'" x2="'+maxB[0]+'" y2="'+maxB[1]+'" stroke="#fde68a" stroke-width="2.5"/>'
     + '<line x1="'+O[0]+'" y1="'+O[1]+'" x2="'+P[0]+'" y2="'+P[1]+'" stroke="#86efac" stroke-width="2.5"/>'
