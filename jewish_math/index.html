@@ -1258,6 +1258,27 @@ const CV_DATA = {
           <span style="color:#8b949e;font-size:.72rem">= 최대공약수 × 최소공배수</span>
         </div>
       </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념6 — 공약수는 모두 최대공약수의 약수</div>
+      <ul><li>18과 24의 공약수를 다 구하려면, 두 수의 약수를 각각 나열해서 비교하는 것보다 더 빠른 방법이 있을까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="display:flex;justify-content:center;gap:8px;font-size:.72rem;text-align:center">
+          <div style="flex:1">18의 약수<br>1,2,3,6,9,18</div>
+          <div style="flex:1;background:rgba(63,185,80,.1);border:1px solid rgba(63,185,80,.3);border-radius:6px;padding:4px">공약수<br><strong style="color:#3fb950">1,2,3,6</strong></div>
+          <div style="flex:1">24의 약수<br>1,2,3,4,6,8,12,24</div>
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">최대공약수는 6인데, 공약수(1,2,3,6)를 보면 정확히 "6의 약수"와 똑같아요</div>
+        <div style="text-align:center;font-size:.78rem;margin-top:8px;padding-top:8px;border-top:1px solid #30363d">그래서 공약수를 구하고 싶으면, 두 수를 각각 다 나열하지 않고 <strong style="color:#f0c040">최대공약수 하나의 약수만 구하면</strong> 돼요</div>
+      </div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념7 — 공배수는 모두 최소공배수의 배수</div>
+      <ul><li>4와 6의 공배수를 계속 나열하려면, 두 수의 배수를 각각 나열해서 비교하는 것보다 더 빠른 방법이 있을까요?</li></ul>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+        <div style="font-size:.78rem;text-align:center;line-height:1.9">
+          4의 배수: 4, 8, <strong style="color:#3fb950">12</strong>, 16, 20, <strong style="color:#3fb950">24</strong>, 28, 32, <strong style="color:#3fb950">36</strong>…<br>
+          6의 배수: 6, <strong style="color:#3fb950">12</strong>, 18, <strong style="color:#3fb950">24</strong>, 30, <strong style="color:#3fb950">36</strong>…
+        </div>
+        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">최소공배수는 12인데, 공배수(12,24,36…)를 보면 정확히 "12의 배수"와 똑같아요</div>
+        <div style="text-align:center;font-size:.78rem;margin-top:8px;padding-top:8px;border-top:1px solid #30363d">그래서 공배수를 구하고 싶으면, 두 수의 배수를 각각 계속 나열하지 않고 <strong style="color:#f0c040">최소공배수 하나의 배수만 구하면</strong> 돼요</div>
+      </div>
     `},
     { title:'💬 하브루타 질문', cls:'havruta', html:`
       <div class="q-item"><strong>Q1.</strong> 소수(素數)는 약수가 항상 정확히 2개(1과 자기 자신)입니다. 그런데 1은 소수일까요?
@@ -1311,6 +1332,69 @@ const CV_DATA = {
           <div class="sol"><strong>풀이②(소인수분해):</strong> 24=2³×3, 36=2²×3² → 최대공약수=2²×3=12명</div>
           <div class="sol"><strong>풀이③(유클리드 호제법):</strong> 36=24×1+12 / 24=12×2+0 → 최대공약수=12</div>
         </div>
+      </div>
+    `},
+    { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+      <p>지금까지 배운 약수·배수·최대공약수·최소공배수를 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+        <div id="gcw-1" class="prob-q" data-a="24" data-b="36" data-qtext="사과 24개와 배 36개를 최대한 많은 사람에게 남김없이 똑같이 나눠주려 합니다. 몇 명에게 나눠줄 수 있나요?" data-solfn="gcwSol1">사과 24개와 배 36개를 최대한 많은 사람에게 남김없이 똑같이 나눠주려 합니다. 몇 명에게 나눠줄 수 있나요?<br><button class="havruta-show-btn" onclick="gcwSol1('gcw-1')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="gcwGen1('gcw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+        <div id="gcw-2" class="prob-q" data-w="18" data-h="24" data-qtext="가로 18cm, 세로 24cm인 직사각형 종이를 빈틈없이 정사각형 조각으로 자르려 합니다. 정사각형 한 변의 길이를 가장 크게 하려면 몇 cm로 잘라야 하나요?" data-solfn="gcwSol2">가로 18cm, 세로 24cm인 직사각형 종이를 빈틈없이 정사각형 조각으로 자르려 합니다. 정사각형 한 변의 길이를 가장 크게 하려면 몇 cm로 잘라야 하나요?<br><button class="havruta-show-btn" onclick="gcwSol2('gcw-2')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="gcwGen2('gcw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+        <div id="gcw-3" class="prob-q" data-p="4" data-q="6" data-qtext="A버스는 4분마다, B버스는 6분마다 정류장에 옵니다. 두 버스가 동시에 출발했다면, 다시 동시에 오는 것은 몇 분 후인가요?" data-solfn="gcwSol3">A버스는 4분마다, B버스는 6분마다 정류장에 옵니다. 두 버스가 동시에 출발했다면, 다시 동시에 오는 것은 몇 분 후인가요?<br><button class="havruta-show-btn" onclick="gcwSol3('gcw-3')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="gcwGen3('gcw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+        <div id="gcw-4" class="prob-q" data-a="4" data-b="6" data-qtext="가로 4cm, 세로 6cm인 직사각형 타일을 여러 개 이어붙여 가장 작은 정사각형을 만들려고 합니다. 정사각형의 한 변은 몇 cm가 되나요?" data-solfn="gcwSol4">가로 4cm, 세로 6cm인 직사각형 타일을 여러 개 이어붙여 가장 작은 정사각형을 만들려고 합니다. 정사각형의 한 변은 몇 cm가 되나요?<br><button class="havruta-show-btn" onclick="gcwSol4('gcw-4')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="gcwGen4('gcw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+        <div id="gcw-5" class="prob-q" data-a="18" data-b="24" data-qtext="18과 24의 공약수를 모두 구하고, 몇 개인지 세어보세요." data-solfn="gcwSol5">18과 24의 공약수를 모두 구하고, 몇 개인지 세어보세요.<br><button class="havruta-show-btn" onclick="gcwSol5('gcw-5')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="gcwGen5('gcw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6 (심화)</div>
+        <div id="gcw-11" class="prob-q" data-a="24" data-b="36" data-qtext="두 수 24과 36의 최대공약수는 12입니다. 24과 36의 공약수 중에서 두 번째로 큰 수는 얼마인가요?" data-solfn="gcwSol11">두 수 24과 36의 최대공약수는 12입니다. 24과 36의 공약수 중에서 두 번째로 큰 수는 얼마인가요?<br><button class="havruta-show-btn" onclick="gcwSol11('gcw-11')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="gcwGen11('gcw-11')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+        <div id="gcw-6" class="prob-q" data-n="7" data-limit="100" data-qtext="1부터 100까지의 수 중에서 7의 배수는 모두 몇 개인가요?" data-solfn="gcwSol6">1부터 100까지의 수 중에서 7의 배수는 모두 몇 개인가요?<br><button class="havruta-show-btn" onclick="gcwSol6('gcw-6')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="gcwGen6('gcw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+        <div id="gcw-7" class="prob-q" data-n="21" data-qtext="21은(는) 소수인가요? 이유를 설명해보세요." data-solfn="gcwSol7">21은(는) 소수인가요? 이유를 설명해보세요.<br><button class="havruta-show-btn" onclick="gcwSol7('gcw-7')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="gcwGen7('gcw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+        <div id="gcw-8" class="prob-q" data-p="3" data-q="5" data-qtext="3과 5의 공배수를 작은 것부터 3개 구해보세요." data-solfn="gcwSol8">3과 5의 공배수를 작은 것부터 3개 구해보세요.<br><button class="havruta-show-btn" onclick="gcwSol8('gcw-8')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="gcwGen8('gcw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10 (심화)</div>
+        <div id="gcw-12" class="prob-q" data-p="4" data-q="6" data-limit="60" data-qtext="두 수 4과 6의 공배수 중에서 60 이하인 것은 모두 몇 개인가요?" data-solfn="gcwSol12">두 수 4과 6의 공배수 중에서 60 이하인 것은 모두 몇 개인가요?<br><button class="havruta-show-btn" onclick="gcwSol12('gcw-12')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="gcwGen12('gcw-12')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 11 (발전문제)</div>
+        <div id="gcw-9" class="prob-q" data-a="18" data-b="24" data-qtext="두 수 18과 24의 최대공약수는 6입니다. 두 수를 직접 나열하지 않고, &quot;최대공약수×최소공배수=두 수의 곱&quot; 공식을 이용해서 최소공배수를 구해보세요." data-solfn="gcwSol9">두 수 18과 24의 최대공약수는 6입니다. 두 수를 직접 나열하지 않고, "최대공약수×최소공배수=두 수의 곱" 공식을 이용해서 최소공배수를 구해보세요.<br><button class="havruta-show-btn" onclick="gcwSol9('gcw-9')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="gcwGen9('gcw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 12 (발전문제)</div>
+        <div id="gcw-10" class="prob-q" data-a="12" data-b="18" data-c="30" data-qtext="사탕 12개, 초콜릿 18개, 젤리 30개를 최대한 많은 봉지에 남김없이 똑같이 나눠 담으려 합니다. 몇 개의 봉지가 필요한가요?" data-solfn="gcwSol10">사탕 12개, 초콜릿 18개, 젤리 30개를 최대한 많은 봉지에 남김없이 똑같이 나눠 담으려 합니다. 몇 개의 봉지가 필요한가요?<br><button class="havruta-show-btn" onclick="gcwSol10('gcw-10')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="gcwGen10('gcw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
       </div>
     `},
     { title:'🔥 심화 토론', cls:'debate', html:`
@@ -4564,6 +4648,227 @@ function mxwSol10(id){
   var bundles = A/B, right = bundles-C, pieces = right*B;
   var diagram = '<div class="fb-diagram">괄호가 없으니 나눗셈을 먼저 해요<br>'+A+'÷'+B+'='+bundles+'(봉지 수) <span class="arrow">➜</span> '+bundles+'−'+C+'=<strong style="color:#3fb950">'+right+'봉지</strong><br>(괄호를 넣은 '+A+'÷('+B+'−'+C+')는 전혀 다른 식이 돼요)<br><span class="cap">참고: 만약 "남은 봉지 수"가 아니라 "남은 사탕 낱개 수"를 물었다면, '+right+'봉지×'+B+'개='+pieces+'개 처럼 봉지 수에 봉지당 개수를 다시 곱해야 해요 — 묻는 단위(봉지 수 vs 낱개 수)에 따라 필요한 계산이 달라져요</span></div>';
   mxwRenderToggle(id, diagram, 'mxwSol10');
+}
+function gcwSetQuestion(el, qtext, solfn){
+  el.setAttribute('data-qtext', qtext);
+  el.setAttribute('data-solfn', solfn);
+  el.setAttribute('data-showing', '0');
+  el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+el.id+'\')">💡 풀이 보기</button>';
+}
+function gcwRenderToggle(id, diagramHtml, solfn){
+  var el = document.getElementById(id);
+  var qtext = el.getAttribute('data-qtext');
+  var showing = el.getAttribute('data-showing') === '1';
+  if(showing){
+    el.setAttribute('data-showing', '0');
+    el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">💡 풀이 보기</button>';
+  } else {
+    el.setAttribute('data-showing', '1');
+    el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">👆 접어두기</button>' + diagramHtml;
+  }
+}
+function gcwGen1(id){
+  var g = 2+Math.floor(Math.random()*10);
+  var m1 = 2+Math.floor(Math.random()*6);
+  var m2 = m1+1+Math.floor(Math.random()*5);
+  while(f2wGcd(m1,m2)!==1){ m2 = m1+1+Math.floor(Math.random()*5); }
+  var a = g*m1, b = g*m2;
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b);
+  gcwSetQuestion(el, '사과 '+a+'개와 배 '+b+'개를 최대한 많은 사람에게 남김없이 똑같이 나눠주려 합니다. 몇 명에게 나눠줄 수 있나요?', 'gcwSol1');
+}
+function gcwSol1(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b');
+  var g=f2wGcd(a,b);
+  var diagram = '<div class="fb-diagram">'+a+'과 '+b+'의 최대공약수를 구하면 <strong style="color:#3fb950">'+g+'명</strong>에게 나눠줄 수 있어요 (사과 '+(a/g)+'개씩, 배 '+(b/g)+'개씩)</div>';
+  gcwRenderToggle(id, diagram, 'gcwSol1');
+}
+function gcwGen2(id){
+  var g = 2+Math.floor(Math.random()*8);
+  var m1 = 2+Math.floor(Math.random()*5);
+  var m2 = m1+1+Math.floor(Math.random()*4);
+  while(f2wGcd(m1,m2)!==1){ m2 = m1+1+Math.floor(Math.random()*4); }
+  var w=g*m1, h=g*m2;
+  var el=document.getElementById(id);
+  el.setAttribute('data-w',w); el.setAttribute('data-h',h);
+  gcwSetQuestion(el, '가로 '+w+'cm, 세로 '+h+'cm인 직사각형 종이를 빈틈없이 정사각형 조각으로 자르려 합니다. 정사각형 한 변의 길이를 가장 크게 하려면 몇 cm로 잘라야 하나요?', 'gcwSol2');
+}
+function gcwSol2(id){
+  var el=document.getElementById(id);
+  var w=+el.getAttribute('data-w'), h=+el.getAttribute('data-h');
+  var g=f2wGcd(w,h);
+  var diagram = '<div class="fb-diagram">'+w+'과 '+h+'의 최대공약수 → <strong style="color:#3fb950">'+g+'cm</strong> (가로 '+(w/g)+'조각, 세로 '+(h/g)+'조각으로 빈틈없이 나뉘어요)</div>';
+  gcwRenderToggle(id, diagram, 'gcwSol2');
+}
+function gcwGen3(id){
+  var p = 2+Math.floor(Math.random()*8);
+  var q = 2+Math.floor(Math.random()*8);
+  while(q===p){ q = 2+Math.floor(Math.random()*8); }
+  var el=document.getElementById(id);
+  el.setAttribute('data-p',p); el.setAttribute('data-q',q);
+  gcwSetQuestion(el, 'A버스는 '+p+'분마다, B버스는 '+q+'분마다 정류장에 옵니다. 두 버스가 동시에 출발했다면, 다시 동시에 오는 것은 몇 분 후인가요?', 'gcwSol3');
+}
+function gcwSol3(id){
+  var el=document.getElementById(id);
+  var p=+el.getAttribute('data-p'), q=+el.getAttribute('data-q');
+  var l=f2wLcm(p,q);
+  var diagram = '<div class="fb-diagram">'+p+'과 '+q+'의 최소공배수 → <strong style="color:#3fb950">'+l+'분 후</strong></div>';
+  gcwRenderToggle(id, diagram, 'gcwSol3');
+}
+function gcwGen4(id){
+  var a = 2+Math.floor(Math.random()*8);
+  var b = 2+Math.floor(Math.random()*8);
+  while(b===a){ b = 2+Math.floor(Math.random()*8); }
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b);
+  gcwSetQuestion(el, '가로 '+a+'cm, 세로 '+b+'cm인 직사각형 타일을 여러 개 이어붙여 가장 작은 정사각형을 만들려고 합니다. 정사각형의 한 변은 몇 cm가 되나요?', 'gcwSol4');
+}
+function gcwSol4(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b');
+  var l=f2wLcm(a,b);
+  var diagram = '<div class="fb-diagram">'+a+'과 '+b+'의 최소공배수 → <strong style="color:#3fb950">'+l+'cm</strong></div>';
+  gcwRenderToggle(id, diagram, 'gcwSol4');
+}
+function gcwGen5(id){
+  var gPool=[6,8,9,10,12];
+  var g = gPool[Math.floor(Math.random()*gPool.length)];
+  var m1 = 2+Math.floor(Math.random()*5);
+  var m2 = m1+1+Math.floor(Math.random()*4);
+  while(f2wGcd(m1,m2)!==1){ m2 = m1+1+Math.floor(Math.random()*4); }
+  var a=g*m1, b=g*m2;
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b);
+  gcwSetQuestion(el, a+'과 '+b+'의 공약수를 모두 구하고, 몇 개인지 세어보세요.', 'gcwSol5');
+}
+function gcwSol5(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b');
+  var g=f2wGcd(a,b);
+  var divs=[];
+  for(var i=1;i<=g;i++){ if(g%i===0) divs.push(i); }
+  var diagram = '<div class="fb-diagram">공약수는 항상 최대공약수의 약수예요 — 먼저 '+a+'과 '+b+'의 최대공약수를 구하면 '+g+'<br>'+g+'의 약수: '+divs.join(', ')+' <span class="arrow">➜</span> 공약수는 모두 <strong style="color:#3fb950">'+divs.length+'개</strong></div>';
+  gcwRenderToggle(id, diagram, 'gcwSol5');
+}
+function gcwGen11(id){
+  var gPool=[12,18,20,24,30];
+  var g = gPool[Math.floor(Math.random()*gPool.length)];
+  var m1 = 2+Math.floor(Math.random()*5);
+  var m2 = m1+1+Math.floor(Math.random()*4);
+  while(f2wGcd(m1,m2)!==1){ m2 = m1+1+Math.floor(Math.random()*4); }
+  var a=g*m1, b=g*m2;
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b);
+  gcwSetQuestion(el, '두 수 '+a+'과 '+b+'의 최대공약수는 '+g+'입니다. '+a+'과 '+b+'의 공약수 중에서 두 번째로 큰 수는 얼마인가요?', 'gcwSol11');
+}
+function gcwSol11(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b');
+  var g=f2wGcd(a,b);
+  var divs=[];
+  for(var i=1;i<=g;i++){ if(g%i===0) divs.push(i); }
+  divs.sort(function(x,y){return y-x;});
+  var diagram = '<div class="fb-diagram">공약수는 최대공약수('+g+')의 약수예요 — '+a+'과 '+b+'를 직접 비교하지 않아도, '+g+'의 약수만 큰 순서로 나열하면 돼요<br>'+g+'의 약수(큰 순서): '+divs.join(', ')+' <span class="arrow">➜</span> 두 번째로 큰 공약수는 <strong style="color:#3fb950">'+divs[1]+'</strong></div>';
+  gcwRenderToggle(id, diagram, 'gcwSol11');
+}
+function gcwGen12(id){
+  var p=2+Math.floor(Math.random()*8);
+  var q=2+Math.floor(Math.random()*8);
+  while(q===p){ q=2+Math.floor(Math.random()*8); }
+  var l=f2wLcm(p,q);
+  var k=3+Math.floor(Math.random()*5);
+  var limit=l*k;
+  var el=document.getElementById(id);
+  el.setAttribute('data-p',p); el.setAttribute('data-q',q); el.setAttribute('data-limit',limit);
+  gcwSetQuestion(el, '두 수 '+p+'과 '+q+'의 공배수 중에서 '+limit+' 이하인 것은 모두 몇 개인가요?', 'gcwSol12');
+}
+function gcwSol12(id){
+  var el=document.getElementById(id);
+  var p=+el.getAttribute('data-p'), q=+el.getAttribute('data-q'), limit=+el.getAttribute('data-limit');
+  var l=f2wLcm(p,q);
+  var cnt=Math.floor(limit/l);
+  var diagram = '<div class="fb-diagram">공배수는 최소공배수('+l+')의 배수예요 — '+p+'과 '+q+'의 배수를 각각 나열해서 비교할 필요 없이, '+l+'의 배수 개수만 세면 돼요<br>'+limit+'÷'+l+'의 몫 <span class="arrow">➜</span> <strong style="color:#3fb950">'+cnt+'개</strong></div>';
+  gcwRenderToggle(id, diagram, 'gcwSol12');
+}
+function gcwGen6(id){
+  var n = 3+Math.floor(Math.random()*10);
+  var limit = 50+Math.floor(Math.random()*4)*50;
+  var el=document.getElementById(id);
+  el.setAttribute('data-n',n); el.setAttribute('data-limit',limit);
+  gcwSetQuestion(el, '1부터 '+limit+'까지의 수 중에서 '+n+'의 배수는 모두 몇 개인가요?', 'gcwSol6');
+}
+function gcwSol6(id){
+  var el=document.getElementById(id);
+  var n=+el.getAttribute('data-n'), limit=+el.getAttribute('data-limit');
+  var cnt=Math.floor(limit/n);
+  var diagram = '<div class="fb-diagram">1부터 '+limit+'까지 '+n+'의 배수 개수 = '+limit+'÷'+n+'의 몫 <span class="arrow">➜</span> <strong style="color:#3fb950">'+cnt+'개</strong></div>';
+  gcwRenderToggle(id, diagram, 'gcwSol6');
+}
+function gcwGen7(id){
+  var candidates=[7,9,11,13,15,17,19,21,23,27,29,31,33];
+  var n=candidates[Math.floor(Math.random()*candidates.length)];
+  var el=document.getElementById(id);
+  el.setAttribute('data-n',n);
+  gcwSetQuestion(el, n+'은(는) 소수인가요? 이유를 설명해보세요.', 'gcwSol7');
+}
+function gcwSol7(id){
+  var el=document.getElementById(id);
+  var n=+el.getAttribute('data-n');
+  var divs=[];
+  for(var i=1;i<=n;i++){ if(n%i===0) divs.push(i); }
+  var isPrime = divs.length===2;
+  var diagram = isPrime
+    ? '<div class="fb-diagram">'+n+'의 약수: '+divs.join(', ')+' → 약수가 1과 자기 자신 2개뿐 → <strong style="color:#3fb950">소수 맞음</strong></div>'
+    : '<div class="fb-diagram">'+n+'의 약수: '+divs.join(', ')+' → 약수가 2개보다 많음(예: '+divs[1]+') → <strong style="color:#f85149">소수 아님</strong></div>';
+  gcwRenderToggle(id, diagram, 'gcwSol7');
+}
+function gcwGen8(id){
+  var p = 2+Math.floor(Math.random()*7);
+  var q = 2+Math.floor(Math.random()*7);
+  while(q===p){ q = 2+Math.floor(Math.random()*7); }
+  var el=document.getElementById(id);
+  el.setAttribute('data-p',p); el.setAttribute('data-q',q);
+  gcwSetQuestion(el, p+'과 '+q+'의 공배수를 작은 것부터 3개 구해보세요.', 'gcwSol8');
+}
+function gcwSol8(id){
+  var el=document.getElementById(id);
+  var p=+el.getAttribute('data-p'), q=+el.getAttribute('data-q');
+  var l=f2wLcm(p,q);
+  var diagram = '<div class="fb-diagram">최소공배수 '+l+' <span class="arrow">➜</span> 공배수: <strong style="color:#3fb950">'+l+', '+(l*2)+', '+(l*3)+'</strong></div>';
+  gcwRenderToggle(id, diagram, 'gcwSol8');
+}
+function gcwGen9(id){
+  var g = 2+Math.floor(Math.random()*6);
+  var m1 = 2+Math.floor(Math.random()*6);
+  var m2 = m1+1+Math.floor(Math.random()*5);
+  while(f2wGcd(m1,m2)!==1){ m2 = m1+1+Math.floor(Math.random()*5); }
+  var a=g*m1, b=g*m2;
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b);
+  gcwSetQuestion(el, '두 수 '+a+'과 '+b+'의 최대공약수는 '+g+'입니다. 두 수를 직접 나열하지 않고, "최대공약수×최소공배수=두 수의 곱" 공식을 이용해서 최소공배수를 구해보세요.', 'gcwSol9');
+}
+function gcwSol9(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b');
+  var g=f2wGcd(a,b), product=a*b, lcm=product/g;
+  var diagram = '<div class="fb-diagram">'+a+'×'+b+'='+product+' <span class="arrow">➜</span> '+product+'÷'+g+'=<strong style="color:#3fb950">'+lcm+'</strong>(최소공배수)</div>';
+  gcwRenderToggle(id, diagram, 'gcwSol9');
+}
+function gcwGen10(id){
+  var g = 2+Math.floor(Math.random()*6);
+  var m1=2+Math.floor(Math.random()*4), m2=m1+1+Math.floor(Math.random()*3), m3=m2+1+Math.floor(Math.random()*3);
+  var a=g*m1, b=g*m2, c=g*m3;
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-c',c);
+  gcwSetQuestion(el, '사탕 '+a+'개, 초콜릿 '+b+'개, 젤리 '+c+'개를 최대한 많은 봉지에 남김없이 똑같이 나눠 담으려 합니다. 몇 개의 봉지가 필요한가요?', 'gcwSol10');
+}
+function gcwSol10(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c');
+  var g=f2wGcd(f2wGcd(a,b),c);
+  var diagram = '<div class="fb-diagram">세 수 '+a+', '+b+', '+c+'의 최대공약수 <span class="arrow">➜</span> <strong style="color:#3fb950">'+g+'개</strong> 봉지 (사탕 '+(a/g)+'개, 초콜릿 '+(b/g)+'개, 젤리 '+(c/g)+'개씩)</div>';
+  gcwRenderToggle(id, diagram, 'gcwSol10');
 }
 function cvInit(id){
   const cards = CV_DATA[id];

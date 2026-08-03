@@ -1,0 +1,9 @@
+{
+  "name": "toro-math-auth",
+  "private": true,
+  "version": "1.0.0",
+  "description": "toro_math 사이트의 회원 승인 기능(Netlify Functions)에 필요한 의존성",
+  "dependencies": {
+    "firebase-admin": "^12.6.0"
+  }
+}

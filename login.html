@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦕 토로매쓰 — 로그인</title>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1923;color:#f0f4f8;font-family:'Nanum Gothic',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.box{background:#1a2a3a;border-radius:20px;padding:32px 26px;width:100%;max-width:380px}
+h1{font-family:'Jua',sans-serif;color:#2ecc71;font-size:1.4rem;text-align:center;margin-bottom:6px}
+.sub{color:#8899aa;font-size:.85rem;text-align:center;margin-bottom:24px}
+label{display:block;font-size:.82rem;color:#8899aa;margin:14px 0 6px}
+input{width:100%;padding:11px 14px;border-radius:12px;border:1px solid #334;background:#162030;color:#f0f4f8;font-size:.95rem;font-family:inherit}
+input:focus{outline:none;border-color:#2ecc71}
+button{width:100%;margin-top:22px;padding:13px;border:none;border-radius:14px;background:linear-gradient(135deg,#1a5c2a,#2ecc71);color:#fff;font-family:'Jua',sans-serif;font-size:1rem;cursor:pointer}
+button:disabled{opacity:.5;cursor:default}
+.msg{margin-top:14px;font-size:.85rem;text-align:center;min-height:1.2em}
+.msg.err{color:#e74c3c}
+.foot{margin-top:18px;text-align:center;font-size:.85rem;color:#8899aa}
+.foot a{color:#2ecc71;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>🦕 토로매쓰 로그인</h1>
+  <div class="sub">승인된 회원만 이용할 수 있어요</div>
+
+  <form id="login-form">
+    <label for="email">이메일</label>
+    <input id="email" type="email" required autocomplete="email">
+
+    <label for="password">비밀번호</label>
+    <input id="password" type="password" required autocomplete="current-password">
+
+    <button id="submit-btn" type="submit">로그인</button>
+    <div id="msg" class="msg"></div>
+  </form>
+
+  <div class="foot">계정이 없으신가요? <a href="signup.html">회원가입</a></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="auth-common.js"></script>
+<script>
+const form = document.getElementById("login-form");
+const msg = document.getElementById("msg");
+const btn = document.getElementById("submit-btn");
+
+// 이미 세션 쿠키가 있고 승인된 상태면 바로 홈으로 (미들웨어가 최종 판단하지만, UX상 미리 보내줌)
+const params = new URLSearchParams(location.search);
+const redirectTo = params.get("redirect") || "/index.html";
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  msg.className = "msg";
+  msg.textContent = "";
+  btn.disabled = true;
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  try {
+    const payload = await loginUser(email, password);
+    if (payload && payload.approved) {
+      location.href = redirectTo;
+    } else {
+      location.href = "/pending.html";
+    }
+  } catch (err) {
+    msg.className = "msg err";
+    msg.textContent = translateAuthError(err);
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+function translateAuthError(err) {
+  switch (err.code) {
+    case "auth/invalid-credential":
+    case "auth/wrong-password":
+    case "auth/user-not-found":
+      return "이메일 또는 비밀번호가 올바르지 않아요.";
+    case "auth/invalid-email": return "이메일 형식을 확인해주세요.";
+    case "auth/too-many-requests": return "잠시 후 다시 시도해주세요.";
+    default: return "로그인 중 오류가 발생했어요: " + (err.message || err.code);
+  }
+}
+</script>
+</body>
+</html>

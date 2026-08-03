@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦕 토로매쓰 — 승인 대기중</title>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1923;color:#f0f4f8;font-family:'Nanum Gothic',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.box{background:#1a2a3a;border-radius:20px;padding:36px 26px;width:100%;max-width:380px;text-align:center}
+.ico{font-size:3rem;margin-bottom:10px}
+h1{font-family:'Jua',sans-serif;color:#f1c40f;font-size:1.3rem;margin-bottom:10px}
+p{color:#8899aa;font-size:.9rem;line-height:1.6}
+button{width:100%;margin-top:24px;padding:12px;border:none;border-radius:14px;background:#162030;color:#f0f4f8;font-family:'Jua',sans-serif;font-size:.9rem;cursor:pointer;border:1px solid #334}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="ico">⏳</div>
+  <h1>승인 대기중이에요</h1>
+  <p>가입 신청이 접수됐어요.<br>운영자가 확인 후 승인하면 이용할 수 있어요.<br>승인되면 다시 로그인해주세요.</p>
+  <button id="logout-btn">로그아웃</button>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="auth-common.js"></script>
+<script>
+document.getElementById("logout-btn").addEventListener("click", logoutUser);
+</script>
+</body>
+</html>

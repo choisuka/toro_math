@@ -1,0 +1,29 @@
+rules_version = '2';
+
+// Firebase 콘솔 > Firestore Database > 규칙 탭에 이 내용을 붙여넣고 게시하세요.
+// (파일로도 보관 — 실제 적용은 콘솔에서 수동으로 해야 함, Firebase CLI 배포는 이번 구성에선 안 씀)
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null &&
+        request.auth.token.email == "sukachoi@gmail.com"; // firebase-config.js의 ADMIN_EMAIL과 동일하게 유지
+    }
+
+    match /users/{uid} {
+      // 본인 문서는 본인만 읽을 수 있음(승인 대기 화면 등에서 자기 상태 확인용)
+      allow read: if request.auth != null && request.auth.uid == uid;
+      // 관리자는 전체 목록을 읽고 쓸 수 있음(대기자 조회 + 승인 처리)
+      allow read, write: if isAdmin();
+
+      // 본인은 최초 가입 시 딱 한 번, approved:false 상태로만 문서를 생성할 수 있음
+      allow create: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.approved == false
+        && request.resource.data.email == request.auth.token.email;
+
+      // 그 외(본인이 approved를 true로 바꾸는 등)는 금지 — 승인은 관리자(Admin SDK)만 가능
+      allow update, delete: if false;
+    }
+  }
+}

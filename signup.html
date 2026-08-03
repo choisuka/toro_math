@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦕 토로매쓰 — 회원가입</title>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1923;color:#f0f4f8;font-family:'Nanum Gothic',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.box{background:#1a2a3a;border-radius:20px;padding:32px 26px;width:100%;max-width:380px}
+h1{font-family:'Jua',sans-serif;color:#2ecc71;font-size:1.4rem;text-align:center;margin-bottom:6px}
+.sub{color:#8899aa;font-size:.85rem;text-align:center;margin-bottom:24px}
+label{display:block;font-size:.82rem;color:#8899aa;margin:14px 0 6px}
+input,select{width:100%;padding:11px 14px;border-radius:12px;border:1px solid #334;background:#162030;color:#f0f4f8;font-size:.95rem;font-family:inherit}
+input:focus,select:focus{outline:none;border-color:#2ecc71}
+button{width:100%;margin-top:22px;padding:13px;border:none;border-radius:14px;background:linear-gradient(135deg,#1a5c2a,#2ecc71);color:#fff;font-family:'Jua',sans-serif;font-size:1rem;cursor:pointer}
+button:disabled{opacity:.5;cursor:default}
+.msg{margin-top:14px;font-size:.85rem;text-align:center;min-height:1.2em}
+.msg.err{color:#e74c3c}
+.msg.ok{color:#2ecc71}
+.foot{margin-top:18px;text-align:center;font-size:.85rem;color:#8899aa}
+.foot a{color:#2ecc71;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>🦕 토로매쓰 회원가입</h1>
+  <div class="sub">가입 후 운영자 승인이 완료되면 이용할 수 있어요</div>
+
+  <form id="signup-form">
+    <label for="email">이메일</label>
+    <input id="email" type="email" required autocomplete="email">
+
+    <label for="password">비밀번호 (6자 이상)</label>
+    <input id="password" type="password" required minlength="6" autocomplete="new-password">
+
+    <label for="grade">학년</label>
+    <select id="grade" required>
+      <option value="grade-mid1">중1</option>
+      <option value="grade-mid2">중2</option>
+      <option value="grade-mid3">중3</option>
+      <option value="grade-gs1">공통수학1 (고1)</option>
+      <option value="grade-gs2">공통수학2 (고1)</option>
+    </select>
+
+    <button id="submit-btn" type="submit">가입 신청</button>
+    <div id="msg" class="msg"></div>
+  </form>
+
+  <div class="foot">이미 계정이 있으신가요? <a href="login.html">로그인</a></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="auth-common.js"></script>
+<script>
+const form = document.getElementById("signup-form");
+const msg = document.getElementById("msg");
+const btn = document.getElementById("submit-btn");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  msg.className = "msg";
+  msg.textContent = "";
+  btn.disabled = true;
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const grade = document.getElementById("grade").value;
+
+  try {
+    await signupUser(email, password, grade);
+    msg.className = "msg ok";
+    msg.textContent = "가입 신청 완료! 운영자 승인 후 로그인할 수 있어요.";
+    form.reset();
+  } catch (err) {
+    msg.className = "msg err";
+    msg.textContent = translateAuthError(err);
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+function translateAuthError(err) {
+  switch (err.code) {
+    case "auth/email-already-in-use": return "이미 가입된 이메일이에요.";
+    case "auth/invalid-email": return "이메일 형식을 확인해주세요.";
+    case "auth/weak-password": return "비밀번호는 6자 이상이어야 해요.";
+    default: return "가입 중 오류가 발생했어요: " + (err.message || err.code);
+  }
+}
+</script>
+</body>
+</html>
