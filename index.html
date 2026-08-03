@@ -13712,26 +13712,32 @@ A(1,5),B(5,1)의 수직이등분선을 l, l⊥m(y=kx+3)이 점P에서 만날 때
 </div>`,
     ans:`고정점: 2x−y+1=0, x+y−7=0 연립 → y=2x+1 대입 → 3x=6 → <b>P(2,5)</b><br>O에서 직선에 내린 수선의 발 F가 P와 다르면 삼각형 OFP는 직각삼각형(직각은 F)이고 OP가 그 빗변 — 빗변이 가장 기니까 OF&lt;OP, F=P(직선⊥OP)일 때만 OF=OP<br>|OP|=√(4+25)=<b>√29</b> (k=−1/4일 때)
 <div style="text-align:center;margin:10px 0">
-<svg width="230" height="150" viewBox="0 0 230 150">
+<svg width="230" height="155" viewBox="0 0 230 155">
   <defs><marker id="ax13" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
   <line x1="15" y1="130" x2="222" y2="130" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax13)"/>
-  <line x1="115" y1="145" x2="115" y2="8" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax13)"/>
+  <line x1="115" y1="150" x2="115" y2="8" stroke="#94a3b8" stroke-width="1.1" marker-end="url(#ax13)"/>
   <text x="212" y="126" font-size="9" fill="#94a3b8">x</text>
   <text x="119" y="16" font-size="9" fill="#94a3b8">y</text>
-  <line x1="67.7" y1="73.3" x2="207.7" y2="73.3" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>
-  <line x1="72.7" y1="47.3" x2="202.7" y2="99.3" stroke="#fde68a" stroke-width="2.5"/>
+  <line x1="120.7" y1="39.3" x2="166" y2="130" stroke="#64748b" stroke-width="1.6"/>
   <line x1="115" y1="130" x2="137.7" y2="73.3" stroke="#86efac" stroke-width="2.5"/>
-  <line x1="115" y1="130" x2="115" y2="73.3" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="4 2"/>
-  <circle cx="115" cy="73.3" r="3.5" fill="#7dd3fc"/>
+  <line x1="115" y1="130" x2="155.8" y2="109.6" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="4 2"/>
+  <polyline points="148.6,113.2 145.1,106 152.2,102.4" fill="none" stroke="#e2e8f0" stroke-width="1.3"/>
   <circle cx="115" cy="130" r="4" fill="#e2e8f0"/>
   <circle cx="137.7" cy="73.3" r="4.5" fill="#e2e8f0"/>
+  <circle cx="155.8" cy="109.6" r="4" fill="#7dd3fc"/>
   <text x="100" y="146" font-size="11" font-weight="700" fill="#e2e8f0">O</text>
   <text x="142" y="70" font-size="11" font-weight="700" fill="#e2e8f0">P(2,5)</text>
-  <text x="118" y="104" font-size="9.5" font-weight="700" fill="#86efac">OP=√29</text>
-  <text x="74" y="66" font-size="9.5" font-weight="700" fill="#7dd3fc">d=5</text>
+  <text x="159" y="107" font-size="10" font-weight="700" fill="#7dd3fc">F</text>
+  <text x="112" y="104" font-size="9.5" font-weight="700" fill="#86efac">OP=√29≈5.39</text>
+  <text x="118" y="146" font-size="9.5" font-weight="700" fill="#7dd3fc">OF≈4.02</text>
+  <text x="122" y="34" font-size="8.5" fill="#64748b">수직 아닌 다른 직선(2x+y−9=0)</text>
 </svg>
-<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">파란 점선(수직 아닌 직선 y=5까지 거리 d=5) &lt; 초록(OP=√29≈5.39) → l⊥OP일 때가 최대</div>
-</div>` },
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">P를 지나는 회색 직선(수직 아님)에 O에서 내린 수선의 발이 F — 직각삼각형 OFP에서 빗변 OP(초록)가 다리 OF(파랑)보다 길어요</div>
+</div>
+<div id="ln-vertexdist13-out" data-v="lines,2,-1,1,1,1,-7,2,5" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>직선 k(2x−y+1)+(x+y−7)=0이 k값에 관계없이 항상 지나는 점을 P라 하자. 원점 O에서 이 직선까지 거리의 최댓값은?</b><br><button onclick="lnShowVertexDist('ln-vertexdist13-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextVertexDist('ln-vertexdist13-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
 
 { tag:'실전14 — 매개변수 직선과 선분의 교차', tagColor:'#fb923c',
     bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
@@ -13759,33 +13765,35 @@ A(1,5),B(5,1)의 수직이등분선을 l, l⊥m(y=kx+3)이 점P에서 만날 때
   <text x="90" y="60" font-size="8.5" fill="#f87171">k=3</text>
 </svg>
 <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">Q를 축으로 회전하는 l이 파란 선분 AB를 스치는 구간 = k=1.5(QA)부터 k=3(QB)까지</div>
-</div>` },
+</div>
+<div id="ln-segk14-out" data-v="1,2,4,3,10,2" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>A(2,4), B(3,10)을 잇는 선분과 l:y=kx+1이 만나는 자연수 k의 최솟값은?</b><br><button onclick="lnShowSegK('ln-segk14-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextSegK('ln-segk14-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
 
 { tag:'실전14-변형 — 특정 사분면을 지나지 않는 조건', tagColor:'#fb923c',
     bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
-🔥 l:y=kx−2가 제1사분면을 지나지 않을 k의 범위는?
+🔥 l:y=k(x−2)가 제3사분면을 지나지 않을 k의 범위는?
 </div>`,
-    ans:`l은 항상 (0,−2)를 지남(y축 음의 부분)<br>k&gt;0이면 x가 커질수록 y도 양수화 → 1사분면 진입<br>k≤0이면 x&gt;0에서 y=kx−2≤−2&lt;0 → 못 들어감<br>→ <b>k ≤ 0</b>
+    ans:`l은 항상 (2,0)을 지남(x축 양의 부분)<br>k&gt;0이면 x&lt;2 구간에서 y=k(x−2)&lt;0이고 x&lt;0에서도 y&lt;0 → 3사분면 진입<br>k≤0이면 x&lt;0에서 y=k(x−2)=k×(음수)≥0 → 3사분면 못 들어감<br>→ <b>k ≤ 0</b>
 <div style="text-align:center;margin:10px 0">
 <svg width="200" height="200" viewBox="0 0 220 220">
-  <rect x="110" y="0" width="110" height="110" fill="rgba(248,113,113,.14)"/>
+  <rect x="0" y="110" width="110" height="110" fill="rgba(248,113,113,.14)"/>
   <line x1="10" y1="110" x2="215" y2="110" stroke="#94a3b8" stroke-width="1.2"/>
   <line x1="110" y1="215" x2="110" y2="10" stroke="#94a3b8" stroke-width="1.2"/>
-  <text x="160" y="16" font-size="9" fill="#f87171">제1사분면(못 지나야 함)</text>
-  <line x1="10" y1="50" x2="170" y2="210" stroke="#86efac" stroke-width="2"/>
-  <line x1="50" y1="150" x2="210" y2="150" stroke="#fde68a" stroke-width="2.5"/>
-  <line x1="110" y1="150" x2="190" y2="70" stroke="#f87171" stroke-width="2" stroke-dasharray="2 2"/>
-  <circle cx="110" cy="150" r="4.5" fill="#e2e8f0"/>
-  <text x="90" y="168" font-size="10" font-weight="700" fill="#e2e8f0">(0,−2)</text>
-  <text x="12" y="46" font-size="9" fill="#86efac">k=−1: 확실히 안전</text>
-  <text x="150" y="144" font-size="9" fill="#fde68a">k=0: 경계선(딱 안 들어감)</text>
-  <text x="192" y="66" font-size="9" fill="#f87171">k=1: 1사분면 진입</text>
+  <text x="14" y="205" font-size="9" fill="#f87171">제3사분면(못 지나야 함)</text>
+  <line x1="70" y1="30" x2="210" y2="170" stroke="#86efac" stroke-width="2"/>
+  <line x1="70" y1="190" x2="210" y2="50" stroke="#f87171" stroke-width="2" stroke-dasharray="2 2"/>
+  <circle cx="150" cy="110" r="4.5" fill="#e2e8f0"/>
+  <text x="154" y="104" font-size="10" font-weight="700" fill="#e2e8f0">(2,0)</text>
+  <text x="14" y="42" font-size="9" fill="#86efac">k=−1: 확실히 안전</text>
+  <text x="14" y="182" font-size="9" fill="#f87171">k=1: 3사분면 진입</text>
 </svg>
-<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">초록(k=−1)은 안전, 노란(k=0)은 경계, 빨강 점선(k=1)은 진입 — 경계는 k≤0</div>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">초록(k=−1)은 안전, 빨강 점선(k=1)은 3사분면 진입 — 경계 k=0은 점이 x축 위에 있어 x축 자체와 겹쳐요 → k≤0</div>
 </div>
-<div id="ln-quad14-out" data-v="A,0,-2,1,le,avoid" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
-<b>직선 l: y=kx−2 (k는 실수)가 제1사분면을 지나지 않도록 하는 k의 범위는?</b><br><button onclick="lnShowQuadrant('ln-quad14-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+<div id="ln-quad14-out" data-v="A,2,0,3,le,avoid" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>직선 l: y=k(x−2) (k는 실수)가 제3사분면을 지나지 않도록 하는 k의 범위는?</b><br><button onclick="lnShowQuadrant('ln-quad14-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
 </div>
 <button onclick="lnNextQuadrant('ln-quad14-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제 (정점 변형)</button>` },
 
@@ -13794,7 +13802,7 @@ A(1,5),B(5,1)의 수직이등분선을 l, l⊥m(y=kx+3)이 점P에서 만날 때
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
 🔥 x+2y−1=0과 2x+y+2=0으로부터 같은 거리에 있는 점들의 자취는?
 </div>`,
-    ans:`<b style="color:#fb923c">각의 이등분선의 성질</b>: 어떤 각을 이등분하는 직선 위의 점은, 그 각을 이루는 두 변(직선)으로부터 항상 <b>같은 거리</b>에 있어요(각의 꼭짓점에서 그은 두 선분이 대칭이라 수선의 길이도 똑같아지기 때문). 그래서 "두 직선으로부터 같은 거리에 있는 점들의 자취"를 구하면, 그게 바로 이 두 직선이 만드는 각의 이등분선이에요.<br><br>자취기법: P(x,y) → |x+2y−1|=|2x+y+2| (분모 √5로 동일하니 소거)<br>① 부호 같음: x+2y−1=2x+y+2 → <b>x−y+3=0</b><br>② 부호 반대: x+2y−1=−(2x+y+2) → <b>3x+3y+1=0</b><br><br><span style="font-size:.8rem;color:#94a3b8">두 직선이 만나 생기는 각은 항상 두 쌍(맞꼭지각)이라, 이등분선도 서로 수직인 두 직선으로 나와요.</span>
+    ans:`<b style="color:#fb923c">각의 이등분선의 성질</b>: 어떤 각을 이등분하는 직선 위의 점은, 그 각을 이루는 두 변(직선)으로부터 항상 <b>같은 거리</b>에 있어요(각의 꼭짓점에서 그은 두 선분이 대칭이라 수선의 길이도 똑같아지기 때문). 그래서 <b style="color:#fde68a">"두 직선으로부터 같은 거리에 있는 점들의 자취"</b>를 구하면, 그게 바로 이 두 직선이 만드는 각의 이등분선이에요.<br><br>자취기법: P(x,y) → |x+2y−1|=|2x+y+2| (분모 √5로 동일하니 소거)<br>① 부호 같음: x+2y−1=2x+y+2 → <b>x−y+3=0</b><br>② 부호 반대: x+2y−1=−(2x+y+2) → <b>3x+3y+1=0</b><br><br><span style="font-size:.8rem;color:#94a3b8">두 직선이 만나 생기는 각은 항상 두 쌍(맞꼭지각)이라, 이등분선도 서로 수직인 두 직선으로 나와요.</span>
 <div style="text-align:center;margin:10px 0">
 <svg width="150" height="130" viewBox="0 0 150 130">
   <line x1="139.2" y1="91.6" x2="-19.2" y2="12.4" stroke="#7dd3fc" stroke-width="2.2"/>
@@ -13808,7 +13816,11 @@ A(1,5),B(5,1)의 수직이등분선을 l, l⊥m(y=kx+3)이 점P에서 만날 때
   <text x="4" y="112" font-size="8.5" font-weight="700" fill="#86efac">3x+3y+1=0</text>
 </svg>
 <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">파란·보라(원래 두 직선) 사이 각을, 노랑·초록(이등분선, 서로 수직) 두 직선이 정확히 반으로 갈라요</div>
-</div>` },
+</div>
+<div id="ln-bisector15-out" data-v="1,2,-1,2,1,2" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>x+2y−1=0과 2x+y+2=0으로부터 같은 거리에 있는 점들의 자취는?</b><br><button onclick="lnShowBisector('ln-bisector15-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextBisector('ln-bisector15-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
 
 { tag:'실전16 — 수직인 두 직선과 최소 넓이', tagColor:'#fb923c',
     bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
@@ -13833,7 +13845,44 @@ A(1,5),B(5,1)의 수직이등분선을 l, l⊥m(y=kx+3)이 점P에서 만날 때
   <text x="134" y="146" font-size="10" font-weight="700" fill="#e2e8f0">B(2,0)</text>
 </svg>
 <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">m=1일 때(직각 표시) 밑변AB=2, 높이=1 → 최소넓이 1 — m을 다르게 잡으면 삼각형이 더 커져요</div>
-</div>` },
+</div>
+<div id="ln-perparea16-out" data-v="1,1" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>점(1,1)에서 만나고 서로 수직인 두 직선이 x축과 만드는 두 점을 A,B라 하면, 그 점과 A,B로 이루어진 삼각형 넓이의 최솟값은?</b><br><button onclick="lnShowPerpArea('ln-perparea16-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextPerpArea('ln-perparea16-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
+
+{ tag:'실전16-변형 — 고정직선이 좌표축이 아닌 경우', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 점P(1,−1)를 지나고 서로 수직인 두 직선이 직선 l: x−y+2=0(좌표축도 아니고 좌표축과 평행하지도 않음)과 만나는 두 점을 A,B라 하면, △PAB 넓이의 최솟값은?
+</div>`,
+    ans:`<b style="color:#fb923c">핵심 아이디어</b>: 실전16은 A,B가 x축 위였지만, 이번엔 A,B가 기울어진 직선 l 위에 있어요. 그래도 P에서 l까지의 거리 d는 두 직선의 기울기와 무관하게 <b>항상 일정</b>하니, 삼각형의 높이는 고정!<br><br>
+P에서 l까지 거리 d = |1−(−1)+2|/√2 = 4/√2 = <b>2√2</b><br>
+A,B는 l 위의 점이고, F(P에서 l에 내린 수선의 발)에서 PF⊥AB이므로 <b>FA·FB=PF²=d²</b>(직각삼각형의 수선의 성질 — 중3 닮음에서 배운 그 공식)<br>
+AB=FA+FB ≥ 2√(FA·FB) = 2d (산술기하평균, 등호 FA=FB=d)<br>
+최솟값 S=½×AB×d ≥ ½×2d×d=d² = <b>8</b><br>
+검산: FA=FB=d일 때 한 직선은 수직(x=1), 다른 직선은 수평(y=−1)이 됨 → A(1,3), B(−3,−1), 확인해보면 실제로 PA⊥PB ✓
+<div style="text-align:center;margin:10px 0">
+<svg width="190" height="190" viewBox="0 0 190 190">
+  <line x1="148.8" y1="3.2" x2="3.2" y2="148.8" stroke="#64748b" stroke-width="1.6"/>
+  <polygon points="132,132 132,20 20,132" fill="rgba(134,239,172,.12)" stroke="#86efac" stroke-width="2"/>
+  <line x1="132" y1="132" x2="76" y2="76" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="4 2"/>
+  <circle cx="132" cy="132" r="4" fill="#fde68a"/>
+  <circle cx="132" cy="20" r="4" fill="#e2e8f0"/>
+  <circle cx="20" cy="132" r="4" fill="#e2e8f0"/>
+  <circle cx="76" cy="76" r="3.5" fill="#7dd3fc"/>
+  <text x="138" y="126" font-size="9.5" font-weight="700" fill="#fde68a">P(1,−1)</text>
+  <text x="64" y="90" font-size="9" font-weight="700" fill="#7dd3fc">F</text>
+  <text x="138" y="16" font-size="9" font-weight="700" fill="#e2e8f0">A(1,3)</text>
+  <text x="2" y="146" font-size="9" font-weight="700" fill="#e2e8f0">B(−3,−1)</text>
+  <text x="86" y="10" font-size="8.5" fill="#64748b">l: x−y+2=0</text>
+</svg>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">P에서 l에 내린 수선의 발 F, PF=d=2√2 — 최소일 때 PA는 수직, PB는 수평이 돼요</div>
+</div>
+<div id="ln-perparealine16b-out" data-v="1,-1,2,2" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>점P(1,−1)를 지나고 서로 수직인 두 직선이 직선 l: x−y+2=0과 만나는 두 점을 A,B라 하면, △PAB 넓이의 최솟값은?</b><br><button onclick="lnShowPerpAreaLine('ln-perparealine16b-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextPerpAreaLine('ln-perparealine16b-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
 
 { tag:'실전17 — 세 점이 한 직선 위(공선점)', tagColor:'#fb923c',
     bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
@@ -13846,7 +13895,11 @@ AB기울기=(k−3)/3, AC기울기=4/(k+1)<br>
 k=5 또는 k=−3 → 합=<b>2</b>
 <div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
 🔗 같은 "삼각형이 안 된다"는 말이라도 <b>직선 3개가 주어졌으면</b> 평행/한점만남(실전12), <b>점 3개만 주어졌으면</b> 기울기 비교(이 문제) — 무엇이 주어졌는지에 따라 다른 서랍이에요.
-</div>` }
+</div>
+<div id="ln-collinear17-out" data-v="-1,3,2,7" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>A(−1,3), B(2,k), C(k,7)이 삼각형을 못 이루는 모든 k의 합은?</b><br><button onclick="lnShowCollinear('ln-collinear17-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextCollinear('ln-collinear17-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` }
 ],
 
 'coord-real': [
@@ -15914,6 +15967,264 @@ function lnShowTwoLineQ1(id){
     + '<b>3단계</b> 계산하면 b&gt;'+gFmt(n1)+'과 b&gt;'+gFmt(n1*m2/m1)+' 중 더 큰 경계값 → <b>b &gt; '+gFmt(threshold)+'</b>'
     + svgTwoLineQ1HTML(m1,n1,m2,threshold)
     + gNextBtn('lnNextTwoLineQ1', id);
+}
+
+// ⑱ 매개변수 직선과 선분의 교차 (자연수 k 최솟값)
+function svgSegKHTML(c0,xa,ya,xb,yb,kAns){
+  var pts=[[0,c0],[xa,ya],[xb,yb]];
+  var xs=pts.map(function(p){return p[0];}), ys=pts.map(function(p){return p[1];});
+  var minX=Math.min.apply(null,xs)-1, maxX=Math.max.apply(null,xs)+1;
+  var minY=Math.min.apply(null,ys)-1, maxY=Math.max.apply(null,ys)+1;
+  var W=180,H=210,padL=34,padR=14,padT=14,padB=24;
+  var scale=Math.min((W-padL-padR)/(maxX-minX),(H-padT-padB)/(maxY-minY));
+  function px(x,y){ return [Math.round((padL - minX*scale + x*scale)*10)/10, Math.round((H-padB + minY*scale - y*scale)*10)/10]; }
+  var O=px(0,0), Q=px(0,c0), A=px(xa,ya), B=px(xb,yb);
+  function ext(from,to,f){ return [from[0]+(to[0]-from[0])*f, from[1]+(to[1]-from[1])*f]; }
+  var QAext=ext(Q,A,1.2), QBext=ext(Q,B,1.2);
+  var t=(c0+kAns*xa-ya)/((yb-ya)-kAns*(xb-xa));
+  var Mx=xa+t*(xb-xa), My=ya+t*(yb-ya);
+  var M=px(Mx,My);
+  var Lext=ext(Q,M,1.15);
+  return '<div style="text-align:center;margin:10px 0">'
+    + '<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'
+    + '<line x1="0" y1="'+O[1]+'" x2="'+W+'" y2="'+O[1]+'" stroke="#94a3b8" stroke-width="1"/>'
+    + '<line x1="'+O[0]+'" y1="'+H+'" x2="'+O[0]+'" y2="0" stroke="#94a3b8" stroke-width="1"/>'
+    + '<line x1="'+Q[0]+'" y1="'+Q[1]+'" x2="'+QAext[0]+'" y2="'+QAext[1]+'" stroke="#f87171" stroke-width="1.6" stroke-dasharray="2 2"/>'
+    + '<line x1="'+Q[0]+'" y1="'+Q[1]+'" x2="'+QBext[0]+'" y2="'+QBext[1]+'" stroke="#f87171" stroke-width="1.6" stroke-dasharray="2 2"/>'
+    + '<line x1="'+A[0]+'" y1="'+A[1]+'" x2="'+B[0]+'" y2="'+B[1]+'" stroke="#7dd3fc" stroke-width="2.4"/>'
+    + '<line x1="'+Q[0]+'" y1="'+Q[1]+'" x2="'+Lext[0]+'" y2="'+Lext[1]+'" stroke="#86efac" stroke-width="2.2"/>'
+    + '<circle cx="'+Q[0]+'" cy="'+Q[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<circle cx="'+A[0]+'" cy="'+A[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<circle cx="'+B[0]+'" cy="'+B[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<circle cx="'+M[0]+'" cy="'+M[1]+'" r="3.5" fill="#86efac"/>'
+    + '<text x="'+(Q[0]-6)+'" y="'+(Q[1]-6)+'" font-size="9.5" font-weight="700" fill="#e2e8f0" text-anchor="end">Q(0,'+gFmt(c0)+')</text>'
+    + '<text x="'+(A[0]+5)+'" y="'+(A[1]-4)+'" font-size="9.5" font-weight="700" fill="#e2e8f0">A('+gFmt(xa)+','+gFmt(ya)+')</text>'
+    + '<text x="'+(B[0]+5)+'" y="'+(B[1]-4)+'" font-size="9.5" font-weight="700" fill="#e2e8f0">B('+gFmt(xb)+','+gFmt(yb)+')</text>'
+    + '<text x="'+(M[0]+6)+'" y="'+(M[1]+12)+'" font-size="8.5" font-weight="700" fill="#86efac">k='+kAns+'</text>'
+    + '</svg>'
+    + '<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨간 점선=경계(QA,QB 기울기) · 초록=자연수 최소인 k='+kAns+'일 때 l · 파랑=선분 AB</div>'
+    + '</div>';
+}
+function lnNextSegK(id){
+  var el=document.getElementById(id);
+  var kTarget=gRandInt(1,5);
+  var xa=gRandInt(1,5), xb=gRandInt(1,5);
+  var da=gRandInt(0,xa-1);
+  var eb=gRandInt(1,xb);
+  var c0=gRandInt(-3,3);
+  var ya=c0+kTarget*xa-da;
+  var yb=c0+kTarget*xb+eb;
+  el.setAttribute('data-v',[c0,xa,ya,xb,yb,kTarget].join(','));
+  el.innerHTML = gSegKQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowSegK', id);
+}
+function gSegKQuestion(dataStr){
+  var v=dataStr.split(',').map(Number);
+  var c0=v[0],xa=v[1],ya=v[2],xb=v[3],yb=v[4];
+  return '<b>A('+gFmt(xa)+','+gFmt(ya)+'), B('+gFmt(xb)+','+gFmt(yb)+')을 잇는 선분과 l:y=kx'+gNPart(c0)+'이 만나는 자연수 k의 최솟값은?</b><br>';
+}
+function lnShowSegK(id){
+  var el=document.getElementById(id);
+  var v=el.getAttribute('data-v').split(',').map(Number);
+  var c0=v[0],xa=v[1],ya=v[2],xb=v[3],yb=v[4],kAns=v[5];
+  el.innerHTML = gSegKQuestion(el.getAttribute('data-v'))
+    + '<b>1단계</b> l은 항상 Q(0,'+gFmt(c0)+')을 지남<br>'
+    + '<b>2단계</b> Q→A 기울기='+gFracHTML(ya-c0,xa)+', Q→B 기울기='+gFracHTML(yb-c0,xb)+'<br>'
+    + '<b>3단계</b> 선분과 만나려면 '+gFracHTML(ya-c0,xa)+'≤k≤'+gFracHTML(yb-c0,xb)+' → 자연수 중 최솟값 <b>'+kAns+'</b>'
+    + svgSegKHTML(c0,xa,ya,xb,yb,kAns)
+    + gNextBtn('lnNextSegK', id);
+}
+
+// ⑲ 두 직선으로부터 같은 거리 (각의 이등분선)
+function svgBisectorHTML(a1,b1,c1,a2,b2,c2,L1,L2){
+  return '<div style="text-align:center;margin:10px 0">'
+    + '<svg width="150" height="130" viewBox="0 0 150 130">'
+    + '<line x1="139.2" y1="91.6" x2="-19.2" y2="12.4" stroke="#7dd3fc" stroke-width="2.2"/>'
+    + '<line x1="92.4" y1="116.8" x2="27.6" y2="-12.8" stroke="#a78bfa" stroke-width="2.2"/>'
+    + '<line x1="114" y1="-2" x2="6" y2="106" stroke="#fde68a" stroke-width="2" stroke-dasharray="3 2"/>'
+    + '<line x1="114" y1="106" x2="6" y2="-2" stroke="#86efac" stroke-width="2" stroke-dasharray="3 2"/>'
+    + '<circle cx="60" cy="52" r="4" fill="#e2e8f0"/>'
+    + '<text x="118" y="88" font-size="8" font-weight="700" fill="#7dd3fc">'+gLineEq(a1,b1,c1)+'</text>'
+    + '<text x="70" y="112" font-size="8" font-weight="700" fill="#a78bfa">'+gLineEq(a2,b2,c2)+'</text>'
+    + '<text x="94" y="10" font-size="8" font-weight="700" fill="#fde68a">'+gLineEq(L1[0],L1[1],L1[2])+'</text>'
+    + '<text x="4" y="112" font-size="8" font-weight="700" fill="#86efac">'+gLineEq(L2[0],L2[1],L2[2])+'</text>'
+    + '</svg>'
+    + '<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">파란·보라(원래 두 직선) 사이 각을, 노랑·초록(이등분선, 서로 수직) 두 직선이 정확히 반으로 갈라요</div>'
+    + '</div>';
+}
+function lnNextBisector(id){
+  var el=document.getElementById(id);
+  var pqOpts=[[1,2],[1,3],[1,4],[2,3],[2,1],[3,1],[3,2],[4,1]];
+  var pq=pqOpts[gRandInt(0,pqOpts.length-1)];
+  var p=pq[0], q=pq[1];
+  var s1=gRandInt(0,1)?1:-1, s2=gRandInt(0,1)?1:-1, s3=gRandInt(0,1)?1:-1, s4=gRandInt(0,1)?1:-1;
+  var a1=s1*p, b1=s2*q, a2=s3*q, b2=s4*p;
+  var c1=gRandInt(-4,4); while(c1===0) c1=gRandInt(-4,4);
+  var c2=gRandInt(-4,4); while(c2===0) c2=gRandInt(-4,4);
+  el.setAttribute('data-v',[a1,b1,c1,a2,b2,c2].join(','));
+  el.innerHTML = gBisectorQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowBisector', id);
+}
+function gBisectorQuestion(dataStr){
+  var v=dataStr.split(',').map(Number);
+  return '<b>'+gLineEq(v[0],v[1],v[2])+'과 '+gLineEq(v[3],v[4],v[5])+'으로부터 같은 거리에 있는 점들의 자취는?</b><br>';
+}
+function lnShowBisector(id){
+  var el=document.getElementById(id);
+  var v=el.getAttribute('data-v').split(',').map(Number);
+  var a1=v[0],b1=v[1],c1=v[2],a2=v[3],b2=v[4],c2=v[5];
+  var norm2=a1*a1+b1*b1;
+  var L1=[a1-a2,b1-b2,c1-c2], L2=[a1+a2,b1+b2,c1+c2];
+  el.innerHTML = gBisectorQuestion(el.getAttribute('data-v'))
+    + '자취기법: P(x,y) → |'+gLineEqRaw(a1,b1,c1)+'|=|'+gLineEqRaw(a2,b2,c2)+'| (분모 √'+norm2+'로 동일하니 소거)<br>'
+    + '① 부호 같음: '+gLineEqRaw(a1,b1,c1)+' = '+gLineEqRaw(a2,b2,c2)+' → <b>'+gLineEq(L1[0],L1[1],L1[2])+'</b><br>'
+    + '② 부호 반대: '+gLineEqRaw(a1,b1,c1)+' = −('+gLineEqRaw(a2,b2,c2)+') → <b>'+gLineEq(L2[0],L2[1],L2[2])+'</b>'
+    + svgBisectorHTML(a1,b1,c1,a2,b2,c2,L1,L2)
+    + gNextBtn('lnNextBisector', id);
+}
+
+// ⑳ 수직인 두 직선과 최소 넓이 (x축과의 교점)
+function svgPerpAreaHTML(x0,y0){
+  var W=180,H=170,padL=26,padR=16,padT=16,padB=24;
+  var minX=Math.min(0,x0-y0,x0+y0)-1, maxX=Math.max(0,x0-y0,x0+y0)+1;
+  var minY=-1, maxY=y0+1;
+  var scale=Math.min((W-padL-padR)/(maxX-minX),(H-padT-padB)/(maxY-minY));
+  function px(x,y){ return [Math.round((padL - minX*scale + x*scale)*10)/10, Math.round((H-padB + minY*scale - y*scale)*10)/10]; }
+  var P=px(x0,y0), A=px(x0-y0,0), B=px(x0+y0,0), oy=px(0,0)[1];
+  return '<div style="text-align:center;margin:10px 0">'
+    + '<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'
+    + '<line x1="0" y1="'+oy+'" x2="'+W+'" y2="'+oy+'" stroke="#94a3b8" stroke-width="1.1"/>'
+    + '<polygon points="'+P[0]+','+P[1]+' '+A[0]+','+A[1]+' '+B[0]+','+B[1]+'" fill="rgba(134,239,172,.12)" stroke="#86efac" stroke-width="2"/>'
+    + '<circle cx="'+P[0]+'" cy="'+P[1]+'" r="4" fill="#fde68a"/>'
+    + '<circle cx="'+A[0]+'" cy="'+A[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<circle cx="'+B[0]+'" cy="'+B[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<text x="'+(P[0]+5)+'" y="'+(P[1]-6)+'" font-size="9.5" font-weight="700" fill="#fde68a">P('+gFmt(x0)+','+gFmt(y0)+') m=1일 때</text>'
+    + '<text x="'+(A[0])+'" y="'+(A[1]+14)+'" font-size="9.5" font-weight="700" fill="#e2e8f0" text-anchor="middle">A</text>'
+    + '<text x="'+(B[0])+'" y="'+(B[1]+14)+'" font-size="9.5" font-weight="700" fill="#e2e8f0" text-anchor="middle">B</text>'
+    + '</svg>'
+    + '<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">m=1일 때(최소) 밑변AB='+(2*y0)+', 높이='+y0+' → 최소넓이 '+(y0*y0)+'</div>'
+    + '</div>';
+}
+function lnNextPerpArea(id){
+  var el=document.getElementById(id);
+  var x0=gRandInt(-3,3);
+  var y0=gRandInt(1,4);
+  el.setAttribute('data-v',[x0,y0].join(','));
+  el.innerHTML = gPerpAreaQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowPerpArea', id);
+}
+function gPerpAreaQuestion(dataStr){
+  var v=dataStr.split(',').map(Number);
+  return '<b>점('+gFmt(v[0])+','+gFmt(v[1])+')에서 만나고 서로 수직인 두 직선이 x축과 만드는 두 점을 A,B라 하면, 그 점과 A,B로 이루어진 삼각형 넓이의 최솟값은?</b><br>';
+}
+function lnShowPerpArea(id){
+  var el=document.getElementById(id);
+  var v=el.getAttribute('data-v').split(',').map(Number);
+  var x0=v[0],y0=v[1];
+  var minArea=y0*y0;
+  el.innerHTML = gPerpAreaQuestion(el.getAttribute('data-v'))
+    + '<b>1단계</b> 기울기m: x절편='+gFmt(x0)+'−'+y0+'/m &nbsp; 기울기−1/m: x절편='+gFmt(x0)+'+'+(y0===1?'m':y0+'m')+'<br>'
+    + '<b>2단계</b> 밑변=|'+y0+'/m+'+y0+'m|='+y0+'|m+1/m|, 높이='+y0+' → S=½×'+y0+'×'+y0+'×|m+1/m|<br>'
+    + '<b>3단계</b> 산술기하평균: m+1/m ≥ 2 (m&gt;0, 등호 m=1) → 최솟값 S=½×'+y0+'×'+y0+'×2=<b>'+minArea+'</b><br>'
+    + '검산: m=1 → ('+gFmt(x0)+','+gFmt(y0)+'),('+gFmt(x0-y0)+',0),('+gFmt(x0+y0)+',0), 밑변'+(2*y0)+'·높이'+y0+' → 넓이'+minArea+' ✓'
+    + svgPerpAreaHTML(x0,y0)
+    + gNextBtn('lnNextPerpArea', id);
+}
+
+// ⑳-변형 수직인 두 직선과 최소 넓이 — 고정직선이 좌표축이 아닌 경우
+function svgPerpAreaLineHTML(x0,y0,c,t){
+  var Fx=x0-t, Fy=y0+t;
+  var Ax=x0, Ay=y0+2*t;
+  var Bx=x0-2*t, By=y0;
+  var pts=[[x0,y0],[Ax,Ay],[Bx,By],[Fx,Fy]];
+  var xs=pts.map(function(p){return p[0];}), ys=pts.map(function(p){return p[1];});
+  var minX=Math.min.apply(null,xs)-1, maxX=Math.max.apply(null,xs)+1;
+  var minY=Math.min.apply(null,ys)-1, maxY=Math.max.apply(null,ys)+1;
+  var W=190,H=190,padL=20,padR=16,padT=16,padB=20;
+  var scale=Math.min((W-padL-padR)/(maxX-minX),(H-padT-padB)/(maxY-minY));
+  function px(x,y){ return [Math.round((padL - minX*scale + x*scale)*10)/10, Math.round((H-padB + minY*scale - y*scale)*10)/10]; }
+  var P=px(x0,y0), A=px(Ax,Ay), B=px(Bx,By), F=px(Fx,Fy);
+  function ext(from,to,f){ return [from[0]+(to[0]-from[0])*f, from[1]+(to[1]-from[1])*f]; }
+  var Lext1=ext(A,B,1.2), Lext2=ext(B,A,1.2);
+  return '<div style="text-align:center;margin:10px 0">'
+    + '<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'
+    + '<line x1="'+Lext1[0]+'" y1="'+Lext1[1]+'" x2="'+Lext2[0]+'" y2="'+Lext2[1]+'" stroke="#64748b" stroke-width="1.6"/>'
+    + '<polygon points="'+P[0]+','+P[1]+' '+A[0]+','+A[1]+' '+B[0]+','+B[1]+'" fill="rgba(134,239,172,.12)" stroke="#86efac" stroke-width="2"/>'
+    + '<line x1="'+P[0]+'" y1="'+P[1]+'" x2="'+F[0]+'" y2="'+F[1]+'" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="4 2"/>'
+    + '<circle cx="'+P[0]+'" cy="'+P[1]+'" r="4" fill="#fde68a"/>'
+    + '<circle cx="'+A[0]+'" cy="'+A[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<circle cx="'+B[0]+'" cy="'+B[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<circle cx="'+F[0]+'" cy="'+F[1]+'" r="3.5" fill="#7dd3fc"/>'
+    + '<text x="'+(P[0]+6)+'" y="'+(P[1]-6)+'" font-size="9.5" font-weight="700" fill="#fde68a">P('+gFmt(x0)+','+gFmt(y0)+')</text>'
+    + '<text x="'+(F[0]-8)+'" y="'+(F[1]+14)+'" font-size="9" font-weight="700" fill="#7dd3fc">F</text>'
+    + '<text x="'+(A[0]+5)+'" y="'+(A[1]-4)+'" font-size="9" font-weight="700" fill="#e2e8f0">A</text>'
+    + '<text x="'+(B[0]-5)+'" y="'+(B[1]+14)+'" font-size="9" font-weight="700" fill="#e2e8f0" text-anchor="end">B</text>'
+    + '<text x="'+(Lext2[0]+4)+'" y="'+(Lext2[1]-4)+'" font-size="8.5" fill="#64748b">l</text>'
+    + '</svg>'
+    + '<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">P에서 l에 내린 수선의 발 F, PF=d일 때 FA·FB=d²(수선의 성질) → AB≥2d(산술기하), 최소넓이=d²</div>'
+    + '</div>';
+}
+function lnNextPerpAreaLine(id){
+  var el=document.getElementById(id);
+  var x0=gRandInt(-3,3), y0=gRandInt(-3,3);
+  var t=gRandInt(1,3)*(gRandInt(0,1)?1:-1);
+  var c=2*t-(x0-y0);
+  el.setAttribute('data-v',[x0,y0,c,t].join(','));
+  el.innerHTML = gPerpAreaLineQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowPerpAreaLine', id);
+}
+function gPerpAreaLineQuestion(dataStr){
+  var v=dataStr.split(',').map(Number);
+  var x0=v[0],y0=v[1],c=v[2];
+  return '<b>점P('+gFmt(x0)+','+gFmt(y0)+')를 지나고 서로 수직인 두 직선이 직선 l: '+gLineEq(1,-1,c)+'과 만나는 두 점을 A,B라 하면, △PAB 넓이의 최솟값은?</b><br>';
+}
+function lnShowPerpAreaLine(id){
+  var el=document.getElementById(id);
+  var v=el.getAttribute('data-v').split(',').map(Number);
+  var x0=v[0],y0=v[1],c=v[2],t=v[3];
+  var d2=2*t*t;
+  el.innerHTML = gPerpAreaLineQuestion(el.getAttribute('data-v'))
+    + '<b>1단계</b> P에서 l까지 거리 d = |'+gFmt(x0)+'−('+gFmt(y0)+')+('+gFmt(c)+')|/√2 = '+Math.abs(2*t)+'/√2 = <b>'+Math.abs(t)+'√2</b><br>'
+    + '<b>2단계</b> A,B는 l 위의 점, F는 P에서 l에 내린 수선의 발이라 PF⊥AB이므로 <b>FA·FB=PF²=d²</b>(직각삼각형의 수선의 성질)<br>'
+    + '<b>3단계</b> AB=FA+FB≥2√(FA·FB)=2d (산술기하평균, 등호 FA=FB=d일 때)<br>'
+    + '<b>4단계</b> 최솟값 S=½×AB×d ≥ ½×2d×d=d² = <b>'+d2+'</b><br>'
+    + '검산: FA=FB=d일 때 한 직선은 수직, 다른 직선은 수평이 됨 → A('+gFmt(x0)+','+gFmt(y0+2*t)+'), B('+gFmt(x0-2*t)+','+gFmt(y0)+')'
+    + svgPerpAreaLineHTML(x0,y0,c,t)
+    + gNextBtn('lnNextPerpAreaLine', id);
+}
+
+// ㉑ 세 점이 한 직선 위 (공선점)
+function lnNextCollinear(id){
+  var el=document.getElementById(id);
+  var xa,ya,xb,yc,pB,pC,sum,D,tries=0;
+  do{
+    xa=gRandInt(-3,3); ya=gRandInt(-3,4);
+    xb=gRandInt(-3,3); while(xb===xa) xb=gRandInt(-3,3);
+    yc=gRandInt(-3,4);
+    pB=xb-xa; pC=yc-ya; sum=xa+ya;
+    D=sum*sum-4*(xa*ya-pC*pB);
+    tries++;
+  } while((D<=0 || Math.sqrt(D)%1!==0 || (sum+Math.sqrt(D))%2!==0) && tries<300);
+  el.setAttribute('data-v',[xa,ya,xb,yc].join(','));
+  el.innerHTML = gCollinearQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowCollinear', id);
+}
+function gCollinearQuestion(dataStr){
+  var v=dataStr.split(',').map(Number);
+  var xa=v[0],ya=v[1],xb=v[2],yc=v[3];
+  return '<b>A('+gFmt(xa)+','+gFmt(ya)+'), B('+gFmt(xb)+',k), C(k,'+gFmt(yc)+')이 삼각형을 못 이루는 모든 k의 합은?</b><br>';
+}
+function lnShowCollinear(id){
+  var el=document.getElementById(id);
+  var v=el.getAttribute('data-v').split(',').map(Number);
+  var xa=v[0],ya=v[1],xb=v[2],yc=v[3];
+  var pB=xb-xa, pC=yc-ya, sum=xa+ya;
+  var D=sum*sum-4*(xa*ya-pC*pB);
+  var sq=Math.sqrt(D);
+  var k1=(sum+sq)/2, k2=(sum-sq)/2;
+  var denAB = pB<0 ? '('+gFmt(pB)+')' : pB;
+  el.innerHTML = gCollinearQuestion(el.getAttribute('data-v'))
+    + '세 점이 한 직선 위(공선) → <b>두 점 사이 기울기가 같음</b>으로 세움 (직선식이 아니라 점 좌표만 주어졌으니)<br>'
+    + 'AB기울기=(k'+gNPart(-ya)+')/'+denAB+', AC기울기='+gFmt(pC)+'/(k'+gNPart(-xa)+')<br>'
+    + '(k'+gNPart(-ya)+')/'+denAB+' = '+gFmt(pC)+'/(k'+gNPart(-xa)+') → (k'+gNPart(-ya)+')(k'+gNPart(-xa)+')='+gFmt(pC)+'×'+gFmt(pB)+' → k²'+gNPart(-sum)+'k'+gNPart(xa*ya-pC*pB)+'=0 → (k'+gNPart(-k1)+')(k'+gNPart(-k2)+')=0<br>'
+    + 'k='+gFmt(k1)+' 또는 k='+gFmt(k2)+' → 합=<b>'+sum+'</b>'
+    + '<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">🔗 같은 "삼각형이 안 된다"는 말이라도 <b>직선 3개가 주어졌으면</b> 평행/한점만남(실전12), <b>점 3개만 주어졌으면</b> 기울기 비교(이 문제) — 무엇이 주어졌는지에 따라 다른 서랍이에요.</div>'
+    + gNextBtn('lnNextCollinear', id);
 }
 
 // ── FM 나라별 방: 퀴즈 카드를 개념/연습 사이에 삽입 ──────
