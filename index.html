@@ -13212,6 +13212,30 @@ k(x−y−1)+(2x+y−5)=0에 (1,4) 대입: k(1−4−1)+(2+4−5)=0 → −4k+1=
 <b>2단계</b> k가 바뀌면 직선은 P를 축으로 회전해요. O에서 이 직선까지 거리는 <b>OP를 넘을 수 없고</b>, 직선이 OP에 수직일 때 딱 OP만큼이 돼요.<br>
 <b>3단계</b> 최댓값 = OP = √(1²+2²) = <b>√5</b>
 </div>
+<div style="text-align:center;margin:10px 0">
+<svg width="220" height="220" viewBox="0 0 220 220">
+  <defs><marker id="axQ4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
+  <line x1="10" y1="190" x2="215" y2="190" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#axQ4)"/>
+  <line x1="50" y1="215" x2="50" y2="10" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#axQ4)"/>
+  <text x="200" y="184" font-size="10" fill="#94a3b8">Re</text>
+  <text x="54" y="18" font-size="10" fill="#94a3b8">Im</text>
+  <line x1="22" y1="134" x2="218" y2="134" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="66.8" y1="218" x2="89.2" y2="78" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="-6" y1="92" x2="218" y2="204" stroke="#fde68a" stroke-width="2.5"/>
+  <line x1="50" y1="190" x2="78" y2="134" stroke="#86efac" stroke-width="2.5"/>
+  <circle cx="50" cy="190" r="4" fill="#e2e8f0"/>
+  <circle cx="78" cy="134" r="4.5" fill="#e2e8f0"/>
+  <text x="36" y="204" font-size="11" font-weight="700" fill="#e2e8f0">O</text>
+  <text x="82" y="130" font-size="11" font-weight="700" fill="#e2e8f0">P(1,2)</text>
+  <text x="52" y="168" font-size="9.5" font-weight="700" fill="#86efac">OP=√5</text>
+  <text x="150" y="196" font-size="9" fill="#fde68a">이 직선일 때 최대(OP⊥이 직선)</text>
+</svg>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:4px">회색 점선 2개=P를 지나는 다른 회전 직선들(O와의 거리가 OP보다 짧음) · 노란 직선=OP에 수직인 "최대" 직선</div>
+</div>
+<div id="ln-vdist-out" data-v="1,2,-5,3,-2,1,1,2" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>직선 k(x+2y−5)+(3x−2y+1)=0이 k값에 관계없이 항상 지나는 점을 P라 하자. 원점 O에서 이 직선까지 거리의 최댓값은?</b><br><button onclick="lnShowVertexDist('ln-vdist-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextVertexDist('ln-vdist-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null },
 
 { tag:'정점을 지나는 직선 — 심화③ 사분면 조건 5/5', tagColor:'#a78bfa',
@@ -13225,6 +13249,28 @@ l은 k값과 관계없이 항상 점(0,−2)를 지나요(y절편 고정, y축 �
 → <b>k ≤ 0</b>
 </div><br>
 <span style="font-size:.8rem;color:#94a3b8">검산: k=0이면 y=−2(수평선), 항상 y=−2&lt;0이라 제1사분면을 절대 못 지나요 ✓</span>
+<div style="text-align:center;margin:10px 0">
+<svg width="220" height="220" viewBox="0 0 220 220">
+  <defs><marker id="axQ5" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#94a3b8"/></marker></defs>
+  <rect x="110" y="0" width="110" height="110" fill="rgba(248,113,113,.14)"/>
+  <line x1="10" y1="110" x2="215" y2="110" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#axQ5)"/>
+  <line x1="110" y1="215" x2="110" y2="10" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#axQ5)"/>
+  <text x="200" y="104" font-size="10" fill="#94a3b8">Re</text>
+  <text x="114" y="18" font-size="10" fill="#94a3b8">Im</text>
+  <text x="160" y="16" font-size="9" fill="#f87171">제1사분면(못 지나야 함)</text>
+  <line x1="110" y1="150" x2="190" y2="70" stroke="#f87171" stroke-width="2" stroke-dasharray="2 2"/>
+  <line x1="50" y1="150" x2="210" y2="150" stroke="#fde68a" stroke-width="2.5"/>
+  <circle cx="110" cy="150" r="4.5" fill="#e2e8f0"/>
+  <text x="90" y="168" font-size="10" font-weight="700" fill="#e2e8f0">(0,−2)</text>
+  <text x="192" y="66" font-size="9" fill="#f87171">k=1: 1사분면 진입</text>
+  <text x="150" y="144" font-size="9" fill="#fde68a">k=0(경계): 안 들어감</text>
+</svg>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:4px">빨간 점선(k&gt;0 예: k=1)은 제1사분면을 뚫고 지나가고, 노란 직선(k=0)은 절대 안 들어가요 — 그래서 경계는 k≤0</div>
+</div>
+<div id="ln-quad-out" data-v="-2" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>직선 l: y=kx−2 (k는 실수)가 제1사분면을 지나지 않도록 하는 k의 범위는?</b><br><button onclick="lnShowQuadrant('ln-quad-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextQuadrant('ln-quad-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null }
 ],
 
@@ -15483,6 +15529,56 @@ function lnShowPerpFromGen(id){
     + 'm₁×m₂=−1 → m₂='+gFracHTML(-1,m0)+'<br>'
     + 'y−('+gFmt(y1)+') = '+gFracHTML(-1,m0)+'(x−('+gFmt(x1)+'))'
     + gNextBtn('lnNextPerpFromGen', id);
+}
+
+function gSqrtHTML(n){
+  var r = Math.round(Math.sqrt(n));
+  if(r*r===n) return String(r);
+  return '√'+n;
+}
+
+// ⑯ 정점 + 원점에서 거리의 최댓값(회전하는 직선)
+function lnNextVertexDist(id){
+  var el = document.getElementById(id);
+  var p1=gRandInt(1,5)*(Math.random()<0.5?-1:1);
+  var p2=gRandInt(1,5)*(Math.random()<0.5?-1:1);
+  var q1=gRandInt(1,4)*(Math.random()<0.5?-1:1);
+  var x0=gRandInt(-5,5); while(x0===0) x0=gRandInt(-5,5);
+  var y0=gRandInt(-5,5); while(y0===0) y0=gRandInt(-5,5);
+  if(p1+p2===0) p2+=1;
+  var r1 = -(p1*x0+q1*y0);
+  var r2 = -(p2*x0-q1*y0);
+  el.setAttribute('data-v',[p1,q1,r1,p2,-q1,r2,x0,y0].join(','));
+  el.innerHTML = '<b>직선 k('+gLineEqRaw(p1,q1,r1)+')+('+gLineEqRaw(p2,-q1,r2)+')=0이 k값에 관계없이 항상 지나는 점을 P라 하자. 원점 O에서 이 직선까지 거리의 최댓값은?</b><br>' + gSolBtn('lnShowVertexDist', id);
+}
+function lnShowVertexDist(id){
+  var el = document.getElementById(id);
+  var v = el.getAttribute('data-v').split(',').map(Number);
+  var p1=v[0],q1=v[1],r1=v[2],p2=v[3],q2=v[4],r2=v[5],x0=v[6],y0=v[7];
+  var sq = x0*x0+y0*y0;
+  el.innerHTML = '<b>직선 k('+gLineEqRaw(p1,q1,r1)+')+('+gLineEqRaw(p2,q2,r2)+')=0이 k값에 관계없이 항상 지나는 점을 P라 하자. 원점 O에서 이 직선까지 거리의 최댓값은?</b><br>'
+    + '<b>1단계</b> 정점 P: '+gLineEqRaw(p1,q1,r1)+'=0, '+gLineEqRaw(p2,q2,r2)+'=0 연립 → <b>P('+gFmt(x0)+', '+gFmt(y0)+')</b><br>'
+    + '<b>2단계</b> k가 바뀌면 직선은 P를 축으로 회전해요. O에서 이 직선까지 거리는 OP를 넘을 수 없고, 직선이 OP에 수직일 때 딱 OP만큼이 돼요.<br>'
+    + '<b>3단계</b> 최댓값 = OP = √('+gFmt(x0)+'²+'+gFmt(y0)+'²) = <b>'+gSqrtHTML(sq)+'</b>'
+    + gNextBtn('lnNextVertexDist', id);
+}
+
+// ⑰ 사분면을 지나지 않는 조건(고정 y절편)
+function lnNextQuadrant(id){
+  var el = document.getElementById(id);
+  var c = -gRandInt(1,8);
+  el.setAttribute('data-v', c);
+  el.innerHTML = '<b>직선 l: y=kx'+gNPart(c)+' (k는 실수)가 제1사분면을 지나지 않도록 하는 k의 범위는?</b><br>' + gSolBtn('lnShowQuadrant', id);
+}
+function lnShowQuadrant(id){
+  var el = document.getElementById(id);
+  var c = Number(el.getAttribute('data-v'));
+  el.innerHTML = '<b>직선 l: y=kx'+gNPart(c)+' (k는 실수)가 제1사분면을 지나지 않도록 하는 k의 범위는?</b><br>'
+    + 'l은 k값과 관계없이 항상 점(0,'+gFmt(c)+')를 지나요(y절편 고정, y축 음의 부분).<br>'
+    + '<b>k&gt;0</b>이면 x가 커질수록 y=kx'+gNPart(c)+'도 결국 양수가 됨 → 제1사분면 진입<br>'
+    + '<b>k≤0</b>이면 x&gt;0일 때 kx≤0이므로 y=kx'+gNPart(c)+'≤'+gFmt(c)+'&lt;0 → 제1사분면에 못 들어감<br>'
+    + '→ <b>k ≤ 0</b>'
+    + gNextBtn('lnNextQuadrant', id);
 }
 
 // ── FM 나라별 방: 퀴즈 카드를 개념/연습 사이에 삽입 ──────
