@@ -12874,16 +12874,32 @@ AB=BC=CA를 동시에(연립)<br>
 <b>풀이과정</b>: C가 x=2 위(대칭)라 CA=CB는 이미 같으니, CA=AB 식 하나만 세워 풀면 됩니다.
 </div><br>
 <b style="color:#c4b5fd">🔷 평행사변형 판별</b><br>
-대각선이 서로를 이등분(내분점 1:1)<br>
-두 쌍의 대변이 각각 평행<br>
-두 쌍의 대변 길이가 각각 같음<br>
-한 쌍의 대변이 평행하면서 길이도 같음<br>
 → 여러 판별법 중 하나만 확인하면 충분<br>
 → "평행"인지는 <b>기울기가 같은지</b>로 확인<br>
-<button onclick="ideaEx('pl-ex-4')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
-<div id="pl-ex-4" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
-<b>예제</b>: A(1,2), B(5,3), C(7,7), D(3,6)이 평행사변형(순서대로 ABCD)인지 확인하려면?<br>
+<span style="font-size:.72rem;color:#94a3b8">아래 네 예제 모두 A(1,2), B(5,3), C(7,7), D(3,6) 같은 사각형(순서대로 ABCD)이에요 — 어느 조건으로 확인해도 결론은 같아요.</span><br><br>
+대각선이 서로를 이등분(내분점 1:1)<br>
+<button onclick="ideaEx('pl-ex-4a')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-4a" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>예제</b>: 대각선으로 평행사변형인지 확인하려면?<br>
 <b>풀이과정</b>: 대각선 AC와 BD 각각의 중점을 구해서 같은지 비교합니다.
+</div><br>
+두 쌍의 대변이 각각 평행<br>
+<button onclick="ideaEx('pl-ex-4b')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-4b" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>예제</b>: 두 쌍의 대변이 평행한지로 확인하려면?<br>
+<b>풀이과정</b>: AB와 DC의 기울기를 비교하고, AD와 BC의 기울기를 비교합니다.
+</div><br>
+두 쌍의 대변 길이가 각각 같음<br>
+<button onclick="ideaEx('pl-ex-4c')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-4c" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>예제</b>: 두 쌍의 대변 길이가 같은지로 확인하려면?<br>
+<b>풀이과정</b>: AB와 DC의 길이를 거리공식으로 각각 구해 비교하고, AD와 BC도 마찬가지로 비교합니다.
+</div><br>
+한 쌍의 대변이 평행하면서 길이도 같음<br>
+<button onclick="ideaEx('pl-ex-4d')" style="margin-top:4px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:8px;padding:5px 10px;font-size:.68rem;cursor:pointer">🔍 예제 보기</button>
+<div id="pl-ex-4d" style="display:none;margin:8px 0;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:.74rem;line-height:1.8">
+<b>예제</b>: 한 쌍의 대변만으로 확인하려면?<br>
+<b>풀이과정</b>: AB와 DC의 기울기가 같은지(평행)와 길이가 같은지를 동시에 확인합니다. 이 조건 하나만 만족해도 평행사변형이 성립합니다.
 </div><br>
 <b style="color:#c4b5fd">⚖️ 무게중심</b><br>
 원래 공식: G = (<span class="frac"><span class="num">x₁+x₂+x₃</span><span class="den">3</span></span>, <span class="frac"><span class="num">y₁+y₂+y₃</span><span class="den">3</span></span>)<br>
