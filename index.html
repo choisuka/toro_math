@@ -13281,7 +13281,7 @@ l은 k값과 관계없이 항상 점(0,−2)를 지나요(y절편 고정, y축 �
 
 /* ── 점과 직선 사이의 거리 (직선의방정식 단원 버전) ── */
 'coord-ptdist': [
-{ tag:'점과 직선 사이의 거리 — 개념 1/6', tagColor:'#fbbf24',
+{ tag:'점과 직선 사이의 거리 — 개념 1/5', tagColor:'#fbbf24',
     bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 점에서 직선까지 거리 중 가장 짧은 건, 점에서 직선에 <b style="color:#fbbf24">수직으로 내린 선분</b>의 길이예요 — 수직이 아닌 다른 경로는 전부 이보다 길어요.<br><br>
@@ -13291,7 +13291,7 @@ l은 k값과 관계없이 항상 점(0,−2)를 지나요(y절편 고정, y축 �
 점 (x₀,y₀)와 직선 ax+by+c=0 사이의 거리예요. 분자에 절댓값이 있는 이유: 점이 직선 어느 쪽에 있든 거리는 항상 양수여야 하니까요.
 </div>`, ans:null },
 
-{ tag:'점과 직선 사이의 거리 — 기본예제 2/6', tagColor:'#fbbf24',
+{ tag:'점과 직선 사이의 거리 — 기본예제 2/5', tagColor:'#fbbf24',
     bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 <b>기본예제</b>: 점(1,2)와 직선 3x+4y−6=0 사이의 거리는?<br><br>
@@ -13305,7 +13305,7 @@ d=<span class="frac"><span class="num">|3(1)+4(2)−6|</span><span class="den">�
 <button onclick="distNextPtLine('ln-ptline-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
 </div>`, ans:null },
 
-{ tag:'점과 직선 사이의 거리 — 심화① y=mx+b는 일반형으로 3/6', tagColor:'#fbbf24',
+{ tag:'점과 직선 사이의 거리 — 심화① y=mx+b는 일반형으로 3/5', tagColor:'#fbbf24',
     bg:'rgba(251,191,36,.06)', bd:'rgba(251,191,36,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
 🔥 직선 y=2x−3과 점(0,5) 사이의 거리는?<br><br>
@@ -13316,7 +13316,7 @@ d=<span class="frac"><span class="num">|2(0)−1(5)−3|</span><span class="den"
 </div>
 </div>`, ans:null },
 
-{ tag:'점과 직선 사이의 거리 — 심화② 역산으로 미지수 찾기 4/6', tagColor:'#fbbf24',
+{ tag:'점과 직선 사이의 거리 — 심화② 역산으로 미지수 찾기 4/5', tagColor:'#fbbf24',
     bg:'rgba(251,191,36,.06)', bd:'rgba(251,191,36,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
 🔥 점(2,k)와 직선 3x−4y+1=0 사이의 거리가 2일 때, 양수 k는?<br><br>
@@ -13327,7 +13327,7 @@ d=<span class="frac"><span class="num">|3(2)−4k+1|</span><span class="den">5</
 </div>
 </div>`, ans:null },
 
-{ tag:'점과 직선 사이의 거리 — 심화③ 삼각형 넓이 5/6', tagColor:'#fbbf24',
+{ tag:'점과 직선 사이의 거리 — 심화③ 삼각형 넓이 5/5', tagColor:'#fbbf24',
     bg:'rgba(251,191,36,.06)', bd:'rgba(251,191,36,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
 🔥 세 점 O(0,0), A(4,0), B(1,3)을 꼭짓점으로 하는 △OAB의 넓이를 이 거리 공식으로 구하면?<br><br>
@@ -13340,17 +13340,6 @@ d=<span class="frac"><span class="num">|3(2)−4k+1|</span><span class="den">5</
 <b>O(0,0), A(4,0), B(1,3)를 꼭짓점으로 하는 △OAB의 넓이는?</b><br><button onclick="lnShowTriArea('ln-triarea-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
 </div>
 <button onclick="lnNextTriArea('ln-triarea-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>
-</div>`, ans:null },
-
-{ tag:'점과 직선 사이의 거리 — 보충도구: 산술기하평균 6/6', tagColor:'#fbbf24',
-    bg:'rgba(251,191,36,.06)', bd:'rgba(251,191,36,.3)',
-    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-넓이·길이의 최솟값 문제에서 식을 정리하면 <b style="color:#fbbf24">"양수+그 역수"</b> 꼴(예: m+1/m)이 나올 때가 있어요. 원래는 부등식 단원 도구지만 미리 알아두면 여기서도 바로 써요.<br><br>
-<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;text-align:center">
-a,b&gt;0일 때: <b>a+b ≥ 2√(ab)</b>, 등호는 <b>a=b</b>일 때
-</div><br>
-예: m&gt;0일 때 m+1/m의 최솟값은? → ab=1이므로 m+1/m ≥ 2√1=<b>2</b>, 등호는 m=1일 때<br><br>
-<span style="font-size:.8rem;color:#94a3b8">m&lt;0이면 부호가 반대로 뒤집혀 최댓값 문제가 돼요(m=−1일 때 최댓값 −2).</span>
 </div>`, ans:null }
 ],
 
@@ -13427,6 +13416,25 @@ x²+y²=(x−6)²+(y−2)² → 0=−12x−4y+40 → <b>3x+y−10=0</b>
 l₁ 위의 점 A(0,1)에서 l₂(2x−y−9=0)까지: d=|2(0)−1(1)−9|/√5=10/√5=2√5<br>
 l₁ 위의 다른 점 B(3,7)에서 l₂까지: d=|2(3)−1(7)−9|/√5=10/√5=2√5<br>
 → <b>같은 값</b>이에요! 평행선은 어디서 재도 간격이 똑같기 때문이에요.
+</div>
+<div style="text-align:center;margin:10px 0">
+<svg width="170" height="300" viewBox="0 0 170 300">
+  <line x1="44" y1="226" x2="95" y2="127" stroke="#7dd3fc" stroke-width="2.2"/>
+  <line x1="44" y1="286" x2="101" y2="172" stroke="#a78bfa" stroke-width="2.2"/>
+  <line x1="50" y1="214" x2="74" y2="226" stroke="#fde68a" stroke-width="2" stroke-dasharray="3 2"/>
+  <line x1="68" y1="178" x2="92" y2="190" stroke="#fde68a" stroke-width="2" stroke-dasharray="3 2"/>
+  <circle cx="50" cy="214" r="4" fill="#7dd3fc"/>
+  <circle cx="68" cy="178" r="4" fill="#7dd3fc"/>
+  <circle cx="74" cy="226" r="3.5" fill="#a78bfa"/>
+  <circle cx="92" cy="190" r="3.5" fill="#a78bfa"/>
+  <text x="98" y="124" font-size="10" font-weight="700" fill="#7dd3fc">l₁: y=2x+1</text>
+  <text x="104" y="170" font-size="10" font-weight="700" fill="#a78bfa">l₂: y=2x−9</text>
+  <text x="24" y="210" font-size="10" font-weight="700" fill="#7dd3fc">A(0,1)</text>
+  <text x="30" y="174" font-size="10" font-weight="700" fill="#7dd3fc">B(3,7)</text>
+  <text x="76" y="242" font-size="9" fill="#fde68a">d=2√5</text>
+  <text x="94" y="206" font-size="9" fill="#fde68a">d=2√5</text>
+</svg>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">l₁ 위 어느 점(A든 B든)에서 재도 l₂까지 수선의 길이는 똑같이 2√5</div>
 </div><br>
 <div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px">
 🎯 <b>정리</b>: 새 공식 없이, 한 직선 위의 아무 점이나 골라 "점과 직선 사이의 거리" 공식에 대입하면 끝 — 이미 배운 두 도구(평행조건+점직선거리)를 조립해서 새 문제를 푼 거예요.
