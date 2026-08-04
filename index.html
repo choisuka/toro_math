@@ -13899,7 +13899,26 @@ k=5 또는 k=−3 → 합=<b>2</b>
 <div id="ln-collinear17-out" data-v="-1,3,2,7" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
 <b>A(−1,3), B(2,k), C(k,7)이 삼각형을 못 이루는 모든 k의 합은?</b><br><button onclick="lnShowCollinear('ln-collinear17-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
 </div>
-<button onclick="lnNextCollinear('ln-collinear17-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` }
+<button onclick="lnNextCollinear('ln-collinear17-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
+
+{ tag:'실전18 — 정점 지나는 직선과 고정 직선의 교점이 특정 사분면', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 직선 m: y=3x+2와 직선 l: y−1=k(x−2)(k는 실수, 점P(2,1)을 지남)가 제2사분면에서 만나는 k의 범위는?
+</div>`,
+    ans:`<b style="color:#fb923c">핵심 아이디어</b>: 교점의 x,y를 k에 대한 식으로 직접 풀지 말고(복잡해짐), 실전14처럼 "선분과 만나는 조건"으로 바꿔서 풀어요.<br><br>
+<b>1단계</b> m이 축과 만나는 두 점: y절편 A(0,2), x절편 B(−2/3,0)<br>
+<b>2단계</b> A~B 사이 선분이 바로 제2사분면을 지나는 부분이에요(그 밖은 다른 사분면)<br>
+<b>3단계</b> P→A 기울기=(2−1)/(0−2)=<b>−1/2</b>, P→B 기울기=(0−1)/(−2/3−2)=<b>3/8</b><br>
+<b>4단계</b> l이 이 선분과 만나려면 두 기울기 사이 → <b>−1/2 &lt; k &lt; 3/8</b>
+<div style="text-align:center;margin:10px 0">
+<svg width="220" height="220" viewBox="0 0 220 220"><rect x="47.3" y="68.1" width="44.8" height="94.6" fill="rgba(248,113,113,.08)"/><line x1="0" y1="162.7" x2="220" y2="162.7" stroke="#94a3b8" stroke-width="1"/><line x1="92.1" y1="220" x2="92.1" y2="0" stroke="#94a3b8" stroke-width="1"/><line x1="166.7" y1="125.4" x2="73.5" y2="78.8" stroke="#f87171" stroke-width="1.6" stroke-dasharray="2 2"/><line x1="166.7" y1="125.4" x2="42.4" y2="172" stroke="#f87171" stroke-width="1.6" stroke-dasharray="2 2"/><line x1="92.1" y1="88.1" x2="67.3" y2="162.7" stroke="#7dd3fc" stroke-width="2.6"/><circle cx="92.1" cy="162.7" r="3" fill="#e2e8f0"/><circle cx="92.1" cy="88.1" r="4" fill="#e2e8f0"/><circle cx="67.3" cy="162.7" r="4" fill="#e2e8f0"/><circle cx="166.7" cy="125.4" r="4.5" fill="#fde68a"/><text x="53.3" y="82.1" font-size="9" fill="#f87171">제2사분면</text><text x="97.1" y="84.1" font-size="9.5" font-weight="700" fill="#e2e8f0">A(0,2)</text><text x="72.3" y="158.7" font-size="9.5" font-weight="700" fill="#e2e8f0">B(-2/3,0)</text><text x="172.7" y="119.4" font-size="9.5" font-weight="700" fill="#fde68a">P(2,1)</text></svg>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨간 음영=제2사분면 · 파랑=선분 AB(m이 이 사분면을 지나는 부분) · 빨간 점선=P에서 A,B로 그은 경계 기울기</div>
+</div>
+<div id="ln-segquad18-out" data-v="2,1,3,2" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>직선 m: y=3x+2과 직선 l: y−1 = k(x−2) (k는 실수, P(2,1)을 지남)이 제2사분면에서 만나는 k의 범위는?</b><br><button onclick="lnShowSegQuad('ln-segquad18-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextSegQuad('ln-segquad18-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` }
 ],
 
 'coord-real': [
@@ -15907,7 +15926,8 @@ function gQuadQuestion(dataStr){
   var mode=v[0], p1=Number(v[1]), p2=Number(v[2]), q=Number(v[3]), ask=v[5];
   var askText = ask==='avoid' ? '지나지 않도록' : '반드시 지나도록';
   if(mode==='A'){
-    return '<b>직선 l: y−('+gFmt(p2)+') = k(x−('+gFmt(p1)+')) (k는 실수, 점('+gFmt(p1)+','+gFmt(p2)+')을 지남)가 제'+q+'사분면을 '+askText+' 하는 k의 범위는?</b><br>';
+    var xPart = p1===0 ? 'x' : '(x'+gNPart(-p1)+')';
+    return '<b>직선 l: y'+gNPart(-p2)+' = k'+xPart+' (k는 실수, 점('+gFmt(p1)+','+gFmt(p2)+')을 지남)가 제'+q+'사분면을 '+askText+' 하는 k의 범위는?</b><br>';
   } else {
     return '<b>직선 l: y='+gMxTerm(p1)+'+n (기울기 '+gFmt(p1)+' 고정, n은 실수)이 제'+q+'사분면을 '+askText+' 하는 n의 범위는?</b><br>';
   }
@@ -16257,6 +16277,93 @@ function lnShowCollinear(id){
     + 'k='+gFmt(k1)+' 또는 k='+gFmt(k2)+' → 합=<b>'+sum+'</b>'
     + '<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">🔗 같은 "삼각형이 안 된다"는 말이라도 <b>직선 3개가 주어졌으면</b> 평행/한점만남(실전12), <b>점 3개만 주어졌으면</b> 기울기 비교(이 문제) — 무엇이 주어졌는지에 따라 다른 서랍이에요.</div>'
     + gNextBtn('lnNextCollinear', id);
+}
+
+// ㉒ 정점 지나는 직선과 고정 직선의 교점이 특정 사분면
+function gQuadOfSegment(m2,n2){
+  if(n2>0 && m2<0) return 1;
+  if(n2>0 && m2>0) return 2;
+  if(n2<0 && m2<0) return 3;
+  return 4;
+}
+function normFrac(n,d){ if(d<0){n=-n;d=-d;} var g=gGcd(n,d); return [n/g,d/g]; }
+function svgSegQuadHTML(x0,y0,m2,n2,Q){
+  var Bxn=-n2, Bxd=m2; var BxFrac=normFrac(Bxn,Bxd); var Bx=BxFrac[0]/BxFrac[1];
+  var pts=[[0,0],[0,n2],[Bx,0],[x0,y0]];
+  var xs=pts.map(function(p){return p[0];}), ys=pts.map(function(p){return p[1];});
+  var minX=Math.min.apply(null,xs)-1, maxX=Math.max.apply(null,xs)+1;
+  var minY=Math.min.apply(null,ys)-1, maxY=Math.max.apply(null,ys)+1;
+  var W=220,H=220,padL=30,padR=16,padT=16,padB=20;
+  var scale=Math.min((W-padL-padR)/(maxX-minX),(H-padT-padB)/(maxY-minY));
+  function px(x,y){ return [Math.round((padL - minX*scale + x*scale)*10)/10, Math.round((H-padB + minY*scale - y*scale)*10)/10]; }
+  var O=px(0,0), A=px(0,n2), B=px(Bx,0), P=px(x0,y0);
+  function extW(fx,fy,tx,ty,f){ return [fx+(tx-fx)*f, fy+(ty-fy)*f]; }
+  var PAextW=extW(x0,y0,0,n2,1.25), PBextW=extW(x0,y0,Bx,0,1.25);
+  var PAext=px(PAextW[0],PAextW[1]), PBext=px(PBextW[0],PBextW[1]);
+  var qx = Q===1||Q===4 ? O[0] : Math.min.apply(null,[O[0],A[0],B[0],P[0]])-20;
+  var qw = Q===1||Q===4 ? (W-O[0]+20) : (O[0]-qx);
+  var qy = Q===1||Q===2 ? Math.min.apply(null,[O[1],A[1],B[1],P[1]])-20 : O[1];
+  var qh = Q===1||Q===2 ? (O[1]-qy) : (H-O[1]+20);
+  return '<div style="text-align:center;margin:10px 0">'
+    + '<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'
+    + '<rect x="'+qx+'" y="'+qy+'" width="'+qw+'" height="'+qh+'" fill="rgba(248,113,113,.08)"/>'
+    + '<line x1="0" y1="'+O[1]+'" x2="'+W+'" y2="'+O[1]+'" stroke="#94a3b8" stroke-width="1"/>'
+    + '<line x1="'+O[0]+'" y1="'+H+'" x2="'+O[0]+'" y2="0" stroke="#94a3b8" stroke-width="1"/>'
+    + '<line x1="'+PAext[0]+'" y1="'+PAext[1]+'" x2="'+PBext[0]+'" y2="'+PBext[1]+'" stroke="none"/>'
+    + '<line x1="'+P[0]+'" y1="'+P[1]+'" x2="'+PAext[0]+'" y2="'+PAext[1]+'" stroke="#f87171" stroke-width="1.6" stroke-dasharray="2 2"/>'
+    + '<line x1="'+P[0]+'" y1="'+P[1]+'" x2="'+PBext[0]+'" y2="'+PBext[1]+'" stroke="#f87171" stroke-width="1.6" stroke-dasharray="2 2"/>'
+    + '<line x1="'+A[0]+'" y1="'+A[1]+'" x2="'+B[0]+'" y2="'+B[1]+'" stroke="#7dd3fc" stroke-width="2.6"/>'
+    + '<circle cx="'+O[0]+'" cy="'+O[1]+'" r="3" fill="#e2e8f0"/>'
+    + '<circle cx="'+A[0]+'" cy="'+A[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<circle cx="'+B[0]+'" cy="'+B[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<circle cx="'+P[0]+'" cy="'+P[1]+'" r="4.5" fill="#fde68a"/>'
+    + '<text x="'+(qx+6)+'" y="'+(qy+14)+'" font-size="9" fill="#f87171">제'+Q+'사분면</text>'
+    + '<text x="'+(A[0]+5)+'" y="'+(A[1]-4)+'" font-size="9.5" font-weight="700" fill="#e2e8f0">A(0,'+gFmt(n2)+')</text>'
+    + '<text x="'+(B[0]+5)+'" y="'+(B[1]-4)+'" font-size="9.5" font-weight="700" fill="#e2e8f0">B('+(BxFrac[1]===1?String(BxFrac[0]):(BxFrac[0]+'/'+BxFrac[1]))+',0)</text>'
+    + '<text x="'+(P[0]+6)+'" y="'+(P[1]-6)+'" font-size="9.5" font-weight="700" fill="#fde68a">P('+gFmt(x0)+','+gFmt(y0)+')</text>'
+    + '</svg>'
+    + '<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨간 음영=제'+Q+'사분면 · 파랑=선분 AB(m이 이 사분면을 지나는 부분) · 빨간 점선=P에서 A,B로 그은 경계 기울기</div>'
+    + '</div>';
+}
+function lnNextSegQuad(id){
+  var el=document.getElementById(id);
+  var m2,n2,x0,y0,Bx,tries=0;
+  do{
+    m2=gRandInt(-4,4); while(m2===0) m2=gRandInt(-4,4);
+    n2=gRandInt(-6,6); while(n2===0) n2=gRandInt(-6,6);
+    Bx=-n2/m2;
+    var xlo=Math.min(0,Bx), xhi=Math.max(0,Bx);
+    x0=gRandInt(-5,5); while(x0===0) x0=gRandInt(-5,5);
+    y0=gRandInt(-5,5);
+    tries++;
+  } while((x0>xlo-1e-9 && x0<xhi+1e-9 || (n2+x0*m2)===0) && tries<200);
+  el.setAttribute('data-v',[x0,y0,m2,n2].join(','));
+  el.innerHTML = gSegQuadQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowSegQuad', id);
+}
+function gSegQuadQuestion(dataStr){
+  var v=dataStr.split(',').map(Number);
+  var x0=v[0],y0=v[1],m2=v[2],n2=v[3];
+  var Q=gQuadOfSegment(m2,n2);
+  var xPart = x0===0 ? 'x' : '(x'+gNPart(-x0)+')';
+  return '<b>직선 m: y='+gMxTerm(m2)+gNPart(n2)+'과 직선 l: y'+gNPart(-y0)+' = k'+xPart+' (k는 실수, P('+gFmt(x0)+','+gFmt(y0)+')을 지남)이 제'+Q+'사분면에서 만나는 k의 범위는?</b><br>';
+}
+function lnShowSegQuad(id){
+  var el=document.getElementById(id);
+  var v=el.getAttribute('data-v').split(',').map(Number);
+  var x0=v[0],y0=v[1],m2=v[2],n2=v[3];
+  var Q=gQuadOfSegment(m2,n2);
+  var BxFrac=normFrac(-n2,m2);
+  var slopePA=normFrac(n2-y0,-x0);
+  var slopePB=normFrac(y0*m2, n2+x0*m2);
+  var loFrac = slopePA[0]*slopePB[1] <= slopePB[0]*slopePA[1] ? slopePA : slopePB;
+  var hiFrac = loFrac===slopePA ? slopePB : slopePA;
+  el.innerHTML = gSegQuadQuestion(el.getAttribute('data-v'))
+    + '<b>1단계</b> m이 축과 만나는 두 점: y절편 A(0,'+gFmt(n2)+'), x절편 B('+gFracHTML(BxFrac[0],BxFrac[1])+',0)<br>'
+    + '<b>2단계</b> A~B 사이 선분이 바로 제'+Q+'사분면을 지나는 부분이에요(그 밖은 다른 사분면)<br>'
+    + '<b>3단계</b> P→A 기울기='+gFracHTML(slopePA[0],slopePA[1])+', P→B 기울기='+gFracHTML(slopePB[0],slopePB[1])+'<br>'
+    + '<b>4단계</b> l이 이 선분과 만나려면 두 기울기 사이 → <b>'+gFracHTML(loFrac[0],loFrac[1])+' &lt; k &lt; '+gFracHTML(hiFrac[0],hiFrac[1])+'</b>'
+    + svgSegQuadHTML(x0,y0,m2,n2,Q)
+    + gNextBtn('lnNextSegQuad', id);
 }
 
 // ── FM 나라별 방: 퀴즈 카드를 개념/연습 사이에 삽입 ──────
