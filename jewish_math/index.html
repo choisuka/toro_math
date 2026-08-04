@@ -75,6 +75,15 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 .tver-badge.basic{background:rgba(139,148,158,.15);color:#8b949e;border:1px solid #30363d}
 .tver-badge.story{background:rgba(240,192,64,.12);color:#f0c040;border:1px solid #f0c040}
 .grade-section.unit-grid-mode.active{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:start}
+.semester-divider{grid-column:1/-1;font-size:.85rem;font-weight:700;color:#8b949e;margin:14px 0 2px;padding-bottom:6px;border-bottom:1px solid #30363d}
+.semester-divider:first-child{margin-top:0}
+.grade-section.unit-grid-mode:has(.unit-body.open) .semester-divider{display:none}
+.semester-tabs{grid-column:1/-1;display:flex;gap:8px;margin:0 0 10px}
+.semester-tab-btn{flex:1;padding:9px;border-radius:8px;border:1px solid #30363d;background:#161b22;color:#8b949e;font-size:.85rem;font-weight:700;cursor:pointer}
+.semester-tab-btn.active{background:#21262d;color:#f0c040;border-color:#f0c040}
+.semester-group{display:contents}
+.semester-group[data-hidden="1"]{display:none}
+.grade-section.unit-grid-mode:has(.unit-body.open) .semester-tabs{display:none}
 .grade-section.unit-grid-mode .unit-card{margin-bottom:0}
 .grade-section.unit-grid-mode .unit-card:has(.unit-body.open){grid-column:1/-1}
 .grade-section.unit-grid-mode:has(.unit-body.open) .unit-card:not(:has(.unit-body.open)){display:none}
@@ -292,6 +301,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 <!-- ===== 초등 3학년 ===== -->
 <div id="g-e3" class="grade-section unit-grid-mode">
 
+  <div class="semester-divider">2학기</div>
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
       <div><div class="unit-title">➗ 나눗셈 <span class="badge">초3</span></div><div class="unit-sub">나눗셈의 의미·몫과 나머지</div></div>
@@ -470,6 +480,11 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 <!-- ===== 초등 5학년 ===== -->
 <div id="g-e5" class="grade-section unit-grid-mode">
 
+  <div class="semester-tabs">
+    <button class="semester-tab-btn active" onclick="showSemester('e5',1,this)">1학기</button>
+    <button class="semester-tab-btn" onclick="showSemester('e5',2,this)">2학기</button>
+  </div>
+  <div class="semester-group" data-sem="1">
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
       <div><div class="unit-title">➕ 자연수의 혼합 계산 <span class="badge">초5</span></div><div class="unit-sub">덧셈·뺄셈·곱셈·나눗셈이 섞인 식</div></div>
@@ -532,6 +547,25 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
         </div>
       </div>
     </div>
+  </div>
+
+  </div>
+  <div class="semester-group" data-sem="2" data-hidden="1">
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📏 수의 범위와 어림하기 <span class="badge">초5</span></div><div class="unit-sub">이상·이하·초과·미만, 올림·버림·반올림</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e5range">
+        <div class="cv-grid" id="cv-e5range-grid"></div>
+        <div class="cv-detail" id="cv-e5range-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e5range')">← 목록으로</button>
+          <div id="cv-e5range-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 
 </div><!-- /e5 -->
@@ -3755,6 +3789,207 @@ const CV_DATA_E5FRAC2 = [
   `}
 ];
 CV_DATA['e5frac2'] = CV_DATA_E5FRAC2;
+function rangeLineSvg(lo, hi, boundary, closed, dir){
+  var step=28, pad=16, y=24;
+  var n=hi-lo+1;
+  var svgW=pad*2+(n-1)*step, svgH=48;
+  var s='<svg viewBox="0 0 '+svgW+' '+svgH+'" style="height:56px;width:auto;max-width:100%;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">';
+  var bx = pad+(boundary-lo)*step;
+  var shadeStart = dir==='ge' ? bx : pad;
+  var shadeEnd = dir==='ge' ? (pad+(n-1)*step) : bx;
+  s += '<line x1="'+pad+'" y1="'+y+'" x2="'+(pad+(n-1)*step)+'" y2="'+y+'" stroke="#30363d" stroke-width="1"/>';
+  s += '<line x1="'+shadeStart+'" y1="'+y+'" x2="'+shadeEnd+'" y2="'+y+'" stroke="#3fb950" stroke-width="4"/>';
+  for(var i=0;i<n;i++){
+    var x=pad+i*step, val=lo+i;
+    s += '<line x1="'+x+'" y1="'+(y-4)+'" x2="'+x+'" y2="'+(y+4)+'" stroke="#8b949e" stroke-width="1"/>';
+    s += '<text x="'+x+'" y="'+(y+18)+'" font-size="10" fill="#8b949e" text-anchor="middle">'+val+'</text>';
+  }
+  s += '<circle cx="'+bx+'" cy="'+y+'" r="5" fill="'+(closed?'#3fb950':'#0d1117')+'" stroke="#3fb950" stroke-width="2"/>';
+  s += '</svg>';
+  return s;
+}
+const CV_DATA_E5RANGE = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>놀이기구 앞에 "키 140cm 이상만 탑승 가능"이라고 쓰여 있어요. 키가 정확히 140cm인 친구는 탈 수 있을까요?</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
+      ${rangeLineSvg(136,144,140,true,'ge')}
+      <div style="font-size:.78rem;color:#3fb950;font-weight:700;margin-top:6px">140cm "이상" → 140cm도 포함! 탈 수 있어요</div>
+    </div>
+    <p style="margin-top:10px">그런데 만약 "키 140cm 초과만 탑승 가능"이었다면, 140cm인 친구는 탈 수 없어요. "이상"과 "초과"는 경계값(140)을 포함하는지 아닌지가 달라서, 정확히 구분해서 써야 해요.</p>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 이상과 이하</div>
+    <ul><li>"10 이상"은 어떤 수들을 말할까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${rangeLineSvg(6,14,10,true,'ge')}
+      <div style="font-size:.85rem;margin-top:6px">10 이상 = 10과 같거나 큰 수 (10, 11, 12…) — 10을 <strong style="color:#3fb950">포함</strong></div>
+      ${rangeLineSvg(6,14,10,true,'le')}
+      <div style="font-size:.85rem;margin-top:6px">10 이하 = 10과 같거나 작은 수 (…8, 9, 10) — 10을 <strong style="color:#3fb950">포함</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">경계값을 포함할 때는 수직선에 색칠된(●) 점으로 표시해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 초과와 미만</div>
+    <ul><li>"10 초과"는 "10 이상"과 어떻게 다를까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${rangeLineSvg(6,14,10,false,'ge')}
+      <div style="font-size:.85rem;margin-top:6px">10 초과 = 10보다 큰 수 (11, 12…) — 10을 <strong style="color:#f85149">제외</strong></div>
+      ${rangeLineSvg(6,14,10,false,'le')}
+      <div style="font-size:.85rem;margin-top:6px">10 미만 = 10보다 작은 수 (…8, 9) — 10을 <strong style="color:#f85149">제외</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">경계값을 제외할 때는 수직선에 빈(○) 점으로 표시해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 올림 (구하는 자리가 바뀌면?)</div>
+    <ul><li>236을 일의 자리·십의 자리·백의 자리까지 각각 올림하면 어떻게 달라질까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <table style="width:100%;border-collapse:collapse;font-size:.78rem;text-align:center;border:1px solid #30363d">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">구하는 자리</td><td style="border-right:1px solid #30363d">일의 자리</td><td style="border-right:1px solid #30363d">십의 자리</td><td>백의 자리</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">236 올림</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">236</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">240</td><td style="color:#3fb950;font-weight:700">300</td></tr>
+        <tr><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">207 올림</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">207</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">210</td><td style="color:#3fb950;font-weight:700">300</td></tr>
+      </table>
+      <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">일의 자리까지는 이미 정확해서(더 작은 자리가 없어서) 그대로예요. 십의 자리는 일의 자리(6 또는 7)를 올려서 240·210, 백의 자리는 십의 자리 아래를 통째로 올려서 300이 돼요<br>207처럼 가운데 자리가 0이어도 방법은 똑같아요 — 십의 자리까지 올리면 0이던 십의 자리가 1로 바뀌어요(200+10=210)</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 버림 (구하는 자리가 바뀌면?)</div>
+    <ul><li>236을 일의 자리·십의 자리·백의 자리까지 각각 버림하면 어떻게 달라질까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <table style="width:100%;border-collapse:collapse;font-size:.78rem;text-align:center;border:1px solid #30363d">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">구하는 자리</td><td style="border-right:1px solid #30363d">일의 자리</td><td style="border-right:1px solid #30363d">십의 자리</td><td>백의 자리</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">236 버림</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">236</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">230</td><td style="color:#3fb950;font-weight:700">200</td></tr>
+        <tr><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">207 버림</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">207</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">200</td><td style="color:#3fb950;font-weight:700">200</td></tr>
+      </table>
+      <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">구하려는 자리보다 작은 자리는 전부 0으로 만들어요 — 자리가 커질수록 버려지는 부분도 커져요<br>207을 십의 자리까지 버리면 일의 자리(7)만 버려서 200이 돼요 — 이미 십의 자리가 0이라 백의 자리까지 버려도 똑같이 200이에요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 반올림 (구하는 자리가 바뀌면?)</div>
+    <ul><li>236을 일의 자리·십의 자리·백의 자리까지 각각 반올림하면 어떻게 달라질까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <table style="width:100%;border-collapse:collapse;font-size:.78rem;text-align:center;border:1px solid #30363d">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">구하는 자리</td><td style="border-right:1px solid #30363d">일의 자리</td><td style="border-right:1px solid #30363d">십의 자리</td><td>백의 자리</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">236 반올림</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">236</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">240</td><td style="color:#3fb950;font-weight:700">200</td></tr>
+        <tr><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">207 반올림</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">207</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">210</td><td style="color:#3fb950;font-weight:700">200</td></tr>
+      </table>
+      <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">십의 자리는 바로 아래(일의 자리) 6 또는 7이 5 이상이라 올림 → 240·210. 백의 자리는 바로 아래(십의 자리) 3 또는 0이 4 이하라 버림 → 둘 다 200</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념6 — 자릿수가 더 큰 수에서도 똑같아요</div>
+    <ul><li>4자리 수, 5자리 수에서도 같은 방법이 통할까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <table style="width:100%;border-collapse:collapse;font-size:.74rem;text-align:center;border:1px solid #30363d">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e"></td><td style="border-right:1px solid #30363d">올림</td><td style="border-right:1px solid #30363d">버림</td><td>반올림</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">6483을 백의 자리까지</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">6500</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">6400</td><td style="color:#3fb950;font-weight:700">6500</td></tr>
+        <tr><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">48276을 천의 자리까지</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">49000</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">48000</td><td style="color:#3fb950;font-weight:700">48000</td></tr>
+      </table>
+      <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">6483: 백의 자리 아래(83) 올리면 6500, 버리면 6400, 반올림은 십의 자리(8)가 5 이상이라 6500<br>48276: 천의 자리 아래(276) 올리면 49000, 버리면 48000, 반올림은 백의 자리(2)가 4 이하라 48000 — 숫자가 커도 방법은 똑같아요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념7 — "OO의 자리에서" 올림·버림·반올림</div>
+    <ul><li>567과 506을 각각 "십의 자리에서" 올림·버림·반올림하면 얼마가 될까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <table style="width:100%;border-collapse:collapse;font-size:.78rem;text-align:center;border:1px solid #30363d">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">십의 자리에서</td><td style="border-right:1px solid #30363d">올림</td><td style="border-right:1px solid #30363d">버림</td><td>반올림</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">567</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">600</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">500</td><td style="color:#3fb950;font-weight:700">600</td></tr>
+        <tr><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">506</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">600</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">500</td><td style="color:#3fb950;font-weight:700">500</td></tr>
+      </table>
+      <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">"십의 자리에서"는 십의 자리까지 통째로 0으로 만들고 한 단계 위(백의 자리)까지만 남겨요. 올림·버림은 십의 자리 아래(일의 자리)까지 봐서 0인지만 확인하고, 반올림은 십의 자리 숫자 자체(567은 6, 506은 0)가 5 이상인지로 판단해요 — 그래서 567은 올라가고(600), 506은 내려가요(500)</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념8 — "OO의 자리까지"와 "OO의 자리에서"는 달라요</div>
+    <ul><li>643을 "백의 자리까지" 올림한 것과 "백의 자리에서" 올림한 것, 같을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <table style="width:100%;border-collapse:collapse;font-size:.78rem;text-align:center;border:1px solid #30363d">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">표현</td><td style="border-right:1px solid #30363d">무엇이 유효하게 남나</td><td>643 올림 결과</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">백의 자리<strong style="color:#f0c040">까지</strong></td><td style="border-right:1px solid #30363d">백의 자리는 그대로 남고, 그 아래(43)만 올림</td><td style="color:#3fb950;font-weight:700">700</td></tr>
+        <tr><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">백의 자리<strong style="color:#f0c040">에서</strong></td><td style="border-right:1px solid #30363d">백의 자리까지 통째로 0이 되고, 한 단계 위(천의 자리)만 남음</td><td style="color:#3fb950;font-weight:700">1000</td></tr>
+      </table>
+      <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">"까지"는 그 자리를 남기고, "에서"는 그 자리까지 0으로 만들어서 한 단계 위까지 표현해요 — 그래서 "백의 자리에서 반올림"은 "반올림하여 천의 자리까지 나타내기"와 같은 말이에요</div>
+    </div>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> "이상"과 "초과"는 왜 경계값 포함 여부를 정확히 구분해서 쓸까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5range-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e5range-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e5range-h1',0,this)">놀이기구 키 제한처럼, 경계값 하나 때문에 결과(탈 수 있다/없다)가 완전히 달라질 수 있어서 정확히 구분해야 해요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5range-h1',1,this)">그냥 말이 다를 뿐, 실제로는 항상 똑같은 뜻이에요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5range-h1',2,this)">이상은 큰 수, 초과는 작은 수를 말하는 거예요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e5range-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 과자를 상자에 담을 때는 올림을, 거스름돈을 줄 때는 버림을 쓰는 경우가 많은데 왜 그럴까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5range-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e5range-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e5range-h2',0,this)">상자는 남는 과자가 안 생기게(모자라지 않게) 올림을, 거스름돈은 더 주지 않도록 버림을 쓰는 거예요 — 상황마다 "모자라면 안 되는지, 넘치면 안 되는지"가 달라요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5range-h2',1,this)">그냥 관습이라 정해진 규칙일 뿐 이유는 없어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5range-h2',2,this)">올림은 항상 정확하고 버림은 항상 부정확해요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e5range-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 반올림에서는 왜 하필 5를 기준으로 올리고 버릴까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5range-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e5range-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e5range-h3',0,this)">5는 0과 10의 정확히 중간이라서, 5를 기준으로 나누면 "더 가까운 쪽"으로 어림하는 게 돼요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5range-h3',1,this)">5가 그냥 사람들이 좋아하는 숫자라서요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5range-h3',2,this)">기준은 아무 숫자나 상관없어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e5range-h3"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제: 다음 수 중 "15 이상"인 것을 모두 고르세요: 13, 15, 17, 20</div>
+      <div class="fb-diagram">${rangeLineSvg(11,21,15,true,'ge')}<span class="cap">15는 포함, 15보다 작은 13은 제외</span></div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5range-p1',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5range-p1">
+        <div class="sol"><strong>풀이:</strong> 15 이상은 15와 같거나 큰 수 → <strong style="color:#3fb950">15, 17, 20</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 다음 수 중 "20 미만"인 것을 모두 고르세요: 18, 20, 22, 15</div>
+      <div class="fb-diagram">${rangeLineSvg(11,25,20,false,'le')}<span class="cap">20은 제외, 20보다 작은 수만 포함</span></div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5range-p2',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5range-p2">
+        <div class="sol"><strong>풀이:</strong> 20 미만은 20보다 작은 수(20 제외) → <strong style="color:#3fb950">18, 15</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 3457을 백의 자리까지 올림하면 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5range-p3',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5range-p3">
+        <div class="sol"><strong>풀이:</strong> 백의 자리 아래(57)를 올려서 100으로 → 3400+100 = <strong style="color:#3fb950">3500</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 3457을 백의 자리까지 반올림하면 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5range-p4',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5range-p4">
+        <div class="sol"><strong>풀이:</strong> 바로 아래 자리(십의 자리) 숫자가 5, 5 이상이니 올림 → <strong style="color:#3fb950">3500</strong></div>
+      </div>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line">
+      <div class="story-avatar">🧒</div>
+      <div class="story-bubble"><span class="story-name">민준</span>선생님, 과자 138개를 한 상자에 10개씩 담으려는데, 138÷10=13.8이라 13상자면 되는 거 아니에요?</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">👧</div>
+      <div class="story-bubble"><span class="story-name">서연</span>어? 13상자면 130개밖에 못 담는데, 8개는 어떻게 해요?</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧒</div>
+      <div class="story-bubble"><span class="story-name">지호</span>아! 남은 8개도 담아야 하니까 상자가 하나 더 필요하네요. 그럼 14상자!</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">👧</div>
+      <div class="story-bubble"><span class="story-name">하은</span>그게 바로 "올림"이구나! 13.8을 그냥 버리면(13상자) 과자가 남고, 반올림해도(14상자, 마침 같지만) 상황에 따라 안 맞을 수 있으니까, "모자라면 안 되는" 상황에서는 무조건 올림을 써야 하는 거예요.</div>
+    </div>
+    <div class="fb-diagram">138÷10=13.8 → 버림이면 13상자(8개 못 담음, ✕) → 올림이면 <strong style="color:#3fb950">14상자</strong>(전부 담김, ✓)<span class="cap">"모자라면 안 되는" 상황(담기·태우기 등)은 항상 올림을 써요</span></div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! 올림·버림·반올림은 계산 실수가 아니라 "상황에 맞는 선택"이에요. 반올림이 항상 "가장 정확한" 방법 같지만, 상자에 담거나 버스에 태우는 것처럼 "부족하면 안 되는" 상황에서는 오히려 올림을 써야 해요.</div>
+    </div>
+    <div class="story-takeaway"><strong>정리:</strong> 이상·이하·초과·미만은 경계값의 포함 여부를 정확히 나타내는 말이고, 올림·버림·반올림은 상황에 따라 골라 써야 하는 어림 방법이에요. "무조건 정확한" 방법은 없고, 상황(모자라면 안 되는지, 넘치면 안 되는지)에 맞는 방법을 고르는 게 핵심이에요.</div>
+  `}
+];
+CV_DATA['e5range'] = CV_DATA_E5RANGE;
 const FB_DIAGRAM_H1A = '<div class="fb-diagram"><div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">'
   + '<div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div>'
   + '</div><span class="cap">사탕 15개를 5명에게 나눠주면 → 15÷5=3, 1인당 3개 (사람 수 5를 아니까 나눠주기)</span></div>';
@@ -3845,6 +4080,9 @@ const FB_DIAGRAM_FRAC2_H1 = '<div class="fb-diagram">'+fracPieHtml(1,2,'#f0c040'
 const FB_DIAGRAM_FRAC2_H2 = '<div class="fb-diagram">'+fracPieHtml(8,12,'#f0c040',48)+'<span style="font-size:1.1rem;color:#8b949e">➜</span>'+fracPieHtml(2,3,'#3fb950',48)+'<span class="cap">8/12보다 2/3이 숫자가 작아서 비교·계산이 훨씬 편해요</span></div>';
 const FB_DIAGRAM_FRAC2_H3 = '<div class="fb-diagram">'+fracPieHtml(2,12,'#f0c040',44)+fracPieHtml(4,24,'#58a6ff',44)+'<span class="cap">1/6을 12로 통분하면 2/12, 24로 통분하면 4/24 — 둘 다 맞지만 12가 더 간단해요</span></div>';
 const FB_DIAGRAM_FRAC2_H4 = '<div class="fb-diagram">'+fracPieHtml(4,6,'#f0c040',48)+'<span style="font-size:1.1rem;color:#8b949e">➜</span>'+fracPieHtml(2,3,'#3fb950',48)+'<span class="cap">4와 6의 최대공약수는 2(1이 아님) → 아직 기약분수 아님, 2로 나누면 2/3(최대공약수 1) → 기약분수</span></div>';
+const FB_DIAGRAM_RANGE_H1 = '<div class="fb-diagram">'+rangeLineSvg(136,144,140,true,'ge')+'<span class="cap">140cm "이상"이면 140cm인 친구도 탈 수 있지만, "초과"였다면 못 타요 — 경계값 하나로 결과가 갈려요</span></div>';
+const FB_DIAGRAM_RANGE_H2 = '<div class="fb-diagram">138÷10=13.8 → 버림 13상자(8개 못 담음) vs 올림 14상자(전부 담김)<span class="cap">"모자라면 안 되는" 상황은 올림, "더 주면 안 되는" 상황은 버림을 써요</span></div>';
+const FB_DIAGRAM_RANGE_H3 = '<div class="fb-diagram">0 1 2 3 4 | 5 6 7 8 9<span class="cap">5는 0~9의 정확히 중간이에요 — 5 미만이면 아래로, 5 이상이면 위로 가는 게 "더 가까운 쪽"이에요</span></div>';
 const FB_DIAGRAM_CORR2 = '<div class="fb-diagram">탁자 50개일 때 의자 수 = 50×2+2 = <strong style="color:#3fb950">102개</strong><span class="cap">직접 탁자를 늘어놓고 세려면 오래 걸리지만, 식이 있으면 □ 자리에 숫자만 넣어서 바로 구할 수 있어요</span></div>';
 const FB_DIAGRAM_CORR3 = '<div class="fb-diagram">△=□×2+2　=　y=x×2+2　=　★=♥×2+2<span class="cap">기호의 모양은 달라도 "탁자 수와 의자 수의 관계"라는 규칙 자체는 똑같아요</span></div>';
 const HAVRUTA_FB = {
@@ -4008,6 +4246,21 @@ const HAVRUTA_FB = {
     {ok:true, text:'맞아요! 분모·분자의 최대공약수가 1이면 기약분수, 1보다 크면 그 수로 더 약분할 수 있어요.', diagram:FB_DIAGRAM_FRAC2_H4},
     {ok:false, text:'분모가 짝수여도 기약분수일 수 있어요(예: 2/5는 아니지만 3/8은 기약분수예요). 최대공약수를 직접 확인해야 해요.', diagram:FB_DIAGRAM_FRAC2_H4},
     {ok:false, text:'분자가 1이면 항상 기약분수인 건 맞지만, 분자가 1이 아니어도 기약분수인 경우가 훨씬 많아요(예: 2/3). 확인 기준은 최대공약수예요.', diagram:FB_DIAGRAM_FRAC2_H4}
+  ],
+  'e5range-h1': [
+    {ok:true, text:'맞아요! 놀이기구 키 제한처럼, 경계값 하나 때문에 결과가 완전히 달라질 수 있어서 정확히 구분해야 해요.', diagram:FB_DIAGRAM_RANGE_H1},
+    {ok:false, text:'이상과 초과는 경계값(그 수 자체)을 포함하는지 아닌지가 달라요. 실제로 다른 뜻이에요.', diagram:FB_DIAGRAM_RANGE_H1},
+    {ok:false, text:'크기가 아니라 "경계값 포함 여부"의 차이예요. 이상도 초과도 둘 다 "그 수보다 큰 쪽"을 말해요.', diagram:FB_DIAGRAM_RANGE_H1}
+  ],
+  'e5range-h2': [
+    {ok:true, text:'맞아요! 상황마다 "모자라면 안 되는지, 넘치면 안 되는지"가 달라서 올림·버림을 골라 써요.', diagram:FB_DIAGRAM_RANGE_H2},
+    {ok:false, text:'그냥 관습이 아니에요! 상자에 담을 때 버림을 쓰면 과자가 남아서 다 못 담는 문제가 생겨요.', diagram:FB_DIAGRAM_RANGE_H2},
+    {ok:false, text:'올림이 항상 정확한 건 아니에요. 상황에 맞게 고르는 게 핵심이에요 — 반올림이 더 정확해 보여도 상자 개수엔 안 맞을 수 있어요.', diagram:FB_DIAGRAM_RANGE_H2}
+  ],
+  'e5range-h3': [
+    {ok:true, text:'맞아요! 5는 0과 10의 정확히 중간이라서, 5를 기준으로 나누면 "더 가까운 쪽"으로 어림하게 돼요.', diagram:FB_DIAGRAM_RANGE_H3},
+    {ok:false, text:'그냥 좋아하는 숫자라서가 아니에요! 5는 0~9 중 정확히 가운데(중간)라서 기준이 되는 거예요.', diagram:FB_DIAGRAM_RANGE_H3},
+    {ok:false, text:'아무 숫자나 되는 건 아니에요 — 5가 아닌 다른 수를 기준으로 하면 "더 가까운 쪽"으로 어림한다는 원래 목적과 안 맞아요.', diagram:FB_DIAGRAM_RANGE_H3}
   ]
 };
 function weekdayStripSvg(startIdx, targetIdx){
@@ -6786,6 +7039,14 @@ function showGrade(id) {
   document.getElementById('g-' + id).classList.add('active');
   const ids = ['e1','e2','e3','e4','e5','e6','m1','m2','m3'];
   document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', ids[i] === id));
+}
+
+function showSemester(gradeId, sem, btn) {
+  const section = document.getElementById('g-' + gradeId);
+  section.querySelectorAll('.semester-group').forEach(g => {
+    g.setAttribute('data-hidden', g.getAttribute('data-sem') === String(sem) ? '0' : '1');
+  });
+  btn.parentElement.querySelectorAll('.semester-tab-btn').forEach(b => b.classList.toggle('active', b === btn));
 }
 
 function toggle(header) {
