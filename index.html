@@ -15994,7 +15994,12 @@ function lnShowTwoLineQ1(id){
 
 // ⑱ 매개변수 직선과 선분의 교차 (자연수 k 최솟값)
 function svgSegKHTML(c0,xa,ya,xb,yb,kAns){
-  var pts=[[0,c0],[xa,ya],[xb,yb]];
+  function extW(fx,fy,tx,ty,f){ return [fx+(tx-fx)*f, fy+(ty-fy)*f]; }
+  var t=(c0+kAns*xa-ya)/((yb-ya)-kAns*(xb-xa));
+  var Mx=xa+t*(xb-xa), My=ya+t*(yb-ya);
+  var QAextW=extW(0,c0,xa,ya,1.2), QBextW=extW(0,c0,xb,yb,1.2);
+  var LextW=extW(0,c0,Mx,My,1.15);
+  var pts=[[0,c0],[xa,ya],[xb,yb],QAextW,QBextW,LextW];
   var xs=pts.map(function(p){return p[0];}), ys=pts.map(function(p){return p[1];});
   var minX=Math.min.apply(null,xs)-1, maxX=Math.max.apply(null,xs)+1;
   var minY=Math.min.apply(null,ys)-1, maxY=Math.max.apply(null,ys)+1;
@@ -16002,30 +16007,34 @@ function svgSegKHTML(c0,xa,ya,xb,yb,kAns){
   var scale=Math.min((W-padL-padR)/(maxX-minX),(H-padT-padB)/(maxY-minY));
   function px(x,y){ return [Math.round((padL - minX*scale + x*scale)*10)/10, Math.round((H-padB + minY*scale - y*scale)*10)/10]; }
   var O=px(0,0), Q=px(0,c0), A=px(xa,ya), B=px(xb,yb);
-  function ext(from,to,f){ return [from[0]+(to[0]-from[0])*f, from[1]+(to[1]-from[1])*f]; }
-  var QAext=ext(Q,A,1.2), QBext=ext(Q,B,1.2);
-  var t=(c0+kAns*xa-ya)/((yb-ya)-kAns*(xb-xa));
-  var Mx=xa+t*(xb-xa), My=ya+t*(yb-ya);
+  var QAext=px(QAextW[0],QAextW[1]), QBext=px(QBextW[0],QBextW[1]);
   var M=px(Mx,My);
-  var Lext=ext(Q,M,1.15);
+  var Lext=px(LextW[0],LextW[1]);
+  var coincideA = (ya-c0)===kAns*xa;
+  var coincideB = (yb-c0)===kAns*xb;
   return '<div style="text-align:center;margin:10px 0">'
     + '<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'
     + '<line x1="0" y1="'+O[1]+'" x2="'+W+'" y2="'+O[1]+'" stroke="#94a3b8" stroke-width="1"/>'
     + '<line x1="'+O[0]+'" y1="'+H+'" x2="'+O[0]+'" y2="0" stroke="#94a3b8" stroke-width="1"/>'
-    + '<line x1="'+Q[0]+'" y1="'+Q[1]+'" x2="'+QAext[0]+'" y2="'+QAext[1]+'" stroke="#f87171" stroke-width="1.6" stroke-dasharray="2 2"/>'
-    + '<line x1="'+Q[0]+'" y1="'+Q[1]+'" x2="'+QBext[0]+'" y2="'+QBext[1]+'" stroke="#f87171" stroke-width="1.6" stroke-dasharray="2 2"/>'
+    + (coincideA ? '' : '<line x1="'+Q[0]+'" y1="'+Q[1]+'" x2="'+QAext[0]+'" y2="'+QAext[1]+'" stroke="#f87171" stroke-width="1.6" stroke-dasharray="2 2"/>')
+    + (coincideB ? '' : '<line x1="'+Q[0]+'" y1="'+Q[1]+'" x2="'+QBext[0]+'" y2="'+QBext[1]+'" stroke="#f87171" stroke-width="1.6" stroke-dasharray="2 2"/>')
     + '<line x1="'+A[0]+'" y1="'+A[1]+'" x2="'+B[0]+'" y2="'+B[1]+'" stroke="#7dd3fc" stroke-width="2.4"/>'
     + '<line x1="'+Q[0]+'" y1="'+Q[1]+'" x2="'+Lext[0]+'" y2="'+Lext[1]+'" stroke="#86efac" stroke-width="2.2"/>'
     + '<circle cx="'+Q[0]+'" cy="'+Q[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<circle cx="'+A[0]+'" cy="'+A[1]+'" r="'+(coincideA?6:4)+'" fill="none" stroke="'+(coincideA?'#86efac':'none')+'" stroke-width="2"/>'
     + '<circle cx="'+A[0]+'" cy="'+A[1]+'" r="4" fill="#e2e8f0"/>'
+    + '<circle cx="'+B[0]+'" cy="'+B[1]+'" r="'+(coincideB?6:4)+'" fill="none" stroke="'+(coincideB?'#86efac':'none')+'" stroke-width="2"/>'
     + '<circle cx="'+B[0]+'" cy="'+B[1]+'" r="4" fill="#e2e8f0"/>'
-    + '<circle cx="'+M[0]+'" cy="'+M[1]+'" r="3.5" fill="#86efac"/>'
+    + (coincideA||coincideB ? '' : '<circle cx="'+M[0]+'" cy="'+M[1]+'" r="3.5" fill="#86efac"/>')
     + '<text x="'+(Q[0]-6)+'" y="'+(Q[1]-6)+'" font-size="9.5" font-weight="700" fill="#e2e8f0" text-anchor="end">Q(0,'+gFmt(c0)+')</text>'
     + '<text x="'+(A[0]+5)+'" y="'+(A[1]-4)+'" font-size="9.5" font-weight="700" fill="#e2e8f0">A('+gFmt(xa)+','+gFmt(ya)+')</text>'
     + '<text x="'+(B[0]+5)+'" y="'+(B[1]-4)+'" font-size="9.5" font-weight="700" fill="#e2e8f0">B('+gFmt(xb)+','+gFmt(yb)+')</text>'
     + '<text x="'+(M[0]+6)+'" y="'+(M[1]+12)+'" font-size="8.5" font-weight="700" fill="#86efac">k='+kAns+'</text>'
     + '</svg>'
-    + '<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨간 점선=경계(QA,QB 기울기) · 초록=자연수 최소인 k='+kAns+'일 때 l · 파랑=선분 AB</div>'
+    + '<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">'
+    + (coincideA ? '이번엔 최솟값 k='+kAns+'이 정확히 <b>A를 지나는 순간</b>이에요(QA 기울기=k) — 그래서 빨간 경계선 없이 초록 l이 A에 바로 닿아요. ' : '')
+    + (coincideB ? '이번엔 최솟값 k='+kAns+'이 정확히 <b>B를 지나는 순간</b>이에요(QB 기울기=k) — 그래서 빨간 경계선 없이 초록 l이 B에 바로 닿아요. ' : '')
+    + '빨간 점선=경계(QA,QB 기울기) · 초록=자연수 최소인 k='+kAns+'일 때 l · 파랑=선분 AB</div>'
     + '</div>';
 }
 function lnNextSegK(id){
