@@ -15929,7 +15929,7 @@ function gQuadQuestion(dataStr){
     var xPart = p1===0 ? 'x' : '(x'+gNPart(-p1)+')';
     return '<b>직선 l: y'+gNPart(-p2)+' = k'+xPart+' (k는 실수, 점('+gFmt(p1)+','+gFmt(p2)+')을 지남)가 제'+q+'사분면을 '+askText+' 하는 k의 범위는?</b><br>';
   } else {
-    return '<b>직선 l: y='+gMxTerm(p1)+'+n (기울기 '+gFmt(p1)+' 고정, n은 실수)이 제'+q+'사분면을 '+askText+' 하는 n의 범위는?</b><br>';
+    return '<b>직선 l: y='+gMxTerm(p1)+'+n이 제'+q+'사분면을 '+askText+' 하는 n의 범위는?</b><br>';
   }
 }
 function lnShowQuadrant(id){
