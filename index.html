@@ -14049,7 +14049,7 @@ x²−2ax+a²+y²−2by+b²=r² → x²+y²−2ax−2by+(a²+b²−r²)=0<br><br
 ④번이 핵심이에요 — "기울기의 합/곱"만 물으면 m을 직접 풀 필요 없이 한 번에 답이 나와요. "접선의 방정식 자체"를 물으면 이차방정식을 끝까지 풀어야 해요.<br><br>
 <b>기본예제</b>: 원 x²+y²=4에 접하고 기울기가 √3인 접선은?
 </div>`,
-    ans:`① m=√3 → √3x−y+n=0<br>② 거리=|n|/√(3+1)=|n|/2=2(반지름)<br>③ |n|=4 → n=±4<br>④ <b>y=√3x+4 또는 y=√3x−4</b>` },
+    ans:`① m=√3 → √3x−y+n=0<br>② 거리=<span class="frac"><span class="num">|n|</span><span class="den">√(3+1)</span></span>=<span class="frac"><span class="num">|n|</span><span class="den">2</span></span>=2(반지름)<br>③ |n|=4 → n=±4<br>④ <b>y=√3x+4 또는 y=√3x−4</b>` },
 
 { tag:'접선 — 원 밖의 점에서 그은 두 접선(완전풀이) 3/4', tagColor:'#34d399',
     bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
@@ -14057,7 +14057,7 @@ x²−2ax+a²+y²−2by+b²=r² → x²+y²−2ax−2by+(a²+b²−r²)=0<br><br
 원 x²+y²=9 밖의 점 P(5,0)에서 원에 그은 두 접선의 방정식을 모두 구하면?
 </div>`,
     ans:`<b>1단계</b> P(5,0) 지나는 직선: y=m(x−5), 즉 mx−y−5m=0<br>
-<b>2단계</b> 중심(0,0)에서 거리=반지름: |−5m|/√(m²+1)=3<br>
+<b>2단계</b> 중심(0,0)에서 거리=반지름: <span class="frac"><span class="num">|−5m|</span><span class="den">√(m²+1)</span></span>=3<br>
 <b>3단계</b> 제곱해서 정리: 25m²=9(m²+1) → 16m²=9 → m=±¾<br>
 <b>4단계</b> m=¾: <b>y=¾x−15/4</b> &nbsp; m=−¾: <b>y=−¾x+15/4</b>
 <div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
@@ -14088,7 +14088,7 @@ x²−2ax+a²+y²−2by+b²=r² → x²+y²−2ax−2by+(a²+b²−r²)=0<br><br
     bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 바로 앞 카드는 점을 P(a,고정된 수)로 표현했죠. 이번엔 점을 <b style="color:#34d399">직선 위의 점</b>으로 표현해요 — 예를 들어 "직선 y=x+3 위의 점 P"라면, P의 좌표는 (a, a+3)처럼 두 좌표가 모두 하나의 미지수 a로 연결돼요. 풀이 방법은 똑같아요: OP²과 반지름² 비교.<br><br>
-원 x²+y²=9, 직선 y=x+3 위의 점 P(a,a+3)에서 원에 그을 수 있는 접선이 2개이기 위한 a의 값의 범위는?
+원 x²+y²=9, 직선 y=x+3 위의 점 P에서 원에 그을 수 있는 접선이 2개이기 위한 a의 값의 범위는?
 </div>`,
     ans:`<b>1단계</b> P(a,a+3)라 하면 OP²=a²+(a+3)²=2a²+6a+9<br>
 <b>2단계</b> OP²=r²이 되는 경계(원 위의 점): 2a²+6a+9=9 → 2a²+6a=0 → 2a(a+3)=0 → a=0 또는 a=−3<br>
@@ -14097,7 +14097,7 @@ x²−2ax+a²+y²−2by+b²=r² → x²+y²−2ax−2by+(a²+b²−r²)=0<br><br
 🔗 P(a,고정값)이든 직선 위의 점 P(a,a+3)이든, 결국 "OP²을 a에 대한 식으로 쓰고 r²과 비교"하는 같은 방법이에요 — 점을 표현하는 방식만 다양해진 거예요.
 </div>
 <div id="ln-tangentlinept-out" data-v="1,3,3,-3,0,two" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
-<b>원 x²+y²=9, 직선 y=x+3 위의 점 P(a, a+3)에서 원에 그을 수 있는 접선이 2개이기 위한 a의 값(또는 범위)은?</b><br><button onclick="lnShowTangentLinePt('ln-tangentlinept-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+<b>원 x²+y²=9, 직선 y=x+3 위의 점 P에서 원에 그을 수 있는 접선이 2개이기 위한 a의 값(또는 범위)은?</b><br><button onclick="lnShowTangentLinePt('ln-tangentlinept-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
 </div>
 <button onclick="lnNextTangentLinePt('ln-tangentlinept-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
 
@@ -14107,7 +14107,7 @@ x²−2ax+a²+y²−2by+b²=r² → x²+y²−2ax−2by+(a²+b²−r²)=0<br><br
 🔥 원 x²+y²=4, 점(0,4)에서 그은 두 접선의 기울기의 합과 곱을 각각 구하세요.
 </div>`,
     ans:`접선을 y=mx+4, 즉 mx−y+4=0으로 놓으면<br>
-중심(0,0)에서 거리=반지름: |4|/√(m²+1)=2 → 16=4(m²+1) → 4m²−12=0 → <b>m²−3=0</b><br>
+중심(0,0)에서 거리=반지름: <span class="frac"><span class="num">|4|</span><span class="den">√(m²+1)</span></span>=2 → 16=4(m²+1) → 4m²−12=0 → <b>m²−3=0</b><br>
 이건 m에 대한 이차방정식 1·m²+0·m−3=0 → 근과 계수의 관계로 <b>합=0, 곱=−3</b>
 <div id="ln-tangentsp-out" data-v="2,0,4" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
 <b>원 x²+y²=4, 점(0,4)에서 그은 두 접선의 기울기의 합과 곱을 각각 구하세요.</b><br><button onclick="lnShowTangentSumProd('ln-tangentsp-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
@@ -15463,6 +15463,9 @@ function gFracHTML(n,d){
   if(d===1) return gFmt(n);
   return '<span class="frac"><span class="num">'+gFmt(n)+'</span><span class="den">'+d+'</span></span>';
 }
+function gFracSym(numHTML,denHTML){
+  return '<span class="frac"><span class="num">'+numHTML+'</span><span class="den">'+denHTML+'</span></span>';
+}
 function gMxTerm(m){ return m===1?'x':m===-1?'−x':gFmt(m)+'x'; }
 function gNPart(n){ return n===0?'':(n>0?'+'+n:gFmt(n)); }
 
@@ -16462,7 +16465,7 @@ function lnShowTangentFull(id){
   var mTermStr = -px===0 ? '' : (-px>0 ? '+'+(-px)+'m' : '−'+px+'m');
   el.innerHTML = gTangentFullQuestion(el.getAttribute('data-v'))
     + '<b>1단계</b> P('+gFmt(px)+',0) 지나는 직선: y=m(x'+gNPart(-px)+'), 즉 mx−y'+mTermStr+'=0<br>'
-    + '<b>2단계</b> 중심(0,0)에서 거리=반지름: |'+gFmt(-px)+'m|/√(m²+1)='+r+'<br>'
+    + '<b>2단계</b> 중심(0,0)에서 거리=반지름: '+gFracSym('|'+gFmt(-px)+'m|','√(m²+1)')+'='+r+'<br>'
     + '<b>3단계</b> 제곱해서 정리: '+(px*px)+'m²='+(r*r)+'(m²+1) → '+(px*px-r*r)+'m²='+(r*r)+' → m²='+gFracHTML(r*r,px*px-r*r)+' → m=±'+gFracHTML(r,b)+'<br>'
     + '<b>4단계</b> m='+gFracHTML(r,b)+': <b>'+line1+'</b> &nbsp; m=−'+gFracHTML(r,b)+': <b>'+line2+'</b>'
     + gNextBtn('lnNextTangentFull', id);
@@ -16495,7 +16498,7 @@ function lnShowTangentSumProd(id){
   var xPart = px===0 ? 'x' : '(x'+gNPart(-px)+')';
   el.innerHTML = gTangentSumProdQuestion(el.getAttribute('data-v'))
     + '<b>1단계</b> 접선을 y'+gNPart(-py)+'=m'+xPart+'로 놓으면, mx−y+('+gFmt(py)+'−m×'+gFmt(px)+')=0<br>'
-    + '<b>2단계</b> 중심(0,0)에서 거리=반지름: |'+gFmt(py)+'−'+gFmt(px)+'m|/√(m²+1)='+r+'<br>'
+    + '<b>2단계</b> 중심(0,0)에서 거리=반지름: '+gFracSym('|'+gFmt(py)+'−'+gFmt(px)+'m|','√(m²+1)')+'='+r+'<br>'
     + '<b>3단계</b> 제곱해서 정리: ('+gFmt(px*px-r*r)+')m²+('+gFmt(B)+')m+('+gFmt(C)+')=0<br>'
     + '<b>4단계</b> 근과 계수의 관계: <b>합='+gFracHTML(sumF[0],sumF[1])+', 곱='+gFracHTML(prodF[0],prodF[1])+'</b>'
     + gNextBtn('lnNextTangentSumProd', id);
@@ -16577,7 +16580,7 @@ function gTangentLinePtQuestion(dataStr){
   var m=Number(v[0]),c=Number(v[1]),r=Number(v[2]),mode=v[5];
   var cntText = mode==='two'?'2개':(mode==='one'?'1개':'0개');
   var lineEq = 'y='+gMxTerm(m)+gNPart(c);
-  return '<b>원 x²+y²='+(r*r)+', 직선 '+lineEq+' 위의 점 P(a, '+gMxTerm(m).replace('x','a')+gNPart(c)+')에서 원에 그을 수 있는 접선이 '+cntText+'이기 위한 a의 값(또는 범위)은?</b><br>';
+  return '<b>원 x²+y²='+(r*r)+', 직선 '+lineEq+' 위의 점 P에서 원에 그을 수 있는 접선이 '+cntText+'이기 위한 a의 값(또는 범위)은?</b><br>';
 }
 function lnShowTangentLinePt(id){
   var el=document.getElementById(id);
