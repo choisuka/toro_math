@@ -596,6 +596,21 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
       </div>
     </div>
   </div>
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🔢 소수의 곱셈 <span class="badge">초5</span></div><div class="unit-sub">소수×자연수, 소수×소수, 소수점 위치</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e5decmul">
+        <div class="cv-grid" id="cv-e5decmul-grid"></div>
+        <div class="cv-detail" id="cv-e5decmul-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e5decmul')">← 목록으로</button>
+          <div id="cv-e5decmul-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 
 </div><!-- /e5 -->
@@ -4016,6 +4031,13 @@ const CV_DATA_E5RANGE = [
         <div class="sol"><strong>풀이:</strong> 백의 자리 아래(57)를 버려서 → <strong style="color:#3fb950">3400</strong></div>
       </div>
     </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 4638을 백의 자리에서 반올림하면 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5range-p8',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5range-p8">
+        <div class="sol"><strong>풀이:</strong> "백의 자리에서"는 천의 자리까지 나타내는 것과 같아요. 백의 자리 숫자가 6, 5 이상이니 올림 → <strong style="color:#3fb950">5000</strong></div>
+      </div>
+    </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
     <p>지금까지 배운 이상·이하·초과·미만과 올림·버림·반올림을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
@@ -4056,7 +4078,7 @@ const CV_DATA_E5RANGE = [
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
-      <div id="rgw-8" class="prob-q" data-total="134" data-per="10" data-qtext="사탕 134개를 한 상자에 10개씩 담아서 포장하려고 합니다. 상자는 최소 몇 개 필요한가요?" data-solfn="rgwSol8">사탕 134개를 한 상자에 10개씩 담아서 포장하려고 합니다. 상자는 최소 몇 개 필요한가요?<br><button class="havruta-show-btn" onclick="rgwSol8('rgw-8')">💡 풀이 보기</button></div>
+      <div id="rgw-8" class="prob-q" data-total="134" data-per="10" data-qtext="놀이기구를 타려는 사람이 134명 있습니다. 한 번에 10명까지 탈 수 있다면, 모두 타려면 최소 몇 번 운행해야 하나요?" data-solfn="rgwSol8">놀이기구를 타려는 사람이 134명 있습니다. 한 번에 10명까지 탈 수 있다면, 모두 타려면 최소 몇 번 운행해야 하나요?<br><button class="havruta-show-btn" onclick="rgwSol8('rgw-8')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="rgwGen8('rgw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
@@ -4066,6 +4088,46 @@ const CV_DATA_E5RANGE = [
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10 (발전문제)</div>
+      <div id="rgw-18" class="prob-q" data-total="138" data-per="25" data-qtext="학생 138명이 체험학습을 갑니다. 버스 한 대에 25명까지 탈 수 있습니다. 버스는 몇 대 필요하고, 마지막 버스에는 몇 명이 타게 되나요?" data-solfn="rgwSol18">학생 138명이 체험학습을 갑니다. 버스 한 대에 25명까지 탈 수 있습니다. 버스는 몇 대 필요하고, 마지막 버스에는 몇 명이 타게 되나요?<br><button class="havruta-show-btn" onclick="rgwSol18('rgw-18')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgwGen18('rgw-18')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 11</div>
+      <div id="rgw-1" class="prob-q" data-n="20" data-nums="17,20,22,15,25" data-qtext="다음 수 중 20 이상인 것은 모두 몇 개인가요? (17, 20, 22, 15, 25)" data-solfn="rgwSol1">다음 수 중 20 이상인 것은 모두 몇 개인가요? (17, 20, 22, 15, 25)<br><button class="havruta-show-btn" onclick="rgwSol1('rgw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgwGen1('rgw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 12</div>
+      <div id="rgw-2" class="prob-q" data-n="20" data-nums="17,20,22,15,25" data-qtext="다음 수 중 20 이하인 것은 모두 몇 개인가요? (17, 20, 22, 15, 25)" data-solfn="rgwSol2">다음 수 중 20 이하인 것은 모두 몇 개인가요? (17, 20, 22, 15, 25)<br><button class="havruta-show-btn" onclick="rgwSol2('rgw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgwGen2('rgw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 13</div>
+      <div id="rgw-3" class="prob-q" data-n="20" data-nums="17,20,22,15,25" data-qtext="다음 수 중 20 초과인 것은 모두 몇 개인가요? (17, 20, 22, 15, 25)" data-solfn="rgwSol3">다음 수 중 20 초과인 것은 모두 몇 개인가요? (17, 20, 22, 15, 25)<br><button class="havruta-show-btn" onclick="rgwSol3('rgw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgwGen3('rgw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 14</div>
+      <div id="rgw-4" class="prob-q" data-n="20" data-nums="17,20,22,15,25" data-qtext="다음 수 중 20 미만인 것은 모두 몇 개인가요? (17, 20, 22, 15, 25)" data-solfn="rgwSol4">다음 수 중 20 미만인 것은 모두 몇 개인가요? (17, 20, 22, 15, 25)<br><button class="havruta-show-btn" onclick="rgwSol4('rgw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgwGen4('rgw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 15</div>
+      <div id="rgw-5" class="prob-q" data-num="4638" data-place="백" data-pv="100" data-qtext="4638을 백의 자리까지 올림하면 얼마인가요?" data-solfn="rgwSol5">4638을 백의 자리까지 올림하면 얼마인가요?<br><button class="havruta-show-btn" onclick="rgwSol5('rgw-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgwGen5('rgw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 16</div>
+      <div id="rgw-6" class="prob-q" data-num="4638" data-place="백" data-pv="100" data-qtext="4638을 백의 자리까지 버림하면 얼마인가요?" data-solfn="rgwSol6">4638을 백의 자리까지 버림하면 얼마인가요?<br><button class="havruta-show-btn" onclick="rgwSol6('rgw-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgwGen6('rgw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 17</div>
+      <div id="rgw-7" class="prob-q" data-num="4638" data-place="백" data-pv="100" data-qtext="4638을 백의 자리까지 반올림하면 얼마인가요?" data-solfn="rgwSol7">4638을 백의 자리까지 반올림하면 얼마인가요?<br><button class="havruta-show-btn" onclick="rgwSol7('rgw-7')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgwGen7('rgw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 18</div>
       <div id="rgw-10" class="prob-q" data-num="4638" data-place="백" data-pv="100" data-qtext="4638을 백의 자리에서 반올림하면 얼마인가요?" data-solfn="rgwSol10">4638을 백의 자리에서 반올림하면 얼마인가요?<br><button class="havruta-show-btn" onclick="rgwSol10('rgw-10')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="rgwGen10('rgw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
@@ -4318,6 +4380,36 @@ const CV_DATA_E5FRACMUL = [
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10 (발전문제)</div>
       <div id="fmw-10" class="prob-q" data-base="4" data-whole="1" data-n="1" data-d="2" data-qtext="설탕이 4kg 있습니다. 오늘 어제보다 1과 1/2배 더 많이 샀다면, 오늘 산 설탕은 몇 kg인가요?" data-solfn="fmwSol10">설탕이 4kg 있습니다. 오늘 어제보다 1과 1/2배 더 많이 샀다면, 오늘 산 설탕은 몇 kg인가요?<br><button class="havruta-show-btn" onclick="fmwSol10('fmw-10')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="fmwGen10('fmw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 11</div>
+      <div id="fmw-1" class="prob-q" data-n="2" data-d="5" data-k="3" data-qtext="2/5 × 3을 계산하세요." data-solfn="fmwSol1">2/5 × 3을 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol1('fmw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen1('fmw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 12</div>
+      <div id="fmw-2" class="prob-q" data-n="3" data-d="4" data-k="2" data-qtext="2 × 3/4을 계산하세요." data-solfn="fmwSol2">2 × 3/4을 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol2('fmw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen2('fmw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 13</div>
+      <div id="fmw-3" class="prob-q" data-n1="2" data-d1="3" data-n2="3" data-d2="4" data-qtext="2/3 × 3/4을 계산하세요." data-solfn="fmwSol3">2/3 × 3/4을 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol3('fmw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen3('fmw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 14</div>
+      <div id="fmw-4" class="prob-q" data-n1="4" data-d1="9" data-n2="3" data-d2="8" data-qtext="4/9 × 3/8을 약분을 활용해서 계산하세요." data-solfn="fmwSol4">4/9 × 3/8을 약분을 활용해서 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol4('fmw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen4('fmw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 15</div>
+      <div id="fmw-5" class="prob-q" data-whole="1" data-n="1" data-d="2" data-k="3" data-qtext="1과 1/2 × 3을 계산하세요." data-solfn="fmwSol5">1과 1/2 × 3을 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol5('fmw-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen5('fmw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 16</div>
+      <div id="fmw-6" class="prob-q" data-w1="1" data-n1="1" data-d1="3" data-w2="2" data-n2="1" data-d2="4" data-qtext="1과 1/3 × 2과 1/4을 계산하세요." data-solfn="fmwSol6">1과 1/3 × 2과 1/4을 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol6('fmw-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen6('fmw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
@@ -5855,19 +5947,36 @@ function rgwSol7(id){
 }
 function rgwGen8(id){
   var per = 6+Math.floor(Math.random()*10);
-  var boxes = 5+Math.floor(Math.random()*15);
+  var trips = 5+Math.floor(Math.random()*15);
   var extra = 1+Math.floor(Math.random()*(per-1));
-  var total = boxes*per+extra;
+  var total = trips*per+extra;
   var el = document.getElementById(id);
   el.setAttribute('data-total', total); el.setAttribute('data-per', per);
-  rgwSetQuestion(el, '사탕 '+total+'개를 한 상자에 '+per+'개씩 담아서 포장하려고 합니다. 상자는 최소 몇 개 필요한가요?', 'rgwSol8');
+  rgwSetQuestion(el, '놀이기구를 타려는 사람이 '+total+'명 있습니다. 한 번에 '+per+'명까지 탈 수 있다면, 모두 타려면 최소 몇 번 운행해야 하나요?', 'rgwSol8');
 }
 function rgwSol8(id){
   var el = document.getElementById(id);
   var total=+el.getAttribute('data-total'), per=+el.getAttribute('data-per');
-  var boxes = Math.ceil(total/per);
-  var diagram = '<div class="fb-diagram">'+total+'÷'+per+' = '+(total/per).toFixed(2)+' → 남는 사탕도 담아야 하니 올림 → <strong style="color:#3fb950">'+boxes+'상자</strong></div>';
+  var runs = Math.ceil(total/per);
+  var diagram = '<div class="fb-diagram">'+total+'÷'+per+' = '+(total/per).toFixed(2)+' → 남는 사람도 태워야 하니 올림 → <strong style="color:#3fb950">'+runs+'번</strong></div>';
   rgwRenderToggle(id, diagram, 'rgwSol8');
+}
+function rgwGen18(id){
+  var per = 20+Math.floor(Math.random()*20);
+  var buses = 4+Math.floor(Math.random()*8);
+  var extra = 1+Math.floor(Math.random()*(per-1));
+  var total = buses*per+extra;
+  var el = document.getElementById(id);
+  el.setAttribute('data-total', total); el.setAttribute('data-per', per);
+  rgwSetQuestion(el, '학생 '+total+'명이 체험학습을 갑니다. 버스 한 대에 '+per+'명까지 탈 수 있습니다. 버스는 몇 대 필요하고, 마지막 버스에는 몇 명이 타게 되나요?', 'rgwSol18');
+}
+function rgwSol18(id){
+  var el = document.getElementById(id);
+  var total=+el.getAttribute('data-total'), per=+el.getAttribute('data-per');
+  var busCount = Math.ceil(total/per);
+  var last = total-(busCount-1)*per;
+  var diagram = '<div class="fb-diagram">'+total+'÷'+per+' = '+(total/per).toFixed(2)+' → 올림해서 버스 '+busCount+'대 필요<br>앞의 '+(busCount-1)+'대는 꽉 채우고('+(busCount-1)+'×'+per+'='+((busCount-1)*per)+'명), 마지막 버스에는 '+total+'−'+((busCount-1)*per)+' = <strong style="color:#3fb950">'+last+'명</strong></div>';
+  rgwRenderToggle(id, diagram, 'rgwSol18');
 }
 function rgwGen9(id){
   var price = (2+Math.floor(Math.random()*8))*100;
