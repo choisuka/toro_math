@@ -14386,7 +14386,39 @@ x²,y² 항이 이번엔 <b>사라지지 않고 남아서</b> 원의 방정식�
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 세 점 (0,0), (2,0), (0,4)를 지나는 원의 중심과 반지름을 구하세요.
 </div>`,
-    ans:`x²+y²+Dx+Ey+F=0에 대입:<br>(0,0): F=0<br>(2,0): 4+2D=0 → D=−2<br>(0,4): 16+4E=0 → E=−4<br>x²+y²−2x−4y=0 → (x−1)²+(y−2)²=5<br><b>중심(1,2), 반지름√5</b>` }
+    ans:`x²+y²+Dx+Ey+F=0에 대입:<br>(0,0): F=0<br>(2,0): 4+2D=0 → D=−2<br>(0,4): 16+4E=0 → E=−4<br>x²+y²−2x−4y=0 → (x−1)²+(y−2)²=5<br><b>중심(1,2), 반지름√5</b>` },
+
+{ tag:'실전7 — 두 접선과 좌표축으로 둘러싸인 넓이', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 x²+y²=4, 점(0,4)에서 그은 두 접선과 x축으로 둘러싸인 삼각형의 넓이를 구하세요.
+</div>`,
+    ans:`접선을 y=mx+4로 놓으면 중심(0,0)에서 거리=반지름: <span class="frac"><span class="num">|4|</span><span class="den">√(m²+1)</span></span>=2 → 16=4(m²+1) → <b>m²=3</b> → m=±√3<br>
+두 접선: y=√3x+4, y=−√3x+4<br>
+x절편: 각각 x=−4/√3, x=4/√3 → 밑변=8/√3, 높이=4(점의 y좌표)<br>
+넓이=½×<span class="frac"><span class="num">8</span><span class="den">√3</span></span>×4=<span class="frac"><span class="num">16</span><span class="den">√3</span></span>=<b><span class="frac"><span class="num">16√3</span><span class="den">3</span></span></b>` },
+
+{ tag:'실전8 — 평행한 두 접선 사이의 거리', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+직선 y=2x+1에 평행하고 원 x²+y²=9에 접하는 두 직선 사이의 거리를 구하세요.
+</div>`,
+    ans:`평행이므로 기울기 2, 접선을 y=2x+n(2x−y+n=0)으로 놓으면<br>
+거리=반지름: <span class="frac"><span class="num">|n|</span><span class="den">√5</span></span>=3 → n=±3√5<br>
+두 접선 2x−y+3√5=0, 2x−y−3√5=0 사이의 거리=<span class="frac"><span class="num">|3√5−(−3√5)|</span><span class="den">√5</span></span>=<span class="frac"><span class="num">6√5</span><span class="den">√5</span></span>=<b>6</b>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
+🔗 사실 평행한 두 접선 사이의 거리는 항상 <b>지름(2r)</b>과 같아요(원을 사이에 두고 양쪽에서 딱 닿으니까) — 계산 안 해도 2×3=6이라고 바로 알 수 있어요. 위 풀이는 그 이유를 식으로 확인한 거예요.
+</div>` },
+
+{ tag:'실전9 — 접선의 길이 활용(사각형 넓이)', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+원 x²+y²=9 밖의 점 P(4,3)에서 원에 그은 두 접선의 접점을 각각 A,B라 하자. 접선의 길이와, 사각형 OAPB(O는 원점)의 넓이를 구하세요.
+</div>`,
+    ans:`OP=√(4²+3²)=5<br>
+접선의 길이: 반지름 OA⊥접선이므로 직각삼각형 OAP에서 PA=√(OP²−r²)=√(25−9)=<b>4</b><br>
+사각형 OAPB는 합동인 직각삼각형 OAP, OBP 두 개로 이뤄져 있어요(OA=OB=r=3, PA=PB=4, 둘 다 직각)<br>
+넓이=2×(½×3×4)=<b>12</b>` }
 ],
 
 'circle-real': [
