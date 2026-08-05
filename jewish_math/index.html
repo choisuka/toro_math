@@ -566,6 +566,21 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
       </div>
     </div>
   </div>
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🔵 분수의 곱셈 <span class="badge">초5</span></div><div class="unit-sub">분수×자연수, 진분수×진분수, 대분수의 곱셈</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e5fracmul">
+        <div class="cv-grid" id="cv-e5fracmul-grid"></div>
+        <div class="cv-detail" id="cv-e5fracmul-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e5fracmul')">← 목록으로</button>
+          <div id="cv-e5fracmul-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 
 </div><!-- /e5 -->
@@ -4043,6 +4058,210 @@ const CV_DATA_E5RANGE = [
   `}
 ];
 CV_DATA['e5range'] = CV_DATA_E5RANGE;
+function fracAreaModel(n1,d1,n2,d2){
+  var cell=22, pad=4;
+  var w=d2*cell, h=d1*cell;
+  var svgW=w+pad*2, svgH=h+pad*2;
+  var s='<svg viewBox="0 0 '+svgW+' '+svgH+'" style="height:110px;width:auto;max-width:100%;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">';
+  for(var r=0;r<d1;r++){
+    for(var c=0;c<d2;c++){
+      var x=pad+c*cell, y=pad+r*cell;
+      var rowShaded = r<n1, colShaded = c<n2;
+      var fill = (rowShaded&&colShaded) ? '#3fb950' : (rowShaded||colShaded ? '#58a6ff' : '#161b22');
+      var opacity = (rowShaded&&colShaded) ? '1' : (rowShaded||colShaded ? '0.35' : '1');
+      s += '<rect x="'+x+'" y="'+y+'" width="'+cell+'" height="'+cell+'" fill="'+fill+'" fill-opacity="'+opacity+'" stroke="#30363d" stroke-width="1"/>';
+    }
+  }
+  s += '</svg>';
+  return s;
+}
+const CV_DATA_E5FRACMUL = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>피자 한 판의 2/3이 남았는데, 이걸 친구 3명이서 똑같이 나눠 먹으면 한 명은 전체 피자의 얼마를 먹게 될까요?</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
+      ${fracPieHtml(2,3,'#f0c040',56)}
+      <div style="font-size:.78rem;color:#8b949e;margin-top:6px">남은 2/3을 3등분한 것 중 하나 = 2/3 × 1/3</div>
+    </div>
+    <p style="margin-top:10px">이렇게 "분수의 일부를 또 나누는" 상황은 분수끼리 곱해야 풀 수 있어요. 오늘은 분수와 분수를 곱하는 방법을 배워볼게요.</p>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — (분수)×(자연수)</div>
+    <ul><li>1/4 × 3은 얼마일까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${fracPieHtml(1,4,'#f0c040',48)}+${fracPieHtml(1,4,'#f0c040',48)}+${fracPieHtml(1,4,'#f0c040',48)}
+      <div style="font-size:.9rem;margin-top:6px">1/4을 3번 더한 것과 같아요 → 1×3/4 = <strong style="color:#3fb950">3/4</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">분자에만 자연수를 곱해요 (분모는 그대로)</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — (자연수)×(분수)</div>
+    <ul><li>3 × 1/4은 1/4 × 3과 같을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">3 × 1/4 = 3/4 = 1/4 × 3</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">곱하는 순서를 바꿔도 결과는 같아요(곱셈의 교환법칙) — 계산 방법도 똑같이 분자에 자연수를 곱해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — (진분수)×(진분수)</div>
+    <ul><li>2/3 × 3/4는 어떻게 계산할까요? 사각형 모델로 확인해볼게요</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${fracAreaModel(2,3,3,4)}
+      <div style="font-size:.68rem;color:#8b949e;margin-top:6px">가로 4칸 중 3칸(3/4, 파란색), 세로 3칸 중 2칸(2/3, 파란색) — 겹치는 초록 칸이 전체 12칸 중 6칸</div>
+      <div style="font-size:.9rem;margin-top:6px">2/3 × 3/4 = (2×3)/(3×4) = 6/12 = <strong style="color:#3fb950">1/2</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">분모는 분모끼리, 분자는 분자끼리 곱해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 계산 중간에 약분하기</div>
+    <ul><li>2/3 × 3/4를 계산 전에 미리 약분할 수 있을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">2/3 × 3/4 → 3(분모)과 3(분자)을 약분(÷3) → 2/1 × 1/4 = <strong style="color:#3fb950">2/4 = 1/2</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">다 곱한 다음 약분해도 되지만(6/12→1/2), 미리 약분하면 계산할 숫자가 작아져서 더 편해요 — 답은 똑같아요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 대분수의 곱셈</div>
+    <ul><li>1과 1/2 × 2와 1/3은 어떻게 계산할까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">대분수를 먼저 가분수로: 1과 1/2 = 3/2, 2와 1/3 = 7/3</div>
+      <div style="font-size:.9rem;margin-top:4px">3/2 × 7/3 = 21/6 = <strong style="color:#3fb950">3과 1/2</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">대분수는 자연수 부분과 분수 부분이 섞여 있어서, 가분수로 바꾼 다음 곱해야 정확해요</div>
+    </div>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 분수끼리 곱할 때는 왜 분모는 분모끼리, 분자는 분자끼리 곱할까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5fracmul-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e5fracmul-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e5fracmul-h1',0,this)">사각형을 가로·세로로 나눠보면, 전체 칸 수는 분모끼리 곱한 것이고 겹치는 칸 수는 분자끼리 곱한 것이라서 그래요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5fracmul-h1',1,this)">그냥 곱셈은 항상 분모끼리 분자끼리 하는 규칙이라 이유는 없어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5fracmul-h1',2,this)">분수 덧셈처럼 분모를 통분한 다음 분자만 곱하는 거예요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e5fracmul-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 계산 전에 미리 약분을 하면 왜 편리할까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5fracmul-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e5fracmul-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e5fracmul-h2',0,this)">미리 약분하면 곱할 숫자가 작아져서 계산이 쉬워지고, 나중에 큰 수를 다시 약분할 필요가 없어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5fracmul-h2',1,this)">미리 약분 안 하면 답이 틀려요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5fracmul-h2',2,this)">약분은 아무 때나 해도 상관없고 편리함과는 관계없어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e5fracmul-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 대분수를 곱할 때는 왜 꼭 가분수로 바꿔야 할까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5fracmul-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e5fracmul-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e5fracmul-h3',0,this)">대분수는 자연수 부분과 분수 부분이 섞여 있어서, 자연수 부분끼리·분수 부분끼리만 따로 곱하면 틀려요. 가분수로 합쳐야 정확해요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5fracmul-h3',1,this)">가분수가 더 보기 편해서예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e5fracmul-h3',2,this)">대분수는 원래 곱셈이 안 되는 수예요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e5fracmul-h3"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제: 2/5 × 4를 계산하세요.</div>
+      <div class="fb-diagram">${fracPieHtml(2,5,'#f0c040',52)}<span class="cap">2/5를 4번 더하는 것과 같아요</span></div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5fracmul-p1',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5fracmul-p1">
+        <div class="sol"><strong>풀이:</strong> 2×4/5 = 8/5 = <strong style="color:#3fb950">1과 3/5</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 3/4 × 2/5를 계산하세요.</div>
+      <div class="fb-diagram">${fracAreaModel(3,4,2,5)}<span class="cap">가로 5칸 중 2칸, 세로 4칸 중 3칸이 겹치는 칸을 세어보세요</span></div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5fracmul-p2',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5fracmul-p2">
+        <div class="sol"><strong>풀이:</strong> (3×2)/(4×5) = 6/20 = <strong style="color:#3fb950">3/10</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 4/9 × 3/8을 약분을 활용해서 계산하세요.</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5fracmul-p3',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5fracmul-p3">
+        <div class="sol"><strong>풀이:</strong> 4와 8을 4로 약분, 9와 3을 3으로 약분 → 1/3 × 1/2 = <strong style="color:#3fb950">1/6</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 1과 1/3 × 2와 1/4를 계산하세요.</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5fracmul-p4',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5fracmul-p4">
+        <div class="sol"><strong>풀이:</strong> 가분수로: 4/3 × 9/4 = 36/12 = <strong style="color:#3fb950">3</strong></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <p>지금까지 배운 분수의 곱셈을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+      <div id="fmw-1" class="prob-q" data-n="2" data-d="5" data-k="3" data-qtext="2/5 × 3을 계산하세요." data-solfn="fmwSol1">2/5 × 3을 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol1('fmw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen1('fmw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+      <div id="fmw-2" class="prob-q" data-n="3" data-d="4" data-k="2" data-qtext="2 × 3/4을 계산하세요." data-solfn="fmwSol2">2 × 3/4을 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol2('fmw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen2('fmw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+      <div id="fmw-3" class="prob-q" data-n1="2" data-d1="3" data-n2="3" data-d2="4" data-qtext="2/3 × 3/4을 계산하세요." data-solfn="fmwSol3">2/3 × 3/4을 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol3('fmw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen3('fmw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+      <div id="fmw-4" class="prob-q" data-n1="4" data-d1="9" data-n2="3" data-d2="8" data-qtext="4/9 × 3/8을 약분을 활용해서 계산하세요." data-solfn="fmwSol4">4/9 × 3/8을 약분을 활용해서 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol4('fmw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen4('fmw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+      <div id="fmw-5" class="prob-q" data-whole="1" data-n="1" data-d="2" data-k="3" data-qtext="1과 1/2 × 3을 계산하세요." data-solfn="fmwSol5">1과 1/2 × 3을 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol5('fmw-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen5('fmw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+      <div id="fmw-6" class="prob-q" data-w1="1" data-n1="1" data-d1="3" data-w2="2" data-n2="1" data-d2="4" data-qtext="1과 1/3 × 2과 1/4을 계산하세요." data-solfn="fmwSol6">1과 1/3 × 2과 1/4을 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol6('fmw-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen6('fmw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+      <div id="fmw-7" class="prob-q" data-n1="3" data-d1="4" data-n2="2" data-d2="3" data-qtext="피자 한 판의 3/4이 남았습니다. 이걸 가족이 다시 2/3만큼만 먹으면, 전체 피자의 얼마를 먹은 건가요?" data-solfn="fmwSol7">피자 한 판의 3/4이 남았습니다. 이걸 가족이 다시 2/3만큼만 먹으면, 전체 피자의 얼마를 먹은 건가요?<br><button class="havruta-show-btn" onclick="fmwSol7('fmw-7')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen7('fmw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+      <div id="fmw-8" class="prob-q" data-total="3" data-n="2" data-d="5" data-qtext="길이가 3m인 리본이 있습니다. 이 리본의 2/5을 사용했다면, 사용한 리본은 몇 m인가요?" data-solfn="fmwSol8">길이가 3m인 리본이 있습니다. 이 리본의 2/5을 사용했다면, 사용한 리본은 몇 m인가요?<br><button class="havruta-show-btn" onclick="fmwSol8('fmw-8')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen8('fmw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9 (발전문제)</div>
+      <div id="fmw-9" class="prob-q" data-n1="1" data-d1="2" data-n2="2" data-d2="3" data-n3="3" data-d3="4" data-qtext="1/2 × 2/3 × 3/4을 계산하세요." data-solfn="fmwSol9">1/2 × 2/3 × 3/4을 계산하세요.<br><button class="havruta-show-btn" onclick="fmwSol9('fmw-9')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen9('fmw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10 (발전문제)</div>
+      <div id="fmw-10" class="prob-q" data-base="4" data-whole="1" data-n="1" data-d="2" data-qtext="설탕이 4kg 있습니다. 오늘 어제보다 1과 1/2배 더 많이 샀다면, 오늘 산 설탕은 몇 kg인가요?" data-solfn="fmwSol10">설탕이 4kg 있습니다. 오늘 어제보다 1과 1/2배 더 많이 샀다면, 오늘 산 설탕은 몇 kg인가요?<br><button class="havruta-show-btn" onclick="fmwSol10('fmw-10')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fmwGen10('fmw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line">
+      <div class="story-avatar">🧒</div>
+      <div class="story-bubble"><span class="story-name">민준</span>선생님, 1/2 × 1/3을 계산했는데, 분수 덧셈처럼 분모를 통분해서 3/6 × 2/6 = 6/36이라고 했어요. 맞나요?</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">👧</div>
+      <div class="story-bubble"><span class="story-name">서연</span>어? 1/2 × 1/3은 1/2의 1/3이니까, 1/2보다 작아야 하는데 6/36은 1/6이라 훨씬 작아지긴 하네... 근데 뭔가 이상해요.</div>
+    </div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>직접 사각형으로 확인해볼까요? 1/2×1/3은 원래 분모(2,3)로 바로 계산하면 1/6이에요. 민준이처럼 통분한 6,6을 쓰면 (2×3)/(6×6)=6/36인데, 이것도 사실 약분하면 1/6로 똑같아요!</div>
+    </div>
+    <div class="fb-diagram">${fracAreaModel(1,2,1,3)}<span class="cap">1/2×1/3 = 1/6 (통분한 3/6×2/6을 써도 계산 결과는 똑같이 1/6 — 다만 통분은 필요 없는 과정이라 숫자만 커져요)</span></div>
+    <div class="story-line">
+      <div class="story-avatar">🧑‍🏫</div>
+      <div class="story-bubble teacher"><span class="story-name">선생님</span>통분은 분모가 다른 분수를 "더하거나 뺄 때" 조각 크기를 맞추려고 하는 거예요. 곱셈은 조각 크기를 맞출 필요가 없어요 — 그냥 원래 분모·분자로 바로 분모는 분모끼리, 분자는 분자끼리 곱하면 돼요.</div>
+    </div>
+    <div class="story-takeaway"><strong>정리:</strong> 분수의 곱셈은 통분이 필요 없어요 — 분모는 분모끼리, 분자는 분자끼리 곱하면 됩니다. 통분은 덧셈·뺄셈에서만 필요한 과정이고, 곱셈에 써도 틀리진 않지만(약분하면 같은 답) 불필요하게 숫자만 커져요.</div>
+  `}
+];
+CV_DATA['e5fracmul'] = CV_DATA_E5FRACMUL;
 const FB_DIAGRAM_H1A = '<div class="fb-diagram"><div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">'
   + '<div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div><div>🧑<br>🍬🍬🍬</div>'
   + '</div><span class="cap">사탕 15개를 5명에게 나눠주면 → 15÷5=3, 1인당 3개 (사람 수 5를 아니까 나눠주기)</span></div>';
@@ -4136,6 +4355,9 @@ const FB_DIAGRAM_FRAC2_H4 = '<div class="fb-diagram">'+fracPieHtml(4,6,'#f0c040'
 const FB_DIAGRAM_RANGE_H1 = '<div class="fb-diagram">'+rangeLineSvg(136,144,140,true,'ge')+'<span class="cap">140cm "이상"이면 140cm인 친구도 탈 수 있지만, "초과"였다면 못 타요 — 경계값 하나로 결과가 갈려요</span></div>';
 const FB_DIAGRAM_RANGE_H2 = '<div class="fb-diagram">138÷10=13.8 → 버림 13상자(8개 못 담음) vs 올림 14상자(전부 담김)<span class="cap">"모자라면 안 되는" 상황은 올림, "더 주면 안 되는" 상황은 버림을 써요</span></div>';
 const FB_DIAGRAM_RANGE_H3 = '<div class="fb-diagram">0 1 2 3 4 | 5 6 7 8 9<span class="cap">5는 0~9의 정확히 중간이에요 — 5 미만이면 아래로, 5 이상이면 위로 가는 게 "더 가까운 쪽"이에요</span></div>';
+const FB_DIAGRAM_FRACMUL_H1 = '<div class="fb-diagram">'+fracAreaModel(2,3,3,4)+'<span class="cap">전체 칸(분모끼리 곱, 3×4=12)과 겹치는 칸(분자끼리 곱, 2×3=6)을 눈으로 확인할 수 있어요</span></div>';
+const FB_DIAGRAM_FRACMUL_H2 = '<div class="fb-diagram">4/9×3/8 → 약분 후 1/3×1/2=1/6 (작은 수로 계산)<span class="cap">미리 약분하면 큰 수를 곱하고 나중에 다시 약분하는 수고를 덜어요</span></div>';
+const FB_DIAGRAM_FRACMUL_H3 = '<div class="fb-diagram">1과1/2 × 2와1/3 → 3/2 × 7/3 = 7/2<span class="cap">가분수로 바꾸지 않고 자연수 부분·분수 부분을 따로 곱하면 틀린 답이 나와요</span></div>';
 const FB_DIAGRAM_CORR2 = '<div class="fb-diagram">탁자 50개일 때 의자 수 = 50×2+2 = <strong style="color:#3fb950">102개</strong><span class="cap">직접 탁자를 늘어놓고 세려면 오래 걸리지만, 식이 있으면 □ 자리에 숫자만 넣어서 바로 구할 수 있어요</span></div>';
 const FB_DIAGRAM_CORR3 = '<div class="fb-diagram">△=□×2+2　=　y=x×2+2　=　★=♥×2+2<span class="cap">기호의 모양은 달라도 "탁자 수와 의자 수의 관계"라는 규칙 자체는 똑같아요</span></div>';
 const HAVRUTA_FB = {
@@ -4314,6 +4536,21 @@ const HAVRUTA_FB = {
     {ok:true, text:'맞아요! 5는 0과 10의 정확히 중간이라서, 5를 기준으로 나누면 "더 가까운 쪽"으로 어림하게 돼요.', diagram:FB_DIAGRAM_RANGE_H3},
     {ok:false, text:'그냥 좋아하는 숫자라서가 아니에요! 5는 0~9 중 정확히 가운데(중간)라서 기준이 되는 거예요.', diagram:FB_DIAGRAM_RANGE_H3},
     {ok:false, text:'아무 숫자나 되는 건 아니에요 — 5가 아닌 다른 수를 기준으로 하면 "더 가까운 쪽"으로 어림한다는 원래 목적과 안 맞아요.', diagram:FB_DIAGRAM_RANGE_H3}
+  ],
+  'e5fracmul-h1': [
+    {ok:true, text:'맞아요! 사각형으로 나눠보면 전체 칸 수=분모끼리 곱한 것, 겹치는 칸 수=분자끼리 곱한 것이 정확히 보여요.', diagram:FB_DIAGRAM_FRACMUL_H1},
+    {ok:false, text:'이유 없는 규칙이 아니에요! 사각형 모델로 직접 확인할 수 있어요 — 전체 칸과 겹치는 칸을 세어볼까요?', diagram:FB_DIAGRAM_FRACMUL_H1},
+    {ok:false, text:'그건 분수 덧셈·뺄셈에서 하는 통분이에요. 곱셈은 통분 없이 원래 분모·분자로 바로 계산해요.', diagram:FB_DIAGRAM_FRACMUL_H1}
+  ],
+  'e5fracmul-h2': [
+    {ok:true, text:'맞아요! 미리 약분하면 곱할 숫자가 작아져서 계산이 쉬워지고, 나중에 큰 수를 다시 약분할 필요가 없어요.', diagram:FB_DIAGRAM_FRACMUL_H2},
+    {ok:false, text:'미리 약분 안 해도 답은 맞아요! 다 곱한 다음 약분해도 결과는 똑같아요. 다만 계산이 더 번거로울 뿐이에요.', diagram:FB_DIAGRAM_FRACMUL_H2},
+    {ok:false, text:'약분은 계산을 쉽게 하려고 미리 하는 게 편해요 — 언제 하든 상관없다기보다, 먼저 하면 숫자가 작아지는 이점이 있어요.', diagram:FB_DIAGRAM_FRACMUL_H2}
+  ],
+  'e5fracmul-h3': [
+    {ok:true, text:'맞아요! 자연수 부분과 분수 부분을 따로 곱하면 틀려요. 가분수로 합쳐야 정확한 답이 나와요.', diagram:FB_DIAGRAM_FRACMUL_H3},
+    {ok:false, text:'보기 편해서가 아니에요! 가분수로 안 바꾸고 자연수·분수를 따로 곱하면 실제로 답이 틀려져요.', diagram:FB_DIAGRAM_FRACMUL_H3},
+    {ok:false, text:'대분수도 곱셈이 가능해요! 다만 가분수로 바꿔야 정확하게 계산할 수 있어요.', diagram:FB_DIAGRAM_FRACMUL_H3}
   ]
 };
 function weekdayStripSvg(startIdx, targetIdx){
@@ -5358,6 +5595,202 @@ function rgwSol10(id){
   var result = decideDigit>=5 ? lower+targetPv : lower;
   var diagram = '<div class="fb-diagram">"'+place+'의 자리에서"는 "'+place+'의 자리까지 통째로 0으로 만들고 한 단계 위까지 나타내기"와 같아요<br>'+place+'의 자리 숫자는 '+decideDigit+' → '+(decideDigit>=5?'올림':'버림')+' → <strong style="color:#3fb950">'+result+'</strong></div>';
   rgwRenderToggle(id, diagram, 'rgwSol10');
+}
+function fmwSetQuestion(el, qtext, solfn){
+  el.setAttribute('data-qtext', qtext);
+  el.setAttribute('data-solfn', solfn);
+  el.setAttribute('data-showing', '0');
+  el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+el.id+'\')">💡 풀이 보기</button>';
+}
+function fmwRenderToggle(id, diagramHtml, solfn){
+  var el = document.getElementById(id);
+  var qtext = el.getAttribute('data-qtext');
+  var showing = el.getAttribute('data-showing') === '1';
+  if(showing){
+    el.setAttribute('data-showing', '0');
+    el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">💡 풀이 보기</button>';
+  } else {
+    el.setAttribute('data-showing', '1');
+    el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">👆 접어두기</button>' + diagramHtml;
+  }
+}
+function fmwGcd(a,b){ while(b){ var t=b; b=a%b; a=t; } return a; }
+function fmwFmt(num,den){
+  var g = fmwGcd(num,den);
+  num/=g; den/=g;
+  if(den===1) return String(num);
+  if(num<den) return num+'/'+den;
+  var whole = Math.floor(num/den), rem = num%den;
+  return rem===0 ? String(whole) : whole+'과 '+rem+'/'+den;
+}
+function fmwGen1(id){
+  var d = 3+Math.floor(Math.random()*6);
+  var n = 1+Math.floor(Math.random()*(d-1));
+  var k = 2+Math.floor(Math.random()*5);
+  var el = document.getElementById(id);
+  el.setAttribute('data-n',n); el.setAttribute('data-d',d); el.setAttribute('data-k',k);
+  fmwSetQuestion(el, n+'/'+d+' × '+k+'을 계산하세요.', 'fmwSol1');
+}
+function fmwSol1(id){
+  var el = document.getElementById(id);
+  var n=+el.getAttribute('data-n'), d=+el.getAttribute('data-d'), k=+el.getAttribute('data-k');
+  var num=n*k;
+  var result = fmwFmt(num,d);
+  var diagram = '<div class="fb-diagram">'+n+'×'+k+'/'+d+' = '+num+'/'+d+' = <strong style="color:#3fb950">'+result+'</strong></div>';
+  fmwRenderToggle(id, diagram, 'fmwSol1');
+}
+function fmwGen2(id){
+  var d = 3+Math.floor(Math.random()*6);
+  var n = 1+Math.floor(Math.random()*(d-1));
+  var k = 2+Math.floor(Math.random()*5);
+  var el = document.getElementById(id);
+  el.setAttribute('data-n',n); el.setAttribute('data-d',d); el.setAttribute('data-k',k);
+  fmwSetQuestion(el, k+' × '+n+'/'+d+'을 계산하세요.', 'fmwSol2');
+}
+function fmwSol2(id){
+  var el = document.getElementById(id);
+  var n=+el.getAttribute('data-n'), d=+el.getAttribute('data-d'), k=+el.getAttribute('data-k');
+  var num=n*k;
+  var result = fmwFmt(num,d);
+  var diagram = '<div class="fb-diagram">'+k+'×'+n+'/'+d+' = '+num+'/'+d+' = <strong style="color:#3fb950">'+result+'</strong></div>';
+  fmwRenderToggle(id, diagram, 'fmwSol2');
+}
+function fmwGen3(id){
+  var d1=3+Math.floor(Math.random()*5), n1=1+Math.floor(Math.random()*(d1-1));
+  var d2=3+Math.floor(Math.random()*5), n2=1+Math.floor(Math.random()*(d2-1));
+  var el = document.getElementById(id);
+  el.setAttribute('data-n1',n1); el.setAttribute('data-d1',d1); el.setAttribute('data-n2',n2); el.setAttribute('data-d2',d2);
+  fmwSetQuestion(el, n1+'/'+d1+' × '+n2+'/'+d2+'을 계산하세요.', 'fmwSol3');
+}
+function fmwSol3(id){
+  var el = document.getElementById(id);
+  var n1=+el.getAttribute('data-n1'), d1=+el.getAttribute('data-d1'), n2=+el.getAttribute('data-n2'), d2=+el.getAttribute('data-d2');
+  var num=n1*n2, den=d1*d2;
+  var result = fmwFmt(num,den);
+  var diagram = '<div class="fb-diagram">'+fracAreaModel(n1,d1,n2,d2)+'('+n1+'×'+n2+')/('+d1+'×'+d2+') = '+num+'/'+den+' = <strong style="color:#3fb950">'+result+'</strong></div>';
+  fmwRenderToggle(id, diagram, 'fmwSol3');
+}
+function fmwGen4(id){
+  var n1,d1,n2,d2, tries=0;
+  do {
+    d1=3+Math.floor(Math.random()*6); n1=1+Math.floor(Math.random()*(d1-1));
+    d2=3+Math.floor(Math.random()*6); n2=1+Math.floor(Math.random()*(d2-1));
+    tries++;
+  } while(fmwGcd(n1*n2, d1*d2)===1 && tries<50);
+  var el = document.getElementById(id);
+  el.setAttribute('data-n1',n1); el.setAttribute('data-d1',d1); el.setAttribute('data-n2',n2); el.setAttribute('data-d2',d2);
+  fmwSetQuestion(el, n1+'/'+d1+' × '+n2+'/'+d2+'을 약분을 활용해서 계산하세요.', 'fmwSol4');
+}
+function fmwSol4(id){
+  var el = document.getElementById(id);
+  var n1=+el.getAttribute('data-n1'), d1=+el.getAttribute('data-d1'), n2=+el.getAttribute('data-n2'), d2=+el.getAttribute('data-d2');
+  var num=n1*n2, den=d1*d2;
+  var g = fmwGcd(num,den);
+  var result = fmwFmt(num,den);
+  var diagram = '<div class="fb-diagram">'+n1+'/'+d1+' × '+n2+'/'+d2+' = '+num+'/'+den+', 최대공약수 '+g+'로 약분 → <strong style="color:#3fb950">'+result+'</strong></div>';
+  fmwRenderToggle(id, diagram, 'fmwSol4');
+}
+function fmwGen5(id){
+  var whole = 1+Math.floor(Math.random()*3);
+  var d = 2+Math.floor(Math.random()*5);
+  var n = 1+Math.floor(Math.random()*(d-1));
+  var k = 2+Math.floor(Math.random()*4);
+  var el = document.getElementById(id);
+  el.setAttribute('data-whole',whole); el.setAttribute('data-n',n); el.setAttribute('data-d',d); el.setAttribute('data-k',k);
+  fmwSetQuestion(el, whole+'과 '+n+'/'+d+' × '+k+'을 계산하세요.', 'fmwSol5');
+}
+function fmwSol5(id){
+  var el = document.getElementById(id);
+  var whole=+el.getAttribute('data-whole'), n=+el.getAttribute('data-n'), d=+el.getAttribute('data-d'), k=+el.getAttribute('data-k');
+  var improperNum = whole*d+n;
+  var num = improperNum*k;
+  var result = fmwFmt(num,d);
+  var diagram = '<div class="fb-diagram">'+whole+'과 '+n+'/'+d+' = '+improperNum+'/'+d+' (가분수로) <span class="arrow">➜</span> '+improperNum+'×'+k+'/'+d+' = '+num+'/'+d+' = <strong style="color:#3fb950">'+result+'</strong></div>';
+  fmwRenderToggle(id, diagram, 'fmwSol5');
+}
+function fmwGen6(id){
+  var w1=1+Math.floor(Math.random()*2), d1=2+Math.floor(Math.random()*4), n1=1+Math.floor(Math.random()*(d1-1));
+  var w2=1+Math.floor(Math.random()*2), d2=2+Math.floor(Math.random()*4), n2=1+Math.floor(Math.random()*(d2-1));
+  var el = document.getElementById(id);
+  el.setAttribute('data-w1',w1); el.setAttribute('data-n1',n1); el.setAttribute('data-d1',d1);
+  el.setAttribute('data-w2',w2); el.setAttribute('data-n2',n2); el.setAttribute('data-d2',d2);
+  fmwSetQuestion(el, w1+'과 '+n1+'/'+d1+' × '+w2+'과 '+n2+'/'+d2+'을 계산하세요.', 'fmwSol6');
+}
+function fmwSol6(id){
+  var el = document.getElementById(id);
+  var w1=+el.getAttribute('data-w1'), n1=+el.getAttribute('data-n1'), d1=+el.getAttribute('data-d1');
+  var w2=+el.getAttribute('data-w2'), n2=+el.getAttribute('data-n2'), d2=+el.getAttribute('data-d2');
+  var num1=w1*d1+n1, num2=w2*d2+n2;
+  var num=num1*num2, den=d1*d2;
+  var result = fmwFmt(num,den);
+  var diagram = '<div class="fb-diagram">가분수로: '+num1+'/'+d1+' × '+num2+'/'+d2+' = '+num+'/'+den+' = <strong style="color:#3fb950">'+result+'</strong></div>';
+  fmwRenderToggle(id, diagram, 'fmwSol6');
+}
+function fmwGen7(id){
+  var d1=3+Math.floor(Math.random()*4), n1=1+Math.floor(Math.random()*(d1-1));
+  var d2=2+Math.floor(Math.random()*4), n2=1+Math.floor(Math.random()*(d2-1));
+  var el = document.getElementById(id);
+  el.setAttribute('data-n1',n1); el.setAttribute('data-d1',d1); el.setAttribute('data-n2',n2); el.setAttribute('data-d2',d2);
+  fmwSetQuestion(el, '피자 한 판의 '+n1+'/'+d1+'이 남았습니다. 이걸 가족이 다시 '+n2+'/'+d2+'만큼만 먹으면, 전체 피자의 얼마를 먹은 건가요?', 'fmwSol7');
+}
+function fmwSol7(id){
+  var el = document.getElementById(id);
+  var n1=+el.getAttribute('data-n1'), d1=+el.getAttribute('data-d1'), n2=+el.getAttribute('data-n2'), d2=+el.getAttribute('data-d2');
+  var num=n1*n2, den=d1*d2;
+  var result = fmwFmt(num,den);
+  var diagram = '<div class="fb-diagram">'+fracAreaModel(n1,d1,n2,d2)+n1+'/'+d1+' × '+n2+'/'+d2+' = '+num+'/'+den+' = <strong style="color:#3fb950">'+result+'</strong></div>';
+  fmwRenderToggle(id, diagram, 'fmwSol7');
+}
+function fmwGen8(id){
+  var total = 2+Math.floor(Math.random()*4);
+  var d=2+Math.floor(Math.random()*5), n=1+Math.floor(Math.random()*(d-1));
+  var el = document.getElementById(id);
+  el.setAttribute('data-total',total); el.setAttribute('data-n',n); el.setAttribute('data-d',d);
+  fmwSetQuestion(el, '길이가 '+total+'m인 리본이 있습니다. 이 리본의 '+n+'/'+d+'을 사용했다면, 사용한 리본은 몇 m인가요?', 'fmwSol8');
+}
+function fmwSol8(id){
+  var el = document.getElementById(id);
+  var total=+el.getAttribute('data-total'), n=+el.getAttribute('data-n'), d=+el.getAttribute('data-d');
+  var num=total*n;
+  var result = fmwFmt(num,d);
+  var diagram = '<div class="fb-diagram">'+total+' × '+n+'/'+d+' = '+num+'/'+d+' = <strong style="color:#3fb950">'+result+'m</strong></div>';
+  fmwRenderToggle(id, diagram, 'fmwSol8');
+}
+function fmwGen9(id){
+  var d1=2+Math.floor(Math.random()*4), n1=1+Math.floor(Math.random()*(d1-1));
+  var d2=2+Math.floor(Math.random()*4), n2=1+Math.floor(Math.random()*(d2-1));
+  var d3=2+Math.floor(Math.random()*4), n3=1+Math.floor(Math.random()*(d3-1));
+  var el = document.getElementById(id);
+  el.setAttribute('data-n1',n1); el.setAttribute('data-d1',d1);
+  el.setAttribute('data-n2',n2); el.setAttribute('data-d2',d2);
+  el.setAttribute('data-n3',n3); el.setAttribute('data-d3',d3);
+  fmwSetQuestion(el, n1+'/'+d1+' × '+n2+'/'+d2+' × '+n3+'/'+d3+'을 계산하세요.', 'fmwSol9');
+}
+function fmwSol9(id){
+  var el = document.getElementById(id);
+  var n1=+el.getAttribute('data-n1'), d1=+el.getAttribute('data-d1');
+  var n2=+el.getAttribute('data-n2'), d2=+el.getAttribute('data-d2');
+  var n3=+el.getAttribute('data-n3'), d3=+el.getAttribute('data-d3');
+  var num=n1*n2*n3, den=d1*d2*d3;
+  var result = fmwFmt(num,den);
+  var diagram = '<div class="fb-diagram">분자끼리, 분모끼리 순서대로 곱해요<br>('+n1+'×'+n2+'×'+n3+')/('+d1+'×'+d2+'×'+d3+') = '+num+'/'+den+' = <strong style="color:#3fb950">'+result+'</strong></div>';
+  fmwRenderToggle(id, diagram, 'fmwSol9');
+}
+function fmwGen10(id){
+  var base = 2+Math.floor(Math.random()*4);
+  var whole=1, d=2+Math.floor(Math.random()*4), n=1+Math.floor(Math.random()*(d-1));
+  var el = document.getElementById(id);
+  el.setAttribute('data-base',base); el.setAttribute('data-whole',whole); el.setAttribute('data-n',n); el.setAttribute('data-d',d);
+  fmwSetQuestion(el, '설탕이 '+base+'kg 있습니다. 오늘 어제보다 '+whole+'과 '+n+'/'+d+'배 더 많이 샀다면, 오늘 산 설탕은 몇 kg인가요?', 'fmwSol10');
+}
+function fmwSol10(id){
+  var el = document.getElementById(id);
+  var base=+el.getAttribute('data-base'), whole=+el.getAttribute('data-whole'), n=+el.getAttribute('data-n'), d=+el.getAttribute('data-d');
+  var improperNum = whole*d+n;
+  var num = base*improperNum;
+  var result = fmwFmt(num,d);
+  var diagram = '<div class="fb-diagram">'+whole+'과 '+n+'/'+d+' = '+improperNum+'/'+d+' (가분수) <span class="arrow">➜</span> '+base+' × '+improperNum+'/'+d+' = '+num+'/'+d+' = <strong style="color:#3fb950">'+result+'kg</strong></div>';
+  fmwRenderToggle(id, diagram, 'fmwSol10');
 }
 function cvInit(id){
   const cards = CV_DATA[id];
