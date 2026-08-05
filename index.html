@@ -267,7 +267,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="home" class="screen active">
   <div style="width:100%;max-width:620px">
     <div style="text-align:center;padding:16px 0 16px">
-      <h1 style="font-family:'Jua',sans-serif;font-size:2.2rem;color:#fbbf24;text-shadow:0 0 30px rgba(251,191,36,.35)">🦕 토로의 수학왕국</h1>
+      <h1 style="font-family:'Jua',sans-serif;font-size:2.2rem;color:#fbbf24;text-shadow:0 0 30px rgba(251,191,36,.35)">🦕 신나는 수학여행 학원</h1>
       <p style="font-size:.9rem;color:var(--gray);margin-top:6px">직관 · 시각 · 논리 — 세 가지 방식으로 수학을 정복하세요</p>
     </div>
 
@@ -14062,7 +14062,11 @@ x²−2ax+a²+y²−2by+b²=r² → x²+y²−2ax−2by+(a²+b²−r²)=0<br><br
 <b>4단계</b> m=¾: <b>y=¾x−15/4</b> &nbsp; m=−¾: <b>y=−¾x+15/4</b>
 <div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
 🔗 만약 "두 접선의 기울기 곱"만 물었다면, 3단계의 16m²−9=0에서 근과 계수의 관계로 곱=−9/16을 바로 구할 수 있었어요 — 4단계까지 갈 필요가 없었던 거죠.
-</div>` },
+</div>
+<div id="ln-tangentfull-out" data-v="3,5,4" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>원 x²+y²=9 밖의 점 P(5,0)에서 원에 그은 두 접선의 방정식을 모두 구하면?</b><br><button onclick="lnShowTangentFull('ln-tangentfull-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextTangentFull('ln-tangentfull-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
 
 { tag:'접선 — 기울기 합·곱만 구하기(근과 계수의 관계) 4/4', tagColor:'#34d399',
     bg:'rgba(52,211,153,.06)', bd:'rgba(52,211,153,.3)',
@@ -14071,7 +14075,11 @@ x²−2ax+a²+y²−2by+b²=r² → x²+y²−2ax−2by+(a²+b²−r²)=0<br><br
 </div>`,
     ans:`접선을 y=mx+4, 즉 mx−y+4=0으로 놓으면<br>
 중심(0,0)에서 거리=반지름: |4|/√(m²+1)=2 → 16=4(m²+1) → 4m²−12=0 → <b>m²−3=0</b><br>
-이건 m에 대한 이차방정식 1·m²+0·m−3=0 → 근과 계수의 관계로 <b>합=0, 곱=−3</b>` }
+이건 m에 대한 이차방정식 1·m²+0·m−3=0 → 근과 계수의 관계로 <b>합=0, 곱=−3</b>
+<div id="ln-tangentsp-out" data-v="2,0,4" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>원 x²+y²=4, 점(0,4)에서 그은 두 접선의 기울기의 합과 곱을 각각 구하세요.</b><br><button onclick="lnShowTangentSumProd('ln-tangentsp-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextTangentSumProd('ln-tangentsp-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` }
 ],
 
 /* ── 원이 되는 자취 (아폴로니오스 원) ── */
@@ -16364,6 +16372,82 @@ function lnShowSegQuad(id){
     + '<b>4단계</b> l이 이 선분과 만나려면 두 기울기 사이 → <b>'+gFracHTML(loFrac[0],loFrac[1])+' &lt; k &lt; '+gFracHTML(hiFrac[0],hiFrac[1])+'</b>'
     + svgSegQuadHTML(x0,y0,m2,n2,Q)
     + gNextBtn('lnNextSegQuad', id);
+}
+
+// ㉓ 원 밖의 점에서 그은 두 접선(완전풀이) — 피타고라스 3짝으로 깔끔한 기울기 생성
+var PYTHAG_TRIPLES = [[3,4,5],[6,8,10],[5,12,13],[9,12,15],[8,15,17],[12,16,20],[7,24,25],[10,24,26],[20,21,29],[9,40,41]];
+function gFracSigned(n,d){
+  var f=normFrac(n,d);
+  if(f[0]===0) return '';
+  return (f[0]>0?'+':'−') + gFracHTML(Math.abs(f[0]), f[1]);
+}
+function gCoefFrac(n,d){
+  var f=normFrac(n,d);
+  if(f[0]===f[1]) return 'x';
+  if(f[0]===-f[1]) return '−x';
+  var sign = f[0]<0?'−':'';
+  return sign+gFracHTML(Math.abs(f[0]),f[1])+'x';
+}
+function lnNextTangentFull(id){
+  var el=document.getElementById(id);
+  var triple = PYTHAG_TRIPLES[gRandInt(0,PYTHAG_TRIPLES.length-1)];
+  var legs = gRandInt(0,1)===0 ? [triple[0],triple[1]] : [triple[1],triple[0]];
+  var r=legs[0], b=legs[1], hyp=triple[2];
+  var px = hyp * (gRandInt(0,1)===0 ? 1 : -1);
+  el.setAttribute('data-v',[r,px,b].join(','));
+  el.innerHTML = gTangentFullQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowTangentFull', id);
+}
+function gTangentFullQuestion(dataStr){
+  var v=dataStr.split(',').map(Number);
+  var r=v[0],px=v[1];
+  return '<b>원 x²+y²='+(r*r)+' 밖의 점 P('+gFmt(px)+',0)에서 원에 그은 두 접선의 방정식을 모두 구하면?</b><br>';
+}
+function lnShowTangentFull(id){
+  var el=document.getElementById(id);
+  var v=el.getAttribute('data-v').split(',').map(Number);
+  var r=v[0],px=v[1],b=v[2];
+  var line1 = 'y='+gCoefFrac(r,b)+gFracSigned(-r*px,b);
+  var line2 = 'y='+gCoefFrac(-r,b)+gFracSigned(r*px,b);
+  var mTermStr = -px===0 ? '' : (-px>0 ? '+'+(-px)+'m' : '−'+px+'m');
+  el.innerHTML = gTangentFullQuestion(el.getAttribute('data-v'))
+    + '<b>1단계</b> P('+gFmt(px)+',0) 지나는 직선: y=m(x'+gNPart(-px)+'), 즉 mx−y'+mTermStr+'=0<br>'
+    + '<b>2단계</b> 중심(0,0)에서 거리=반지름: |'+gFmt(-px)+'m|/√(m²+1)='+r+'<br>'
+    + '<b>3단계</b> 제곱해서 정리: '+(px*px)+'m²='+(r*r)+'(m²+1) → '+(px*px-r*r)+'m²='+(r*r)+' → m²='+gFracHTML(r*r,px*px-r*r)+' → m=±'+gFracHTML(r,b)+'<br>'
+    + '<b>4단계</b> m='+gFracHTML(r,b)+': <b>'+line1+'</b> &nbsp; m=−'+gFracHTML(r,b)+': <b>'+line2+'</b>'
+    + gNextBtn('lnNextTangentFull', id);
+}
+
+// ㉔ 접선 기울기 합·곱만 구하기(근과 계수의 관계)
+function lnNextTangentSumProd(id){
+  var el=document.getElementById(id);
+  var r,px,py,tries=0;
+  do{
+    r=gRandInt(1,6);
+    px=gRandInt(-6,6);
+    py=gRandInt(-6,6);
+    tries++;
+  } while((px*px+py*py<=r*r || px*px===r*r) && tries<200);
+  el.setAttribute('data-v',[r,px,py].join(','));
+  el.innerHTML = gTangentSumProdQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowTangentSumProd', id);
+}
+function gTangentSumProdQuestion(dataStr){
+  var v=dataStr.split(',').map(Number);
+  var r=v[0],px=v[1],py=v[2];
+  return '<b>원 x²+y²='+(r*r)+', 점('+gFmt(px)+','+gFmt(py)+')에서 그은 두 접선의 기울기의 합과 곱을 각각 구하세요.</b><br>';
+}
+function lnShowTangentSumProd(id){
+  var el=document.getElementById(id);
+  var v=el.getAttribute('data-v').split(',').map(Number);
+  var r=v[0],px=v[1],py=v[2];
+  var A=px*px-r*r, B=-2*px*py, C=py*py-r*r;
+  var sumF=normFrac(-B,A), prodF=normFrac(C,A);
+  var xPart = px===0 ? 'x' : '(x'+gNPart(-px)+')';
+  el.innerHTML = gTangentSumProdQuestion(el.getAttribute('data-v'))
+    + '<b>1단계</b> 접선을 y'+gNPart(-py)+'=m'+xPart+'로 놓으면, mx−y+('+gFmt(py)+'−m×'+gFmt(px)+')=0<br>'
+    + '<b>2단계</b> 중심(0,0)에서 거리=반지름: |'+gFmt(py)+'−'+gFmt(px)+'m|/√(m²+1)='+r+'<br>'
+    + '<b>3단계</b> 제곱해서 정리: ('+gFmt(px*px-r*r)+')m²+('+gFmt(B)+')m+('+gFmt(C)+')=0<br>'
+    + '<b>4단계</b> 근과 계수의 관계: <b>합='+gFracHTML(sumF[0],sumF[1])+', 곱='+gFracHTML(prodF[0],prodF[1])+'</b>'
+    + gNextBtn('lnNextTangentSumProd', id);
 }
 
 // ── FM 나라별 방: 퀴즈 카드를 개념/연습 사이에 삽입 ──────
