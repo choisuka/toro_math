@@ -14125,7 +14125,7 @@ x²−2ax+a²+y²−2by+b²=r² → x²+y²−2ax−2by+(a²+b²−r²)=0<br><br
 <b>3단계</b> 두 접선이 수직 → (기울기의 곱)=−1 → −24/(a²−25)=−1 → a²−25=24 → a²=49<br>
 <b>4단계</b> a&gt;0이므로 <b>a=7</b>
 <div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
-🔗 "유사한 문제" 버튼을 누르면 수직 조건뿐 아니라 "기울기의 곱이 ○이다", "접선의 길이가 ○이다" 같은 다른 조건도 섞여 나와요 — 어떤 조건이든 결국 "접선을 세우고 → 거리=반지름 → 정리" 순서는 똑같아요.
+🔗 "유사한 문제" 버튼을 누르면 수직 조건뿐 아니라 "기울기의 곱이 ○이다", "접선의 길이가 ○이다" 같은 다른 조건도 섞여 나와요. 가끔은 점 대신 <b>반지름이 미지수</b>인 문제(점은 다 알려주고, 기울기의 곱으로 반지름을 역산)도 나와요 — 어떤 조건·어떤 미지수든 결국 "접선을 세우고 → 거리=반지름 → 정리" 순서는 똑같아요.
 </div>
 <div id="ln-tangentunkcond-out" data-v="perp,5,1,7,x,0" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
 <b>원 x²+y²=25, 점 P(a,1)에서 그은 두 접선이 서로 수직일 때, 양수 a의 값은?</b><br><button onclick="lnShowTangentUnknownCond('ln-tangentunkcond-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
@@ -16637,12 +16637,36 @@ function lnShowTangentLinePt(id){
 function lnNextTangentUnknownCond(id){
   var el=document.getElementById(id);
   var r,known,a,axis,mode,k,L,tries=0;
+  mode=['perp','prod','tlen','prodR'][gRandInt(0,3)];
+  if(mode==='prodR'){
+    var px,py,found=false;
+    while(!found && tries<500){
+      tries++;
+      a=gRandInt(1,4);
+      k=gRandInt(-5,5); if(k===0||k===1) continue;
+      px=gRandInt(-5,5); if(px*px===a*a) continue;
+      var py2=k*(px*px-a*a)+a*a;
+      if(py2<0||py2>100) continue;
+      var sqPy=Math.sqrt(py2);
+      if(sqPy!==Math.round(sqPy)) continue;
+      py=Math.round(sqPy)*(gRandInt(0,1)===0?1:-1);
+      if(px*px+py*py<=a*a) continue;
+      var A=px*px-a*a, C=py*py-a*a, B=-2*px*py;
+      var D=B*B-4*A*C;
+      if(D<0) continue;
+      if(Math.abs(C/A-k)>1e-9) continue;
+      found=true;
+    }
+    if(!found){ px=1; py=5; a=3; k=-2; }
+    el.setAttribute('data-v',['prodR',px,py,a,'na',k].join(','));
+    el.innerHTML = gTangentUnknownCondQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowTangentUnknownCond', id);
+    return;
+  }
   do{
     tries++;
     r=gRandInt(1,6);
     known=gRandInt(-6,6);
     axis=gRandInt(0,1)===0?'x':'y';
-    mode=['perp','prod','tlen'][gRandInt(0,2)];
     if(mode==='perp'){
       var X=2*r*r-known*known;
       if(X<=0){ a=null; continue; }
@@ -16652,19 +16676,19 @@ function lnNextTangentUnknownCond(id){
       if(a===0||a*a===r*r){ a=null; continue; }
     } else if(mode==='prod'){
       a=gRandInt(1,6);
-      var px=axis==='x'?a:known, py=axis==='x'?known:a;
-      var A=px*px-r*r, C=py*py-r*r;
-      if(A===0){ a=null; continue; }
-      k=C/A;
+      var px3=axis==='x'?a:known, py3=axis==='x'?known:a;
+      var A2=px3*px3-r*r, C2=py3*py3-r*r;
+      if(A2===0){ a=null; continue; }
+      k=C2/A2;
       if(!Number.isInteger(k)||k===-1||k===0||Math.abs(k)>8){ a=null; continue; }
-      var B=-2*px*py, D=B*B-4*A*C;
-      if(D<0){ a=null; continue; }
+      var B2=-2*px3*py3, D2=B2*B2-4*A2*C2;
+      if(D2<0){ a=null; continue; }
     } else {
       a=gRandInt(1,6);
       var px2=axis==='x'?a:known, py2=axis==='x'?known:a;
-      var L2=px2*px2+py2*py2-r*r;
-      if(L2<=0){ a=null; continue; }
-      var sqL=Math.sqrt(L2);
+      var L2b=px2*px2+py2*py2-r*r;
+      if(L2b<=0){ a=null; continue; }
+      var sqL=Math.sqrt(L2b);
       if(sqL!==Math.round(sqL)){ a=null; continue; }
       L=Math.round(sqL);
       if(L===0){ a=null; continue; }
@@ -16676,7 +16700,12 @@ function lnNextTangentUnknownCond(id){
 }
 function gTangentUnknownCondQuestion(dataStr){
   var v=dataStr.split(',');
-  var mode=v[0], r=Number(v[1]), known=Number(v[2]), axis=v[4], param=Number(v[5]);
+  var mode=v[0];
+  if(mode==='prodR'){
+    var px=Number(v[1]), py=Number(v[2]), k=Number(v[5]);
+    return '<b>원 x²+y²=a², 점 P('+gFmt(px)+','+gFmt(py)+')에서 그은 두 접선의 기울기의 곱이 '+gFmt(k)+'일 때, 양수 a의 값은?</b><br>';
+  }
+  var r=Number(v[1]), known=Number(v[2]), axis=v[4], param=Number(v[5]);
   var ptDisp = axis==='x' ? 'P(a,'+gFmt(known)+')' : 'P('+gFmt(known)+',a)';
   var tail = mode==='perp' ? '점 '+ptDisp+'에서 그은 두 접선이 서로 수직일 때'
     : mode==='prod' ? '점 '+ptDisp+'에서 그은 두 접선의 기울기의 곱이 '+gFmt(param)+'일 때'
@@ -16686,7 +16715,18 @@ function gTangentUnknownCondQuestion(dataStr){
 function lnShowTangentUnknownCond(id){
   var el=document.getElementById(id);
   var v=el.getAttribute('data-v').split(',');
-  var mode=v[0], r=Number(v[1]), known=Number(v[2]), a=Number(v[3]), axis=v[4], param=Number(v[5]);
+  var mode=v[0];
+  if(mode==='prodR'){
+    var px=Number(v[1]), py=Number(v[2]), a=Number(v[3]), k=Number(v[5]);
+    var html2 = gTangentUnknownCondQuestion(el.getAttribute('data-v'));
+    html2 += '<b>1단계</b> 접선을 y'+gNPart(-py)+'=m(x'+gNPart(-px)+')로 놓으면 mx−y+('+gFmt(py)+'−m×'+gFmt(px)+')=0<br>'
+      + '<b>2단계</b> 중심(0,0)에서 거리=반지름(=a): 제곱해서 정리하면 ('+gFmt(px*px)+'−a²)m²+('+gFmt(-2*px*py)+')m+('+gFmt(py*py)+'−a²)=0<br>'
+      + '<b>3단계</b> 근과 계수의 관계: 곱=('+gFmt(py*py)+'−a²)/('+gFmt(px*px)+'−a²)='+gFmt(k)+' → 이 식을 a²에 대해 정리하면 <b>a²='+(a*a)+'</b><br>'
+      + '<b>4단계</b> a&gt;0이므로 <b>a='+a+'</b>';
+    el.innerHTML = html2 + gNextBtn('lnNextTangentUnknownCond', id);
+    return;
+  }
+  var r=Number(v[1]), known=Number(v[2]), a=Number(v[3]), axis=v[4], param=Number(v[5]);
   var html = gTangentUnknownCondQuestion(el.getAttribute('data-v'));
   var xPart = axis==='x' ? 'x−a' : 'x'+gNPart(-known);
   var yPart = axis==='x' ? 'y'+gNPart(-known) : 'y−a';
