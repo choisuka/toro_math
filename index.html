@@ -1673,7 +1673,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
         <div style="font-size:1.4rem">🔥</div>
         <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">실전문제</div>
         <div style="font-size:.62rem;color:#aaa;line-height:1.4">접선·넓이·최댓값·최솟값</div>
-        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">6장 →</div>
+        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">10장 →</div>
       </button>
       <button onclick="startCards('circle-real','circle-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
         <div style="font-size:1.4rem">🌍</div>
@@ -14479,7 +14479,64 @@ x절편: 각각 x=−4/√3, x=4/√3 → 밑변=8/√3, 높이=4(점의 y좌표
 <div id="ln-circtwomax-out" data-v="6,8,10,2,3" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
 <b>원 x²+y²=4 위를 움직이는 점 P와 원 (x−6)²+(y−8)²=9 위를 움직이는 점 Q에 대하여 선분 PQ의 길이의 최댓값은?</b><br><button onclick="lnShowCircTwoMax('ln-circtwomax-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
 </div>
-<button onclick="lnNextCircTwoMax('ln-circtwomax-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` }
+<button onclick="lnNextCircTwoMax('ln-circtwomax-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
+
+{ tag:'실전13 — 원 밖의 두 점+원 위의 동점, 삼각형 넓이(일반 직선)', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 두 점 A(−3,−3), B(0,−7)와 원 (x+3)²+(y−2)²=1 위를 움직이는 점 P에 대하여 삼각형 PAB의 넓이의 최댓값 M과 최솟값 m을 각각 구하면?
+</div>`,
+    ans:`실전11에서는 A,B가 x축 위였죠. 이번엔 A,B가 <b>기울어진 직선</b> 위에 있어요 — 방법은 똑같아요, 밑변 AB는 고정이고 중심에서 직선 AB까지의 거리 d만 구하면 돼요.<br><br>
+<b>1단계</b> 직선 AB의 방향은 (3,−4), 이에 수직인 법선 방향은 (4,3) → 원의 중심(−3,2)에서 직선 AB까지 거리 d=3(피타고라스 3,4,5 이용)<br>
+<b>2단계</b> d=3&gt;r=1이므로 원이 직선 AB와 안 만나요 → 높이의 범위는 2부터 4까지<br>
+<b>3단계</b> 밑변 AB=5(고정) → 최댓값 M=½×5×4=<b>10</b>, 최솟값 m=½×5×2=<b>5</b>
+<div id="ln-circtri2-out" data-v="4,3,5,-3,-3,1,1" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>두 점 A(−3,−3), B(0,−7)와 원 (x+3)²+(y−2)²=1 위를 움직이는 점 P에 대하여 삼각형 PAB의 넓이의 최댓값 M과 최솟값 m을 각각 구하면?</b><br><button onclick="lnShowCircTri2('ln-circtri2-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextCircTri2('ln-circtri2-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
+
+{ tag:'실전14 — 원 밖의 점과 원 위의 점 사이 거리의 최댓값·최솟값', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 원 x²+y²=9 밖의 점 F(13,0)와 원 위를 움직이는 점 Q에 대하여 선분 FQ의 길이의 최댓값 M과 최솟값 m을 각각 구하면?
+</div>`,
+    ans:`<b>1단계</b> OF=13(F가 x축 위에 있으니 원점에서 거리 그대로)<br>
+<b>2단계</b> Q가 O,F를 잇는 직선 위에서 F와 가장 먼 쪽에 있을 때 최대, 가장 가까운 쪽에 있을 때 최소가 돼요<br>
+<b>3단계</b> 최댓값 M=OF+r=13+3=<b>16</b>, 최솟값 m=OF−r=13−3=<b>10</b>
+<div id="ln-circptmm-out" data-v="13,3" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>원 x²+y²=9 밖의 점 F(13,0)와 원 위를 움직이는 점 Q에 대하여 선분 FQ의 길이의 최댓값 M과 최솟값 m을 각각 구하면?</b><br><button onclick="lnShowCircPtMM('ln-circptmm-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextCircPtMM('ln-circptmm-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
+
+{ tag:'실전15 — 거리가 정수인 점의 개수(최댓값·최솟값이 정수)', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 원 x²+y²=9 밖의 점 F(10,0)와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?
+</div>`,
+    ans:`<b>1단계</b> 최댓값 M=OF+r=13, 최솟값 m=OF−r=7 — 둘 다 정수예요<br>
+<b>2단계</b> 7부터 13까지 정수는 총 7개인데, 양 끝값(M,m)은 O,F를 잇는 직선 위의 점에서만 나와서 <b>1개씩</b>, 그 사이의 정수(8,9,10,11,12)는 원 위에서 대칭인 두 점에서 나와서 <b>2개씩</b>이에요<br>
+<b>3단계</b> 개수=1+1+2×5=<b>12</b>
+<div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
+🔗 공식으로 정리하면, 최댓값·최솟값이 둘 다 정수일 때 개수는 항상 <b>4r</b>이에요(r=3이니 4×3=12) — 왜 그런지는 위 풀이의 "양 끝 1개씩+안쪽 2개씩" 구조를 보면 알 수 있어요.
+</div>
+<div id="ln-circintcount-out" data-v="10,3" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>원 x²+y²=9 밖의 점 F(10,0)와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?</b><br><button onclick="lnShowCircIntCount('ln-circintcount-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextCircIntCount('ln-circintcount-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
+
+{ tag:'실전16 — 거리가 정수인 점의 개수(최댓값·최솟값이 정수 아님)', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 원 x²+y²=1 밖의 점 F(1,−1)와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?
+</div>`,
+    ans:`이번엔 F가 x축 위가 아니라서 OF가 정수가 아니에요 — 그래서 최댓값·최솟값도 정수가 아니고, "양 끝 1개씩" 규칙을 못 써요.<br><br>
+<b>1단계</b> OF=√(1+1)=√2≈1.41 — 정수가 아니에요<br>
+<b>2단계</b> 최댓값 M=OF+r=√2+1≈2.41, 최솟값 m=OF−r=√2−1≈0.41도 정수가 아니니, 그 사이(0.41&lt;k&lt;2.41)에 있는 정수 k를 하나씩 확인해요: 후보는 <b>1, 2</b><br>
+<b>3단계</b> M,m이 정수가 아니라서 "양 끝 1개" 예외가 없어요 — 구간 안의 정수는 전부 대칭인 두 점에서 나오니 전부 2개씩 → 개수=2×2=<b>4</b>
+<div id="ln-circintcountirr-out" data-v="1,-1,2,1" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>원 x²+y²=1 밖의 점 F(1,−1)와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?</b><br><button onclick="lnShowCircIntCountIrr('ln-circintcountirr-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+</div>
+<button onclick="lnNextCircIntCountIrr('ln-circintcountirr-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` }
 ],
 
 'circle-real': [
@@ -16973,6 +17030,134 @@ function lnShowCircTwoMax(id){
     + '<b>2단계</b> 두 원이 서로 안 겹치면(d&gt;r₁+r₂), PQ가 최대가 되는 건 두 점이 중심을 잇는 선 위에서 바깥쪽으로 각각 벌어질 때예요<br>'
     + '<b>3단계</b> 최댓값=d+r₁+r₂='+d+'+'+r1+'+'+r2+'=<b>'+(d+r1+r2)+'</b>'
     + gNextBtn('lnNextCircTwoMax', id);
+}
+
+// ㉝ 실전13 — 원 밖의 두 점 + 원 위의 동점, 삼각형 넓이의 최댓값·최솟값(일반 직선)
+var CIRC_TRI2_TRIPLES=[[3,4,5],[6,8,10],[5,12,13],[8,15,17]];
+function lnNextCircTri2(id){
+  var el=document.getElementById(id);
+  var triple = CIRC_TRI2_TRIPLES[gRandInt(0,CIRC_TRI2_TRIPLES.length-1)];
+  var legs = gRandInt(0,1)===0 ? [triple[0],triple[1]] : [triple[1],triple[0]];
+  var leg1=legs[0], leg2=legs[1], hyp=triple[2];
+  var x0=gRandInt(-3,3), y0=gRandInt(-3,3);
+  var sign = gRandInt(0,1)===0?1:-1;
+  var r=gRandInt(1,leg2-1);
+  el.setAttribute('data-v',[leg1,leg2,hyp,x0,y0,sign,r].join(','));
+  el.innerHTML = gCircTri2Question(el.getAttribute('data-v')) + gSolBtn('lnShowCircTri2', id);
+}
+function gCircTri2Vals(v){
+  var leg1=v[0],leg2=v[1],hyp=v[2],x0=v[3],y0=v[4],sign=v[5],r=v[6];
+  var Ax=x0, Ay=y0, Bx=x0+leg2, By=y0-leg1;
+  var cy = y0+sign*hyp;
+  var d = leg2;
+  return {leg1,leg2,hyp,x0,y0,sign,r,Ax,Ay,Bx,By,cy,d,AB:hyp};
+}
+function gCircTri2Question(dataStr){
+  var v=dataStr.split(',').map(Number);
+  var g=gCircTri2Vals(v);
+  return '<b>두 점 A('+gFmt(g.Ax)+','+gFmt(g.Ay)+'), B('+gFmt(g.Bx)+','+gFmt(g.By)+')와 원 (x'+gNPart(-g.x0)+')²+(y'+gNPart(-g.cy)+')²='+(g.r*g.r)+' 위를 움직이는 점 P에 대하여 삼각형 PAB의 넓이의 최댓값 M과 최솟값 m을 각각 구하면?</b><br>';
+}
+function lnShowCircTri2(id){
+  var el=document.getElementById(id);
+  var v=el.getAttribute('data-v').split(',').map(Number);
+  var g=gCircTri2Vals(v);
+  var M=0.5*g.AB*(g.d+g.r), m=0.5*g.AB*(g.d-g.r);
+  var MF=normFrac(M*2,2), mF=normFrac(m*2,2);
+  el.innerHTML = gCircTri2Question(el.getAttribute('data-v'))
+    + '<b>1단계</b> 직선 AB의 방향은 ('+g.leg2+','+gFmt(-g.leg1)+'), 수직인 법선 방향은 ('+g.leg1+','+g.leg2+') → 원의 중심에서 직선 AB까지 거리 d='+g.d+'(피타고라스 '+g.leg1+','+g.leg2+','+g.hyp+' 이용)<br>'
+    + '<b>2단계</b> d='+g.d+'&gt;r='+g.r+'이므로 원이 직선 AB와 안 만나요 → 높이의 범위는 '+(g.d-g.r)+'부터 '+(g.d+g.r)+'까지<br>'
+    + '<b>3단계</b> 밑변 AB='+g.AB+'(고정) → 최댓값 M=½×'+g.AB+'×'+(g.d+g.r)+'=<b>'+gFracHTML(MF[0],MF[1])+'</b>, 최솟값 m=½×'+g.AB+'×'+(g.d-g.r)+'=<b>'+gFracHTML(mF[0],mF[1])+'</b>'
+    + gNextBtn('lnNextCircTri2', id);
+}
+
+// ㉞ 실전14 — 원 밖의 점과 원 위의 점 사이 거리의 최댓값·최솟값
+function lnNextCircPtMM(id){
+  var el=document.getElementById(id);
+  var fo=gRandInt(3,15);
+  var r=gRandInt(1,fo-1);
+  el.setAttribute('data-v',[fo,r].join(','));
+  el.innerHTML = gCircPtMMQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowCircPtMM', id);
+}
+function gCircPtMMQuestion(dataStr){
+  var v=dataStr.split(',').map(Number);
+  var fo=v[0],r=v[1];
+  return '<b>원 x²+y²='+(r*r)+' 밖의 점 F('+fo+',0)와 원 위를 움직이는 점 Q에 대하여 선분 FQ의 길이의 최댓값 M과 최솟값 m을 각각 구하면?</b><br>';
+}
+function lnShowCircPtMM(id){
+  var el=document.getElementById(id);
+  var v=el.getAttribute('data-v').split(',').map(Number);
+  var fo=v[0],r=v[1];
+  el.innerHTML = gCircPtMMQuestion(el.getAttribute('data-v'))
+    + '<b>1단계</b> OF='+fo+'(F가 x축 위에 있으니 원점에서 거리 그대로)<br>'
+    + '<b>2단계</b> Q가 O,F를 잇는 직선 위에서 F와 가장 먼 쪽에 있을 때 최대, 가장 가까운 쪽에 있을 때 최소가 돼요<br>'
+    + '<b>3단계</b> 최댓값 M=OF+r='+fo+'+'+r+'=<b>'+(fo+r)+'</b>, 최솟값 m=OF−r='+fo+'−'+r+'=<b>'+(fo-r)+'</b>'
+    + gNextBtn('lnNextCircPtMM', id);
+}
+
+// ㉟ 실전15 — 거리가 정수인 점의 개수(최댓값·최솟값이 정수인 경우)
+function lnNextCircIntCount(id){
+  var el=document.getElementById(id);
+  var fo=gRandInt(3,15);
+  var r=gRandInt(1,fo-1);
+  el.setAttribute('data-v',[fo,r].join(','));
+  el.innerHTML = gCircIntCountQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowCircIntCount', id);
+}
+function gCircIntCountQuestion(dataStr){
+  var v=dataStr.split(',').map(Number);
+  var fo=v[0],r=v[1];
+  return '<b>원 x²+y²='+(r*r)+' 밖의 점 F('+fo+',0)와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?</b><br>';
+}
+function lnShowCircIntCount(id){
+  var el=document.getElementById(id);
+  var v=el.getAttribute('data-v').split(',').map(Number);
+  var fo=v[0],r=v[1];
+  var mn=fo-r, mx=fo+r;
+  el.innerHTML = gCircIntCountQuestion(el.getAttribute('data-v'))
+    + '<b>1단계</b> 최댓값 M=OF+r='+mx+', 최솟값 m=OF−r='+mn+' — 둘 다 정수예요<br>'
+    + '<b>2단계</b> '+mn+'부터 '+mx+'까지 정수는 총 '+(mx-mn+1)+'개인데, 양 끝값(M,m)은 O,F를 잇는 직선 위의 점에서만 나와서 <b>1개씩</b>, 그 사이의 정수는 원 위에서 대칭인 두 점에서 나와서 <b>2개씩</b>이에요<br>'
+    + '<b>3단계</b> 개수=1+1+2×'+(mx-mn-1)+'=<b>'+(4*r)+'</b>'
+    + gNextBtn('lnNextCircIntCount', id);
+}
+
+// ㊱ 실전16 — 거리가 정수인 점의 개수(최댓값·최솟값이 정수가 아닌 경우)
+function lnNextCircIntCountIrr(id){
+  var el=document.getElementById(id);
+  var fx,fy,N,r,tries=0;
+  do{
+    tries++;
+    fx=gRandInt(-8,8); fy=gRandInt(-8,8);
+    N=fx*fx+fy*fy;
+    var sq=Math.sqrt(N);
+    if(N===0 || sq===Math.round(sq)){ r=null; continue; }
+    var foFloor=Math.floor(sq);
+    if(foFloor<1){ r=null; continue; }
+    r=gRandInt(1,foFloor);
+    if(sq-r<=0){ r=null; continue; }
+  } while(r===null && tries<300);
+  if(r===null){ fx=1; fy=-1; N=2; r=1; }
+  el.setAttribute('data-v',[fx,fy,N,r].join(','));
+  el.innerHTML = gCircIntCountIrrQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowCircIntCountIrr', id);
+}
+function gCircIntCountIrrQuestion(dataStr){
+  var v=dataStr.split(',').map(Number);
+  var fx=v[0],fy=v[1],r=v[3];
+  return '<b>원 x²+y²='+(r*r)+' 밖의 점 F('+gFmt(fx)+','+gFmt(fy)+')와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?</b><br>';
+}
+function lnShowCircIntCountIrr(id){
+  var el=document.getElementById(id);
+  var v=el.getAttribute('data-v').split(',').map(Number);
+  var fx=v[0],fy=v[1],N=v[2],r=v[3];
+  var qualifying=[];
+  for(var k=1;k<40;k++){
+    var cond1=(k+r)*(k+r) > N;
+    var cond2=(k-r<0) || ((k-r)*(k-r) < N);
+    if(cond1 && cond2) qualifying.push(k);
+  }
+  el.innerHTML = gCircIntCountIrrQuestion(el.getAttribute('data-v'))
+    + '<b>1단계</b> OF=√('+(fx*fx)+'+'+(fy*fy)+')='+gSqrtHTML(N)+' — 정수가 아니에요<br>'
+    + '<b>2단계</b> 최댓값 M=OF+r, 최솟값 m=OF−r도 정수가 아니니, 그 사이(m&lt;k&lt;M)에 있는 정수 k를 하나씩 확인해요: 후보는 <b>'+qualifying.join(', ')+'</b><br>'
+    + '<b>3단계</b> 이 구간 안의 정수는 전부 원 위의 대칭인 두 점에서 나오니 2개씩 → 개수='+qualifying.length+'×2=<b>'+(qualifying.length*2)+'</b>'
+    + gNextBtn('lnNextCircIntCountIrr', id);
 }
 
 // ── FM 나라별 방: 퀴즈 카드를 개념/연습 사이에 삽입 ──────
