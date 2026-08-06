@@ -14356,18 +14356,7 @@ x²,y² 항이 이번엔 <b>사라지지 않고 남아서</b> 원의 방정식�
 x절편: 각각 x=−4/√3, x=4/√3 → 밑변=8/√3, 높이=4(점의 y좌표)<br>
 넓이=½×<span class="frac"><span class="num">8</span><span class="den">√3</span></span>×4=<span class="frac"><span class="num">16</span><span class="den">√3</span></span>=<b><span class="frac"><span class="num">16√3</span><span class="den">3</span></span></b>
 <div style="text-align:center;margin:10px 0">
-<svg width="200" height="160" viewBox="0 0 200 160">
-  <line x1="10" y1="140" x2="190" y2="140" stroke="#94a3b8" stroke-width="1.1"/>
-  <line x1="100" y1="150" x2="100" y2="10" stroke="#94a3b8" stroke-width="1.1"/>
-  <circle cx="100" cy="140" r="40" fill="rgba(134,239,172,.08)" stroke="#86efac" stroke-width="2"/>
-  <polygon points="100,60 53.8,140 146.2,140" fill="rgba(253,230,138,.1)" stroke="#fde68a" stroke-width="1.8"/>
-  <circle cx="100" cy="60" r="4" fill="#fde68a"/>
-  <circle cx="53.8" cy="140" r="3.5" fill="#e2e8f0"/>
-  <circle cx="146.2" cy="140" r="3.5" fill="#e2e8f0"/>
-  <text x="106" y="58" font-size="10" font-weight="700" fill="#fde68a">P(0,4)</text>
-  <text x="14" y="136" font-size="9" font-weight="700" fill="#e2e8f0">(−4/√3,0)</text>
-  <text x="120" y="136" font-size="9" font-weight="700" fill="#e2e8f0">(4/√3,0)</text>
-</svg>
+${svgCircAreaHTML(2,4,Math.sqrt(12))}
 <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">노랑 삼각형=두 접선과 x축이 만드는 영역 — 밑변은 두 접선의 x절편 사이, 높이는 P의 y좌표</div>
 </div>
 <div id="ln-circarea-out" data-v="3,5,4" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
@@ -17348,6 +17337,33 @@ function lnShowTangentUnknownCond(id){
   el.innerHTML = html + gNextBtn('lnNextTangentUnknownCond', id);
 }
 
+// 원 실전7~9,13,15,16 그림용 공유 헬퍼: world 좌표 bbox를 픽셀 viewBox에 맞춰 매핑
+function svgFitMap(xs, ys, W, H, pad){
+  var minX=Math.min.apply(null,xs), maxX=Math.max.apply(null,xs);
+  var minY=Math.min.apply(null,ys), maxY=Math.max.apply(null,ys);
+  var spanX=(maxX-minX)||1, spanY=(maxY-minY)||1;
+  var scale=Math.min((W-2*pad)/spanX,(H-2*pad)/spanY);
+  var ox = pad - minX*scale, oy = (H-pad) + minY*scale;
+  return function(x,y){ return [ox+x*scale, oy-y*scale]; };
+}
+function svgCircAreaHTML(r,py,s){
+  var xInt = py*r/s;
+  var W=200,H=170,pad=22;
+  var map=svgFitMap([-r,r,-xInt,xInt],[-r,r,0,py],W,H,pad);
+  var O=map(0,0), P=map(0,py), A=map(-xInt,0), B=map(xInt,0);
+  var rp = Math.abs(map(r,0)[0]-O[0]);
+  return '<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'
+    +'<line x1="'+(pad*0.3).toFixed(1)+'" y1="'+O[1].toFixed(1)+'" x2="'+(W-pad*0.3).toFixed(1)+'" y2="'+O[1].toFixed(1)+'" stroke="#94a3b8" stroke-width="1.1"/>'
+    +'<line x1="'+O[0].toFixed(1)+'" y1="'+(H-pad*0.3).toFixed(1)+'" x2="'+O[0].toFixed(1)+'" y2="'+(pad*0.3).toFixed(1)+'" stroke="#94a3b8" stroke-width="1.1"/>'
+    +'<circle cx="'+O[0].toFixed(1)+'" cy="'+O[1].toFixed(1)+'" r="'+rp.toFixed(1)+'" fill="rgba(134,239,172,.08)" stroke="#86efac" stroke-width="2"/>'
+    +'<polygon points="'+P[0].toFixed(1)+','+P[1].toFixed(1)+' '+A[0].toFixed(1)+','+A[1].toFixed(1)+' '+B[0].toFixed(1)+','+B[1].toFixed(1)+'" fill="rgba(253,230,138,.1)" stroke="#fde68a" stroke-width="1.8"/>'
+    +'<circle cx="'+P[0].toFixed(1)+'" cy="'+P[1].toFixed(1)+'" r="4" fill="#fde68a"/>'
+    +'<circle cx="'+A[0].toFixed(1)+'" cy="'+A[1].toFixed(1)+'" r="3.5" fill="#e2e8f0"/>'
+    +'<circle cx="'+B[0].toFixed(1)+'" cy="'+B[1].toFixed(1)+'" r="3.5" fill="#e2e8f0"/>'
+    +'<text x="'+(P[0]+6).toFixed(1)+'" y="'+(P[1]-4).toFixed(1)+'" font-size="10" font-weight="700" fill="#fde68a">P(0,'+py+')</text>'
+    +'</svg>';
+}
+
 // ㉗ 실전7 — 두 접선과 좌표축으로 둘러싸인 넓이
 function lnNextCircArea(id){
   var el=document.getElementById(id);
@@ -17377,6 +17393,7 @@ function lnShowCircArea(id){
     + '<b>1단계</b> 접선을 y=mx+'+py+'로 놓으면 거리=반지름: '+gFracSym('|'+py+'|','√(m²+1)')+'='+r+' → m²='+gFracHTML(py*py-r*r,r*r)+'<br>'
     + '<b>2단계</b> m=±'+gFracHTML(s,r)+', 두 접선의 x절편은 각각 ∓'+gFracHTML(py*r,s)+' → 밑변='+gFracHTML(2*py*r,s)+', 높이='+py+'<br>'
     + '<b>3단계</b> 넓이=½×'+gFracHTML(2*py*r,s)+'×'+py+'=<b>'+gFracHTML(areaF[0],areaF[1])+'</b>'
+    + '<div style="text-align:center;margin:10px 0">'+svgCircAreaHTML(r,py,s)+'<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">노랑 삼각형=두 접선과 x축이 만드는 영역 — 밑변은 두 접선의 x절편 사이, 높이는 P의 y좌표</div></div>'
     + gNextBtn('lnNextCircArea', id);
 }
 
