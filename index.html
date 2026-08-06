@@ -1671,15 +1671,21 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
       <button onclick="startCards('circle-practice','circle-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
         <div style="font-size:1.4rem">📝</div>
-        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">연습문제 1~6</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">연습문제 1~9</div>
         <div style="font-size:.62rem;color:#aaa;line-height:1.4">주제0~2 전체 활용</div>
-        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">6장 →</div>
+        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">9장 →</div>
       </button>
       <button onclick="startCards('circle-real','circle-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
         <div style="font-size:1.4rem">🌍</div>
         <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">실생활 연결</div>
         <div style="font-size:.62rem;color:#aaa;line-height:1.4">지진·GPS·태풍</div>
         <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('circle-advanced','circle-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,146,60,.1),rgba(251,146,60,.03));border:1px solid rgba(251,146,60,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit;grid-column:1/-1">
+        <div style="font-size:1.4rem">🔥</div>
+        <div style="font-family:'Jua',sans-serif;color:#fb923c;font-size:.75rem;margin:5px 0 4px;line-height:1.3">최고난도 (10~12)</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">기출 최상위권 — 거리·넓이·두 원 최댓값·최솟값</div>
+        <div style="font-size:.6rem;color:#fb923c;opacity:.8;margin-top:5px">3장 →</div>
       </button>
     </div>
   </div>
@@ -14419,6 +14425,88 @@ x절편: 각각 x=−4/√3, x=4/√3 → 밑변=8/√3, 높이=4(점의 y좌표
 접선의 길이: 반지름 OA⊥접선이므로 직각삼각형 OAP에서 PA=√(OP²−r²)=√(25−9)=<b>4</b><br>
 사각형 OAPB는 합동인 직각삼각형 OAP, OBP 두 개로 이뤄져 있어요(OA=OB=r=3, PA=PB=4, 둘 다 직각)<br>
 넓이=2×(½×3×4)=<b>12</b>` }
+],
+
+'circle-advanced': [
+{ tag:'실전10 — 원 위의 점과 직선 사이 거리의 최댓값·최솟값', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 원 x²+y²=9 위를 움직이는 점 P와 직선 3x+4y−25=0 사이의 거리의 최댓값을 M, 최솟값을 m이라 할 때, M+m의 값은?
+</div>`,
+    ans:`<b>1단계</b> 중심(0,0)에서 직선까지 거리: d=<span class="frac"><span class="num">|−25|</span><span class="den">√(3²+4²)</span></span>=<span class="frac"><span class="num">25</span><span class="den">5</span></span>=5<br>
+<b>2단계</b> d=5&gt;r=3이므로 직선이 원과 안 만나요 — 원 전체가 직선의 한쪽에 있어요<br>
+<b>3단계</b> 최댓값 M=d+r=5+3=<b>8</b>, 최솟값 m=d−r=5−3=<b>2</b> → M+m=<b>10</b>
+<div style="text-align:center;margin:10px 0">
+<svg width="200" height="210" viewBox="0 0 200 210">
+  <line x1="62" y1="34" x2="158" y2="106" stroke="#fde68a" stroke-width="2.2"/>
+  <circle cx="50" cy="150" r="60" fill="rgba(134,239,172,.08)" stroke="#86efac" stroke-width="2"/>
+  <line x1="50" y1="150" x2="110" y2="70" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="4 2"/>
+  <line x1="50" y1="150" x2="86" y2="102" stroke="#f87171" stroke-width="2"/>
+  <line x1="50" y1="150" x2="14" y2="198" stroke="#a78bfa" stroke-width="2"/>
+  <circle cx="50" cy="150" r="4" fill="#e2e8f0"/>
+  <circle cx="110" cy="70" r="4" fill="#7dd3fc"/>
+  <circle cx="86" cy="102" r="4" fill="#f87171"/>
+  <circle cx="14" cy="198" r="4" fill="#a78bfa"/>
+  <text x="34" y="164" font-size="11" font-weight="700" fill="#e2e8f0">O</text>
+  <text x="114" y="66" font-size="9.5" font-weight="700" fill="#7dd3fc">F(수선의 발)</text>
+  <text x="90" y="98" font-size="9.5" font-weight="700" fill="#f87171">최솟값 m=2</text>
+  <text x="-12" y="196" font-size="9.5" font-weight="700" fill="#a78bfa">최댓값 M=8</text>
+  <text x="120" y="48" font-size="9" fill="#fde68a">3x+4y−25=0</text>
+</svg>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">노랑=직선 · 파란 점선=중심→직선 거리 d=5 · 빨강=직선에 가까운 쪽 원 위의 점(최솟값) · 보라=직선에서 먼 쪽 원 위의 점(최댓값)</div>
+</div>` },
+
+{ tag:'실전11 — 두 정점+원 위의 동점, 삼각형 넓이의 최댓값·최솟값', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 두 점 A(0,0), B(6,0)과 원 (x−3)²+(y−4)²=4 위를 움직이는 점 P에 대하여 삼각형 PAB의 넓이의 최댓값 M과 최솟값 m을 각각 구하면?
+</div>`,
+    ans:`<b>1단계</b> 밑변 AB=6(고정)이므로, 넓이는 P의 높이(x축까지 거리)만 바뀌면 돼요<br>
+<b>2단계</b> 원의 중심(3,4)에서 x축(직선 AB)까지 거리=4, 반지름=2 → 높이의 범위는 4−2=2부터 4+2=6까지<br>
+<b>3단계</b> 최댓값 M=½×6×6=<b>18</b>, 최솟값 m=½×6×2=<b>6</b>
+<div style="text-align:center;margin:10px 0">
+<svg width="170" height="170" viewBox="0 0 170 170">
+  <line x1="10" y1="150" x2="160" y2="150" stroke="#94a3b8" stroke-width="1.2"/>
+  <circle cx="84" cy="78" r="36" fill="rgba(134,239,172,.08)" stroke="#86efac" stroke-width="2"/>
+  <polygon points="30,150 138,150 84,42" fill="rgba(253,230,138,.1)" stroke="#fde68a" stroke-width="1.6"/>
+  <polygon points="30,150 138,150 84,114" fill="rgba(167,139,250,.1)" stroke="#a78bfa" stroke-width="1.6"/>
+  <circle cx="30" cy="150" r="4" fill="#e2e8f0"/>
+  <circle cx="138" cy="150" r="4" fill="#e2e8f0"/>
+  <circle cx="84" cy="42" r="4" fill="#fde68a"/>
+  <circle cx="84" cy="114" r="4" fill="#a78bfa"/>
+  <text x="20" y="164" font-size="10" font-weight="700" fill="#e2e8f0">A(0,0)</text>
+  <text x="122" y="164" font-size="10" font-weight="700" fill="#e2e8f0">B(6,0)</text>
+  <text x="90" y="40" font-size="9" font-weight="700" fill="#fde68a">최댓값 위치(높이6)</text>
+  <text x="6" y="118" font-size="9" font-weight="700" fill="#a78bfa">최솟값 위치(높이2)</text>
+</svg>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">노랑 삼각형=P가 원의 맨 위(높이 최대) · 보라 삼각형=P가 원의 맨 아래(높이 최소) · 밑변 AB는 항상 고정</div>
+</div>` },
+
+{ tag:'실전12 — 두 원 위의 두 동점 사이 거리의 최댓값', tagColor:'#fb923c',
+    bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
+    body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
+🔥 원 x²+y²=4 위를 움직이는 점 P와 원 (x−6)²+(y−8)²=9 위를 움직이는 점 Q에 대하여 선분 PQ의 길이의 최댓값은?
+</div>`,
+    ans:`<b>1단계</b> 두 원의 중심거리: d=√(6²+8²)=√100=10<br>
+<b>2단계</b> 두 원이 서로 안 겹치면(d&gt;r₁+r₂), PQ가 최대가 되는 건 두 점이 중심을 잇는 선 위에서 바깥쪽으로 각각 벌어질 때예요<br>
+<b>3단계</b> 최댓값=d+r₁+r₂=10+2+3=<b>15</b>
+<div style="text-align:center;margin:10px 0">
+<svg width="140" height="230" viewBox="0 0 140 230">
+  <line x1="4" y1="211" x2="122" y2="55" stroke="#64748b" stroke-width="1.3" stroke-dasharray="3 3"/>
+  <circle cx="20" cy="190" r="26" fill="rgba(134,239,172,.08)" stroke="#86efac" stroke-width="2"/>
+  <circle cx="98" cy="86" r="39" fill="rgba(125,211,252,.08)" stroke="#7dd3fc" stroke-width="2"/>
+  <circle cx="20" cy="190" r="4" fill="#e2e8f0"/>
+  <circle cx="98" cy="86" r="4" fill="#e2e8f0"/>
+  <circle cx="4.4" cy="210.8" r="4.5" fill="#fde68a"/>
+  <circle cx="121.4" cy="54.8" r="4.5" fill="#fde68a"/>
+  <line x1="4.4" y1="210.8" x2="121.4" y2="54.8" stroke="#fde68a" stroke-width="2.2"/>
+  <text x="0" y="204" font-size="10" font-weight="700" fill="#e2e8f0">O₁</text>
+  <text x="102" y="80" font-size="10" font-weight="700" fill="#e2e8f0">O₂</text>
+  <text x="-2" y="224" font-size="9.5" font-weight="700" fill="#fde68a">P</text>
+  <text x="122" y="48" font-size="9.5" font-weight="700" fill="#fde68a">Q</text>
+</svg>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">두 중심을 잇는 점선을 양쪽으로 연장해서 각 원과 만나는 점이 P,Q — PQ=d+r₁+r₂=15가 최댓값</div>
+</div>` }
 ],
 
 'circle-real': [
