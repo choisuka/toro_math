@@ -1670,22 +1670,16 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
     <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">제목을 눌러보세요</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
       <button onclick="startCards('circle-practice','circle-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
-        <div style="font-size:1.4rem">📝</div>
-        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">연습문제 1~9</div>
-        <div style="font-size:.62rem;color:#aaa;line-height:1.4">주제0~2 전체 활용</div>
-        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">9장 →</div>
+        <div style="font-size:1.4rem">🔥</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">실전문제</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">접선·넓이·최댓값·최솟값</div>
+        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">6장 →</div>
       </button>
       <button onclick="startCards('circle-real','circle-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
         <div style="font-size:1.4rem">🌍</div>
         <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">실생활 연결</div>
         <div style="font-size:.62rem;color:#aaa;line-height:1.4">지진·GPS·태풍</div>
         <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">3장 →</div>
-      </button>
-      <button onclick="startCards('circle-advanced','circle-practice-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,146,60,.1),rgba(251,146,60,.03));border:1px solid rgba(251,146,60,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit;grid-column:1/-1">
-        <div style="font-size:1.4rem">🔥</div>
-        <div style="font-family:'Jua',sans-serif;color:#fb923c;font-size:.75rem;margin:5px 0 4px;line-height:1.3">최고난도 (10~12)</div>
-        <div style="font-size:.62rem;color:#aaa;line-height:1.4">기출 최상위권 — 거리·넓이·두 원 최댓값·최솟값</div>
-        <div style="font-size:.6rem;color:#fb923c;opacity:.8;margin-top:5px">3장 →</div>
       </button>
     </div>
   </div>
@@ -14352,48 +14346,6 @@ x²,y² 항이 이번엔 <b>사라지지 않고 남아서</b> 원의 방정식�
 
 /* ── 원의 방정식 실전훈련 ── */
 'circle-practice': [
-{ tag:'실전1 — 표준형으로 원의 방정식 세우기', tagColor:'#7dd3fc',
-    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
-    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-중심이 (3,−1)이고 점 (5,2)를 지나는 원의 방정식을 구하세요.
-</div>`,
-    ans:`반지름²=(5−3)²+(2−(−1))²=4+9=13<br><b>(x−3)²+(y+1)²=13</b>` },
-
-{ tag:'실전2 — 일반형에서 중심·반지름 찾기', tagColor:'#7dd3fc',
-    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
-    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-원 x²+y²+6x−2y+6=0의 중심과 반지름을 구하세요.
-</div>`,
-    ans:`(x²+6x+9)+(y²−2y+1)=−6+9+1<br>(x+3)²+(y−1)²=4<br><b>중심(−3,1), 반지름2</b>` },
-
-{ tag:'실전3 — 원과 직선의 위치 관계 판별', tagColor:'#7dd3fc',
-    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
-    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-원 x²+y²=8과 직선 x−y+4=0의 위치 관계를 판별하세요.
-</div>`,
-    ans:`중심(0,0), 반지름√8=2√2<br>d=|0−0+4|/√(1²+1²)=4/√2=2√2<br>d=r → <b>한 점에서 접한다</b>` },
-
-{ tag:'실전4 — 원 위의 점에서의 접선', tagColor:'#7dd3fc',
-    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
-    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-원 x²+y²=20 위의 점 (2,4)에서의 접선의 방정식을 구하세요.
-</div>`,
-    ans:`x₁x+y₁y=r² 공식에 (2,4), r²=20 대입:<br>2x+4y=20 → <b>x+2y=10</b>` },
-
-{ tag:'실전5 — 기울기가 주어진 접선', tagColor:'#7dd3fc',
-    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
-    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-원 x²+y²=5에 접하고 기울기가 2인 접선의 방정식을 모두 구하세요.
-</div>`,
-    ans:`접선을 y=2x+n, 즉 2x−y+n=0으로 놓으면<br>거리=|n|/√5=√5(반지름) → |n|=5 → n=±5<br><b>y=2x+5 또는 y=2x−5</b>` },
-
-{ tag:'실전6 — 세 점을 지나는 원', tagColor:'#7dd3fc',
-    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
-    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-세 점 (0,0), (2,0), (0,4)를 지나는 원의 중심과 반지름을 구하세요.
-</div>`,
-    ans:`x²+y²+Dx+Ey+F=0에 대입:<br>(0,0): F=0<br>(2,0): 4+2D=0 → D=−2<br>(0,4): 16+4E=0 → E=−4<br>x²+y²−2x−4y=0 → (x−1)²+(y−2)²=5<br><b>중심(1,2), 반지름√5</b>` },
-
 { tag:'실전7 — 두 접선과 좌표축으로 둘러싸인 넓이', tagColor:'#7dd3fc',
     bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
@@ -14424,10 +14376,7 @@ x절편: 각각 x=−4/√3, x=4/√3 → 밑변=8/√3, 높이=4(점의 y좌표
     ans:`OP=√(4²+3²)=5<br>
 접선의 길이: 반지름 OA⊥접선이므로 직각삼각형 OAP에서 PA=√(OP²−r²)=√(25−9)=<b>4</b><br>
 사각형 OAPB는 합동인 직각삼각형 OAP, OBP 두 개로 이뤄져 있어요(OA=OB=r=3, PA=PB=4, 둘 다 직각)<br>
-넓이=2×(½×3×4)=<b>12</b>` }
-],
-
-'circle-advanced': [
+넓이=2×(½×3×4)=<b>12</b>` },
 { tag:'실전10 — 원 위의 점과 직선 사이 거리의 최댓값·최솟값', tagColor:'#fb923c',
     bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
