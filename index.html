@@ -14565,25 +14565,12 @@ ${svgCircIntCountHTML(10,3)}
 🔥 원 x²+y²=1 밖의 점 F(1,−1)와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?
 </div>`,
     ans:`이번엔 F가 x축 위가 아니라서 OF가 정수가 아니에요 — 그래서 최댓값·최솟값도 정수가 아니고, "양 끝 1개씩" 규칙을 못 써요.<br><br>
-<b>1단계</b> OF=√(1+1)=√2≈1.41 — 정수가 아니에요<br>
-<b>2단계</b> 최댓값 M=OF+r=√2+1≈2.41, 최솟값 m=OF−r=√2−1≈0.41도 정수가 아니니, 그 사이(0.41&lt;k&lt;2.41)에 있는 정수 k를 하나씩 확인해요: 후보는 <b>1, 2</b><br>
-<b>3단계</b> M,m이 정수가 아니라서 "양 끝 1개" 예외가 없어요 — 구간 안의 정수는 전부 대칭인 두 점에서 나오니 전부 2개씩 → 개수=2×2=<b>4</b>
+<b>1단계 OF=√(1+1)=√2≈1.41 — 정수가 아니에요</b><br>
+<b>2단계 최댓값 M=OF+r=√2+1≈2.41, 최솟값 m=OF−r=√2−1≈0.41도 정수가 아니니, 그 사이(0.41&lt;k&lt;2.41)에 있는 정수 k를 하나씩 확인해요: 후보는 1, 2</b><br>
+<b>3단계 M,m이 정수가 아니라서 "양 끝 1개" 예외가 없어요 — 구간 안의 정수는 전부 대칭인 두 점에서 나오니 전부 2개씩 → 개수=2×2=4</b>
 <div style="text-align:center;margin:10px 0">
-<svg width="140" height="140" viewBox="0 0 140 140">
-  <line x1="0" y1="60" x2="140" y2="60" stroke="#334155" stroke-width="1"/>
-  <line x1="60" y1="140" x2="60" y2="0" stroke="#334155" stroke-width="1"/>
-  <line x1="20" y1="20" x2="140" y2="140" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>
-  <circle cx="60" cy="60" r="40" fill="rgba(134,239,172,.08)" stroke="#86efac" stroke-width="2"/>
-  <circle cx="60" cy="60" r="4" fill="#e2e8f0"/>
-  <circle cx="100" cy="100" r="4.5" fill="#fde68a"/>
-  <circle cx="88.3" cy="88.3" r="3.5" fill="#f87171"/>
-  <circle cx="31.7" cy="31.7" r="3.5" fill="#a78bfa"/>
-  <text x="42" y="58" font-size="10" font-weight="700" fill="#e2e8f0">O</text>
-  <text x="104" y="98" font-size="10" font-weight="700" fill="#fde68a">F(1,−1)</text>
-  <text x="90" y="82" font-size="8.5" font-weight="700" fill="#f87171">m≈0.41</text>
-  <text x="-4" y="46" font-size="8.5" font-weight="700" fill="#a78bfa">M≈2.41</text>
-</svg>
-<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨강=F와 가장 가까운 점(m≈0.41, 정수 아님) · 보라=가장 먼 점(M≈2.41, 정수 아님) — 정수 1,2는 이 사이 어딘가의 대칭인 두 점에서 나와요</div>
+${svgCircIntCountIrrHTML(1,-1,2,1,[1,2])}
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨강=F와 가장 가까운 점(m≈0.41, 정수 아님) · 보라=가장 먼 점(M≈2.41, 정수 아님) · 파랑처럼 대칭인 두 점에서 정수 거리가 2개씩 나와요 · 회색 점선=선분 OF</div>
 </div>
 <div id="ln-circintcountirr-out" data-v="1,-1,2,1" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
 <b>원 x²+y²=1 밖의 점 F(1,−1)와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?</b><br><button onclick="lnShowCircIntCountIrr('ln-circintcountirr-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
@@ -17428,6 +17415,37 @@ function svgCircIntCountHTML(fo,r){
     +'<text x="'+f(Q1[0]+6)+'" y="'+f(Q1[1]-2)+'" font-size="8" font-weight="700" fill="#7dd3fc">거리='+k+' 등 대칭 2개씩</text>'
     +'</svg>';
 }
+function svgCircIntCountIrrHTML(fx,fy,N,r,qualifying){
+  var sq=Math.sqrt(N);
+  var Nearx=r*fx/sq, Neary=r*fy/sq, Farx=-r*fx/sq, Fary=-r*fy/sq;
+  var k = qualifying[0];
+  var c=(r*r+N-k*k)/2;
+  var P0x=c*fx/N, P0y=c*fy/N;
+  var t=Math.sqrt(Math.max(r*r-(c*c/N),0));
+  var perpx=-fy/sq, perpy=fx/sq;
+  var Q1=[P0x+t*perpx,P0y+t*perpy], Q2=[P0x-t*perpx,P0y-t*perpy];
+  var W=170,H=170,pad=24;
+  var map=svgFitMap([-r,r,fx,Q1[0],Q2[0]],[-r,r,fy,Q1[1],Q2[1]],W,H,pad);
+  var O=map(0,0), F=map(fx,fy), Near=map(Nearx,Neary), Far=map(Farx,Fary);
+  var pQ1=map(Q1[0],Q1[1]), pQ2=map(Q2[0],Q2[1]);
+  var CR=map(r,0), rp=Math.hypot(CR[0]-O[0],CR[1]-O[1]);
+  function f(n){ return n.toFixed(1); }
+  return '<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'
+    +'<line x1="'+f(O[0])+'" y1="'+f(O[1])+'" x2="'+f(F[0])+'" y2="'+f(F[1])+'" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>'
+    +'<circle cx="'+f(O[0])+'" cy="'+f(O[1])+'" r="'+f(rp)+'" fill="rgba(134,239,172,.08)" stroke="#86efac" stroke-width="2"/>'
+    +'<circle cx="'+f(O[0])+'" cy="'+f(O[1])+'" r="4" fill="#e2e8f0"/>'
+    +'<circle cx="'+f(F[0])+'" cy="'+f(F[1])+'" r="4.5" fill="#fde68a"/>'
+    +'<circle cx="'+f(Near[0])+'" cy="'+f(Near[1])+'" r="3.5" fill="#f87171"/>'
+    +'<circle cx="'+f(Far[0])+'" cy="'+f(Far[1])+'" r="3.5" fill="#a78bfa"/>'
+    +'<circle cx="'+f(pQ1[0])+'" cy="'+f(pQ1[1])+'" r="3" fill="#7dd3fc"/>'
+    +'<circle cx="'+f(pQ2[0])+'" cy="'+f(pQ2[1])+'" r="3" fill="#7dd3fc"/>'
+    +'<text x="'+f(O[0]-4)+'" y="'+f(O[1]-8)+'" font-size="10" font-weight="700" fill="#e2e8f0" text-anchor="middle">O</text>'
+    +'<text x="'+f(F[0]+4)+'" y="'+f(F[1]-6)+'" font-size="10" font-weight="700" fill="#fde68a">F('+fx+','+fy+')</text>'
+    +'<text x="'+f(Near[0])+'" y="'+f(Near[1]-8)+'" font-size="8.5" font-weight="700" fill="#f87171" text-anchor="middle">m(정수아님)</text>'
+    +'<text x="'+f(Far[0])+'" y="'+f(Far[1]+14)+'" font-size="8.5" font-weight="700" fill="#a78bfa" text-anchor="middle">M(정수아님)</text>'
+    +'<text x="'+f((pQ1[0]+pQ2[0])/2+8)+'" y="'+f((pQ1[1]+pQ2[1])/2)+'" font-size="8" font-weight="700" fill="#7dd3fc">거리='+k+' 등 대칭 2개씩</text>'
+    +'</svg>';
+}
 
 // ㉗ 실전7 — 두 접선과 좌표축으로 둘러싸인 넓이
 function lnNextCircArea(id){
@@ -17725,9 +17743,10 @@ function lnShowCircIntCountIrr(id){
     if(cond1 && cond2) qualifying.push(k);
   }
   el.innerHTML = gCircIntCountIrrQuestion(el.getAttribute('data-v'))
-    + '<b>1단계</b> OF=√('+(fx*fx)+'+'+(fy*fy)+')='+gSqrtHTML(N)+' — 정수가 아니에요<br>'
-    + '<b>2단계</b> 최댓값 M=OF+r, 최솟값 m=OF−r도 정수가 아니니, 그 사이(m&lt;k&lt;M)에 있는 정수 k를 하나씩 확인해요: 후보는 <b>'+qualifying.join(', ')+'</b><br>'
-    + '<b>3단계</b> 이 구간 안의 정수는 전부 원 위의 대칭인 두 점에서 나오니 2개씩 → 개수='+qualifying.length+'×2=<b>'+(qualifying.length*2)+'</b>'
+    + '<b>1단계 OF=√('+(fx*fx)+'+'+(fy*fy)+')='+gSqrtHTML(N)+' — 정수가 아니에요</b><br>'
+    + '<b>2단계 최댓값 M=OF+r, 최솟값 m=OF−r도 정수가 아니니, 그 사이(m&lt;k&lt;M)에 있는 정수 k를 하나씩 확인해요: 후보는 '+qualifying.join(', ')+'</b><br>'
+    + '<b>3단계 이 구간 안의 정수는 전부 원 위의 대칭인 두 점에서 나오니 2개씩 → 개수='+qualifying.length+'×2='+(qualifying.length*2)+'</b>'
+    + '<div style="text-align:center;margin:10px 0">'+svgCircIntCountIrrHTML(fx,fy,N,r,qualifying)+'<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨강=F와 가장 가까운 점(m, 정수 아님) · 보라=가장 먼 점(M, 정수 아님) · 파랑처럼 대칭인 두 점에서 정수 거리가 2개씩 나와요 · 회색 점선=선분 OF</div></div>'
     + gNextBtn('lnNextCircIntCountIrr', id);
 }
 
