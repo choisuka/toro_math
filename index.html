@@ -14501,48 +14501,37 @@ ${svgCircTri2HTML(5,12,13,-4,-1,1,4)}
 { tag:'실전14 — 원 밖의 점과 원 위의 점 사이 거리의 최댓값·최솟값', tagColor:'#fb923c',
     bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
-🔥 원 x²+y²=9 밖의 점 F(13,0)와 원 위를 움직이는 점 Q에 대하여 선분 FQ의 길이의 최댓값 M과 최솟값 m을 각각 구하면?
+🔥 원 x²+y²=16 밖의 점 F(−12,5)와 원 위를 움직이는 점 Q에 대하여 선분 FQ의 길이의 최댓값 M과 최솟값 m을 각각 구하면?
 </div>`,
-    ans:`<b>1단계</b> OF=13(F가 x축 위에 있으니 원점에서 거리 그대로)<br>
+    ans:`<b>1단계</b> OF=√(144+25)=√169=<b>13</b><br>
 <b>2단계</b> Q가 O,F를 잇는 직선 위에서 F와 가장 먼 쪽에 있을 때 최대, 가장 가까운 쪽에 있을 때 최소가 돼요<br>
-<b>3단계</b> 최댓값 M=OF+r=13+3=<b>16</b>, 최솟값 m=OF−r=13−3=<b>10</b>
+<b>3단계</b> 최댓값 M=OF+r=13+4=<b>17</b>, 최솟값 m=OF−r=13−4=<b>9</b>
 <div style="text-align:center;margin:10px 0">
-<svg width="170" height="90" viewBox="0 0 170 90">
-  <line x1="0" y1="45" x2="170" y2="45" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>
-  <circle cx="30" cy="45" r="24" fill="rgba(134,239,172,.08)" stroke="#86efac" stroke-width="2"/>
-  <circle cx="30" cy="45" r="4" fill="#e2e8f0"/>
-  <circle cx="144" cy="45" r="4.5" fill="#fde68a"/>
-  <circle cx="54" cy="45" r="3.5" fill="#f87171"/>
-  <circle cx="6" cy="45" r="3.5" fill="#a78bfa"/>
-  <text x="24" y="30" font-size="10" font-weight="700" fill="#e2e8f0">O</text>
-  <text x="136" y="30" font-size="10" font-weight="700" fill="#fde68a">F(13,0)</text>
-  <text x="42" y="65" font-size="8.5" font-weight="700" fill="#f87171">최소(m=10)</text>
-  <text x="0" y="65" font-size="8.5" font-weight="700" fill="#a78bfa">최대(M=16)</text>
-</svg>
-<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨강=F와 가장 가까운 원 위의 점(최솟값) · 보라=F와 가장 먼 원 위의 점(최댓값) — O,F를 잇는 직선 위에 있어요(그림은 축척을 줄여 표현)</div>
+${svgCircPtMMHTML(-12,5,4)}
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨강=F와 가장 가까운 원 위의 점(최솟값) · 보라=F와 가장 먼 원 위의 점(최댓값) — O,F를 잇는 직선 위에 있어요(그림은 원이 잘 보이도록 축척 조정)</div>
 </div>
-<div id="ln-circptmm-out" data-v="13,3" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
-<b>원 x²+y²=9 밖의 점 F(13,0)와 원 위를 움직이는 점 Q에 대하여 선분 FQ의 길이의 최댓값 M과 최솟값 m을 각각 구하면?</b><br><button onclick="lnShowCircPtMM('ln-circptmm-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+<div id="ln-circptmm-out" data-v="-12,5,4" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>원 x²+y²=16 밖의 점 F(−12,5)와 원 위를 움직이는 점 Q에 대하여 선분 FQ의 길이의 최댓값 M과 최솟값 m을 각각 구하면?</b><br><button onclick="lnShowCircPtMM('ln-circptmm-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
 </div>
 <button onclick="lnNextCircPtMM('ln-circptmm-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
 
 { tag:'실전15 — 거리가 정수인 점의 개수(최댓값·최솟값이 정수)', tagColor:'#fb923c',
     bg:'rgba(251,146,60,.06)', bd:'rgba(251,146,60,.3)',
     body:`<div style="font-size:.82rem;color:#e2e8f0;line-height:1.85">
-🔥 원 x²+y²=9 밖의 점 F(10,0)와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?
+🔥 원 x²+y²=16 밖의 점 F(−5,12)와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?
 </div>`,
-    ans:`<b>1단계 최댓값 M=OF+r=13, 최솟값 m=OF−r=7 — 둘 다 정수예요</b><br>
-<b>2단계 7부터 13까지 정수는 총 7개인데, 양 끝값(M,m)은 O,F를 잇는 직선 위의 점에서만 나와서 1개씩, 그 사이의 정수(8,9,10,11,12)는 원 위에서 대칭인 두 점에서 나와서 2개씩이에요</b><br>
-<b>3단계 개수=1+1+2×5=12</b>
+    ans:`<b>1단계 OF=√(25+144)=√169=13, 최댓값 M=OF+r=17, 최솟값 m=OF−r=9 — 둘 다 정수예요</b><br>
+<b>2단계 9부터 17까지 정수는 총 9개인데, 양 끝값(M,m)은 O,F를 잇는 직선 위의 점에서만 나와서 1개씩, 그 사이의 정수(10~16)는 원 위에서 대칭인 두 점에서 나와서 2개씩이에요</b><br>
+<b>3단계 개수=1+1+2×7=16</b>
 <div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
-🔗 공식으로 정리하면, 최댓값·최솟값이 둘 다 정수일 때 개수는 항상 <b>4r</b>이에요(r=3이니 4×3=12) — 왜 그런지는 위 풀이의 "양 끝 1개씩+안쪽 2개씩" 구조를 보면 알 수 있어요.
+🔗 공식으로 정리하면, 최댓값·최솟값이 둘 다 정수일 때 개수는 항상 <b>4r</b>이에요(r=4이니 4×4=16) — 왜 그런지는 위 풀이의 "양 끝 1개씩+안쪽 2개씩" 구조를 보면 알 수 있어요.
 </div>
 <div style="text-align:center;margin:10px 0">
-${svgCircIntCountHTML(10,3)}
+${svgCircIntCountHTML(-5,12,4)}
 <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨강·보라(양 끝)는 O,F 직선 위 1개씩 · 파랑처럼 원 위아래 대칭인 점들이 나머지 정수 거리를 2개씩 만들어요 · 회색 점선=선분 OF</div>
 </div>
-<div id="ln-circintcount-out" data-v="10,3" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
-<b>원 x²+y²=9 밖의 점 F(10,0)와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?</b><br><button onclick="lnShowCircIntCount('ln-circintcount-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
+<div id="ln-circintcount-out" data-v="-5,12,4" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
+<b>원 x²+y²=16 밖의 점 F(−5,12)와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?</b><br><button onclick="lnShowCircIntCount('ln-circintcount-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
 </div>
 <button onclick="lnNextCircIntCount('ln-circintcount-out')" style="width:100%;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:10px;padding:8px;font-size:.74rem;cursor:pointer">🔄 유사한 문제</button>` },
 
@@ -17405,29 +17394,66 @@ function svgCircTri2HTML(leg1,leg2,hyp,x0,y0,sign,r){
     +'<text x="'+f(pNear[0])+'" y="'+f(pNear[1]+14)+'" font-size="8.5" font-weight="700" fill="#a78bfa" text-anchor="middle">최솟값 위치</text>'
     +'</svg>';
 }
-function svgCircIntCountHTML(fo,r){
-  var k=fo;
-  var qx=(r*r+fo*fo-k*k)/(2*fo), qy=Math.sqrt(Math.max(r*r-qx*qx,0));
-  var W=200,H=150,pad=26;
-  var map=svgFitMap([-r,r,fo,qx],[-r,r,qy,-qy],W,H,pad);
-  var O=map(0,0), F=map(fo,0), Near=map(r,0), Far=map(-r,0);
-  var Q1=map(qx,qy), Q2=map(qx,-qy);
-  var CR=map(r,0), rp=Math.abs(CR[0]-O[0]);
+function svgCapOF(fx,fy,r,factor){
+  var d=Math.hypot(fx,fy), capD=r*factor;
+  if(d<=capD) return {x:fx,y:fy};
+  var s=capD/d;
+  return {x:fx*s,y:fy*s};
+}
+function svgCircPtMMHTML(fx,fy,r){
+  var sq=Math.hypot(fx,fy), OF=Math.round(sq);
+  var ux=fx/sq, uy=fy/sq;
+  var Near=[r*ux,r*uy], Far=[-r*ux,-r*uy];
+  var Fc=svgCapOF(fx,fy,r,2.2);
+  var W=190,H=150,pad=24;
+  var map=svgFitMap([-r,r,Fc.x],[-r,r,Fc.y],W,H,pad);
+  var O=map(0,0), F=map(Fc.x,Fc.y), pNear=map(Near[0],Near[1]), pFar=map(Far[0],Far[1]);
+  var CR=map(r,0), rp=Math.hypot(CR[0]-O[0],CR[1]-O[1]);
   function f(n){ return n.toFixed(1); }
   return '<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'
     +'<line x1="'+f(O[0])+'" y1="'+f(O[1])+'" x2="'+f(F[0])+'" y2="'+f(F[1])+'" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>'
     +'<circle cx="'+f(O[0])+'" cy="'+f(O[1])+'" r="'+f(rp)+'" fill="rgba(134,239,172,.08)" stroke="#86efac" stroke-width="2"/>'
     +'<circle cx="'+f(O[0])+'" cy="'+f(O[1])+'" r="4" fill="#e2e8f0"/>'
     +'<circle cx="'+f(F[0])+'" cy="'+f(F[1])+'" r="4.5" fill="#fde68a"/>'
-    +'<circle cx="'+f(Near[0])+'" cy="'+f(Near[1])+'" r="3.5" fill="#f87171"/>'
-    +'<circle cx="'+f(Far[0])+'" cy="'+f(Far[1])+'" r="3.5" fill="#a78bfa"/>'
-    +'<circle cx="'+f(Q1[0])+'" cy="'+f(Q1[1])+'" r="3" fill="#7dd3fc"/>'
-    +'<circle cx="'+f(Q2[0])+'" cy="'+f(Q2[1])+'" r="3" fill="#7dd3fc"/>'
+    +'<circle cx="'+f(pNear[0])+'" cy="'+f(pNear[1])+'" r="3.5" fill="#f87171"/>'
+    +'<circle cx="'+f(pFar[0])+'" cy="'+f(pFar[1])+'" r="3.5" fill="#a78bfa"/>'
     +'<text x="'+f(O[0]-4)+'" y="'+f(O[1]-8)+'" font-size="10" font-weight="700" fill="#e2e8f0" text-anchor="middle">O</text>'
-    +'<text x="'+f(F[0])+'" y="'+f(F[1]-9)+'" font-size="10" font-weight="700" fill="#fde68a" text-anchor="middle">F('+fo+',0)</text>'
-    +'<text x="'+f(Near[0])+'" y="'+f(Near[1]+16)+'" font-size="8.5" font-weight="700" fill="#f87171" text-anchor="middle">m='+(fo-r)+'(1개)</text>'
-    +'<text x="'+f(Far[0])+'" y="'+f(Far[1]+16)+'" font-size="8.5" font-weight="700" fill="#a78bfa" text-anchor="middle">M='+(fo+r)+'(1개)</text>'
-    +'<text x="'+f(Q1[0]+6)+'" y="'+f(Q1[1]-2)+'" font-size="8" font-weight="700" fill="#7dd3fc">거리='+k+' 등 대칭 2개씩</text>'
+    +'<text x="'+f(F[0]+4)+'" y="'+f(F[1]-6)+'" font-size="10" font-weight="700" fill="#fde68a">F('+gFmt(fx)+','+gFmt(fy)+')</text>'
+    +'<text x="'+f(pNear[0])+'" y="'+f(pNear[1]+16)+'" font-size="8.5" font-weight="700" fill="#f87171" text-anchor="middle">최소(m='+(OF-r)+')</text>'
+    +'<text x="'+f(pFar[0])+'" y="'+f(pFar[1]+16)+'" font-size="8.5" font-weight="700" fill="#a78bfa" text-anchor="middle">최대(M='+(OF+r)+')</text>'
+    +'</svg>';
+}
+function svgCircIntCountHTML(fx,fy,r){
+  var N=fx*fx+fy*fy, sq=Math.sqrt(N), OF=Math.round(sq);
+  var k=OF;
+  var c=(r*r+N-k*k)/2;
+  var P0x=c*fx/N, P0y=c*fy/N;
+  var t=Math.sqrt(Math.max(r*r-(c*c/N),0));
+  var perpx=-fy/sq, perpy=fx/sq;
+  var Q1=[P0x+t*perpx,P0y+t*perpy], Q2=[P0x-t*perpx,P0y-t*perpy];
+  var ux=fx/sq, uy=fy/sq;
+  var Near=[r*ux,r*uy], Far=[-r*ux,-r*uy];
+  var Fc=svgCapOF(fx,fy,r,2.2);
+  var W=200,H=160,pad=26;
+  var map=svgFitMap([-r,r,Fc.x,Q1[0],Q2[0]],[-r,r,Fc.y,Q1[1],Q2[1]],W,H,pad);
+  var O=map(0,0), F=map(Fc.x,Fc.y), pNear=map(Near[0],Near[1]), pFar=map(Far[0],Far[1]);
+  var pQ1=map(Q1[0],Q1[1]), pQ2=map(Q2[0],Q2[1]);
+  var CR=map(r,0), rp=Math.hypot(CR[0]-O[0],CR[1]-O[1]);
+  function f(n){ return n.toFixed(1); }
+  return '<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'
+    +'<line x1="'+f(O[0])+'" y1="'+f(O[1])+'" x2="'+f(F[0])+'" y2="'+f(F[1])+'" stroke="#64748b" stroke-width="1" stroke-dasharray="3 3"/>'
+    +'<circle cx="'+f(O[0])+'" cy="'+f(O[1])+'" r="'+f(rp)+'" fill="rgba(134,239,172,.08)" stroke="#86efac" stroke-width="2"/>'
+    +'<circle cx="'+f(O[0])+'" cy="'+f(O[1])+'" r="4" fill="#e2e8f0"/>'
+    +'<circle cx="'+f(F[0])+'" cy="'+f(F[1])+'" r="4.5" fill="#fde68a"/>'
+    +'<circle cx="'+f(pNear[0])+'" cy="'+f(pNear[1])+'" r="3.5" fill="#f87171"/>'
+    +'<circle cx="'+f(pFar[0])+'" cy="'+f(pFar[1])+'" r="3.5" fill="#a78bfa"/>'
+    +'<circle cx="'+f(pQ1[0])+'" cy="'+f(pQ1[1])+'" r="3" fill="#7dd3fc"/>'
+    +'<circle cx="'+f(pQ2[0])+'" cy="'+f(pQ2[1])+'" r="3" fill="#7dd3fc"/>'
+    +'<text x="'+f(O[0]-4)+'" y="'+f(O[1]-8)+'" font-size="10" font-weight="700" fill="#e2e8f0" text-anchor="middle">O</text>'
+    +'<text x="'+f(F[0]+4)+'" y="'+f(F[1]-6)+'" font-size="10" font-weight="700" fill="#fde68a">F('+gFmt(fx)+','+gFmt(fy)+')</text>'
+    +'<text x="'+f(pNear[0])+'" y="'+f(pNear[1]+16)+'" font-size="8.5" font-weight="700" fill="#f87171" text-anchor="middle">m='+(OF-r)+'(1개)</text>'
+    +'<text x="'+f(pFar[0])+'" y="'+f(pFar[1]+16)+'" font-size="8.5" font-weight="700" fill="#a78bfa" text-anchor="middle">M='+(OF+r)+'(1개)</text>'
+    +'<text x="'+f((pQ1[0]+pQ2[0])/2+6)+'" y="'+f((pQ1[1]+pQ2[1])/2)+'" font-size="8" font-weight="700" fill="#7dd3fc">거리='+k+' 등 대칭 2개씩</text>'
     +'</svg>';
 }
 function svgCircIntCountIrrHTML(fx,fy,N,r,qualifying){
@@ -17439,9 +17465,10 @@ function svgCircIntCountIrrHTML(fx,fy,N,r,qualifying){
   var t=Math.sqrt(Math.max(r*r-(c*c/N),0));
   var perpx=-fy/sq, perpy=fx/sq;
   var Q1=[P0x+t*perpx,P0y+t*perpy], Q2=[P0x-t*perpx,P0y-t*perpy];
-  var W=170,H=170,pad=24;
-  var map=svgFitMap([-r,r,fx,Q1[0],Q2[0]],[-r,r,fy,Q1[1],Q2[1]],W,H,pad);
-  var O=map(0,0), F=map(fx,fy), Near=map(Nearx,Neary), Far=map(Farx,Fary);
+  var Fc=svgCapOF(fx,fy,r,2.2);
+  var W=190,H=190,pad=24;
+  var map=svgFitMap([-r,r,Fc.x,Q1[0],Q2[0]],[-r,r,Fc.y,Q1[1],Q2[1]],W,H,pad);
+  var O=map(0,0), F=map(Fc.x,Fc.y), Near=map(Nearx,Neary), Far=map(Farx,Fary);
   var pQ1=map(Q1[0],Q1[1]), pQ2=map(Q2[0],Q2[1]);
   var CR=map(r,0), rp=Math.hypot(CR[0]-O[0],CR[1]-O[1]);
   function f(n){ return n.toFixed(1); }
@@ -17455,7 +17482,7 @@ function svgCircIntCountIrrHTML(fx,fy,N,r,qualifying){
     +'<circle cx="'+f(pQ1[0])+'" cy="'+f(pQ1[1])+'" r="3" fill="#7dd3fc"/>'
     +'<circle cx="'+f(pQ2[0])+'" cy="'+f(pQ2[1])+'" r="3" fill="#7dd3fc"/>'
     +'<text x="'+f(O[0]-4)+'" y="'+f(O[1]-8)+'" font-size="10" font-weight="700" fill="#e2e8f0" text-anchor="middle">O</text>'
-    +'<text x="'+f(F[0]+4)+'" y="'+f(F[1]-6)+'" font-size="10" font-weight="700" fill="#fde68a">F('+fx+','+fy+')</text>'
+    +'<text x="'+f(F[0]+4)+'" y="'+f(F[1]-6)+'" font-size="10" font-weight="700" fill="#fde68a">F('+gFmt(fx)+','+gFmt(fy)+')</text>'
     +'<text x="'+f(Near[0])+'" y="'+f(Near[1]-8)+'" font-size="8.5" font-weight="700" fill="#f87171" text-anchor="middle">m(정수아님)</text>'
     +'<text x="'+f(Far[0])+'" y="'+f(Far[1]+14)+'" font-size="8.5" font-weight="700" fill="#a78bfa" text-anchor="middle">M(정수아님)</text>'
     +'<text x="'+f((pQ1[0]+pQ2[0])/2+8)+'" y="'+f((pQ1[1]+pQ2[1])/2)+'" font-size="8" font-weight="700" fill="#7dd3fc">거리='+k+' 등 대칭 2개씩</text>'
@@ -17675,52 +17702,61 @@ function lnShowCircTri2(id){
 }
 
 // ㉞ 실전14 — 원 밖의 점과 원 위의 점 사이 거리의 최댓값·최솟값
+function gPythagPoint(){
+  var triple = PYTHAG_TRIPLES[gRandInt(0,PYTHAG_TRIPLES.length-1)];
+  var sx=gRandInt(0,1)===0?1:-1, sy=gRandInt(0,1)===0?1:-1, swap=gRandInt(0,1)===0;
+  var a=swap?triple[1]:triple[0], b=swap?triple[0]:triple[1];
+  return {fx:sx*a, fy:sy*b, hyp:triple[2]};
+}
 function lnNextCircPtMM(id){
   var el=document.getElementById(id);
-  var fo=gRandInt(3,15);
-  var r=gRandInt(1,fo-1);
-  el.setAttribute('data-v',[fo,r].join(','));
+  var p=gPythagPoint();
+  var r=gRandInt(1,p.hyp-1);
+  el.setAttribute('data-v',[p.fx,p.fy,r].join(','));
   el.innerHTML = gCircPtMMQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowCircPtMM', id);
 }
 function gCircPtMMQuestion(dataStr){
   var v=dataStr.split(',').map(Number);
-  var fo=v[0],r=v[1];
-  return '<b>원 x²+y²='+(r*r)+' 밖의 점 F('+fo+',0)와 원 위를 움직이는 점 Q에 대하여 선분 FQ의 길이의 최댓값 M과 최솟값 m을 각각 구하면?</b><br>';
+  var fx=v[0],fy=v[1],r=v[2];
+  return '<b>원 x²+y²='+(r*r)+' 밖의 점 F('+gFmt(fx)+','+gFmt(fy)+')와 원 위를 움직이는 점 Q에 대하여 선분 FQ의 길이의 최댓값 M과 최솟값 m을 각각 구하면?</b><br>';
 }
 function lnShowCircPtMM(id){
   var el=document.getElementById(id);
   var v=el.getAttribute('data-v').split(',').map(Number);
-  var fo=v[0],r=v[1];
+  var fx=v[0],fy=v[1],r=v[2];
+  var OF=Math.round(Math.sqrt(fx*fx+fy*fy));
   el.innerHTML = gCircPtMMQuestion(el.getAttribute('data-v'))
-    + '<b>1단계</b> OF='+fo+'(F가 x축 위에 있으니 원점에서 거리 그대로)<br>'
+    + '<b>1단계</b> OF=√('+(fx*fx)+'+'+(fy*fy)+')='+OF+'<br>'
     + '<b>2단계</b> Q가 O,F를 잇는 직선 위에서 F와 가장 먼 쪽에 있을 때 최대, 가장 가까운 쪽에 있을 때 최소가 돼요<br>'
-    + '<b>3단계</b> 최댓값 M=OF+r='+fo+'+'+r+'=<b>'+(fo+r)+'</b>, 최솟값 m=OF−r='+fo+'−'+r+'=<b>'+(fo-r)+'</b>'
+    + '<b>3단계</b> 최댓값 M=OF+r='+OF+'+'+r+'=<b>'+(OF+r)+'</b>, 최솟값 m=OF−r='+OF+'−'+r+'=<b>'+(OF-r)+'</b>'
+    + '<div style="text-align:center;margin:10px 0">'+svgCircPtMMHTML(fx,fy,r)+'<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨강=F와 가장 가까운 원 위의 점(최솟값) · 보라=F와 가장 먼 원 위의 점(최댓값) — O,F를 잇는 직선 위에 있어요(그림은 원이 잘 보이도록 축척 조정)</div></div>'
     + gNextBtn('lnNextCircPtMM', id);
 }
 
 // ㉟ 실전15 — 거리가 정수인 점의 개수(최댓값·최솟값이 정수인 경우)
 function lnNextCircIntCount(id){
   var el=document.getElementById(id);
-  var fo=gRandInt(3,15);
-  var r=gRandInt(1,fo-1);
-  el.setAttribute('data-v',[fo,r].join(','));
+  var p=gPythagPoint();
+  var r=gRandInt(1,p.hyp-1);
+  el.setAttribute('data-v',[p.fx,p.fy,r].join(','));
   el.innerHTML = gCircIntCountQuestion(el.getAttribute('data-v')) + gSolBtn('lnShowCircIntCount', id);
 }
 function gCircIntCountQuestion(dataStr){
   var v=dataStr.split(',').map(Number);
-  var fo=v[0],r=v[1];
-  return '<b>원 x²+y²='+(r*r)+' 밖의 점 F('+fo+',0)와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?</b><br>';
+  var fx=v[0],fy=v[1],r=v[2];
+  return '<b>원 x²+y²='+(r*r)+' 밖의 점 F('+gFmt(fx)+','+gFmt(fy)+')와 원 위를 움직이는 점 Q에 대하여, 선분 FQ의 길이가 정수가 되는 점 Q의 개수를 구하면?</b><br>';
 }
 function lnShowCircIntCount(id){
   var el=document.getElementById(id);
   var v=el.getAttribute('data-v').split(',').map(Number);
-  var fo=v[0],r=v[1];
-  var mn=fo-r, mx=fo+r;
+  var fx=v[0],fy=v[1],r=v[2];
+  var OF=Math.round(Math.sqrt(fx*fx+fy*fy));
+  var mn=OF-r, mx=OF+r;
   el.innerHTML = gCircIntCountQuestion(el.getAttribute('data-v'))
-    + '<b>1단계 최댓값 M=OF+r='+mx+', 최솟값 m=OF−r='+mn+' — 둘 다 정수예요</b><br>'
+    + '<b>1단계 OF=√('+(fx*fx)+'+'+(fy*fy)+')='+OF+', 최댓값 M=OF+r='+mx+', 최솟값 m=OF−r='+mn+' — 둘 다 정수예요</b><br>'
     + '<b>2단계 '+mn+'부터 '+mx+'까지 정수는 총 '+(mx-mn+1)+'개인데, 양 끝값(M,m)은 O,F를 잇는 직선 위의 점에서만 나와서 1개씩, 그 사이의 정수는 원 위에서 대칭인 두 점에서 나와서 2개씩이에요</b><br>'
     + '<b>3단계 개수=1+1+2×'+(mx-mn-1)+'='+(4*r)+'</b>'
-    + '<div style="text-align:center;margin:10px 0">'+svgCircIntCountHTML(fo,r)+'<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨강·보라(양 끝)는 O,F 직선 위 1개씩 · 파랑처럼 원 위아래 대칭인 점들이 나머지 정수 거리를 2개씩 만들어요 · 회색 점선=선분 OF</div></div>'
+    + '<div style="text-align:center;margin:10px 0">'+svgCircIntCountHTML(fx,fy,r)+'<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">빨강·보라(양 끝)는 O,F 직선 위 1개씩 · 파랑처럼 원 위아래 대칭인 점들이 나머지 정수 거리를 2개씩 만들어요 · 회색 점선=선분 OF</div></div>'
     + gNextBtn('lnNextCircIntCount', id);
 }
 
