@@ -270,8 +270,11 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="home" class="screen active">
   <div style="width:100%;max-width:620px">
     <div style="text-align:center;padding:16px 0 16px">
-      <h1 style="font-family:'Jua',sans-serif;font-size:2.2rem;color:#fbbf24;text-shadow:0 0 30px rgba(251,191,36,.35)">🦕 수학여행 학원</h1>
-      <p style="font-size:.9rem;color:var(--gray);margin-top:6px">직관 · 시각 · 논리 — 세 가지 방식으로 수학을 정복하세요</p>
+      <h1 style="font-size:2.2rem;margin:0;position:relative;display:inline-block">
+        <span style="position:absolute;left:-6%;right:-6%;bottom:6%;height:38%;background:linear-gradient(90deg,#fca5a5,#fde68a,#86efac,#7dd3fc);opacity:.55;border-radius:6px;transform:skewX(-6deg);z-index:1"></span>
+        <span style="position:relative;z-index:2;font-family:'Nanum Gothic',sans-serif;font-weight:800;color:#f8fafc">수학여행 학원</span>
+      </h1>
+      <p style="font-size:.72rem;margin-top:6px;font-family:'Nanum Gothic',sans-serif;font-weight:700;background:linear-gradient(90deg,#fca5a5,#fde68a,#86efac,#7dd3fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">직관 · 시각 · 논리 — 세 가지 방식으로 수학을 정복하세요</p>
     </div>
 
 
@@ -304,6 +307,12 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       </div>
       <!-- 학년/과목별 카테고리 -->
       <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
+        <a href="jewish_math/index.html" target="_blank" class="topic-card" style="display:block;text-decoration:none;border:1px solid rgba(253,230,138,.35);background:linear-gradient(155deg,#1e1a07,#2e2a0d);grid-column:1/-1">
+          <div class="ico">🦕</div>
+          <div class="name" style="color:#fde68a">토로의 수학왕국</div>
+          <div class="desc">하브루타 · 초1~초6 전 과정 · 개념·심화·다양한 표현</div>
+          <span class="tag" style="background:rgba(253,230,138,.15);color:#fde68a;border:1px solid rgba(253,230,138,.35);margin-top:6px">✡️ 유대인 교육법</span>
+        </a>
         <div class="topic-card" onclick="showScreen('grade-mid1')" style="border:1px solid rgba(251,191,36,.35);background:linear-gradient(155deg,#1a1000,#251800);grid-column:1/-1">
           <div class="ico">🌱</div>
           <div class="name" style="color:#fbbf24">중1 대수</div>
@@ -334,28 +343,6 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
           <div class="desc">평면좌표 · 직선의 방정식 · 원의 방정식 · 도형의 이동</div>
           <span class="tag" style="background:rgba(125,211,252,.15);color:#7dd3fc;border:1px solid rgba(125,211,252,.35);margin-top:6px">7개 주제</span>
         </div>
-      </div>
-
-      <!-- 섹션 6 -->
-      <div style="display:flex;align-items:center;gap:10px;margin:18px 0 10px">
-        <div style="font-size:1.5rem">✡️</div>
-        <div>
-          <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.9rem">6단계: 유대인 수학 교육과정</div>
-          <div style="font-size:.68rem;color:#888">하브루타 · 초1~중3 전 과정 · 개념·심화</div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
-        <a href="jewish_math/index.html" target="_blank"
-           style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;
-                  border:1px solid rgba(253,230,138,.35);background:linear-gradient(155deg,#1e1a07,#2e2a0d);
-                  text-decoration:none;cursor:pointer">
-          <div style="font-size:1.8rem">✡️</div>
-          <div>
-            <div style="font-size:.72rem;color:#aaa;margin-top:3px">초1~6 · 중1~3 하브루타 · 개념·심화·다양한 표현</div>
-            <span style="display:inline-block;margin-top:5px;font-size:.65rem;padding:2px 8px;border-radius:20px;background:rgba(253,230,138,.15);color:#fde68a;border:1px solid rgba(253,230,138,.35)">✡️ 유대인 교육법 ★토로매쓰</span>
-          </div>
-          <div style="margin-left:auto;color:#fde68a;font-size:1rem">→</div>
-        </a>
       </div>
 
       <!-- 섹션 7 -->
@@ -669,11 +656,29 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="grade-gs2" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학왕국</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#7dd3fc">📍 공통수학2</h2>
       <div style="width:60px"></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
+      <div class="topic-card" onclick="showScreen('set-hub')" style="border:1px solid rgba(45,212,191,.3);background:linear-gradient(155deg,#062622,#0a3630);grid-column:1/-1">
+        <div class="ico">🟢</div>
+        <div class="name" style="color:#2dd4bf">집합</div>
+        <div class="desc">뜻과 표현·포함관계·연산·연산법칙, 벤다이어그램으로 보는 집합</div>
+        <span class="tag" style="background:rgba(45,212,191,.15);color:#2dd4bf;border:1px solid rgba(45,212,191,.35);margin-top:6px">공통수학2 ★토로매쓰</span>
+      </div>
+      <div class="topic-card" onclick="showScreen('prop-hub')" style="border:1px solid rgba(129,140,248,.3);background:linear-gradient(155deg,#14152e,#1c1e42);grid-column:1/-1">
+        <div class="ico">🔀</div>
+        <div class="name" style="color:#818cf8">명제</div>
+        <div class="desc">진리집합·역이대우·필요충분조건·증명(대우·귀류법·직접증명)</div>
+        <span class="tag" style="background:rgba(129,140,248,.15);color:#818cf8;border:1px solid rgba(129,140,248,.35);margin-top:6px">공통수학2 ★토로매쓰</span>
+      </div>
+      <div class="topic-card" onclick="showScreen('amgm-hub')" style="border:1px solid rgba(251,113,133,.3);background:linear-gradient(155deg,#2a0f18,#3a1420);grid-column:1/-1">
+        <div class="ico">📐</div>
+        <div class="name" style="color:#fb7185">산술기하평균</div>
+        <div class="desc">a+b≥2√(ab)의 증명과 최댓값·최솟값 활용, 고난도 아이디어 5개</div>
+        <span class="tag" style="background:rgba(251,113,133,.15);color:#fb7185;border:1px solid rgba(251,113,133,.35);margin-top:6px">공통수학2 ★토로매쓰</span>
+      </div>
       <div class="topic-card" onclick="showScreen('plane-hub')" style="border:1px solid rgba(134,239,172,.3);background:linear-gradient(155deg,#071a10,#0d2318);grid-column:1/-1">
         <div class="ico">📍</div>
         <div class="name" style="color:#86efac">평면좌표</div>
@@ -1689,12 +1694,227 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 </div>
 
 <!-- ══════════════════════════════════
+     집합 허브
+══════════════════════════════════ -->
+<div id="set-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#2dd4bf">🟢 집합</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="background:linear-gradient(155deg,rgba(45,212,191,.12),rgba(45,212,191,.04));border:2px solid rgba(45,212,191,.4);border-radius:14px;padding:14px 16px;margin-bottom:14px">
+      <div style="font-family:'Jua',sans-serif;color:#2dd4bf;font-size:.8rem;margin-bottom:8px">🦕 토로: 이 카드 전체에서 제일 중요한 다섯 줄!</div>
+      <div style="font-size:.85rem;color:#fff;line-height:2;font-weight:800">
+        <div>1. 집합의 뜻과 표현 <span style="color:#94a3b8;font-weight:600">(원소나열법·조건제시법)</span></div>
+        <div>2. 포함관계·부분집합의 개수 <span style="color:#94a3b8;font-weight:600">(2ⁿ개)</span></div>
+        <div>3. 집합의 연산 <span style="color:#94a3b8;font-weight:600">(∩·∪·여집합·차집합)</span></div>
+        <div>4. 연산법칙·흡수법칙·대칭차집합</div>
+        <div>5. 실생활 속 집합 <span style="color:#94a3b8;font-weight:600">(여론조사·데이터)</span></div>
+      </div>
+      <div style="font-size:.78rem;color:#5eead4;font-weight:700;margin-top:8px">→ 여기서 배운 ∩·∪는 뒤에서 배울 "명제"의 그리고·또는과 그대로 이어져요.</div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">주제별로 나뉘어 있어요 — 제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="startCards('set-basic','set-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(45,212,191,.1),rgba(45,212,191,.03));border:1px solid rgba(45,212,191,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🟢</div>
+        <div style="font-family:'Jua',sans-serif;color:#2dd4bf;font-size:.72rem;margin:5px 0 4px;line-height:1.3">①집합이란?</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">뜻·표현<br>원소나열법</div>
+        <div style="font-size:.58rem;color:#2dd4bf;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+      <button onclick="startCards('set-subset','set-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(45,212,191,.1),rgba(45,212,191,.03));border:1px solid rgba(45,212,191,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">⭕</div>
+        <div style="font-family:'Jua',sans-serif;color:#2dd4bf;font-size:.72rem;margin:5px 0 4px;line-height:1.3">②포함관계·부분집합</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">A⊂B<br>부분집합 2ⁿ개</div>
+        <div style="font-size:.58rem;color:#2dd4bf;opacity:.8;margin-top:5px">8장 →</div>
+      </button>
+      <button onclick="startCards('set-operation','set-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(45,212,191,.1),rgba(45,212,191,.03));border:1px solid rgba(45,212,191,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🔀</div>
+        <div style="font-family:'Jua',sans-serif;color:#2dd4bf;font-size:.72rem;margin:5px 0 4px;line-height:1.3">③집합의 연산</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">교집합·합집합<br>여집합·차집합</div>
+        <div style="font-size:.58rem;color:#2dd4bf;opacity:.8;margin-top:5px">9장 →</div>
+      </button>
+      <button onclick="startCards('set-law','set-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(167,139,250,.1),rgba(167,139,250,.03));border:1px solid rgba(167,139,250,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📐</div>
+        <div style="font-family:'Jua',sans-serif;color:#c4b5fd;font-size:.72rem;margin:5px 0 4px;line-height:1.3">④연산법칙</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">인수분해식·흡수법칙<br>대칭차집합</div>
+        <div style="font-size:.58rem;color:#c4b5fd;opacity:.8;margin-top:5px">13장 →</div>
+      </button>
+      <button onclick="startCards('set-real','set-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📊</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.72rem;margin:5px 0 4px;line-height:1.3">실생활 속 집합</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">여론조사<br>데이터·벤다이어그램</div>
+        <div style="font-size:.58rem;color:#fbbf24;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+      <button onclick="startCards('set-practice','set-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(248,113,113,.1),rgba(248,113,113,.03));border:1px solid rgba(248,113,113,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">✏️</div>
+        <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.72rem;margin:5px 0 4px;line-height:1.3">연습문제</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">직접 풀어보기<br>3제+풀이</div>
+        <div style="font-size:.58rem;color:#f87171;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="showScreen('set-drill-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🔥</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.72rem;margin:5px 0 4px;line-height:1.3">실전훈련</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">기출형 16제<br>서랍 판별 드릴</div>
+        <div style="font-size:.58rem;color:#7dd3fc;opacity:.8;margin-top:5px">17장 →</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     집합: 실전훈련 서브허브
+══════════════════════════════════ -->
+<div id="set-drill-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 집합</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#7dd3fc">🔥 집합 실전훈련</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button onclick="startCards('set-drill1','set-drill-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🔍</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">판별 드릴</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">서랍(S1~S8) 워밍업</div>
+        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">1장 →</div>
+      </button>
+      <button onclick="startCards('set-drill2','set-drill-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📝</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.75rem;margin:5px 0 4px;line-height:1.3">기본·응용</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">문항 1~9</div>
+        <div style="font-size:.6rem;color:#7dd3fc;opacity:.8;margin-top:5px">9장 →</div>
+      </button>
+      <button onclick="startCards('set-drill3','set-drill-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(248,113,113,.1),rgba(248,113,113,.03));border:1px solid rgba(248,113,113,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🔥</div>
+        <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.75rem;margin:5px 0 4px;line-height:1.3">고난도·최고난도</div>
+        <div style="font-size:.62rem;color:#aaa;line-height:1.4">문항 10~16<br>대칭차집합·연산법칙 마스터</div>
+        <div style="font-size:.6rem;color:#f87171;opacity:.8;margin-top:5px">25장 →</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     명제 허브
+══════════════════════════════════ -->
+<div id="prop-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#818cf8">🔀 명제</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="background:linear-gradient(155deg,rgba(129,140,248,.12),rgba(129,140,248,.04));border:2px solid rgba(129,140,248,.4);border-radius:14px;padding:14px 16px;margin-bottom:14px">
+      <div style="font-family:'Jua',sans-serif;color:#818cf8;font-size:.8rem;margin-bottom:8px">🦕 토로: 이 카드 전체에서 제일 중요한 다섯 줄!</div>
+      <div style="font-size:.85rem;color:#fff;line-height:2;font-weight:800">
+        <div>1. 명제와 조건 <span style="color:#94a3b8;font-weight:600">(진리집합)</span></div>
+        <div>2. 명제의 역·이·대우 <span style="color:#94a3b8;font-weight:600">(원명제=대우)</span></div>
+        <div>3. 필요조건과 충분조건 <span style="color:#94a3b8;font-weight:600">(P⊂Q)</span></div>
+        <div>4. 명제의 증명 <span style="color:#94a3b8;font-weight:600">(대우·귀류법·직접증명)</span></div>
+        <div>5. 심화 서랍 4개 <span style="color:#94a3b8;font-weight:600">(역산·반례개수·연쇄추론·한정기호)</span></div>
+      </div>
+      <div style="font-size:.78rem;color:#a5b4fc;font-weight:700;margin-top:8px">→ 집합에서 배운 ∩·∪가 여기서 그리고·또는으로, 부분집합 A⊂B가 필요·충분조건으로 그대로 이어져요.</div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">주제별로 나뉘어 있어요 — 제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="startCards('prop-intro','prop-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(129,140,248,.1),rgba(129,140,248,.03));border:1px solid rgba(129,140,248,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🎬</div>
+        <div style="font-family:'Jua',sans-serif;color:#a5b4fc;font-size:.72rem;margin:5px 0 4px;line-height:1.3">도입 — 명제란?</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">하브루타<br>반례 하나의 힘</div>
+        <div style="font-size:.58rem;color:#a5b4fc;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+      <button onclick="startCards('prop-condition','prop-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(129,140,248,.1),rgba(129,140,248,.03));border:1px solid rgba(129,140,248,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">①</div>
+        <div style="font-family:'Jua',sans-serif;color:#a5b4fc;font-size:.72rem;margin:5px 0 4px;line-height:1.3">명제와 조건</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">진리집합</div>
+        <div style="font-size:.58rem;color:#a5b4fc;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('prop-converse','prop-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(129,140,248,.1),rgba(129,140,248,.03));border:1px solid rgba(129,140,248,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">②</div>
+        <div style="font-family:'Jua',sans-serif;color:#a5b4fc;font-size:.72rem;margin:5px 0 4px;line-height:1.3">역·이·대우</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">화살표 뒤집기</div>
+        <div style="font-size:.58rem;color:#a5b4fc;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('prop-necessary','prop-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(129,140,248,.1),rgba(129,140,248,.03));border:1px solid rgba(129,140,248,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">③</div>
+        <div style="font-family:'Jua',sans-serif;color:#a5b4fc;font-size:.72rem;margin:5px 0 4px;line-height:1.3">필요·충분조건</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">P⊂Q</div>
+        <div style="font-size:.58rem;color:#a5b4fc;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('prop-proof','prop-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(129,140,248,.1),rgba(129,140,248,.03));border:1px solid rgba(129,140,248,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">④</div>
+        <div style="font-family:'Jua',sans-serif;color:#a5b4fc;font-size:.72rem;margin:5px 0 4px;line-height:1.3">명제의 증명</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">대우·귀류법<br>직접증명</div>
+        <div style="font-size:.58rem;color:#a5b4fc;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+      <button onclick="startCards('prop-advanced','prop-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(196,181,253,.1),rgba(196,181,253,.03));border:1px solid rgba(196,181,253,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🗺️</div>
+        <div style="font-family:'Jua',sans-serif;color:#c4b5fd;font-size:.72rem;margin:5px 0 4px;line-height:1.3">심화 서랍 4개</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">역산·반례개수<br>연쇄추론·한정기호</div>
+        <div style="font-size:.58rem;color:#c4b5fd;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+      <button onclick="startCards('prop-drill','prop-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(125,211,252,.1),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🔥</div>
+        <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.72rem;margin:5px 0 4px;line-height:1.3">실전훈련</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">기출형 4제</div>
+        <div style="font-size:.58rem;color:#7dd3fc;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     산술기하평균 허브
+══════════════════════════════════ -->
+<div id="amgm-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#fb7185">📐 산술기하평균</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="background:linear-gradient(155deg,rgba(251,113,133,.12),rgba(251,113,133,.04));border:2px solid rgba(251,113,133,.4);border-radius:14px;padding:14px 16px;margin-bottom:14px">
+      <div style="font-family:'Jua',sans-serif;color:#fb7185;font-size:.8rem;margin-bottom:8px">🦕 토로: 이 카드 전체에서 제일 중요한 세 줄!</div>
+      <div style="font-size:.85rem;color:#fff;line-height:2;font-weight:800">
+        <div>1. a+b ≥ 2√(ab) <span style="color:#94a3b8;font-weight:600">(등호는 a=b)</span></div>
+        <div>2. 곱이 고정 → 합의 최솟값 / 합이 고정 → 곱의 최댓값</div>
+        <div>3. 고난도는 "곱이 고정된 상태"를 억지로 만드는 게 핵심</div>
+      </div>
+      <div style="font-size:.78rem;color:#fda4af;font-weight:700;margin-top:8px">→ 명제의 "직접증명"에서 이 부등식을 증명했고, 여기선 최댓값·최솟값 문제에 실제로 써봐요.</div>
+    </div>
+    <div style="font-size:.72rem;color:#8899aa;text-align:center;margin-bottom:10px">주제별로 나뉘어 있어요 — 제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="startCards('amgm-basic','amgm-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,113,133,.1),rgba(251,113,133,.03));border:1px solid rgba(251,113,133,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">📐</div>
+        <div style="font-family:'Jua',sans-serif;color:#fda4af;font-size:.72rem;margin:5px 0 4px;line-height:1.3">쓰는 법 + 기본문제</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">곱 고정·합 고정</div>
+        <div style="font-size:.58rem;color:#fda4af;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('amgm-ideas','amgm-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(196,181,253,.1),rgba(196,181,253,.03));border:1px solid rgba(196,181,253,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">💡</div>
+        <div style="font-family:'Jua',sans-serif;color:#c4b5fd;font-size:.72rem;margin:5px 0 4px;line-height:1.3">심화 아이디어 5개</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">상수만들기·전개·치환</div>
+        <div style="font-size:.58rem;color:#c4b5fd;opacity:.8;margin-top:5px">1장 →</div>
+      </button>
+      <button onclick="startCards('amgm-challenge','amgm-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.4rem">🎯</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.72rem;margin:5px 0 4px;line-height:1.3">도전문제 4제+짝문제</div>
+        <div style="font-size:.6rem;color:#aaa;line-height:1.4">이상vs초과<br>넓이↔둘레</div>
+        <div style="font-size:.58rem;color:#fbbf24;opacity:.8;margin-top:5px">7장 →</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
      수직의 의미 총정리 허브
 ══════════════════════════════════ -->
 <div id="perp-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학왕국</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#34d399">📐 수직의 의미 총정리</h2>
       <div style="width:60px"></div>
     </div>
@@ -2101,7 +2321,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       <div id="cv-prog-fill" style="height:5px;border-radius:3px;background:linear-gradient(90deg,#a855f7,#fde68a);transition:.35s;width:0%"></div>
     </div>
     <div id="cv-inner"></div>
-    <div id="cv-ans-area" style="display:none;margin-top:10px;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.2);border-radius:10px;padding:12px;font-size:.72rem;color:#ccc;line-height:1.8"></div>
+    <div id="cv-ans-area" style="display:none;margin-top:10px;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.2);border-radius:10px;padding:12px;font-size:.9rem;color:#e2e8f0;line-height:1.85"></div>
     <button id="cv-ans-btn" onclick="toggleCVAnswer()" style="display:none;width:100%;margin-top:10px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:10px;padding:10px;font-family:'Jua',sans-serif;font-size:.82rem;cursor:pointer">
       💡 정답/풀이 보기
     </button>
@@ -15156,7 +15376,7 @@ CP=r → √{(x−a)²+(y−b)²}=r → 양변 제곱<br>
 </svg>
 <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
 <b style="color:#5eead4">원소나열법</b> — 원소를 직접 나열: A = {2, 4, 6}<br>
-<b style="color:#5eead4">조건제시법</b> — 원소가 만족하는 조건을 씀: A = {x | x는 10보다 작은 짝수}<br>
+<b style="color:#5eead4">조건제시법</b> — 원소가 만족하는 조건을 씀: A = {x | x는 8보다 작은 짝수}<br>
 <b style="color:#5eead4">벤다이어그램</b> — 동그라미 안에 원소를 그려서 나타냄(위 그림처럼)
 </div>
 전체집합 U 안에 있는 원소들 중, 조건을 만족하는 것만 모은 작은 동그라미가 A예요. A 안의 원소는 <b>전부 U 안에도</b> 있죠 — 이게 바로 다음에 배울 "부분집합"의 그림입니다.<br><br>
@@ -15221,30 +15441,30 @@ CP=r → √{(x−a)²+(y−b)²}=r → 양변 제곱<br>
 { tag:'부분집합의 개수 — 개념', tagColor:'#2dd4bf',
     bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
-원소가 n개인 집합의 부분집합을 만들 때, <b>각 원소마다</b> "포함한다/안 한다" 두 가지 선택이 있어요. A={1,2}는 가지 2개×2개=4개, A={1,2,3}은 2×2×2=8개의 부분집합이 나와요.<br><br>
-<svg viewBox="0 0 260 110" width="100%" style="max-width:220px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
-  <line x1="20" y1="90" x2="240" y2="90" stroke="#999" stroke-width="1"/>
-  <rect x="30" y="75" width="30" height="15" fill="rgba(45,212,191,.5)"/>
-  <rect x="85" y="45" width="30" height="45" fill="rgba(45,212,191,.5)"/>
-  <rect x="140" y="45" width="30" height="45" fill="rgba(45,212,191,.5)"/>
-  <rect x="195" y="75" width="30" height="15" fill="rgba(45,212,191,.5)"/>
-  <text x="40" y="102" font-size="8" fill="#ccc">0개</text>
-  <text x="95" y="102" font-size="8" fill="#ccc">1개</text>
-  <text x="150" y="102" font-size="8" fill="#ccc">2개</text>
-  <text x="205" y="102" font-size="8" fill="#ccc">3개</text>
-  <text x="40" y="70" font-size="9" fill="#5eead4" font-weight="700">1</text>
-  <text x="95" y="40" font-size="9" fill="#5eead4" font-weight="700">3</text>
-  <text x="150" y="40" font-size="9" fill="#5eead4" font-weight="700">3</text>
-  <text x="205" y="70" font-size="9" fill="#5eead4" font-weight="700">1</text>
-</svg>
-원소 개수 0,1,2,3개짜리 부분집합이 각각 1,3,3,1개 — 다 더하면 1+3+3+1=<b>8개</b>, 역시 2³과 일치해요.<br><br>
+원소가 n개인 집합의 부분집합을 만들 때, <b>각 원소마다</b> "포함한다/안 한다" 두 가지 선택이 있어요. A={1,2}로 직접 가지를 쳐볼게요.<br><br>
+${subsetTreeSvg()}
+가지가 <b>1(포함/제외)×2(포함/제외)</b>로 두 번 갈라져서 4개의 부분집합({1,2},{1},{2},∅)이 나와요.<br><br>
+원소가 하나 늘어나면(A={1,2,3}) 가지가 <b>한 단계 더</b> 갈라져서 2×2×2=8개가 돼요 — 끝까지 직접 그려볼게요.<br><br>
+${subsetTree3Svg()}
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.9em;line-height:2.0">
+🦕 참고로 위 8개를 <b>원소 개수별로</b> 다시 세어보면 0개짜리 1개, 1개짜리 3개, 2개짜리 3개, 3개짜리 1개 — 1+3+3+1=8로 똑같이 맞아떨어져요.
+</div>
 <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
 원소 n개인 집합의 <b>부분집합의 개수 = 2ⁿ</b><br>
 <b>진부분집합의 개수 = 2ⁿ − 1</b> (자기 자신 제외)
 </div>
-특정 원소를 반드시 포함(또는 제외)해야 하면, 그 원소는 가지치기에서 <b>한쪽 가지가 잘려나가요</b>. <b>나머지 원소만</b> 자유롭게 가지를 쳐서 2^(자유원소 개수).<br><br>
-예: A={1,2,3,4,5}의 부분집합 중 1은 포함하고 2는 포함하지 않는 것의 개수는?<br>
-1,2는 가지 하나로 고정(선택권 없음), 나머지 3,4,5만 자유롭게 가지침 → 2³=<b>8개</b>
+</div>`, ans:null },
+
+{ tag:'부분집합의 개수 — 특정 원소 포함·제외 (가장 중요한 유형)', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+시험에 가장 많이 나오는 유형이에요: 특정 원소를 <b>반드시 포함</b>(또는 <b>제외</b>)해야 하면, 그 원소는 가지치기에서 <b>선택권이 없어져서 한쪽 가지가 통째로 잘려나가요</b>. <b>나머지 원소만</b> 자유롭게 가지를 쳐서 2^(자유원소 개수)가 답이 돼요.<br><br>
+예: A={1,2,3}의 부분집합 중 <b>1은 포함, 2는 제외</b>해야 하는 것의 개수는?<br><br>
+${subsetPruneTreeSvg()}
+1은 "포함" 가지만 살아있고(선택권 없음), 2는 "제외" 가지만 살아있어요(선택권 없음). 오직 <b>3만 자유롭게</b> 포함/제외를 고를 수 있어요 → 자유 원소 1개 → <b>2¹=2개</b>({1,3}, {1})<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.9em;line-height:1.9">
+🦕 <b>정리</b>: 조건이 걸린 원소 개수만큼 가지가 미리 잘려요. 원소 n개 중 조건이 걸린 게 k개(포함이든 제외든 상관없이)라면, 답은 항상 <b>2<sup>n−k</sup></b>예요.
+</div>
 </div>`, ans:null },
 
 { tag:'기본 3 — 부분집합·진부분집합의 개수', tagColor:'#2dd4bf',
@@ -15252,10 +15472,35 @@ CP=r → √{(x−a)²+(y−b)²}=r → 양변 제곱<br>
     body:`집합 A={a,b,c,d}의 부분집합의 개수와 진부분집합의 개수를 각각 구하세요.`,
     ans:`원소 4개 → 부분집합 개수 = 2⁴=<b>16개</b><br>진부분집합 개수 = 16−1=<b>15개</b>` },
 
-{ tag:'심화 — 특정 원소 포함/제외 조건', tagColor:'#2dd4bf',
+{ tag:'심화 1 — 포함형', tagColor:'#2dd4bf',
     bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
-    body:`A={1,2,3,4,5}의 부분집합 중 1, 2를 반드시 포함하는 것의 개수는?`,
-    ans:`1, 2는 고정, 나머지 3,4,5는 각각 포함/제외 자유 → 2³=<b>8개</b><br><br><span style="font-size:.85em;color:#94a3b8">이런 유형은 "원소 n개인 집합의 부분집합은 2ⁿ개"라는 사실에서, 선택권 없는 원소를 빼고 나머지 자유 원소 개수만큼만 2를 거듭제곱하면 돼요.</span>` }
+    body:`<div id="inclQ1">A={1,...,5}의 부분집합 중 1, 2를 반드시 포함하는 것의 개수는?</div>
+<div id="inclA1" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.9em">1,2는 고정, 나머지 3,4,5는 각각 포함/제외 자유 → 2<sup>3</sup>=<b style="color:#5eead4">8개</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('inclA1')" style="flex:1;background:rgba(45,212,191,.15);border:1px solid rgba(45,212,191,.35);color:#5eead4;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="subsetInclGen('inclQ1','inclA1')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+<div style="font-size:.9em;color:#cbd5e1;margin-top:10px">특정 원소를 <b>포함</b>하는 경우만 고정하고, 나머지는 전부 자유롭게 가지를 쳐요.</div>`, ans:null },
+
+{ tag:'심화 2 — 불포함형', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div id="exclQ1">A={1,...,5}의 부분집합 중 1을 포함하지 않는 것의 개수는?</div>
+<div id="exclA1" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.9em">1은 반드시 제외(고정), 나머지 2,3,4,5는 자유 → 2<sup>4</sup>=<b style="color:#5eead4">16개</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('exclA1')" style="flex:1;background:rgba(45,212,191,.15);border:1px solid rgba(45,212,191,.35);color:#5eead4;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="subsetExclGen('exclQ1','exclA1')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+<div style="font-size:.9em;color:#cbd5e1;margin-top:10px">포함형과 계산식은 똑같지만(2^자유원소), 이번엔 그 원소가 <b>"제외" 가지</b>로 고정된다는 게 달라요.</div>`, ans:null },
+
+{ tag:'심화 3 — 포함과 불포함 혼합형', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div id="bothQ1">A={1,...,5}의 부분집합 중 1은 포함하고 2는 포함하지 않는 것의 개수는?</div>
+<div id="bothA1" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.9em">1은 고정 포함, 2는 고정 제외, 나머지 3,4,5는 자유 → 2<sup>3</sup>=<b style="color:#5eead4">8개</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('bothA1')" style="flex:1;background:rgba(45,212,191,.15);border:1px solid rgba(45,212,191,.35);color:#5eead4;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="subsetBothGen('bothQ1','bothA1')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+<div style="font-size:.9em;color:#cbd5e1;margin-top:10px">포함 조건과 불포함 조건이 동시에 있으면, 두 원소 모두 선택권이 사라지고 <b>나머지 원소만</b> 자유예요.</div>`, ans:null }
 ],
 
 'set-operation': [
@@ -15310,12 +15555,97 @@ CP=r → √{(x−a)²+(y−b)²}=r → 양변 제곱<br>
 <b style="color:#5eead4">A−B (차집합)</b> — A이면서 B는 아닌 부분
 </div>
 <b>드모르간의 법칙</b>: (A∩B)<sup>c</sup> = A<sup>c</sup>∪B<sup>c</sup>, (A∪B)<sup>c</sup> = A<sup>c</sup>∩B<sup>c</sup> — "그리고의 부정은 또는, 또는의 부정은 그리고"로 바뀌어요. 이 규칙은 명제를 부정할 때도 그대로 나옵니다.
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.8rem 0 0;font-size:.95em;line-height:2.0">
+<b style="color:#5eead4">차집합 A−B, 세 가지로 똑같이 표현돼요</b> — 같은 도형(크레센트 모양)을 다른 방식으로 만드는 것뿐이에요.
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:6px 0">
+  <div style="text-align:center">
+    <svg viewBox="0 0 140 100" width="100%" style="max-width:120px" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="55" cy="50" r="32" fill="#2dd4bf" fill-opacity=".55" stroke="#2dd4bf" stroke-width="1.6"/>
+      <circle cx="85" cy="50" r="32" fill="#1e293b" stroke="#fb923c" stroke-width="1.6"/>
+      <text x="20" y="30" font-size="8" fill="#5eead4" font-weight="700">A</text>
+      <text x="105" y="30" font-size="8" fill="#fb923c" font-weight="700">B</text>
+    </svg>
+    <div style="font-size:.78em;font-weight:700;color:#c4b5fd">① A∩B<sup>c</sup></div>
+    <div style="font-size:.68em;color:#cbd5e1">A 이면서 B 아닌 것</div>
+  </div>
+  <div style="text-align:center">
+    <svg viewBox="0 0 140 100" width="100%" style="max-width:120px" xmlns="http://www.w3.org/2000/svg">
+      <defs><clipPath id="clipD2"><circle cx="55" cy="50" r="32"/></clipPath>
+        <pattern id="hatchD2" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="6" stroke="#f87171" stroke-width="2"/></pattern>
+      </defs>
+      <circle cx="55" cy="50" r="32" fill="#2dd4bf" fill-opacity=".55" stroke="#2dd4bf" stroke-width="1.6"/>
+      <circle cx="85" cy="50" r="32" fill="none" stroke="#fb923c" stroke-width="1.6"/>
+      <circle cx="85" cy="50" r="32" fill="url(#hatchD2)" clip-path="url(#clipD2)"/>
+      <text x="20" y="30" font-size="8" fill="#5eead4" font-weight="700">A</text>
+      <text x="105" y="30" font-size="8" fill="#fb923c" font-weight="700">B</text>
+    </svg>
+    <div style="font-size:.78em;font-weight:700;color:#c4b5fd">② A−(A∩B)</div>
+    <div style="font-size:.68em;color:#cbd5e1">A에서 겹친 부분(빗금)을 도려냄</div>
+  </div>
+  <div style="text-align:center">
+    <svg viewBox="0 0 140 100" width="100%" style="max-width:120px" xmlns="http://www.w3.org/2000/svg">
+      <defs><pattern id="hatchD3" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="6" stroke="#f87171" stroke-width="2"/></pattern></defs>
+      <circle cx="55" cy="50" r="32" fill="#2dd4bf" fill-opacity=".55" stroke="#2dd4bf" stroke-width="1.6"/>
+      <circle cx="85" cy="50" r="32" fill="#2dd4bf" fill-opacity=".55" stroke="#fb923c" stroke-width="1.6"/>
+      <circle cx="85" cy="50" r="32" fill="url(#hatchD3)" stroke="#fb923c" stroke-width="1.6"/>
+      <text x="20" y="30" font-size="8" fill="#5eead4" font-weight="700">A</text>
+      <text x="105" y="30" font-size="8" fill="#fb923c" font-weight="700">B</text>
+    </svg>
+    <div style="font-size:.78em;font-weight:700;color:#c4b5fd">③ (A∪B)−B</div>
+    <div style="font-size:.68em;color:#cbd5e1">합친 것에서 B 전체(빗금)를 도려냄</div>
+  </div>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.9em;line-height:1.9">
+🦕 <b>원소 개수에도 그대로 적용</b>: n(A−B)를 구할 때도 이 세 가지 중 계산이 편한 걸 골라 쓰면 돼요.<br>
+n(A−B) = n(A) − n(A∩B) &nbsp;(②번 발상) &nbsp;=&nbsp; n(A∪B) − n(B) &nbsp;(③번 발상)
+</div>
 </div>`, ans:null },
 
 { tag:'기본 4 — 집합의 연산', tagColor:'#2dd4bf',
     bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
     body:`전체집합 U={1,2,…,10}, A={1,2,3,4,5}, B={4,5,6,7,8}일 때, A∩B, A∪B, A<sup>c</sup>, A−B를 각각 구하세요.`,
-    ans:`A∩B = <b>{4,5}</b> &nbsp; A∪B = <b>{1,2,3,4,5,6,7,8}</b><br>A<sup>c</sup> = <b>{6,7,8,9,10}</b> &nbsp; A−B = <b>{1,2,3}</b>` },
+    ans:`A∩B = <b>{4,5}</b> &nbsp; A∪B = <b>{1,2,3,4,5,6,7,8}</b><br>A<sup>c</sup> = <b>{6,7,8,9,10}</b> &nbsp; A−B = <b>{1,2,3}</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">A−B는 세 가지로 다 확인돼요: 직접 나열(원소 중 B에 없는 것)={1,2,3} / A−(A∩B)={1,2,3,4,5}−{4,5}={1,2,3} / (A∪B)−B={1,2,3,4,5,6,7,8}−{4,5,6,7,8}={1,2,3} — 셋 다 일치!</span>` },
+
+{ tag:'대칭차집합 — 개념', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+차집합을 <b>양쪽 방향으로</b> 다 모으면 어떻게 될까요? A−B(A에만 있는 것)와 B−A(B에만 있는 것)를 합친 걸 <b>대칭차집합</b>이라 하고 <b>A△B</b>로 나타내요.<br><br>
+<svg viewBox="0 0 160 110" width="100%" style="max-width:150px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <defs><clipPath id="clipSymOp"><circle cx="60" cy="55" r="35"/></clipPath></defs>
+  <circle cx="60" cy="55" r="35" fill="#2dd4bf" fill-opacity=".5" stroke="#2dd4bf" stroke-width="1.6"/>
+  <circle cx="90" cy="55" r="35" fill="#fb923c" fill-opacity=".5" stroke="#fb923c" stroke-width="1.6"/>
+  <circle cx="90" cy="55" r="35" fill="#1e293b" clip-path="url(#clipSymOp)"/>
+  <text x="25" y="30" font-size="9" fill="#5eead4" font-weight="700">A</text>
+  <text x="118" y="30" font-size="9" fill="#fb923c" font-weight="700">B</text>
+</svg>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+A△B = (A−B)∪(B−A) = (A∪B)−(A∩B)
+</div>
+예: A={1,2,3}, B={2,3,4} → A−B={1}, B−A={4} → A△B=<b>{1,4}</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">더 깊은 계산 연습(인수분해식 연산·흡수법칙과 함께)은 ④연산법칙 덱에서 이어서 다뤄요.</span>
+</div>`, ans:null },
+
+{ tag:'기본 4-2 (유형①) — A∩B<sup>c</sup>로 차집합 구하기', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U={1,2,...,9}, A={1,3,5,7,9}, B={3,4,5,6}일 때, A∩B<sup>c</sup>을 구하고 A−B와 같은지 확인하세요.`,
+    ans:`B<sup>c</sup>={1,2,7,8,9} → A∩B<sup>c</sup> = {1,3,5,7,9}∩{1,2,7,8,9} = <b>{1,7,9}</b><br>직접 계산 A−B(A에 있고 B엔 없는 것) = <b>{1,7,9}</b> ✓ 일치` },
+
+{ tag:'기본 4-3 (유형②) — A−(A∩B)로 차집합 구하기', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`A={2,4,6,8,10}, B={4,8,12}일 때, A−(A∩B)를 구하고 A−B와 같은지 확인하세요.`,
+    ans:`A∩B={4,8} → A−(A∩B) = {2,4,6,8,10}−{4,8} = <b>{2,6,10}</b><br>직접 계산 A−B = <b>{2,6,10}</b> ✓ 일치` },
+
+{ tag:'기본 4-4 (유형③) — (A∪B)−B로 차집합 구하기', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`A={1,2,3,4}, B={3,4,5,6,7}일 때, (A∪B)−B를 구하고 A−B와 같은지 확인하세요.`,
+    ans:`A∪B={1,2,3,4,5,6,7} → (A∪B)−B = {1,2,3,4,5,6,7}−{3,4,5,6,7} = <b>{1,2}</b><br>직접 계산 A−B = <b>{1,2}</b> ✓ 일치` },
+
+{ tag:'기본 4-5 (유형④, 원소 개수) — n(A−B) 구하기', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`n(A)=20, n(B)=15, n(A∩B)=7일 때, n(A−B)를 구하세요. (원소를 직접 나열할 수 없는 상황이에요.)`,
+    ans:`n(A−B) = n(A) − n(A∩B) = 20 − 7 = <b>13</b><br><br><span style="font-size:.92em;color:#cbd5e1">원소를 모를 때(추상적인 개수만 주어질 때)는 직접 나열이 불가능하니, n(A−B)=n(A)−n(A∩B) 공식(②번 발상)으로 바로 계산해요.</span>` },
 
 { tag:'서로소 — 개념', tagColor:'#2dd4bf',
     bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
@@ -15331,7 +15661,7 @@ CP=r → √{(x−a)²+(y−b)²}=r → 양변 제곱<br>
   <text x="90" y="105" font-size="8" fill="#999">겹치는 부분이 없음</text>
 </svg>
 예: A={1,3,5}, B={2,4,6} → A∩B=∅ → A와 B는 <b>서로소</b><br><br>
-<span style="font-size:.85em;color:#94a3b8">서로소는 "안 겹친다"는 뜻이지, "관계가 없다"는 뜻이 아니에요 — 둘 다 같은 전체집합 U 안에 있을 수 있어요.</span>
+<span style="font-size:.92em;color:#cbd5e1">서로소는 "안 겹친다"는 뜻이지, "관계가 없다"는 뜻이 아니에요 — 둘 다 같은 전체집합 U 안에 있을 수 있어요.</span>
 </div>`, ans:null },
 
 { tag:'기본 5 — 서로소 판별', tagColor:'#2dd4bf',
@@ -15368,17 +15698,17 @@ A∩B={2,3}, A∩C={3} → (A∩B)∪(A∩C)={2,3}∪{3}=<b>{2,3}</b> ✓ 일치
 { tag:'인수분해 방식 연산 2 — 기호만', tagColor:'#2dd4bf',
     bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
     body:`(P∪Q) ∩ (P∪R) 를 공통인수 P로 묶어서 더 간단한 하나의 식으로 나타내세요.`,
-    ans:`공통으로 들어있는 P를 밖으로 묶어내면: <b>P∪(Q∩R)</b><br><span style="font-size:.85em;color:#94a3b8">주의: ∪가 밖에 있으면 묶인 뒤 안쪽은 ∩로 바뀌어요 — 분배법칙의 두 형태(교∪교, 합∩합) 중 어느 쪽인지 먼저 확인해야 해요.</span>` },
+    ans:`공통으로 들어있는 P를 밖으로 묶어내면: <b>P∪(Q∩R)</b><br><span style="font-size:.92em;color:#cbd5e1">주의: ∪가 밖에 있으면 묶인 뒤 안쪽은 ∩로 바뀌어요 — 분배법칙의 두 형태(교∪교, 합∩합) 중 어느 쪽인지 먼저 확인해야 해요.</span>` },
 
 { tag:'인수분해 방식 연산 3 — 숫자 적용', tagColor:'#2dd4bf',
     bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
     body:`A={1,2,3,4,5,6}, B={1,2,7}, C={1,3,8}일 때, (A∩B)∪(A∩C)를 <b>바로 계산하지 말고</b> 먼저 인수분해(묶기)해서 더 간단한 식으로 만든 뒤 계산하세요.`,
-    ans:`인수분해: (A∩B)∪(A∩C) = <b>A∩(B∪C)</b><br>B∪C={1,2,3,7,8} → A∩(B∪C) = {1,2,3,4,5,6}∩{1,2,3,7,8} = <b>{1,2,3}</b><br><br><span style="font-size:.85em;color:#94a3b8">검산(직접 계산): A∩B={1,2}, A∩C={1,3} → 합치면 {1,2,3} ✓ 일치. 인수분해로 풀면 B∪C 한 번만 구하면 돼서 계산이 더 짧아요.</span>` },
+    ans:`인수분해: (A∩B)∪(A∩C) = <b>A∩(B∪C)</b><br>B∪C={1,2,3,7,8} → A∩(B∪C) = {1,2,3,4,5,6}∩{1,2,3,7,8} = <b>{1,2,3}</b><br><br><span style="font-size:.92em;color:#cbd5e1">검산(직접 계산): A∩B={1,2}, A∩C={1,3} → 합치면 {1,2,3} ✓ 일치. 인수분해로 풀면 B∪C 한 번만 구하면 돼서 계산이 더 짧아요.</span>` },
 
 { tag:'인수분해 방식 연산 4 — 숫자 적용', tagColor:'#2dd4bf',
     bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
     body:`A={1,2,3}, B={2,3,4,5}, C={1,3,6,7}일 때, (A∪B)∩(A∪C)를 <b>바로 계산하지 말고</b> 먼저 인수분해(묶기)해서 더 간단한 식으로 만든 뒤 계산하세요.`,
-    ans:`인수분해: (A∪B)∩(A∪C) = <b>A∪(B∩C)</b><br>B∩C={3} → A∪(B∩C) = {1,2,3}∪{3} = <b>{1,2,3}</b><br><br><span style="font-size:.85em;color:#94a3b8">검산(직접 계산): A∪B={1,2,3,4,5}, A∪C={1,2,3,6,7} → 겹치는 부분 {1,2,3} ✓ 일치.</span>` },
+    ans:`인수분해: (A∪B)∩(A∪C) = <b>A∪(B∩C)</b><br>B∩C={3} → A∪(B∩C) = {1,2,3}∪{3} = <b>{1,2,3}</b><br><br><span style="font-size:.92em;color:#cbd5e1">검산(직접 계산): A∪B={1,2,3,4,5}, A∪C={1,2,3,6,7} → 겹치는 부분 {1,2,3} ✓ 일치.</span>` },
 
 { tag:'흡수법칙 — 개념', tagColor:'#2dd4bf',
     bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
@@ -15427,21 +15757,93 @@ A−B(직접 계산)=<b>{1,2,3}</b>, A∩B<sup>c</sup>={1,2,3,4,5}∩{1,2,3,9,10
   <text x="25" y="30" font-size="9" fill="#5eead4" font-weight="700">A</text>
   <text x="118" y="30" font-size="9" fill="#fb923c" font-weight="700">B</text>
 </svg>
-<b>세 가지 방법으로 똑같이 표현</b>돼요:<br>
+<b>다섯 가지 방법으로 똑같이 표현</b>돼요 — 앞서 배운 "차집합 세 가지 표현"과 드모르간 법칙을 대칭차집합에 그대로 적용한 거예요:<br>
 <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
-① A△B = (A−B)∪(B−A) &nbsp; <span style="color:#94a3b8">(각자 상대에게 없는 것만 모으기)</span><br>
-② A△B = (A∪B)−(A∩B) &nbsp; <span style="color:#94a3b8">(합집합에서 겹친 부분 빼기)</span>
+① A△B = (A−B)∪(B−A) &nbsp; <span style="color:#cbd5e1">(각자 상대에게 없는 것만 모으기)</span><br>
+② A△B = (A∪B)−(A∩B) &nbsp; <span style="color:#cbd5e1">(합집합에서 겹친 부분 빼기)</span><br>
+③ A△B = (A∩B<sup>c</sup>)∪(A<sup>c</sup>∩B) &nbsp; <span style="color:#cbd5e1">(①의 두 차집합을 각각 A∩B<sup>c</sup>형태로 바꿔쓰기)</span><br>
+④ A△B = (A∪B)∩(A∩B)<sup>c</sup> &nbsp; <span style="color:#cbd5e1">(②를 A−X=A∩X<sup>c</sup>형태로 바꿔쓰기)</span><br>
+⑤ A△B = (A∪B)∩(A<sup>c</sup>∪B<sup>c</sup>) &nbsp; <span style="color:#cbd5e1">(④의 (A∩B)<sup>c</sup>에 드모르간 법칙 적용)</span>
 </div>
-예: A={1,2,3}, B={2,3,4}일 때<br>
-① A−B={1}, B−A={4} → (A−B)∪(B−A)=<b>{1,4}</b><br>
-② A∪B={1,2,3,4}, A∩B={2,3} → (A∪B)−(A∩B)=<b>{1,4}</b> ✓ 일치<br><br>
-<span style="font-size:.85em;color:#94a3b8">이름의 "대칭"은 A,B 둘 중 어느 쪽이 먼저 와도 결과가 같다는 뜻이에요(A△B = B△A) — 교환법칙이 성립해요.</span>
+예: A={1,2,3}, B={2,3,4}, U={1,2,3,4,5}일 때 (A<sup>c</sup>={4,5}, B<sup>c</sup>={1,5})<br>
+① A−B={1}, B−A={4} → <b>{1,4}</b><br>
+② A∪B={1,2,3,4}, A∩B={2,3} → (A∪B)−(A∩B)=<b>{1,4}</b><br>
+③ A∩B<sup>c</sup>={1}, A<sup>c</sup>∩B={4} → 합치면 <b>{1,4}</b><br>
+④ (A∩B)<sup>c</sup>={1,4,5} → (A∪B)∩(A∩B)<sup>c</sup>={1,2,3,4}∩{1,4,5}=<b>{1,4}</b><br>
+⑤ A<sup>c</sup>∪B<sup>c</sup>={1,4,5} → (A∪B)∩(A<sup>c</sup>∪B<sup>c</sup>)=<b>{1,4}</b> — ④,⑤는 (A∩B)<sup>c</sup>=A<sup>c</sup>∪B<sup>c</sup>(드모르간)라서 계산 과정 자체가 똑같아요<br>
+<b style="color:#5eead4">다섯 식 모두 {1,4}로 일치!</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">이름의 "대칭"은 A,B 둘 중 어느 쪽이 먼저 와도 결과가 같다는 뜻이에요(A△B = B△A) — 교환법칙이 성립해요.</span>
+</div>`, ans:null },
+
+{ tag:'대칭차집합 — 교환법칙·결합법칙', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+대칭차집합도 <b>덧셈처럼</b> 교환·결합법칙이 성립할까요? 직접 확인해볼게요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b style="color:#5eead4">교환법칙: A△B = B△A</b><br>
+정의(①)가 (A−B)∪(B−A)로 이미 A,B에 대해 대칭이라 자동으로 성립해요. 순서를 바꿔도 "각자 상대에게 없는 것"이라는 뜻은 그대로예요.
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b style="color:#5eead4">결합법칙: (A△B)△C = A△(B△C)</b><br>
+이건 당연해 보이지 않죠? A={1,2,3}, B={2,3,4}, C={1,4,5}로 직접 확인해볼게요.
+</div>
+<b>(A△B)△C 계산:</b> A△B={1,4}(앞 카드에서 계산) → {1,4}△{1,4,5} = ({1,4}−{1,4,5})∪({1,4,5}−{1,4}) = ∅∪{5} = <b style="color:#5eead4">{5}</b><br><br>
+<b>A△(B△C) 계산:</b> B△C={2,3,4}△{1,4,5} = (B−C)∪(C−B) = {2,3}∪{1,5} = {1,2,3,5} → A△{1,2,3,5} = ({1,2,3}−{1,2,3,5})∪({1,2,3,5}−{1,2,3}) = ∅∪{5} = <b style="color:#5eead4">{5}</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.9em;line-height:1.8">
+🦕 계산 순서를 완전히 다르게 해도 <b>둘 다 {5}</b> — 결합법칙이 성립해요! 그래서 A△B△C처럼 괄호 없이 써도 뜻이 명확해요. (이 성질은 나중에 확률·논리 단원에서 배타적 논리합(XOR)의 결합법칙과 똑같은 구조로 다시 만나게 돼요.)
+</div>
+</div>`, ans:null },
+
+{ tag:'대칭차집합 — 특수한 집합과의 연산', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+A△(공집합), A△(전체집합), A△A, A△A<sup>c</sup> — 네 가지 특수한 경우를 확인해볼게요. (U={1,2,3,4,5}, A={1,2,3}, A<sup>c</sup>={4,5} 기준)<br><br>
+<table style="width:100%;border-collapse:collapse;font-size:.85em;margin:.5rem 0;color:#e2e8f0">
+<tr style="border-bottom:1px solid #555"><th style="text-align:left;padding:6px 4px">식</th><th style="text-align:left;padding:6px 4px">결과</th><th style="text-align:left;padding:6px 4px">이유</th></tr>
+<tr style="border-bottom:1px dashed #444"><td style="padding:6px 4px"><b>A△∅</b></td><td style="padding:6px 4px;color:#5eead4;font-weight:700">= A</td><td style="padding:6px 4px">아무것도 없는 것과 비교하면 전부 "나만 있는 것" → 자기 자신 그대로</td></tr>
+<tr style="border-bottom:1px dashed #444"><td style="padding:6px 4px"><b>A△U</b></td><td style="padding:6px 4px;color:#5eead4;font-weight:700">= A<sup>c</sup></td><td style="padding:6px 4px">전체와 비교하면 A 안의 것은 다 겹쳐서 빠지고, A 밖(A<sup>c</sup>)만 "U에만 있는 것"으로 남음</td></tr>
+<tr style="border-bottom:1px dashed #444"><td style="padding:6px 4px"><b>A△A</b></td><td style="padding:6px 4px;color:#5eead4;font-weight:700">= ∅</td><td style="padding:6px 4px">자기 자신과 비교하면 겹치지 않는 원소가 하나도 없음</td></tr>
+<tr><td style="padding:6px 4px"><b>A△A<sup>c</sup></b></td><td style="padding:6px 4px;color:#5eead4;font-weight:700">= U</td><td style="padding:6px 4px">A와 A<sup>c</sup>는 원래 겹치는 게 없어서(서로소), 합친 것 전부가 "한쪽에만 있는 것" = U 전체</td></tr>
+</table>
+검산(A△U): (A−U)∪(U−A) = ∅∪{4,5} = {4,5} = A<sup>c</sup> ✓<br>
+검산(A△A<sup>c</sup>): A,A<sup>c</sup>는 서로소라 A−A<sup>c</sup>=A, A<sup>c</sup>−A=A<sup>c</sup> → A∪A<sup>c</sup>=U ✓<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.9em;line-height:1.9">
+<b style="color:#5eead4">🔑 더 쉬운 방법 — "합집합에서 교집합 빼기"(②번 식)로 네 개 다 한 번에 설명돼요</b><br>
+매번 "누가 나만 있는 원소인지" 따지지 않고, <b>A∪B와 A∩B만 구해서 빼면</b> 끝이에요:<br><br>
+A△∅ = (A∪∅)−(A∩∅) = A−∅ = <b>A</b><br>
+A△U = (A∪U)−(A∩U) = U−A = <b>A<sup>c</sup></b><br>
+A△A = (A∪A)−(A∩A) = A−A = <b>∅</b><br>
+A△A<sup>c</sup> = (A∪A<sup>c</sup>)−(A∩A<sup>c</sup>) = U−∅ = <b>U</b><br><br>
+<span style="color:#cbd5e1">합집합(A∪B)과 교집합(A∩B)이 뭔지만 알면 되니까, 매번 "어느 쪽에만 있나"를 하나하나 따지는 것보다 훨씬 기계적이고 빨라요.</span>
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.9em;line-height:1.8">
+🦕 패턴이 보이나요? <b>∅은 아무 효과 없음(항등원)</b>, <b>U는 여집합으로 뒤집는 효과</b>, <b>자기 자신은 없애는 효과</b>, <b>여집합과는 전체를 채우는 효과</b> — 마치 숫자에서 0(더해도 그대로), 부호 반전 같은 역할을 나눠 맡고 있어요.
+</div>
 </div>`, ans:null },
 
 { tag:'기본 6-3 — 대칭차집합 구하기', tagColor:'#2dd4bf',
     bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
     body:`A={1,2,3,4,5}, B={4,5,6,7}일 때, A△B를 두 가지 방법으로 각각 구하고 같은지 확인하세요.`,
-    ans:`① A−B={1,2,3}, B−A={6,7} → (A−B)∪(B−A)=<b>{1,2,3,6,7}</b><br>② A∪B={1,2,3,4,5,6,7}, A∩B={4,5} → (A∪B)−(A∩B)=<b>{1,2,3,6,7}</b> ✓ 일치` }
+    ans:`① A−B={1,2,3}, B−A={6,7} → (A−B)∪(B−A)=<b>{1,2,3,6,7}</b><br>② A∪B={1,2,3,4,5,6,7}, A∩B={4,5} → (A∪B)−(A∩B)=<b>{1,2,3,6,7}</b> ✓ 일치` },
+
+{ tag:'심화 예제 — 대칭차집합 방정식', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`A={1,2,3}이고, 집합 X가 A△X = B={2,3,4}를 만족한다. 결합법칙과 앞서 배운 특수한 경우(A△A=∅, A△∅=A)를 이용해서 X를 A△B로 나타낼 수 있음을 보이고, 실제로 X를 구하세요.`,
+    ans:`<b>① 식 변형(양쪽에 A△를 적용)</b><br>
+A△X = B의 양쪽에 A를 대칭차집합으로 한 번 더 적용:<br>
+A△(A△X) = A△B<br><br>
+<b>② 결합법칙 적용</b><br>
+A△(A△X) = (A△A)△X &nbsp;<span style="color:#cbd5e1">(결합법칙)</span><br>
+= ∅△X &nbsp;<span style="color:#cbd5e1">(A△A=∅)</span><br>
+= X &nbsp;<span style="color:#cbd5e1">(∅△X=X, 항등원 성질)</span><br><br>
+따라서 <b style="color:#5eead4">X = A△B</b><br><br>
+<b>③ 실제 계산</b><br>
+A△B = {1,2,3}△{2,3,4} = (A−B)∪(B−A) = {1}∪{4} = <b style="color:#5eead4">X={1,4}</b><br><br>
+<b>④ 검산</b>: A△X = {1,2,3}△{1,4} = ({1,2,3}−{1,4})∪({1,4}−{1,2,3}) = {2,3}∪{4} = {2,3,4} = B ✓<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem 1rem;margin:.5rem 0;font-size:.9em;line-height:1.8">
+🦕 이 풀이는 방금 배운 <b>결합법칙 + A△A=∅ + A△∅=A</b> 세 가지를 순서대로 조합한 거예요 — 마치 일차방정식 x+3=7에서 양변에 −3을 더해 x=7−3을 구하는 것과 똑같은 구조예요("△A"가 소거 도구 역할).
+</div>` },
+
 ],
 
 'set-real': [
@@ -15460,7 +15862,7 @@ Alice — 서울, 22세<br>Bob — 부산, 17세<br>Charlie — 서울, 25세<br
 
 { tag:'실전 — 벤다이어그램으로 계산하기', tagColor:'#2dd4bf',
     bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
-    body:`학생 20명 중 스마트폰을 가진 학생이 12명, 태블릿을 가진 학생이 9명, 둘 다 안 가진 학생이 3명이다. 스마트폰과 태블릿을 <b>둘 다</b> 가진 학생 수를 구하세요.<br><br><span style="font-size:.85em;color:#94a3b8">▶ 힌트: 먼저 "적어도 하나 가진 사람 수"부터 구해보세요.</span>`,
+    body:`학생 20명 중 스마트폰을 가진 학생이 12명, 태블릿을 가진 학생이 9명, 둘 다 안 가진 학생이 3명이다. 스마트폰과 태블릿을 <b>둘 다</b> 가진 학생 수를 구하세요.<br><br><span style="font-size:.92em;color:#cbd5e1">▶ 힌트: 먼저 "적어도 하나 가진 사람 수"부터 구해보세요.</span>`,
     ans:`<svg viewBox="0 0 220 140" width="100%" style="max-width:190px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
   <rect x="4" y="4" width="212" height="132" fill="none" stroke="#666" stroke-width="1.3"/>
   <circle cx="90" cy="70" r="55" fill="rgba(45,212,191,.12)" stroke="#2dd4bf" stroke-width="2"/>
@@ -15474,7 +15876,7 @@ Alice — 서울, 22세<br>Bob — 부산, 17세<br>Charlie — 서울, 25세<br
 </svg>
 <b>1단계</b>: 적어도 하나 가진 사람 = 전체 20 − 둘 다 없음 3 = <b>17명</b><br>
 <b>2단계</b>: n(A∪B) = n(A) + n(B) − n(A∩B) → 17 = 12 + 9 − n(A∩B) → <b>n(A∩B) = 4명</b><br><br>
-<span style="font-size:.85em;color:#94a3b8">검산: 스마트폰만 12−4=8명, 태블릿만 9−4=5명. 8+5+4+3 = <b>20명</b> ✓</span>` },
+<span style="font-size:.92em;color:#cbd5e1">검산: 스마트폰만 12−4=8명, 태블릿만 9−4=5명. 8+5+4+3 = <b>20명</b> ✓</span>` },
 
 { tag:'실전 — 네 가지 언어로 다시 말해보기', tagColor:'#2dd4bf',
     bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
@@ -15500,6 +15902,685 @@ Alice — 서울, 22세<br>Bob — 부산, 17세<br>Charlie — 서울, 25세<br
     bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
     body:`집합 A={1,2,3}의 부분집합 중 원소의 개수가 2개인 것을 모두 구하세요.`,
     ans:`3개 중 2개를 고르는 경우 → <b>{1,2}, {1,3}, {2,3}</b>` }
+],
+
+/* ── 명제 (공통수학2) ── */
+'prop-intro': [
+{ tag:'STEP1 — 참·거짓을 판단할 수 있는가?', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`🦕 <b>토로</b>: '서울은 대한민국의 수도이다'는 명제일까?<br>
+🙋 <b>학생</b>: 네. 참과 거짓을 판단할 수 있습니다.<br>
+🦕 <b>토로</b>: 맞아. '문을 닫아라'는 명령문이라 명제가 아니야.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b style="color:#a5b4fc">핵심정리</b>: 명제 = 참 또는 거짓을 판단할 수 있는 문장
+</div>`, ans:null },
+
+{ tag:'STEP2 — 아직 모르는데 명제일까?', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`🦕 <b>토로</b>: '내일 비가 온다'는 명제일까?<br>
+🙋 <b>학생A</b>: 명제예요.<br>
+🙋 <b>학생B</b>: 지금 모르니까 아니에요.<br>
+🦕 <b>토로</b>: 지금 아는지가 아니라, <b>참·거짓이 언젠가 결정될 수 있으면</b> 명제야. 내일이 되면 비가 왔는지 안 왔는지 분명히 가려지니까, 지금 몰라도 명제가 맞아.<br><br>
+<span style="font-size:.85em;color:#94a3b8">"모른다"와 "정해질 수 없다"는 달라요 — 이 둘을 헷갈리지 않는 게 핵심이에요.</span>`, ans:null },
+
+{ tag:'STEP3 하브루타 — 반례 하나의 힘', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`🙋 <b>학생A</b>: 모든 새는 날 수 있다.<br>
+🙋 <b>학생B</b>: 펭귄은?<br>
+🙋 <b>학생A</b>: 아! 반례가 있네요.<br>
+🦕 <b>토로</b>: 맞아, <b>반례 하나만 있어도 명제는 거짓</b>이 돼. "모든"이라는 말이 붙은 명제는 예외가 단 하나만 나와도 무너진다는 걸 기억해두자.`, ans:null },
+
+{ tag:'연습 — 명제인지, 참·거짓인지 판별', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`① 모든 삼각형은 직각삼각형이다.<br>② 15는 3의 배수이다.<br>③ 오늘은 즐겁게 보내자.`,
+    ans:`① 명제, <b>거짓</b> — 반례: 정삼각형(세 각이 모두 60°라 직각이 없음)<br>② 명제, <b>참</b> — 15=3×5이므로 3의 배수<br>③ 명제 <b>아님</b> — 청유문이라 참·거짓을 판단할 대상이 아님` }
+],
+
+'prop-condition': [
+{ tag:'명제와 조건 — 진리집합', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b>명제</b>는 참·거짓을 분명히 가릴 수 있는 문장이에요. "3은 소수다"(참), "5는 짝수다"(거짓)는 명제지만, "x는 크다"는 x가 뭔지 몰라서 명제가 아니에요 — 이런 문장을 <b>조건</b>이라 부릅니다.<br><br>
+조건에 특정 범위(전체집합)를 정해주면, 그 조건을 <b>참으로 만드는 원소들의 모임</b>을 <b>진리집합</b>이라고 해요.<br><br>
+<svg viewBox="0 0 220 60" width="100%" style="max-width:200px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <line x1="15" y1="30" x2="205" y2="30" stroke="#666" stroke-width="1.3"/>
+  <circle cx="30" cy="30" r="9" fill="#818cf8"/>
+  <circle cx="70" cy="30" r="9" fill="#818cf8"/>
+  <circle cx="110" cy="30" r="9" fill="#818cf8"/>
+  <circle cx="150" cy="30" r="9" fill="none" stroke="#888" stroke-width="1.3"/>
+  <circle cx="190" cy="30" r="9" fill="none" stroke="#888" stroke-width="1.3"/>
+  <text x="27" y="34" font-size="9" fill="#fff" font-weight="700">1</text>
+  <text x="67" y="34" font-size="9" fill="#fff" font-weight="700">2</text>
+  <text x="107" y="34" font-size="9" fill="#fff" font-weight="700">3</text>
+  <text x="147" y="34" font-size="9" fill="#ccc" font-weight="700">4</text>
+  <text x="187" y="34" font-size="9" fill="#ccc" font-weight="700">5</text>
+</svg>
+전체집합 U={1,2,3,4,5}에서 조건 p: "x²&lt;10"의 진리집합은 보라색으로 칠해진 <b>{1,2,3}</b>이에요 (4²=16, 5²=25는 10보다 크니 제외).<br><br>
+<b>한정 기호</b>: "모든 x에 대하여"(∀, all)는 원소 하나라도 거짓이면 전체가 거짓, "어떤 x에 대하여"(∃, some)는 하나라도 참이면 전체가 참이 돼요.
+</div>`, ans:null },
+
+{ tag:'기본 1 — 진리집합 구하기', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`전체집합 U={1,2,3,4,5,6}에서 조건 p: "x는 6의 약수이다"의 진리집합을 구하세요.`,
+    ans:`6의 약수: 1,2,3,6 → 진리집합 = <b>{1,2,3,6}</b>` }
+],
+
+'prop-converse': [
+{ tag:'역·이·대우 — 화살표를 뒤집고 부정하기', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+명제 p→q("p이면 q이다")에서 화살표를 뒤집거나 부정하면 세 가지 새 명제가 나와요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.2">
+p → q <span style="color:#94a3b8">(원명제)</span><br>
+<b style="color:#818cf8">q → p</b> <span style="color:#94a3b8">(역 — 화살표 반대)</span><br>
+<b style="color:#fb923c">~p → ~q</b> <span style="color:#94a3b8">(이 — 둘 다 부정)</span><br>
+<b style="color:#5eead4">~q → ~p</b> <span style="color:#94a3b8">(대우 — 반대+부정)</span>
+</div>
+가장 중요한 사실: <b>원명제와 대우는 참·거짓이 항상 같아요.</b> (역과 이도 서로 참·거짓이 같아요 — 역의 대우가 이니까요.) 그래서 원명제를 증명하기 어려우면 대우를 증명해도 됩니다.<br><br>
+예: "x=2이면 x²=4이다" (참)<br>
+역: "x²=4이면 x=2이다" → x=−2도 있으니 <b>거짓</b><br>
+이: "x≠2이면 x²≠4이다" → x=−2가 반례라 <b>거짓</b> (역과 같은 진리값)<br>
+대우: "x²≠4이면 x≠2이다" → <b>참</b> (원명제와 같은 진리값)
+</div>`, ans:null },
+
+{ tag:'기본 2 — 대우 구하고 참·거짓 판별', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`명제 "자연수 n이 4의 배수이면 n은 2의 배수이다"의 대우를 말하고, 참·거짓을 판별하세요.`,
+    ans:`대우: <b>"n이 2의 배수가 아니면 n은 4의 배수가 아니다"</b><br>원명제가 참이므로(4의 배수는 항상 2의 배수) 대우도 <b>참</b>` }
+],
+
+'prop-necessary': [
+{ tag:'필요·충분조건 — 작은 동그라미가 큰 동그라미 안에', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+p→q가 참이면, 진리집합 사이에는 <b>P⊂Q</b> 관계가 생겨요. 그림으로 보면 작은 원(P)이 큰 원(Q) 안에 쏙 들어가는 모습이에요.<br><br>
+<svg viewBox="0 0 220 150" width="100%" style="max-width:190px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="110" cy="75" r="65" fill="rgba(251,146,60,.1)" stroke="#fb923c" stroke-width="2"/>
+  <circle cx="85" cy="75" r="28" fill="rgba(129,140,248,.18)" stroke="#818cf8" stroke-width="2"/>
+  <text x="70" y="80" font-size="11" fill="#a5b4fc" font-weight="700">P</text>
+  <text x="160" y="30" font-size="11" fill="#fb923c" font-weight="700">Q</text>
+</svg>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+P⊂Q일 때:<br>
+<b style="color:#a5b4fc">p는 q이기 위한 충분조건</b> — p이면 무조건 q (작은 원 안에 있으면 큰 원 안에도 있으니까)<br>
+<b style="color:#a5b4fc">q는 p이기 위한 필요조건</b> — q이려면 최소한 p 자리(큰 원) 안에는 있어야 함<br>
+P=Q이면 서로 <b>필요충분조건</b>
+</div>
+예: p: x=3, q: x²=9 → P={3}, Q={3,−3}. P⊂Q이므로 <b>p는 q이기 위한 충분조건</b>이지만, q는 p이기 위한 충분조건이 아니에요(x=−3은 q를 만족해도 p는 아니니까).
+</div>`, ans:null },
+
+{ tag:'기본 3 — 무슨 조건인지 판별', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`두 조건 p: |x|&lt;2, q: −3&lt;x&lt;3에 대하여 p는 q이기 위한 무슨 조건인지 말하세요.`,
+    ans:`P=(−2,2), Q=(−3,3). 모든 P의 원소는 Q에도 속하므로 P⊂Q.<br>x=2.5는 Q엔 있지만 P엔 없으므로 Q⊄P → <b>p는 q이기 위한 충분조건 (필요조건은 아님)</b>` }
+],
+
+'prop-proof': [
+{ tag:'명제의 증명 — 두 가지 우회 증명법', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+어떤 명제는 직접 증명하기 어려워요. 그럴 때 쓰는 두 가지 우회 전략이 있습니다.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+<b style="color:#a5b4fc">① 대우를 이용한 증명</b> — 원명제 대신, 참·거짓이 똑같은 대우를 증명<br>
+<b style="color:#a5b4fc">② 귀류법</b> — 결론이 거짓이라고 가정하고 시작해서, 모순이 생기는 것을 보여 원래 결론이 참임을 증명
+</div>
+예 (대우 이용): "자연수 n에 대해 n²이 짝수이면 n은 짝수이다"<br>
+→ 대우: "n이 홀수이면 n²은 홀수이다"를 증명하는 게 더 쉬워요.<br>
+n=2k+1(k는 정수)이라 하면 n²=4k²+4k+1=2(2k²+2k)+1 → 홀수 ✓<br>
+대우가 참이므로 원명제도 참.
+</div>`, ans:null },
+
+{ tag:'기본 4 — 대우를 이용한 증명', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`"자연수 n에 대하여 n²이 3의 배수이면 n도 3의 배수이다"를 대우를 이용하여 증명하세요.`,
+    ans:`대우: "n이 3의 배수가 아니면 n²도 3의 배수가 아니다"<br>n=3k+1이면 n²=9k²+6k+1=3(3k²+2k)+1 → 3의 배수 아님<br>n=3k+2이면 n²=9k²+12k+4=3(3k²+4k+1)+1 → 3의 배수 아님<br>두 경우 모두 성립 → 대우가 참 → <b>원명제도 참</b>` },
+
+{ tag:'기본 4-2 — 귀류법으로 증명하기', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`√2가 무리수임을 귀류법으로 증명하세요.`,
+    ans:`<b>결론을 부정하고 시작</b>: √2가 <b>유리수라고 가정</b>하면, √2 = <span class="frac"><span class="num">n</span><span class="den">m</span></span> (m, n은 서로소인 자연수)로 쓸 수 있어요.<br><br>
+양변을 제곱하면 2 = <span class="frac"><span class="num">n²</span><span class="den">m²</span></span> → <b>n² = 2m²</b> … ①<br>
+① → n²이 짝수 → n도 짝수(홀수의 제곱은 항상 홀수이므로) → n=2k(k는 자연수)로 놓을 수 있어요.<br><br>
+n=2k를 ①에 대입: (2k)²=2m² → 4k²=2m² → <b>m² = 2k²</b> → 같은 이유로 m도 짝수.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b>모순 발견</b>: m, n이 둘 다 짝수 → "m, n은 서로소"라는 가정과 모순!
+</div>
+모순이 생겼으므로 처음 가정("√2는 유리수")이 틀렸다는 뜻 → <b>√2는 무리수</b>다. (증명 끝)<br><br>
+<span style="font-size:.85em;color:#94a3b8">대우증명과 다른 점: 대우증명은 "다른 명제"(대우)를 증명하지만, 귀류법은 "결론이 거짓"이라고 가정한 뒤 그 가정 자체에서 모순을 찾아내요.</span>` },
+
+{ tag:'📐 직접증명 — 산술기하평균 부등식', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`대우·귀류법처럼 "우회"하지 않고, 식을 변형해서 <b>바로</b> 참임을 보이는 방법도 있어요 — 이걸 <b>직접증명</b>이라 불러요. 대표적인 예가 부등식 증명이에요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b>명제</b>: a&gt;0, b&gt;0이면 a+b ≥ 2√(ab)이다. (등호는 a=b일 때)
+</div>`,
+    ans:`<b>증명</b>: a+b−2√(ab) = (√a)²−2√a√b+(√b)² = (√a−√b)²<br>
+그런데 어떤 실수를 제곱한 값은 항상 0 이상이므로 (√a−√b)² ≥ 0<br>
+따라서 a+b−2√(ab) ≥ 0, 즉 <b>a+b ≥ 2√(ab)</b> (증명 끝)<br>
+등호는 (√a−√b)²=0, 즉 √a=√b → <b>a=b</b>일 때 성립<br><br>
+<span style="font-size:.85em;color:#94a3b8">이 부등식을 <b>산술기하평균</b>이라 부르고, 최댓값·최솟값을 구하는 함수 문제에서 도구로 자주 써요.</span>` }
+],
+
+'prop-advanced': [
+{ tag:'필요·충분조건 역산 — 거꾸로 미지수 구하기', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+지금까지는 p, q가 이미 정해진 조건일 때 "p는 q이기 위한 무슨 조건인가"를 <b>판별</b>했어요. 그런데 실제 시험에는 방향이 반대인 문제가 자주 나와요: 조건 안에 미지수 a가 들어있고, <b>"p가 q이기 위한 충분조건이 되도록 하는 상수 a의 범위를 구하라"</b>처럼 거꾸로 미지수를 찾아내는 유형이에요.<br><br>
+쓰는 원리는 똑같아요 — 충분조건이면 P⊂Q, 필요조건이면 Q⊂P. 다만 이번엔 P나 Q의 "모양"에 미지수가 들어있으니, 구간의 양 끝을 부등식으로 비교해서 미지수의 범위를 역산합니다.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+예: p: a≤x≤a+1, q: 0≤x≤5. p가 q이기 위한 충분조건이려면 P⊂Q<br>
+→ a≥0 <b>그리고</b> a+1≤5 → <b>0≤a≤4</b>
+</div>
+주의: "이상/이하"(≤, 등호포함)와 "초과/미만"(&lt;, 등호제외)을 섞어 쓰면 경계값 포함 여부가 달라져요 — 문제에 등호가 있는지 반드시 확인하세요.
+</div>`, ans:null },
+
+{ tag:'반례 개수 세기', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+"반례를 하나만 찾아도 명제가 거짓임을 보일 수 있다"는 원리를 배웠죠. 시험에는 한 걸음 더 나가서 <b>"그 반례가 정확히 몇 개인지 세어보라"</b>는 문제가 나와요.<br><br>
+이때는 반례를 하나씩 찾는 게 아니라, 조건 p를 만족하는 전체에서 결론 q까지 만족하는 것들을 <b>빼는</b> 방식으로 접근해요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+반례의 개수 = (p를 만족하는 것의 개수) − (p와 q를 모두 만족하는 것의 개수)
+</div>
+예: "n이 자연수이고 n&lt;50일 때, n이 4의 배수이면 n은 8의 배수이다"의 반례 개수는?<br>
+4의 배수(1~49): 4,8,…,48 → 12개 / 8의 배수: 8,16,…,48 → 6개 → 반례 개수 = 12−6 = <b>6개</b>
+</div>`, ans:null },
+
+{ tag:'대우 연쇄추론', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+명제 하나의 대우를 구하는 건 이미 배웠죠. 시험에는 명제 여러 개가 동시에 참이라고 주어지고, 그 대우들을 조합해서 다른 명제들이 참인지 판단하는 문제가 나와요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1">
+<b style="color:#a5b4fc">① 삼단논법</b> — p→q와 q→r이 모두 참이면 p→r도 참 (화살표를 이어 붙일 수 있음)<br>
+<b style="color:#a5b4fc">② 대우</b> — p→r이 참이면 그 대우 ~r→~p도 항상 참
+</div>
+주의: <b>역</b>(q→p)이나 원래 없던 방향(r→p)은 참일 수도 있지만 <b>반드시 참인 건 아니에요</b> — 근거 없이 화살표를 뒤집으면 안 됩니다.
+</div>`, ans:null },
+
+{ tag:'한정기호 — "모든"과 "어떤"이 답을 다르게 만든다', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+"모든 x"(∀)는 하나라도 거짓이면 전체 거짓, "어떤 x"(∃)는 하나라도 참이면 전체 참이라고 배웠죠. 이 둘을 실제 파라미터(k) 문제에 적용하면 <b>완전히 다른 조건</b>이 나와요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b style="color:#a5b4fc">모든 x에 대하여 f(x)≥0</b> — x 범위 안에서 f(x)의 <b>최솟값</b>이 0 이상이어야 함<br>
+<b style="color:#a5b4fc">어떤 x에 대하여 f(x)≥0</b> — x 범위 안에서 f(x)의 <b>최댓값</b>이 0 이상이면 충분함 (딱 하나만 만족해도 참이니까)
+</div>
+</div>`, ans:null }
+],
+
+/* ── 산술기하평균 (공통수학2) ── */
+'amgm-basic': [
+{ tag:'📐 산술기하평균 — 쓰는 법', tagColor:'#fb7185',
+    bg:'rgba(251,113,133,.07)', bd:'rgba(251,113,133,.3)',
+    body:`방금 증명한 <b>a+b ≥ 2√(ab)</b>(등호 a=b)는 두 가지 형태로 자주 쓰여요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b style="color:#fda4af">① ab가 고정된 값일 때</b> → a+b의 최솟값을 구함<br>
+예: a&gt;0일 때 a + <span class="frac"><span class="num">1</span><span class="den">a</span></span>의 최솟값? → ab=1(고정)이므로 a+<span class="frac"><span class="num">1</span><span class="den">a</span></span> ≥ 2√1 = <b>2</b> (등호 a=1)<br><br>
+<b style="color:#fda4af">② a+b가 고정된 값일 때</b> → ab의 최댓값을 구함<br>
+예: a+b=20(고정)일 때 ab의 최댓값? → 20 ≥ 2√(ab) → √(ab) ≤ 10 → ab ≤ <b>100</b> (등호 a=b=10)
+</div>`, ans:null },
+
+{ tag:'기본 5 — 양수+역수 꼴의 최솟값', tagColor:'#fb7185',
+    bg:'rgba(251,113,133,.07)', bd:'rgba(251,113,133,.3)',
+    body:`m &gt; 0일 때, m + <span class="frac"><span class="num">4</span><span class="den">m</span></span>의 최솟값을 구하세요.`,
+    ans:`a=m, b=<span class="frac"><span class="num">4</span><span class="den">m</span></span>로 놓으면 ab=4(고정) → m + <span class="frac"><span class="num">4</span><span class="den">m</span></span> ≥ 2√4 = <b>4</b><br>등호는 m = <span class="frac"><span class="num">4</span><span class="den">m</span></span> → m²=4 → m=2일 때(m&gt;0이므로)` },
+
+{ tag:'기본 6 — 둘레가 고정된 직사각형의 넓이 최댓값', tagColor:'#fb7185',
+    bg:'rgba(251,113,133,.07)', bd:'rgba(251,113,133,.3)',
+    body:`둘레의 길이가 40m인 직사각형 모양의 울타리를 만들려고 합니다. 넓이의 최댓값을 구하세요.`,
+    ans:`가로 x, 세로 y라 하면 2(x+y)=40 → x+y=20(고정)<br>
+산술기하평균: x+y ≥ 2√(xy) → 20 ≥ 2√(xy) → √(xy) ≤ 10 → xy ≤ <b>100</b><br>
+등호는 x=y=10일 때(정사각형) → <b>최댓값 100㎡</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:10px 14px;font-size:.9em;line-height:1.8">🦕 <b>기본5와 비교</b>: 기본5는 <b>곱(ab)이 고정</b>이라 합(a+b)의 <b>최솟값</b>을 구했고, 기본6은 <b>합(x+y)이 고정</b>이라 곱(xy)의 <b>최댓값</b>을 구했어요 — 방향이 정반대예요. "고정된 게 곱인지 합인지"부터 확인하는 습관을 들이세요.</div>` }
+],
+
+'amgm-ideas': [
+{ tag:'💡 고난도 산술기하평균, 5가지 핵심 아이디어', tagColor:'#fb7185',
+    bg:'rgba(251,113,133,.07)', bd:'rgba(251,113,133,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+고난도 문제는 공식을 그대로 대입하지 않아요. <b>식을 변형해서 "곱이 일정한 상태"를 억지로 만드는 것</b>이 핵심입니다.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b style="color:#fda4af">① 상수 만들기 (Add &amp; Subtract)</b><br>
+분모에 변수가 있으면, 분자를 분모와 같은 모양으로 강제 변형해요.<br>
+예: x&gt;1일 때 x+<span class="frac"><span class="num">1</span><span class="den">x−1</span></span>의 최솟값?<br>
+→ (x−1)+<span class="frac"><span class="num">1</span><span class="den">x−1</span></span>+1로 바꿔서 앞 두 항에 산술기하 적용:<br>
+(x−1)+<span class="frac"><span class="num">1</span><span class="den">x−1</span></span> ≥ 2 → 전체 ≥ 2+1 = <b>3</b> (등호 x=2)
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b style="color:#fda4af">② 전개 후 적용 (Expand First)</b><br>
+(a+b)(<span class="frac"><span class="num">1</span><span class="den">a</span></span>+<span class="frac"><span class="num">1</span><span class="den">b</span></span>)처럼 괄호가 곱해진 꼴은, 각 괄호에 따로 산술기하를 적용하지 말고 <b>먼저 전개</b>하는 게 안전해요.<br>
+전개: 1+<span class="frac"><span class="num">a</span><span class="den">b</span></span>+<span class="frac"><span class="num">b</span><span class="den">a</span></span>+1 = 2+(<span class="frac"><span class="num">a</span><span class="den">b</span></span>+<span class="frac"><span class="num">b</span><span class="den">a</span></span>) ≥ 2+2 = <b>4</b> (등호 a=b)
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b style="color:#fda4af">③ 등호 성립조건의 일치 확인</b><br>
+A≥B, B≥C에서 A≥C가 성립하려면, <b>A=B가 되는 조건과 B=C가 되는 조건이 동시에 만족돼야</b> 해요. 안 그러면 최솟값이 실제보다 더 크게 나와요.<br>
+반례: (a+2)(<span class="frac"><span class="num">4</span><span class="den">a</span></span>+1)의 진짜 최솟값은 a=2√2일 때 <b>6+4√2≈11.66</b>인데, 각 괄호에 따로 산술기하를 적용하면 등호조건이 a=2와 a=4로 서로 달라서 4√8≈11.31이라는 <b>틀린(더 작은) 값</b>이 나와요.
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b style="color:#fda4af">④ 치환을 통한 단순화</b><br>
+식이 복잡하면 덩어리를 하나의 문자로 치환하세요.<br>
+예: x&gt;0, y&gt;0, x+3y=12일 때 xy의 최댓값?<br>
+→ A=x, B=3y로 놓으면 A+B=12(고정), AB=3xy<br>
+A+B≥2√(AB) → 12≥2√(3xy) → xy≤<b>12</b> (등호 x=3y=6,2)
+</div>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b style="color:#fda4af">⑤ 도형과의 결합</b><br>
+직선 <span class="frac"><span class="num">x</span><span class="den">a</span></span>+<span class="frac"><span class="num">y</span><span class="den">b</span></span>=1 (a,b&gt;0)이 점 (p,q)를 지날 때, 삼각형 넓이 <span class="frac"><span class="num">1</span><span class="den">2</span></span>ab의 최솟값 → <span class="frac"><span class="num">p</span><span class="den">a</span></span>+<span class="frac"><span class="num">q</span><span class="den">b</span></span>=1에 산술기하 적용.<br>
+예: (p,q)=(2,3) → 1=<span class="frac"><span class="num">2</span><span class="den">a</span></span>+<span class="frac"><span class="num">3</span><span class="den">b</span></span> ≥ 2√(<span class="frac"><span class="num">6</span><span class="den">ab</span></span>) → ab≥24 → 넓이 ≥ <b>12</b> (등호 a=4,b=6)
+</div>
+</div>`, ans:null }
+],
+
+'amgm-challenge': [
+{ tag:'도전 1 — 이차함수와 산술기하평균의 연계', tagColor:'#fb7185',
+    bg:'rgba(251,113,133,.07)', bd:'rgba(251,113,133,.3)',
+    body:`모든 실수 x에 대하여 이차함수 f(x)=x²−4x+k가 항상 0 이상이 되도록 하는 상수 k의 최솟값을 구하세요.`,
+    ans:`표준형으로 고치면 f(x) = (x−2)² + (k−4)<br>
+(x−2)²는 항상 0 이상이므로, f(x)가 모든 x에서 0 이상이려면 <b>k−4 ≥ 0</b> → k ≥ 4<br>
+<b>최솟값 k = 4</b><br>
+<span style="font-size:.85em;color:#94a3b8">이 문제는 산술기하평균이 아니라 판별식/표준형(꼭짓점의 y좌표)으로 풀어요 — "항상 성립하는 조건"을 다루는 결이 비슷해서 같이 실어뒀어요.</span>` },
+
+{ tag:'🔍 짝문제 — "0 이상"과 "0보다 크다"', tagColor:'#fb7185',
+    bg:'rgba(251,113,133,.07)', bd:'rgba(251,113,133,.3)',
+    body:`모든 실수 x에 대하여 이차함수 f(x)=x²−4x+k가 항상 <b>0보다 크도록</b> 하는 정수 k의 최솟값을 구하세요. (바로 앞 도전1과 비교해보세요 — "0 이상"이 아니라 "0보다 크다"예요.)`,
+    ans:`f(x)=(x−2)²+(k−4) &gt; 0이 모든 x에서 성립해야 해요. (x−2)²은 x=2일 때 정확히 0이 되니까, 이번엔 <b>k−4 &gt; 0</b>(등호 제외)이어야 해요 → k&gt;4<br>
+k=4면 f(2)=0이라 "0보다 크다"를 만족 못 해요(등호 위반) → 정수 중 4보다 큰 가장 작은 값은 <b>k=5</b><br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:10px 14px;font-size:.9em;line-height:1.8">🦕 <b>구조 신호</b>: 도전1은 "0 <b>이상</b>"(≥, 등호 포함)이라 k=4도 허용됐지만, 이 문제는 "0보다 <b>크다</b>"(&gt;, 등호 제외)라서 k=4는 <b>탈락</b>하고 정수 답이 4→5로 바뀌어요. "이상/이하"와 "초과/미만"을 정확히 구별해 읽는 습관이 여기서 갈립니다.</div>` },
+
+{ tag:'도전 2 — 분수식 구조 변형', tagColor:'#fb7185',
+    bg:'rgba(251,113,133,.07)', bd:'rgba(251,113,133,.3)',
+    body:`x &gt; 2일 때, 함수 f(x) = x−2+<span class="frac"><span class="num">9</span><span class="den">x−2</span></span>의 최솟값을 구하세요.`,
+    ans:`x&gt;2이므로 (x−2)&gt;0. a=x−2, b=<span class="frac"><span class="num">9</span><span class="den">x−2</span></span>로 놓으면 ab=9(고정)<br>a+b ≥ 2√(ab) = 2√9 = <b>6</b>, 등호는 a=b → (x−2)²=9 → x−2=3 → <b>x=5</b>` },
+
+{ tag:'도전 2 응용 — 분모의 계수가 바뀌면?', tagColor:'#fb7185',
+    bg:'rgba(251,113,133,.07)', bd:'rgba(251,113,133,.3)',
+    body:`분모 안의 x의 계수를 1이 아니라 2, 3, 4로 바꿔볼게요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0">
+<b>유사문제1</b>: x&gt;−<span class="frac"><span class="num">1</span><span class="den">2</span></span>일 때, 4x−1+<span class="frac"><span class="num">8</span><span class="den">2x+1</span></span>의 최솟값은?<br>
+<b>유사문제2</b>: x&gt;−<span class="frac"><span class="num">2</span><span class="den">3</span></span>일 때, 6x+<span class="frac"><span class="num">18</span><span class="den">3x+2</span></span>의 최솟값은?<br>
+<b>유사문제3</b>: x&gt;−<span class="frac"><span class="num">3</span><span class="den">4</span></span>일 때, 8x+<span class="frac"><span class="num">32</span><span class="den">4x+3</span></span>의 최솟값은?
+</div>`,
+    ans:`공통 요령: 분모가 (px+q)면, 일차항도 <b>(px+q)의 배수</b>로 맞춰서 상수를 빼요.<br><br>
+<b>유사문제1</b>: 준식 = 2(2x+1)+<span class="frac"><span class="num">8</span><span class="den">2x+1</span></span> − 3 ≥ 8−3=<b>5</b> (등호 x=<span class="frac"><span class="num">1</span><span class="den">2</span></span>)<br>
+<b>유사문제2</b>: 준식 = 2(3x+2)+<span class="frac"><span class="num">18</span><span class="den">3x+2</span></span> − 4 ≥ 12−4=<b>8</b> (등호 x=<span class="frac"><span class="num">1</span><span class="den">3</span></span>)<br>
+<b>유사문제3</b>: 준식 = 2(4x+3)+<span class="frac"><span class="num">32</span><span class="den">4x+3</span></span> − 6 ≥ 16−6=<b>10</b> (등호 x=<span class="frac"><span class="num">1</span><span class="den">4</span></span>)<br><br>
+<span style="font-size:.85em;color:#94a3b8">분모의 계수가 2→3→4로 커질수록 등호가 되는 x는 작아지고(1/2→1/3→1/4), 최솟값은 커지는(5→8→10) 패턴을 보여줘요.</span>` },
+
+{ tag:'도전 3 — 직사각형 둘레와 넓이의 관계', tagColor:'#fb7185',
+    bg:'rgba(251,113,133,.07)', bd:'rgba(251,113,133,.3)',
+    body:`넓이가 16인 직사각형의 둘레의 길이의 최솟값은?`,
+    ans:`가로 x, 세로 y(x&gt;0, y&gt;0)라 하면 xy=16(고정)<br>x+y ≥ 2√(xy) = 2√16 = 8, 등호는 x=y=4일 때<br>둘레 = 2(x+y) ≥ 2×8 = <b>16</b>` },
+
+{ tag:'🔍 짝문제 — "넓이 고정" ↔ "둘레 고정"', tagColor:'#fb7185',
+    bg:'rgba(251,113,133,.07)', bd:'rgba(251,113,133,.3)',
+    body:`둘레가 16인 직사각형의 넓이의 최댓값은? (바로 앞 도전3과 문장이 거의 똑같아 보이지만, 무엇이 고정이고 무엇을 구하는지 잘 비교해보세요.)`,
+    ans:`가로 x, 세로 y(x&gt;0, y&gt;0)라 하면 2(x+y)=16 → x+y=8(고정)<br>
+x+y ≥ 2√(xy) → 8 ≥ 2√(xy) → √(xy) ≤ 4 → xy ≤ <b>16</b>, 등호는 x=y=4일 때<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:10px 14px;font-size:.9em;line-height:1.8">🦕 <b>구조 신호</b>: 도전3은 넓이(곱) 고정 → 둘레(합)의 <b>최솟값</b>(기본5와 같은 ①형), 이 문제는 둘레(합) 고정 → 넓이(곱)의 <b>최댓값</b>(기본6과 같은 ②형)이에요. 우연히 답도 둘 다 16이라 더 헷갈리기 쉬워요 — "16이 곱인지 합인지"부터 확인하는 검산이 필수예요.</div>` },
+
+{ tag:'도전 4 — 실생활 조건부 최댓값 (울타리 문제)', tagColor:'#fb7185',
+    bg:'rgba(251,113,133,.07)', bd:'rgba(251,113,133,.3)',
+    body:`길이 20m인 울타리로, 한 변이 벽으로 막힌 직사각형 모양의 닭장을 만들려 합니다. 벽과 마주보는 가로를 x, 세로를 y라 할 때, 닭장의 넓이 xy의 최댓값을 구하세요. (x&gt;0, y&gt;0)`,
+    ans:`벽 쪽은 울타리가 필요 없으므로 울타리 길이는 x+2y=20(고정)<br>
+A=x, B=2y로 치환 → A+B=20, AB=2xy<br>
+A+B ≥ 2√(AB) → 20 ≥ 2√(2xy) → 100 ≥ 2xy → xy ≤ <b>50</b><br>
+등호는 x=2y → x+2y=20에 대입: 2y+2y=20 → y=5, x=10 → 검산: xy=10×5=50 ✓<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:10px 14px;font-size:.9em;line-height:1.8">🦕 <b>흔한 함정</b>: "벽으로 막혔다"를 놓치고 기본6처럼 2(x+y)=20(양쪽 다 울타리)로 잘못 세우면, x+y=10 → xy≤25라는 <b>틀린 답 25</b>가 나와요(맞는 답은 50, 정확히 2배 차이). "벽과 마주보는 가로"라는 표현이 나오면 벽 쪽 한 변은 울타리 길이에서 <b>빼야 한다</b>는 신호예요.</div>` }
+],
+
+/* ── 집합 실전훈련 (공통수학2) ── */
+'set-drill1': [
+{ tag:'📝 판별 드릴 — 서랍(S1~S8) 워밍업', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+아래 8개 문항은 <b>끝까지 계산하지 않아도 됩니다.</b> 어떤 서랍을 써야 할지, 무슨 표현이 신호였는지 한 줄로 생각해보세요.<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.85em;line-height:1.9">
+서랍: <b>S1</b>원소나열/조건제시 · <b>S2</b>포함관계 · <b>S3</b>부분집합개수(2ⁿ) · <b>S4</b>연산 직접계산 · <b>S5</b>서로소 · <b>S6</b>연산법칙·드모르간 · <b>S7</b>원소개수공식(포함배제) · <b>S8</b>조건만족 개수(케이스분류)
+</div>
+① A={x|x는 12 이하 소수}를 원소나열법으로? → 서랍?<br>
+② A={1,2,3,4,5}의 부분집합 중 원소 3개인 것의 개수? → 서랍?<br>
+③ A={x|x는30의약수}, B={x|x는20의약수}의 A∩B 원소 개수? → 서랍?<br>
+④ 100명 중 안경40·모자35·둘다10, 둘다안쓴학생수? → 서랍?<br>
+⑤ A∩B=∅이고 A∪B=U일 때 B를 A로 나타내면? → 서랍?
+</div>`,
+    ans:`① <b>S1</b> — "원소나열법으로"가 직접 신호<br>
+② <b>S3</b> — "부분집합"·"몇 개"가 신호<br>
+③ <b style="color:#5eead4">S4(함정주의)</b> — "원소의 개수"라서 S7이 먼저 떠오르기 쉽지만, A,B를 직접 나열해서 셀 수 있으면 S4가 더 빨라요. 공식(S7)은 직접 나열이 어려울 때만 씁니다<br>
+④ <b>S7</b> — n(A∪B) 구한 뒤 전체에서 빼는 여집합 결합형<br>
+⑤ <b>S5</b> — "서로소이고 합쳐서 U"는 사실 B=A<sup>c</sup>(여집합의 정의)와 같아요<br><br>
+<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:10px 14px;font-size:.9em;line-height:1.8">🦕 ③번이 핵심이에요 — "원소의 개수"라는 말만 보고 바로 공식(S7)을 떠올리면 안 돼요. "직접 나열이 가능한가?"부터 먼저 판단하세요.</div>` }
+],
+
+'set-drill2': [
+{ tag:'문항 1 (기본) — 원소나열법', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`집합 A = {x | x는 30 이하의 자연수, x는 4의 배수 또는 6의 배수}를 원소나열법으로 나타내고, n(A)를 구하세요.`,
+    ans:`▶ S1 원소나열법<br>4의 배수(30 이하): 4,8,12,16,20,24,28 (7개)<br>6의 배수(30 이하): 6,12,18,24,30 (5개)<br>겹치는 것(12의 배수): 12,24 (2개)<br><b>A = {4,6,8,12,16,18,20,24,28,30}, n(A) = 10</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: "또는"으로 이어진 조건은 원소를 직접 나열하며 겹치는 걸 한 번만 세요.</span>` },
+
+{ tag:'문항 2 (기본) — 부분집합의 개수', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`집합 A = {1,2,3,4,5,6}의 부분집합 중, 1과 2는 포함하고 5는 포함하지 않는 부분집합의 개수를 구하세요.`,
+    ans:`▶ S3 부분집합의 개수<br>1,2는 반드시 포함(선택권 없음), 5는 반드시 제외(선택권 없음)<br>자유원소: 3,4,6 (3개) → <b>2³ = 8개</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: "포함하고 ~는 포함하지 않는" → 그 원소들은 선택권이 없고 나머지만 자유예요.</span>` },
+
+{ tag:'문항 3 (기본) — 포함관계 판별', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`세 집합 A={x|x는8의약수}, B={x|x는24의약수}, C={x|x는16의약수}에 대하여, 다음 중 옳은 것은?<br><br>① A⊂B⊂C &nbsp; ② A⊂C⊂B &nbsp; ③ B⊂C &nbsp; ④ A⊂B 이고 A⊂C &nbsp; ⑤ C⊂A`,
+    ans:`▶ S2 포함관계 판별<br>A={1,2,4,8}, B={1,2,3,4,6,8,12,24}, C={1,2,4,8,16}<br>A의 원소는 B와 C에 모두 있음 → A⊂B, A⊂C 둘 다 성립<br>B에는 3이 있지만 C엔 없고, C의 16은 24의 약수가 아니라서 B⊂C도 C⊂B도 성립 안 함 → <b>정답 ④</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: 약수 개수가 많다고 포함관계가 성립하는 게 아니에요 — 원소를 전부 나열해서 하나씩 대조하세요.</span>` },
+
+{ tag:'문항 4 (기본) — 집합의 연산', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U = {1,2,...,10}, A = {2,3,5,7}, B = {1,2,4,5,8}일 때, A−B, B−A, A<sup>c</sup>를 각각 구하세요.`,
+    ans:`▶ S4 집합의 연산(직접 계산)<br>A−B: <b>{3, 7}</b> &nbsp; B−A: <b>{1, 4, 8}</b> &nbsp; A<sup>c</sup>: <b>{1, 4, 6, 8, 9, 10}</b>` },
+
+{ tag:'문항 5 (응용) — 서로소 판별', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`두 집합 A={x|x²−5x+6=0}, B={x|x²−(a+1)x+a=0}이 있다. 10 이하의 자연수 a 중, A와 B가 서로소가 되도록 하는 a의 개수는?<br><br>① 6개 &nbsp; ② 7개 &nbsp; ③ 8개 &nbsp; ④ 9개 &nbsp; ⑤ 10개`,
+    ans:`▶ S5 서로소 판별<br>A: (x−2)(x−3)=0 → A={2,3}<br>B: (x−1)(x−a)=0 → B={1,a}<br>서로소 ⟺ a가 2도 3도 아님 → 10 이하 자연수 중 2,3만 제외 → <b>8개 (정답 ③)</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: 미지수 a가 껴 있으면 먼저 두 집합을 인수분해로 나열한 뒤에야 서로소 조건을 걸 수 있어요.</span>` },
+
+{ tag:'문항 6 (응용, 문항7과 짝) — 조건 만족 개수', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`집합 A = {1,2,3,4,5,6,7}의 부분집합 B가 다음을 모두 만족시킬 때, 집합 B의 개수는?<br>(가) 1∈B, 7∉B &nbsp; (나) B∩{2,3,4}≠∅<br><br>① 4개 &nbsp; ② 24개 &nbsp; ③ 28개 &nbsp; ④ 30개 &nbsp; ⑤ 32개`,
+    ans:`▶ S8 조건을 만족하는 집합의 개수(케이스분류)<br>1 고정포함, 7 고정제외 → 자유원소 {2,3,4,5,6}(5개), 전체 2⁵=32<br>조건(나) 위반(B∩{2,3,4}=∅): 2,3,4 전부 제외 고정, 자유원소 {5,6}뿐 → 2²=4<br><b>32−4=28개 (정답 ③)</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: "적어도 하나"(∩...≠∅) → 전체에서 조건 안 만족하는 경우를 통째로 빼는 여사건. 문항7과 비교: 이 문제는 <b>부분집합이라는 대상의 개수</b>를, 문항7은 <b>집합의 원소 개수</b>를 세는 거예요 — 완전히 다른 질문입니다.</span>` },
+
+{ tag:'문항 7 (응용, 문항6과 짝) — 원소 개수 공식', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`학생 40명 중 수학을 좋아하는 학생이 25명, 영어를 좋아하는 학생이 20명이다. 수학과 영어를 모두 좋아하는 학생 수의 최댓값과 최솟값의 합을 구하세요.`,
+    ans:`▶ S7 원소의 개수 공식(포함배제의 원리)
+<div style="text-align:center;margin:8px 0">${amgmVennSvg(25,20,40)}</div>
+n(A∪B)=n(A)+n(B)−n(A∩B) ≤ 40 (전체를 넘을 수 없음)<br>
+25+20−n(A∩B) ≤ 40 → n(A∩B) ≥ 5 (<b>최솟값 5</b>)<br>
+n(A∩B)는 작은 쪽 크기(20)를 넘을 수 없음 → (<b>최댓값 20</b>, B⊂A일 때)<br>
+<b>5+20 = 25</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: "모두 좋아하는 학생 수"(교집합)의 범위 → n(A∪B) 공식과 "전체를 넘을 수 없다"는 부등식 결합. 여기선 A,B를 직접 나열할 수 없으니(누가 속하는지 모름) 공식으로 갈 수밖에 없어요.</span>` },
+
+{ tag:'문항 8 (응용) — 드모르간의 법칙', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U = {1,2,...,9}, A = {x|x는 소수}, B = {x|x는 8의 약수}일 때, (A∪B)<sup>c</sup>를 구하세요. (드모르간의 법칙을 이용해도 좋습니다.)`,
+    ans:`▶ S6 연산법칙(드모르간의 법칙)<br>A={2,3,5,7}, B={1,2,4,8}<br>(A∪B)<sup>c</sup> = A<sup>c</sup>∩B<sup>c</sup><br>A<sup>c</sup>={1,4,6,8,9}, B<sup>c</sup>={3,5,6,7,9}<br><b>A<sup>c</sup>∩B<sup>c</sup> = {6, 9}</b>` },
+
+{ tag:'문항 9 (응용) — 분배법칙', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`A = {x|x는 10 이하의 자연수}, B = {x∈A|x는 짝수}, C = {x∈A|x는 3의 배수}일 때, A∩(B∪C)의 원소의 개수는? (분배법칙을 이용해도 좋습니다.)<br><br>① 5개 &nbsp; ② 6개 &nbsp; ③ 7개 &nbsp; ④ 8개 &nbsp; ⑤ 9개`,
+    ans:`▶ S6 연산법칙(분배법칙)<br>B={2,4,6,8,10}(5개), C={3,6,9}(3개), B∩C={6}(1개)<br>B,C는 이미 A의 부분집합이므로 A∩(B∪C)=B∪C<br>n(B∪C)=5+3−1=<b>7개 (정답 ③)</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: 분배법칙 A∩(B∪C)=(A∩B)∪(A∩C)로 풀 수도 있지만, B,C가 이미 A의 부분집합이라 B∪C만 구하면 더 빨라요.</span>` }
+],
+
+'set-drill3': [
+{ tag:'문항 10 (고난도) — 새 연산 정의 뜯어보기', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 두 부분집합 A,B에 대해 A☆B=(A−B)∪(B−A)로 정의한다. &lt;보기&gt; 중 항상 옳은 것만을 있는 대로 고른 것은?<br><br>ㄱ. A☆B=B☆A &nbsp; ㄴ. A☆A=∅ &nbsp; ㄷ. n(A☆B)=n(A)+n(B) &nbsp; ㄹ. A∩B=∅이면 A☆B=A∪B<br><br>① ㄱ,ㄴ &nbsp; ② ㄱ,ㄹ &nbsp; ③ ㄱ,ㄴ,ㄹ &nbsp; ④ ㄴ,ㄷ,ㄹ &nbsp; ⑤ ㄱ,ㄴ,ㄷ,ㄹ`,
+    ans:`▶ S4 집합의 연산(정의를 뜯어서 직접 확인)<br>ㄱ. 참(대칭) &nbsp; ㄴ. A−A=∅이므로 참<br>ㄷ. 반례 A={1,2},B={2,3}이면 A☆B={1,3}(2개)인데 n(A)+n(B)=4로 다름 → 거짓(겹치는 원소는 양쪽에서 다 빠짐)<br>ㄹ. 서로소면 A−B=A, B−A=B이므로 참<br><b>정답 ③ (ㄱ,ㄴ,ㄹ)</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: 낯선 기호는 겁먹지 말고 이미 아는 ∩,∪,−로 뜯어서 대입 확인. "그럴듯한 공식"(ㄷ)은 항상 구체적 숫자로 반례부터 찾아보세요.</span>` },
+
+{ tag:'문항 11 (고난도) — 파라미터 붙은 조건제시법', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`자연수 n에 대해 A<sub>n</sub>={x|x는 60 이하 자연수 중 n의 배수}라 하자. A₄∩A₆=A<sub>k</sub>를 만족시키는 k는?<br><br>① 2 &nbsp; ② 6 &nbsp; ③ 10 &nbsp; ④ 12 &nbsp; ⑤ 24`,
+    ans:`▶ S4 집합의 연산(교집합 직접 나열) + 최소공배수<br>"4의 배수이면서 6의 배수" → 4,6의 최소공배수 12의 배수<br>A₄∩A₆={12,24,36,48,60}=A₁₂ → <b>k=12 (정답 ④)</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: "배수 집합의 교집합=최소공배수의 배수 집합"이라는 패턴 — 조건제시법 집합을 실제로 원소나열해보면 보여요.</span>` },
+
+{ tag:'문항 12 (고난도) — 드모르간 응용', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 세 부분집합 A,B,C에 대하여, A−(B∪C)와 항상 같은 집합은?<br><br>① (A−B)∩(A−C) &nbsp; ② (A−B)∪(A−C) &nbsp; ③ A∩B∩C &nbsp; ④ A−(B∩C) &nbsp; ⑤ (A−B)∪C`,
+    ans:`▶ S6 연산법칙(드모르간의 법칙)<br>A−(B∪C) = A∩(B∪C)<sup>c</sup> = A∩(B<sup>c</sup>∩C<sup>c</sup>) = (A∩B<sup>c</sup>)∩(A∩C<sup>c</sup>) = (A−B)∩(A−C)<br><b>정답 ①</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: A−X = A∩X<sup>c</sup>로 먼저 바꾼 뒤 드모르간을 적용하세요.</span>` },
+
+{ tag:'문항 13 (최고난도, 서술형) — 3집합 포함배제', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`학급 학생 50명 중 앱 A,B,C 사용자가 각각 32,28,25명, A∩B 18명, B∩C 15명, C∩A 16명이다. 세 앱을 모두 사용하는 학생 수의 최댓값과 최솟값의 합을 구하는 풀이과정을 쓰고 답을 구하세요.`,
+    ans:`▶ S7 원소의 개수 공식(포함배제, 3집합 확장)<br>모두 사용 학생 수를 x라 하면 n(A∪B∪C)=32+28+25−18−15−16+x=36+x<br><br>
+<b>최댓값</b>: 36+x≤50 → x≤14<br>
+<b>최솟값</b>: A만 쓰는 수=x−2≥0, B만=x−5≥0, C만=x−6≥0 → 모두 만족하려면 x≥6<br><br>
+최댓값 14, 최솟값 6 → <b>14+6 = 20</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: 전체 인원 제한(≤50)뿐 아니라 "각자만 쓰는 인원이 음수일 수 없다"는 조건까지 써야 최솟값이 나와요 — 조건 하나만 쓰면 놓쳐요.</span>` },
+
+{ tag:'문항 14 (최고난도) — 이중 케이스분류', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U={1,...,9}의 부분집합 X가 (가)1∈X,9∉X (나)짝수(2,4,6,8) 중 적어도 하나 포함 (다)홀수(3,5,7) 중 적어도 하나 포함을 만족시킬 때, X의 개수는?<br><br>① 12개 &nbsp; ② 105개 &nbsp; ③ 112개 &nbsp; ④ 120개 &nbsp; ⑤ 128개`,
+    ans:`▶ S8 조건을 만족하는 집합의 개수(케이스분류)<br>1,9 고정. 짝수 4개 중 "하나도 안 고르는" 경우만 빼면: 2⁴−1=15<br>홀수 3개 중 "하나도 안 고르는" 경우만 빼면: 2³−1=7<br>독립이므로 <b>15×7=105개 (정답 ②)</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: "적어도 하나" 조건 두 개가 동시에 걸리면 각각 여사건으로 따로 계산한 뒤 곱하세요 — 두 그룹이 완전히 나뉘어 있으면 곱의 법칙이 그대로 적용돼요.</span>` },
+
+{ tag:'문항 15 (최고난도, 서술형) — 자유원소 최적화', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U={1,...,8}의 두 부분집합 A,B가 (가)A∩B={4,5} (나)A∪B=U (다)n(A)=6을 만족한다. 집합 A의 모든 원소의 합의 최댓값을 구하는 풀이과정을 쓰고 답을 구하세요.`,
+    ans:`▶ S3 부분집합의 개수(자유원소 발상의 확장)<br>4,5는 항상 A의 원소. 나머지 {1,2,3,6,7,8}은 A,B 중 정확히 한쪽에만(둘 다 속하면 교집합이 커짐)<br>n(A)=6이므로 4,5 외에 4개를 더 가져야 함 → 합을 최대화하려면 가장 큰 4개: 8,7,6,3(합=24)<br><b>4+5+24 = 33</b>` },
+
+{ tag:'문항 16 (최고난도, 서술형·종합) — S4+S5+S7', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U={1,...,10}의 두 부분집합 A,B가 (가)n(A)=6,n(B)=5 (나)A와 B는 서로소가 아니다 (다)A∩B의 원소는 모두 짝수를 만족한다. n(A∩B)의 최댓값과 최솟값의 합을 구하는 풀이과정을 쓰고 답을 구하세요.`,
+    ans:`▶ S4+S5+S7 종합<br>n(A∪B)=n(A)+n(B)−n(A∩B)=11−n(A∩B)<br><br>
+<b>최솟값</b>: n(A∪B)≤10 → n(A∩B)≥1 (서로소가 아님과 같은 뜻) → <b>최솟값 1</b><br>
+<b>최댓값</b>: (다)에 의해 A∩B는 짝수 {2,4,6,8,10}(5개) 안에서만 → n(A∩B)≤5, min(6,5)=5도 성립 → <b>최댓값 5</b><br><br>
+<b>1+5 = 6</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: "서로소가 아니다" + 원소개수 공식 + 원소 범위 제한(짝수만), 세 서랍(S4·S5·S7)을 한 문제 안에서 순서대로 조합해야 풀려요.</span>` },
+
+{ tag:'대칭차집합 마스터 1 — 필요충분조건', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 두 부분집합 A, B에 대하여 다음 중 A△B = A가 성립하기 위한 필요충분조건은?<br><br>① A=∅ &nbsp; ② B=∅ &nbsp; ③ A=B &nbsp; ④ A⊂B &nbsp; ⑤ B⊂A`,
+    ans:`A△B=A의 양쪽에 A△를 적용하면: A△(A△B)=A△A → (A△A)△B=∅(결합법칙) → ∅△B=∅ → <b style="color:#5eead4">B=∅</b><br>역도 성립(A△∅=A는 이미 배운 항등식) → <b>정답 ②</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">256가지 부분집합 조합을 전수 검증해도 예외 없이 성립해요 — "A△B=A" 자체가 "B=∅"와 동치예요.</span>` },
+
+{ tag:'대칭차집합 마스터 2 — 분배법칙 성립 여부', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`세 집합 A, B, C에 대하여 다음 등식 중 항상 성립하는 것을 모두 고른 것은?<br><br>
+ㄱ. (A△B)∩C = (A∩C)△(B∩C)<br>
+ㄴ. A△(B∩C) = (A△B)∩(A△C)<br>
+ㄷ. A△B = B△A<br><br>
+① ㄱ &nbsp; ② ㄴ &nbsp; ③ ㄱ,ㄷ &nbsp; ④ ㄴ,ㄷ &nbsp; ⑤ ㄱ,ㄴ,ㄷ`,
+    ans:`ㄱ. <b style="color:#5eead4">참</b> — △는 ∩에 대해 분배법칙이 성립해요(교집합을 "필터"로 씌우면 안팎이 똑같이 반응).<br>
+ㄴ. <b>거짓</b> — 반례: A={1},B={2},C={3}이면 좌변 A△(B∩C)=A△∅=A={1}, 우변 (A△B)∩(A△C)={1,2}∩{1,3}={1} — 이 경우는 우연히 같지만, 다른 조합(예: 512가지 전수검증 시 296가지)에서 어긋나요.<br>
+ㄷ. <b style="color:#5eead4">참</b> — 정의 자체가 A,B에 대해 대칭이라 자동 성립(교환법칙).<br><br>
+<b style="color:#5eead4">정답 ③ (ㄱ,ㄷ)</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">ㄴ이 헷갈리는 이유: △는 ∩에 대해서는 분배되지만(ㄱ), 반대로 "∩ 안에 △가 들어간 모양"(ㄴ)은 일반적으로 성립하지 않아요 — 어느 쪽이 "바깥 연산"인지가 중요해요.</span>` },
+
+{ tag:'대칭차집합 마스터 3 — 원소 개수의 최댓값·최솟값', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`두 집합 A, B에 대하여 n(A)=15, n(B)=12일 때, n(A△B)가 가질 수 있는 최솟값과 최댓값의 합은?<br><br>① 27 &nbsp; ② 30 &nbsp; ③ 33 &nbsp; ④ 36 &nbsp; ⑤ 39`,
+    ans:`n(A△B) = n(A)+n(B)−2n(A∩B) = 27−2n(A∩B)<br>
+n(A∩B)는 0(서로소일 때)부터 min(15,12)=12(B⊂A일 때)까지 가능해요.<br><br>
+n(A∩B)=0일 때 <b style="color:#5eead4">최댓값 27</b><br>
+n(A∩B)=12일 때 <b style="color:#5eead4">최솟값 27−24=3</b><br><br>
+27+3=<b style="color:#5eead4">30</b> → <b>정답 ②</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">n(A△B)=n(A∪B)−n(A∩B) 공식으로 봐도 같아요 — 교집합이 작을수록(안 겹칠수록) 대칭차집합은 커지고, 교집합이 클수록(많이 겹칠수록) 대칭차집합은 작아져요.</span>` },
+
+{ tag:'대칭차집합 마스터 4 — 새로운 연산과의 비교', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 두 부분집합 A, B에 대하여 연산 ▽를 A▽B = (A∪B)△(A∩B)로 정의할 때, A▽B와 항상 같은 집합은?<br><br>① A∩B &nbsp; ② A∪B &nbsp; ③ A△B &nbsp; ④ (A∩B)<sup>c</sup> &nbsp; ⑤ ∅`,
+    ans:`A∩B는 항상 A∪B에 포함되므로(A∩B⊂A∪B), (A∩B)−(A∪B)=∅이에요.<br>
+따라서 A▽B = (A∪B)△(A∩B) = ((A∪B)−(A∩B)) ∪ ((A∩B)−(A∪B)) = (A∪B)−(A∩B) ∪ ∅ = (A∪B)−(A∩B)<br><br>
+그런데 (A∪B)−(A∩B)는 우리가 배운 <b style="color:#5eead4">A△B의 ②번 표현 그 자체</b>예요! → <b>정답 ③</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">새로운 기호(▽)가 나와도 겁먹지 말고, 이미 아는 정의로 하나씩 풀어보면 결국 낯익은 식이 나와요.</span>` },
+
+{ tag:'대칭차집합 마스터 5 — 방정식의 해 개수', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`집합 X가 다음 조건을 만족한다.<br>(가) X⊂{1,2,3,4,5,6}<br>(나) {1,2,3}△X = {4,5,6}<br><br>이 조건을 만족하는 집합 X의 개수는?<br><br>① 1개 &nbsp; ② 2개 &nbsp; ③ 4개 &nbsp; ④ 8개 &nbsp; ⑤ 16개`,
+    ans:`A={1,2,3}, B={4,5,6}이라 하면 A△X=B ⟺ X=A△B (앞서 배운 방정식 풀이 그대로).<br>
+X = {1,2,3}△{4,5,6}. A,B가 서로소(겹치는 원소 없음)이므로 A△B=A∪B=<b style="color:#5eead4">{1,2,3,4,5,6}</b><br><br>
+X=A△B는 <b>유일하게 하나로 정해지는 값</b>이라서(방정식 X를 구하는 공식이 하나로 딱 떨어짐), 조건을 만족하는 X는 <b style="color:#5eead4">오직 1개</b> → <b>정답 ①</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">"X의 개수"라고 물어봐서 여러 개를 찾아야 할 것 같지만, △방정식은 대우·결합법칙으로 풀면 해가 정확히 하나로 정해져요 — 개수를 묻는 함정에 속지 마세요.</span>` },
+
+{ tag:'대칭차집합 마스터 6 — 네 집합의 결합, 홀짝 패턴', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`네 집합 A, B, C, D에 대하여 결합법칙이 성립할 때, A△B△C△D의 벤 다이어그램에서 색칠되는 영역은 전체집합 U의 원소 중 어떤 조건을 만족하는 원소들의 모임인가?<br><br>
+① 어느 집합에도 속하지 않거나, 4개의 집합 모두에 속하는 원소<br>
+② 홀수 개의 집합에 속하는 원소<br>
+③ 짝수 개의 집합에 속하는 원소<br>
+④ 2개 또는 4개의 집합에만 속하는 원소<br>
+⑤ 집합 A와 D에만 속하는 원소`,
+    ans:`원소 하나를 기준으로 몇 개의 집합에 속하는지에 따라 추적해볼게요.<br>
+1개 집합에만 속함 → 그 단계에서 살아남아 최종 결과에 포함<br>
+2개 집합에 속함(예 A,B) → A△B에서 서로 지워짐(겹치면 빠짐) → 최종 제외<br>
+3개 집합에 속함(예 A,B,C) → A△B에서 지워졌다가, C와 만나면서 다시 포함됨 → 최종 포함<br>
+4개 집합 모두에 속함 → 3개까지 포함됐다가 D와 만나 다시 지워짐 → 최종 제외<br><br>
+패턴: <b style="color:#5eead4">홀수 번 겹치면 포함, 짝수 번 겹치면 제외</b> → <b>정답 ②</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">16가지 소속 패턴(각 원소가 A,B,C,D 각각에 속하는지 안 속하는지)을 전부 확인해도 예외 없이 이 규칙이 성립해요. 이 "홀짝 판정" 구조는 나중에 논리회로의 XOR(배타적 논리합)과 정확히 같아요.</span>` },
+
+{ tag:'대칭차집합 마스터 7 — 식 변형·이항', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 세 부분집합 A, B, C에 대하여 A△B=C일 때, 다음 중 옳지 않은 것은?<br><br>
+① A=B△C &nbsp; ② B=A△C &nbsp; ③ C△B=A &nbsp; ④ A△C=B &nbsp; ⑤ A∩B=C∩A`,
+    ans:`①~④는 전부 "A△B=C"를 결합법칙으로 이항한 것뿐이라 모두 참이에요(①=③은 교환법칙으로 같은 식, ②=④도 마찬가지).<br><br>
+⑤를 반례로 확인: A={1,2}, B={2,3}이면 C=A△B={1,3}.<br>
+A∩B={2}, C∩A={1,3}∩{1,2}={1} → {2}≠{1} → <b style="color:#5eead4">⑤는 거짓</b> → <b>정답 ⑤</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">△방정식은 자유롭게 이항해도 되지만(①~④), ∩는 △와 전혀 다른 연산이라 "이항하듯" 다뤄지지 않아요 — 겹치는 부분(∩)은 대칭차집합 계산에서 애초에 제외되는 부분이라 이런 식으로 연결되지 않습니다.</span>` },
+
+{ tag:'대칭차집합 마스터 8 — 원소의 합 (실전 계산)', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U={x|x는 100 이하의 자연수}의 두 부분집합 A,B에 대하여, A는 3의 배수의 집합이고 B는 4의 배수의 집합이다. 이때 집합 A△B의 모든 원소의 합은?<br><br>① 1683 &nbsp; ② 1836 &nbsp; ③ 2012 &nbsp; ④ 2119 &nbsp; ⑤ 2340`,
+    ans:`3의 배수(100 이하): 3,6,...,99 → 33개, 합=3×(33×34/2)=<b>1683</b><br>
+4의 배수(100 이하): 4,8,...,100 → 25개, 합=4×(25×26/2)=<b>1300</b><br>
+12의 배수(A∩B, 100 이하): 12,24,...,96 → 8개, 합=12×(8×9/2)=<b>432</b><br><br>
+n(A−B)+n(B−A) 자리에 원소 합을 그대로 대입: A△B의 원소 합 = (A의 합 + B의 합) − 2×(A∩B의 합)<br>
+= 1683+1300−2×432 = 2983−864 = <b style="color:#5eead4">2119</b> → <b>정답 ④</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">"원소 개수"의 포함배제 공식(n(A△B)=n(A)+n(B)−2n(A∩B))이 "원소의 합"에도 그대로 적용돼요 — 개수 대신 합을 넣으면 돼요. 교집합(겹치는 부분, 12의 배수)의 합을 두 번 빼는 이유는 A의 합과 B의 합에 각각 한 번씩 이미 포함됐기 때문이에요.</span>` },
+
+{ tag:'대칭차집합 마스터 9 — 성질 중 틀린 것 찾기', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 두 부분집합 A,B에 대하여 대칭차집합의 성질 중 옳지 않은 것을 고른 것은?<br><br>
+① A△∅=A &nbsp; ② A△A=∅ &nbsp; ③ A△B=B△A &nbsp; ④ (A△B)△C=A△(B△C) &nbsp; ⑤ A△B=∅ ⟹ A=U`,
+    ans:`①②③④는 전부 이 덱에서 이미 확인한 항등식이에요(항등원·자기소거·교환법칙·결합법칙) — 전부 참.<br><br>
+⑤ 확인: A△B=∅는 사실 <b style="color:#5eead4">A=B를 뜻하는 것</b>이에요(A,B의 다른 부분이 하나도 없다는 뜻이니까). "A=U"가 되려면 <b>B도 U여야 한다는 조건이 추가로 필요</b>한데, 문제엔 그런 조건이 없어요.<br><br>
+반례: A=B=∅이면 A△B=∅(참이지만) A=∅≠U → <b style="color:#5eead4">⑤는 거짓</b> → <b>정답 ⑤</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">함정 포인트: "A△B=∅"이면 "A=B"까지는 항상 맞지만, 그 이상(A가 하필 U라는 것)은 근거 없이 넘겨짚은 거예요 — "맞는 부분"과 "과하게 나간 부분"을 구분하는 연습이에요.</span>` },
+
+{ tag:'대칭차집합 마스터 10 — 방정식의 근으로 정의된 집합', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`두 집합 A={x|x²−5x+6=0}, B={x|x²−ax+16=0}에 대하여 A△B={2,3,4}가 성립하도록 하는 실수 a의 값을 구하세요.`,
+    ans:`A: x²−5x+6=0 → (x−2)(x−3)=0 → <b>A={2,3}</b><br><br>
+B=A△{2,3,4}로 거꾸로 구하면: A−{2,3,4}=∅, {2,3,4}−A={4} → <b style="color:#5eead4">B={4}</b>여야 해요.<br><br>
+B={x|x²−ax+16=0}가 정확히 {4}(중근)가 되려면: (x−4)²=x²−8x+16 — 상수항 16이 정확히 일치해요!<br>
+두 근이 모두 4이므로 근과 계수의 관계(두 근의 합=a): 4+4=<b style="color:#5eead4">a=8</b><br><br>
+검산: a=8이면 x²−8x+16=0 → (x−4)²=0 → B={4}. A△B={2,3}△{4}=(A−B)∪(B−A)={2,3}∪{4}={2,3,4} ✓<br><br>
+<span style="font-size:.92em;color:#cbd5e1">상수항(두 근의 곱)이 딱 4×4=16으로 맞아떨어져야 B가 정확히 {4}(중근) 하나로 정해져요 — 곱이 안 맞으면(예: 12라면) 4를 근으로 가지면서 다른 원소가 안 딸려오는 B를 절대 만들 수 없어요.</span>` },
+
+{ tag:'대칭차집합 마스터 11 — 원소 개수 조건, a값이 여러 개', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`A={1,2,4}이고 B={x | x²−ax+12=0, x는 실수} (단, B≠∅)라 하자.<br>n(A△B)=3을 만족시키는 모든 실수 a의 값의 합을 구하세요.`,
+    ans:`n(A)=3이고, n(A△B)=n(A)+n(B)−2n(A∩B) — 공통으로 겹치는 원소는 두 번씩 빠지니까요.<br><br>
+B≠∅ 조건 때문에 B는 원소 1개(중근) 또는 2개(서로 다른 두 실근) 중 하나예요. k=n(A∩B)라 하면:<br>
+· n(B)=1일 때: 3+1−2k=3 → k=0.5 → <b>정수가 아니라서 불가능</b><br>
+· n(B)=2일 때: 3+2−2k=3 → <b style="color:#5eead4">k=1</b> ✓ ← 이 경우만 가능해요<br><br>
+즉 <b>B는 서로 다른 두 실근을 가지면서, 그중 정확히 1개만 A={1,2,4}와 겹쳐야</b> 해요. 두 근의 곱은 근과 계수의 관계로 항상 12(상수항)니까, A의 원소 하나를 근으로 놓고 나머지 근을 12÷(그 원소)로 구하면:<br><br>
+<table style="border-collapse:collapse;margin:6px 0"><tr style="border-bottom:1px solid #475569"><td style="padding:4px 10px">A의 원소</td><td style="padding:4px 10px">나머지 근</td><td style="padding:4px 10px">B</td><td style="padding:4px 10px">A∩B 개수</td><td style="padding:4px 10px">a=두 근의 합</td></tr>
+<tr><td style="padding:4px 10px">1</td><td style="padding:4px 10px">12÷1=12</td><td style="padding:4px 10px">{1,12}</td><td style="padding:4px 10px">1 ✓</td><td style="padding:4px 10px"><b style="color:#5eead4">13</b></td></tr>
+<tr><td style="padding:4px 10px">2</td><td style="padding:4px 10px">12÷2=6</td><td style="padding:4px 10px">{2,6}</td><td style="padding:4px 10px">1 ✓</td><td style="padding:4px 10px"><b style="color:#5eead4">8</b></td></tr>
+<tr><td style="padding:4px 10px">4</td><td style="padding:4px 10px">12÷4=3</td><td style="padding:4px 10px">{3,4}</td><td style="padding:4px 10px">1 ✓</td><td style="padding:4px 10px"><b style="color:#5eead4">7</b></td></tr></table>
+(A의 두 원소끼리 곱해서 12가 되는 조합은 없어요 — 1×2=2, 1×4=4, 2×4=8, 전부 12가 아니라서 k=2인 경우는 애초에 나올 수 없어요.)<br><br>
+<b style="color:#5eead4">합 = 13+8+7 = 28</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">"B≠∅"이 왜 필요하냐면, 만약 이 이차방정식이 실근을 안 가지면(판별식<0) B=∅이 되고, 이때도 A△B=A△∅=A라서 n(A△B)=3이 그대로 성립해버려요. 그러면 판별식<0인 a 범위 전체(연속구간)가 답에 끼어들어서 "값들의 합"이라는 표현 자체가 무의미해지죠. B≠∅ 조건이 바로 이 경우를 걸러내는 역할이에요.</span>` },
+
+{ tag:'연산법칙 마스터 12 — 항상 성립하는 것 모두 고르기', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 두 부분집합 A,B에 대하여 다음 중 항상 성립하는 것을 모두 고른 것은?<br><br>
+ㄱ. A∪(Aᶜ∩B)=A∪B<br>
+ㄴ. (A−B)∪(B−A)=(A∪B)−(A∩B)<br>
+ㄷ. A∩(A∪B)ᶜ=∅`,
+    ans:`ㄱ 확인: A∪(Aᶜ∩B) <b style="color:#5eead4">=(A∪Aᶜ)∩(A∪B)</b> [분배법칙] =U∩(A∪B)=A∪B → <b>참</b><br><br>
+ㄴ 확인: 대칭차집합의 정의 그 자체예요(이 덱 앞부분에서 이미 확인한 5가지 동치 표현 중 두 개) → <b>참</b><br><br>
+ㄷ 확인: A∩(A∪B)ᶜ <b style="color:#5eead4">=A∩(Aᶜ∩Bᶜ)</b> [드모르간] =(A∩Aᶜ)∩Bᶜ=∅∩Bᶜ=∅ → <b>참</b><br><br>
+셋 다 참이므로 <b style="color:#5eead4">정답 ⑤</b>` },
+
+{ tag:'연산법칙 마스터 13 — 식 간단히 하기', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 두 부분집합 A,B에 대하여 (A∩Bᶜ)∪(Aᶜ∩Bᶜ)∪(A∩B)를 가장 간단히 나타낸 것은?<br><br>
+① A∪B &nbsp; ② Aᶜ∪Bᶜ &nbsp; ③ A∪Bᶜ &nbsp; ④ Aᶜ∪B &nbsp; ⑤ U`,
+    ans:`세 항 중 (A∩Bᶜ)와 (A∩B)를 먼저 묶어요(둘 다 A가 껴 있으니까):<br>
+(A∩Bᶜ)∪(A∩B) <b style="color:#5eead4">=A∩(Bᶜ∪B)</b> [분배법칙] =A∩U=A<br><br>
+그러면 전체 식은 <b>A∪(Aᶜ∩Bᶜ)</b>로 줄어요. 여기에 분배법칙을 한 번 더:<br>
+A∪(Aᶜ∩Bᶜ) <b style="color:#5eead4">=(A∪Aᶜ)∩(A∪Bᶜ)</b> =U∩(A∪Bᶜ)=A∪Bᶜ<br><br>
+<b style="color:#5eead4">정답 ③ A∪Bᶜ</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">분배법칙을 "묶었다 풀었다" 두 번 반복하는 전형적인 패턴이에요 — 먼저 같은 문자가 낀 두 항을 묶고, 남은 항과 다시 묶는 순서로 진행해요.</span>` },
+
+{ tag:'연산법칙 마스터 14 — 새로운 연산 ⊙의 정체', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 두 부분집합 A,B에 대하여 연산 ⊙을 A⊙B=(A∩B)∪(Aᶜ∩Bᶜ)로 정의할 때, (A⊙B)ᶜ와 항상 같은 집합은?<br><br>
+① A△B &nbsp; ② A∪B &nbsp; ③ A∩B &nbsp; ④ (A∪B)ᶜ &nbsp; ⑤ Aᶜ△B`,
+    ans:`전체집합 U의 모든 원소는 A,B에 대해 정확히 두 부류로 나뉘어요:<br>
+· <b>같은 쪽</b>(둘 다 포함 또는 둘 다 제외) → A⊙B의 정의 그대로<br>
+· <b>다른 쪽</b>(정확히 하나에만 포함) → 이건 바로 A△B의 정의예요!<br><br>
+"같은 쪽"과 "다른 쪽"은 겹치지 않고 합치면 전체(U)가 되니까, <b style="color:#5eead4">A⊙B와 A△B는 서로 여집합 관계</b>예요.<br>
+즉 (A⊙B)ᶜ=A△B<br><br>
+<b style="color:#5eead4">정답 ① A△B</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">계산으로 직접 풀 수도 있지만("드모르간+분배"로 (A⊙B)ᶜ를 전개해서 (A∩Bᶜ)∪(Aᶜ∩B) 꼴로 만들면 그게 바로 대칭차집합의 정의예요), "같은 쪽 vs 다른 쪽"으로 나눠 생각하면 계산 없이 바로 보여요.</span>` },
+
+{ tag:'연산법칙 마스터 15 — 포함관계 조건에서 항상 옳은 것', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 세 부분집합 A,B,C에 대하여 A⊂B이고 C⊂Bᶜ일 때, 다음 중 항상 옳은 것은?<br><br>
+① A∩C=B &nbsp; ② (A∪C)∩B=A &nbsp; ③ (A∪B)∩C=C &nbsp; ④ (Aᶜ∩B)∪C=Bᶜ &nbsp; ⑤ A∪B∪C=B`,
+    ans:`핵심 관찰 두 가지: <b>A⊂B</b>이므로 A∩B=A. <b>C⊂Bᶜ</b>이므로 C는 B와 완전히 서로소(C∩B=∅).<br><br>
+② 확인: (A∪C)∩B <b style="color:#5eead4">=(A∩B)∪(C∩B)</b> [분배법칙] =A∪∅=A → <b>참</b><br><br>
+반례로 나머지 확인 (U={1,2,3,4}, B={1,2}, A={1}, C={3,4}):<br>
+① A∩C=∅≠B &nbsp; ③ (A∪B)∩C=∅≠C &nbsp; ④ (Aᶜ∩B)∪C={2,3,4}≠Bᶜ={3,4} &nbsp; ⑤ A∪B∪C=U≠B<br><br>
+<b style="color:#5eead4">정답 ②</b>` },
+
+{ tag:'연산법칙 마스터 16 — 등식에서 포함관계 읽어내기', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 두 부분집합 A,B에 대하여 Aᶜ∪(A∩Bᶜ)=U가 성립할 때, 집합 A,B의 포함 관계로 항상 옳은 것은?<br><br>
+① A=B &nbsp; ② A⊂B &nbsp; ③ B⊂A &nbsp; ④ A∩B=∅ &nbsp; ⑤ A∪B=U`,
+    ans:`좌변을 분배법칙으로 정리해요:<br>
+Aᶜ∪(A∩Bᶜ) <b style="color:#5eead4">=(Aᶜ∪A)∩(Aᶜ∪Bᶜ)</b> =U∩(Aᶜ∪Bᶜ)=Aᶜ∪Bᶜ<br><br>
+그러므로 조건은 <b>Aᶜ∪Bᶜ=U</b>와 같아요. 드모르간의 법칙으로 (A∩B)ᶜ=U, 즉<br>
+<b style="color:#5eead4">A∩B=∅</b><br><br>
+<b style="color:#5eead4">정답 ④</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">"⊔가 U 전체"라는 조건이 나오면 여집합·드모르간으로 바꿔서 "∩가 ∅"인 조건으로 뒤집어 보는 게 핵심 패턴이에요.</span>` },
+
+{ tag:'연산법칙 마스터 17 — 세 집합의 순환 교집합', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 세 부분집합 A,B,C에 대하여 (A∪B)∩(B∪C)∩(C∪A)와 항상 같은 집합은?<br><br>
+① (A∩B)∪(B∩C)∪(C∩A) &nbsp; ② (A∪B)∪C &nbsp; ③ (A∩B)∩C &nbsp; ④ (A−B)∪(B−C)∪(C−A) &nbsp; ⑤ A∩B∩C`,
+    ans:`앞의 두 항부터 분배법칙으로 묶어요(B가 공통):<br>
+(A∪B)∩(B∪C) <b style="color:#5eead4">=B∪(A∩C)</b><br><br>
+남은 (C∪A)와 다시 분배법칙:<br>
+[B∪(A∩C)]∩(C∪A) <b style="color:#5eead4">=[B∩(C∪A)]∪[(A∩C)∩(C∪A)]</b><br>
+뒤쪽 항은 (A∩C)⊂(C∪A)이므로 그대로 (A∩C)만 남아요. 앞쪽 항도 분배법칙 한 번 더:<br>
+=[(B∩C)∪(B∩A)]∪(A∩C) = (A∩B)∪(B∩C)∪(C∩A)<br><br>
+<b style="color:#5eead4">정답 ①</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">"두 집합에 동시에 속하는 원소들의 모임"이라는 뜻으로 자주 나오는 유명한 항등식이에요 — 외워두면 전개 없이 바로 답이 보여요.</span>` },
+
+{ tag:'연산법칙 마스터 18 — 대칭차집합 연산의 재활용', tagColor:'#2dd4bf',
+    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
+    body:`전체집합 U의 두 부분집합 A,B에 대하여 연산 ∘를 A∘B=(A−B)∪(B−A)로 정의할 때, (A∘B)∘A와 항상 같은 집합은?<br><br>
+① ∅ &nbsp; ② A &nbsp; ③ B &nbsp; ④ A∩B &nbsp; ⑤ A∪B`,
+    ans:`A∘B는 사실 대칭차집합 A△B와 정의가 똑같아요. 그러므로 (A∘B)∘A=(A△B)△A이고, 이 덱 앞에서 이미 확인한 결합법칙·교환법칙·자기소거(A△A=∅)·항등원(A△∅=A)을 그대로 씁니다:<br><br>
+(A△B)△A <b style="color:#5eead4">=A△(B△A)</b> [결합법칙]<br>
+=A△(A△B) [교환법칙, 안쪽 순서 바꿈]<br>
+<b style="color:#5eead4">=(A△A)△B</b> [결합법칙] =∅△B=<b>B</b> [자기소거+항등원]<br><br>
+<b style="color:#5eead4">정답 ③ B</b><br><br>
+<span style="font-size:.92em;color:#cbd5e1">마스터 11에서 확인한 결합·교환법칙을 그대로 재활용하는 문제예요 — 대칭차집합은 "덧셈처럼" 자유롭게 순서를 바꾸고 묶을 수 있다는 걸 다시 보여줘요.</span>` }
+],
+
+/* ── 명제 실전훈련 (공통수학2) ── */
+'prop-drill': [
+{ tag:'문항 1 — 필요·충분조건 역산', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`실수 x에 대한 두 조건 p: x²−(2a+4)x+a(a+4)≤0, q: −1≤x≤7이 있다. p가 q이기 위한 충분조건이 되도록 하는 정수 a의 최댓값과 최솟값의 합을 구하여라.`,
+    ans:`p를 인수분해: (x−a){x−(a+4)}≤0 → P=[a, a+4]<br>Q=[−1, 7]<br>P⊂Q ⟺ a≥−1 그리고 a+4≤7 ⟺ −1≤a≤3<br>정수 a: −1,0,1,2,3 → 최댓값 3, 최솟값 −1 → <b>합 = 2</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: "충분조건이 되도록 하는 상수의 범위"는 P⊂Q 판정을 거꾸로 쓰는 문제예요. 구간의 양 끝을 각각 부등식으로 비교하세요.</span>` },
+
+{ tag:'문항 2 — 반례 개수 세기', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`100보다 작은 자연수 n에 대하여 명제 "n이 4의 배수이면 n은 6의 배수이다"가 거짓임을 보여주는 반례는 모두 몇 가지인지 구하여라.`,
+    ans:`반례 = "4의 배수이면서 6의 배수가 아닌 자연수"<br>1≤n≤99에서 4의 배수: 24개<br>4와 6의 배수(=12의 배수): 8개<br>반례 개수 = 24−8 = <b>16개</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: "반례가 몇 가지인가"는 "p 만족 개수 − p,q 모두 만족 개수"로 접근 — 집합의 차집합 계산과 원리가 같아요.</span>` },
+
+{ tag:'문항 3 — 대우 연쇄추론', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`네 조건 p,q,r,s에 대하여 세 명제 p→q, q→r, r→s가 모두 참이라 하자. &lt;보기&gt;에서 반드시 참인 명제만을 있는 대로 고른 것은?<br><br>ㄱ. p→s &nbsp; ㄴ. q→p &nbsp; ㄷ. ~s→~p &nbsp; ㄹ. s→r<br><br>① ㄱ &nbsp; ② ㄴ &nbsp; ③ ㄱ,ㄷ &nbsp; ④ ㄴ,ㄹ &nbsp; ⑤ ㄱ,ㄴ,ㄷ,ㄹ`,
+    ans:`P⊂Q⊂R⊂S<br>ㄱ. p→s: P⊂S → 참<br>ㄴ. q→p: Q⊂P 보장 안 됨 → 참 아님<br>ㄷ. ~s→~p: ㄱ의 대우 → 참<br>ㄹ. s→r: 반대 방향, 보장 안 됨 → 참 아님<br><b>정답 ③ (ㄱ,ㄷ)</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: 원래 화살표 방향과 그 대우만 참으로 인정하고, 역이나 반대 방향은 근거 없이 참으로 넘겨짚지 마세요.</span>` },
+
+{ tag:'문항 4 — 한정기호 대비쌍', tagColor:'#818cf8',
+    bg:'rgba(129,140,248,.07)', bd:'rgba(129,140,248,.3)',
+    body:`1≤x≤4인 <b>모든</b> 실수 x에 대해 x²−4x+k≥0이 성립하도록 하는 정수 k의 최솟값을 A, 1≤x≤4인 <b>어떤</b> 실수 x에 대해 x²−4x+k≥0이 성립하도록 하는 정수 k의 최솟값을 B라 할 때, A−B의 값을 구하세요.`,
+    ans:`f(x)=(x−2)²+(k−4), 꼭짓점 x=2는 [1,4] 안에 있어요.<br><br>
+<b>A(모든 x)</b>: 최솟값(꼭짓점)이 0 이상 → f(2)=k−4≥0 → <b>A=4</b><br>
+<b>B(어떤 x)</b>: 최댓값이 0 이상이면 충분. |4−2|&gt;|1−2|이므로 최댓값은 f(4)=k → <b>B=0</b><br><br>
+<b>A−B = 4</b><br><br>
+<span style="font-size:.85em;color:#94a3b8">🔗 구조 신호: "모든 x"는 구간 전체를 지켜야 하니 더 엄격(큰 k 필요), "어떤 x"는 하나만 걸리면 되니 더 느슨(작은 k로 충분) — 항상 A≥B예요.</span>` }
 ],
 
 }; // end CARD_DATA
@@ -16232,6 +17313,177 @@ function lnNextTriArea(id){
   var bx = gRandInt(-5,5), by = gRandInt(-6,6); while(by===0) by=gRandInt(-6,6);
   el.setAttribute('data-v',[a,bx,by].join(','));
   el.innerHTML = '<b>O(0,0), A('+a+',0), B('+gFmt(bx)+','+gFmt(by)+')를 꼭짓점으로 하는 △OAB의 넓이는?</b><br>' + gSolBtn('lnShowTriArea', id);
+}
+function amgmVennSvg(a, b, total){
+  return '<svg viewBox="0 0 220 140" width="100%" style="max-width:200px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect x="4" y="4" width="212" height="112" rx="8" fill="none" stroke="#94a3b8" stroke-width="1.2"/>'
+    + '<text x="110" y="128" font-size="9" fill="#94a3b8" text-anchor="middle">전체 '+total+'명</text>'
+    + '<defs><clipPath id="amgmClip"><circle cx="90" cy="60" r="42"/></clipPath></defs>'
+    + '<circle cx="90" cy="60" r="42" fill="rgba(45,212,191,.15)" stroke="#2dd4bf" stroke-width="1.8"/>'
+    + '<circle cx="130" cy="60" r="38" fill="rgba(251,146,60,.12)" stroke="#fb923c" stroke-width="1.8"/>'
+    + '<circle cx="130" cy="60" r="38" fill="#a78bfa" fill-opacity=".5" clip-path="url(#amgmClip)"/>'
+    + '<text x="60" y="64" font-size="9" fill="#5eead4" font-weight="700" text-anchor="middle">'+a+'</text>'
+    + '<text x="162" y="64" font-size="9" fill="#fb923c" font-weight="700" text-anchor="middle">'+b+'</text>'
+    + '<text x="90" y="20" font-size="8" fill="#5eead4" text-anchor="middle">수학('+a+')</text>'
+    + '<text x="150" y="20" font-size="8" fill="#fb923c" text-anchor="middle">영어('+b+')</text>'
+    + '</svg>';
+}
+function subsetTreeSvg(){
+  return '<svg viewBox="0 0 300 190" width="100%" style="max-width:280px;display:block;margin:6px auto" xmlns="http://www.w3.org/2000/svg">'
+    + '<circle cx="150" cy="15" r="4" fill="#e2e8f0"/>'
+    + '<line x1="150" y1="15" x2="70" y2="60" stroke="#2dd4bf" stroke-width="1.6"/>'
+    + '<line x1="150" y1="15" x2="230" y2="60" stroke="#94a3b8" stroke-width="1.6"/>'
+    + '<text x="90" y="40" font-size="9" fill="#5eead4">1 포함</text>'
+    + '<text x="185" y="40" font-size="9" fill="#94a3b8">1 제외</text>'
+    + '<circle cx="70" cy="60" r="3.5" fill="#e2e8f0"/>'
+    + '<circle cx="230" cy="60" r="3.5" fill="#e2e8f0"/>'
+    + '<line x1="70" y1="60" x2="35" y2="110" stroke="#2dd4bf" stroke-width="1.6"/>'
+    + '<line x1="70" y1="60" x2="105" y2="110" stroke="#94a3b8" stroke-width="1.6"/>'
+    + '<line x1="230" y1="60" x2="195" y2="110" stroke="#2dd4bf" stroke-width="1.6"/>'
+    + '<line x1="230" y1="60" x2="265" y2="110" stroke="#94a3b8" stroke-width="1.6"/>'
+    + '<text x="8" y="88" font-size="8" fill="#5eead4">2 포함</text>'
+    + '<text x="78" y="88" font-size="8" fill="#94a3b8">2 제외</text>'
+    + '<text x="168" y="88" font-size="8" fill="#5eead4">2 포함</text>'
+    + '<text x="238" y="88" font-size="8" fill="#94a3b8">2 제외</text>'
+    + '<rect x="15" y="130" width="46" height="24" rx="5" fill="rgba(45,212,191,.15)" stroke="#2dd4bf"/>'
+    + '<rect x="85" y="130" width="46" height="24" rx="5" fill="rgba(45,212,191,.15)" stroke="#2dd4bf"/>'
+    + '<rect x="175" y="130" width="46" height="24" rx="5" fill="rgba(45,212,191,.15)" stroke="#2dd4bf"/>'
+    + '<rect x="245" y="130" width="46" height="24" rx="5" fill="rgba(45,212,191,.15)" stroke="#2dd4bf"/>'
+    + '<text x="22" y="146" font-size="9" fill="#5eead4" font-weight="700">{1,2}</text>'
+    + '<text x="98" y="146" font-size="9" fill="#5eead4" font-weight="700">{1}</text>'
+    + '<text x="192" y="146" font-size="9" fill="#5eead4" font-weight="700">{2}</text>'
+    + '<text x="260" y="146" font-size="9" fill="#5eead4" font-weight="700">∅</text>'
+    + '<text x="80" y="178" font-size="9" fill="#94a3b8">가지 2개 × 2개 = 4개의 부분집합</text>'
+    + '</svg>';
+}
+function subsetTree3Svg(){
+  return '<svg viewBox="0 0 520 145" width="100%" style="max-width:480px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">'
+    + '<text x="200" y="8" font-size="8" fill="#94a3b8">왼쪽=포함, 오른쪽=제외</text>'
+    + '<circle cx="257" cy="15" r="3" fill="#e2e8f0"/>'
+    + '<line x1="257" y1="15" x2="127" y2="45" stroke="#2dd4bf" stroke-width="1.3"/>'
+    + '<line x1="257" y1="15" x2="387" y2="45" stroke="#94a3b8" stroke-width="1.3"/>'
+    + '<circle cx="127" cy="45" r="2.8" fill="#e2e8f0"/>'
+    + '<circle cx="387" cy="45" r="2.8" fill="#e2e8f0"/>'
+    + '<line x1="127" y1="45" x2="62" y2="75" stroke="#2dd4bf" stroke-width="1.2"/>'
+    + '<line x1="127" y1="45" x2="192" y2="75" stroke="#94a3b8" stroke-width="1.2"/>'
+    + '<line x1="387" y1="45" x2="322" y2="75" stroke="#2dd4bf" stroke-width="1.2"/>'
+    + '<line x1="387" y1="45" x2="452" y2="75" stroke="#94a3b8" stroke-width="1.2"/>'
+    + '<circle cx="62" cy="75" r="2.5" fill="#e2e8f0"/>'
+    + '<circle cx="192" cy="75" r="2.5" fill="#e2e8f0"/>'
+    + '<circle cx="322" cy="75" r="2.5" fill="#e2e8f0"/>'
+    + '<circle cx="452" cy="75" r="2.5" fill="#e2e8f0"/>'
+    + '<line x1="62" y1="75" x2="30" y2="105" stroke="#2dd4bf" stroke-width="1.1"/>'
+    + '<line x1="62" y1="75" x2="95" y2="105" stroke="#94a3b8" stroke-width="1.1"/>'
+    + '<line x1="192" y1="75" x2="160" y2="105" stroke="#2dd4bf" stroke-width="1.1"/>'
+    + '<line x1="192" y1="75" x2="225" y2="105" stroke="#94a3b8" stroke-width="1.1"/>'
+    + '<line x1="322" y1="75" x2="290" y2="105" stroke="#2dd4bf" stroke-width="1.1"/>'
+    + '<line x1="322" y1="75" x2="355" y2="105" stroke="#94a3b8" stroke-width="1.1"/>'
+    + '<line x1="452" y1="75" x2="420" y2="105" stroke="#2dd4bf" stroke-width="1.1"/>'
+    + '<line x1="452" y1="75" x2="485" y2="105" stroke="#94a3b8" stroke-width="1.1"/>'
+    + '<rect x="12" y="108" width="36" height="18" rx="3" fill="rgba(45,212,191,.15)" stroke="#2dd4bf"/>'
+    + '<rect x="77" y="108" width="36" height="18" rx="3" fill="rgba(45,212,191,.15)" stroke="#2dd4bf"/>'
+    + '<rect x="142" y="108" width="36" height="18" rx="3" fill="rgba(45,212,191,.15)" stroke="#2dd4bf"/>'
+    + '<rect x="207" y="108" width="30" height="18" rx="3" fill="rgba(45,212,191,.15)" stroke="#2dd4bf"/>'
+    + '<rect x="272" y="108" width="36" height="18" rx="3" fill="rgba(45,212,191,.15)" stroke="#2dd4bf"/>'
+    + '<rect x="337" y="108" width="30" height="18" rx="3" fill="rgba(45,212,191,.15)" stroke="#2dd4bf"/>'
+    + '<rect x="402" y="108" width="30" height="18" rx="3" fill="rgba(45,212,191,.15)" stroke="#2dd4bf"/>'
+    + '<rect x="467" y="108" width="26" height="18" rx="3" fill="rgba(45,212,191,.15)" stroke="#2dd4bf"/>'
+    + '<text x="16" y="121" font-size="8" fill="#5eead4" font-weight="700">{1,2,3}</text>'
+    + '<text x="82" y="121" font-size="8" fill="#5eead4" font-weight="700">{1,2}</text>'
+    + '<text x="147" y="121" font-size="8" fill="#5eead4" font-weight="700">{1,3}</text>'
+    + '<text x="214" y="121" font-size="8" fill="#5eead4" font-weight="700">{1}</text>'
+    + '<text x="277" y="121" font-size="8" fill="#5eead4" font-weight="700">{2,3}</text>'
+    + '<text x="345" y="121" font-size="8" fill="#5eead4" font-weight="700">{2}</text>'
+    + '<text x="410" y="121" font-size="8" fill="#5eead4" font-weight="700">{3}</text>'
+    + '<text x="475" y="121" font-size="8" fill="#5eead4" font-weight="700">∅</text>'
+    + '<text x="180" y="140" font-size="9" fill="#94a3b8">가지 2×2×2 = 8개의 부분집합</text>'
+    + '</svg>';
+}
+function subsetPruneTreeSvg(){
+  var dead='#475569', deadOp='.35';
+  return '<svg viewBox="0 0 520 145" width="100%" style="max-width:480px;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">'
+    + '<text x="170" y="8" font-size="8" fill="#94a3b8">"1은 포함, 2는 제외" 조건 — 회색 가지는 조건과 안 맞아서 잘려나감</text>'
+    + '<circle cx="257" cy="15" r="3" fill="#e2e8f0"/>'
+    + '<line x1="257" y1="15" x2="127" y2="45" stroke="#2dd4bf" stroke-width="1.6"/>'
+    + '<line x1="257" y1="15" x2="387" y2="45" stroke="'+dead+'" stroke-width="1.1" stroke-opacity="'+deadOp+'"/>'
+    + '<text x="150" y="34" font-size="8" fill="#5eead4" font-weight="700">1 포함 ✓</text>'
+    + '<text x="360" y="34" font-size="8" fill="'+dead+'">1 제외 ✕</text>'
+    + '<circle cx="127" cy="45" r="2.8" fill="#e2e8f0"/>'
+    + '<circle cx="387" cy="45" r="2.8" fill="'+dead+'" fill-opacity="'+deadOp+'"/>'
+    + '<line x1="127" y1="45" x2="62" y2="75" stroke="'+dead+'" stroke-width="1.1" stroke-opacity="'+deadOp+'"/>'
+    + '<line x1="127" y1="45" x2="192" y2="75" stroke="#2dd4bf" stroke-width="1.6"/>'
+    + '<line x1="387" y1="45" x2="322" y2="75" stroke="'+dead+'" stroke-width="1" stroke-opacity="'+deadOp+'"/>'
+    + '<line x1="387" y1="45" x2="452" y2="75" stroke="'+dead+'" stroke-width="1" stroke-opacity="'+deadOp+'"/>'
+    + '<text x="18" y="65" font-size="8" fill="'+dead+'">2 포함 ✕</text>'
+    + '<text x="150" y="65" font-size="8" fill="#5eead4" font-weight="700">2 제외 ✓</text>'
+    + '<circle cx="62" cy="75" r="2.5" fill="'+dead+'" fill-opacity="'+deadOp+'"/>'
+    + '<circle cx="192" cy="75" r="2.5" fill="#e2e8f0"/>'
+    + '<circle cx="322" cy="75" r="2.5" fill="'+dead+'" fill-opacity="'+deadOp+'"/>'
+    + '<circle cx="452" cy="75" r="2.5" fill="'+dead+'" fill-opacity="'+deadOp+'"/>'
+    + '<line x1="62" y1="75" x2="30" y2="105" stroke="'+dead+'" stroke-width="1" stroke-opacity="'+deadOp+'"/>'
+    + '<line x1="62" y1="75" x2="95" y2="105" stroke="'+dead+'" stroke-width="1" stroke-opacity="'+deadOp+'"/>'
+    + '<line x1="192" y1="75" x2="160" y2="105" stroke="#2dd4bf" stroke-width="1.4"/>'
+    + '<line x1="192" y1="75" x2="225" y2="105" stroke="#2dd4bf" stroke-width="1.4"/>'
+    + '<line x1="322" y1="75" x2="290" y2="105" stroke="'+dead+'" stroke-width="1" stroke-opacity="'+deadOp+'"/>'
+    + '<line x1="322" y1="75" x2="355" y2="105" stroke="'+dead+'" stroke-width="1" stroke-opacity="'+deadOp+'"/>'
+    + '<line x1="452" y1="75" x2="420" y2="105" stroke="'+dead+'" stroke-width="1" stroke-opacity="'+deadOp+'"/>'
+    + '<line x1="452" y1="75" x2="485" y2="105" stroke="'+dead+'" stroke-width="1" stroke-opacity="'+deadOp+'"/>'
+    + '<rect x="12" y="108" width="36" height="18" rx="3" fill="'+dead+'" fill-opacity="'+deadOp+'" stroke="'+dead+'" stroke-opacity="'+deadOp+'"/>'
+    + '<rect x="77" y="108" width="36" height="18" rx="3" fill="'+dead+'" fill-opacity="'+deadOp+'" stroke="'+dead+'" stroke-opacity="'+deadOp+'"/>'
+    + '<rect x="142" y="108" width="36" height="18" rx="3" fill="rgba(45,212,191,.2)" stroke="#2dd4bf" stroke-width="1.6"/>'
+    + '<rect x="207" y="108" width="30" height="18" rx="3" fill="rgba(45,212,191,.2)" stroke="#2dd4bf" stroke-width="1.6"/>'
+    + '<rect x="272" y="108" width="36" height="18" rx="3" fill="'+dead+'" fill-opacity="'+deadOp+'" stroke="'+dead+'" stroke-opacity="'+deadOp+'"/>'
+    + '<rect x="337" y="108" width="30" height="18" rx="3" fill="'+dead+'" fill-opacity="'+deadOp+'" stroke="'+dead+'" stroke-opacity="'+deadOp+'"/>'
+    + '<rect x="402" y="108" width="30" height="18" rx="3" fill="'+dead+'" fill-opacity="'+deadOp+'" stroke="'+dead+'" stroke-opacity="'+deadOp+'"/>'
+    + '<rect x="467" y="108" width="26" height="18" rx="3" fill="'+dead+'" fill-opacity="'+deadOp+'" stroke="'+dead+'" stroke-opacity="'+deadOp+'"/>'
+    + '<text x="16" y="121" font-size="8" fill="#94a3b8">{1,2,3}</text>'
+    + '<text x="82" y="121" font-size="8" fill="#94a3b8">{1,2}</text>'
+    + '<text x="147" y="121" font-size="8" fill="#5eead4" font-weight="700">{1,3}</text>'
+    + '<text x="215" y="121" font-size="8" fill="#5eead4" font-weight="700">{1}</text>'
+    + '<text x="277" y="121" font-size="8" fill="#94a3b8">{2,3}</text>'
+    + '<text x="345" y="121" font-size="8" fill="#94a3b8">{2}</text>'
+    + '<text x="410" y="121" font-size="8" fill="#94a3b8">{3}</text>'
+    + '<text x="475" y="121" font-size="8" fill="#94a3b8">∅</text>'
+    + '<text x="150" y="140" font-size="9" fill="#5eead4" font-weight="700">살아남은 가지 2개(3만 자유) → {1,3}, {1} — 2¹=2개</text>'
+    + '</svg>';
+}
+function toggleAns(id){
+  var el = document.getElementById(id);
+  el.style.display = el.style.display==='none' ? '' : 'none';
+}
+function pickDistinct(n, count){
+  var pool=[]; for(var i=1;i<=n;i++) pool.push(i);
+  var picked=[];
+  for(var i=0;i<count;i++){ var idx=Math.floor(Math.random()*pool.length); picked.push(pool.splice(idx,1)[0]); }
+  picked.sort(function(a,b){return a-b;});
+  return picked;
+}
+function subsetInclGen(qid,aid){
+  var n=5+Math.floor(Math.random()*4), k=1+Math.floor(Math.random()*2);
+  var fixed=pickDistinct(n,k), free=n-k, ans=Math.pow(2,free);
+  document.getElementById(qid).innerHTML = 'A={1,...,'+n+'}의 부분집합 중 '+fixed.join(', ')+'을 반드시 포함하는 것의 개수는?';
+  document.getElementById(aid).innerHTML = fixed.join(',')+'은 고정, 나머지 '+free+'개는 자유 → 2<sup>'+free+'</sup>=<b style="color:#5eead4">'+ans+'개</b>';
+  document.getElementById(aid).style.display='none';
+}
+function subsetExclGen(qid,aid){
+  var n=5+Math.floor(Math.random()*4), k=1+Math.floor(Math.random()*2);
+  var fixed=pickDistinct(n,k), free=n-k, ans=Math.pow(2,free);
+  document.getElementById(qid).innerHTML = 'A={1,...,'+n+'}의 부분집합 중 '+fixed.join(', ')+'을 포함하지 않는 것의 개수는?';
+  document.getElementById(aid).innerHTML = fixed.join(',')+'은 반드시 제외(고정), 나머지 '+free+'개는 자유 → 2<sup>'+free+'</sup>=<b style="color:#5eead4">'+ans+'개</b>';
+  document.getElementById(aid).style.display='none';
+}
+function subsetBothGen(qid,aid){
+  var n=6+Math.floor(Math.random()*3), p=1+Math.floor(Math.random()*2);
+  var incl=pickDistinct(n,p);
+  var rest=[]; for(var i=1;i<=n;i++){ if(incl.indexOf(i)<0) rest.push(i); }
+  var q=1+Math.floor(Math.random()*Math.min(2,rest.length-1));
+  var exclPool=rest.slice(), excl=[];
+  for(var i=0;i<q;i++){ var idx=Math.floor(Math.random()*exclPool.length); excl.push(exclPool.splice(idx,1)[0]); }
+  excl.sort(function(a,b){return a-b;});
+  var free=n-p-q, ans=Math.pow(2,free);
+  document.getElementById(qid).innerHTML = 'A={1,...,'+n+'}의 부분집합 중 '+incl.join(',')+'은 포함하고 '+excl.join(',')+'은 포함하지 않는 것의 개수는?';
+  document.getElementById(aid).innerHTML = incl.join(',')+'은 고정 포함, '+excl.join(',')+'은 고정 제외, 나머지 '+free+'개는 자유 → 2<sup>'+free+'</sup>=<b style="color:#5eead4">'+ans+'개</b>';
+  document.getElementById(aid).style.display='none';
 }
 function svgTriAreaHTML(a,bx,by){
   var maxExt = Math.max(Math.abs(a), Math.abs(bx), Math.abs(by))+2;
