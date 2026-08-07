@@ -14491,7 +14491,7 @@ ${svgCircTriMMHTML(6,2,3,4)}
 <b>3단계</b> 밑변 AB=13(고정) → 최댓값 M=½×13×16=<b>104</b>, 최솟값 m=½×13×8=<b>52</b>
 <div style="text-align:center;margin:10px 0">
 ${svgCircTri2HTML(5,12,13,-4,-1,1,4)}
-<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">회색=직선 AB(연장) · 노랑 삼각형=P가 직선에서 가장 먼 쪽(최대) · 보라 삼각형=P가 가장 가까운 쪽(최소)</div>
+<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">회색=직선 AB(연장) · 파랑 점선=중심에서 직선 AB까지 내린 수선(그 발까지 거리=d) · 노랑 삼각형=P가 직선에서 가장 먼 쪽(최대) · 보라 삼각형=P가 가장 가까운 쪽(최소)</div>
 </div>
 <div id="ln-circtri2-out" data-v="5,12,13,-4,-1,1,4" style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.8rem">
 <b>두 점 A(−4,−1), B(8,−6)와 원 (x+4)²+(y−12)²=16 위를 움직이는 점 P에 대하여 삼각형 PAB의 넓이의 최댓값 M과 최솟값 m을 각각 구하면?</b><br><button onclick="lnShowCircTri2('ln-circtri2-out')" style="margin-top:6px;background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.4);color:#fde68a;border-radius:8px;padding:6px 10px;font-size:.7rem;cursor:pointer">풀이 보기</button>
@@ -17328,12 +17328,16 @@ function svgCircParallelDistHTML(r,leg1,leg2,hyp){
     +'</svg>';
 }
 function svgCircTanLenHTML(r,px,py,L){
-  var d2=px*px+py*py;
+  var d2=px*px+py*py, d=Math.sqrt(d2);
   var A=[ (r*r/d2)*px + (r*L/d2)*(-py), (r*r/d2)*py + (r*L/d2)*(px) ];
   var B=[ (r*r/d2)*px - (r*L/d2)*(-py), (r*r/d2)*py - (r*L/d2)*(px) ];
-  var W=180,H=180,pad=22;
-  var map=svgFitMap([0,px,-r,r,A[0],B[0]],[0,py,-r,r,A[1],B[1]],W,H,pad);
+  var ux=px/d, uy=py/d;
+  var labelWorld=[px+1.2*ux, py+1.2*uy];
+  var W=200,H=180,pad=30;
+  var map=svgFitMap([0,px,-r,r,A[0],B[0],labelWorld[0]],[0,py,-r,r,A[1],B[1],labelWorld[1]],W,H,pad);
   var O=map(0,0), P=map(px,py), pA=map(A[0],A[1]), pB=map(B[0],B[1]);
+  var pLabel=map(labelWorld[0],labelWorld[1]);
+  var pLabelAnchor = pLabel[0]>=W/2 ? 'end' : 'start';
   var rp=Math.abs(map(r,0)[0]-O[0]);
   function f(n){ return n.toFixed(1); }
   function rightAngleMarker(corner, n1, n2, sizePx){
@@ -17358,7 +17362,7 @@ function svgCircTanLenHTML(r,px,py,L){
     +'<circle cx="'+f(pA[0])+'" cy="'+f(pA[1])+'" r="3.5" fill="#7dd3fc"/>'
     +'<circle cx="'+f(pB[0])+'" cy="'+f(pB[1])+'" r="3.5" fill="#7dd3fc"/>'
     +'<text x="'+f(O[0]-14)+'" y="'+f(O[1]+4)+'" font-size="10" font-weight="700" fill="#e2e8f0">O</text>'
-    +'<text x="'+f(P[0]+(P[0]>W/2?-6:6))+'" y="'+f(P[1]+4)+'" font-size="10" font-weight="700" fill="#fde68a" text-anchor="'+(P[0]>W/2?'end':'start')+'">P('+px+','+py+')</text>'
+    +'<text x="'+f(pLabel[0])+'" y="'+f(pLabel[1]+3)+'" font-size="10" font-weight="700" fill="#fde68a" text-anchor="'+pLabelAnchor+'">P('+gFmt(px)+','+gFmt(py)+')</text>'
     +'<text x="'+f(pA[0]-4)+'" y="'+f(pA[1]-6)+'" font-size="9.5" font-weight="700" fill="#7dd3fc" text-anchor="end">A</text>'
     +'<text x="'+f(pB[0]-4)+'" y="'+f(pB[1]+14)+'" font-size="9.5" font-weight="700" fill="#7dd3fc" text-anchor="end">B</text>'
     +'</svg>';
@@ -17372,9 +17376,11 @@ function svgCircTri2HTML(leg1,leg2,hyp,x0,y0,sign,r){
   var far = distToAB(Pp)>distToAB(Pm)?Pp:Pm, near = distToAB(Pp)>distToAB(Pm)?Pm:Pp;
   var dirx=leg2/hyp, diry=-leg1/hyp, ext=hyp*0.4;
   var Aext=[Ax-dirx*ext, Ay-diry*ext], Bext=[Bx+dirx*ext, By+diry*ext];
+  var footT = (cx-Ax)*dirx + (cy-Ay)*diry;
+  var Foot=[Ax+footT*dirx, Ay+footT*diry];
   var W=220,H=200,pad=24;
   var map=svgFitMap([Ax,Bx,cx-r,cx+r,Aext[0],Bext[0]],[Ay,By,cy-r,cy+r,Aext[1],Bext[1]],W,H,pad);
-  var A=map(Ax,Ay),B=map(Bx,By),C=map(cx,cy);
+  var A=map(Ax,Ay),B=map(Bx,By),C=map(cx,cy),Ft=map(Foot[0],Foot[1]);
   var CR=map(cx+r,cy), rp=Math.hypot(CR[0]-C[0],CR[1]-C[1]);
   var pFar=map(far[0],far[1]), pNear=map(near[0],near[1]);
   var pAext=map(Aext[0],Aext[1]), pBext=map(Bext[0],Bext[1]);
@@ -17382,14 +17388,19 @@ function svgCircTri2HTML(leg1,leg2,hyp,x0,y0,sign,r){
   return '<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'
     +'<line x1="'+f(pAext[0])+'" y1="'+f(pAext[1])+'" x2="'+f(pBext[0])+'" y2="'+f(pBext[1])+'" stroke="#64748b" stroke-width="1.4"/>'
     +'<circle cx="'+f(C[0])+'" cy="'+f(C[1])+'" r="'+f(rp)+'" fill="rgba(134,239,172,.08)" stroke="#86efac" stroke-width="2"/>'
+    +'<line x1="'+f(C[0])+'" y1="'+f(C[1])+'" x2="'+f(Ft[0])+'" y2="'+f(Ft[1])+'" stroke="#7dd3fc" stroke-width="1.8" stroke-dasharray="4 2"/>'
     +'<polygon points="'+f(pFar[0])+','+f(pFar[1])+' '+f(A[0])+','+f(A[1])+' '+f(B[0])+','+f(B[1])+'" fill="rgba(253,230,138,.1)" stroke="#fde68a" stroke-width="1.5"/>'
     +'<polygon points="'+f(pNear[0])+','+f(pNear[1])+' '+f(A[0])+','+f(A[1])+' '+f(B[0])+','+f(B[1])+'" fill="rgba(167,139,250,.1)" stroke="#a78bfa" stroke-width="1.5"/>'
     +'<circle cx="'+f(A[0])+'" cy="'+f(A[1])+'" r="3.5" fill="#e2e8f0"/>'
     +'<circle cx="'+f(B[0])+'" cy="'+f(B[1])+'" r="3.5" fill="#e2e8f0"/>'
+    +'<circle cx="'+f(C[0])+'" cy="'+f(C[1])+'" r="3.5" fill="#7dd3fc"/>'
+    +'<circle cx="'+f(Ft[0])+'" cy="'+f(Ft[1])+'" r="3" fill="#7dd3fc"/>'
     +'<circle cx="'+f(pFar[0])+'" cy="'+f(pFar[1])+'" r="4" fill="#fde68a"/>'
     +'<circle cx="'+f(pNear[0])+'" cy="'+f(pNear[1])+'" r="4" fill="#a78bfa"/>'
     +'<text x="'+f(A[0]-8)+'" y="'+f(A[1]+2)+'" font-size="9.5" font-weight="700" fill="#e2e8f0" text-anchor="end">A</text>'
     +'<text x="'+f(B[0]+8)+'" y="'+f(B[1]+2)+'" font-size="9.5" font-weight="700" fill="#e2e8f0">B</text>'
+    +'<text x="'+f(C[0]+6)+'" y="'+f(C[1]-4)+'" font-size="9" font-weight="700" fill="#7dd3fc">중심</text>'
+    +'<text x="'+f((C[0]+Ft[0])/2+6)+'" y="'+f((C[1]+Ft[1])/2)+'" font-size="8" font-weight="700" fill="#7dd3fc">d='+leg2+'(수선의 발)</text>'
     +'<text x="'+f(pFar[0])+'" y="'+f(pFar[1]-8)+'" font-size="8.5" font-weight="700" fill="#fde68a" text-anchor="middle">최댓값 위치</text>'
     +'<text x="'+f(pNear[0])+'" y="'+f(pNear[1]+14)+'" font-size="8.5" font-weight="700" fill="#a78bfa" text-anchor="middle">최솟값 위치</text>'
     +'</svg>';
@@ -17697,7 +17708,7 @@ function lnShowCircTri2(id){
     + '<b>1단계</b> 직선 AB의 방향은 ('+g.leg2+','+gFmt(-g.leg1)+'), 수직인 법선 방향은 ('+g.leg1+','+g.leg2+') → 원의 중심에서 직선 AB까지 거리 d='+g.d+'(피타고라스 '+g.leg1+','+g.leg2+','+g.hyp+' 이용)<br>'
     + '<b>2단계</b> d='+g.d+'&gt;r='+g.r+'이므로 원이 직선 AB와 안 만나요 → 높이의 범위는 '+(g.d-g.r)+'부터 '+(g.d+g.r)+'까지<br>'
     + '<b>3단계</b> 밑변 AB='+g.AB+'(고정) → 최댓값 M=½×'+g.AB+'×'+(g.d+g.r)+'=<b>'+gFracHTML(MF[0],MF[1])+'</b>, 최솟값 m=½×'+g.AB+'×'+(g.d-g.r)+'=<b>'+gFracHTML(mF[0],mF[1])+'</b>'
-    + '<div style="text-align:center;margin:10px 0">'+svgCircTri2HTML(g.leg1,g.leg2,g.hyp,g.x0,g.y0,g.sign,g.r)+'<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">회색=직선 AB(연장) · 노랑 삼각형=P가 직선에서 가장 먼 쪽(최대) · 보라 삼각형=P가 가장 가까운 쪽(최소)</div></div>'
+    + '<div style="text-align:center;margin:10px 0">'+svgCircTri2HTML(g.leg1,g.leg2,g.hyp,g.x0,g.y0,g.sign,g.r)+'<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">회색=직선 AB(연장) · 파랑 점선=중심에서 직선 AB까지 내린 수선(그 발까지 거리=d) · 노랑 삼각형=P가 직선에서 가장 먼 쪽(최대) · 보라 삼각형=P가 가장 가까운 쪽(최소)</div></div>'
     + gNextBtn('lnNextCircTri2', id);
 }
 
