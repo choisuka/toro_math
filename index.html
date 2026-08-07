@@ -14369,11 +14369,9 @@ ${svgCircAreaHTML(2,4,Math.sqrt(12))}
     body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
 직선 y=2x+1에 평행하고 원 x²+y²=9에 접하는 두 직선 사이의 거리를 구하세요.
 </div>`,
-    ans:`평행이므로 기울기 2, 접선을 y=2x+n(2x−y+n=0)으로 놓으면<br>
-거리=반지름: <span class="frac"><span class="num">|n|</span><span class="den">√5</span></span>=3 → n=±3√5<br>
-두 접선 2x−y+3√5=0, 2x−y−3√5=0 사이의 거리=<span class="frac"><span class="num">|3√5−(−3√5)|</span><span class="den">√5</span></span>=<span class="frac"><span class="num">6√5</span><span class="den">√5</span></span>=<b>6</b>
+    ans:`두 접선은 원을 사이에 두고 서로 반대쪽에서 반지름만큼씩 떨어져 있으니, 그 폭(거리)은 항상 <b>지름(2r)</b>과 같아요 → 2×3=<b>6</b>
 <div style="background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.4);border-radius:8px;padding:10px 12px;margin-top:8px">
-🔗 사실 평행한 두 접선 사이의 거리는 항상 <b>지름(2r)</b>과 같아요(원을 사이에 두고 양쪽에서 딱 닿으니까) — 계산 안 해도 2×3=6이라고 바로 알 수 있어요. 위 풀이는 그 이유를 식으로 확인한 거예요.
+🔗 식으로 확인해보면: 접선을 y=2x+n(2x−y+n=0)으로 놓으면 거리=반지름: <span class="frac"><span class="num">|n|</span><span class="den">√5</span></span>=3 → n=±3√5. 두 접선 2x−y+3√5=0, 2x−y−3√5=0 사이의 거리=<span class="frac"><span class="num">|3√5−(−3√5)|</span><span class="den">√5</span></span>=<span class="frac"><span class="num">6√5</span><span class="den">√5</span></span>=6 — 역시 지름과 같죠?
 </div>
 <div style="text-align:center;margin:10px 0">
 ${svgCircParallelDistHTML(3,2,1,Math.sqrt(5))}
@@ -17591,9 +17589,8 @@ function lnShowCircParallelDist(id){
   var v=el.getAttribute('data-v').split(',').map(Number);
   var r=v[0],leg1=v[1],leg2=v[2],hyp=v[3];
   el.innerHTML = gCircParallelDistQuestion(el.getAttribute('data-v'))
-    + '<b>1단계</b> 접선을 y='+gFracHTML(leg1,leg2)+'x+n으로 놓으면 거리=반지름: '+gFracSym('|n|','√(m²+1)')+'='+r+', √(m²+1)='+gFracHTML(hyp,leg2)+'(피타고라스 '+leg1+','+leg2+','+hyp+') → n=±'+gFracHTML(r*hyp,leg2)+'<br>'
-    + '<b>2단계</b> 두 접선은 원을 사이에 두고 서로 반대쪽에서 반지름만큼씩 떨어져 있으니, 그 폭(거리)은 항상 <b>지름(2r)</b>과 같아요<br>'
-    + '<b>3단계</b> 2r=2×'+r+'=<b>'+(2*r)+'</b>'
+    + '<b>1단계</b> 두 접선은 원을 사이에 두고 서로 반대쪽에서 반지름만큼씩 떨어져 있으니, 그 폭(거리)은 항상 <b>지름(2r)</b>과 같아요<br>'
+    + '<b>2단계</b> 2r=2×'+r+'=<b>'+(2*r)+'</b>'
     + '<div style="text-align:center;margin:10px 0">'+svgCircParallelDistHTML(r,leg1,leg2,hyp)+'<div style="font-size:.68rem;color:#94a3b8;margin-top:2px">노랑·보라 두 접선이 원의 양쪽에 딱 닿아있어요 — 그 폭이 항상 지름(2r)</div></div>'
     + gNextBtn('lnNextCircParallelDist', id);
 }
