@@ -383,7 +383,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
-      <div><div class="unit-title">🧮 분수와 부분량 <span class="badge">초3</span></div><div class="unit-sub">전체의 몇 분의 몇 구하기 (묶음 속 부분)</div></div>
+      <div><div class="unit-title">🧮 분수만큼 구하기 <span class="badge">초3</span></div><div class="unit-sub">전체의 몇 분의 몇 구하기 (묶음 속 부분)</div></div>
       <span class="unit-arrow">▼</span>
     </div>
     <div class="unit-body">
@@ -399,7 +399,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
-      <div><div class="unit-title">🌟 분수 종합(부분의 부분) <span class="badge">초3</span></div><div class="unit-sub">가분수·대분수 + 부분량 구하기 통합 심화</div></div>
+      <div><div class="unit-title">🌟 분수 종합(부분의 부분) <span class="badge">초3</span></div><div class="unit-sub">가분수·대분수 + 분수만큼 구하기 통합 심화</div></div>
       <span class="unit-arrow">▼</span>
     </div>
     <div class="unit-body">
@@ -1138,7 +1138,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 </div><!-- /content -->
 
 <script>
-function frac(n, d){ return '<span class="frac"><span class="frac-n">'+n+'</span><span class="frac-d">'+d+'</span></span>'; }
+function frac(n, d){ return "<span class='frac'><span class='frac-n'>"+n+"</span><span class='frac-d'>"+d+"</span></span>"; }
 // ── 카드뷰(한 장씩 넘기기) ──
 const CV_DATA = {
   'e3div': [
@@ -5828,19 +5828,19 @@ const CV_DATA_E3FRAC2 = [
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
     <div class="prob-box">
-      <div id="e3fp-1" class="prob-q" data-n="11" data-d="3" data-qtext="가분수 11/3을 대분수로 나타내세요." data-solfn="mfwSol1">가분수 ${frac(11,3)}을 대분수로 나타내세요.<br><button class="havruta-show-btn" onclick="mfwSol1('e3fp-1')">💡 풀이 보기</button></div>
+      <div id="e3fp-1" class="prob-q" data-n="11" data-d="3" data-qtext="가분수 ${frac(11,3)}을 대분수로 나타내세요." data-solfn="mfwSol1">가분수 ${frac(11,3)}을 대분수로 나타내세요.<br><button class="havruta-show-btn" onclick="mfwSol1('e3fp-1')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="mfwGen1('e3fp-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div id="e3fp-2" class="prob-q" data-whole="2" data-rem="3" data-d="5" data-qtext="대분수 2 3/5를 가분수로 나타내세요." data-solfn="mfwSol2">대분수 2 ${frac(3,5)}를 가분수로 나타내세요.<br><button class="havruta-show-btn" onclick="mfwSol2('e3fp-2')">💡 풀이 보기</button></div>
+      <div id="e3fp-2" class="prob-q" data-whole="2" data-rem="3" data-d="5" data-qtext="대분수 2 ${frac(3,5)}를 가분수로 나타내세요." data-solfn="mfwSol2">대분수 2 ${frac(3,5)}를 가분수로 나타내세요.<br><button class="havruta-show-btn" onclick="mfwSol2('e3fp-2')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="mfwGen2('e3fp-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div id="e3fp-3" class="prob-q" data-n="7" data-d="7" data-qtext="7/7은 진분수인가요, 가분수인가요?" data-solfn="mfwSol3">${frac(7,7)}은 진분수인가요, 가분수인가요?<br><button class="havruta-show-btn" onclick="mfwSol3('e3fp-3')">💡 풀이 보기</button></div>
+      <div id="e3fp-3" class="prob-q" data-n="7" data-d="7" data-qtext="${frac(7,7)}은 진분수인가요, 가분수인가요?" data-solfn="mfwSol3">${frac(7,7)}은 진분수인가요, 가분수인가요?<br><button class="havruta-show-btn" onclick="mfwSol3('e3fp-3')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="mfwGen3('e3fp-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div id="e3fp-4" class="prob-q" data-w1="2" data-r1="1" data-w2="1" data-r2="3" data-d="4" data-qtext="2 1/4와(과) 1 3/4 중 어느 것이 더 큰가요?" data-solfn="mfwSol4">2 ${frac(1,4)}와(과) 1 ${frac(3,4)} 중 어느 것이 더 큰가요?<br><button class="havruta-show-btn" onclick="mfwSol4('e3fp-4')">💡 풀이 보기</button></div>
+      <div id="e3fp-4" class="prob-q" data-w1="2" data-r1="1" data-w2="1" data-r2="3" data-d="4" data-qtext="2 ${frac(1,4)}와(과) 1 ${frac(3,4)} 중 어느 것이 더 큰가요?" data-solfn="mfwSol4">2 ${frac(1,4)}와(과) 1 ${frac(3,4)} 중 어느 것이 더 큰가요?<br><button class="havruta-show-btn" onclick="mfwSol4('e3fp-4')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="mfwGen4('e3fp-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
@@ -5848,11 +5848,11 @@ const CV_DATA_E3FRAC2 = [
       <button class="havruta-show-btn" onclick="mfwGen5('e3fp-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div id="e3fp-6" class="prob-q" data-whole="3" data-rem="2" data-d="5" data-qtext="대분수 3 2/5에서 자연수 부분과 분수 부분을 각각 말하세요." data-solfn="mfwSol9">대분수 3 ${frac(2,5)}에서 자연수 부분과 분수 부분을 각각 말하세요.<br><button class="havruta-show-btn" onclick="mfwSol9('e3fp-6')">💡 풀이 보기</button></div>
+      <div id="e3fp-6" class="prob-q" data-whole="3" data-rem="2" data-d="5" data-qtext="대분수 3 ${frac(2,5)}에서 자연수 부분과 분수 부분을 각각 말하세요." data-solfn="mfwSol9">대분수 3 ${frac(2,5)}에서 자연수 부분과 분수 부분을 각각 말하세요.<br><button class="havruta-show-btn" onclick="mfwSol9('e3fp-6')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="mfwGen9('e3fp-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div id="e3fp-7" class="prob-q" data-n1="9" data-n2="7" data-d="5" data-qtext="9/5와(과) 7/5 중 어느 것이 더 큰가요?" data-solfn="mfwSol10">${frac(9,5)}와(과) ${frac(7,5)} 중 어느 것이 더 큰가요?<br><button class="havruta-show-btn" onclick="mfwSol10('e3fp-7')">💡 풀이 보기</button></div>
+      <div id="e3fp-7" class="prob-q" data-n1="9" data-n2="7" data-d="5" data-qtext="${frac(9,5)}와(과) ${frac(7,5)} 중 어느 것이 더 큰가요?" data-solfn="mfwSol10">${frac(9,5)}와(과) ${frac(7,5)} 중 어느 것이 더 큰가요?<br><button class="havruta-show-btn" onclick="mfwSol10('e3fp-7')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="mfwGen10('e3fp-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
   `},
@@ -5928,49 +5928,97 @@ const CV_DATA_E3FRAC3 = [
   { title:'📖 개념 설명', cls:'concept', html:`
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 묶음도 전체(=1)가 될 수 있어요</div>
     <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9">사과 5개가 모인 바구니도 "전체 1"이 될 수 있어요. 그 중 3개를 꺼내면, 전체 5개 중 3개니까 ${frac(3,5)}예요.</p>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — "전체의 몇 분의 몇" 구하는 공식</div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 분수와 나눗셈은 어떤 사이일까?</div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9">"36÷4=9"라는 계산은 하나지만, 같은 나눗셈도 <strong>상황에 따라 뜻이 두 가지</strong>로 갈려요. 이 부분을 정확히 구분하지 못하면 분수만큼 구하는 문제에서 자주 헷갈리기 때문에, 두 가지를 나란히 비교해볼게요.</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="text-align:center;font-size:.8rem;font-weight:700;color:#3fb950;margin-bottom:4px">① 나눠주기 방식 — "몇 명(묶음)에게 나눌 때, 한 명(묶음)은 몇 개?"</div>
+      <div style="text-align:center;font-size:.78rem;color:#8b949e">🍬 사탕 36개를 4명에게 똑같이 나눠주면, 한 명당 몇 개?</div>
+      ${groupBoxes(4,4,9)}
+      <div style="text-align:center;font-size:.8rem;margin-top:4px">여기서 <strong style="color:#bc8cff">4는 "받는 사람의 수"</strong>, 36÷4=<strong style="color:#3fb950">9</strong>는 <strong style="color:#3fb950">"한 사람이 받는 개수"</strong>예요</div>
+    </div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="text-align:center;font-size:.8rem;font-weight:700;color:#3fb950;margin-bottom:4px">② 묶어보기 방식 — "몇 개씩 묶으면, 몇 묶음?"</div>
+      <div style="text-align:center;font-size:.78rem;color:#8b949e">✏️ 연필 36자루를 4자루씩 봉지에 담으면, 몇 봉지?</div>
+      ${groupBoxes(9,9,4)}
+      <div style="text-align:center;font-size:.8rem;margin-top:4px">여기서 <strong style="color:#bc8cff">4는 "한 봉지에 담는 개수"</strong>, 36÷4=<strong style="color:#3fb950">9</strong>는 <strong style="color:#3fb950">"봉지의 개수"</strong>예요</div>
+      <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">계산은 똑같이 36÷4=9지만, ①에서는 "4"가 사람 수, ②에서는 "4"가 한 봉지 크기예요 — <strong style="color:#bc8cff">숫자는 같아도 뜻이 달라요</strong></div>
+    </div>
+    <div style="font-size:.78rem;color:#8b949e;font-weight:700;margin:12px 0 6px">다양한 표현으로 연습하기</div>
+    <div class="expr-item"><span class="expr-num">1</span>색종이 20장을 5명에게 나눠주면 한 명당 몇 장?(<strong>나눠주기</strong>) / 색종이 20장을 5장씩 묶으면 몇 묶음?(<strong>묶어보기</strong>) → 둘 다 <span class="expr-ans">4</span></div>
+    <div class="expr-item"><span class="expr-num">2</span>구슬 15개를 3개의 주머니에 나눠 담으면 한 주머니에 몇 개?(<strong>나눠주기</strong>) / 구슬 15개를 3개씩 묶으면 몇 묶음?(<strong>묶어보기</strong>) → 둘 다 <span class="expr-ans">5</span></div>
+    <div class="expr-item"><span class="expr-num">3</span>귤 28개를 7개의 접시에 똑같이 나누면 한 접시에 몇 개?(<strong>나눠주기</strong>) / 귤 28개를 7개씩 묶으면 몇 묶음?(<strong>묶어보기</strong>) → 둘 다 <span class="expr-ans">4</span></div>
+    <div class="expr-item"><span class="expr-num">4</span>리본 30cm를 6도막으로 똑같이 자르면 한 도막은 몇 cm?(<strong>나눠주기</strong>) / 리본 30cm를 6cm씩 자르면 몇 도막?(<strong>묶어보기</strong>) → 둘 다 <span class="expr-ans">5</span></div>
+    <div class="expr-item"><span class="expr-num">5</span>딸기 40개를 8개의 바구니에 나눠 담으면 한 바구니에 몇 개?(<strong>나눠주기</strong>) / 딸기 40개를 8개씩 묶으면 몇 바구니?(<strong>묶어보기</strong>) → 둘 다 <span class="expr-ans">5</span></div>
+    <div class="prob-box">
+      <div id="e3qp-4" class="prob-q" data-total="36" data-d="4" data-qtext="사탕 36개가 있습니다. (1) 4명에게 똑같이 나눠주면 한 명당 몇 개인가요? (2) 4개씩 봉지에 담으면 몇 봉지가 되나요?" data-solfn="pqwSol11">사탕 36개가 있습니다. (1) 4명에게 똑같이 나눠주면 한 명당 몇 개인가요? (2) 4개씩 봉지에 담으면 몇 봉지가 되나요?<br><button class="havruta-show-btn" onclick="pqwSol11('e3qp-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pqwGen11('e3qp-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — "전체의 몇 분의 몇" 구하는 공식</div>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
       <div style="text-align:center;font-size:.85rem">18의 ${frac(1,3)}은 얼마일까요?</div>
+      <div style="text-align:center;font-size:.78rem;color:#8b949e;margin-top:4px">18을 3묶음으로 나눌 때, 1묶음의 개수는?</div>
       <div style="text-align:center;font-size:.8rem;line-height:1.9;margin-top:6px"><strong>1단계</strong>: 18÷3=<strong style="color:#bc8cff">6</strong> (한 묶음의 크기)<br><strong>2단계</strong>: 6×1=<strong style="color:#3fb950">6</strong> (묶음 1개 분량)</div>
     </div>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 다양한 숫자로 연습하기</div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 다양한 숫자로 연습하기</div>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
       <div style="text-align:center;font-size:.85rem">24의 ${frac(1,4)}은?</div>
+      <div style="text-align:center;font-size:.78rem;color:#8b949e;margin-top:4px">24를 4묶음으로 나눌 때, 1묶음의 개수는?</div>
       ${groupBoxes(4,1,6)}
-      <div style="text-align:center;font-size:.8rem">24÷4=<strong style="color:#bc8cff">6</strong>(한 묶음), 6×1=<strong style="color:#3fb950">6</strong></div>
+      <div style="text-align:center;font-size:.8rem;line-height:1.9"><strong>1단계</strong>: 24÷4=<strong style="color:#bc8cff">6</strong> (한 묶음의 크기)<br><strong>2단계</strong>: 6×1=<strong style="color:#3fb950">6</strong> (묶음 1개 분량)</div>
     </div>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
       <div style="text-align:center;font-size:.85rem">12의 ${frac(1,6)}은?</div>
+      <div style="text-align:center;font-size:.78rem;color:#8b949e;margin-top:4px">12를 6묶음으로 나눌 때, 1묶음의 개수는?</div>
       ${groupBoxes(6,1,2)}
-      <div style="text-align:center;font-size:.8rem">12÷6=<strong style="color:#bc8cff">2</strong>(한 묶음), 2×1=<strong style="color:#3fb950">2</strong></div>
+      <div style="text-align:center;font-size:.8rem;line-height:1.9"><strong>1단계</strong>: 12÷6=<strong style="color:#bc8cff">2</strong> (한 묶음의 크기)<br><strong>2단계</strong>: 2×1=<strong style="color:#3fb950">2</strong> (묶음 1개 분량)</div>
     </div>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
       <div style="text-align:center;font-size:.85rem">16의 ${frac(3,8)}은?</div>
+      <div style="text-align:center;font-size:.78rem;color:#8b949e;margin-top:4px">16을 8묶음으로 나눌 때, 1묶음의 개수는?</div>
       ${groupBoxes(8,3,2)}
-      <div style="text-align:center;font-size:.8rem">16÷8=<strong style="color:#bc8cff">2</strong>(한 묶음), 2×3=<strong style="color:#3fb950">6</strong></div>
-      <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">색칠된 묶음 수만큼(여기선 3묶음) 골라서 더하면 부분량이 나와요</div>
+      <div style="text-align:center;font-size:.8rem;line-height:1.9"><strong>1단계</strong>: 16÷8=<strong style="color:#bc8cff">2</strong> (한 묶음의 크기)<br><strong>2단계</strong>: 2×3=<strong style="color:#3fb950">6</strong> (묶음 3개 분량)</div>
+      <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">색칠된 묶음 수만큼(여기선 3묶음) 골라서 더하면 분수만큼의 값이 나와요</div>
     </div>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 숫자와 분수가 달라도 같은 부분량이 나올 수 있어요</div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 숫자와 분수가 달라도 같은 값이 나올 수 있어요</div>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
       <div style="text-align:center;font-size:.8rem;font-weight:700;color:#3fb950;margin-bottom:6px">답이 6이 되는 경우들</div>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div style="text-align:center"><div style="font-size:.72rem;color:#8b949e;margin-bottom:2px">18의 ${frac(1,3)}</div>${groupBoxes(3,1,6)}</div>
-        <div style="text-align:center"><div style="font-size:.72rem;color:#8b949e;margin-bottom:2px">18의 ${frac(2,6)}</div>${groupBoxes(6,2,3)}</div>
-        <div style="text-align:center"><div style="font-size:.72rem;color:#8b949e;margin-bottom:2px">24의 ${frac(1,4)}</div>${groupBoxes(4,1,6)}</div>
-        <div style="text-align:center"><div style="font-size:.72rem;color:#8b949e;margin-bottom:2px">16의 ${frac(3,8)}</div>${groupBoxes(8,3,2)}</div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="text-align:center"><div style="font-size:.72rem;color:#8b949e;margin-bottom:2px">18의 ${frac(1,3)} — 18을 3묶음으로 나눌 때, 1묶음의 개수는?</div>${groupBoxes(3,1,6)}<div style="font-size:.8rem;line-height:1.9;margin-top:4px"><strong>1단계</strong>: 18÷3=<strong style="color:#bc8cff">6</strong> (한 묶음의 크기)<br><strong>2단계</strong>: 6×1=<strong style="color:#3fb950">6</strong> (묶음 1개 분량)</div></div>
+        <div style="text-align:center"><div style="font-size:.72rem;color:#8b949e;margin-bottom:2px">18의 ${frac(2,6)} — 18을 6묶음으로 나눌 때, 1묶음의 개수는?</div>${groupBoxes(6,2,3)}<div style="font-size:.8rem;line-height:1.9;margin-top:4px"><strong>1단계</strong>: 18÷6=<strong style="color:#bc8cff">3</strong> (한 묶음의 크기)<br><strong>2단계</strong>: 3×2=<strong style="color:#3fb950">6</strong> (묶음 2개 분량)</div></div>
+        <div style="text-align:center"><div style="font-size:.72rem;color:#8b949e;margin-bottom:2px">24의 ${frac(1,4)} — 24를 4묶음으로 나눌 때, 1묶음의 개수는?</div>${groupBoxes(4,1,6)}<div style="font-size:.8rem;line-height:1.9;margin-top:4px"><strong>1단계</strong>: 24÷4=<strong style="color:#bc8cff">6</strong> (한 묶음의 크기)<br><strong>2단계</strong>: 6×1=<strong style="color:#3fb950">6</strong> (묶음 1개 분량)</div></div>
+        <div style="text-align:center"><div style="font-size:.72rem;color:#8b949e;margin-bottom:2px">16의 ${frac(3,8)} — 16을 8묶음으로 나눌 때, 1묶음의 개수는?</div>${groupBoxes(8,3,2)}<div style="font-size:.8rem;line-height:1.9;margin-top:4px"><strong>1단계</strong>: 16÷8=<strong style="color:#bc8cff">2</strong> (한 묶음의 크기)<br><strong>2단계</strong>: 2×3=<strong style="color:#3fb950">6</strong> (묶음 3개 분량)</div></div>
       </div>
       <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">전체 수도, 분수도 전부 다른데 답은 똑같이 6이에요 — 우연이 아니라 계산해보면 정말 같아요</div>
     </div>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
       <div style="text-align:center;font-size:.8rem;font-weight:700;color:#3fb950;margin-bottom:6px">답이 2가 되는 경우들</div>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div style="text-align:center"><div style="font-size:.72rem;color:#8b949e;margin-bottom:2px">18의 ${frac(1,9)}</div>${groupBoxes(9,1,2)}</div>
-        <div style="text-align:center"><div style="font-size:.72rem;color:#8b949e;margin-bottom:2px">12의 ${frac(1,6)}</div>${groupBoxes(6,1,2)}</div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="text-align:center"><div style="font-size:.72rem;color:#8b949e;margin-bottom:2px">18의 ${frac(1,9)} — 18을 9묶음으로 나눌 때, 1묶음의 개수는?</div>${groupBoxes(9,1,2)}<div style="font-size:.8rem;line-height:1.9;margin-top:4px"><strong>1단계</strong>: 18÷9=<strong style="color:#bc8cff">2</strong> (한 묶음의 크기)<br><strong>2단계</strong>: 2×1=<strong style="color:#3fb950">2</strong> (묶음 1개 분량)</div></div>
+        <div style="text-align:center"><div style="font-size:.72rem;color:#8b949e;margin-bottom:2px">12의 ${frac(1,6)} — 12를 6묶음으로 나눌 때, 1묶음의 개수는?</div>${groupBoxes(6,1,2)}<div style="font-size:.8rem;line-height:1.9;margin-top:4px"><strong>1단계</strong>: 12÷6=<strong style="color:#bc8cff">2</strong> (한 묶음의 크기)<br><strong>2단계</strong>: 2×1=<strong style="color:#3fb950">2</strong> (묶음 1개 분량)</div></div>
       </div>
       <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">이번엔 둘 다 답이 2예요 — 전체와 분수의 조합에 따라 얼마든지 같은 답이 나올 수 있어요</div>
     </div>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 거꾸로 전체 구하기(역산)</div>
-    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9">"어떤 수의 ${frac(1,2)}이 7"이면, 7에 2를 곱해서 원래 수(14)를 구해요 — 부분을 구할 때(÷ 다음 ×)와 반대로(× 로 거꾸로) 풀어요.</p>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념6 — 거꾸로 전체 구하기</div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9">"어떤 수의 ${frac(1,2)}이 7"이라는 말을 그대로 풀어보면, <strong>"어떤 수를 2묶음으로 나눴더니, 1묶음이 7개였다"</strong>는 뜻이에요. 공식을 외우지 말고, 딱 이 상황만 그림으로 떠올려보세요.</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="text-align:center;font-size:.8rem">"어떤 수의 ${frac(1,2)}이 7" → 2묶음 중 1묶음이 7개</div>
+      ${groupBoxes(2,2,7)}
+      <div style="text-align:center;font-size:.8rem;line-height:1.9;margin-top:4px">2묶음으로 나눴으니, <strong style="color:#bc8cff">모든 묶음의 크기는 다 똑같이 7</strong>이에요(나머지 1묶음도 7)<br>그러니까 전체 = 7+7 = 7×2 = <strong style="color:#3fb950">14</strong></div>
+    </div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="text-align:center;font-size:.8rem">"어떤 수의 ${frac(2,5)}가 6" → 5묶음 중 2묶음이 6개</div>
+      ${groupBoxes(5,5,3)}
+      <div style="text-align:center;font-size:.8rem;line-height:1.9;margin-top:4px">2묶음이 6개니까, 1묶음은 6÷2=<strong style="color:#bc8cff">3</strong>이에요(모든 묶음이 똑같이 3)<br>5묶음 전체 = 3×5 = <strong style="color:#3fb950">15</strong></div>
+    </div>
+    <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:4px">순서를 외우지 않아도, "몇 묶음 중 몇 묶음이 얼마"라는 문장을 그림으로 그려보면 자연스럽게 풀려요</div>
+    <div class="prob-box" style="margin-top:12px">
+      <div id="e3qp-5" class="prob-q" data-d="2" data-k="7" data-qtext="어떤 수의 ${frac(1,2)}이 7일 때, 그 수는 얼마인가요?" data-solfn="pqwSol5">어떤 수의 ${frac(1,2)}이 7일 때, 그 수는 얼마인가요?<br><button class="havruta-show-btn" onclick="pqwSol5('e3qp-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pqwGen5('e3qp-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div id="e3qp-6" class="prob-q" data-d="5" data-m="2" data-k="6" data-qtext="어떤 상자에 들어 있는 사탕의 ${frac(2,5)}가 6개입니다. 이 상자에 들어 있는 처음 사탕은 모두 몇 개였을까요?" data-solfn="pqwSol6">어떤 상자에 들어 있는 사탕의 ${frac(2,5)}가 6개입니다. 이 상자에 들어 있는 처음 사탕은 모두 몇 개였을까요?<br><button class="havruta-show-btn" onclick="pqwSol6('e3qp-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pqwGen6('e3qp-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
     <div class="q-item"><strong>Q1.</strong> "18의 ${frac(1,3)}"을 구할 때 왜 나누기부터 하나요?
@@ -6009,58 +6057,54 @@ const CV_DATA_E3FRAC3 = [
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
     <div class="prob-box">
-      <div id="e3qp-1" class="prob-q" data-total="10" data-d="5" data-m="3" data-qtext="사과 10개가 있습니다. 이 중에서 3/5은 몇 개인가요?" data-solfn="pqwSol1">사과 10개가 있습니다. 이 중에서 ${frac(3,5)}은 몇 개인가요?<br><button class="havruta-show-btn" onclick="pqwSol1('e3qp-1')">💡 풀이 보기</button></div>
+      <div id="e3qp-1" class="prob-q" data-total="10" data-d="5" data-m="3" data-qtext="사과 10개가 있습니다. 이 중에서 ${frac(3,5)}은 몇 개인가요?" data-solfn="pqwSol1">사과 10개가 있습니다. 이 중에서 ${frac(3,5)}은 몇 개인가요?<br><button class="havruta-show-btn" onclick="pqwSol1('e3qp-1')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="pqwGen1('e3qp-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div id="e3qp-2" class="prob-q" data-total="12" data-d="4" data-qtext="도윤이가 가진 구슬 12개 중 1/4을 친구에게 주었습니다. 친구에게 준 구슬은 몇 개인가요?" data-solfn="pqwSol2">도윤이가 가진 구슬 12개 중 ${frac(1,4)}을 친구에게 주었습니다. 친구에게 준 구슬은 몇 개인가요?<br><button class="havruta-show-btn" onclick="pqwSol2('e3qp-2')">💡 풀이 보기</button></div>
-      <button class="havruta-show-btn" onclick="pqwGen2('e3qp-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
-    </div>
-    <div class="prob-box">
-      <div id="e3qp-3" class="prob-q" data-d="2" data-k="7" data-qtext="어떤 수의 1/2이 7일 때, 그 수는 얼마인가요?" data-solfn="pqwSol5">어떤 수의 ${frac(1,2)}이 7일 때, 그 수는 얼마인가요?<br><button class="havruta-show-btn" onclick="pqwSol5('e3qp-3')">💡 풀이 보기</button></div>
-      <button class="havruta-show-btn" onclick="pqwGen5('e3qp-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      <div id="e3qp-2" class="prob-q" data-total="18" data-d="3" data-m="2" data-qtext="전체 과일 18개 중 귤이 ${frac(2,3)}를 차지합니다. 귤은 모두 몇 개인가요?" data-solfn="pqwSol4">전체 과일 18개 중 귤이 ${frac(2,3)}를 차지합니다. 귤은 모두 몇 개인가요?<br><button class="havruta-show-btn" onclick="pqwSol4('e3qp-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pqwGen4('e3qp-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
     <p>여러 개가 모인 묶음에서 분수만큼의 개수를 구하는 연습이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
-      <div id="pqw-1" class="prob-q" data-total="10" data-d="5" data-m="3" data-qtext="사과 10개가 있습니다. 이 중에서 3/5은 몇 개인가요?" data-solfn="pqwSol1">사과 10개가 있습니다. 이 중에서 ${frac(3,5)}은 몇 개인가요?<br><button class="havruta-show-btn" onclick="pqwSol1('pqw-1')">💡 풀이 보기</button></div>
+      <div id="pqw-1" class="prob-q" data-total="10" data-d="5" data-m="3" data-qtext="사과 10개가 있습니다. 이 중에서 ${frac(3,5)}은 몇 개인가요?" data-solfn="pqwSol1">사과 10개가 있습니다. 이 중에서 ${frac(3,5)}은 몇 개인가요?<br><button class="havruta-show-btn" onclick="pqwSol1('pqw-1')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="pqwGen1('pqw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
-      <div id="pqw-2" class="prob-q" data-total="12" data-d="4" data-qtext="구슬 12개 중의 1/4은 몇 개인가요?" data-solfn="pqwSol2">구슬 12개 중의 ${frac(1,4)}은 몇 개인가요?<br><button class="havruta-show-btn" onclick="pqwSol2('pqw-2')">💡 풀이 보기</button></div>
+      <div id="pqw-2" class="prob-q" data-total="12" data-d="4" data-qtext="구슬 12개 중의 ${frac(1,4)}은 몇 개인가요?" data-solfn="pqwSol2">구슬 12개 중의 ${frac(1,4)}은 몇 개인가요?<br><button class="havruta-show-btn" onclick="pqwSol2('pqw-2')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="pqwGen2('pqw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
-      <div id="pqw-3" class="prob-q" data-total="20" data-d="4" data-m="3" data-qtext="길이가 20cm인 색종이가 있습니다. 이 색종이의 3/4만큼을 사용했다면, 사용한 색종이의 길이는 몇 cm인가요?" data-solfn="pqwSol3">길이가 20cm인 색종이가 있습니다. 이 색종이의 ${frac(3,4)}만큼을 사용했다면, 사용한 색종이의 길이는 몇 cm인가요?<br><button class="havruta-show-btn" onclick="pqwSol3('pqw-3')">💡 풀이 보기</button></div>
+      <div id="pqw-3" class="prob-q" data-total="20" data-d="4" data-m="3" data-qtext="길이가 20cm인 색종이가 있습니다. 이 색종이의 ${frac(3,4)}만큼을 사용했다면, 사용한 색종이의 길이는 몇 cm인가요?" data-solfn="pqwSol3">길이가 20cm인 색종이가 있습니다. 이 색종이의 ${frac(3,4)}만큼을 사용했다면, 사용한 색종이의 길이는 몇 cm인가요?<br><button class="havruta-show-btn" onclick="pqwSol3('pqw-3')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="pqwGen3('pqw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
-      <div id="pqw-4" class="prob-q" data-total="18" data-d="3" data-m="2" data-qtext="전체 과일 18개 중 귤이 2/3를 차지합니다. 귤은 모두 몇 개인가요?" data-solfn="pqwSol4">전체 과일 18개 중 귤이 ${frac(2,3)}를 차지합니다. 귤은 모두 몇 개인가요?<br><button class="havruta-show-btn" onclick="pqwSol4('pqw-4')">💡 풀이 보기</button></div>
+      <div id="pqw-4" class="prob-q" data-total="18" data-d="3" data-m="2" data-qtext="전체 과일 18개 중 귤이 ${frac(2,3)}를 차지합니다. 귤은 모두 몇 개인가요?" data-solfn="pqwSol4">전체 과일 18개 중 귤이 ${frac(2,3)}를 차지합니다. 귤은 모두 몇 개인가요?<br><button class="havruta-show-btn" onclick="pqwSol4('pqw-4')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="pqwGen4('pqw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
-      <div id="pqw-5" class="prob-q" data-d="2" data-k="7" data-qtext="어떤 수의 1/2이 7일 때, 그 수는 얼마인가요?" data-solfn="pqwSol5">어떤 수의 ${frac(1,2)}이 7일 때, 그 수는 얼마인가요?<br><button class="havruta-show-btn" onclick="pqwSol5('pqw-5')">💡 풀이 보기</button></div>
+      <div id="pqw-5" class="prob-q" data-d="2" data-k="7" data-qtext="어떤 수의 ${frac(1,2)}이 7일 때, 그 수는 얼마인가요?" data-solfn="pqwSol5">어떤 수의 ${frac(1,2)}이 7일 때, 그 수는 얼마인가요?<br><button class="havruta-show-btn" onclick="pqwSol5('pqw-5')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="pqwGen5('pqw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
-      <div id="pqw-6" class="prob-q" data-d="5" data-m="2" data-k="6" data-qtext="어떤 상자에 들어 있는 사탕의 2/5가 6개입니다. 이 상자에 들어 있는 처음 사탕은 모두 몇 개였을까요?" data-solfn="pqwSol6">어떤 상자에 들어 있는 사탕의 ${frac(2,5)}가 6개입니다. 이 상자에 들어 있는 처음 사탕은 모두 몇 개였을까요?<br><button class="havruta-show-btn" onclick="pqwSol6('pqw-6')">💡 풀이 보기</button></div>
+      <div id="pqw-6" class="prob-q" data-d="5" data-m="2" data-k="6" data-qtext="어떤 상자에 들어 있는 사탕의 ${frac(2,5)}가 6개입니다. 이 상자에 들어 있는 처음 사탕은 모두 몇 개였을까요?" data-solfn="pqwSol6">어떤 상자에 들어 있는 사탕의 ${frac(2,5)}가 6개입니다. 이 상자에 들어 있는 처음 사탕은 모두 몇 개였을까요?<br><button class="havruta-show-btn" onclick="pqwSol6('pqw-6')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="pqwGen6('pqw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
-      <div id="pqw-7" class="prob-q" data-total="24" data-d1="3" data-m1="1" data-d2="6" data-m2="2" data-qtext="사탕 24개의 1/3과 2/6은 각각 몇 개인지 구하고, 두 값이 같은지 비교하세요." data-solfn="pqwSol7">사탕 24개의 ${frac(1,3)}과 ${frac(2,6)}은 각각 몇 개인지 구하고, 두 값이 같은지 비교하세요.<br><button class="havruta-show-btn" onclick="pqwSol7('pqw-7')">💡 풀이 보기</button></div>
+      <div id="pqw-7" class="prob-q" data-total="24" data-d1="3" data-m1="1" data-d2="6" data-m2="2" data-qtext="사탕 24개의 ${frac(1,3)}과 ${frac(2,6)}은 각각 몇 개인지 구하고, 두 값이 같은지 비교하세요." data-solfn="pqwSol7">사탕 24개의 ${frac(1,3)}과 ${frac(2,6)}은 각각 몇 개인지 구하고, 두 값이 같은지 비교하세요.<br><button class="havruta-show-btn" onclick="pqwSol7('pqw-7')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="pqwGen7('pqw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
-      <div id="pqw-8" class="prob-q" data-total="24" data-d1="4" data-d2="6" data-qtext="학생 24명 중 1/4과 1/6, 어느 쪽이 더 많은 인원인가요?" data-solfn="pqwSol8">학생 24명 중 ${frac(1,4)}과 ${frac(1,6)}, 어느 쪽이 더 많은 인원인가요?<br><button class="havruta-show-btn" onclick="pqwSol8('pqw-8')">💡 풀이 보기</button></div>
+      <div id="pqw-8" class="prob-q" data-total="24" data-d1="4" data-d2="6" data-qtext="학생 24명 중 ${frac(1,4)}과 ${frac(1,6)}, 어느 쪽이 더 많은 인원인가요?" data-solfn="pqwSol8">학생 24명 중 ${frac(1,4)}과 ${frac(1,6)}, 어느 쪽이 더 많은 인원인가요?<br><button class="havruta-show-btn" onclick="pqwSol8('pqw-8')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="pqwGen8('pqw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
@@ -6070,7 +6114,7 @@ const CV_DATA_E3FRAC3 = [
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
-      <div id="pqw-10" class="prob-q" data-total="20" data-d="4" data-qtext="빵 20개 중 1/4은 형이, 다른 1/4은 동생이 먹었다면 둘이 먹은 빵은 총 몇 개인가요?" data-solfn="pqwSol10">빵 20개 중 ${frac(1,4)}은 형이, 다른 ${frac(1,4)}은 동생이 먹었다면 둘이 먹은 빵은 총 몇 개인가요?<br><button class="havruta-show-btn" onclick="pqwSol10('pqw-10')">💡 풀이 보기</button></div>
+      <div id="pqw-10" class="prob-q" data-total="20" data-d="4" data-qtext="빵 20개 중 ${frac(1,4)}은 형이, 다른 ${frac(1,4)}은 동생이 먹었다면 둘이 먹은 빵은 총 몇 개인가요?" data-solfn="pqwSol10">빵 20개 중 ${frac(1,4)}은 형이, 다른 ${frac(1,4)}은 동생이 먹었다면 둘이 먹은 빵은 총 몇 개인가요?<br><button class="havruta-show-btn" onclick="pqwSol10('pqw-10')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="pqwGen10('pqw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
   `},
@@ -6080,16 +6124,16 @@ const CV_DATA_E3FRAC3 = [
     <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>아! 그러니까 나누기로 "한 묶음 크기"를 찾고, 곱하기로 "몇 묶음인지" 세는 거네요?</div></div>
     <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! "전체÷분모, 그 다음 ×분자" — 이 순서만 기억하면 어떤 문제든 풀 수 있어요.</div></div>
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>그럼 반대로 "어떤 수의 ${frac(2,3)}이 10"이면 어떻게 원래 수를 구해요?</div></div>
-    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>10을 2로 나누면 한 묶음(5), 거기에 3을 곱하면 15! 부분 구할 때랑 순서만 반대로 하면 되겠네요.</div></div>
-    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>완벽해요! 부분을 구할 땐 ÷분모→×분자, 전체를 거꾸로 구할 땐 ÷분자→×분모 — 순서가 딱 반대예요.</div></div>
-    <div class="story-takeaway"><strong>정리:</strong> "전체의 몇 분의 몇"은 항상 ① 전체÷분모(한 묶음 크기) ② ×분자(몇 묶음인지) 순서로 풀어요. 거꾸로 전체를 구할 땐 이 순서를 반대로(÷분자→×분모) 뒤집으면 돼요.</div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>음, "${frac(2,3)}이 10"이라는 말은 "전체를 3묶음으로 나눴을 때, 그 중 2묶음이 10개"라는 뜻이잖아요? 그럼 2묶음이 10이니까, 1묶음은 10÷2=5예요. 전체는 3묶음이니까 5×3=15!</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>완벽해요! 핵심은 "몇 묶음 중 몇 묶음이 얼마"라는 상황을 정확히 그려보는 거예요. 하은이처럼 "2묶음이 10"이라고 알면, 거기서 1묶음(10÷2=5)을 먼저 찾고, 전체 묶음 수(3)를 곱하면(5×3=15) 항상 답이 나와요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> "전체의 몇 분의 몇"은 항상 ① 전체÷분모(한 묶음 크기) ② ×분자(몇 묶음인지) 순서로 풀어요. 거꾸로 전체를 구할 때도 원리는 같아요 — "몇 묶음 중 몇 묶음이 얼마"인 상황을 그림으로 떠올려서, 분자로 나눠 1묶음을 먼저 찾고 분모를 곱하면 전체가 나와요.</div>
   `}
 ];
 CV_DATA['e3frac3'] = CV_DATA_E3FRAC3;
 const CV_DATA_E3FRAC4 = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
     <p>용돈을 받으면 그 중 일부로 책을 사고, 남은 돈 중에서 또 일부로 학용품을 사는 경우가 있어요. 책을 읽을 때도 오늘 일부를 읽고, 남은 부분 중에서 내일 또 일부를 읽죠.</p>
-    <p style="margin-top:10px">이렇게 <strong>"부분을 쓰고 남은 것에서 또 부분을 구하는"</strong> 2단계 문제와, 가분수·대분수와 부분량을 함께 쓰는 문제를 연습해요 — 지금까지 배운 두 가지(가분수·대분수 / 부분량 구하기)를 합쳐서 쓰는 심화 단원이에요.</p>
+    <p style="margin-top:10px">이렇게 <strong>"부분을 쓰고 남은 것에서 또 부분을 구하는"</strong> 2단계 문제와, 가분수·대분수와 분수만큼 구하기를 함께 쓰는 문제를 연습해요 — 지금까지 배운 두 가지(가분수·대분수 / 분수만큼 구하기)를 합쳐서 쓰는 심화 단원이에요.</p>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 부분의 부분(2단계 풀이)</div>
@@ -6098,7 +6142,7 @@ const CV_DATA_E3FRAC4 = [
       <div style="text-align:center;font-size:.8rem;line-height:1.9;margin-top:6px"><strong>1단계</strong>: 36의 ${frac(1,3)} = 36÷3×1 = <strong style="color:#bc8cff">12쪽</strong>(첫날)<br><strong>2단계</strong>: 남은 쪽수 = 36−12 = <strong style="color:#bc8cff">24쪽</strong><br><strong>3단계</strong>: 24의 ${frac(1,2)} = 24÷2×1 = <strong style="color:#3fb950">12쪽</strong>(둘째 날)</div>
       <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">둘째 날 분수는 "처음 36쪽"이 아니라 "남은 24쪽"을 기준으로 계산해요 — 이게 가장 헷갈리는 부분이에요!</div>
     </div>
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 가분수·대분수와 부분량을 함께 쓰기</div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 가분수·대분수와 분수만큼 구하기를 함께 쓰기</div>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
       <div style="text-align:center;font-size:.85rem">쿠키 24개를 4개씩 접시에 담으면 몇 접시? 그 중 ${frac(1,3)}만큼의 접시를 형이 가져가면 몇 개?</div>
       <div style="text-align:center;font-size:.8rem;line-height:1.9;margin-top:6px">접시 수: 24÷4=<strong style="color:#bc8cff">6접시</strong>(가분수로 ${frac(24,4)})<br>형이 가져간 접시: 6의 ${frac(1,3)}=6÷3×1=<strong style="color:#bc8cff">2접시</strong><br>형이 가져간 쿠키: 2×4=<strong style="color:#3fb950">8개</strong></div>
@@ -6141,68 +6185,68 @@ const CV_DATA_E3FRAC4 = [
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
     <div class="prob-box">
-      <div id="e3cp-1" class="prob-q" data-total="24" data-u1="9" data-rem="15" data-u2="10" data-left="5" data-d1="8" data-m1="3" data-d2="3" data-m2="2" data-qtext="물통에 물이 24L 들어 있습니다. 이 물의 3/8을 사용하고, 남은 물의 2/3를 또 사용했다면, 현재 물통에 남아 있는 물은 몇 L인가요?" data-solfn="cfwSol2">물통에 물이 24L 들어 있습니다. 이 물의 ${frac(3,8)}을 사용하고, 남은 물의 ${frac(2,3)}를 또 사용했다면, 현재 물통에 남아 있는 물은 몇 L인가요?<br><button class="havruta-show-btn" onclick="cfwSol2('e3cp-1')">💡 풀이 보기</button></div>
+      <div id="e3cp-1" class="prob-q" data-total="24" data-u1="9" data-rem="15" data-u2="10" data-left="5" data-d1="8" data-m1="3" data-d2="3" data-m2="2" data-qtext="물통에 물이 24L 들어 있습니다. 이 물의 ${frac(3,8)}을 사용하고, 남은 물의 ${frac(2,3)}를 또 사용했다면, 현재 물통에 남아 있는 물은 몇 L인가요?" data-solfn="cfwSol2">물통에 물이 24L 들어 있습니다. 이 물의 ${frac(3,8)}을 사용하고, 남은 물의 ${frac(2,3)}를 또 사용했다면, 현재 물통에 남아 있는 물은 몇 L인가요?<br><button class="havruta-show-btn" onclick="cfwSol2('e3cp-1')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen2('e3cp-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div id="e3cp-2" class="prob-q" data-d="5" data-m="2" data-remFracNum="3" data-remCount="15" data-initial="25" data-qtext="어떤 쿠키 상자에 쿠키가 들어 있습니다. 이 쿠키의 2/5를 먹고 나니 15개가 남았습니다. 처음 쿠키는 모두 몇 개였을까요?" data-solfn="cfwSol3">어떤 쿠키 상자에 쿠키가 들어 있습니다. 이 쿠키의 ${frac(2,5)}를 먹고 나니 15개가 남았습니다. 처음 쿠키는 모두 몇 개였을까요?<br><button class="havruta-show-btn" onclick="cfwSol3('e3cp-2')">💡 풀이 보기</button></div>
+      <div id="e3cp-2" class="prob-q" data-d="5" data-m="2" data-remFracNum="3" data-remCount="15" data-initial="25" data-qtext="어떤 쿠키 상자에 쿠키가 들어 있습니다. 이 쿠키의 ${frac(2,5)}를 먹고 나니 15개가 남았습니다. 처음 쿠키는 모두 몇 개였을까요?" data-solfn="cfwSol3">어떤 쿠키 상자에 쿠키가 들어 있습니다. 이 쿠키의 ${frac(2,5)}를 먹고 나니 15개가 남았습니다. 처음 쿠키는 모두 몇 개였을까요?<br><button class="havruta-show-btn" onclick="cfwSol3('e3cp-2')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen3('e3cp-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div id="e3cp-3" class="prob-q" data-total="24" data-d="4" data-plates="6" data-k="3" data-takenPlates="2" data-takenCookies="8" data-qtext="쿠키 24개를 4개씩 접시에 담았습니다. 그 중 1/3만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?" data-solfn="cfwSol8">쿠키 24개를 4개씩 접시에 담았습니다. 그 중 ${frac(1,3)}만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?<br><button class="havruta-show-btn" onclick="cfwSol8('e3cp-3')">💡 풀이 보기</button></div>
+      <div id="e3cp-3" class="prob-q" data-total="24" data-d="4" data-plates="6" data-k="3" data-takenPlates="2" data-takenCookies="8" data-qtext="쿠키 24개를 4개씩 접시에 담았습니다. 그 중 ${frac(1,3)}만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?" data-solfn="cfwSol8">쿠키 24개를 4개씩 접시에 담았습니다. 그 중 ${frac(1,3)}만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?<br><button class="havruta-show-btn" onclick="cfwSol8('e3cp-3')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen8('e3cp-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
-    <p>가분수·대분수와 부분량 구하기를 함께 쓰는 심화 문제예요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+    <p>가분수·대분수와 분수만큼 구하기를 함께 쓰는 심화 문제예요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
-      <div id="cfw-1" class="prob-q" data-total="36" data-d1="3" data-d2="2" data-day1="12" data-day2="12" data-sum="24" data-qtext="전체 36쪽인 책이 있습니다. 민지는 첫날에 전체의 1/3을 읽고, 둘째 날에는 남은 페이지의 1/2을 읽었습니다. 민지가 이틀 동안 읽은 총 페이지 수는 몇 쪽인가요?" data-solfn="cfwSol1">전체 36쪽인 책이 있습니다. 민지는 첫날에 전체의 ${frac(1,3)}을 읽고, 둘째 날에는 남은 페이지의 ${frac(1,2)}을 읽었습니다. 민지가 이틀 동안 읽은 총 페이지 수는 몇 쪽인가요?<br><button class="havruta-show-btn" onclick="cfwSol1('cfw-1')">💡 풀이 보기</button></div>
+      <div id="cfw-1" class="prob-q" data-total="36" data-d1="3" data-d2="2" data-day1="12" data-day2="12" data-sum="24" data-qtext="전체 36쪽인 책이 있습니다. 민지는 첫날에 전체의 ${frac(1,3)}을 읽고, 둘째 날에는 남은 페이지의 ${frac(1,2)}을 읽었습니다. 민지가 이틀 동안 읽은 총 페이지 수는 몇 쪽인가요?" data-solfn="cfwSol1">전체 36쪽인 책이 있습니다. 민지는 첫날에 전체의 ${frac(1,3)}을 읽고, 둘째 날에는 남은 페이지의 ${frac(1,2)}을 읽었습니다. 민지가 이틀 동안 읽은 총 페이지 수는 몇 쪽인가요?<br><button class="havruta-show-btn" onclick="cfwSol1('cfw-1')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen1('cfw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
-      <div id="cfw-2" class="prob-q" data-total="24" data-d1="8" data-m1="3" data-d2="3" data-m2="2" data-qtext="물통에 물이 24L 들어 있습니다. 이 물의 3/8을 사용하고, 남은 물의 2/3를 또 사용했다면, 현재 물통에 남아 있는 물은 몇 L인가요?" data-solfn="cfwSol2">물통에 물이 24L 들어 있습니다. 이 물의 ${frac(3,8)}을 사용하고, 남은 물의 ${frac(2,3)}를 또 사용했다면, 현재 물통에 남아 있는 물은 몇 L인가요?<br><button class="havruta-show-btn" onclick="cfwSol2('cfw-2')">💡 풀이 보기</button></div>
+      <div id="cfw-2" class="prob-q" data-total="24" data-d1="8" data-m1="3" data-d2="3" data-m2="2" data-qtext="물통에 물이 24L 들어 있습니다. 이 물의 ${frac(3,8)}을 사용하고, 남은 물의 ${frac(2,3)}를 또 사용했다면, 현재 물통에 남아 있는 물은 몇 L인가요?" data-solfn="cfwSol2">물통에 물이 24L 들어 있습니다. 이 물의 ${frac(3,8)}을 사용하고, 남은 물의 ${frac(2,3)}를 또 사용했다면, 현재 물통에 남아 있는 물은 몇 L인가요?<br><button class="havruta-show-btn" onclick="cfwSol2('cfw-2')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen2('cfw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
-      <div id="cfw-3" class="prob-q" data-d="5" data-m="2" data-qtext="어떤 쿠키 상자에 쿠키가 들어 있습니다. 이 쿠키의 2/5를 먹고 나니 15개가 남았습니다. 처음 쿠키는 모두 몇 개였을까요?" data-solfn="cfwSol3">어떤 쿠키 상자에 쿠키가 들어 있습니다. 이 쿠키의 ${frac(2,5)}를 먹고 나니 15개가 남았습니다. 처음 쿠키는 모두 몇 개였을까요?<br><button class="havruta-show-btn" onclick="cfwSol3('cfw-3')">💡 풀이 보기</button></div>
+      <div id="cfw-3" class="prob-q" data-d="5" data-m="2" data-qtext="어떤 쿠키 상자에 쿠키가 들어 있습니다. 이 쿠키의 ${frac(2,5)}를 먹고 나니 15개가 남았습니다. 처음 쿠키는 모두 몇 개였을까요?" data-solfn="cfwSol3">어떤 쿠키 상자에 쿠키가 들어 있습니다. 이 쿠키의 ${frac(2,5)}를 먹고 나니 15개가 남았습니다. 처음 쿠키는 모두 몇 개였을까요?<br><button class="havruta-show-btn" onclick="cfwSol3('cfw-3')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen3('cfw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
-      <div id="cfw-4" class="prob-q" data-total="50000" data-d1="5" data-m1="2" data-d2="3" data-m2="1" data-qtext="수일이는 가지고 있는 용돈 50000원의 2/5로 책을 사고, 남은 돈의 1/3로 학용품을 샀습니다. 수일이에게 남은 돈은 얼마인가요?" data-solfn="cfwSol4">수일이는 가지고 있는 용돈 50000원의 ${frac(2,5)}로 책을 사고, 남은 돈의 ${frac(1,3)}로 학용품을 샀습니다. 수일이에게 남은 돈은 얼마인가요?<br><button class="havruta-show-btn" onclick="cfwSol4('cfw-4')">💡 풀이 보기</button></div>
+      <div id="cfw-4" class="prob-q" data-total="50000" data-d1="5" data-m1="2" data-d2="3" data-m2="1" data-qtext="수일이는 가지고 있는 용돈 50000원의 ${frac(2,5)}로 책을 사고, 남은 돈의 ${frac(1,3)}로 학용품을 샀습니다. 수일이에게 남은 돈은 얼마인가요?" data-solfn="cfwSol4">수일이는 가지고 있는 용돈 50000원의 ${frac(2,5)}로 책을 사고, 남은 돈의 ${frac(1,3)}로 학용품을 샀습니다. 수일이에게 남은 돈은 얼마인가요?<br><button class="havruta-show-btn" onclick="cfwSol4('cfw-4')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen4('cfw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
-      <div id="cfw-5" class="prob-q" data-total="60" data-d1="4" data-m1="3" data-d2="5" data-m2="2" data-qtext="전체 넓이가 60제곱센티미터인 직사각형 모양의 꽃밭이 있습니다. 이 꽃밭의 3/4에 장미를 심고, 장미를 심고 남은 꽃밭 넓이의 2/5에 튤립을 심었습니다. 튤립을 심은 꽃밭의 넓이는 몇 제곱센티미터인가요?" data-solfn="cfwSol5">전체 넓이가 60제곱센티미터인 직사각형 모양의 꽃밭이 있습니다. 이 꽃밭의 ${frac(3,4)}에 장미를 심고, 장미를 심고 남은 꽃밭 넓이의 ${frac(2,5)}에 튤립을 심었습니다. 튤립을 심은 꽃밭의 넓이는 몇 제곱센티미터인가요?<br><button class="havruta-show-btn" onclick="cfwSol5('cfw-5')">💡 풀이 보기</button></div>
+      <div id="cfw-5" class="prob-q" data-total="60" data-d1="4" data-m1="3" data-d2="5" data-m2="2" data-qtext="전체 넓이가 60제곱센티미터인 직사각형 모양의 꽃밭이 있습니다. 이 꽃밭의 ${frac(3,4)}에 장미를 심고, 장미를 심고 남은 꽃밭 넓이의 ${frac(2,5)}에 튤립을 심었습니다. 튤립을 심은 꽃밭의 넓이는 몇 제곱센티미터인가요?" data-solfn="cfwSol5">전체 넓이가 60제곱센티미터인 직사각형 모양의 꽃밭이 있습니다. 이 꽃밭의 ${frac(3,4)}에 장미를 심고, 장미를 심고 남은 꽃밭 넓이의 ${frac(2,5)}에 튤립을 심었습니다. 튤립을 심은 꽃밭의 넓이는 몇 제곱센티미터인가요?<br><button class="havruta-show-btn" onclick="cfwSol5('cfw-5')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen5('cfw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
-      <div id="cfw-6" class="prob-q" data-total="24" data-d1="8" data-m1="3" data-d2="3" data-m2="1" data-qtext="빵 24개가 들어 있는 상자가 있습니다. 전체의 3/8을 나누어 주고 남은 빵 중에서 또 1/3을 먹었다면, 현재 남은 빵은 몇 개인가요?" data-solfn="cfwSol6">빵 24개가 들어 있는 상자가 있습니다. 전체의 ${frac(3,8)}을 나누어 주고 남은 빵 중에서 또 ${frac(1,3)}을 먹었다면, 현재 남은 빵은 몇 개인가요?<br><button class="havruta-show-btn" onclick="cfwSol6('cfw-6')">💡 풀이 보기</button></div>
+      <div id="cfw-6" class="prob-q" data-total="24" data-d1="8" data-m1="3" data-d2="3" data-m2="1" data-qtext="빵 24개가 들어 있는 상자가 있습니다. 전체의 ${frac(3,8)}을 나누어 주고 남은 빵 중에서 또 ${frac(1,3)}을 먹었다면, 현재 남은 빵은 몇 개인가요?" data-solfn="cfwSol6">빵 24개가 들어 있는 상자가 있습니다. 전체의 ${frac(3,8)}을 나누어 주고 남은 빵 중에서 또 ${frac(1,3)}을 먹었다면, 현재 남은 빵은 몇 개인가요?<br><button class="havruta-show-btn" onclick="cfwSol6('cfw-6')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen6('cfw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
-      <div id="cfw-7" class="prob-q" data-total="20" data-d="4" data-n="9" data-qtext="리본 전체 길이 20m를 4등분한 도막들이 있습니다. 그 중 9/4만큼(가분수)을 사용했다면 몇 m를 사용한 건가요?" data-solfn="cfwSol7">리본 전체 길이 20m를 4등분한 도막들이 있습니다. 그 중 ${frac(9,4)}만큼(가분수)을 사용했다면 몇 m를 사용한 건가요?<br><button class="havruta-show-btn" onclick="cfwSol7('cfw-7')">💡 풀이 보기</button></div>
+      <div id="cfw-7" class="prob-q" data-total="20" data-d="4" data-n="9" data-qtext="리본 전체 길이 20m를 4등분한 도막들이 있습니다. 그 중 ${frac(9,4)}만큼(가분수)을 사용했다면 몇 m를 사용한 건가요?" data-solfn="cfwSol7">리본 전체 길이 20m를 4등분한 도막들이 있습니다. 그 중 ${frac(9,4)}만큼(가분수)을 사용했다면 몇 m를 사용한 건가요?<br><button class="havruta-show-btn" onclick="cfwSol7('cfw-7')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen7('cfw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
-      <div id="cfw-8" class="prob-q" data-total="24" data-d="4" data-plates="6" data-k="3" data-qtext="쿠키 24개를 4개씩 접시에 담았습니다. 그 중 1/3만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?" data-solfn="cfwSol8">쿠키 24개를 4개씩 접시에 담았습니다. 그 중 ${frac(1,3)}만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?<br><button class="havruta-show-btn" onclick="cfwSol8('cfw-8')">💡 풀이 보기</button></div>
+      <div id="cfw-8" class="prob-q" data-total="24" data-d="4" data-plates="6" data-k="3" data-qtext="쿠키 24개를 4개씩 접시에 담았습니다. 그 중 ${frac(1,3)}만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?" data-solfn="cfwSol8">쿠키 24개를 4개씩 접시에 담았습니다. 그 중 ${frac(1,3)}만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?<br><button class="havruta-show-btn" onclick="cfwSol8('cfw-8')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen8('cfw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
-      <div id="cfw-9" class="prob-q" data-d="4" data-m="3" data-qtext="민호가 가진 구슬 중 3/4을 주고 나니 4개가 남았습니다. 민호가 처음 가지고 있던 구슬은 모두 몇 개인가요?" data-solfn="cfwSol9">민호가 가진 구슬 중 ${frac(3,4)}을 주고 나니 4개가 남았습니다. 민호가 처음 가지고 있던 구슬은 모두 몇 개인가요?<br><button class="havruta-show-btn" onclick="cfwSol9('cfw-9')">💡 풀이 보기</button></div>
+      <div id="cfw-9" class="prob-q" data-d="4" data-m="3" data-qtext="민호가 가진 구슬 중 ${frac(3,4)}을 주고 나니 4개가 남았습니다. 민호가 처음 가지고 있던 구슬은 모두 몇 개인가요?" data-solfn="cfwSol9">민호가 가진 구슬 중 ${frac(3,4)}을 주고 나니 4개가 남았습니다. 민호가 처음 가지고 있던 구슬은 모두 몇 개인가요?<br><button class="havruta-show-btn" onclick="cfwSol9('cfw-9')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen9('cfw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
-      <div id="cfw-10" class="prob-q" data-d="3" data-m="2" data-k="10" data-qtext="어떤 수의 2/3가 10입니다. 이 어떤 수는 얼마인가요?" data-solfn="cfwSol10">어떤 수의 ${frac(2,3)}가 10입니다. 이 어떤 수는 얼마인가요?<br><button class="havruta-show-btn" onclick="cfwSol10('cfw-10')">💡 풀이 보기</button></div>
+      <div id="cfw-10" class="prob-q" data-d="3" data-m="2" data-k="10" data-qtext="어떤 수의 ${frac(2,3)}가 10입니다. 이 어떤 수는 얼마인가요?" data-solfn="cfwSol10">어떤 수의 ${frac(2,3)}가 10입니다. 이 어떤 수는 얼마인가요?<br><button class="havruta-show-btn" onclick="cfwSol10('cfw-10')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen10('cfw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
   `},
@@ -6210,9 +6254,9 @@ const CV_DATA_E3FRAC4 = [
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, "남은 것의 절반"이라는 말이 헷갈려요. 처음 전체의 절반이랑 뭐가 달라요?</div></div>
     <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>책 36쪽에서 12쪽을 읽으면 24쪽이 남죠? "남은 것의 절반"은 그 24쪽의 절반이니까 12쪽이에요. 처음 36쪽의 절반(18쪽)이랑은 달라요!</div></div>
     <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! "남은 것"이라는 말이 나오면, 그 순간부터는 남은 양이 새로운 "전체"가 돼요. 처음 전체를 계속 쓰면 틀려요.</div></div>
-    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>그럼 가분수랑 부분량 구하기를 같이 쓰는 문제는요? 쿠키를 접시에 담는 문제 어려웠어요.</div></div>
-    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>그것도 순서대로 나누면 쉬워요 — 먼저 "몇 접시인지"(가분수/나눗셈)를 구하고, 그 다음 "몇 접시를 가져갔는지"(부분량)를 구하고, 마지막으로 "접시 수×한 접시당 개수"로 실제 개수를 구하면 돼요.</div></div>
-    <div class="story-takeaway"><strong>정리:</strong> "남은 것의 몇 분의 몇"은 남은 양을 새로운 전체로 보고 계산해요. 가분수·대분수와 부분량 구하기가 섞인 문제는 "묶음 수 구하기 → 부분 묶음 수 구하기 → 실제 개수 구하기" 순서로 차근차근 나누면 풀 수 있어요.</div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>그럼 가분수랑 분수만큼 구하기를 같이 쓰는 문제는요? 쿠키를 접시에 담는 문제 어려웠어요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>그것도 순서대로 나누면 쉬워요 — 먼저 "몇 접시인지"(가분수/나눗셈)를 구하고, 그 다음 "몇 접시를 가져갔는지"(분수만큼)를 구하고, 마지막으로 "접시 수×한 접시당 개수"로 실제 개수를 구하면 돼요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> "남은 것의 몇 분의 몇"은 남은 양을 새로운 전체로 보고 계산해요. 가분수·대분수와 분수만큼 구하기가 섞인 문제는 "묶음 수 구하기 → 부분 묶음 수 구하기 → 실제 개수 구하기" 순서로 차근차근 나누면 풀 수 있어요.</div>
   `}
 ];
 CV_DATA['e3frac4'] = CV_DATA_E3FRAC4;
@@ -6357,11 +6401,13 @@ const FB_DIAGRAM_E3FRAC3_H2 = '<div class="fb-diagram">18의 '+frac(1,3)+'과(�
   + '<div style="text-align:center"><div style="font-size:.68rem;color:#8b949e">'+frac(1,3)+'</div>'+groupBoxes(3,1,6)+'</div>'
   + '<div style="text-align:center"><div style="font-size:.68rem;color:#8b949e">'+frac(2,6)+'</div>'+groupBoxes(6,2,3)+'</div>'
   + '</div><span class="cap">묶는 방법(3묶음, 6묶음)은 다르지만, <strong style="color:#3fb950">색칠된 양은 똑같이 6</strong>이에요</span></div>';
-const FB_DIAGRAM_E3FRAC3_H3 = '<div class="fb-diagram">어떤 수의 '+frac(1,2)+' = 7<span class="cap">부분을 구할 땐 <strong style="color:#bc8cff">÷2 다음 ×1</strong>이었으니, 전체를 거꾸로 구할 땐 반대로 <strong style="color:#bc8cff">×2</strong>를 해요</span><br>7×2 = <strong style="color:#3fb950">14</strong></div>';
+const FB_DIAGRAM_E3FRAC3_H3 = '<div class="fb-diagram">"어떤 수의 '+frac(1,2)+'이 7" → 2묶음 중 1묶음이 7개'
+  + groupBoxes(2,2,7)
+  + '<span class="cap">2묶음으로 나눴으니, <strong style="color:#bc8cff">나머지 1묶음도 똑같이 7</strong>이에요</span><br>7+7 = 7×2 = <strong style="color:#3fb950">14</strong></div>';
 const FB_DIAGRAM_E3FRAC4_H1 = '<div class="fb-diagram">책 36쪽<br>36 → 첫날 '+frac(1,3)+' → <strong style="color:#bc8cff">12쪽</strong> 읽음, <strong style="color:#bc8cff">남은 24쪽</strong> → 둘째 날 '+frac(1,2)+'(24 기준) → <strong style="color:#3fb950">12쪽</strong><span class="cap">둘째 날 분수는 처음 36쪽이 아니라 <strong style="color:#bc8cff">남은 24쪽</strong>에 적용해야 해요</span></div>';
 const FB_DIAGRAM_E3FRAC4_H2 = '<div class="fb-diagram">쿠키 24개를 4개씩<br>접시 수: 24÷4=<strong style="color:#bc8cff">6접시</strong><span class="cap">거꾸로 6접시×4개를 하면 다시 원래 전체가 나와요 — 나눗셈의 반대는 곱셈이니까요</span><br>6×4 = <strong style="color:#3fb950">24개</strong></div>';
 const FB_DIAGRAM_E3FRAC4_H3 = '<div class="fb-diagram"><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;text-align:left">'
-  + '<div style="flex:1;min-width:140px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px"><div style="font-size:.7rem;color:#58a6ff;font-weight:700">단순 역산</div><div style="font-size:.75rem;margin-top:4px">"어떤 수의 1/2이 7" → <strong style="color:#3fb950">7×2=14</strong></div></div>'
+  + '<div style="flex:1;min-width:140px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px"><div style="font-size:.7rem;color:#58a6ff;font-weight:700">단순 역산</div><div style="font-size:.75rem;margin-top:4px">"어떤 수의 '+frac(1,2)+'이 7" → <strong style="color:#3fb950">7×2=14</strong></div></div>'
   + '<div style="flex:1;min-width:140px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px"><div style="font-size:.7rem;color:#58a6ff;font-weight:700">2단계 문제</div><div style="font-size:.75rem;margin-top:4px">전체→<strong style="color:#bc8cff">부분 구하기</strong>→<strong style="color:#bc8cff">남은 양 구하기</strong>→<strong style="color:#3fb950">그 남은 양의 부분 구하기</strong></div></div>'
   + '</div><span class="cap">2단계 문제는 중간에 "남은 양 구하기" 단계가 하나 더 있어요</span></div>';
 const HAVRUTA_FB = {
@@ -6421,9 +6467,9 @@ const HAVRUTA_FB = {
     {ok:false, text:'그런 규칙은 없어요. '+frac(1,3)+'='+frac(2,6)+'인 이유는 <strong style="color:#bc8cff">두 분수의 크기가 원래 같기</strong> 때문이에요.', diagram:FB_DIAGRAM_E3FRAC3_H2}
   ],
   'e3frac3-h3': [
-    {ok:true, text:'맞아요! 부분을 구할 땐 나누고 곱했으니, 거꾸로 전체를 구할 땐 반대로 나누기의 반대인 <strong style="color:#bc8cff">곱하기</strong>를 써요.', diagram:FB_DIAGRAM_E3FRAC3_H3},
-    {ok:false, text:'이유가 있어요! 부분 구하기(÷분모→×분자)의 <strong style="color:#bc8cff">반대 순서(÷분자→×분모)</strong>를 쓰기 때문에 곱하기가 나와요.', diagram:FB_DIAGRAM_E3FRAC3_H3},
-    {ok:false, text:'우연이 아니라, 절반('+frac(1,2)+')의 반대 연산이 <strong style="color:#bc8cff">"2를 곱하기"</strong>이기 때문이에요.', diagram:FB_DIAGRAM_E3FRAC3_H3}
+    {ok:true, text:'맞아요! "'+frac(1,2)+'이 7"은 <strong style="color:#bc8cff">"2묶음 중 1묶음이 7개"</strong>라는 뜻이에요. 나머지 1묶음도 똑같이 7이니까, 두 묶음을 더하면(7×2) 전체가 나와요.', diagram:FB_DIAGRAM_E3FRAC3_H3},
+    {ok:false, text:'공식이 아니에요! "'+frac(1,2)+'이 7"은 <strong style="color:#bc8cff">"2묶음 중 1묶음이 7개"</strong>라는 뜻이라서, 나머지 묶음도 7임을 알고 둘을 더하는 거예요.', diagram:FB_DIAGRAM_E3FRAC3_H3},
+    {ok:false, text:'우연이 아니에요. <strong style="color:#bc8cff">2묶음 중 1묶음이 7</strong>이라는 뜻이니, 나머지 묶음도 7이라서 둘을 합치면 14가 돼요.', diagram:FB_DIAGRAM_E3FRAC3_H3}
   ],
   'e3frac4-h1': [
     {ok:true, text:'맞아요! "남은 것"이라는 말 자체가 이미 <strong style="color:#bc8cff">줄어든 새로운 전체</strong>를 뜻하기 때문에, 그 새 전체를 기준으로 나눠야 해요.', diagram:FB_DIAGRAM_E3FRAC4_H1},
@@ -8386,7 +8432,7 @@ function pqwSol7(id){
   var el=document.getElementById(id);
   var total=+el.getAttribute('data-total'), d1=+el.getAttribute('data-d1'), m1=+el.getAttribute('data-m1'), d2=+el.getAttribute('data-d2'), m2=+el.getAttribute('data-m2');
   var val1=total/d1*m1, val2=total/d2*m2;
-  var diagram='<div class="fb-diagram">🍬 사탕 '+total+'개<br>'+frac(m1,d1)+' = '+total+'÷'+d1+'×'+m1+' = <strong style="color:#3fb950">'+val1+'개</strong><br>'+frac(m2,d2)+' = '+total+'÷'+d2+'×'+m2+' = <strong style="color:#3fb950">'+val2+'개</strong><span class="cap">'+frac(m1,d1)+'과 '+frac(m2,d2)+'은 크기가 같은 분수(등가분수)라서, 부분량도 <strong style="color:#bc8cff">똑같이</strong> 나와요</span></div>';
+  var diagram='<div class="fb-diagram">🍬 사탕 '+total+'개<br>'+frac(m1,d1)+' = '+total+'÷'+d1+'×'+m1+' = <strong style="color:#3fb950">'+val1+'개</strong><br>'+frac(m2,d2)+' = '+total+'÷'+d2+'×'+m2+' = <strong style="color:#3fb950">'+val2+'개</strong><span class="cap">'+frac(m1,d1)+'과 '+frac(m2,d2)+'은 크기가 같은 분수(등가분수)라서, 값도 <strong style="color:#bc8cff">똑같이</strong> 나와요</span></div>';
   crwRenderToggle(id, diagram, 'pqwSol7');
 }
 function pqwGen8(id){
@@ -8433,6 +8479,19 @@ function pqwSol10(id){
   var each=total/d, sum=each*2;
   var diagram='<div class="fb-diagram">🍞 빵 '+total+'개, 한 묶음 = '+total+'÷'+d+'=<strong style="color:#bc8cff">'+each+'개</strong><span class="cap">형과 동생이 각각 1묶음씩 먹었으니, 한 묶음을 2번 더하면 돼요</span><br>'+each+'×2 = <strong style="color:#3fb950">'+sum+'개</strong></div>';
   crwRenderToggle(id, diagram, 'pqwSol10');
+}
+function pqwGen11(id){
+  var d=2+Math.floor(Math.random()*8), pg=2+Math.floor(Math.random()*8), total=d*pg;
+  var el=document.getElementById(id);
+  el.setAttribute('data-total',total); el.setAttribute('data-d',d);
+  crwSetQuestion(el, '사탕 '+total+'개가 있습니다. (1) '+d+'명에게 똑같이 나눠주면 한 명당 몇 개인가요? (2) '+d+'개씩 봉지에 담으면 몇 봉지가 되나요?', 'pqwSol11');
+}
+function pqwSol11(id){
+  var el=document.getElementById(id);
+  var total=+el.getAttribute('data-total'), d=+el.getAttribute('data-d');
+  var q=total/d;
+  var diagram='<div class="fb-diagram">🍬 사탕 '+total+'개, '+total+'÷'+d+'=<strong style="color:#bc8cff">'+q+'</strong><span class="cap">계산은 똑같이 '+total+'÷'+d+'지만, (1)에서 '+d+'는 "사람 수"라서 답의 단위는 "개"이고, (2)에서 '+d+'는 "한 봉지 크기"라서 답의 단위는 "봉지"예요 — 숫자는 같아도 뜻이 달라요</span><br>(1) 한 명당: <strong style="color:#3fb950">'+q+'개</strong>&nbsp;&nbsp;(2) 봉지 수: <strong style="color:#3fb950">'+q+'봉지</strong></div>';
+  crwRenderToggle(id, diagram, 'pqwSol11');
 }
 function cfwGen1(id){
   var d1=2+Math.floor(Math.random()*4), d2=2+Math.floor(Math.random()*4), t=2+Math.floor(Math.random()*5), total=d1*d2*t;
@@ -8544,7 +8603,7 @@ function cfwSol8(id){
   var el=document.getElementById(id);
   var total=+el.getAttribute('data-total'), d=+el.getAttribute('data-d'), plates=+el.getAttribute('data-plates'), k=+el.getAttribute('data-k');
   var takenPlates=plates/k, takenCookies=takenPlates*d;
-  var diagram='<div class="fb-diagram">🍪 쿠키 '+total+'개를 '+d+'개씩<br>접시 수: '+total+'÷'+d+'=<strong style="color:#bc8cff">'+plates+'접시</strong>('+frac(total,d)+')<span class="cap">먼저 접시 수를 구하고, 그 접시 수에 다시 부분량 구하기('+frac(1,k)+')를 적용해요</span><br>형이 가져간 접시: '+plates+'÷'+k+'=<strong style="color:#bc8cff">'+takenPlates+'접시</strong><br>형이 가져간 쿠키: '+takenPlates+'×'+d+' = <strong style="color:#3fb950">'+takenCookies+'개</strong></div>';
+  var diagram='<div class="fb-diagram">🍪 쿠키 '+total+'개를 '+d+'개씩<br>접시 수: '+total+'÷'+d+'=<strong style="color:#bc8cff">'+plates+'접시</strong>('+frac(total,d)+')<span class="cap">먼저 접시 수를 구하고, 그 접시 수에 다시 분수만큼 구하기('+frac(1,k)+')를 적용해요</span><br>형이 가져간 접시: '+plates+'÷'+k+'=<strong style="color:#bc8cff">'+takenPlates+'접시</strong><br>형이 가져간 쿠키: '+takenPlates+'×'+d+' = <strong style="color:#3fb950">'+takenCookies+'개</strong></div>';
   crwRenderToggle(id, diagram, 'cfwSol8');
 }
 function cfwGen9(id){
