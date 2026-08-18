@@ -712,6 +712,11 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 <!-- ===== 초등 6학년 ===== -->
 <div id="g-e6" class="grade-section unit-grid-mode">
 
+  <div class="semester-tabs">
+    <button class="semester-tab-btn active" onclick="showSemester('e6',1,this)">1학기</button>
+    <button class="semester-tab-btn" onclick="showSemester('e6',2,this)">2학기</button>
+  </div>
+  <div class="semester-group" data-sem="1">
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
       <div><div class="unit-title">📊 비율과 백분율 <span class="badge">초6</span></div><div class="unit-sub">비·비율·백분율·할인율</div></div>
@@ -724,78 +729,6 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
           <button class="cv-back-btn" onclick="cvShowGrid('e6pct')">← 목록으로</button>
           <div id="cv-e6pct-detail-body"></div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="unit-card">
-    <div class="unit-header" onclick="toggle(this)">
-      <div><div class="unit-title">⭕ 원의 넓이와 원주 <span class="badge">초6</span></div><div class="unit-sub">원주율 π · 원의 둘레와 넓이</div></div>
-      <span class="unit-arrow">▼</span>
-    </div>
-    <div class="unit-body">
-      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
-        <p>바퀴, 파이프, 동전, 피자 — 원은 자연과 인공물 어디에나 있다. π(파이)는 3,000년 전부터 계산되어온 가장 신비로운 수다. 원을 이해하면 우주의 행성 궤도도 이해할 수 있다.</p>
-      </div>
-      <div class="section concept"><div class="section-title">📖 개념 설명</div>
-        <ul>
-          <li>원주율 π ≈ 3.14159… (원의 지름과 둘레의 비율, 무한소수)</li>
-          <li>원의 둘레(원주) = 2πr = πd</li>
-          <li>원의 넓이 = πr²</li>
-          <li>왜 πr²인가: 원을 무한히 잘게 잘라 직사각형으로 펴면 가로≈πr, 세로=r</li>
-        </ul>
-      </div>
-      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
-        <div class="q-item"><strong>Q1.</strong> π는 왜 3.14로 딱 떨어지지 않을까요? 이것이 수학적으로 어떤 의미인가요?</div>
-        <div class="q-item"><strong>Q2.</strong> 반지름이 2배가 되면 넓이는 몇 배가 될까요? 왜 그럴까요?</div>
-        <div class="q-item"><strong>Q3.</strong> 같은 둘레를 가진 도형 중 원의 넓이가 가장 크다고 합니다. 이것이 사실인지 정사각형과 비교해보세요.</div>
-      </div>
-      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
-        <div class="prob-box">
-          <div class="prob-q">문제: 반지름 5cm인 원의 넓이와 둘레를 구하시오. (π=3.14)</div>
-          <div class="sol"><strong>넓이:</strong> πr² = 3.14×5² = 3.14×25 = 78.5 cm²</div>
-          <div class="sol"><strong>둘레:</strong> 2πr = 2×3.14×5 = 31.4 cm</div>
-          <div class="sol"><strong>검증:</strong> 넓이 = 둘레/2 × r = 31.4/2 × 5 = 15.7×5 = 78.5 ✓</div>
-        </div>
-      </div>
-      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
-        <div class="debate-item">π는 소수점 이하가 절대 반복되지 않는 무리수입니다. 현재 100조 자리까지 계산했습니다. 이 계산이 실용적 의미가 있을까요? 수학을 위한 수학의 가치는 무엇인가요?</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="unit-card">
-    <div class="unit-header" onclick="toggle(this)">
-      <div><div class="unit-title">📊 비례식과 비례배분 <span class="badge">초6</span></div><div class="unit-sub">비례식·전항·후항·비례배분</div></div>
-      <span class="unit-arrow">▼</span>
-    </div>
-    <div class="unit-body">
-      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
-        <p>지도에서 1cm가 실제 1km라면 서울-부산은 지도에서 얼마? 요리 레시피를 2인분→4인분으로 늘리는 것도 비례다. 비례는 "관계를 유지하면서 크기를 바꾸는" 수학이다.</p>
-      </div>
-      <div class="section concept"><div class="section-title">📖 개념 설명</div>
-        <ul>
-          <li>비례식: a:b = c:d → ad = bc (내항의 곱 = 외항의 곱)</li>
-          <li>전항:후항 = 전항:후항 (같은 비율 유지)</li>
-          <li>비례배분: 전체를 주어진 비로 나누기 → 100을 3:2로 → 60:40</li>
-          <li>정비례: x가 2배 → y도 2배 / 반비례: x가 2배 → y는 1/2배</li>
-        </ul>
-      </div>
-      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
-        <div class="q-item"><strong>Q1.</strong> "내항의 곱 = 외항의 곱"이 되는 이유를 분수로 설명해보세요.</div>
-        <div class="q-item"><strong>Q2.</strong> 정비례와 반비례 관계를 실생활에서 각각 3가지씩 찾아보세요.</div>
-        <div class="q-item"><strong>Q3.</strong> 지도의 축척 1:25,000의 의미는? 지도에서 4cm는 실제로 몇 km인가요?</div>
-      </div>
-      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
-        <div class="prob-box">
-          <div class="prob-q">문제: 900원을 언니와 동생이 5:4로 나누면 각각 얼마인가요?</div>
-          <div class="sol"><strong>풀이①(비례배분):</strong> 전체=5+4=9 / 언니=900×5/9=500원 / 동생=900×4/9=400원</div>
-          <div class="sol"><strong>풀이②(1단위):</strong> 1단위=900÷9=100원 / 언니=100×5=500원 / 동생=100×4=400원</div>
-          <div class="sol"><strong>검증:</strong> 500+400=900원 ✓</div>
-        </div>
-      </div>
-      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
-        <div class="debate-item">황금비(1:1.618…)는 가장 아름다운 비율이라고 합니다. 파르테논 신전, 모나리자, 스마트폰 화면에 모두 쓰인다고 하는데, 수학이 아름다움을 결정할 수 있을까요?</div>
       </div>
     </div>
   </div>
@@ -816,6 +749,41 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
     </div>
   </div>
 
+  </div>
+  <div class="semester-group" data-sem="2" data-hidden="1">
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">⭕ 원의 넓이와 원주 <span class="badge">초6</span></div><div class="unit-sub">원주율 π · 원의 둘레와 넓이</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e6circ">
+        <div class="cv-grid" id="cv-e6circ-grid"></div>
+        <div class="cv-detail" id="cv-e6circ-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e6circ')">← 목록으로</button>
+          <div id="cv-e6circ-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📊 비례식과 비례배분 <span class="badge">초6</span></div><div class="unit-sub">비례식·전항·후항·비례배분</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e6ratio">
+        <div class="cv-grid" id="cv-e6ratio-grid"></div>
+        <div class="cv-detail" id="cv-e6ratio-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e6ratio')">← 목록으로</button>
+          <div id="cv-e6ratio-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
 </div><!-- /e6 -->
 
 <!-- ===== 중학교 1학년 ===== -->
@@ -1139,6 +1107,8 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 
 <script>
 function frac(n, d){ return "<span class='frac'><span class='frac-n'>"+n+"</span><span class='frac-d'>"+d+"</span></span>"; }
+function r2(x){ return Math.round(x*100)/100; }
+function gcd(a,b){ return b?gcd(b,a%b):a; }
 // ── 카드뷰(한 장씩 넘기기) ──
 const CV_DATA = {
   'e3div': [
@@ -1663,7 +1633,7 @@ const CV_DATA = {
       <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
         <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">축구 좋아함 18명, 안 좋아함 12명 → 18:12</div>
         <div style="text-align:center;font-size:1.1rem">🙋🙋🙋🙋🙋🙋 <span style="color:#8b949e;font-size:.85rem">(×3=18명)</span> <span style="color:#8b949e">:</span> 🙅🙅🙅🙅 <span style="color:#8b949e;font-size:.85rem">(×3=12명)</span></div>
-        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">두 수를 그대로 나란히 놓고 비교하는 게 "비(比)"예요 → a:b</div>
+        <div style="text-align:center;font-size:.75rem;color:#bc8cff;font-weight:700;margin-top:8px">두 수를 그대로 나란히 놓고 비교하는 게 "비(比)"예요 → a:b</div>
       </div>
       <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 비를 하나의 숫자로 나타내기</div>
       <ul><li>옆반은 24명 중 12명이 축구를 좋아해요. 18:30(우리 반)과 12:24(옆반) 중 어느 반이 축구를 더 좋아하는지, 비를 보기만 해서 바로 알 수 있을까요?</li></ul>
@@ -1676,7 +1646,8 @@ const CV_DATA = {
             <div style="background:#4b5563;border-radius:6px;height:14px;overflow:hidden;margin-top:4px;width:80px"><div style="background:linear-gradient(90deg,#58a6ff,#388bfd);height:100%;width:50%"></div></div>
           </div>
         </div>
-        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">18:30과 12:24는 봐서 바로 비교가 안 되지만, 나눗셈으로 하나의 숫자(0.6, 0.5)로 바꾸면 0.6>0.5로 바로 비교돼요 — 우리 반이 더 좋아해요. 이렇게 전체에 대한 부분을 나눗셈으로 나타낸 게 "비율"이에요 → 비율=a÷b</div>
+        <div style="text-align:center;font-size:.75rem;color:#c9d1d9;margin-top:8px">18:30과 12:24는 봐서 바로 비교가 안 되지만, 나눗셈으로 하나의 숫자(0.6, 0.5)로 바꾸면 0.6>0.5로 바로 비교돼요 — 우리 반이 더 좋아해요.</div>
+        <div style="text-align:center;font-size:.75rem;color:#bc8cff;font-weight:700;margin-top:6px">이렇게 전체에 대한 부분을 나눗셈으로 나타낸 게 "비율"이에요 → 비율=a÷b</div>
       </div>
       <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 왜 비율 숫자 하나만으로는 부족할까?</div>
       <ul><li>우리 반(30명)의 비율이 0.6이고, 다른 반(20명)도 비율이 0.6이라면, 두 반의 축구 좋아하는 학생 수는 같을까요?</li></ul>
@@ -1685,42 +1656,72 @@ const CV_DATA = {
           <div>우리 반 30명의 비율 0.6<br><strong style="color:#f0c040">18명</strong></div>
           <div>다른 반 20명의 비율 0.6<br><strong style="color:#f0c040">12명</strong></div>
         </div>
-        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">같은 비율(0.6)이라도 "전체"가 다르면 실제 인원수는 달라요 — 비율은 항상 "무엇을 기준(전체)으로 하는가"와 함께 봐야 진짜 의미가 있어요</div>
+        <div style="text-align:center;font-size:.75rem;color:#bc8cff;font-weight:700;margin-top:8px">같은 비율(0.6)이라도 "전체"가 다르면 실제 인원수는 달라요 — 비율은 항상 "무엇을 기준(전체)으로 하는가"와 함께 봐야 진짜 의미가 있어요</div>
       </div>
       <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 비율을 "백분율"로, 더 쉽게 비교하기</div>
       <ul><li>0.6이라는 소수를, 누구나 한눈에 크기를 비교할 수 있게 나타내려면 어떻게 할까요?</li></ul>
       <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
         <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">0.6 <span class="arrow">➜</span> ×100 <span class="arrow">➜</span> 60%</div>
-        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">비율에 100을 곱하고 %를 붙이면 "백분율"이에요 — 항상 100을 기준으로 놓고 비교하는 거예요</div>
+        <div style="text-align:center;font-size:.75rem;color:#bc8cff;font-weight:700;margin-top:8px">비율에 100을 곱하고 %를 붙이면 "백분율"이에요 — 항상 100을 기준으로 놓고 비교하는 거예요</div>
       </div>
       <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — "할인율"로 원가에서 얼마나 빼는지 알아보기</div>
       <ul><li>원가 10,000원인 물건을 20% 할인해서 판다면, 실제로 얼마를 받아야 할까요?</li></ul>
       <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
         <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">원가 10,000원, 20% 할인</div>
         <div style="text-align:center;font-size:.85rem"><s style="color:#8b949e">10,000원</s> <span class="arrow">➜</span> <strong style="color:#3fb950">8,000원</strong></div>
-        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">할인 후 금액 = 원가×(1−할인율) = 10,000×(1−0.2) = 10,000×0.8 = 8,000원</div>
+        <div style="text-align:center;font-size:.75rem;color:#bc8cff;font-weight:700;margin-top:8px">할인 후 금액 = 원가×(1−할인율) = 10,000×(1−0.2) = 10,000×0.8 = 8,000원</div>
       </div>
     `},
     { title:'📖 다양한 표현 익히기', cls:'concept', html:`
-      <p>학생 30명 중 18명이 축구를 좋아하는 상황(18:30, 비율 0.6, 백분율 60%) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 계산이 얼마나 다양하게 표현되는지 볼까요?</p>
-      <div class="expr-item"><span class="expr-num">1</span><strong>비 표현</strong><br>"30명 중 18명이 축구를 좋아해요. 좋아하는 학생과 안 좋아하는 학생의 비는?" → <span class="expr-ans">18:12</span></div>
-      <div class="expr-item"><span class="expr-num">2</span><strong>비율 표현</strong><br>"전체 학생 대비 축구를 좋아하는 학생의 비율은?" → <span class="expr-ans">0.6</span></div>
-      <div class="expr-item"><span class="expr-num">3</span><strong>백분율 표현</strong><br>"축구를 좋아하는 학생은 전체의 몇 %인가요?" → <span class="expr-ans">60%</span></div>
-      <div class="expr-item"><span class="expr-num">4</span><strong>분수 표현</strong><br>"축구를 좋아하는 학생의 비율을 가장 간단한 분수로 나타내면?" → <span class="expr-ans">3/5</span></div>
-      <div class="expr-item"><span class="expr-num">5</span><strong>인원 예측 표현</strong><br>"다른 반 학생이 100명이고 같은 비율이라면, 축구를 좋아하는 학생은 몇 명일까요?" → <span class="expr-ans">60명</span></div>
-      <div class="expr-item"><span class="expr-num">6</span><strong>할인율 표현</strong><br>"정가 20,000원인 물건을 12,000원에 판다면 할인율은?" → <span class="expr-ans">40%</span></div>
-      <div class="expr-item"><span class="expr-num">7</span><strong>판매가 표현</strong><br>"정가 20,000원에서 40% 할인하면 판매가는?" → <span class="expr-ans">12,000원</span></div>
-      <div class="expr-item"><span class="expr-num">8</span><strong>증가율 표현</strong><br>"가격이 10,000원에서 15,000원으로 오르면 몇 % 증가한 건가요?" → <span class="expr-ans">50%</span></div>
-      <div class="expr-item"><span class="expr-num">9</span><strong>전체 역산 표현</strong><br>"60%가 18명일 때, 전체 인원은 몇 명인가요?" → <span class="expr-ans">30명</span></div>
-      <div class="expr-item"><span class="expr-num">10</span><strong>두 비율 비교 표현</strong><br>"30%와 1/4 중 어느 게 더 큰가요?" → <span class="expr-ans">30% (1/4=25%)</span></div>
+      <p>학생 30명 중 18명이 축구를 좋아하는 상황(18:30, 비율 0.6, 백분율 60%) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 계산이 얼마나 다양하게 표현되는지, 정의와 계산 과정까지 함께 볼까요?</p>
+      <div class="expr-item"><span class="expr-num">1</span><strong>비 표현</strong><br>"30명 중 18명이 축구를 좋아해요. 좋아하는 학생과 안 좋아하는 학생의 비는?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 비는 두 수를 나란히 놓고 비교하는 거예요(a:b)</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">안 좋아하는 학생 = 30−18=12명 → 18:12</div>
+        → <span class="expr-ans">18:12</span></div>
+      <div class="expr-item"><span class="expr-num">2</span><strong>비율 표현</strong><br>"전체 학생 대비 축구를 좋아하는 학생의 비율은?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 비율은 전체에 대한 부분을 나눗셈으로 나타낸 거예요(비율=부분÷전체)</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">18÷30=0.6</div>
+        → <span class="expr-ans">0.6</span></div>
+      <div class="expr-item"><span class="expr-num">3</span><strong>백분율 표현</strong><br>"축구를 좋아하는 학생은 전체의 몇 %인가요?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 백분율은 비율에 100을 곱하고 %를 붙인 거예요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">0.6×100=60 → 60%</div>
+        → <span class="expr-ans">60%</span></div>
+      <div class="expr-item"><span class="expr-num">4</span><strong>분수 표현</strong><br>"축구를 좋아하는 학생의 비율을 가장 간단한 분수로 나타내면?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 비율(부분÷전체)은 분수로도 나타낼 수 있어요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(18,30)}에서 분모·분자를 최대공약수 6으로 나누면 → ${frac(3,5)}</div>
+        → <span class="expr-ans">${frac(3,5)}</span></div>
+      <div class="expr-item"><span class="expr-num">5</span><strong>인원 예측 표현</strong><br>"다른 반 학생이 100명이고 같은 비율이라면, 축구를 좋아하는 학생은 몇 명일까요?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 같은 비율이면, 전체가 달라져도 비율(0.6)은 그대로예요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">전체×비율 = 100×0.6=60</div>
+        → <span class="expr-ans">60명</span></div>
+      <div class="expr-item"><span class="expr-num">6</span><strong>할인율 표현</strong><br>"정가 20,000원인 물건을 12,000원에 판다면 할인율은?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 할인율 = 할인된 금액÷정가</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">할인된 금액 = 20,000−12,000=8,000원 → 8,000÷20,000=0.4=40%</div>
+        → <span class="expr-ans">40%</span></div>
+      <div class="expr-item"><span class="expr-num">7</span><strong>판매가 표현</strong><br>"정가 20,000원에서 40% 할인하면 판매가는?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 할인 후 금액 = 정가×(1−할인율)</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">20,000×(1−0.4) = 20,000×0.6=12,000원</div>
+        → <span class="expr-ans">12,000원</span></div>
+      <div class="expr-item"><span class="expr-num">8</span><strong>증가율 표현</strong><br>"가격이 10,000원에서 15,000원으로 오르면 몇 % 증가한 건가요?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 증가율 = 늘어난 금액÷원래 금액</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">늘어난 금액 = 15,000−10,000=5,000원 → 5,000÷10,000=0.5=50%</div>
+        → <span class="expr-ans">50%</span></div>
+      <div class="expr-item"><span class="expr-num">9</span><strong>전체 역산 표현</strong><br>"60%가 18명일 때, 전체 인원은 몇 명인가요?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 부분과 백분율을 알면, 전체 = 부분÷비율로 거꾸로 구할 수 있어요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">60%=0.6 → 18÷0.6=30</div>
+        → <span class="expr-ans">30명</span></div>
+      <div class="expr-item"><span class="expr-num">10</span><strong>두 비율 비교 표현</strong><br>"30%와 ${frac(1,4)} 중 어느 게 더 큰가요?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 단위가 다르면(%와 분수), 같은 단위로 맞춰서 비교해요 — 중학교에서는 분수를 더 많이 쓰니, 30%를 분수로 바꿔볼게요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">30%=${frac(30,100)}=${frac(3,10)}, ${frac(1,4)}와 20을 공통분모로 통분하면 ${frac(6,20)}과 ${frac(5,20)} → ${frac(3,10)}(=${frac(6,20)})가 더 큼</div>
+        → <span class="expr-ans">30% (=${frac(3,10)})</span></div>
       <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 관계(18:30=0.6=60%)</strong>를 묻고 있어요. 말이 달라도 "결국 비율 문제구나!"를 알아채는 게 중요해요.</p>
     `},
     { title:'💬 하브루타 질문', cls:'havruta', html:`
-      <div class="q-item"><strong>Q1.</strong> 30% 할인과 1/3 할인, 어느 쪽이 더 쌀까요?
+      <div class="q-item"><strong>Q1.</strong> 30% 할인과 ${frac(1,3)} 할인, 어느 쪽이 더 쌀까요?
         <button class="havruta-show-btn" onclick="havrutaReveal('e6pct-h1',this)">💬 친구들은 이렇게 답했어요</button>
         <div class="havruta-reveal" id="rv-e6pct-h1">
           <div class="havruta-opts">
-            <button class="havruta-opt" onclick="havrutaPick('e6pct-h1',0,this)">1/3 할인이 더 싸요 — 1/3은 약 33.3%라서 30%보다 더 많이 깎아요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e6pct-h1',0,this)">${frac(1,3)} 할인이 더 싸요 — 30%를 분수로 바꾸면 ${frac(3,10)}인데, 통분하면 ${frac(1,3)}(${frac(10,30)})이 ${frac(3,10)}(${frac(9,30)})보다 커요</button>
             <button class="havruta-opt" onclick="havrutaPick('e6pct-h1',1,this)">둘 다 똑같아요, 어차피 비슷한 숫자잖아요</button>
             <button class="havruta-opt" onclick="havrutaPick('e6pct-h1',2,this)">30%가 숫자가 더 크니까 30%가 더 싸요</button>
           </div>
@@ -1738,12 +1739,12 @@ const CV_DATA = {
           <div class="havruta-fb" id="fb-e6pct-h2"></div>
         </div>
       </div>
-      <div class="q-item"><strong>Q3.</strong> 뉴스에서 "실업률 3%"라고 할 때, 이건 전체 국민 100명 중 3명이 실업자라는 뜻일까요?
+      <div class="q-item"><strong>Q3.</strong> 어떤 게임 앱에 "평점 만족도 90%"라고 쓰여 있으면, 이건 이 게임을 다운로드한 사람 100명 중 90명이 만족했다는 뜻일까요?
         <button class="havruta-show-btn" onclick="havrutaReveal('e6pct-h3',this)">💬 친구들은 이렇게 답했어요</button>
         <div class="havruta-reveal" id="rv-e6pct-h3">
           <div class="havruta-opts">
-            <button class="havruta-opt" onclick="havrutaPick('e6pct-h3',0,this)">아니에요, 전체 국민이 아니라 "일할 수 있는 사람들" 중에서 3%예요</button>
-            <button class="havruta-opt" onclick="havrutaPick('e6pct-h3',1,this)">맞아요, 전체 국민 100명 중 3명이에요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e6pct-h3',0,this)">아니에요, 다운로드한 사람 전체가 아니라 "리뷰(평가)를 남긴 사람들" 중에서 90%예요</button>
+            <button class="havruta-opt" onclick="havrutaPick('e6pct-h3',1,this)">맞아요, 다운로드한 사람 100명 중 90명이에요</button>
             <button class="havruta-opt" onclick="havrutaPick('e6pct-h3',2,this)">그냥 대충 어림잡은 느낌적인 숫자예요</button>
           </div>
           <div class="havruta-fb" id="fb-e6pct-h3"></div>
@@ -1760,11 +1761,11 @@ const CV_DATA = {
             <div style="background:#4b5563;border-radius:8px;height:20px;overflow:hidden;margin-top:8px">
               <div style="background:linear-gradient(90deg,#3fb950,#2ea043);height:100%;width:60%"></div>
             </div>
-            <span class="cap">100% 중 40%를 깎으면 60%가 남아요 → 25,000×0.6=15,000원</span>
+            <span class="cap" style="color:#bc8cff;font-weight:700">100% 중 40%를 깎으면 60%가 남아요 → 25,000×0.6=15,000원</span>
           </div>
           <div class="sol"><strong>풀이①(할인액 계산):</strong> 25,000×0.4=10,000 → 25,000−10,000=15,000원</div>
           <div class="sol"><strong>풀이②(남은 비율):</strong> 100%−40%=60% → 25,000×0.6=15,000원</div>
-          <div class="sol"><strong>풀이③(분수):</strong> 40%=2/5 → 25,000×3/5=15,000원</div>
+          <div class="sol"><strong>풀이③(분수):</strong> 40%=${frac(2,5)} → 25,000×${frac(3,5)}=15,000원</div>
         </div>
       </div>
       <div class="prob-box">
@@ -1773,9 +1774,9 @@ const CV_DATA = {
         <div class="havruta-reveal" id="rv-e6pct-p2">
           <div class="fb-diagram">
             8,000명 <span class="arrow">➜</span> <strong style="color:#3fb950">10,000명</strong> (2,000명 증가)
-            <span class="cap">증가량 2,000 ÷ 원래값 8,000 = 0.25 = 25% 증가</span>
+            <span class="cap" style="color:#bc8cff;font-weight:700">증가량 2,000 ÷ 원래값 8,000 = 0.25 = 25% 증가</span>
           </div>
-          <div class="sol"><strong>풀이①(증가율 공식):</strong> 증가량÷원래값×100 = 2,000÷8,000×100 = 25%</div>
+          <div class="sol"><strong>풀이①(증가율 공식):</strong> 증가량÷원래값 = ${frac(2000,8000)} → ${frac(2000,8000)}×100 = 25%</div>
           <div class="sol"><strong>풀이②(비율로 확인):</strong> 10,000÷8,000=1.25 → 원래의 125% → 25% 증가</div>
         </div>
       </div>
@@ -1785,11 +1786,115 @@ const CV_DATA = {
         <div class="havruta-reveal" id="rv-e6pct-p3">
           <div class="fb-diagram">
             정가의 60% <span class="arrow">➜</span> 18,000원
-            <span class="cap">18,000 ÷ 0.6 = 30,000원 (정가) → 검산: 30,000×0.6=18,000원 ✓</span>
+            <span class="cap" style="color:#bc8cff;font-weight:700">18,000 ÷ 0.6 = 30,000원 (정가) → 검산: 30,000×0.6=18,000원 ✓</span>
           </div>
           <div class="sol"><strong>풀이①(방정식):</strong> 정가×0.6=18,000 → 정가=18,000÷0.6=30,000원</div>
           <div class="sol"><strong>풀이②(비례식):</strong> 60%가 18,000원이면 100%는 18,000÷60×100=30,000원</div>
         </div>
+      </div>
+    `},
+    { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+      <p>비·비율·백분율을 실제 문제에 적용해봐요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+        <div id="pctw-1" class="prob-q" data-total="30" data-a="18" data-qtext="어떤 반 학생 30명 중 안경을 쓴 학생이 18명입니다. 안경을 쓴 학생과 안 쓴 학생의 비를 구하세요." data-solfn="pctwSol1">어떤 반 학생 30명 중 안경을 쓴 학생이 18명입니다. 안경을 쓴 학생과 안 쓴 학생의 비를 구하세요.<br><button class="havruta-show-btn" onclick="pctwSol1('pctw-1')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen1('pctw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+        <div id="pctw-2" class="prob-q" data-total="20" data-a="13" data-qtext="어떤 반 학생 20명 중 13명이 축구를 좋아합니다. 축구를 좋아하는 학생의 비율을 소수로 나타내세요." data-solfn="pctwSol2">어떤 반 학생 20명 중 13명이 축구를 좋아합니다. 축구를 좋아하는 학생의 비율을 소수로 나타내세요.<br><button class="havruta-show-btn" onclick="pctwSol2('pctw-2')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen2('pctw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+        <div id="pctw-3" class="prob-q" data-total="25" data-a="7" data-qtext="학생 25명 중 7명이 봉사활동에 참여했습니다. 참여한 학생은 전체의 몇 %인가요?" data-solfn="pctwSol3">학생 25명 중 7명이 봉사활동에 참여했습니다. 참여한 학생은 전체의 몇 %인가요?<br><button class="havruta-show-btn" onclick="pctwSol3('pctw-3')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen3('pctw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+        <div id="pctw-4" class="prob-q" data-num="8" data-den="20" data-qtext="어떤 반 학생 20명 중 8명이 안경을 씁니다. 안경을 쓴 학생의 비율을 가장 간단한 분수로 나타내세요." data-solfn="pctwSol4">어떤 반 학생 20명 중 8명이 안경을 씁니다. 안경을 쓴 학생의 비율을 가장 간단한 분수로 나타내세요.<br><button class="havruta-show-btn" onclick="pctwSol4('pctw-4')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen4('pctw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+        <div id="pctw-5" class="prob-q" data-p="3" data-d="5" data-newtotal="40" data-qtext="어떤 반에서 부분:전체 비율이 ${frac(3,5)}입니다. 다른 반 학생이 40명이고 같은 비율이 적용된다면, 해당하는 학생은 몇 명일까요?" data-solfn="pctwSol5">어떤 반에서 부분:전체 비율이 ${frac(3,5)}입니다. 다른 반 학생이 40명이고 같은 비율이 적용된다면, 해당하는 학생은 몇 명일까요?<br><button class="havruta-show-btn" onclick="pctwSol5('pctw-5')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen5('pctw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+        <div id="pctw-6" class="prob-q" data-price="8000" data-sale="6000" data-qtext="정가 8,000원인 물건을 6,000원에 판매합니다. 할인율은 몇 %인가요?" data-solfn="pctwSol6">정가 8,000원인 물건을 6,000원에 판매합니다. 할인율은 몇 %인가요?<br><button class="havruta-show-btn" onclick="pctwSol6('pctw-6')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen6('pctw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+        <div id="pctw-7" class="prob-q" data-price="5000" data-rate="20" data-qtext="정가 5,000원에서 20% 할인하면 판매가는 얼마인가요?" data-solfn="pctwSol7">정가 5,000원에서 20% 할인하면 판매가는 얼마인가요?<br><button class="havruta-show-btn" onclick="pctwSol7('pctw-7')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen7('pctw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+        <div id="pctw-8" class="prob-q" data-old="4000" data-new="5000" data-qtext="가격이 4,000원에서 5,000원으로 올랐습니다. 몇 % 증가한 건가요?" data-solfn="pctwSol8">가격이 4,000원에서 5,000원으로 올랐습니다. 몇 % 증가한 건가요?<br><button class="havruta-show-btn" onclick="pctwSol8('pctw-8')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen8('pctw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+        <div id="pctw-9" class="prob-q" data-pct="40" data-part="32" data-qtext="어떤 수의 40%가 32입니다. 어떤 수는 얼마인가요?" data-solfn="pctwSol9">어떤 수의 40%가 32입니다. 어떤 수는 얼마인가요?<br><button class="havruta-show-btn" onclick="pctwSol9('pctw-9')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen9('pctw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+        <div id="pctw-10" class="prob-q" data-pcta="40" data-m="3" data-d="10" data-qtext="40%와 ${frac(3,10)} 중 어느 것이 더 큰가요?" data-solfn="pctwSol10">40%와 ${frac(3,10)} 중 어느 것이 더 큰가요?<br><button class="havruta-show-btn" onclick="pctwSol10('pctw-10')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen10('pctw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <p style="margin-top:14px;padding-top:10px;border-top:1px solid #30363d">여기부터는 여러 단계를 거쳐야 풀리는 <strong style="color:#f0c040">고난도 추가문제</strong>예요. 천천히 하나씩 따져보세요.</p>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 11 [비로 나눈 두 집단의 서로 다른 참여율]</div>
+        <div id="pctw-11" class="prob-q" data-m="3" data-f="2" data-pm="20" data-pf="25" data-total="400" data-qtext="어느 학교의 전체 학생 수는 400명입니다. 남학생 수와 여학생 수의 비는 3:2입니다. 남학생의 20%와 여학생의 25%가 과학 동아리 활동을 합니다. 과학 동아리 전체 학생은 전체 학생의 몇 %입니까?" data-solfn="pctwSol11">어느 학교의 전체 학생 수는 400명입니다. 남학생 수와 여학생 수의 비는 3:2입니다. 남학생의 20%와 여학생의 25%가 과학 동아리 활동을 합니다. 과학 동아리 전체 학생은 전체 학생의 몇 %입니까?<br><button class="havruta-show-btn" onclick="pctwSol11('pctw-11')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen11('pctw-11')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 12 [소금물 섞기]</div>
+        <div id="pctw-12" class="prob-q" data-aamt="200" data-pa="10" data-bamt="300" data-pb="20" data-water="50" data-qtext="소금물 A에는 소금이 10%, 소금물 B에는 소금이 20% 들어있습니다. 소금물 A 200g과 소금물 B 300g을 섞은 후, 물 50g을 더 넣었습니다. 새로 만든 소금물의 농도는 몇 %입니까? (반올림하여 소수 둘째 자리까지)" data-solfn="pctwSol12">소금물 A에는 소금이 10%, 소금물 B에는 소금이 20% 들어있습니다. 소금물 A 200g과 소금물 B 300g을 섞은 후, 물 50g을 더 넣었습니다. 새로 만든 소금물의 농도는 몇 %입니까? (반올림하여 소수 둘째 자리까지)<br><button class="havruta-show-btn" onclick="pctwSol12('pctw-12')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen12('pctw-12')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 13 [연속 인상·할인]</div>
+        <div id="pctw-13" class="prob-q" data-rate="20" data-qtext="어떤 상품의 가격을 20% 인상하였다가, 다시 인상된 가격에서 20%를 할인하였습니다. 처음 가격과 비교했을 때 최종 가격은 처음 가격의 몇 %가 되었습니까?" data-solfn="pctwSol13">어떤 상품의 가격을 20% 인상하였다가, 다시 인상된 가격에서 20%를 할인하였습니다. 처음 가격과 비교했을 때 최종 가격은 처음 가격의 몇 %가 되었습니까?<br><button class="havruta-show-btn" onclick="pctwSol13('pctw-13')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen13('pctw-13')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 14 [두 집단의 다른 비율로 이동]</div>
+        <div id="pctw-14" class="prob-q" data-total="120" data-qtext="기차역에서 기차를 기다리는 사람이 120명 있습니다. 전체의 ${frac(3,5)}은 남성이고 나머지는 여성입니다. 남성의 ${frac(1,4)}이 기차에 탔고, 여성의 ${frac(1,3)}이 기차에 탔다면, 전체 사람 중 몇 %가 기차를 타지 않았습니까? (반올림하여 소수 둘째 자리까지)" data-solfn="pctwSol14">기차역에서 기차를 기다리는 사람이 120명 있습니다. 전체의 ${frac(3,5)}은 남성이고 나머지는 여성입니다. 남성의 ${frac(1,4)}이 기차에 탔고, 여성의 ${frac(1,3)}이 기차에 탔다면, 전체 사람 중 몇 %가 기차를 타지 않았습니까? (반올림하여 소수 둘째 자리까지)<br><button class="havruta-show-btn" onclick="pctwSol14('pctw-14')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen14('pctw-14')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 15 [증가·감소 후 같아지는 두 수의 비]</div>
+        <div id="pctw-15" class="prob-q" data-p="20" data-qtext="두 양의 정수 A와 B가 있습니다. A를 20% 늘리고 B를 20% 줄였더니 두 수의 값이 같아졌습니다. 처음 두 수 A와 B의 비(A:B)를 가장 간단한 자연수의 비로 나타내시오." data-solfn="pctwSol15">두 양의 정수 A와 B가 있습니다. A를 20% 늘리고 B를 20% 줄였더니 두 수의 값이 같아졌습니다. 처음 두 수 A와 B의 비(A:B)를 가장 간단한 자연수의 비로 나타내시오.<br><button class="havruta-show-btn" onclick="pctwSol15('pctw-15')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen15('pctw-15')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 16 [두 단계로 나뉘는 비율의 합]</div>
+        <div id="pctw-16" class="prob-q" data-pbig="40" data-pgb="30" data-pgs="20" data-qtext="어느 농장에서 수확한 사과 전체의 40%는 크기가 큰 사과이고, 나머지는 작은 사과입니다. 큰 사과 중 30%는 선물용으로 포장하고, 작은 사과 중 20%는 선물용으로 포장했습니다. 선물용으로 포장된 사과는 전체 사과의 몇 %입니까?" data-solfn="pctwSol16">어느 농장에서 수확한 사과 전체의 40%는 크기가 큰 사과이고, 나머지는 작은 사과입니다. 큰 사과 중 30%는 선물용으로 포장하고, 작은 사과 중 20%는 선물용으로 포장했습니다. 선물용으로 포장된 사과는 전체 사과의 몇 %입니까?<br><button class="havruta-show-btn" onclick="pctwSol16('pctw-16')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen16('pctw-16')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 17 [증발 후 농도]</div>
+        <div id="pctw-17" class="prob-q" data-conc="15" data-total="400" data-evap="100" data-qtext="농도가 15%인 소금물 400g이 있습니다. 이 소금물에서 물 100g을 증발시켰다면, 남은 소금물의 농도는 몇 %입니까?" data-solfn="pctwSol17">농도가 15%인 소금물 400g이 있습니다. 이 소금물에서 물 100g을 증발시켰다면, 남은 소금물의 농도는 몇 %입니까?<br><button class="havruta-show-btn" onclick="pctwSol17('pctw-17')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen17('pctw-17')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 18 [같은 총액에서 개당 가격 비 구하기]</div>
+        <div id="pctw-18" class="prob-q" data-ne="5" data-np="8" data-diff="600" data-qtext="지우개 5개의 가격은 연필 8개의 가격과 같습니다. 연필 1개의 가격이 지우개 1개의 가격보다 600원 저렴할 때, 연필 1개의 가격은 얼마입니까?" data-solfn="pctwSol18">지우개 5개의 가격은 연필 8개의 가격과 같습니다. 연필 1개의 가격이 지우개 1개의 가격보다 600원 저렴할 때, 연필 1개의 가격은 얼마입니까?<br><button class="havruta-show-btn" onclick="pctwSol18('pctw-18')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen18('pctw-18')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 19 [전체가 변할 때 찬성률의 변화]</div>
+        <div id="pctw-19" class="prob-q" data-p="60" data-inc="20" data-qtext="전체 투표자의 60%가 찬성한 안건이 있습니다. 투표자 수가 처음보다 20% 늘어났을 때, 찬성한 사람 수가 변하지 않았다면 찬성률은 몇 %로 바뀝니까?" data-solfn="pctwSol19">전체 투표자의 60%가 찬성한 안건이 있습니다. 투표자 수가 처음보다 20% 늘어났을 때, 찬성한 사람 수가 변하지 않았다면 찬성률은 몇 %로 바뀝니까?<br><button class="havruta-show-btn" onclick="pctwSol19('pctw-19')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen19('pctw-19')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+      </div>
+      <div class="prob-box">
+        <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 20 [두 번 옮겨 담는 설탕물]</div>
+        <div id="pctw-20" class="prob-q" data-a="400" data-pa="15" data-b="200" data-pb="30" data-x="100" data-qtext="A통에는 15%의 설탕물 400g, B통에는 30%의 설탕물 200g이 들어있습니다. A통의 설탕물 100g을 B통에 옮겨 담고 잘 섞은 후, 다시 B통의 설탕물 100g을 A통에 옮겨 담았습니다. 최종적으로 A통에 있는 설탕물의 농도는 몇 %입니까?" data-solfn="pctwSol20">A통에는 15%의 설탕물 400g, B통에는 30%의 설탕물 200g이 들어있습니다. A통의 설탕물 100g을 B통에 옮겨 담고 잘 섞은 후, 다시 B통의 설탕물 100g을 A통에 옮겨 담았습니다. 최종적으로 A통에 있는 설탕물의 농도는 몇 %입니까?<br><button class="havruta-show-btn" onclick="pctwSol20('pctw-20')">💡 풀이 보기</button></div>
+        <button class="havruta-show-btn" onclick="pctwGen20('pctw-20')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
       </div>
     `},
     { title:'🔥 심화 토론', cls:'debate', html:`
@@ -5607,6 +5712,368 @@ const CV_DATA_E6VOL = [
   `}
 ];
 CV_DATA['e6vol'] = CV_DATA_E6VOL;
+const CV_DATA_E6CIRC = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>바퀴, 파이프, 동전, 피자 — 원은 자연과 인공물 어디에나 있어요. 자전거 바퀴가 한 바퀴 굴러가면 얼마나 이동하는지, 피자 한 판에 치즈가 얼마나 필요한지는 모두 원의 둘레와 넓이를 알아야 계산할 수 있어요.</p>
+    <p style="margin-top:10px">원은 사각형과 달리 "변의 길이×변의 길이" 같은 간단한 곱셈으로 넓이가 나오지 않아요. 원만의 특별한 수, <strong>원주율(약 3.14)</strong>이 필요해요.</p>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 원주율과 원의 둘레(원주)</div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap">
+        <svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="30" fill="none" stroke="#f0c040" stroke-width="3"/><line x1="40" y1="40" x2="70" y2="40" stroke="#bc8cff" stroke-width="2"/><text x="48" y="36" fill="#bc8cff" font-size="11" font-weight="700">r</text></svg>
+        <div style="font-size:.8rem;text-align:center">지름 × 3.14 = 둘레(원주)<br><span style="font-size:.68rem;color:#8b949e">반지름×2×3.14 도 같은 식이에요</span></div>
+      </div>
+    </div>
+    <p style="font-size:.85rem;line-height:1.85;color:#c9d1d9">어떤 원이든 <strong>둘레 ÷ 지름</strong>을 계산하면 항상 똑같이 <strong style="color:#bc8cff">약 3.14</strong>가 나와요. 이 일정한 값을 <strong>원주율</strong>이라고 하고, 기호로 π(파이)라고도 써요. 원주율은 3.14159…처럼 끝없이 이어지는 소수라서, 계산할 때는 보통 3.14로 어림해서 써요.</p>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 원의 넓이</div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin:10px 0">
+      <div style="text-align:center;font-size:.75rem;color:#8b949e;margin-bottom:8px">원을 잘게 잘라 지그재그로 이어 붙이면 직사각형에 가까워져요</div>
+      <div style="display:flex;justify-content:center;height:44px">
+        <div style="width:15px;height:44px;background:#f0c040;clip-path:polygon(50% 0%,0% 100%,100% 100%)"></div>
+        <div style="width:15px;height:44px;background:#bc8cff;clip-path:polygon(50% 100%,0% 0%,100% 0%)"></div>
+        <div style="width:15px;height:44px;background:#f0c040;clip-path:polygon(50% 0%,0% 100%,100% 100%)"></div>
+        <div style="width:15px;height:44px;background:#bc8cff;clip-path:polygon(50% 100%,0% 0%,100% 0%)"></div>
+        <div style="width:15px;height:44px;background:#f0c040;clip-path:polygon(50% 0%,0% 100%,100% 100%)"></div>
+        <div style="width:15px;height:44px;background:#bc8cff;clip-path:polygon(50% 100%,0% 0%,100% 0%)"></div>
+        <div style="width:15px;height:44px;background:#f0c040;clip-path:polygon(50% 0%,0% 100%,100% 100%)"></div>
+        <div style="width:15px;height:44px;background:#bc8cff;clip-path:polygon(50% 100%,0% 0%,100% 0%)"></div>
+      </div>
+      <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:6px;border-top:1px dashed #30363d;padding-top:4px">가로 ≈ 반지름×3.14(원주의 절반), 세로 = 반지름</div>
+      <div style="text-align:center;font-size:.8rem;margin-top:8px">넓이 = 가로×세로 = (반지름×3.14)×반지름 = <strong style="color:#bc8cff">반지름×반지름×3.14</strong></div>
+    </div>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 반지름 5cm인 원의 넓이를 구하세요. (원주율=3.14)
+      <div style="margin-top:8px;font-size:.8rem;color:#c9d1d9;text-align:center">1단계: 원의 넓이 = 반지름×반지름×3.14 공식을 씁니다</div>
+      <div style="margin-top:10px;font-size:.85rem">🤔 2단계: 5×5×3.14를 계산하면 넓이가 나옵니다. 그런데 왜 반지름×반지름×3.14로 원의 넓이를 구할 수 있을까요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6circ-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6circ-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6circ-h1',0,this)">원을 잘게 잘라 이어 붙이면 가로≈반지름×3.14(원주의 절반), 세로=반지름인 직사각형에 가까워지기 때문에, 가로×세로=반지름×반지름×3.14가 돼요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6circ-h1',1,this)">옛날 수학자들이 그렇게 정하기로 약속해서예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6circ-h1',2,this)">반지름을 두 번 곱하면 어떤 도형이든 넓이가 나오기 때문이에요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6circ-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 반지름 3cm인 원 A와 반지름 6cm인 원 B가 있습니다. 원 A의 넓이를 구하면, 원 B의 넓이는 원 A의 몇 배일까요? (원주율=3.14)
+      <div style="margin-top:8px;font-size:.8rem;color:#c9d1d9;text-align:center">1단계: 원 A의 넓이 = 3×3×3.14 = <strong style="color:#bc8cff">28.26cm²</strong></div>
+      <div style="margin-top:10px;font-size:.85rem">🤔 2단계: 반지름이 2배(3cm→6cm)가 되면, 넓이도 2배가 될까요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6circ-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6circ-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6circ-h2',0,this)">아니요, 4배가 돼요. 반지름×반지름×3.14에서 반지름이 2배가 되면 (반지름×반지름) 부분이 2×2=4배가 되기 때문이에요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6circ-h2',1,this)">네, 반지름이 2배면 넓이도 그대로 2배예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6circ-h2',2,this)">8배가 돼요. 반지름과 지름을 둘 다 2배로 계산해야 해요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6circ-h2"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제: 반지름 5cm인 원의 넓이와 둘레를 구하세요. (원주율=3.14)</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6circ-p1',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6circ-p1">
+        <div class="fb-diagram">넓이 = 반지름×반지름×3.14 = 5×5×3.14 = <strong style="color:#3fb950">78.5cm²</strong><br>둘레 = 지름×3.14 = 10×3.14 = <strong style="color:#3fb950">31.4cm</strong><span class="cap">검산: 넓이 = 둘레÷2 × 반지름 = 31.4÷2×5 = 15.7×5 = 78.5 ✓</span></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 지름 10cm인 원의 둘레(원주)를 구하세요. (원주율=3.14)</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6circ-p2',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6circ-p2">
+        <div class="fb-diagram">둘레 = 지름×3.14 = 10×3.14 = <strong style="color:#3fb950">31.4cm</strong><span class="cap">지름을 모를 때는 반지름×2로 먼저 지름을 구해요</span></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <p>원주율(3.14)을 실제 문제에 적용해봐요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+      <div id="e6cw-1" class="prob-q" data-d="8" data-qtext="지름이 8cm인 자전거 바퀴가 한 바퀴 굴러가면 몇 cm를 이동합니까? (원주율=3.14)" data-solfn="e6cSol1">지름이 8cm인 자전거 바퀴가 한 바퀴 굴러가면 몇 cm를 이동합니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol1('e6cw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen1('e6cw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+      <div id="e6cw-2" class="prob-q" data-r="5" data-qtext="반지름이 5m인 원 모양의 꽃밭 둘레에 울타리를 치려고 합니다. 울타리는 몇 m가 필요합니까? (원주율=3.14)" data-solfn="e6cSol2">반지름이 5m인 원 모양의 꽃밭 둘레에 울타리를 치려고 합니다. 울타리는 몇 m가 필요합니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol2('e6cw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen2('e6cw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+      <div id="e6cw-3" class="prob-q" data-r="6" data-qtext="반지름이 6cm인 원형 접시의 넓이를 구하세요. (원주율=3.14)" data-solfn="e6cSol3">반지름이 6cm인 원형 접시의 넓이를 구하세요. (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol3('e6cw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen3('e6cw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+      <div id="e6cw-4" class="prob-q" data-d="5" data-n="3" data-qtext="지름이 5m인 원 모양의 트랙을 3바퀴 돌면 모두 몇 m를 이동하게 됩니까? (원주율=3.14)" data-solfn="e6cSol4">지름이 5m인 원 모양의 트랙을 3바퀴 돌면 모두 몇 m를 이동하게 됩니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol4('e6cw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen4('e6cw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+      <div id="e6cw-5" class="prob-q" data-r="2" data-r2="6" data-k="3" data-qtext="반지름이 2cm인 원 A와 반지름이 6cm인 원 B가 있습니다. 원 B의 넓이는 원 A의 넓이의 몇 배입니까?" data-solfn="e6cSol5">반지름이 2cm인 원 A와 반지름이 6cm인 원 B가 있습니다. 원 B의 넓이는 원 A의 넓이의 몇 배입니까?<br><button class="havruta-show-btn" onclick="e6cSol5('e6cw-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen5('e6cw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+      <div id="e6cw-6" class="prob-q" data-r="5" data-circ="31.4" data-qtext="둘레(원주)가 31.4cm인 원이 있습니다. 이 원의 넓이는 몇 cm²입니까? (원주율=3.14)" data-solfn="e6cSol6">둘레(원주)가 31.4cm인 원이 있습니다. 이 원의 넓이는 몇 cm²입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol6('e6cw-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen6('e6cw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+      <div id="e6cw-7" class="prob-q" data-r="4" data-qtext="반지름이 4cm인 반원 모양의 종이가 있습니다. 이 반원의 둘레는 몇 cm입니까? (원주율=3.14)" data-solfn="e6cSol7">반지름이 4cm인 반원 모양의 종이가 있습니다. 이 반원의 둘레는 몇 cm입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol7('e6cw-7')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen7('e6cw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+      <div id="e6cw-8" class="prob-q" data-r="4" data-qtext="반지름이 4cm인 반원 모양 종이의 넓이는 몇 cm²입니까? (원주율=3.14)" data-solfn="e6cSol8">반지름이 4cm인 반원 모양 종이의 넓이는 몇 cm²입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol8('e6cw-8')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen8('e6cw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+      <div id="e6cw-9" class="prob-q" data-r="5" data-area="78.5" data-qtext="어떤 원의 넓이가 78.5cm²입니다. 이 원의 반지름은 몇 cm입니까? (원주율=3.14)" data-solfn="e6cSol9">어떤 원의 넓이가 78.5cm²입니다. 이 원의 반지름은 몇 cm입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol9('e6cw-9')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen9('e6cw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+      <div id="e6cw-10" class="prob-q" data-R="8" data-r="3" data-qtext="큰 원 모양 쿠키(반지름 8cm) 가운데에 작은 원 모양(반지름 3cm)을 뚫어 도넛 모양을 만들었습니다. 도넛 모양의 넓이는 몇 cm²입니까? (원주율=3.14)" data-solfn="e6cSol10">큰 원 모양 쿠키(반지름 8cm) 가운데에 작은 원 모양(반지름 3cm)을 뚫어 도넛 모양을 만들었습니다. 도넛 모양의 넓이는 몇 cm²입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol10('e6cw-10')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen10('e6cw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <p style="margin-top:14px;padding-top:10px;border-top:1px solid #30363d">여기부터는 <strong style="color:#f0c040">고난도 추가문제</strong>예요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 11 [정사각형 속 원 - 여백 넓이]</div>
+      <div id="e6cw-11" class="prob-q" data-r="5" data-side="10" data-qtext="한 변의 길이가 10cm인 정사각형 안에 꼭 맞게 원을 그렸습니다. 정사각형에서 원을 뺀 나머지 부분의 넓이는 몇 cm²입니까? (원주율=3.14)" data-solfn="e6cSol11">한 변의 길이가 10cm인 정사각형 안에 꼭 맞게 원을 그렸습니다. 정사각형에서 원을 뺀 나머지 부분의 넓이는 몇 cm²입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol11('e6cw-11')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen11('e6cw-11')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 12 [굴렁쇠 회전수 역산]</div>
+      <div id="e6cw-12" class="prob-q" data-d="6" data-n="5" data-dist="94.2" data-qtext="지름이 6cm인 굴렁쇠를 굴렸더니 94.2cm를 이동했습니다. 굴렁쇠는 모두 몇 바퀴 굴렀습니까? (원주율=3.14)" data-solfn="e6cSol12">지름이 6cm인 굴렁쇠를 굴렸더니 94.2cm를 이동했습니다. 굴렁쇠는 모두 몇 바퀴 굴렀습니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol12('e6cw-12')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen12('e6cw-12')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 13 [사분원 두 개 - 나뭇잎 모양]</div>
+      <div id="e6cw-13" class="prob-q" data-side="10" data-qtext="한 변의 길이가 10cm인 정사각형 내부에 마주 보는 두 꼭짓점을 중심으로 하고 반지름이 10cm인 사분원 2개를 그렸습니다. 두 사분원이 겹치는 나뭇잎 모양 부분의 넓이는 몇 cm²입니까? (원주율=3.14)" data-solfn="e6cSol13">한 변의 길이가 10cm인 정사각형 내부에 마주 보는 두 꼭짓점을 중심으로 하고 반지름이 10cm인 사분원 2개를 그렸습니다. 두 사분원이 겹치는 나뭇잎 모양 부분의 넓이는 몇 cm²입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol13('e6cw-13')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen13('e6cw-13')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 14 [원이 정사각형 테두리를 돎]</div>
+      <div id="e6cw-14" class="prob-q" data-side="10" data-r="3" data-qtext="반지름이 3cm인 원이 한 변의 길이가 10cm인 정사각형의 바깥쪽 테두리를 따라 한 바퀴 돌았습니다. 이 원이 지나간 자리의 전체 넓이는 몇 cm²입니까? (원주율=3.14)" data-solfn="e6cSol14">반지름이 3cm인 원이 한 변의 길이가 10cm인 정사각형의 바깥쪽 테두리를 따라 한 바퀴 돌았습니다. 이 원이 지나간 자리의 전체 넓이는 몇 cm²입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol14('e6cw-14')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen14('e6cw-14')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 15 [염소 매인 자리]</div>
+      <div id="e6cw-15" class="prob-q" data-w="8" data-h="6" data-l="10" data-qtext="가로 8m, 세로 6m인 직사각형 모양 창고의 한 모서리에 길이가 10m인 끈으로 염소가 매여 있습니다. 염소가 창고 밖에서 움직이며 풀을 먹을 수 있는 영역의 최대 넓이는 몇 m²입니까? (원주율=3.14)" data-solfn="e6cSol15">가로 8m, 세로 6m인 직사각형 모양 창고의 한 모서리에 길이가 10m인 끈으로 염소가 매여 있습니다. 염소가 창고 밖에서 움직이며 풀을 먹을 수 있는 영역의 최대 넓이는 몇 m²입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol15('e6cw-15')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen15('e6cw-15')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 16 [원기둥 4개 묶기]</div>
+      <div id="e6cw-16" class="prob-q" data-r="5" data-qtext="반지름이 5cm인 똑같은 원기둥 4개를 2×2 형태로 모아 끈으로 매듭 없이 단단히 묶으려고 합니다. 필요한 끈의 최소 길이는 몇 cm입니까? (원주율=3.14)" data-solfn="e6cSol16">반지름이 5cm인 똑같은 원기둥 4개를 2×2 형태로 모아 끈으로 매듭 없이 단단히 묶으려고 합니다. 필요한 끈의 최소 길이는 몇 cm입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol16('e6cw-16')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen16('e6cw-16')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 17 [원주의 차 → 넓이의 차]</div>
+      <div id="e6cw-17" class="prob-q" data-sumr="10" data-circdiff="18.84" data-qtext="큰 원과 작은 원이 있습니다. 두 원의 반지름의 합은 10cm이고, 원주(원의 둘레)의 차는 18.84cm입니다. 두 원의 넓이의 차는 몇 cm²입니까? (원주율=3.14)" data-solfn="e6cSol17">큰 원과 작은 원이 있습니다. 두 원의 반지름의 합은 10cm이고, 원주(원의 둘레)의 차는 18.84cm입니다. 두 원의 넓이의 차는 몇 cm²입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol17('e6cw-17')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen17('e6cw-17')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 18 [원에 내접하는 가장 큰 정사각형]</div>
+      <div id="e6cw-18" class="prob-q" data-d="20" data-qtext="지름이 20cm인 원 안에 꼭짓점이 모두 원 위에 있는 가장 큰 정사각형을 그렸습니다. 이 정사각형의 넓이는 몇 cm²입니까?" data-solfn="e6cSol18">지름이 20cm인 원 안에 꼭짓점이 모두 원 위에 있는 가장 큰 정사각형을 그렸습니다. 이 정사각형의 넓이는 몇 cm²입니까?<br><button class="havruta-show-btn" onclick="e6cSol18('e6cw-18')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen18('e6cw-18')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 19 [반지름 20% 증가 → 넓이 증가량]</div>
+      <div id="e6cw-19" class="prob-q" data-area0="200" data-increase="88" data-qtext="어떤 원의 반지름을 20% 늘렸더니, 넓이가 처음 넓이보다 88cm²만큼 넓어졌습니다. 처음 원의 넓이는 몇 cm²입니까?" data-solfn="e6cSol19">어떤 원의 반지름을 20% 늘렸더니, 넓이가 처음 넓이보다 88cm²만큼 넓어졌습니다. 처음 원의 넓이는 몇 cm²입니까?<br><button class="havruta-show-btn" onclick="e6cSol19('e6cw-19')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen19('e6cw-19')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 20 [반원에 내접하는 가장 큰 삼각형]</div>
+      <div id="e6cw-20" class="prob-q" data-d="12" data-qtext="지름이 12cm인 반원이 있습니다. 이 반원 내부에 그릴 수 있는 가장 넓은 삼각형을 그려 잘라내었을 때, 남은 부분의 넓이는 몇 cm²입니까? (원주율=3.14)" data-solfn="e6cSol20">지름이 12cm인 반원이 있습니다. 이 반원 내부에 그릴 수 있는 가장 넓은 삼각형을 그려 잘라내었을 때, 남은 부분의 넓이는 몇 cm²입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol20('e6cw-20')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen20('e6cw-20')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 21 [철사로 두 원 만들기 - 넓이 합 최소]</div>
+      <div id="e6cw-21" class="prob-q" data-wire="37.68" data-qtext="길이가 37.68cm인 철사를 모두 사용하여 반지름이 다른 두 개의 원을 만들려고 합니다. 두 원의 넓이의 합이 최소가 되도록 만들었을 때, 두 원 넓이의 합은 몇 cm²입니까? (원주율=3.14)" data-solfn="e6cSol21">길이가 37.68cm인 철사를 모두 사용하여 반지름이 다른 두 개의 원을 만들려고 합니다. 두 원의 넓이의 합이 최소가 되도록 만들었을 때, 두 원 넓이의 합은 몇 cm²입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol21('e6cw-21')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen21('e6cw-21')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 22 [아르벨로스 - 반원 세 개의 둘레]</div>
+      <div id="e6cw-22" class="prob-q" data-D="24" data-d1="8" data-d2="16" data-qtext="길이가 24cm인 선분 위에 지름이 각각 8cm, 16cm, 24cm인 세 반원이 접해 있습니다. 가장 큰 반원의 호와 내부의 두 작은 반원의 호로 둘러싸인 도형의 전체 둘레는 몇 cm입니까? (원주율=3.14)" data-solfn="e6cSol22">길이가 24cm인 선분 위에 지름이 각각 8cm, 16cm, 24cm인 세 반원이 접해 있습니다. 가장 큰 반원의 호와 내부의 두 작은 반원의 호로 둘러싸인 도형의 전체 둘레는 몇 cm입니까? (원주율=3.14)<br><button class="havruta-show-btn" onclick="e6cSol22('e6cw-22')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6cGen22('e6cw-22')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">3.14159265…라는 숫자는 어떻게 알아냈을까?</div>
+    <div class="fb-diagram">
+      <svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="40" fill="none" stroke="#58a6ff" stroke-width="2"/><polygon points="85,45 65,79.64 25,79.64 5,45 25,10.36 65,10.36" fill="none" stroke="#f0c040" stroke-width="2"/></svg>
+      <span class="cap">원 안에 정육각형을 넣으면, 정육각형의 한 변은 반지름과 길이가 같아요</span>
+      정육각형 둘레 = 반지름×6 = 지름×3 → 원주율 어림값 ≈ <strong style="color:#bc8cff">3</strong>
+      <span class="cap">그런데 정육각형은 원보다 조금 작으니까, 이 어림값도 진짜 원주율보다 조금 작아요</span>
+    </div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:10px;margin:10px 0;font-size:.75rem;line-height:2;text-align:center">
+      정육각형(변 6개) → <strong style="color:#bc8cff">3.000</strong><br>
+      정십이각형(변 12개) → <strong style="color:#bc8cff">3.106</strong><br>
+      변 24개 → <strong style="color:#bc8cff">3.133</strong><br>
+      변 48개 → <strong style="color:#bc8cff">3.139</strong><br>
+      변 96개(아르키메데스가 실제로 여기까지 계산!) → <strong style="color:#3fb950">3.141</strong>
+    </div>
+    <p style="font-size:.8rem;line-height:1.8;color:#c9d1d9">약 2,200년 전 그리스 수학자 아르키메데스는 원 안에 정다각형을 그리고, 그 <strong>변의 수를 6개→12개→24개…로 점점 늘려가며</strong> 다각형을 원에 더 가깝게 만들었어요. 변이 많아질수록 다각형 둘레도 원의 둘레에 더 가까워지면서, 원주율 어림값도 점점 더 정확해졌어요.</p>
+    <div class="fb-diagram">3.14159265358979…<span class="cap">이렇게 변의 수를 계속 늘려가면(오늘날은 컴퓨터로!) 끝없이, 반복 없이 이어지는 "무리수"라는 게 밝혀졌어요 — 그래서 계산할 땐 3.14로 어림해서 써요</span></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 원주율이 3.14라고 배웠는데, 계산기로 더 정확히 재보면 3.14159265…처럼 계속 이어져요. 왜 딱 떨어지지 않아요?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>저도 궁금해요! 다른 수들은 계산하면 딱 떨어지는 것도 많은데, 원주율은 컴퓨터로 100조 자리까지 계산해도 안 끝난대요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요. 원주율처럼 소수점 아래가 끝없이 이어지고, 같은 숫자가 반복되지도 않는 수를 "무리수"라고 해요. 분수(정수÷정수)로는 절대 정확히 나타낼 수 없는 수예요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>그럼 우리가 쓰는 3.14는 진짜 값이 아니라 "어림값"인 거네요? 그런데도 계산이 맞아요?</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>정확한 지적이에요! 3.14는 어림값이라서 우리가 구하는 답도 정확히는 "약"의 값이에요. 실제로는 아주 작은 오차가 있지만, 일상생활에서 쓰기엔 충분히 정확해요.</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>근데 100조 자리까지 계산하는 게 실제로 쓸모가 있어요? 3.14로 충분하다면서요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>일상 계산엔 3.14로 충분하지만, 로켓 궤도 계산처럼 아주 정밀해야 하는 분야에선 더 많은 자리가 필요해요. 그리고 컴퓨터 성능을 시험하는 목적으로도 계산되곤 해요 — "수학을 위한 수학"이 나중에 실용적으로 쓰이는 경우가 많아요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 원주율은 소수점 아래가 끝없이 이어지는 무리수라서, 실제 계산에서는 3.14 같은 어림값을 써요. 완벽히 정확하진 않아도, 필요한 정밀도에 맞게 어림해서 쓰는 것도 수학의 중요한 태도예요.</div>
+  `}
+];
+CV_DATA['e6circ'] = CV_DATA_E6CIRC;
+const CV_DATA_E6RATIO = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>지도에서 1cm가 실제 1km라면 서울-부산은 지도에서 얼마나 될까요? 요리 레시피를 2인분에서 4인분으로 늘릴 때도, 용돈을 형제끼리 나눌 때도 "비율을 유지하면서 크기를 바꾸는" 계산이 필요해요.</p>
+    <p style="margin-top:10px">비례식은 "두 비가 같다"는 걸 식으로 나타내고, 비례배분은 "전체를 정해진 비로 나누는" 방법이에요. 둘 다 실생활 곳곳에서 쓰여요.</p>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 비례식, 외항과 내항</div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin:10px 0">
+      <div style="text-align:center;font-size:1.1rem;font-weight:700;letter-spacing:2px">
+        <span style="color:#58a6ff">3</span> : <span style="color:#f0c040">4</span> = <span style="color:#f0c040">6</span> : <span style="color:#58a6ff">8</span>
+      </div>
+      <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:6px"><span style="color:#58a6ff">파란 글씨(3, 8)</span> = 외항(바깥쪽 항) &nbsp;&nbsp; <span style="color:#f0c040">노란 글씨(4, 6)</span> = 내항(안쪽 항)</div>
+      <div style="text-align:center;font-size:.8rem;margin-top:8px">외항의 곱 = 내항의 곱: 3×8 = 4×6 = <strong style="color:#3fb950">24</strong></div>
+    </div>
+    <p style="font-size:.85rem;line-height:1.85;color:#c9d1d9">비율이 같은 두 비를 등호로 이어 쓴 식을 <strong>비례식</strong>이라고 해요(예: 3:4 = 6:8). 비례식에서는 항상 <strong style="color:#bc8cff">외항의 곱과 내항의 곱이 같아요</strong> — 이 성질을 이용하면 모르는 수를 구할 수 있어요.</p>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 비례배분</div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin:10px 0">
+      <div style="text-align:center;font-size:.8rem;margin-bottom:6px">100원을 3:2로 나누면?</div>
+      ${groupBoxes(5,3,20)}
+      <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:4px">전체를 3+2=5묶음으로 보면, 1묶음 = 100÷5=20원</div>
+      <div style="text-align:center;font-size:.8rem;margin-top:8px">첫 번째 몫 = 20×3=<strong style="color:#3fb950">60원</strong>, 두 번째 몫 = 20×2=<strong style="color:#3fb950">40원</strong></div>
+    </div>
+    <p style="font-size:.85rem;line-height:1.85;color:#c9d1d9">전체를 주어진 비로 나누는 것을 <strong>비례배분</strong>이라고 해요. "전체를 (비의 합)묶음으로 보고, 1묶음의 값을 구한 뒤, 각자의 비만큼 곱해요" — 나눗셈 단원에서 배운 "묶음" 방식과 똑같은 원리예요.</p>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 180cm 리본을 언니와 동생이 5:4로 나누어 가지려고 합니다. 언니가 가지는 리본은 몇 cm인가요?
+      <div style="margin-top:8px;font-size:.8rem;color:#c9d1d9;text-align:center">1단계: 전체를 5+4=9묶음으로 보면, 1묶음 = 180÷9=<strong style="color:#bc8cff">20cm</strong></div>
+      <div style="margin-top:10px;font-size:.85rem">🤔 2단계: 언니의 몫은 20×5로 구할 수 있습니다. 그런데 이 계산과 180×${frac(5,9)}는 왜 같은 값이 나올까요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6ratio-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6ratio-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6ratio-h1',0,this)">180을 5+4=9묶음으로 나눴을 때 언니는 그 중 5묶음을 가지니까, "1묶음(180÷9)에 5를 곱하기"와 "180의 ${frac(5,9)} 구하기"는 계산 순서만 다를 뿐 똑같은 걸 구하는 거예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6ratio-h1',1,this)">180×${frac(5,9)}가 더 정확한 방법이고 180÷9×5는 어림값이에요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6ratio-h1',2,this)">두 계산은 우연히 같은 답이 나온 거예요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6ratio-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 비례식 3:4 = 9:x에서 x를 구하세요.
+      <div style="margin-top:8px;font-size:.8rem;color:#c9d1d9;text-align:center">1단계: 외항은 3과 x, 내항은 4와 9입니다</div>
+      <div style="margin-top:10px;font-size:.85rem">🤔 2단계: "외항의 곱 = 내항의 곱" 성질을 이용하면 x를 어떻게 구할 수 있을까요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6ratio-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6ratio-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6ratio-h2',0,this)">외항의 곱(3×x)과 내항의 곱(4×9=36)이 같아야 하므로 3×x=36, x=36÷3=12예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6ratio-h2',1,this)">3과 9를 곱하고 4로 나누면 x가 나와요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6ratio-h2',2,this)">네 수를 모두 더한 다음 4로 나누면 x가 나와요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6ratio-h2"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제: 900원을 언니와 동생이 5:4로 나누면 각각 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6ratio-p1',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6ratio-p1">
+        <div class="fb-diagram">${groupBoxes(9,5,100)}전체 5+4=9묶음, 1묶음 = 900÷9=<strong style="color:#bc8cff">100원</strong><br>언니 = 100×5=<strong style="color:#3fb950">500원</strong>, 동생 = 100×4=<strong style="color:#3fb950">400원</strong><span class="cap">검산: 500+400=900원 ✓</span></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 비례식 2:5 = 6:x 에서 x를 구하세요.</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6ratio-p2',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6ratio-p2">
+        <div class="fb-diagram">외항은 2와 x, 내항은 5와 6<br>외항의 곱 = 내항의 곱 → 2×x = 5×6 = <strong style="color:#bc8cff">30</strong><br>x = 30÷2 = <strong style="color:#3fb950">15</strong></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <p>비례식과 비례배분을 실제 문제에 적용해봐요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+      <div id="e6rw-1" class="prob-q" data-a="5" data-b="4" data-total="900" data-qtext="900원을 언니와 동생이 5:4로 나누어 가지려고 합니다. 언니가 가지는 돈은 얼마입니까?" data-solfn="e6rSol1">900원을 언니와 동생이 5:4로 나누어 가지려고 합니다. 언니가 가지는 돈은 얼마입니까?<br><button class="havruta-show-btn" onclick="e6rSol1('e6rw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen1('e6rw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+      <div id="e6rw-2" class="prob-q" data-a="3" data-b="2" data-total="50" data-qtext="길이가 50cm인 리본을 두 사람이 3:2로 나누어 가지려고 합니다. 첫 번째 사람이 가지는 리본은 몇 cm입니까?" data-solfn="e6rSol2">길이가 50cm인 리본을 두 사람이 3:2로 나누어 가지려고 합니다. 첫 번째 사람이 가지는 리본은 몇 cm입니까?<br><button class="havruta-show-btn" onclick="e6rSol2('e6rw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen2('e6rw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+      <div id="e6rw-3" class="prob-q" data-p="3" data-q="4" data-k="3" data-qtext="비례식 3:4 = 9:x 에서 x를 구하세요." data-solfn="e6rSol3">비례식 3:4 = 9:x 에서 x를 구하세요.<br><button class="havruta-show-btn" onclick="e6rSol3('e6rw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen3('e6rw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+      <div id="e6rw-4" class="prob-q" data-p="2" data-q="5" data-k="3" data-qtext="비례식 2:x = 6:15 에서 x를 구하세요." data-solfn="e6rSol4">비례식 2:x = 6:15 에서 x를 구하세요.<br><button class="havruta-show-btn" onclick="e6rSol4('e6rw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen4('e6rw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+      <div id="e6rw-5" class="prob-q" data-n="50000" data-mapcm="4" data-qtext="어떤 지도의 축척은 1:50000입니다. 지도에서 두 지점 사이의 거리가 4cm일 때, 실제 거리는 몇 km입니까?" data-solfn="e6rSol5">어떤 지도의 축척은 1:50000입니다. 지도에서 두 지점 사이의 거리가 4cm일 때, 실제 거리는 몇 km입니까?<br><button class="havruta-show-btn" onclick="e6rSol5('e6rw-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen5('e6rw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+      <div id="e6rw-6" class="prob-q" data-n="25000" data-realkm="5" data-qtext="어떤 지도의 축척은 1:25000입니다. 실제 거리가 5km인 두 지점은 지도에서 몇 cm로 나타납니까?" data-solfn="e6rSol6">어떤 지도의 축척은 1:25000입니다. 실제 거리가 5km인 두 지점은 지도에서 몇 cm로 나타납니까?<br><button class="havruta-show-btn" onclick="e6rSol6('e6rw-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen6('e6rw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+      <div id="e6rw-7" class="prob-q" data-a="2" data-b="3" data-c="5" data-total="1000" data-qtext="1000원을 세 사람이 2:3:5로 나누어 가지려고 합니다. 첫 번째 사람이 가지는 돈은 얼마입니까?" data-solfn="e6rSol7">1000원을 세 사람이 2:3:5로 나누어 가지려고 합니다. 첫 번째 사람이 가지는 돈은 얼마입니까?<br><button class="havruta-show-btn" onclick="e6rSol7('e6rw-7')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen7('e6rw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+      <div id="e6rw-8" class="prob-q" data-a="3" data-b="5" data-total="400" data-qtext="들이가 400mL인 주스를 두 컵에 3:5로 나누어 담으려고 합니다. 첫 번째 컵에 담기는 주스는 몇 mL입니까?" data-solfn="e6rSol8">들이가 400mL인 주스를 두 컵에 3:5로 나누어 담으려고 합니다. 첫 번째 컵에 담기는 주스는 몇 mL입니까?<br><button class="havruta-show-btn" onclick="e6rSol8('e6rw-8')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen8('e6rw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+      <div id="e6rw-9" class="prob-q" data-n1="3" data-price1="1500" data-n2="7" data-qtext="빵 3개에 1500원이면, 같은 빵 7개는 얼마입니까? (정비례 관계를 이용하세요)" data-solfn="e6rSol9">빵 3개에 1500원이면, 같은 빵 7개는 얼마입니까? (정비례 관계를 이용하세요)<br><button class="havruta-show-btn" onclick="e6rSol9('e6rw-9')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen9('e6rw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+      <div id="e6rw-10" class="prob-q" data-a="3" data-b="4" data-partamt="300" data-qtext="어떤 돈을 두 사람이 3:4로 나누었더니 첫 번째 사람이 300원을 받았습니다. 전체 금액은 얼마입니까?" data-solfn="e6rSol10">어떤 돈을 두 사람이 3:4로 나누었더니 첫 번째 사람이 300원을 받았습니다. 전체 금액은 얼마입니까?<br><button class="havruta-show-btn" onclick="e6rSol10('e6rw-10')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen10('e6rw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <p style="margin-top:14px;padding-top:10px;border-top:1px solid #30363d">여기부터는 <strong style="color:#f0c040">고난도 추가문제</strong>예요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 11 [비례배분 후 차이 구하기]</div>
+      <div id="e6rw-11" class="prob-q" data-a="5" data-b="3" data-total="48" data-qtext="형과 동생의 나이의 합은 48살이고, 나이의 비는 5:3입니다. 형은 동생보다 몇 살 많습니까?" data-solfn="e6rSol11">형과 동생의 나이의 합은 48살이고, 나이의 비는 5:3입니다. 형은 동생보다 몇 살 많습니까?<br><button class="havruta-show-btn" onclick="e6rSol11('e6rw-11')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen11('e6rw-11')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 12 [둘레→비례배분→넓이]</div>
+      <div id="e6rw-12" class="prob-q" data-a="3" data-b="2" data-p="40" data-qtext="가로와 세로의 비가 3:2인 직사각형의 둘레가 40cm입니다. 이 직사각형의 넓이는 몇 cm²입니까?" data-solfn="e6rSol12">가로와 세로의 비가 3:2인 직사각형의 둘레가 40cm입니다. 이 직사각형의 넓이는 몇 cm²입니까?<br><button class="havruta-show-btn" onclick="e6rSol12('e6rw-12')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen12('e6rw-12')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 황금비(1:1.618…)가 가장 아름다운 비율이라고 들었어요. 파르테논 신전, 모나리자, 스마트폰 화면에도 쓰인대요!</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>진짜 신기해요. 근데 수학 비율이 "아름다움"을 정할 수 있다는 게 좀 이상하지 않아요? 아름다움은 사람마다 다르게 느끼는 거잖아요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>좋은 지적이에요! 사실 "황금비가 가장 아름답다"는 주장은 과학적으로 완전히 증명된 게 아니에요. 황금비가 들어간 작품이 많은 것도 사실이지만, 그렇지 않은 유명한 작품도 아주 많아요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>그럼 왜 사람들이 황금비, 황금비 하는 거예요?</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>어떤 비율이 우연히 여러 곳에서 발견되면, 사람들이 "이게 특별한 규칙이구나"라고 의미를 부여하고 싶어하는 경향이 있어요. 실제로는 우연히 비슷한 비율이 나온 경우도 많다는 반박도 있어요.</div></div>
+    <div class="fb-diagram">1 : 1.618…<span class="cap">비율 자체는 정확한 수학이지만, "이 비율이 가장 아름답다"는 건 수학적 증명이 아니라 하나의 주장/해석이에요</span></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>그러니까 비율은 정확히 계산되는 "사실"이지만, 그 비율이 "아름답다"고 느끼는 건 사람의 "해석"이라는 거네요?</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 숫자와 계산은 정확한 사실이지만, 그 숫자에 어떤 의미를 붙이는지는 사람의 해석이 들어가요. 수학을 배울 때는 이 둘을 구분하는 습관이 중요해요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 비율 계산 자체는 정확한 수학이지만, "이 비율이 특별하다/아름답다"는 주장은 검증이 필요한 해석이에요 — 숫자(사실)와 그 숫자에 대한 의미부여(해석)를 구분해서 볼 것.</div>
+  `}
+];
+CV_DATA['e6ratio'] = CV_DATA_E6RATIO;
 const CV_DATA_E5AVG = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
     <div class="fb-diagram">${spinnerSvg(4,1,'#58a6ff')}<span class="cap">시험 평균 점수, 일기예보의 강수 확률, 제비뽑기에서 당첨될 가능성 — 다 이 단원에서 배우는 내용이에요</span></div>
@@ -6137,47 +6604,58 @@ const CV_DATA_E3FRAC4 = [
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 부분의 부분(2단계 풀이)</div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9">책 36쪽, 첫날 ${frac(1,3)}, 둘째 날 <strong>남은 쪽수</strong>의 ${frac(1,2)}을 읽었다면? "남은 쪽수"를 구하는 방법이 두 가지 있어요.</p>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
-      <div style="text-align:center;font-size:.85rem">책 36쪽, 첫날 ${frac(1,3)}, 둘째 날 <strong>남은 쪽수</strong>의 ${frac(1,2)}을 읽었다면?</div>
-      <div style="text-align:center;font-size:.8rem;line-height:1.9;margin-top:6px"><strong>1단계</strong>: 36의 ${frac(1,3)} = 36÷3×1 = <strong style="color:#bc8cff">12쪽</strong>(첫날)<br><strong>2단계</strong>: 남은 쪽수 = 36−12 = <strong style="color:#bc8cff">24쪽</strong><br><strong>3단계</strong>: 24의 ${frac(1,2)} = 24÷2×1 = <strong style="color:#3fb950">12쪽</strong>(둘째 날)</div>
+      <div style="text-align:center;font-size:.8rem;font-weight:700;color:#58a6ff;margin-bottom:4px">방법① — 뺄셈으로 남은 쪽수 구하기</div>
+      <div style="text-align:center;font-size:.8rem;line-height:1.9">첫날: 36의 ${frac(1,3)} = 36÷3×1 = <strong style="color:#bc8cff">12쪽</strong><br>남은 쪽수: 36−12 = <strong style="color:#3fb950">24쪽</strong></div>
+      <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:6px">먼저 읽은 양(12쪽)을 구한 다음, 전체에서 빼서 남은 양을 찾아요</div>
+    </div>
+    <div style="background:#0d1117;border:2px solid #bc8cff;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="text-align:center;font-size:.8rem;font-weight:700;color:#bc8cff;margin-bottom:4px">방법② — 분수로 남은 쪽수 바로 구하기</div>
+      <div style="text-align:center;font-size:.8rem;line-height:2">
+        <strong>1단계</strong>: <strong style="color:#bc8cff">전체는 항상 1</strong>이고, 3묶음으로 나눴으니 1 = ${frac(3,3)}이에요<br>
+        <strong>2단계</strong>: 첫날 읽은 분수(${frac(1,3)})를 빼면, 남은 분수 = ${frac(3,3)} − ${frac(1,3)} = <strong style="color:#bc8cff">${frac(2,3)}</strong><span style="font-size:.7rem;color:#8b949e">(분모가 같으니 분자끼리만 빼요: 3−1=2)</span><br>
+        <strong>3단계</strong>: 36의 ${frac(2,3)} = 36÷3×2 = <strong style="color:#3fb950">24쪽</strong>(뺄셈 없이 바로 나와요!)
+      </div>
+      <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">"1"을 분모가 같은 분수(${frac(3,3)})로 바꿔서 생각하면, 뺄셈 한 번 없이도 "남은 분수"를 곧바로 구할 수 있어요 — 두 방법 다 답은 <strong style="color:#3fb950">24쪽</strong>으로 똑같아요!</div>
+    </div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="text-align:center;font-size:.8rem;line-height:1.9"><strong>마지막 단계</strong>: 둘째 날 = 남은 24쪽의 ${frac(1,2)} = 24÷2×1 = <strong style="color:#3fb950">12쪽</strong></div>
       <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">둘째 날 분수는 "처음 36쪽"이 아니라 "남은 24쪽"을 기준으로 계산해요 — 이게 가장 헷갈리는 부분이에요!</div>
     </div>
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 가분수·대분수와 분수만큼 구하기를 함께 쓰기</div>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
-      <div style="text-align:center;font-size:.85rem">쿠키 24개를 4개씩 접시에 담으면 몇 접시? 그 중 ${frac(1,3)}만큼의 접시를 형이 가져가면 몇 개?</div>
+      <div style="text-align:center;font-size:.85rem">쿠키 24개를 4개씩 접시에 담으면 몇 접시? 그 중 접시의 ${frac(1,3)}을 형이 가져가면 몇 개?</div>
       <div style="text-align:center;font-size:.8rem;line-height:1.9;margin-top:6px">접시 수: 24÷4=<strong style="color:#bc8cff">6접시</strong>(가분수로 ${frac(24,4)})<br>형이 가져간 접시: 6의 ${frac(1,3)}=6÷3×1=<strong style="color:#bc8cff">2접시</strong><br>형이 가져간 쿠키: 2×4=<strong style="color:#3fb950">8개</strong></div>
     </div>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
-    <div class="q-item"><strong>Q1.</strong> "남은 것의 몇 분의 몇"을 구할 때, 왜 처음 전체가 아니라 남은 양을 기준으로 계산해야 하나요?
+    <div class="q-item"><strong>Q1.</strong> 물통에 물이 24L 있습니다. 이 물의 ${frac(3,8)}을 사용했다면, 남은 물은 몇 L인가요? (뺄셈이 아니라 분수로 구해보세요)
+      <div style="margin-top:8px;font-size:.8rem;color:#c9d1d9;text-align:center">1단계: 전체는 항상 1, 8묶음으로 나눴으니 1 = ${frac(8,8)}이에요<br>남은 분수 = ${frac(8,8)} − ${frac(3,8)} = <strong style="color:#bc8cff">${frac(5,8)}</strong></div>
+      <div style="margin-top:10px;font-size:.85rem">🤔 2단계: 24L의 ${frac(5,8)}을 구하면 바로 남은 물의 양이 나옵니다. 그런데 왜 24−9(뺄셈) 대신 24의 ${frac(5,8)}(분수)로 구할 수 있을까요?</div>
       <button class="havruta-show-btn" onclick="havrutaReveal('e3frac4-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e3frac4-h1">
         <div class="havruta-opts">
-          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h1',0,this)">"남은 것"이라는 말 자체가 이미 줄어든 새로운 전체를 뜻하기 때문에, 그 새 전체를 기준으로 나눠야 해요</button>
-          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h1',1,this)">항상 처음 전체를 기준으로 계산해도 답은 똑같이 나와요</button>
-          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h1',2,this)">둘 중 계산하기 더 쉬운 쪽을 아무거나 골라서 쓰면 돼요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h1',0,this)">${frac(8,8)}에서 ${frac(3,8)}을 뺀 ${frac(5,8)}이 이미 "남은 부분"을 뜻하기 때문에, 그 부분에 해당하는 양을 바로 구하면 뺄셈 없이도 답이 나와요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h1',1,this)">분수로 구하면 항상 답이 더 정확해서예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h1',2,this)">뺄셈은 분수가 있는 문제에서는 쓸 수 없기 때문이에요</button>
         </div>
         <div class="havruta-fb" id="fb-e3frac4-h1"></div>
       </div>
-    </div>
-    <div class="q-item"><strong>Q2.</strong> 가분수로 나타낸 접시 수(예: ${frac(24,4)}접시)에 실제 낱개 수(4개)를 곱하면 어떤 값이 나올까요?
-      <button class="havruta-show-btn" onclick="havrutaReveal('e3frac4-h2',this)">💬 친구들은 이렇게 답했어요</button>
-      <div class="havruta-reveal" id="rv-e3frac4-h2">
-        <div class="havruta-opts">
-          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h2',0,this)">접시 수(6)에 접시당 개수(4)를 곱하면 다시 원래 전체 개수(24)가 나와요 — 나눗셈과 곱셈이 서로 반대이기 때문이에요</button>
-          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h2',1,this)">항상 1이 나와요, 그게 규칙이에요</button>
-          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h2',2,this)">가분수와 낱개 수는 곱할 수 없는 값이라서 계산이 안 돼요</button>
-        </div>
-        <div class="havruta-fb" id="fb-e3frac4-h2"></div>
+      <div style="margin-top:14px;padding:10px;background:#0d1117;border:1px dashed #30363d;border-radius:8px">
+        <div style="font-size:.75rem;color:#8b949e;margin-bottom:4px">📎 참고 문제: 남은 물의 ${frac(2,3)}을 또 사용했다면?</div>
+        <div style="font-size:.8rem;text-align:center">위 문제에 이어서, 남은 물(15L)의 ${frac(2,3)}을 또 사용했다면 지금 물통에 남은 물은?<br>15의 ${frac(2,3)} = 15÷3×2 = <strong style="color:#bc8cff">10L</strong> 사용 → 15−10 = <strong style="color:#3fb950">5L</strong> 남음</div>
       </div>
     </div>
-    <div class="q-item"><strong>Q3.</strong> "부분을 알 때 거꾸로 전체를 구하는" 문제에서, 2단계(남은 것에서 또 부분) 문제와 단순 역산 문제는 어떻게 다른가요?
+    <div class="q-item"><strong>Q2.</strong> 책 36쪽인 책이 있습니다. 첫날 전체의 ${frac(1,3)}을 읽었다면, 남은 쪽수는 몇 쪽인가요? (뺄셈이 아니라 분수로 구해보세요)
+      <div style="margin-top:8px;font-size:.8rem;color:#c9d1d9;text-align:center">1단계: 전체는 항상 1, 3묶음으로 나눴으니 1 = ${frac(3,3)}이에요<br>남은 분수 = ${frac(3,3)} − ${frac(1,3)} = <strong style="color:#bc8cff">${frac(2,3)}</strong> → 36의 ${frac(2,3)} = 36÷3×2 = <strong style="color:#bc8cff">24쪽</strong></div>
+      <div style="margin-top:10px;font-size:.85rem">🤔 2단계: 둘째 날은 남은 24쪽의 ${frac(1,2)}을 읽었습니다. 둘째 날 읽은 쪽수를 구하면, "어떤 수의 ${frac(1,2)}이 7"처럼 한 번의 계산으로 끝나는 문제와 달리 이 문제는 왜 계산을 두 단계에 걸쳐 해야 할까요?</div>
       <button class="havruta-show-btn" onclick="havrutaReveal('e3frac4-h3',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e3frac4-h3">
         <div class="havruta-opts">
-          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h3',0,this)">단순 역산은 "부분→전체"를 한 번만 거꾸로 계산하면 되지만, 2단계 문제는 중간에 "남은 양"을 먼저 구한 뒤 그걸 기준으로 다시 계산해야 해요</button>
-          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h3',1,this)">두 문제는 사실 완전히 똑같은 방법으로 풀어요</button>
-          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h3',2,this)">2단계 문제는 항상 답이 0이 나와요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h3',0,this)">책 문제는 "남은 쪽수(24쪽)"라는 새로운 값을 먼저 구해야, 그 다음에 분수를 적용할 수 있기 때문이에요 — "${frac(1,2)}이 7"은 이미 기준이 되는 수(7)가 정해져 있어서 한 번이면 끝나요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h3',1,this)">두 문제는 계산 횟수가 완전히 똑같아요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e3frac4-h3',2,this)">책 문제가 더 쉬운 문제라서 계산이 더 적어요</button>
         </div>
         <div class="havruta-fb" id="fb-e3frac4-h3"></div>
       </div>
@@ -6193,7 +6671,7 @@ const CV_DATA_E3FRAC4 = [
       <button class="havruta-show-btn" onclick="cfwGen3('e3cp-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div id="e3cp-3" class="prob-q" data-total="24" data-d="4" data-plates="6" data-k="3" data-takenPlates="2" data-takenCookies="8" data-qtext="쿠키 24개를 4개씩 접시에 담았습니다. 그 중 ${frac(1,3)}만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?" data-solfn="cfwSol8">쿠키 24개를 4개씩 접시에 담았습니다. 그 중 ${frac(1,3)}만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?<br><button class="havruta-show-btn" onclick="cfwSol8('e3cp-3')">💡 풀이 보기</button></div>
+      <div id="e3cp-3" class="prob-q" data-total="24" data-d="4" data-plates="6" data-k="3" data-takenPlates="2" data-takenCookies="8" data-qtext="쿠키 24개를 4개씩 접시에 담았습니다. 그 중 접시의 ${frac(1,3)}을 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?" data-solfn="cfwSol8">쿠키 24개를 4개씩 접시에 담았습니다. 그 중 접시의 ${frac(1,3)}을 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?<br><button class="havruta-show-btn" onclick="cfwSol8('e3cp-3')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen8('e3cp-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
   `},
@@ -6236,7 +6714,7 @@ const CV_DATA_E3FRAC4 = [
     </div>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
-      <div id="cfw-8" class="prob-q" data-total="24" data-d="4" data-plates="6" data-k="3" data-qtext="쿠키 24개를 4개씩 접시에 담았습니다. 그 중 ${frac(1,3)}만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?" data-solfn="cfwSol8">쿠키 24개를 4개씩 접시에 담았습니다. 그 중 ${frac(1,3)}만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?<br><button class="havruta-show-btn" onclick="cfwSol8('cfw-8')">💡 풀이 보기</button></div>
+      <div id="cfw-8" class="prob-q" data-total="24" data-d="4" data-plates="6" data-k="3" data-qtext="쿠키 24개를 4개씩 접시에 담았습니다. 그 중 접시의 ${frac(1,3)}을 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?" data-solfn="cfwSol8">쿠키 24개를 4개씩 접시에 담았습니다. 그 중 접시의 ${frac(1,3)}을 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?<br><button class="havruta-show-btn" onclick="cfwSol8('cfw-8')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cfwGen8('cfw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
@@ -6295,14 +6773,14 @@ const FB_DIAGRAM_GCD2_W2 = '<div class="fb-diagram">6과 6: 최대공약수=6, �
 const FB_DIAGRAM_GCD3_OK = '<div class="fb-diagram">24와 36의 최대공약수=12 → 12명에게 "공평 분배" 가능<br>4와 6의 최소공배수=12 → 두 버스가 12분에 "동시 만남"<span class="cap">최대공약수는 남김없이 나누는 가장 큰 묶음, 최소공배수는 두 주기가 처음 겹치는 시점 — 둘 다 딱 맞는 비유예요</span></div>';
 const FB_DIAGRAM_GCD3_W1 = '<div class="fb-diagram">A버스(4분): 4,8,<strong style="color:#3fb950">12</strong>,16… <span class="arrow">|</span> B버스(6분): 6,<strong style="color:#3fb950">12</strong>,18…<span class="cap">두 버스가 처음 함께 오는 시각 12분이 최소공배수 — "최초 동시 만남"도 딱 맞는 비유예요</span></div>';
 const FB_DIAGRAM_GCD3_W2 = '<div class="fb-diagram">24와 36의 최대공약수=12 → "공평 분배"　|　4와 6의 최소공배수=12 → "동시 만남"<span class="cap">두 비유 모두 실제 뜻을 잘 담고 있어요 — 공식만 외우는 것보다 이렇게 이해하면 오래 기억돼요</span></div>';
-const FB_DIAGRAM_PCT1 = '<div class="fb-diagram">30% 할인<div style="background:#4b5563;border-radius:6px;height:16px;overflow:hidden;margin:4px 0"><div style="background:#f0c040;height:100%;width:30%"></div></div>'
-  + '1/3(≈33.3%) 할인<div style="background:#4b5563;border-radius:6px;height:16px;overflow:hidden;margin:4px 0"><div style="background:#3fb950;height:100%;width:33.3%"></div></div>'
-  + '<span class="cap">1/3(≈33.3%)이 30%보다 더 많이 깎아요 — 그래서 1/3 할인이 더 싸요</span></div>';
+const FB_DIAGRAM_PCT1 = '<div class="fb-diagram">30% = '+frac(30,100)+' = '+frac(3,10)+' 할인<div style="background:#4b5563;border-radius:6px;height:16px;overflow:hidden;margin:4px 0"><div style="background:#f0c040;height:100%;width:30%"></div></div>'
+  + frac(1,3)+' 할인<div style="background:#4b5563;border-radius:6px;height:16px;overflow:hidden;margin:4px 0"><div style="background:#3fb950;height:100%;width:33.3%"></div></div>'
+  + '<span class="cap" style="color:#bc8cff;font-weight:700">'+frac(3,10)+'과 '+frac(1,3)+'을 30을 공통분모로 통분하면 '+frac(9,30)+'과 '+frac(10,30)+' — '+frac(10,30)+'('+frac(1,3)+')이 '+frac(9,30)+'('+frac(3,10)+')보다 커서 '+frac(1,3)+' 할인이 더 싸요</span></div>';
 const FB_DIAGRAM_PCT2 = '<div class="fb-diagram">10,000원 <span class="arrow">➜</span> 50%할인 <span class="arrow">➜</span> 5,000원 <span class="arrow">➜</span> 또 50%할인 <span class="arrow">➜</span> <strong style="color:#3fb950">2,500원</strong>'
-  + '<span class="cap">두 번째 50%는 이미 줄어든 5,000원에 적용돼요. 최종 2,500원은 원래(10,000원)의 25%만 남은 것 — 공짜(0원)가 아니에요</span></div>';
-const FB_DIAGRAM_PCT3 = '<div class="fb-diagram">전체 국민 100명<div style="background:#4b5563;border-radius:6px;height:16px;overflow:hidden;margin:4px 0"><div style="background:#30363d;height:100%;width:100%"></div></div>'
-  + '그 중 "경제활동인구"(일할 수 있는 사람들)<div style="background:#4b5563;border-radius:6px;height:16px;overflow:hidden;margin:4px 0"><div style="background:#58a6ff;height:100%;width:63%"></div></div>'
-  + '<span class="cap">실업률은 전체 국민 100명 기준이 아니라, "경제활동인구" 안에서만 계산한 비율이에요 — 기준이 다르면 같은 3%라도 실제 인원수는 달라져요</span></div>';
+  + '<span class="cap" style="color:#bc8cff;font-weight:700">두 번째 50%는 이미 줄어든 5,000원에 적용돼요. 최종 2,500원은 원래(10,000원)의 25%만 남은 것 — 공짜(0원)가 아니에요</span></div>';
+const FB_DIAGRAM_PCT3 = '<div class="fb-diagram">다운로드한 사람 100명<div style="background:#4b5563;border-radius:6px;height:16px;overflow:hidden;margin:4px 0"><div style="background:#30363d;height:100%;width:100%"></div></div>'
+  + '그 중 "리뷰를 남긴 사람"(20명)<div style="background:#4b5563;border-radius:6px;height:16px;overflow:hidden;margin:4px 0"><div style="background:#58a6ff;height:100%;width:20%"></div></div>'
+  + '<span class="cap" style="color:#bc8cff;font-weight:700">평점 90%는 다운로드한 100명 기준이 아니라, 리뷰를 남긴 20명 중 18명(90%)이 만족했다는 뜻이에요 — 기준이 다르면 같은 90%라도 실제 인원수는 달라져요</span></div>';
 const FB_DIAGRAM_FRAC1 = `<div class="fb-diagram"><div style="display:flex;justify-content:center;gap:16px;align-items:center">
   <div><div style="width:44px;height:44px;border-radius:50%;background:conic-gradient(#f0c040 0deg 178deg,#0d1117 178deg 182deg,#30363d 182deg 358deg,#0d1117 358deg 360deg);margin:0 auto"></div><span class="cap">${frac(1,2)}</span></div>
   <span style="color:#8b949e">=</span>
@@ -6367,6 +6845,13 @@ const FB_DIAGRAM_BOX_H2 = '<div class="fb-diagram">'+cuboidSvg()+'<span class="c
 const FB_DIAGRAM_BOX_H3 = '<div class="fb-diagram">'+cuboidSvg()+'<span class="cap">앞면·윗면·오른쪽면처럼 우리 쪽을 향한 모서리는 실선, 뒷면·아랫면·왼쪽면처럼 상자에 가려서 안 보이는 모서리는 점선이에요</span></div>';
 const FB_DIAGRAM_E6VOL_H1 = '<div class="fb-diagram">'+cuboidSvg()+'<span class="cap">1cm³은 한 모서리가 1cm인 정육면체 하나의 부피예요 — 가로·세로·높이 세 방향의 길이를 곱하니 cm가 세 번 곱해져요</span></div>';
 const FB_DIAGRAM_E6VOL_H2 = '<div class="fb-diagram">'+cuboidSvg()+'<span class="cap">위·아래, 앞·뒤, 왼쪽·오른쪽 — 마주보는 세 쌍의 넓이가 서로 똑같아서 세 면만 구하고 2배 하면 충분해요</span></div>';
+const FB_DIAGRAM_E6CIRC_H1 = '<div class="fb-diagram">반지름 5cm 원<br>넓이 = 5×5×3.14 = <strong style="color:#3fb950">78.5cm²</strong><span class="cap">원을 잘게 잘라 펼치면 가로≈반지름×3.14, 세로=반지름인 직사각형이 돼요</span></div>';
+const FB_DIAGRAM_E6CIRC_H2 = '<div class="fb-diagram"><div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;text-align:center">'
+  + '<div style="flex:1;min-width:130px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px"><div style="font-size:.7rem;color:#58a6ff;font-weight:700">원 A (반지름 3cm)</div><div style="font-size:.75rem;margin-top:4px">3×3×3.14 = <strong style="color:#bc8cff">28.26cm²</strong></div></div>'
+  + '<div style="flex:1;min-width:130px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px"><div style="font-size:.7rem;color:#58a6ff;font-weight:700">원 B (반지름 6cm)</div><div style="font-size:.75rem;margin-top:4px">6×6×3.14 = <strong style="color:#3fb950">113.04cm²</strong></div></div>'
+  + '</div><span class="cap">113.04÷28.26=4 — 반지름이 2배가 되면 (반지름×반지름) 부분이 2×2=4배가 돼요</span></div>';
+const FB_DIAGRAM_E6RATIO_H1 = '<div class="fb-diagram">'+groupBoxes(9,5,20)+'180÷9=<strong style="color:#bc8cff">20cm</strong>(1묶음) → 언니 = 20×5=<strong style="color:#3fb950">100cm</strong><span class="cap">180의 '+frac(5,9)+' = 180÷9×5 — "÷9 다음 ×5"와 "'+frac(5,9)+'을 곱하기"는 계산 순서만 다를 뿐 같은 식이에요</span></div>';
+const FB_DIAGRAM_E6RATIO_H2 = '<div class="fb-diagram">3 : 4 = 9 : x<br>외항(3, x)의 곱 = 내항(4, 9)의 곱<br>3×x = 4×9 = <strong style="color:#bc8cff">36</strong> → x = 36÷3 = <strong style="color:#3fb950">12</strong></div>';
 const FB_DIAGRAM_E6VOL_H3 = '<div class="fb-diagram"><div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;text-align:left">'
   + '<div style="flex:1;min-width:150px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px">'
   + '<div style="font-size:.7rem;color:#58a6ff;font-weight:700">1×1×8</div><div style="font-size:.75rem;margin:4px 0">부피 8cm³</div><div style="font-size:.75rem">겉넓이 <strong style="color:#f85149">34cm²</strong></div></div>'
@@ -6404,12 +6889,11 @@ const FB_DIAGRAM_E3FRAC3_H2 = '<div class="fb-diagram">18의 '+frac(1,3)+'과(�
 const FB_DIAGRAM_E3FRAC3_H3 = '<div class="fb-diagram">"어떤 수의 '+frac(1,2)+'이 7" → 2묶음 중 1묶음이 7개'
   + groupBoxes(2,2,7)
   + '<span class="cap">2묶음으로 나눴으니, <strong style="color:#bc8cff">나머지 1묶음도 똑같이 7</strong>이에요</span><br>7+7 = 7×2 = <strong style="color:#3fb950">14</strong></div>';
-const FB_DIAGRAM_E3FRAC4_H1 = '<div class="fb-diagram">책 36쪽<br>36 → 첫날 '+frac(1,3)+' → <strong style="color:#bc8cff">12쪽</strong> 읽음, <strong style="color:#bc8cff">남은 24쪽</strong> → 둘째 날 '+frac(1,2)+'(24 기준) → <strong style="color:#3fb950">12쪽</strong><span class="cap">둘째 날 분수는 처음 36쪽이 아니라 <strong style="color:#bc8cff">남은 24쪽</strong>에 적용해야 해요</span></div>';
-const FB_DIAGRAM_E3FRAC4_H2 = '<div class="fb-diagram">쿠키 24개를 4개씩<br>접시 수: 24÷4=<strong style="color:#bc8cff">6접시</strong><span class="cap">거꾸로 6접시×4개를 하면 다시 원래 전체가 나와요 — 나눗셈의 반대는 곱셈이니까요</span><br>6×4 = <strong style="color:#3fb950">24개</strong></div>';
-const FB_DIAGRAM_E3FRAC4_H3 = '<div class="fb-diagram"><div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;text-align:left">'
-  + '<div style="flex:1;min-width:140px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px"><div style="font-size:.7rem;color:#58a6ff;font-weight:700">단순 역산</div><div style="font-size:.75rem;margin-top:4px">"어떤 수의 '+frac(1,2)+'이 7" → <strong style="color:#3fb950">7×2=14</strong></div></div>'
-  + '<div style="flex:1;min-width:140px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px"><div style="font-size:.7rem;color:#58a6ff;font-weight:700">2단계 문제</div><div style="font-size:.75rem;margin-top:4px">전체→<strong style="color:#bc8cff">부분 구하기</strong>→<strong style="color:#bc8cff">남은 양 구하기</strong>→<strong style="color:#3fb950">그 남은 양의 부분 구하기</strong></div></div>'
-  + '</div><span class="cap">2단계 문제는 중간에 "남은 양 구하기" 단계가 하나 더 있어요</span></div>';
+const FB_DIAGRAM_E3FRAC4_H1 = '<div class="fb-diagram">물통 24L, '+frac(3,8)+' 사용<br>전체 = '+frac(8,8)+', 남은 분수 = '+frac(8,8)+' − '+frac(3,8)+' = <strong style="color:#bc8cff">'+frac(5,8)+'</strong><br>24의 '+frac(5,8)+' = 24÷8×5 = <strong style="color:#3fb950">15L</strong><span class="cap">"남은 부분('+frac(5,8)+')"을 먼저 구하면, 뺄셈(24−9) 없이도 바로 15L가 나와요</span></div>';
+const FB_DIAGRAM_E3FRAC4_H3 = '<div class="fb-diagram">'
+  + '<div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px;margin-bottom:8px"><div style="font-size:.7rem;color:#58a6ff;font-weight:700;text-align:center">36쪽 문제 — 1단계+2단계</div><div style="font-size:.75rem;margin-top:4px;text-align:center">36 → 첫날 '+frac(1,3)+' = <strong style="color:#bc8cff">12쪽</strong> → 남은 <strong style="color:#bc8cff">24쪽</strong> → 둘째 날 '+frac(1,2)+' = <strong style="color:#3fb950">12쪽</strong></div></div>'
+  + '<div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px"><div style="font-size:.7rem;color:#58a6ff;font-weight:700;text-align:center">"어떤 수의 '+frac(1,2)+'이 7" — 1단계뿐</div><div style="font-size:.75rem;margin-top:4px;text-align:center">기준 수(7)가 이미 있으니 → 7×2=<strong style="color:#3fb950">14</strong></div></div>'
+  + '<span class="cap">36쪽 문제는 "남은 쪽수(24쪽)" 구하기가 먼저 필요해서 2단계, "'+frac(1,2)+'이 7"은 기준이 바로 있어서 1단계로 끝나요</span></div>';
 const HAVRUTA_FB = {
   'e6vol-h1': [
     {ok:true, text:'맞아요! 가로, 세로, 높이 세 방향의 길이를 모두 곱해서 부피를 구하니까, cm를 세 번 곱한 단위 cm³을 쓰는 거예요.', diagram:FB_DIAGRAM_E6VOL_H1},
@@ -6425,6 +6909,26 @@ const HAVRUTA_FB = {
     {ok:true, text:'맞아요! 1×1×8과 2×2×2는 부피가 둘 다 8cm³로 같지만, 겉넓이는 각각 34cm², 24cm²로 달라요 — 모양이 길쭉할수록 겉넓이가 커져요.', diagram:FB_DIAGRAM_E6VOL_H3},
     {ok:false, text:'항상 같지는 않아요! 부피가 같아도 모양(길쭉함)에 따라 겉넓이는 달라질 수 있어요.', diagram:FB_DIAGRAM_E6VOL_H3},
     {ok:false, text:'정비례하지 않아요! 부피가 같은데도 겉넓이가 서로 다른 경우가 있으니, 두 값은 별개로 계산해야 해요.', diagram:FB_DIAGRAM_E6VOL_H3}
+  ],
+  'e6circ-h1': [
+    {ok:true, text:'맞아요! 원을 잘게 잘라 이어 붙이면 가로≈반지름×3.14, 세로=반지름인 직사각형에 가까워지기 때문에, 5×5×3.14 = <strong style="color:#3fb950">78.5cm²</strong>가 돼요.', diagram:FB_DIAGRAM_E6CIRC_H1},
+    {ok:false, text:'약속이 아니라 이유가 있어요! 원을 잘게 잘라 펼치면 가로≈반지름×3.14, 세로=반지름인 직사각형이 되기 때문에 그 공식이 나와요. (5×5×3.14=<strong style="color:#3fb950">78.5cm²</strong>)', diagram:FB_DIAGRAM_E6CIRC_H1},
+    {ok:false, text:'모든 도형에 통하는 공식이 아니에요! 원을 잘게 잘라 이어 붙이면 직사각형에 가까워지기 때문에 원에서만 이 공식이 성립해요. (5×5×3.14=<strong style="color:#3fb950">78.5cm²</strong>)', diagram:FB_DIAGRAM_E6CIRC_H1}
+  ],
+  'e6circ-h2': [
+    {ok:true, text:'맞아요! 6×6×3.14 = <strong style="color:#3fb950">113.04cm²</strong>, 이건 28.26의 정확히 4배예요. 반지름×반지름 부분이 2×2=4배가 되기 때문이에요.', diagram:FB_DIAGRAM_E6CIRC_H2},
+    {ok:false, text:'2배가 아니에요! 6×6×3.14 = <strong style="color:#3fb950">113.04cm²</strong>로, 28.26의 4배예요. 반지름×반지름 부분이 제곱으로 커지기 때문이에요.', diagram:FB_DIAGRAM_E6CIRC_H2},
+    {ok:false, text:'8배가 아니에요! 6×6×3.14 = <strong style="color:#3fb950">113.04cm²</strong>로, 28.26의 4배예요. 지름이 아니라 반지름×반지름 부분만 제곱으로 커져요.', diagram:FB_DIAGRAM_E6CIRC_H2}
+  ],
+  'e6ratio-h1': [
+    {ok:true, text:'맞아요! 180을 5+4=9묶음으로 나눴을 때 언니는 그 중 5묶음을 가지니까, 1묶음(180÷9=20)에 5를 곱한 100cm와 180의 '+frac(5,9)+'은 계산 순서만 다를 뿐 똑같은 걸 구하는 거예요.', diagram:FB_DIAGRAM_E6RATIO_H1},
+    {ok:false, text:'어림값이 아니에요! 180÷9×5와 180×'+frac(5,9)+'은 둘 다 정확히 100cm로 똑같은 값이에요 — 계산 순서만 다를 뿐이에요.', diagram:FB_DIAGRAM_E6RATIO_H1},
+    {ok:false, text:'우연이 아니에요! 180을 9묶음으로 나눠 1묶음(20)에 5를 곱하는 것과, 180에 '+frac(5,9)+'을 곱하는 것은 원래 같은 계산을 다른 순서로 쓴 것뿐이에요.', diagram:FB_DIAGRAM_E6RATIO_H1}
+  ],
+  'e6ratio-h2': [
+    {ok:true, text:'맞아요! 외항의 곱(3×x)과 내항의 곱(4×9=36)이 같아야 하므로 3×x=36, x=36÷3=<strong style="color:#3fb950">12</strong>예요.', diagram:FB_DIAGRAM_E6RATIO_H2},
+    {ok:false, text:'그렇게 구하면 안 돼요! 외항의 곱(3×x)과 내항의 곱(4×9=36)이 같다는 성질을 써야 해요. 3×x=36, x=<strong style="color:#3fb950">12</strong>예요.', diagram:FB_DIAGRAM_E6RATIO_H2},
+    {ok:false, text:'더하고 나누는 계산이 아니에요! 외항의 곱(3×x)과 내항의 곱(4×9=36)이 같아야 하므로 x=36÷3=<strong style="color:#3fb950">12</strong>예요.', diagram:FB_DIAGRAM_E6RATIO_H2}
   ],
   'e5avg-h1': [
     {ok:true, text:'정확해요! 평균은 "자료를 모두 골고루 나눠 가진다면 한 몫이 얼마일지"를 나타내는 값이라, 합을 개수로 나눠야 해요.', diagram:''},
@@ -6472,19 +6976,14 @@ const HAVRUTA_FB = {
     {ok:false, text:'우연이 아니에요. <strong style="color:#bc8cff">2묶음 중 1묶음이 7</strong>이라는 뜻이니, 나머지 묶음도 7이라서 둘을 합치면 14가 돼요.', diagram:FB_DIAGRAM_E3FRAC3_H3}
   ],
   'e3frac4-h1': [
-    {ok:true, text:'맞아요! "남은 것"이라는 말 자체가 이미 <strong style="color:#bc8cff">줄어든 새로운 전체</strong>를 뜻하기 때문에, 그 새 전체를 기준으로 나눠야 해요.', diagram:FB_DIAGRAM_E3FRAC4_H1},
-    {ok:false, text:'그렇지 않아요! 처음 전체와 남은 양은 <strong style="color:#bc8cff">다른 값</strong>이라서, 어느 걸 기준으로 하느냐에 따라 답이 달라져요.', diagram:FB_DIAGRAM_E3FRAC4_H1},
-    {ok:false, text:'아무거나 고르면 안 돼요 — "남은 것의"라는 표현이 나오면 반드시 <strong style="color:#bc8cff">남은 양을 기준</strong>으로 계산해야 해요.', diagram:FB_DIAGRAM_E3FRAC4_H1}
-  ],
-  'e3frac4-h2': [
-    {ok:true, text:'맞아요! 접시 수(6)에 접시당 개수(4)를 곱하면 다시 원래 전체 개수(24)가 나와요 — <strong style="color:#bc8cff">나눗셈과 곱셈이 서로 반대</strong>이기 때문이에요.', diagram:FB_DIAGRAM_E3FRAC4_H2},
-    {ok:false, text:'항상 1이 나오는 게 아니에요! 나눗셈으로 구한 몫에, 나눴던 수를 다시 곱하면 <strong style="color:#bc8cff">원래의 전체 값</strong>이 나와요.', diagram:FB_DIAGRAM_E3FRAC4_H2},
-    {ok:false, text:'계산할 수 있어요! 접시 수는 사실 나눗셈의 몫(자연수)이라서, 낱개 수를 곱하면 <strong style="color:#bc8cff">원래 전체 개수</strong>가 나와요.', diagram:FB_DIAGRAM_E3FRAC4_H2}
+    {ok:true, text:'맞아요! '+frac(8,8)+'−'+frac(3,8)+'='+frac(5,8)+'은 이미 "쓰고 남은 부분이 전체의 얼마인지"를 뜻해요. 그래서 24의 '+frac(5,8)+' = 24÷8×5 = <strong style="color:#3fb950">15L</strong>를 바로 구하면, 9L를 먼저 구해 빼는 과정 없이도 답이 나와요.', diagram:FB_DIAGRAM_E3FRAC4_H1},
+    {ok:false, text:'그렇지 않아요! 정확도 문제가 아니에요 — '+frac(5,8)+'이 이미 "남은 부분"을 뜻하기 때문에 뺄셈 없이 바로 구할 수 있는 거예요. (24의 '+frac(5,8)+' = 24÷8×5 = <strong style="color:#3fb950">15L</strong>)', diagram:FB_DIAGRAM_E3FRAC4_H1},
+    {ok:false, text:'그렇지 않아요. 뺄셈을 못 쓰는 게 아니라, '+frac(5,8)+'이 이미 "남은 부분"이라서 뺄셈 없이도 바로 구해지는 거예요. (24의 '+frac(5,8)+' = 24÷8×5 = <strong style="color:#3fb950">15L</strong>)', diagram:FB_DIAGRAM_E3FRAC4_H1}
   ],
   'e3frac4-h3': [
-    {ok:true, text:'맞아요! 단순 역산은 "부분→전체"를 한 번만 거꾸로 계산하면 되지만, 2단계 문제는 중간에 <strong style="color:#bc8cff">"남은 양"</strong>을 먼저 구한 뒤 그걸 기준으로 다시 계산해야 해요.', diagram:FB_DIAGRAM_E3FRAC4_H3},
-    {ok:false, text:'똑같지 않아요! 2단계 문제는 중간에 <strong style="color:#bc8cff">"남은 양 구하기"</strong>라는 단계가 하나 더 필요해요.', diagram:FB_DIAGRAM_E3FRAC4_H3},
-    {ok:false, text:'그렇지 않아요. 2단계 문제도 상황에 맞는 <strong style="color:#bc8cff">실제 값</strong>이 답으로 나와요.', diagram:FB_DIAGRAM_E3FRAC4_H3}
+    {ok:true, text:'맞아요! 남은 24쪽의 '+frac(1,2)+' = 24÷2×1 = <strong style="color:#3fb950">12쪽</strong>. "남은 쪽수"라는 새 값을 먼저 구해야 했기 때문에, 이 문제는 2단계에 걸쳐 계산해야 했어요.', diagram:FB_DIAGRAM_E3FRAC4_H3},
+    {ok:false, text:'똑같지 않아요! "'+frac(1,2)+'이 7"은 기준 수(7)가 이미 정해져 있어 한 번이면 끝나지만, 이 문제는 <strong style="color:#bc8cff">남은 쪽수(24쪽)</strong>를 먼저 구해야 해요. (남은 24쪽의 '+frac(1,2)+'=<strong style="color:#3fb950">12쪽</strong>)', diagram:FB_DIAGRAM_E3FRAC4_H3},
+    {ok:false, text:'쉽고 어려움의 문제가 아니에요. <strong style="color:#bc8cff">남은 쪽수(24쪽)</strong>라는 새 값이 필요해서 2단계가 되는 거예요. (남은 24쪽의 '+frac(1,2)+'=<strong style="color:#3fb950">12쪽</strong>)', diagram:FB_DIAGRAM_E3FRAC4_H3}
   ],
   'e5box-h1': [
     {ok:true, text:'맞아요! 정육면체는 여섯 면이 전부 합동인 정사각형인 직육면체예요 — "특별한 조건을 만족하는 직육면체"인 셈이에요.', diagram:FB_DIAGRAM_BOX_H1},
@@ -6548,9 +7047,9 @@ const HAVRUTA_FB = {
     {ok:false, text:'두 비유 모두 실제 개념의 의미를 잘 담고 있어요. 공식만 기계적으로 외우는 것보다 이런 비유로 이해하면 훨씬 오래 기억에 남아요.', diagram:FB_DIAGRAM_GCD3_W2}
   ],
   'e6pct-h1': [
-    {ok:true, text:'맞아요! 1/3은 소수로 바꾸면 약 33.3%예요. 30%보다 더 많이 깎아주니까 1/3 할인이 더 싸요.', diagram:FB_DIAGRAM_PCT1},
-    {ok:false, text:'비슷해 보이지만 정확히 계산하면 달라요. 1/3을 %로 바꿔서 30%와 비교해볼까요?', diagram:FB_DIAGRAM_PCT1},
-    {ok:false, text:'숫자가 크다고 항상 더 할인되는 건 아니에요. 30%와 1/3(≈33.3%)을 같은 단위(%)로 맞춰서 비교해야 해요.', diagram:FB_DIAGRAM_PCT1}
+    {ok:true, text:'맞아요! 30%를 분수로 바꾸면 '+frac(3,10)+'이에요. '+frac(3,10)+'과 '+frac(1,3)+'을 30을 공통분모로 통분하면 '+frac(9,30)+'과 '+frac(10,30)+' — '+frac(1,3)+'이 더 커서 할인도 더 많이 돼요.', diagram:FB_DIAGRAM_PCT1},
+    {ok:false, text:'비슷해 보이지만 정확히 비교하면 달라요. 30%를 분수 '+frac(3,10)+'로 바꾸고, '+frac(1,3)+'과 통분해서 비교해볼까요?', diagram:FB_DIAGRAM_PCT1},
+    {ok:false, text:'숫자가 크다고 항상 더 할인되는 건 아니에요. 30%를 분수 '+frac(3,10)+'로 바꾼 다음, '+frac(1,3)+'과 같은 분모로 통분해서 비교해야 해요.', diagram:FB_DIAGRAM_PCT1}
   ],
   'e6pct-h2': [
     {ok:true, text:'맞아요! 두 번째 50% 할인은 첫 번째 할인 후 이미 줄어든 가격에 적용돼요. 그래서 최종 가격은 원래의 25%만 남고, 공짜(0원)는 안 돼요.', diagram:FB_DIAGRAM_PCT2},
@@ -6558,9 +7057,9 @@ const HAVRUTA_FB = {
     {ok:false, text:'할인을 두 번 하면 가격은 계속 낮아져요, 비싸지지 않아요. 실제 계산으로 확인해볼까요?', diagram:FB_DIAGRAM_PCT2}
   ],
   'e6pct-h3': [
-    {ok:true, text:'맞아요! 실업률은 전체 국민이 아니라 "경제활동인구"(일할 수 있고 일할 의사가 있는 사람들) 안에서 계산한 비율이에요. 기준 집단이 다르면 같은 숫자라도 뜻이 달라져요.', diagram:FB_DIAGRAM_PCT3},
-    {ok:false, text:'전체 국민 100명 기준이 아니에요! 아기, 학생, 은퇴한 어르신 등은 보통 "경제활동인구"에서 빠지기 때문에, 실업률은 훨씬 좁은 기준 집단 안에서 계산돼요.', diagram:FB_DIAGRAM_PCT3},
-    {ok:false, text:'그냥 느낌으로 정하는 게 아니라, "경제활동인구 중 실업자 수"를 정확히 나눠서 계산하는 숫자예요. 어떤 집단을 기준으로 하는지가 핵심이에요.', diagram:FB_DIAGRAM_PCT3}
+    {ok:true, text:'맞아요! 평점은 다운로드한 사람 전체가 아니라 "리뷰를 남긴 사람들" 안에서 계산한 비율이에요. 리뷰를 안 남긴 사람은 포함되지 않아서, 기준 집단이 다르면 같은 숫자라도 뜻이 달라져요.', diagram:FB_DIAGRAM_PCT3},
+    {ok:false, text:'다운로드한 사람 100명 기준이 아니에요! 대부분의 사람은 리뷰를 남기지 않기 때문에, 평점은 훨씬 좁은 "리뷰 작성자" 안에서만 계산돼요.', diagram:FB_DIAGRAM_PCT3},
+    {ok:false, text:'그냥 느낌으로 정하는 게 아니라, "리뷰 중 만족 평가 수"를 정확히 나눠서 계산하는 숫자예요. 어떤 집단을 기준으로 하는지가 핵심이에요.', diagram:FB_DIAGRAM_PCT3}
   ],
   'e3frac-h1': [
     {ok:true, text:'맞아요! '+frac(2,4)+'는 분모·분자를 둘 다 2로 나누면 '+frac(1,2)+'이 돼요. 숫자는 다르게 생겼어도 실제 크기(넓이)는 완전히 같아요.', diagram:FB_DIAGRAM_FRAC1},
@@ -7787,6 +8286,726 @@ function vswSol15(id){
   var diagram='<div class="fb-diagram">🧱 한모서리'+s+'cm 정육면체 '+n+'개를 일렬로<br>이어붙인 직육면체 = <strong style="color:#bc8cff">'+longSide+'×'+s+'×'+s+'cm</strong>(맞닿은 면은 안쪽으로 숨어요)<span class="cap">n개를 한 줄로 붙이면 긴 방향 길이만 n배가 되고, 나머지 두 방향은 그대로예요</span><br>2×('+longSide+'×'+s+'+'+longSide+'×'+s+'+'+s+'×'+s+') = <strong style="color:#3fb950">'+ans+'cm²</strong></div>';
   crwRenderToggle(id, diagram, 'vswSol15');
 }
+function e6cGen1(id){
+  var d=4+Math.floor(Math.random()*27);
+  var el=document.getElementById(id);
+  el.setAttribute('data-d',d);
+  crwSetQuestion(el, '지름이 '+d+'cm인 자전거 바퀴가 한 바퀴 굴러가면 몇 cm를 이동합니까? (원주율=3.14)', 'e6cSol1');
+}
+function e6cSol1(id){
+  var el=document.getElementById(id);
+  var d=+el.getAttribute('data-d');
+  var dist=r2(d*3.14);
+  var diagram='<div class="fb-diagram">바퀴가 한 바퀴 구르면 바퀴 둘레만큼 이동해요<br>둘레 = 지름×3.14 = '+d+'×3.14 = <strong style="color:#3fb950">'+dist+'cm</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol1');
+}
+function e6cGen2(id){
+  var r=1+Math.floor(Math.random()*15);
+  var el=document.getElementById(id);
+  el.setAttribute('data-r',r);
+  crwSetQuestion(el, '반지름이 '+r+'m인 원 모양의 꽃밭 둘레에 울타리를 치려고 합니다. 울타리는 몇 m가 필요합니까? (원주율=3.14)', 'e6cSol2');
+}
+function e6cSol2(id){
+  var el=document.getElementById(id);
+  var r=+el.getAttribute('data-r');
+  var peri=r2(r*2*3.14);
+  var diagram='<div class="fb-diagram">둘레(원주) = 반지름×2×3.14 = '+r+'×2×3.14 = <strong style="color:#3fb950">'+peri+'m</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol2');
+}
+function e6cGen3(id){
+  var r=2+Math.floor(Math.random()*14);
+  var el=document.getElementById(id);
+  el.setAttribute('data-r',r);
+  crwSetQuestion(el, '반지름이 '+r+'cm인 원형 접시의 넓이를 구하세요. (원주율=3.14)', 'e6cSol3');
+}
+function e6cSol3(id){
+  var el=document.getElementById(id);
+  var r=+el.getAttribute('data-r');
+  var area=r2(r*r*3.14);
+  var diagram='<div class="fb-diagram">넓이 = 반지름×반지름×3.14 = '+r+'×'+r+'×3.14 = <strong style="color:#3fb950">'+area+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol3');
+}
+function e6cGen4(id){
+  var d=2+Math.floor(Math.random()*9), n=2+Math.floor(Math.random()*4);
+  var el=document.getElementById(id);
+  el.setAttribute('data-d',d); el.setAttribute('data-n',n);
+  crwSetQuestion(el, '지름이 '+d+'m인 원 모양의 트랙을 '+n+'바퀴 돌면 모두 몇 m를 이동하게 됩니까? (원주율=3.14)', 'e6cSol4');
+}
+function e6cSol4(id){
+  var el=document.getElementById(id);
+  var d=+el.getAttribute('data-d'), n=+el.getAttribute('data-n');
+  var once=r2(d*3.14), dist=r2(d*3.14*n);
+  var diagram='<div class="fb-diagram">한 바퀴 거리 = 지름×3.14 = '+d+'×3.14 = <strong style="color:#bc8cff">'+once+'m</strong><br>'+n+'바퀴 거리 = '+once+'×'+n+' = <strong style="color:#3fb950">'+dist+'m</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol4');
+}
+function e6cGen5(id){
+  var r=1+Math.floor(Math.random()*8), k=2+Math.floor(Math.random()*3), r2v=r*k;
+  var el=document.getElementById(id);
+  el.setAttribute('data-r',r); el.setAttribute('data-r2',r2v); el.setAttribute('data-k',k);
+  crwSetQuestion(el, '반지름이 '+r+'cm인 원 A와 반지름이 '+r2v+'cm인 원 B가 있습니다. 원 B의 넓이는 원 A의 넓이의 몇 배입니까?', 'e6cSol5');
+}
+function e6cSol5(id){
+  var el=document.getElementById(id);
+  var r=+el.getAttribute('data-r'), r2v=+el.getAttribute('data-r2'), k=+el.getAttribute('data-k');
+  var areaA=r2(r*r*3.14), areaB=r2(r2v*r2v*3.14), ans=k*k;
+  var diagram='<div class="fb-diagram">원 A 넓이 = '+r+'×'+r+'×3.14 = <strong style="color:#bc8cff">'+areaA+'cm²</strong><br>원 B 넓이 = '+r2v+'×'+r2v+'×3.14 = <strong style="color:#bc8cff">'+areaB+'cm²</strong><span class="cap">반지름이 '+k+'배가 되면, (반지름×반지름) 부분이 '+k+'×'+k+'='+ans+'배가 돼요</span><br>원 B는 원 A의 <strong style="color:#3fb950">'+ans+'배</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol5');
+}
+function e6cGen6(id){
+  var r=1+Math.floor(Math.random()*15), circ=r2(r*2*3.14);
+  var el=document.getElementById(id);
+  el.setAttribute('data-r',r); el.setAttribute('data-circ',circ);
+  crwSetQuestion(el, '둘레(원주)가 '+circ+'cm인 원이 있습니다. 이 원의 넓이는 몇 cm²입니까? (원주율=3.14)', 'e6cSol6');
+}
+function e6cSol6(id){
+  var el=document.getElementById(id);
+  var r=+el.getAttribute('data-r'), circ=+el.getAttribute('data-circ');
+  var area=r2(r*r*3.14);
+  var diagram='<div class="fb-diagram">둘레 = 반지름×2×3.14이므로, 반지름 = 둘레÷(2×3.14)<span class="cap">'+r+'×2×3.14 = '+circ+' ✓ → 반지름이 '+r+'cm임을 확인해요</span><br>먼저 반지름 = <strong style="color:#bc8cff">'+r+'cm</strong>을 구한 다음, 넓이 = '+r+'×'+r+'×3.14 = <strong style="color:#3fb950">'+area+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol6');
+}
+function e6cGen7(id){
+  var r=2+Math.floor(Math.random()*14);
+  var el=document.getElementById(id);
+  el.setAttribute('data-r',r);
+  crwSetQuestion(el, '반지름이 '+r+'cm인 반원 모양의 종이가 있습니다. 이 반원의 둘레는 몇 cm입니까? (원주율=3.14)', 'e6cSol7');
+}
+function e6cSol7(id){
+  var el=document.getElementById(id);
+  var r=+el.getAttribute('data-r');
+  var arc=r2(r*3.14), diam=2*r, peri=r2(arc+diam);
+  var diagram='<div class="fb-diagram">반원의 둘레 = 곡선 부분 + 지름<span class="cap">반원은 원의 절반이지만, 잘린 단면(지름)도 둘레에 포함돼요</span><br>곡선 부분(원 둘레의 절반) = '+r+'×3.14 = <strong style="color:#bc8cff">'+arc+'cm</strong><br>지름 = '+r+'×2 = <strong style="color:#bc8cff">'+diam+'cm</strong><br>둘레 = '+arc+'+'+diam+' = <strong style="color:#3fb950">'+peri+'cm</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol7');
+}
+function e6cGen8(id){
+  var r=2+Math.floor(Math.random()*14);
+  var el=document.getElementById(id);
+  el.setAttribute('data-r',r);
+  crwSetQuestion(el, '반지름이 '+r+'cm인 반원 모양 종이의 넓이는 몇 cm²입니까? (원주율=3.14)', 'e6cSol8');
+}
+function e6cSol8(id){
+  var el=document.getElementById(id);
+  var r=+el.getAttribute('data-r');
+  var full=r2(r*r*3.14), half=r2(r*r*3.14/2);
+  var diagram='<div class="fb-diagram">전체 원의 넓이 = '+r+'×'+r+'×3.14 = <strong style="color:#bc8cff">'+full+'cm²</strong><span class="cap">반원은 원을 정확히 절반으로 나눈 모양이에요</span><br>반원의 넓이 = '+full+'÷2 = <strong style="color:#3fb950">'+half+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol8');
+}
+function e6cGen9(id){
+  var r=1+Math.floor(Math.random()*15), area=r2(r*r*3.14);
+  var el=document.getElementById(id);
+  el.setAttribute('data-r',r); el.setAttribute('data-area',area);
+  crwSetQuestion(el, '어떤 원의 넓이가 '+area+'cm²입니다. 이 원의 반지름은 몇 cm입니까? (원주율=3.14)', 'e6cSol9');
+}
+function e6cSol9(id){
+  var el=document.getElementById(id);
+  var r=+el.getAttribute('data-r'), area=+el.getAttribute('data-area');
+  var diagram='<div class="fb-diagram">반지름×반지름×3.14 = '+area+'가 되는 반지름을 찾아요<span class="cap">반지름 후보를 하나씩 넣어 검산해봐요</span><br>'+r+'×'+r+'×3.14 = '+area+' ✓ → 반지름 = <strong style="color:#3fb950">'+r+'cm</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol9');
+}
+function e6cGen10(id){
+  var R=6+Math.floor(Math.random()*10), r=1+Math.floor(Math.random()*(R-2));
+  var el=document.getElementById(id);
+  el.setAttribute('data-R',R); el.setAttribute('data-r',r);
+  crwSetQuestion(el, '큰 원 모양 쿠키(반지름 '+R+'cm) 가운데에 작은 원 모양(반지름 '+r+'cm)을 뚫어 도넛 모양을 만들었습니다. 도넛 모양의 넓이는 몇 cm²입니까? (원주율=3.14)', 'e6cSol10');
+}
+function e6cSol10(id){
+  var el=document.getElementById(id);
+  var R=+el.getAttribute('data-R'), r=+el.getAttribute('data-r');
+  var bigArea=r2(R*R*3.14), smallArea=r2(r*r*3.14), diff=r2(bigArea-smallArea);
+  var diagram='<div class="fb-diagram">큰 원 넓이 = '+R+'×'+R+'×3.14 = <strong style="color:#bc8cff">'+bigArea+'cm²</strong><br>작은 원 넓이 = '+r+'×'+r+'×3.14 = <strong style="color:#bc8cff">'+smallArea+'cm²</strong><span class="cap">도넛 모양 = 큰 원에서 작은 원을 뺀 나머지</span><br>도넛 넓이 = '+bigArea+'−'+smallArea+' = <strong style="color:#3fb950">'+diff+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol10');
+}
+function e6cGen11(id){
+  var r=2+Math.floor(Math.random()*9), side=2*r;
+  var el=document.getElementById(id);
+  el.setAttribute('data-r',r); el.setAttribute('data-side',side);
+  crwSetQuestion(el, '한 변의 길이가 '+side+'cm인 정사각형 안에 꼭 맞게 원을 그렸습니다. 정사각형에서 원을 뺀 나머지 부분의 넓이는 몇 cm²입니까? (원주율=3.14)', 'e6cSol11');
+}
+function e6cSol11(id){
+  var el=document.getElementById(id);
+  var r=+el.getAttribute('data-r'), side=+el.getAttribute('data-side');
+  var sqArea=side*side, circleArea=r2(r*r*3.14), diff=r2(sqArea-circleArea);
+  var svg='<svg width="90" height="90" viewBox="0 0 90 90"><rect x="2" y="2" width="86" height="86" fill="#f85149" fill-opacity="0.25" stroke="#58a6ff" stroke-width="2"/><circle cx="45" cy="45" r="43" fill="#0d1117" stroke="#f0c040" stroke-width="2"/></svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">빨간 여백 부분(네 귀퉁이)이 구해야 할 넓이예요</span><br>정사각형 넓이 = '+side+'×'+side+' = <strong style="color:#bc8cff">'+sqArea+'cm²</strong><br>원의 넓이 = '+r+'×'+r+'×3.14 = <strong style="color:#bc8cff">'+circleArea+'cm²</strong><span class="cap">정사각형에 꼭 맞는 원은 반지름이 정사각형 한 변의 절반이에요</span><br>나머지 = '+sqArea+'−'+circleArea+' = <strong style="color:#3fb950">'+diff+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol11');
+}
+function e6cGen12(id){
+  var d=2+Math.floor(Math.random()*9), n=2+Math.floor(Math.random()*9), circ=r2(d*3.14), dist=r2(circ*n);
+  var el=document.getElementById(id);
+  el.setAttribute('data-d',d); el.setAttribute('data-n',n); el.setAttribute('data-dist',dist);
+  crwSetQuestion(el, '지름이 '+d+'cm인 굴렁쇠를 굴렸더니 '+dist+'cm를 이동했습니다. 굴렁쇠는 모두 몇 바퀴 굴렀습니까? (원주율=3.14)', 'e6cSol12');
+}
+function e6cSol12(id){
+  var el=document.getElementById(id);
+  var d=+el.getAttribute('data-d'), n=+el.getAttribute('data-n'), dist=+el.getAttribute('data-dist');
+  var circ=r2(d*3.14);
+  var rSvg=12, circPx=Math.round(2*Math.PI*rSvg), endX=12+circPx;
+  var svg='<svg width="'+(endX+16)+'" height="50" viewBox="0 0 '+(endX+16)+' 50">'
+    + '<line x1="12" y1="38" x2="'+(endX+4)+'" y2="38" stroke="#8b949e" stroke-width="2"/>'
+    + '<circle cx="12" cy="24" r="'+rSvg+'" fill="none" stroke="#f0c040" stroke-width="2"/><line x1="12" y1="24" x2="12" y2="'+(24-rSvg)+'" stroke="#f0c040" stroke-width="2"/>'
+    + '<circle cx="'+endX+'" cy="24" r="'+rSvg+'" fill="none" stroke="#3fb950" stroke-width="2" stroke-dasharray="4,3"/><line x1="'+endX+'" y1="24" x2="'+endX+'" y2="'+(24-rSvg)+'" stroke="#3fb950" stroke-width="2" stroke-dasharray="4,3"/>'
+    + '</svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">바퀴가 정확히 한 바퀴(360°) 구르면, 표시(스포크)가 다시 위를 가리키면서 딱 원주(둘레)만큼 이동해요 — 이게 '+n+'번 반복돼요</span>한 바퀴 거리(둘레) = '+d+'×3.14 = <strong style="color:#bc8cff">'+circ+'cm</strong><br>바퀴 수 = '+dist+'÷'+circ+' = <strong style="color:#3fb950">'+n+'바퀴</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol12');
+}
+function e6cGen13(id){
+  var side=6+Math.floor(Math.random()*10);
+  var el=document.getElementById(id);
+  el.setAttribute('data-side',side);
+  crwSetQuestion(el, '한 변의 길이가 '+side+'cm인 정사각형 내부에 마주 보는 두 꼭짓점을 중심으로 하고 반지름이 '+side+'cm인 사분원 2개를 그렸습니다. 두 사분원이 겹치는 나뭇잎 모양 부분의 넓이는 몇 cm²입니까? (원주율=3.14)', 'e6cSol13');
+}
+function e6cSol13(id){
+  var el=document.getElementById(id);
+  var side=+el.getAttribute('data-side');
+  var quarter=r2(side*side*3.14/4), twoQuarters=r2(quarter*2), sqArea=side*side, overlap=r2(twoQuarters-sqArea);
+  var svg='<svg width="70" height="70" viewBox="0 0 70 70"><rect x="2" y="2" width="66" height="66" fill="none" stroke="#58a6ff" stroke-width="2"/><path d="M 68 2 A 66 66 0 0 1 2 68" fill="none" stroke="#f0c040" stroke-width="2"/><path d="M 2 68 A 66 66 0 0 1 68 2" fill="none" stroke="#bc8cff" stroke-width="2"/></svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">두 사분원(금색·보라)을 합치면 정사각형 전체를 덮고, 가운데 겹친 부분(나뭇잎)이 두 번 더해져요</span>사분원 1개 넓이 = '+side+'×'+side+'×3.14÷4 = <strong style="color:#bc8cff">'+quarter+'cm²</strong><br>사분원 2개 합 = '+quarter+'×2 = '+twoQuarters+'cm², 정사각형 넓이 = '+sqArea+'cm²<br>겹치는 부분 = '+twoQuarters+'−'+sqArea+' = <strong style="color:#3fb950">'+overlap+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol13');
+}
+function e6cGen14(id){
+  var side=6+Math.floor(Math.random()*10), r=2+Math.floor(Math.random()*6);
+  var el=document.getElementById(id);
+  el.setAttribute('data-side',side); el.setAttribute('data-r',r);
+  crwSetQuestion(el, '반지름이 '+r+'cm인 원이 한 변의 길이가 '+side+'cm인 정사각형의 바깥쪽 테두리를 따라 한 바퀴 돌았습니다. 이 원이 지나간 자리의 전체 넓이는 몇 cm²입니까? (원주율=3.14)', 'e6cSol14');
+}
+function e6cSol14(id){
+  var el=document.getElementById(id);
+  var side=+el.getAttribute('data-side'), r=+el.getAttribute('data-r');
+  var rects=4*side*(2*r), corners=r2((2*r)*(2*r)*3.14), total=r2(rects+corners);
+  var svg='<svg width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" fill="none" stroke="#58a6ff" stroke-width="2"/><path d="M 20 8 L 80 8 A 12 12 0 0 1 92 20 L 92 80 A 12 12 0 0 1 80 92 L 20 92 A 12 12 0 0 1 8 80 L 8 20 A 12 12 0 0 1 20 8 Z" fill="#f0c040" fill-opacity="0.2" stroke="#f0c040" stroke-width="2"/></svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">정사각형(파란선) 바깥쪽 노란 띠가 원이 지나간 자리예요 — 곧은 변 4개 + 둥근 모서리 4개</span>직사각형 4개(변×지름) = 4×('+side+'×'+(2*r)+') = <strong style="color:#bc8cff">'+rects+'cm²</strong><span class="cap">네 모서리를 돌 때 생기는 부채꼴 4개를 합치면 반지름이 지름('+(2*r)+'cm)과 같은 원 1개가 돼요</span><br>모서리 부채꼴 합 = '+(2*r)+'×'+(2*r)+'×3.14 = <strong style="color:#bc8cff">'+corners+'cm²</strong><br>전체 = '+rects+'+'+corners+' = <strong style="color:#3fb950">'+total+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol14');
+}
+function e6cGen15(id){
+  var w=5+Math.floor(Math.random()*6), h=4+Math.floor(Math.random()*5), big=Math.max(w,h), small=Math.min(w,h), L=big+1+Math.floor(Math.random()*(small-1));
+  var el=document.getElementById(id);
+  el.setAttribute('data-w',w); el.setAttribute('data-h',h); el.setAttribute('data-l',L);
+  crwSetQuestion(el, '가로 '+w+'m, 세로 '+h+'m인 직사각형 모양 창고의 한 모서리에 길이가 '+L+'m인 끈으로 염소가 매여 있습니다. 염소가 창고 밖에서 움직이며 풀을 먹을 수 있는 영역의 최대 넓이는 몇 m²입니까? (원주율=3.14)', 'e6cSol15');
+}
+function e6cSol15(id){
+  var el=document.getElementById(id);
+  var w=+el.getAttribute('data-w'), h=+el.getAttribute('data-h'), L=+el.getAttribute('data-l');
+  var main=r2(L*L*3.14*0.75), rem1=L-w, wrap1=r2(rem1*rem1*3.14*0.25), rem2=L-h, wrap2=r2(rem2*rem2*3.14*0.25), total=r2(main+wrap1+wrap2);
+  var svg='<svg width="130" height="130" viewBox="0 0 130 130">'
+    + '<path d="M 85 90 A 45 45 0 1 1 40 45 L 40 90 Z" fill="#f0c040" fill-opacity="0.25" stroke="#f0c040" stroke-width="1.5"/>'
+    + '<path d="M 98 90 A 18 18 0 0 1 80 108 L 80 90 Z" fill="#58a6ff" fill-opacity="0.35" stroke="#58a6ff" stroke-width="1.5"/>'
+    + '<path d="M 40 60 A 25 25 0 0 1 15 35 L 40 35 Z" fill="#bc8cff" fill-opacity="0.35" stroke="#bc8cff" stroke-width="1.5"/>'
+    + '<rect x="40" y="35" width="40" height="55" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>'
+    + '</svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">어두운 사각형이 창고, 금색이 270° 큰 영역, 파랑·보라가 벽을 돌아 감기는 90° 영역이에요</span>큰 부채꼴(반지름 '+L+'m, 270°) = '+L+'×'+L+'×3.14×'+frac(3,4)+' = <strong style="color:#bc8cff">'+main+'m²</strong><span class="cap">벽을 따라 꺾이면, 남은 끈 길이를 반지름으로 하는 90° 부채꼴이 양쪽에 하나씩 더 생겨요</span><br>가로쪽 꺾임(남은 끈 '+rem1+'m) = '+rem1+'×'+rem1+'×3.14×'+frac(1,4)+' = <strong style="color:#bc8cff">'+wrap1+'m²</strong><br>세로쪽 꺾임(남은 끈 '+rem2+'m) = '+rem2+'×'+rem2+'×3.14×'+frac(1,4)+' = <strong style="color:#bc8cff">'+wrap2+'m²</strong><br>전체 = '+main+'+'+wrap1+'+'+wrap2+' = <strong style="color:#3fb950">'+total+'m²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol15');
+}
+function e6cGen16(id){
+  var r=3+Math.floor(Math.random()*8);
+  var el=document.getElementById(id);
+  el.setAttribute('data-r',r);
+  crwSetQuestion(el, '반지름이 '+r+'cm인 똑같은 원기둥 4개를 2×2 형태로 모아 끈으로 매듭 없이 단단히 묶으려고 합니다. 필요한 끈의 최소 길이는 몇 cm입니까? (원주율=3.14)', 'e6cSol16');
+}
+function e6cSol16(id){
+  var el=document.getElementById(id);
+  var r=+el.getAttribute('data-r');
+  var straight=4*(2*r), curved=r2(2*r*3.14), total=r2(straight+curved);
+  var svg='<svg width="100" height="100" viewBox="0 0 100 100"><circle cx="30" cy="30" r="20" fill="none" stroke="#8b949e" stroke-width="1.5"/><circle cx="70" cy="30" r="20" fill="none" stroke="#8b949e" stroke-width="1.5"/><circle cx="30" cy="70" r="20" fill="none" stroke="#8b949e" stroke-width="1.5"/><circle cx="70" cy="70" r="20" fill="none" stroke="#8b949e" stroke-width="1.5"/><path d="M 30 10 L 70 10 A 20 20 0 0 1 90 30 L 90 70 A 20 20 0 0 1 70 90 L 30 90 A 20 20 0 0 1 10 70 L 10 30 A 20 20 0 0 1 30 10 Z" fill="none" stroke="#f0c040" stroke-width="2"/></svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">노란 끈이 곧게 지나가는 4구간(직선)과 모서리에서 둥글게 도는 4구간(곡선)으로 이뤄져요</span>직선 4부분(원기둥 지름만큼씩) = '+(2*r)+'×4 = <strong style="color:#bc8cff">'+straight+'cm</strong><span class="cap">네 모서리에서 끈이 꺾이는 부분을 모으면 정확히 원 1개(반지름 '+r+'cm)의 둘레가 돼요</span><br>곡선 부분(원주) = '+(2*r)+'×3.14 = <strong style="color:#bc8cff">'+curved+'cm</strong><br>끈의 최소 길이 = '+straight+'+'+curved+' = <strong style="color:#3fb950">'+total+'cm</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol16');
+}
+function e6cGen17(id){
+  var diffR=2+Math.floor(Math.random()*5), sumR=diffR+2+Math.floor(Math.random()*8), circDiff=r2(diffR*6.28);
+  var el=document.getElementById(id);
+  el.setAttribute('data-sumr',sumR); el.setAttribute('data-circdiff',circDiff);
+  crwSetQuestion(el, '큰 원과 작은 원이 있습니다. 두 원의 반지름의 합은 '+sumR+'cm이고, 원주(원의 둘레)의 차는 '+circDiff+'cm입니다. 두 원의 넓이의 차는 몇 cm²입니까? (원주율=3.14)', 'e6cSol17');
+}
+function e6cSol17(id){
+  var el=document.getElementById(id);
+  var sumR=+el.getAttribute('data-sumr'), circDiff=+el.getAttribute('data-circdiff');
+  var diffR=r2(circDiff/6.28), areaDiff=r2(3.14*sumR*diffR);
+  var bigR=(sumR+diffR)/2, smallR=(sumR-diffR)/2, scale=32/bigR, bigPx=Math.round(bigR*scale), smallPx=Math.round(smallR*scale);
+  var svg='<svg width="'+(bigPx*2+20)+'" height="'+(bigPx*2+10)+'" viewBox="0 0 '+(bigPx*2+20)+' '+(bigPx*2+10)+'"><circle cx="'+(bigPx+5)+'" cy="'+(bigPx+5)+'" r="'+bigPx+'" fill="none" stroke="#f0c040" stroke-width="2"/><circle cx="'+(bigPx+5)+'" cy="'+(bigPx+5)+'" r="'+smallPx+'" fill="none" stroke="#58a6ff" stroke-width="2"/></svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">큰 원(금색)과 작은 원(파랑)을 겹쳐 그리면 두 원의 크기 차이가 보여요</span>원주의 차 = 2×3.14×(반지름의 차) 이므로<br>반지름의 차 = '+circDiff+'÷6.28 = <strong style="color:#bc8cff">'+diffR+'cm</strong><span class="cap">넓이의 차 = 3.14×(반지름의 합)×(반지름의 차) 로 바로 구할 수 있어요</span><br>넓이의 차 = 3.14×'+sumR+'×'+diffR+' = <strong style="color:#3fb950">'+areaDiff+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol17');
+}
+function e6cGen18(id){
+  var d=6+Math.floor(Math.random()*15);
+  var el=document.getElementById(id);
+  el.setAttribute('data-d',d);
+  crwSetQuestion(el, '지름이 '+d+'cm인 원 안에 꼭짓점이 모두 원 위에 있는 가장 큰 정사각형을 그렸습니다. 이 정사각형의 넓이는 몇 cm²입니까?', 'e6cSol18');
+}
+function e6cSol18(id){
+  var el=document.getElementById(id);
+  var d=+el.getAttribute('data-d');
+  var area=r2(d*d/2);
+  var svg='<svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="38" fill="none" stroke="#58a6ff" stroke-width="2"/><polygon points="40,2 78,40 40,78 2,40" fill="#bc8cff" fill-opacity="0.25" stroke="#f0c040" stroke-width="2"/></svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">정사각형의 대각선은 원의 지름과 같아요</span>정사각형의 대각선 = 원의 지름 = <strong style="color:#bc8cff">'+d+'cm</strong><br>넓이 = 대각선×대각선÷2 = '+d+'×'+d+'÷2 = <strong style="color:#3fb950">'+area+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol18');
+}
+function e6cGen19(id){
+  var area0=(5+Math.floor(Math.random()*40))*10, p=20, ratio=Math.pow((100+p)/100,2)-1, increase=r2(area0*ratio);
+  var el=document.getElementById(id);
+  el.setAttribute('data-area0',area0); el.setAttribute('data-increase',increase);
+  crwSetQuestion(el, '어떤 원의 반지름을 20% 늘렸더니, 넓이가 처음 넓이보다 '+increase+'cm²만큼 넓어졌습니다. 처음 원의 넓이는 몇 cm²입니까?', 'e6cSol19');
+}
+function e6cSol19(id){
+  var el=document.getElementById(id);
+  var area0=+el.getAttribute('data-area0'), increase=+el.getAttribute('data-increase');
+  var svg='<svg width="100" height="70" viewBox="0 0 100 70"><circle cx="28" cy="35" r="24" fill="none" stroke="#58a6ff" stroke-width="2"/><circle cx="78" cy="35" r="29" fill="none" stroke="#3fb950" stroke-width="2" stroke-dasharray="4,3"/></svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">파란 원(처음)보다 초록 점선 원(반지름 1.2배)이 커진 만큼이 늘어난 넓이예요</span>반지름이 1.2배가 되면, 넓이는 1.2×1.2=<strong style="color:#bc8cff">1.44배</strong><span class="cap">늘어난 비율은 1.44−1=0.44(=44%)예요</span><br>처음 넓이×0.44 = '+increase+'cm² → 처음 넓이 = '+increase+'÷0.44 = <strong style="color:#3fb950">'+area0+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol19');
+}
+function e6cGen20(id){
+  var d=6+Math.floor(Math.random()*8)*2;
+  var el=document.getElementById(id);
+  el.setAttribute('data-d',d);
+  crwSetQuestion(el, '지름이 '+d+'cm인 반원이 있습니다. 이 반원 내부에 그릴 수 있는 가장 넓은 삼각형을 그려 잘라내었을 때, 남은 부분의 넓이는 몇 cm²입니까? (원주율=3.14)', 'e6cSol20');
+}
+function e6cSol20(id){
+  var el=document.getElementById(id);
+  var d=+el.getAttribute('data-d'), r=d/2;
+  var semi=r2(r*r*3.14/2), tri=r2(d*r/2), remain=r2(semi-tri);
+  var svg='<svg width="90" height="55" viewBox="0 0 90 55"><path d="M 5 50 A 40 40 0 0 1 85 50 Z" fill="#bc8cff" fill-opacity="0.15" stroke="#58a6ff" stroke-width="2"/><polygon points="5,50 85,50 45,10" fill="#f0c040" fill-opacity="0.4" stroke="#f0c040" stroke-width="2"/></svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">가장 큰 삼각형은 밑변이 지름, 높이가 반지름이에요</span>반원의 넓이 = '+r+'×'+r+'×3.14÷2 = <strong style="color:#bc8cff">'+semi+'cm²</strong><br>가장 큰 삼각형 넓이 = '+d+'×'+r+'÷2 = <strong style="color:#bc8cff">'+tri+'cm²</strong><br>남은 부분 = '+semi+'−'+tri+' = <strong style="color:#3fb950">'+remain+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol20');
+}
+function e6cGen21(id){
+  var sumR=2+Math.floor(Math.random()*10), wireLen=r2(sumR*6.28);
+  var el=document.getElementById(id);
+  el.setAttribute('data-wire',wireLen);
+  crwSetQuestion(el, '길이가 '+wireLen+'cm인 철사를 모두 사용하여 반지름이 다른 두 개의 원을 만들려고 합니다. 두 원의 넓이의 합이 최소가 되도록 만들었을 때, 두 원 넓이의 합은 몇 cm²입니까? (원주율=3.14)', 'e6cSol21');
+}
+function e6cSol21(id){
+  var el=document.getElementById(id);
+  var wireLen=+el.getAttribute('data-wire');
+  var sumR=r2(wireLen/6.28), r=sumR/2, area=r2(2*(r*r*3.14));
+  var scale=28/r, rpx=Math.round(r*scale);
+  var svg='<svg width="'+(rpx*4+15)+'" height="'+(rpx*2+10)+'" viewBox="0 0 '+(rpx*4+15)+' '+(rpx*2+10)+'"><circle cx="'+(rpx+5)+'" cy="'+(rpx+5)+'" r="'+rpx+'" fill="none" stroke="#f0c040" stroke-width="2"/><circle cx="'+(rpx*3+10)+'" cy="'+(rpx+5)+'" r="'+rpx+'" fill="none" stroke="#f0c040" stroke-width="2"/></svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">두 원이 똑같은 크기일 때 넓이의 합이 가장 작아져요</span>두 원의 반지름의 합 = '+wireLen+'÷6.28 = <strong style="color:#bc8cff">'+sumR+'cm</strong><span class="cap">반지름의 합이 정해져 있을 때, 넓이의 합이 최소가 되는 지점은 두 반지름이 똑같아질 때예요</span><br>각 원의 반지름 = '+sumR+'÷2 = '+r+'cm<br>넓이의 합 = ('+r+'×'+r+'×3.14)×2 = <strong style="color:#3fb950">'+area+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol21');
+}
+function e6cGen22(id){
+  var D=16+Math.floor(Math.random()*20), d1=4+Math.floor(Math.random()*(D-7)), d2=D-d1;
+  var el=document.getElementById(id);
+  el.setAttribute('data-D',D); el.setAttribute('data-d1',d1); el.setAttribute('data-d2',d2);
+  crwSetQuestion(el, '길이가 '+D+'cm인 선분 위에 지름이 각각 '+d1+'cm, '+d2+'cm, '+D+'cm인 세 반원이 접해 있습니다. 가장 큰 반원의 호와 내부의 두 작은 반원의 호로 둘러싸인 도형의 전체 둘레는 몇 cm입니까? (원주율=3.14)', 'e6cSol22');
+}
+function e6cSol22(id){
+  var el=document.getElementById(id);
+  var D=+el.getAttribute('data-D'), d1=+el.getAttribute('data-d1'), d2=+el.getAttribute('data-d2');
+  var bigArc=r2(D*3.14/2), arc1=r2(d1*3.14/2), arc2=r2(d2*3.14/2), total=r2(bigArc+arc1+arc2);
+  var px=100/D, Rbig=D*px/2, r1px=d1*px/2, r2px=d2*px/2, x0=10, xMid=10+d1*px, x1=10+D*px, by=70;
+  var svg='<svg width="'+(x1+10)+'" height="80" viewBox="0 0 '+(x1+10)+' 80">'
+    + '<line x1="'+x0+'" y1="'+by+'" x2="'+x1+'" y2="'+by+'" stroke="#8b949e" stroke-width="1.5"/>'
+    + '<path d="M '+x0+' '+by+' A '+Rbig+' '+Rbig+' 0 0 1 '+x1+' '+by+'" fill="none" stroke="#58a6ff" stroke-width="2"/>'
+    + '<path d="M '+x0+' '+by+' A '+r1px+' '+r1px+' 0 0 1 '+xMid+' '+by+'" fill="none" stroke="#f0c040" stroke-width="2"/>'
+    + '<path d="M '+xMid+' '+by+' A '+r2px+' '+r2px+' 0 0 1 '+x1+' '+by+'" fill="none" stroke="#bc8cff" stroke-width="2"/>'
+    + '</svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">파란 큰 반원 안에 금색·보라 작은 반원 두 개가 나란히 들어있는 모양(아르벨로스)이에요</span>큰 반원의 호(지름 '+D+'cm) = '+D+'×3.14÷2 = <strong style="color:#bc8cff">'+bigArc+'cm</strong><br>작은 반원1의 호(지름 '+d1+'cm) = '+d1+'×3.14÷2 = <strong style="color:#bc8cff">'+arc1+'cm</strong><br>작은 반원2의 호(지름 '+d2+'cm) = '+d2+'×3.14÷2 = <strong style="color:#bc8cff">'+arc2+'cm</strong><span class="cap">'+d1+'+'+d2+'='+D+'이라서, 두 작은 호의 합이 큰 호와 똑같아요</span><br>전체 둘레 = '+bigArc+'+'+arc1+'+'+arc2+' = <strong style="color:#3fb950">'+total+'cm</strong></div>';
+  crwRenderToggle(id, diagram, 'e6cSol22');
+}
+function pctwGen1(id){
+  var total=10+Math.floor(Math.random()*30), a=2+Math.floor(Math.random()*(total-3));
+  var el=document.getElementById(id);
+  el.setAttribute('data-total',total); el.setAttribute('data-a',a);
+  crwSetQuestion(el, '어떤 반 학생 '+total+'명 중 안경을 쓴 학생이 '+a+'명입니다. 안경을 쓴 학생과 안 쓴 학생의 비를 구하세요.', 'pctwSol1');
+}
+function pctwSol1(id){
+  var el=document.getElementById(id);
+  var total=+el.getAttribute('data-total'), a=+el.getAttribute('data-a'), b=total-a;
+  var diagram='<div class="fb-diagram">안 쓴 학생 = '+total+'−'+a+' = <strong style="color:#bc8cff">'+b+'명</strong><span class="cap">두 수를 그대로 나란히 놓고 비교하는 게 "비"예요</span><br>비 = <strong style="color:#3fb950">'+a+':'+b+'</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol1');
+}
+function pctwGen2(id){
+  var totals=[10,20,25,50], total=totals[Math.floor(Math.random()*totals.length)], a=1+Math.floor(Math.random()*(total-1));
+  var el=document.getElementById(id);
+  el.setAttribute('data-total',total); el.setAttribute('data-a',a);
+  crwSetQuestion(el, '어떤 반 학생 '+total+'명 중 '+a+'명이 축구를 좋아합니다. 축구를 좋아하는 학생의 비율을 소수로 나타내세요.', 'pctwSol2');
+}
+function pctwSol2(id){
+  var el=document.getElementById(id);
+  var total=+el.getAttribute('data-total'), a=+el.getAttribute('data-a'), ratio=r2(a/total);
+  var diagram='<div class="fb-diagram">비율 = 부분÷전체 = '+a+'÷'+total+' = <strong style="color:#3fb950">'+ratio+'</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol2');
+}
+function pctwGen3(id){
+  var totals=[10,20,25,50], total=totals[Math.floor(Math.random()*totals.length)], a=1+Math.floor(Math.random()*(total-1));
+  var el=document.getElementById(id);
+  el.setAttribute('data-total',total); el.setAttribute('data-a',a);
+  crwSetQuestion(el, '학생 '+total+'명 중 '+a+'명이 봉사활동에 참여했습니다. 참여한 학생은 전체의 몇 %인가요?', 'pctwSol3');
+}
+function pctwSol3(id){
+  var el=document.getElementById(id);
+  var total=+el.getAttribute('data-total'), a=+el.getAttribute('data-a'), pct=r2(a/total*100);
+  var diagram='<div class="fb-diagram">비율 = 부분÷전체 = '+frac(a,total)+'<span class="cap">비율에 100을 곱하고 %를 붙이면 백분율이에요</span><br>백분율 = '+frac(a,total)+'×100 = <strong style="color:#3fb950">'+pct+'%</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol3');
+}
+function pctwGen4(id){
+  var den=10+Math.floor(Math.random()*20), num=1+Math.floor(Math.random()*(den-1));
+  var el=document.getElementById(id);
+  el.setAttribute('data-num',num); el.setAttribute('data-den',den);
+  crwSetQuestion(el, '어떤 반 학생 '+den+'명 중 '+num+'명이 안경을 씁니다. 안경을 쓴 학생의 비율을 가장 간단한 분수로 나타내세요.', 'pctwSol4');
+}
+function pctwSol4(id){
+  var el=document.getElementById(id);
+  var num=+el.getAttribute('data-num'), den=+el.getAttribute('data-den'), g=gcd(num,den), rnum=num/g, rden=den/g;
+  var diagram='<div class="fb-diagram">'+frac(num,den)+'에서 분모·분자를 최대공약수 '+g+'로 나누면<br>→ <strong style="color:#3fb950">'+frac(rnum,rden)+'</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol4');
+}
+function pctwGen5(id){
+  var opts=[[1,2],[1,4],[3,4],[1,5],[2,5],[3,5],[4,5],[1,10],[3,10],[7,10],[1,20],[3,20]], pick=opts[Math.floor(Math.random()*opts.length)], p=pick[0], d=pick[1], k=2+Math.floor(Math.random()*9), newTotal=d*k;
+  var el=document.getElementById(id);
+  el.setAttribute('data-p',p); el.setAttribute('data-d',d); el.setAttribute('data-newtotal',newTotal);
+  crwSetQuestion(el, '어떤 반에서 부분:전체 비율이 '+frac(p,d)+'입니다. 다른 반 학생이 '+newTotal+'명이고 같은 비율이 적용된다면, 해당하는 학생은 몇 명일까요?', 'pctwSol5');
+}
+function pctwSol5(id){
+  var el=document.getElementById(id);
+  var p=+el.getAttribute('data-p'), d=+el.getAttribute('data-d'), newTotal=+el.getAttribute('data-newtotal'), ans=newTotal*p/d;
+  var diagram='<div class="fb-diagram">같은 비율이면, 전체가 달라져도 비율('+frac(p,d)+')은 그대로예요<span class="cap">전체×비율로 바로 구해요</span><br>'+newTotal+'×'+frac(p,d)+' = <strong style="color:#3fb950">'+ans+'명</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol5');
+}
+function pctwGen6(id){
+  var price=(5+Math.floor(Math.random()*95))*100, rates=[10,20,30,40,50,60,70,80], rate=rates[Math.floor(Math.random()*rates.length)], sale=price*(100-rate)/100;
+  var el=document.getElementById(id);
+  el.setAttribute('data-price',price); el.setAttribute('data-sale',sale);
+  crwSetQuestion(el, '정가 '+price+'원인 물건을 '+sale+'원에 판매합니다. 할인율은 몇 %인가요?', 'pctwSol6');
+}
+function pctwSol6(id){
+  var el=document.getElementById(id);
+  var price=+el.getAttribute('data-price'), sale=+el.getAttribute('data-sale'), discount=price-sale, rate=r2(discount/price*100);
+  var diagram='<div class="fb-diagram">할인된 금액 = '+price+'−'+sale+' = <strong style="color:#bc8cff">'+discount+'원</strong><span class="cap">할인율 = 할인된 금액÷정가, 그 비율에 100을 곱해요</span><br>할인율 = '+frac(discount,price)+'×100 = <strong style="color:#3fb950">'+rate+'%</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol6');
+}
+function pctwGen7(id){
+  var price=(5+Math.floor(Math.random()*95))*100, rates=[10,20,30,40,50,60,70,80], rate=rates[Math.floor(Math.random()*rates.length)];
+  var el=document.getElementById(id);
+  el.setAttribute('data-price',price); el.setAttribute('data-rate',rate);
+  crwSetQuestion(el, '정가 '+price+'원에서 '+rate+'% 할인하면 판매가는 얼마인가요?', 'pctwSol7');
+}
+function pctwSol7(id){
+  var el=document.getElementById(id);
+  var price=+el.getAttribute('data-price'), rate=+el.getAttribute('data-rate'), sale=price*(100-rate)/100;
+  var diagram='<div class="fb-diagram">할인 후 금액 = 정가×(1−할인율)<span class="cap">100%−'+rate+'%='+(100-rate)+'%가 남아요</span><br>'+price+'×'+(100-rate)+'÷100 = <strong style="color:#3fb950">'+sale+'원</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol7');
+}
+function pctwGen8(id){
+  var oldPrice=(5+Math.floor(Math.random()*95))*100, rates=[10,20,25,30,40,50], rate=rates[Math.floor(Math.random()*rates.length)], newPrice=oldPrice*(100+rate)/100;
+  var el=document.getElementById(id);
+  el.setAttribute('data-old',oldPrice); el.setAttribute('data-new',newPrice);
+  crwSetQuestion(el, '가격이 '+oldPrice+'원에서 '+newPrice+'원으로 올랐습니다. 몇 % 증가한 건가요?', 'pctwSol8');
+}
+function pctwSol8(id){
+  var el=document.getElementById(id);
+  var oldPrice=+el.getAttribute('data-old'), newPrice=+el.getAttribute('data-new'), increase=newPrice-oldPrice, rate=r2(increase/oldPrice*100);
+  var diagram='<div class="fb-diagram">늘어난 금액 = '+newPrice+'−'+oldPrice+' = <strong style="color:#bc8cff">'+increase+'원</strong><span class="cap">증가율 = 늘어난 금액÷원래 금액, 그 비율에 100을 곱해요</span><br>증가율 = '+frac(increase,oldPrice)+'×100 = <strong style="color:#3fb950">'+rate+'%</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol8');
+}
+function pctwGen9(id){
+  var pcts=[10,20,25,40,50,60,75,80], pct=pcts[Math.floor(Math.random()*pcts.length)], whole=(2+Math.floor(Math.random()*40))*4, part=whole*pct/100;
+  var el=document.getElementById(id);
+  el.setAttribute('data-pct',pct); el.setAttribute('data-part',part);
+  crwSetQuestion(el, '어떤 수의 '+pct+'%가 '+part+'입니다. 어떤 수는 얼마인가요?', 'pctwSol9');
+}
+function pctwSol9(id){
+  var el=document.getElementById(id);
+  var pct=+el.getAttribute('data-pct'), part=+el.getAttribute('data-part'), whole=r2(part*100/pct);
+  var diagram='<div class="fb-diagram">부분과 백분율을 알면, 전체 = 부분÷비율로 거꾸로 구해요<span class="cap">'+pct+'%='+r2(pct/100)+'</span><br>'+part+'÷'+r2(pct/100)+' = <strong style="color:#3fb950">'+whole+'</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol9');
+}
+function pctwGen10(id){
+  var pcts=[10,20,30,40,60,70,80,90], pctA=pcts[Math.floor(Math.random()*pcts.length)], ds=[4,5,10,20,25,50], d=ds[Math.floor(Math.random()*ds.length)], m=1+Math.floor(Math.random()*(d-1));
+  var el=document.getElementById(id);
+  el.setAttribute('data-pcta',pctA); el.setAttribute('data-m',m); el.setAttribute('data-d',d);
+  crwSetQuestion(el, pctA+'%와 '+frac(m,d)+' 중 어느 것이 더 큰가요?', 'pctwSol10');
+}
+function pctwSol10(id){
+  var el=document.getElementById(id);
+  var pctA=+el.getAttribute('data-pcta'), m=+el.getAttribute('data-m'), d=+el.getAttribute('data-d'), scale=100/d, numB=m*scale;
+  var bigger = pctA>numB ? pctA+'%' : frac(m,d);
+  var diagram='<div class="fb-diagram">'+pctA+'%='+frac(pctA,100)+', '+frac(m,d)+'='+frac(numB,100)+' (분모를 100으로 통분)<span class="cap">분자('+pctA+'과 '+numB+')끼리 비교해요</span><br>더 큰 것 = <strong style="color:#3fb950">'+bigger+'</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol10');
+}
+var PCTW_CLUB_TUPLES = [[3,2,20,25,100,22],[1,1,20,30,100,25],[4,1,25,40,100,28],[2,3,50,40,100,44],[3,5,40,20,80,27.5]];
+function pctwGen11(id){
+  var t=PCTW_CLUB_TUPLES[Math.floor(Math.random()*PCTW_CLUB_TUPLES.length)], k=1+Math.floor(Math.random()*6), T=t[4]*k;
+  var el=document.getElementById(id);
+  el.setAttribute('data-m',t[0]); el.setAttribute('data-f',t[1]); el.setAttribute('data-pm',t[2]); el.setAttribute('data-pf',t[3]); el.setAttribute('data-total',T);
+  crwSetQuestion(el, '어느 학교의 전체 학생 수는 '+T+'명입니다. 남학생 수와 여학생 수의 비는 '+t[0]+':'+t[1]+'입니다. 남학생의 '+t[2]+'%와 여학생의 '+t[3]+'%가 과학 동아리 활동을 합니다. 과학 동아리 전체 학생은 전체 학생의 몇 %입니까?', 'pctwSol11');
+}
+function pctwSol11(id){
+  var el=document.getElementById(id);
+  var m=+el.getAttribute('data-m'), f=+el.getAttribute('data-f'), pM=+el.getAttribute('data-pm'), pF=+el.getAttribute('data-pf'), T=+el.getAttribute('data-total');
+  var male=T*m/(m+f), female=T*f/(m+f), clubM=male*pM/100, clubF=female*pF/100, sum=clubM+clubF, pct=r2(sum/T*100);
+  var diagram='<div class="fb-diagram">남학생 = '+T+'×'+frac(m,m+f)+' = <strong style="color:#bc8cff">'+male+'명</strong>, 여학생 = <strong style="color:#bc8cff">'+female+'명</strong><br>동아리: 남 '+male+'×'+pM+'% = '+clubM+'명, 여 '+female+'×'+pF+'% = '+clubF+'명<span class="cap">두 그룹의 동아리 인원을 각각 구한 뒤 더해요</span><br>합계 = '+clubM+'+'+clubF+' = '+sum+'명 → 백분율 = '+frac(sum,T)+'×100 = <strong style="color:#3fb950">'+pct+'%</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol11');
+}
+function pctwGen12(id){
+  var Aamt=(1+Math.floor(Math.random()*5))*100, pA=[10,15,20,25,30][Math.floor(Math.random()*5)], Bamt=(1+Math.floor(Math.random()*5))*100, pB=[10,15,20,25,30,35,40][Math.floor(Math.random()*7)], water=Math.floor(Math.random()*5)*50;
+  var el=document.getElementById(id);
+  el.setAttribute('data-aamt',Aamt); el.setAttribute('data-pa',pA); el.setAttribute('data-bamt',Bamt); el.setAttribute('data-pb',pB); el.setAttribute('data-water',water);
+  crwSetQuestion(el, '소금물 A에는 소금이 '+pA+'%, 소금물 B에는 소금이 '+pB+'% 들어있습니다. 소금물 A '+Aamt+'g과 소금물 B '+Bamt+'g을 섞은 후, 물 '+water+'g을 더 넣었습니다. 새로 만든 소금물의 농도는 몇 %입니까? (반올림하여 소수 둘째 자리까지)', 'pctwSol12');
+}
+function pctwSol12(id){
+  var el=document.getElementById(id);
+  var Aamt=+el.getAttribute('data-aamt'), pA=+el.getAttribute('data-pa'), Bamt=+el.getAttribute('data-bamt'), pB=+el.getAttribute('data-pb'), water=+el.getAttribute('data-water');
+  var saltA=Aamt*pA/100, saltB=Bamt*pB/100, totalSalt=saltA+saltB, totalAmt=Aamt+Bamt+water, conc=r2(totalSalt/totalAmt*100);
+  var diagram='<div class="fb-diagram">소금 A = '+Aamt+'×'+pA+'% = <strong style="color:#bc8cff">'+saltA+'g</strong>, 소금 B = '+Bamt+'×'+pB+'% = <strong style="color:#bc8cff">'+saltB+'g</strong><span class="cap">전체 소금÷전체 소금물(물 더한 것 포함)의 비율에 100을 곱해요</span><br>전체 소금물 = '+Aamt+'+'+Bamt+'+'+water+' = '+totalAmt+'g, 전체 소금 = '+saltA+'+'+saltB+' = '+totalSalt+'g<br>농도 = '+frac(totalSalt,totalAmt)+'×100 = <strong style="color:#3fb950">'+conc+'%</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol12');
+}
+function pctwGen13(id){
+  var rate=[10,20,30,40,50,60,70,80,90][Math.floor(Math.random()*9)];
+  var el=document.getElementById(id);
+  el.setAttribute('data-rate',rate);
+  crwSetQuestion(el, '어떤 상품의 가격을 '+rate+'% 인상하였다가, 다시 인상된 가격에서 '+rate+'%를 할인하였습니다. 처음 가격과 비교했을 때 최종 가격은 처음 가격의 몇 %가 되었습니까?', 'pctwSol13');
+}
+function pctwSol13(id){
+  var el=document.getElementById(id);
+  var rate=+el.getAttribute('data-rate'), up=100+rate, down=100-rate, finalPct=r2(up*down/100);
+  var diagram='<div class="fb-diagram">100 → '+rate+'% 인상 → '+up+' → '+rate+'% 할인 → '+up+'×'+down+'÷100<span class="cap">두 번째 할인은 처음 100이 아니라 인상된 '+up+'에 적용돼요</span><br>= <strong style="color:#3fb950">'+finalPct+'%</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol13');
+}
+function pctwGen14(id){
+  var T=60*(2+Math.floor(Math.random()*9));
+  var el=document.getElementById(id);
+  el.setAttribute('data-total',T);
+  crwSetQuestion(el, '기차역에서 기차를 기다리는 사람이 '+T+'명 있습니다. 전체의 '+frac(3,5)+'은 남성이고 나머지는 여성입니다. 남성의 '+frac(1,4)+'이 기차에 탔고, 여성의 '+frac(1,3)+'이 기차에 탔다면, 전체 사람 중 몇 %가 기차를 타지 않았습니까? (반올림하여 소수 둘째 자리까지)', 'pctwSol14');
+}
+function pctwSol14(id){
+  var el=document.getElementById(id);
+  var T=+el.getAttribute('data-total'), male=T*3/5, female=T*2/5, rideM=male/4, rideF=female/3, notRide=T-rideM-rideF, pct=r2(notRide/T*100);
+  var diagram='<div class="fb-diagram">남성 = '+male+'명, 여성 = '+female+'명<br>탄 사람: 남 '+male+'÷4='+rideM+'명, 여 '+female+'÷3='+rideF+'명<span class="cap">전체에서 탄 사람을 빼서 안 탄 사람을 구하고, 그 비율에 100을 곱해요</span><br>안 탄 사람 = '+T+'−'+rideM+'−'+rideF+' = '+notRide+'명 → 백분율 = '+frac(notRide,T)+'×100 = <strong style="color:#3fb950">'+pct+'%</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol14');
+}
+function pctwGen15(id){
+  var p=[10,20,25,30,40,50][Math.floor(Math.random()*6)];
+  var el=document.getElementById(id);
+  el.setAttribute('data-p',p);
+  crwSetQuestion(el, '두 양의 정수 A와 B가 있습니다. A를 '+p+'% 늘리고 B를 '+p+'% 줄였더니 두 수의 값이 같아졌습니다. 처음 두 수 A와 B의 비(A:B)를 가장 간단한 자연수의 비로 나타내시오.', 'pctwSol15');
+}
+function pctwSol15(id){
+  var el=document.getElementById(id);
+  var p=+el.getAttribute('data-p'), n1=100-p, n2=100+p, g=gcd(n1,n2);
+  var diagram='<div class="fb-diagram">A×(100+'+p+') = B×(100−'+p+') 이므로<span class="cap">A:B = (100−'+p+'):(100+'+p+')</span><br>'+n1+':'+n2+'를 최대공약수 '+g+'로 나누면 → <strong style="color:#3fb950">'+(n1/g)+':'+(n2/g)+'</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol15');
+}
+function pctwGen16(id){
+  var pBig=[20,30,40,50,60,70,80][Math.floor(Math.random()*7)], pGB=[10,20,30,40,50,60,70,80,90][Math.floor(Math.random()*9)], pGS=[10,20,30,40,50,60,70,80,90][Math.floor(Math.random()*9)];
+  var el=document.getElementById(id);
+  el.setAttribute('data-pbig',pBig); el.setAttribute('data-pgb',pGB); el.setAttribute('data-pgs',pGS);
+  crwSetQuestion(el, '어느 농장에서 수확한 사과 전체의 '+pBig+'%는 크기가 큰 사과이고, 나머지는 작은 사과입니다. 큰 사과 중 '+pGB+'%는 선물용으로 포장하고, 작은 사과 중 '+pGS+'%는 선물용으로 포장했습니다. 선물용으로 포장된 사과는 전체 사과의 몇 %입니까?', 'pctwSol16');
+}
+function pctwSol16(id){
+  var el=document.getElementById(id);
+  var pBig=+el.getAttribute('data-pbig'), pGB=+el.getAttribute('data-pgb'), pGS=+el.getAttribute('data-pgs'), pSmall=100-pBig;
+  var giftBig=pBig*pGB/100, giftSmall=pSmall*pGS/100, total=giftBig+giftSmall;
+  var diagram='<div class="fb-diagram">큰 사과 중 포장 = '+pBig+'×'+pGB+'%=<strong style="color:#bc8cff">'+giftBig+'%</strong>, 작은 사과 중 포장 = '+pSmall+'×'+pGS+'%=<strong style="color:#bc8cff">'+giftSmall+'%</strong><span class="cap">두 그룹의 포장 비율(전체 기준)을 각각 구해서 더해요</span><br>전체 = '+giftBig+'+'+giftSmall+' = <strong style="color:#3fb950">'+total+'%</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol16');
+}
+function pctwGen17(id){
+  var conc=[10,15,20,25,30][Math.floor(Math.random()*5)], totalAmt=(2+Math.floor(Math.random()*8))*100, evap=(1+Math.floor(Math.random()*Math.floor(totalAmt/100/2)))*50;
+  var el=document.getElementById(id);
+  el.setAttribute('data-conc',conc); el.setAttribute('data-total',totalAmt); el.setAttribute('data-evap',evap);
+  crwSetQuestion(el, '농도가 '+conc+'%인 소금물 '+totalAmt+'g이 있습니다. 이 소금물에서 물 '+evap+'g을 증발시켰다면, 남은 소금물의 농도는 몇 %입니까? (반올림하여 소수 둘째 자리까지)', 'pctwSol17');
+}
+function pctwSol17(id){
+  var el=document.getElementById(id);
+  var conc=+el.getAttribute('data-conc'), totalAmt=+el.getAttribute('data-total'), evap=+el.getAttribute('data-evap'), salt=totalAmt*conc/100, remain=totalAmt-evap, newConc=r2(salt/remain*100);
+  var diagram='<div class="fb-diagram">소금의 양 = '+totalAmt+'×'+conc+'% = <strong style="color:#bc8cff">'+salt+'g</strong><span class="cap">물만 증발하니 소금의 양은 그대로, 전체 양만 줄어들어요</span><br>남은 소금물 = '+totalAmt+'−'+evap+' = '+remain+'g → 농도 = '+frac(salt,remain)+'×100 = <strong style="color:#3fb950">'+newConc+'%</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol17');
+}
+function pctwGen18(id){
+  var nEraser=3+Math.floor(Math.random()*5), diffUnit=2+Math.floor(Math.random()*5), nPencil=nEraser+diffUnit, xUnit=(2+Math.floor(Math.random()*9))*50, diff=diffUnit*xUnit;
+  var el=document.getElementById(id);
+  el.setAttribute('data-ne',nEraser); el.setAttribute('data-np',nPencil); el.setAttribute('data-diff',diff);
+  crwSetQuestion(el, '지우개 '+nEraser+'개의 가격은 연필 '+nPencil+'개의 가격과 같습니다. 연필 1개의 가격이 지우개 1개의 가격보다 '+diff+'원 저렴할 때, 연필 1개의 가격은 얼마입니까?', 'pctwSol18');
+}
+function pctwSol18(id){
+  var el=document.getElementById(id);
+  var nEraser=+el.getAttribute('data-ne'), nPencil=+el.getAttribute('data-np'), diff=+el.getAttribute('data-diff'), diffUnit=nPencil-nEraser, x=diff/diffUnit, P=nEraser*x, G=nPencil*x;
+  var diagram='<div class="fb-diagram">지우개'+nEraser+'개=연필'+nPencil+'개 가격이므로, 연필:지우개 가격 비 = '+nEraser+':'+nPencil+'<span class="cap">가격 차이(연필 '+diffUnit+'단위만큼 더 쌈) = '+diff+'원이니, 1단위 = '+diff+'÷'+diffUnit+'</span><br>1단위 = '+x+'원 → 연필 = '+nEraser+'×'+x+' = <strong style="color:#3fb950">'+P+'원</strong> (지우개 = '+G+'원)</div>';
+  crwRenderToggle(id, diagram, 'pctwSol18');
+}
+var PCTW_VOTE_TUPLES = [[60,20,50],[75,25,60],[40,25,32],[90,50,60],[80,60,50],[50,100,25]];
+function pctwGen19(id){
+  var t=PCTW_VOTE_TUPLES[Math.floor(Math.random()*PCTW_VOTE_TUPLES.length)];
+  var el=document.getElementById(id);
+  el.setAttribute('data-p',t[0]); el.setAttribute('data-inc',t[1]);
+  crwSetQuestion(el, '전체 투표자의 '+t[0]+'%가 찬성한 안건이 있습니다. 투표자 수가 처음보다 '+t[1]+'% 늘어났을 때, 찬성한 사람 수가 변하지 않았다면 찬성률은 몇 %로 바뀝니까?', 'pctwSol19');
+}
+function pctwSol19(id){
+  var el=document.getElementById(id);
+  var p=+el.getAttribute('data-p'), inc=+el.getAttribute('data-inc'), newPct=r2(p*100/(100+inc));
+  var diagram='<div class="fb-diagram">처음 전체를 100이라 하면 찬성 = '+p+'명<span class="cap">전체만 (100+'+inc+')로 늘고, 찬성자 수는 그대로예요</span><br>새 전체 = 100+'+inc+' = '+(100+inc)+' → 찬성률 = '+frac(p,100+inc)+'×100 = <strong style="color:#3fb950">'+newPct+'%</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol19');
+}
+var PCTW_MIX_TUPLES = [[400,15,200,30,100,17.5],[500,20,300,40,100,23],[300,10,300,20,100,12.5],[200,10,200,40,100,20],[200,10,200,25,100,15]];
+function pctwGen20(id){
+  var t=PCTW_MIX_TUPLES[Math.floor(Math.random()*PCTW_MIX_TUPLES.length)];
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',t[0]); el.setAttribute('data-pa',t[1]); el.setAttribute('data-b',t[2]); el.setAttribute('data-pb',t[3]); el.setAttribute('data-x',t[4]);
+  crwSetQuestion(el, 'A통에는 '+t[1]+'%의 설탕물 '+t[0]+'g, B통에는 '+t[3]+'%의 설탕물 '+t[2]+'g이 들어있습니다. A통의 설탕물 '+t[4]+'g을 B통에 옮겨 담고 잘 섞은 후, 다시 B통의 설탕물 '+t[4]+'g을 A통에 옮겨 담았습니다. 최종적으로 A통에 있는 설탕물의 농도는 몇 %입니까?', 'pctwSol20');
+}
+function pctwSol20(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), pA=+el.getAttribute('data-pa'), b=+el.getAttribute('data-b'), pB=+el.getAttribute('data-pb'), x=+el.getAttribute('data-x');
+  var moved1=x*pA/100, A1=a-x, sugarA1=a*pA/100-moved1, B1=b+x, sugarB1=b*pB/100+moved1, moved2=x*sugarB1/B1, sugarA2=sugarA1+moved2, A2=A1+x, conc=r2(sugarA2/A2*100);
+  var diagram='<div class="fb-diagram">1단계: A→B로 '+x+'g 이동(소금 '+moved1+'g) → A는 '+A1+'g('+sugarA1+'g), B는 '+B1+'g('+sugarB1+'g)<span class="cap">B로 들어간 '+x+'g에는 A의 농도('+pA+'%)만큼 소금이 들어있어요</span><br>2단계: B→A로 '+x+'g 이동(소금 '+r2(moved2)+'g, B의 새 농도 적용) → A는 다시 '+A2+'g('+r2(sugarA2)+'g)<span class="cap">B로 넣었다 뺄 때는 B의 "섞인 후" 농도를 적용해요</span><br>최종 농도 = '+frac(r2(sugarA2),A2)+'×100 = <strong style="color:#3fb950">'+conc+'%</strong></div>';
+  crwRenderToggle(id, diagram, 'pctwSol20');
+}
+function e6rGen1(id){
+  var a=2+Math.floor(Math.random()*7), b=2+Math.floor(Math.random()*7), unit=(1+Math.floor(Math.random()*20))*10, total=unit*(a+b);
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-total',total);
+  crwSetQuestion(el, total+'원을 언니와 동생이 '+a+':'+b+'로 나누어 가지려고 합니다. 언니가 가지는 돈은 얼마입니까?', 'e6rSol1');
+}
+function e6rSol1(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), total=+el.getAttribute('data-total');
+  var unit=total/(a+b), ans=unit*a;
+  var diagram='<div class="fb-diagram">'+groupBoxes(a+b,a,unit)+'전체 '+a+'+'+b+'='+(a+b)+'묶음, 1묶음 = '+total+'÷'+(a+b)+'=<strong style="color:#bc8cff">'+unit+'원</strong><br>언니 = '+unit+'×'+a+' = <strong style="color:#3fb950">'+ans+'원</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol1');
+}
+function e6rGen2(id){
+  var a=2+Math.floor(Math.random()*7), b=2+Math.floor(Math.random()*7), unit=1+Math.floor(Math.random()*15), total=unit*(a+b);
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-total',total);
+  crwSetQuestion(el, '길이가 '+total+'cm인 리본을 두 사람이 '+a+':'+b+'로 나누어 가지려고 합니다. 첫 번째 사람이 가지는 리본은 몇 cm입니까?', 'e6rSol2');
+}
+function e6rSol2(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), total=+el.getAttribute('data-total');
+  var unit=total/(a+b), ans=unit*a;
+  var diagram='<div class="fb-diagram">'+groupBoxes(a+b,a,unit)+'전체 '+a+'+'+b+'='+(a+b)+'묶음, 1묶음 = '+total+'÷'+(a+b)+'=<strong style="color:#bc8cff">'+unit+'cm</strong><br>첫 번째 사람 = '+unit+'×'+a+' = <strong style="color:#3fb950">'+ans+'cm</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol2');
+}
+function e6rGen3(id){
+  var p=2+Math.floor(Math.random()*7), q=2+Math.floor(Math.random()*7), k=2+Math.floor(Math.random()*7);
+  var el=document.getElementById(id);
+  el.setAttribute('data-p',p); el.setAttribute('data-q',q); el.setAttribute('data-k',k);
+  crwSetQuestion(el, '비례식 '+p+':'+q+' = '+(p*k)+':x 에서 x를 구하세요.', 'e6rSol3');
+}
+function e6rSol3(id){
+  var el=document.getElementById(id);
+  var p=+el.getAttribute('data-p'), q=+el.getAttribute('data-q'), k=+el.getAttribute('data-k');
+  var innerProd=q*(p*k), x=innerProd/p;
+  var diagram='<div class="fb-diagram">외항은 '+p+'와 x, 내항은 '+q+'와 '+(p*k)+'<br>외항의 곱 = 내항의 곱 → '+p+'×x = '+q+'×'+(p*k)+' = <strong style="color:#bc8cff">'+innerProd+'</strong><br>x = '+innerProd+'÷'+p+' = <strong style="color:#3fb950">'+x+'</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol3');
+}
+function e6rGen4(id){
+  var p=2+Math.floor(Math.random()*7), q=2+Math.floor(Math.random()*7), k=2+Math.floor(Math.random()*7);
+  var el=document.getElementById(id);
+  el.setAttribute('data-p',p); el.setAttribute('data-q',q); el.setAttribute('data-k',k);
+  crwSetQuestion(el, '비례식 '+p+':x = '+(p*k)+':'+(q*k)+' 에서 x를 구하세요.', 'e6rSol4');
+}
+function e6rSol4(id){
+  var el=document.getElementById(id);
+  var p=+el.getAttribute('data-p'), q=+el.getAttribute('data-q'), k=+el.getAttribute('data-k');
+  var outerProd=p*(q*k), x=outerProd/(p*k);
+  var diagram='<div class="fb-diagram">외항은 '+p+'와 '+(q*k)+', 내항은 x와 '+(p*k)+'<br>외항의 곱 = 내항의 곱 → '+p+'×'+(q*k)+' = x×'+(p*k)+' = <strong style="color:#bc8cff">'+outerProd+'</strong><br>x = '+outerProd+'÷'+(p*k)+' = <strong style="color:#3fb950">'+x+'</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol4');
+}
+function e6rGen5(id){
+  var scales=[10000,25000,50000,100000], N=scales[Math.floor(Math.random()*scales.length)], mapcm=1+Math.floor(Math.random()*20);
+  var el=document.getElementById(id);
+  el.setAttribute('data-n',N); el.setAttribute('data-mapcm',mapcm);
+  crwSetQuestion(el, '어떤 지도의 축척은 1:'+N+'입니다. 지도에서 두 지점 사이의 거리가 '+mapcm+'cm일 때, 실제 거리는 몇 km입니까?', 'e6rSol5');
+}
+function e6rSol5(id){
+  var el=document.getElementById(id);
+  var N=+el.getAttribute('data-n'), mapcm=+el.getAttribute('data-mapcm');
+  var realCm=mapcm*N, realKm=r2(realCm/100000);
+  var diagram='<div class="fb-diagram">축척 1:'+N+'은 지도의 1cm가 실제로는 '+N+'cm라는 뜻<br>실제 거리 = '+mapcm+'×'+N+' = <strong style="color:#bc8cff">'+realCm+'cm</strong><span class="cap">100000cm=1km이므로 100000으로 나눠서 km로 바꿔요</span><br>= '+realCm+'÷100000 = <strong style="color:#3fb950">'+realKm+'km</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol5');
+}
+function e6rGen6(id){
+  var scales=[10000,25000,50000,100000], N=scales[Math.floor(Math.random()*scales.length)], realKm=1+Math.floor(Math.random()*20);
+  var el=document.getElementById(id);
+  el.setAttribute('data-n',N); el.setAttribute('data-realkm',realKm);
+  crwSetQuestion(el, '어떤 지도의 축척은 1:'+N+'입니다. 실제 거리가 '+realKm+'km인 두 지점은 지도에서 몇 cm로 나타납니까?', 'e6rSol6');
+}
+function e6rSol6(id){
+  var el=document.getElementById(id);
+  var N=+el.getAttribute('data-n'), realKm=+el.getAttribute('data-realkm');
+  var realCm=realKm*100000, mapcm=realCm/N;
+  var diagram='<div class="fb-diagram">실제 거리 = '+realKm+'km = '+realCm+'cm<span class="cap">1km=100000cm로 먼저 바꿔요</span><br>지도 거리 = '+realCm+'÷'+N+' = <strong style="color:#3fb950">'+mapcm+'cm</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol6');
+}
+function e6rGen7(id){
+  var a=2+Math.floor(Math.random()*5), b=2+Math.floor(Math.random()*5), c=2+Math.floor(Math.random()*5), unit=(1+Math.floor(Math.random()*15))*10, total=unit*(a+b+c);
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-c',c); el.setAttribute('data-total',total);
+  crwSetQuestion(el, total+'원을 세 사람이 '+a+':'+b+':'+c+'로 나누어 가지려고 합니다. 첫 번째 사람이 가지는 돈은 얼마입니까?', 'e6rSol7');
+}
+function e6rSol7(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c'), total=+el.getAttribute('data-total');
+  var unit=total/(a+b+c), ans=unit*a;
+  var diagram='<div class="fb-diagram">'+groupBoxes(a+b+c,a,unit)+'전체 '+a+'+'+b+'+'+c+'='+(a+b+c)+'묶음, 1묶음 = '+total+'÷'+(a+b+c)+'=<strong style="color:#bc8cff">'+unit+'원</strong><br>첫 번째 사람 = '+unit+'×'+a+' = <strong style="color:#3fb950">'+ans+'원</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol7');
+}
+function e6rGen8(id){
+  var a=2+Math.floor(Math.random()*7), b=2+Math.floor(Math.random()*7), unit=(1+Math.floor(Math.random()*10))*10, total=unit*(a+b);
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-total',total);
+  crwSetQuestion(el, '들이가 '+total+'mL인 주스를 두 컵에 '+a+':'+b+'로 나누어 담으려고 합니다. 첫 번째 컵에 담기는 주스는 몇 mL입니까?', 'e6rSol8');
+}
+function e6rSol8(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), total=+el.getAttribute('data-total');
+  var unit=total/(a+b), ans=unit*a;
+  var diagram='<div class="fb-diagram">'+groupBoxes(a+b,a,unit)+'전체 '+a+'+'+b+'='+(a+b)+'묶음, 1묶음 = '+total+'÷'+(a+b)+'=<strong style="color:#bc8cff">'+unit+'mL</strong><br>첫 번째 컵 = '+unit+'×'+a+' = <strong style="color:#3fb950">'+ans+'mL</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol8');
+}
+function e6rGen9(id){
+  var n1=2+Math.floor(Math.random()*6), unitPrice=(5+Math.floor(Math.random()*46))*10, price1=n1*unitPrice, n2=2+Math.floor(Math.random()*10);
+  var el=document.getElementById(id);
+  el.setAttribute('data-n1',n1); el.setAttribute('data-price1',price1); el.setAttribute('data-n2',n2);
+  crwSetQuestion(el, '빵 '+n1+'개에 '+price1+'원이면, 같은 빵 '+n2+'개는 얼마입니까? (정비례 관계를 이용하세요)', 'e6rSol9');
+}
+function e6rSol9(id){
+  var el=document.getElementById(id);
+  var n1=+el.getAttribute('data-n1'), price1=+el.getAttribute('data-price1'), n2=+el.getAttribute('data-n2');
+  var unitPrice=price1/n1, ans=unitPrice*n2;
+  var diagram='<div class="fb-diagram">빵 1개 가격 = '+price1+'÷'+n1+' = <strong style="color:#bc8cff">'+unitPrice+'원</strong><span class="cap">개수가 늘어난 만큼 가격도 똑같은 비율로 늘어나요(정비례)</span><br>빵 '+n2+'개 = '+unitPrice+'×'+n2+' = <strong style="color:#3fb950">'+ans+'원</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol9');
+}
+function e6rGen10(id){
+  var a=2+Math.floor(Math.random()*7), b=2+Math.floor(Math.random()*7), unit=(1+Math.floor(Math.random()*20))*10, partAmt=unit*a;
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-partamt',partAmt);
+  crwSetQuestion(el, '어떤 돈을 두 사람이 '+a+':'+b+'로 나누었더니 첫 번째 사람이 '+partAmt+'원을 받았습니다. 전체 금액은 얼마입니까?', 'e6rSol10');
+}
+function e6rSol10(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), partAmt=+el.getAttribute('data-partamt');
+  var unit=partAmt/a, total=unit*(a+b);
+  var diagram='<div class="fb-diagram">첫 번째 사람은 '+a+'묶음 중 '+partAmt+'원을 받았으니, 1묶음 = '+partAmt+'÷'+a+' = <strong style="color:#bc8cff">'+unit+'원</strong><span class="cap">1묶음 값을 구하면, 전체 묶음 수를 곱해 전체 금액을 구할 수 있어요</span><br>전체 = '+unit+'×('+a+'+'+b+') = <strong style="color:#3fb950">'+total+'원</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol10');
+}
+function e6rGen11(id){
+  var a=3+Math.floor(Math.random()*6), b=2+Math.floor(Math.random()*(a-1)), unit=1+Math.floor(Math.random()*10), total=unit*(a+b);
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-total',total);
+  crwSetQuestion(el, '형과 동생의 나이의 합은 '+total+'살이고, 나이의 비는 '+a+':'+b+'입니다. 형은 동생보다 몇 살 많습니까?', 'e6rSol11');
+}
+function e6rSol11(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), total=+el.getAttribute('data-total');
+  var unit=total/(a+b), older=unit*a, younger=unit*b, diff=older-younger;
+  var diagram='<div class="fb-diagram">형'+groupBoxes(a,a,unit,'#f0c040')+'동생'+groupBoxes(b,b,unit,'#58a6ff')+'<span class="cap">형이 동생보다 묶음이 '+(a-b)+'개 더 많아요</span>1묶음 = '+total+'÷'+(a+b)+' = <strong style="color:#bc8cff">'+unit+'살</strong><br>형 = '+unit+'×'+a+' = '+older+'살, 동생 = '+unit+'×'+b+' = '+younger+'살<span class="cap">비례배분으로 각자의 나이를 먼저 구한 다음, 그 차이를 구해요</span><br>차이 = '+older+'−'+younger+' = <strong style="color:#3fb950">'+diff+'살</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol11');
+}
+function e6rGen12(id){
+  var a=2+Math.floor(Math.random()*6), b=2+Math.floor(Math.random()*6), unit=2+Math.floor(Math.random()*8), width=unit*a, height=unit*b, halfP=width+height, P=halfP*2;
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-p',P);
+  crwSetQuestion(el, '가로와 세로의 비가 '+a+':'+b+'인 직사각형의 둘레가 '+P+'cm입니다. 이 직사각형의 넓이는 몇 cm²입니까?', 'e6rSol12');
+}
+function e6rSol12(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), P=+el.getAttribute('data-p');
+  var halfP=P/2, unit=halfP/(a+b), width=unit*a, height=unit*b, area=width*height;
+  var maxDim=Math.max(width,height), scale=80/maxDim, pxW=Math.round(width*scale), pxH=Math.round(height*scale);
+  var svg='<svg width="'+(pxW+10)+'" height="'+(pxH+10)+'" viewBox="0 0 '+(pxW+10)+' '+(pxH+10)+'"><rect x="5" y="5" width="'+pxW+'" height="'+pxH+'" fill="#bc8cff" fill-opacity="0.25" stroke="#58a6ff" stroke-width="2"/></svg>';
+  var diagram='<div class="fb-diagram">'+svg+'<span class="cap">가로 '+width+'cm, 세로 '+height+'cm (실제 비율로 그린 모양)</span><br>가로+세로 = 둘레÷2 = '+P+'÷2 = <strong style="color:#bc8cff">'+halfP+'cm</strong><span class="cap">가로+세로의 합을 비례배분으로 나누면 가로와 세로를 각각 구할 수 있어요</span><br>1묶음 = '+halfP+'÷('+a+'+'+b+') = '+unit+'cm → 가로 = '+width+'cm, 세로 = '+height+'cm<br>넓이 = '+width+'×'+height+' = <strong style="color:#3fb950">'+area+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol12');
+}
 function avgwGen1(id){
   var n = 3+Math.floor(Math.random()*4);
   var avg, scores, last, ok=false, tries=0;
@@ -8597,7 +9816,7 @@ function cfwGen8(id){
   var total=d*plates;
   var el=document.getElementById(id);
   el.setAttribute('data-total',total); el.setAttribute('data-d',d); el.setAttribute('data-plates',plates); el.setAttribute('data-k',k);
-  crwSetQuestion(el, '쿠키 '+total+'개를 '+d+'개씩 접시에 담았습니다. 그 중 '+frac(1,k)+'만큼의 접시를 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?', 'cfwSol8');
+  crwSetQuestion(el, '쿠키 '+total+'개를 '+d+'개씩 접시에 담았습니다. 그 중 접시의 '+frac(1,k)+'을 형이 가져갔다면, 형이 가져간 쿠키는 몇 개인가요?', 'cfwSol8');
 }
 function cfwSol8(id){
   var el=document.getElementById(id);
