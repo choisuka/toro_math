@@ -6117,6 +6117,50 @@ const CV_DATA_E6FRACDIV = [
       <div style="font-size:.68rem;color:#8b949e;margin-top:8px">대분수는 먼저 가분수로 바꾼 뒤, 개념5·6과 똑같이 역수를 곱해요</div>
     </div>
   `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>"${frac(3,4)} ÷ ${frac(1,2)}"(개념3·5와 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 계산이 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>몫 구하기 표현</strong><br>"${frac(3,4)} ÷ ${frac(1,2)}은 얼마인가요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 나누는 분수의 역수를 곱하면 몫을 구할 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(3,4)} × ${frac(2,1)} = ${frac(6,4)} = ${frac(3,2)}</div>
+      → <span class="expr-ans">1과 ${frac(1,2)}</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>"몇 번 들어가는지" 표현</strong><br>"${frac(3,4)} 안에 ${frac(1,2)}은 몇 번 들어가나요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 나눗셈 A÷B는 "A 안에 B가 몇 번 들어가는지" 세는 것과 같은 질문이에요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(1,2)}이 1번 들어가고, 남은 ${frac(1,4)}은 ${frac(1,2)}의 절반</div>
+      → <span class="expr-ans">1과 ${frac(1,2)}번</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>통분법 표현</strong><br>"${frac(3,4)}와 ${frac(1,2)}을 통분해서 나누면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 분모를 같게 만들면 분자끼리 나누면 돼요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(3,4)} = ${frac(6,8)}, ${frac(1,2)} = ${frac(4,8)} → 6÷4 = ${frac(6,4)} = ${frac(3,2)}</div>
+      → <span class="expr-ans">1과 ${frac(1,2)}</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>검산 표현</strong><br>"몫(1과${frac(1,2)})에 ${frac(1,2)}을 다시 곱하면 원래 수(${frac(3,4)})가 나오는지 확인하면?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 나눗셈의 검산은 몫×나누는 수=나뉘는 수로 확인해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(3,2)} × ${frac(1,2)} = ${frac(3,4)}</div>
+      → <span class="expr-ans">${frac(3,4)}로 일치 ✓</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>역산 표현</strong><br>"어떤 수를 ${frac(1,2)}로 나누었더니 ${frac(3,4)}이 나왔습니다. 어떤 수는 얼마인가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 나눗셈의 역은 곱셈이에요 — 몫에 나누는 수를 다시 곱하면 원래 수가 나와요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(3,4)} × ${frac(1,2)} = ${frac(3,8)}</div>
+      → <span class="expr-ans">${frac(3,8)}</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>비교 표현</strong><br>"${frac(3,4)} ÷ ${frac(1,2)}과 ${frac(3,4)} ÷ ${frac(1,4)} 중 어느 것이 더 큰가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 나누는 수가 작을수록(단위가 작을수록) 몫은 더 커져요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(3,4)}÷${frac(1,2)}=1과${frac(1,2)}, ${frac(3,4)}÷${frac(1,4)}=3</div>
+      → <span class="expr-ans">${frac(3,4)}÷${frac(1,4)}이 더 큼</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>실생활 적용 표현</strong><br>"피자 ${frac(3,4)}판을 한 사람에게 ${frac(1,2)}판씩 나눠주면 몇 명에게 줄 수 있나요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 "몇 명에게 줄 수 있는지"를 묻는 실생활 상황도 분수의 나눗셈이에요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(3,4)} ÷ ${frac(1,2)} = 1과${frac(1,2)}</div>
+      → <span class="expr-ans">1명(과 반 명분)</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>다른 숫자 적용 표현</strong><br>"같은 방법으로 ${frac(5,6)} ÷ ${frac(1,2)}은 얼마인가요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 숫자만 다를 뿐, 역수를 곱하는 규칙은 똑같이 적용해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(5,6)} × ${frac(2,1)} = ${frac(10,6)} = ${frac(5,3)}</div>
+      → <span class="expr-ans">1과 ${frac(2,3)}</span></div>
+    <div class="expr-item"><span class="expr-num">9</span><strong>일반화 표현</strong><br>"${frac('a','b')} ÷ ${frac('c','d')} = ${frac('a','b')} × ${frac('d','c')} 공식에 ${frac(3,4)}와 ${frac(1,2)}을 대입하면?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 어떤 분수 나눗셈이든 문자식 a/b÷c/d=a/b×d/c에 그대로 대입할 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">a=3,b=4,c=1,d=2 → ${frac(3,4)} × ${frac(2,1)} = ${frac(3,2)}</div>
+      → <span class="expr-ans">1과 ${frac(1,2)}</span></div>
+    <div class="expr-item"><span class="expr-num">10</span><strong>실생활 리본 표현</strong><br>"리본 ${frac(3,4)}m를 ${frac(1,2)}m씩 잘라 리본 목걸이를 만들면 몇 개를 만들 수 있나요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 "몇 개를 만들 수 있는지"를 묻는 실생활 상황도 결국 같은 나눗셈이에요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(3,4)} ÷ ${frac(1,2)} = 1과${frac(1,2)}</div>
+      → <span class="expr-ans">1개(와 반 개분)</span></div>
+    <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 계산(${frac(3,4)}÷${frac(1,2)})</strong>을 묻고 있어요. 몫 구하기, 몇 번 들어가는지 세기, 통분, 역수 곱셈 — 방법은 달라도 답은 항상 1과${frac(1,2)}예요.</p>
+  `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
     <div class="q-item"><strong>Q1.</strong> 2÷3을 분수로 나타내면 ${frac(2,3)}인데, 왜 나누는 수(3)가 분모가 될까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e6fracdiv-h1',this)">💬 친구들은 이렇게 답했어요</button>
@@ -6339,6 +6383,56 @@ const CV_DATA_E6FRACDIV = [
       <div id="fdw-10" class="prob-q" data-n="6" data-un="1" data-ud="3" data-m="4" data-qtext="리본 6m 중 ${frac(1,3)}을 사용하고, 남은 리본을 4도막으로 똑같이 나누면 한 도막은 몇 m인가요?" data-solfn="fdwSol10">리본 6m 중 ${frac(1,3)}을 사용하고, 남은 리본을 4도막으로 똑같이 나누면 한 도막은 몇 m인가요?<br><button class="havruta-show-btn" onclick="fdwSol10('fdw-10')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="fdwGen10('fdw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 11 (심화·역산)</div>
+      <div id="fdw-11" class="prob-q" data-m="6" data-xn="5" data-xd="2" data-qtext="어떤 수에 6을 곱해야 할 것을 잘못하여 6으로 나누었더니 5/12가 되었습니다. 바르게 계산한 값을 구하시오." data-solfn="fdaSol11">어떤 수에 6을 곱해야 할 것을 잘못하여 6으로 나누었더니 ${frac(5,12)}가 되었습니다. 바르게 계산한 값을 구하시오.<br><button class="havruta-show-btn" onclick="fdaSol11('fdw-11')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdaGen11('fdw-11')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 12 (심화·도형)</div>
+      <div id="fdw-12" class="prob-q" data-b="4" data-p="9" data-q="10" data-qtext="넓이가 3과 3/5cm²이고 밑변의 길이가 4cm인 평행사변형이 있습니다. 이 평행사변형의 높이는 몇 cm인지 구하시오." data-solfn="fdaSol12">넓이가 3과 ${frac(3,5)}cm²이고 밑변의 길이가 4cm인 평행사변형이 있습니다. 이 평행사변형의 높이는 몇 cm인지 구하시오.<br><button class="havruta-show-btn" onclick="fdaSol12('fdw-12')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdaGen12('fdw-12')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 13 (심화·카드 최솟값)</div>
+      <div id="fdw-13" class="prob-q" data-d="3,5,8" data-qtext="수 카드 3, 5, 8을 한 번씩만 사용하여 (진분수)÷(자연수) 형태의 나눗셈식을 만들려고 합니다. 계산 결과가 가장 작게 되는 식을 만들고, 그 값을 구하시오." data-solfn="fdaSol13">수 카드 3, 5, 8을 한 번씩만 사용하여 (진분수)÷(자연수) 형태의 나눗셈식을 만들려고 합니다. 계산 결과가 가장 작게 되는 식을 만들고, 그 값을 구하시오.<br><button class="havruta-show-btn" onclick="fdaSol13('fdw-13')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdaGen13('fdw-13')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 14 (심화·작업량)</div>
+      <div id="fdw-14" class="prob-q" data-h="8" data-p="2" data-q="3" data-qtext="동생은 8시간 동안 전체 작업량의 2/3를 마쳤습니다. 동생이 1시간 동안 한 작업량은 전체의 몇 분의 몇인지 구하시오." data-solfn="fdaSol14">동생은 8시간 동안 전체 작업량의 ${frac(2,3)}를 마쳤습니다. 동생이 1시간 동안 한 작업량은 전체의 몇 분의 몇인지 구하시오.<br><button class="havruta-show-btn" onclick="fdaSol14('fdw-14')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdaGen14('fdw-14')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 15 (심화·남은양)</div>
+      <div id="fdw-15" class="prob-q" data-q="8" data-total="7" data-rem="1" data-n="5" data-qtext="7/8L의 물이 들어있는 주전자가 있습니다. 이 물을 똑같은 컵 5개에 가득 채워 나누어 담았더니 1/8L의 물이 남았습니다. 컵 1개에 담긴 물의 양은 몇 L인지 구하시오." data-solfn="fdaSol15">${frac(7,8)}L의 물이 들어있는 주전자가 있습니다. 이 물을 똑같은 컵 5개에 가득 채워 나누어 담았더니 ${frac(1,8)}L의 물이 남았습니다. 컵 1개에 담긴 물의 양은 몇 L인지 구하시오.<br><button class="havruta-show-btn" onclick="fdaSol15('fdw-15')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdaGen15('fdw-15')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 16 (심화·이중등분)</div>
+      <div id="fdw-16" class="prob-q" data-whole="4" data-p="1" data-q="2" data-a="3" data-b="3" data-qtext="길이가 4와 1/2m인 끈이 있습니다. 이 끈을 3등분한 것 중 한 조각을 다시 3등분했습니다. 나누어진 가장 작은 끈 한 조각의 길이는 몇 m인지 구하시오." data-solfn="fdaSol16">길이가 4와 ${frac(1,2)}m인 끈이 있습니다. 이 끈을 3등분한 것 중 한 조각을 다시 3등분했습니다. 나누어진 가장 작은 끈 한 조각의 길이는 몇 m인지 구하시오.<br><button class="havruta-show-btn" onclick="fdaSol16('fdw-16')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdaGen16('fdw-16')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 17 (심화·다각형)</div>
+      <div id="fdw-17" class="prob-q" data-n="8" data-whole="6" data-p="2" data-q="3" data-qtext="둘레가 6과 2/3cm인 정팔각형이 있습니다. 이 정팔각형의 한 변의 길이는 몇 cm인지 구하시오." data-solfn="fdaSol17">둘레가 6과 ${frac(2,3)}cm인 정팔각형이 있습니다. 이 정팔각형의 한 변의 길이는 몇 cm인지 구하시오.<br><button class="havruta-show-btn" onclick="fdaSol17('fdw-17')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdaGen17('fdw-17')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 18 (심화·카드 최댓값)</div>
+      <div id="fdw-18" class="prob-q" data-d="2,4,7" data-m="5" data-qtext="수 카드 2, 4, 7을 모두 한 번씩만 사용하여 만들 수 있는 가장 큰 대분수를 만들었습니다. 이 대분수를 5로 나눈 몫을 대분수(또는 기약분수)로 나타내시오." data-solfn="fdaSol18">수 카드 2, 4, 7을 모두 한 번씩만 사용하여 만들 수 있는 가장 큰 대분수를 만들었습니다. 이 대분수를 5로 나눈 몫을 대분수(또는 기약분수)로 나타내시오.<br><button class="havruta-show-btn" onclick="fdaSol18('fdw-18')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdaGen18('fdw-18')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 19 (심화·비교)</div>
+      <div id="fdw-19" class="prob-q" data-aw="3" data-ap="1" data-aq="3" data-an="5" data-bw="4" data-bp="1" data-bq="2" data-bn="6" data-qtext="A 물통에는 물이 3과 1/3L 들어있고, B 물통에는 물이 4와 1/2L 들어있습니다. A 물통의 물은 5명에게, B 물통의 물은 6명에게 똑같이 나누어 주었습니다. 한 사람이 받는 물의 양은 어느 물통이 몇 L 더 많은지 구하시오." data-solfn="fdaSol19">A 물통에는 물이 3과 ${frac(1,3)}L 들어있고, B 물통에는 물이 4와 ${frac(1,2)}L 들어있습니다. A 물통의 물은 5명에게, B 물통의 물은 6명에게 똑같이 나누어 주었습니다. 한 사람이 받는 물의 양은 어느 물통이 몇 L 더 많은지 구하시오.<br><button class="havruta-show-btn" onclick="fdaSol19('fdw-19')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdaGen19('fdw-19')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 20 (심화·종합)</div>
+      <div id="fdw-20" class="prob-q" data-whole="8" data-p="4" data-q="5" data-trees="12" data-qtext="길이가 8과 4/5m인 일직선 도로의 한쪽에 처음부터 끝까지 같은 간격으로 나무 12그루를 심으려고 합니다. 나무와 나무 사이의 간격은 몇 m로 해야 하는지 구하시오." data-solfn="fdaSol20">길이가 8과 ${frac(4,5)}m인 일직선 도로의 한쪽에 처음부터 끝까지 같은 간격으로 나무 12그루를 심으려고 합니다. 나무와 나무 사이의 간격은 몇 m로 해야 하는지 구하시오.<br><button class="havruta-show-btn" onclick="fdaSol20('fdw-20')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdaGen20('fdw-20')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
   `}
 ];
 CV_DATA['e6fracdiv'] = CV_DATA_E6FRACDIV;
@@ -6348,10 +6442,14 @@ var FDW6_TUPLES = [[6,2,3],[4,1,2],[9,3,4],[10,5,6],[8,2,5],[12,3,4],[15,3,5],[1
 var FDW7_TUPLES = [[1,1,2,2,3],[2,1,4,3,4],[1,2,3,1,2],[2,1,2,5,6]];
 var FDW10_TUPLES = [[6,1,3,4],[9,1,3,3],[8,1,4,2],[10,2,5,3],[12,1,2,4],[15,2,5,3]];
 function fdwFracOrInt(n,d){ return d===1 ? String(n) : frac(n,d); }
+function waGwa(n){
+  var batchim = {0:1,1:1,2:0,3:1,4:0,5:0,6:1,7:1,8:1,9:0};
+  return batchim[n%10] ? '과' : '와';
+}
 function fdwMixedStr(n,d){
   var whole = Math.floor(n/d), rem = n%d;
   if(d===1) return String(n);
-  return whole>0 ? (rem>0 ? whole+'과 '+frac(rem,d) : String(whole)) : frac(rem===0?n:n,d);
+  return whole>0 ? (rem>0 ? whole+waGwa(whole)+' '+frac(rem,d) : String(whole)) : frac(rem===0?n:n,d);
 }
 function fdwGen1(id){
   var n = 1+Math.floor(Math.random()*7);
@@ -6519,6 +6617,210 @@ function fdwSol10(id){
   var remStr = fdwFracOrInt(rn,rd);
   var diagram = '<div class="fb-diagram">남은 리본 = '+N+' × '+frac(ud-un,ud)+' = '+remStr+'m<br>'+remStr+' ÷ '+M+' = <strong style="color:#3fb950">'+ansStr+'</strong>m</div>';
   rgwRenderToggle(id, diagram, 'fdwSol10');
+}
+var FDA11_TUPLES = [[6,5,2],[4,3,2],[8,7,4],[9,5,3],[3,7,2],[5,9,4],[7,11,6]];
+function fdaGen11(id){
+  var t = FDA11_TUPLES[Math.floor(Math.random()*FDA11_TUPLES.length)];
+  var M=t[0], xn=t[1], xd=t[2];
+  var wn=xn, wd=xd*M, g=gcd(wn,wd);
+  var wrongStr = fdwMixedStr(wn/g, wd/g);
+  var el = document.getElementById(id);
+  el.setAttribute('data-m',M); el.setAttribute('data-xn',xn); el.setAttribute('data-xd',xd);
+  rgwSetQuestion(el, '어떤 수에 '+M+'을 곱해야 할 것을 잘못하여 '+M+'으로 나누었더니 '+wrongStr+'가 되었습니다. 바르게 계산한 값을 구하시오.', 'fdaSol11');
+}
+function fdaSol11(id){
+  var el = document.getElementById(id);
+  var M=+el.getAttribute('data-m'), xn=+el.getAttribute('data-xn'), xd=+el.getAttribute('data-xd');
+  var wn=xn, wd=xd*M, g1=gcd(wn,wd);
+  var wrongStr = fdwMixedStr(wn/g1, wd/g1);
+  var xStr = fdwMixedStr(xn,xd);
+  var cn=xn*M, g2=gcd(cn,xd);
+  var correctStr = fdwFracOrInt(cn/g2, xd/g2);
+  var diagram = '<div class="fb-diagram">어떤 수 = '+wrongStr+' × '+M+' = '+xStr+'<br>바르게 계산: '+xStr+' × '+M+' = <strong style="color:#3fb950">'+correctStr+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'fdaSol11');
+}
+function fdaGen12(id){
+  var B = 2+Math.floor(Math.random()*8);
+  var q = 2+Math.floor(Math.random()*8);
+  var p = 1+Math.floor(Math.random()*(q-1));
+  var areaNum = p*B, areaDen = q, g = gcd(areaNum, areaDen);
+  var an=areaNum/g, ad=areaDen/g;
+  var el = document.getElementById(id);
+  el.setAttribute('data-b',B); el.setAttribute('data-p',p); el.setAttribute('data-q',q);
+  rgwSetQuestion(el, '넓이가 '+fdwMixedStr(an,ad)+'cm²이고 밑변의 길이가 '+B+'cm인 평행사변형이 있습니다. 이 평행사변형의 높이는 몇 cm인지 구하시오.', 'fdaSol12');
+}
+function fdaSol12(id){
+  var el = document.getElementById(id);
+  var B=+el.getAttribute('data-b'), p=+el.getAttribute('data-p'), q=+el.getAttribute('data-q');
+  var areaNum=p*B, areaDen=q, g=gcd(areaNum,areaDen);
+  var an=areaNum/g, ad=areaDen/g;
+  var diagram = '<div class="fb-diagram">높이 = 넓이 ÷ 밑변 = '+fdwMixedStr(an,ad)+' ÷ '+B+' = '+frac(p,q)+' = <strong style="color:#3fb950">'+fdwFracOrInt(p,q)+'</strong>cm</div>';
+  rgwRenderToggle(id, diagram, 'fdaSol12');
+}
+function fdaGen13(id){
+  var digits = [];
+  while(digits.length<3){
+    var d = 2+Math.floor(Math.random()*8);
+    if(digits.indexOf(d)===-1) digits.push(d);
+  }
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', digits.join(','));
+  rgwSetQuestion(el, '수 카드 '+digits[0]+', '+digits[1]+', '+digits[2]+'을 한 번씩만 사용하여 (진분수)÷(자연수) 형태의 나눗셈식을 만들려고 합니다. 계산 결과가 가장 작게 되는 식을 만들고, 그 값을 구하시오.', 'fdaSol13');
+}
+function fdaSol13(id){
+  var el = document.getElementById(id);
+  var digits = el.getAttribute('data-d').split(',').map(Number);
+  var sorted = digits.slice().sort(function(a,b){return a-b;});
+  var num = sorted[0], rest = [sorted[1],sorted[2]];
+  var den = rest[0]*rest[1];
+  var g = gcd(num,den);
+  var diagram = '<div class="fb-diagram">가장 작은 수('+num+')를 분자로, 나머지 두 수('+rest[0]+','+rest[1]+')를 분모·자연수로 → '+frac(num,rest[0])+' ÷ '+rest[1]+' = '+frac(num,den)+(g>1?' = '+frac(num/g,den/g):'')+'<br>→ <strong style="color:#3fb950">'+frac(num/g,den/g)+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'fdaSol13');
+}
+function fdaGen14(id){
+  var H = 2+Math.floor(Math.random()*7);
+  var q = 2+Math.floor(Math.random()*7);
+  var p = 1+Math.floor(Math.random()*(q-1));
+  var el = document.getElementById(id);
+  el.setAttribute('data-h',H); el.setAttribute('data-p',p); el.setAttribute('data-q',q);
+  rgwSetQuestion(el, '동생은 '+H+'시간 동안 전체 작업량의 '+frac(p,q)+'를 마쳤습니다. 동생이 1시간 동안 한 작업량은 전체의 몇 분의 몇인지 구하시오.', 'fdaSol14');
+}
+function fdaSol14(id){
+  var el = document.getElementById(id);
+  var H=+el.getAttribute('data-h'), p=+el.getAttribute('data-p'), q=+el.getAttribute('data-q');
+  var den=q*H, g=gcd(p,den);
+  var diagram = '<div class="fb-diagram">'+frac(p,q)+' ÷ '+H+' = '+frac(p,den)+(g>1?' = '+frac(p/g,den/g):'')+'<br>→ <strong style="color:#3fb950">'+frac(p/g,den/g)+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'fdaSol14');
+}
+function fdaGen15(id){
+  var q = 5+Math.floor(Math.random()*6);
+  var totalN = q-1;
+  var remN = 1+Math.floor(Math.random()*(totalN-1));
+  var n = 2+Math.floor(Math.random()*5);
+  var el = document.getElementById(id);
+  el.setAttribute('data-q',q); el.setAttribute('data-total',totalN); el.setAttribute('data-rem',remN); el.setAttribute('data-n',n);
+  rgwSetQuestion(el, frac(totalN,q)+'L의 물이 들어있는 주전자가 있습니다. 이 물을 똑같은 컵 '+n+'개에 가득 채워 나누어 담았더니 '+frac(remN,q)+'L의 물이 남았습니다. 컵 1개에 담긴 물의 양은 몇 L인지 구하시오.', 'fdaSol15');
+}
+function fdaSol15(id){
+  var el = document.getElementById(id);
+  var q=+el.getAttribute('data-q'), totalN=+el.getAttribute('data-total'), remN=+el.getAttribute('data-rem'), n=+el.getAttribute('data-n');
+  var pouredN = totalN-remN;
+  var g1=gcd(pouredN,q), pn=pouredN/g1, pd=q/g1;
+  var den2=pd*n, g2=gcd(pn,den2);
+  var diagram='<div class="fb-diagram">나눠 담은 물 = '+frac(totalN,q)+' − '+frac(remN,q)+' = '+frac(pouredN,q)+(g1>1?' = '+frac(pn,pd):'')+'<br>컵 1개 = '+frac(pn,pd)+' ÷ '+n+' = '+frac(pn,den2)+(g2>1?' = '+frac(pn/g2,den2/g2):'')+'<br>→ <strong style="color:#3fb950">'+frac(pn/g2,den2/g2)+'</strong>L</div>';
+  rgwRenderToggle(id, diagram, 'fdaSol15');
+}
+function fdaGen16(id){
+  var whole=2+Math.floor(Math.random()*4);
+  var q=2+Math.floor(Math.random()*4);
+  var p=1+Math.floor(Math.random()*(q-1));
+  var A=2+Math.floor(Math.random()*3);
+  var B=2+Math.floor(Math.random()*3);
+  var el=document.getElementById(id);
+  el.setAttribute('data-whole',whole); el.setAttribute('data-p',p); el.setAttribute('data-q',q);
+  el.setAttribute('data-a',A); el.setAttribute('data-b',B);
+  rgwSetQuestion(el, '길이가 '+whole+waGwa(whole)+' '+frac(p,q)+'m인 끈이 있습니다. 이 끈을 '+A+'등분한 것 중 한 조각을 다시 '+B+'등분했습니다. 나누어진 가장 작은 끈 한 조각의 길이는 몇 m인지 구하시오.', 'fdaSol16');
+}
+function fdaSol16(id){
+  var el=document.getElementById(id);
+  var whole=+el.getAttribute('data-whole'), p=+el.getAttribute('data-p'), q=+el.getAttribute('data-q');
+  var A=+el.getAttribute('data-a'), B=+el.getAttribute('data-b');
+  var totalNum = whole*q+p;
+  var d1=q*A, g1b=gcd(totalNum,d1), n1=totalNum/g1b; d1=d1/g1b;
+  var d2=d1*B, g2=gcd(n1,d2);
+  var n2f=n1/g2, d2f=d2/g2;
+  var diagram='<div class="fb-diagram">'+whole+waGwa(whole)+frac(p,q)+' = '+frac(totalNum,q)+'<br>'+frac(totalNum,q)+' ÷ '+A+' = '+frac(n1,d1)+'<br>'+frac(n1,d1)+' ÷ '+B+' = '+frac(n1,d2)+(g2>1?' = '+frac(n2f,d2f):'')+'<br>→ <strong style="color:#3fb950">'+fdwFracOrInt(n2f,d2f)+'</strong>m</div>';
+  rgwRenderToggle(id, diagram, 'fdaSol16');
+}
+var FDA17_SIDES = [5,6,7,8,9,10];
+var FDA17_NAMES = {5:'정오각형',6:'정육각형',7:'정칠각형',8:'정팔각형',9:'정구각형',10:'정십각형'};
+function fdaGen17(id){
+  var N = FDA17_SIDES[Math.floor(Math.random()*FDA17_SIDES.length)];
+  var whole=2+Math.floor(Math.random()*6);
+  var q=2+Math.floor(Math.random()*6);
+  var p=1+Math.floor(Math.random()*(q-1));
+  var el=document.getElementById(id);
+  el.setAttribute('data-n',N); el.setAttribute('data-whole',whole); el.setAttribute('data-p',p); el.setAttribute('data-q',q);
+  var shapeName = FDA17_NAMES[N];
+  rgwSetQuestion(el, '둘레가 '+whole+waGwa(whole)+' '+frac(p,q)+'cm인 '+shapeName+'이 있습니다. 이 '+shapeName+'의 한 변의 길이는 몇 cm인지 구하시오.', 'fdaSol17');
+}
+function fdaSol17(id){
+  var el=document.getElementById(id);
+  var N=+el.getAttribute('data-n'), whole=+el.getAttribute('data-whole'), p=+el.getAttribute('data-p'), q=+el.getAttribute('data-q');
+  var totalNum=whole*q+p;
+  var den=q*N, g=gcd(totalNum,den);
+  var diagram='<div class="fb-diagram">'+whole+waGwa(whole)+frac(p,q)+' = '+frac(totalNum,q)+'<br>한 변 = '+frac(totalNum,q)+' ÷ '+N+' = '+frac(totalNum,den)+(g>1?' = '+frac(totalNum/g,den/g):'')+'<br>→ <strong style="color:#3fb950">'+fdwFracOrInt(totalNum/g,den/g)+'</strong>cm</div>';
+  rgwRenderToggle(id, diagram, 'fdaSol17');
+}
+function fdaGen18(id){
+  var digits=[];
+  while(digits.length<3){ var d=2+Math.floor(Math.random()*8); if(digits.indexOf(d)===-1) digits.push(d); }
+  var M=2+Math.floor(Math.random()*6);
+  var el=document.getElementById(id);
+  el.setAttribute('data-d',digits.join(',')); el.setAttribute('data-m',M);
+  rgwSetQuestion(el,'수 카드 '+digits[0]+', '+digits[1]+', '+digits[2]+'을 모두 한 번씩만 사용하여 만들 수 있는 가장 큰 대분수를 만들었습니다. 이 대분수를 '+M+'로 나눈 몫을 대분수(또는 기약분수)로 나타내시오.','fdaSol18');
+}
+function fdaSol18(id){
+  var el=document.getElementById(id);
+  var digits=el.getAttribute('data-d').split(',').map(Number);
+  var M=+el.getAttribute('data-m');
+  var sorted=digits.slice().sort(function(a,b){return b-a;});
+  var whole=sorted[0], rest=[sorted[1],sorted[2]].sort(function(a,b){return a-b;});
+  var fn=rest[0], fd=rest[1];
+  var mixedNum = whole*fd+fn;
+  var finalNum=mixedNum, finalDen=fd*M, g=gcd(finalNum,finalDen);
+  var ansN=finalNum/g, ansD=finalDen/g;
+  var diagram='<div class="fb-diagram">가장 큰 대분수: 자연수 부분 '+whole+'(최댓값), 나머지 두 수로 진분수 '+frac(fn,fd)+' → '+whole+waGwa(whole)+frac(fn,fd)+' = '+frac(mixedNum,fd)+'<br>'+frac(mixedNum,fd)+' ÷ '+M+' = '+frac(mixedNum,fd*M)+(g>1?' = '+frac(ansN,ansD):'')+'<br>→ <strong style="color:#3fb950">'+fdwMixedStr(ansN,ansD)+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'fdaSol18');
+}
+function fdaGen19(id){
+  function pick(){
+    var whole=2+Math.floor(Math.random()*5);
+    var q=2+Math.floor(Math.random()*7);
+    var p=1+Math.floor(Math.random()*(q-1));
+    var n=3+Math.floor(Math.random()*6);
+    return {whole:whole,p:p,q:q,n:n};
+  }
+  var A=pick(), B=pick();
+  var el=document.getElementById(id);
+  el.setAttribute('data-aw',A.whole); el.setAttribute('data-ap',A.p); el.setAttribute('data-aq',A.q); el.setAttribute('data-an',A.n);
+  el.setAttribute('data-bw',B.whole); el.setAttribute('data-bp',B.p); el.setAttribute('data-bq',B.q); el.setAttribute('data-bn',B.n);
+  rgwSetQuestion(el, 'A 물통에는 물이 '+A.whole+waGwa(A.whole)+' '+frac(A.p,A.q)+'L 들어있고, B 물통에는 물이 '+B.whole+waGwa(B.whole)+' '+frac(B.p,B.q)+'L 들어있습니다. A 물통의 물은 '+A.n+'명에게, B 물통의 물은 '+B.n+'명에게 똑같이 나누어 주었습니다. 한 사람이 받는 물의 양은 어느 물통이 몇 L 더 많은지 구하시오.', 'fdaSol19');
+}
+function fdaSol19(id){
+  var el=document.getElementById(id);
+  var aw=+el.getAttribute('data-aw'),ap=+el.getAttribute('data-ap'),aq=+el.getAttribute('data-aq'),an=+el.getAttribute('data-an');
+  var bw=+el.getAttribute('data-bw'),bp=+el.getAttribute('data-bp'),bq=+el.getAttribute('data-bq'),bn=+el.getAttribute('data-bn');
+  var aTotalNum=aw*aq+ap, aDen=aq*an, ga=gcd(aTotalNum,aDen);
+  var an2=aTotalNum/ga, ad2=aDen/ga;
+  var bTotalNum=bw*bq+bp, bDen=bq*bn, gb=gcd(bTotalNum,bDen);
+  var bn2=bTotalNum/gb, bd2=bDen/gb;
+  var lcmDen = ad2*bd2/gcd(ad2,bd2);
+  var aCompare = an2*(lcmDen/ad2);
+  var bCompare = bn2*(lcmDen/bd2);
+  var diffNum = Math.abs(aCompare-bCompare);
+  var gDiff = gcd(diffNum, lcmDen) || 1;
+  var bigger = aCompare>bCompare ? 'A' : (bCompare>aCompare ? 'B' : '같음');
+  var diagram = '<div class="fb-diagram">A 1인당 = '+aw+waGwa(aw)+frac(ap,aq)+' ÷ '+an+' = '+frac(an2,ad2)+'<br>B 1인당 = '+bw+waGwa(bw)+frac(bp,bq)+' ÷ '+bn+' = '+frac(bn2,bd2)+'<br>통분 비교: '+frac(aCompare,lcmDen)+' vs '+frac(bCompare,lcmDen)+'<br>→ <strong style="color:#3fb950">'+bigger+' 물통이 '+(diffNum===0?'같음':frac(diffNum/gDiff,lcmDen/gDiff)+'L 더 많음')+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'fdaSol19');
+}
+function fdaGen20(id){
+  var whole=6+Math.floor(Math.random()*6);
+  var q=2+Math.floor(Math.random()*6);
+  var p=1+Math.floor(Math.random()*(q-1));
+  var trees=8+Math.floor(Math.random()*8);
+  var el=document.getElementById(id);
+  el.setAttribute('data-whole',whole); el.setAttribute('data-p',p); el.setAttribute('data-q',q); el.setAttribute('data-trees',trees);
+  rgwSetQuestion(el, '길이가 '+whole+waGwa(whole)+' '+frac(p,q)+'m인 일직선 도로의 한쪽에 처음부터 끝까지 같은 간격으로 나무 '+trees+'그루를 심으려고 합니다. 나무와 나무 사이의 간격은 몇 m로 해야 하는지 구하시오. (단, 나무의 두께는 생각하지 않습니다.)', 'fdaSol20');
+}
+function fdaSol20(id){
+  var el=document.getElementById(id);
+  var whole=+el.getAttribute('data-whole'), p=+el.getAttribute('data-p'), q=+el.getAttribute('data-q'), trees=+el.getAttribute('data-trees');
+  var totalNum=whole*q+p;
+  var gaps=trees-1;
+  var den=q*gaps, g=gcd(totalNum,den);
+  var diagram='<div class="fb-diagram">간격 수 = '+trees+'−1 = '+gaps+'군데<br>'+whole+waGwa(whole)+frac(p,q)+' = '+frac(totalNum,q)+'<br>간격 = '+frac(totalNum,q)+' ÷ '+gaps+' = '+frac(totalNum,den)+(g>1?' = '+frac(totalNum/g,den/g):'')+'<br>→ <strong style="color:#3fb950">'+fdwFracOrInt(totalNum/g,den/g)+'</strong>m</div>';
+  rgwRenderToggle(id, diagram, 'fdaSol20');
 }
 const CV_DATA_E6CIRC = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
