@@ -719,6 +719,22 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
   <div class="semester-group" data-sem="1">
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">➗ 분수의 나눗셈 <span class="badge">초6</span></div><div class="unit-sub">자연수÷자연수·분수÷분수·역수의 곱셈</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e6fracdiv">
+        <div class="cv-grid" id="cv-e6fracdiv-grid"></div>
+        <div class="cv-detail" id="cv-e6fracdiv-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e6fracdiv')">← 목록으로</button>
+          <div id="cv-e6fracdiv-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
       <div><div class="unit-title">📊 비율과 백분율 <span class="badge">초6</span></div><div class="unit-sub">비·비율·백분율·할인율</div></div>
       <span class="unit-arrow">▼</span>
     </div>
@@ -1439,6 +1455,50 @@ const CV_DATA = {
         <div style="text-align:center;font-size:.78rem;margin-top:8px;padding-top:8px;border-top:1px solid #30363d">그래서 공배수를 구하고 싶으면, 두 수의 배수를 각각 계속 나열하지 않고 <strong style="color:#f0c040">최소공배수 하나의 배수만 구하면</strong> 돼요</div>
       </div>
     `},
+    { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+      <p>"24와 36"이라는 두 수(개념3·5와 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 관계가 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
+      <div class="expr-item"><span class="expr-num">1</span><strong>최대공약수 표현</strong><br>"24와 36의 최대공약수는?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 최대공약수는 두 수의 공통 약수 중 가장 큰 수예요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">24의 약수: 1,2,3,4,6,8,12,24 / 36의 약수: 1,2,3,4,6,9,12,18,36 → 공통 약수 중 최대는 12</div>
+        → <span class="expr-ans">12</span></div>
+      <div class="expr-item"><span class="expr-num">2</span><strong>최소공배수 표현</strong><br>"24와 36의 최소공배수는?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 최소공배수는 두 수의 공통 배수 중 가장 작은 수예요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">최대공약수 12로 쪼개면 24=12×2, 36=12×3 → 최소공배수 = 12×2×3 = 72</div>
+        → <span class="expr-ans">72</span></div>
+      <div class="expr-item"><span class="expr-num">3</span><strong>공약수 나열 표현</strong><br>"24와 36의 공약수를 모두 구하면?"
+        <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 공약수는 모두 최대공약수(12)의 약수와 정확히 같아요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">12의 약수를 구하면 → 1,2,3,4,6,12</div>
+        → <span class="expr-ans">1,2,3,4,6,12</span></div>
+      <div class="expr-item"><span class="expr-num">4</span><strong>공배수 나열 표현</strong><br>"24와 36의 공배수를 작은 것부터 3개 구하면?"
+        <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 공배수는 모두 최소공배수(72)의 배수와 정확히 같아요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">72의 배수를 작은 것부터 나열 → 72, 144, 216</div>
+        → <span class="expr-ans">72, 144, 216</span></div>
+      <div class="expr-item"><span class="expr-num">5</span><strong>곱셈 관계 표현</strong><br>"24×36의 값을 최대공약수와 최소공배수의 곱으로 확인하면?"
+        <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 두 수의 곱은 항상 최대공약수×최소공배수와 같아요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">24×36 = 864, 최대공약수×최소공배수 = 12×72 = 864 → 서로 일치</div>
+        → <span class="expr-ans">864</span></div>
+      <div class="expr-item"><span class="expr-num">6</span><strong>서로소로 쪼개는 표현</strong><br>"24와 36을 각각 최대공약수 12로 나누면 어떤 두 수가 남나요?"
+        <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 최대공약수로 나누면 더 이상 공약수가 1뿐인 두 수(서로소)가 남아요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">24÷12 = 2, 36÷12 = 3 → 2와 3은 공약수가 1뿐</div>
+        → <span class="expr-ans">2와 3</span></div>
+      <div class="expr-item"><span class="expr-num">7</span><strong>실생활 나눠주기 표현</strong><br>"연필 24자루와 색연필 36자루를 최대한 많은 학생에게 남김없이 똑같이 나눠주면 몇 명까지 가능한가요?"
+        <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 "남김없이 똑같이 나누는 최대 인원"은 곧 최대공약수를 구하는 상황이에요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">24와 36의 최대공약수 = 12</div>
+        → <span class="expr-ans">12명</span></div>
+      <div class="expr-item"><span class="expr-num">8</span><strong>1인당 개수 역산 표현</strong><br>"위 7번처럼 12명에게 나눠줄 때, 한 명당 연필과 색연필은 각각 몇 자루씩인가요?"
+        <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 각 수를 최대공약수(나눠주는 인원)로 나누면 1인당 개수가 나와요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">연필: 24÷12 = 2자루, 색연필: 36÷12 = 3자루</div>
+        → <span class="expr-ans">연필 2자루, 색연필 3자루</span></div>
+      <div class="expr-item"><span class="expr-num">9</span><strong>실생활 최소공배수 표현</strong><br>"4분마다 오는 A버스와 6분마다 오는 B버스가 오전 9시에 동시에 출발했다면, 다음번에 다시 동시에 출발하는 시각은?"
+        <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 "정해진 간격으로 반복되는 두 가지가 다시 같아지는 시점"은 곧 최소공배수를 구하는 상황이에요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">4와 6의 최소공배수 = 12(분) → 9시+12분</div>
+        → <span class="expr-ans">오전 9시 12분</span></div>
+      <div class="expr-item"><span class="expr-num">10</span><strong>실생활 정사각형 타일 표현</strong><br>"가로 24cm, 세로 36cm인 종이를 잘라 남김없이 가장 큰 정사각형 타일을 만들면, 타일 한 변의 길이는?"
+        <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 "직사각형을 남김없이 채우는 가장 큰 정사각형"의 한 변도 최대공약수예요</div>
+        <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">24와 36의 최대공약수 = 12</div>
+        → <span class="expr-ans">12cm</span></div>
+      <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 두 수(24와 36)의 관계</strong>를 묻고 있어요. 최대공약수·최소공배수·공약수·공배수는 모두 서로 연결되어 있다는 걸 알 수 있어요.</p>
+    `},
     { title:'💬 하브루타 질문', cls:'havruta', html:`
       <div class="q-item"><strong>Q1.</strong> 소수(素數)는 약수가 항상 정확히 2개(1과 자기 자신)입니다. 그런데 1은 소수일까요?
         <button class="havruta-show-btn" onclick="havrutaReveal('e5gcd-h1',this)">💬 친구들은 이렇게 답했어요</button>
@@ -1900,33 +1960,33 @@ const CV_DATA = {
     { title:'🔥 심화 토론', cls:'debate', html:`
       <div class="story-line">
         <div class="story-avatar">🧒</div>
-        <div class="story-bubble"><span class="story-name">민준</span>선생님, 마트에서 "원래 가격 100,000원 → 지금 60,000원"이라고 써 있는 거 봤어요! 40% 할인이라는데 완전 대박 아니에요?</div>
+        <div class="story-bubble"><span class="story-name">민준</span>선생님, 어제 야구 봤는데 A선수는 타율이 0.300이고 B선수는 0.250이래요. A선수가 무조건 더 잘하는 거죠?</div>
       </div>
       <div class="story-line">
         <div class="story-avatar">👧</div>
-        <div class="story-bubble"><span class="story-name">서연</span>근데 그 "원래 가격 100,000원"이 진짜 원래 가격이 맞을까요? 확인할 방법이 없잖아요.</div>
+        <div class="story-bubble"><span class="story-name">서연</span>근데 A선수는 10타수 3안타(0.300)이고, B선수는 100타수 25안타(0.250)래요. 타수가 다른데 그냥 비교해도 되나요?</div>
       </div>
       <div class="story-line">
         <div class="story-avatar">🧒</div>
-        <div class="story-bubble"><span class="story-name">지호</span>설마 일부러 원래 가격을 부풀려서 써놓은 거 아니에요? 그럼 할인율도 가짜잖아요!</div>
+        <div class="story-bubble"><span class="story-name">지호</span>10번 중 3번은 어쩌다 우연히 잘 맞았을 수도 있잖아요.</div>
+      </div>
+      <div class="story-line">
+        <div class="story-avatar">🧑‍🏫</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>좋은 지적이에요! 표본(타수)이 적으면 비율이 우연에 크게 흔들려요. 동전을 10번 던지면 7번 앞면이 나올 수도 있지만(0.7), 1000번 던지면 0.5에 훨씬 가까워져요.</div>
+      </div>
+      <div class="fb-diagram">
+        A선수: 10타수 3안타 = <strong style="color:#bc8cff">0.300</strong> &nbsp;&nbsp; B선수: 100타수 25안타 = <strong style="color:#bc8cff">0.250</strong>
+        <span class="cap">타수가 적을수록 우연의 영향이 커서, 비율이 진짜 실력을 정확히 반영하지 못할 수 있어요</span>
       </div>
       <div class="story-line">
         <div class="story-avatar">👧</div>
-        <div class="story-bubble"><span class="story-name">하은</span>맞아요, 저희 엄마도 "정가"만 보지 말고 "실제로 얼마 내는지"를 보라고 하셨어요.</div>
+        <div class="story-bubble"><span class="story-name">하은</span>그럼 어떻게 공정하게 비교해요?</div>
       </div>
       <div class="story-line">
         <div class="story-avatar">🧑‍🏫</div>
-        <div class="story-bubble teacher"><span class="story-name">선생님</span>다들 아주 예리해요! 실제로 "원래 가격"을 평소보다 높게 표시해뒀다가 할인율을 크게 보이게 만드는 마케팅 방식이 있어요. 40% 할인이라는 숫자 자체는 계산이 맞아도, 기준이 되는 "원래 가격"이 조작되면 그 숫자는 의미가 없어져요.</div>
+        <div class="story-bubble teacher"><span class="story-name">선생님</span>표본이 충분히 클 때 비교하는 게 더 믿을 만해요. 시즌 전체 타율처럼 타수가 많이 쌓인 걸 봐야, 그 선수의 진짜 실력에 가까운 값이 나와요.</div>
       </div>
-      <div class="fb-diagram">
-        진짜 원가 70,000원을 100,000원으로 부풀림 <span class="arrow">➜</span> "40% 할인" 표시 <span class="arrow">➜</span> 실제 판매가 60,000원(진짜 원가보다 오히려 비쌈!)
-        <span class="cap">할인율 계산은 맞아도, 기준(원래 가격)이 거짓이면 전체 숫자가 의미 없어요</span>
-      </div>
-      <div class="story-line">
-        <div class="story-avatar">🧑‍🏫</div>
-        <div class="story-bubble teacher"><span class="story-name">선생님</span>그래서 숫자를 볼 때는 "계산이 맞는가"뿐 아니라 "기준이 정직한가"도 함께 봐야 해요. 이게 바로 하은이 어머니가 말씀하신 "정가 말고 실제 내는 돈을 보라"는 조언과 같은 뜻이에요.</div>
-      </div>
-      <div class="story-takeaway"><strong>정리:</strong> 할인율·비율 같은 숫자는 계산 자체가 틀리지 않아도, 그 기준이 되는 값이 조작되면 전체가 소비자를 속이는 도구가 될 수 있어요. 숫자를 볼 때는 "계산"만이 아니라 "기준이 믿을 만한가"까지 함께 따져보는 습관이 필요해요.</div>
+      <div class="story-takeaway"><strong>정리:</strong> 비율·백분율은 "몇 번 중 몇 번"인지(표본 크기)에 따라 신뢰도가 달라져요. 표본이 작으면 우연의 영향을 크게 받으니, 두 비율을 비교할 때는 표본 크기도 함께 봐야 해요.</div>
     `}
   ],
   'e3frac': [
@@ -3883,6 +3943,50 @@ const CV_DATA_E5FRAC2 = [
       <div style="font-size:.68rem;color:#8b949e;margin-top:8px">분모가 같아지면 분자만 비교하면 되니까 쉬워져요</div>
     </div>
   `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>"${frac(8,12)}를 약분하고, ${frac(3,4)}와 ${frac(2,3)}를 통분하는"(개념2·5와 같은 예시) 상황 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 관계가 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>약분 표현</strong><br>"${frac(8,12)}를 가장 간단한 분수로 나타내면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 약분은 분모·분자를 같은 공약수로 나누는 거예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">8와 12의 공약수 4로 나누면 → 8÷4=2, 12÷4=3</div>
+      → <span class="expr-ans">${frac(2,3)}</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>기약분수 확인 표현</strong><br>"${frac(2,3)}가 기약분수인지 확인하면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 분모·분자의 최대공약수가 1이면 더는 약분할 수 없는 기약분수예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">2와 3의 최대공약수 = 1</div>
+      → <span class="expr-ans">기약분수 맞음</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>크기가 같은 분수 표현</strong><br>"${frac(2,3)}과 크기가 같은 분수를 분모·분자에 2배, 3배, 4배를 해서 만들면?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 분모·분자에 같은 수를 곱해도 분수의 크기는 그대로예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">2×2=4, 3×2=6 → ${frac(4,6)} 　 2×3=6, 3×3=9 → ${frac(6,9)} 　 2×4=8, 3×4=12 → ${frac(8,12)}</div>
+      → <span class="expr-ans">${frac(4,6)}, ${frac(6,9)}, ${frac(8,12)}</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>역산 표현</strong><br>"어떤 분수를 4로 약분했더니 ${frac(2,3)}이 되었다면, 원래 분수는?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 약분의 반대는 분모·분자에 같은 수를 곱하는 거예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">2×4=8, 3×4=12</div>
+      → <span class="expr-ans">${frac(8,12)}</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>통분 표현</strong><br>"${frac(3,4)}와 ${frac(2,3)}을 통분하면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 통분은 분모가 다른 분수들을 공통분모(공배수)로 맞추는 거예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">4와 3의 공통분모 12로 맞추면 ${frac(3,4)}=${frac(9,12)}, ${frac(2,3)}=${frac(8,12)}</div>
+      → <span class="expr-ans">${frac(9,12)}와 ${frac(8,12)}</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>크기 비교 표현</strong><br>"${frac(3,4)}와 ${frac(2,3)} 중 어느 것이 더 큰가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 통분해서 분모가 같아지면 분자끼리만 비교하면 돼요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(9,12)}와 ${frac(8,12)}를 비교 → 9>8</div>
+      → <span class="expr-ans">${frac(3,4)}이 더 큼</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>차이 표현</strong><br>"통분한 두 분수 ${frac(9,12)}와 ${frac(8,12)}의 차이는 얼마인가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 분모가 같아지면 분자끼리 빼기만 하면 차이가 나와요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(9,12)} − ${frac(8,12)} = ${frac(1,12)}</div>
+      → <span class="expr-ans">${frac(1,12)}</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>다른 공배수 통분 표현</strong><br>"최소공배수(12) 대신 24로 ${frac(3,4)}와 ${frac(2,3)}을 통분하면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 최소공배수가 아닌 다른 공배수를 써도 통분은 되지만 숫자만 더 커져요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(3,4)}=${frac(18,24)}, ${frac(2,3)}=${frac(16,24)} (12로 통분한 ${frac(9,12)}·${frac(8,12)}보다 숫자가 커짐)</div>
+      → <span class="expr-ans">${frac(18,24)}와 ${frac(16,24)}</span></div>
+    <div class="expr-item"><span class="expr-num">9</span><strong>실생활 피자 비교 표현</strong><br>"민준이는 피자 한 판의 ${frac(3,4)}를 먹었고, 서연이는 크기가 같은 다른 피자의 ${frac(2,3)}를 먹었습니다. 누가 더 많이 먹었나요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 분모가 다른 두 양을 비교하는 실생활 상황도 통분해서 분자로 비교해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(9,12)}와 ${frac(8,12)} 비교 → 9>8</div>
+      → <span class="expr-ans">민준이가 더 많이 먹음</span></div>
+    <div class="expr-item"><span class="expr-num">10</span><strong>실생활 페인트 절약 표현</strong><br>"페인트가 ${frac(8,12)}통 남았습니다. 이를 가장 간단한 분수로 나타내면 몇 통인가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 실생활에서도 남은 양을 기약분수로 나타내면 더 이해하기 쉬워요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">8와 12의 공약수 4로 나누면 → 8÷4=2, 12÷4=3</div>
+      → <span class="expr-ans">${frac(2,3)}통</span></div>
+    <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 분수 관계(${frac(8,12)} 약분, ${frac(3,4)}·${frac(2,3)} 통분)</strong>를 묻고 있어요. 약분과 통분은 서로 반대 방향의 과정이라는 것도 함께 확인할 수 있어요.</p>
+  `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
     <div class="q-item"><strong>Q1.</strong> 분모와 분자에 똑같은 수를 곱해도 왜 분수의 크기는 변하지 않을까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5frac2-h1',this)">💬 친구들은 이렇게 답했어요</button>
@@ -4157,6 +4261,45 @@ const CV_DATA_E5RANGE = [
       <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">"까지"는 그 자리를 남기고, "에서"는 그 자리까지 0으로 만들어서 한 단계 위까지 표현해요 — 그래서 "백의 자리에서 반올림"은 "반올림하여 천의 자리까지 나타내기"와 같은 말이에요</div>
     </div>
   `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>"236"이라는 수(개념3·4·5와 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 수가 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>올림 표현</strong><br>"236을 십의 자리까지 올림하면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 올림은 구하는 자리보다 작은 자리를 모두 올려서 채우는 거예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">일의 자리(6)를 올려서 십의 자리를 1 늘림 → 230+10</div>
+      → <span class="expr-ans">240</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>버림 표현</strong><br>"236을 십의 자리까지 버림하면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 버림은 구하는 자리보다 작은 자리를 모두 0으로 만드는 거예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">일의 자리(6)를 버림 → 230</div>
+      → <span class="expr-ans">230</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>반올림 표현</strong><br>"236을 십의 자리까지 반올림하면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 반올림은 구하는 자리 바로 아래 숫자가 5 이상이면 올리고, 4 이하면 버려요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">일의 자리(6)가 5 이상이므로 올림 → 240</div>
+      → <span class="expr-ans">240</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>더 큰 자리 반올림 표현</strong><br>"236을 백의 자리까지 반올림하면?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 반올림 기준 자리가 바뀌면, 그 바로 아래 자리의 숫자로 다시 판단해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">십의 자리(3)가 4 이하이므로 버림 → 200</div>
+      → <span class="expr-ans">200</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>이상·미만 표현</strong><br>"236은 200 이상 300 미만에 속하나요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 "이상"은 경계값을 포함하고, "미만"은 경계값을 포함하지 않아요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">200≤236이고 236&lt;300 → 두 조건을 모두 만족</div>
+      → <span class="expr-ans">속함</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>범위로 거꾸로 표현</strong>
+      <div id="rge-6" class="prob-q" data-target="240" data-qtext="십의 자리까지 반올림해서 240이 되는 수는 어떤 범위인가요?" data-solfn="rgeSol6">십의 자리까지 반올림해서 240이 되는 수는 어떤 범위인가요?<br><button class="havruta-show-btn" onclick="rgeSol6('rge-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgeGen6('rge-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>"자리에서" 표현</strong>
+      <div id="rge-7" class="prob-q" data-num="4638" data-place="백" data-qtext="4638을 백의 자리에서 반올림하면 어떤 자리까지 나타낸 것과 같나요? 그 결과는?" data-solfn="rgeSol7">4638을 백의 자리에서 반올림하면 어떤 자리까지 나타낸 것과 같나요? 그 결과는?<br><button class="havruta-show-btn" onclick="rgeSol7('rge-7')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgeGen7('rge-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>검산 표현</strong>
+      <div id="rge-8" class="prob-q" data-num="236" data-qtext="236을 십의 자리까지 올림한 값과 반올림한 값을 비교하면?" data-solfn="rgeSol8">236을 십의 자리까지 올림한 값과 반올림한 값을 비교하면?<br><button class="havruta-show-btn" onclick="rgeSol8('rge-8')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgeGen8('rge-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="expr-item"><span class="expr-num">9</span><strong>실생활 놀이기구 표현</strong>
+      <div id="rge-9" class="prob-q" data-t="140" data-word="이상" data-include="1" data-qtext="이 놀이기구는 키 140cm 이상만 탈 수 있습니다. 키가 정확히 140cm인 친구는 탈 수 있나요?" data-solfn="rgeSol9">이 놀이기구는 키 140cm 이상만 탈 수 있습니다. 키가 정확히 140cm인 친구는 탈 수 있나요?<br><button class="havruta-show-btn" onclick="rgeSol9('rge-9')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgeGen9('rge-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="expr-item"><span class="expr-num">10</span><strong>실생활 가격 어림 표현</strong>
+      <div id="rge-10" class="prob-q" data-num="236" data-unit="10" data-qtext="학용품 가격이 236원입니다. 가게에서 10원 단위로만 거스름돈을 준비할 수 있어서 십의 자리까지 올림해 내려면 얼마를 내야 하나요?" data-solfn="rgeSol10">학용품 가격이 236원입니다. 가게에서 10원 단위로만 거스름돈을 준비할 수 있어서 십의 자리까지 올림해 내려면 얼마를 내야 하나요?<br><button class="havruta-show-btn" onclick="rgeSol10('rge-10')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="rgeGen10('rge-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 수(236)</strong>를 다루고 있어요. 올림·버림·반올림·이상·미만은 모두 "어느 자리를 기준으로 수를 어떻게 다룰지"를 정하는 규칙이라는 걸 알 수 있어요. 6~10번은 "다음 문제" 버튼으로 숫자를 바꿔가며 계속 연습할 수 있어요.</p>
+  `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
     <div class="q-item"><strong>Q1.</strong> "이상"과 "초과"는 왜 경계값 포함 여부를 정확히 구분해서 쓸까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5range-h1',this)">💬 친구들은 이렇게 답했어요</button>
@@ -4333,6 +4476,112 @@ const CV_DATA_E5RANGE = [
   `}
 ];
 CV_DATA['e5range'] = CV_DATA_E5RANGE;
+function rgeGen6(id){
+  var tens = 2+Math.floor(Math.random()*97);
+  var target = tens*10;
+  var el = document.getElementById(id);
+  el.setAttribute('data-target', target);
+  rgwSetQuestion(el, '십의 자리까지 반올림해서 '+target+'이 되는 수는 어떤 범위인가요?', 'rgeSol6');
+}
+function rgeSol6(id){
+  var el = document.getElementById(id);
+  var target = +el.getAttribute('data-target');
+  var lo = target-5, hi = target+5;
+  var diagram = '<div class="fb-diagram">반올림해서 '+target+'이 되려면, '+lo+'은 포함되고 '+hi+'은 포함되지 않아요<br>'+lo+' 이상 '+hi+' 미만인 수는 모두 반올림하면 <strong style="color:#3fb950">'+target+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'rgeSol6');
+}
+function rgeGen7(id){
+  var num = 1000+Math.floor(Math.random()*9000);
+  var place = Math.random()<0.5 ? '십' : '백';
+  var el = document.getElementById(id);
+  el.setAttribute('data-num', num);
+  el.setAttribute('data-place', place);
+  rgwSetQuestion(el, num+'을 '+place+'의 자리에서 반올림하면 어떤 자리까지 나타낸 것과 같나요? 그 결과는?', 'rgeSol7');
+}
+function rgeSol7(id){
+  var el = document.getElementById(id);
+  var num = +el.getAttribute('data-num');
+  var place = el.getAttribute('data-place');
+  var s = String(num);
+  var upperName, judgeDigit, result;
+  if(place==='십'){
+    upperName = '백';
+    judgeDigit = +s[s.length-2];
+    result = judgeDigit>=5 ? (Math.floor(num/100)+1)*100 : Math.floor(num/100)*100;
+  } else {
+    upperName = '천';
+    judgeDigit = +s[s.length-3];
+    result = judgeDigit>=5 ? (Math.floor(num/1000)+1)*1000 : Math.floor(num/1000)*1000;
+  }
+  var diagram = '<div class="fb-diagram">"'+place+'의 자리에서 반올림"은 "'+upperName+'의 자리까지 나타내기"와 같아요<br>'+place+'의 자리 숫자('+judgeDigit+')가 '+(judgeDigit>=5?'5 이상이라 올림':'4 이하라 버림')+' → <strong style="color:#3fb950">'+result+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'rgeSol7');
+}
+function rgeGen8(id){
+  var num = 100+Math.floor(Math.random()*900);
+  var el = document.getElementById(id);
+  el.setAttribute('data-num', num);
+  rgwSetQuestion(el, num+'을 십의 자리까지 올림한 값과 반올림한 값을 비교하면?', 'rgeSol8');
+}
+function rgeSol8(id){
+  var el = document.getElementById(id);
+  var num = +el.getAttribute('data-num');
+  var ones = num%10;
+  var roundUp = ones===0 ? num : (Math.floor(num/10)+1)*10;
+  var roundNear = ones>=5 ? (Math.floor(num/10)+1)*10 : Math.floor(num/10)*10;
+  var same = roundUp===roundNear;
+  var diagram = '<div class="fb-diagram">올림 = <strong style="color:#3fb950">'+roundUp+'</strong>, 반올림 = <strong style="color:#3fb950">'+roundNear+'</strong><br>'+(same ? '일의 자리('+ones+')가 두 방법을 같은 방향으로 움직여서 값이 같아요' : '일의 자리('+ones+')가 4 이하라 올림이 반올림보다 더 큰 값이 나와요')+' → <strong style="color:#3fb950">'+(same?'같음':'다름')+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'rgeSol8');
+}
+var RGE_BOUNDARY_TYPES = [
+  {word:'이상', include:true}, {word:'이하', include:true},
+  {word:'초과', include:false}, {word:'미만', include:false}
+];
+function rgeGen9(id){
+  var T = 100+5*Math.floor(Math.random()*21);
+  var bt = RGE_BOUNDARY_TYPES[Math.floor(Math.random()*4)];
+  var el = document.getElementById(id);
+  el.setAttribute('data-t', T);
+  el.setAttribute('data-word', bt.word);
+  el.setAttribute('data-include', bt.include ? '1':'0');
+  rgwSetQuestion(el, '이 놀이기구는 키 '+T+'cm '+bt.word+'만 탈 수 있습니다. 키가 정확히 '+T+'cm인 친구는 탈 수 있나요?', 'rgeSol9');
+}
+function rgeSol9(id){
+  var el = document.getElementById(id);
+  var T = +el.getAttribute('data-t');
+  var word = el.getAttribute('data-word');
+  var include = el.getAttribute('data-include')==='1';
+  var particle = (word==='이상'||word==='미만') ? '은' : '는';
+  var diagram = '<div class="fb-diagram">"'+word+'"'+particle+' 경계값을 '+(include?'포함해요':'포함하지 않아요')+'<br>'+T+'cm는 '+word+'의 경계값이므로 → <strong style="color:'+(include?'#3fb950':'#f85149')+'">'+(include?'탈 수 있음':'탈 수 없음')+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'rgeSol9');
+}
+function rgeGen10(id){
+  var unit = Math.random()<0.5 ? 10 : 100;
+  var num;
+  if(unit===10){
+    do{ num = 101+Math.floor(Math.random()*898); } while(num%10===0);
+  } else {
+    do{ num = 1001+Math.floor(Math.random()*8998); } while(num%100===0);
+  }
+  var placeName = unit===10 ? '십' : '백';
+  var el = document.getElementById(id);
+  el.setAttribute('data-num', num);
+  el.setAttribute('data-unit', unit);
+  rgwSetQuestion(el, '학용품 가격이 '+num+'원입니다. 가게에서 '+unit+'원 단위로만 거스름돈을 준비할 수 있어서 '+placeName+'의 자리까지 올림해 내려면 얼마를 내야 하나요?', 'rgeSol10');
+}
+function rgeSol10(id){
+  var el = document.getElementById(id);
+  var num = +el.getAttribute('data-num');
+  var unit = +el.getAttribute('data-unit');
+  var rem = num % unit;
+  var result = num - rem + unit;
+  var diagram;
+  if(unit===10){
+    diagram = '<div class="fb-diagram">일의 자리('+rem+')를 올려서 십의 자리를 1 늘림 → <strong style="color:#3fb950">'+result+'</strong>원</div>';
+  } else {
+    diagram = '<div class="fb-diagram">십의 자리까지('+rem+')를 올려서 백의 자리를 1 늘림 → <strong style="color:#3fb950">'+result+'</strong>원</div>';
+  }
+  rgwRenderToggle(id, diagram, 'rgeSol10');
+}
 function fracBar(num, den){
   return '<span style="display:inline-block;text-align:center;vertical-align:middle;margin:0 3px;line-height:1.2em">'
     + '<span style="display:block;padding:0 3px">'+num+'</span>'
@@ -4542,6 +4791,50 @@ const CV_DATA_E5FRACMUL = [
         <li><strong style="color:#1a7f37">결론:</strong> 두 방법 다 답은 <strong>3과 ${fracBar(1,2)}</strong>로 똑같아요! 분배법칙도 맞는 방법이지만, 가분수로 먼저 바꾸면 항이 4개에서 1개로 줄어서 <strong>계산이 훨씬 간단</strong>해져요.</li>
       </ul>
     </div>
+  `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>"${fracBar(2,3)} × ${fracBar(3,4)}"(개념4·5와 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 계산이 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>부분의 부분 표현</strong><br>"${fracBar(3,4)}의 ${fracBar(2,3)}는 얼마인가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 분수×분수는 "~의 ~"라는 부분의 또 다른 부분을 구하는 거예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${fracBar(2,3)} × ${fracBar(3,4)} = ${fracBar(6,12)}</div>
+      → <span class="expr-ans">${fracBar(1,2)}</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>사각형 모델 표현</strong><br>"가로 4칸 중 3칸, 세로 3칸 중 2칸을 색칠하면 겹치는 칸은 전체 몇 칸 중 몇 칸인가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 전체 칸 수는 분모끼리, 겹치는 칸 수는 분자끼리 곱한 거예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">전체 3×4=12칸, 겹침 2×3=6칸</div>
+      → <span class="expr-ans">12칸 중 6칸</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>교환법칙 표현</strong><br>"${fracBar(3,4)} × ${fracBar(2,3)}과 ${fracBar(2,3)} × ${fracBar(3,4)}는 같은가요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 분수 곱셈도 순서를 바꿔도 결과가 같아요(교환법칙)</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">둘 다 ${fracBar(6,12)} = ${fracBar(1,2)}</div>
+      → <span class="expr-ans">같음 (${fracBar(1,2)})</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>미리 약분 표현</strong><br>"${fracBar(2,3)} × ${fracBar(3,4)}를 곱하기 전에 먼저 약분하면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 분자와 분모에 공통된 수(3)를 미리 약분하면 계산이 더 간단해져요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${fracBar(2,3)} × ${fracBar(3,4)} → ${fracBar(2,1)} × ${fracBar(1,4)} = ${fracBar(2,4)}</div>
+      → <span class="expr-ans">${fracBar(1,2)}</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>기약분수 표현</strong><br>"${fracBar(6,12)}를 가장 간단한 분수로 나타내면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 분모·분자를 최대공약수(6)로 약분하면 기약분수가 돼요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">6÷6=1, 12÷6=2</div>
+      → <span class="expr-ans">${fracBar(1,2)}</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>실생활 적용 표현</strong><br>"리본 ${fracBar(3,4)}m의 ${fracBar(2,3)}만큼을 잘라 쓰면 몇 m를 쓴 건가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 "~의 ~만큼"이라는 실생활 표현도 결국 분수의 곱셈이에요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${fracBar(3,4)} × ${fracBar(2,3)} = ${fracBar(6,12)}</div>
+      → <span class="expr-ans">${fracBar(1,2)}m</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>다른 숫자 적용 표현</strong><br>"같은 방법으로 ${fracBar(1,4)}의 ${fracBar(2,3)}는 얼마인가요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 숫자만 다를 뿐, "분모는 분모끼리 분자는 분자끼리" 규칙은 똑같이 적용해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${fracBar(1,4)} × ${fracBar(2,3)} = ${fracBar(2,12)}</div>
+      → <span class="expr-ans">${fracBar(1,6)}</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>검산 표현</strong><br>"모두 곱한 뒤 약분한 값과, 미리 약분한 값(4번)이 같은지 확인하면?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 순서를 바꿔도(먼저 약분 vs 나중에 약분) 최종 답은 항상 같아야 해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${fracBar(6,12)}=${fracBar(1,2)}, 미리 약분한 결과도 ${fracBar(1,2)}</div>
+      → <span class="expr-ans">${fracBar(1,2)}로 일치 ✓</span></div>
+    <div class="expr-item"><span class="expr-num">9</span><strong>실생활 요리 표현</strong><br>"우유 ${fracBar(2,3)}L 중에서 ${fracBar(3,4)}만큼을 케이크 반죽에 넣었다면, 반죽에 들어간 우유는 몇 L인가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 요리 재료를 나누는 상황도 "~의 ~만큼"이라는 분수의 곱셈이에요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${fracBar(2,3)} × ${fracBar(3,4)} = ${fracBar(6,12)}</div>
+      → <span class="expr-ans">${fracBar(1,2)}L</span></div>
+    <div class="expr-item"><span class="expr-num">10</span><strong>실생활 밭 넓이 표현</strong><br>"전체 밭의 ${fracBar(3,4)}에 배추를 심었는데, 그중 ${fracBar(2,3)}만 수확했다면, 전체 밭 중 수확한 부분은 얼마인가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 "부분의 부분"을 구하는 상황은 농사·건설 같은 실생활에도 자주 나와요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${fracBar(3,4)} × ${fracBar(2,3)} = ${fracBar(6,12)}</div>
+      → <span class="expr-ans">${fracBar(1,2)}</span></div>
+    <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 계산(${fracBar(2,3)}×${fracBar(3,4)})</strong>을 묻고 있어요. 부분의 부분, 사각형 모델, 약분 — 방법은 달라도 답은 항상 ${fracBar(1,2)}예요.</p>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
     <div class="q-item"><strong>Q1.</strong> 분수끼리 곱할 때는 왜 분모는 분모끼리, 분자는 분자끼리 곱할까요?
@@ -5153,6 +5446,50 @@ const CV_DATA_E5DECMUL = [
       <div style="font-size:.68rem;color:#8b949e;margin-top:8px">자리수 규칙(1+1=2자리)으로도 확인되지만, 어림으로 한 번 더 확인하면 실수를 잡을 수 있어요</div>
     </div>
   `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>"0.3 × 0.4"(개념3·4·5와 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 계산이 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>분수 변환 표현</strong><br>"0.3×0.4를 분수로 바꿔서 계산하면?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 소수는 분모가 10, 100…인 분수로 바꿀 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(3,10)} × ${frac(4,10)} = ${frac(12,100)}</div>
+      → <span class="expr-ans">0.12</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>자리수 규칙 표현</strong><br>"0.3×0.4를 자연수처럼 계산한 뒤 소수점을 찍으면?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 자연수처럼 곱한 뒤, 소수점 아래 자리수를 더한 만큼 오른쪽에서 세어 찍어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">3×4=12, 소수점 아래 자리수 1+1=2자리 → 12에서 왼쪽으로 2자리 이동</div>
+      → <span class="expr-ans">0.12</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>어림 확인 표현</strong><br>"0.3×0.4의 결과가 0.12인 게 맞는지 어림으로 확인하면?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 1보다 작은 두 수를 곱하면 결과는 둘 중 더 작은 수보다도 작아져요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">0.3보다 작고 0.4보다 작은 값이어야 함 → 0.12는 둘 다보다 작음</div>
+      → <span class="expr-ans">타당함(0.12)</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>교환법칙 표현</strong><br>"0.4×0.3은 0.3×0.4와 같은가요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 곱셈의 교환법칙은 소수에서도 그대로 성립해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">4×3=12, 소수점 아래 1+1=2자리 → 0.12</div>
+      → <span class="expr-ans">같음(0.12)</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>다른 자리수 적용 표현</strong><br>"같은 방법으로 0.3×0.04는 얼마인가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 소수점 아래 자리수가 다르면(1자리+2자리=3자리) 옮기는 칸 수도 달라져요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">3×4=12, 소수점 아래 1+2=3자리 → 0.012</div>
+      → <span class="expr-ans">0.012</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>실생활 넓이 표현</strong><br>"가로 0.3m, 세로 0.4m인 직사각형의 넓이는?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 직사각형 넓이(가로×세로)도 소수의 곱셈으로 그대로 구할 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">0.3 × 0.4 = 0.12</div>
+      → <span class="expr-ans">0.12㎡</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>다른 곱 조합 표현</strong><br>"0.12는 0.6×0.2로도 만들 수 있을까요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 같은 곱셈 결과를 만드는 소수 조합은 여러 가지일 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">6×2=12, 소수점 아래 1+1=2자리 → 0.12</div>
+      → <span class="expr-ans">네, 0.12로 같음</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>검산 표현</strong><br>"자리수 규칙(2번)으로 구한 값과 어림(3번)으로 확인한 값이 서로 맞는지 비교하면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 두 가지 방법으로 각각 확인해서 결과가 같으면 계산이 맞다고 확신할 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">자리수 규칙 결과 0.12, 어림 확인도 타당</div>
+      → <span class="expr-ans">0.12로 일치 ✓</span></div>
+    <div class="expr-item"><span class="expr-num">9</span><strong>실생활 장보기 표현</strong><br>"한 봉지에 0.4kg인 사과가 있습니다. 이 봉지의 0.3만큼(0.3배)을 먼저 먹었다면 몇 kg을 먹은 건가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 "~만큼 먹었다"는 실생활 표현도 소수의 곱셈으로 나타낼 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">0.4 × 0.3 = 0.12</div>
+      → <span class="expr-ans">0.12kg</span></div>
+    <div class="expr-item"><span class="expr-num">10</span><strong>실생활 리본 표현</strong><br>"길이 0.3m인 리본이 있습니다. 이런 리본을 0.4m 길이로 이어 붙이는 대신, 처음 리본의 0.4만큼(0.4배)만 쓰면 몇 m를 쓴 건가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 "~의 몇 배(소수)만큼 쓴다"도 소수×소수 계산으로 표현돼요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">0.3 × 0.4 = 0.12</div>
+      → <span class="expr-ans">0.12m</span></div>
+    <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 계산(0.3×0.4)</strong>을 묻고 있어요. 분수로 바꾸기, 자리수 규칙, 어림 확인 — 방법은 달라도 답은 항상 0.12예요.</p>
+  `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
     <div class="q-item"><strong>Q1.</strong> 소수끼리 곱할 때는 왜 자연수처럼 계산한 다음 나중에 소수점을 찍을까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5decmul-h1',this)">💬 친구들은 이렇게 답했어요</button>
@@ -5712,6 +6049,478 @@ const CV_DATA_E6VOL = [
   `}
 ];
 CV_DATA['e6vol'] = CV_DATA_E6VOL;
+const CV_DATA_E6FRACDIV = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>피자 2판을 3명이 똑같이 나눠 먹으면 한 명은 몇 판을 먹게 될까요? 2÷3인데, 답이 자연수로 딱 떨어지지 않아요!</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
+      ${fracPieHtml(2,3,'#f0c040',56)}
+      <div style="font-size:.78rem;color:#8b949e;margin-top:6px">2÷3 = ${frac(2,3)} — 나눗셈의 몫이 분수로 나와요</div>
+    </div>
+    <p style="margin-top:10px">이번엔 반대로 "피자 ${frac(3,4)}판이 남았는데 2명이 나누면?"처럼 <strong>분수를 자연수나 분수로 나누는</strong> 상황도 있어요. 오늘은 분수의 나눗셈을 배워볼게요.</p>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — (자연수)÷(자연수)를 분수로</div>
+    <ul><li>케이크 2개를 3명이 나누면 한 명은 얼마씩 먹게 될까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${fracPieHtml(2,3,'#f0c040',56)}
+      <div style="font-size:.9rem;margin-top:6px">2÷3 = <strong style="color:#3fb950">${frac(2,3)}</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">나누는 수(3)만큼 등분한 조각을, 나뉘는 수(2)개만큼 갖는다는 뜻이에요 — 나누는 수가 분모, 나뉘는 수가 분자가 돼요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — (분수)÷(자연수)</div>
+    <ul><li>피자 ${frac(3,4)}판이 남았는데 2명이 나누면 한 명은 얼마를 먹을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${fracPieHtml(3,4,'#f0c040',52)}<span style="font-size:1.1rem;color:#8b949e">➜</span>${fracPieHtml(3,8,'#3fb950',52)}
+      <div style="font-size:.9rem;margin-top:6px">${frac(3,4)} ÷ 2 = ${frac(3,'4×2')} = <strong style="color:#3fb950">${frac(3,8)}</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">분자는 그대로 두고, 분모에 나누는 자연수를 곱해요 — 조각을 2배 더 잘게 쪼개는 셈이에요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 분수÷분수, "몇 번 들어가는지" 세어보기</div>
+    <ul><li>피자 ${frac(3,4)}판이 있어요. 한 사람에게 ${frac(1,2)}판씩 나눠주면 몇 명에게 줄 수 있을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${fracPieHtml(3,4,'#f0c040',52)}${fracPieHtml(1,2,'#58a6ff',52)}
+      <div style="font-size:.9rem;margin-top:6px">${frac(3,4)} ÷ ${frac(1,2)} = <strong style="color:#3fb950">1과 ${frac(1,2)}</strong>(명)</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">${frac(3,4)} 안에 ${frac(1,2)}이 1번 들어가고, 남은 ${frac(1,4)}은 ${frac(1,2)}의 절반이라 1과 ${frac(1,2)}이 돼요</div>
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:6px">어? 나눗셈인데 답(1과 ${frac(1,2)})이 나누어지는 수(${frac(3,4)})보다 커요!</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 다른 예와 비교해서 규칙 발견하기</div>
+    <ul><li>이번엔 ${frac(1,4)}판씩 나눠주면 몇 명에게 줄 수 있을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${fracPieHtml(3,4,'#f0c040',52)}${fracPieHtml(1,4,'#58a6ff',52)}
+      <div style="font-size:.9rem;margin-top:6px">${frac(3,4)} ÷ ${frac(1,4)} = ${frac(1,4)}+${frac(1,4)}+${frac(1,4)} = <strong style="color:#3fb950">3</strong>(명)</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">${frac(1,4)}을 3번 더하면 ${frac(3,4)}이 되니, ${frac(1,4)}은 ${frac(3,4)} 안에 3번 들어가요</div>
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:6px">개념3(÷${frac(1,2)}=1과${frac(1,2)})과 비교하면: 나누는 수가 절반(${frac(1,2)}→${frac(1,4)})이 되니 답은 정확히 2배(1과${frac(1,2)}→3)가 됐어요 — 나누는 단위가 작아질수록 더 많이 들어가요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 핵심 원리: 왜 뒤집어서 곱하면 될까?</div>
+    <ul><li>매번 그림을 그리지 않고 개념3·4와 똑같은 답을 구하는 방법이 있을까요? 그리고 그 방법은 왜 맞는 걸까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.85rem">나눗셈의 성질: 나누어지는 수와 나누는 수에 <strong>똑같은 수</strong>를 곱해도 몫은 변하지 않아요</div>
+      <div style="font-size:.78rem;color:#8b949e;margin-top:4px">(예: 6÷2=3 이고, (6×10)÷(2×10)=60÷20=3 으로 똑같아요)</div>
+      <div style="font-size:.85rem;margin-top:10px;padding-top:10px;border-top:1px solid #30363d">이 성질로 ${frac(3,4)}÷${frac(1,2)}을 다시 풀어볼게요 — 나누는 수(${frac(1,2)})를 <strong style="color:#bc8cff">1</strong>로 만들면 나눗셈이 사라져요</div>
+      <div style="font-size:.9rem;margin-top:6px">${frac(1,2)}에 <strong style="color:#bc8cff">2</strong>를 곱하면 1이 되니까(${frac(1,2)}의 역수), 나누어지는 수(${frac(3,4)})에도 똑같이 2를 곱해요</div>
+      <div style="font-size:.9rem;margin-top:6px">(${frac(3,4)}×2) ÷ (${frac(1,2)}×2) = ${frac(3,2)} ÷ 1 = <strong style="color:#3fb950">${frac(3,2)}</strong>(=1과${frac(1,2)})</div>
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:8px">나누는 수가 1이 되니 나눗셈이 없어지고, 곱했던 역수(2)만 나누어지는 수에 남았어요 — 이게 바로 "뒤집어서 곱하기"의 진짜 이유예요!</div>
+      <div style="font-size:.85rem;margin-top:12px;padding-top:10px;border-top:1px solid #30363d">일반화하면(${frac('a','b')} ÷ ${frac('c','d')}에서):</div>
+      <div style="font-size:.9rem;margin-top:6px">${frac('c','d')}를 1로 만들려면 역수 ${frac('d','c')}를 곱해요 (${frac('c','d')}×${frac('d','c')}=1)</div>
+      <div style="font-size:.9rem;margin-top:6px">(${frac('a','b')}×${frac('d','c')}) ÷ (${frac('c','d')}×${frac('d','c')}) = (${frac('a','b')}×${frac('d','c')}) ÷ 1 = <strong style="color:#3fb950">${frac('a','b')}×${frac('d','c')}</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">그래서 ${frac('a','b')} ÷ ${frac('c','d')} = ${frac('a','b')} × ${frac('d','c')} — 나누는 분수의 역수를 곱하면 항상 같은 답이 나와요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념6 — (자연수)÷(분수)</div>
+    <ul><li>노끈 6m를 ${frac(2,3)}m씩 자르면 몇 도막이 나올까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">6 ÷ ${frac(2,3)} = 6 × ${frac(3,2)} = ${frac(18,2)} = <strong style="color:#3fb950">9</strong>도막</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">자연수도 개념5와 똑같이, 나누는 분수의 역수를 곱하면 돼요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념7 — (대분수)÷(분수)</div>
+    <ul><li>1과 ${frac(1,2)} ÷ ${frac(2,3)}은 어떻게 계산할까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">1과 ${frac(1,2)} = ${frac(3,2)} (가분수로 바꾸기)</div>
+      <div style="font-size:.9rem;margin-top:6px">${frac(3,2)} ÷ ${frac(2,3)} = ${frac(3,2)} × ${frac(3,2)} = ${frac(9,4)} = <strong style="color:#3fb950">2와 ${frac(1,4)}</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">대분수는 먼저 가분수로 바꾼 뒤, 개념5·6과 똑같이 역수를 곱해요</div>
+    </div>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 2÷3을 분수로 나타내면 ${frac(2,3)}인데, 왜 나누는 수(3)가 분모가 될까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6fracdiv-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6fracdiv-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6fracdiv-h1',0,this)">케이크 2개를 3명이 나누면, 케이크 하나를 3등분한 조각을 한 명이 2번 갖는 셈이라 나누는 수가 분모가 돼요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6fracdiv-h1',1,this)">그냥 앞의 수를 분자, 뒤의 수를 분모로 쓰는 규칙일 뿐이에요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6fracdiv-h1',2,this)">몫이 1보다 작아지니까 순서를 바꿔 쓰는 거예요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6fracdiv-h1"></div>
+      </div>
+    </div>
+    <div class="q-item" style="text-align:left">
+      <div style="font-size:.85rem">유대교 전통의 <strong>하브루타식 설명</strong>으로 분수의 나눗셈을 설명하면, 공식을 먼저 주기보다 <strong>"왜 나누는가?"를 질문하고 스스로 관계를 발견하게 하는 방식</strong>이 좋습니다.</div>
+      <div style="margin-top:10px;font-size:.85rem">예를 들어 <strong>${frac(3,4)} ÷ ${frac(1,2)}</strong>를 가르친다면:</div>
+      <div style="margin-top:14px;font-size:.85rem;color:#f0c040;font-weight:700">1. 먼저 질문</div>
+      <div style="margin-top:6px;font-size:.85rem">"피자 ${frac(3,4)}판이 있어. 한 사람에게 ${frac(1,2)}판씩 준다면 몇 명에게 줄 수 있을까?"</div>
+      <div style="margin-top:6px;font-size:.85rem">학생이 그림을 그립니다.</div>
+      <div style="margin-top:14px;font-size:.85rem;color:#f0c040;font-weight:700">2. 학생에게 다시 질문</div>
+      <div style="margin-top:6px;font-size:.85rem">"${frac(3,4)} 안에 ${frac(1,2)}가 몇 개 들어갈까?"</div>
+      <div style="margin-top:6px;font-size:.85rem">${frac(1,2)}를 기준으로 생각하면</div>
+      <ul style="margin:4px 0 0 20px;font-size:.85rem">
+        <li>${frac(1,2)} → 1개</li>
+        <li>남은 ${frac(1,4)} → ${frac(1,2)}의 절반</li>
+      </ul>
+      <div style="margin-top:6px;font-size:.85rem">따라서</div>
+      <div style="margin-top:6px;font-size:.9rem;text-align:center">${frac(3,4)} ÷ ${frac(1,2)} = 1${frac(1,2)}</div>
+      <div style="margin-top:6px;font-size:.85rem">여기서 중요한 질문을 합니다.</div>
+      <div style="margin-top:6px;font-size:.85rem"><strong>"나눗셈을 했는데 왜 답이 1보다 클 수 있지?"</strong></div>
+      <div style="margin-top:6px;font-size:.85rem">학생이 <strong>나눗셈 = 똑같이 나누어 작게 만드는 것</strong>이라는 생각에서 벗어나게 하는 겁니다.</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6fracdiv-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6fracdiv-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6fracdiv-h2',0,this)">1보다 작은 수로 나누는 건 "그 수가 전체 안에 몇 번 들어가는지" 세는 거라, 1번보다 더 많이 들어가서 몫이 커져요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6fracdiv-h2',1,this)">나눗셈은 항상 답이 작아지는 게 정상인데 이건 예외적인 경우예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6fracdiv-h2',2,this)">자연수를 분수로 나누면 계산 실수가 나기 쉬워서 그런 거예요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6fracdiv-h2"></div>
+      </div>
+    </div>
+    <div class="q-item" style="text-align:left">
+      <div style="font-size:.85rem;color:#f0c040;font-weight:700">3. 그다음 다른 예</div>
+      <div style="margin-top:6px;font-size:.9rem;text-align:center">${frac(3,4)} ÷ ${frac(1,4)}</div>
+      <div style="margin-top:6px;font-size:.85rem">질문:</div>
+      <div style="margin-top:6px;font-size:.85rem"><strong>"${frac(3,4)} 안에 ${frac(1,4)}가 몇 개 들어갈까?"</strong></div>
+      <div style="margin-top:6px;font-size:.85rem">그림을 보면</div>
+      <div style="margin-top:6px;font-size:.9rem;text-align:center">${frac(1,4)}+${frac(1,4)}+${frac(1,4)}=${frac(3,4)}</div>
+      <div style="margin-top:6px;font-size:.85rem">따라서 답은 <strong>3</strong>.</div>
+      <div style="margin-top:6px;font-size:.85rem">즉,</div>
+      <div style="margin-top:6px;font-size:.9rem;text-align:center">${frac(3,4)} ÷ ${frac(1,4)} = 3</div>
+      <div style="margin-top:14px;font-size:.85rem;color:#f0c040;font-weight:700">4. 여기서 규칙을 학생이 발견하게 함</div>
+      <div style="margin-top:6px;font-size:.85rem">두 문제를 비교합니다.</div>
+      <div style="margin-top:6px;font-size:.9rem;text-align:center">${frac(3,4)} ÷ ${frac(1,2)} = ${frac(3,2)}</div>
+      <div style="margin-top:6px;font-size:.9rem;text-align:center">${frac(3,4)} ÷ ${frac(1,4)} = 3</div>
+      <div style="margin-top:6px;font-size:.85rem">질문:</div>
+      <div style="margin-top:6px;font-size:.85rem"><strong>"${frac(1,2)} 대신 ${frac(1,4)}를 사용했더니 왜 답이 2배가 되었을까?"</strong></div>
+      <div style="margin-top:6px;font-size:.85rem">학생이 <strong>단위가 작아지면 들어가는 횟수가 많아진다</strong>는 것을 발견합니다.</div>
+      <div style="margin-top:6px;font-size:.85rem">그리고 마지막에야</div>
+      <div style="margin-top:6px;font-size:.9rem;text-align:center">${frac(3,4)} ÷ ${frac(1,2)} = ${frac(3,4)} × ${frac(2,1)} = ${frac(3,2)}</div>
+      <div style="margin-top:6px;font-size:.85rem">라는 계산법을 보여줍니다.</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6fracdiv-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6fracdiv-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6fracdiv-h3',0,this)">나누는 단위(${frac(1,2)} → ${frac(1,4)})가 절반이 되면, 그 단위가 원래 수 안에 들어가는 횟수는 정확히 2배가 돼요 — 단위가 작아지면 들어가는 횟수가 많아져요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6fracdiv-h3',1,this)">우연히 이번 숫자에서만 2배가 나온 거예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6fracdiv-h3',2,this)">숫자가 작아서 계산이 그렇게 나온 거고 특별한 규칙은 없어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6fracdiv-h3"></div>
+      </div>
+    </div>
+    <div class="q-item" style="text-align:left">
+      <div style="font-size:.85rem;color:#f0c040;font-weight:700">핵심</div>
+      <div style="margin-top:6px;font-size:.85rem">유대인식 하브루타에 가깝게 만들려면 <strong>"분모를 뒤집어서 곱한다"를 설명의 출발점으로 삼지 않는 것</strong>이 중요합니다.</div>
+      <div style="margin-top:6px;font-size:.85rem">순서는</div>
+      <div style="margin-top:6px;font-size:.85rem"><strong>상황 → 그림 → 질문 → 학생의 추측 → 반례/비교 → 규칙 발견 → 공식</strong></div>
+      <div style="margin-top:6px;font-size:.85rem">이렇게 가는 것이 좋습니다.</div>
+    </div>
+    <div class="q-item"><strong>Q4.</strong> 개념5에서 배운 것처럼, ${frac(3,4)}÷${frac(1,2)}을 계산할 때 왜 ${frac(1,2)}을 뒤집어서(역수) 곱하면 그림으로 센 답과 똑같이 나올까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6fracdiv-h4',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6fracdiv-h4">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6fracdiv-h4',0,this)">나누는 수(${frac(1,2)})를 1로 만들려고 역수(2)를 곱하는 건데, 나누어지는 수에도 똑같이 2를 곱해야 몫이 안 변해서, 결국 나누어지는 수에 역수를 곱한 것과 같아져요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6fracdiv-h4',1,this)">그냥 나눗셈을 곱셈으로 바꾸는 약속일 뿐 이유는 없어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6fracdiv-h4',2,this)">분수는 원래 뒤집어서 계산해야 하는 규칙이 있어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6fracdiv-h4"></div>
+      </div>
+    </div>
+    <div class="q-item" style="text-align:left">
+      <div style="font-size:.85rem"><strong>원리설명.</strong> 맞습니다. 원리를 반드시 설명해야 합니다.</div>
+      <div style="font-size:.85rem;margin-top:6px">앞에서는 하브루타식 <em>질문 과정</em>을 강조했는데, 그것만으로는 분수 나눗셈의 핵심 원리를 충분히 설명하지 못합니다.</div>
+      <div style="font-size:.85rem;margin-top:6px">유대식·하브루타식으로 하더라도 결국 학생이 <strong>"왜 나누기가 뒤집어 곱하기가 되는가?"</strong>까지 설명할 수 있어야 합니다.</div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-top:14px">핵심 원리</div>
+      <div style="font-size:.85rem;margin-top:6px">예를 들어</div>
+      <div style="font-size:.9rem;margin-top:6px;text-align:center">${frac(3,4)} ÷ ${frac(1,2)}</div>
+      <div style="font-size:.85rem;margin-top:6px">의 의미는</div>
+      <div style="font-size:.85rem;margin-top:6px"><strong>${frac(3,4)} 안에 ${frac(1,2)}가 몇 개 들어가는가?</strong></div>
+      <div style="font-size:.85rem;margin-top:6px">입니다.</div>
+      <div style="font-size:.85rem;margin-top:10px">그런데 ${frac(1,2)}를 <strong>1개</strong>라고 생각하면,</div>
+      <div style="font-size:.9rem;margin-top:6px;text-align:center">${frac(1,2)} = 1</div>
+      <div style="font-size:.85rem;margin-top:6px">이라는 단위가 만들어집니다.</div>
+      <div style="font-size:.85rem;margin-top:10px">그러면 ${frac(3,4)}는 그 단위의 몇 배인지 생각해야 합니다.</div>
+      <div style="font-size:.9rem;margin-top:6px;text-align:center">${frac(3,4)} ÷ ${frac(1,2)}</div>
+      <div style="font-size:.85rem;margin-top:6px">에서 양쪽을 <strong>2배</strong> 하면</div>
+      <div style="font-size:.9rem;margin-top:6px;text-align:center">${frac(3,4)}×2 ÷ ${frac(1,2)}×2</div>
+      <div style="font-size:.85rem;margin-top:6px">가 되고,</div>
+      <div style="font-size:.9rem;margin-top:6px;text-align:center">${frac(3,2)} ÷ 1 = ${frac(3,2)}</div>
+      <div style="font-size:.85rem;margin-top:6px">가 됩니다.</div>
+      <div style="font-size:.85rem;margin-top:10px">즉,</div>
+      <div style="font-size:.85rem;margin-top:6px"><strong>나누는 수를 1로 만들기 위해 분자와 분모에 같은 수를 곱한다.</strong></div>
+      <div style="font-size:.85rem;margin-top:6px">이것이 분수 나눗셈의 핵심 원리입니다.</div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-top:14px">일반화하면</div>
+      <div style="font-size:.9rem;margin-top:6px;text-align:center">${frac('a','b')} ÷ ${frac('c','d')}</div>
+      <div style="font-size:.85rem;margin-top:6px">에서 나누는 수</div>
+      <div style="font-size:.9rem;margin-top:6px;text-align:center">${frac('c','d')}</div>
+      <div style="font-size:.85rem;margin-top:6px">를 1로 만들려면 ${frac('d','c')}를 곱합니다.</div>
+      <div style="font-size:.9rem;margin-top:6px;text-align:center">${frac('c','d')} × ${frac('d','c')} = 1</div>
+      <div style="font-size:.85rem;margin-top:6px">따라서</div>
+      <div style="font-size:.9rem;margin-top:6px;text-align:center">${frac('a','b')} ÷ ${frac('c','d')} = ${frac('a','b')} × ${frac('d','c')}</div>
+      <div style="font-size:.85rem;margin-top:6px">즉,</div>
+      <div style="margin-top:8px;text-align:center;border:2px solid #3fb950;border-radius:8px;padding:10px;display:inline-block;font-size:.95rem">${frac('a','b')} ÷ ${frac('c','d')} = ${frac('a','b')} × ${frac('d','c')}</div>
+      <div style="font-size:.85rem;margin-top:8px">입니다.</div>
+      <div style="font-size:.85rem;margin-top:10px">그래서 <strong>"분수는 나누면 뒤집어서 곱한다"가 원리가 아니라,</strong></div>
+      <div style="font-size:.85rem;margin-top:6px"><strong>나누는 수를 1로 만드는 수(역수)를 곱해서 단위를 1로 바꾸는 것</strong></div>
+      <div style="font-size:.85rem;margin-top:6px">이 진짜 원리입니다.</div>
+      <div style="font-size:.85rem;margin-top:10px">그리고 이 원리를 <strong>자연수 → 분수 → 단위분수 → 일반 분수</strong> 순서로 발견하게 만드는 것이 하브루타식 개념 수업에 훨씬 적합합니다.</div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제: 리본 3개를 4명이 똑같이 나누어 가지면 한 명은 몇 개를 갖게 되나요?</div>
+      <div class="fb-diagram">${fracPieHtml(3,4,'#f0c040',52)}<span class="cap">3÷4는 나누는 수(4)가 분모, 나뉘는 수(3)가 분자가 돼요</span></div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6fracdiv-p1',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6fracdiv-p1">
+        <div class="sol"><strong>풀이:</strong> 3÷4 = <strong style="color:#3fb950">${frac(3,4)}</strong>개</div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 우유 ${frac(4,5)}L를 4명이 똑같이 나누어 마시면 한 명은 몇 L를 마시게 되나요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6fracdiv-p2',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6fracdiv-p2">
+        <div class="sol"><strong>풀이:</strong> ${frac(4,5)} ÷ 4 = ${frac(4,'5×4')} = ${frac(4,20)} = <strong style="color:#3fb950">${frac(1,5)}</strong>L</div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: ${frac(5,6)} ÷ ${frac(1,3)}을 계산하세요.</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6fracdiv-p3',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6fracdiv-p3">
+        <div class="sol"><strong>풀이①(통분법):</strong> ${frac(5,6)} = ${frac(5,6)}, ${frac(1,3)} = ${frac(2,6)} → 5÷2 = <strong style="color:#3fb950">${frac(5,2)}</strong>(=2와 ${frac(1,2)})</div>
+        <div class="sol"><strong>풀이②(역수법):</strong> ${frac(5,6)} × ${frac(3,1)} = ${frac(15,6)} = <strong style="color:#3fb950">${frac(5,2)}</strong>(약분: 15÷3=5, 6÷3=2)</div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 물 8L를 ${frac(4,5)}L씩 나누어 담으면 몇 개의 병이 필요한가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6fracdiv-p4',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6fracdiv-p4">
+        <div class="sol"><strong>풀이:</strong> 8 ÷ ${frac(4,5)} = 8 × ${frac(5,4)} = ${frac(40,4)} = <strong style="color:#3fb950">10</strong>개</div>
+      </div>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, ${frac(1,2)}÷${frac(1,4)}을 계산했더니 2가 나왔어요. 근데 나눗셈인데 왜 원래 수(${frac(1,2)})보다 답(2)이 더 커요?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>어? 진짜네. 자연수 나눗셈에서는 나누면 항상 더 작아지지 않았나요?</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>혹시... ${frac(1,4)}이 ${frac(1,2)}보다 작아서 그런 거 아닐까요?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>맞는 것 같아요! ${frac(1,2)} 안에 ${frac(1,4)}이 몇 번 들어가는지 세어보면... ${frac(1,4)}+${frac(1,4)}=${frac(1,2)}이니까 2번 들어가요. 그래서 답이 2예요!</div></div>
+    <div class="fb-diagram">${fracPieHtml(1,2,'#f0c040',48)}${fracPieHtml(1,4,'#58a6ff',48)}<span class="cap">${frac(1,2)} 안에 ${frac(1,4)}이 정확히 2번 들어가요 — 나눗셈은 "몇 번 들어가는지"를 세는 것이기도 해요</span></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 나눗셈 A÷B는 "A 안에 B가 몇 번 들어가는가"로도 생각할 수 있어요. 나누는 수(B)가 1보다 작으면, 그 작은 조각이 여러 번 들어가니까 답(몫)이 오히려 원래 수(A)보다 커지는 거예요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>그럼 나누는 수가 1보다 크면 다시 작아지는 거예요?</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! 6÷2=3처럼 나누는 수가 1보다 크면 몫이 작아지고, 6÷${frac(1,2)}=12처럼 나누는 수가 1보다 작으면 몫이 커져요. 나누는 수가 정확히 1이면 몫은 원래 수와 같아요. "나눗셈=항상 작아진다"는 자연수에서만 통하는 착각이었던 거예요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 나눗셈 A÷B는 "A 안에 B가 몇 번 들어가는지" 세는 것과 같아요. 나누는 수(B)가 1보다 작으면 몫이 원래 수보다 커지고, 1보다 크면 작아져요 — "나누면 무조건 작아진다"는 자연수 나눗셈에서만 맞는 이야기예요.</div>
+  `},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <p>지금까지 배운 분수의 나눗셈을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+      <div id="fdw-1" class="prob-q" data-n="3" data-m="5" data-qtext="리본 3m를 5명이 똑같이 나누어 가지면, 한 명은 몇 m를 갖게 되나요?" data-solfn="fdwSol1">리본 3m를 5명이 똑같이 나누어 가지면, 한 명은 몇 m를 갖게 되나요?<br><button class="havruta-show-btn" onclick="fdwSol1('fdw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdwGen1('fdw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+      <div id="fdw-2" class="prob-q" data-a="3" data-b="4" data-m="2" data-qtext="피자 ${frac(3,4)}판이 남았습니다. 이것을 2명이 똑같이 나누어 먹으면 한 명은 얼마를 먹게 되나요?" data-solfn="fdwSol2">피자 ${frac(3,4)}판이 남았습니다. 이것을 2명이 똑같이 나누어 먹으면 한 명은 얼마를 먹게 되나요?<br><button class="havruta-show-btn" onclick="fdwSol2('fdw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdwGen2('fdw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+      <div id="fdw-3" class="prob-q" data-a="6" data-b="2" data-d="8" data-qtext="리본 ${frac(6,8)}m 안에 ${frac(2,8)}m는 몇 번 들어가나요?" data-solfn="fdwSol3">리본 ${frac(6,8)}m 안에 ${frac(2,8)}m는 몇 번 들어가나요?<br><button class="havruta-show-btn" onclick="fdwSol3('fdw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdwGen3('fdw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+      <div id="fdw-4" class="prob-q" data-a="2" data-b="3" data-c="1" data-e="4" data-qtext="${frac(2,3)} ÷ ${frac(1,4)}을 통분해서 계산하세요." data-solfn="fdwSol4">${frac(2,3)} ÷ ${frac(1,4)}을 통분해서 계산하세요.<br><button class="havruta-show-btn" onclick="fdwSol4('fdw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdwGen4('fdw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+      <div id="fdw-5" class="prob-q" data-a="3" data-b="4" data-c="2" data-e="5" data-qtext="${frac(3,4)} ÷ ${frac(2,5)}를 역수를 곱하는 방법으로 계산하세요." data-solfn="fdwSol5">${frac(3,4)} ÷ ${frac(2,5)}를 역수를 곱하는 방법으로 계산하세요.<br><button class="havruta-show-btn" onclick="fdwSol5('fdw-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdwGen5('fdw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+      <div id="fdw-6" class="prob-q" data-n="6" data-a="2" data-b="3" data-qtext="노끈 6m를 ${frac(2,3)}m씩 자르면 몇 도막이 나오나요?" data-solfn="fdwSol6">노끈 6m를 ${frac(2,3)}m씩 자르면 몇 도막이 나오나요?<br><button class="havruta-show-btn" onclick="fdwSol6('fdw-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdwGen6('fdw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+      <div id="fdw-7" class="prob-q" data-w="1" data-n="1" data-d="2" data-c="2" data-e="3" data-qtext="1과 ${frac(1,2)} ÷ ${frac(2,3)}을 계산하세요." data-solfn="fdwSol7">1과 ${frac(1,2)} ÷ ${frac(2,3)}을 계산하세요.<br><button class="havruta-show-btn" onclick="fdwSol7('fdw-7')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdwGen7('fdw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8 (역산)</div>
+      <div id="fdw-8" class="prob-q" data-a="2" data-b="5" data-c="4" data-qtext="어떤 수를 ${frac(2,5)}로 나누었더니 4가 나왔습니다. 어떤 수는 얼마인가요?" data-solfn="fdwSol8">어떤 수를 ${frac(2,5)}로 나누었더니 4가 나왔습니다. 어떤 수는 얼마인가요?<br><button class="havruta-show-btn" onclick="fdwSol8('fdw-8')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdwGen8('fdw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9 (비교)</div>
+      <div id="fdw-9" class="prob-q" data-a1="6" data-b1="2" data-d1="8" data-a2="9" data-b2="3" data-d2="10" data-qtext="${frac(6,8)}÷${frac(2,8)} 와 ${frac(9,10)}÷${frac(3,10)} 중 몫이 더 큰 것은 어느 것인가요?" data-solfn="fdwSol9">${frac(6,8)}÷${frac(2,8)} 와 ${frac(9,10)}÷${frac(3,10)} 중 몫이 더 큰 것은 어느 것인가요?<br><button class="havruta-show-btn" onclick="fdwSol9('fdw-9')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdwGen9('fdw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10 (종합)</div>
+      <div id="fdw-10" class="prob-q" data-n="6" data-un="1" data-ud="3" data-m="4" data-qtext="리본 6m 중 ${frac(1,3)}을 사용하고, 남은 리본을 4도막으로 똑같이 나누면 한 도막은 몇 m인가요?" data-solfn="fdwSol10">리본 6m 중 ${frac(1,3)}을 사용하고, 남은 리본을 4도막으로 똑같이 나누면 한 도막은 몇 m인가요?<br><button class="havruta-show-btn" onclick="fdwSol10('fdw-10')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="fdwGen10('fdw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+  `}
+];
+CV_DATA['e6fracdiv'] = CV_DATA_E6FRACDIV;
+var FDW4_TUPLES = [[2,3,1,4],[3,4,1,2],[1,2,1,3],[3,5,1,2],[2,5,1,3],[4,5,1,2]];
+var FDW5_TUPLES = [[3,4,2,5],[5,6,1,2],[2,3,3,5],[4,5,2,3],[1,2,2,3],[5,8,1,4]];
+var FDW6_TUPLES = [[6,2,3],[4,1,2],[9,3,4],[10,5,6],[8,2,5],[12,3,4],[15,3,5],[16,4,5]];
+var FDW7_TUPLES = [[1,1,2,2,3],[2,1,4,3,4],[1,2,3,1,2],[2,1,2,5,6]];
+var FDW10_TUPLES = [[6,1,3,4],[9,1,3,3],[8,1,4,2],[10,2,5,3],[12,1,2,4],[15,2,5,3]];
+function fdwFracOrInt(n,d){ return d===1 ? String(n) : frac(n,d); }
+function fdwMixedStr(n,d){
+  var whole = Math.floor(n/d), rem = n%d;
+  if(d===1) return String(n);
+  return whole>0 ? (rem>0 ? whole+'과 '+frac(rem,d) : String(whole)) : frac(rem===0?n:n,d);
+}
+function fdwGen1(id){
+  var n = 1+Math.floor(Math.random()*7);
+  var m = n+1+Math.floor(Math.random()*(9-n));
+  var el = document.getElementById(id);
+  el.setAttribute('data-n', n); el.setAttribute('data-m', m);
+  rgwSetQuestion(el, '리본 '+n+'m를 '+m+'명이 똑같이 나누어 가지면, 한 명은 몇 m를 갖게 되나요?', 'fdwSol1');
+}
+function fdwSol1(id){
+  var el = document.getElementById(id);
+  var n = +el.getAttribute('data-n'), m = +el.getAttribute('data-m');
+  var g = gcd(n,m);
+  var diagram = '<div class="fb-diagram">'+n+'÷'+m+' = '+frac(n,m)+(g>1?' = '+frac(n/g,m/g):'')+'<br>→ <strong style="color:#3fb950">'+frac(n/g,m/g)+'</strong>m</div>';
+  rgwRenderToggle(id, diagram, 'fdwSol1');
+}
+function fdwGen2(id){
+  var b = 3+Math.floor(Math.random()*5);
+  var a = 1+Math.floor(Math.random()*(b-1));
+  var m = 2+Math.floor(Math.random()*4);
+  var el = document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-m',m);
+  rgwSetQuestion(el, '피자 '+frac(a,b)+'판이 남았습니다. 이것을 '+m+'명이 똑같이 나누어 먹으면 한 명은 얼마를 먹게 되나요?', 'fdwSol2');
+}
+function fdwSol2(id){
+  var el = document.getElementById(id);
+  var a = +el.getAttribute('data-a'), b = +el.getAttribute('data-b'), m = +el.getAttribute('data-m');
+  var bm = b*m;
+  var g = gcd(a,bm);
+  var diagram = '<div class="fb-diagram">'+frac(a,b)+' ÷ '+m+' = '+frac(a,bm)+(g>1?' = '+frac(a/g,bm/g):'')+'<br>→ <strong style="color:#3fb950">'+frac(a/g,bm/g)+'</strong>판</div>';
+  rgwRenderToggle(id, diagram, 'fdwSol2');
+}
+function fdwGen3(id){
+  var d, b, k, a;
+  do { d = 6+Math.floor(Math.random()*7); b = 1+Math.floor(Math.random()*3); k = 2+Math.floor(Math.random()*4); a = b*k; } while(a>=d);
+  var el = document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-d',d);
+  rgwSetQuestion(el, '리본 '+frac(a,d)+'m 안에 '+frac(b,d)+'m는 몇 번 들어가나요?', 'fdwSol3');
+}
+function fdwSol3(id){
+  var el = document.getElementById(id);
+  var a = +el.getAttribute('data-a'), b = +el.getAttribute('data-b'), d = +el.getAttribute('data-d');
+  var diagram = '<div class="fb-diagram">'+frac(a,d)+' ÷ '+frac(b,d)+' = '+a+'÷'+b+' = <strong style="color:#3fb950">'+(a/b)+'</strong>번</div>';
+  rgwRenderToggle(id, diagram, 'fdwSol3');
+}
+function fdwGen4(id){
+  var t = FDW4_TUPLES[Math.floor(Math.random()*FDW4_TUPLES.length)];
+  var el = document.getElementById(id);
+  el.setAttribute('data-a',t[0]); el.setAttribute('data-b',t[1]); el.setAttribute('data-c',t[2]); el.setAttribute('data-e',t[3]);
+  rgwSetQuestion(el, frac(t[0],t[1])+' ÷ '+frac(t[2],t[3])+'을 통분해서 계산하세요.', 'fdwSol4');
+}
+function fdwSol4(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c'), e=+el.getAttribute('data-e');
+  var g0 = gcd(b,e);
+  var cd = b*e/g0;
+  var na = a*(cd/b), nc = c*(cd/e);
+  var g1 = gcd(na,nc);
+  var simpNum = na/g1, simpDen = nc/g1;
+  var ansStr = fdwMixedStr(simpNum, simpDen);
+  var diagram = '<div class="fb-diagram">'+frac(a,b)+' = '+frac(na,cd)+' 　 '+frac(c,e)+' = '+frac(nc,cd)+'<br>'+na+'÷'+nc+' = '+frac(na,nc)+(g1>1?' = '+frac(simpNum,simpDen):'')+'<br>→ <strong style="color:#3fb950">'+ansStr+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'fdwSol4');
+}
+function fdwGen5(id){
+  var t = FDW5_TUPLES[Math.floor(Math.random()*FDW5_TUPLES.length)];
+  var el = document.getElementById(id);
+  el.setAttribute('data-a',t[0]); el.setAttribute('data-b',t[1]); el.setAttribute('data-c',t[2]); el.setAttribute('data-e',t[3]);
+  rgwSetQuestion(el, frac(t[0],t[1])+' ÷ '+frac(t[2],t[3])+'를 역수를 곱하는 방법으로 계산하세요.', 'fdwSol5');
+}
+function fdwSol5(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c'), e=+el.getAttribute('data-e');
+  var numP = a*e, denP = b*c;
+  var g = gcd(numP,denP);
+  var simpNum = numP/g, simpDen = denP/g;
+  var ansStr = fdwMixedStr(simpNum, simpDen);
+  var diagram = '<div class="fb-diagram">'+frac(a,b)+' × '+frac(e,c)+' = '+frac(numP,denP)+(g>1?' = '+frac(simpNum,simpDen):'')+'<br>→ <strong style="color:#3fb950">'+ansStr+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'fdwSol5');
+}
+function fdwGen6(id){
+  var t = FDW6_TUPLES[Math.floor(Math.random()*FDW6_TUPLES.length)];
+  var el = document.getElementById(id);
+  el.setAttribute('data-n',t[0]); el.setAttribute('data-a',t[1]); el.setAttribute('data-b',t[2]);
+  rgwSetQuestion(el, '노끈 '+t[0]+'m를 '+frac(t[1],t[2])+'m씩 자르면 몇 도막이 나오나요?', 'fdwSol6');
+}
+function fdwSol6(id){
+  var el = document.getElementById(id);
+  var n=+el.getAttribute('data-n'), a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b');
+  var ans = n*b/a;
+  var diagram = '<div class="fb-diagram">'+n+' ÷ '+frac(a,b)+' = '+n+' × '+frac(b,a)+' = '+frac(n*b,a)+' = <strong style="color:#3fb950">'+ans+'</strong>도막</div>';
+  rgwRenderToggle(id, diagram, 'fdwSol6');
+}
+function fdwGen7(id){
+  var t = FDW7_TUPLES[Math.floor(Math.random()*FDW7_TUPLES.length)];
+  var el = document.getElementById(id);
+  el.setAttribute('data-w',t[0]); el.setAttribute('data-n',t[1]); el.setAttribute('data-d',t[2]); el.setAttribute('data-c',t[3]); el.setAttribute('data-e',t[4]);
+  rgwSetQuestion(el, t[0]+'과 '+frac(t[1],t[2])+' ÷ '+frac(t[3],t[4])+'을 계산하세요.', 'fdwSol7');
+}
+function fdwSol7(id){
+  var el = document.getElementById(id);
+  var w=+el.getAttribute('data-w'), n=+el.getAttribute('data-n'), d=+el.getAttribute('data-d'), c=+el.getAttribute('data-c'), e=+el.getAttribute('data-e');
+  var impNum = w*d+n, impDen = d;
+  var numP = impNum*e, denP = impDen*c;
+  var g = gcd(numP,denP);
+  var simpNum = numP/g, simpDen = denP/g;
+  var ansStr = fdwMixedStr(simpNum, simpDen);
+  var diagram = '<div class="fb-diagram">'+w+'과 '+frac(n,d)+' = '+frac(impNum,impDen)+'<br>'+frac(impNum,impDen)+' × '+frac(e,c)+' = '+frac(numP,denP)+(g>1?' = '+frac(simpNum,simpDen):'')+'<br>→ <strong style="color:#3fb950">'+ansStr+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'fdwSol7');
+}
+function fdwGen8(id){
+  var b = 2+Math.floor(Math.random()*4);
+  var a = 1+Math.floor(Math.random()*(b-1));
+  var c = 2+Math.floor(Math.random()*5);
+  var particle = (c===3||c===6) ? '이' : '가';
+  var el = document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-c',c);
+  rgwSetQuestion(el, '어떤 수를 '+frac(a,b)+'로 나누었더니 '+c+particle+' 나왔습니다. 어떤 수는 얼마인가요?', 'fdwSol8');
+}
+function fdwSol8(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c');
+  var numP = c*a, denP = b;
+  var g = gcd(numP,denP);
+  var simpNum = numP/g, simpDen = denP/g;
+  var ansStr = fdwMixedStr(simpNum, simpDen);
+  var diagram = '<div class="fb-diagram">어떤 수 = '+c+' × '+frac(a,b)+' = '+frac(numP,denP)+(g>1?' = '+frac(simpNum,simpDen):'')+'<br>→ <strong style="color:#3fb950">'+ansStr+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'fdwSol8');
+}
+function fdwGen9(id){
+  function pick(){
+    var d,b,k,a;
+    do { d=6+Math.floor(Math.random()*7); b=1+Math.floor(Math.random()*3); k=2+Math.floor(Math.random()*4); a=b*k; } while(a>=d);
+    return {a:a,b:b,d:d};
+  }
+  var p1=pick(), p2=pick();
+  var el = document.getElementById(id);
+  el.setAttribute('data-a1',p1.a); el.setAttribute('data-b1',p1.b); el.setAttribute('data-d1',p1.d);
+  el.setAttribute('data-a2',p2.a); el.setAttribute('data-b2',p2.b); el.setAttribute('data-d2',p2.d);
+  rgwSetQuestion(el, frac(p1.a,p1.d)+'÷'+frac(p1.b,p1.d)+' 와 '+frac(p2.a,p2.d)+'÷'+frac(p2.b,p2.d)+' 중 몫이 더 큰 것은 어느 것인가요?', 'fdwSol9');
+}
+function fdwSol9(id){
+  var el = document.getElementById(id);
+  var a1=+el.getAttribute('data-a1'), b1=+el.getAttribute('data-b1');
+  var a2=+el.getAttribute('data-a2'), b2=+el.getAttribute('data-b2');
+  var q1=a1/b1, q2=a2/b2;
+  var bigger = q1>q2 ? '첫 번째('+q1+')' : (q2>q1 ? '두 번째('+q2+')' : '두 값이 같음('+q1+')');
+  var diagram = '<div class="fb-diagram">첫 번째 몫 = '+a1+'÷'+b1+' = '+q1+'<br>두 번째 몫 = '+a2+'÷'+b2+' = '+q2+'<br>→ <strong style="color:#3fb950">'+bigger+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'fdwSol9');
+}
+function fdwGen10(id){
+  var t = FDW10_TUPLES[Math.floor(Math.random()*FDW10_TUPLES.length)];
+  var el = document.getElementById(id);
+  el.setAttribute('data-n',t[0]); el.setAttribute('data-un',t[1]); el.setAttribute('data-ud',t[2]); el.setAttribute('data-m',t[3]);
+  rgwSetQuestion(el, '리본 '+t[0]+'m 중 '+frac(t[1],t[2])+'을 사용하고, 남은 리본을 '+t[3]+'도막으로 똑같이 나누면 한 도막은 몇 m인가요?', 'fdwSol10');
+}
+function fdwSol10(id){
+  var el = document.getElementById(id);
+  var N=+el.getAttribute('data-n'), un=+el.getAttribute('data-un'), ud=+el.getAttribute('data-ud'), M=+el.getAttribute('data-m');
+  var remNum = N*(ud-un), remDen = ud;
+  var g1 = gcd(remNum,remDen);
+  var rn=remNum/g1, rd=remDen/g1;
+  var ansNum = rn, ansDen = rd*M;
+  var g2 = gcd(ansNum,ansDen);
+  var an=ansNum/g2, ad=ansDen/g2;
+  var ansStr = fdwFracOrInt(an,ad);
+  var remStr = fdwFracOrInt(rn,rd);
+  var diagram = '<div class="fb-diagram">남은 리본 = '+N+' × '+frac(ud-un,ud)+' = '+remStr+'m<br>'+remStr+' ÷ '+M+' = <strong style="color:#3fb950">'+ansStr+'</strong>m</div>';
+  rgwRenderToggle(id, diagram, 'fdwSol10');
+}
 const CV_DATA_E6CIRC = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
     <p>바퀴, 파이프, 동전, 피자 — 원은 자연과 인공물 어디에나 있어요. 자전거 바퀴가 한 바퀴 굴러가면 얼마나 이동하는지, 피자 한 판에 치즈가 얼마나 필요한지는 모두 원의 둘레와 넓이를 알아야 계산할 수 있어요.</p>
@@ -5945,13 +6754,53 @@ const CV_DATA_E6RATIO = [
     </div>
     <p style="font-size:.85rem;line-height:1.85;color:#c9d1d9">비율이 같은 두 비를 등호로 이어 쓴 식을 <strong>비례식</strong>이라고 해요(예: 3:4 = 6:8). 비례식에서는 항상 <strong style="color:#bc8cff">외항의 곱과 내항의 곱이 같아요</strong> — 이 성질을 이용하면 모르는 수를 구할 수 있어요.</p>
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 비례배분</div>
+    <p style="font-size:.85rem;line-height:1.85;color:#c9d1d9">100원을 언니와 동생이 <strong style="color:#bc8cff">3:2</strong>로 나눠 가지면, 각각 얼마씩일까요? 먼저 생각해보고 아래를 확인해보세요.</p>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin:10px 0">
-      <div style="text-align:center;font-size:.8rem;margin-bottom:6px">100원을 3:2로 나누면?</div>
-      ${groupBoxes(5,3,20)}
-      <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:4px">전체를 3+2=5묶음으로 보면, 1묶음 = 100÷5=20원</div>
-      <div style="text-align:center;font-size:.8rem;margin-top:8px">첫 번째 몫 = 20×3=<strong style="color:#3fb950">60원</strong>, 두 번째 몫 = 20×2=<strong style="color:#3fb950">40원</strong></div>
+      <div style="text-align:center;font-size:.75rem;color:#bc8cff;font-weight:700;margin-bottom:8px">3:2는 전체를 3+2=5개의 "똑같은 조각"으로 나눴을 때, 언니가 3조각, 동생이 2조각을 갖는다는 뜻이에요</div>
+      <div style="text-align:center;font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:2px">언니 몫 (3조각)</div>
+      ${groupBoxes(3,3,20,'#f0c040')}
+      <div style="text-align:center;font-size:.72rem;color:#58a6ff;font-weight:700;margin:8px 0 2px">동생 몫 (2조각)</div>
+      ${groupBoxes(2,2,20,'#58a6ff')}
+      <div style="text-align:center;font-size:.78rem;color:#bc8cff;font-weight:700;margin-top:8px">조각 1개의 값 = 100÷5 = 20원</div>
+      <div style="text-align:center;font-size:.8rem;margin-top:6px">언니 = 20×3 = <strong style="color:#3fb950">60원</strong>, 동생 = 20×2 = <strong style="color:#3fb950">40원</strong> <span style="color:#8b949e;font-size:.7rem">(검산: 60+40=100 ✓)</span></div>
     </div>
-    <p style="font-size:.85rem;line-height:1.85;color:#c9d1d9">전체를 주어진 비로 나누는 것을 <strong>비례배분</strong>이라고 해요. "전체를 (비의 합)묶음으로 보고, 1묶음의 값을 구한 뒤, 각자의 비만큼 곱해요" — 나눗셈 단원에서 배운 "묶음" 방식과 똑같은 원리예요.</p>
+    <p style="font-size:.85rem;line-height:1.85;color:#c9d1d9">전체를 주어진 비로 나누는 것을 <strong>비례배분</strong>이라고 해요. "전체를 (비의 합)조각으로 나누고, 조각 1개의 값을 구한 뒤, 각자의 비만큼 곱해요" — 나눗셈 단원에서 배운 "묶음" 방식과 똑같은 원리예요.</p>
+  `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>"900원을 언니와 동생이 5:4로 나누는" 상황(개념2와 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 관계가 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>비례배분 표현</strong><br>"900원을 5:4로 나누면 언니가 받는 돈은?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 비례배분은 전체를 (비의 합)묶음으로 나눈 뒤 각자의 비만큼 곱하는 거예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">1묶음 = 900÷9 = 100원 → 언니 = 100×5 = 500원</div>
+      → <span class="expr-ans">500원</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>나머지 몫 표현</strong><br>"같은 상황에서 동생이 받는 돈은?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 같은 1묶음 값에 동생의 비를 곱하면 돼요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">100×4 = 400원</div>
+      → <span class="expr-ans">400원</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>차이 표현</strong><br>"언니와 동생이 받는 돈의 차이는?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 비의 차(5−4=1)만큼 1묶음을 곱하면 차이가 바로 나와요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">100×(5−4) = 100원 (검산: 500−400=100)</div>
+      → <span class="expr-ans">100원</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>비례식 표현</strong><br>"언니의 몫을 구하는 비례식을 세우면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 "언니의 몫:전체 = 5:9"라는 비례식으로도 같은 관계를 나타낼 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">언니:900 = 5:9 → 언니×9 = 900×5 → 언니 = 4500÷9 = 500원</div>
+      → <span class="expr-ans">500원</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>분수 표현</strong><br>"언니가 받는 돈은 전체의 얼마(분수)인가요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 비례배분의 비율은 분수로도 나타낼 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">언니는 9묶음 중 5묶음 → ${frac(5,9)}</div>
+      → <span class="expr-ans">${frac(5,9)}</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>다른 총액 적용 표현</strong><br>"같은 5:4 비율로 1800원을 나누면 언니는?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 총액이 달라도 비율(5:9)이 같으면 같은 방법으로 구해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">1묶음 = 1800÷9 = 200원 → 언니 = 200×5 = 1000원</div>
+      → <span class="expr-ans">1000원</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>역산 표현</strong><br>"언니가 500원을 받았다는 걸 알 때, 전체 금액은?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 부분(언니 몫)과 비를 알면 거꾸로 전체도 구할 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">1묶음 = 500÷5 = 100원 → 전체 = 100×9 = 900원</div>
+      → <span class="expr-ans">900원</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>검산 표현</strong><br>"구한 두 몫(500원, 400원)이 맞는지 어떻게 확인하나요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 두 몫을 더해서 전체와 같은지 확인해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">500+400 = 900원 (전체 금액과 일치)</div>
+      → <span class="expr-ans">900원 ✓</span></div>
+    <p style="margin-top:10px">이렇게 8가지나 되는 표현이 결국 <strong>같은 관계(900원을 5:4로 나누기)</strong>를 묻고 있어요. 말이 달라도 "결국 비례배분 문제구나!"를 알아채는 게 중요해요.</p>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
     <div class="q-item"><strong>Q1.</strong> 180cm 리본을 언니와 동생이 5:4로 나누어 가지려고 합니다. 언니가 가지는 리본은 몇 cm인가요?
@@ -5983,82 +6832,113 @@ const CV_DATA_E6RATIO = [
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
     <div class="prob-box">
-      <div class="prob-q">문제: 900원을 언니와 동생이 5:4로 나누면 각각 얼마인가요?</div>
-      <button class="havruta-show-btn" onclick="havrutaReveal('e6ratio-p1',this)">💡 풀이 보기</button>
-      <div class="havruta-reveal" id="rv-e6ratio-p1">
-        <div class="fb-diagram">${groupBoxes(9,5,100)}전체 5+4=9묶음, 1묶음 = 900÷9=<strong style="color:#bc8cff">100원</strong><br>언니 = 100×5=<strong style="color:#3fb950">500원</strong>, 동생 = 100×4=<strong style="color:#3fb950">400원</strong><span class="cap">검산: 500+400=900원 ✓</span></div>
-      </div>
+      <div id="e6rw-1" class="prob-q" data-a="5" data-b="4" data-total="900" data-qtext="900원을 언니와 동생이 5:4로 나누어 가지려고 합니다. 언니가 가지는 돈은 얼마입니까?" data-solfn="e6rSol1">900원을 언니와 동생이 5:4로 나누어 가지려고 합니다. 언니가 가지는 돈은 얼마입니까?<br><button class="havruta-show-btn" onclick="e6rSol1('e6rw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen1('e6rw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div class="prob-q">문제: 비례식 2:5 = 6:x 에서 x를 구하세요.</div>
-      <button class="havruta-show-btn" onclick="havrutaReveal('e6ratio-p2',this)">💡 풀이 보기</button>
-      <div class="havruta-reveal" id="rv-e6ratio-p2">
-        <div class="fb-diagram">외항은 2와 x, 내항은 5와 6<br>외항의 곱 = 내항의 곱 → 2×x = 5×6 = <strong style="color:#bc8cff">30</strong><br>x = 30÷2 = <strong style="color:#3fb950">15</strong></div>
-      </div>
+      <div id="e6rw-2" class="prob-q" data-a="3" data-b="2" data-total="50" data-qtext="길이가 50cm인 리본을 두 사람이 3:2로 나누어 가지려고 합니다. 첫 번째 사람이 가지는 리본은 몇 cm입니까?" data-solfn="e6rSol2">길이가 50cm인 리본을 두 사람이 3:2로 나누어 가지려고 합니다. 첫 번째 사람이 가지는 리본은 몇 cm입니까?<br><button class="havruta-show-btn" onclick="e6rSol2('e6rw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen2('e6rw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div id="e6rw-3" class="prob-q" data-p="3" data-q="4" data-k="3" data-qtext="비례식 3:4 = 9:x 에서 x를 구하세요." data-solfn="e6rSol3">비례식 3:4 = 9:x 에서 x를 구하세요.<br><button class="havruta-show-btn" onclick="e6rSol3('e6rw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen3('e6rw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div id="e6rw-4" class="prob-q" data-p="2" data-q="5" data-k="3" data-qtext="비례식 2:x = 6:15 에서 x를 구하세요." data-solfn="e6rSol4">비례식 2:x = 6:15 에서 x를 구하세요.<br><button class="havruta-show-btn" onclick="e6rSol4('e6rw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen4('e6rw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div id="e6rw-8" class="prob-q" data-a="3" data-b="5" data-total="400" data-qtext="들이가 400mL인 주스를 두 컵에 3:5로 나누어 담으려고 합니다. 첫 번째 컵에 담기는 주스는 몇 mL입니까?" data-solfn="e6rSol8">들이가 400mL인 주스를 두 컵에 3:5로 나누어 담으려고 합니다. 첫 번째 컵에 담기는 주스는 몇 mL입니까?<br><button class="havruta-show-btn" onclick="e6rSol8('e6rw-8')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen8('e6rw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
     <p>비례식과 비례배분을 실제 문제에 적용해봐요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
-      <div id="e6rw-1" class="prob-q" data-a="5" data-b="4" data-total="900" data-qtext="900원을 언니와 동생이 5:4로 나누어 가지려고 합니다. 언니가 가지는 돈은 얼마입니까?" data-solfn="e6rSol1">900원을 언니와 동생이 5:4로 나누어 가지려고 합니다. 언니가 가지는 돈은 얼마입니까?<br><button class="havruta-show-btn" onclick="e6rSol1('e6rw-1')">💡 풀이 보기</button></div>
-      <button class="havruta-show-btn" onclick="e6rGen1('e6rw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
-    </div>
-    <div class="prob-box">
-      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
-      <div id="e6rw-2" class="prob-q" data-a="3" data-b="2" data-total="50" data-qtext="길이가 50cm인 리본을 두 사람이 3:2로 나누어 가지려고 합니다. 첫 번째 사람이 가지는 리본은 몇 cm입니까?" data-solfn="e6rSol2">길이가 50cm인 리본을 두 사람이 3:2로 나누어 가지려고 합니다. 첫 번째 사람이 가지는 리본은 몇 cm입니까?<br><button class="havruta-show-btn" onclick="e6rSol2('e6rw-2')">💡 풀이 보기</button></div>
-      <button class="havruta-show-btn" onclick="e6rGen2('e6rw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
-    </div>
-    <div class="prob-box">
-      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
-      <div id="e6rw-3" class="prob-q" data-p="3" data-q="4" data-k="3" data-qtext="비례식 3:4 = 9:x 에서 x를 구하세요." data-solfn="e6rSol3">비례식 3:4 = 9:x 에서 x를 구하세요.<br><button class="havruta-show-btn" onclick="e6rSol3('e6rw-3')">💡 풀이 보기</button></div>
-      <button class="havruta-show-btn" onclick="e6rGen3('e6rw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
-    </div>
-    <div class="prob-box">
-      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
-      <div id="e6rw-4" class="prob-q" data-p="2" data-q="5" data-k="3" data-qtext="비례식 2:x = 6:15 에서 x를 구하세요." data-solfn="e6rSol4">비례식 2:x = 6:15 에서 x를 구하세요.<br><button class="havruta-show-btn" onclick="e6rSol4('e6rw-4')">💡 풀이 보기</button></div>
-      <button class="havruta-show-btn" onclick="e6rGen4('e6rw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
-    </div>
-    <div class="prob-box">
-      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
       <div id="e6rw-5" class="prob-q" data-n="50000" data-mapcm="4" data-qtext="어떤 지도의 축척은 1:50000입니다. 지도에서 두 지점 사이의 거리가 4cm일 때, 실제 거리는 몇 km입니까?" data-solfn="e6rSol5">어떤 지도의 축척은 1:50000입니다. 지도에서 두 지점 사이의 거리가 4cm일 때, 실제 거리는 몇 km입니까?<br><button class="havruta-show-btn" onclick="e6rSol5('e6rw-5')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="e6rGen5('e6rw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
       <div id="e6rw-6" class="prob-q" data-n="25000" data-realkm="5" data-qtext="어떤 지도의 축척은 1:25000입니다. 실제 거리가 5km인 두 지점은 지도에서 몇 cm로 나타납니까?" data-solfn="e6rSol6">어떤 지도의 축척은 1:25000입니다. 실제 거리가 5km인 두 지점은 지도에서 몇 cm로 나타납니까?<br><button class="havruta-show-btn" onclick="e6rSol6('e6rw-6')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="e6rGen6('e6rw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
       <div id="e6rw-7" class="prob-q" data-a="2" data-b="3" data-c="5" data-total="1000" data-qtext="1000원을 세 사람이 2:3:5로 나누어 가지려고 합니다. 첫 번째 사람이 가지는 돈은 얼마입니까?" data-solfn="e6rSol7">1000원을 세 사람이 2:3:5로 나누어 가지려고 합니다. 첫 번째 사람이 가지는 돈은 얼마입니까?<br><button class="havruta-show-btn" onclick="e6rSol7('e6rw-7')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="e6rGen7('e6rw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
-      <div id="e6rw-8" class="prob-q" data-a="3" data-b="5" data-total="400" data-qtext="들이가 400mL인 주스를 두 컵에 3:5로 나누어 담으려고 합니다. 첫 번째 컵에 담기는 주스는 몇 mL입니까?" data-solfn="e6rSol8">들이가 400mL인 주스를 두 컵에 3:5로 나누어 담으려고 합니다. 첫 번째 컵에 담기는 주스는 몇 mL입니까?<br><button class="havruta-show-btn" onclick="e6rSol8('e6rw-8')">💡 풀이 보기</button></div>
-      <button class="havruta-show-btn" onclick="e6rGen8('e6rw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
-    </div>
-    <div class="prob-box">
-      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
       <div id="e6rw-9" class="prob-q" data-n1="3" data-price1="1500" data-n2="7" data-qtext="빵 3개에 1500원이면, 같은 빵 7개는 얼마입니까? (정비례 관계를 이용하세요)" data-solfn="e6rSol9">빵 3개에 1500원이면, 같은 빵 7개는 얼마입니까? (정비례 관계를 이용하세요)<br><button class="havruta-show-btn" onclick="e6rSol9('e6rw-9')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="e6rGen9('e6rw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
       <div id="e6rw-10" class="prob-q" data-a="3" data-b="4" data-partamt="300" data-qtext="어떤 돈을 두 사람이 3:4로 나누었더니 첫 번째 사람이 300원을 받았습니다. 전체 금액은 얼마입니까?" data-solfn="e6rSol10">어떤 돈을 두 사람이 3:4로 나누었더니 첫 번째 사람이 300원을 받았습니다. 전체 금액은 얼마입니까?<br><button class="havruta-show-btn" onclick="e6rSol10('e6rw-10')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="e6rGen10('e6rw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <p style="margin-top:14px;padding-top:10px;border-top:1px solid #30363d">여기부터는 <strong style="color:#f0c040">고난도 추가문제</strong>예요.</p>
     <div class="prob-box">
-      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 11 [비례배분 후 차이 구하기]</div>
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6 [비례배분 후 차이 구하기]</div>
       <div id="e6rw-11" class="prob-q" data-a="5" data-b="3" data-total="48" data-qtext="형과 동생의 나이의 합은 48살이고, 나이의 비는 5:3입니다. 형은 동생보다 몇 살 많습니까?" data-solfn="e6rSol11">형과 동생의 나이의 합은 48살이고, 나이의 비는 5:3입니다. 형은 동생보다 몇 살 많습니까?<br><button class="havruta-show-btn" onclick="e6rSol11('e6rw-11')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="e6rGen11('e6rw-11')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
     <div class="prob-box">
-      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 12 [둘레→비례배분→넓이]</div>
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7 [둘레→비례배분→넓이]</div>
       <div id="e6rw-12" class="prob-q" data-a="3" data-b="2" data-p="40" data-qtext="가로와 세로의 비가 3:2인 직사각형의 둘레가 40cm입니다. 이 직사각형의 넓이는 몇 cm²입니까?" data-solfn="e6rSol12">가로와 세로의 비가 3:2인 직사각형의 둘레가 40cm입니다. 이 직사각형의 넓이는 몇 cm²입니까?<br><button class="havruta-show-btn" onclick="e6rSol12('e6rw-12')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="e6rGen12('e6rw-12')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8 [비의 차로 두 수의 차 구하기]</div>
+      <div id="e6rw-13" class="prob-q" data-m="3" data-n="5" data-total="96" data-qtext="어떤 두 수의 비는 3:5입니다. 두 수의 합이 96일 때, 큰 수에서 작은 수를 뺀 값은 얼마입니까?" data-solfn="e6rSol13">어떤 두 수의 비는 3:5입니다. 두 수의 합이 96일 때, 큰 수에서 작은 수를 뺀 값은 얼마입니까?<br><button class="havruta-show-btn" onclick="e6rSol13('e6rw-13')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen13('e6rw-13')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9 [비례식 미지수 - 배수 아닌 경우]</div>
+      <div id="e6rw-14" class="prob-q" data-a="12" data-m="4" data-n="7" data-qtext="빵의 개수와 초콜릿의 개수의 비는 4:7입니다. 빵이 12개라면, 초콜릿은 몇 개입니까?" data-solfn="e6rSol14">빵의 개수와 초콜릿의 개수의 비는 4:7입니다. 빵이 12개라면, 초콜릿은 몇 개입니까?<br><button class="havruta-show-btn" onclick="e6rSol14('e6rw-14')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen14('e6rw-14')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10 [삼각형 세 각의 비]</div>
+      <div id="e6rw-15" class="prob-q" data-a="2" data-b="3" data-c="4" data-qtext="어떤 삼각형의 세 각의 크기의 비가 2:3:4입니다. 이 삼각형에서 가장 큰 각의 크기는 몇 도입니까?" data-solfn="e6rSol15">어떤 삼각형의 세 각의 크기의 비가 2:3:4입니다. 이 삼각형에서 가장 큰 각의 크기는 몇 도입니까?<br><button class="havruta-show-btn" onclick="e6rSol15('e6rw-15')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen15('e6rw-15')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 11 [소금물 농도 비가 바뀔 때 더 넣는 양]</div>
+      <div id="e6rw-16" class="prob-q" data-total0="300" data-m="1" data-n="4" data-p="2" data-q="3" data-qtext="설탕물 300g에 들어 있는 설탕과 물의 양의 비가 1:4입니다. 이 설탕물에 설탕을 몇 g 더 넣어야 설탕과 물의 양의 비가 2:3이 되겠습니까?" data-solfn="e6rSol16">설탕물 300g에 들어 있는 설탕과 물의 양의 비가 1:4입니다. 이 설탕물에 설탕을 몇 g 더 넣어야 설탕과 물의 양의 비가 2:3이 되겠습니까?<br><button class="havruta-show-btn" onclick="e6rSol16('e6rw-16')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen16('e6rw-16')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 12 [둘레→비례배분→넓이 (다른 예)]</div>
+      <div id="e6rw-17" class="prob-q" data-a="7" data-b="4" data-p="132" data-qtext="직사각형의 가로와 세로의 비가 7:4이고, 둘레의 길이가 132cm입니다. 이 직사각형의 넓이는 몇 cm²입니까?" data-solfn="e6rSol17">직사각형의 가로와 세로의 비가 7:4이고, 둘레의 길이가 132cm입니다. 이 직사각형의 넓이는 몇 cm²입니까?<br><button class="havruta-show-btn" onclick="e6rSol17('e6rw-17')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen17('e6rw-17')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 13 [세 사람 비 - 한 명의 금액으로 총합 구하기]</div>
+      <div id="e6rw-18" class="prob-q" data-a="2" data-b="3" data-c="4" data-bamt="45000" data-qtext="삼 형제(첫째, 둘째, 셋째)가 가진 돈의 비가 2:3:4입니다. 둘째가 가진 돈이 45000원일 때, 세 형제가 가진 돈의 총합은 얼마입니까?" data-solfn="e6rSol18">삼 형제(첫째, 둘째, 셋째)가 가진 돈의 비가 2:3:4입니다. 둘째가 가진 돈이 45000원일 때, 세 형제가 가진 돈의 총합은 얼마입니까?<br><button class="havruta-show-btn" onclick="e6rSol18('e6rw-18')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen18('e6rw-18')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 14 [분수로 이루어진 비례식]</div>
+      <div id="e6rw-19" class="prob-q" data-a1="3" data-d1="4" data-a2="1" data-d2="2" data-a3="2" data-d3="3" data-qtext="비례식 ${frac(3,4)} : x = ${frac(1,2)} : ${frac(2,3)} 에서 x의 값을 구하세요." data-solfn="e6rSol19">비례식 ${frac(3,4)} : x = ${frac(1,2)} : ${frac(2,3)} 에서 x의 값을 구하세요.<br><button class="havruta-show-btn" onclick="e6rSol19('e6rw-19')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen19('e6rw-19')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 15 [두 사람 비례배분 - 차이 구하기]</div>
+      <div id="e6rw-20" class="prob-q" data-a="4" data-b="3" data-total="140" data-qtext="구슬 140개를 형과 동생에게 4:3으로 나누어 주려고 합니다. 형이 받은 구슬은 동생이 받은 구슬보다 몇 개 더 많습니까?" data-solfn="e6rSol20">구슬 140개를 형과 동생에게 4:3으로 나누어 주려고 합니다. 형이 받은 구슬은 동생이 받은 구슬보다 몇 개 더 많습니까?<br><button class="havruta-show-btn" onclick="e6rSol20('e6rw-20')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen20('e6rw-20')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 16 [소금물 전체 양에서 소금 양 구하기]</div>
+      <div id="e6rw-21" class="prob-q" data-m="2" data-n="13" data-total="300" data-qtext="어떤 소금물에 들어 있는 소금과 물의 양의 비가 2:13입니다. 이 소금물 300g을 만들기 위해 필요한 소금은 몇 g입니까?" data-solfn="e6rSol21">어떤 소금물에 들어 있는 소금과 물의 양의 비가 2:13입니다. 이 소금물 300g을 만들기 위해 필요한 소금은 몇 g입니까?<br><button class="havruta-show-btn" onclick="e6rSol21('e6rw-21')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen21('e6rw-21')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 17 [비로 나뉜 두 수의 곱]</div>
+      <div id="e6rw-22" class="prob-q" data-m="5" data-n="3" data-total="64" data-qtext="어떤 두 수의 비가 5:3이고, 두 수의 합이 64일 때, 두 수의 곱은 얼마입니까?" data-solfn="e6rSol22">어떤 두 수의 비가 5:3이고, 두 수의 합이 64일 때, 두 수의 곱은 얼마입니까?<br><button class="havruta-show-btn" onclick="e6rSol22('e6rw-22')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="e6rGen22('e6rw-22')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
@@ -6087,6 +6967,50 @@ const CV_DATA_E5AVG = [
       <li>말로 표현하면: <span style="color:#f85149">불가능하다</span> → ~아닐 것 같다 → <span style="color:#f0c040">반반이다(${frac(1,2)})</span> → ~일 것 같다 → <span style="color:#3fb950">확실하다</span></li>
     </ul>
     <div class="fb-diagram">${spinnerSvg(4,2,'#f0c040')}<span class="cap">회전판을 반으로 나누면 화살이 그 색을 가리킬 가능성은 ${frac(1,2)}(반반)이에요</span></div>
+  `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>"수학 점수 80점, 85점, 90점, 85점"(예제 문제와 같은 자료) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 자료가 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>평균 구하기 표현</strong><br>"80점, 85점, 90점, 85점의 평균은?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 평균은 (자료 값의 합)÷(자료의 수)예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">80+85+90+85=340, 340÷4=85</div>
+      → <span class="expr-ans">85점</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>합계 역산 표현</strong><br>"평균이 85점인 4개의 점수를 모두 더하면 얼마인가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 평균×개수=합이라는 관계를 거꾸로 이용해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">85×4=340</div>
+      → <span class="expr-ans">340점</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>빠진 값 역산 표현</strong><br>"80점, 85점, 90점 세 점수에 하나를 더해서 평균 85점이 되게 하려면, 네 번째 점수는 몇 점이어야 하나요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 전체 합(평균×개수)에서 이미 아는 값들의 합을 빼면 빠진 값이 나와요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">전체 합=85×4=340, 80+85+90=255 → 340−255=85</div>
+      → <span class="expr-ans">85점</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>자료 분포 이해 표현</strong><br>"평균이 85점이라고 해서, 네 점수 모두 85점이라는 뜻인가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 평균은 자료를 고르게 나눴을 때의 대표값일 뿐, 실제 자료는 서로 다를 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">실제 점수는 80,85,90,85로 서로 다름 (평균보다 높은 것과 낮은 것이 섞여 있음)</div>
+      → <span class="expr-ans">아니요</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>개수가 다른 비교 표현</strong><br>"이 중 85점, 90점 두 개만의 평균은?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 자료 개수가 달라지면 평균도 달라질 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">85+90=175, 175÷2=87.5</div>
+      → <span class="expr-ans">87.5점</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>자료 추가 표현</strong><br>"이 네 점수에 100점짜리 시험 결과를 하나 더 추가하면 평균은?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 자료가 추가되면 합과 개수를 모두 새로 계산해야 해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">합=340+100=440, 개수=5 → 440÷5=88</div>
+      → <span class="expr-ans">88점</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>순서 무관 표현</strong><br>"같은 네 점수를 90점, 80점, 85점, 85점 순서로 나열해도 평균은 같을까요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 덧셈은 순서를 바꿔도 결과가 같으니, 합과 평균도 순서와 상관없어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">90+80+85+85=340, 340÷4=85</div>
+      → <span class="expr-ans">같음(85점)</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>검산 표현</strong><br>"구한 평균(85점)이 맞는지, 평균×개수로 다시 확인하면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 평균×개수를 계산해서 원래 합(340)과 같은지 확인하면 검산이 돼요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">85×4=340 (원래 합과 일치)</div>
+      → <span class="expr-ans">340으로 일치 ✓</span></div>
+    <div class="expr-item"><span class="expr-num">9</span><strong>실생활 용돈 평균 표현</strong><br>"이번 주 매일 받은 용돈이 80원, 85원, 90원, 85원이었다면, 하루 평균 용돈은 얼마인가요?"
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 점수뿐 아니라 용돈·온도처럼 매일 달라지는 실생활 자료도 평균으로 대표값을 구해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">80+85+90+85=340, 340÷4=85</div>
+      → <span class="expr-ans">85원</span></div>
+    <div class="expr-item"><span class="expr-num">10</span><strong>실생활 가능성 표현</strong><br>"제비뽑기 상자 안에 당첨 제비 1개와 꽝 제비 1개가 있습니다. 당첨될 가능성을 분수로 나타내면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 두 가지 중 하나를 뽑는 "반반" 상황은 가능성 ${frac(1,2)}로 나타내요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">전체 2개 중 당첨 1개</div>
+      → <span class="expr-ans">${frac(1,2)}</span></div>
+    <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 자료(80,85,90,85점)</strong>를 다루고 있어요. 평균 구하기와 그 역산(합·빠진 값 구하기)이 서로 연결되어 있다는 걸 알 수 있어요.</p>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
     <div class="q-item"><strong>Q1.</strong> 평균을 구할 때 왜 그냥 다 더하지 않고, 자료의 개수로 나눌까요?
@@ -6258,6 +7182,42 @@ const CV_DATA_E3FRAC2 = [
       <div style="text-align:center;font-size:1rem;margin-top:6px">2 ${frac(1,4)} = <strong style="color:#3fb950">${frac(9,4)}</strong></div>
     </div>
   `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>${frac(9,4)}(개념2와 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 값이 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>가분수 표현</strong><br>"분자가 분모보다 크거나 같은 분수로 나타내면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 가분수는 분자가 분모와 같거나 큰 분수예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">이미 가분수 형태예요</div>
+      → <span class="expr-ans">${frac(9,4)}</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>대분수 표현</strong><br>"자연수와 진분수를 나란히 쓴 형태로 나타내면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 가분수를 대분수로 바꾸려면 분자를 분모로 나눠요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">9÷4 = 2…1 → 몫 2는 자연수, 나머지 1은 분자</div>
+      → <span class="expr-ans">2 ${frac(1,4)}</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>나눗셈 표현</strong><br>"9를 4로 나누면 몫과 나머지는?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 가분수를 대분수로 바꾸는 계산이 바로 나눗셈이에요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">9÷4 = 2 나머지 1</div>
+      → <span class="expr-ans">몫 2, 나머지 1</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>그림(조각) 표현</strong><br>"피자 한 판을 4조각으로 나눴을 때, 9조각은 피자 몇 판과 몇 조각인가요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 4조각이 모이면 피자 한 판(=1)이 돼요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">9조각 = 4조각(1판) + 4조각(1판) + 1조각 → 2판하고 1조각</div>
+      → <span class="expr-ans">2판과 1조각</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>검산 표현</strong><br>"2와 ${frac(1,4)}이 맞는지 확인하려면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 대분수를 가분수로 다시 바꿔서 원래 값과 같은지 확인해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">2×4+1 = 9 (원래 분자와 일치)</div>
+      → <span class="expr-ans">${frac(9,4)} ✓</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>크기 비교 표현</strong><br>"${frac(9,4)}는 1보다 큰가요, 작은가요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 분자가 분모보다 크면 1보다 큰 수예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">분자 9 > 분모 4</div>
+      → <span class="expr-ans">1보다 크다</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>다른 값 적용 표현</strong><br>"같은 분모로 ${frac(11,4)}는 대분수로 나타내면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 분자만 달라져도 같은 방법(나눗셈)으로 바꿔요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">11÷4 = 2…3</div>
+      → <span class="expr-ans">2 ${frac(3,4)}</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>역변환 표현</strong><br>"3과 ${frac(2,5)}를 가분수로 바꾸면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 자연수×분모+분자로 대분수를 가분수로 바꿔요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">3×5+2 = 17</div>
+      → <span class="expr-ans">${frac(17,5)}</span></div>
+    <p style="margin-top:10px">이렇게 8가지나 되는 표현이 결국 <strong>같은 값(9와 4의 관계)</strong>을 묻고 있어요. 말이 달라도 "결국 가분수·대분수 변환 문제구나!"를 알아채는 게 중요해요.</p>
+  `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
     <div class="q-item"><strong>Q1.</strong> ${frac(4,4)}는 왜 1과 같을까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e3frac2-h1',this)">💬 친구들은 이렇게 답했어요</button>
@@ -6410,16 +7370,6 @@ const CV_DATA_E3FRAC3 = [
       <div style="text-align:center;font-size:.8rem;margin-top:4px">여기서 <strong style="color:#bc8cff">4는 "한 봉지에 담는 개수"</strong>, 36÷4=<strong style="color:#3fb950">9</strong>는 <strong style="color:#3fb950">"봉지의 개수"</strong>예요</div>
       <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">계산은 똑같이 36÷4=9지만, ①에서는 "4"가 사람 수, ②에서는 "4"가 한 봉지 크기예요 — <strong style="color:#bc8cff">숫자는 같아도 뜻이 달라요</strong></div>
     </div>
-    <div style="font-size:.78rem;color:#8b949e;font-weight:700;margin:12px 0 6px">다양한 표현으로 연습하기</div>
-    <div class="expr-item"><span class="expr-num">1</span>색종이 20장을 5명에게 나눠주면 한 명당 몇 장?(<strong>나눠주기</strong>) / 색종이 20장을 5장씩 묶으면 몇 묶음?(<strong>묶어보기</strong>) → 둘 다 <span class="expr-ans">4</span></div>
-    <div class="expr-item"><span class="expr-num">2</span>구슬 15개를 3개의 주머니에 나눠 담으면 한 주머니에 몇 개?(<strong>나눠주기</strong>) / 구슬 15개를 3개씩 묶으면 몇 묶음?(<strong>묶어보기</strong>) → 둘 다 <span class="expr-ans">5</span></div>
-    <div class="expr-item"><span class="expr-num">3</span>귤 28개를 7개의 접시에 똑같이 나누면 한 접시에 몇 개?(<strong>나눠주기</strong>) / 귤 28개를 7개씩 묶으면 몇 묶음?(<strong>묶어보기</strong>) → 둘 다 <span class="expr-ans">4</span></div>
-    <div class="expr-item"><span class="expr-num">4</span>리본 30cm를 6도막으로 똑같이 자르면 한 도막은 몇 cm?(<strong>나눠주기</strong>) / 리본 30cm를 6cm씩 자르면 몇 도막?(<strong>묶어보기</strong>) → 둘 다 <span class="expr-ans">5</span></div>
-    <div class="expr-item"><span class="expr-num">5</span>딸기 40개를 8개의 바구니에 나눠 담으면 한 바구니에 몇 개?(<strong>나눠주기</strong>) / 딸기 40개를 8개씩 묶으면 몇 바구니?(<strong>묶어보기</strong>) → 둘 다 <span class="expr-ans">5</span></div>
-    <div class="prob-box">
-      <div id="e3qp-4" class="prob-q" data-total="36" data-d="4" data-qtext="사탕 36개가 있습니다. (1) 4명에게 똑같이 나눠주면 한 명당 몇 개인가요? (2) 4개씩 봉지에 담으면 몇 봉지가 되나요?" data-solfn="pqwSol11">사탕 36개가 있습니다. (1) 4명에게 똑같이 나눠주면 한 명당 몇 개인가요? (2) 4개씩 봉지에 담으면 몇 봉지가 되나요?<br><button class="havruta-show-btn" onclick="pqwSol11('e3qp-4')">💡 풀이 보기</button></div>
-      <button class="havruta-show-btn" onclick="pqwGen11('e3qp-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
-    </div>
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — "전체의 몇 분의 몇" 구하는 공식</div>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
       <div style="text-align:center;font-size:.85rem">18의 ${frac(1,3)}은 얼마일까요?</div>
@@ -6486,6 +7436,54 @@ const CV_DATA_E3FRAC3 = [
       <div id="e3qp-6" class="prob-q" data-d="5" data-m="2" data-k="6" data-qtext="어떤 상자에 들어 있는 사탕의 ${frac(2,5)}가 6개입니다. 이 상자에 들어 있는 처음 사탕은 모두 몇 개였을까요?" data-solfn="pqwSol6">어떤 상자에 들어 있는 사탕의 ${frac(2,5)}가 6개입니다. 이 상자에 들어 있는 처음 사탕은 모두 몇 개였을까요?<br><button class="havruta-show-btn" onclick="pqwSol6('e3qp-6')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="pqwGen6('e3qp-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
+  `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>"36개를 4로 나누는" 하나의 계산(36÷4=9)이 "나눠주기"와 "묶어보기"라는 서로 다른 뜻으로 쓰일 수 있어요(개념2와 같은 예시). 같은 나눗셈을 매번 두 가지 표현으로 나란히 물어볼게요.</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>나눠주기 표현</strong><br>"색종이 20장을 5명에게 나눠주면 한 명당 몇 장?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 나눠주기는 "몇 명(묶음)에게 나눌 때, 한 명(묶음)은 몇 개?"를 묻는 거예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">20÷5 = 4</div>
+      → <span class="expr-ans">4장</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>묶어보기 표현</strong><br>"색종이 20장을 5장씩 묶으면 몇 묶음?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 묶어보기는 "몇 개씩 묶으면, 몇 묶음?"을 묻는 거예요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">20÷5 = 4</div>
+      → <span class="expr-ans">4묶음</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>나눠주기 표현</strong><br>"구슬 15개를 3개의 주머니에 나눠 담으면 한 주머니에 몇 개?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 "3"이 나누는 대상(주머니 수)이에요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">15÷3 = 5</div>
+      → <span class="expr-ans">5개</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>묶어보기 표현</strong><br>"구슬 15개를 3개씩 묶으면 몇 묶음?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 "3"이 한 묶음의 크기예요 — 같은 숫자라도 뜻이 달라요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">15÷3 = 5</div>
+      → <span class="expr-ans">5묶음</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>나눠주기 표현</strong><br>"귤 28개를 7개의 접시에 똑같이 나누면 한 접시에 몇 개?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 접시 수(7)로 나눠서 한 접시 몫을 구해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">28÷7 = 4</div>
+      → <span class="expr-ans">4개</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>묶어보기 표현</strong><br>"귤 28개를 7개씩 묶으면 몇 묶음?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 한 묶음 크기(7)로 나눠서 묶음 수를 구해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">28÷7 = 4</div>
+      → <span class="expr-ans">4묶음</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>나눠주기 표현</strong><br>"리본 30cm를 6도막으로 똑같이 자르면 한 도막은 몇 cm?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 도막 수(6)로 나눠서 한 도막 길이를 구해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">30÷6 = 5</div>
+      → <span class="expr-ans">5cm</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>묶어보기 표현</strong><br>"리본 30cm를 6cm씩 자르면 몇 도막?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 한 도막 길이(6cm)로 나눠서 도막 수를 구해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">30÷6 = 5</div>
+      → <span class="expr-ans">5도막</span></div>
+    <div class="expr-item"><span class="expr-num">9</span><strong>나눠주기 표현</strong><br>"딸기 40개를 8개의 바구니에 나눠 담으면 한 바구니에 몇 개?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 바구니 수(8)로 나눠서 한 바구니 몫을 구해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">40÷8 = 5</div>
+      → <span class="expr-ans">5개</span></div>
+    <div class="expr-item"><span class="expr-num">10</span><strong>묶어보기 표현</strong><br>"딸기 40개를 8개씩 묶으면 몇 바구니?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 한 묶음 크기(8)로 나눠서 바구니 수를 구해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">40÷8 = 5</div>
+      → <span class="expr-ans">5바구니</span></div>
+    <div class="prob-box">
+      <div id="e3qp-4" class="prob-q" data-total="36" data-d="4" data-qtext="사탕 36개가 있습니다. (1) 4명에게 똑같이 나눠주면 한 명당 몇 개인가요? (2) 4개씩 봉지에 담으면 몇 봉지가 되나요?" data-solfn="pqwSol11">사탕 36개가 있습니다. (1) 4명에게 똑같이 나눠주면 한 명당 몇 개인가요? (2) 4개씩 봉지에 담으면 몇 봉지가 되나요?<br><button class="havruta-show-btn" onclick="pqwSol11('e3qp-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pqwGen11('e3qp-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <p style="margin-top:10px">이렇게 계산은 똑같이 36÷4=9인데, <strong>무엇을 구하는지</strong>에 따라 뜻이 달라져요. 말이 달라도 "결국 같은 나눗셈이구나!"를 알아채는 게 중요해요.</p>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
     <div class="q-item"><strong>Q1.</strong> "18의 ${frac(1,3)}"을 구할 때 왜 나누기부터 하나요?
@@ -6628,6 +7626,42 @@ const CV_DATA_E3FRAC4 = [
       <div style="text-align:center;font-size:.85rem">쿠키 24개를 4개씩 접시에 담으면 몇 접시? 그 중 접시의 ${frac(1,3)}을 형이 가져가면 몇 개?</div>
       <div style="text-align:center;font-size:.8rem;line-height:1.9;margin-top:6px">접시 수: 24÷4=<strong style="color:#bc8cff">6접시</strong>(가분수로 ${frac(24,4)})<br>형이 가져간 접시: 6의 ${frac(1,3)}=6÷3×1=<strong style="color:#bc8cff">2접시</strong><br>형이 가져간 쿠키: 2×4=<strong style="color:#3fb950">8개</strong></div>
     </div>
+  `},
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+    <p>"책 36쪽, 첫날 ${frac(1,3)}, 둘째 날 남은 것의 ${frac(1,2)}"(개념1과 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 상황이 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>부분 구하기 표현</strong><br>"첫날 읽은 쪽수는?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 전체의 분수만큼을 구하는 기본 계산이에요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">36의 ${frac(1,3)} = 36÷3×1 = 12쪽</div>
+      → <span class="expr-ans">12쪽</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>남은 분수 표현</strong><br>"첫날 읽고 남은 부분을 분수로 나타내면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 전체는 항상 1(=${frac(3,3)})이므로, 읽은 분수를 빼면 남은 분수가 나와요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(3,3)} − ${frac(1,3)} = ${frac(2,3)}</div>
+      → <span class="expr-ans">${frac(2,3)}</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>남은 양 표현</strong><br>"첫날 읽고 남은 쪽수는?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 남은 분수(${frac(2,3)})를 알면 뺄셈 없이 바로 구할 수 있어요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">36의 ${frac(2,3)} = 36÷3×2 = 24쪽</div>
+      → <span class="expr-ans">24쪽</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>부분의 부분 표현</strong><br>"둘째 날 읽은 쪽수는?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 둘째 날 분수는 처음 36쪽이 아니라 남은 24쪽을 기준으로 계산해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">24의 ${frac(1,2)} = 24÷2×1 = 12쪽</div>
+      → <span class="expr-ans">12쪽</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>검산(합) 표현</strong><br>"첫날과 둘째 날 읽은 쪽수를 더하면?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 이틀 동안 읽은 양을 합쳐서 확인해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">12+12 = 24쪽</div>
+      → <span class="expr-ans">24쪽</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>최종 남은 양 표현</strong><br>"이틀 다 읽고 나서 남은 쪽수는?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 전체에서 이틀 동안 읽은 양(24쪽)을 빼요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">36−24 = 12쪽</div>
+      → <span class="expr-ans">12쪽</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>전체 대비 비율 표현</strong><br>"둘째 날까지 읽은 쪽수는 전체의 얼마(분수)인가요?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 읽은 쪽수를 전체 쪽수로 나눈 뒤 약분해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">${frac(24,36)}에서 분모·분자를 최대공약수 12로 나누면 → ${frac(2,3)}</div>
+      → <span class="expr-ans">${frac(2,3)}</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>다른 값 적용 표현</strong><br>"책이 48쪽이고 같은 방식(첫날 ${frac(1,3)}, 둘째 날 남은 것의 ${frac(1,2)})으로 읽는다면, 둘째 날은 몇 쪽?"
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 전체가 달라져도 같은 두 단계 방법을 그대로 적용해요</div>
+      <div style="font-size:.72rem;color:#c9d1d9;margin-top:2px">첫날: 48의 ${frac(1,3)}=16쪽, 남은 쪽수 32쪽 → 둘째 날: 32의 ${frac(1,2)}=16쪽</div>
+      → <span class="expr-ans">16쪽</span></div>
+    <p style="margin-top:10px">이렇게 8가지나 되는 표현이 결국 <strong>같은 상황(책 읽기 2단계 문제)</strong>을 묻고 있어요. 말이 달라도 "결국 부분의 부분 문제구나!"를 알아채는 게 중요해요.</p>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
     <div class="q-item"><strong>Q1.</strong> 물통에 물이 24L 있습니다. 이 물의 ${frac(3,8)}을 사용했다면, 남은 물은 몇 L인가요? (뺄셈이 아니라 분수로 구해보세요)
@@ -6894,7 +7928,31 @@ const FB_DIAGRAM_E3FRAC4_H3 = '<div class="fb-diagram">'
   + '<div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px;margin-bottom:8px"><div style="font-size:.7rem;color:#58a6ff;font-weight:700;text-align:center">36쪽 문제 — 1단계+2단계</div><div style="font-size:.75rem;margin-top:4px;text-align:center">36 → 첫날 '+frac(1,3)+' = <strong style="color:#bc8cff">12쪽</strong> → 남은 <strong style="color:#bc8cff">24쪽</strong> → 둘째 날 '+frac(1,2)+' = <strong style="color:#3fb950">12쪽</strong></div></div>'
   + '<div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px"><div style="font-size:.7rem;color:#58a6ff;font-weight:700;text-align:center">"어떤 수의 '+frac(1,2)+'이 7" — 1단계뿐</div><div style="font-size:.75rem;margin-top:4px;text-align:center">기준 수(7)가 이미 있으니 → 7×2=<strong style="color:#3fb950">14</strong></div></div>'
   + '<span class="cap">36쪽 문제는 "남은 쪽수(24쪽)" 구하기가 먼저 필요해서 2단계, "'+frac(1,2)+'이 7"은 기준이 바로 있어서 1단계로 끝나요</span></div>';
+const FB_DIAGRAM_E6FRACDIV_H1 = '<div class="fb-diagram">'+fracPieHtml(2,3,'#f0c040',56)+'<span class="cap">케이크 2개를 3명이 나누면, 케이크 한 개를 3등분한 조각을 한 명이 2번(케이크 2개에서 각 1조각씩) 갖는 셈이라 2÷3='+frac(2,3)+'이 돼요</span></div>';
+const FB_DIAGRAM_E6FRACDIV_H2 = '<div class="fb-diagram">'+frac(3,4)+' ÷ '+frac(1,2)+' = <strong style="color:#3fb950">1과 '+frac(1,2)+'</strong><br>'+frac(3,4)+' 안에 '+frac(1,2)+'이 1번 들어가고, 남은 '+frac(1,4)+'은 '+frac(1,2)+'의 절반이에요<span class="cap">1보다 작은 수('+frac(1,2)+')로 나누면, 그 조각이 1번보다 많이 들어가서 몫이 원래 수(3/4)보다 커져요</span></div>';
+const FB_DIAGRAM_E6FRACDIV_H3 = '<div class="fb-diagram">'+frac(3,4)+'÷'+frac(1,2)+' = <strong style="color:#bc8cff">1과 '+frac(1,2)+'</strong> 　 '+frac(3,4)+'÷'+frac(1,4)+' = <strong style="color:#3fb950">3</strong><span class="cap">나누는 수가 '+frac(1,2)+'에서 그 절반인 '+frac(1,4)+'로 줄어드니, 몫은 1과'+frac(1,2)+'에서 3으로(정확히 2배) 늘어나요 — 나누는 단위가 작아질수록 더 많이 들어가요</span></div>';
+const FB_DIAGRAM_E6FRACDIV_H4 = '<div class="fb-diagram">그림으로 센 값: '+frac(3,4)+'÷'+frac(1,2)+'=1과'+frac(1,2)+', 　'+frac(3,4)+'÷'+frac(1,4)+'=3<br>역수 곱셈: '+frac(3,4)+'×'+frac(2,1)+'=1과'+frac(1,2)+', 　'+frac(3,4)+'×'+frac(4,1)+'=3<span class="cap">두 방법 다 똑같은 답이 나와요 — 역수를 곱하는 건 "몇 번 들어가는지 세기"를 더 빠르게 계산하는 지름길일 뿐이에요</span></div>';
 const HAVRUTA_FB = {
+  'e6fracdiv-h1': [
+    {ok:true, text:'맞아요! 케이크 2개를 3명이 나누면, 하나의 케이크를 3등분한 조각을 한 명이 2번(각 케이크에서 1조각씩) 갖는 셈이라, 나누는 수(3)가 분모, 나뉘는 수(2)가 분자가 돼요.', diagram:FB_DIAGRAM_E6FRACDIV_H1},
+    {ok:false, text:'그냥 순서를 바꾸는 규칙이 아니에요! 나누는 수(3)만큼 등분한 조각 수가 분모가 되는 실제 이유가 있어요.', diagram:FB_DIAGRAM_E6FRACDIV_H1},
+    {ok:false, text:'몫의 크기와는 상관없어요! 나누는 수가 몇 등분했는지를 나타내기 때문에 분모가 되는 거예요.', diagram:FB_DIAGRAM_E6FRACDIV_H1}
+  ],
+  'e6fracdiv-h2': [
+    {ok:true, text:'맞아요! 1보다 작은 수로 나누는 건 "그 수가 전체 안에 몇 번 들어가는지" 세는 거라, 1번보다 더 많이 들어가서 몫이 원래 수보다 커져요.', diagram:FB_DIAGRAM_E6FRACDIV_H2},
+    {ok:false, text:'예외가 아니에요! 1보다 작은 수로 나누면 항상 원래 수보다 몫이 커져요 — 나눗셈의 자연스러운 성질이에요.', diagram:FB_DIAGRAM_E6FRACDIV_H2},
+    {ok:false, text:'계산 실수 때문이 아니에요! 1보다 작은 수로 나누면 몫이 커지는 게 정상적인 결과예요.', diagram:FB_DIAGRAM_E6FRACDIV_H2}
+  ],
+  'e6fracdiv-h3': [
+    {ok:true, text:'맞아요! 나누는 단위(1/2 → 1/4)가 절반이 되면, 그 단위가 원래 수 안에 들어가는 횟수는 정확히 2배가 돼요.', diagram:FB_DIAGRAM_E6FRACDIV_H3},
+    {ok:false, text:'우연이 아니에요! 나누는 수가 절반이 되면 몫은 항상 정확히 2배가 돼요 — 더 작은 단위로 잴수록 그만큼 더 많이 들어가기 때문이에요.', diagram:FB_DIAGRAM_E6FRACDIV_H3},
+    {ok:false, text:'숫자가 작아서가 아니라, 나누는 단위가 절반이 됐기 때문에 몫이 정확히 2배가 되는 거예요.', diagram:FB_DIAGRAM_E6FRACDIV_H3}
+  ],
+  'e6fracdiv-h4': [
+    {ok:true, text:'맞아요! 그림으로 직접 세어 구한 값(1과1/2, 3)과 역수를 곱해서 구한 값이 정확히 같아요 — 역수 곱셈은 "몇 번 들어가는지 세기"를 매번 그리지 않고도 빠르게 구하는 지름길일 뿐이에요.', diagram:FB_DIAGRAM_E6FRACDIV_H4},
+    {ok:false, text:'이유 없는 약속이 아니에요! 그림으로 세어 구한 값과 역수를 곱해 구한 값이 항상 같다는 걸 직접 확인할 수 있어요.', diagram:FB_DIAGRAM_E6FRACDIV_H4},
+    {ok:false, text:'더 정확한 방법이라서가 아니라, 그림으로 세는 것과 똑같은 값을 더 빠르게 구하는 것뿐이에요.', diagram:FB_DIAGRAM_E6FRACDIV_H4}
+  ],
   'e6vol-h1': [
     {ok:true, text:'맞아요! 가로, 세로, 높이 세 방향의 길이를 모두 곱해서 부피를 구하니까, cm를 세 번 곱한 단위 cm³을 쓰는 거예요.', diagram:FB_DIAGRAM_E6VOL_H1},
     {ok:false, text:'약속이 아니라 이유가 있어요! 세 방향의 길이를 곱해서 구하기 때문에 단위도 세제곱이 되는 거예요.', diagram:FB_DIAGRAM_E6VOL_H1},
@@ -9005,6 +10063,133 @@ function e6rSol12(id){
   var svg='<svg width="'+(pxW+10)+'" height="'+(pxH+10)+'" viewBox="0 0 '+(pxW+10)+' '+(pxH+10)+'"><rect x="5" y="5" width="'+pxW+'" height="'+pxH+'" fill="#bc8cff" fill-opacity="0.25" stroke="#58a6ff" stroke-width="2"/></svg>';
   var diagram='<div class="fb-diagram">'+svg+'<span class="cap">가로 '+width+'cm, 세로 '+height+'cm (실제 비율로 그린 모양)</span><br>가로+세로 = 둘레÷2 = '+P+'÷2 = <strong style="color:#bc8cff">'+halfP+'cm</strong><span class="cap">가로+세로의 합을 비례배분으로 나누면 가로와 세로를 각각 구할 수 있어요</span><br>1묶음 = '+halfP+'÷('+a+'+'+b+') = '+unit+'cm → 가로 = '+width+'cm, 세로 = '+height+'cm<br>넓이 = '+width+'×'+height+' = <strong style="color:#3fb950">'+area+'cm²</strong></div>';
   crwRenderToggle(id, diagram, 'e6rSol12');
+}
+function e6rGen13(id){
+  var m=2+Math.floor(Math.random()*6), n=m+1+Math.floor(Math.random()*6), unit=2+Math.floor(Math.random()*14), total=unit*(m+n);
+  var el=document.getElementById(id);
+  el.setAttribute('data-m',m); el.setAttribute('data-n',n); el.setAttribute('data-total',total);
+  crwSetQuestion(el, '어떤 두 수의 비는 '+m+':'+n+'입니다. 두 수의 합이 '+total+'일 때, 큰 수에서 작은 수를 뺀 값은 얼마입니까?', 'e6rSol13');
+}
+function e6rSol13(id){
+  var el=document.getElementById(id);
+  var m=+el.getAttribute('data-m'), n=+el.getAttribute('data-n'), total=+el.getAttribute('data-total'), unit=total/(m+n), small=unit*m, big=unit*n, diff=big-small;
+  var diagram='<div class="fb-diagram">1묶음 = '+total+'÷('+m+'+'+n+') = <strong style="color:#bc8cff">'+unit+'</strong><br>작은 수 = '+unit+'×'+m+' = '+small+', 큰 수 = '+unit+'×'+n+' = '+big+'<span class="cap">비의 차('+n+'−'+m+'='+(n-m)+')만큼을 바로 곱해도 같은 답이 나와요</span><br>큰 수−작은 수 = '+big+'−'+small+' = <strong style="color:#3fb950">'+diff+'</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol13');
+}
+function e6rGen14(id){
+  var m=2+Math.floor(Math.random()*7), n=2+Math.floor(Math.random()*7), k=2+Math.floor(Math.random()*8), a=m*k;
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-m',m); el.setAttribute('data-n',n);
+  crwSetQuestion(el, '빵의 개수와 초콜릿의 개수의 비는 '+m+':'+n+'입니다. 빵이 '+a+'개라면, 초콜릿은 몇 개입니까?', 'e6rSol14');
+}
+function e6rSol14(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), m=+el.getAttribute('data-m'), n=+el.getAttribute('data-n'), prod=a*n, choco=prod/m;
+  var diagram='<div class="fb-diagram">빵:초콜릿 = '+m+':'+n+'이고 빵이 '+a+'개이므로<br>외항의 곱 = 내항의 곱 → '+m+'×초콜릿 = '+a+'×'+n+' = <strong style="color:#bc8cff">'+prod+'</strong><br>초콜릿 = '+prod+'÷'+m+' = <strong style="color:#3fb950">'+choco+'개</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol14');
+}
+var E6R_TRIANGLE_TUPLES = [[2,3,4],[3,4,5],[2,3,5],[4,5,6],[5,6,7],[1,2,3]];
+function e6rGen15(id){
+  var t=E6R_TRIANGLE_TUPLES[Math.floor(Math.random()*E6R_TRIANGLE_TUPLES.length)];
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',t[0]); el.setAttribute('data-b',t[1]); el.setAttribute('data-c',t[2]);
+  crwSetQuestion(el, '어떤 삼각형의 세 각의 크기의 비가 '+t[0]+':'+t[1]+':'+t[2]+'입니다. 이 삼각형에서 가장 큰 각의 크기는 몇 도입니까?', 'e6rSol15');
+}
+function e6rSol15(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c'), sum=a+b+c, unit=180/sum, big=Math.max(a,b,c), ans=unit*big;
+  var diagram='<div class="fb-diagram">삼각형 세 각의 합은 항상 180°<span class="cap">180°를 '+a+'+'+b+'+'+c+'='+sum+'묶음으로 비례배분해요</span><br>1묶음 = 180°÷'+sum+' = <strong style="color:#bc8cff">'+unit+'°</strong><br>가장 큰 각(비율 '+big+') = '+unit+'×'+big+' = <strong style="color:#3fb950">'+ans+'°</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol15');
+}
+var E6R_CONC_TUPLES = [[300,1,4,2,3,100],[500,1,4,1,1,300],[450,1,4,2,3,150],[400,1,3,1,1,200],[600,1,5,1,2,150]];
+function e6rGen16(id){
+  var t=E6R_CONC_TUPLES[Math.floor(Math.random()*E6R_CONC_TUPLES.length)];
+  var el=document.getElementById(id);
+  el.setAttribute('data-total0',t[0]); el.setAttribute('data-m',t[1]); el.setAttribute('data-n',t[2]); el.setAttribute('data-p',t[3]); el.setAttribute('data-q',t[4]);
+  crwSetQuestion(el, '설탕물 '+t[0]+'g에 들어 있는 설탕과 물의 양의 비가 '+t[1]+':'+t[2]+'입니다. 이 설탕물에 설탕을 몇 g 더 넣어야 설탕과 물의 양의 비가 '+t[3]+':'+t[4]+'이 되겠습니까?', 'e6rSol16');
+}
+function e6rSol16(id){
+  var el=document.getElementById(id);
+  var total0=+el.getAttribute('data-total0'), m=+el.getAttribute('data-m'), n=+el.getAttribute('data-n'), p=+el.getAttribute('data-p'), q=+el.getAttribute('data-q');
+  var unit0=total0/(m+n), sugar0=unit0*m, water=unit0*n, newSugar=water*p/q, added=newSugar-sugar0;
+  var diagram='<div class="fb-diagram">처음 설탕 = '+total0+'×'+frac(m,m+n)+' = <strong style="color:#bc8cff">'+sugar0+'g</strong>, 물 = <strong style="color:#bc8cff">'+water+'g</strong>(변하지 않음)<span class="cap">물이 비율 '+q+'에 해당하니, 설탕(비율 '+p+')을 거꾸로 구해요</span><br>나중 설탕 = '+water+'×'+frac(p,q)+' = <strong style="color:#bc8cff">'+newSugar+'g</strong><br>더 넣은 양 = '+newSugar+'−'+sugar0+' = <strong style="color:#3fb950">'+added+'g</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol16');
+}
+function e6rGen17(id){
+  var a=2+Math.floor(Math.random()*7), b=2+Math.floor(Math.random()*7), unit=2+Math.floor(Math.random()*8), width=unit*a, height=unit*b, P=(width+height)*2;
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-p',P);
+  crwSetQuestion(el, '직사각형의 가로와 세로의 비가 '+a+':'+b+'이고, 둘레의 길이가 '+P+'cm입니다. 이 직사각형의 넓이는 몇 cm²입니까?', 'e6rSol17');
+}
+function e6rSol17(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), P=+el.getAttribute('data-p'), halfP=P/2, unit=halfP/(a+b), width=unit*a, height=unit*b, area=width*height;
+  var diagram='<div class="fb-diagram">가로+세로 = 둘레÷2 = '+P+'÷2 = <strong style="color:#bc8cff">'+halfP+'cm</strong><span class="cap">가로+세로의 합을 비례배분으로 나누면 가로와 세로를 각각 구할 수 있어요</span><br>1묶음 = '+halfP+'÷('+a+'+'+b+') = '+unit+'cm → 가로 = '+width+'cm, 세로 = '+height+'cm<br>넓이 = '+width+'×'+height+' = <strong style="color:#3fb950">'+area+'cm²</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol17');
+}
+function e6rGen18(id){
+  var a=2+Math.floor(Math.random()*6), b=2+Math.floor(Math.random()*6), c=2+Math.floor(Math.random()*6), unit=(1+Math.floor(Math.random()*15))*1000, bAmt=unit*b;
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-c',c); el.setAttribute('data-bamt',bAmt);
+  crwSetQuestion(el, '삼 형제(첫째, 둘째, 셋째)가 가진 돈의 비가 '+a+':'+b+':'+c+'입니다. 둘째가 가진 돈이 '+bAmt+'원일 때, 세 형제가 가진 돈의 총합은 얼마입니까?', 'e6rSol18');
+}
+function e6rSol18(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c'), bAmt=+el.getAttribute('data-bamt'), unit=bAmt/b, total=unit*(a+b+c);
+  var diagram='<div class="fb-diagram">둘째의 비율 '+b+'이 '+bAmt+'원이므로, 1묶음 = '+bAmt+'÷'+b+' = <strong style="color:#bc8cff">'+unit+'원</strong><span class="cap">전체 비율의 합('+a+'+'+b+'+'+c+'='+(a+b+c)+')만큼 곱하면 총합이 나와요</span><br>총합 = '+unit+'×'+(a+b+c)+' = <strong style="color:#3fb950">'+total+'원</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol18');
+}
+var E6R_FRAC_RATIO_TUPLES = [[3,4,1,2,2,3,1,1],[1,2,1,3,1,4,3,8],[3,5,2,5,4,5,6,5]];
+function e6rGen19(id){
+  var t=E6R_FRAC_RATIO_TUPLES[Math.floor(Math.random()*E6R_FRAC_RATIO_TUPLES.length)];
+  var el=document.getElementById(id);
+  el.setAttribute('data-a1',t[0]); el.setAttribute('data-d1',t[1]); el.setAttribute('data-a2',t[2]); el.setAttribute('data-d2',t[3]); el.setAttribute('data-a3',t[4]); el.setAttribute('data-d3',t[5]); el.setAttribute('data-xn',t[6]); el.setAttribute('data-xd',t[7]);
+  crwSetQuestion(el, '비례식 '+frac(t[0],t[1])+' : x = '+frac(t[2],t[3])+' : '+frac(t[4],t[5])+' 에서 x의 값을 구하세요.', 'e6rSol19');
+}
+function e6rSol19(id){
+  var el=document.getElementById(id);
+  var a1=+el.getAttribute('data-a1'), d1=+el.getAttribute('data-d1'), a2=+el.getAttribute('data-a2'), d2=+el.getAttribute('data-d2'), a3=+el.getAttribute('data-a3'), d3=+el.getAttribute('data-d3'), xn=+el.getAttribute('data-xn'), xd=+el.getAttribute('data-xd');
+  var outerNum=a1*a3, outerDen=d1*d3, g=gcd(outerNum,outerDen), oN=outerNum/g, oD=outerDen/g;
+  var outerDisp = oD===1 ? String(oN) : frac(oN,oD);
+  var xDisp = xd===1 ? String(xn) : frac(xn,xd);
+  var diagram='<div class="fb-diagram">외항의 곱 = '+frac(a1,d1)+'×'+frac(a3,d3)+' = '+frac(outerNum,outerDen)+' = <strong style="color:#bc8cff">'+outerDisp+'</strong><span class="cap">외항의 곱과 내항의 곱이 같다는 성질을 그대로 분수에 적용해요</span><br>내항의 곱 = '+frac(a2,d2)+'×x 이고 외항의 곱과 같아야 하므로<br>x = '+outerDisp+'÷'+frac(a2,d2)+' = <strong style="color:#3fb950">'+xDisp+'</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol19');
+}
+function e6rGen20(id){
+  var a=2+Math.floor(Math.random()*6), b=a+1+Math.floor(Math.random()*5), unit=2+Math.floor(Math.random()*14), total=unit*(a+b);
+  var el=document.getElementById(id);
+  el.setAttribute('data-a',a); el.setAttribute('data-b',b); el.setAttribute('data-total',total);
+  crwSetQuestion(el, '구슬 '+total+'개를 형과 동생에게 '+a+':'+b+'으로 나누어 주려고 합니다. 형이 받은 구슬은 동생이 받은 구슬보다 몇 개 더 많습니까? (형이 '+a+', 동생이 '+b+')', 'e6rSol20');
+}
+function e6rSol20(id){
+  var el=document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), total=+el.getAttribute('data-total'), unit=total/(a+b), bro=unit*a, sis=unit*b, diff=bro-sis;
+  var diagram='<div class="fb-diagram">1묶음 = '+total+'÷('+a+'+'+b+') = <strong style="color:#bc8cff">'+unit+'개</strong><br>형 = '+unit+'×'+a+' = '+bro+'개, 동생 = '+unit+'×'+b+' = '+sis+'개<span class="cap">형이 더 많이 받는 몫만큼 바로 구할 수도 있어요</span><br>차이 = '+bro+'−'+sis+' = <strong style="color:#3fb950">'+diff+'개</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol20');
+}
+function e6rGen21(id){
+  var m=1+Math.floor(Math.random()*5), n=m+3+Math.floor(Math.random()*10), unit=2+Math.floor(Math.random()*8), total=unit*(m+n);
+  var el=document.getElementById(id);
+  el.setAttribute('data-m',m); el.setAttribute('data-n',n); el.setAttribute('data-total',total);
+  crwSetQuestion(el, '어떤 소금물에 들어 있는 소금과 물의 양의 비가 '+m+':'+n+'입니다. 이 소금물 '+total+'g을 만들기 위해 필요한 소금은 몇 g입니까?', 'e6rSol21');
+}
+function e6rSol21(id){
+  var el=document.getElementById(id);
+  var m=+el.getAttribute('data-m'), n=+el.getAttribute('data-n'), total=+el.getAttribute('data-total'), unit=total/(m+n), salt=unit*m;
+  var diagram='<div class="fb-diagram">소금물 전체가 비례배분의 기준(전체)이에요<span class="cap">소금+물 = '+m+'+'+n+' = '+(m+n)+'묶음</span><br>필요한 소금 = '+total+'×'+frac(m,m+n)+' = <strong style="color:#3fb950">'+salt+'g</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol21');
+}
+function e6rGen22(id){
+  var m=2+Math.floor(Math.random()*6), n=m+1+Math.floor(Math.random()*6), unit=2+Math.floor(Math.random()*8), total=unit*(m+n);
+  var el=document.getElementById(id);
+  el.setAttribute('data-m',m); el.setAttribute('data-n',n); el.setAttribute('data-total',total);
+  crwSetQuestion(el, '어떤 두 수의 비가 '+m+':'+n+'이고, 두 수의 합이 '+total+'일 때, 두 수의 곱은 얼마입니까?', 'e6rSol22');
+}
+function e6rSol22(id){
+  var el=document.getElementById(id);
+  var m=+el.getAttribute('data-m'), n=+el.getAttribute('data-n'), total=+el.getAttribute('data-total'), unit=total/(m+n), first=unit*m, second=unit*n, prod=first*second;
+  var diagram='<div class="fb-diagram">1묶음 = '+total+'÷('+m+'+'+n+') = <strong style="color:#bc8cff">'+unit+'</strong><br>첫 번째 수 = '+unit+'×'+m+' = '+first+', 두 번째 수 = '+unit+'×'+n+' = '+second+'<span class="cap">두 수를 각각 구한 뒤 곱해요</span><br>곱 = '+first+'×'+second+' = <strong style="color:#3fb950">'+prod+'</strong></div>';
+  crwRenderToggle(id, diagram, 'e6rSol22');
 }
 function avgwGen1(id){
   var n = 3+Math.floor(Math.random()*4);
