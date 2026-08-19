@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>문자와 식 마법학교 | 영통수학여행학원</title>
+<meta name="description" content="문자와 식 개념을 게임으로 배우는 영통수학여행학원 교육 콘텐츠">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:"Segoe UI","Noto Sans KR",sans-serif;
+  background:linear-gradient(135deg,#0a0520 0%,#1a0a3e 60%,#0d1a3a 100%);
+  min-height:100vh;display:flex;justify-content:center;align-items:flex-start;
+  padding:12px;color:#e2e8f0;}
+.wrap{width:100%;max-width:560px;margin:0 auto}
+
+/* SCREENS */
+.screen{display:none;animation:fadeIn .3s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* FLASH */
+.flash-overlay{position:fixed;inset:0;z-index:500;pointer-events:none;opacity:0}
+.flash-overlay.red{animation:flashRed .5s ease forwards}
+.flash-overlay.orange{animation:flashOrange .5s ease forwards}
+@keyframes flashRed{0%{background:rgba(239,68,68,.65);opacity:1}100%{opacity:0}}
+@keyframes flashOrange{0%{background:rgba(251,146,60,.55);opacity:1}100%{opacity:0}}
+
+/* TITLE */
+.title-hero{
+  background:linear-gradient(160deg,#1e0a4e 0%,#2d1060 50%,#0f1a4a 100%);
+  border:2px solid rgba(167,139,250,.3);border-radius:24px;
+  padding:2rem 1.5rem;text-align:center;margin-bottom:1.5rem;
+  box-shadow:0 0 60px rgba(124,58,237,.3);}
+.title-emoji{font-size:4rem;display:block;margin-bottom:.5rem;
+  animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.title-main{font-size:2rem;font-weight:900;
+  background:linear-gradient(90deg,#a78bfa,#60a5fa,#34d399);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
+.title-sub{color:#94a3b8;font-size:.9rem;margin-bottom:.8rem}
+.score-badge{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);
+  border-radius:20px;padding:.4rem 1rem;font-size:1rem;color:#fbbf24;font-weight:700;}
+.mode-pill{
+  display:inline-flex;align-items:center;gap:.3rem;
+  border-radius:16px;padding:.3rem .8rem;margin-left:.5rem;font-size:.82rem;font-weight:700;}
+.mode-pill.mcq{background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.4);color:#60a5fa}
+.mode-pill.fill{background:rgba(234,179,8,.2);border:1px solid rgba(234,179,8,.4);color:#fbbf24}
+
+/* CHAPTER GRID */
+.ch-label{font-size:.78rem;color:#94a3b8;letter-spacing:.05em;text-transform:uppercase;
+  margin-bottom:.75rem;text-align:center}
+.ch-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.2rem}
+.ch-card{
+  background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);
+  border-radius:16px;padding:1rem .8rem;text-align:center;cursor:pointer;
+  transition:all .2s;position:relative;overflow:hidden;}
+.ch-card:hover:not(.locked){
+  border-color:rgba(167,139,250,.5);background:rgba(124,58,237,.12);transform:translateY(-2px);}
+.ch-card.locked{opacity:.4;cursor:not-allowed}
+.ch-card.done{border-color:rgba(52,211,153,.4);background:rgba(52,211,153,.05)}
+.ch-num{font-size:.7rem;color:#64748b;margin-bottom:.2rem}
+.ch-emoji{font-size:2rem;margin-bottom:.3rem}
+.ch-title{font-size:.82rem;font-weight:700;color:#e2e8f0}
+.ch-status{font-size:.72rem;color:#94a3b8;margin-top:.2rem}
+.lock-icon{position:absolute;top:.4rem;right:.4rem;font-size:.8rem;opacity:.5}
+.reset-btn{
+  display:block;margin:0 auto;background:none;border:1px solid rgba(255,255,255,.1);
+  color:#475569;border-radius:8px;padding:.3rem .8rem;font-size:.75rem;cursor:pointer;}
+.reset-btn:hover{border-color:rgba(239,68,68,.4);color:#ef4444}
+
+/* LECTURE OVERLAY */
+.lec-overlay{
+  display:none;position:fixed;inset:0;z-index:300;
+  background:rgba(0,0,0,.92);backdrop-filter:blur(12px);
+  align-items:center;justify-content:center;padding:1rem;overflow-y:auto;}
+.lec-overlay.show{display:flex;animation:overlayIn .2s ease}
+@keyframes overlayIn{from{opacity:0}to{opacity:1}}
+.lec-modal{
+  width:100%;max-width:520px;
+  background:linear-gradient(160deg,#0e0030 0%,#1a0050 55%,#080020 100%);
+  border:2.5px solid rgba(96,165,250,.5);border-radius:28px;
+  padding:2rem 1.6rem 1.8rem;
+  box-shadow:0 0 60px rgba(96,165,250,.4),0 0 120px rgba(96,165,250,.12);
+  animation:slideUp .4s cubic-bezier(.34,1.56,.64,1);}
+@keyframes slideUp{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
+.lec-dots{display:flex;gap:.4rem;margin-bottom:1.3rem;justify-content:center}
+.lec-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18);transition:.3s}
+.lec-dot.on{background:#60a5fa;box-shadow:0 0 8px rgba(96,165,250,.7)}
+.lec-dot.past{background:#34d399}
+.lec-badge{
+  display:inline-block;background:rgba(96,165,250,.18);border:1px solid rgba(96,165,250,.35);
+  border-radius:12px;padding:.2rem .75rem;font-size:.72rem;color:#93c5fd;font-weight:600;margin-bottom:.7rem;}
+.lec-heading{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:.6rem;
+  text-shadow:0 0 20px rgba(96,165,250,.4)}
+.lec-body{font-size:.93rem;line-height:1.75;color:#cbd5e1;margin-bottom:1rem}
+.lec-body strong{
+  display:inline-block;color:#60a5fa;font-weight:800;
+  animation:pBlue .9s ease-in-out infinite;}
+@keyframes pBlue{0%,100%{transform:scale(1)}50%{transform:scale(1.14);text-shadow:0 0 14px #60a5fa}}
+.lec-ex{
+  background:rgba(96,165,250,.07);border:1.5px solid rgba(96,165,250,.22);
+  border-radius:14px;padding:1rem;margin:.8rem 0;text-align:center;}
+.lec-expr{font-size:2rem;font-weight:900;color:#fff;text-shadow:0 0 18px rgba(96,165,250,.4)}
+.lec-expr-lbl{font-size:.78rem;color:#64748b;margin-top:.3rem}
+.lec-tip{
+  background:rgba(251,191,36,.07);border-left:3px solid #fbbf24;
+  border-radius:0 8px 8px 0;padding:.55rem .85rem;font-size:.83rem;color:#fde68a;margin-top:.7rem;}
+.lec-nav{display:flex;gap:.7rem;margin-top:1.4rem}
+.lec-prev{
+  flex:0;padding:.7rem 1.1rem;border-radius:12px;border:1.5px solid rgba(255,255,255,.13);
+  background:transparent;color:#94a3b8;cursor:pointer;font-size:.88rem;}
+.lec-next{
+  flex:1;padding:.8rem;border-radius:12px;border:none;cursor:pointer;font-size:.95rem;font-weight:700;
+  background:linear-gradient(90deg,#3b82f6,#6366f1);color:#fff;
+  box-shadow:0 4px 20px rgba(59,130,246,.35);transition:transform .15s;}
+.lec-next:hover{transform:scale(1.02)}
+.lec-start{
+  flex:1;padding:.8rem;border-radius:12px;border:none;cursor:pointer;font-size:.95rem;font-weight:700;
+  background:linear-gradient(90deg,#10b981,#059669);color:#fff;
+  box-shadow:0 4px 20px rgba(16,185,129,.35);transition:transform .15s;}
+.lec-start:hover{transform:scale(1.02)}
+
+/* QUIZ HEADER */
+.qhdr{display:flex;align-items:center;gap:.5rem;margin-bottom:.8rem;flex-wrap:wrap}
+.q-score{
+  display:flex;align-items:center;gap:.3rem;
+  background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.22);
+  border-radius:12px;padding:.32rem .8rem;font-size:.88rem;color:#fbbf24;font-weight:700;}
+.combo-el{font-size:.82rem;font-weight:700;padding:.32rem .75rem;border-radius:12px;transition:all .3s}
+.combo-el.c0{color:#64748b;background:rgba(100,116,139,.08)}
+.combo-el.c2{color:#60a5fa;background:rgba(96,165,250,.14);animation:cPop .4s ease}
+.combo-el.c3{color:#a78bfa;background:rgba(167,139,250,.14);animation:cPop .4s ease}
+.combo-el.c5{color:#fbbf24;background:rgba(251,191,36,.14);animation:cPop .4s ease;
+  box-shadow:0 0 10px rgba(251,191,36,.25)}
+@keyframes cPop{0%{transform:scale(1.35)}100%{transform:scale(1)}}
+.mtag{font-size:.72rem;font-weight:700;padding:.22rem .55rem;border-radius:7px}
+.mtag.mcq{background:rgba(59,130,246,.18);color:#60a5fa}
+.mtag.fill{background:rgba(234,179,8,.18);color:#fbbf24}
+.home-btn{
+  margin-left:auto;background:none;border:1px solid rgba(255,255,255,.13);
+  color:#94a3b8;border-radius:7px;padding:.28rem .65rem;cursor:pointer;font-size:.78rem;}
+
+/* TIMER */
+.timer-wrap{height:5px;background:rgba(255,255,255,.07);border-radius:3px;margin-bottom:1rem;overflow:hidden}
+.timer-bar{height:100%;border-radius:3px;transition:width .08s linear;
+  background:linear-gradient(90deg,#10b981,#3b82f6)}
+.timer-bar.warn{background:linear-gradient(90deg,#ef4444,#f97316)}
+
+/* QUESTION CARD */
+.qcard{
+  background:linear-gradient(160deg,#0a0025 0%,#160045 55%,#060015 100%);
+  border:2px solid rgba(167,139,250,.32);border-radius:22px;
+  padding:1.7rem 1.2rem 1.3rem;margin-bottom:1.1rem;
+  box-shadow:0 0 40px rgba(124,58,237,.12);
+  animation:qIn .35s cubic-bezier(.34,1.56,.64,1);}
+@keyframes qIn{from{transform:scale(.88);opacity:0}to{transform:scale(1);opacity:1}}
+.q-chtag{font-size:.72rem;color:#a78bfa;font-weight:600;margin-bottom:.45rem}
+.q-text{font-size:1.02rem;color:#e2e8f0;line-height:1.65;margin-bottom:.8rem}
+.q-expr{
+  font-size:2.2rem;font-weight:900;text-align:center;color:#fff;
+  text-shadow:0 0 20px rgba(167,139,250,.45);padding:.5rem 0;
+  animation:exGlow 2.5s ease-in-out infinite;}
+@keyframes exGlow{
+  0%,100%{text-shadow:0 0 20px rgba(167,139,250,.45)}
+  50%{text-shadow:0 0 35px rgba(167,139,250,.9),0 0 60px rgba(167,139,250,.25)}}
+.hint-row{display:flex;justify-content:flex-end;margin-top:.6rem}
+.hint-btn{
+  background:rgba(251,191,36,.09);border:1px solid rgba(251,191,36,.28);
+  border-radius:9px;padding:.3rem .75rem;font-size:.78rem;color:#fbbf24;cursor:pointer;}
+.hint-btn:hover{background:rgba(251,191,36,.18)}
+
+/* MCQ */
+.choices{display:grid;gap:.6rem;margin-bottom:.9rem}
+.cbtn{
+  width:100%;padding:.85rem .95rem;border-radius:13px;
+  border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);
+  color:#e2e8f0;font-size:.93rem;text-align:left;cursor:pointer;transition:all .18s;}
+.cbtn:hover:not(:disabled){
+  border-color:rgba(167,139,250,.45);background:rgba(124,58,237,.1);transform:translateX(4px);}
+.cbtn.correct{border-color:#10b981;background:rgba(16,185,129,.13);color:#6ee7b7;
+  animation:cBounce .35s ease}
+.cbtn.wrong{border-color:#ef4444;background:rgba(239,68,68,.1);color:#fca5a5}
+@keyframes cBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+
+/* FILL */
+.fill-wrap{display:flex;gap:.55rem;margin-bottom:.8rem}
+.fill-input{
+  flex:1;padding:.8rem 1rem;border-radius:13px;
+  border:1.5px solid rgba(167,139,250,.32);background:rgba(255,255,255,.05);
+  color:#fff;font-size:1.08rem;text-align:center;outline:none;transition:.2s;}
+.fill-input:focus{border-color:#a78bfa;box-shadow:0 0 0 3px rgba(167,139,250,.13)}
+.fill-submit{
+  padding:.8rem 1rem;border-radius:13px;border:none;
+  background:linear-gradient(90deg,#7c3aed,#6366f1);color:#fff;
+  font-size:.9rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:.15s;}
+.fill-submit:hover{transform:scale(1.03)}
+.q-ctr{text-align:center;font-size:.78rem;color:#475569;margin-top:.3rem}
+
+/* EXPLAIN OVERLAY */
+.exp-overlay{
+  display:none;position:fixed;inset:0;z-index:400;
+  background:rgba(0,0,0,.88);backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;padding:1rem;overflow-y:auto;}
+.exp-overlay.show{display:flex;animation:overlayIn .18s ease}
+.exp-modal{
+  width:100%;max-width:520px;
+  background:linear-gradient(160deg,#120030 0%,#1a004a 55%,#08001a 100%);
+  border:2.5px solid #ef4444;border-radius:28px;padding:2rem 1.5rem 1.8rem;
+  box-shadow:0 0 60px rgba(239,68,68,.6),0 0 120px rgba(239,68,68,.18);
+  animation:mPop .45s cubic-bezier(.34,1.56,.64,1);}
+.exp-modal.ok{border-color:#10b981;box-shadow:0 0 60px rgba(16,185,129,.5),0 0 120px rgba(16,185,129,.18)}
+@keyframes mPop{from{transform:scale(.15) rotate(-12deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.exp-icon{font-size:3.5rem;text-align:center;display:block;
+  animation:wobble .5s ease infinite alternate}
+@keyframes wobble{from{transform:rotate(-15deg) scale(.9)}to{transform:rotate(15deg) scale(1.1)}}
+.exp-icon.ok-icon{animation:spinIn .5s ease}
+@keyframes spinIn{0%{transform:scale(0) rotate(-180deg)}100%{transform:scale(1) rotate(0)}}
+.exp-title{font-size:1.65rem;font-weight:900;text-align:center;color:#ef4444;
+  margin:.5rem 0;animation:ePulse 1s ease-in-out infinite}
+@keyframes ePulse{0%,100%{opacity:1}50%{opacity:.6}}
+.exp-title.ok{color:#10b981;animation:none}
+.exp-ans{background:rgba(255,255,255,.06);border-radius:11px;padding:.65rem 1rem;
+  margin:.7rem 0;text-align:center;}
+.exp-ans-lbl{font-size:.72rem;color:#64748b;margin-bottom:.2rem}
+.exp-ans-val{font-size:1.6rem;font-weight:900;color:#fbbf24}
+.exp-steps{list-style:none;padding:0;margin:.7rem 0}
+.exp-steps li{
+  background:rgba(255,255,255,.04);border-radius:9px;
+  padding:.55rem .85rem;margin:.35rem 0;font-size:.88rem;color:#cbd5e1;
+  border-left:3px solid rgba(167,139,250,.35);animation:stepIn .4s ease both;}
+@keyframes stepIn{from{transform:translateX(-20px);opacity:0}to{transform:none;opacity:1}}
+.exp-steps li strong{
+  display:inline-block;color:#fbbf24;
+  animation:pKey .85s ease-in-out infinite;}
+@keyframes pKey{0%,100%{transform:scale(1)}50%{transform:scale(1.3);text-shadow:0 0 18px rgba(251,191,36,1)}}
+.exp-btn{
+  width:100%;padding:.85rem;border-radius:13px;border:none;cursor:pointer;
+  margin-top:1.1rem;font-size:.97rem;font-weight:700;
+  background:linear-gradient(90deg,#7c3aed,#6366f1);color:#fff;transition:.15s;}
+.exp-btn:hover{transform:scale(1.02)}
+
+/* HINT OVERLAY */
+.hint-overlay{
+  display:none;position:fixed;inset:0;z-index:450;
+  background:rgba(0,0,0,.84);backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;padding:1rem;}
+.hint-overlay.show{display:flex}
+.hint-modal{
+  width:100%;max-width:460px;
+  background:linear-gradient(160deg,#1a1000 0%,#2a1800 55%,#0a0800 100%);
+  border:2px solid rgba(251,191,36,.38);border-radius:24px;padding:1.7rem 1.4rem;
+  box-shadow:0 0 40px rgba(251,191,36,.28);
+  animation:slideUp .3s cubic-bezier(.34,1.56,.64,1);}
+.hint-title{font-size:1.25rem;font-weight:900;color:#fbbf24;margin-bottom:.7rem}
+.hint-body{font-size:.92rem;color:#fde68a;line-height:1.7;margin-bottom:.8rem}
+.hint-list{list-style:none;padding:0}
+.hint-list li{
+  padding:.4rem .65rem;border-radius:7px;margin:.25rem 0;
+  background:rgba(251,191,36,.05);border-left:2px solid rgba(251,191,36,.28);
+  font-size:.83rem;color:#d4b483;animation:stepIn .3s ease both;}
+.hint-close{
+  width:100%;padding:.75rem;border-radius:11px;border:1px solid rgba(251,191,36,.28);
+  background:rgba(251,191,36,.09);color:#fbbf24;font-size:.92rem;cursor:pointer;
+  margin-top:.9rem;transition:.18s;}
+.hint-close:hover{background:rgba(251,191,36,.18)}
+
+/* MODE SWITCH BANNER */
+.msb{
+  display:none;position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(0);z-index:600;
+  background:linear-gradient(90deg,#78350f,#92400e,#78350f);
+  border:2px solid #fbbf24;border-radius:20px;padding:1.4rem 2.2rem;
+  text-align:center;box-shadow:0 0 60px rgba(251,191,36,.5);}
+.msb.show{display:block;animation:msbAnim .6s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes msbAnim{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:0}
+  60%{transform:translate(-50%,-50%) scale(1.1)}
+  100%{transform:translate(-50%,-50%) scale(1);opacity:1}}
+.msb-emoji{font-size:2.8rem;display:block;margin-bottom:.3rem}
+.msb-title{font-size:1.35rem;font-weight:900;color:#fbbf24}
+.msb-sub{font-size:.85rem;color:#fde68a;margin-top:.2rem}
+
+/* COMPLETE SCREEN */
+.done-card{
+  background:linear-gradient(160deg,#051a00 0%,#0a2a00 55%,#020f00 100%);
+  border:2px solid rgba(52,211,153,.38);border-radius:24px;
+  padding:2.3rem 1.7rem;text-align:center;margin-bottom:1.1rem;
+  box-shadow:0 0 50px rgba(52,211,153,.22);
+  animation:slideUp .5s cubic-bezier(.34,1.56,.64,1);}
+.done-emoji{font-size:5rem;display:block;animation:dPop .6s ease}
+@keyframes dPop{0%{transform:scale(0)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+.done-title{font-size:1.9rem;font-weight:900;color:#34d399;margin:.4rem 0}
+.done-pts{font-size:2.8rem;font-weight:900;color:#fbbf24;
+  text-shadow:0 0 20px rgba(251,191,36,.45);margin:.4rem 0}
+.done-stats{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin:.9rem 0}
+.stat-box{background:rgba(255,255,255,.04);border-radius:11px;padding:.75rem;
+  border:1px solid rgba(255,255,255,.07);}
+.stat-lbl{font-size:.72rem;color:#64748b;margin-bottom:.18rem}
+.stat-val{font-size:1.25rem;font-weight:700;color:#e2e8f0}
+.done-btns{display:grid;gap:.55rem}
+.btn-next{
+  padding:.95rem;border-radius:13px;border:none;cursor:pointer;font-size:.97rem;font-weight:700;
+  background:linear-gradient(90deg,#10b981,#059669);color:#fff;
+  box-shadow:0 4px 20px rgba(16,185,129,.28);transition:.15s;}
+.btn-next:hover{transform:scale(1.02)}
+.btn-home{
+  padding:.75rem;border-radius:13px;border:1px solid rgba(255,255,255,.13);
+  background:transparent;color:#94a3b8;font-size:.88rem;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div id="flash-overlay" class="flash-overlay"></div>
+
+<!-- Lecture Overlay -->
+<div id="lec-overlay" class="lec-overlay">
+  <div class="lec-modal">
+    <div class="lec-dots" id="lec-dots"></div>
+    <div class="lec-badge" id="lec-badge"></div>
+    <h2 class="lec-heading" id="lec-heading"></h2>
+    <div class="lec-body" id="lec-body"></div>
+    <div class="lec-ex" id="lec-ex" style="display:none">
+      <div class="lec-expr" id="lec-expr"></div>
+      <div class="lec-expr-lbl" id="lec-expr-lbl"></div>
+    </div>
+    <div class="lec-tip" id="lec-tip" style="display:none"></div>
+    <div class="lec-nav">
+      <button class="lec-prev" id="lec-prev" onclick="lecPrev()">← 이전</button>
+      <button class="lec-next" id="lec-next" onclick="lecNext()">다음 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Explain Overlay -->
+<div id="exp-overlay" class="exp-overlay" onclick="closeExp()">
+  <div class="exp-modal" id="exp-modal" onclick="event.stopPropagation()">
+    <span class="exp-icon" id="exp-icon"></span>
+    <h2 class="exp-title" id="exp-title"></h2>
+    <div class="exp-ans">
+      <div class="exp-ans-lbl">정답</div>
+      <div class="exp-ans-val" id="exp-ans-val"></div>
+    </div>
+    <ul class="exp-steps" id="exp-steps"></ul>
+    <button class="exp-btn" onclick="closeExp()">✓ 이해했어요! 계속 →</button>
+  </div>
+</div>
+
+<!-- Hint Overlay -->
+<div id="hint-overlay" class="hint-overlay" onclick="closeHint()">
+  <div class="hint-modal" onclick="event.stopPropagation()">
+    <div class="hint-title">💡 힌트</div>
+    <div class="hint-body" id="hint-body"></div>
+    <ul class="hint-list" id="hint-list"></ul>
+    <button class="hint-close" onclick="closeHint()">닫기</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ===== TITLE SCREEN ===== -->
+<div id="sc-title" class="screen active">
+  <div class="title-hero">
+    <span class="title-emoji">🔮</span>
+    <div class="title-main">문자와 식 마법학교</div>
+    <div class="title-sub">문자를 마스터하면 수학이 보인다! — 영통수학여행학원</div>
+    <div>
+      <span class="score-badge">⭐ <span id="t-score">0</span>점</span>
+      <span class="mode-pill" id="t-mode">📝 객관식</span>
+    </div>
+  </div>
+  <div class="ch-label">챕터 선택 (강의 → 퀴즈 순서)</div>
+  <div class="ch-grid" id="ch-grid"></div>
+  <div style="text-align:center;margin-bottom:.6rem">
+    <button class="reset-btn" onclick="resetSave()">🗑 기록 초기화</button>
+  </div>
+  <div style="text-align:center;color:#374151;font-size:.75rem">
+    콤보 3개=×2, 5개=×3, 10개=×5
+  </div>
+</div>
+
+<!-- ===== QUIZ SCREEN ===== -->
+<div id="sc-quiz" class="screen">
+  <div class="qhdr">
+    <div class="q-score">⭐ <span id="q-score">0</span></div>
+    <div class="combo-el c0" id="combo-el">콤보 ×1</div>
+    <button class="home-btn" onclick="goHome()">홈</button>
+  </div>
+  <div class="timer-wrap"><div class="timer-bar" id="timer-bar"></div></div>
+  <div class="qcard">
+    <div class="q-chtag" id="q-chtag"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="q-expr" id="q-expr" style="display:none"></div>
+    <div class="hint-row">
+      <button class="hint-btn" onclick="showHint()">💡 힌트</button>
+    </div>
+  </div>
+  <div class="choices" id="choices"></div>
+  <div class="q-ctr" id="q-ctr"></div>
+</div>
+
+<!-- ===== COMPLETE SCREEN ===== -->
+<div id="sc-done" class="screen">
+  <div class="done-card">
+    <span class="done-emoji" id="done-emoji">🏆</span>
+    <div class="done-title" id="done-title">챕터 완료!</div>
+    <div class="done-pts" id="done-pts">+0점</div>
+    <div class="done-stats">
+      <div class="stat-box"><div class="stat-lbl">정답률</div><div class="stat-val" id="st-acc">-</div></div>
+      <div class="stat-box"><div class="stat-lbl">최고 콤보</div><div class="stat-val" id="st-combo">-</div></div>
+      <div class="stat-box"><div class="stat-lbl">총 점수</div><div class="stat-val" id="st-total">-</div></div>
+      <div class="stat-box"><div class="stat-lbl">퀴즈 모드</div><div class="stat-val" id="st-mode">-</div></div>
+    </div>
+  </div>
+  <div class="done-btns">
+    <button class="btn-next" id="btn-nxt" onclick="nextChapter()"></button>
+    <button class="btn-home" onclick="goHome()">🏠 챕터 선택으로</button>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+// =====================================================
+// DATA: 강의 슬라이드
+// =====================================================
+const LECS = [
+  // ch0: 문자의 사용
+  [
+    {h:'왜 문자를 쓸까?',
+     b:`<strong>모르는 수</strong>나 <strong>변하는 수</strong>가 있을 때,<br>
+그 수를 <strong>문자(x, a, n…)</strong>로 나타내요.<br><br>
+사과 한 개 값을 모른다면? → <strong>a원</strong>이라 하면 돼요!<br>
+어떤 수에도 통하는 <strong>일반적인 식</strong>을 만들 수 있어요.`,
+     ex:'연필 1자루 = a원', exl:'모르는 수 → 문자로!',
+     tip:'문자는 어떤 수도 될 수 있어요. 그래서 강력합니다!'},
+    {h:'문자로 수량 나타내기',
+     b:`<strong>사과 x개</strong>를 500원씩 사면?<br>
+→ 총 가격 = 500 × x = <strong>500x원</strong><br><br>
+<strong>시속 60km</strong>로 <strong>t시간</strong> 달리면?<br>
+→ 거리 = 60 × t = <strong>60t km</strong>`,
+     ex:'500x원, 60t km', exl:'숫자 × 문자 = 문자식',
+     tip:'숫자는 항상 문자 앞에! 2a (O)  a2 (X)'},
+    {h:'1과 -1의 특별 규칙',
+     b:`문자에 <strong>1</strong>이 곱해지면 → <strong>생략!</strong><br>
+1 × a = <strong>a</strong><br><br>
+<strong>-1</strong>이 곱해지면 → <strong>1만 생략!</strong><br>
+(-1) × a = <strong>-a</strong>`,
+     ex:'1×a = a,  (-1)×a = -a', exl:'1과 -1의 특별 처리',
+     tip:'-a에서 "-"는 "(-1)×"를 뜻해요. -a의 계수는 -1!'},
+  ],
+  // ch1: 기호 생략 규칙
+  [
+    {h:'곱셈 기호(×) 생략',
+     b:`수학에서는 곱셈 기호 <strong>×를 생략</strong>해요.<br><br>
+<strong>① 숫자 × 문자</strong> → 숫자를 앞에<br>
+3 × a → <strong>3a</strong><br><br>
+<strong>② 문자 × 문자</strong> → 붙여 쓰기<br>
+a × b → <strong>ab</strong>`,
+     ex:'3×a = 3a  /  a×b = ab', exl:'× 기호를 없애보자!',
+     tip:'숫자가 1이면 생략: 1×a = a'},
+    {h:'거듭제곱 (같은 문자 반복)',
+     b:`같은 문자를 여러 번 곱하면 → <strong>지수</strong>로!<br><br>
+a × a = <strong>a²</strong><br>
+a × a × a = <strong>a³</strong><br>
+x × x × x × x = <strong>x⁴</strong><br><br>
+지수 = 몇 번 곱했는지`,
+     ex:'a × a = a²', exl:'같은 문자 반복 = 지수',
+     tip:'a²는 "에이 제곱", a³은 "에이 세제곱"이라 읽어요'},
+    {h:'나눗셈 기호(÷) 생략',
+     b:`나눗셈은 <strong>분수</strong>로 바꿔요:<br><br>
+a ÷ b → <strong>a/b</strong><br>
+(a+b) ÷ 3 → <strong>(a+b)/3</strong><br><br>
+⚠️ 괄호가 있으면 <strong>괄호 전체</strong>가 분자!`,
+     ex:'(a+b)÷3 = (a+b)/3', exl:'÷ → 분수로!',
+     tip:'a÷(b+c) = a/(b+c)  ← 분모에도 괄호 주의'},
+    {h:'정리: 생략 규칙 완전판',
+     b:`<strong>① ×생략, 숫자 앞</strong>: 4×x = 4x<br>
+<strong>② 같은 문자 = 지수</strong>: x×x = x²<br>
+<strong>③ 숫자끼리 먼저 계산</strong>: 2×3×x = 6x<br>
+<strong>④ ÷ → 분수</strong>: x÷4 = x/4<br>
+<strong>⑤ 1 생략</strong>: 1×a = a<br>
+<strong>⑥ -1 → -만</strong>: (-1)×a = -a`,
+     ex:'2×3×x×x = 6x²', exl:'복합 예시',
+     tip:'규칙을 순서대로 적용하면 어떤 식도 정리할 수 있어요!'},
+  ],
+  // ch2: 식의 값
+  [
+    {h:'식의 값 = 대입 계산',
+     b:`문자에 특정 숫자를 넣어 계산한 결과를<br>
+<strong>식의 값</strong>이라 해요.<br><br>
+이 과정을 <strong>대입</strong>이라고 해요.<br><br>
+x=3일 때, <strong>2x+1</strong>의 값은?<br>
+⟹ 2×<strong>(3)</strong>+1 = 6+1 = <strong>7</strong>`,
+     ex:'x=3 → 2x+1 = 7', exl:'문자에 숫자 대입!',
+     tip:'대입할 때 괄호로 감싸면 실수가 줄어요: 2×(3)'},
+    {h:'음수 대입 시 주의!',
+     b:`<strong>음수를 대입</strong>할 때는 반드시 <strong>괄호</strong>를!<br><br>
+x=-2일 때, x²의 값은?<br>
+✅ <strong>(-2)²</strong> = (-2)×(-2) = <strong>4</strong><br><br>
+❌ 주의: -2² = -(2²) = -4 ← 이건 다른 식!<br>
+x²에 x=-2를 대입 = <strong>4</strong> (양수!)`,
+     ex:'(-2)² = 4  (양수!)', exl:'음수 대입: 괄호 필수!',
+     tip:'음수를 제곱하면 항상 양수가 됩니다'},
+    {h:'두 문자에 대입하기',
+     b:`문자가 <strong>두 개 이상</strong>이면 각각 대입해요:<br><br>
+a=3, b=-1일 때, <strong>2a-3b</strong>의 값은?<br>
+⟹ 2×(3) - 3×(-1)<br>
+= 6 - (-3)<br>
+= 6 + 3 = <strong>9</strong>`,
+     ex:'2a-3b = 9  (a=3, b=-1)', exl:'두 문자 동시 대입',
+     tip:'빼기 뒤 음수: -(−값) = +값  기억하세요!'},
+  ],
+  // ch3: 항·계수·상수항
+  [
+    {h:'항(項): 식의 기본 단위',
+     b:`식 <strong>3x + 2y - 5</strong>를 분석해요.<br><br>
+<strong>항</strong>: +나 -로 나뉜 각각의 덩어리<br>
+→ <strong>3x</strong>, <strong>+2y</strong>, <strong>-5</strong> (3개의 항)<br><br>
+부호(+/-)는 항에 <strong>포함</strong>됩니다!`,
+     ex:'3x + 2y - 5 → 항 3개', exl:'3x, +2y, -5',
+     tip:'-5도 하나의 항이에요! 부호는 항의 일부'},
+    {h:'계수와 상수항',
+     b:`<strong>계수</strong>: 항에서 문자에 곱해진 수<br>
+3x → x의 계수 = <strong>3</strong><br>
+-2y → y의 계수 = <strong>-2</strong><br>
+-x → x의 계수 = <strong>-1</strong> (1은 생략)<br><br>
+<strong>상수항</strong>: 문자가 없는 수만의 항<br>
+3x+2y-5에서 → 상수항 = <strong>-5</strong>`,
+     ex:'3x+2y-5: 계수 3, -2 / 상수 -5', exl:'계수 vs 상수항',
+     tip:'-x의 계수는 -1! (생략되어 있지만 -1이에요)'},
+    {h:'차수와 일차식',
+     b:`<strong>차수</strong>: 문자가 곱해진 횟수<br>
+x → 1차, x² → 2차, x³ → 3차<br><br>
+<strong>일차식</strong>: 최고 차수가 1인 식<br>
+예) <strong>3x+2</strong>, <strong>2a-1</strong>, <strong>-x+5</strong><br><br>
+x²이 있으면 → 이차식 (일차식 아님!)`,
+     ex:'3x+2 → 일차식 (1차)', exl:'최고 차수 = 식의 차수',
+     tip:'상수항만 있는 식 (예: 5)은 0차식이에요'},
+  ],
+  // ch4: 동류항과 일차식 계산
+  [
+    {h:'동류항이란?',
+     b:`<strong>동류항</strong>: 문자 부분이 완전히 같은 항<br><br>
+✅ 동류항:<br>
+<strong>3x</strong>와 <strong>-2x</strong> → 둘 다 x항 (합칠 수 있음!)<br>
+<strong>5y²</strong>와 <strong>-y²</strong> → 둘 다 y²항<br><br>
+❌ 동류항 아님:<br>
+<strong>3x</strong>와 <strong>3x²</strong> → 차수가 달라서 다름`,
+     ex:'3x + (-2x) = x', exl:'동류항은 합칠 수 있다!',
+     tip:'문자와 차수가 모두 같아야 동류항이에요'},
+    {h:'동류항 계산: 계수만 더하기',
+     b:`동류항끼리는 <strong>계수만 더하거나 빼요</strong>:<br><br>
+<strong>3x + 2x</strong> = (3+2)x = <strong>5x</strong><br>
+<strong>5a - 3a</strong> = (5-3)a = <strong>2a</strong><br>
+<strong>4y - y</strong> = (4-1)y = <strong>3y</strong> ← y=1y!<br><br>
+⚠️ 다른 문자끼리는 합칠 수 없어요:<br>
+2x + 3y → 더 이상 합칠 수 없음!`,
+     ex:'3x + 2x = 5x', exl:'계수끼리 계산!',
+     tip:'y와 1y는 같아요. y 앞의 계수는 1 (생략된 것)'},
+    {h:'괄호가 있는 일차식 계산',
+     b:`괄호를 풀고, 동류항끼리 모아요:<br><br>
+<strong>(3x+2) + (2x-1)</strong><br>
+= 3x+2+2x-1<br>
+= <strong>5x+1</strong><br><br>
+<strong>(4a-3) - (2a-1)</strong><br>
+= 4a-3 <strong>-2a+1</strong> ← 빼기 분배!<br>
+= <strong>2a-2</strong>`,
+     ex:'(4a-3)-(2a-1) = 2a-2', exl:'괄호 → 동류항 정리',
+     tip:'빼기 괄호: -(2a-1) = -2a+1  부호 뒤집힘!'},
+    {h:'분배법칙으로 괄호 풀기',
+     b:`숫자를 괄호에 곱할 때 → <strong>분배법칙</strong>:<br><br>
+<strong>2(3x+1)</strong> = 2×3x + 2×1 = <strong>6x+2</strong><br>
+<strong>-3(x-2)</strong> = -3×x + (-3)×(-2) = <strong>-3x+6</strong><br><br>
+⚠️ 음수 곱하기 주의:<br>
+-3 × (-2) = <strong>+6</strong> (음수×음수=양수)`,
+     ex:'2(3x+1) = 6x+2', exl:'분배법칙으로 괄호 풀기',
+     tip:'음수 × 음수 = 양수! 부호를 꼭 확인하세요'},
+  ],
+  // ch5: 등식의 성질
+  [
+    {h:'2단계 방정식',
+     b:`<strong>2단계로 x 구하기</strong><br><br>
+예: <strong>3x - 4 = 11</strong><br>
+① 양변 <strong>+ 4</strong> → 3x = 15<br>
+② 양변 <strong>÷ 3</strong> → x = 5<br><br>
+예: <strong>x/2 + 3 = 7</strong><br>
+① 양변 <strong>- 3</strong> → x/2 = 4<br>
+② 양변 <strong>× 2</strong> → x = 8<br><br>
+순서: ① 상수항 이항 → ② 계수 제거`,
+     ex:'3x-4=11 → +4 → ÷3 → x=5', exl:'상수 먼저, 계수 나중',
+     tip:'역연산: 더하기↔빼기, 곱하기↔나누기'},
+    {h:'음수 계수 방정식',
+     b:`<strong>음수 계수는 부호 주의!</strong><br><br>
+예: <strong>-2x = 8</strong><br>
+양변 <strong>÷ (-2)</strong> → x = -4<br><br>
+예: <strong>-3x + 6 = 15</strong><br>
+① 양변 <strong>- 6</strong> → -3x = 9<br>
+② 양변 <strong>÷ (-3)</strong> → x = -3<br><br>
+⚠️ 음수로 나누면 부호가 바뀜!`,
+     ex:'-3x+6=15 → -6 → ÷(-3) → x=-3', exl:'음수 계수 나누기',
+     tip:'음수÷음수 = 양수 / 양수÷음수 = 음수'},
+    {h:'양변에 x가 있는 경우',
+     b:`<strong>x 항을 한쪽으로 모으기</strong><br><br>
+예: <strong>2x + 1 = x + 7</strong><br>
+① 양변 <strong>- x</strong> → x + 1 = 7<br>
+② 양변 <strong>- 1</strong> → x = 6<br><br>
+예: <strong>3x - 5 = 2x + 3</strong><br>
+① 양변 <strong>- 2x</strong> → x - 5 = 3<br>
+② 양변 <strong>+ 5</strong> → x = 8`,
+     ex:'3x-5=2x+3 → -2x → +5 → x=8', exl:'x 항을 한쪽으로!',
+     tip:'x가 많은 쪽에서 적은 쪽을 빼면 양수로 남음'},
+    {h:'소·중·대괄호 방정식',
+     b:`<strong>안쪽 괄호부터!</strong>  () → {} → []<br><br>
+예: <strong>x + {2x − (x−4)} = 10</strong><br>
+① (): x−4 그대로<br>
+② {}: 2x−(x−4) = x+4<br>
+③ x + (x+4) = 10 → 2x+4=10<br>
+④ <strong>x = 3</strong><br><br>
+예: <strong>3x − [x − {x−(x+2)}] = 6</strong><br>
+① (): x+2 → ② {}: −2 → ③ []: x+2<br>
+→ 2x−2=6 → <strong>x = 4</strong>`,
+     ex:'x+{2x-(x-4)}=10 → 2x+4=10 → x=3', exl:'() → {} → [] 순서!',
+     tip:'괄호 안 계산 완료 후 분배법칙 적용'},
+  ],
+  // ch6: 일차부등식 (계수에 문자 포함 & 해 조건)
+  [
+    {h:'부등호 방향 바꾸기',
+     b:`부등식에서 <strong>양수</strong>로 곱·나눌 때 → 부등호 <strong>유지</strong><br>
+<strong>음수</strong>로 곱·나눌 때 → 부등호 <strong>뒤집기!</strong><br><br>
+예: <strong>-2x &gt; 4</strong><br>
+양변 ÷ (-2) → 부등호 뒤집힘 → <strong>x &lt; -2</strong><br><br>
+예: <strong>-3x &lt; 6</strong><br>
+양변 ÷ (-3) → 부등호 뒤집힘 → <strong>x &gt; -2</strong>`,
+     ex:'-2x > 4  →  x < -2', exl:'음수÷ → 부등호 뒤집기',
+     tip:'음수로 나누거나 곱하면 무조건 부등호 방향이 뒤집힙니다!'},
+    {h:'계수에 문자가 있는 경우',
+     b:`<strong>ax &gt; b</strong>의 해는 <strong>a의 부호</strong>에 따라 달라요:<br><br>
+✅ <strong>a &gt; 0</strong>이면: <strong>x &gt; b/a</strong> (부등호 유지)<br>
+✅ <strong>a &lt; 0</strong>이면: <strong>x &lt; b/a</strong> (부등호 뒤집힘)<br><br>
+예: a &gt; 0일 때, ax &gt; 6 → <strong>x &gt; 6/a</strong><br>
+예: a &lt; 0일 때, ax &gt; 6 → <strong>x &lt; 6/a</strong>`,
+     ex:'a>0: ax>6 → x>6/a', exl:'a의 부호가 핵심!',
+     tip:'a의 부호를 먼저 파악! a>0이면 유지, a<0이면 뒤집기'},
+    {h:'해의 조건으로 a 결정 ①',
+     b:`<strong>"부등식의 해가 x &gt; k"</strong> 조건으로 a를 구해요.<br><br>
+예: <strong>ax - 3 &gt; 5</strong>의 해가 <strong>x &gt; 4</strong>이면?<br>
+① ax &gt; 8 (이항)<br>
+② 해가 x &gt; (양수방향) → a &gt; 0<br>
+③ x &gt; 8/a = 4 → <strong>a = 2</strong><br><br>
+예: <strong>2x - a &gt; 0</strong>의 해가 <strong>x &gt; 3</strong>이면?<br>
+2x &gt; a → x &gt; a/2 = 3 → <strong>a = 6</strong>`,
+     ex:'2x-a>0, 해=x>3 → a=6', exl:'해의 경계값으로 a 결정',
+     tip:'풀었을 때 x>(식)=k가 되도록 a를 맞춰요'},
+    {h:'해의 조건으로 a 결정 ②',
+     b:`해가 <strong>x &lt; k</strong> (뒤집힌 방향)이면 → <strong>a &lt; 0</strong>!<br><br>
+예: <strong>ax + 2 &gt; 6</strong>의 해가 <strong>x &lt; -1</strong>이면?<br>
+① ax &gt; 4<br>
+② 해가 x &lt; (반대방향) → a &lt; 0, 부등호 뒤집힘<br>
+③ x &lt; 4/a = -1 → <strong>a = -4</strong><br><br>
+예: <strong>ax + 6 &lt; 0</strong>의 해가 <strong>x &gt; 2</strong>이면?<br>
+ax &lt; -6, 해가 x &gt; → a &lt; 0 → x &gt; -6/a = 2 → <strong>a = -3</strong>`,
+     ex:'ax+2>6, 해=x<-1 → a=-4', exl:'뒤집힌 방향 → a<0',
+     tip:'해의 방향이 원래 부등호와 같으면 a>0, 다르면 a<0'},
+    {h:'양변 인수분해로 묶기',
+     b:`양변에 <strong>a와 x가 함께</strong> 있을 때:<br>
+x항·a항을 각각 모아 <strong>공통인수로 묶어요</strong>.<br><br>
+예: <strong>ax + 4x &gt; 3a + 12</strong><br>
+① 왼쪽: <strong>x(a+4)</strong>, 오른쪽: <strong>3(a+4)</strong><br>
+② <strong>(a+4)</strong>가 공통 → <strong>x(a+4) &gt; 3(a+4)</strong><br>
+③ a+4 &gt; 0이면 x &gt; 3 / a+4 &lt; 0이면 x &lt; 3<br><br>
+예: <strong>ax − 2x &gt; 3a − 6</strong><br>
+→ x(a−2) &gt; 3(a−2)<br>
+→ a&gt;2: x&gt;3 / a&lt;2: x&lt;3`,
+     ex:'ax+4x>3a+12 → x(a+4)>3(a+4)', exl:'공통인수 (a+k)로 묶기',
+     tip:'양변에 같은 인수가 나타나면 부등호 방향은 그 인수의 부호로 결정!'},
+    {h:'해의 정수 조건 판별',
+     b:`<strong>x &gt; k</strong>의 해에서 정수 조건 판별:<br><br>
+<strong>① 최소 자연수가 n이려면:</strong><br>
+• n이 해에 속함: n &gt; k<br>
+• n−1은 해에 속하지 않음: n−1 ≤ k<br>
+→ <strong>n−1 ≤ k &lt; n</strong><br><br>
+<strong>② 자연수가 없으려면:</strong><br>
+• 가장 작은 자연수 1도 해에 없음: <strong>k ≥ 1</strong><br><br>
+<strong>③ 음수가 없으려면:</strong><br>
+• k ≥ 0 (경계 이상이어야 음수 포함 안 됨)<br><br>
+<strong>④ 양수가 있으려면:</strong><br>
+• k &lt; (어떤 양수) 즉 k가 유한값이어야`,
+     ex:'x>k, 최소 자연수=3 → 2≤k<3', exl:'경계값 k의 범위 결정',
+     tip:'k의 범위를 먼저 구한 다음 a의 범위로 역산해요'},
+  ],
+];
+
+// =====================================================
+// DATA: 문제 뱅크
+// =====================================================
+const QS = [
+  // ch0: 문자의 사용
+  [
+    {q:'한 개에 a원인 과자 5개의 가격은?',ex:null,
+     c:['5+a원','5-a원','5a원','a÷5원'],ans:2,fill:'5a',
+     hint:'(개수)×(단가) = 총 금액 / 숫자는 앞에!',
+     st:['과자 가격 = 1개 값 × 개수','= a × 5','= <strong>5a</strong>원 (숫자 앞에!)'],ans_txt:'5a원'},
+    {q:'가로 a cm, 세로 b cm인 직사각형의 넓이는?',ex:null,
+     c:['2(a+b)','ab','a+b','a÷b'],ans:1,fill:'ab',
+     hint:'직사각형 넓이 = 가로 × 세로',
+     st:['넓이 = 가로 × 세로','= a × b','= <strong>ab</strong>'],ans_txt:'ab'},
+    {q:'학생 n명이 총 m원을 똑같이 나눌 때, 1인당 금액은?',ex:null,
+     c:['mn원','m+n원','m÷n원','n÷m원'],ans:2,fill:'m/n',
+     hint:'나누기 → 분수로: m÷n = m/n',
+     st:['1인당 = 총액 ÷ 인원','= m ÷ n','= <strong>m/n</strong>원'],ans_txt:'m/n원'},
+    {q:'한 변의 길이가 x인 정사각형의 둘레는?',ex:null,
+     c:['x²','2x','4x','x+4'],ans:2,fill:'4x',
+     hint:'정사각형 둘레 = 4 × 한 변',
+     st:['둘레 = 4 × 한 변','= 4 × x','= <strong>4x</strong>'],ans_txt:'4x'},
+    {q:'시속 a km로 3시간 달린 거리는?',ex:null,
+     c:['a+3 km','a-3 km','a÷3 km','3a km'],ans:3,fill:'3a',
+     hint:'거리 = 속력 × 시간',
+     st:['거리 = 속력 × 시간','= a × 3','= <strong>3a</strong> km'],ans_txt:'3a km'},
+    {q:'1 × x를 올바르게 쓰면?',ex:'1 × x',
+     c:['1x','x','x+1','0'],ans:1,fill:'x',
+     hint:'어떤 수에 1을 곱해도 변하지 않아요 → 1 생략',
+     st:['1 × x = x','이유: 1을 곱해도 수는 변하지 않음','<strong>1은 생략</strong>!'],ans_txt:'x'},
+    {q:'(-1) × a를 올바르게 쓰면?',ex:'(-1) × a',
+     c:['a','-a','1a','-1a'],ans:1,fill:'-a',
+     hint:'숫자 1만 생략, 부호(-)는 남겨요',
+     st:['(-1) × a','= -a','<strong>-a</strong> (1만 생략, 부호는 유지)'],ans_txt:'-a'},
+    {q:'한 자루에 b원인 연필 n자루의 가격은?',ex:null,
+     c:['b+n원','b-n원','b÷n원','bn원'],ans:3,fill:'bn',
+     hint:'가격 = 1자루 값 × 자루 수',
+     st:['가격 = 1자루 값 × 개수','= b × n','= <strong>bn</strong>원'],ans_txt:'bn원'},
+    {q:'밑변 x cm, 높이 h cm인 삼각형의 넓이는?',ex:null,
+     c:['xh','2xh','xh/2','x+h'],ans:2,fill:'xh/2',
+     hint:'삼각형 넓이 = (밑변 × 높이) ÷ 2',
+     st:['넓이 = (밑변 × 높이) ÷ 2','= (x × h) ÷ 2','= <strong>xh/2</strong>'],ans_txt:'xh/2'},
+    {q:'100원짜리 a개, 500원짜리 b개의 총 금액은?',ex:null,
+     c:['100a+500b원','600(a+b)원','100a×500b원','500a+100b원'],ans:0,fill:'100a+500b',
+     hint:'각각 (개수×단가)를 더해요',
+     st:['100원짜리: 100×a = 100a원','500원짜리: 500×b = 500b원','합계: <strong>100a+500b</strong>원'],ans_txt:'100a+500b원'},
+    {q:'현재 n살인 아버지의 10년 후 나이는?',ex:null,
+     c:['10n살','n-10살','n+10살','n×10살'],ans:2,fill:'n+10',
+     hint:'10년이 지나면 나이는 10 더해져요',
+     st:['현재 나이: n살','10년 후: n + 10','= <strong>n+10</strong>살'],ans_txt:'n+10살'},
+    {q:'x km 거리를 시속 4 km로 걷는 데 걸리는 시간은?',ex:null,
+     c:['4x시간','x+4시간','x÷4시간','4÷x시간'],ans:2,fill:'x/4',
+     hint:'시간 = 거리 ÷ 속력',
+     st:['시간 = 거리 ÷ 속력','= x ÷ 4','= <strong>x/4</strong>시간'],ans_txt:'x/4시간'},
+    {q:'정가 a원에서 b원을 할인한 판매가는?',ex:null,
+     c:['a×b원','a+b원','a-b원','b-a원'],ans:2,fill:'a-b',
+     hint:'할인 → 정가에서 할인 금액을 빼요',
+     st:['판매가 = 정가 - 할인금액','= a - b','= <strong>a-b</strong>원'],ans_txt:'a-b원'},
+    {q:'어떤 수 n의 3배에서 5를 뺀 수는?',ex:null,
+     c:['3n+5','3n-5','5-3n','n-15'],ans:1,fill:'3n-5',
+     hint:'"3배" → 3n, "빼다" → 마이너스',
+     st:['n의 3배: 3n','3배에서 5를 뺀 수: 3n - 5','= <strong>3n-5</strong>'],ans_txt:'3n-5'},
+    {q:'사탕 n개를 5명에게 똑같이 나눌 때 1인당 개수는?',ex:null,
+     c:['5n개','n+5개','n-5개','n÷5개'],ans:3,fill:'n/5',
+     hint:'나누기 → 분수: n÷5 = n/5',
+     st:['1인당 = 전체 ÷ 인원','= n ÷ 5','= <strong>n/5</strong>개'],ans_txt:'n/5개'},
+    {q:'시속 v km로 t시간 달린 후 남은 거리가 d km라면, 처음 거리는?',ex:null,
+     c:['vt-d km','vt+d km','d-vt km','v+t+d km'],ans:1,fill:'vt+d',
+     hint:'처음 거리 = 달린 거리 + 남은 거리',
+     st:['달린 거리: v×t = vt','처음 거리 = vt + d','= <strong>vt+d</strong>km'],ans_txt:'vt+d km'},
+  ],
+  // ch1: 기호 생략
+  [
+    {q:'3 × a × b를 기호 생략하면?',ex:'3 × a × b',
+     c:['3+ab','3a+b','3ab','ab÷3'],ans:2,fill:'3ab',
+     hint:'숫자 앞에, 문자끼리 붙여쓰기',
+     st:['3 × a × b','숫자를 앞에, 문자는 붙여','= <strong>3ab</strong>'],ans_txt:'3ab'},
+    {q:'a × a × a를 간단히 하면?',ex:'a × a × a',
+     c:['3a','a+3','a³','3a³'],ans:2,fill:'a³',
+     hint:'같은 문자를 3번 곱함 → 지수 3',
+     st:['a × a × a','= a³ (3번 곱함)','= <strong>a³</strong>'],ans_txt:'a³'},
+    {q:'2 × x × x를 간단히 하면?',ex:'2 × x × x',
+     c:['2x','4x','2x²','x²+2'],ans:2,fill:'2x²',
+     hint:'숫자는 앞에, 같은 문자는 지수로',
+     st:['2 × x × x','= 2 × x²','= <strong>2x²</strong>'],ans_txt:'2x²'},
+    {q:'(x+3) ÷ 5를 분수로 나타내면?',ex:'(x+3) ÷ 5',
+     c:['x/3+5','x+3/5','5/(x+3)','(x+3)/5'],ans:3,fill:'(x+3)/5',
+     hint:'(괄호전체) ÷ 5 = (괄호전체)/5',
+     st:['(x+3) ÷ 5','분자: (x+3), 분모: 5','= <strong>(x+3)/5</strong>'],ans_txt:'(x+3)/5'},
+    {q:'(-2) × a × b를 간단히 하면?',ex:'(-2) × a × b',
+     c:['2ab','-2ab','-ab','2a-b'],ans:1,fill:'-2ab',
+     hint:'음수도 숫자를 앞에 씁니다',
+     st:['(-2) × a × b','음수도 계수로 앞에','= <strong>-2ab</strong>'],ans_txt:'-2ab'},
+    {q:'a ÷ 3 + b × 2를 간단히 하면?',ex:'a÷3 + b×2',
+     c:['a/3+2b','3a+2b','2a/3+b','3/a+2b'],ans:0,fill:'a/3+2b',
+     hint:'÷3 → /3으로, ×2 → 계수 2를 앞에',
+     st:['a÷3 = <strong>a/3</strong>','b×2 = <strong>2b</strong>','합치면 <strong>a/3+2b</strong>'],ans_txt:'a/3+2b'},
+    {q:'x × (-3) × y를 간단히 하면?',ex:'x × (-3) × y',
+     c:['3xy','-3xy','x-3y','3x-y'],ans:1,fill:'-3xy',
+     hint:'음수 계수 (-3)는 앞에, 부호 포함',
+     st:['x × (-3) × y','= (-3) × x × y','= <strong>-3xy</strong>'],ans_txt:'-3xy'},
+    {q:'4 × a ÷ b를 간단히 하면?',ex:'4 × a ÷ b',
+     c:['4ab','4b/a','4a/b','a/4b'],ans:2,fill:'4a/b',
+     hint:'÷b → 분모에 b',
+     st:['4 × a ÷ b','= 4 × a × (1/b)','= <strong>4a/b</strong>'],ans_txt:'4a/b'},
+    {q:'a × a × b × b를 간단히 하면?',ex:'a × a × b × b',
+     c:['2ab','a²+b²','a²b²','4ab'],ans:2,fill:'a²b²',
+     hint:'각 문자를 지수로 묶어요',
+     st:['a × a = a²','b × b = b²','= <strong>a²b²</strong>'],ans_txt:'a²b²'},
+    {q:'(a - b) ÷ 3을 간단히 하면?',ex:'(a - b) ÷ 3',
+     c:['a/3-b','a-b/3','(a-b)/3','3(a-b)'],ans:2,fill:'(a-b)/3',
+     hint:'괄호 전체가 분자로 올라가요',
+     st:['(a-b) ÷ 3','= (a-b)/3','분자는 괄호 전체: <strong>(a-b)/3</strong>'],ans_txt:'(a-b)/3'},
+    {q:'3 × x ÷ y를 간단히 하면?',ex:'3 × x ÷ y',
+     c:['3y/x','xy/3','3x/y','3/xy'],ans:2,fill:'3x/y',
+     hint:'× → 분자, ÷ → 분모로',
+     st:['3 × x ÷ y','= 3x × (1/y)','= <strong>3x/y</strong>'],ans_txt:'3x/y'},
+    {q:'(-a) × (-a)를 간단히 하면?',ex:'(-a) × (-a)',
+     c:['-a²','-2a','a²','2a'],ans:2,fill:'a²',
+     hint:'음수×음수 = 양수, a×a = a²',
+     st:['(-a) × (-a)','= (-1)×(-1) × a×a','= 1 × a² = <strong>a²</strong>'],ans_txt:'a²'},
+    {q:'a × b ÷ (a × b × b)를 간단히 하면?',ex:'a × b ÷ (a × b × b)',
+     c:['1/b','ab','1/a','b'],ans:0,fill:'1/b',
+     hint:'약분하면 a끼리, b 하나가 남아요',
+     st:['ab ÷ ab²','= ab/(ab²)','= <strong>1/b</strong> (약분)'],ans_txt:'1/b'},
+    {q:'5 × a × a ÷ (a × 5)를 간단히 하면?',ex:'5 × a × a ÷ (a × 5)',
+     c:['5a','a','a²','1/a'],ans:1,fill:'a',
+     hint:'5a² ÷ 5a = a',
+     st:['5 × a × a ÷ (a × 5)','= 5a² ÷ 5a','= <strong>a</strong>'],ans_txt:'a'},
+    {q:'x × x × x × y를 간단히 하면?',ex:'x × x × x × y',
+     c:['3xy','x³y','xy³','3x+y'],ans:1,fill:'x³y',
+     hint:'x가 3번 곱해지면 x³',
+     st:['x × x × x = x³','y는 그대로','= <strong>x³y</strong>'],ans_txt:'x³y'},
+    {q:'2 × a × b ÷ (4 × a)를 간단히 하면?',ex:'2 × a × b ÷ (4 × a)',
+     c:['b/2','2b','ab/2','2ab'],ans:0,fill:'b/2',
+     hint:'2ab ÷ 4a → a끼리 약분, 2÷4=1/2',
+     st:['2ab ÷ 4a','= 2ab / 4a','= <strong>b/2</strong> (a 약분, 2÷4)'],ans_txt:'b/2'},
+  ],
+  // ch2: 식의 값
+  [
+    {q:'x=3일 때, 2x+1의 값은?',ex:'2x + 1  (x=3)',
+     c:['5','6','7','8'],ans:2,fill:'7',
+     hint:'x 자리에 3을 넣어요: 2×3+1',
+     st:['x=3 대입','2×<strong>3</strong>+1','= 6+1','= <strong>7</strong>'],ans_txt:'7'},
+    {q:'a=2일 때, a²+a의 값은?',ex:'a² + a  (a=2)',
+     c:['4','5','6','8'],ans:2,fill:'6',
+     hint:'a²=a×a = 2×2 = 4, 그리고 +a=+2',
+     st:['a=2 대입','(2)²+(2)','= 4+2','= <strong>6</strong>'],ans_txt:'6'},
+    {q:'x=-1일 때, 3x-2의 값은?',ex:'3x - 2  (x=-1)',
+     c:['-5','-4','-1','1'],ans:0,fill:'-5',
+     hint:'음수 대입: 3×(-1)-2',
+     st:['x=-1 대입','3×<strong>(-1)</strong>-2','= -3-2','= <strong>-5</strong>'],ans_txt:'-5'},
+    {q:'a=2, b=3일 때, 2a+b의 값은?',ex:'2a + b  (a=2, b=3)',
+     c:['6','7','8','9'],ans:1,fill:'7',
+     hint:'각각 대입: 2×2+3',
+     st:['a=2, b=3 대입','2×<strong>2</strong>+<strong>3</strong>','= 4+3','= <strong>7</strong>'],ans_txt:'7'},
+    {q:'x=-2일 때, x²의 값은?',ex:'x²  (x=-2)',
+     c:['-4','-2','2','4'],ans:3,fill:'4',
+     hint:'(-2)² = (-2)×(-2) = ? 음수×음수에 주의!',
+     st:['x=-2 대입','<strong>(-2)²</strong>','= (-2)×(-2)','= <strong>4</strong> (음수×음수=양수)'],ans_txt:'4'},
+    {q:'a=1/2일 때, 4a-1의 값은?',ex:'4a - 1  (a=½)',
+     c:['0','1','2','3'],ans:1,fill:'1',
+     hint:'4×(1/2) = 2',
+     st:['a=1/2 대입','4×<strong>(1/2)</strong>-1','= 2-1','= <strong>1</strong>'],ans_txt:'1'},
+    {q:'x=1, y=-1일 때, 3x-2y의 값은?',ex:'3x-2y  (x=1, y=-1)',
+     c:['1','3','5','6'],ans:2,fill:'5',
+     hint:'3×1 - 2×(-1), 마이너스 마이너스에 주의',
+     st:['x=1, y=-1 대입','3×<strong>1</strong>-2×<strong>(-1)</strong>','= 3-(-2)','= 3+2 = <strong>5</strong>'],ans_txt:'5'},
+    {q:'a=3일 때, a²-2a+1의 값은?',ex:'a²-2a+1  (a=3)',
+     c:['2','3','4','5'],ans:2,fill:'4',
+     hint:'3²=9, 2×3=6, 9-6+1=?',
+     st:['a=3 대입','(3)²-2×3+1','= 9-6+1','= <strong>4</strong>'],ans_txt:'4'},
+    {q:'x=2, y=3일 때, xy-x의 값은?',ex:'xy-x  (x=2, y=3)',
+     c:['3','4','5','6'],ans:1,fill:'4',
+     hint:'xy = 2×3 = 6, 6-x = 6-2',
+     st:['x=2, y=3 대입','2×3 - 2','= 6-2','= <strong>4</strong>'],ans_txt:'4'},
+    {q:'a=-3일 때, -a²+2a의 값은?',ex:'-a²+2a  (a=-3)',
+     c:['-15','-13','13','15'],ans:0,fill:'-15',
+     hint:'(-3)²=9이므로 -9. 2×(-3)=-6. -9+(-6)=?',
+     st:['a=-3 대입','-(-3)²+2×(-3)','-9+(-6)','= <strong>-15</strong>'],ans_txt:'-15'},
+    {q:'x=4일 때, (x+2)/3의 값은?',ex:'(x+2)/3  (x=4)',
+     c:['1','2','3','4'],ans:1,fill:'2',
+     hint:'x에 4를 대입: (4+2)/3 = 6/3',
+     st:['x=4 대입','(4+2)/3','= 6/3','= <strong>2</strong>'],ans_txt:'2'},
+    {q:'a=5, b=2일 때, (a-b)²의 값은?',ex:'(a-b)²  (a=5, b=2)',
+     c:['6','8','9','10'],ans:2,fill:'9',
+     hint:'a-b를 먼저: 5-2=3, 그 다음 제곱',
+     st:['a=5, b=2 대입','(5-2)²','= 3²','= <strong>9</strong>'],ans_txt:'9'},
+    {q:'a=-2, b=-1일 때, a²+b²의 값은?',ex:'a²+b²  (a=-2, b=-1)',
+     c:['3','5','7','9'],ans:1,fill:'5',
+     hint:'(-2)²=4, (-1)²=1',
+     st:['a=-2, b=-1 대입','(-2)²+(-1)²','= 4+1','= <strong>5</strong>'],ans_txt:'5'},
+    {q:'x=2일 때, 3x²-5x+2의 값은?',ex:'3x²-5x+2  (x=2)',
+     c:['2','4','0','6'],ans:2,fill:'0',
+     hint:'3×4=12, 5×2=10, 12-10+2=?',
+     st:['x=2 대입','3×(2)²-5×2+2','= 12-10+2','= <strong>0</strong>'],ans_txt:'0'},
+    {q:'a=1/3일 때, 9a-2의 값은?',ex:'9a-2  (a=1/3)',
+     c:['-1','0','1','2'],ans:2,fill:'1',
+     hint:'9×(1/3)=3, 3-2=?',
+     st:['a=1/3 대입','9×(1/3)-2','= 3-2','= <strong>1</strong>'],ans_txt:'1'},
+    {q:'x=6일 때, x/2+x/3의 값은?',ex:'x/2+x/3  (x=6)',
+     c:['3','4','5','6'],ans:2,fill:'5',
+     hint:'6/2=3, 6/3=2, 3+2=?',
+     st:['x=6 대입','6/2+6/3','= 3+2','= <strong>5</strong>'],ans_txt:'5'},
+  ],
+  // ch3: 항·계수
+  [
+    {q:'3x+2y-5에서 x의 계수는?',ex:'3x + 2y - 5',
+     c:['2','3','5','-5'],ans:1,fill:'3',
+     hint:'x 앞에 곱해진 숫자를 찾으세요',
+     st:['식: 3x+2y-5','x의 항: <strong>3x</strong>','계수 = <strong>3</strong>'],ans_txt:'3'},
+    {q:'3x+2y-5에서 상수항은?',ex:'3x + 2y - 5',
+     c:['3','2','5','-5'],ans:3,fill:'-5',
+     hint:'문자가 없는 항 / 부호 포함!',
+     st:['문자가 없는 항: <strong>-5</strong>','상수항 = <strong>-5</strong>','(부호 포함됨)'],ans_txt:'-5'},
+    {q:'-2a²+3a-1에서 a(일차)의 계수는?',ex:'-2a² + 3a - 1',
+     c:['-2','2','3','-1'],ans:2,fill:'3',
+     hint:'a¹(일차)항을 찾아 계수를 구하세요',
+     st:['a(일차)의 항: <strong>3a</strong>','계수 = <strong>3</strong>','(a²의 계수는 -2, 별개!)'],ans_txt:'3'},
+    {q:'5x-3에서 항의 개수는?',ex:'5x - 3',
+     c:['1','2','3','4'],ans:1,fill:'2',
+     hint:'+나 -로 나뉜 덩어리 수를 세세요',
+     st:['항 1: <strong>5x</strong>','항 2: <strong>-3</strong>','항의 개수 = <strong>2</strong>'],ans_txt:'2'},
+    {q:'-x의 계수는?',ex:'-x',
+     c:['0','-x','-1','1'],ans:2,fill:'-1',
+     hint:'-x = (-1)×x, 1이 생략된 것!',
+     st:['-x = (-1)×x','계수 = <strong>-1</strong>','(1이 생략되어 있지만 계수는 -1)'],ans_txt:'-1'},
+    {q:'2x²+3x-7에서 x²의 계수는?',ex:'2x² + 3x - 7',
+     c:['3','2','7','-7'],ans:1,fill:'2',
+     hint:'x² 앞의 숫자를 찾으세요',
+     st:['x²의 항: <strong>2x²</strong>','계수 = <strong>2</strong>','(x의 계수 3과 구별!)'],ans_txt:'2'},
+    {q:'4x-7에서 상수항은?',ex:'4x - 7',
+     c:['4','7','-7','x'],ans:2,fill:'-7',
+     hint:'문자가 없는 항, 부호 포함',
+     st:['식: 4x-7','상수항(문자 없는 항): <strong>-7</strong>','(부호 포함)'],ans_txt:'-7'},
+    {q:'-5x+3y+8에서 y의 계수는?',ex:'-5x + 3y + 8',
+     c:['-5','3','8','-8'],ans:1,fill:'3',
+     hint:'y 앞에 붙은 숫자를 찾으세요',
+     st:['y의 항: <strong>3y</strong>','y의 계수 = <strong>3</strong>'],ans_txt:'3'},
+    {q:'3a-2b+c-9에서 항의 개수는?',ex:'3a - 2b + c - 9',
+     c:['3','4','5','2'],ans:1,fill:'4',
+     hint:'+, -로 나뉜 덩어리를 세세요: 3a, -2b, c, -9',
+     st:['항1: 3a, 항2: -2b','항3: c, 항4: -9','항의 개수 = <strong>4</strong>'],ans_txt:'4'},
+    {q:'7x²-3x+1에서 모든 계수의 합은?',ex:'7x² - 3x + 1',
+     c:['4','5','11','7'],ans:1,fill:'4',
+     hint:'계수는 숫자 앞 부분 (상수항 제외): 7+(-3)=?',
+     st:['x²계수: 7, x계수: -3','계수의 합: 7+(-3)','= <strong>4</strong>'],ans_txt:'4'},
+    {q:'-x²+4x-6에서 x²의 계수는?',ex:'-x² + 4x - 6',
+     c:['1','-1','4','-4'],ans:1,fill:'-1',
+     hint:'-x² = (-1)x². 계수는 -1',
+     st:['-x² = (-1)×x²','x²의 계수 = <strong>-1</strong>'],ans_txt:'-1'},
+    {q:'2a+b-5c에서 b의 계수는?',ex:'2a + b - 5c',
+     c:['0','1','2','5'],ans:1,fill:'1',
+     hint:'b = 1×b. 숫자 1이 생략된 것',
+     st:['b의 항: <strong>b</strong>','b = 1×b','계수 = <strong>1</strong>'],ans_txt:'1'},
+    {q:'3x+2y-z+6에서 상수항은?',ex:'3x + 2y - z + 6',
+     c:['3','2','-1','6'],ans:3,fill:'6',
+     hint:'문자가 전혀 없는 항은?',
+     st:['각 항: 3x, 2y, -z, 6','문자 없는 항: <strong>6</strong>','상수항 = <strong>6</strong>'],ans_txt:'6'},
+    {q:'x-y+2에서 x의 계수와 y의 계수의 합은?',ex:'x - y + 2',
+     c:['0','1','2','-1'],ans:0,fill:'0',
+     hint:'x계수=1, y계수=-1 (부호 포함). 두 합은?',
+     st:['x의 계수: 1','y의 계수: -1','합: 1+(-1) = <strong>0</strong>'],ans_txt:'0'},
+    {q:'-4x²-3x+2에서 x의 계수와 상수항의 합은?',ex:'-4x² - 3x + 2',
+     c:['-1','1','-5','5'],ans:0,fill:'-1',
+     hint:'x계수=-3, 상수항=2. 더하면?',
+     st:['x계수: -3, 상수항: 2','-3+2','= <strong>-1</strong>'],ans_txt:'-1'},
+  ],
+  // ch4: 동류항과 일차식
+  [
+    {q:'3x+2x를 계산하면?',ex:'3x + 2x',
+     c:['5x²','6x','5x','x⁵'],ans:2,fill:'5x',
+     hint:'계수끼리 더하면: (3+2)x',
+     st:['3x+2x','= (3+2)x','= <strong>5x</strong>'],ans_txt:'5x'},
+    {q:'5a-3a+2를 계산하면?',ex:'5a - 3a + 2',
+     c:['2a+2','8a+2','4a+2','2a'],ans:0,fill:'2a+2',
+     hint:'a항끼리: 5a-3a=2a, 상수항은 그대로',
+     st:['5a-3a+2','= (5-3)a+2','= <strong>2a+2</strong>'],ans_txt:'2a+2'},
+    {q:'(3x+2)+(2x-1)을 계산하면?',ex:'(3x+2)+(2x-1)',
+     c:['5x+3','5x+1','5x-1','6x+1'],ans:1,fill:'5x+1',
+     hint:'괄호 풀기 → x항끼리, 상수항끼리',
+     st:['3x+2+2x-1','= (3+2)x+(2-1)','= <strong>5x+1</strong>'],ans_txt:'5x+1'},
+    {q:'(4a-3)-(2a-1)을 계산하면?',ex:'(4a-3)-(2a-1)',
+     c:['2a-2','2a-4','6a-4','2a+2'],ans:0,fill:'2a-2',
+     hint:'-(2a-1) = -2a+1 (부호 주의!)',
+     st:['4a-3-(2a-1)','= 4a-3<strong>-2a+1</strong>','= (4-2)a+(-3+1)','= <strong>2a-2</strong>'],ans_txt:'2a-2'},
+    {q:'2(3x+1)을 계산하면?',ex:'2(3x+1)',
+     c:['6x+1','6x+2','3x+2','5x+2'],ans:1,fill:'6x+2',
+     hint:'분배법칙: 2×3x, 2×1 각각 계산',
+     st:['2(3x+1)','= 2×3x + 2×1','= 6x+2','= <strong>6x+2</strong>'],ans_txt:'6x+2'},
+    {q:'-3(x-2)를 계산하면?',ex:'-3(x-2)',
+     c:['-3x-6','-3x+6','3x-6','3x+6'],ans:1,fill:'-3x+6',
+     hint:'-3×x = -3x, -3×(-2) = +6 (음수×음수=양수)',
+     st:['-3(x-2)','-3×x = -3x','-3×(-2) = <strong>+6</strong>','= <strong>-3x+6</strong>'],ans_txt:'-3x+6'},
+    {q:'2(3x+1)+3(x-2)를 계산하면?',ex:'2(3x+1)+3(x-2)',
+     c:['9x-4','9x+4','6x-4','9x-1'],ans:0,fill:'9x-4',
+     hint:'분배 먼저 → 동류항 정리 순서로',
+     st:['= 6x+2+3x-6','= (6+3)x+(2-6)','= <strong>9x-4</strong>'],ans_txt:'9x-4'},
+    {q:'4x-2x+3x를 계산하면?',ex:'4x - 2x + 3x',
+     c:['4x','5x','6x','9x'],ans:1,fill:'5x',
+     hint:'계수끼리: 4-2+3=?',
+     st:['4x-2x+3x','= (4-2+3)x','= <strong>5x</strong>'],ans_txt:'5x'},
+    {q:'3(2x-4)+2(x+1)을 계산하면?',ex:'3(2x-4)+2(x+1)',
+     c:['8x-10','8x+10','6x-10','8x-9'],ans:0,fill:'8x-10',
+     hint:'분배: 6x-12+2x+2, 동류항 정리',
+     st:['= 6x-12+2x+2','= (6+2)x+(-12+2)','= <strong>8x-10</strong>'],ans_txt:'8x-10'},
+    {q:'5(a-2)-3(a-4)를 계산하면?',ex:'5(a-2)-3(a-4)',
+     c:['2a+2','2a-2','8a+2','2a+22'],ans:0,fill:'2a+2',
+     hint:'5a-10-3a+12 → 동류항 정리',
+     st:['= 5a-10-3a+12','= (5-3)a+(-10+12)','= <strong>2a+2</strong>'],ans_txt:'2a+2'},
+    {q:'4(x+1)-2(3x-1)을 계산하면?',ex:'4(x+1)-2(3x-1)',
+     c:['-2x+6','-2x-6','2x+6','-2x+4'],ans:0,fill:'-2x+6',
+     hint:'4x+4-6x+2 → 동류항 정리',
+     st:['= 4x+4-6x+2','= (4-6)x+(4+2)','= <strong>-2x+6</strong>'],ans_txt:'-2x+6'},
+    {q:'(3x+6)/3을 계산하면?',ex:'(3x+6)/3',
+     c:['x+6','3x+2','x+2','x-2'],ans:2,fill:'x+2',
+     hint:'분자 각 항을 3으로 나눠요: 3x/3=x, 6/3=2',
+     st:['(3x+6)/3','= 3x/3 + 6/3','= <strong>x+2</strong>'],ans_txt:'x+2'},
+    {q:'-2(x-3)+4(x+1)을 계산하면?',ex:'-2(x-3)+4(x+1)',
+     c:['2x+10','2x-10','-2x+10','6x+10'],ans:0,fill:'2x+10',
+     hint:'-2x+6+4x+4 → 동류항',
+     st:['= -2x+6+4x+4','= (-2+4)x+(6+4)','= <strong>2x+10</strong>'],ans_txt:'2x+10'},
+    {q:'(3x-1)-(2x+3)+(x-2)를 계산하면?',ex:'(3x-1)-(2x+3)+(x-2)',
+     c:['2x-6','2x+4','3x-6','2x-4'],ans:0,fill:'2x-6',
+     hint:'괄호 풀기: 3x-1-2x-3+x-2',
+     st:['= 3x-1-2x-3+x-2','= (3-2+1)x+(-1-3-2)','= <strong>2x-6</strong>'],ans_txt:'2x-6'},
+    {q:'x-3[x-(2x+1)]을 계산하면?',ex:'x-3[x-(2x+1)]',
+     c:['4x+3','4x-3','-x+3','-2x+3'],ans:0,fill:'4x+3',
+     hint:'안쪽 괄호 먼저: x-(2x+1)=x-2x-1=-x-1',
+     st:['x-3(-x-1)','= x+3x+3','= <strong>4x+3</strong>'],ans_txt:'4x+3'},
+    {q:'2x+3과 x-1의 합은?',ex:'(2x+3)+(x-1)',
+     c:['3x+2','2x+2','3x+4','x+2'],ans:0,fill:'3x+2',
+     hint:'x항끼리: 2x+x, 상수항끼리: 3-1',
+     st:['(2x+3)+(x-1)','= 2x+x+3-1','= <strong>3x+2</strong>'],ans_txt:'3x+2'},
+    {q:'분수로 된 식을 계산하면?',ex:'x/2 + x/3',
+     c:['x/6','2x/5','5x/6','x/5'],ans:2,fill:'5x/6',
+     hint:'통분: 분모 2와 3의 최소공배수는 6',
+     st:['x/2 + x/3','= 3x/6 + 2x/6','= <strong>5x/6</strong>'],ans_txt:'5x/6'},
+    {q:'분수로 된 식을 계산하면?',ex:'x/2 - x/4',
+     c:['x/4','x/2','0','x/6'],ans:0,fill:'x/4',
+     hint:'통분: 분모 2와 4의 최소공배수는 4',
+     st:['x/2 - x/4','= 2x/4 - x/4','= <strong>x/4</strong>'],ans_txt:'x/4'},
+    {q:'분수로 된 식을 계산하면?',ex:'(2x+4)/2',
+     c:['x+4','x+2','2x+2','x+1'],ans:1,fill:'x+2',
+     hint:'분자의 각 항을 분모로 나눠요',
+     st:['(2x+4)/2','= 2x/2 + 4/2','= <strong>x+2</strong>'],ans_txt:'x+2'},
+    {q:'x=6일 때 x/2 + x/3의 값은?',ex:'x=6일 때  x/2 + x/3',
+     c:['5','3','2','6'],ans:0,fill:'5',
+     hint:'x=6 대입: 6/2 + 6/3 = ?',
+     st:['x/2 + x/3 에 x=6 대입','= 6/2 + 6/3','= 3 + 2','= <strong>5</strong>'],ans_txt:'5'},
+    {q:'소·중·대괄호 순서로 계산하면?',ex:'x - [2x + {x - (x+1)}]',
+     c:['-x+1','-x-1','x+1','3x-1'],ans:0,fill:'-x+1',
+     hint:'() → {} → [] 순서로 안쪽부터!',
+     st:['① (): x - [2x + {x - (x+1)}]','② {}: x-(x+1)=x-x-1=-1 → x-[2x+{-1}]','③ {}: 2x+(-1)=2x-1 → x-[2x-1]','④ []: x-(2x-1)=x-2x+1','= <strong>-x+1</strong>'],ans_txt:'-x+1'},
+    {q:'소·중·대괄호 순서로 계산하면?',ex:'3a - [a + {2a - (a-1)}]',
+     c:['-a-1','-a+1','a-1','a+1'],ans:1,fill:'-a+1',
+     hint:'() 먼저: a-1 그대로, {} 다음, [] 마지막',
+     st:['① (): a-1 그대로','② {}: 2a-(a-1)=2a-a+1=a+1','③ []: a+(a+1)=2a+1','④ 3a-(2a+1)=3a-2a-1','= <strong>a+1</strong> → 앗 재계산: 3a-[a+{a+1}]=3a-[2a+1]=3a-2a-1=<strong>a-1</strong>'],ans_txt:'a-1'},
+    {q:'소·중·대괄호 순서로 계산하면?',ex:'2x - [3x - {x - (2x-1)}]',
+     c:['2x-1','-2x+1','-2x-1','2x+1'],ans:1,fill:'-2x+1',
+     hint:'() → {} → [] 순서로!',
+     st:['① (): 2x-1 그대로','② {}: x-(2x-1)=x-2x+1=-x+1','③ []: 3x-(-x+1)=3x+x-1=4x-1','④ 2x-(4x-1)=2x-4x+1','= <strong>-2x+1</strong>'],ans_txt:'-2x+1'},
+  ],
+  // ch5: 등식의 성질
+  [
+    {q:'2x + 5 = 13을 풀면 x = ?',ex:'2x+5=13',
+     c:['x=4','x=9','x=3','x=6'],ans:0,fill:'x=4',
+     hint:'① 양변 -5 → ② 양변 ÷2',
+     st:['2x+5=13','양변 -5: 2x=8','양변 ÷2: x=4','<strong>x=4</strong>'],ans_txt:'x=4'},
+    {q:'3x - 4 = 11을 풀면 x = ?',ex:'3x-4=11',
+     c:['x=7','x=5','x=3','x=9'],ans:1,fill:'x=5',
+     hint:'① 양변 +4 → ② 양변 ÷3',
+     st:['3x-4=11','양변 +4: 3x=15','양변 ÷3: x=5','<strong>x=5</strong>'],ans_txt:'x=5'},
+    {q:'x + {2x − (x−4)} = 10을 풀면 x = ?',ex:'x+{2x-(x-4)}=10',
+     c:['x=3','x=4','x=2','x=6'],ans:0,fill:'x=3',
+     hint:'① (): x-4 그대로 → ② {}: 2x-(x-4)=x+4 → ③ 합치기',
+     st:['x+{2x-(x-4)}=10','②: x+{x+4}=10','③: 2x+4=10','양변 -4, ÷2: <strong>x=3</strong>'],ans_txt:'x=3'},
+    {q:'x/4 - 1 = 2를 풀면 x = ?',ex:'x/4-1=2',
+     c:['x=12','x=4','x=8','x=3'],ans:0,fill:'x=12',
+     hint:'① 양변 +1 → ② 양변 ×4',
+     st:['x/4-1=2','양변 +1: x/4=3','양변 ×4: x=12','<strong>x=12</strong>'],ans_txt:'x=12'},
+    {q:'2x + 1 = x + 7을 풀면 x = ?',ex:'2x+1=x+7',
+     c:['x=8','x=6','x=4','x=3'],ans:1,fill:'x=6',
+     hint:'① 양변 -x → ② 양변 -1',
+     st:['2x+1=x+7','양변 -x: x+1=7','양변 -1: x=6','<strong>x=6</strong>'],ans_txt:'x=6'},
+    {q:'3x - 5 = 2x + 3을 풀면 x = ?',ex:'3x-5=2x+3',
+     c:['x=8','x=2','x=-2','x=6'],ans:0,fill:'x=8',
+     hint:'① 양변 -2x → ② 양변 +5',
+     st:['3x-5=2x+3','양변 -2x: x-5=3','양변 +5: x=8','<strong>x=8</strong>'],ans_txt:'x=8'},
+    {q:'3[x − 2(x−1)] = 9를 풀면 x = ?',ex:'3[x-2(x-1)]=9',
+     c:['x=-1','x=1','x=3','x=-3'],ans:0,fill:'x=-1',
+     hint:'① (): 2(x-1)=2x-2 → ② []: x-(2x-2)=-x+2 → ③ 3(-x+2)=9',
+     st:['3[x-2(x-1)]=9','①: 3[x-2x+2]=9','②: 3[-x+2]=9','-3x+6=9 → -3x=3 → <strong>x=-1</strong>'],ans_txt:'x=-1'},
+    {q:'4x − [2x − {3x−(x+4)}] = 12를 풀면 x = ?',ex:'4x-[2x-{3x-(x+4)}]=12',
+     c:['x=4','x=3','x=2','x=5'],ans:0,fill:'x=4',
+     hint:'() → {} → [] 순서로 안쪽부터 계산',
+     st:['① (): 3x-(x+4)=2x-4','② {}: 2x-(2x-4)=4','③ []: 4x-4=12','양변 +4, ÷4: <strong>x=4</strong>'],ans_txt:'x=4'},
+    {q:'a = b일 때 2a - 1과 같은 것은?',ex:'a=b',
+     c:['2b+1','2b','2b-1','2b-2'],ans:2,fill:'2b-1',
+     hint:'a=b → 양변 ×2 → 양변 -1',
+     st:['a=b','양변 ×2: 2a=2b','양변 -1: 2a-1=2b-1','<strong>2b-1</strong>'],ans_txt:'2b-1'},
+    {q:'5x - 3 = 3x + 7을 풀면 x = ?',ex:'5x-3=3x+7',
+     c:['x=5','x=2','x=10','x=4'],ans:0,fill:'x=5',
+     hint:'① 양변 -3x → ② 양변 +3 → ③ 양변 ÷2',
+     st:['5x-3=3x+7','양변 -3x: 2x-3=7','양변 +3: 2x=10','양변 ÷2: <strong>x=5</strong>'],ans_txt:'x=5'},
+  ],
+  // ch6: 일차부등식 (인수분해 묶기 & 해의 정수 조건)
+  [
+    {q:'ax + 4x > 3a + 12에서 a > −4이면 해는?',ex:'ax+4x > 3a+12  (a>-4)',
+     c:['x>3','x<3','x>-4','x<-4'],ans:0,fill:'x>3',
+     hint:'x(a+4)>3(a+4)으로 묶기. a+4>0이면 부등호 유지',
+     st:['ax+4x>3a+12','x(a+4) > 3(a+4)','a>-4 → a+4>0 → 유지','<strong>x &gt; 3</strong>'],ans_txt:'x>3'},
+    {q:'2ax − x > 4a − 2에서 a < 1/2이면 해는?',ex:'2ax-x > 4a-2  (a<1/2)',
+     c:['x>2','x<2','x>-2','x<-2'],ans:1,fill:'x<2',
+     hint:'x(2a-1)>2(2a-1)으로 묶기. 2a-1<0이면 부등호 뒤집힘',
+     st:['2ax-x>4a-2','x(2a-1) > 2(2a-1)','a<1/2 → 2a-1<0 → 뒤집힘','<strong>x &lt; 2</strong>'],ans_txt:'x<2'},
+    {q:'ax − 2x > 3a − 6의 해가 x > 3이면 a의 범위는?',ex:'ax-2x > 3a-6, 해: x>3',
+     c:['a<2','a<3','a>2','a>3'],ans:2,fill:'a>2',
+     hint:'x(a-2)>3(a-2)으로 묶기. x>3이 해 → a-2>0',
+     st:['ax-2x>3a-6 → x(a-2)>3(a-2)','x>3이 해 → a-2>0','<strong>a &gt; 2</strong>'],ans_txt:'a>2'},
+    {q:'ax + x < 2a + 2에서 a > −1이면 해는?',ex:'ax+x < 2a+2  (a>-1)',
+     c:['x>2','x>-1','x>1','x<2'],ans:3,fill:'x<2',
+     hint:'x(a+1)<2(a+1)으로 묶기. a+1>0이면 부등호 유지',
+     st:['ax+x<2a+2 → x(a+1)<2(a+1)','a>-1 → a+1>0 → 유지','<strong>x &lt; 2</strong>'],ans_txt:'x<2'},
+    {q:'3ax − 3x > 6a − 6에서 a > 1이면 해는?',ex:'3ax-3x > 6a-6  (a>1)',
+     c:['x<2','x<1','x>2','x>1'],ans:2,fill:'x>2',
+     hint:'3(a-1)x>6(a-1)으로 묶기. a-1>0이면 부등호 유지',
+     st:['3ax-3x>6a-6 → 3(a-1)x>6(a-1)','a>1 → a-1>0 → 유지','<strong>x &gt; 2</strong>'],ans_txt:'x>2'},
+    {q:'ax − 3x < 5a − 15의 해가 x < 5이면 a의 범위는?',ex:'ax-3x < 5a-15, 해: x<5',
+     c:['a<3','a>3','a<5','a>5'],ans:1,fill:'a>3',
+     hint:'x(a-3)<5(a-3)으로 묶기. x<5이 해 → a-3>0',
+     st:['ax-3x<5a-15 → x(a-3)<5(a-3)','x<5이 해 → a-3>0','<strong>a &gt; 3</strong>'],ans_txt:'a>3'},
+    {q:'4ax − 4 > 4a − 4x에서 a > −1이면 해는?',ex:'4ax-4 > 4a-4x  (a>-1)',
+     c:['x<1','x<-1','x>1','x>-1'],ans:2,fill:'x>1',
+     hint:'이항 후 4x(a+1)>4(a+1)으로 묶기. a+1>0이면 부등호 유지',
+     st:['이항: 4ax+4x>4a+4','4x(a+1)>4(a+1) → x(a+1)>(a+1)','a>-1 → a+1>0','<strong>x &gt; 1</strong>'],ans_txt:'x>1'},
+    {q:'x − 4a > 4의 해의 최소 자연수가 3이면 a의 범위는?',ex:'x-4a>4, 최소 자연수=3',
+     c:['-1/2≤a<-1/4','-1/4≤a<0','-1≤a<-1/2','0≤a<1/4'],ans:0,fill:'-1/2≤a<-1/4',
+     hint:'x>4a+4. 3이 해: 3>4a+4 → a<-1/4, 2가 해 아님: 2≤4a+4 → a≥-1/2',
+     st:['x>4a+4','3이 해: 3>4a+4 → a<-1/4','2가 해 아님: 2≤4a+4 → a≥-1/2','<strong>-1/2 ≤ a &lt; -1/4</strong>'],ans_txt:'-1/2≤a<-1/4'},
+    {q:'3x + a > 6의 해의 최소 자연수가 2이면 a의 범위는?',ex:'3x+a>6, 최소 자연수=2',
+     c:['0<a≤3','0≤a<3','0<a<3','0≤a≤3'],ans:0,fill:'0<a≤3',
+     hint:'x>(6-a)/3. 2가 해: 2>(6-a)/3 → a>0, 1이 해 아님: 1≤(6-a)/3 → a≤3',
+     st:['x>(6-a)/3','2가 해: 6>6-a → a>0','1이 해 아님: 3≤6-a → a≤3','<strong>0 &lt; a ≤ 3</strong>'],ans_txt:'0<a≤3'},
+    {q:'x + 2a > 3의 해에 자연수가 없을 때 a의 범위는?',ex:'x+2a>3, 자연수 없음',
+     c:['a≤1','a<1','a≥1','a>1'],ans:0,fill:'a≤1',
+     hint:'x>3-2a. 자연수 없으려면 1도 해에 없음: 1≤3-2a',
+     st:['x>3-2a','자연수 없음 → 1이 해에 없어야','1≤3-2a → 2a≤2','<strong>a ≤ 1</strong>'],ans_txt:'a≤1'},
+    {q:'ax > 3의 해에 자연수가 없을 때 a의 범위는?',ex:'ax>3, 자연수 없음',
+     c:['a≤0','a<0','a≥0','a>0'],ans:0,fill:'a≤0',
+     hint:'a>0이면 x>3/a → 자연수 존재. a=0이면 해 없음. a<0이면 x<3/a<0 → 자연수 없음',
+     st:['a>0: x>3/a, 자연수 항상 존재','a=0: 해 없음','a<0: x<3/a<0, 자연수 없음','<strong>a ≤ 0</strong>'],ans_txt:'a≤0'},
+    {q:'2x − a > 0의 해에 음수가 없을 때 a의 범위는?',ex:'2x-a>0, 음수 없음',
+     c:['a<0','a>0','a≤0','a≥0'],ans:3,fill:'a≥0',
+     hint:'x>a/2. 음수가 없으려면 경계 a/2≥0 → a≥0',
+     st:['2x-a>0 → x>a/2','음수 없음 → a/2≥0','a/2≥0 → a≥0','<strong>a ≥ 0</strong>'],ans_txt:'a≥0'},
+    {q:'3x + 6 > a의 해에 음수가 없을 때 a의 범위는?',ex:'3x+6>a, 음수 없음',
+     c:['a<6','a>6','a≤6','a≥6'],ans:3,fill:'a≥6',
+     hint:'x>(a-6)/3. 음수가 없으려면 경계 (a-6)/3≥0 → a≥6',
+     st:['3x+6>a → x>(a-6)/3','음수 없음 → (a-6)/3≥0','a-6≥0 → a≥6','<strong>a ≥ 6</strong>'],ans_txt:'a≥6'},
+    {q:'x − a < 0의 해에 양수가 있을 조건은?',ex:'x-a<0, 양수 존재',
+     c:['a<0','a<1','a≤0','a>0'],ans:3,fill:'a>0',
+     hint:'x<a. 양수가 있으려면 경계 a>0이어야',
+     st:['x-a<0 → x<a','양수가 있으려면 a>0','a>0이면 (0,a) 구간의 양수 존재','<strong>a &gt; 0</strong>'],ans_txt:'a>0'},
+  ],
+];
+
+const CH_META = [
+  {emoji:'🔤',title:'문자의 사용'},
+  {emoji:'✖️',title:'기호 생략 규칙'},
+  {emoji:'🔢',title:'식의 값 (대입)'},
+  {emoji:'📊',title:'항·계수·상수항'},
+  {emoji:'🧮',title:'동류항과 일차식'},
+  {emoji:'⚖️',title:'등식의 성질'},
+  {emoji:'🔺',title:'일차부등식'},
+];
+
+// =====================================================
+// STATE
+// =====================================================
+const S = {
+  score:0, combo:0, maxCombo:0,
+  chapter:0, qIdx:0, slideIdx:0,
+  chPts:0, correct:0, total:0,
+  timer:null, timeLeft:30,
+  unlocked:[true,true,true,true,true,true,true],
+  done:[false,false,false,false,false,false,false],
+  qList:[], curQ:null, curCorrectIdx:0,
+};
+
+function loadSave(){
+  try{
+    const d=JSON.parse(localStorage.getItem('alg_v1')||'{}');
+    if(d.score!=null) S.score=d.score;
+    if(d.unlocked) d.unlocked.forEach((v,i)=>{ S.unlocked[i]=v; });
+    if(d.done) d.done.forEach((v,i)=>{ S.done[i]=v; });
+  }catch(e){}
+}
+function saveSave(){
+  localStorage.setItem('alg_v1',JSON.stringify({score:S.score,unlocked:S.unlocked,done:S.done}));
+}
+function resetSave(){
+  localStorage.removeItem('alg_v1');
+  location.reload();
+}
+
+// =====================================================
+// SCREENS
+// =====================================================
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// =====================================================
+// TITLE
+// =====================================================
+function renderTitle(){
+  document.getElementById('t-score').textContent=S.score.toLocaleString();
+  const mp=document.getElementById('t-mode');
+  mp.textContent='📝 객관식';mp.className='mode-pill mcq';
+  document.getElementById('ch-grid').innerHTML=CH_META.map((m,i)=>`
+    <div class="ch-card ${S.unlocked[i]?'':'locked'} ${S.done[i]?'done':''}"
+      onclick="${S.unlocked[i]?`startCh(${i})`:''}">
+      ${!S.unlocked[i]?'<span class="lock-icon">🔒</span>':''}
+      <div class="ch-num">챕터 ${i+1}</div>
+      <div class="ch-emoji">${m.emoji}</div>
+      <div class="ch-title">${m.title}</div>
+      <div class="ch-status">${S.done[i]?'✅ 완료':'강의 → 퀴즈'}</div>
+    </div>
+  `).join('');
+}
+
+function goHome(){
+  clearTimer();
+  document.getElementById('lec-overlay').classList.remove('show');
+  document.getElementById('exp-overlay').classList.remove('show');
+  showScreen('sc-title');
+  renderTitle();
+}
+
+// =====================================================
+// LECTURE
+// =====================================================
+function startCh(ch){
+  S.chapter=ch; S.slideIdx=0;
+  showLec();
+}
+
+function showLec(){
+  const slides=LECS[S.chapter];
+  const sl=slides[S.slideIdx];
+  const ch=CH_META[S.chapter];
+  // dots
+  document.getElementById('lec-dots').innerHTML=slides.map((_,i)=>
+    `<div class="lec-dot ${i<S.slideIdx?'past':i===S.slideIdx?'on':''}"></div>`
+  ).join('');
+  document.getElementById('lec-badge').textContent=`챕터 ${S.chapter+1}: ${ch.title}`;
+  document.getElementById('lec-heading').textContent=sl.h;
+  const body=document.getElementById('lec-body');
+  body.innerHTML=sl.b;
+  // stagger strong
+  body.querySelectorAll('strong').forEach((el,i)=>{el.style.animationDelay=`${i*0.08}s`;});
+  // example
+  const ex=document.getElementById('lec-ex');
+  if(sl.ex){
+    ex.style.display='block';
+    document.getElementById('lec-expr').textContent=sl.ex;
+    document.getElementById('lec-expr-lbl').textContent=sl.exl||'';
+  } else { ex.style.display='none'; }
+  // tip
+  const tip=document.getElementById('lec-tip');
+  if(sl.tip){tip.style.display='block';tip.innerHTML='💡 '+sl.tip;}
+  else{tip.style.display='none';}
+  // buttons
+  const prev=document.getElementById('lec-prev');
+  prev.style.display=S.slideIdx===0?'none':'block';
+  const nxt=document.getElementById('lec-next');
+  const isLast=S.slideIdx===slides.length-1;
+  nxt.textContent=isLast?'📝 퀴즈 시작!':'다음 →';
+  nxt.className=isLast?'lec-start':'lec-next';
+  document.getElementById('lec-overlay').classList.add('show');
+}
+
+function lecNext(){
+  const slides=LECS[S.chapter];
+  if(S.slideIdx<slides.length-1){ S.slideIdx++; showLec(); }
+  else{
+    document.getElementById('lec-overlay').classList.remove('show');
+    startQuiz();
+  }
+}
+function lecPrev(){
+  if(S.slideIdx>0){ S.slideIdx--; showLec(); }
+}
+
+// =====================================================
+// QUIZ
+// =====================================================
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+function startQuiz(){
+  S.qList=shuffle([...QS[S.chapter]]);
+  S.qIdx=0; S.combo=0; S.maxCombo=0;
+  S.chPts=0; S.correct=0; S.total=0;
+  showScreen('sc-quiz');
+  updateScoreUI();
+  renderQ();
+}
+
+function renderQ(){
+  if(S.qIdx>=S.qList.length){ endChapter(); return; }
+  const q=S.qList[S.qIdx];
+  S.curQ=q;
+  const ch=CH_META[S.chapter];
+  document.getElementById('q-chtag').textContent=`챕터 ${S.chapter+1} — ${ch.title}`;
+  document.getElementById('q-text').textContent=q.q;
+  const ex=document.getElementById('q-expr');
+  if(q.ex){ex.style.display='block';ex.textContent=q.ex;}
+  else{ex.style.display='none';}
+  document.getElementById('q-ctr').textContent=`${S.qIdx+1} / ${S.qList.length} 문제`;
+  renderMCQ(q);
+  startTimer();
+}
+
+function renderMCQ(q){
+  const idxs=shuffle([0,1,2,3]);
+  const correctPos=idxs.indexOf(q.ans);
+  S.curCorrectIdx=correctPos;
+  document.getElementById('choices').style.display='grid';
+  document.getElementById('choices').innerHTML=idxs.map((orig,i)=>`
+    <button class="cbtn" onclick="checkMCQ(${i},${correctPos})">
+      <span style="color:#64748b;margin-right:.4rem">${['①','②','③','④'][i]}</span>${q.c[orig]}
+    </button>
+  `).join('');
+}
+
+function checkMCQ(clicked, correct){
+  clearTimer();
+  document.querySelectorAll('.cbtn').forEach(b=>b.disabled=true);
+  const isOK=clicked===correct;
+  document.querySelectorAll('.cbtn')[clicked].classList.add(isOK?'correct':'wrong');
+  if(!isOK) document.querySelectorAll('.cbtn')[correct].classList.add('correct');
+  handleAnswer(isOK);
+}
+
+
+function handleAnswer(isOK){
+  S.total++;
+  const flash=document.getElementById('flash-overlay');
+  flash.className='flash-overlay';
+  void flash.offsetWidth;
+  if(isOK){
+    S.combo++; S.maxCombo=Math.max(S.maxCombo,S.combo); S.correct++;
+    const mult=S.combo>=10?5:S.combo>=5?3:S.combo>=3?2:1;
+    const earned=200*mult;
+    S.score+=earned; S.chPts+=earned;
+    updateScoreUI();
+    showExp(S.curQ,true,false);
+  } else {
+    S.combo=0;
+    flash.className='flash-overlay red';
+    updateScoreUI();
+    showExp(S.curQ,false,false);
+  }
+}
+
+// =====================================================
+// TIMER
+// =====================================================
+function startTimer(){
+  clearTimer();
+  S.timeLeft=30;
+  const bar=document.getElementById('timer-bar');
+  bar.style.width='100%'; bar.className='timer-bar';
+  S.timer=setInterval(()=>{
+    S.timeLeft--;
+    bar.style.width=(S.timeLeft/30*100)+'%';
+    if(S.timeLeft<=8) bar.className='timer-bar warn';
+    if(S.timeLeft<=0){
+      clearTimer();
+      const flash=document.getElementById('flash-overlay');
+      flash.className='flash-overlay'; void flash.offsetWidth;
+      flash.className='flash-overlay orange';
+      S.combo=0; updateScoreUI();
+      showExp(S.curQ,false,true);
+    }
+  },1000);
+}
+function clearTimer(){if(S.timer){clearInterval(S.timer);S.timer=null;}}
+
+// =====================================================
+// EXPLAIN
+// =====================================================
+function showExp(q, isOK, isTime){
+  const modal=document.getElementById('exp-modal');
+  modal.className='exp-modal'+(isOK?' ok':'');
+  const icon=document.getElementById('exp-icon');
+  const title=document.getElementById('exp-title');
+  if(isOK){icon.textContent='🎉';icon.className='exp-icon ok-icon';title.textContent='정답!';title.className='exp-title ok';}
+  else if(isTime){icon.textContent='⏰';icon.className='exp-icon';title.textContent='시간 초과!';title.className='exp-title';}
+  else{icon.textContent='❌';icon.className='exp-icon';title.textContent='틀렸어요!';title.className='exp-title';}
+  document.getElementById('exp-ans-val').textContent=q.ans_txt||q.fill||'?';
+  document.getElementById('exp-steps').innerHTML=(q.st||[]).map((s,i)=>
+    `<li style="animation-delay:${i*130+80}ms">${s}</li>`
+  ).join('');
+  document.getElementById('exp-overlay').classList.add('show');
+}
+
+function closeExp(){
+  document.getElementById('exp-overlay').classList.remove('show');
+  S.qIdx++;
+  if(S.qIdx>=S.qList.length) endChapter();
+  else renderQ();
+}
+
+// =====================================================
+// HINT
+// =====================================================
+function showHint(){
+  const q=S.curQ;
+  document.getElementById('hint-body').textContent=q.hint||'';
+  document.getElementById('hint-list').innerHTML=
+    [`<li>📌 핵심 개념: ${q.ans_txt||q.fill}</li>`].join('');
+  document.getElementById('hint-overlay').classList.add('show');
+}
+function closeHint(){document.getElementById('hint-overlay').classList.remove('show');}
+
+// =====================================================
+// UI UPDATE
+// =====================================================
+function updateScoreUI(){
+  document.getElementById('q-score').textContent=S.score.toLocaleString();
+  const el=document.getElementById('combo-el');
+  const c=S.combo;
+  const mult=c>=10?5:c>=5?3:c>=3?2:1;
+  const cls=c>=10||c>=5?'c5':c>=3?'c3':c>=1?'c2':'c0';
+  el.className='combo-el '+cls;
+  el.textContent=c>=1?`🔥 ${c}콤보 ×${mult}`:'콤보 ×1';
+}
+
+// =====================================================
+// CHAPTER END
+// =====================================================
+function endChapter(){
+  clearTimer();
+  S.unlocked[Math.min(S.chapter+1,4)]=true;
+  S.done[S.chapter]=true;
+  saveSave();
+  const acc=S.total>0?Math.round(S.correct/S.total*100):0;
+  const emoji=acc>=80?'🏆':acc>=60?'⭐':'💪';
+  document.getElementById('done-emoji').textContent=emoji;
+  document.getElementById('done-title').textContent=acc>=80?'훌륭해요!':acc>=60?'잘 했어요!':'다시 도전!';
+  document.getElementById('done-pts').textContent=`+${S.chPts.toLocaleString()}점`;
+  document.getElementById('st-acc').textContent=acc+'%';
+  document.getElementById('st-combo').textContent=S.maxCombo+'콤보';
+  document.getElementById('st-total').textContent=S.score.toLocaleString()+'점';
+  document.getElementById('st-mode').textContent='📝객관식';
+  const nb=document.getElementById('btn-nxt');
+  if(S.chapter<4){
+    nb.style.display='block';
+    nb.textContent=`챕터 ${S.chapter+2}: ${CH_META[S.chapter+1].title} →`;
+  } else { nb.style.display='none'; }
+  showScreen('sc-done');
+}
+
+function nextChapter(){
+  if(S.chapter<4) startCh(S.chapter+1);
+  else goHome();
+}
+
+// =====================================================
+// INIT
+// =====================================================
+window.onload=function(){
+  loadSave();
+  renderTitle();
+};
+</script>
+</body>
+</html>

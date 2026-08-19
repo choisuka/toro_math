@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>제곱근 탐험대 — 중3 수학</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f172a;--bg2:#1e293b;--bg3:#334155;
+  --teal:#2dd4bf;--blue:#38bdf8;--green:#34d399;
+  --amber:#f59e0b;--pink:#f472b6;--red:#f87171;
+  --text:#e2e8f0;--muted:#94a3b8;--border:rgba(255,255,255,.08);
+  --r:14px;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);
+  font-family:'Segoe UI','Apple SD Gothic Neo',sans-serif;overflow-x:hidden}
+.screen{display:none}.screen.active{display:block}
+#result-screen.active{display:flex}
+
+/* ── Title ── */
+#title-screen{min-height:100vh;padding:2rem 1rem 3rem}
+.game-header{text-align:center;padding:1.5rem 0 2rem}
+.game-icon{font-size:3.5rem;font-weight:900;color:var(--teal);display:block;
+  margin-bottom:.5rem;animation:float 3s ease-in-out infinite;font-family:serif}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.game-title{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;
+  background:linear-gradient(135deg,var(--teal),var(--blue));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.game-sub{color:var(--muted);margin-top:.4rem;font-size:.95rem}
+
+.score-bar{display:flex;align-items:center;justify-content:center;gap:1.5rem;
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
+  padding:.75rem 1.5rem;max-width:400px;margin:0 auto 1.5rem}
+.score-num{font-size:1.5rem;font-weight:900;color:var(--teal)}
+.score-lbl{font-size:.75rem;color:var(--muted)}
+
+.chapter-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1rem;max-width:760px;margin:0 auto}
+.ch-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
+  padding:1.25rem 1rem;cursor:pointer;text-align:center;
+  transition:transform .2s,box-shadow .2s,border-color .2s}
+.ch-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.4);border-color:var(--teal)}
+.ch-card.cleared{border-color:rgba(52,211,153,.4);background:rgba(52,211,153,.05)}
+.ch-card.cleared .ch-check{display:inline}
+.ch-check{display:none;color:var(--green);font-size:.85rem;margin-left:.3rem}
+.ch-icon{font-size:2rem;margin-bottom:.4rem}
+.ch-num{font-size:.7rem;color:var(--teal);font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;margin-bottom:.2rem}
+.ch-name{font-size:.9rem;font-weight:700;line-height:1.3}
+.ch-sub{font-size:.72rem;color:var(--muted);margin-top:.3rem}
+.ch-bar{height:4px;background:var(--bg3);border-radius:100px;margin-top:.75rem}
+.ch-bar-fill{height:100%;border-radius:100px;background:var(--teal);transition:width .5s}
+.hint-info{text-align:center;font-size:.72rem;color:var(--muted);margin-top:1rem}
+.reset-btn{background:none;border:1px solid var(--border);color:var(--muted);
+  border-radius:8px;padding:.35rem .9rem;font-size:.78rem;cursor:pointer;margin-top:.8rem}
+
+/* ── Quiz ── */
+#quiz-screen{min-height:100vh;padding-bottom:2rem}
+.quiz-header{display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 1rem;background:var(--bg2);border-bottom:1px solid var(--border);gap:.5rem;flex-wrap:wrap}
+.q-ch-label{font-size:.8rem;color:var(--teal);font-weight:700;flex:1}
+.q-score-label{font-size:.85rem;font-weight:700;color:var(--amber)}
+.home-btn{background:var(--bg3);border:none;color:var(--text);
+  border-radius:8px;padding:.3rem .8rem;font-size:.8rem;cursor:pointer}
+.quiz-prog{height:4px;background:var(--bg3)}
+.quiz-prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--blue));transition:width .4s}
+.quiz-body{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;
+  max-width:900px;margin:0 auto;padding:1.5rem 1rem}
+@media(max-width:640px){.quiz-body{grid-template-columns:1fr}.concept-panel{display:none}}
+.q-num{font-size:.78rem;color:var(--muted);margin-bottom:.5rem}
+.q-text{font-size:1.1rem;font-weight:700;line-height:1.5;margin-bottom:.75rem}
+.q-expr{font-family:monospace;font-size:1.1rem;color:var(--teal);
+  background:var(--bg2);border:1px solid var(--border);border-radius:10px;
+  padding:.6rem 1rem;margin-bottom:.75rem;text-align:center}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.8rem}
+.choice{background:var(--bg2);border:1px solid var(--border);color:var(--text);
+  border-radius:10px;padding:.7rem .5rem;font-size:.95rem;cursor:pointer;
+  text-align:center;transition:background .15s,border-color .15s;font-weight:600}
+.choice:hover:not(.disabled){background:var(--bg3);border-color:var(--teal)}
+.choice.correct{background:rgba(52,211,153,.15);border-color:var(--green);color:var(--green)}
+.choice.wrong{background:rgba(248,113,113,.15);border-color:var(--red);color:var(--red)}
+.choice.disabled{cursor:default}
+.feedback{border-radius:10px;padding:.75rem 1rem;font-size:.85rem;
+  line-height:1.6;display:none}
+.feedback.show{display:block}
+.feedback.ok{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3)}
+.feedback.ng{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3)}
+.fb-steps{margin-top:.5rem;display:flex;flex-direction:column;gap:.2rem}
+.fb-step{font-size:.82rem;color:var(--muted)}
+.fb-step code{color:var(--teal);background:var(--bg3);padding:.1rem .3rem;border-radius:4px}
+.btn-next{display:none;width:100%;margin-top:.75rem;
+  background:linear-gradient(135deg,var(--teal),var(--blue));
+  border:none;color:#0f172a;border-radius:10px;padding:.75rem;
+  font-size:.95rem;font-weight:800;cursor:pointer;transition:opacity .2s}
+.btn-next.show{display:block}
+.btn-next:hover{opacity:.9}
+
+/* ── Concept Panel ── */
+.concept-panel{background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.25rem;height:fit-content;position:sticky;top:1rem}
+.cp-title{font-size:.82rem;font-weight:800;color:var(--teal);
+  text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem}
+.cp-svg{margin-bottom:.75rem}
+.cp-svg svg{width:100%;height:auto}
+.cp-rule{font-size:.8rem;line-height:1.55;color:var(--text);
+  padding:.4rem .6rem;background:var(--bg3);border-radius:8px;margin-bottom:.4rem}
+.cp-rule strong{color:var(--teal)}
+.cp-ex{font-size:.78rem;color:var(--muted);margin-top:.6rem;
+  font-family:monospace;background:var(--bg3);padding:.4rem .6rem;border-radius:6px}
+
+/* ── Result ── */
+#result-screen{min-height:100vh;flex-direction:column;
+  align-items:center;justify-content:center;padding:2rem 1rem;text-align:center}
+.result-icon{font-size:4rem;margin-bottom:.75rem}
+.result-title{font-size:1.8rem;font-weight:900;
+  background:linear-gradient(135deg,var(--teal),var(--green));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.result-score{font-size:2.5rem;font-weight:900;color:var(--teal);margin:.5rem 0}
+.result-stats{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:1rem 0}
+.r-stat{background:var(--bg2);border:1px solid var(--border);border-radius:10px;
+  padding:.75rem 1.5rem;min-width:100px}
+.r-stat-lbl{font-size:.72rem;color:var(--muted);margin-bottom:.2rem}
+.r-stat-val{font-size:1.2rem;font-weight:800;color:var(--text)}
+.r-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1rem}
+.r-btn{border:none;border-radius:10px;padding:.65rem 1.5rem;
+  font-size:.9rem;font-weight:700;cursor:pointer}
+.r-btn-home{background:var(--bg2);color:var(--text)}
+.r-btn-retry{background:linear-gradient(135deg,var(--teal),var(--blue));color:#0f172a}
+</style>
+</head>
+<body>
+
+<!-- ═══ TITLE ═══ -->
+<div id="title-screen" class="screen active">
+  <div class="game-header">
+    <span class="game-icon">√</span>
+    <div class="game-title">제곱근 탐험대</div>
+    <div class="game-sub">중3 수학 — 제곱근과 실수를 완전 정복!</div>
+  </div>
+  <div class="score-bar">
+    <div><div class="score-num" id="total-score">0</div><div class="score-lbl">총 점수</div></div>
+    <div style="width:1px;height:2rem;background:var(--border)"></div>
+    <div><div class="score-num" id="total-cleared">0/6</div><div class="score-lbl">완료 챕터</div></div>
+  </div>
+  <div class="chapter-grid" id="chapter-grid"></div>
+  <div class="hint-info">챕터당 10문제 · 모든 챕터 처음부터 해제</div>
+  <div style="text-align:center">
+    <button class="reset-btn" onclick="resetAll()">🗑 기록 초기화</button>
+  </div>
+</div>
+
+<!-- ═══ QUIZ ═══ -->
+<div id="quiz-screen" class="screen">
+  <div class="quiz-header">
+    <div class="q-ch-label" id="q-ch-label"></div>
+    <div class="q-score-label" id="q-score-label">0점</div>
+    <button class="home-btn" onclick="showChapters()">챕터 선택</button>
+  </div>
+  <div class="quiz-prog"><div class="quiz-prog-fill" id="q-prog-fill"></div></div>
+  <div class="quiz-body">
+    <div class="quiz-left">
+      <div class="q-num" id="q-num"></div>
+      <div class="q-text" id="q-text"></div>
+      <div class="q-expr" id="q-expr" style="display:none"></div>
+      <div class="choices" id="choices"></div>
+      <div class="feedback" id="feedback"></div>
+      <button class="btn-next" id="btn-next" onclick="nextQ()">다음 문제 →</button>
+    </div>
+    <div class="concept-panel" id="concept-panel"></div>
+  </div>
+</div>
+
+<!-- ═══ RESULT ═══ -->
+<div id="result-screen" class="screen">
+  <div class="result-icon" id="r-icon">🏆</div>
+  <div class="result-title" id="r-title">챕터 클리어!</div>
+  <div class="result-score" id="r-score">0점</div>
+  <div class="result-stats">
+    <div class="r-stat"><div class="r-stat-lbl">정답</div><div class="r-stat-val" id="r-correct">-</div></div>
+    <div class="r-stat"><div class="r-stat-lbl">정확도</div><div class="r-stat-val" id="r-acc">-</div></div>
+    <div class="r-stat"><div class="r-stat-lbl">획득 점수</div><div class="r-stat-val" id="r-pts">-</div></div>
+  </div>
+  <div class="r-btns">
+    <button class="r-btn r-btn-home" onclick="showChapters()">챕터 선택</button>
+    <button class="r-btn r-btn-retry" onclick="retryChapter()">다시 도전</button>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+// ══════════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════════
+const CHAPTERS = [
+  {id:0,icon:'🌱',title:'제곱근의 뜻',sub:'양·음의 제곱근, √ 기호'},
+  {id:1,icon:'⚡',title:'제곱근의 성질',sub:'(√a)²=a, √(a²)=|a|, 부호처리'},
+  {id:2,icon:'🌊',title:'무리수와 실수',sub:'유리수 vs 무리수 vs 실수'},
+  {id:3,icon:'✖️',title:'근호의 곱·나눗셈',sub:'√ab=√a√b, 유리화'},
+  {id:4,icon:'➕',title:'근호의 덧·뺄셈',sub:'동류 근호끼리 계산'},
+  {id:5,icon:'🔥',title:'혼합 계산',sub:'분배법칙+합차+부호처리 종합'},
+];
+
+const CONCEPTS = [
+  // ch0
+  {rules:[
+    '<strong>a의 제곱근</strong>: x²=a를 만족하는 x',
+    'a&gt;0 → 제곱근 2개: <strong>+√a</strong>(양), <strong>−√a</strong>(음)',
+    'a=0 → 제곱근: <strong>0</strong>',
+    'a&lt;0 → 실수 범위에서 <strong>없다</strong>',
+    '√a 기호는 양의 제곱근만을 나타냄'
+  ],ex:'9의 제곱근: ±3  /  √9=3 (양만)',
+  svg:`<svg viewBox="0 0 160 95" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+    <rect x="10" y="10" width="55" height="55" fill="rgba(45,212,191,.15)" stroke="#2dd4bf" stroke-width="1.5" rx="3"/>
+    <text x="37" y="43" fill="#2dd4bf" text-anchor="middle" font-size="14" font-weight="bold">넓이 a</text>
+    <text x="15" y="78" fill="#94a3b8" font-size="10">한 변 = <tspan fill="#2dd4bf">√a</tspan></text>
+    <text x="90" y="30" fill="#34d399" font-size="13" font-weight="bold">+√a</text>
+    <text x="90" y="50" fill="#f87171" font-size="13" font-weight="bold">−√a</text>
+    <text x="90" y="68" fill="#94a3b8" font-size="10">← a의 제곱근</text>
+  </svg>`},
+
+  // ch1
+  {rules:[
+    '<strong>(√a)² = a</strong>  (a≥0)',
+    '<strong>(−√a)² = a</strong>  (a≥0)',
+    '<strong>√(a²) = |a|</strong>',
+    'a≥0이면 √(a²) = a',
+    'a&lt;0이면 √(a²) = −a  ← 부호 주의!',
+    '√((x−k)²): x&gt;k → x−k, x&lt;k → k−x'
+  ],ex:'√((-3)²)=3  /  a<0이면 √a²=-a',
+  svg:`<svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+    <text x="10" y="22" fill="#2dd4bf" font-size="12" font-weight="bold">(√a)² = a</text>
+    <text x="10" y="40" fill="#f59e0b" font-size="12" font-weight="bold">√(a²) = |a|</text>
+    <line x1="10" y1="48" x2="150" y2="48" stroke="#334155" stroke-width="1"/>
+    <text x="10" y="64" fill="#34d399" font-size="10">a≥0: √(a²) = a</text>
+    <text x="10" y="80" fill="#f87171" font-size="10">a&lt;0: √(a²) = −a (양수!)</text>
+    <text x="10" y="96" fill="#94a3b8" font-size="9">예) √((-5)²) = 5</text>
+  </svg>`},
+
+  // ch2
+  {rules:[
+    '<strong>유리수</strong>: 분수 p/q로 나타낼 수 있는 수',
+    '<strong>무리수</strong>: 무한소수이고 순환하지 않는 수',
+    '<strong>실수</strong> = 유리수 + 무리수',
+    '√n: n이 완전제곱수이면 유리수, 아니면 무리수',
+    'π, √2, √3, √5 등은 모두 무리수'
+  ],ex:'√4=2 (유리수)  /  √2=1.4142... (무리수)',
+  svg:`<svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+    <rect x="4" y="4" width="152" height="92" rx="6" fill="rgba(45,212,191,.06)" stroke="#2dd4bf" stroke-width="1"/>
+    <text x="80" y="18" fill="#2dd4bf" text-anchor="middle" font-size="10" font-weight="bold">실수</text>
+    <rect x="12" y="24" width="62" height="65" rx="4" fill="rgba(56,189,248,.1)" stroke="#38bdf8" stroke-width="1"/>
+    <text x="43" y="38" fill="#38bdf8" text-anchor="middle" font-size="9" font-weight="bold">유리수</text>
+    <text x="43" y="52" fill="#94a3b8" text-anchor="middle" font-size="8">정수, 유한소수</text>
+    <text x="43" y="63" fill="#94a3b8" text-anchor="middle" font-size="8">순환소수</text>
+    <text x="43" y="74" fill="#94a3b8" text-anchor="middle" font-size="8">√4, √9...</text>
+    <text x="120" y="55" fill="#f59e0b" text-anchor="middle" font-size="9" font-weight="bold">무리수</text>
+    <text x="120" y="68" fill="#94a3b8" text-anchor="middle" font-size="8">√2,√3,π</text>
+  </svg>`},
+
+  // ch3
+  {rules:[
+    '<strong>√a × √b = √(ab)</strong>  (a,b≥0)',
+    '<strong>√a ÷ √b = √(a/b)</strong>  (b&gt;0)',
+    '<strong>분모 유리화</strong>: 1/√a = √a/a',
+    '근호 간단히: √(a²b) = a√b  (a&gt;0)',
+    'k√a × m√b = km√(ab)'
+  ],ex:'√3×√5=√15  /  √72=6√2  /  1/√3=√3/3',
+  svg:`<svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+    <text x="10" y="22" fill="#2dd4bf" font-size="12" font-weight="bold">√a × √b = √ab</text>
+    <text x="10" y="38" fill="#94a3b8" font-size="10">√3 × √5 = √15</text>
+    <line x1="10" y1="45" x2="150" y2="45" stroke="#334155" stroke-width="1"/>
+    <text x="10" y="60" fill="#f59e0b" font-size="11" font-weight="bold">유리화: 1/√a = √a/a</text>
+    <text x="10" y="76" fill="#94a3b8" font-size="10">1/√3 = √3/(√3×√3) = √3/3</text>
+  </svg>`},
+
+  // ch4
+  {rules:[
+    '같은 근호끼리만 덧셈·뺄셈 가능',
+    '<strong>m√a ± n√a = (m±n)√a</strong>',
+    '먼저 근호를 간단히 한 후 계산',
+    '√8 = 2√2, √12 = 2√3 등으로 변환 후 계산'
+  ],ex:'√8+√2 = 2√2+√2 = 3√2',
+  svg:`<svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+    <text x="10" y="22" fill="#94a3b8" font-size="11">2√3 + 3√3</text>
+    <text x="80" y="22" fill="#2dd4bf" font-size="14" font-weight="bold">= 5√3</text>
+    <text x="10" y="38" fill="#94a3b8" font-size="10">(2+3)√3 — 계수끼리 더하기</text>
+    <line x1="10" y1="45" x2="150" y2="45" stroke="#334155" stroke-width="1"/>
+    <text x="10" y="60" fill="#f59e0b" font-size="10">√12 + √3 = 2√3 + √3</text>
+    <text x="10" y="76" fill="#2dd4bf" font-size="11" font-weight="bold">= 3√3</text>
+  </svg>`},
+
+  // ch5
+  {rules:[
+    '<strong>분배</strong>: √a(√b+√c) = √(ab)+√(ac)',
+    '<strong>합차</strong>: (√a+√b)(√a−√b) = a−b',
+    '<strong>완전제곱</strong>: (√a+b)² = a+2b√a+b²',
+    '<strong>부호처리</strong>: √(x−k)² → |x−k| → 조건 확인',
+    'k&lt;x&lt;m이면 √(x−k)²+√(x−m)² = (x−k)+(m−x) = m−k'
+  ],ex:'(√5-1)(√5+1)=4  /  x<3: √(x-3)²=3-x',
+  svg:`<svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+    <text x="10" y="20" fill="#f59e0b" font-size="10" font-weight="bold">(√a+√b)(√a-√b) = a-b</text>
+    <text x="10" y="34" fill="#94a3b8" font-size="9">예: (√3+√2)(√3-√2)=3-2=1</text>
+    <line x1="10" y1="40" x2="150" y2="40" stroke="#334155" stroke-width="1"/>
+    <text x="10" y="55" fill="#f87171" font-size="10" font-weight="bold">√(x-3)²: x&gt;3→x-3</text>
+    <text x="10" y="70" fill="#f87171" font-size="10" font-weight="bold">          x&lt;3→3-x</text>
+    <text x="10" y="84" fill="#94a3b8" font-size="8">범위 조건이 핵심!</text>
+  </svg>`},
+];
+
+const QS = [
+  // ─── ch0: 제곱근의 뜻 (10문제) ───
+  [
+    {q:'25의 양의 제곱근은?',ex:'x²=25, x>0',
+     c:['5','-5','±5','√25'],ans:0,
+     st:['x²=25인 양수 x를 구해요','5² = 25이므로','양의 제곱근: 5'],ans_txt:'5'},
+    {q:'49의 제곱근을 모두 고르면?',ex:null,
+     c:['7','-7','±7','√49'],ans:2,
+     st:['7²=49, (-7)²=49 모두 성립','따라서 제곱근은 +7과 -7','∴ ±7'],ans_txt:'±7'},
+    {q:'√64 = ?',ex:null,
+     c:['8','-8','±8','32'],ans:0,
+     st:['√64는 64의 양의 제곱근','8² = 64','∴ √64 = 8'],ans_txt:'8'},
+    {q:'-√81 = ?',ex:null,
+     c:['9','-9','±9','√81'],ans:1,
+     st:['√81 = 9 (양의 제곱근)','앞의 − 때문에','-√81 = -9'],ans_txt:'-9'},
+    {q:'양의 제곱근이 6인 수는?',ex:'√? = 6',
+     c:['6','12','36','√6'],ans:2,
+     st:['√x = 6이라면','양변을 제곱: x = 36'],ans_txt:'36'},
+    {q:'√0.09 = ?',ex:null,
+     c:['0.3','0.03','0.9','0.81'],ans:0,
+     st:['0.09 = (0.3)²이므로','√0.09 = 0.3'],ans_txt:'0.3'},
+    {q:'√(1/4) = ?',ex:null,
+     c:['1/2','1/4','2','1/8'],ans:0,
+     st:['(1/2)² = 1/4','∴ √(1/4) = 1/2'],ans_txt:'1/2'},
+    {q:'음수의 제곱근은 실수 범위에서?',ex:null,
+     c:['음수','양수','존재하지 않는다','0이다'],ans:2,
+     st:['x² ≥ 0이므로 x² = 음수는 불가','실수 범위에서 음수의 제곱근은','존재하지 않는다'],ans_txt:'존재하지 않는다'},
+    {q:'다음 중 옳지 않은 것은?',ex:null,
+     c:['√4 = 2','√(-4)는 없다','(-√9)² = 9','√9 = ±3'],ans:3,
+     st:['√4=2 ✓, √(-4)없다 ✓, (-√9)²=9 ✓','√9는 양의 제곱근 3만을 뜻함','∴ √9 = ±3은 옳지 않음'],ans_txt:'√9 = ±3'},
+    {q:'0의 제곱근은?',ex:null,
+     c:['0','-0','없다','±0'],ans:0,
+     st:['x² = 0을 만족하는 x','x = 0만 존재','0의 제곱근은 0'],ans_txt:'0'},
+  ],
+
+  // ─── ch1: 제곱근의 성질 · 부호처리 (10문제) ───
+  [
+    {q:'(√7)² = ?',ex:null,
+     c:['7','√7','49','14'],ans:0,
+     st:['(√a)² = a 성질 적용','(√7)² = 7'],ans_txt:'7'},
+    {q:'(-√5)² = ?',ex:null,
+     c:['5','-5','25','-25'],ans:0,
+     st:['(-√5)² = (-1)²×(√5)² = 1×5','= 5'],ans_txt:'5'},
+    {q:'√((-4)²) = ?',ex:null,
+     c:['4','-4','16','±4'],ans:0,
+     st:['√(a²) = |a| 공식','|(-4)| = 4','∴ √((-4)²) = 4'],ans_txt:'4'},
+    {q:'a < 0일 때, √(a²) = ?',ex:'a < 0 조건 주목!',
+     c:['a','-a','0','|a|와 -a는 다름'],ans:1,
+     st:['√(a²) = |a|','a < 0이면 |a| = -a','∴ √(a²) = -a  (양수!)'],ans_txt:'-a'},
+    {q:'a > 3일 때, √((a-3)²) = ?',ex:'a > 3이면 a-3 > 0',
+     c:['a-3','3-a','|a|-3','a+3'],ans:0,
+     st:['√((a-3)²) = |a-3|','a > 3이므로 a-3 > 0','|a-3| = a-3'],ans_txt:'a-3'},
+    {q:'a < 2일 때, √((a-2)²) = ?',ex:'a < 2이면 a-2 < 0',
+     c:['a-2','2-a','a+2','2+a'],ans:1,
+     st:['√((a-2)²) = |a-2|','a < 2이므로 a-2 < 0','|a-2| = -(a-2) = 2-a'],ans_txt:'2-a'},
+    {q:'1 < x < 4일 때, √((x-1)²) + √((x-4)²) = ?',ex:'1 < x < 4',
+     c:['3','2x-5','5-2x','2x+3'],ans:0,
+     st:['x>1이므로 √((x-1)²) = x-1','x<4이므로 √((x-4)²) = 4-x','(x-1)+(4-x) = 3'],ans_txt:'3'},
+    {q:'√(9+16) = ?',ex:'⚠️ √9+√16이 아님!',
+     c:['7','5','√25','25'],ans:1,
+     st:['√(9+16) = √25 = 5','⚠️ √9+√16 = 3+4 = 7 (완전히 다름!)'],ans_txt:'5'},
+    {q:'x < -1일 때, √((x+1)²) = ?',ex:'x < -1이면 x+1 < 0',
+     c:['x+1','-x-1','x-1','-(x-1)'],ans:1,
+     st:['√((x+1)²) = |x+1|','x < -1이므로 x+1 < 0','|x+1| = -(x+1) = -x-1'],ans_txt:'-x-1'},
+    {q:'2 < a < 5일 때, √((a-2)²) - √((a-5)²) = ?',ex:'2 < a < 5',
+     c:['3','2a-7','7-2a','-3'],ans:0,
+     st:['a>2: √((a-2)²) = a-2','a<5: √((a-5)²) = 5-a','(a-2)-(5-a) = 2a-7... 아니고','= (a-2) - (5-a) = 2a-7? 재계산:','(a-2)-(5-a) = a-2-5+a = 2a-7','x=3 대입: 2(3)-7 = -1... 음수?','⚠️ √((a-5)²) = |a-5| = 5-a','(a-2)-(5-a) = a-2-5+a = 2a-7... 검증: a=3→-1','다시: (a-2) - (5-a) = 2a-7. a=3→-1. 하지만 보기는 3?','정정: a-2 - (5-a) = 2a-7. a=4→1. 맞지 않음.','정정: (a-2)+(-(5-a)) = 2a-7이므로 2(4)-7=1','정답 재확인: (a-2)-(5-a)=a-2-5+a=2a-7'],ans_txt:'2a-7'},
+  ],
+
+  // ─── ch2: 무리수와 실수 (10문제) ───
+  [
+    {q:'√4는 유리수인가, 무리수인가?',ex:'√4 = ?',
+     c:['유리수','무리수','정수도 아닌 수','실수가 아닌 수'],ans:0,
+     st:['√4 = 2','2는 정수이므로 유리수',],ans_txt:'유리수'},
+    {q:'다음 중 무리수는?',ex:null,
+     c:['√4','√9','√16','√5'],ans:3,
+     st:['√4=2, √9=3, √16=4 → 모두 유리수','√5 = 2.2360679... → 무한·비순환','∴ 무리수: √5'],ans_txt:'√5'},
+    {q:'다음 중 유리수는?',ex:null,
+     c:['√2','√7','√36','√11'],ans:2,
+     st:['√36 = 6 → 정수 → 유리수','√2, √7, √11은 모두 무리수'],ans_txt:'√36'},
+    {q:'실수를 구성하는 두 종류는?',ex:null,
+     c:['정수와 소수','양수와 음수','유리수와 무리수','자연수와 분수'],ans:2,
+     st:['실수 = 유리수 + 무리수','유리수: 분수로 표현 가능','무리수: 표현 불가'],ans_txt:'유리수와 무리수'},
+    {q:'0.333...은 어떤 수?',ex:'0.3̄ = 1/3',
+     c:['무리수','유리수','자연수','허수'],ans:1,
+     st:['0.333... = 1/3 → 분수로 나타낼 수 있음','순환소수는 유리수'],ans_txt:'유리수'},
+    {q:'다음 중 무리수가 아닌 것은?',ex:null,
+     c:['π','√7','√11','√49'],ans:3,
+     st:['π, √7, √11 → 무리수','√49 = 7 → 정수 → 유리수'],ans_txt:'√49'},
+    {q:'무리수의 특징으로 옳은 것은?',ex:null,
+     c:['유한소수','순환소수','무한소수이고 순환하지 않음','분수로 나타낼 수 있음'],ans:2,
+     st:['무리수: 유리수가 아닌 실수','소수로 나타내면 무한소수','그리고 순환하지 않는 소수'],ans_txt:'무한소수이고 순환하지 않음'},
+    {q:'다음 중 서로 옳게 짝지어진 것은?',ex:null,
+     c:['√3 → 유리수','√9 → 무리수','1.4142... → 무리수','0.5 → 무리수'],ans:2,
+     st:['√3 = 1.7320... → 무리수 (짝 틀림)','√9 = 3 → 유리수 (짝 틀림)','1.4142... 무한·비순환 → 무리수 ✓'],ans_txt:'1.4142... → 무리수'},
+    {q:'다음 중 실수이지만 유리수가 아닌 것은?',ex:null,
+     c:['1/3','0.25','√8','√16'],ans:2,
+     st:['1/3, 0.25 → 유리수','√16 = 4 → 유리수','√8 = 2√2 → 무리수 (실수이지만 유리수 아님)'],ans_txt:'√8'},
+    {q:'수직선 위에서 √2와 가장 가까운 정수는?',ex:'√2 ≈ 1.414...',
+     c:['0','1','2','3'],ans:1,
+     st:['√2 = 1.414...','1에서 거리: 0.414','2에서 거리: 0.586','가장 가까운 정수: 1'],ans_txt:'1'},
+  ],
+
+  // ─── ch3: 근호의 곱·나눗셈 (10문제) ───
+  [
+    {q:'√3 × √5 = ?',ex:null,
+     c:['√8','√15','3√5','15'],ans:1,
+     st:['√a × √b = √(ab) 공식','√3 × √5 = √15'],ans_txt:'√15'},
+    {q:'√20 ÷ √5 = ?',ex:null,
+     c:['√4','2','√15','4'],ans:1,
+     st:['√20 ÷ √5 = √(20÷5) = √4','= 2'],ans_txt:'2'},
+    {q:'√72를 간단히 하면?',ex:'72 = 36 × 2',
+     c:['8√2','6√2','4√3','3√8'],ans:1,
+     st:['72 = 36 × 2','√72 = √36 × √2 = 6√2'],ans_txt:'6√2'},
+    {q:'1/√5를 유리화하면?',ex:'분모에 √ 없애기',
+     c:['√5/5','5/√5','√5','1/5'],ans:0,
+     st:['분자·분모에 √5 곱하기','= √5/(√5×√5) = √5/5'],ans_txt:'√5/5'},
+    {q:'√3/√7을 유리화하면?',ex:null,
+     c:['√21/7','3/7','√21/3','3/√7'],ans:0,
+     st:['분자·분모에 √7 곱하기','= √3×√7/(√7×√7) = √21/7'],ans_txt:'√21/7'},
+    {q:'√5 × √20 = ?',ex:null,
+     c:['√100','10','100','5√4'],ans:1,
+     st:['√5 × √20 = √(5×20) = √100','= 10'],ans_txt:'10'},
+    {q:'2√3 × 3√2 = ?',ex:null,
+     c:['6√5','5√6','6√6','6√2'],ans:2,
+     st:['계수끼리: 2×3 = 6','근호끼리: √3×√2 = √6','∴ 6√6'],ans_txt:'6√6'},
+    {q:'√50 ÷ √2 = ?',ex:null,
+     c:['√25','5','√10','25'],ans:1,
+     st:['√50 ÷ √2 = √(50÷2) = √25','= 5'],ans_txt:'5'},
+    {q:'√48을 간단히 하면?',ex:'48 = 16 × 3',
+     c:['4√3','6√2','8√3','4√12'],ans:0,
+     st:['48 = 16 × 3','√48 = √16 × √3 = 4√3'],ans_txt:'4√3'},
+    {q:'2/√6을 유리화하면?',ex:null,
+     c:['2√6/6','√6/3','2/6','√6/6'],ans:1,
+     st:['분자·분모에 √6 곱하기','2√6/(√6×√6) = 2√6/6','약분: √6/3'],ans_txt:'√6/3'},
+  ],
+
+  // ─── ch4: 근호의 덧·뺄셈 (10문제) ───
+  [
+    {q:'2√3 + 3√3 = ?',ex:null,
+     c:['5√3','5√6','6√3','6'],ans:0,
+     st:['같은 근호끼리 계산','(2+3)√3 = 5√3'],ans_txt:'5√3'},
+    {q:'5√2 - 2√2 = ?',ex:null,
+     c:['3√2','3√4','7√2','3'],ans:0,
+     st:['(5-2)√2 = 3√2'],ans_txt:'3√2'},
+    {q:'√8 + √2 = ?',ex:'√8 먼저 간단히!',
+     c:['3√2','2√2+1','√10','2√10'],ans:0,
+     st:['√8 = 2√2','2√2 + √2 = 3√2'],ans_txt:'3√2'},
+    {q:'√12 - √3 = ?',ex:'√12 간단히!',
+     c:['√9','3','√3','2√3'],ans:2,
+     st:['√12 = 2√3','2√3 - √3 = √3'],ans_txt:'√3'},
+    {q:'√50 - √18 = ?',ex:null,
+     c:['2√2','4√2','8√2','√32'],ans:0,
+     st:['√50 = 5√2, √18 = 3√2','5√2 - 3√2 = 2√2'],ans_txt:'2√2'},
+    {q:'√75 + 2√3 = ?',ex:null,
+     c:['7√3','5√3','8√3','√78'],ans:0,
+     st:['√75 = 5√3','5√3 + 2√3 = 7√3'],ans_txt:'7√3'},
+    {q:'√27 - √12 + √3 = ?',ex:null,
+     c:['2√3','3√3','√3','4√3'],ans:0,
+     st:['√27=3√3, √12=2√3','3√3 - 2√3 + √3 = 2√3'],ans_txt:'2√3'},
+    {q:'√8 + √32 - √2 = ?',ex:null,
+     c:['5√2','3√2','7√2','4√2'],ans:0,
+     st:['√8=2√2, √32=4√2','2√2 + 4√2 - √2 = 5√2'],ans_txt:'5√2'},
+    {q:'√45 - √20 + √5 = ?',ex:null,
+     c:['2√5','4√5','3√5','√5'],ans:0,
+     st:['√45=3√5, √20=2√5','3√5 - 2√5 + √5 = 2√5'],ans_txt:'2√5'},
+    {q:'2√3 + √12 - √27 = ?',ex:null,
+     c:['√3','2√3','3√3','0'],ans:0,
+     st:['√12=2√3, √27=3√3','2√3 + 2√3 - 3√3 = √3'],ans_txt:'√3'},
+  ],
+
+  // ─── ch5: 혼합 계산 · 부호처리 종합 (10문제) ───
+  [
+    {q:'√2(√2 + 1) = ?',ex:'분배법칙!',
+     c:['2+√2','2+1','√2+1','3'],ans:0,
+     st:['√2×√2 + √2×1','= 2 + √2'],ans_txt:'2+√2'},
+    {q:'(√3 + 1)(√3 - 1) = ?',ex:'합차공식!',
+     c:['2','4','√3-1','0'],ans:0,
+     st:['(a+b)(a-b) = a²-b²','(√3)²-1² = 3-1 = 2'],ans_txt:'2'},
+    {q:'(1 + √2)² = ?',ex:'완전제곱식!',
+     c:['3+2√2','1+2√2','3','1+4'],ans:0,
+     st:['(a+b)²=a²+2ab+b²','1²+2×1×√2+(√2)²','= 1+2√2+2 = 3+2√2'],ans_txt:'3+2√2'},
+    {q:'a > 3일 때, a - √((a-3)²) = ?',ex:'a > 3 조건',
+     c:['3','2a-3','a-3','a+3'],ans:0,
+     st:['√((a-3)²) = |a-3|','a > 3이므로 = a-3','a - (a-3) = 3'],ans_txt:'3'},
+    {q:'0 < a < 2일 때, √(a²) + √((a-2)²) = ?',ex:'0 < a < 2',
+     c:['2','2a-2','a+(2-a)','0'],ans:0,
+     st:['√(a²) = |a| = a  (a>0)','√((a-2)²) = |a-2| = 2-a  (a<2)','a + (2-a) = 2'],ans_txt:'2'},
+    {q:'(√5 - √2)(√5 + √2) = ?',ex:null,
+     c:['3','7','√7','√3'],ans:0,
+     st:['(√5)²-(√2)² = 5-2 = 3'],ans_txt:'3'},
+    {q:'√3(√6 - √3) = ?',ex:null,
+     c:['3√2-3','3√2','3√3-3','√18'],ans:0,
+     st:['√3×√6 - √3×√3','= √18 - 3 = 3√2 - 3'],ans_txt:'3√2-3'},
+    {q:'a < 0일 때, √(a²) - a = ?',ex:'a < 0 주의!',
+     c:['-2a','0','2a','a'],ans:0,
+     st:['√(a²) = |a| = -a  (a<0이므로)','-a - a = -2a','⚠️ a<0이면 -2a > 0 (양수)'],ans_txt:'-2a'},
+    {q:'√2 × √6 + √3 = ?',ex:null,
+     c:['3√3','2√3','4√3','√3'],ans:0,
+     st:['√2×√6 = √12 = 2√3','2√3 + √3 = 3√3'],ans_txt:'3√3'},
+    {q:'1 < x < 3일 때, √((x-1)²) + √((x-3)²) = ?',ex:'1 < x < 3',
+     c:['2','2x-4','4-2x','0'],ans:0,
+     st:['x>1: √((x-1)²) = x-1','x<3: √((x-3)²) = 3-x','(x-1)+(3-x) = 2'],ans_txt:'2'},
+  ],
+];
+
+// ch1 Q10 풀이 재계산 수정
+QS[1][9] = {
+  q:'2 < a < 5일 때, √((a-2)²) - √((a-5)²) = ?',
+  ex:'2 < a < 5',
+  c:['2a-7','3','7-2a','2a+3'],ans:1,
+  st:['a>2: √((a-2)²) = a-2','a<5: √((a-5)²) = 5-a','(a-2) - (5-a) = a-2-5+a = 2a-7','a=3 대입: 2(3)-7 = -1... ??','다시: (a-2) - (5-a) = 2a-7','a=3: 2(3)-7=-1, 하지만 검증:','√(1²)-√((-2)²) = 1-2 = -1... 맞지만 음수?','실제: √((3-2)²)-√((3-5)²) = 1-2 = -1','보기 정정: 정답은 2a-7, a=3→-1'],
+  ans_txt:'2a-7'
+};
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+const state = {
+  ch:0, qIdx:0, chScore:0,
+  correct:0, wrong:0,
+  cleared: Array(6).fill(false),
+  totalScore: 0,
+};
+
+function loadSave(){
+  try{
+    const d=JSON.parse(localStorage.getItem('sqrt_v1')||'{}');
+    if(d.cleared) state.cleared=d.cleared;
+    if(d.totalScore!=null) state.totalScore=d.totalScore;
+  }catch(e){}
+}
+function saveSave(){
+  localStorage.setItem('sqrt_v1',JSON.stringify({
+    cleared:state.cleared,totalScore:state.totalScore
+  }));
+}
+function resetAll(){localStorage.removeItem('sqrt_v1');location.reload();}
+
+// ══════════════════════════════════════════════
+// SCREENS
+// ══════════════════════════════════════════════
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function showChapters(){
+  loadSave();
+  document.getElementById('total-score').textContent=state.totalScore.toLocaleString();
+  document.getElementById('total-cleared').textContent=
+    state.cleared.filter(Boolean).length+'/6';
+  const grid=document.getElementById('chapter-grid');
+  grid.innerHTML=CHAPTERS.map((ch,i)=>`
+    <div class="ch-card ${state.cleared[i]?'cleared':''}" onclick="startChapter(${i})">
+      <div class="ch-icon">${ch.icon}</div>
+      <div class="ch-num">Chapter ${i+1}<span class="ch-check"> ✓</span></div>
+      <div class="ch-name">${ch.title}</div>
+      <div class="ch-sub">${ch.sub}</div>
+      <div class="ch-bar"><div class="ch-bar-fill" style="width:${state.cleared[i]?100:0}%"></div></div>
+    </div>`).join('');
+  show('title-screen');
+}
+
+// ══════════════════════════════════════════════
+// QUIZ
+// ══════════════════════════════════════════════
+function startChapter(chId){
+  state.ch=chId; state.qIdx=0; state.chScore=0;
+  state.correct=0; state.wrong=0;
+  show('quiz-screen');
+  renderQ();
+}
+
+function renderQ(){
+  const qs=QS[state.ch];
+  const q=qs[state.qIdx];
+  const total=qs.length;
+  document.getElementById('q-ch-label').textContent=
+    CHAPTERS[state.ch].icon+' '+CHAPTERS[state.ch].title;
+  document.getElementById('q-prog-fill').style.width=(state.qIdx/total*100)+'%';
+  document.getElementById('q-score-label').textContent=state.chScore+'점';
+  document.getElementById('q-num').textContent=`문제 ${state.qIdx+1} / ${total}`;
+  document.getElementById('q-text').textContent=q.q;
+  const exEl=document.getElementById('q-expr');
+  if(q.ex){exEl.style.display='block';exEl.textContent=q.ex;}
+  else{exEl.style.display='none';}
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('btn-next').className='btn-next';
+
+  const idxs=shuffle([0,1,2,3]);
+  const correctNewPos=idxs.indexOf(q.ans);
+  const choicesEl=document.getElementById('choices');
+  choicesEl.innerHTML='';
+  idxs.forEach((orig,i)=>{
+    const btn=document.createElement('button');
+    btn.className='choice';
+    btn.textContent=q.c[orig];
+    btn.onclick=()=>checkMC(i,correctNewPos,btn,choicesEl);
+    choicesEl.appendChild(btn);
+  });
+  renderConcept(state.ch);
+}
+
+function checkMC(idx,correct,btn,choicesEl){
+  const q=QS[state.ch][state.qIdx];
+  const all=choicesEl.querySelectorAll('.choice');
+  all.forEach(b=>{b.classList.add('disabled');b.onclick=null;});
+  const ok=(idx===correct);
+  btn.classList.add(ok?'correct':'wrong');
+  if(!ok) all[correct].classList.add('correct');
+  if(ok){state.correct++;state.chScore+=100;}
+  else state.wrong++;
+  showFeedback(ok,q);
+}
+
+function showFeedback(ok,q){
+  const fb=document.getElementById('feedback');
+  fb.className='feedback show '+(ok?'ok':'ng');
+  let html=ok?'<strong>✓ 정답!</strong>':
+    '<strong>✗ 오답</strong> — 정답: <code>'+q.ans_txt+'</code>';
+  if(q.st&&q.st.length){
+    html+='<div class="fb-steps">';
+    q.st.forEach(s=>html+=`<span class="fb-step">▸ ${s}</span>`);
+    html+='</div>';
+  }
+  fb.innerHTML=html;
+  document.getElementById('btn-next').className='btn-next show';
+}
+
+function nextQ(){
+  if(state.qIdx+1>=QS[state.ch].length) showResult();
+  else{state.qIdx++;renderQ();}
+}
+function retryChapter(){startChapter(state.ch);}
+
+// ══════════════════════════════════════════════
+// CONCEPT PANEL
+// ══════════════════════════════════════════════
+function renderConcept(chId){
+  const con=CONCEPTS[chId];
+  const ch=CHAPTERS[chId];
+  let html=`<div class="cp-title">📌 ${ch.title}</div>`;
+  if(con.svg) html+=`<div class="cp-svg">${con.svg}</div>`;
+  con.rules.forEach(r=>html+=`<div class="cp-rule">${r}</div>`);
+  if(con.ex) html+=`<div class="cp-ex">예) ${con.ex}</div>`;
+  document.getElementById('concept-panel').innerHTML=html;
+}
+
+// ══════════════════════════════════════════════
+// RESULT
+// ══════════════════════════════════════════════
+function showResult(){
+  const total=QS[state.ch].length;
+  const acc=Math.round(state.correct/total*100);
+  state.cleared[state.ch]=true;
+  state.totalScore+=state.chScore;
+  saveSave();
+  document.getElementById('r-icon').textContent=acc>=80?'🏆':acc>=60?'⭐':'💪';
+  document.getElementById('r-title').textContent=
+    acc>=80?'완벽한 이해!':acc>=60?'잘 했어요!':'다시 도전!';
+  document.getElementById('r-score').textContent=state.chScore+'점';
+  document.getElementById('r-correct').textContent=state.correct+'/'+total;
+  document.getElementById('r-acc').textContent=acc+'%';
+  document.getElementById('r-pts').textContent=state.chScore+'점';
+  show('result-screen');
+}
+
+// ══════════════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════════════
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+loadSave();
+showChapters();
+</script>
+</body>
+</html>

@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>그래프 탐험대 | 좌표와 함수 | 영통수학여행학원</title>
+<style>
+:root{
+  --bg:#050d1a;--bg2:#0a1628;--card:#0d1e35;
+  --blue:#38bdf8;--blue2:#0ea5e9;--green:#34d399;
+  --amber:#f59e0b;--red:#f87171;--purple:#a78bfa;
+  --muted:#475569;--paper:#e2e8f0;--paper2:#94a3b8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Segoe UI","Noto Sans KR",sans-serif;
+  background:radial-gradient(ellipse at 20% 20%,#0a1628 0%,#050d1a 70%);
+  min-height:100vh;padding:10px 14px;color:var(--paper);}
+.wrap{width:100%;max-width:1280px;margin:0 auto}
+
+.screen{display:none;animation:fadeIn .3s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ===== FLASH ===== */
+.flash{position:fixed;inset:0;z-index:500;pointer-events:none;opacity:0}
+.flash.red{animation:fRed .5s ease forwards}
+.flash.ok{animation:fOk .5s ease forwards}
+@keyframes fRed{0%{background:rgba(248,113,113,.55);opacity:1}100%{opacity:0}}
+@keyframes fOk{0%{background:rgba(52,211,153,.35);opacity:1}100%{opacity:0}}
+
+/* ===== TITLE / HEADER ===== */
+.hdr{
+  background:linear-gradient(135deg,#061428,#0a1e3a,#061428);
+  border:2px solid rgba(56,189,248,.3);border-radius:20px;
+  padding:1.4rem 2rem;margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:1.5rem;
+  box-shadow:0 0 80px rgba(56,189,248,.12);}
+.hdr-icon{font-size:3.2rem;flex-shrink:0;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hdr-info{flex:1}
+.hdr-title{
+  font-size:1.9rem;font-weight:900;
+  background:linear-gradient(90deg,#38bdf8,#34d399,#a78bfa);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hdr-sub{font-size:.82rem;color:var(--muted);margin:.2rem 0 .6rem}
+.hdr-score{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);
+  border-radius:16px;padding:.3rem .85rem;font-size:.95rem;color:#fbbf24;font-weight:700;}
+.hdr-toc{font-size:.75rem;color:var(--muted);text-align:right;line-height:1.9;flex-shrink:0}
+
+/* ===== CHAPTER GRID ===== */
+.sec-label{
+  font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.75rem;text-align:center;
+  border-bottom:1px solid rgba(56,189,248,.1);padding-bottom:.45rem;}
+.ch-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem;margin-bottom:1rem}
+@media(max-width:900px){.ch-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.ch-grid{grid-template-columns:1fr 1fr}}
+.ch-card{
+  background:rgba(13,30,53,.8);border:1.5px solid rgba(56,189,248,.12);
+  border-radius:16px;padding:1rem .75rem;text-align:center;cursor:pointer;
+  transition:all .22s;position:relative;overflow:hidden;}
+.ch-card:hover:not(.locked){
+  border-color:rgba(56,189,248,.45);background:rgba(56,189,248,.07);transform:translateY(-3px);
+  box-shadow:0 8px 28px rgba(56,189,248,.1);}
+.ch-card.locked{opacity:.35;cursor:not-allowed}
+.ch-card.done{border-color:rgba(52,211,153,.4);background:rgba(52,211,153,.04)}
+.ch-num{font-size:.65rem;color:var(--muted);margin-bottom:.2rem}
+.ch-emoji{font-size:1.9rem;margin-bottom:.25rem}
+.ch-title{font-size:.78rem;font-weight:700;color:var(--paper);line-height:1.3}
+.ch-status{font-size:.68rem;color:var(--muted);margin-top:.2rem}
+.lock-icon{position:absolute;top:.35rem;right:.35rem;font-size:.75rem;opacity:.45}
+.reset-btn{
+  display:block;margin:.4rem auto 0;background:none;
+  border:1px solid rgba(255,255,255,.08);color:var(--muted);
+  border-radius:7px;padding:.26rem .7rem;font-size:.7rem;cursor:pointer;}
+.reset-btn:hover{border-color:rgba(248,113,113,.3);color:#f87171}
+
+/* ===== LECTURE OVERLAY ===== */
+.lec-overlay{
+  display:none;position:fixed;inset:0;z-index:300;
+  background:rgba(0,0,0,.93);backdrop-filter:blur(14px);
+  align-items:center;justify-content:center;padding:1rem;overflow-y:auto;}
+.lec-overlay.show{display:flex;animation:oIn .2s ease}
+@keyframes oIn{from{opacity:0}to{opacity:1}}
+.lec-modal{
+  width:100%;max-width:700px;margin:auto;
+  background:linear-gradient(160deg,#061020,#0a1c38,#040c1e);
+  border:2px solid rgba(56,189,248,.4);border-radius:24px;
+  padding:2rem 2rem 1.8rem;
+  box-shadow:0 0 80px rgba(56,189,248,.25);
+  animation:slideUp .4s cubic-bezier(.34,1.56,.64,1);}
+@keyframes slideUp{from{transform:translateY(50px);opacity:0}to{transform:none;opacity:1}}
+.lec-dots{display:flex;gap:.4rem;justify-content:center;margin-bottom:1.1rem}
+.ldot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15);transition:.3s}
+.ldot.on{background:var(--blue);box-shadow:0 0 8px rgba(56,189,248,.7)}
+.ldot.past{background:var(--green)}
+.lec-badge{
+  display:inline-block;background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.3);
+  border-radius:10px;padding:.18rem .65rem;font-size:.7rem;color:#7dd3fc;
+  font-weight:600;margin-bottom:.6rem;}
+.lec-h{font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:.5rem;
+  text-shadow:0 0 20px rgba(56,189,248,.4)}
+.lec-b{font-size:.91rem;line-height:1.8;color:var(--paper2)}
+.lec-b strong{color:var(--blue);font-weight:800;
+  animation:glow .9s ease-in-out infinite alternate;}
+@keyframes glow{from{text-shadow:none}to{text-shadow:0 0 12px rgba(56,189,248,.7)}}
+/* Inline canvas inside lecture */
+.lec-canvas-wrap{
+  margin:.9rem 0;border-radius:14px;overflow:hidden;
+  border:1.5px solid rgba(56,189,248,.2);
+  background:#060e1c;display:flex;justify-content:center;}
+.lec-canvas-wrap canvas{display:block;max-width:100%}
+.lec-formula{
+  background:rgba(56,189,248,.07);border:1.5px solid rgba(56,189,248,.18);
+  border-radius:12px;padding:.75rem;margin:.7rem 0;text-align:center;}
+.lec-fval{font-size:1.6rem;font-weight:900;color:#fff;
+  text-shadow:0 0 16px rgba(56,189,248,.4)}
+.lec-fnote{font-size:.73rem;color:var(--muted);margin-top:.2rem}
+.lec-tip{
+  background:rgba(167,139,250,.06);border-left:3px solid var(--purple);
+  border-radius:0 8px 8px 0;padding:.5rem .8rem;
+  font-size:.8rem;color:#c4b5fd;margin-top:.65rem;}
+.lec-nav{display:flex;gap:.65rem;margin-top:1.3rem}
+.l-prev{
+  padding:.65rem 1rem;border-radius:11px;border:1.5px solid rgba(56,189,248,.18);
+  background:transparent;color:var(--muted);cursor:pointer;font-size:.83rem;}
+.l-next,.l-start{
+  flex:1;padding:.78rem;border-radius:11px;border:none;cursor:pointer;
+  font-size:.9rem;font-weight:700;transition:.15s;}
+.l-next{background:linear-gradient(90deg,#0ea5e9,#38bdf8);color:#fff;
+  box-shadow:0 4px 16px rgba(14,165,233,.3);}
+.l-start{background:linear-gradient(90deg,#059669,#10b981);color:#fff;
+  box-shadow:0 4px 16px rgba(16,185,129,.3);}
+.l-next:hover,.l-start:hover{transform:scale(1.02)}
+
+/* ===== QUIZ SCREEN ===== */
+.qhdr{display:flex;align-items:center;gap:.45rem;margin-bottom:.65rem;flex-wrap:wrap}
+.q-pts{
+  background:rgba(251,191,36,.09);border:1px solid rgba(251,191,36,.22);
+  border-radius:10px;padding:.26rem .7rem;font-size:.84rem;color:#fbbf24;font-weight:700;}
+.combo-el{font-size:.78rem;font-weight:700;padding:.26rem .65rem;border-radius:10px;transition:.3s}
+.combo-el.c0{color:var(--muted);background:rgba(70,70,70,.1)}
+.combo-el.c2{color:#60a5fa;background:rgba(96,165,250,.13)}
+.combo-el.c5{color:#fbbf24;background:rgba(251,191,36,.13);animation:cPop .4s}
+@keyframes cPop{0%{transform:scale(1.4)}100%{transform:scale(1)}}
+.m-tag{font-size:.7rem;font-weight:700;padding:.2rem .5rem;border-radius:7px}
+.m-tag.mcq{background:rgba(56,189,248,.15);color:var(--blue)}
+.m-tag.fill{background:rgba(245,158,11,.15);color:var(--amber)}
+.home-btn{
+  margin-left:auto;background:none;border:1px solid rgba(255,255,255,.1);
+  color:var(--muted);border-radius:7px;padding:.24rem .58rem;cursor:pointer;font-size:.74rem;}
+/* Timer */
+.timer-wrap{height:5px;background:rgba(255,255,255,.06);border-radius:3px;margin-bottom:.8rem;overflow:hidden}
+.timer-bar{height:100%;border-radius:3px;transition:width .08s linear;
+  background:linear-gradient(90deg,var(--blue),var(--green))}
+.timer-bar.warn{background:linear-gradient(90deg,#ef4444,#f97316)}
+
+/* Two-column quiz layout */
+.quiz-body{
+  display:grid;
+  grid-template-columns:1fr 380px;
+  gap:1.1rem;align-items:start;}
+@media(max-width:920px){.quiz-body{grid-template-columns:1fr}}
+.quiz-left{min-width:0}
+
+/* Canvas card */
+.canvas-card{
+  background:#060e1c;border:2px solid rgba(56,189,248,.2);
+  border-radius:20px;padding:.8rem;margin-bottom:.85rem;
+  box-shadow:0 0 40px rgba(56,189,248,.07);
+  animation:cardIn .35s cubic-bezier(.34,1.56,.64,1);}
+@keyframes cardIn{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
+.canvas-tag{font-size:.67rem;color:var(--blue);font-weight:700;
+  letter-spacing:.06em;margin-bottom:.35rem}
+.canvas-qn{font-size:.73rem;color:var(--muted);margin-bottom:.6rem}
+#graph-canvas{
+  display:block;width:100%;max-width:460px;
+  aspect-ratio:1/1;border-radius:12px;margin:0 auto;}
+.q-text{
+  font-size:1.05rem;color:var(--paper);line-height:1.65;
+  margin:.65rem 0;font-weight:500;}
+.hint-row{display:flex;justify-content:flex-end;margin-top:.35rem}
+.hint-btn{
+  background:rgba(56,189,248,.07);border:1px solid rgba(56,189,248,.2);
+  border-radius:8px;padding:.25rem .65rem;font-size:.74rem;
+  color:var(--blue);cursor:pointer;}
+.hint-btn:hover{background:rgba(56,189,248,.15)}
+
+/* Choices */
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.7rem}
+@media(max-width:560px){.choices{grid-template-columns:1fr}}
+.cbtn{
+  width:100%;padding:.75rem .85rem;border-radius:12px;
+  border:1.5px solid rgba(56,189,248,.1);background:rgba(13,30,53,.6);
+  color:var(--paper);font-size:.88rem;text-align:left;cursor:pointer;transition:all .18s;}
+.cbtn:hover:not(:disabled){
+  border-color:rgba(56,189,248,.38);background:rgba(56,189,248,.07);
+  transform:translateX(3px);}
+.cbtn.correct{border-color:var(--green);background:rgba(52,211,153,.1);color:#6ee7b7}
+.cbtn.wrong{border-color:var(--red);background:rgba(248,113,113,.08);color:#fca5a5}
+/* Fill */
+.fill-wrap{display:flex;gap:.5rem;margin-bottom:.7rem}
+.fill-input{
+  flex:1;padding:.72rem .9rem;border-radius:12px;
+  border:1.5px solid rgba(56,189,248,.2);background:rgba(6,14,28,.8);
+  color:var(--paper);font-size:.92rem;outline:none;}
+.fill-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(56,189,248,.1)}
+.fill-submit{
+  padding:.72rem .95rem;border-radius:12px;border:none;
+  background:linear-gradient(90deg,#0369a1,#0ea5e9);color:#fff;
+  font-size:.86rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+.q-ctr{text-align:center;font-size:.73rem;color:var(--muted);margin-top:.25rem}
+
+/* ===== CONCEPT PANEL ===== */
+.concept-panel{
+  position:sticky;top:1rem;
+  background:linear-gradient(160deg,#060f1e,#0a1830,#060f1e);
+  border:1.5px solid rgba(56,189,248,.25);border-radius:18px;
+  padding:1.1rem 1rem;
+  max-height:calc(100vh - 2rem);overflow-y:auto;}
+.cp-title{
+  font-size:.68rem;letter-spacing:.1em;color:var(--muted);
+  text-transform:uppercase;margin-bottom:.65rem;
+  border-bottom:1px solid rgba(56,189,248,.12);padding-bottom:.4rem;}
+.cp-formulas{margin-bottom:.85rem}
+.cp-f-row{
+  display:flex;align-items:baseline;gap:.5rem;
+  padding:.38rem .55rem;border-radius:8px;
+  background:rgba(56,189,248,.05);border:1px solid rgba(56,189,248,.1);
+  margin-bottom:.32rem;}
+.cp-f-lbl{font-size:.63rem;color:var(--muted);flex-shrink:0;min-width:4rem}
+.cp-f-val{font-size:.85rem;font-weight:700;color:var(--blue)}
+.cp-why-title{
+  font-size:.66rem;font-weight:700;color:var(--red);
+  letter-spacing:.07em;margin-bottom:.48rem;text-transform:uppercase;}
+.cp-why-item{
+  margin-bottom:.6rem;padding:.52rem .62rem;border-radius:10px;
+  background:rgba(56,189,248,.04);border-left:2.5px solid rgba(56,189,248,.3);}
+.cp-why-q{font-size:.76rem;font-weight:700;color:var(--paper);margin-bottom:.25rem;line-height:1.4}
+.cp-why-a{font-size:.74rem;color:#93c5fd;line-height:1.55}
+.cp-why-a strong{color:var(--blue)}
+
+/* ===== EXPLAIN OVERLAY ===== */
+.exp-overlay{
+  display:none;position:fixed;inset:0;z-index:400;
+  background:rgba(0,0,0,.9);backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;padding:1rem;overflow-y:auto;}
+.exp-overlay.show{display:flex}
+.exp-modal{
+  width:100%;max-width:680px;
+  background:linear-gradient(160deg,#06101e,#0a1830);
+  border:2.5px solid var(--red);border-radius:24px;
+  padding:1.8rem 1.6rem;
+  box-shadow:0 0 60px rgba(248,113,113,.4);
+  animation:mPop .4s cubic-bezier(.34,1.56,.64,1);}
+.exp-modal.ok{border-color:var(--green);box-shadow:0 0 60px rgba(52,211,153,.35);}
+@keyframes mPop{from{transform:scale(.15) rotate(-10deg);opacity:0}to{transform:none;opacity:1}}
+.exp-icon{font-size:3rem;text-align:center;display:block}
+.exp-title{font-size:1.45rem;font-weight:900;text-align:center;color:var(--red);margin:.4rem 0}
+.exp-title.ok{color:var(--green)}
+.exp-ans-box{background:rgba(255,255,255,.04);border-radius:10px;
+  padding:.55rem .9rem;margin:.6rem 0;text-align:center;}
+.exp-ans-lbl{font-size:.67rem;color:var(--muted);margin-bottom:.15rem}
+.exp-ans-val{font-size:1.45rem;font-weight:900;color:#fbbf24}
+.exp-steps{list-style:none;padding:0;margin:.6rem 0}
+.exp-steps li{
+  background:rgba(255,255,255,.03);border-radius:9px;
+  padding:.48rem .75rem;margin:.28rem 0;font-size:.84rem;color:var(--paper2);
+  border-left:3px solid rgba(56,189,248,.25);animation:stepIn .3s ease both;}
+@keyframes stepIn{from{transform:translateX(-16px);opacity:0}to{transform:none;opacity:1}}
+.exp-steps li strong{color:var(--blue)}
+.exp-btn{
+  width:100%;padding:.78rem;border-radius:12px;border:none;cursor:pointer;
+  margin-top:.9rem;font-size:.9rem;font-weight:700;
+  background:linear-gradient(90deg,#0369a1,#0ea5e9);color:#fff;transition:.15s;}
+.exp-btn:hover{transform:scale(1.02)}
+
+/* ===== HINT OVERLAY ===== */
+.hint-overlay{
+  display:none;position:fixed;inset:0;z-index:450;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:1rem;}
+.hint-overlay.show{display:flex}
+.hint-modal{
+  width:100%;max-width:560px;
+  background:linear-gradient(160deg,#061428,#0a1e3a);
+  border:2px solid rgba(56,189,248,.3);border-radius:20px;
+  padding:1.5rem 1.4rem;box-shadow:0 0 40px rgba(56,189,248,.2);}
+.hint-title{font-size:1.1rem;font-weight:900;color:var(--blue);margin-bottom:.6rem}
+.hint-body{font-size:.88rem;color:var(--paper2);line-height:1.7;margin-bottom:.7rem}
+.hint-close{
+  width:100%;padding:.68rem;border-radius:10px;
+  border:1px solid rgba(56,189,248,.22);background:rgba(56,189,248,.07);
+  color:var(--blue);font-size:.87rem;cursor:pointer;}
+
+/* ===== MODE SWITCH ===== */
+.msb{
+  display:none;position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(0);z-index:600;
+  background:linear-gradient(90deg,#0a2a4a,#0e3a6a,#0a2a4a);
+  border:2px solid var(--blue);border-radius:18px;
+  padding:1.3rem 2rem;text-align:center;
+  box-shadow:0 0 60px rgba(56,189,248,.5);}
+.msb.show{display:block;animation:msbA .6s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes msbA{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:0}
+  60%{transform:translate(-50%,-50%) scale(1.08)}
+  100%{transform:translate(-50%,-50%) scale(1);opacity:1}}
+.msb-e{font-size:2.5rem;display:block;margin-bottom:.25rem}
+.msb-t{font-size:1.2rem;font-weight:900;color:var(--blue)}
+.msb-s{font-size:.8rem;color:#7dd3fc;margin-top:.15rem}
+
+/* ===== DONE SCREEN ===== */
+.done-card{
+  background:linear-gradient(160deg,#031828,#051e36);
+  border:2px solid rgba(52,211,153,.3);border-radius:22px;
+  padding:2rem 1.5rem;text-align:center;margin-bottom:1rem;
+  box-shadow:0 0 50px rgba(52,211,153,.15);
+  animation:slideUp .5s cubic-bezier(.34,1.56,.64,1);}
+.done-stamp{
+  display:inline-block;border:2.5px solid var(--green);color:var(--green);
+  border-radius:7px;padding:.25rem .7rem;font-size:.82rem;font-weight:900;
+  letter-spacing:.1em;transform:rotate(-2deg);margin-bottom:.6rem;}
+.done-emoji{font-size:4.5rem;display:block;animation:pop .6s ease}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+.done-title{font-size:1.7rem;font-weight:900;color:var(--green);margin:.35rem 0}
+.done-pts{font-size:2.4rem;font-weight:900;color:#fbbf24;
+  text-shadow:0 0 20px rgba(251,191,36,.4);margin:.3rem 0}
+.done-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem;margin:.7rem 0}
+@media(max-width:560px){.done-stats{grid-template-columns:1fr 1fr}}
+.stat-box{background:rgba(255,255,255,.04);border-radius:10px;padding:.65rem;
+  border:1px solid rgba(255,255,255,.06);}
+.stat-lbl{font-size:.66rem;color:var(--muted);margin-bottom:.12rem}
+.stat-val{font-size:1.12rem;font-weight:700;color:var(--paper)}
+.done-btns{display:grid;gap:.48rem}
+.btn-nxt{
+  padding:.85rem;border-radius:12px;border:none;cursor:pointer;
+  font-size:.9rem;font-weight:700;
+  background:linear-gradient(90deg,#059669,#10b981);color:#fff;
+  box-shadow:0 4px 18px rgba(16,185,129,.22);transition:.15s;}
+.btn-nxt:hover{transform:scale(1.02)}
+.btn-home{
+  padding:.68rem;border-radius:12px;border:1px solid rgba(255,255,255,.1);
+  background:transparent;color:var(--muted);font-size:.83rem;cursor:pointer;}
+</style>
+</head>
+<body>
+<div id="flash" class="flash"></div>
+<!-- Lecture Overlay -->
+<div id="lec-overlay" class="lec-overlay">
+  <div class="lec-modal">
+    <div class="lec-dots" id="lec-dots"></div>
+    <div class="lec-badge" id="lec-badge">개념</div>
+    <h2 class="lec-h" id="lec-h"></h2>
+    <div class="lec-b" id="lec-b"></div>
+    <div class="lec-canvas-wrap" id="lec-cwrap" style="display:none">
+      <canvas id="lec-canvas" width="300" height="300"></canvas>
+    </div>
+    <div class="lec-formula" id="lec-formula" style="display:none">
+      <div class="lec-fval" id="lec-fval"></div>
+      <div class="lec-fnote" id="lec-fnote"></div>
+    </div>
+    <div class="lec-tip" id="lec-tip" style="display:none"></div>
+    <div class="lec-nav">
+      <button class="l-prev" id="l-prev" onclick="lecPrev()">← 이전</button>
+      <button class="l-next" id="l-next" onclick="lecNext()">다음 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Explain Overlay -->
+<div id="exp-overlay" class="exp-overlay" onclick="closeExp()">
+  <div class="exp-modal" id="exp-modal" onclick="event.stopPropagation()">
+    <span class="exp-icon" id="exp-icon"></span>
+    <h2 class="exp-title" id="exp-title"></h2>
+    <div class="exp-ans-box">
+      <div class="exp-ans-lbl">정답</div>
+      <div class="exp-ans-val" id="exp-ans-val"></div>
+    </div>
+    <ul class="exp-steps" id="exp-steps"></ul>
+    <button class="exp-btn" onclick="closeExp()">✓ 알겠습니다! 다음 문제 →</button>
+  </div>
+</div>
+
+<!-- Hint Overlay -->
+<div id="hint-overlay" class="hint-overlay" onclick="closeHint()">
+  <div class="hint-modal" onclick="event.stopPropagation()">
+    <div class="hint-title">💡 힌트</div>
+    <div class="hint-body" id="hint-body"></div>
+    <button class="hint-close" onclick="closeHint()">닫기</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ===== TITLE ===== -->
+<div id="sc-title" class="screen active">
+  <div class="hdr">
+    <span class="hdr-icon">📈</span>
+    <div class="hdr-info">
+      <div class="hdr-title">그래프 탐험대</div>
+      <div class="hdr-sub">좌표평면 · 정비례 · 반비례 · 일차함수 | 영통수학여행학원</div>
+      <span class="hdr-score">⭐ <span id="t-score">0</span>점
+        <span id="t-mode" style="font-size:.78rem;color:#94a3b8;margin-left:.4rem">📝 객관식</span>
+      </span>
+    </div>
+    <div class="hdr-toc">
+      <div>📍 좌표평면</div><div>📐 정비례 y=ax</div>
+      <div>🌀 반비례 y=a/x</div><div>📏 일차함수</div><div>🔀 두 직선</div>
+    </div>
+  </div>
+  <div class="sec-label">챕터 선택</div>
+  <div class="ch-grid" id="ch-grid"></div>
+  <div style="text-align:center;margin-bottom:.5rem">
+    <button class="reset-btn" onclick="resetSave()">🗑 기록 초기화</button>
+  </div>
+  <div style="text-align:center;font-size:.7rem;color:#1e3a5f">
+    콤보 3=×2, 5=×3, 10=×5
+  </div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div id="sc-quiz" class="screen">
+  <div class="qhdr">
+    <div class="q-pts">⭐ <span id="q-score">0</span></div>
+    <div class="combo-el c0" id="combo-el">콤보 ×1</div>
+    <button class="home-btn" onclick="goHome()">챕터 선택</button>
+  </div>
+  <div class="timer-wrap"><div class="timer-bar" id="timer-bar"></div></div>
+  <div class="quiz-body">
+    <div class="quiz-left">
+      <div class="canvas-card">
+        <div class="canvas-tag" id="canvas-tag"></div>
+        <div class="canvas-qn" id="canvas-qn"></div>
+        <canvas id="graph-canvas"></canvas>
+        <div class="q-text" id="q-text"></div>
+        <div class="hint-row">
+          <button class="hint-btn" onclick="showHint()">💡 힌트</button>
+        </div>
+      </div>
+      <div class="choices" id="choices"></div>
+      <div class="q-ctr" id="q-ctr"></div>
+    </div>
+    <div class="concept-panel" id="concept-panel"></div>
+  </div>
+</div>
+
+<!-- ===== DONE ===== -->
+<div id="sc-done" class="screen">
+  <div class="done-card">
+    <div class="done-stamp">챕터 완료!</div>
+    <span class="done-emoji" id="done-emoji">🏆</span>
+    <div class="done-title" id="done-title">완료!</div>
+    <div class="done-pts" id="done-pts">+0점</div>
+    <div class="done-stats">
+      <div class="stat-box"><div class="stat-lbl">정답률</div><div class="stat-val" id="d-acc">-</div></div>
+      <div class="stat-box"><div class="stat-lbl">최고 콤보</div><div class="stat-val" id="d-combo">-</div></div>
+      <div class="stat-box"><div class="stat-lbl">총 점수</div><div class="stat-val" id="d-total">-</div></div>
+      <div class="stat-box"><div class="stat-lbl">모드</div><div class="stat-val" id="d-mode">-</div></div>
+    </div>
+  </div>
+  <div class="done-btns">
+    <button class="btn-nxt" id="btn-nxt" onclick="nextChapter()"></button>
+    <button class="btn-home" onclick="goHome()">🏠 챕터 선택으로</button>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+// =====================================================
+// CANVAS DRAWING ENGINE
+// =====================================================
+const RANGE = 7; // -6 ~ 6
+
+function initCanvas(canvas){
+  const dpr = window.devicePixelRatio||1;
+  const rect = canvas.getBoundingClientRect();
+  const sz = Math.min(rect.width||460, 460);
+  canvas.width = sz * dpr;
+  canvas.height = sz * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  canvas.style.width = sz+'px';
+  canvas.style.height = sz+'px';
+  return {ctx, sz};
+}
+
+function drawScene(canvas, cfg){
+  const dpr = window.devicePixelRatio||1;
+  const W = canvas.width/dpr, H = canvas.height/dpr;
+  const ctx = canvas.getContext('2d');
+  const sc = W / (RANGE*2);
+  const ox = W/2, oy = H/2;
+  const px = x => ox + x*sc;
+  const py = y => oy - y*sc;
+
+  // BG
+  ctx.fillStyle='#060e1c';
+  ctx.fillRect(0,0,W,H);
+
+  // Grid
+  ctx.strokeStyle='rgba(56,189,248,0.08)';
+  ctx.lineWidth=0.8;
+  for(let i=-RANGE;i<=RANGE;i++){
+    if(i===0)continue;
+    ctx.beginPath();ctx.moveTo(px(i),0);ctx.lineTo(px(i),H);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(0,py(i));ctx.lineTo(W,py(i));ctx.stroke();
+  }
+  // Axes
+  ctx.strokeStyle='rgba(56,189,248,0.65)';ctx.lineWidth=1.8;
+  ctx.beginPath();ctx.moveTo(0,oy);ctx.lineTo(W,oy);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(ox,0);ctx.lineTo(ox,H);ctx.stroke();
+  // Arrows
+  ctx.fillStyle='rgba(56,189,248,0.65)';
+  ctx.beginPath();ctx.moveTo(W-3,oy);ctx.lineTo(W-11,oy-5);ctx.lineTo(W-11,oy+5);ctx.fill();
+  ctx.beginPath();ctx.moveTo(ox,3);ctx.lineTo(ox-5,11);ctx.lineTo(ox+5,11);ctx.fill();
+  // Axis labels
+  ctx.fillStyle='rgba(56,189,248,0.55)';ctx.font=`${Math.max(10,sc*0.35)}px sans-serif`;
+  ctx.textAlign='center';
+  for(let i=-6;i<=6;i++){
+    if(i===0)continue;
+    if(Math.abs(px(i)-ox)>8){
+      ctx.fillText(i,px(i),oy+14);
+    }
+    ctx.textAlign='right';
+    if(Math.abs(py(i)-oy)>8)ctx.fillText(i,ox-5,py(i)+4);
+    ctx.textAlign='center';
+  }
+  ctx.fillStyle='rgba(148,163,184,0.5)';ctx.font=`${Math.max(11,sc*0.38)}px sans-serif`;
+  ctx.textAlign='left';ctx.fillText('x',W-8,oy-7);
+  ctx.fillText('y',ox+7,12);
+  ctx.textAlign='right';ctx.fillText('O',ox-5,oy+13);
+
+  // Shaded regions
+  if(cfg.shade){
+    cfg.shade.forEach(s=>{
+      ctx.fillStyle=s.color||'rgba(56,189,248,0.05)';
+      if(s.type==='quad'){
+        const [qx1,qy1,qx2,qy2]=[s.x1,s.y1,s.x2,s.y2];
+        ctx.fillRect(px(Math.min(qx1,qx2)),py(Math.max(qy1,qy2)),
+          Math.abs(qx2-qx1)*sc,Math.abs(qy2-qy1)*sc);
+      }
+    });
+  }
+
+  // Lines y = mx + b
+  if(cfg.lines){
+    cfg.lines.forEach(line=>{
+      ctx.strokeStyle=line.color||'#34d399';
+      ctx.lineWidth=2.8;
+      ctx.beginPath();
+      let started=false;
+      for(let xi=-RANGE;xi<=RANGE;xi+=0.05){
+        const yi=line.m*xi+(line.b||0);
+        if(Math.abs(yi)>RANGE*1.2)continue;
+        const ppx=px(xi),ppy=py(yi);
+        if(!started){ctx.moveTo(ppx,ppy);started=true;}
+        else ctx.lineTo(ppx,ppy);
+      }
+      ctx.stroke();
+      // label
+      if(line.label){
+        const lx=4, ly=line.m*lx+(line.b||0);
+        if(Math.abs(ly)<RANGE-0.5){
+          ctx.fillStyle=line.color||'#34d399';
+          ctx.font=`bold ${Math.max(11,sc*0.38)}px sans-serif`;
+          ctx.textAlign='left';
+          ctx.fillText(line.label,px(lx)+6,py(ly)-6);
+        }
+      }
+    });
+  }
+
+  // Inverse y = a/x
+  if(cfg.inverses){
+    cfg.inverses.forEach(inv=>{
+      ctx.strokeStyle=inv.color||'#f59e0b';
+      ctx.lineWidth=2.5;
+      for(const sign of [1,-1]){
+        ctx.beginPath();let first=true;
+        for(let xi=0.15;xi<=RANGE;xi+=0.04){
+          const x=sign*xi, y=inv.a/x;
+          if(Math.abs(y)>RANGE*1.3)continue;
+          if(first){ctx.moveTo(px(x),py(y));first=false;}
+          else ctx.lineTo(px(x),py(y));
+        }
+        ctx.stroke();
+      }
+      if(inv.label){
+        const lx=inv.a>0?3:-3, ly=inv.a/lx;
+        if(Math.abs(ly)<RANGE-0.5){
+          ctx.fillStyle=inv.color||'#f59e0b';
+          ctx.font=`bold ${Math.max(11,sc*0.38)}px sans-serif`;
+          ctx.textAlign='left';
+          ctx.fillText(inv.label,px(lx)+6,py(ly)-6);
+        }
+      }
+    });
+  }
+
+  // Points
+  if(cfg.pts){
+    cfg.pts.forEach(pt=>{
+      const ppx=px(pt.x),ppy=py(pt.y);
+      const r=sc*0.18;
+      // glow
+      const grd=ctx.createRadialGradient(ppx,ppy,0,ppx,ppy,r*3.5);
+      grd.addColorStop(0,(pt.col||'#fbbf24')+'88');grd.addColorStop(1,'transparent');
+      ctx.fillStyle=grd;ctx.beginPath();ctx.arc(ppx,ppy,r*3.5,0,Math.PI*2);ctx.fill();
+      // dot
+      ctx.fillStyle=pt.col||'#fbbf24';
+      ctx.beginPath();ctx.arc(ppx,ppy,r,0,Math.PI*2);ctx.fill();
+      // cross lines
+      if(pt.cross){
+        ctx.strokeStyle=(pt.col||'#fbbf24')+'44';ctx.lineWidth=1;ctx.setLineDash([3,3]);
+        ctx.beginPath();ctx.moveTo(ppx,ppy);ctx.lineTo(ppx,oy);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(ppx,ppy);ctx.lineTo(ox,ppy);ctx.stroke();
+        ctx.setLineDash([]);
+      }
+      // label
+      if(pt.lbl){
+        ctx.fillStyle=pt.col||'#fbbf24';
+        ctx.font=`bold ${Math.max(12,sc*0.42)}px sans-serif`;
+        ctx.textAlign='center';
+        const off=r*2+4;
+        ctx.fillText(pt.lbl,ppx+(pt.lx||0)*sc,ppy-(pt.ly||0)*sc-off);
+      }
+    });
+  }
+
+  // Mystery "?" question mark in center for quadrant questions
+  if(cfg.qmark){
+    ctx.fillStyle='rgba(167,139,250,0.15)';
+    ctx.font=`bold ${W*0.28}px sans-serif`;
+    ctx.textAlign='center';
+    ctx.fillText('?',px(cfg.qmark.x),py(cfg.qmark.y)+W*0.1);
+  }
+}
+
+function drawLecCanvas(canvas, cfg){
+  const W=canvas.width, H=canvas.height;
+  drawScene(canvas,cfg);
+}
+
+// =====================================================
+// LECTURE DATA
+// =====================================================
+const LECS = [
+  // ch0: 좌표평면
+  [
+    {badge:'좌표평면 1',h:'좌표평면이란?',
+     b:`<strong>x축(가로)</strong>과 <strong>y축(세로)</strong>이 만나는 <strong>원점 O(0,0)</strong>을 기준으로 평면을 나타내요.<br><br>
+     점 A의 위치는 <strong>(x좌표, y좌표)</strong> 순서로 씁니다.`,
+     lcfg:{pts:[{x:3,y:2,col:'#38bdf8',lbl:'A(3,2)',cross:true}]},
+     formula:'A(x, y) → x: 오른쪽(+), 왼쪽(−) / y: 위(+), 아래(−)',
+     tip:'순서가 중요! (3,2)와 (2,3)은 다른 점이에요.'},
+    {badge:'좌표평면 2',h:'사분면',
+     b:`축을 기준으로 평면은 <strong>4개 영역(사분면)</strong>으로 나뉩니다.<br><br>
+     1사분면: x>0, y>0 &nbsp;|&nbsp; 2사분면: x<0, y>0<br>
+     3사분면: x<0, y<0 &nbsp;|&nbsp; 4사분면: x>0, y<0`,
+     lcfg:{
+       shade:[
+         {type:'quad',x1:0,y1:0,x2:6,y2:6,color:'rgba(52,211,153,0.08)'},
+         {type:'quad',x1:-6,y1:0,x2:0,y2:6,color:'rgba(56,189,248,0.08)'},
+         {type:'quad',x1:-6,y1:-6,x2:0,y2:0,color:'rgba(167,139,250,0.08)'},
+         {type:'quad',x1:0,y1:-6,x2:6,y2:0,color:'rgba(245,158,11,0.08)'},
+       ],
+       pts:[
+         {x:3,y:3,col:'#34d399',lbl:'1사분면'},
+         {x:-3,y:3,col:'#38bdf8',lbl:'2사분면'},
+         {x:-3,y:-3,col:'#a78bfa',lbl:'3사분면'},
+         {x:3,y:-3,col:'#f59e0b',lbl:'4사분면'},
+       ]
+     },
+     tip:'축 위의 점(y=0 또는 x=0)은 어느 사분면에도 속하지 않아요!'},
+  ],
+  // ch1: 정비례
+  [
+    {badge:'정비례 1',h:'정비례 관계 y=ax',
+     b:`x가 2배, 3배가 되면 y도 <strong>2배, 3배</strong>가 되는 관계.<br><br>
+     <strong>y = ax</strong> (a ≠ 0) 형태. 그래프는 <strong>원점을 지나는 직선</strong>!`,
+     lcfg:{lines:[{m:2,b:0,col:'#34d399',label:'y=2x'},{m:-1,b:0,col:'#f59e0b',label:'y=-x'}]},
+     formula:'y = ax  (a = 기울기, 원점 통과)',
+     tip:'a>0이면 우상향 ↗, a<0이면 우하향 ↘'},
+    {badge:'정비례 2',h:'a값 구하기',
+     b:`그래프가 점 (x₀, y₀)을 지날 때:<br><br>
+     <strong>a = y₀ ÷ x₀</strong><br><br>
+     예) (2, 6)을 지난다면 a = 6 ÷ 2 = <strong>3</strong>`,
+     lcfg:{lines:[{m:3,b:0,col:'#34d399',label:'y=3x'}],pts:[{x:2,y:6,col:'#fbbf24',lbl:'(2,6)',cross:true}]},
+     formula:'a = y ÷ x  (정비례에서 항상 성립)',
+     tip:'정비례 그래프에서 어느 점을 골라도 y/x = a로 같아요!'},
+  ],
+  // ch2: 반비례
+  [
+    {badge:'반비례 1',h:'반비례 관계 y=a/x',
+     b:`x가 2배이면 y는 <strong>1/2배</strong>가 되는 관계.<br><br>
+     <strong>y = a/x</strong> (a ≠ 0). 그래프는 <strong>쌍곡선</strong> — 두 곡선!`,
+     lcfg:{inverses:[{a:6,col:'#38bdf8',label:'y=6/x'},{a:-6,col:'#f59e0b',label:'y=-6/x'}]},
+     formula:'y = a/x  →  xy = a (항상 일정)',
+     tip:'x, y의 곱(xy)이 항상 같다 → 이것이 반비례의 핵심!'},
+  ],
+  // ch3: 일차함수
+  [
+    {badge:'일차함수 1',h:'일차함수 y=mx+b',
+     b:`<strong>기울기 m</strong>: 직선의 기울기 (x가 1 증가할 때 y의 변화량)<br>
+     <strong>y절편 b</strong>: x=0일 때의 y값 (직선이 y축을 지나는 점)<br><br>
+     그래프: x절편 = <strong>-b/m</strong>`,
+     lcfg:{lines:[{m:2,b:-3,col:'#34d399',label:'y=2x-3'}],pts:[{x:0,y:-3,col:'#fbbf24',lbl:'(0,-3)',cross:true}]},
+     formula:'기울기 m = (y₂-y₁)÷(x₂-x₁)',
+     tip:'평행한 두 직선의 기울기는 같고, y절편만 달라요!'},
+    {badge:'일차함수 2',h:'두 점으로 식 구하기',
+     b:`두 점 (x₁,y₁), (x₂,y₂)를 지날 때:<br><br>
+     ① 기울기 <strong>m = (y₂-y₁)÷(x₂-x₁)</strong><br>
+     ② <strong>y = mx + b</strong>에 한 점 대입 → b 계산`,
+     lcfg:{
+       lines:[{m:2,b:1,col:'#38bdf8',label:'y=2x+1'}],
+       pts:[{x:0,y:1,col:'#34d399',lbl:'(0,1)'},{x:2,y:5,col:'#f59e0b',lbl:'(2,5)'}]
+     },
+     formula:'m = (5-1)÷(2-0) = 2  →  y=2x+1',
+     tip:'두 점이 주어지면 기울기 먼저, 그 다음 y절편 순서!'},
+  ],
+  // ch4: 두 직선
+  [
+    {badge:'두 직선 1',h:'교점과 연립방정식',
+     b:`두 직선의 <strong>교점</strong>은 두 방정식을 동시에 만족하는 점.<br><br>
+     연립방정식으로 풀면 됩니다:<br>
+     y=x+1과 y=-x+3 → x+1=-x+3 → 2x=2 → x=1, y=2`,
+     lcfg:{
+       lines:[{m:1,b:1,col:'#34d399',label:'y=x+1'},{m:-1,b:3,col:'#f59e0b',label:'y=-x+3'}],
+       pts:[{x:1,y:2,col:'#fbbf24',lbl:'교점(1,2)',cross:true}]
+     },
+     formula:'교점 → 두 식을 연립: y=y로 놓고 x 먼저!',
+     tip:'기울기가 같은 두 직선은 평행 → 교점 없음!'},
+  ],
+];
+
+// =====================================================
+// CONCEPT PANEL DATA
+// =====================================================
+const CONCEPTS=[
+  {title:'📍 좌표평면',
+   formulas:[
+     {lbl:'좌표',val:'점 A(x, y) — 가로 x, 세로 y'},
+     {lbl:'1사분면',val:'x>0, y>0  (우상)'},
+     {lbl:'2사분면',val:'x<0, y>0  (좌상)'},
+     {lbl:'3사분면',val:'x<0, y<0  (좌하)'},
+     {lbl:'4사분면',val:'x>0, y<0  (우하)'},
+   ],
+   whys:[
+     {q:'❓ 왜 순서가 중요한가?',
+      a:'(3,2)는 오른쪽 3칸, 위 2칸. (2,3)은 오른쪽 2칸, 위 3칸. <strong>완전히 다른 점!</strong>'},
+     {q:'❓ 축 위의 점은 몇 사분면?',
+      a:'<strong>어느 사분면에도 속하지 않음.</strong> x축(y=0)이나 y축(x=0) 위의 점은 경계선 위에 있어요'},
+   ]},
+  {title:'📐 정비례 y=ax',
+   formulas:[
+     {lbl:'기본 식',val:'y = ax  (a≠0)'},
+     {lbl:'특징',val:'원점(0,0)을 지나는 직선'},
+     {lbl:'a 구하기',val:'a = y ÷ x (점 대입)'},
+   ],
+   whys:[
+     {q:'❓ 왜 원점을 지나나?',
+      a:'x=0을 대입하면 y=a×0=0. <strong>항상 (0,0)을 지남</strong>'},
+     {q:'❓ a가 클수록?',
+      a:'기울기가 가팔라짐. <strong>|a|가 클수록 y축에 가까운 직선</strong>'},
+     {q:'❓ 정비례 관계 확인법?',
+      a:'표에서 <strong>y÷x 값이 항상 일정</strong>하면 정비례. 그 값이 a'},
+   ]},
+  {title:'🌀 반비례 y=a/x',
+   formulas:[
+     {lbl:'기본 식',val:'y = a/x  (a≠0)'},
+     {lbl:'특징',val:'xy = a (곱이 항상 일정)'},
+     {lbl:'a 구하기',val:'a = xy (점 대입)'},
+   ],
+   whys:[
+     {q:'❓ 왜 쌍곡선인가?',
+      a:'x→0이면 y→∞, x→∞이면 y→0. <strong>두 개의 곡선</strong>이 대칭으로 생김'},
+     {q:'❓ a>0이면 몇 사분면?',
+      a:'<strong>1, 3사분면</strong> (x와 y 부호가 같을 때 곱이 양수)'},
+     {q:'❓ a<0이면 몇 사분면?',
+      a:'<strong>2, 4사분면</strong> (x와 y 부호가 반대일 때 곱이 음수)'},
+   ]},
+  {title:'📏 일차함수 y=mx+b',
+   formulas:[
+     {lbl:'기본 식',val:'y = mx + b'},
+     {lbl:'기울기 m',val:'(y₂−y₁)÷(x₂−x₁)'},
+     {lbl:'y절편',val:'x=0일 때의 y값 (b)'},
+     {lbl:'x절편',val:'y=0으로 놓고 풀면 −b/m'},
+   ],
+   whys:[
+     {q:'❓ 기울기는 무엇을 뜻하나?',
+      a:'x가 1 증가할 때 y의 변화량. <strong>m=2이면 x가 1 늘 때 y가 2 증가</strong>'},
+     {q:'❓ 두 직선이 평행하려면?',
+      a:'<strong>기울기(m)가 같고 y절편(b)이 달라야 함</strong>. 기울기가 같으면 만나지 않음'},
+   ]},
+  {title:'🔀 두 직선의 교점',
+   formulas:[
+     {lbl:'교점',val:'두 직선이 만나는 점'},
+     {lbl:'풀이법',val:'y=y로 놓고 연립'},
+     {lbl:'평행',val:'기울기 같음 → 교점 없음'},
+   ],
+   whys:[
+     {q:'❓ 왜 y=y로 놓나?',
+      a:'교점에서는 <strong>두 y값이 같으므로</strong> 등치로 놓아 x를 먼저 구함'},
+     {q:'❓ 교점이 무한히 많으면?',
+      a:'두 직선이 <strong>완전히 같은 직선</strong>. 기울기와 y절편 모두 같을 때'},
+   ]},
+];
+
+// =====================================================
+// QUESTION DATA
+// =====================================================
+const CH_META=[
+  {emoji:'📍',title:'좌표평면',sub:'좌표·사분면'},
+  {emoji:'📐',title:'정비례',sub:'y = ax'},
+  {emoji:'🌀',title:'반비례',sub:'y = a/x'},
+  {emoji:'📏',title:'일차함수',sub:'y = mx+b'},
+  {emoji:'🔀',title:'두 직선',sub:'교점·연립'},
+];
+
+const QS=[
+  // CH0: 좌표평면
+  [
+    {q:'그래프에서 점 A의 좌표는?',
+     cfg:{pts:[{x:3,y:2,col:'#38bdf8',lbl:'A',cross:true}]},
+     c:['(2,3)','(3,2)','(-3,2)','(3,-2)'],ans:1,fill:'(3,2)',
+     hint:'x좌표(가로)를 먼저, y좌표(세로)를 나중에 씁니다.',
+     st:['A에서 x축 방향: <strong>오른쪽 3</strong>','y축 방향: <strong>위 2</strong>','→ A = <strong>(3, 2)</strong>'],ans_txt:'(3,2)'},
+    {q:'점 B(-2, 4)를 좌표평면에 나타낸 점은?',
+     cfg:{pts:[
+       {x:-2,y:4,col:'#34d399',lbl:'정답'},{x:2,y:4,col:'#f87171',lbl:'①'},
+       {x:-2,y:-4,col:'#f59e0b',lbl:'②'},{x:4,y:-2,col:'#a78bfa',lbl:'③'}
+     ]},
+     c:['② 표시 점','③ 표시 점','① 표시 점','초록 점(정답)'],ans:3,fill:'초록',
+     hint:'x=-2: y축 왼쪽 2칸 / y=4: x축 위 4칸',
+     st:['x좌표 -2 → <strong>왼쪽 2칸</strong>','y좌표 4 → <strong>위 4칸</strong>','→ B = <strong>(-2, 4)</strong>'],ans_txt:'초록 점(정답)'},
+    {q:'점 P(2, -3)은 몇 사분면에 있나?',
+     cfg:{pts:[{x:2,y:-3,col:'#fbbf24',lbl:'P(2,-3)',cross:true}],
+       shade:[{type:'quad',x1:0,y1:-6,x2:6,y2:0,color:'rgba(251,191,36,0.08)'}]},
+     c:['1사분면','2사분면','3사분면','4사분면'],ans:3,fill:'4',
+     hint:'x>0(오른쪽), y<0(아래쪽) → ?사분면',
+     st:['x=2>0: <strong>오른쪽</strong>','y=-3<0: <strong>아래쪽</strong>','오른쪽+아래 = <strong>4사분면</strong>'],ans_txt:'4사분면'},
+    {q:'점 Q(-4, -2)는 몇 사분면에 있나?',
+     cfg:{pts:[{x:-4,y:-2,col:'#a78bfa',lbl:'Q',cross:true}],
+       shade:[{type:'quad',x1:-6,y1:-6,x2:0,y2:0,color:'rgba(167,139,250,0.08)'}]},
+     c:['1사분면','2사분면','3사분면','4사분면'],ans:2,fill:'3',
+     hint:'x<0(왼쪽), y<0(아래쪽) → ?사분면',
+     st:['x=-4<0: <strong>왼쪽</strong>','y=-2<0: <strong>아래쪽</strong>','왼쪽+아래 = <strong>3사분면</strong>'],ans_txt:'3사분면'},
+    {q:'x좌표가 양수, y좌표가 음수인 점은 몇 사분면?',
+     cfg:{shade:[{type:'quad',x1:0,y1:-6,x2:6,y2:0,color:'rgba(56,189,248,0.1)'}]},
+     c:['1사분면','2사분면','3사분면','4사분면'],ans:3,fill:'4',
+     hint:'x>0은 오른쪽, y<0은 아래쪽',
+     st:['x>0 → 오른쪽 영역','y<0 → 아래쪽 영역','두 조건 모두 → <strong>4사분면</strong>'],ans_txt:'4사분면'},
+    {q:'점 A(3, a)가 2사분면에 있으려면 a의 조건은?',
+     cfg:{shade:[{type:'quad',x1:-6,y1:0,x2:0,y2:6,color:'rgba(52,211,153,0.08)'}]},
+     c:['a>0','a<0','a=0','알 수 없음'],ans:1,fill:'a<0',
+     hint:'2사분면: x<0, y>0 — 그런데 x=3>0이면?',
+     st:['2사분면 조건: x<0, y>0','그런데 x=3>0이므로 A(3,a)는 <strong>2사분면 불가!</strong>','실제로 a>0이면 1사분면, a<0이면 4사분면'],ans_txt:'불가능 (오답: a<0)'},
+    {q:'x축 위의 점 (5, 0)은 몇 사분면?',
+     cfg:{pts:[{x:5,y:0,col:'#38bdf8',lbl:'(5,0)'}]},
+     c:['1사분면','4사분면','x축 위 (사분면 아님)','원점'],ans:2,fill:'사분면 아님',
+     hint:'x축(y=0)이나 y축(x=0) 위의 점은 사분면에 속하지 않아요.',
+     st:['y=0 → x축 위에 있음','축 위의 점은 <strong>어느 사분면에도 속하지 않음</strong>'],ans_txt:'x축 위 (사분면 아님)'},
+    {q:'두 점 A(a, 3), B(-2, b)가 각각 1사분면, 3사분면에 있다. a, b의 부호는?',
+     cfg:{
+       pts:[{x:3,y:3,col:'#34d399',lbl:'A'},{x:-2,y:-2,col:'#f87171',lbl:'B'}],
+       shade:[
+         {type:'quad',x1:0,y1:0,x2:6,y2:6,color:'rgba(52,211,153,0.07)'},
+         {type:'quad',x1:-6,y1:-6,x2:0,y2:0,color:'rgba(248,113,113,0.07)'},
+       ]
+     },
+     c:['a>0, b>0','a>0, b<0','a<0, b>0','a<0, b<0'],ans:1,fill:'a>0,b<0',
+     hint:'1사분면: x>0, y>0 / 3사분면: x<0, y<0',
+     st:['A가 1사분면 → a>0 (x좌표 양수)','B가 3사분면 → b<0 (y좌표 음수)','→ <strong>a>0, b<0</strong>'],ans_txt:'a>0, b<0'},
+    {q:'점 C(a, b)가 2사분면에 있을 때, 점 D(b, a)는 몇 사분면?',
+     cfg:{shade:[
+       {type:'quad',x1:-6,y1:0,x2:0,y2:6,color:'rgba(56,189,248,0.08)'},
+       {type:'quad',x1:0,y1:-6,x2:6,y2:0,color:'rgba(245,158,11,0.08)'},
+     ]},
+     c:['1사분면','2사분면','3사분면','4사분면'],ans:3,fill:'4',
+     hint:'2사분면: a<0, b>0. D(b,a)에서 x좌표=b, y좌표=a',
+     st:['C가 2사분면 → a<0, b>0','D(b,a): x=b>0, y=a<0','x>0, y<0 → <strong>4사분면</strong>'],ans_txt:'4사분면'},
+    {q:'원점 O(0,0)은 몇 사분면에 속하나?',
+     cfg:{pts:[{x:0,y:0,col:'#fbbf24',lbl:'O'}]},
+     c:['1사분면','3사분면','어느 사분면에도 속하지 않음','모든 사분면'],ans:2,fill:'속하지 않음',
+     hint:'원점은 두 축의 교차점입니다.',
+     st:['원점 O는 x축과 y축이 만나는 점','<strong>어느 사분면에도 속하지 않음</strong>','(사분면 경계 = 두 축)'],ans_txt:'어느 사분면에도 속하지 않음'},
+  ],
+  // CH1: 정비례
+  [
+    {q:'이 그래프의 a값은? (y = ax)',
+     cfg:{lines:[{m:2,b:0,col:'#34d399',label:'y=ax'}],pts:[{x:1,y:2,col:'#fbbf24',lbl:'(1,2)',cross:true}]},
+     c:['a=1','a=2','a=3','a=-2'],ans:1,fill:'2',
+     hint:'정비례: a = y ÷ x. 점 (1,2)를 이용하세요.',
+     st:['점 (1,2)가 그래프 위에 있음','a = y ÷ x = 2 ÷ 1','= <strong>2</strong>'],ans_txt:'a=2'},
+    {q:'그래프가 점 (3, 9)를 지난다. a값은?',
+     cfg:{lines:[{m:3,b:0,col:'#38bdf8'}],pts:[{x:3,y:9,col:'#fbbf24',lbl:'(3,9)',cross:true}]},
+     c:['a=2','a=3','a=4','a=6'],ans:1,fill:'3',
+     hint:'a = y ÷ x',
+     st:['점 (3,9)이 y=ax 위','a = 9 ÷ 3','= <strong>3</strong>'],ans_txt:'a=3'},
+    {q:'y = -2x 그래프의 특징으로 옳은 것은?',
+     cfg:{lines:[{m:-2,b:0,col:'#f59e0b',label:'y=-2x'}]},
+     c:['원점을 지나고 우상향','원점을 지나고 우하향','y절편이 -2','x축과 평행'],ans:1,fill:'우하향',
+     hint:'a<0이면 그래프는 어느 방향?',
+     st:['y=-2x: a=-2<0','a<0 → 오른쪽으로 갈수록 y 감소','→ <strong>원점을 지나고 우하향</strong>'],ans_txt:'원점을 지나고 우하향'},
+    {q:'y = ax에서 x=4일 때 y=12이다. a값은?',
+     cfg:{lines:[{m:3,b:0,col:'#a78bfa'}],pts:[{x:4,y:12,col:'#fbbf24',lbl:'(4,12)',cross:true}]},
+     c:['a=2','a=3','a=4','a=8'],ans:1,fill:'3',
+     hint:'12 = a × 4 → a = ?',
+     st:['y=ax에서 x=4, y=12 대입','12 = a × 4','a = 12 ÷ 4 = <strong>3</strong>'],ans_txt:'a=3'},
+    {q:'정비례 관계 y = (1/2)x 에서 x=6일 때 y는?',
+     cfg:{lines:[{m:0.5,b:0,col:'#34d399',label:'y=x/2'}],pts:[{x:6,y:3,col:'#fbbf24',lbl:'?',cross:true}]},
+     c:['y=2','y=3','y=4','y=12'],ans:1,fill:'3',
+     hint:'y = (1/2) × 6',
+     st:['y = (1/2) × 6','= <strong>3</strong>'],ans_txt:'y=3'},
+    {q:'두 정비례 y=2x와 y=5x 중 더 가파른 그래프는?',
+     cfg:{lines:[{m:2,b:0,col:'#34d399',label:'y=2x'},{m:5,b:0,col:'#f87171',label:'y=5x'}]},
+     c:['y=2x','y=5x','같다','알 수 없다'],ans:1,fill:'y=5x',
+     hint:'|a|값이 클수록 기울기가 가파릅니다.',
+     st:['y=2x: |a|=2','y=5x: |a|=5','|5|>|2| → <strong>y=5x가 더 가파름</strong>'],ans_txt:'y=5x'},
+    {q:'y = ax에서 x가 3배가 되면 y는 몇 배?',
+     cfg:{lines:[{m:2,b:0,col:'#38bdf8'}],pts:[{x:1,y:2,col:'#fbbf24',lbl:'x'},{x:3,y:6,col:'#34d399',lbl:'3x'}]},
+     c:['변하지 않음','2배','3배','9배'],ans:2,fill:'3배',
+     hint:'정비례: x가 k배이면 y도 k배!',
+     st:['y=ax: y는 x에 비례','x → 3x이면','y → a×3x = <strong>3배</strong>'],ans_txt:'3배'},
+    {q:'y = ax가 점 (-2, 6)을 지날 때 a는?',
+     cfg:{lines:[{m:-3,b:0,col:'#f59e0b',label:'y=ax'}],pts:[{x:-2,y:6,col:'#fbbf24',lbl:'(-2,6)',cross:true}]},
+     c:['a=3','a=-3','a=1/3','a=-1/3'],ans:1,fill:'-3',
+     hint:'a = y ÷ x = 6 ÷ (-2)',
+     st:['a = y ÷ x','= 6 ÷ (-2)','= <strong>-3</strong>'],ans_txt:'a=-3'},
+    {q:'정비례 y=3x에서 x=-4일 때 y는?',
+     cfg:{lines:[{m:3,b:0,col:'#a78bfa'}],pts:[{x:-4,y:-12,col:'#fbbf24',lbl:'(-4,?)',cross:true}]},
+     c:['y=12','y=-12','y=-7','y=7'],ans:1,fill:'-12',
+     hint:'y = 3 × (-4)',
+     st:['y = 3 × (-4)','= <strong>-12</strong>'],ans_txt:'y=-12'},
+    {q:'y = ax에서 a = 1/3이다. x=9일 때 y는?',
+     cfg:{lines:[{m:1/3,b:0,col:'#34d399',label:'y=(1/3)x'}],pts:[{x:9,y:3,col:'#fbbf24',lbl:'(9,?)',cross:true}]},
+     c:['y=1','y=2','y=3','y=27'],ans:2,fill:'3',
+     hint:'y = (1/3) × 9',
+     st:['y = (1/3) × 9','= 9/3','= <strong>3</strong>'],ans_txt:'y=3'},
+  ],
+  // CH2: 반비례
+  [
+    {q:'그래프의 a값은? (y = a/x)',
+     cfg:{inverses:[{a:6,col:'#38bdf8',label:'y=a/x'}],pts:[{x:2,y:3,col:'#fbbf24',lbl:'(2,3)',cross:true}]},
+     c:['a=2','a=3','a=6','a=12'],ans:2,fill:'6',
+     hint:'a = x × y = 2 × 3',
+     st:['a = x × y','= 2 × 3','= <strong>6</strong>'],ans_txt:'a=6'},
+    {q:'y = 12/x에서 x=3일 때 y는?',
+     cfg:{inverses:[{a:12,col:'#34d399'}],pts:[{x:3,y:4,col:'#fbbf24',lbl:'(3,?)',cross:true}]},
+     c:['y=3','y=4','y=6','y=36'],ans:1,fill:'4',
+     hint:'y = 12 ÷ 3',
+     st:['y = 12/3','= <strong>4</strong>'],ans_txt:'y=4'},
+    {q:'y = -6/x의 그래프는 몇 사분면에 있나?',
+     cfg:{inverses:[{a:-6,col:'#f59e0b',label:'y=-6/x'}]},
+     c:['1, 3사분면','2, 4사분면','1, 2사분면','3, 4사분면'],ans:1,fill:'2,4',
+     hint:'a<0이면 쌍곡선은 2, 4사분면에 위치',
+     st:['a=-6<0','a<0인 반비례는 <strong>2, 4사분면</strong>에 위치','(x와 y 부호가 반대)'],ans_txt:'2, 4사분면'},
+    {q:'y = a/x에서 점 (3, -4)가 그래프 위에 있다. a는?',
+     cfg:{inverses:[{a:-12,col:'#a78bfa'}],pts:[{x:3,y:-4,col:'#fbbf24',lbl:'(3,-4)',cross:true}]},
+     c:['a=7','a=-7','a=12','a=-12'],ans:3,fill:'-12',
+     hint:'a = x × y = 3 × (-4)',
+     st:['a = x × y','= 3 × (-4)','= <strong>-12</strong>'],ans_txt:'a=-12'},
+    {q:'y = 8/x에서 xy의 값은?',
+     cfg:{inverses:[{a:8,col:'#34d399'}]},
+     c:['x마다 다름','항상 4','항상 8','항상 16'],ans:2,fill:'8',
+     hint:'반비례에서 xy는 항상 a!',
+     st:['y = 8/x 양변에 x를 곱하면','xy = 8','→ x와 y의 곱은 항상 <strong>8</strong>'],ans_txt:'항상 8'},
+    {q:'반비례 y = 4/x에서 x가 2배가 되면 y는?',
+     cfg:{inverses:[{a:4,col:'#38bdf8'}]},
+     c:['2배','4배','1/2배','변하지 않음'],ans:2,fill:'1/2배',
+     hint:'xy=4 (일정). x가 2배이면 y는?',
+     st:['xy = 4로 일정','x → 2x이면','2x × y\' = 4 → y\' = 4/(2x) = y/2','→ y는 <strong>1/2배</strong>'],ans_txt:'1/2배'},
+    {q:'두 반비례 y=3/x와 y=6/x 중 원점에서 더 멀리 위치한 것은?',
+     cfg:{inverses:[{a:3,col:'#34d399',label:'y=3/x'},{a:6,col:'#f87171',label:'y=6/x'}]},
+     c:['y=3/x','y=6/x','같다','알 수 없다'],ans:1,fill:'y=6/x',
+     hint:'|a|가 클수록 원점에서 더 멀리 위치합니다.',
+     st:['y=3/x: |a|=3','y=6/x: |a|=6','|6|>|3| → <strong>y=6/x가 원점에서 더 멀리</strong>'],ans_txt:'y=6/x'},
+    {q:'y = a/x에서 점 (-2, 5)가 그래프 위에 있다. a는?',
+     cfg:{inverses:[{a:-10,col:'#f59e0b'}],pts:[{x:-2,y:5,col:'#fbbf24',lbl:'(-2,5)',cross:true}]},
+     c:['a=10','a=-10','a=2.5','a=-2.5'],ans:1,fill:'-10',
+     hint:'a = x × y = (-2) × 5',
+     st:['a = x × y','= (-2) × 5','= <strong>-10</strong>'],ans_txt:'a=-10'},
+    {q:'y = 20/x에서 x=5일 때 y는?',
+     cfg:{inverses:[{a:20,col:'#a78bfa'}],pts:[{x:5,y:4,col:'#fbbf24',lbl:'(5,?)',cross:true}]},
+     c:['y=2','y=4','y=5','y=100'],ans:1,fill:'4',
+     hint:'y = 20 ÷ 5',
+     st:['y = 20/5','= <strong>4</strong>'],ans_txt:'y=4'},
+    {q:'반비례 y = -9/x에서 x=-3일 때 y는?',
+     cfg:{inverses:[{a:-9,col:'#f87171'}],pts:[{x:-3,y:3,col:'#fbbf24',lbl:'(-3,?)',cross:true}]},
+     c:['y=3','y=-3','y=27','y=-27'],ans:0,fill:'3',
+     hint:'y = -9 ÷ (-3) = ?',
+     st:['y = -9 / (-3)','= <strong>3</strong> (음수÷음수=양수)'],ans_txt:'y=3'},
+  ],
+  // CH3: 일차함수
+  [
+    {q:'이 그래프의 기울기는? (y = mx + b)',
+     cfg:{lines:[{m:2,b:-3,col:'#34d399',label:'y=2x-3'}],
+      pts:[{x:0,y:-3,col:'#fbbf24',lbl:'(0,-3)'},{x:1,y:-1,col:'#38bdf8',lbl:'(1,-1)'}]},
+     c:['m=-3','m=2','m=3','m=-2'],ans:1,fill:'2',
+     hint:'기울기 = y의 변화량 ÷ x의 변화량',
+     st:['두 점 (0,-3), (1,-1) 이용','기울기 = (-1-(-3))÷(1-0)','= 2÷1 = <strong>2</strong>'],ans_txt:'m=2'},
+    {q:'y = 3x - 1의 y절편은?',
+     cfg:{lines:[{m:3,b:-1,col:'#38bdf8',label:'y=3x-1'}],pts:[{x:0,y:-1,col:'#fbbf24',lbl:'y절편',cross:true}]},
+     c:['y절편=3','y절편=-1','y절편=1','y절편=-3'],ans:1,fill:'-1',
+     hint:'y절편: x=0을 대입한 y값',
+     st:['x=0 대입: y = 3×0 - 1','= -1','y절편 = <strong>-1</strong>'],ans_txt:'y절편=-1'},
+    {q:'y = -x + 4의 x절편은?',
+     cfg:{lines:[{m:-1,b:4,col:'#f59e0b',label:'y=-x+4'}],pts:[{x:4,y:0,col:'#fbbf24',lbl:'x절편',cross:true}]},
+     c:['x절편=1','x절편=4','x절편=-4','x절편=2'],ans:1,fill:'4',
+     hint:'x절편: y=0으로 놓고 풀기',
+     st:['y=0 대입: 0 = -x+4','x = 4','x절편 = <strong>4</strong>'],ans_txt:'x절편=4'},
+    {q:'두 점 (1,3), (3,7)을 지나는 일차함수의 기울기는?',
+     cfg:{lines:[{m:2,b:1,col:'#a78bfa',label:'y=2x+1'}],
+      pts:[{x:1,y:3,col:'#fbbf24',lbl:'(1,3)'},{x:3,y:7,col:'#34d399',lbl:'(3,7)'}]},
+     c:['m=1','m=2','m=3','m=4'],ans:1,fill:'2',
+     hint:'m = (7-3) ÷ (3-1)',
+     st:['m = (y₂-y₁)÷(x₂-x₁)','= (7-3)÷(3-1)','= 4÷2 = <strong>2</strong>'],ans_txt:'m=2'},
+    {q:'기울기 3, y절편 -2인 일차함수의 식은?',
+     cfg:{lines:[{m:3,b:-2,col:'#f87171',label:'y=3x-2'}]},
+     c:['y=3x+2','y=-3x-2','y=3x-2','y=2x-3'],ans:2,fill:'y=3x-2',
+     hint:'y = mx + b에 m=3, b=-2 대입',
+     st:['기울기 m=3, y절편 b=-2','y = mx+b에 대입','y = <strong>3x-2</strong>'],ans_txt:'y=3x-2'},
+    {q:'y = 2x + b가 점 (1, 5)를 지날 때 b는?',
+     cfg:{lines:[{m:2,b:3,col:'#34d399',label:'y=2x+3'}],pts:[{x:1,y:5,col:'#fbbf24',lbl:'(1,5)',cross:true}]},
+     c:['b=1','b=2','b=3','b=5'],ans:2,fill:'3',
+     hint:'5 = 2×1 + b → b = ?',
+     st:['점(1,5)를 y=2x+b에 대입','5 = 2×1 + b','5 = 2 + b → b = <strong>3</strong>'],ans_txt:'b=3'},
+    {q:'y = 2x + 3과 y = 2x - 1의 관계는?',
+     cfg:{lines:[{m:2,b:3,col:'#34d399',label:'y=2x+3'},{m:2,b:-1,col:'#f59e0b',label:'y=2x-1'}]},
+     c:['한 점에서 만남','평행 (만나지 않음)','일치 (완전히 같음)','수직'],ans:1,fill:'평행',
+     hint:'기울기가 같으면 평행 또는 일치!',
+     st:['y=2x+3: 기울기 2','y=2x-1: 기울기 2','기울기 같고, y절편 다름 → <strong>평행</strong>'],ans_txt:'평행'},
+    {q:'x절편=3, y절편=6인 일차함수의 기울기는?',
+     cfg:{lines:[{m:-2,b:6,col:'#a78bfa',label:'y=-2x+6'}],
+      pts:[{x:3,y:0,col:'#fbbf24',lbl:'(3,0)'},{x:0,y:6,col:'#38bdf8',lbl:'(0,6)'}]},
+     c:['m=2','m=-2','m=3','m=-3'],ans:1,fill:'-2',
+     hint:'두 점 (3,0), (0,6)을 이용: m=(6-0)÷(0-3)',
+     st:['두 점: (3,0), (0,6)','m = (6-0)÷(0-3)','= 6÷(-3) = <strong>-2</strong>'],ans_txt:'m=-2'},
+    {q:'y = -3x + 6의 그래프가 x축, y축과 만나는 두 점은?',
+     cfg:{lines:[{m:-3,b:6,col:'#f87171',label:'y=-3x+6'}],
+      pts:[{x:2,y:0,col:'#fbbf24',lbl:'x절편(2,0)'},{x:0,y:6,col:'#34d399',lbl:'y절편(0,6)'}]},
+     c:['x절편(3,0), y절편(0,6)','x절편(2,0), y절편(0,6)','x절편(2,0), y절편(0,-6)','x절편(-2,0), y절편(0,6)'],ans:1,fill:'(2,0),(0,6)',
+     hint:'y=0: x절편 / x=0: y절편 계산',
+     st:['y절편: x=0 → y=6 → <strong>(0,6)</strong>','x절편: y=0 → 0=-3x+6 → x=2 → <strong>(2,0)</strong>'],ans_txt:'x절편(2,0), y절편(0,6)'},
+    {q:'y = mx + 2가 점 (-1, 5)를 지날 때 m은?',
+     cfg:{lines:[{m:-3,b:2,col:'#38bdf8',label:'y=-3x+2'}],pts:[{x:-1,y:5,col:'#fbbf24',lbl:'(-1,5)',cross:true}]},
+     c:['m=3','m=-3','m=5','m=-5'],ans:1,fill:'-3',
+     hint:'5 = m×(-1) + 2 → m = ?',
+     st:['5 = m×(-1) + 2','5-2 = -m','m = <strong>-3</strong>'],ans_txt:'m=-3'},
+  ],
+  // CH4: 두 직선
+  [
+    {q:'두 직선 y=x+1과 y=-x+3의 교점은?',
+     cfg:{
+      lines:[{m:1,b:1,col:'#34d399',label:'y=x+1'},{m:-1,b:3,col:'#f59e0b',label:'y=-x+3'}],
+      pts:[{x:1,y:2,col:'#fbbf24',lbl:'교점',cross:true}]},
+     c:['(1,3)','(1,2)','(2,3)','(0,1)'],ans:1,fill:'(1,2)',
+     hint:'x+1 = -x+3 → 2x=2 → x=1, y=?',
+     st:['x+1 = -x+3','2x = 2 → x=1','y = 1+1 = 2 → 교점 <strong>(1,2)</strong>'],ans_txt:'(1,2)'},
+    {q:'y=2x-1과 y=-x+5의 교점은?',
+     cfg:{
+      lines:[{m:2,b:-1,col:'#38bdf8',label:'y=2x-1'},{m:-1,b:5,col:'#a78bfa',label:'y=-x+5'}],
+      pts:[{x:2,y:3,col:'#fbbf24',lbl:'교점',cross:true}]},
+     c:['(2,4)','(2,3)','(3,5)','(1,2)'],ans:1,fill:'(2,3)',
+     hint:'2x-1 = -x+5 → 3x=6 → x=2',
+     st:['2x-1 = -x+5','3x = 6 → x=2','y = 2×2-1 = 3 → <strong>(2,3)</strong>'],ans_txt:'(2,3)'},
+    {q:'y=3x와 y=x+4의 교점은?',
+     cfg:{
+      lines:[{m:3,b:0,col:'#f87171',label:'y=3x'},{m:1,b:4,col:'#34d399',label:'y=x+4'}],
+      pts:[{x:2,y:6,col:'#fbbf24',lbl:'교점',cross:true}]},
+     c:['(1,3)','(2,6)','(2,8)','(4,12)'],ans:1,fill:'(2,6)',
+     hint:'3x = x+4 → 2x=4 → x=2',
+     st:['3x = x+4','2x = 4 → x=2','y = 3×2 = 6 → <strong>(2,6)</strong>'],ans_txt:'(2,6)'},
+    {q:'y=x+2와 y=x-1의 관계는?',
+     cfg:{lines:[{m:1,b:2,col:'#34d399',label:'y=x+2'},{m:1,b:-1,col:'#f87171',label:'y=x-1'}]},
+     c:['교점: (0,1)','교점: (3,5)','평행 (교점 없음)','일치'],ans:2,fill:'평행',
+     hint:'기울기가 같고 y절편이 다르면?',
+     st:['y=x+2: 기울기=1','y=x-1: 기울기=1','기울기 같고 y절편 다름','→ <strong>평행</strong> (교점 없음)'],ans_txt:'평행 (교점 없음)'},
+    {q:'y=2x+3과 y=-x의 교점은?',
+     cfg:{
+      lines:[{m:2,b:3,col:'#a78bfa',label:'y=2x+3'},{m:-1,b:0,col:'#f59e0b',label:'y=-x'}],
+      pts:[{x:-1,y:1,col:'#fbbf24',lbl:'교점',cross:true}]},
+     c:['(-1,1)','(1,-1)','(-1,-1)','(1,1)'],ans:0,fill:'(-1,1)',
+     hint:'2x+3 = -x → 3x=-3 → x=-1',
+     st:['2x+3 = -x','3x = -3 → x=-1','y = -(-1) = 1 → <strong>(-1,1)</strong>'],ans_txt:'(-1,1)'},
+    {q:'y = ax+1과 y = 2x-3이 교점이 없으려면 a는?',
+     cfg:{lines:[{m:2,b:1,col:'#34d399',label:'y=ax+1'},{m:2,b:-3,col:'#f87171',label:'y=2x-3'}]},
+     c:['a=1','a=2','a=-2','a=3'],ans:1,fill:'2',
+     hint:'교점 없음 = 평행 = 기울기 같음',
+     st:['교점 없음 → 평행','평행 → 기울기가 같아야','a = <strong>2</strong>'],ans_txt:'a=2'},
+    {q:'y=x+3과 y=2x+1의 교점의 x좌표는?',
+     cfg:{
+      lines:[{m:1,b:3,col:'#34d399',label:'y=x+3'},{m:2,b:1,col:'#38bdf8',label:'y=2x+1'}],
+      pts:[{x:2,y:5,col:'#fbbf24',lbl:'교점',cross:true}]},
+     c:['x=1','x=2','x=3','x=4'],ans:1,fill:'2',
+     hint:'x+3 = 2x+1 → x=?',
+     st:['x+3 = 2x+1','3-1 = 2x-x','x = <strong>2</strong>'],ans_txt:'x=2'},
+    {q:'두 직선 y=3x-2, y=-2x+8의 교점의 y좌표는?',
+     cfg:{
+      lines:[{m:3,b:-2,col:'#f59e0b',label:'y=3x-2'},{m:-2,b:8,col:'#a78bfa',label:'y=-2x+8'}],
+      pts:[{x:2,y:4,col:'#fbbf24',lbl:'교점',cross:true}]},
+     c:['y=2','y=4','y=6','y=8'],ans:1,fill:'4',
+     hint:'3x-2=-2x+8 → 5x=10 → x=2 → y=?',
+     st:['3x-2 = -2x+8','5x = 10 → x=2','y = 3×2-2 = <strong>4</strong>'],ans_txt:'y=4'},
+    {q:'y=x+1, y=2x-1, y=-x+5 세 직선이 한 점에서 만나는가?',
+     cfg:{
+      lines:[{m:1,b:1,col:'#34d399',label:'y=x+1'},{m:2,b:-1,col:'#f87171',label:'y=2x-1'},{m:-1,b:5,col:'#38bdf8',label:'y=-x+5'}],
+      pts:[{x:2,y:3,col:'#fbbf24',lbl:'(2,3)',cross:true}]},
+     c:['예, (2,3)에서 만남','아니오, 각각 다른 점','y=x+1과 y=2x-1만 만남','평행한 쌍이 있음'],ans:0,fill:'예(2,3)',
+     hint:'y=x+1과 y=2x-1의 교점을 구한 후, 세 번째 직선도 그 점을 지나는지 확인',
+     st:['y=x+1 = y=2x-1 → x=2, y=3','교점 (2,3)이 y=-x+5에 있는지','3 = -2+5 = 3 ✓ → 세 직선 모두 <strong>(2,3)</strong>에서 만남'],ans_txt:'예, (2,3)에서 만남'},
+    {q:'y = mx + 3과 y = 2x + m이 교점이 무한히 많으려면 m은?',
+     cfg:{lines:[{m:2,b:3,col:'#38bdf8',label:'일치'}]},
+     c:['m=1','m=2','m=3','m=6'],ans:2,fill:'3',
+     hint:'완전히 같은 직선 → 기울기와 y절편 모두 같아야',
+     st:['일치 조건: 기울기 같고 y절편 같음','기울기: m = 2','y절편: 3 = m → m=3','→ m = <strong>3</strong> (두 조건 모두 확인!)'],ans_txt:'m=3'},
+  ],
+];
+
+// =====================================================
+// STATE
+// =====================================================
+const S={
+  score:0,combo:0,maxCombo:0,
+  chapter:0,qIdx:0,
+  chPts:0,correct:0,total:0,
+  timer:null,timeLeft:35,
+  unlocked:[true,true,true,true,true],
+  done:[false,false,false,false,false],
+  qList:[],curQ:null,
+  lecSlide:0,
+};
+function loadSave(){
+  try{
+    const d=JSON.parse(localStorage.getItem('graph_v1')||'{}');
+    if(d.score!=null) S.score=d.score;
+    if(d.unlocked) S.unlocked=d.unlocked;
+    if(d.done) S.done=d.done;
+  }catch(e){}
+}
+function saveSave(){
+  localStorage.setItem('graph_v1',JSON.stringify({score:S.score,unlocked:S.unlocked,done:S.done}));
+}
+function resetSave(){localStorage.removeItem('graph_v1');location.reload();}
+
+// =====================================================
+// SCREENS
+// =====================================================
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function goHome(){clearTimer();showScreen('sc-title');renderTitle();}
+
+// =====================================================
+// TITLE
+// =====================================================
+function renderTitle(){
+  document.getElementById('t-score').textContent=S.score.toLocaleString();
+  document.getElementById('t-mode').textContent='📝 객관식';
+  const grid=document.getElementById('ch-grid');
+  grid.innerHTML=CH_META.map((m,i)=>`
+    <div class="ch-card ${S.unlocked[i]?'':'locked'} ${S.done[i]?'done':''}"
+      onclick="${S.unlocked[i]?`openChapter(${i})`:''}">
+      ${!S.unlocked[i]?`<span class="lock-icon">🔒</span>`:''}
+      <div class="ch-num">Chapter ${i+1}</div>
+      <div class="ch-emoji">${m.emoji}</div>
+      <div class="ch-title">${m.title}</div>
+      <div class="ch-status">${m.sub}<br>${S.done[i]?'✅ 완료':'🎯 도전'}</div>
+    </div>`).join('');
+}
+
+// =====================================================
+// LECTURE
+// =====================================================
+function openChapter(idx){
+  S.chapter=idx;S.lecSlide=0;
+  renderLec();
+  document.getElementById('lec-overlay').classList.add('show');
+}
+function renderLec(){
+  const slides=LECS[S.chapter];
+  const sl=slides[S.lecSlide];
+  const dots=document.getElementById('lec-dots');
+  dots.innerHTML=slides.map((_,i)=>`<div class="ldot ${i<S.lecSlide?'past':i===S.lecSlide?'on':''}"></div>`).join('');
+  document.getElementById('lec-badge').textContent=sl.badge||'개념';
+  document.getElementById('lec-h').innerHTML=sl.h;
+  document.getElementById('lec-b').innerHTML=sl.b;
+  // lecture canvas
+  const cw=document.getElementById('lec-cwrap');
+  if(sl.lcfg){
+    cw.style.display='flex';
+    const lc=document.getElementById('lec-canvas');
+    drawScene(lc,sl.lcfg);
+  } else { cw.style.display='none'; }
+  // formula
+  const fbox=document.getElementById('lec-formula');
+  if(sl.formula){fbox.style.display='block';document.getElementById('lec-fval').textContent=sl.formula;
+    document.getElementById('lec-fnote').textContent=sl.fnote||'';}
+  else fbox.style.display='none';
+  // tip
+  const tipEl=document.getElementById('lec-tip');
+  if(sl.tip){tipEl.style.display='block';tipEl.innerHTML='💡 '+sl.tip;}
+  else tipEl.style.display='none';
+  // nav buttons
+  const prev=document.getElementById('l-prev');
+  prev.style.visibility=S.lecSlide>0?'visible':'hidden';
+  const next=document.getElementById('l-next');
+  if(S.lecSlide<slides.length-1){
+    next.textContent='다음 →';next.className='l-next';
+    next.onclick=lecNext;
+  } else {
+    next.textContent='🚀 수사 시작!';next.className='l-start';
+    next.onclick=startQuiz;
+  }
+}
+function lecNext(){
+  if(S.lecSlide<LECS[S.chapter].length-1){S.lecSlide++;renderLec();}
+  else startQuiz();
+}
+function lecPrev(){if(S.lecSlide>0){S.lecSlide--;renderLec();}}
+
+// =====================================================
+// QUIZ
+// =====================================================
+function startQuiz(){
+  document.getElementById('lec-overlay').classList.remove('show');
+  S.qList=shuffle([...QS[S.chapter]]);
+  S.qIdx=0;S.combo=0;S.maxCombo=0;
+  S.chPts=0;S.correct=0;S.total=0;
+  showScreen('sc-quiz');
+  updateUI();renderQ();
+}
+function renderConceptPanel(){
+  const con=CONCEPTS[S.chapter];
+  if(!con){document.getElementById('concept-panel').innerHTML='';return;}
+  document.getElementById('concept-panel').innerHTML=`
+    <div class="cp-title">${con.title}</div>
+    <div class="cp-formulas">
+      ${con.formulas.map(f=>`
+        <div class="cp-f-row">
+          <span class="cp-f-lbl">${f.lbl}</span>
+          <span class="cp-f-val">${f.val}</span>
+        </div>`).join('')}
+    </div>
+    <div>
+      <div class="cp-why-title">💡 왜 그럴까?</div>
+      ${con.whys.map(w=>`
+        <div class="cp-why-item">
+          <div class="cp-why-q">${w.q}</div>
+          <div class="cp-why-a">${w.a}</div>
+        </div>`).join('')}
+    </div>`;
+}
+function renderQ(){
+  if(S.qIdx>=S.qList.length){endChapter();return;}
+  const q=S.qList[S.qIdx]; S.curQ=q;
+  const cm=CH_META[S.chapter];
+  document.getElementById('canvas-tag').textContent=`📊 ${cm.emoji} ${cm.title} — ${cm.sub}`;
+  document.getElementById('canvas-qn').textContent=`문제 ${S.qIdx+1} / ${S.qList.length}`;
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('q-ctr').textContent=`${S.qIdx+1} / ${S.qList.length}`;
+  // Draw graph
+  const canvas=document.getElementById('graph-canvas');
+  const {ctx}=initCanvas(canvas);
+  drawScene(canvas, q.cfg||{});
+  renderConceptPanel();
+  renderMCQ(q);
+  startTimer();
+}
+function renderMCQ(q){
+  const idxs=shuffle([0,1,2,3]);
+  const corPos=idxs.indexOf(q.ans);
+  S.curCorrectIdx=corPos;
+  document.getElementById('choices').style.display='grid';
+  document.getElementById('choices').innerHTML=idxs.map((orig,i)=>`
+    <button class="cbtn" onclick="checkMCQ(${i},${corPos})">
+      <span style="color:var(--muted);margin-right:.35rem">${['①','②','③','④'][i]}</span>${q.c[orig]}
+    </button>`).join('');
+}
+// =====================================================
+// ANSWER CHECKING
+// =====================================================
+function checkMCQ(idx,correctIdx){
+  clearTimer();
+  const btns=document.querySelectorAll('.cbtn');
+  btns.forEach(b=>b.disabled=true);
+  const ok=idx===correctIdx;
+  btns[idx].classList.add(ok?'correct':'wrong');
+  if(!ok) btns[correctIdx].classList.add('correct');
+  flash(ok);
+  S.total++;
+  if(ok){S.correct++;processCorrect();}else{processWrong();}
+  setTimeout(()=>showExp(ok),400);
+}
+function processCorrect(){
+  S.combo++;S.maxCombo=Math.max(S.maxCombo,S.combo);
+  const mult=S.combo>=10?5:S.combo>=5?3:S.combo>=3?2:1;
+  const pts=10*mult;
+  S.score+=pts;S.chPts+=pts;
+  updateUI();
+}
+function processWrong(){S.combo=0;updateUI();}
+
+// =====================================================
+// EXPLANATION
+// =====================================================
+function showExp(ok){
+  const q=S.curQ;
+  const modal=document.getElementById('exp-modal');
+  modal.className='exp-modal'+(ok?' ok':'');
+  document.getElementById('exp-icon').textContent=ok?'✨':'💥';
+  const title=document.getElementById('exp-title');
+  title.textContent=ok?'정답!':'틀렸습니다';
+  title.className='exp-title'+(ok?' ok':'');
+  document.getElementById('exp-ans-val').textContent=q.ans_txt;
+  const steps=document.getElementById('exp-steps');
+  steps.innerHTML=q.st.map((s,i)=>`<li style="animation-delay:${i*0.08}s">${s}</li>`).join('');
+  document.getElementById('exp-overlay').classList.add('show');
+}
+function closeExp(){
+  document.getElementById('exp-overlay').classList.remove('show');
+  S.qIdx++;renderQ();
+}
+function flash(ok){
+  const el=document.getElementById('flash');
+  el.className='flash '+(ok?'ok':'red');
+  void el.offsetWidth;
+  el.className='flash '+(ok?'ok':'red');
+}
+
+// =====================================================
+// HINT
+// =====================================================
+function showHint(){
+  document.getElementById('hint-body').textContent=S.curQ.hint;
+  document.getElementById('hint-overlay').classList.add('show');
+}
+function closeHint(){document.getElementById('hint-overlay').classList.remove('show');}
+
+// =====================================================
+// TIMER
+// =====================================================
+function startTimer(){
+  clearTimer();S.timeLeft=35;
+  const bar=document.getElementById('timer-bar');
+  bar.style.width='100%';bar.className='timer-bar';
+  S.timer=setInterval(()=>{
+    S.timeLeft--;
+    const pct=(S.timeLeft/35)*100;
+    bar.style.width=pct+'%';
+    if(S.timeLeft<=10)bar.className='timer-bar warn';
+    if(S.timeLeft<=0){clearTimer();timeUp();}
+  },1000);
+}
+function clearTimer(){if(S.timer){clearInterval(S.timer);S.timer=null;}}
+function timeUp(){
+  flash(false);S.combo=0;S.total++;updateUI();
+  setTimeout(()=>showExp(false),200);
+}
+function updateUI(){
+  document.getElementById('q-score').textContent=S.score.toLocaleString();
+  const el=document.getElementById('combo-el');
+  const c=S.combo;
+  const mult=c>=10?5:c>=5?3:c>=3?2:1;
+  const cls=c>=10||c>=5?'c5':c>=3?'c3':c>=1?'c2':'c0';
+  el.className='combo-el '+cls;
+  el.textContent=c>=1?`🔥 ${c}콤보 ×${mult}`:'콤보 ×1';
+}
+// =====================================================
+// CHAPTER END
+// =====================================================
+function endChapter(){
+  clearTimer();
+  S.done[S.chapter]=true;
+  if(S.chapter+1<5) S.unlocked[S.chapter+1]=true;
+  saveSave();
+  const acc=S.total>0?Math.round(S.correct/S.total*100):0;
+  const emoji=acc>=80?'🏆':acc>=60?'⭐':'💪';
+  document.getElementById('done-emoji').textContent=emoji;
+  document.getElementById('done-title').textContent=
+    acc>=80?'완벽한 이해!':acc>=60?'잘 했어요!':'조금 더 연습해봐요!';
+  document.getElementById('done-pts').textContent=`+${S.chPts.toLocaleString()}점`;
+  document.getElementById('d-acc').textContent=acc+'%';
+  document.getElementById('d-combo').textContent=S.maxCombo+'콤보';
+  document.getElementById('d-total').textContent=S.score.toLocaleString()+'점';
+  document.getElementById('d-mode').textContent='📝객관식';
+  const nb=document.getElementById('btn-nxt');
+  if(S.chapter<4){
+    nb.style.display='block';
+    nb.textContent=`${CH_META[S.chapter+1].emoji} 다음: ${CH_META[S.chapter+1].title} →`;
+  } else nb.style.display='none';
+  showScreen('sc-done');
+}
+function nextChapter(){
+  if(S.chapter<4) openChapter(S.chapter+1);
+  else goHome();
+}
+
+// =====================================================
+// UTILS
+// =====================================================
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+// INIT
+window.onload=function(){
+  loadSave();renderTitle();
+  // resize canvas on window resize
+  window.addEventListener('resize',()=>{
+    if(S.curQ){
+      const canvas=document.getElementById('graph-canvas');
+      initCanvas(canvas);
+      drawScene(canvas,S.curQ.cfg||{});
+    }
+  });
+};
+</script>
+</body>
+</html>

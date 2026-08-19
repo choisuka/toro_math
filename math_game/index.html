@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수학왕국 🏰 핀란드 초등수학</title>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg1:#0e1b2e;--bg2:#0a2a1a;
+  --card:#fffdf7;
+  --purple:#7c3aed;--green:#16a34a;--gold:#d97706;
+  --text:#1e1b4b;--muted:#6b7280;
+  --radius:20px;
+}
+body{font-family:'Nanum Gothic',sans-serif;background:linear-gradient(160deg,var(--bg1) 0%,var(--bg2) 100%);min-height:100vh;padding:16px}
+h1,h2,h3,.jua{font-family:'Jua',sans-serif}
+.screen{display:none;max-width:500px;margin:0 auto}
+.screen.active{display:block}
+
+/* ── 홈 ── */
+.home-hero{text-align:center;padding:28px 0 20px}
+.home-mascot{font-size:4.5rem;display:block;animation:mascotBounce 2.5s ease-in-out infinite}
+@keyframes mascotBounce{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-14px) rotate(3deg)}}
+.home-title{font-size:2.4rem;margin-bottom:6px;background:linear-gradient(135deg,#fde68a,#fbbf24,#f59e0b,#fde68a);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite}
+@keyframes shimmer{0%{background-position:0%}100%{background-position:200%}}
+.home-sub{color:rgba(255,255,255,.6);font-size:.88rem;margin-bottom:24px}
+.grade-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.grade-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);padding:18px 12px;text-align:center;cursor:pointer;transition:all .22s;color:#fff}
+.grade-card:hover{background:rgba(255,255,255,.16);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.grade-card:active{transform:scale(.96)}
+.grade-emoji{font-size:2.2rem;display:block;margin-bottom:6px}
+.grade-name{font-family:'Jua',sans-serif;font-size:1.05rem;margin-bottom:3px}
+.grade-desc{font-size:.72rem;color:rgba(255,255,255,.6);line-height:1.5}
+
+/* ── 단원 선택 ── */
+.page-header{display:flex;align-items:center;gap:12px;padding:16px 0}
+.back-btn{background:rgba(255,255,255,.1);border:none;color:#fff;width:42px;height:42px;border-radius:13px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.back-btn:hover{background:rgba(255,255,255,.2)}
+.grade-badge{background:rgba(253,230,138,.15);color:#fde68a;font-family:'Jua',sans-serif;font-size:.85rem;padding:5px 16px;border-radius:20px;border:1px solid rgba(253,230,138,.3)}
+.topic-list{display:flex;flex-direction:column;gap:10px;padding-bottom:24px}
+.topic-card{background:var(--card);border-radius:var(--radius);padding:16px 18px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:14px;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.topic-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
+.topic-card:active{transform:scale(.97)}
+.topic-ico{font-size:2.2rem;min-width:50px;text-align:center}
+.topic-title{font-family:'Jua',sans-serif;font-size:1.05rem;color:var(--text);margin-bottom:2px}
+.topic-desc{font-size:.76rem;color:var(--muted);line-height:1.5}
+.topic-tag{display:inline-block;background:#ede9fe;color:#6d28d9;font-size:.65rem;padding:2px 8px;border-radius:20px;margin-top:4px}
+
+/* ── 게임 ── */
+.game-card{background:var(--card);border-radius:var(--radius);padding:18px 16px;box-shadow:0 24px 64px rgba(0,0,0,.45);margin-bottom:16px}
+.game-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.g-back{background:none;border:1px solid #e5e7eb;color:var(--muted);cursor:pointer;font-size:.8rem;display:flex;align-items:center;gap:4px;font-family:inherit;padding:6px 12px;border-radius:10px;transition:all .2s}
+.g-back:hover{background:#f3f4f6}
+.score-chip{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#78350f;padding:5px 14px;border-radius:20px;font-family:'Jua',sans-serif;font-size:.88rem}
+.prog-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.prog-bar{flex:1;height:8px;background:#f0f0f0;border-radius:100px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#a78bfa);border-radius:100px;transition:width .5s ease}
+.q-num{font-size:.76rem;color:var(--muted);white-space:nowrap}
+.mascot-area{text-align:center;font-size:2.4rem;min-height:56px;padding:4px 0;transition:all .3s}
+.q-box{background:linear-gradient(135deg,#f5f3ff,#eff6ff);border:1px solid #ddd6fe;border-radius:16px;padding:16px;margin:10px 0;text-align:center}
+.q-context{font-size:.82rem;color:var(--muted);margin-bottom:8px;line-height:1.75}
+.q-visual{min-height:20px;margin:8px 0}
+.q-text{font-size:1.3rem;font-family:'Jua',sans-serif;color:var(--text);line-height:1.65}
+.choices-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.choice-btn{background:#fff;border:2px solid #e5e7eb;border-radius:14px;padding:14px 8px;cursor:pointer;font-family:'Jua',sans-serif;font-size:.97rem;color:var(--text);transition:all .22s;text-align:center;word-break:break-all;line-height:1.4}
+.choice-btn:hover:not(:disabled){border-color:#7c3aed;background:#f5f3ff;transform:translateY(-2px)}
+.choice-btn:disabled{cursor:default}
+.choice-btn.correct{border-color:#16a34a;background:#f0fdf4;color:#15803d;font-weight:700}
+.choice-btn.wrong{border-color:#dc2626;background:#fff5f5;color:#b91c1c}
+.choice-btn.reveal{border-color:#16a34a;background:#f0fdf4;color:#15803d}
+.input-row{display:flex;gap:10px;margin-top:12px}
+.ans-input{flex:1;border:2px solid #ddd6fe;border-radius:14px;padding:12px 16px;font-size:1.2rem;font-family:'Jua',sans-serif;text-align:center;outline:none;background:#faf5ff;transition:border-color .2s}
+.ans-input:focus{border-color:#7c3aed}
+.submit-btn{background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border:none;border-radius:14px;padding:12px 18px;font-family:'Jua',sans-serif;font-size:1rem;cursor:pointer;white-space:nowrap}
+.feedback{border-radius:14px;padding:11px 16px;margin-top:10px;text-align:center;font-family:'Jua',sans-serif;font-size:.92rem;display:none;line-height:1.6}
+.feedback.show{display:block}
+.feedback.ok{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}
+.feedback.no{background:#fff5f5;color:#b91c1c;border:1px solid #fecaca}
+.next-btn{display:none;width:100%;margin-top:10px;padding:14px;background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border:none;border-radius:50px;font-family:'Jua',sans-serif;font-size:1rem;cursor:pointer;animation:btnPulse 2s ease-in-out infinite}
+.next-btn.show{display:block}
+@keyframes btnPulse{0%,100%{box-shadow:0 4px 16px rgba(124,58,237,.4)}50%{box-shadow:0 8px 28px rgba(124,58,237,.7)}}
+
+/* ── 비주얼 ── */
+.dots-wrap{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:8px}
+.dot{width:22px;height:22px;border-radius:50%;display:inline-block}
+.array-wrap{display:flex;flex-direction:column;gap:5px;align-items:center;padding:6px}
+.array-row{display:flex;gap:5px}
+.array-dot{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a78bfa)}
+.frac-bar-wrap{display:flex;flex-direction:column;gap:5px;padding:6px;align-items:center}
+.frac-bar{display:flex;border-radius:8px;overflow:hidden;border:2px solid #c4b5fd;height:30px;width:220px}
+.frac-seg{flex:1;border-right:1px solid #c4b5fd}
+.frac-seg:last-child{border-right:none}
+.frac-seg.filled{background:linear-gradient(135deg,#7c3aed,#a78bfa)}
+.frac-seg.empty{background:#f5f3ff}
+.nline-wrap{padding:10px 0;overflow-x:auto}
+.nline{position:relative;height:52px;min-width:280px}
+.nline-bar{position:absolute;top:20px;left:16px;right:16px;height:4px;background:#d1d5db;border-radius:2px}
+.nline-tick{position:absolute;top:13px;width:2px;height:14px;background:#9ca3af;transform:translateX(-50%)}
+.nline-lbl{position:absolute;top:30px;font-size:.62rem;color:#6b7280;transform:translateX(-50%)}
+.nline-dot{position:absolute;top:20px;width:14px;height:14px;background:#7c3aed;border-radius:50%;transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 0 0 2px #7c3aed}
+
+/* ── 결과 ── */
+.result-card{background:var(--card);border-radius:var(--radius);padding:36px 20px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.45);margin-top:16px}
+.result-mascot{font-size:5rem;display:block;margin-bottom:14px;animation:mascotBounce 2s ease-in-out infinite}
+.result-title{font-size:1.7rem;font-family:'Jua',sans-serif;color:var(--text);margin-bottom:6px}
+.result-desc{color:var(--muted);font-size:.9rem;margin-bottom:20px}
+.stars-display{font-size:2.4rem;letter-spacing:6px;margin-bottom:24px}
+.result-btns{display:flex;flex-direction:column;gap:10px}
+.btn-main{background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border:none;border-radius:50px;padding:15px;font-family:'Jua',sans-serif;font-size:1rem;cursor:pointer}
+.btn-sub{background:rgba(0,0,0,.07);color:var(--text);border:none;border-radius:50px;padding:15px;font-family:'Jua',sans-serif;font-size:1rem;cursor:pointer}
+
+/* ── 게임화 모달 공통 ── */
+.gm-overlay{display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1rem;overflow-y:auto}
+.gm-overlay.show{display:flex;animation:gmFadeIn .2s ease}
+@keyframes gmFadeIn{from{opacity:0}to{opacity:1}}
+.gm-box{background:#1e1b4b;border:1.5px solid rgba(167,139,250,.4);border-radius:22px;padding:1.8rem 1.5rem;width:100%;max-width:420px;position:relative;animation:gmPop .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes gmPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.gm-close{position:absolute;top:.8rem;right:.8rem;background:rgba(255,255,255,.1);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem}
+.gm-title{font-family:'Jua',sans-serif;font-size:1.2rem;color:#fff;margin-bottom:1rem;text-align:center}
+</style>
+<script src="toro_ai.js"></script>
+</head>
+<body>
+
+<!-- ── 게임화 UI ── -->
+<button id="toro-compass-btn" onclick="showCompassHint()" style="position:fixed;bottom:80px;right:20px;z-index:100;width:54px;height:54px;border-radius:50%;border:none;background:linear-gradient(135deg,#1a3a5a,#3498db);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 16px rgba(52,152,219,.4)">🧭</button>
+
+<!-- 나침반 모달 -->
+<div id="compass-modal" class="gm-overlay" onclick="if(event.target===this)closeCompassModal()">
+  <div class="gm-box">
+    <button class="gm-close" onclick="closeCompassModal()">✕</button>
+    <div class="gm-title">🧭 토로의 나침반</div>
+    <div id="compass-hint-text" style="color:#c4b5fd;font-size:.95rem;line-height:1.8;text-align:center;padding:.5rem 0"></div>
+  </div>
+</div>
+
+<!-- 유물 수여 모달 -->
+<div id="artifact-modal" class="gm-overlay" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="gm-box" style="text-align:center">
+    <button class="gm-close" onclick="document.getElementById('artifact-modal').classList.remove('show')">✕</button>
+    <div style="font-size:3rem;margin-bottom:.5rem" id="artifact-modal-emoji">🏅</div>
+    <div class="gm-title" id="artifact-modal-name">유물 획득!</div>
+    <div style="color:#94a3b8;font-size:.85rem;margin-bottom:.5rem" id="artifact-modal-island"></div>
+    <div style="color:#e2e8f0;font-size:.9rem;font-style:italic;padding:.75rem 1rem;background:rgba(255,255,255,.05);border-radius:12px;margin-bottom:1rem" id="artifact-modal-quote"></div>
+    <button onclick="document.getElementById('artifact-modal').classList.remove('show')" style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border:none;border-radius:20px;padding:10px 28px;font-family:'Jua',sans-serif;font-size:.95rem;cursor:pointer">확인!</button>
+  </div>
+</div>
+
+<!-- 유물 컬렉션 모달 -->
+<div id="artifact-collection-modal" class="gm-overlay" onclick="if(event.target===this)closeArtifactCollection()">
+  <div class="gm-box" style="max-width:480px">
+    <button class="gm-close" onclick="closeArtifactCollection()">✕</button>
+    <div class="gm-title">🏆 유물 컬렉션</div>
+    <div id="artifact-collection-inner" style="display:flex;flex-direction:column;gap:.6rem"></div>
+  </div>
+</div>
+
+<!-- 항해 일지 모달 -->
+<div id="log-modal" class="gm-overlay" onclick="if(event.target===this)closeLog()">
+  <div class="gm-box" style="max-width:480px">
+    <button class="gm-close" onclick="closeLog()">✕</button>
+    <div class="gm-title">📖 항해 일지</div>
+    <div id="log-inner" style="display:flex;flex-direction:column;gap:.5rem;max-height:60vh;overflow-y:auto"></div>
+  </div>
+</div>
+
+<!-- ── 홈 ── -->
+<div class="screen active" id="home">
+  <div style="text-align:right;padding:4px 0 8px;display:flex;justify-content:flex-end;gap:8px;align-items:center">
+    <button onclick="showArtifactCollection()" style="font-family:'Jua',sans-serif;font-size:.82rem;background:rgba(212,160,23,.12);border:1px solid rgba(212,160,23,.3);color:#fbbf24;padding:6px 12px;border-radius:20px;cursor:pointer">🏆 <span id="artifact-count-badge">0개</span></button>
+    <button onclick="showLog()" style="font-family:'Jua',sans-serif;font-size:.82rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);padding:6px 12px;border-radius:20px;cursor:pointer">📖 일지</button>
+    <a href="../index.html" style="font-family:'Jua',sans-serif;font-size:.85rem;color:var(--muted);text-decoration:none;background:rgba(255,255,255,.08);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)">← 토로매쓰</a>
+  </div>
+  <div class="home-hero">
+    <span class="home-mascot">🦊</span>
+    <h1 class="home-title">수학왕국</h1>
+    <p class="home-sub">핀란드 초등수학 · 1~6학년 · 즐겁게 배워요!</p>
+  </div>
+  <div class="grade-grid" id="grade-grid"></div>
+</div>
+
+<!-- ── 단원 선택 ── -->
+<div class="screen" id="topics">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('home')">←</button>
+    <div class="grade-badge" id="topic-badge">1학년</div>
+    <span style="background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.4);color:#a78bfa;font-size:.7rem;font-weight:700;padding:3px 12px;border-radius:20px;letter-spacing:.5px">🔢 드릴형</span>
+    <span style="font-size:.72rem;color:rgba(255,255,255,.4)">반복 계산 훈련 — 속도·정확도</span>
+  </div>
+  <div class="topic-list" id="topic-list"></div>
+</div>
+
+<!-- ── 게임 ── -->
+<div class="screen" id="game">
+  <div class="game-card">
+    <div class="game-top">
+      <button class="g-back" onclick="showScreen('topics')">← 단원</button>
+      <div class="score-chip">⭐ <span id="g-score">0</span></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-bar"><div class="prog-fill" id="g-prog" style="width:0%"></div></div>
+      <div class="q-num" id="g-qnum">1/10</div>
+    </div>
+    <div class="mascot-area" id="g-mascot">🦊</div>
+    <div class="q-box">
+      <div class="q-context" id="q-ctx"></div>
+      <div class="q-visual" id="q-vis"></div>
+      <div class="q-text" id="q-txt"></div>
+    </div>
+    <div class="choices-grid" id="q-choices"></div>
+    <div class="input-row" id="q-input" style="display:none">
+      <input class="ans-input" id="ans-input" type="number" placeholder="답 입력">
+      <button class="submit-btn" onclick="submitAns()">확인</button>
+    </div>
+    <div class="feedback" id="q-fb"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQ()">다음 문제 →</button>
+    <button id="skip-btn" onclick="skipQ()" style="display:block;margin:.5rem auto 0;background:none;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.4);border-radius:8px;padding:6px 18px;font-size:.78rem;cursor:pointer">건너뛰기 ↩</button>
+  </div>
+</div>
+
+<!-- ── 결과 ── -->
+<div class="screen" id="result">
+  <div class="result-card">
+    <span class="result-mascot" id="r-mascot">🦊</span>
+    <h2 class="result-title" id="r-title">잘 했어요!</h2>
+    <p class="result-desc" id="r-desc">10개 중 8개 맞혔어요 🎯</p>
+    <div class="stars-display" id="r-stars">⭐⭐⭐</div>
+    <div class="result-btns">
+      <button class="btn-main" onclick="retryGame()">🔄 다시 풀기</button>
+      <button class="btn-sub" onclick="showScreen('topics')">📚 다른 단원</button>
+      <button class="btn-sub" onclick="showScreen('home')">🏠 학년 선택</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+//  커리큘럼 데이터
+// ══════════════════════════════════════════
+const GRADES=[
+  {g:1,emoji:'🌱',name:'1학년',desc:'수 세기 · 덧셈 · 뺄셈 · 도형'},
+  {g:2,emoji:'🌿',name:'2학년',desc:'100까지 수 · 곱셈 기초 · 시간'},
+  {g:3,emoji:'🌳',name:'3학년',desc:'구구단 · 나눗셈 · 분수 입문'},
+  {g:4,emoji:'⭐',name:'4학년',desc:'세 자리 계산 · 분수 · 소수 · 넓이'},
+  {g:5,emoji:'🌟',name:'5학년',desc:'분수 곱나눗셈 · 퍼센트 · 음수'},
+  {g:6,emoji:'✨',name:'6학년',desc:'비율 · 방정식 · 통계 · 비례'},
+  {g:7,emoji:'🔢',name:'중1 — 정수·유리수',desc:'정수 연산 · 유리수 계산 · 부호 규칙'},
+  {g:8,emoji:'📐',name:'중1 — 문자와 식·방정식',desc:'문자식 · 일차식 계산 · 일차방정식'},
+  {g:9,emoji:'📈',name:'중2 — 함수·연립방정식',desc:'일차함수 · 연립방정식 · 부등식'},
+  {g:10,emoji:'🌀',name:'중3 — 이차방정식·통계',desc:'이차방정식 · 이차함수 · 확률'}
+];
+const TOPICS={
+  1:[
+    {id:'cnt1',emoji:'🫐',name:'수 세기와 비교',desc:'1~20 세기, 크기 비교',tag:'수 감각',gen:'G1cnt'},
+    {id:'add1',emoji:'➕',name:'덧셈 (20 이내)',desc:'두 수를 더해요. 숲 속 친구들과!',tag:'연산',gen:'G1add'},
+    {id:'sub1',emoji:'➖',name:'뺄셈 (20 이내)',desc:'두 수의 차를 구해요',tag:'연산',gen:'G1sub'},
+    {id:'shp1',emoji:'🔷',name:'도형 알아보기',desc:'삼각형·사각형·원을 구별해요',tag:'도형',gen:'G1shp'}
+  ],
+  2:[
+    {id:'plv2',emoji:'🏠',name:'자릿값 (100까지)',desc:'십의 자리, 일의 자리 이해',tag:'수 체계',gen:'G2plv'},
+    {id:'add2',emoji:'➕',name:'두 자리 덧셈',desc:'받아올림 있는 덧셈까지',tag:'연산',gen:'G2add'},
+    {id:'sub2',emoji:'➖',name:'두 자리 뺄셈',desc:'받아내림 있는 뺄셈까지',tag:'연산',gen:'G2sub'},
+    {id:'mul2',emoji:'✖️',name:'곱셈 기초',desc:'같은 수를 여러 번 더하기 → 곱셈',tag:'연산',gen:'G2mul'}
+  ],
+  3:[
+    {id:'tim3',emoji:'🦌',name:'구구단 마스터',desc:'2단~9단을 완전히 익혀요',tag:'연산',gen:'G3tim'},
+    {id:'div3',emoji:'➗',name:'나눗셈',desc:'똑같이 나누는 원리',tag:'연산',gen:'G3div'},
+    {id:'frc3',emoji:'🍕',name:'분수 기초',desc:'½, ⅓, ¼ 이해 & 비교',tag:'분수',gen:'G3frc'},
+    {id:'per3',emoji:'📐',name:'둘레 구하기',desc:'다각형의 둘레를 측정해요',tag:'도형',gen:'G3per'}
+  ],
+  4:[
+    {id:'big4',emoji:'🔢',name:'세 자리 × 한 자리',desc:'세 자리 수 곱셈',tag:'연산',gen:'G4big'},
+    {id:'frc4',emoji:'🍰',name:'분수 덧셈·뺄셈',desc:'같은 분모끼리 계산',tag:'분수',gen:'G4frc'},
+    {id:'dec4',emoji:'💧',name:'소수 기초',desc:'소수점 읽기, 크기 비교',tag:'소수',gen:'G4dec'},
+    {id:'are4',emoji:'📏',name:'넓이 구하기',desc:'직사각형·삼각형 넓이',tag:'도형',gen:'G4are'}
+  ],
+  5:[
+    {id:'frc5',emoji:'🥧',name:'분수 × ÷',desc:'분수의 곱셈과 나눗셈',tag:'분수',gen:'G5frc'},
+    {id:'pct5',emoji:'💯',name:'퍼센트',desc:'50%, 25%, 10% 실생활 활용',tag:'퍼센트',gen:'G5pct'},
+    {id:'neg5',emoji:'❄️',name:'음수와 수직선',desc:'영하 기온, 음수 개념',tag:'음수',gen:'G5neg'},
+    {id:'wrd5',emoji:'🧩',name:'혼합 계산',desc:'핀란드 실생활 응용 문제',tag:'응용',gen:'G5wrd'}
+  ],
+  6:[
+    {id:'rat6',emoji:'⚖️',name:'비와 비율',desc:'두 양의 비를 구하고 활용',tag:'비율',gen:'G6rat'},
+    {id:'pct6',emoji:'📊',name:'퍼센트 활용',desc:'할인, 증감률 계산',tag:'퍼센트',gen:'G6pct'},
+    {id:'equ6',emoji:'🔭',name:'방정식 기초',desc:'□를 구하는 간단한 방정식',tag:'대수',gen:'G6equ'},
+    {id:'sta6',emoji:'📈',name:'통계와 평균',desc:'평균 구하기, 그래프 읽기',tag:'통계',gen:'G6sta'}
+  ],
+  7:[
+    {id:'int7a',emoji:'➕',name:'정수 덧셈·뺄셈',desc:'양수·음수·0 — 부호 규칙 완전 정복',tag:'정수',gen:'G7inta'},
+    {id:'int7m',emoji:'✖️',name:'정수 곱셈·나눗셈',desc:'(−)×(−)=(+) — 부호 결정 법칙',tag:'정수',gen:'G7intm'},
+    {id:'rat7a',emoji:'½',name:'유리수 덧셈·뺄셈',desc:'통분→계산→약분. LCM 활용',tag:'유리수',gen:'G7rata'},
+    {id:'rat7m',emoji:'➗',name:'유리수 곱셈·나눗셈',desc:'역수 개념 — a÷b = a×(1/b)',tag:'유리수',gen:'G7ratm'},
+    {id:'mix7', emoji:'🧮',name:'혼합 연산',desc:'정수·유리수 섞인 종합 문제',tag:'종합',gen:'G7mix'}
+  ],
+  8:[
+    {id:'alg8a',emoji:'🔡',name:'문자식 계산',desc:'동류항 정리 · 계수 · 단항식×다항식',tag:'문자와 식',gen:'G8alga'},
+    {id:'alg8b',emoji:'📦',name:'일차식 덧셈·뺄셈',desc:'괄호 풀기 · 동류항 합치기',tag:'문자와 식',gen:'G8algb'},
+    {id:'eq8a', emoji:'⚖️',name:'일차방정식 풀기',desc:'이항 · 양변 나누기 · 해 구하기',tag:'방정식',gen:'G8eqa'},
+    {id:'eq8b', emoji:'📝',name:'방정식 활용',desc:'나이·거리·가격 문제를 x로 세우기',tag:'방정식 활용',gen:'G8eqb'},
+    {id:'mix8', emoji:'🧮',name:'종합 문제',desc:'문자식 + 방정식 혼합',tag:'종합',gen:'G8mix'}
+  ],
+  9:[
+    {id:'fn9a', emoji:'📈',name:'일차함수 기울기·절편',desc:'y=ax+b — 기울기와 y절편 구하기',tag:'함수',gen:'G9fna'},
+    {id:'fn9b', emoji:'✏️',name:'일차함수 식 구하기',desc:'두 점 또는 기울기+한 점으로 식 결정',tag:'함수',gen:'G9fnb'},
+    {id:'sys9a',emoji:'🔗',name:'연립방정식 풀기',desc:'가감법 · 대입법으로 x,y 구하기',tag:'연립방정식',gen:'G9sysa'},
+    {id:'ineq9',emoji:'⚡',name:'일차부등식',desc:'부등호 방향 · 해 구하기 · 수직선',tag:'부등식',gen:'G9ineq'},
+    {id:'mix9', emoji:'🧮',name:'종합 문제',desc:'함수 + 연립방정식 + 부등식',tag:'종합',gen:'G9mix'}
+  ],
+  10:[
+    {id:'qa10a',emoji:'🌀',name:'이차방정식 인수분해',desc:'(x+a)(x+b)=0 형태로 풀기',tag:'이차방정식',gen:'G10qaa'},
+    {id:'qa10b',emoji:'📐',name:'이차방정식 근의 공식',desc:'x=(−b±√D)/2a 적용하기',tag:'이차방정식',gen:'G10qab'},
+    {id:'qf10a',emoji:'🏔️',name:'이차함수 꼭짓점',desc:'y=a(x−p)²+q — 꼭짓점·축 구하기',tag:'이차함수',gen:'G10qfa'},
+    {id:'prob10',emoji:'🎲',name:'확률 계산',desc:'경우의 수 · 확률 · 여사건',tag:'확률',gen:'G10prob'},
+    {id:'mix10',emoji:'🧮',name:'종합 문제',desc:'이차방정식 + 이차함수 + 확률',tag:'종합',gen:'G10mix'}
+  ]
+};
+
+// ══════════════════════════════════════════
+//  상태
+// ══════════════════════════════════════════
+const st={grade:1,topicId:null,gen:null,qs:[],cur:0,score:0,total:10,answered:false};
+
+// ══════════════════════════════════════════
+//  유틸
+// ══════════════════════════════════════════
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function shuf(a){return [...a].sort(()=>Math.random()-.5)}
+
+// ── 반복학습 관리 (localStorage) ──
+function qKey(q){return q.q+'::'+q.ans}
+function loadProg(gen){
+  try{const d=JSON.parse(localStorage.getItem('mkProg')||'{}');return d[gen]||{ok:[],shown:{}};}
+  catch(e){return{ok:[],shown:{}};}
+}
+function saveProg(gen,prog){
+  try{const d=JSON.parse(localStorage.getItem('mkProg')||'{}');d[gen]=prog;localStorage.setItem('mkProg',JSON.stringify(d));}catch(e){}
+}
+function saveWrong(gen,q){
+  try{
+    const d=JSON.parse(localStorage.getItem('mkWrong')||'{}');
+    if(!d[gen])d[gen]={};
+    const k=qKey(q);
+    if(!d[gen][k])d[gen][k]={count:0,q:q.q,ans:q.ans};
+    d[gen][k].count++;
+    localStorage.setItem('mkWrong',JSON.stringify(d));
+  }catch(e){}
+}
+
+// ══════════════════════════════════════════
+//  화면 전환
+// ══════════════════════════════════════════
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ══════════════════════════════════════════
+//  홈 렌더링
+// ══════════════════════════════════════════
+function renderHome(){
+  document.getElementById('grade-grid').innerHTML=GRADES.map(g=>`
+    <div class="grade-card" onclick="pickGrade(${g.g})">
+      <span class="grade-emoji">${g.emoji}</span>
+      <div class="grade-name">${g.name}</div>
+      <div class="grade-desc">${g.desc}</div>
+    </div>`).join('');
+}
+function pickGrade(g){
+  st.grade=g;
+  document.getElementById('topic-badge').textContent=g+'학년';
+  document.getElementById('topic-list').innerHTML=TOPICS[g].map(t=>`
+    <div class="topic-card" onclick="startGame(${g},'${t.id}','${t.gen}')">
+      <div class="topic-ico">${t.emoji}</div>
+      <div>
+        <div class="topic-title">${t.name}</div>
+        <div class="topic-desc">${t.desc}</div>
+        <span class="topic-tag">${t.tag}</span>
+      </div>
+    </div>`).join('');
+  showScreen('topics');
+}
+
+// ══════════════════════════════════════════
+//  게임
+// ══════════════════════════════════════════
+function startGame(g,tid,gen){
+  st.grade=g;st.topicId=tid;st.gen=gen;
+  st.qs=[];st.cur=0;st.score=0;st.answered=false;
+
+  let prog=loadProg(gen);
+  const okSet=new Set(prog.ok||[]);
+  const shownMap=prog.shown||{};
+  const sessionKeys=new Set();
+  let attempts=0;
+
+  // 셔플 풀: 중복제거 + 정답제외 + 2회초과제외
+  while(st.qs.length<st.total && attempts<300){
+    attempts++;
+    const q=window[gen]();
+    const k=qKey(q);
+    if(okSet.has(k))continue;            // 이미 맞은 문제 제외
+    if((shownMap[k]||0)>=2)continue;     // 2회 이상 출제된 문제 제외
+    if(sessionKeys.has(k))continue;      // 이번 세션 중복 제외
+    sessionKeys.add(k);
+    st.qs.push(q);
+  }
+
+  // 문제가 부족하면 진도 리셋 후 중복 허용해서 채우기
+  if(st.qs.length<st.total){
+    prog={ok:[],shown:{}};
+    saveProg(gen,prog);
+    let fb=0;
+    while(st.qs.length<st.total && fb<500){
+      fb++;
+      st.qs.push(window[gen]());
+    }
+  }
+
+  // shown 카운트 업데이트
+  st.qs.forEach(q=>{const k=qKey(q);prog.shown[k]=(prog.shown[k]||0)+1;});
+  saveProg(gen,prog);
+
+  showScreen('game');renderQ();
+}
+function retryGame(){startGame(st.grade,st.topicId,st.gen)}
+
+function renderQ(){
+  const q=st.qs[st.cur];st.answered=false;
+  document.getElementById('g-score').textContent=st.score;
+  document.getElementById('g-prog').style.width=(st.cur/st.total*100)+'%';
+  document.getElementById('g-qnum').textContent=(st.cur+1)+'/'+st.total;
+  document.getElementById('g-mascot').textContent='🦊';
+  document.getElementById('q-ctx').textContent=q.ctx||'';
+  document.getElementById('q-txt').textContent=q.q;
+  document.getElementById('q-vis').innerHTML=q.vis||'';
+  document.getElementById('q-fb').className='feedback';
+  document.getElementById('next-btn').className='next-btn';
+  document.getElementById('skip-btn').style.display='block';
+  const choicesEl=document.getElementById('q-choices');
+  const inputEl=document.getElementById('q-input');
+  if(q.choices){
+    choicesEl.style.display='grid';inputEl.style.display='none';
+    choicesEl.innerHTML=q.choices.map(c=>`<button class="choice-btn" data-c="${String(c).replace(/"/g,'&quot;')}" onclick="checkC(this)">${c}</button>`).join('');
+  } else {
+    choicesEl.style.display='none';inputEl.style.display='flex';
+    const inp=document.getElementById('ans-input');
+    inp.value='';inp.disabled=false;setTimeout(()=>inp.focus(),100);
+  }
+}
+function checkC(btn){
+  if(st.answered)return;st.answered=true;
+  const q=st.qs[st.cur];
+  const correct=btn.dataset.c===String(q.ans);
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.c===String(q.ans))b.classList.add('reveal');
+  });
+  btn.classList.add(correct?'correct':'wrong');
+  finalize(correct);
+}
+function submitAns(){
+  if(st.answered)return;
+  const val=document.getElementById('ans-input').value.trim();
+  if(!val)return;
+  st.answered=true;document.getElementById('ans-input').disabled=true;
+  finalize(val===String(st.qs[st.cur].ans));
+}
+function finalize(ok){
+  const q=st.qs[st.cur];
+  if(ok){
+    st.score++;
+    if(typeof toroSay==='function') toroSay('math','correct');
+    const prog=loadProg(st.gen);
+    const k=qKey(q);
+    if(!prog.ok.includes(k))prog.ok.push(k);
+    saveProg(st.gen,prog);
+  } else {
+    if(typeof toroSay==='function') toroSay('math','wrong');
+    saveWrong(st.gen,q);
+  }
+  const fb=document.getElementById('q-fb');
+  const msgs=['잘 했어요! 🎉','훌륭해요! ⭐','맞아요! 🌟','완벽해요! 🦊','대단해요! ✨'];
+  if(ok){fb.textContent=pick(msgs);fb.className='feedback show ok';document.getElementById('g-mascot').textContent='🦊✨';}
+  else{fb.innerHTML='아쉬워요! 정답은 <b>'+q.ans+'</b>이에요.'+(q.explain?' — '+q.explain:'');fb.className='feedback show no';}
+  document.getElementById('next-btn').className='next-btn show';
+  document.getElementById('skip-btn').style.display='none';
+}
+function skipQ(){
+  if(st.answered) return;
+  st.cur++;
+  if(st.cur>=st.total) showResult(); else renderQ();
+}
+function nextQ(){
+  st.cur++;
+  if(st.cur>=st.total)showResult();else renderQ();
+}
+
+// ══════════════════════════════════════════
+//  결과
+// ══════════════════════════════════════════
+function showResult(){
+  if(typeof toroSay==='function') toroSay('math','complete',{score:st.score,total:st.total});
+  const p=st.score/st.total;
+  const[mascot,title,stars]=p>=.9?['🦊✨✨','완벽해요!','⭐⭐⭐']:p>=.7?['🦊✨','잘 했어요!','⭐⭐']:p>=.5?['🦊','잘 하고 있어요!','⭐']:['🦊','다시 도전해봐요!',''];
+  document.getElementById('r-mascot').textContent=mascot;
+  document.getElementById('r-title').textContent=title;
+  document.getElementById('r-desc').textContent=st.total+'개 중 '+st.score+'개 맞혔어요 🎯';
+  document.getElementById('r-stars').textContent=stars;
+  showScreen('result');
+  // 유물 수여
+  addLog('game','drill','드릴 완료: '+st.score+'/'+st.total+' 정답');
+  if(p>=.5) awardArtifact('drill_basic');
+  if(p>=.9) awardArtifact('drill_master');
+}
+
+// ══════════════════════════════════════════
+//  비주얼 헬퍼
+// ══════════════════════════════════════════
+function dots(n,c='#7c3aed'){return'<div class="dots-wrap">'+Array(n).fill('<span class="dot" style="background:'+c+'"></span>').join('')+'</div>'}
+function makeArr(r,c){return'<div class="array-wrap">'+Array(r).fill(0).map(()=>'<div class="array-row">'+Array(c).fill('<div class="array-dot"></div>').join('')+'</div>').join('')+'</div>'}
+function fracBar(n,d){return'<div class="frac-bar-wrap"><div class="frac-bar">'+Array(d).fill(0).map((_,i)=>'<div class="frac-seg '+(i<n?'filled':'empty')+'"></div>').join('')+'</div></div>'}
+function numLine(lo,hi,mark){
+  const rng=hi-lo;let h='<div class="nline-wrap"><div class="nline"><div class="nline-bar"></div>';
+  for(let i=lo;i<=hi;i++){const p=(i-lo)/rng*100;const px='calc(16px + '+p/100+'*(100% - 32px))';h+='<div class="nline-tick" style="left:'+px+'"></div><div class="nline-lbl" style="left:'+px+'">'+i+'</div>';}
+  if(mark!==undefined){const p=(mark-lo)/rng*100;h+='<div class="nline-dot" style="left:calc(16px + '+p/100+'*(100% - 32px))"></div>';}
+  return h+'</div></div>';
+}
+function barChart(data){
+  const mx=Math.max(...data);
+  return'<div style="display:flex;gap:6px;justify-content:center;padding:8px;align-items:flex-end;height:80px">'+data.map(v=>'<div style="display:flex;flex-direction:column;align-items:center;gap:3px"><span style="font-size:.7rem;color:#6b7280">'+v+'</span><div style="width:26px;height:'+(v/mx*55)+'px;background:linear-gradient(180deg,#7c3aed,#a78bfa);border-radius:4px 4px 0 0"></div></div>').join('')+'</div>';
+}
+
+// ══════════════════════════════════════════
+//  1학년 문제 생성기
+// ══════════════════════════════════════════
+const ITMS=['도토리','딸기','버섯','꽃','솔방울'];
+const ANI=['🐰','🦊','🐿️','🐻','🦔'];
+const PLC=['숲 속에서','냇가에서','언덕 위에서','꽃밭에서'];
+
+function G1cnt(){
+  const n=rnd(3,15),emo=pick(['🫐','🍓','🍄','🌸','🌰']);
+  const ws=shuf([n+1,n+2,Math.max(1,n-1),Math.max(2,n-2)]).slice(0,3);
+  return{ctx:pick(PLC)+' '+pick(ANI)+' 친구가 '+pick(ITMS)+'을 모았어요.',q:emo.repeat(n)+' — 몇 개일까요?',vis:'',choices:shuf([n,...ws]).map(String),ans:String(n)};
+}
+function G1add(){
+  const a=rnd(1,9),b=rnd(1,Math.min(9,15-a)),ans=a+b;
+  return{ctx:pick(ANI)+' 친구들이 모였어요.',q:a+' + '+b+' = ?',vis:dots(a,'#7c3aed')+'<div style="text-align:center;font-size:1.1rem;padding:4px 0">+</div>'+dots(b,'#16a34a'),choices:shuf([ans,ans+1,ans+2,Math.max(1,ans-1)]).map(String),ans:String(ans)};
+}
+function G1sub(){
+  const a=rnd(5,15),b=rnd(1,a-1),ans=a-b;
+  return{ctx:pick(ITMS)+' '+a+'개 중 '+b+'개를 먹었어요.',q:a+' - '+b+' = ?',vis:'',choices:shuf([ans,ans+1,ans+2,Math.max(0,ans-1)]).map(String),ans:String(ans)};
+}
+function G1shp(){
+  const qs=[
+    {q:'꼭짓점이 없는 도형은?',ans:'원 ⭕',opts:['원 ⭕','삼각형 🔺','사각형 🟦','마름모 🔶']},
+    {q:'변이 3개인 도형은?',ans:'삼각형 🔺',opts:['원 ⭕','삼각형 🔺','사각형 🟦','오각형 ⬠']},
+    {q:'변이 4개인 도형은?',ans:'사각형 🟦',opts:['원 ⭕','삼각형 🔺','사각형 🟦','육각형 ⬡']},
+    {q:'굴릴 수 있는 도형은?',ans:'원 ⭕',opts:['원 ⭕','삼각형 🔺','사각형 🟦','마름모 🔶']},
+    {q:'쌓기 좋은 도형은?',ans:'사각형 🟦',opts:['원 ⭕','삼각형 🔺','사각형 🟦','마름모 🔶']}
+  ];
+  const s=pick(qs);return{ctx:'',q:s.q,vis:'',choices:shuf(s.opts),ans:s.ans};
+}
+
+// ══════════════════════════════════════════
+//  2학년 문제 생성기
+// ══════════════════════════════════════════
+function G2plv(){
+  const t=rnd(1,9),o=rnd(0,9),n=t*10+o,type=pick(['tens','ones','make']);
+  if(type==='tens')return{ctx:'',q:n+'의 십의 자리 숫자는?',vis:'<div style="text-align:center;padding:8px;font-size:1.8rem;font-weight:bold;color:#7c3aed">'+n+'</div>',choices:shuf([t,o,t+1,Math.max(0,t-1)]).map(String),ans:String(t)};
+  if(type==='ones')return{ctx:'',q:n+'의 일의 자리 숫자는?',vis:'<div style="text-align:center;padding:8px;font-size:1.8rem;font-weight:bold;color:#7c3aed">'+n+'</div>',choices:shuf([o,t,o===9?0:o+1,Math.max(0,o-1)]).map(String),ans:String(o)};
+  return{ctx:'',q:'십의 자리 '+t+', 일의 자리 '+o+' → 이 수는?',vis:'',choices:shuf([n,n+1,n-1,n+10]).map(String),ans:String(n)};
+}
+function G2add(){
+  const a=rnd(10,60),b=rnd(10,99-a),ans=a+b;
+  return{ctx:'🌲 숲속에서 블루베리를 땄어요.',q:a+' + '+b+' = ?',vis:'',choices:shuf([ans,ans+10,ans-10,ans+1]).map(String),ans:String(ans)};
+}
+function G2sub(){
+  const a=rnd(30,99),b=rnd(10,a-5),ans=a-b;
+  return{ctx:'',q:a+' - '+b+' = ?',vis:'',choices:shuf([ans,ans+10,ans-10,ans+1]).map(String),ans:String(ans)};
+}
+function G2mul(){
+  const n=pick([2,3,4,5]),t=rnd(2,6),ans=n*t;
+  return{ctx:pick(ANI)+' 친구 '+t+'명이 각각 '+n+'개씩 가졌어요.',q:n+' × '+t+' = ?',vis:makeArr(Math.min(t,6),Math.min(n,6)),choices:shuf([ans,ans+n,Math.max(1,ans-n),ans+1]).map(String),ans:String(ans),explain:n+'을 '+t+'번 더하면 '+ans};
+}
+
+// ══════════════════════════════════════════
+//  3학년 문제 생성기
+// ══════════════════════════════════════════
+function G3tim(){
+  const a=rnd(2,9),b=rnd(2,9),ans=a*b;
+  return{ctx:'🦌 라플란드 순록이 달려요!',q:a+' × '+b+' = ?',vis:makeArr(Math.min(a,5),Math.min(b,5)),choices:shuf([ans,ans+a,ans+b,Math.max(1,ans-a)]).map(String),ans:String(ans)};
+}
+function G3div(){
+  const b=rnd(2,9),ans=rnd(2,9),a=b*ans;
+  return{ctx:'사과 '+a+'개를 '+b+'명이 똑같이 나눠요.',q:a+' ÷ '+b+' = ?',vis:'',choices:shuf([ans,ans+1,Math.max(1,ans-1),ans+b]).map(String),ans:String(ans),explain:b+' × '+ans+' = '+a};
+}
+function G3frc(){
+  const ds=[2,3,4,6,8],d=pick(ds),n=rnd(1,d-1),type=pick(['show','bigger','half']);
+  if(type==='show'){
+    const others=ds.filter(x=>x!==d).slice(0,3).map(x=>rnd(1,x-1)+'/'+x);
+    return{ctx:'',q:'색칠된 부분을 분수로 나타내면?',vis:fracBar(n,d),choices:shuf([n+'/'+d,...others]),ans:n+'/'+d};
+  }
+  if(type==='bigger'){
+    const d2=pick(ds.filter(x=>x!==d));
+    const bigger=d<d2?'1/'+d:'1/'+d2;
+    return{ctx:'피자를 나눠요.',q:'1/'+d+'과 1/'+d2+' 중 더 큰 것은?',vis:fracBar(1,d)+fracBar(1,d2),choices:shuf(['1/'+d,'1/'+d2,'같아요']),ans:bigger,explain:'분모가 작을수록 조각이 커요.'};
+  }
+  const w=pick([6,8,10,12]),half=w/2;
+  return{ctx:'과자 '+w+'개가 있어요.',q:w+'개의 1/2은 몇 개?',vis:'',choices:shuf([half,half+1,half-1,w]).map(String),ans:String(half),explain:w+'을 2로 나누면 '+half};
+}
+function G3per(){
+  const type=pick(['sq','rect','tri']);
+  if(type==='sq'){const s=rnd(2,9);return{ctx:'',q:'한 변이 '+s+'cm인 정사각형의 둘레는?',vis:'<div style="display:flex;justify-content:center;margin:8px"><svg width="80" height="80"><rect x="10" y="10" width="60" height="60" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/><text x="40" y="48" text-anchor="middle" font-size="11" fill="#6d28d9">'+s+'cm</text></svg></div>',choices:shuf([4*s,4*s+4,4*s-4,2*s]).map(v=>v+'cm'),ans:4*s+'cm'};}
+  if(type==='rect'){const w=rnd(3,10),h=rnd(2,8),p=2*(w+h);return{ctx:'',q:'가로 '+w+'cm, 세로 '+h+'cm 직사각형의 둘레는?',vis:'<div style="display:flex;justify-content:center;margin:8px"><svg width="100" height="70"><rect x="8" y="8" width="84" height="54" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/><text x="50" y="25" text-anchor="middle" font-size="10" fill="#6d28d9">'+w+'cm</text><text x="90" y="42" text-anchor="middle" font-size="10" fill="#6d28d9">'+h+'cm</text></svg></div>',choices:shuf([p,p+4,p-4,w*h]).map(v=>v+'cm'),ans:p+'cm'};}
+  const s=rnd(2,8);return{ctx:'',q:'한 변이 '+s+'cm인 정삼각형의 둘레는?',vis:'',choices:shuf([3*s,3*s+3,3*s-3,2*s]).map(v=>v+'cm'),ans:3*s+'cm'};
+}
+
+// ══════════════════════════════════════════
+//  4학년 문제 생성기
+// ══════════════════════════════════════════
+function G4big(){
+  const a=rnd(12,99),b=rnd(2,9),ans=a*b;
+  return{ctx:'🌲 나무를 심어요.',q:a+' × '+b+' = ?',vis:'',choices:shuf([ans,ans+b,ans-b,ans+10]).map(String),ans:String(ans)};
+}
+function G4frc(){
+  const d=pick([3,4,5,6,8]),a=rnd(1,d-2),b=rnd(1,d-a-1),isPlus=Math.random()>.4;
+  if(isPlus){const s=a+b;return{ctx:'',q:a+'/'+d+' + '+b+'/'+d+' = ?',vis:fracBar(a,d)+fracBar(b,d),choices:shuf([s+'/'+d,(s+1)+'/'+d,Math.max(1,s-1)+'/'+d,a+'/'+d]),ans:s+'/'+d};}
+  const big=Math.max(a,b)+rnd(1,d-Math.max(a,b)-1),sm=rnd(1,big-1),diff=big-sm;
+  return{ctx:'',q:big+'/'+d+' - '+sm+'/'+d+' = ?',vis:'',choices:shuf([diff+'/'+d,(diff+1)+'/'+d,Math.max(1,diff-1)+'/'+d,(big+sm)+'/'+d]),ans:diff+'/'+d};
+}
+function G4dec(){
+  const a=rnd(1,9),b=rnd(0,9),num=(a+b*0.1).toFixed(1),type=pick(['read','compare']);
+  if(type==='read')return{ctx:'',q:'소수점 아래가 '+b+'인 수는?',vis:'<div style="text-align:center;font-size:2.2rem;font-weight:bold;color:#7c3aed;padding:10px">'+num+'</div>',choices:shuf([num,(+num+0.1).toFixed(1),(+num-0.1).toFixed(1),(+num+1).toFixed(1)]),ans:num};
+  const other=(a+rnd(1,4)*0.1).toFixed(1),bigger=+num>=+other?num:other;
+  return{ctx:'',q:num+'과 '+other+' 중 더 큰 수는?',vis:'',choices:shuf([num,other]),ans:bigger};
+}
+function G4are(){
+  const w=rnd(2,12),h=rnd(2,10),ans=w*h,type=pick(['rect','tri']);
+  if(type==='rect')return{ctx:'',q:'가로 '+w+'cm, 세로 '+h+'cm 직사각형의 넓이는?',vis:'<div style="display:flex;justify-content:center;margin:8px"><svg width="100" height="70"><rect x="8" y="8" width="84" height="54" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/><text x="50" y="25" text-anchor="middle" font-size="10" fill="#6d28d9">'+w+'cm</text><text x="90" y="42" text-anchor="middle" font-size="10" fill="#6d28d9">'+h+'cm</text></svg></div>',choices:shuf([ans,2*(w+h),ans+w,ans+h]).map(v=>v+'cm²'),ans:ans+'cm²'};
+  const base=w,ht=h,ta=Math.floor(base*ht/2);
+  return{ctx:'',q:'밑변 '+base+'cm, 높이 '+ht+'cm 삼각형의 넓이는?',vis:'',choices:shuf([ta,ta*2,ta+base,Math.max(1,ta-ht)]).map(v=>v+'cm²').slice(0,4),ans:ta+'cm²',explain:'밑변×높이÷2 = '+base+'×'+ht+'÷2 = '+ta};
+}
+
+// ══════════════════════════════════════════
+//  5학년 문제 생성기
+// ══════════════════════════════════════════
+function G5frc(){
+  const d=pick([2,3,4,5]),n=rnd(1,d),whole=rnd(2,8),ans=n*whole;
+  return{ctx:'🫐 블루베리 '+whole+'바구니를 샀어요.',q:n+'/'+d+' × '+whole+' = ?',vis:'',choices:shuf([ans+'/'+d,(ans+1)+'/'+d,Math.max(1,ans-1)+'/'+d,(n+whole)+'/'+d]),ans:ans+'/'+d,explain:'분자 '+n+'×'+whole+'='+ans};
+}
+function G5pct(){
+  const pcs=[{p:50,div:2},{p:25,div:4},{p:10,div:10},{p:20,div:5}],pc=pick(pcs);
+  const base=rnd(2,10)*pc.div*10,ans=base/pc.div;
+  return{ctx:'💰 '+pc.p+'% 할인 세일!',q:base+'원의 '+pc.p+'%는?',vis:'<div style="text-align:center;padding:12px;font-size:1.2rem">💸 '+base+'원 → '+pc.p+'% OFF</div>',choices:shuf([ans,ans*2,Math.max(1,ans-base/pc.div/2),ans+base/pc.div]).map(v=>v+'원').slice(0,4),ans:ans+'원',explain:base+'÷'+pc.div+'='+ans};
+}
+function G5neg(){
+  const temp=rnd(-15,5),change=rnd(1,10),dir=pick(['올라','내려']),ans=dir==='올라'?temp+change:temp-change;
+  const sign=v=>v>0?'+'+v+'°C':v+'°C';
+  return{ctx:'❄️ 핀란드 라플란드 날씨',q:'현재 '+sign(temp)+', '+change+'°C '+dir+'가면?',vis:numLine(Math.min(temp,ans)-2,Math.max(temp,ans)+2,ans),choices:shuf([ans,ans+1,ans-1,ans+2]).map(sign),ans:sign(ans)};
+}
+function G5wrd(){
+  const scs=[
+    ()=>{const p=rnd(2,9)*100,q=rnd(2,5),d=pick([10,20,50]),t=p*q*(1-d/100);return{ctx:'🛒 핀란드 마켓',q:p+'원짜리 '+q+'개를 '+d+'% 할인 → 총 얼마?',ans:t+'원',opts:shuf([t,t+p,p*q,t-p]).map(v=>v+'원').slice(0,4)}},
+    ()=>{const s=pick([40,50,60,80]),t=rnd(2,5),d=s*t;return{ctx:'🚂 핀란드 기차',q:'시속 '+s+'km로 '+t+'시간 → 몇 km?',ans:d+'km',opts:shuf([d,d+s,d-s,s+t]).map(v=>v+'km').slice(0,4)}},
+    ()=>{const base=rnd(3,8)*100,pct=pick([10,20,25,50]),part=base*pct/100;return{ctx:'🫐 블루베리 수확',q:'전체 '+base+'kg의 '+pct+'%는?',ans:part+'kg',opts:shuf([part,part*2,part/2,base]).map(v=>v+'kg').slice(0,4)}}
+  ];
+  const s=pick(scs)();
+  return{ctx:s.ctx,q:s.q,vis:'',choices:s.opts,ans:s.ans};
+}
+
+// ══════════════════════════════════════════
+//  6학년 문제 생성기
+// ══════════════════════════════════════════
+function G6rat(){
+  const a=rnd(1,5),b=rnd(1,5),unit=rnd(2,4),total=(a+b)*unit,partA=a*unit;
+  return{ctx:'🫐 딸기와 블루베리를 '+a+':'+b+'로 나눠요.',q:'전체 '+total+'개를 '+a+':'+b+'로 나눌 때 앞쪽 몫은?',vis:'',choices:shuf([partA,total-partA,partA+unit,Math.max(1,partA-unit)]).map(String),ans:String(partA),explain:total+'÷'+(a+b)+'×'+a+'='+partA};
+}
+function G6pct(){
+  const scs=[
+    ()=>{const o=rnd(2,9)*100,r=pick([10,20,30,50]),a=o-o*r/100;return{ctx:'💰 할인',q:'원가 '+o+'원에서 '+r+'% 할인하면?',ans:a+'원',opts:shuf([a,o*r/100,a+100,a-100]).map(v=>v+'원').slice(0,4)}},
+    ()=>{const b=rnd(10,90)*10,r=pick([10,20,50]),a=b*(1+r/100);return{ctx:'📈 증가',q:b+'에서 '+r+'% 증가하면?',ans:String(a),opts:shuf([a,b+r,a+b*0.1,a-b*0.1]).map(String).slice(0,4)}},
+    ()=>{const a=rnd(20,80)*5,inc=pick([10,20,50]),b=a+a*inc/100,p=Math.round((b-a)/a*100);return{ctx:'📊 변화율',q:a+'에서 '+b+'로 변하면 증가율은?',ans:p+'%',opts:shuf([p,p+5,p-5,p*2]).map(v=>v+'%').slice(0,4)}}
+  ];
+  const s=pick(scs)();return{ctx:s.ctx,q:s.q,vis:'',choices:s.opts,ans:s.ans};
+}
+function G6equ(){
+  const x=rnd(2,15),b=rnd(1,10),type=pick(['+','-','×']);
+  let q;
+  if(type==='+'){const c=x+b;q='□ + '+b+' = '+c;}
+  else if(type==='-'){const c=x+b;q=c+' - □ = '+b;}
+  else{const c=x*b;q='□ × '+b+' = '+c;}
+  return{ctx:'🔭 □ 안에 알맞은 수를 찾아요.',q,vis:'',choices:shuf([x,x+1,Math.max(1,x-1),x+b]).map(String),ans:String(x)};
+}
+function G6sta(){
+  const data=Array.from({length:5},()=>rnd(2,10));
+  const sum=data.reduce((a,b)=>a+b,0),avg=sum/5,isInt=Number.isInteger(avg),a=isInt?avg:+avg.toFixed(1);
+  const choices=isInt?shuf([a,a+1,a-1,a+2]).map(String):shuf([a,+(a+0.5).toFixed(1),+(a-0.5).toFixed(1),+(a+1).toFixed(1)]).map(String);
+  return{ctx:'📊 5번의 점수',q:'점수: '+data.join(', ')+' — 평균은?',vis:barChart(data),choices,ans:String(a),explain:'합계 '+sum+'÷5='+a};
+}
+
+// ══════════════════════════════════════════
+//  중1 — 정수·유리수 생성기
+// ══════════════════════════════════════════
+function G7inta(){
+  const type=rnd(0,2);
+  if(type===0){// 같은 부호 덧셈
+    const a=rnd(1,12),b=rnd(1,12),sign=pick([-1,1]);
+    const ans=sign*(a+b);
+    const qa=(sign>0?'+':'-')+a,qb=(sign>0?'+':'-')+b;
+    return{ctx:'정수 덧셈',q:'('+qa+') + ('+qb+') = ?',vis:'',choices:shuf([ans,ans+1,ans-1,ans+2]).map(String),ans:String(ans),explain:'같은 부호: 절댓값 합에 공통 부호'};
+  } else if(type===1){// 다른 부호 덧셈
+    const a=rnd(3,12),b=rnd(1,a-1);
+    const ans=a-b;
+    return{ctx:'정수 덧셈',q:'(+'+a+') + (-'+b+') = ?',vis:'',choices:shuf([ans,ans+1,-ans,ans-1]).map(String),ans:String(ans),explain:'다른 부호: 절댓값 차 '+a+'-'+b+'='+ans+', 큰 쪽(+)'};
+  } else {// 뺄셈 → 덧셈 변환
+    const a=rnd(2,10),b=rnd(1,10);
+    const ans=a+b;
+    return{ctx:'뺄셈 변환',q:a+' - (-'+b+') = ?',vis:'',choices:shuf([ans,a-b,ans+1,ans-1]).map(String),ans:String(ans),explain:a+'-(-'+b+') = '+a+'+'+b+' = '+ans};
+  }
+}
+function G7intm(){
+  const type=rnd(0,1);
+  if(type===0){// 곱셈
+    const a=pick([2,3,4,5,6]),b=pick([2,3,4,5]);
+    const signs=pick([[1,1],[1,-1],[-1,1],[-1,-1]]);
+    const ans=signs[0]*signs[1]*a*b;
+    const qa=(signs[0]>0?'+':'-')+a,qb=(signs[1]>0?'+':'-')+b;
+    return{ctx:'정수 곱셈',q:'('+qa+') × ('+qb+') = ?',vis:'',choices:shuf([ans,-ans,ans+signs[0]*signs[1],Math.abs(ans)+1]).map(String),ans:String(ans),explain:'부호: '+(signs[0]*signs[1]>0?'(+)×(+)=(+) or (-)×(-)=(+)':'다른 부호=(−)')};
+  } else {// 나눗셈
+    const b=pick([2,3,4,5]),ans=pick([2,3,4,5]);
+    const a=b*ans;
+    const signs=pick([[1,1],[1,-1],[-1,1],[-1,-1]]);
+    const ra=signs[0]*a,rb=signs[1]*b,rans=signs[0]*signs[1]*ans;
+    return{ctx:'정수 나눗셈',q:'('+ra+') ÷ ('+rb+') = ?',vis:'',choices:shuf([rans,-rans,rans+1,rans-1]).map(String),ans:String(rans),explain:'부호 규칙 적용 후 '+a+'÷'+b+'='+ans};
+  }
+}
+function G7rata(){
+  const type=rnd(0,1);
+  const denoms=[[2,4],[3,6],[4,8],[2,6],[3,4],[5,10],[2,3]];
+  const [d1,d2]=pick(denoms);
+  const n1=rnd(1,d1-1),n2=rnd(1,d2-1);
+  const lcm=d1*d2/gcd7(d1,d2);
+  const num1=n1*(lcm/d1),num2=n2*(lcm/d2);
+  if(type===0){// 덧셈
+    const rn=num1+num2,g=gcd7(rn,lcm);
+    const ans=rn/g+'/'+(lcm/g);
+    return{ctx:'유리수 덧셈',q:n1+'/'+d1+' + '+n2+'/'+d2+' = ?',vis:'',choices:shuf([ans,n1+'/'+d1,(n1+n2)+'/'+(d1+d2),(num1+num2+1)+'/'+lcm]).map(String),ans,explain:'LCM='+lcm+' → '+num1+'/'+lcm+'+'+num2+'/'+lcm+'='+rn+'/'+lcm};
+  } else {// 뺄셈 (큰 것에서 빼기)
+    const big=Math.max(num1,num2),small=Math.min(num1,num2);
+    const rn=big-small;
+    if(rn===0) return G7rata();
+    const g=gcd7(rn,lcm);
+    const ans=rn/g+'/'+(lcm/g);
+    const [fn1,fd1]=big===num1?[n1,d1]:[n2,d2];
+    const [fn2,fd2]=big===num1?[n2,d2]:[n1,d1];
+    return{ctx:'유리수 뺄셈',q:fn1+'/'+fd1+' - '+fn2+'/'+fd2+' = ?',vis:'',choices:shuf([ans,'0',rn+'/'+lcm,(rn+1)+'/'+lcm]).map(String),ans,explain:'LCM='+lcm+' → 통분 후 계산'};
+  }
+}
+function G7ratm(){
+  const type=rnd(0,1);
+  if(type===0){// 곱셈
+    const [a1,b1]=pick([[1,2],[2,3],[3,4],[1,3],[2,5]]);
+    const [a2,b2]=pick([[1,2],[2,3],[3,5],[1,4],[3,4]]);
+    const rn=a1*a2,rd=b1*b2,g=gcd7(rn,rd);
+    const ans=rn/g+'/'+(rd/g);
+    return{ctx:'유리수 곱셈',q:a1+'/'+b1+' × '+a2+'/'+b2+' = ?',vis:'',choices:shuf([ans,(a1+a2)+'/'+(b1+b2),rn+'/'+rd,(a1*a2+1)+'/'+(b1*b2)]).map(String),ans,explain:'분자끼리×분자, 분모끼리×분모 후 약분'};
+  } else {// 나눗셈
+    const [a1,b1]=pick([[2,3],[3,4],[4,5],[1,2],[3,5]]);
+    const [a2,b2]=pick([[1,2],[2,3],[1,3],[2,5],[3,4]]);
+    const rn=a1*b2,rd=b1*a2,g=gcd7(rn,rd);
+    const ans=rn/g+'/'+(rd/g);
+    return{ctx:'유리수 나눗셈',q:a1+'/'+b1+' ÷ '+a2+'/'+b2+' = ?',vis:'',choices:shuf([ans,a1+'/'+b1,(a1*a2)+'/'+(b1*b2),(rn+1)+'/'+(rd)]).map(String),ans,explain:a1+'/'+b1+' × '+b2+'/'+a2+' (역수 곱셈) = '+rn+'/'+rd};
+  }
+}
+function G7mix(){
+  const fns=[G7inta,G7intm,G7rata,G7ratm];
+  return pick(fns)();
+}
+function gcd7(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b];}return a;}
+
+// ══════════════════════════════════════════
+//  중1 — 문자와 식·방정식 (G8)
+// ══════════════════════════════════════════
+function G8alga(){
+  const a=rnd(2,9),b=rnd(2,9),c=rnd(2,9),d=rnd(2,9);
+  const types=rnd(1,3);
+  if(types===1){
+    const ans=a+c;
+    return{ctx:'',q:`${a}x + ${b} + ${c}x + ${d} 를 간단히 하면?`,vis:'',
+      choices:shuf([`${ans}x+${b+d}`,`${ans}x+${b-d}`,`${a+d}x+${b+c}`,`${ans+1}x+${b+d}`]),
+      ans:`${ans}x+${b+d}`,explain:`(${a}+${c})x+(${b}+${d})=${ans}x+${b+d}`};
+  }
+  if(types===2){
+    const ans=a-c; const ansc=b+d;
+    return{ctx:'',q:`${a}x + ${b} − ${c}x + ${d} 를 간단히 하면?`,vis:'',
+      choices:shuf([`${ans}x+${ansc}`,`${ans+1}x+${ansc}`,`${a+c}x+${ansc}`,`${ans}x+${ansc+1}`]),
+      ans:`${ans}x+${ansc}`,explain:`(${a}-${c})x+(${b}+${d})=${ans}x+${ansc}`};
+  }
+  const k=rnd(2,5);
+  const r1=k*a, r2=k*b;
+  return{ctx:'',q:`${k}(${a}x + ${b}) 를 전개하면?`,vis:'',
+    choices:shuf([`${r1}x+${r2}`,`${r1}x+${b}`,`${a}x+${r2}`,`${r1+1}x+${r2}`]),
+    ans:`${r1}x+${r2}`,explain:`${k}×${a}x+${k}×${b}=${r1}x+${r2}`};
+}
+function G8algb(){
+  const a=rnd(2,7),b=rnd(1,9),c=rnd(2,7),d=rnd(1,9);
+  const ans1=a+c, ans2=b+d;
+  return{ctx:'',q:`(${a}x+${b}) + (${c}x+${d}) 를 계산하면?`,vis:'',
+    choices:shuf([`${ans1}x+${ans2}`,`${ans1}x+${b-d}`,`${a-c>0?a-c:c-a}x+${ans2}`,`${ans1+1}x+${ans2}`]),
+    ans:`${ans1}x+${ans2}`,explain:`(${a}+${c})x+(${b}+${d})=${ans1}x+${ans2}`};
+}
+function G8eqa(){
+  const a=rnd(2,9), b=rnd(1,20), ans=rnd(1,10);
+  const c=a*ans+b;
+  return{ctx:'',q:`${a}x + ${b} = ${c} 일 때 x = ?`,vis:'',
+    choices:shuf([String(ans),String(ans+1),String(ans-1),String(ans+2)]),
+    ans:String(ans),explain:`${a}x=${c}-${b}=${c-b}, x=${ans}`};
+}
+function G8eqb(){
+  const ans=rnd(5,20);
+  const types=rnd(1,3);
+  if(types===1){
+    const older=ans+rnd(3,15);
+    return{ctx:`아들 나이는 ${ans}세, 아버지 나이는 ${older}세입니다.`,
+      q:`아들 나이의 3배에서 아버지 나이를 빼면?`,vis:'',
+      choices:shuf([String(ans*3-older),String(ans*3-older+1),String(ans*2-older),String(ans*3+older)]),
+      ans:String(ans*3-older),explain:`${ans}×3−${older}=${ans*3-older}`};
+  }
+  if(types===2){
+    const price=rnd(200,800)*10;
+    const n=rnd(3,8);
+    const total=price*n;
+    return{ctx:`한 개에 ${price}원인 빵 ${n}개를 샀습니다.`,
+      q:`총 금액은 얼마인가요?`,vis:'',
+      choices:shuf([String(total),String(total+price),String(total-price),String(price*(n+1))]),
+      ans:String(total),explain:`${price}×${n}=${total}원`};
+  }
+  const spd=rnd(3,8)*10, time=rnd(2,5);
+  return{ctx:`시속 ${spd}km로 ${time}시간 달렸습니다.`,
+    q:`이동한 거리는 몇 km인가요?`,vis:'',
+    choices:shuf([String(spd*time),String(spd*(time+1)),String(spd*(time-1)),String(spd+time)]),
+    ans:String(spd*time),explain:`${spd}×${time}=${spd*time}km`};
+}
+function G8mix(){return pick([G8alga,G8algb,G8eqa,G8eqb])();}
+
+// ══════════════════════════════════════════
+//  중2 — 일차함수·연립방정식·부등식 (G9)
+// ══════════════════════════════════════════
+function G9fna(){
+  const a=pick([-3,-2,-1,1,2,3]), b=rnd(-5,5);
+  const x=rnd(1,5);
+  const y=a*x+b;
+  return{ctx:`일차함수 y = ${a>0?a:a}x ${b>=0?'+'+b:b}`,
+    q:`x = ${x} 일 때 y의 값은?`,vis:'',
+    choices:shuf([String(y),String(y+1),String(y-1),String(y+2)]),
+    ans:String(y),explain:`y=${a}×${x}${b>=0?'+'+b:b}=${y}`};
+}
+function G9fnb(){
+  const a=pick([1,2,3,-1,-2]), b=rnd(-4,4);
+  const x1=rnd(0,3), y1=a*x1+b;
+  const x2=x1+rnd(1,3), y2=a*x2+b;
+  return{ctx:`두 점 (${x1},${y1})과 (${x2},${y2})를 지나는 일차함수`,
+    q:`기울기는?`,vis:'',
+    choices:shuf([String(a),String(a+1),String(a-1),String(-a)]),
+    ans:String(a),explain:`기울기=(${y2}-${y1})/(${x2}-${x1})=${y2-y1}/${x2-x1}=${a}`};
+}
+function G9sysa(){
+  const x=rnd(1,7), y=rnd(1,7);
+  const a1=rnd(1,4),b1=rnd(1,4),a2=rnd(1,4),b2=rnd(1,4);
+  const c1=a1*x+b1*y, c2=a2*x+b2*y;
+  const types=rnd(1,2);
+  if(types===1){
+    return{ctx:`연립방정식: ${a1}x+${b1}y=${c1} / ${a2}x+${b2}y=${c2}`,
+      q:`x의 값은?`,vis:'',
+      choices:shuf([String(x),String(x+1),String(y),String(x+2)]),
+      ans:String(x),explain:`연립 풀면 x=${x}, y=${y}`};
+  }
+  return{ctx:`연립방정식: ${a1}x+${b1}y=${c1} / ${a2}x+${b2}y=${c2}`,
+    q:`y의 값은?`,vis:'',
+    choices:shuf([String(y),String(y+1),String(x),String(y-1)]),
+    ans:String(y),explain:`연립 풀면 x=${x}, y=${y}`};
+}
+function G9ineq(){
+  const a=rnd(2,7), b=rnd(1,20), ans=rnd(1,10);
+  const c=a*ans+b;
+  return{ctx:'',q:`${a}x + ${b} < ${c} 를 만족하는 가장 큰 정수 x는?`,vis:'',
+    choices:shuf([String(ans-1),String(ans),String(ans+1),String(ans-2)]),
+    ans:String(ans-1),explain:`${a}x<${c-b}, x<${ans} → 가장 큰 정수=${ans-1}`};
+}
+function G9mix(){return pick([G9fna,G9fnb,G9sysa,G9ineq])();}
+
+// ══════════════════════════════════════════
+//  중3 — 이차방정식·이차함수·확률 (G10)
+// ══════════════════════════════════════════
+function G10qaa(){
+  const r1=rnd(1,7), r2=rnd(1,7);
+  const b=-(r1+r2), c=r1*r2;
+  const bStr=b>=0?'+'+b:String(b);
+  const cStr=c>=0?'+'+c:String(c);
+  return{ctx:'',q:`x² ${bStr}x ${cStr} = 0 의 해는?`,vis:'',
+    choices:shuf([`x=${r1} 또는 x=${r2}`,`x=${r1+1} 또는 x=${r2}`,`x=−${r1} 또는 x=−${r2}`,`x=${r1} 또는 x=${r2+1}`]),
+    ans:`x=${r1} 또는 x=${r2}`,explain:`(x-${r1})(x-${r2})=0 → x=${r1} 또는 x=${r2}`};
+}
+function G10qab(){
+  const r1=rnd(1,5), r2=rnd(1,5);
+  const b=-(r1+r2), c=r1*r2;
+  const D=b*b-4*c;
+  const bStr=b>=0?'+'+b:String(b);
+  const cStr=c>=0?'+'+c:String(c);
+  return{ctx:'',q:`x² ${bStr}x ${cStr} = 0 에서 판별식 D = ?`,vis:'',
+    choices:shuf([String(D),String(D+4),String(D-4),String(D+1)]),
+    ans:String(D),explain:`D=b²−4ac=${b*b}−${4*c}=${D}`};
+}
+function G10qfa(){
+  const p=rnd(-4,4), q=rnd(-5,5), a=pick([1,2,-1,-2]);
+  const aStr=a===1?'':a===-1?'−':String(a);
+  const pStr=p===0?'x':(p>0?`(x−${p})`:`(x+${-p})`);
+  const qStr=q===0?'':(q>0?`+${q}`:String(q));
+  return{ctx:`이차함수 y = ${aStr}${pStr}²${qStr}`,
+    q:`꼭짓점의 좌표는?`,vis:'',
+    choices:shuf([`(${p}, ${q})`,`(${-p}, ${q})`,`(${p}, ${-q})`,`(${p+1}, ${q})`]),
+    ans:`(${p}, ${q})`,explain:`표준형 y=a(x−p)²+q에서 꼭짓점=(p,q)=(${p},${q})`};
+}
+function G10prob(){
+  const total=rnd(5,10), red=rnd(1,total-1), blue=total-red;
+  const types=rnd(1,2);
+  if(types===1){
+    return{ctx:`주머니에 빨간 공 ${red}개, 파란 공 ${blue}개가 있습니다.`,
+      q:`한 개를 꺼낼 때 빨간 공일 확률은? (분수로)`,vis:'',
+      choices:shuf([`${red}/${total}`,`${blue}/${total}`,`${red}/${blue}`,`1/${red}`]),
+      ans:`${red}/${total}`,explain:`P(빨간)=${red}/${total}`};
+  }
+  const p=red, pStr=`${p}/${total}`;
+  return{ctx:`어떤 사건이 일어날 확률이 ${pStr}입니다.`,
+    q:`이 사건이 일어나지 않을 확률은?`,vis:'',
+    choices:shuf([`${total-p}/${total}`,`${p}/${total}`,`1/${p}`,`${p-1}/${total}`]),
+    ans:`${total-p}/${total}`,explain:`여사건 확률=1−${pStr}=${total-p}/${total}`};
+}
+function G10mix(){return pick([G10qaa,G10qab,G10qfa,G10prob])();}
+
+// ══════════════════════════════════════════
+//  Enter 키
+// ══════════════════════════════════════════
+document.getElementById('ans-input').addEventListener('keydown',e=>{if(e.key==='Enter')submitAns()});
+
+// ══════════════════════════════════════════
+//  게임화: 유물·나침반·항해 일지
+// ══════════════════════════════════════════
+const ARTIFACTS={
+  'drill_basic':{island:'드릴 훈련소',emoji:'🔢',quote:'반복은 천재를 만든다.',color:'#7dd3fc'},
+  'drill_master':{island:'드릴 훈련소',emoji:'🏅',quote:'속도와 정확성, 둘 다 잡은 자가 수학왕이다.',color:'#fbbf24'}
+};
+const TORO_COMPASS={
+  'drill':["계산 실수를 줄이는 가장 좋은 방법은 뭘까?","빠른 계산과 정확한 계산, 어느 것이 더 중요할까?"]
+};
+
+function getArtifacts(){
+  try{return JSON.parse(localStorage.getItem('armoonia_artifacts')||'[]');}
+  catch(e){return[];}
+}
+function awardArtifact(setName){
+  var info=ARTIFACTS[setName];
+  if(!info)return;
+  var earned=getArtifacts();
+  if(earned.indexOf(setName)!==-1)return;
+  earned.push(setName);
+  localStorage.setItem('armoonia_artifacts',JSON.stringify(earned));
+  updateArtifactBadge();
+  var modal=document.getElementById('artifact-modal');
+  document.getElementById('artifact-modal-emoji').textContent=info.emoji;
+  document.getElementById('artifact-modal-name').textContent='유물 획득: '+info.island;
+  document.getElementById('artifact-modal-island').textContent=info.island;
+  document.getElementById('artifact-modal-quote').textContent='"'+info.quote+'"';
+  modal.classList.add('show');
+  addLog('artifact','drill','유물 획득: '+info.emoji+' '+info.island);
+}
+function addLog(type,hub,content){
+  var log;
+  try{log=JSON.parse(localStorage.getItem('armoonia_log')||'[]');}
+  catch(e){log=[];}
+  var today=(function(){var d=new Date();return d.getFullYear()+'.'+(d.getMonth()+1).toString().padStart(2,'0')+'.'+d.getDate().toString().padStart(2,'0');})();
+  log.unshift({date:today,type:type,hub:hub,content:content});
+  if(log.length>50)log=log.slice(0,50);
+  localStorage.setItem('armoonia_log',JSON.stringify(log));
+}
+function showArtifactCollection(){
+  var earned=getArtifacts();
+  var inner=document.getElementById('artifact-collection-inner');
+  if(earned.length===0){
+    inner.innerHTML='<div style="text-align:center;color:#64748b;padding:1.5rem">아직 유물이 없어요. 드릴을 완료해 보세요!</div>';
+  }else{
+    inner.innerHTML=earned.map(function(k){
+      var a=ARTIFACTS[k];
+      if(!a)return'';
+      return'<div style="display:flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.05);border-radius:12px;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.08)">'
+        +'<span style="font-size:2rem">'+a.emoji+'</span>'
+        +'<div><div style="color:#e2e8f0;font-weight:700;font-size:.9rem">'+a.island+'</div>'
+        +'<div style="color:#94a3b8;font-size:.78rem;font-style:italic">"'+a.quote+'"</div></div></div>';
+    }).join('');
+  }
+  document.getElementById('artifact-collection-modal').classList.add('show');
+}
+function closeArtifactCollection(){
+  document.getElementById('artifact-collection-modal').classList.remove('show');
+}
+function showLog(){
+  var log;
+  try{log=JSON.parse(localStorage.getItem('armoonia_log')||'[]');}
+  catch(e){log=[];}
+  var inner=document.getElementById('log-inner');
+  if(log.length===0){
+    inner.innerHTML='<div style="text-align:center;color:#64748b;padding:1.5rem">아직 기록이 없어요.</div>';
+  }else{
+    inner.innerHTML=log.map(function(l){
+      return'<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.6rem .9rem;border-left:3px solid #7c3aed">'
+        +'<div style="font-size:.72rem;color:#64748b;margin-bottom:.2rem">'+l.date+' · '+l.hub+'</div>'
+        +'<div style="color:#e2e8f0;font-size:.85rem">'+l.content+'</div></div>';
+    }).join('');
+  }
+  document.getElementById('log-modal').classList.add('show');
+}
+function closeLog(){
+  document.getElementById('log-modal').classList.remove('show');
+}
+function updateArtifactBadge(){
+  var earned=getArtifacts();
+  var badge=document.getElementById('artifact-count-badge');
+  if(badge)badge.textContent=earned.length+'개';
+}
+function showCompassHint(){
+  var hints=TORO_COMPASS['drill'];
+  if(!hints||!hints.length)return;
+  var h=hints[Math.floor(Math.random()*hints.length)];
+  document.getElementById('compass-hint-text').textContent=h;
+  document.getElementById('compass-modal').classList.add('show');
+}
+function closeCompassModal(){
+  document.getElementById('compass-modal').classList.remove('show');
+}
+
+// ══════════════════════════════════════════
+//  초기화
+// ══════════════════════════════════════════
+renderHome();
+updateArtifactBadge();
+</script>
+</body>
+</html>
