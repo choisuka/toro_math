@@ -134,7 +134,7 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
     <div class="toro-greet-emoji" style="font-size:2.2rem;line-height:1">🦕</div>
     <div class="toro-greet-text" style="font-size:.85rem;margin-top:4px;font-weight:600">오늘의 탐험을 시작해볼까? 함께 가자! 🦕</div>
   </div>
-  <a href="https://choisuka.github.io/toro_math/" style="display:inline-block;margin-bottom:8px;font-size:.8rem;color:rgba(255,255,255,.6);text-decoration:none;background:rgba(255,255,255,.08);padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.15)">← 토로매쓰 홈</a>
+  <a href="../index.html" style="display:inline-block;margin-bottom:8px;font-size:.8rem;color:rgba(255,255,255,.6);text-decoration:none;background:rgba(255,255,255,.08);padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.15)">← 토로매쓰 홈</a>
   <h1>✡️ 유대인 수학 교육과정</h1>
   <p>하브루타 · 소크라테스식 질문 · 왜(Why) 먼저 · 다양한 풀이법 · 심화 토론</p>
 </div>
@@ -728,6 +728,22 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
         <div class="cv-detail" id="cv-e6fracdiv-detail" style="display:none">
           <button class="cv-back-btn" onclick="cvShowGrid('e6fracdiv')">← 목록으로</button>
           <div id="cv-e6fracdiv-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📐 각기둥과 각뿔 <span class="badge">초6</span></div><div class="unit-sub">밑면·옆면·모서리·꼭짓점·전개도</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e6prism">
+        <div class="cv-grid" id="cv-e6prism-grid"></div>
+        <div class="cv-detail" id="cv-e6prism-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e6prism')">← 목록으로</button>
+          <div id="cv-e6prism-detail-body"></div>
         </div>
       </div>
     </div>
@@ -6822,6 +6838,366 @@ function fdaSol20(id){
   var diagram='<div class="fb-diagram">간격 수 = '+trees+'−1 = '+gaps+'군데<br>'+whole+waGwa(whole)+frac(p,q)+' = '+frac(totalNum,q)+'<br>간격 = '+frac(totalNum,q)+' ÷ '+gaps+' = '+frac(totalNum,den)+(g>1?' = '+frac(totalNum/g,den/g):'')+'<br>→ <strong style="color:#3fb950">'+fdwFracOrInt(totalNum/g,den/g)+'</strong>m</div>';
   rgwRenderToggle(id, diagram, 'fdaSol20');
 }
+const CV_DATA_E6PRISM = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>텐트, 연필, 택배 상자, 피라미드 — 우리 주변의 입체도형은 저마다 다른 모양이지만, 사실 몇 가지 공통된 규칙으로 분류할 수 있어요.</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
+      <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
+        <div>${prismSvg(4,'#58a6ff')}<div style="font-size:.72rem;color:#8b949e">상자 모양</div></div>
+        <div>${pyramidSvg(4,'#f0c040')}<div style="font-size:.72rem;color:#8b949e">피라미드 모양</div></div>
+      </div>
+      <div style="font-size:.78rem;color:#8b949e;margin-top:6px">두 도형 모두 평평한 면으로만 둘러싸여 있지만, 구조가 달라요</div>
+    </div>
+    <p style="margin-top:10px">평평한 면으로만 둘러싸인 입체도형 중, 밑면이 다각형인 두 가지 대표적인 모양 — <strong>각기둥</strong>과 <strong>각뿔</strong>을 배워볼게요.</p>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 각기둥의 뜻</div>
+    <ul><li>서로 평행하고 합동인 두 다각형과, 그 사이를 잇는 직사각형들로 둘러싸인 입체도형을 무엇이라고 할까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${prismSvg(4,'#58a6ff')}
+      <div style="font-size:.85rem;margin-top:6px">위아래 두 면(밑면)이 서로 <strong style="color:#3fb950">평행하고 합동</strong>, 옆면은 모두 <strong style="color:#3fb950">직사각형</strong> — 이런 입체도형을 <strong>각기둥</strong>이라고 해요</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">두 밑면 사이의 거리를 각기둥의 높이라고 해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 각기둥의 구성 요소와 이름</div>
+    <ul><li>각기둥은 밑면의 모양에 따라 이름이 달라져요. 밑면이 오각형이면 무엇이라고 부를까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${prismSvg(5,'#3fb950')}
+      <div style="font-size:.85rem;margin-top:6px">밑면이 오각형 → <strong style="color:#3fb950">오각기둥</strong></div>
+      <table style="width:100%;border-collapse:collapse;font-size:.76rem;text-align:center;margin-top:10px;border:1px solid #30363d">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">밑면 모양</td><td style="border-right:1px solid #30363d">삼각형</td><td style="border-right:1px solid #30363d">사각형</td><td style="border-right:1px solid #30363d">오각형</td><td>육각형</td></tr>
+        <tr><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">각기둥 이름</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">삼각기둥</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">사각기둥</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">오각기둥</td><td style="color:#3fb950;font-weight:700">육각기둥</td></tr>
+      </table>
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:8px">규칙은 항상 같아요 — 밑면이 n각형이면 이름은 "n각기둥"이에요(칠각형→칠각기둥, 팔각형→팔각기둥…도 똑같이 이어져요)</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">구성 요소: 밑면(2개, 평행·합동) · 옆면(직사각형) · 모서리 · 꼭짓점 · 높이</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 각뿔의 뜻</div>
+    <ul><li>다각형인 밑면 1개와, 한 점(꼭짓점)에서 모이는 삼각형 옆면들로 둘러싸인 입체도형을 무엇이라고 할까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${pyramidSvg(4,'#f0c040')}
+      <div style="font-size:.85rem;margin-top:6px">밑면 <strong style="color:#3fb950">1개</strong>(다각형), 옆면은 모두 <strong style="color:#3fb950">삼각형</strong>이며 한 점에서 만남 — 이런 입체도형을 <strong>각뿔</strong>이라고 해요</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">옆면이 모이는 점을 각뿔의 꼭짓점이라고 해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 각뿔의 구성 요소와 이름</div>
+    <ul><li>각뿔도 밑면의 모양에 따라 이름이 달라져요. 밑면이 육각형이면 무엇이라고 부를까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${pyramidSvg(6,'#bc8cff')}
+      <div style="font-size:.85rem;margin-top:6px">밑면이 육각형 → <strong style="color:#3fb950">육각뿔</strong></div>
+      <table style="width:100%;border-collapse:collapse;font-size:.76rem;text-align:center;margin-top:10px;border:1px solid #30363d">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">밑면 모양</td><td style="border-right:1px solid #30363d">삼각형</td><td style="border-right:1px solid #30363d">사각형</td><td style="border-right:1px solid #30363d">오각형</td><td>육각형</td></tr>
+        <tr><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">각뿔 이름</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">삼각뿔</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">사각뿔</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">오각뿔</td><td style="color:#3fb950;font-weight:700">육각뿔</td></tr>
+      </table>
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:8px">규칙은 항상 같아요 — 밑면이 n각형이면 이름은 "n각뿔"이에요(칠각형→칠각뿔, 팔각형→팔각뿔…도 똑같이 이어져요)</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">구성 요소: 밑면(1개) · 옆면(삼각형) · 모서리 · 꼭짓점(각뿔의 꼭짓점 포함) · 높이</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 각기둥의 면·모서리·꼭짓점 개수</div>
+    <ul><li>사각기둥의 면, 모서리, 꼭짓점은 각각 몇 개일까요? 밑면이 n각형인 각기둥이라면 어떤 규칙이 있을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${prismSvg(4,'#58a6ff')}
+      <table style="width:100%;border-collapse:collapse;font-size:.76rem;text-align:center;margin-top:8px;border:1px solid #30363d">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e"></td><td style="border-right:1px solid #30363d">삼각기둥(n=3)</td><td style="border-right:1px solid #30363d">사각기둥(n=4)</td><td style="border-right:1px solid #30363d">오각기둥(n=5)</td><td>육각기둥(n=6)</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">면</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">5</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">6</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">7</td><td style="color:#3fb950;font-weight:700">8</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">모서리</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">9</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">12</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">15</td><td style="color:#3fb950;font-weight:700">18</td></tr>
+        <tr><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">꼭짓점</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">6</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">8</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">10</td><td style="color:#3fb950;font-weight:700">12</td></tr>
+      </table>
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:8px">밑면(n각형)이 2개니 옆면도 n개 → 면 = n+2, 옆 모서리(n)+밑면 모서리(2n) → 모서리 = 3n, 밑면 꼭짓점이 위아래 2번 → 꼭짓점 = 2n</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념6 — 각뿔의 면·모서리·꼭짓점 개수</div>
+    <ul><li>사각뿔의 면, 모서리, 꼭짓점은 각각 몇 개일까요? 밑면이 n각형인 각뿔이라면 어떤 규칙이 있을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${pyramidSvg(4,'#f0c040')}
+      <table style="width:100%;border-collapse:collapse;font-size:.76rem;text-align:center;margin-top:8px;border:1px solid #30363d">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e"></td><td style="border-right:1px solid #30363d">삼각뿔(n=3)</td><td style="border-right:1px solid #30363d">사각뿔(n=4)</td><td style="border-right:1px solid #30363d">오각뿔(n=5)</td><td>육각뿔(n=6)</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">면</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">4</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">5</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">6</td><td style="color:#3fb950;font-weight:700">7</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">모서리</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">6</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">8</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">10</td><td style="color:#3fb950;font-weight:700">12</td></tr>
+        <tr><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">꼭짓점</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">4</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">5</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">6</td><td style="color:#3fb950;font-weight:700">7</td></tr>
+      </table>
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:8px">밑면(n각형) 1개 + 옆면 n개 → 면 = n+1, 밑면 모서리(n)+옆 모서리(n) → 모서리 = 2n, 밑면 꼭짓점(n)+각뿔의 꼭짓점(1) → 꼭짓점 = n+1</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념7 — 각기둥과 각뿔 비교</div>
+    <ul><li>각기둥과 각뿔의 공통점과 차이점은 무엇일까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <div>${prismSvg(5,'#58a6ff')}<div style="font-size:.72rem;color:#58a6ff">오각기둥</div></div>
+        <div>${pyramidSvg(5,'#f0c040')}<div style="font-size:.72rem;color:#f0c040">오각뿔</div></div>
+      </div>
+      <div style="font-size:.85rem;margin-top:8px">공통점: 둘 다 밑면이 다각형이고, 평평한 면으로만 둘러싸여 있어요</div>
+      <div style="font-size:.85rem;margin-top:6px">차이점: 각기둥은 밑면 2개(평행·합동)+옆면 직사각형, 각뿔은 밑면 1개+옆면 삼각형(한 점에서 만남)</div>
+    </div>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 각기둥의 두 밑면은 왜 서로 평행하고 합동이어야 할까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6prism-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6prism-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6prism-h1',0,this)">두 밑면이 평행하고 합동이어야, 그 사이를 잇는 옆면들이 위아래 폭이 똑같은 반듯한 직사각형이 될 수 있어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6prism-h1',1,this)">그냥 각기둥의 정의가 그렇게 정해진 것뿐, 이유는 없어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6prism-h1',2,this)">밑면 모양은 상관없고, 옆면이 직사각형이기만 하면 돼요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6prism-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 각뿔은 왜 옆면이 항상 삼각형일까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6prism-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6prism-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6prism-h2',0,this)">각뿔의 꼭짓점 하나에서 밑면의 각 변으로 선을 그으면 삼각형이 만들어지는데, 이게 옆면이 되기 때문이에요 — 밑면이 몇각형이든 옆면은 항상 삼각형이에요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6prism-h2',1,this)">삼각형이 가장 예뻐서 정한 규칙이에요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6prism-h2',2,this)">밑면이 삼각형일 때만 옆면도 삼각형이 돼요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6prism-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 사각기둥의 모서리 개수(12개)를 어떻게 빨리 구할 수 있을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6prism-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6prism-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6prism-h3',0,this)">밑면(사각형) 모서리가 4개씩 위아래 2번(4×2=8), 거기에 옆면을 연결하는 세로 모서리 4개를 더하면 8+4=12개 — 밑면 변의 수(n)를 3배(3n) 하는 것과 같아요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6prism-h3',1,this)">그냥 다 세어보는 것 말고는 빠른 방법이 없어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6prism-h3',2,this)">꼭짓점 개수(8개)에 4를 더하면 돼요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6prism-h3"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q4.</strong> 각기둥과 각뿔은 어떻게 다를까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6prism-h4',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6prism-h4">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6prism-h4',0,this)">각기둥은 밑면이 2개(서로 평행·합동)이고 옆면이 직사각형인데, 각뿔은 밑면이 1개뿐이고 옆면이 모두 삼각형이며 한 점(꼭짓점)에서 모여요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6prism-h4',1,this)">이름만 다르고 사실 같은 도형이에요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6prism-h4',2,this)">각기둥은 옆면이 삼각형, 각뿔은 옆면이 사각형이에요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6prism-h4"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제: 밑면이 육각형인 각기둥의 이름은 무엇이며, 면은 몇 개인가요?</div>
+      <div class="fb-diagram">${prismSvg(6,'#58a6ff')}<span class="cap">밑면(육각형) 2개 + 옆면 6개</span></div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6prism-p1',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6prism-p1">
+        <div class="sol"><strong>풀이:</strong> <strong style="color:#3fb950">육각기둥</strong>, 면 = 6+2 = <strong style="color:#3fb950">8개</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 밑면이 삼각형인 각뿔의 이름은 무엇이며, 모서리는 몇 개인가요?</div>
+      <div class="fb-diagram">${pyramidSvg(3,'#f0c040')}<span class="cap">밑면(삼각형) 모서리 3개 + 옆 모서리 3개</span></div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6prism-p2',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6prism-p2">
+        <div class="sol"><strong>풀이:</strong> <strong style="color:#3fb950">삼각뿔</strong>, 모서리 = 3×2 = <strong style="color:#3fb950">6개</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 꼭짓점이 10개인 각기둥은 몇각기둥인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6prism-p3',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6prism-p3">
+        <div class="sol"><strong>풀이:</strong> 각기둥의 꼭짓점 = 2n이므로 2n=10, n=5 → <strong style="color:#3fb950">오각기둥</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 면이 7개인 각뿔은 몇각뿔이며, 꼭짓점은 몇 개인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6prism-p4',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6prism-p4">
+        <div class="sol"><strong>풀이:</strong> 각뿔의 면 = n+1이므로 n+1=7, n=6 → <strong style="color:#3fb950">육각뿔</strong>, 꼭짓점 = n+1 = <strong style="color:#3fb950">7개</strong></div>
+      </div>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 각기둥은 밑면이 2개인데 각뿔은 왜 밑면이 1개뿐이에요?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>저도 궁금해요! 각뿔도 위에 뾰족한 점 대신 작은 면이 하나 더 있으면 안 되나요?</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>어? 만약 위에 작은 면이 있으면... 그건 각뿔이 아니라 다른 모양이 되지 않을까요?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>맞아요! 위에 작은 밑면이 있으면 옆면이 직사각형(또는 사다리꼴)이 되는 다른 입체도형이 돼요. 각뿔은 옆면이 전부 삼각형이라서, 위쪽이 한 점으로 완전히 모여야 해요.</div></div>
+    <div class="fb-diagram">${pyramidSvg(4,'#f0c040')}<span class="cap">옆면(삼각형)이 전부 한 점에서 만나야 각뿔이 돼요 — 그 점이 바로 각뿔의 꼭짓점이에요</span></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 각뿔의 옆면은 반드시 삼각형이어야 하고, 삼각형은 한 변(밑변)의 반대쪽이 점 하나(꼭짓점)로 모이는 도형이에요. 그래서 각뿔의 옆면들도 전부 같은 한 점에서 만나야 하고, 그 결과 밑면은 자연스럽게 1개만 남는 거예요.</div></div>
+    <div class="story-line"><div class="story-avatar">민준</div><div class="story-bubble"><span class="story-name">민준</span>그럼 각기둥은 옆면이 직사각형이니까, 위아래로 평행한 면이 하나씩 필요한 거네요!</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! 직사각형은 위아래 변의 길이가 같고 평행해야 하는 도형이라서, 각기둥은 그 조건에 맞게 밑면 2개가 서로 평행하고 합동이어야 하는 거예요. 옆면의 모양(삼각형 vs 직사각형)이 밑면의 개수(1개 vs 2개)를 결정한다고 볼 수 있어요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 각뿔의 옆면(삼각형)은 한 점에서 만나야 하므로 밑면이 1개뿐이고, 각기둥의 옆면(직사각형)은 위아래가 평행해야 하므로 밑면이 2개(평행·합동) 필요해요 — 옆면의 모양이 입체도형의 구조를 결정해요.</div>
+  `},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <p>지금까지 배운 각기둥과 각뿔의 성질을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+      <div id="pgw-1" class="prob-q" data-n="5" data-qtext="밑면이 정오각형인 오각기둥의 모서리는 몇 개인가요?" data-solfn="pgwSol1">밑면이 정오각형인 오각기둥의 모서리는 몇 개인가요?<br><button class="havruta-show-btn" onclick="pgwSol1('pgw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgwGen1('pgw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+      <div id="pgw-2" class="prob-q" data-n="6" data-qtext="밑면이 정육각형인 육각뿔의 꼭짓점은 몇 개인가요?" data-solfn="pgwSol2">밑면이 정육각형인 육각뿔의 꼭짓점은 몇 개인가요?<br><button class="havruta-show-btn" onclick="pgwSol2('pgw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgwGen2('pgw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+      <div id="pgw-3" class="prob-q" data-f="8" data-qtext="면이 8개인 각기둥은 밑면이 몇각형인가요?" data-solfn="pgwSol3">면이 8개인 각기둥은 밑면이 몇각형인가요?<br><button class="havruta-show-btn" onclick="pgwSol3('pgw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgwGen3('pgw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+      <div id="pgw-4" class="prob-q" data-e="14" data-qtext="모서리가 14개인 각뿔은 밑면이 몇각형인가요?" data-solfn="pgwSol4">모서리가 14개인 각뿔은 밑면이 몇각형인가요?<br><button class="havruta-show-btn" onclick="pgwSol4('pgw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgwGen4('pgw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+      <div id="pgw-5" class="prob-q" data-v="10" data-qtext="꼭짓점이 10개인 각기둥의 면은 몇 개인가요?" data-solfn="pgwSol5">꼭짓점이 10개인 각기둥의 면은 몇 개인가요?<br><button class="havruta-show-btn" onclick="pgwSol5('pgw-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgwGen5('pgw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+      <div id="pgw-6" class="prob-q" data-n="3" data-qtext="삼각기둥과 삼각뿔의 모서리 수의 차이는 몇 개인가요?" data-solfn="pgwSol6">삼각기둥과 삼각뿔의 모서리 수의 차이는 몇 개인가요?<br><button class="havruta-show-btn" onclick="pgwSol6('pgw-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgwGen6('pgw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+      <div id="pgw-7" class="prob-q" data-n="4" data-qtext="사각기둥의 면, 모서리, 꼭짓점 수를 각각 구하시오." data-solfn="pgwSol7">사각기둥의 면, 모서리, 꼭짓점 수를 각각 구하시오.<br><button class="havruta-show-btn" onclick="pgwSol7('pgw-7')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgwGen7('pgw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+      <div id="pgw-8" class="prob-q" data-n="7" data-qtext="칠각뿔의 면, 모서리, 꼭짓점의 수를 모두 더하면 얼마인가요?" data-solfn="pgwSol8">칠각뿔의 면, 모서리, 꼭짓점의 수를 모두 더하면 얼마인가요?<br><button class="havruta-show-btn" onclick="pgwSol8('pgw-8')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgwGen8('pgw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+      <div id="pgw-9" class="prob-q" data-n="9" data-qtext="각기둥의 밑면의 변이 9개일 때, 이 각기둥의 모서리는 몇 개인가요?" data-solfn="pgwSol9">각기둥의 밑면의 변이 9개일 때, 이 각기둥의 모서리는 몇 개인가요?<br><button class="havruta-show-btn" onclick="pgwSol9('pgw-9')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgwGen9('pgw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+      <div id="pgw-10" class="prob-q" data-v="8" data-qtext="꼭짓점이 8개인 각뿔의 이름은 무엇인가요?" data-solfn="pgwSol10">꼭짓점이 8개인 각뿔의 이름은 무엇인가요?<br><button class="havruta-show-btn" onclick="pgwSol10('pgw-10')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgwGen10('pgw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+  `}
+];
+CV_DATA['e6prism'] = CV_DATA_E6PRISM;
+var PGW_NAMES = {3:'삼각',4:'사각',5:'오각',6:'육각',7:'칠각',8:'팔각',9:'구각',10:'십각'};
+function pgwGen1(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var el = document.getElementById(id);
+  el.setAttribute('data-n', n);
+  rgwSetQuestion(el, '밑면이 정'+PGW_NAMES[n]+'형인 '+PGW_NAMES[n]+'기둥의 모서리는 몇 개인가요?', 'pgwSol1');
+}
+function pgwSol1(id){
+  var el = document.getElementById(id);
+  var n = +el.getAttribute('data-n');
+  var diagram = '<div class="fb-diagram">모서리 = 3×'+n+' = <strong style="color:#3fb950">'+(3*n)+'개</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgwSol1');
+}
+function pgwGen2(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var el = document.getElementById(id);
+  el.setAttribute('data-n', n);
+  rgwSetQuestion(el, '밑면이 정'+PGW_NAMES[n]+'형인 '+PGW_NAMES[n]+'뿔의 꼭짓점은 몇 개인가요?', 'pgwSol2');
+}
+function pgwSol2(id){
+  var el = document.getElementById(id);
+  var n = +el.getAttribute('data-n');
+  var diagram = '<div class="fb-diagram">꼭짓점 = '+n+'+1 = <strong style="color:#3fb950">'+(n+1)+'개</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgwSol2');
+}
+function pgwGen3(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var f = n+2;
+  var el = document.getElementById(id);
+  el.setAttribute('data-f', f);
+  rgwSetQuestion(el, '면이 '+f+'개인 각기둥은 밑면이 몇각형인가요?', 'pgwSol3');
+}
+function pgwSol3(id){
+  var el = document.getElementById(id);
+  var f = +el.getAttribute('data-f');
+  var n = f-2;
+  var diagram = '<div class="fb-diagram">각기둥의 면 = n+2 이므로 n+2='+f+' → n='+n+'<br>→ <strong style="color:#3fb950">'+PGW_NAMES[n]+'형</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgwSol3');
+}
+function pgwGen4(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var e = 2*n;
+  var el = document.getElementById(id);
+  el.setAttribute('data-e', e);
+  rgwSetQuestion(el, '모서리가 '+e+'개인 각뿔은 밑면이 몇각형인가요?', 'pgwSol4');
+}
+function pgwSol4(id){
+  var el = document.getElementById(id);
+  var e = +el.getAttribute('data-e');
+  var n = e/2;
+  var diagram = '<div class="fb-diagram">각뿔의 모서리 = 2n 이므로 2n='+e+' → n='+n+'<br>→ <strong style="color:#3fb950">'+PGW_NAMES[n]+'형</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgwSol4');
+}
+function pgwGen5(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var v = 2*n;
+  var el = document.getElementById(id);
+  el.setAttribute('data-v', v);
+  rgwSetQuestion(el, '꼭짓점이 '+v+'개인 각기둥의 면은 몇 개인가요?', 'pgwSol5');
+}
+function pgwSol5(id){
+  var el = document.getElementById(id);
+  var v = +el.getAttribute('data-v');
+  var n = v/2;
+  var diagram = '<div class="fb-diagram">각기둥의 꼭짓점 = 2n 이므로 2n='+v+' → n='+n+'<br>면 = n+2 = <strong style="color:#3fb950">'+(n+2)+'개</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgwSol5');
+}
+function pgwGen6(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var el = document.getElementById(id);
+  el.setAttribute('data-n', n);
+  rgwSetQuestion(el, PGW_NAMES[n]+'기둥과 '+PGW_NAMES[n]+'뿔의 모서리 수의 차이는 몇 개인가요?', 'pgwSol6');
+}
+function pgwSol6(id){
+  var el = document.getElementById(id);
+  var n = +el.getAttribute('data-n');
+  var diagram = '<div class="fb-diagram">'+PGW_NAMES[n]+'기둥 모서리 = 3×'+n+' = '+(3*n)+'<br>'+PGW_NAMES[n]+'뿔 모서리 = 2×'+n+' = '+(2*n)+'<br>차이 = '+(3*n)+'−'+(2*n)+' = <strong style="color:#3fb950">'+n+'개</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgwSol6');
+}
+function pgwGen7(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var el = document.getElementById(id);
+  el.setAttribute('data-n', n);
+  rgwSetQuestion(el, PGW_NAMES[n]+'기둥의 면, 모서리, 꼭짓점 수를 각각 구하시오.', 'pgwSol7');
+}
+function pgwSol7(id){
+  var el = document.getElementById(id);
+  var n = +el.getAttribute('data-n');
+  var diagram = '<div class="fb-diagram">면 = '+n+'+2 = <strong style="color:#3fb950">'+(n+2)+'개</strong><br>모서리 = 3×'+n+' = <strong style="color:#3fb950">'+(3*n)+'개</strong><br>꼭짓점 = 2×'+n+' = <strong style="color:#3fb950">'+(2*n)+'개</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgwSol7');
+}
+function pgwGen8(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var el = document.getElementById(id);
+  el.setAttribute('data-n', n);
+  rgwSetQuestion(el, PGW_NAMES[n]+'뿔의 면, 모서리, 꼭짓점의 수를 모두 더하면 얼마인가요?', 'pgwSol8');
+}
+function pgwSol8(id){
+  var el = document.getElementById(id);
+  var n = +el.getAttribute('data-n');
+  var f=n+1, e=2*n, v=n+1;
+  var diagram = '<div class="fb-diagram">면 = '+f+', 모서리 = '+e+', 꼭짓점 = '+v+'<br>'+f+'+'+e+'+'+v+' = <strong style="color:#3fb950">'+(f+e+v)+'</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgwSol8');
+}
+function pgwGen9(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var el = document.getElementById(id);
+  el.setAttribute('data-n', n);
+  rgwSetQuestion(el, '각기둥의 밑면의 변이 '+n+'개일 때, 이 각기둥의 모서리는 몇 개인가요?', 'pgwSol9');
+}
+function pgwSol9(id){
+  var el = document.getElementById(id);
+  var n = +el.getAttribute('data-n');
+  var diagram = '<div class="fb-diagram">모서리 = 3×'+n+' = <strong style="color:#3fb950">'+(3*n)+'개</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgwSol9');
+}
+function pgwGen10(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var v = n+1;
+  var el = document.getElementById(id);
+  el.setAttribute('data-v', v);
+  rgwSetQuestion(el, '꼭짓점이 '+v+'개인 각뿔의 이름은 무엇인가요?', 'pgwSol10');
+}
+function pgwSol10(id){
+  var el = document.getElementById(id);
+  var v = +el.getAttribute('data-v');
+  var n = v-1;
+  var diagram = '<div class="fb-diagram">각뿔의 꼭짓점 = n+1 이므로 n+1='+v+' → n='+n+'<br>→ <strong style="color:#3fb950">'+PGW_NAMES[n]+'뿔</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgwSol10');
+}
 const CV_DATA_E6CIRC = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
     <p>바퀴, 파이프, 동전, 피자 — 원은 자연과 인공물 어디에나 있어요. 자전거 바퀴가 한 바퀴 굴러가면 얼마나 이동하는지, 피자 한 판에 치즈가 얼마나 필요한지는 모두 원의 둘레와 넓이를 알아야 계산할 수 있어요.</p>
@@ -8233,7 +8609,34 @@ const FB_DIAGRAM_E6FRACDIV_H1 = '<div class="fb-diagram">'+fracPieHtml(2,3,'#f0c
 const FB_DIAGRAM_E6FRACDIV_H2 = '<div class="fb-diagram">'+frac(3,4)+' ÷ '+frac(1,2)+' = <strong style="color:#3fb950">1과 '+frac(1,2)+'</strong><br>'+frac(3,4)+' 안에 '+frac(1,2)+'이 1번 들어가고, 남은 '+frac(1,4)+'은 '+frac(1,2)+'의 절반이에요<span class="cap">1보다 작은 수('+frac(1,2)+')로 나누면, 그 조각이 1번보다 많이 들어가서 몫이 원래 수(3/4)보다 커져요</span></div>';
 const FB_DIAGRAM_E6FRACDIV_H3 = '<div class="fb-diagram">'+frac(3,4)+'÷'+frac(1,2)+' = <strong style="color:#bc8cff">1과 '+frac(1,2)+'</strong> 　 '+frac(3,4)+'÷'+frac(1,4)+' = <strong style="color:#3fb950">3</strong><span class="cap">나누는 수가 '+frac(1,2)+'에서 그 절반인 '+frac(1,4)+'로 줄어드니, 몫은 1과'+frac(1,2)+'에서 3으로(정확히 2배) 늘어나요 — 나누는 단위가 작아질수록 더 많이 들어가요</span></div>';
 const FB_DIAGRAM_E6FRACDIV_H4 = '<div class="fb-diagram">그림으로 센 값: '+frac(3,4)+'÷'+frac(1,2)+'=1과'+frac(1,2)+', 　'+frac(3,4)+'÷'+frac(1,4)+'=3<br>역수 곱셈: '+frac(3,4)+'×'+frac(2,1)+'=1과'+frac(1,2)+', 　'+frac(3,4)+'×'+frac(4,1)+'=3<span class="cap">두 방법 다 똑같은 답이 나와요 — 역수를 곱하는 건 "몇 번 들어가는지 세기"를 더 빠르게 계산하는 지름길일 뿐이에요</span></div>';
+const FB_DIAGRAM_E6PRISM_H1 = '<div class="fb-diagram">'+prismSvg(4,'#58a6ff')+'<span class="cap">위·아래 두 밑면이 평행하고 합동이라서, 옆면이 모두 반듯한 직사각형이 될 수 있어요</span></div>';
+const FB_DIAGRAM_E6PRISM_H2 = '<div class="fb-diagram">'+pyramidSvg(4,'#f0c040')+'<span class="cap">각뿔의 꼭짓점에서 밑면의 각 변으로 선을 그으면, 밑면이 몇각형이든 옆면은 항상 삼각형이 돼요</span></div>';
+const FB_DIAGRAM_E6PRISM_H3 = '<div class="fb-diagram">'+prismSvg(4,'#3fb950')+'밑면(사각형) 모서리 4개 × 2(위·아래) = 8개<br>옆면을 잇는 세로 모서리 4개<br>8+4 = <strong style="color:#3fb950">12개</strong> (= 밑면 변의 수 4 × 3)</div>';
+const FB_DIAGRAM_E6PRISM_H4 = '<div class="fb-diagram"><div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">'
+  + '<div>'+prismSvg(4,'#58a6ff')+'<div style="font-size:.72rem;color:#58a6ff">각기둥 — 밑면 2개(평행·합동), 옆면은 직사각형</div></div>'
+  + '<div>'+pyramidSvg(4,'#f0c040')+'<div style="font-size:.72rem;color:#f0c040">각뿔 — 밑면 1개, 옆면은 모두 삼각형, 한 점(꼭짓점)에서 만남</div></div>'
+  + '</div></div>';
 const HAVRUTA_FB = {
+  'e6prism-h1': [
+    {ok:true, text:'맞아요! 두 밑면이 평행하고 합동이어야, 그 사이를 잇는 옆면들이 위아래 폭이 똑같은 반듯한 직사각형이 될 수 있어요.', diagram:FB_DIAGRAM_E6PRISM_H1},
+    {ok:false, text:'이유 없는 규칙이 아니에요! 두 밑면이 평행·합동이 아니면 옆면이 직사각형이 될 수 없어요.', diagram:FB_DIAGRAM_E6PRISM_H1},
+    {ok:false, text:'밑면 모양과 상관있어요! 두 밑면이 서로 평행하고 합동이어야만 옆면이 직사각형이 돼요.', diagram:FB_DIAGRAM_E6PRISM_H1}
+  ],
+  'e6prism-h2': [
+    {ok:true, text:'맞아요! 각뿔의 꼭짓점에서 밑면의 각 변까지 선을 그으면 삼각형이 만들어지는데, 이게 바로 옆면이에요 — 밑면이 몇각형이든 항상 삼각형이 돼요.', diagram:FB_DIAGRAM_E6PRISM_H2},
+    {ok:false, text:'예쁘라고 정한 규칙이 아니에요! 꼭짓점 하나에서 밑면의 변으로 이으면 항상 삼각형이 만들어지는 구조적인 이유가 있어요.', diagram:FB_DIAGRAM_E6PRISM_H2},
+    {ok:false, text:'밑면 모양과 상관없이 항상 삼각형이에요 — 삼각뿔이든 오각뿔이든 옆면은 모두 삼각형이에요.', diagram:FB_DIAGRAM_E6PRISM_H2}
+  ],
+  'e6prism-h3': [
+    {ok:true, text:'맞아요! 밑면 모서리(4개)가 위아래 2번(4×2=8), 거기에 옆면을 잇는 세로 모서리 4개를 더하면 12개 — 밑면 변의 수(4)를 3배 한 것과 같아요.', diagram:FB_DIAGRAM_E6PRISM_H3},
+    {ok:false, text:'하나하나 세는 것 말고도 빠른 방법이 있어요! 밑면 변의 수를 3배 하면 바로 구할 수 있어요.', diagram:FB_DIAGRAM_E6PRISM_H3},
+    {ok:false, text:'꼭짓점 수(8개)와는 다른 계산이에요! 밑면 변의 수(4)×3=12로 구해요.', diagram:FB_DIAGRAM_E6PRISM_H3}
+  ],
+  'e6prism-h4': [
+    {ok:true, text:'맞아요! 각기둥은 밑면이 2개(평행·합동)이고 옆면이 직사각형인데, 각뿔은 밑면이 1개뿐이고 옆면이 모두 삼각형이며 한 점(꼭짓점)에 모여요.', diagram:FB_DIAGRAM_E6PRISM_H4},
+    {ok:false, text:'전혀 다른 도형이에요! 밑면 개수(2개 vs 1개)와 옆면 모양(직사각형 vs 삼각형)이 서로 달라요.', diagram:FB_DIAGRAM_E6PRISM_H4},
+    {ok:false, text:'반대로 알고 있어요! 각기둥의 옆면이 직사각형, 각뿔의 옆면이 삼각형이에요.', diagram:FB_DIAGRAM_E6PRISM_H4}
+  ],
   'e6fracdiv-h1': [
     {ok:true, text:'맞아요! 케이크 2개를 3명이 나누면, 하나의 케이크를 3등분한 조각을 한 명이 2번(각 케이크에서 1조각씩) 갖는 셈이라, 나누는 수(3)가 분모, 나뉘는 수(2)가 분자가 돼요.', diagram:FB_DIAGRAM_E6FRACDIV_H1},
     {ok:false, text:'그냥 순서를 바꾸는 규칙이 아니에요! 나누는 수(3)만큼 등분한 조각 수가 분모가 되는 실제 이유가 있어요.', diagram:FB_DIAGRAM_E6FRACDIV_H1},
@@ -8642,6 +9045,42 @@ function cuboidSvg(w, h, dx, dy, color){
   s += L(D,D2)+L(C,C2)+L(D2,C2);
   s += L(B,B2)+L(B2,C2);
   s += L(A,A2,true)+L(A2,B2,true)+L(A2,D2,true);
+  s += '</svg>';
+  return s;
+}
+function ngonPoints(cx, cy, rx, ry, n){
+  var pts = [];
+  for(var k=0;k<n;k++){
+    var ang = (-90 + k*360/n) * Math.PI/180;
+    pts.push([cx+rx*Math.cos(ang), cy+ry*Math.sin(ang)]);
+  }
+  return pts;
+}
+function prismSvg(n, color){
+  color = color || '#58a6ff';
+  var cx=70, rx=50, ry=18, topY=25, botY=95;
+  var top = ngonPoints(cx, topY, rx, ry, n);
+  var bot = ngonPoints(cx, botY, rx, ry, n);
+  function L(p1,p2,dash){ return '<line x1="'+p1[0].toFixed(1)+'" y1="'+p1[1].toFixed(1)+'" x2="'+p2[0].toFixed(1)+'" y2="'+p2[1].toFixed(1)+'" stroke="'+color+'" stroke-width="2"'+(dash?' stroke-dasharray="4,3"':'')+'/>'; }
+  var hiddenIdx = 0;
+  var s = '<svg viewBox="0 0 140 120" style="height:130px;width:auto;max-width:100%;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">';
+  for(var i=0;i<n;i++){ s += L(top[i], top[(i+1)%n], false); }
+  for(var i=0;i<n;i++){ var j=(i+1)%n; s += L(bot[i], bot[j], i===hiddenIdx||j===hiddenIdx); }
+  for(var i=0;i<n;i++){ s += L(top[i], bot[i], i===hiddenIdx); }
+  s += '</svg>';
+  return s;
+}
+function pyramidSvg(n, color){
+  color = color || '#58a6ff';
+  var cx=70, rx=50, ry=18, baseY=90, apexY=15;
+  var base = ngonPoints(cx, baseY, rx, ry, n);
+  var apex = [cx, apexY];
+  function L(p1,p2,dash){ return '<line x1="'+p1[0].toFixed(1)+'" y1="'+p1[1].toFixed(1)+'" x2="'+p2[0].toFixed(1)+'" y2="'+p2[1].toFixed(1)+'" stroke="'+color+'" stroke-width="2"'+(dash?' stroke-dasharray="4,3"':'')+'/>'; }
+  var hiddenIdx = 0;
+  var s = '<svg viewBox="0 0 140 110" style="height:120px;width:auto;max-width:100%;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">';
+  for(var i=0;i<n;i++){ var j=(i+1)%n; s += L(base[i], base[j], i===hiddenIdx||j===hiddenIdx); }
+  for(var i=0;i<n;i++){ s += L(apex, base[i], i===hiddenIdx); }
+  s += '<circle cx="'+apex[0]+'" cy="'+apex[1]+'" r="2.5" fill="'+color+'"/>';
   s += '</svg>';
   return s;
 }
