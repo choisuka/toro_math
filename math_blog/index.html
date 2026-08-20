@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>영통수학여행학원 — 수학 블로그 & 학습 카페</title>
+<!-- PWA -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#4f46e5">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="수학여행">
+<link rel="apple-touch-icon" href="./icon.svg">
+<!-- SEO: 네이버 검색 최적화 -->
+<meta name="description" content="영통수학여행학원 공식 블로그. 정수, 유리수, 소수, 분수 개념 설명과 재미있는 수학 게임을 제공합니다. 영통 수학 전문 학원.">
+<meta name="keywords" content="영통수학학원, 영통수학여행학원, 수학여행학원, 영통학원, 수학게임, 정수, 유리수, 분수, 소수, 수학공부, 영통수학">
+<meta name="author" content="영통수학여행학원">
+<meta name="robots" content="index, follow">
+<!-- 네이버 오픈그래프 -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="영통수학여행학원 — 수학 블로그 & 학습 카페">
+<meta property="og:description" content="영통 수학여행 학원의 공식 수학 블로그. 재미있는 게임으로 수학을 배워요!">
+<meta property="og:image" content="./icon.svg">
+<!-- 네이버 서치어드바이저 (나중에 인증코드 발급 후 교체) -->
+<!-- <meta name="naver-site-verification" content="여기에_인증코드_입력"> -->
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--card:#111827;--card2:#1a2235;
+  --purple:#7c3aed;--pink:#db2777;--amber:#f59e0b;--blue:#3b82f6;--teal:#14b8a6;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.08)}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* ══ NAV ══ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,14,26,.88);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:.75rem 1.25rem;
+  display:flex;align-items:center;gap:1.5rem}
+.nav-logo{font-size:1.3rem;font-weight:900;
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  white-space:nowrap;cursor:pointer}
+.nav-links{display:flex;gap:.25rem;flex-wrap:wrap}
+.nav-link{padding:.45rem .9rem;border-radius:20px;font-size:.88rem;font-weight:600;
+  color:var(--muted);cursor:pointer;border:none;background:none;
+  font-family:inherit;transition:all .18s;white-space:nowrap}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nav-link.active{color:#fff;background:linear-gradient(135deg,var(--purple),var(--pink))}
+.nav-game-btn{margin-left:auto;padding:.45rem 1rem;border-radius:20px;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  color:#fff;font-size:.85rem;font-weight:700;cursor:pointer;
+  border:none;font-family:inherit;white-space:nowrap;
+  animation:navPulse 2.5s ease-in-out infinite}
+@keyframes navPulse{0%,100%{box-shadow:0 0 0 rgba(124,58,237,0)}50%{box-shadow:0 0 20px rgba(124,58,237,.5)}}
+
+/* ══ SECTIONS ══ */
+.section{display:none;min-height:100vh;padding-top:64px}
+.section.active{display:block}
+.container{max-width:1100px;margin:0 auto;padding:2rem 1.25rem}
+
+/* ══ HERO ══ */
+.hero{text-align:center;padding:4rem 1rem 3rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(124,58,237,.25),transparent);
+  pointer-events:none}
+.hero-badge{display:inline-block;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);
+  color:#a78bfa;border-radius:20px;padding:.3rem .85rem;font-size:.8rem;font-weight:700;
+  margin-bottom:1rem;letter-spacing:.08em}
+.hero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:900;line-height:1.1;margin-bottom:1rem;
+  background:linear-gradient(135deg,#a78bfa 0%,#f472b6 50%,#fb923c 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:520px;margin:0 auto 2rem;line-height:1.8}
+.hero-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{padding:.75rem 1.6rem;border-radius:14px;border:none;
+  background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;
+  font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit;
+  box-shadow:0 4px 24px rgba(124,58,237,.4);transition:all .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,58,237,.55)}
+.btn-outline{padding:.75rem 1.6rem;border-radius:14px;
+  border:2px solid rgba(255,255,255,.2);background:transparent;color:#fff;
+  font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-outline:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.05)}
+
+/* stats */
+.stats-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:3rem 0 0}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:1.25rem 1.75rem;text-align:center;min-width:130px}
+.stat-card .sv{font-size:2.2rem;font-weight:900;
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-card .sk{font-size:.82rem;color:var(--muted);margin-top:.3rem}
+
+/* ══ SECTION HEADER ══ */
+.sec-head{margin-bottom:2rem}
+.sec-head h2{font-size:1.9rem;font-weight:900;margin-bottom:.4rem}
+.sec-head p{color:var(--muted);font-size:.95rem}
+.grad-text{background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ══ BLOG GRID ══ */
+.filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.filter-btn{padding:.4rem .9rem;border-radius:20px;border:1.5px solid var(--border);
+  background:transparent;color:var(--muted);font-size:.82rem;font-weight:600;
+  cursor:pointer;font-family:inherit;transition:all .15s}
+.filter-btn:hover{border-color:var(--purple);color:#fff}
+.filter-btn.active{background:rgba(124,58,237,.2);border-color:var(--purple);color:#a78bfa}
+
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.blog-card{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  overflow:hidden;cursor:pointer;transition:all .22s}
+.blog-card:hover{transform:translateY(-4px);border-color:rgba(124,58,237,.4);
+  box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.blog-thumb{height:160px;display:flex;align-items:center;justify-content:center;
+  font-size:4rem;position:relative;overflow:hidden}
+.blog-body{padding:1.25rem}
+.blog-cat{display:inline-block;font-size:.72rem;font-weight:700;padding:.25rem .65rem;
+  border-radius:10px;margin-bottom:.6rem;letter-spacing:.06em}
+.cat-int{background:rgba(59,130,246,.2);color:#60a5fa}
+.cat-rat{background:rgba(124,58,237,.2);color:#a78bfa}
+.cat-method{background:rgba(20,184,166,.2);color:#2dd4bf}
+.cat-quiz{background:rgba(245,158,11,.2);color:#fbbf24}
+.blog-title{font-size:1rem;font-weight:700;margin-bottom:.5rem;line-height:1.5}
+.blog-preview{font-size:.83rem;color:var(--muted);line-height:1.7;margin-bottom:.9rem;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.blog-meta{display:flex;align-items:center;gap:.75rem;font-size:.78rem;color:var(--muted)}
+.blog-likes{margin-left:auto;display:flex;align-items:center;gap:.3rem;
+  cursor:pointer;transition:color .15s}
+.blog-likes:hover{color:#f472b6}
+.blog-likes.liked{color:#f472b6}
+
+/* ══ CAFE BOARD ══ */
+.board-layout{display:grid;grid-template-columns:1fr 260px;gap:1.5rem}
+@media(max-width:768px){.board-layout{grid-template-columns:1fr}}
+.board-tabs{display:flex;gap:.25rem;flex-wrap:wrap;margin-bottom:1rem;
+  border-bottom:1px solid var(--border);padding-bottom:.75rem}
+.board-tab{padding:.45rem .9rem;border-radius:10px 10px 0 0;font-size:.85rem;font-weight:600;
+  cursor:pointer;border:none;background:none;font-family:inherit;color:var(--muted);
+  transition:all .15s}
+.board-tab:hover{color:#fff}
+.board-tab.active{background:rgba(124,58,237,.2);color:#a78bfa}
+.board-posts{display:flex;flex-direction:column;gap:.5rem}
+.board-post{background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:.9rem 1.1rem;cursor:pointer;transition:all .18s;display:flex;align-items:flex-start;gap:.75rem}
+.board-post:hover{border-color:rgba(124,58,237,.35);background:var(--card2);transform:translateX(3px)}
+.board-post.pinned{border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.04)}
+.post-tag{font-size:.7rem;font-weight:700;padding:.2rem .55rem;border-radius:7px;
+  white-space:nowrap;flex-shrink:0;margin-top:.1rem}
+.tag-notice{background:rgba(239,68,68,.2);color:#f87171}
+.tag-q{background:rgba(59,130,246,.2);color:#60a5fa}
+.tag-share{background:rgba(20,184,166,.2);color:#2dd4bf}
+.tag-chat{background:rgba(148,163,184,.15);color:#94a3b8}
+.post-info{flex:1;min-width:0}
+.post-title{font-size:.92rem;font-weight:600;margin-bottom:.3rem;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.post-sub{font-size:.77rem;color:var(--muted);display:flex;gap:.6rem}
+.post-counts{display:flex;gap:.5rem;font-size:.77rem;color:var(--muted);flex-shrink:0}
+.write-btn{width:100%;padding:.85rem;border-radius:14px;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  color:#fff;font-weight:700;font-size:.95rem;cursor:pointer;
+  border:none;font-family:inherit;margin-bottom:1rem;
+  transition:all .2s}
+.write-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(124,58,237,.4)}
+
+/* 사이드바 */
+.sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.1rem;margin-bottom:1rem}
+.sidebar-title{font-size:.82rem;font-weight:800;color:var(--muted);letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:.75rem}
+.member-item{display:flex;align-items:center;gap:.65rem;padding:.4rem 0;
+  border-bottom:1px solid var(--border)}
+.member-item:last-child{border-bottom:none}
+.member-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:1rem;flex-shrink:0}
+.member-info{flex:1}
+.member-name{font-size:.85rem;font-weight:600}
+.member-pts{font-size:.75rem;color:var(--muted)}
+.badge-row{display:flex;flex-wrap:wrap;gap:.4rem}
+.badge{font-size:.75rem;padding:.25rem .6rem;border-radius:10px;font-weight:600}
+.badge-fire{background:rgba(251,146,60,.2);color:#fb923c}
+.badge-star{background:rgba(245,158,11,.2);color:#fbbf24}
+.badge-book{background:rgba(59,130,246,.2);color:#60a5fa}
+
+/* ══ GAME SECTION ══ */
+.game-section{display:flex;flex-direction:column;gap:1.5rem}
+.game-intro{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem}
+.game-intro h3{font-size:1.2rem;font-weight:800;margin-bottom:.6rem}
+.game-features{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.75rem}
+.game-feature{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);
+  border-radius:10px;padding:.4rem .8rem;font-size:.82rem;color:#a78bfa}
+.game-launch-box{background:linear-gradient(160deg,#0d0030,#1a0050);
+  border:2px solid rgba(124,58,237,.4);border-radius:24px;
+  padding:3rem 2rem;text-align:center;
+  box-shadow:0 0 60px rgba(124,58,237,.3);
+  animation:probGlow 3s ease-in-out infinite}
+@keyframes probGlow{
+  0%,100%{border-color:rgba(124,58,237,.4);box-shadow:0 0 40px rgba(124,58,237,.25)}
+  50%{border-color:rgba(167,139,250,.9);box-shadow:0 0 80px rgba(124,58,237,.55)}}
+.game-launch-icon{font-size:5rem;display:block;margin-bottom:1.2rem;
+  animation:gameIconFloat 2.5s ease-in-out infinite}
+@keyframes gameIconFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}}
+.game-launch-title{font-size:1.8rem;font-weight:900;color:#fff;margin-bottom:.6rem;
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.game-launch-desc{color:#94a3b8;font-size:.95rem;line-height:1.8;margin-bottom:2rem}
+.game-launch-btn{display:inline-block;padding:1.1rem 2.5rem;border-radius:18px;border:none;
+  background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;
+  font-size:1.15rem;font-weight:800;cursor:pointer;font-family:inherit;
+  box-shadow:0 4px 28px rgba(124,58,237,.55);
+  animation:nextPulse 1.7s ease-in-out infinite;letter-spacing:.03em;
+  text-decoration:none}
+@keyframes nextPulse{
+  0%,100%{transform:scale(1);box-shadow:0 4px 28px rgba(124,58,237,.55)}
+  50%{transform:scale(1.05);box-shadow:0 10px 50px rgba(219,39,119,.8)}}
+.game-launch-btn:hover{animation:none;transform:scale(1.08)!important;
+  box-shadow:0 12px 56px rgba(219,39,119,.9)!important}
+.game-launch-note{font-size:.8rem;color:var(--muted);margin-top:1rem}
+
+/* ══ MODAL ══ */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.82);backdrop-filter:blur(8px);
+  align-items:flex-start;justify-content:center;padding:4rem 1rem 2rem;
+  overflow-y:auto}
+.modal-overlay.show{display:flex;animation:fadeIn .2s ease}
+.modal-box{background:#111827;border:1px solid rgba(255,255,255,.1);
+  border-radius:24px;width:100%;max-width:680px;padding:2rem;
+  animation:modalPop .35s cubic-bezier(.34,1.56,.64,1);margin:auto}
+.modal-close{position:absolute;top:1rem;right:1rem;width:36px;height:36px;
+  border-radius:50%;background:rgba(255,255,255,.08);border:none;color:#fff;
+  font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.modal-box{position:relative}
+.modal-cat{font-size:.75rem;font-weight:700;letter-spacing:.08em;margin-bottom:.6rem}
+.modal-title{font-size:1.5rem;font-weight:900;margin-bottom:.4rem;line-height:1.4}
+.modal-meta{font-size:.82rem;color:var(--muted);margin-bottom:1.2rem;
+  display:flex;gap:.75rem;flex-wrap:wrap}
+.modal-sep{width:100%;height:1px;background:var(--border);margin:1.2rem 0}
+.modal-content{font-size:.95rem;line-height:1.9;color:#cbd5e1}
+.modal-content h3{font-size:1.1rem;font-weight:800;color:#fff;margin:1.2rem 0 .5rem}
+.modal-content p{margin-bottom:.8rem}
+.modal-content ul{padding-left:1.2rem;margin-bottom:.8rem}
+.modal-content li{margin-bottom:.4rem}
+.modal-content .highlight{background:rgba(124,58,237,.15);border-left:4px solid var(--purple);
+  padding:.75rem 1rem;border-radius:0 10px 10px 0;margin:.8rem 0;color:#e2e8f0}
+.modal-content .formula{background:rgba(0,0,0,.3);border-radius:12px;padding:.75rem 1rem;
+  font-family:monospace;color:#a78bfa;margin:.8rem 0;font-size:1rem;text-align:center}
+
+@keyframes modalPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ══ FOOTER ══ */
+footer{border-top:1px solid var(--border);padding:2rem 1.25rem;text-align:center;
+  font-size:.83rem;color:var(--muted);margin-top:2rem}
+footer .f-logo{font-size:1.1rem;font-weight:900;
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:.5rem}
+
+/* ══ TOAST ══ */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);
+  background:#1e293b;border:1px solid rgba(255,255,255,.15);border-radius:14px;
+  padding:.75rem 1.5rem;font-size:.88rem;color:#fff;z-index:999;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ══ 게임화 모달 공통 ══ */
+.gm-overlay{display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1rem;overflow-y:auto}
+.gm-overlay.show{display:flex;animation:gmFadeIn .2s ease}
+@keyframes gmFadeIn{from{opacity:0}to{opacity:1}}
+.gm-box{background:#111827;border:1.5px solid rgba(167,139,250,.35);border-radius:22px;padding:1.8rem 1.5rem;width:100%;max-width:420px;position:relative;animation:gmPop .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes gmPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.gm-close{position:absolute;top:.8rem;right:.8rem;background:rgba(255,255,255,.1);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem}
+.gm-title{font-weight:800;font-size:1.2rem;color:#fff;margin-bottom:1rem;text-align:center}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:640px){
+  .hero h1{font-size:2.2rem}
+  .blog-grid{grid-template-columns:1fr}
+  .game-frame-wrap iframe{height:600px}}
+</style>
+<script src="toro_ai.js"></script>
+</head>
+<body>
+
+<!-- ══ 게임화 UI ══ -->
+<button id="toro-compass-btn" onclick="showCompassHint()" style="position:fixed;bottom:80px;right:20px;z-index:200;width:54px;height:54px;border-radius:50%;border:none;background:linear-gradient(135deg,#1a3a5a,#3498db);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 16px rgba(52,152,219,.4)">🧭</button>
+
+<div id="compass-modal" class="gm-overlay" onclick="if(event.target===this)closeCompassModal()">
+  <div class="gm-box">
+    <button class="gm-close" onclick="closeCompassModal()">✕</button>
+    <div class="gm-title">🧭 토로의 나침반</div>
+    <div id="compass-hint-text" style="color:#c4b5fd;font-size:.95rem;line-height:1.8;text-align:center;padding:.5rem 0"></div>
+  </div>
+</div>
+
+<div id="artifact-modal" class="gm-overlay" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="gm-box" style="text-align:center">
+    <button class="gm-close" onclick="document.getElementById('artifact-modal').classList.remove('show')">✕</button>
+    <div style="font-size:3rem;margin-bottom:.5rem" id="artifact-modal-emoji">📝</div>
+    <div class="gm-title" id="artifact-modal-name">유물 획득!</div>
+    <div style="color:#94a3b8;font-size:.85rem;margin-bottom:.5rem" id="artifact-modal-island"></div>
+    <div style="color:#e2e8f0;font-size:.9rem;font-style:italic;padding:.75rem 1rem;background:rgba(255,255,255,.05);border-radius:12px;margin-bottom:1rem" id="artifact-modal-quote"></div>
+    <button onclick="document.getElementById('artifact-modal').classList.remove('show')" style="background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border:none;border-radius:20px;padding:10px 28px;font-size:.95rem;cursor:pointer">확인!</button>
+  </div>
+</div>
+
+<div id="artifact-collection-modal" class="gm-overlay" onclick="if(event.target===this)closeArtifactCollection()">
+  <div class="gm-box" style="max-width:480px">
+    <button class="gm-close" onclick="closeArtifactCollection()">✕</button>
+    <div class="gm-title">🏆 유물 컬렉션</div>
+    <div id="artifact-collection-inner" style="display:flex;flex-direction:column;gap:.6rem"></div>
+  </div>
+</div>
+
+<div id="log-modal" class="gm-overlay" onclick="if(event.target===this)closeLog()">
+  <div class="gm-box" style="max-width:480px">
+    <button class="gm-close" onclick="closeLog()">✕</button>
+    <div class="gm-title">📖 항해 일지</div>
+    <div id="log-inner" style="display:flex;flex-direction:column;gap:.5rem;max-height:60vh;overflow-y:auto"></div>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="goSection('home')">🔢 수학여행</div>
+    <div class="nav-links">
+      <button class="nav-link active" onclick="goSection('home')">🏠 홈</button>
+      <button class="nav-link" onclick="goSection('blog')">📝 블로그</button>
+      <button class="nav-link" onclick="goSection('cafe')">☕ 카페</button>
+      <button class="nav-link" onclick="goSection('game')">🎮 게임</button>
+    </div>
+    <button class="nav-game-btn" onclick="goSection('game')">🚀 게임 바로가기</button>
+    <a class="nav-game-btn" href="../index.html" style="margin-left:8px;background:rgba(168,85,247,.2);border-color:rgba(168,85,247,.5);color:#c084fc;text-decoration:none">← 토로매쓰</a>
+    <button onclick="showArtifactCollection()" style="margin-left:4px;padding:.45rem .9rem;border-radius:20px;background:rgba(212,160,23,.12);border:1px solid rgba(212,160,23,.3);color:#fbbf24;font-size:.82rem;cursor:pointer">🏆 <span id="artifact-count-badge">0개</span></button>
+    <button onclick="showLog()" style="padding:.45rem .9rem;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);font-size:.82rem;cursor:pointer">📖</button>
+  </div>
+</nav>
+
+<!-- ══ HOME ══ -->
+<section id="sec-home" class="section active">
+  <!-- 열기 방법 안내 (파일로 열 때만 보임) -->
+  <div id="open-guide" style="background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);
+    border-radius:14px;margin:72px 1.25rem 0;padding:.85rem 1.1rem;
+    font-size:.85rem;color:#fde68a;display:flex;align-items:center;gap:.6rem">
+    💡 <strong>열기 방법:</strong>
+    이 파일을 <strong>오른쪽 클릭 → 연결 프로그램 → Chrome/Edge/Firefox</strong> 로 여세요.
+    VS Code나 메모장이 아닌 <strong>브라우저</strong>로 열어야 합니다.
+    <button onclick="document.getElementById('open-guide').style.display='none'"
+      style="margin-left:auto;background:none;border:none;color:#fbbf24;cursor:pointer;font-size:1.1rem">✕</button>
+  </div>
+  <div class="container">
+    <!-- 최신 블로그 -->
+    <div class="sec-head" style="margin-top:1rem">
+      <h2>📝 최신 <span class="grad-text">블로그</span></h2>
+    </div>
+    <div class="blog-grid" id="home-blog-grid"></div>
+
+    <!-- 최근 카페 -->
+    <div class="sec-head" style="margin-top:2.5rem">
+      <h2>☕ 최근 <span class="grad-text">카페</span> 글</h2>
+    </div>
+    <div class="board-posts" id="home-cafe-list" style="max-width:680px"></div>
+
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn-outline" onclick="goSection('cafe')">☕ 카페 전체 보기 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BLOG ══ -->
+<section id="sec-blog" class="section">
+  <div class="container">
+    <div class="sec-head">
+      <h2>📝 <span class="grad-text">블로그</span></h2>
+      <p>📐 정수 · 유리수 전문 학습 공간 — 개념부터 문제풀이까지</p>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterBlog('all',this)">전체</button>
+      <button class="filter-btn" onclick="filterBlog('정수',this)">🔢 정수</button>
+      <button class="filter-btn" onclick="filterBlog('유리수',this)">🔣 유리수</button>
+      <button class="filter-btn" onclick="filterBlog('학습법',this)">📚 학습법</button>
+      <button class="filter-btn" onclick="filterBlog('문제풀이',this)">✏️ 문제풀이</button>
+    </div>
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+</section>
+
+<!-- ══ CAFE ══ -->
+<section id="sec-cafe" class="section">
+  <div class="container">
+    <div class="sec-head">
+      <h2>☕ <span class="grad-text">카페</span></h2>
+      <p>함께 공부하고 질문하는 커뮤니티</p>
+    </div>
+    <div class="board-layout">
+      <div>
+        <button class="write-btn" onclick="toast('로그인 후 글쓰기가 가능합니다 ✏️')">✏️ 글쓰기</button>
+        <div class="board-tabs">
+          <button class="board-tab active" onclick="filterCafe('all',this)">전체</button>
+          <button class="board-tab" onclick="filterCafe('notice',this)">📢 공지</button>
+          <button class="board-tab" onclick="filterCafe('q',this)">❓ 질문</button>
+          <button class="board-tab" onclick="filterCafe('share',this)">📎 자료</button>
+          <button class="board-tab" onclick="filterCafe('chat',this)">💬 잡담</button>
+        </div>
+        <div class="board-posts" id="cafe-list"></div>
+      </div>
+      <div>
+        <div class="sidebar-card">
+          <div class="sidebar-title">🏆 우수 회원</div>
+          <div class="member-item">
+            <div class="member-avatar" style="background:rgba(245,158,11,.2)">🥇</div>
+            <div class="member-info"><div class="member-name">수학왕민준</div><div class="member-pts">⭐ 1,240점</div></div>
+          </div>
+          <div class="member-item">
+            <div class="member-avatar" style="background:rgba(124,58,237,.2)">🥈</div>
+            <div class="member-info"><div class="member-name">분수마스터</div><div class="member-pts">⭐ 980점</div></div>
+          </div>
+          <div class="member-item">
+            <div class="member-avatar" style="background:rgba(20,184,166,.2)">🥉</div>
+            <div class="member-info"><div class="member-name">음수정복자</div><div class="member-pts">⭐ 830점</div></div>
+          </div>
+          <div class="member-item">
+            <div class="member-avatar" style="background:rgba(59,130,246,.2)">4️⃣</div>
+            <div class="member-info"><div class="member-name">유리수걸</div><div class="member-pts">⭐ 710점</div></div>
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <div class="sidebar-title">🏅 뱃지</div>
+          <div class="badge-row">
+            <span class="badge badge-fire">🔥 10연속 정답</span>
+            <span class="badge badge-star">⭐ 100점 달성</span>
+            <span class="badge badge-book">📚 개념 마스터</span>
+            <span class="badge badge-fire">💯 퍼펙트</span>
+            <span class="badge badge-star">🎯 정확도 왕</span>
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <div class="sidebar-title">📌 공지</div>
+          <div style="font-size:.83rem;color:var(--muted);line-height:1.8">
+            • 매주 새 문제가 업데이트됩니다<br>
+            • 오답 노트 기능이 추가되었어요<br>
+            • 힌트 버튼을 활용해보세요!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GAME ══ -->
+<section id="sec-game" class="section">
+  <div class="container">
+    <div class="sec-head">
+      <h2>🎮 <span class="grad-text">수학 게임 3종</span></h2>
+      <p>개념 설명 → 힌트 → 퀴즈 → 단계별 풀이까지! 게임으로 수학을 정복하세요</p>
+    </div>
+    <!-- Game 1 -->
+    <div class="game-section" style="margin-bottom:1.5rem">
+      <div class="game-intro">
+        <h3>🎮 수학 왕국 — 정수 · 유리수</h3>
+        <p style="color:var(--muted);font-size:.9rem;line-height:1.7">
+          정수·소수·분수 연산을 드라마틱한 게임으로! 틀리면 풀이가 전면 팝업으로 등장합니다.
+        </p>
+        <div class="game-features">
+          <span class="game-feature">📐 개념 미리보기</span>
+          <span class="game-feature">💡 힌트</span>
+          <span class="game-feature">📚 단계별 풀이</span>
+          <span class="game-feature">⏱️ 타이머</span>
+        </div>
+      </div>
+      <div class="game-launch-box">
+        <span class="game-launch-icon">👑</span>
+        <div class="game-launch-title">수학 왕국</div>
+        <div class="game-launch-desc">정수 · 유리수 · 분수 연산 마스터!</div>
+        <a class="game-launch-btn" href="../math_game/phaser_game.html">
+          🚀 게임 열기
+        </a>
+        <div class="game-launch-note">새 탭에서 열립니다</div>
+      </div>
+    </div>
+    <!-- Game 2 -->
+    <div class="game-section" style="margin-bottom:1.5rem">
+      <div class="game-intro">
+        <h3>🔮 문자와 식 마법학교</h3>
+        <p style="color:var(--muted);font-size:.9rem;line-height:1.7">
+          문자의 사용·기호 생략·식의 값·동류항까지 5챕터! 500점 달성 시 주관식으로 자동 전환.
+        </p>
+        <div class="game-features">
+          <span class="game-feature">🔤 문자의 사용</span>
+          <span class="game-feature">✖️ 기호 생략</span>
+          <span class="game-feature">🔢 식의 값</span>
+          <span class="game-feature">🧮 동류항</span>
+          <span class="game-feature">🔥 주관식 모드</span>
+        </div>
+      </div>
+      <div class="game-launch-box" style="background:linear-gradient(160deg,#0e0030,#1a0050);border-color:rgba(96,165,250,.4);box-shadow:0 0 60px rgba(96,165,250,.25)">
+        <span class="game-launch-icon">🔮</span>
+        <div class="game-launch-title" style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">문자와 식 마법학교</div>
+        <div class="game-launch-desc">강의 → 퀴즈 → 500점 돌파 → 주관식!</div>
+        <a class="game-launch-btn" href="../algebra_game/algebra_game.html"
+          style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
+          🔮 게임 열기
+        </a>
+        <div class="game-launch-note">새 탭에서 열립니다</div>
+      </div>
+    </div>
+    <!-- Game 3 -->
+    <div class="game-section">
+      <div class="game-intro">
+        <h3>🔍 수학 탐정 수사국</h3>
+        <p style="color:var(--muted);font-size:.9rem;line-height:1.7">
+          셜록 홈즈·코난처럼 사건을 해결하며 방정식 활용을 익혀요! 속력·원가·일·소금물·비율 5가지 사건.
+        </p>
+        <div class="game-features">
+          <span class="game-feature">🚗 속력·거리</span>
+          <span class="game-feature">🎭 원가·정가</span>
+          <span class="game-feature">💣 일 문제</span>
+          <span class="game-feature">🧪 소금물</span>
+          <span class="game-feature">📜 비율</span>
+        </div>
+      </div>
+      <div class="game-launch-box" style="background:linear-gradient(160deg,#1a1000,#251800);border-color:rgba(212,160,23,.4);box-shadow:0 0 60px rgba(212,160,23,.2)">
+        <span class="game-launch-icon">🔍</span>
+        <div class="game-launch-title" style="background:linear-gradient(135deg,#d4a017,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">수학 탐정 수사국</div>
+        <div class="game-launch-desc">코난·홈즈와 함께 방정식으로 사건 해결!</div>
+        <a class="game-launch-btn" href="../detective_math/detective_game.html" target="_blank"
+          style="background:linear-gradient(135deg,#b45309,#d97706)">
+          🕵️ 수사 시작
+        </a>
+        <div class="game-launch-note">새 탭에서 열립니다</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="f-logo">🔢 수학여행</div>
+  <p>정수 · 유리수 개념 학습 블로그 & 커뮤니티 카페</p>
+  <p style="margin-top:.4rem">ⓒ 2026 수학여행 — 수학이 여행처럼 즐거워지는 곳</p>
+</footer>
+
+<!-- ══ BLOG MODAL ══ -->
+<div id="blog-modal" class="modal-overlay" onclick="closeModal('blog-modal',event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('blog-modal')">✕</button>
+    <div class="modal-cat" id="bm-cat"></div>
+    <div class="modal-title" id="bm-title"></div>
+    <div class="modal-meta" id="bm-meta"></div>
+    <div class="modal-sep"></div>
+    <div class="modal-content" id="bm-content"></div>
+  </div>
+</div>
+
+<!-- ══ CAFE MODAL ══ -->
+<div id="cafe-modal" class="modal-overlay" onclick="closeModal('cafe-modal',event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('cafe-modal')">✕</button>
+    <div class="modal-cat" id="cm-cat"></div>
+    <div class="modal-title" id="cm-title"></div>
+    <div class="modal-meta" id="cm-meta"></div>
+    <div class="modal-sep"></div>
+    <div class="modal-content" id="cm-content"></div>
+  </div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div id="toast-el" class="toast"></div>
+
+<script>
+// ══ DATA ══════════════════════════════════════════════
+
+const BLOG_POSTS = [
+  {
+    id:1, cat:'정수', catClass:'cat-int', emoji:'🔢',
+    bg:'linear-gradient(135deg,#1e3a5f,#0f2040)',
+    title:'정수의 덧셈과 뺄셈 — 완전 정복 가이드',
+    preview:'양수, 음수, 0을 포함한 정수. 덧셈과 뺄셈의 핵심 규칙을 쉽게 이해해봐요.',
+    date:'2026.02.15', author:'수학여행', readTime:'5분', views:1240, likes:87,
+    content:`
+<h3>정수란 무엇인가요?</h3>
+<p>정수는 <strong>양수(+), 0, 음수(−)</strong>를 모두 포함하는 수입니다. 예를 들어 ...−3, −2, −1, 0, 1, 2, 3... 처럼 이어지는 수들이에요.</p>
+<div class="highlight">💡 일상 속 음수: 영하 온도(−5°C), 지하층(−1층), 빚(−1000원)</div>
+
+<h3>덧셈 핵심 규칙 3가지</h3>
+<ul>
+  <li><strong>같은 부호</strong>: 절댓값을 더하고 공통 부호를 붙임<br>예) (+3) + (+5) = +8 / (−3) + (−5) = −8</li>
+  <li><strong>다른 부호</strong>: 절댓값의 차에 절댓값이 큰 쪽의 부호<br>예) (+8) + (−3) = +5 (8이 더 크므로 양수)</li>
+  <li><strong>뺄셈 변환</strong>: a − b = a + (−b) 로 무조건 덧셈으로 바꾸기!</li>
+</ul>
+<div class="formula">(−3) + 8 = ?  →  |8| − |3| = 5, 큰 쪽(8)이 양수  →  정답: +5</div>
+
+<h3>자주 실수하는 부분</h3>
+<p>뺄셈에서 음수를 빼면 양수가 됩니다!</p>
+<div class="formula">5 − (−3) = 5 + 3 = 8</div>
+<p>음수를 빼는 것은 양수를 더하는 것과 같아요. 처음에는 헷갈리지만 "뺄셈을 덧셈으로" 원칙을 지키면 됩니다.</p>
+
+<h3>연습 문제</h3>
+<ul>
+  <li>(−7) + (−4) = ?  → 정답: −11</li>
+  <li>(+9) + (−13) = ?  → 정답: −4</li>
+  <li>6 − (−2) = ?  → 정답: 8</li>
+</ul>
+<div class="highlight">🎮 게임에서 연습해보세요! '정수 모드 - 쉬움'을 선택하면 이 유형이 나와요.</div>
+    `
+  },
+  {
+    id:2, cat:'정수', catClass:'cat-int', emoji:'⁺⁻',
+    bg:'linear-gradient(135deg,#1a2a4a,#0d1a35)',
+    title:'음수 부호 규칙 — 곱셈과 나눗셈',
+    preview:'(−)×(−)=(+)인 이유가 뭘까요? 부호 규칙의 완벽한 이해.',
+    date:'2026.02.12', author:'수학여행', readTime:'4분', views:980, likes:64,
+    content:`
+<h3>곱셈 부호 규칙</h3>
+<p>정수의 곱셈에서 가장 중요한 것은 <strong>부호 결정</strong>입니다.</p>
+<div class="formula">같은 부호 × 같은 부호 = 양수(+)<br>다른 부호 × 다른 부호 = 음수(−)</div>
+<ul>
+  <li>(+3) × (+4) = +12</li>
+  <li>(−3) × (−4) = +12 ← 마이너스 × 마이너스 = 플러스!</li>
+  <li>(+3) × (−4) = −12</li>
+  <li>(−3) × (+4) = −12</li>
+</ul>
+
+<h3>왜 (−)×(−)=(+) 일까요?</h3>
+<p>직관적으로 이렇게 생각해봐요:</p>
+<div class="highlight">
+"나쁜 것(−)이 없어진다(−)는 것은 좋은 것(+)이다!"<br>
+빚(−3만원)이 사라진다(−1)면 = 3만원이 생긴다(+3만원)
+</div>
+
+<h3>나눗셈도 동일</h3>
+<p>나눗셈의 부호 규칙은 곱셈과 완전히 같습니다.</p>
+<div class="formula">(−12) ÷ (−3) = +4<br>(−12) ÷ (+3) = −4</div>
+
+<h3>연산 순서 주의!</h3>
+<p>곱셈·나눗셈은 덧셈·뺄셈보다 먼저 계산합니다.</p>
+<div class="formula">2 + (−3) × 4 = ?<br>① (−3) × 4 = −12 (곱셈 먼저)<br>② 2 + (−12) = −10 ✅</div>
+    `
+  },
+  {
+    id:3, cat:'유리수', catClass:'cat-rat', emoji:'½',
+    bg:'linear-gradient(135deg,#3b1f7a,#1a0f40)',
+    title:'유리수의 덧셈 — 같은 분모, 다른 분모',
+    preview:'통분이란 무엇인지, 왜 필요한지 그리고 최소공배수(LCM) 구하는 법까지.',
+    date:'2026.02.09', author:'수학여행', readTime:'6분', views:1120, likes:93,
+    content:`
+<h3>유리수란?</h3>
+<p>유리수는 <strong>분수로 나타낼 수 있는 수</strong>입니다. 정수도 유리수이고(예: 3 = 3/1), 소수도 유리수입니다.</p>
+
+<h3>분모가 같을 때 — 쉬운 경우</h3>
+<p>분모가 같으면 분자끼리만 더하고, 분모는 그대로!</p>
+<div class="formula">2/5 + 1/5 = (2+1)/5 = 3/5</div>
+<div class="highlight">⚠️ 항상 마지막에 약분(기약분수)으로 만들어야 해요!<br>3/6 = 1/2 (÷3 해야 함)</div>
+
+<h3>분모가 다를 때 — 통분 필요</h3>
+<p>분모가 다르면 <strong>최소공배수(LCM)로 통분</strong> 후 계산!</p>
+<div class="formula">1/3 + 1/4 = ?<br>LCM(3,4) = 12<br>= 4/12 + 3/12 = 7/12 ✅</div>
+
+<h3>LCM 구하는 법</h3>
+<ul>
+  <li>3과 4의 배수: 3→3,6,9,<strong>12</strong>... / 4→4,8,<strong>12</strong>...</li>
+  <li>처음 만나는 수 = LCM = 12</li>
+</ul>
+
+<h3>분모를 LCM으로 만들기</h3>
+<ul>
+  <li>1/3: 분자·분모에 4를 곱함 → 4/12</li>
+  <li>1/4: 분자·분모에 3을 곱함 → 3/12</li>
+  <li>4/12 + 3/12 = 7/12 (이미 기약분수)</li>
+</ul>
+<div class="highlight">🎮 게임 '유리수 모드 - 보통' 에서 이 유형을 연습할 수 있어요!</div>
+    `
+  },
+  {
+    id:4, cat:'유리수', catClass:'cat-rat', emoji:'✖️',
+    bg:'linear-gradient(135deg,#4a1060,#20083a)',
+    title:'유리수 곱셈과 나눗셈 — 역수의 마법',
+    preview:'분수 곱셈은 분자×분자, 분모×분모. 나눗셈은? 역수를 곱하면 끝!',
+    date:'2026.02.06', author:'수학여행', readTime:'4분', views:870, likes:71,
+    content:`
+<h3>분수 곱셈</h3>
+<p>분수의 곱셈은 덧셈보다 쉬워요!</p>
+<div class="formula">a/b × c/d = (a×c)/(b×d)</div>
+<ul>
+  <li>2/3 × 3/4 = (2×3)/(3×4) = 6/12 = 1/2 (약분)</li>
+  <li>분자끼리 곱하고, 분모끼리 곱하면 끝!</li>
+</ul>
+<div class="highlight">💡 먼저 약분하면 계산이 쉬워져요! 2/3 × 3/4에서 3을 먼저 약분 → 2/1 × 1/4 = 2/4 = 1/2</div>
+
+<h3>분수 나눗셈 — 역수를 곱하자!</h3>
+<p>나눗셈은 뒤 분수를 뒤집어(역수) 곱하는 것으로 변환!</p>
+<div class="formula">a/b ÷ c/d = a/b × d/c</div>
+<ul>
+  <li>2/3 ÷ 4/5 = 2/3 × 5/4 = 10/12 = 5/6</li>
+</ul>
+
+<h3>왜 역수를 곱할까요?</h3>
+<div class="highlight">
+1 ÷ 2 = 1/2 이죠? 이건 1 × (1/2)과 같아요.<br>
+마찬가지로 (2/3) ÷ (4/5) = (2/3) × (5/4)
+</div>
+
+<h3>연습 문제</h3>
+<ul>
+  <li>3/4 ÷ 1/2 = 3/4 × 2/1 = 6/4 = 3/2</li>
+  <li>1/2 ÷ 3/4 = 1/2 × 4/3 = 4/6 = 2/3</li>
+</ul>
+    `
+  },
+  {
+    id:5, cat:'학습법', catClass:'cat-method', emoji:'📚',
+    bg:'linear-gradient(135deg,#0e3a3a,#072525)',
+    title:'수학 오답 노트 활용법 — 틀려도 괜찮아',
+    preview:'틀린 문제를 어떻게 복습하느냐가 실력의 차이를 만듭니다. 오답 노트 전략.',
+    date:'2026.02.03', author:'수학여행', readTime:'3분', views:650, likes:55,
+    content:`
+<h3>왜 오답 노트가 중요한가요?</h3>
+<p>수학 공부에서 가장 효과적인 방법은 <strong>자신이 틀린 문제를 다시 푸는 것</strong>입니다. 정답을 맞힌 문제를 계속 풀어봐야 실력이 늘지 않아요.</p>
+
+<h3>오답 노트 작성 방법</h3>
+<ul>
+  <li>① 틀린 문제를 그대로 옮겨 적기</li>
+  <li>② 내가 쓴 (틀린) 풀이 기록</li>
+  <li>③ 올바른 풀이 단계별로 기록</li>
+  <li>④ 왜 틀렸는지 한 줄 코멘트</li>
+</ul>
+<div class="highlight">
+  💡 수학 왕국 게임에는 자동 오답 노트 기능이 있어요!<br>
+  틀린 문제가 게임 종료 후 자동으로 정리됩니다.
+</div>
+
+<h3>오답 유형 분류</h3>
+<ul>
+  <li>🔴 <strong>개념 오류</strong>: 규칙 자체를 모름 → 개념 다시 공부</li>
+  <li>🟡 <strong>계산 실수</strong>: 알지만 실수 → 검산 습관 기르기</li>
+  <li>🟢 <strong>문제 이해 오류</strong>: 문제를 잘못 읽음 → 천천히 읽기</li>
+</ul>
+    `
+  },
+  {
+    id:6, cat:'문제풀이', catClass:'cat-quiz', emoji:'✏️',
+    bg:'linear-gradient(135deg,#3a2000,#251500)',
+    title:'연산 순서 완벽 정리 — 괄호·곱셈·덧셈 순서',
+    preview:'왜 2 + 3 × 4 = 14 인지 헷갈리나요? 연산 순서 규칙을 한 번에 정리!',
+    date:'2026.01.30', author:'수학여행', readTime:'4분', views:1050, likes:88,
+    content:`
+<h3>연산 순서 3단계 법칙</h3>
+<div class="formula">① 괄호 ( ) → ② 곱셈 × ÷ → ③ 덧셈 + −</div>
+
+<h3>예제로 이해하기</h3>
+<p><strong>문제: 2 + 3 × 4 = ?</strong></p>
+<ul>
+  <li>❌ 잘못된 풀이: (2+3) × 4 = 20</li>
+  <li>✅ 올바른 풀이: 2 + (3×4) = 2 + 12 = 14</li>
+</ul>
+<div class="highlight">곱셈을 먼저! 덧셈은 나중에!</div>
+
+<p><strong>문제: (−2 + 5) × 3 = ?</strong></p>
+<ul>
+  <li>① 괄호 먼저: −2 + 5 = 3</li>
+  <li>② 곱셈: 3 × 3 = 9 ✅</li>
+</ul>
+
+<p><strong>복합 문제: 2 × (−3) + 4 ÷ 2 = ?</strong></p>
+<ul>
+  <li>① 곱셈: 2 × (−3) = −6</li>
+  <li>② 나눗셈: 4 ÷ 2 = 2</li>
+  <li>③ 덧셈: −6 + 2 = −4 ✅</li>
+</ul>
+<div class="highlight">🎮 게임 '정수 모드 - 어려움'에서 이런 복합 연산 문제가 나와요!</div>
+    `
+  }
+];
+
+const CAFE_POSTS = [
+  {
+    id:1, tag:'notice', tagClass:'tag-notice', tagText:'공지', pinned:true,
+    title:'🎮 수학 왕국 게임 업데이트 — 힌트 버튼·오답 노트 추가!',
+    author:'관리자', date:'2026.02.20', views:892, comments:14,
+    content:`
+<h3>게임 업데이트 안내</h3>
+<p>수학 왕국 게임이 크게 업데이트되었습니다!</p>
+<h3>새로운 기능</h3>
+<ul>
+  <li>💡 <strong>힌트 버튼</strong>: 문제 화면에서 언제든 힌트를 볼 수 있어요</li>
+  <li>📝 <strong>오답 노트</strong>: 게임 종료 후 틀린 문제가 자동 정리됩니다</li>
+  <li>🔥 <strong>스트릭 시스템</strong>: 연속 정답 시 불꽃 배지 표시</li>
+  <li>📚 <strong>단계별 풀이</strong>: 틀렸을 때 전체 화면으로 풀이가 나와요</li>
+</ul>
+<div class="highlight">위 게임 탭에서 바로 플레이해보세요! 🎮</div>
+    `
+  },
+  {
+    id:2, tag:'q', tagClass:'tag-q', tagText:'질문', pinned:false,
+    title:'유리수 통분이 왜 필요한가요? 그냥 더하면 안 되나요?',
+    author:'궁금한학생', date:'2026.02.19', views:234, comments:8,
+    content:`
+<h3>질문</h3>
+<p>1/3 + 1/4를 풀 때 왜 통분을 해야 하나요? 그냥 분자끼리 더하고 분모끼리 더하면 1/3 + 1/4 = 2/7 아닌가요?</p>
+<div class="modal-sep"></div>
+<h3>💬 답변 (관리자)</h3>
+<p>좋은 질문이에요! 사실 2/7은 틀린 답입니다. 이유를 쉽게 설명할게요.</p>
+<div class="highlight">
+  🍕 피자 비유:<br>
+  1/3피자 + 1/4피자를 먹었을 때, 전체의 얼마를 먹었을까요?<br>
+  3조각 중 1조각 + 4조각 중 1조각 → 둘 다 조각 크기가 달라요!<br>
+  같은 크기(12분의 1)로 바꿔야 정확히 더할 수 있어요.
+</div>
+<div class="formula">1/3 = 4/12,  1/4 = 3/12<br>4/12 + 3/12 = 7/12 ✅ (2/7이 아님!)</div>
+    `
+  },
+  {
+    id:3, tag:'share', tagClass:'tag-share', tagText:'자료', pinned:false,
+    title:'📄 정수 연산 규칙 요약 정리 (직접 만든 노트)',
+    author:'분수마스터', date:'2026.02.18', views:567, comments:22,
+    content:`
+<h3>정수 연산 핵심 규칙 요약</h3>
+<p>제가 공부하면서 만든 요약 노트를 공유해요!</p>
+
+<h3>덧셈</h3>
+<div class="formula">
+같은 부호: 절댓값 합 + 공통 부호<br>
+다른 부호: 절댓값 차 + 큰 쪽 부호
+</div>
+
+<h3>뺄셈</h3>
+<div class="formula">a − b = a + (−b) 로 변환 후 덧셈 규칙 적용</div>
+
+<h3>곱셈·나눗셈</h3>
+<div class="formula">
+(+)(+) = (+)   (−)(−) = (+)<br>
+(+)(−) = (−)   (−)(+) = (−)
+</div>
+
+<h3>연산 순서</h3>
+<div class="formula">① 괄호  ② × ÷  ③ + −</div>
+<div class="highlight">게임에서 직접 연습하면 훨씬 빨리 외워집니다! 🎮</div>
+    `
+  },
+  {
+    id:4, tag:'q', tagClass:'tag-q', tagText:'질문', pinned:false,
+    title:'(−3) × (−4) = +12인데 이게 진짜 맞나요? 왜요?',
+    author:'음수헷갈려', date:'2026.02.17', views:389, comments:11,
+    content:`
+<h3>질문</h3>
+<p>마이너스 곱하기 마이너스가 플러스라는 게 이해가 안 가요...</p>
+<div class="modal-sep"></div>
+<h3>💬 답변</h3>
+<p>수학적으로, 그리고 직관적으로 이해해봐요!</p>
+<div class="highlight">
+  📺 TV 화면으로 생각해봐요:<br>
+  영상을 앞으로(+) 재생하다 (+) = 정상 재생 (+)<br>
+  영상을 앞으로(+) 재생하다 뒤로(−) = 거꾸로 재생 (−)<br>
+  영상을 뒤로(−) 재생하다 뒤로(−) = 다시 정상! (+)
+</div>
+<p>또 다른 방법: 패턴으로 이해하기</p>
+<div class="formula">
+(−3) × 3 = −9<br>
+(−3) × 2 = −6  (3씩 증가)<br>
+(−3) × 1 = −3<br>
+(−3) × 0 = 0<br>
+(−3) × (−1) = +3  ← 패턴대로 3 증가<br>
+(−3) × (−4) = +12 ✅
+</div>
+    `
+  },
+  {
+    id:5, tag:'chat', tagClass:'tag-chat', tagText:'잡담', pinned:false,
+    title:'🏆 게임에서 드디어 100점 맞았어요!!',
+    author:'수학왕민준', date:'2026.02.16', views:201, comments:18,
+    content:`
+<p>유리수 어려움 모드에서 처음으로 100점 만점을 받았어요! 😭🎉</p>
+<p>힌트 버튼 덕분에 개념을 제대로 이해하고 나서 풀었더니 성적이 확 올랐어요.</p>
+<div class="highlight">
+  📊 제 게임 기록:<br>
+  정확도: 100% (10/10)<br>
+  점수: 100점 (시간 보너스 포함)<br>
+  스트릭: 🔥 10연속 정답!
+</div>
+<p>다들 포기하지 마세요! 틀렸을 때 나오는 단계별 풀이를 꼭 읽어보면 도움이 많이 됩니다 🙏</p>
+<p>댓글로 여러분의 기록도 알려주세요!</p>
+    `
+  },
+  {
+    id:6, tag:'share', tagClass:'tag-share', tagText:'자료', pinned:false,
+    title:'📎 유리수 나눗셈 예제 20문제 (내가 풀고 정리한 것)',
+    author:'유리수걸', date:'2026.02.14', views:433, comments:15,
+    content:`
+<h3>유리수 나눗셈 예제 모음</h3>
+<p>제가 직접 풀고 검토한 예제 20문제입니다. 풀어보고 답 확인해보세요!</p>
+
+<h3>핵심 공식</h3>
+<div class="formula">a/b ÷ c/d = a/b × d/c</div>
+
+<h3>기초 5문제</h3>
+<ul>
+  <li>1/2 ÷ 1/3 = 1/2 × 3/1 = 3/2</li>
+  <li>2/3 ÷ 1/4 = 2/3 × 4/1 = 8/3</li>
+  <li>3/4 ÷ 3/8 = 3/4 × 8/3 = 24/12 = 2</li>
+  <li>1/5 ÷ 2/5 = 1/5 × 5/2 = 5/10 = 1/2</li>
+  <li>4/5 ÷ 2/3 = 4/5 × 3/2 = 12/10 = 6/5</li>
+</ul>
+
+<div class="highlight">🎮 게임 '유리수 어려움' 모드에서 이 유형을 연습할 수 있어요!</div>
+    `
+  }
+];
+
+// ══ RENDER ════════════════════════════════════════════
+
+function renderBlogCard(p){
+  return `
+  <div class="blog-card" data-cat="${p.cat}" onclick="openBlog(${p.id})">
+    <div class="blog-thumb" style="background:${p.bg}">
+      <span style="font-size:4.5rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))">${p.emoji}</span>
+    </div>
+    <div class="blog-body">
+      <span class="blog-cat ${p.catClass}">${p.cat}</span>
+      <div class="blog-title">${p.title}</div>
+      <div class="blog-preview">${p.preview}</div>
+      <div class="blog-meta">
+        <span>✍️ ${p.author}</span>
+        <span>📅 ${p.date}</span>
+        <span>⏱️ ${p.readTime}</span>
+        <span class="blog-likes" id="like-${p.id}" onclick="toggleLike(${p.id},event)">
+          ❤️ <span id="lc-${p.id}">${p.likes}</span>
+        </span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderCafePost(p){
+  return `
+  <div class="board-post ${p.pinned?'pinned':''}" data-tag="${p.tag}" onclick="openCafe(${p.id})">
+    <span class="post-tag ${p.tagClass}">${p.tagText}</span>
+    <div class="post-info">
+      <div class="post-title">${p.pinned?'📌 ':''}${p.title}</div>
+      <div class="post-sub"><span>👤 ${p.author}</span><span>📅 ${p.date}</span></div>
+    </div>
+    <div class="post-counts">
+      <span>👁️ ${p.views}</span>
+      <span>💬 ${p.comments}</span>
+    </div>
+  </div>`;
+}
+
+// 홈 미리보기 (랜덤)
+function shufArr(a){return [...a].sort(()=>Math.random()-.5)}
+document.getElementById('home-blog-grid').innerHTML=shufArr(BLOG_POSTS).slice(0,3).map(renderBlogCard).join('');
+document.getElementById('home-cafe-list').innerHTML=shufArr(CAFE_POSTS).slice(0,4).map(renderCafePost).join('');
+// 전체 그리드
+document.getElementById('blog-grid').innerHTML=BLOG_POSTS.map(renderBlogCard).join('');
+document.getElementById('cafe-list').innerHTML=CAFE_POSTS.map(renderCafePost).join('');
+
+// ══ NAV / SECTION ════════════════════════════════════
+function goSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(b=>b.classList.remove('active'));
+  const map={home:0,blog:1,cafe:2,game:3};
+  document.querySelectorAll('.nav-link')[map[id]]?.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ══ FILTER ═══════════════════════════════════════════
+function filterBlog(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const cards=document.querySelectorAll('#blog-grid .blog-card');
+  cards.forEach(c=>{
+    c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';
+  });
+}
+function filterCafe(tag,btn){
+  document.querySelectorAll('.board-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const posts=document.querySelectorAll('#cafe-list .board-post');
+  posts.forEach(p=>{
+    p.style.display=(tag==='all'||p.dataset.tag===tag)?'':'none';
+  });
+}
+
+// ══ MODALS ═══════════════════════════════════════════
+const likedSet=new Set();
+function toggleLike(id,e){
+  e.stopPropagation();
+  const el=document.getElementById('like-'+id);
+  const cnt=document.getElementById('lc-'+id);
+  if(likedSet.has(id)){
+    likedSet.delete(id);
+    cnt.textContent=Number(cnt.textContent)-1;
+    el.classList.remove('liked');
+  }else{
+    likedSet.add(id);
+    cnt.textContent=Number(cnt.textContent)+1;
+    el.classList.add('liked');
+  }
+}
+function openBlog(id){
+  const p=BLOG_POSTS.find(x=>x.id===id);
+  document.getElementById('bm-cat').innerHTML=`<span class="blog-cat ${p.catClass}">${p.cat}</span>`;
+  document.getElementById('bm-title').textContent=p.title;
+  document.getElementById('bm-meta').innerHTML=`<span>✍️ ${p.author}</span><span>📅 ${p.date}</span><span>⏱️ ${p.readTime}</span><span>👁️ ${p.views}</span>`;
+  document.getElementById('bm-content').innerHTML=p.content;
+  document.getElementById('blog-modal').classList.add('show');
+}
+function openCafe(id){
+  const p=CAFE_POSTS.find(x=>x.id===id);
+  document.getElementById('cm-cat').innerHTML=`<span class="post-tag ${p.tagClass}">${p.tagText}</span>`;
+  document.getElementById('cm-title').textContent=p.title;
+  document.getElementById('cm-meta').innerHTML=`<span>👤 ${p.author}</span><span>📅 ${p.date}</span><span>👁️ ${p.views}</span><span>💬 ${p.comments}</span>`;
+  document.getElementById('cm-content').innerHTML=p.content;
+  document.getElementById('cafe-modal').classList.add('show');
+}
+function closeModal(id,e){
+  if(!e||e.target===document.getElementById(id)||e.target.closest('.modal-close')){
+    document.getElementById(id).classList.remove('show');
+  }
+}
+
+// ══ TOAST ════════════════════════════════════════════
+function toast(msg){
+  const el=document.getElementById('toast-el');
+  el.textContent=msg;el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2800);
+}
+
+// Keyboard
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal-overlay.show,.gm-overlay.show').forEach(m=>m.classList.remove('show'));
+  }
+});
+
+// ══ 게임화: 유물·나침반·항해 일지 ══════════════════════
+const ARTIFACTS={
+  'blog_read':{island:'수학 도서관',emoji:'📝',quote:'읽는 것이 곧 배우는 것이다.',color:'#fb923c'}
+};
+const TORO_COMPASS={
+  'blog':["오늘 읽은 내용 중 가장 의외였던 것은?","이 개념을 친구에게 설명한다면 어떻게 말할까?"]
+};
+
+function getArtifacts(){
+  try{return JSON.parse(localStorage.getItem('armoonia_artifacts')||'[]');}
+  catch(e){return[];}
+}
+function awardArtifact(setName){
+  var info=ARTIFACTS[setName];
+  if(!info)return;
+  var earned=getArtifacts();
+  if(earned.indexOf(setName)!==-1)return;
+  earned.push(setName);
+  localStorage.setItem('armoonia_artifacts',JSON.stringify(earned));
+  updateArtifactBadge();
+  var modal=document.getElementById('artifact-modal');
+  document.getElementById('artifact-modal-emoji').textContent=info.emoji;
+  document.getElementById('artifact-modal-name').textContent='유물 획득: '+info.island;
+  document.getElementById('artifact-modal-island').textContent=info.island;
+  document.getElementById('artifact-modal-quote').textContent='"'+info.quote+'"';
+  modal.classList.add('show');
+  addLog('artifact','blog','유물 획득: '+info.emoji+' '+info.island);
+}
+function addLog(type,hub,content){
+  var log;
+  try{log=JSON.parse(localStorage.getItem('armoonia_log')||'[]');}
+  catch(e){log=[];}
+  var today=(function(){var d=new Date();return d.getFullYear()+'.'+(d.getMonth()+1).toString().padStart(2,'0')+'.'+d.getDate().toString().padStart(2,'0');})();
+  log.unshift({date:today,type:type,hub:hub,content:content});
+  if(log.length>50)log=log.slice(0,50);
+  localStorage.setItem('armoonia_log',JSON.stringify(log));
+}
+function showArtifactCollection(){
+  var earned=getArtifacts();
+  var inner=document.getElementById('artifact-collection-inner');
+  if(earned.length===0){
+    inner.innerHTML='<div style="text-align:center;color:var(--muted);padding:1.5rem">아직 유물이 없어요. 블로그를 읽어 보세요!</div>';
+  }else{
+    inner.innerHTML=earned.map(function(k){
+      var a=ARTIFACTS[k];
+      if(!a)return'';
+      return'<div style="display:flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.04);border-radius:12px;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.07)">'
+        +'<span style="font-size:2rem">'+a.emoji+'</span>'
+        +'<div><div style="color:var(--text);font-weight:700;font-size:.9rem">'+a.island+'</div>'
+        +'<div style="color:var(--muted);font-size:.78rem;font-style:italic">"'+a.quote+'"</div></div></div>';
+    }).join('');
+  }
+  document.getElementById('artifact-collection-modal').classList.add('show');
+}
+function closeArtifactCollection(){document.getElementById('artifact-collection-modal').classList.remove('show');}
+function showLog(){
+  var log;
+  try{log=JSON.parse(localStorage.getItem('armoonia_log')||'[]');}
+  catch(e){log=[];}
+  var inner=document.getElementById('log-inner');
+  if(log.length===0){
+    inner.innerHTML='<div style="text-align:center;color:var(--muted);padding:1.5rem">아직 기록이 없어요.</div>';
+  }else{
+    inner.innerHTML=log.map(function(l){
+      return'<div style="background:rgba(255,255,255,.03);border-radius:10px;padding:.6rem .9rem;border-left:3px solid var(--purple)">'
+        +'<div style="font-size:.72rem;color:var(--muted);margin-bottom:.2rem">'+l.date+' · '+l.hub+'</div>'
+        +'<div style="color:var(--text);font-size:.85rem">'+l.content+'</div></div>';
+    }).join('');
+  }
+  document.getElementById('log-modal').classList.add('show');
+}
+function closeLog(){document.getElementById('log-modal').classList.remove('show');}
+function updateArtifactBadge(){
+  var earned=getArtifacts();
+  var badge=document.getElementById('artifact-count-badge');
+  if(badge)badge.textContent=earned.length+'개';
+}
+function showCompassHint(){
+  var hints=TORO_COMPASS['blog'];
+  if(!hints||!hints.length)return;
+  var h=hints[Math.floor(Math.random()*hints.length)];
+  document.getElementById('compass-hint-text').textContent=h;
+  document.getElementById('compass-modal').classList.add('show');
+}
+function closeCompassModal(){document.getElementById('compass-modal').classList.remove('show');}
+
+// 블로그 방문 시 유물 수여 (첫 방문)
+window.addEventListener('load',function(){
+  updateArtifactBadge();
+  setTimeout(function(){
+    addLog('visit','blog','수학 블로그 방문');
+    awardArtifact('blog_read');
+  },1500);
+});
+</script>
+<!-- 토로 AI 웰컴 -->
+<script>
+window.addEventListener('load',()=>{ setTimeout(()=>{ if(typeof toroSay==='function') toroSay('math','start'); },1200); });
+</script>
+<!-- PWA Service Worker 등록 -->
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(()=> console.log('SW 등록 완료'))
+      .catch(e => console.log('SW 등록 실패:', e));
+  });
+}
+</script>
+</body>
+</html>

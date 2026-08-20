@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🎮 게임 놀이터 — 토로매쓰</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--card:#111827;
+  --purple:#7c3aed;--pink:#db2777;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.08)}
+body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:640px;margin:0 auto;padding:1.5rem 1.25rem 3rem}
+
+.nav-bar{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+.back-link{font-family:'Jua',sans-serif;font-size:.85rem;color:var(--muted);text-decoration:none;
+  background:rgba(255,255,255,.08);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+
+.sec-head{margin-bottom:2rem;text-align:center}
+.sec-head h1{font-size:1.9rem;font-weight:900;margin-bottom:.4rem;
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-head p{color:var(--muted);font-size:.9rem}
+
+.game-section{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:2.2rem}
+.game-intro{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem}
+.game-intro h3{font-size:1.15rem;font-weight:800;margin-bottom:.4rem}
+.grade-badge{display:inline-block;font-size:.72rem;color:#94a3b8;background:rgba(255,255,255,.06);
+  padding:.2rem .6rem;border-radius:8px;margin-bottom:.6rem}
+.game-intro p{color:var(--muted);font-size:.88rem;line-height:1.7}
+.game-features{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.75rem}
+.game-feature{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);
+  border-radius:10px;padding:.4rem .8rem;font-size:.8rem;color:#a78bfa}
+
+.game-launch-box{background:linear-gradient(160deg,#0d0030,#1a0050);
+  border:2px solid rgba(124,58,237,.4);border-radius:24px;
+  padding:2.5rem 1.75rem;text-align:center}
+.game-launch-icon{font-size:4.2rem;display:block;margin-bottom:1rem}
+.game-launch-title{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:.5rem;
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.game-launch-desc{color:#94a3b8;font-size:.9rem;line-height:1.7;margin-bottom:1.6rem}
+.game-launch-btn{display:inline-block;padding:1rem 2.2rem;border-radius:18px;border:none;
+  background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;
+  font-size:1.05rem;font-weight:800;font-family:inherit;
+  box-shadow:0 4px 28px rgba(124,58,237,.4);
+  letter-spacing:.03em;text-decoration:none}
+.game-launch-btn:hover{transform:scale(1.05)}
+.game-launch-note{font-size:.78rem;color:var(--muted);margin-top:.9rem}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav-bar">
+    <a href="index.html" class="back-link">← 토로매쓰</a>
+  </div>
+  <div class="sec-head">
+    <h1>🎮 게임 놀이터</h1>
+    <p>개념 설명 → 힌트 → 퀴즈 → 단계별 풀이까지! 게임으로 수학을 정복하세요</p>
+  </div>
+
+  <!-- Game 1: 수학 왕국 (math_game) -->
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🎮 수학 왕국 — 정수 · 유리수</h3>
+      <span class="grade-badge">📚 초등 전과정 + 중1~중3</span>
+      <p>정수·소수·분수 연산을 드라마틱한 게임으로! 틀리면 풀이가 전면 팝업으로 등장합니다. 초1~초6 학년별 드릴 + 중1~중3 정수·문자식·함수·이차방정식까지.</p>
+      <div class="game-features">
+        <span class="game-feature">📐 개념 미리보기</span>
+        <span class="game-feature">💡 힌트</span>
+        <span class="game-feature">📚 단계별 풀이</span>
+        <span class="game-feature">⏱️ 타이머</span>
+      </div>
+    </div>
+    <div class="game-launch-box">
+      <span class="game-launch-icon">👑</span>
+      <div class="game-launch-title">수학 왕국</div>
+      <div class="game-launch-desc">정수 · 유리수 · 분수 연산 마스터!</div>
+      <a class="game-launch-btn" href="math_game/phaser_game.html">🚀 게임 열기</a>
+    </div>
+  </div>
+
+  <!-- Game 2: 문자와 식 마법학교 (algebra_game) -->
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🔮 문자와 식 마법학교</h3>
+      <span class="grade-badge">📚 중1~중2</span>
+      <p>문자의 사용·기호 생략·식의 값·동류항까지 7챕터! 강의 → 퀴즈 순서로 문자와 식을 마스터합니다.</p>
+      <div class="game-features">
+        <span class="game-feature">🔤 문자의 사용</span>
+        <span class="game-feature">✖️ 기호 생략</span>
+        <span class="game-feature">🔢 식의 값</span>
+        <span class="game-feature">🧮 동류항</span>
+        <span class="game-feature">⚖️ 등식의 성질</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#0e0030,#1a0050);border-color:rgba(96,165,250,.4)">
+      <span class="game-launch-icon">🔮</span>
+      <div class="game-launch-title" style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">문자와 식 마법학교</div>
+      <div class="game-launch-desc">강의 → 퀴즈 → 챕터 클리어!</div>
+      <a class="game-launch-btn" href="algebra_game/algebra_game.html" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">🔮 게임 열기</a>
+    </div>
+  </div>
+
+  <!-- Game 3: 수학 탐정 수사국 (detective_math) -->
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🔍 수학 탐정 수사국</h3>
+      <span class="grade-badge">📚 중1~중2</span>
+      <p>셜록 홈즈·코난처럼 사건을 해결하며 방정식 활용을 익혀요! 속력·원가·일·소금물·비율 5가지 사건.</p>
+      <div class="game-features">
+        <span class="game-feature">🚗 속력·거리</span>
+        <span class="game-feature">🎭 원가·정가</span>
+        <span class="game-feature">💣 일 문제</span>
+        <span class="game-feature">🧪 소금물</span>
+        <span class="game-feature">📜 비율</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#1a1000,#251800);border-color:rgba(212,160,23,.4)">
+      <span class="game-launch-icon">🔍</span>
+      <div class="game-launch-title" style="background:linear-gradient(135deg,#d4a017,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">수학 탐정 수사국</div>
+      <div class="game-launch-desc">코난·홈즈와 함께 방정식으로 사건 해결!</div>
+      <a class="game-launch-btn" href="detective_math/detective_game.html" style="background:linear-gradient(135deg,#b45309,#d97706)">🕵️ 수사 시작</a>
+    </div>
+  </div>
+
+  <!-- Game 4: 토로의 분수·비율 탐험 (toro_frac) -->
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🦕 토로의 분수·비율 탐험</h3>
+      <span class="grade-badge">📚 초4~초6·중1</span>
+      <p>탄천 청소·숲속 주스 나누기·마법의 징검다리, 세 가지 미션으로 떠나는 분수 통분·덧셈뺄셈과 비와 비율·비례식 스토리 여행. 초4~초6·중1 대상.</p>
+      <div class="game-features">
+        <span class="game-feature">🧺 미션 스토리</span>
+        <span class="game-feature">➗ 통분·덧셈뺄셈</span>
+        <span class="game-feature">📊 비와 비율</span>
+        <span class="game-feature">⚖️ 비례식</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#07200f,#0d3018);border-color:rgba(52,211,153,.4)">
+      <span class="game-launch-icon">🦕</span>
+      <div class="game-launch-title" style="background:linear-gradient(135deg,#34d399,#a3e635);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">분수·비율 탐험</div>
+      <div class="game-launch-desc">미션을 따라 분수와 비율을 정복!</div>
+      <a class="game-launch-btn" href="toro_frac/index.html" style="background:linear-gradient(135deg,#059669,#65a30d)">🦕 탐험 시작</a>
+    </div>
+  </div>
+
+  <!-- Game 5: 수학왕국 (math-games-kingdom) -->
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🦊 수학왕국</h3>
+      <span class="grade-badge">📚 초1~초6 + 중1~중3</span>
+      <p>Lv.·XP·트로피·일지까지 갖춘 성장형 드릴 게임. 학년별 연산부터 중1~중3 세분화 단원까지 레벨업하며 연습합니다.</p>
+      <div class="game-features">
+        <span class="game-feature">⭐ 레벨·XP</span>
+        <span class="game-feature">🏆 트로피</span>
+        <span class="game-feature">📖 일지</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#1a1000,#2a1a00);border-color:rgba(251,146,60,.4)">
+      <span class="game-launch-icon">🦊</span>
+      <div class="game-launch-title" style="background:linear-gradient(135deg,#fb923c,#fde047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">수학왕국</div>
+      <div class="game-launch-desc">레벨업하며 연산 마스터!</div>
+      <a class="game-launch-btn" href="math-games-kingdom/index.html" style="background:linear-gradient(135deg,#ea580c,#ca8a04)">🦊 왕국 입장</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
