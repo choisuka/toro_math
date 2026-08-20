@@ -7002,17 +7002,6 @@ const CV_DATA_E6PRISM = [
       </div>
     </div>
   `},
-  { title:'🔥 심화 토론', cls:'debate', html:`
-    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 각기둥은 밑면이 2개인데 각뿔은 왜 밑면이 1개뿐이에요?</div></div>
-    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>저도 궁금해요! 각뿔도 위에 뾰족한 점 대신 작은 면이 하나 더 있으면 안 되나요?</div></div>
-    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>어? 만약 위에 작은 면이 있으면... 그건 각뿔이 아니라 다른 모양이 되지 않을까요?</div></div>
-    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>맞아요! 위에 작은 밑면이 있으면 옆면이 직사각형(또는 사다리꼴)이 되는 다른 입체도형이 돼요. 각뿔은 옆면이 전부 삼각형이라서, 위쪽이 한 점으로 완전히 모여야 해요.</div></div>
-    <div class="fb-diagram">${pyramidSvg(4,'#f0c040')}<span class="cap">옆면(삼각형)이 전부 한 점에서 만나야 각뿔이 돼요 — 그 점이 바로 각뿔의 꼭짓점이에요</span></div>
-    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 각뿔의 옆면은 반드시 삼각형이어야 하고, 삼각형은 한 변(밑변)의 반대쪽이 점 하나(꼭짓점)로 모이는 도형이에요. 그래서 각뿔의 옆면들도 전부 같은 한 점에서 만나야 하고, 그 결과 밑면은 자연스럽게 1개만 남는 거예요.</div></div>
-    <div class="story-line"><div class="story-avatar">민준</div><div class="story-bubble"><span class="story-name">민준</span>그럼 각기둥은 옆면이 직사각형이니까, 위아래로 평행한 면이 하나씩 필요한 거네요!</div></div>
-    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! 직사각형은 위아래 변의 길이가 같고 평행해야 하는 도형이라서, 각기둥은 그 조건에 맞게 밑면 2개가 서로 평행하고 합동이어야 하는 거예요. 옆면의 모양(삼각형 vs 직사각형)이 밑면의 개수(1개 vs 2개)를 결정한다고 볼 수 있어요.</div></div>
-    <div class="story-takeaway"><strong>정리:</strong> 각뿔의 옆면(삼각형)은 한 점에서 만나야 하므로 밑면이 1개뿐이고, 각기둥의 옆면(직사각형)은 위아래가 평행해야 하므로 밑면이 2개(평행·합동) 필요해요 — 옆면의 모양이 입체도형의 구조를 결정해요.</div>
-  `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
     <p>지금까지 배운 각기둥과 각뿔의 성질을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
@@ -7065,10 +7054,71 @@ const CV_DATA_E6PRISM = [
       <div id="pgw-10" class="prob-q" data-v="8" data-qtext="꼭짓점이 8개인 각뿔의 이름은 무엇인가요?" data-solfn="pgwSol10">꼭짓점이 8개인 각뿔의 이름은 무엇인가요?<br><button class="havruta-show-btn" onclick="pgwSol10('pgw-10')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="pgwGen10('pgw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 11 (심화)</div>
+      <div id="pgw-11" class="prob-q" data-e="27" data-qtext="어떤 각기둥의 모서리 수가 모두 27개입니다. 이 각기둥의 밑면은 몇 각형인가요?" data-solfn="pgaSol11">어떤 각기둥의 모서리 수가 모두 27개입니다. 이 각기둥의 밑면은 몇 각형인가요?<br><button class="havruta-show-btn" onclick="pgaSol11('pgw-11')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgaGen11('pgw-11')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 12 (심화)</div>
+      <div id="pgw-12" class="prob-q" data-s="20" data-qtext="어떤 각기둥의 꼭짓점 수와 면의 수의 합이 20개입니다. 이 각기둥의 밑면은 몇 각형인가요?" data-solfn="pgaSol12">어떤 각기둥의 꼭짓점 수와 면의 수의 합이 20개입니다. 이 각기둥의 밑면은 몇 각형인가요?<br><button class="havruta-show-btn" onclick="pgaSol12('pgw-12')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgaGen12('pgw-12')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 13 (심화)</div>
+      <div id="pgw-13" class="prob-q" data-e="18" data-qtext="어떤 각뿔의 모서리 수가 18개입니다. 이 각뿔의 밑면은 몇 각형인가요?" data-solfn="pgaSol13">어떤 각뿔의 모서리 수가 18개입니다. 이 각뿔의 밑면은 몇 각형인가요?<br><button class="havruta-show-btn" onclick="pgaSol13('pgw-13')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgaGen13('pgw-13')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 14 (심화·판별)</div>
+      <div id="pgw-14" class="prob-q" data-v="12" data-f="8" data-qtext="어떤 입체도형의 꼭짓점 수는 12개이고, 면의 수는 8개입니다. 이 도형은 각기둥일까요, 각뿔일까요? 또한 밑면은 몇 각형인지 구하세요." data-solfn="pgaSol14">어떤 입체도형의 꼭짓점 수는 12개이고, 면의 수는 8개입니다. 이 도형은 각기둥일까요, 각뿔일까요? 또한 밑면은 몇 각형인지 구하세요.<br><button class="havruta-show-btn" onclick="pgaSol14('pgw-14')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgaGen14('pgw-14')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 15 (심화·역추론)</div>
+      <div id="pgw-15" class="prob-q" data-v="9" data-e="16" data-f="9" data-qtext="어떤 입체도형은 꼭짓점 9개, 모서리 16개, 면 9개인 조건을 모두 만족합니다. 이 도형은 무엇인가요?" data-solfn="pgaSol15">어떤 입체도형은 꼭짓점 9개, 모서리 16개, 면 9개인 조건을 모두 만족합니다. 이 도형은 무엇인가요?<br><button class="havruta-show-btn" onclick="pgaSol15('pgw-15')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgaGen15('pgw-15')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 16 (심화·참거짓)</div>
+      <div id="pgw-16" class="prob-q" data-qtext="다음 중 옳지 않은 것을 모두 고르세요. ① 모든 각기둥의 꼭짓점 수는 짝수이다. ② 모든 각뿔의 모서리 수는 짝수이다. ③ 각기둥의 면의 수와 모서리 수의 차는 항상 2이다. ④ 밑면이 같은 각기둥과 각뿔은 꼭짓점 수가 항상 같다." data-solfn="pgaSol16">다음 중 옳지 않은 것을 모두 고르세요.<br>① 모든 각기둥의 꼭짓점 수는 짝수이다.<br>② 모든 각뿔의 모서리 수는 짝수이다.<br>③ 각기둥의 면의 수와 모서리 수의 차는 항상 2이다.<br>④ 밑면이 같은 각기둥과 각뿔은 꼭짓점 수가 항상 같다.<br><button class="havruta-show-btn" onclick="pgaSol16('pgw-16')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgaGen16('pgw-16')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 17 (심화·비교)</div>
+      <div id="pgw-17" class="prob-q" data-m="8" data-qtext="한 각기둥과 한 각뿔의 모서리 수가 같습니다. 각기둥의 밑면은 8각형입니다. 각뿔의 밑면은 몇 각형인가요?" data-solfn="pgaSol17">한 각기둥과 한 각뿔의 모서리 수가 같습니다. 각기둥의 밑면은 8각형입니다. 각뿔의 밑면은 몇 각형인가요?<br><button class="havruta-show-btn" onclick="pgaSol17('pgw-17')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgaGen17('pgw-17')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 18 (심화·비교)</div>
+      <div id="pgw-18" class="prob-q" data-m="5" data-qtext="한 각기둥과 한 각뿔의 꼭짓점 수가 같습니다. 각기둥의 밑면은 5각형입니다. 각뿔의 밑면은 몇 각형인가요?" data-solfn="pgaSol18">한 각기둥과 한 각뿔의 꼭짓점 수가 같습니다. 각기둥의 밑면은 5각형입니다. 각뿔의 밑면은 몇 각형인가요?<br><button class="havruta-show-btn" onclick="pgaSol18('pgw-18')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgaGen18('pgw-18')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 19 (심화·비교)</div>
+      <div id="pgw-19" class="prob-q" data-m="7" data-qtext="한 각기둥과 한 각뿔의 면의 수가 같습니다. 각기둥의 밑면은 7각형입니다. 각뿔의 밑면은 몇 각형인가요?" data-solfn="pgaSol19">한 각기둥과 한 각뿔의 면의 수가 같습니다. 각기둥의 밑면은 7각형입니다. 각뿔의 밑면은 몇 각형인가요?<br><button class="havruta-show-btn" onclick="pgaSol19('pgw-19')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgaGen19('pgw-19')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 20 (★최고난도)</div>
+      <div id="pgw-20" class="prob-q" data-fs="15" data-vs="20" data-qtext="어떤 각기둥과 어떤 각뿔이 있습니다. 두 도형의 면의 수의 합은 15개이고, 꼭짓점 수의 합은 20개입니다. 두 도형의 밑면은 각각 몇 각형인가요?" data-solfn="pgaSol20">어떤 각기둥과 어떤 각뿔이 있습니다. 두 도형의 면의 수의 합은 15개이고, 꼭짓점 수의 합은 20개입니다. 두 도형의 밑면은 각각 몇 각형인가요?<br><button class="havruta-show-btn" onclick="pgaSol20('pgw-20')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="pgaGen20('pgw-20')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 각기둥은 밑면이 2개인데 각뿔은 왜 밑면이 1개뿐이에요?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>저도 궁금해요! 각뿔도 위에 뾰족한 점 대신 작은 면이 하나 더 있으면 안 되나요?</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>어? 만약 위에 작은 면이 있으면... 그건 각뿔이 아니라 다른 모양이 되지 않을까요?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>맞아요! 위에 작은 밑면이 있으면 옆면이 직사각형(또는 사다리꼴)이 되는 다른 입체도형이 돼요. 각뿔은 옆면이 전부 삼각형이라서, 위쪽이 한 점으로 완전히 모여야 해요.</div></div>
+    <div class="fb-diagram">${pyramidSvg(4,'#f0c040')}<span class="cap">옆면(삼각형)이 전부 한 점에서 만나야 각뿔이 돼요 — 그 점이 바로 각뿔의 꼭짓점이에요</span></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 각뿔의 옆면은 반드시 삼각형이어야 하고, 삼각형은 한 변(밑변)의 반대쪽이 점 하나(꼭짓점)로 모이는 도형이에요. 그래서 각뿔의 옆면들도 전부 같은 한 점에서 만나야 하고, 그 결과 밑면은 자연스럽게 1개만 남는 거예요.</div></div>
+    <div class="story-line"><div class="story-avatar">민준</div><div class="story-bubble"><span class="story-name">민준</span>그럼 각기둥은 옆면이 직사각형이니까, 위아래로 평행한 면이 하나씩 필요한 거네요!</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! 직사각형은 위아래 변의 길이가 같고 평행해야 하는 도형이라서, 각기둥은 그 조건에 맞게 밑면 2개가 서로 평행하고 합동이어야 하는 거예요. 옆면의 모양(삼각형 vs 직사각형)이 밑면의 개수(1개 vs 2개)를 결정한다고 볼 수 있어요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 각뿔의 옆면(삼각형)은 한 점에서 만나야 하므로 밑면이 1개뿐이고, 각기둥의 옆면(직사각형)은 위아래가 평행해야 하므로 밑면이 2개(평행·합동) 필요해요 — 옆면의 모양이 입체도형의 구조를 결정해요.</div>
   `}
 ];
 CV_DATA['e6prism'] = CV_DATA_E6PRISM;
-var PGW_NAMES = {3:'삼각',4:'사각',5:'오각',6:'육각',7:'칠각',8:'팔각',9:'구각',10:'십각'};
+var PGW_NAMES = {3:'삼각',4:'사각',5:'오각',6:'육각',7:'칠각',8:'팔각',9:'구각',10:'십각',11:'십일각',12:'십이각',13:'십삼각',14:'십사각',15:'십오각',16:'십육각',17:'십칠각',18:'십팔각',19:'십구각',20:'이십각'};
 function pgwGen1(id){
   var n = 3+Math.floor(Math.random()*8);
   var el = document.getElementById(id);
@@ -7197,6 +7247,142 @@ function pgwSol10(id){
   var n = v-1;
   var diagram = '<div class="fb-diagram">각뿔의 꼭짓점 = n+1 이므로 n+1='+v+' → n='+n+'<br>→ <strong style="color:#3fb950">'+PGW_NAMES[n]+'뿔</strong></div>';
   rgwRenderToggle(id, diagram, 'pgwSol10');
+}
+function pgaGen11(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var E = 3*n;
+  var el = document.getElementById(id);
+  el.setAttribute('data-e', E);
+  rgwSetQuestion(el, '어떤 각기둥의 모서리 수가 모두 '+E+'개입니다. 이 각기둥의 밑면은 몇 각형인가요?', 'pgaSol11');
+}
+function pgaSol11(id){
+  var el = document.getElementById(id);
+  var E = +el.getAttribute('data-e');
+  var n = E/3;
+  var diagram = '<div class="fb-diagram">각기둥의 모서리 = 3n 이므로 3n='+E+' → n='+n+'<br>→ <strong style="color:#3fb950">'+PGW_NAMES[n]+'형</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgaSol11');
+}
+function pgaGen12(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var S = 3*n+2;
+  var el = document.getElementById(id);
+  el.setAttribute('data-s', S);
+  rgwSetQuestion(el, '어떤 각기둥의 꼭짓점 수와 면의 수의 합이 '+S+'개입니다. 이 각기둥의 밑면은 몇 각형인가요?', 'pgaSol12');
+}
+function pgaSol12(id){
+  var el = document.getElementById(id);
+  var S = +el.getAttribute('data-s');
+  var n = (S-2)/3;
+  var diagram = '<div class="fb-diagram">꼭짓점(2n) + 면(n+2) = 3n+2 = '+S+' → n='+n+'<br>→ <strong style="color:#3fb950">'+PGW_NAMES[n]+'형</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgaSol12');
+}
+function pgaGen13(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var E = 2*n;
+  var el = document.getElementById(id);
+  el.setAttribute('data-e', E);
+  rgwSetQuestion(el, '어떤 각뿔의 모서리 수가 '+E+'개입니다. 이 각뿔의 밑면은 몇 각형인가요?', 'pgaSol13');
+}
+function pgaSol13(id){
+  var el = document.getElementById(id);
+  var E = +el.getAttribute('data-e');
+  var n = E/2;
+  var diagram = '<div class="fb-diagram">각뿔의 모서리 = 2n 이므로 2n='+E+' → n='+n+'<br>→ <strong style="color:#3fb950">'+PGW_NAMES[n]+'형</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgaSol13');
+}
+function pgaGen14(id){
+  var n = 3+Math.floor(Math.random()*8);
+  var V = 2*n, F = n+2;
+  var el = document.getElementById(id);
+  el.setAttribute('data-v', V); el.setAttribute('data-f', F);
+  rgwSetQuestion(el, '어떤 입체도형의 꼭짓점 수는 '+V+'개이고, 면의 수는 '+F+'개입니다. 이 도형은 각기둥일까요, 각뿔일까요? 또한 밑면은 몇 각형인지 구하세요.', 'pgaSol14');
+}
+function pgaSol14(id){
+  var el = document.getElementById(id);
+  var V = +el.getAttribute('data-v'), F = +el.getAttribute('data-f');
+  var n = V/2;
+  var diagram = '<div class="fb-diagram">각기둥이라 가정: 꼭짓점 2n='+V+' → n='+n+'<br>검산: 면 = n+2 = '+(n+2)+' ('+(n+2===F?'문제의 면 수와 일치':'불일치')+')<br>→ <strong style="color:#3fb950">'+PGW_NAMES[n]+'기둥</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgaSol14');
+}
+function pgaGen15(id){
+  var evens = [4,6,8,10];
+  var n = evens[Math.floor(Math.random()*evens.length)];
+  var V = n+1, E = 2*n, F = n+1;
+  var el = document.getElementById(id);
+  el.setAttribute('data-v', V); el.setAttribute('data-e', E); el.setAttribute('data-f', F);
+  rgwSetQuestion(el, '어떤 입체도형은 꼭짓점 '+V+'개, 모서리 '+E+'개, 면 '+F+'개인 조건을 모두 만족합니다. 이 도형은 무엇인가요?', 'pgaSol15');
+}
+function pgaSol15(id){
+  var el = document.getElementById(id);
+  var V = +el.getAttribute('data-v'), E = +el.getAttribute('data-e'), F = +el.getAttribute('data-f');
+  var n = V-1;
+  var diagram = '<div class="fb-diagram">각기둥의 꼭짓점(2n)은 항상 짝수인데 '+V+'은 홀수 → 각뿔<br>각뿔의 꼭짓점 n+1='+V+' → n='+n+'<br>검산: 모서리 2n='+(2*n)+', 면 n+1='+(n+1)+' (모두 일치)<br>→ <strong style="color:#3fb950">'+PGW_NAMES[n]+'뿔</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgaSol15');
+}
+function pgaGen16(id){
+  var el = document.getElementById(id);
+  rgwSetQuestion(el, '다음 중 옳지 않은 것을 모두 고르세요.<br>① 모든 각기둥의 꼭짓점 수는 짝수이다.<br>② 모든 각뿔의 모서리 수는 짝수이다.<br>③ 각기둥의 면의 수와 모서리 수의 차는 항상 2이다.<br>④ 밑면이 같은 각기둥과 각뿔은 꼭짓점 수가 항상 같다.', 'pgaSol16');
+}
+function pgaSol16(id){
+  var diagram = '<div class="fb-diagram">① 각기둥 꼭짓점=2n, 항상 짝수 → 옳음<br>② 각뿔 모서리=2n, 항상 짝수 → 옳음<br>③ 모서리(3n)−면(n+2)=2n−2, 항상 2는 아님 → 옳지 않음<br>④ 각기둥 꼭짓점(2n)과 각뿔 꼭짓점(n+1)은 같지 않음 → 옳지 않음<br>→ <strong style="color:#3fb950">③, ④</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgaSol16');
+}
+function pgaGen17(id){
+  var evens = [4,6,8,10];
+  var m = evens[Math.floor(Math.random()*evens.length)];
+  var el = document.getElementById(id);
+  el.setAttribute('data-m', m);
+  rgwSetQuestion(el, '한 각기둥과 한 각뿔의 모서리 수가 같습니다. 각기둥의 밑면은 '+m+'각형입니다. 각뿔의 밑면은 몇 각형인가요?', 'pgaSol17');
+}
+function pgaSol17(id){
+  var el = document.getElementById(id);
+  var m = +el.getAttribute('data-m');
+  var E = 3*m, n = E/2;
+  var diagram = '<div class="fb-diagram">'+m+'각기둥의 모서리 = 3×'+m+' = '+E+'<br>각뿔의 모서리 2n='+E+' → n='+n+'<br>→ <strong style="color:#3fb950">'+PGW_NAMES[n]+'형</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgaSol17');
+}
+function pgaGen18(id){
+  var m = 3+Math.floor(Math.random()*8);
+  var el = document.getElementById(id);
+  el.setAttribute('data-m', m);
+  rgwSetQuestion(el, '한 각기둥과 한 각뿔의 꼭짓점 수가 같습니다. 각기둥의 밑면은 '+m+'각형입니다. 각뿔의 밑면은 몇 각형인가요?', 'pgaSol18');
+}
+function pgaSol18(id){
+  var el = document.getElementById(id);
+  var m = +el.getAttribute('data-m');
+  var V = 2*m, n = V-1;
+  var diagram = '<div class="fb-diagram">'+m+'각기둥의 꼭짓점 = 2×'+m+' = '+V+'<br>각뿔의 꼭짓점 n+1='+V+' → n='+n+'<br>→ <strong style="color:#3fb950">'+PGW_NAMES[n]+'형</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgaSol18');
+}
+function pgaGen19(id){
+  var m = 3+Math.floor(Math.random()*8);
+  var el = document.getElementById(id);
+  el.setAttribute('data-m', m);
+  rgwSetQuestion(el, '한 각기둥과 한 각뿔의 면의 수가 같습니다. 각기둥의 밑면은 '+m+'각형입니다. 각뿔의 밑면은 몇 각형인가요?', 'pgaSol19');
+}
+function pgaSol19(id){
+  var el = document.getElementById(id);
+  var m = +el.getAttribute('data-m');
+  var F = m+2, n = F-1;
+  var diagram = '<div class="fb-diagram">'+m+'각기둥의 면 = '+m+'+2 = '+F+'<br>각뿔의 면 n+1='+F+' → n='+n+'<br>→ <strong style="color:#3fb950">'+PGW_NAMES[n]+'형</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgaSol19');
+}
+function pgaGen20(id){
+  var a = 3+Math.floor(Math.random()*8);
+  var b = 3+Math.floor(Math.random()*8);
+  var Fs = a+2+b+1;
+  var Vs = 2*a+b+1;
+  var el = document.getElementById(id);
+  el.setAttribute('data-fs', Fs); el.setAttribute('data-vs', Vs);
+  rgwSetQuestion(el, '어떤 각기둥과 어떤 각뿔이 있습니다. 두 도형의 면의 수의 합은 '+Fs+'개이고, 꼭짓점 수의 합은 '+Vs+'개입니다. 두 도형의 밑면은 각각 몇 각형인가요?', 'pgaSol20');
+}
+function pgaSol20(id){
+  var el = document.getElementById(id);
+  var Fs = +el.getAttribute('data-fs'), Vs = +el.getAttribute('data-vs');
+  var a = Vs-Fs+2;
+  var b = (Fs-3)-a;
+  var diagram = '<div class="fb-diagram">각기둥 밑면 a각형, 각뿔 밑면 b각형이라 하면<br>면의 합: (a+2)+(b+1)='+Fs+' → a+b='+(Fs-3)+'<br>꼭짓점의 합: 2a+(b+1)='+Vs+' → 2a+b='+(Vs-1)+'<br>두 식을 빼면 a='+a+', 남은 식에서 b='+b+'<br>→ <strong style="color:#3fb950">'+PGW_NAMES[a]+'기둥과 '+PGW_NAMES[b]+'뿔</strong></div>';
+  rgwRenderToggle(id, diagram, 'pgaSol20');
 }
 const CV_DATA_E6CIRC = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
@@ -9051,10 +9237,26 @@ function cuboidSvg(w, h, dx, dy, color){
 function ngonPoints(cx, cy, rx, ry, n){
   var pts = [];
   for(var k=0;k<n;k++){
-    var ang = (-90 + k*360/n) * Math.PI/180;
+    var ang = (-90 + 7 + k*360/n) * Math.PI/180;
     pts.push([cx+rx*Math.cos(ang), cy+ry*Math.sin(ang)]);
   }
   return pts;
+}
+function ngonOcclusion(n){
+  var vertAngles = [];
+  for(var k=0;k<n;k++) vertAngles.push(-90+7+k*360/n);
+  var faceHidden = [];
+  for(var k=0;k<n;k++){
+    var a1=vertAngles[k], a2=vertAngles[(k+1)%n];
+    var mid=(a1+a2)/2;
+    if(Math.abs(a2-a1)>180) mid+=180;
+    faceHidden.push(Math.sin(mid*Math.PI/180) < 0);
+  }
+  var edgeHidden = [];
+  for(var k=0;k<n;k++){
+    edgeHidden.push(faceHidden[(k-1+n)%n] && faceHidden[k]);
+  }
+  return {faceHidden:faceHidden, edgeHidden:edgeHidden};
 }
 function prismSvg(n, color){
   color = color || '#58a6ff';
@@ -9062,11 +9264,11 @@ function prismSvg(n, color){
   var top = ngonPoints(cx, topY, rx, ry, n);
   var bot = ngonPoints(cx, botY, rx, ry, n);
   function L(p1,p2,dash){ return '<line x1="'+p1[0].toFixed(1)+'" y1="'+p1[1].toFixed(1)+'" x2="'+p2[0].toFixed(1)+'" y2="'+p2[1].toFixed(1)+'" stroke="'+color+'" stroke-width="2"'+(dash?' stroke-dasharray="4,3"':'')+'/>'; }
-  var hiddenIdx = 0;
+  var occ = ngonOcclusion(n);
   var s = '<svg viewBox="0 0 140 120" style="height:130px;width:auto;max-width:100%;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">';
   for(var i=0;i<n;i++){ s += L(top[i], top[(i+1)%n], false); }
-  for(var i=0;i<n;i++){ var j=(i+1)%n; s += L(bot[i], bot[j], i===hiddenIdx||j===hiddenIdx); }
-  for(var i=0;i<n;i++){ s += L(top[i], bot[i], i===hiddenIdx); }
+  for(var i=0;i<n;i++){ s += L(bot[i], bot[(i+1)%n], occ.faceHidden[i]); }
+  for(var i=0;i<n;i++){ s += L(top[i], bot[i], occ.edgeHidden[i]); }
   s += '</svg>';
   return s;
 }
