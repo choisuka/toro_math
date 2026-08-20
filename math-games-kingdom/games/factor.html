@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수식 마법사 — 곱셈공식 · 인수분해</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08001a;--bg2:#110a2e;--bg3:#1e1245;
+  --purple:#c084fc;--blue:#38bdf8;--green:#34d399;
+  --amber:#f59e0b;--pink:#f472b6;--red:#f87171;
+  --text:#e2e8f0;--text2:#94a3b8;--radius:14px;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);
+  font-family:'Segoe UI','Apple SD Gothic Neo',sans-serif;overflow-x:hidden}
+
+/* ── screens ── */
+.screen{display:none}
+.screen.active{display:block}
+
+/* ── TITLE ── */
+#title-screen{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:2rem;position:relative;overflow:hidden;
+}
+.title-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(192,132,252,.18),transparent 70%);
+  pointer-events:none;
+}
+.title-stars{position:absolute;inset:0;pointer-events:none}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;animation:twinkle var(--d,2s) ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:1;transform:scale(1.5)}}
+.wand{font-size:4rem;animation:float 3s ease-in-out infinite;display:block;margin-bottom:.5rem}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-12px) rotate(5deg)}}
+.title-badge{
+  font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(192,132,252,.2);color:var(--purple);
+  border:1px solid rgba(192,132,252,.4);border-radius:100px;
+  padding:.3rem .9rem;margin-bottom:1rem;display:inline-block;
+}
+h1{
+  font-size:clamp(2.2rem,6vw,3.8rem);font-weight:900;
+  background:linear-gradient(135deg,#c084fc,#38bdf8,#34d399);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;line-height:1.2;margin-bottom:.5rem;
+}
+.title-sub{color:var(--text2);font-size:1.05rem;margin-bottom:2rem}
+.title-formulas{
+  display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;
+  margin-bottom:2.5rem;
+}
+.tf{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:.4rem .9rem;font-size:.82rem;
+  font-family:monospace;color:var(--blue);
+}
+.btn-start{
+  background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;
+  border:none;border-radius:12px;padding:1rem 3rem;
+  font-size:1.15rem;font-weight:700;cursor:pointer;
+  box-shadow:0 0 30px rgba(124,58,237,.5);
+  transition:transform .2s,box-shadow .2s;
+}
+.btn-start:hover{transform:translateY(-3px);box-shadow:0 0 50px rgba(124,58,237,.7)}
+.title-stats{margin-top:1.5rem;color:var(--text2);font-size:.85rem}
+
+/* ── CHAPTERS ── */
+#chapter-screen{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+.ch-header{text-align:center;margin-bottom:2rem}
+.ch-header h2{font-size:1.8rem;font-weight:800}
+.ch-header p{color:var(--text2);margin-top:.3rem}
+.ch-part-title{
+  font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text2);margin-bottom:.75rem;padding-left:.25rem;
+  border-left:3px solid var(--purple);padding-left:.75rem;
+}
+.ch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+.ch-card{
+  background:var(--bg2);border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--radius);padding:1.25rem 1rem;cursor:pointer;
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+  position:relative;overflow:hidden;text-align:center;
+}
+.ch-card.locked{opacity:.45;cursor:not-allowed}
+.ch-card:not(.locked):hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.5)}
+.ch-card::before{
+  content:'';position:absolute;inset:0;
+  background:var(--card-glow,radial-gradient(ellipse at 50% 0%,rgba(192,132,252,.15),transparent 60%));
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.ch-card:not(.locked):hover::before{opacity:1}
+.ch-icon{font-size:2rem;margin-bottom:.5rem}
+.ch-name{font-size:.88rem;font-weight:700;margin-bottom:.2rem}
+.ch-sub{font-size:.72rem;color:var(--text2)}
+.ch-stars{margin-top:.5rem;font-size:.75rem;color:var(--amber)}
+.lock-icon{position:absolute;top:.5rem;right:.6rem;font-size:.85rem;opacity:.6}
+.ch-progress{
+  height:3px;background:rgba(255,255,255,.1);
+  border-radius:100px;margin-top:.6rem;overflow:hidden;
+}
+.ch-progress-fill{height:100%;border-radius:100px;background:var(--card-accent,var(--purple));width:0%;transition:width .5s}
+
+/* ── QUIZ ── */
+#quiz-screen{max-width:1200px;margin:0 auto;padding:1.5rem}
+.quiz-topbar{
+  display:flex;align-items:center;gap:1rem;
+  margin-bottom:1rem;flex-wrap:wrap;
+}
+.btn-back{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  color:var(--text2);border-radius:8px;padding:.35rem .8rem;
+  font-size:.82rem;cursor:pointer;transition:background .2s;
+}
+.btn-back:hover{background:rgba(255,255,255,.12)}
+.quiz-ch-label{font-size:.9rem;font-weight:700;color:var(--purple)}
+.quiz-progress-bar{flex:1;height:6px;background:rgba(255,255,255,.1);border-radius:100px;min-width:100px}
+.quiz-progress-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--purple),var(--blue));transition:width .4s}
+.quiz-score{font-size:.85rem;color:var(--text2)}
+
+.quiz-body{
+  display:grid;grid-template-columns:1fr 360px;
+  gap:1.2rem;align-items:start;
+}
+@media(max-width:860px){.quiz-body{grid-template-columns:1fr}}
+
+.quiz-left{
+  background:var(--bg2);border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--radius);padding:1.75rem;
+}
+.q-num{font-size:.75rem;color:var(--text2);margin-bottom:.5rem}
+.q-text{
+  font-size:1.1rem;line-height:1.7;margin-bottom:1.2rem;
+  font-weight:500;
+}
+.q-expression{
+  background:rgba(192,132,252,.1);border:1px solid rgba(192,132,252,.25);
+  border-radius:10px;padding:.9rem 1.2rem;
+  font-size:1.3rem;font-family:monospace;text-align:center;
+  color:var(--purple);margin-bottom:1.2rem;letter-spacing:.05em;
+}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+.choice{
+  background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:.75rem 1rem;cursor:pointer;
+  font-size:.93rem;transition:all .15s;text-align:center;
+  font-family:monospace;color:var(--text);
+}
+.choice:hover:not(.disabled){background:rgba(192,132,252,.15);border-color:rgba(192,132,252,.5)}
+.choice.correct{background:rgba(52,211,153,.15);border-color:#34d399;color:#34d399}
+.choice.wrong{background:rgba(248,113,113,.15);border-color:#f87171;color:#f87171}
+.choice.disabled{cursor:default}
+
+.fill-wrap{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.fill-input{
+  flex:1;min-width:160px;background:rgba(255,255,255,.07);
+  border:2px solid rgba(255,255,255,.15);border-radius:10px;
+  padding:.7rem 1rem;font-size:1rem;color:var(--text);
+  font-family:monospace;outline:none;transition:border-color .2s;
+}
+.fill-input:focus{border-color:var(--purple)}
+.fill-input.correct{border-color:#34d399;background:rgba(52,211,153,.1)}
+.fill-input.wrong{border-color:#f87171;background:rgba(248,113,113,.1)}
+.btn-submit{
+  background:var(--purple);color:#fff;border:none;border-radius:10px;
+  padding:.7rem 1.4rem;font-size:.9rem;font-weight:700;cursor:pointer;
+  transition:opacity .2s;
+}
+.btn-submit:hover{opacity:.85}
+.btn-submit:disabled{opacity:.4;cursor:default}
+
+.feedback{
+  margin-top:1rem;padding:.9rem 1.1rem;border-radius:10px;
+  font-size:.88rem;line-height:1.6;display:none;
+}
+.feedback.show{display:block}
+.feedback.ok{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3);color:#6ee7b7}
+.feedback.ng{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#fca5a5}
+.fb-steps{margin-top:.5rem;padding-left:.5rem;font-size:.82rem;opacity:.85}
+.fb-step{display:block;margin:.2rem 0}
+
+.btn-next{
+  margin-top:1rem;width:100%;background:var(--bg3);
+  border:1px solid rgba(255,255,255,.12);color:var(--text);
+  border-radius:10px;padding:.7rem;font-size:.9rem;font-weight:600;
+  cursor:pointer;transition:background .2s;display:none;
+}
+.btn-next.show{display:block}
+.btn-next:hover{background:rgba(255,255,255,.1)}
+
+/* ── CONCEPT PANEL ── */
+.concept-panel{
+  background:var(--bg2);border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--radius);padding:1.5rem;
+  position:sticky;top:1rem;
+}
+.cp-title{
+  font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--purple);margin-bottom:.9rem;display:flex;align-items:center;gap:.4rem;
+}
+.cp-visual{
+  background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;padding:1rem;margin-bottom:1rem;
+  font-family:monospace;font-size:.78rem;line-height:1.7;
+  color:#94a3b8;text-align:center;
+}
+.cp-visual svg{display:block;margin:0 auto}
+.cp-formula-box{
+  background:rgba(192,132,252,.08);border:1px solid rgba(192,132,252,.2);
+  border-radius:10px;padding:.75rem 1rem;margin-bottom:.9rem;
+  font-family:monospace;font-size:1rem;color:var(--purple);text-align:center;
+  font-weight:700;letter-spacing:.03em;
+}
+.cp-sub-formula{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.82rem;
+}
+.cp-sub-formula:last-child{border-bottom:none}
+.cp-lbl{color:var(--text2)}
+.cp-val{font-family:monospace;color:var(--blue)}
+.cp-why{margin-top:.9rem}
+.cp-why-title{
+  font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:.5rem;
+}
+.cp-why-item{
+  background:rgba(245,158,11,.07);border-left:2px solid var(--amber);
+  border-radius:0 8px 8px 0;padding:.5rem .75rem;
+  font-size:.8rem;line-height:1.6;color:var(--text2);margin-bottom:.4rem;
+}
+.cp-why-item strong{color:var(--text)}
+.cp-tip{
+  margin-top:.7rem;background:rgba(56,189,248,.07);
+  border:1px solid rgba(56,189,248,.2);border-radius:8px;
+  padding:.5rem .75rem;font-size:.78rem;color:var(--blue);line-height:1.5;
+}
+
+/* ── RESULT ── */
+#result-screen{
+  max-width:600px;margin:0 auto;padding:3rem 1.5rem;text-align:center;
+}
+.result-icon{font-size:5rem;display:block;margin-bottom:1rem;animation:float 2s ease-in-out infinite}
+.result-title{font-size:2rem;font-weight:900;margin-bottom:.5rem}
+.result-score{
+  font-size:3.5rem;font-weight:900;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin:1rem 0;
+}
+.result-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1.5rem 0;
+}
+.rs-box{background:var(--bg2);border-radius:12px;padding:1rem .5rem;border:1px solid rgba(255,255,255,.07)}
+.rs-num{font-size:1.8rem;font-weight:800}
+.rs-lbl{font-size:.72rem;color:var(--text2);margin-top:.2rem}
+.result-msg{color:var(--text2);font-size:.95rem;line-height:1.6;margin:.5rem 0 1.5rem}
+.result-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.btn-retry{
+  background:rgba(192,132,252,.15);border:1px solid rgba(192,132,252,.4);
+  color:var(--purple);border-radius:10px;padding:.7rem 1.6rem;
+  font-size:.9rem;font-weight:700;cursor:pointer;transition:background .2s;
+}
+.btn-retry:hover{background:rgba(192,132,252,.25)}
+.btn-chapters{
+  background:var(--purple);color:#fff;border:none;border-radius:10px;
+  padding:.7rem 1.6rem;font-size:.9rem;font-weight:700;cursor:pointer;
+  transition:opacity .2s;
+}
+.btn-chapters:hover{opacity:.85}
+</style>
+</head>
+<body>
+
+<!-- ══════════ TITLE ══════════ -->
+<div id="title-screen" class="screen active">
+  <div class="title-bg"></div>
+  <div class="title-stars" id="stars"></div>
+  <span class="wand">🪄</span>
+  <div class="title-badge">중3 수학</div>
+  <h1>수식 마법사</h1>
+  <p class="title-sub">곱셈공식과 인수분해를 마스터하라!</p>
+  <div class="title-formulas">
+    <span class="tf">(a+b)² = a²+2ab+b²</span>
+    <span class="tf">(a+b)(a-b) = a²-b²</span>
+    <span class="tf">a²-b² = (a+b)(a-b)</span>
+    <span class="tf">x²+px+q 인수분해</span>
+  </div>
+  <button class="btn-start" onclick="showChapters()">마법 시작 ✨</button>
+  <p class="title-stats">10챕터 · 80문제 · 개념 시각화</p>
+</div>
+
+<!-- ══════════ CHAPTERS ══════════ -->
+<div id="chapter-screen" class="screen">
+  <div class="ch-header">
+    <h2>🗺 마법 챕터 선택</h2>
+    <p style="color:var(--text2)">챕터를 순서대로 클리어해 다음 마법을 해금하세요</p>
+  </div>
+
+  <div class="ch-part-title">✨ Part 1 — 곱셈공식 전개</div>
+  <div class="ch-grid" id="grid-part1"></div>
+
+  <div class="ch-part-title" style="margin-top:1rem">🔮 Part 2 — 인수분해</div>
+  <div class="ch-grid" id="grid-part2"></div>
+</div>
+
+<!-- ══════════ QUIZ ══════════ -->
+<div id="quiz-screen" class="screen">
+  <div class="quiz-topbar">
+    <button class="btn-back" onclick="showChapters()">← 챕터 목록</button>
+    <span class="quiz-ch-label" id="q-ch-label"></span>
+    <div class="quiz-progress-bar">
+      <div class="quiz-progress-fill" id="q-prog-fill"></div>
+    </div>
+    <span class="quiz-score" id="q-score-label">0점</span>
+  </div>
+
+  <div class="quiz-body">
+    <div class="quiz-left">
+      <div class="q-num" id="q-num"></div>
+      <div class="q-text" id="q-text"></div>
+      <div class="q-expression" id="q-expr" style="display:none"></div>
+      <div class="choices" id="choices"></div>
+      <div class="feedback" id="feedback"></div>
+      <button class="btn-next" id="btn-next" onclick="nextQ()">다음 문제 →</button>
+    </div>
+    <div class="concept-panel" id="concept-panel"></div>
+  </div>
+</div>
+
+<!-- ══════════ RESULT ══════════ -->
+<div id="result-screen" class="screen">
+  <span class="result-icon" id="r-icon">🏆</span>
+  <div class="result-title" id="r-title">챕터 클리어!</div>
+  <div class="result-score" id="r-score">0점</div>
+  <div class="result-stats">
+    <div class="rs-box"><div class="rs-num" id="r-correct" style="color:var(--green)">0</div><div class="rs-lbl">정답</div></div>
+    <div class="rs-box"><div class="rs-num" id="r-wrong" style="color:var(--red)">0</div><div class="rs-lbl">오답</div></div>
+    <div class="rs-box"><div class="rs-num" id="r-acc" style="color:var(--purple)">0%</div><div class="rs-lbl">정확도</div></div>
+  </div>
+  <div class="result-msg" id="r-msg"></div>
+  <div class="result-btns">
+    <button class="btn-retry" onclick="retryChapter()">🔄 다시 풀기</button>
+    <button class="btn-chapters" onclick="showChapters()">📖 챕터 목록</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+//  DATA
+// ══════════════════════════════════════════════
+const CHAPTERS = [
+  // Part 1
+  {id:0,title:'(a+b)² 공식',icon:'✨',sub:'제곱합 전개',color:'#c084fc',part:1},
+  {id:1,title:'(a-b)² 공식',icon:'❄️',sub:'제곱차 전개',color:'#38bdf8',part:1},
+  {id:2,title:'합차 공식',icon:'⚡',sub:'(a+b)(a-b)',color:'#34d399',part:1},
+  {id:3,title:'(x+a)(x+b)',icon:'🌀',sub:'이차식 전개',color:'#f59e0b',part:1},
+  {id:4,title:'공식 활용',icon:'🔮',sub:'수의 계산',color:'#f472b6',part:1},
+  // Part 2
+  {id:5,title:'공통인수',icon:'🧲',sub:'공통인수 분해',color:'#c084fc',part:2},
+  {id:6,title:'완전제곱 분해',icon:'💎',sub:'a²±2ab+b²형',color:'#38bdf8',part:2},
+  {id:7,title:'합차 분해',icon:'⚔️',sub:'a²-b²형',color:'#34d399',part:2},
+  {id:8,title:'x²+px+q 분해',icon:'🔑',sub:'두 수의 합·곱',color:'#f59e0b',part:2},
+  {id:9,title:'종합 인수분해',icon:'👑',sub:'복합 유형',color:'#f472b6',part:2},
+];
+
+const CONCEPTS = [
+  // 0: (a+b)²
+  { title:'✨ (a+b)² 공식',
+    formula:'(a+b)² = a² + 2ab + b²',
+    subs:[{lbl:'전개 순서',val:'앞·앞 + 앞·뒤×2 + 뒤·뒤'}],
+    visual:`<svg width="160" height="160" font-size="12" font-family="monospace">
+  <rect x="5" y="5" width="100" height="100" fill="rgba(192,132,252,.2)" stroke="#c084fc" stroke-width="1.5"/>
+  <rect x="5" y="5" width="70" height="70" fill="rgba(192,132,252,.35)" stroke="#c084fc" stroke-width="1.5"/>
+  <rect x="75" y="5" width="30" height="70" fill="rgba(56,189,248,.25)" stroke="#38bdf8" stroke-width="1.5"/>
+  <rect x="5" y="75" width="70" height="30" fill="rgba(56,189,248,.25)" stroke="#38bdf8" stroke-width="1.5"/>
+  <rect x="75" y="75" width="30" height="30" fill="rgba(52,211,153,.3)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="37" y="45" fill="#c084fc" text-anchor="middle">a²</text>
+  <text x="90" y="45" fill="#38bdf8" text-anchor="middle">ab</text>
+  <text x="37" y="93" fill="#38bdf8" text-anchor="middle">ab</text>
+  <text x="90" y="93" fill="#34d399" text-anchor="middle">b²</text>
+  <text x="37" y="125" fill="#94a3b8" text-anchor="middle">a</text>
+  <text x="90" y="125" fill="#94a3b8" text-anchor="middle">b</text>
+  <text x="125" y="45" fill="#94a3b8">a</text>
+  <text x="125" y="93" fill="#94a3b8">b</text>
+</svg>`,
+    whys:[
+      {q:'왜 2ab가 나올까?',a:'(a+b)×(a+b)를 넓이로 보면, ab 직사각형이 2개 (오른쪽+아래쪽) 생깁니다.'},
+      {q:'(2x+3)² 어떻게 적용?',a:'a=2x, b=3으로 놓으면 (2x)²+2·(2x)·3+3² = 4x²+12x+9'},
+    ],
+    tip:'🪄 a²+2ab+b² — 중간항 계수가 항상 2배!'
+  },
+  // 1: (a-b)²
+  { title:'❄️ (a-b)² 공식',
+    formula:'(a-b)² = a² - 2ab + b²',
+    subs:[{lbl:'부호 주의',val:'중간항이 음수(−2ab)'}],
+    visual:`<svg width="160" height="160" font-size="12" font-family="monospace">
+  <rect x="5" y="5" width="100" height="100" fill="rgba(56,189,248,.15)" stroke="#38bdf8" stroke-width="1.5"/>
+  <rect x="5" y="5" width="70" height="70" fill="rgba(192,132,252,.35)" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="37" y="45" fill="#c084fc" text-anchor="middle">a²</text>
+  <text x="90" y="45" fill="#38bdf8" text-anchor="middle">-ab</text>
+  <text x="37" y="93" fill="#38bdf8" text-anchor="middle">-ab</text>
+  <text x="90" y="93" fill="#34d399" text-anchor="middle">b²</text>
+  <text x="37" y="125" fill="#94a3b8" text-anchor="middle">a-b</text>
+  <text x="90" y="125" fill="#94a3b8" text-anchor="middle">b</text>
+  <text x="125" y="45" fill="#94a3b8">a-b</text>
+  <text x="125" y="93" fill="#94a3b8">b</text>
+</svg>`,
+    whys:[
+      {q:'(a-b)² = (a+(-b))² 로 이해하기',a:'b 대신 -b를 넣으면: a²+2·a·(-b)+(-b)² = a²-2ab+b²'},
+      {q:'왜 b²는 양수?',a:'(-b)² = b² — 음수의 제곱은 항상 양수!'},
+    ],
+    tip:'🧊 (a+b)²와 b² 부분은 같고, 중간항 부호만 달라요.'
+  },
+  // 2: (a+b)(a-b)
+  { title:'⚡ 합차 공식',
+    formula:'(a+b)(a-b) = a² - b²',
+    subs:[{lbl:'특징',val:'중간항이 사라짐 (상쇄)'}],
+    visual:`<svg width="180" height="100" font-size="11" font-family="monospace">
+  <rect x="5" y="20" width="100" height="60" fill="rgba(192,132,252,.25)" stroke="#c084fc" stroke-width="1.5"/>
+  <rect x="75" y="20" width="30" height="60" fill="rgba(248,113,113,.3)" stroke="#f87171" stroke-width="1.5" stroke-dasharray="4"/>
+  <text x="37" y="55" fill="#c084fc" text-anchor="middle">a²-b²</text>
+  <text x="90" y="55" fill="#f87171" text-anchor="middle">-b²</text>
+  <text x="155" y="55" fill="#94a3b8" font-size="10">a²-b²</text>
+  <text x="5" y="14" fill="#94a3b8" font-size="10">a</text>
+  <text x="75" y="14" fill="#f87171" font-size="10">b</text>
+</svg>`,
+    whys:[
+      {q:'왜 중간항이 사라질까?',a:'(a+b)(a-b) = a²-ab+ab-b² = a²-b². ab와 -ab가 서로 상쇄!'},
+      {q:'활용: 99×101 = ?',a:'(100-1)(100+1) = 100²-1² = 10000-1 = 9999'},
+    ],
+    tip:'⚡ 합×차 = 큰것² - 작은것². 암산에 매우 유용!'
+  },
+  // 3: (x+a)(x+b)
+  { title:'🌀 (x+a)(x+b) 공식',
+    formula:'(x+a)(x+b) = x² + (a+b)x + ab',
+    subs:[{lbl:'x계수',val:'a+b (두 수의 합)'},{lbl:'상수항',val:'ab (두 수의 곱)'}],
+    visual:`<svg width="200" height="80" font-size="11" font-family="monospace">
+  <text x="10" y="35" fill="#c084fc">(x+a)(x+b)</text>
+  <text x="10" y="55" fill="#94a3b8">= x·x + x·b + a·x + a·b</text>
+  <text x="10" y="72" fill="#38bdf8">= x² + (a+b)x + ab</text>
+</svg>`,
+    whys:[
+      {q:'왜 x계수가 a+b?',a:'x·b + a·x = (a+b)x — x가 붙은 항들을 묶으면 합이 됩니다.'},
+      {q:'(x+2)(x+3) 적용',a:'a=2, b=3 → x²+(2+3)x+2×3 = x²+5x+6'},
+    ],
+    tip:'🌀 합은 x계수, 곱은 상수항!'
+  },
+  // 4: 수의 계산
+  { title:'🔮 곱셈공식 수의 계산 활용',
+    formula:'큰 수 = 가까운 정수 ± 차이',
+    subs:[
+      {lbl:'102²',val:'(100+2)² = 10404'},
+      {lbl:'99×101',val:'(100-1)(100+1) = 9999'},
+    ],
+    visual:`<svg width="200" height="80" font-size="11" font-family="monospace">
+  <text x="10" y="22" fill="#f472b6">102² = (100+2)²</text>
+  <text x="10" y="40" fill="#94a3b8">= 100² + 2·100·2 + 2²</text>
+  <text x="10" y="58" fill="#38bdf8">= 10000 + 400 + 4 = 10404</text>
+</svg>`,
+    whys:[
+      {q:'왜 이 방법이 유용한가?',a:'100, 50, 200 같은 "깔끔한 수" 주변의 계산을 빠르게 할 수 있습니다.'},
+      {q:'어떤 공식을 골라야?',a:'같은 수 제곱 → (a±b)², 두 수의 차가 같을 때 → (a+b)(a-b)'},
+    ],
+    tip:'🔮 두 수의 평균을 기준으로 분해하면 쉬워요!'
+  },
+  // 5: 공통인수
+  { title:'🧲 공통인수로 묶기',
+    formula:'ab + ac = a(b+c)',
+    subs:[{lbl:'방법',val:'공통된 부분을 앞으로 꺼냄'},{lbl:'검증',val:'전개해서 원래대로 돌아오면 OK'}],
+    visual:`<svg width="200" height="80" font-size="11" font-family="monospace">
+  <text x="10" y="22" fill="#94a3b8">3x² + 6x</text>
+  <text x="10" y="40" fill="#94a3b8">= 3x·x + 3x·2</text>
+  <text x="10" y="58" fill="#c084fc">= 3x(x + 2)</text>
+</svg>`,
+    whys:[
+      {q:'공통인수를 찾는 방법?',a:'각 항에 공통으로 들어있는 수·문자를 찾아 앞으로 꺼냅니다. 모든 항을 나눌 수 있어야 해요.'},
+      {q:'2(x+1)+3y(x+1) 처럼 식이 공통인수일 때?',a:'(x+1)을 하나의 묶음 A로 보면: 2A+3yA = A(2+3y) = (x+1)(2+3y)'},
+    ],
+    tip:'🧲 공통인수는 수, 문자, 또는 식 전체가 될 수 있어요!'
+  },
+  // 6: 완전제곱식
+  { title:'💎 완전제곱식 인수분해',
+    formula:'a² + 2ab + b² = (a+b)²\na² - 2ab + b² = (a-b)²',
+    subs:[{lbl:'판별법',val:'중간항 = 2 × √앞항 × √뒷항'}],
+    visual:`<svg width="200" height="80" font-size="11" font-family="monospace">
+  <text x="10" y="22" fill="#94a3b8">x² + 6x + 9</text>
+  <text x="10" y="40" fill="#94a3b8">= x² + 2·x·3 + 3²</text>
+  <text x="10" y="58" fill="#38bdf8">= (x+3)²</text>
+</svg>`,
+    whys:[
+      {q:'완전제곱식인지 확인하는 법?',a:'① 첫째·셋째항이 완전제곱수, ② 가운데항 = 2×√첫째×√셋째 이면 완전제곱식!'},
+      {q:'4x²+12x+9 인수분해?',a:'√(4x²)=2x, √9=3, 2·2x·3=12x ✓ → (2x+3)²'},
+    ],
+    tip:'💎 완전제곱수: 1,4,9,16,25,36... 를 먼저 확인!'
+  },
+  // 7: a²-b²
+  { title:'⚔️ 합차공식 인수분해',
+    formula:'a² - b² = (a+b)(a-b)',
+    subs:[{lbl:'조건',val:'두 항 모두 완전제곱수'},{lbl:'부호',val:'반드시 뺄셈(−)이어야 함'}],
+    visual:`<svg width="200" height="80" font-size="11" font-family="monospace">
+  <text x="10" y="22" fill="#94a3b8">x² - 9</text>
+  <text x="10" y="40" fill="#94a3b8">= x² - 3²</text>
+  <text x="10" y="58" fill="#34d399">= (x+3)(x-3)</text>
+</svg>`,
+    whys:[
+      {q:'왜 합×차 형태로 나뉠까?',a:'(a+b)(a-b) = a²-b² 이므로, 역방향이 바로 이 인수분해입니다.'},
+      {q:'4x²-25 인수분해?',a:'= (2x)²-5² = (2x+5)(2x-5)'},
+    ],
+    tip:'⚔️ a²-b² → a는 √앞항, b는 √뒷항!'
+  },
+  // 8: x²+px+q
+  { title:'🔑 x²+px+q 인수분해',
+    formula:'x²+px+q = (x+a)(x+b)\n단, a+b=p, ab=q',
+    subs:[{lbl:'x계수 p',val:'두 수의 합 a+b'},{lbl:'상수항 q',val:'두 수의 곱 ab'}],
+    visual:`<svg width="200" height="100" font-size="11" font-family="monospace">
+  <text x="10" y="20" fill="#f59e0b">x²+5x+6 인수분해</text>
+  <text x="10" y="38" fill="#94a3b8">합=5, 곱=6인 두 수?</text>
+  <text x="10" y="56" fill="#94a3b8">→ 2+3=5, 2×3=6 ✓</text>
+  <text x="10" y="76" fill="#f59e0b">= (x+2)(x+3)</text>
+</svg>`,
+    whys:[
+      {q:'두 수를 찾는 방법?',a:'q(상수항)의 약수 쌍을 나열하고, 그 중 합이 p인 쌍을 찾습니다.'},
+      {q:'x²-x-6 인수분해?',a:'곱=-6, 합=-1인 두 수: 2와 -3 → (x+2)(x-3)'},
+    ],
+    tip:'🔑 합과 곱 테이블: q의 인수 쌍 나열 → 합이 p인 것 선택!'
+  },
+  // 9: 종합
+  { title:'👑 종합 인수분해',
+    formula:'① 공통인수 먼저\n② 남은 식 패턴 확인',
+    subs:[
+      {lbl:'Step 1',val:'공통인수 꺼내기'},
+      {lbl:'Step 2',val:'완전제곱/합차/x²+px+q'},
+    ],
+    visual:`<svg width="200" height="100" font-size="11" font-family="monospace">
+  <text x="10" y="20" fill="#f472b6">2x²+4x-6</text>
+  <text x="10" y="38" fill="#94a3b8">= 2(x²+2x-3)</text>
+  <text x="10" y="56" fill="#94a3b8">  합=2, 곱=-3 → 3,-1</text>
+  <text x="10" y="74" fill="#f472b6">= 2(x+3)(x-1)</text>
+</svg>`,
+    whys:[
+      {q:'왜 공통인수를 먼저 꺼낼까?',a:'숫자가 작아져서 나머지 인수분해가 훨씬 쉬워집니다.'},
+      {q:'인수분해가 됐는지 확인?',a:'전개해서 원래 식과 같으면 성공! 반드시 검산하세요.'},
+    ],
+    tip:'👑 공통인수 → 완전제곱 → 합차 → x²+px+q 순으로 확인!'
+  },
+];
+
+const QS = [
+  // ── Ch 0: (a+b)² ──────────────────────────────
+  [
+    {q:'다음을 전개하면?',ex:'(x+2)²',c:['x²+4x+4','x²+2x+4','x²+4x+2','x²+4'],ans:0,
+     st:['(x+2)² = x²+2·x·2+2²','= x²+4x+4'],ans_txt:'x²+4x+4'},
+    {q:'다음을 전개하면?',ex:'(a+3)²',c:['a²+9','a²+6a+9','a²+3a+9','a²+6a+3'],ans:1,
+     st:['(a+3)² = a²+2·a·3+3²','= a²+6a+9'],ans_txt:'a²+6a+9'},
+    {q:'다음을 전개하면?',ex:'(2x+1)²',c:['4x²+4x+1','2x²+4x+1','4x²+2x+1','4x²+1'],ans:0,
+     st:['(2x)²+2·2x·1+1²','= 4x²+4x+1'],ans_txt:'4x²+4x+1'},
+    {q:'다음을 전개하면?',ex:'(x+y)²',c:['x²+y²','x²+xy+y²','x²+2xy+y²','2x²+2y²'],ans:2,
+     st:['x²+2·x·y+y²','= x²+2xy+y²'],ans_txt:'x²+2xy+y²'},
+    {q:'다음을 전개하면?',ex:'(3a+2b)²',c:['9a²+12ab+4b²','9a²+6ab+4b²','3a²+12ab+2b²','9a²+4b²'],ans:0,
+     st:['(3a)²+2·3a·2b+(2b)²','= 9a²+12ab+4b²'],ans_txt:'9a²+12ab+4b²'},
+    {q:'빈칸에 알맞은 식은?',ex:'(a+b)² = a² + □ + b²',c:['ab','2ab','a+b','2a+2b'],ans:1,
+     st:['(a+b)² 전개 공식','중간항 = 2ab'],ans_txt:'2ab'},
+    {q:'(x+5)²를 전개했을 때 x의 계수는?',ex:null,c:['5','10','25','2'],ans:1,
+     st:['(x+5)² = x²+10x+25','x의 계수 = 2×5 = 10'],ans_txt:'10'},
+    {q:'다음을 전개하면?',ex:'(2a+3b)²',c:['4a²+9b²','4a²+6ab+9b²','4a²+12ab+9b²','2a²+12ab+3b²'],ans:2,
+     st:['(2a)²+2·2a·3b+(3b)²','= 4a²+12ab+9b²'],ans_txt:'4a²+12ab+9b²'},
+  ],
+  // ── Ch 1: (a-b)² ──────────────────────────────
+  [
+    {q:'다음을 전개하면?',ex:'(x-3)²',c:['x²-6x+9','x²-3x+9','x²-6x-9','x²+6x+9'],ans:0,
+     st:['(x-3)² = x²-2·x·3+3²','= x²-6x+9'],ans_txt:'x²-6x+9'},
+    {q:'다음을 전개하면?',ex:'(a-5)²',c:['a²-25','a²-10a+25','a²-5a+25','a²-10a-25'],ans:1,
+     st:['a²-2·a·5+5²','= a²-10a+25'],ans_txt:'a²-10a+25'},
+    {q:'다음을 전개하면?',ex:'(2x-3)²',c:['4x²-9','4x²-12x+9','2x²-12x+9','4x²-6x+9'],ans:1,
+     st:['(2x)²-2·2x·3+3²','= 4x²-12x+9'],ans_txt:'4x²-12x+9'},
+    {q:'빈칸에 알맞은 식은?',ex:'(a-b)² = a² - □ + b²',c:['ab','2ab','a-b','2a-2b'],ans:1,
+     st:['(a-b)² 중간항','= -2ab이므로 □=2ab'],ans_txt:'2ab'},
+    {q:'다음을 전개하면?',ex:'(3x-y)²',c:['9x²-y²','9x²-3xy+y²','9x²-6xy+y²','3x²-6xy+y²'],ans:2,
+     st:['(3x)²-2·3x·y+y²','= 9x²-6xy+y²'],ans_txt:'9x²-6xy+y²'},
+    {q:'(x-4)²를 전개했을 때 x의 계수는?',ex:null,c:['-4','-8','-16','4'],ans:1,
+     st:['(x-4)² = x²-8x+16','x의 계수 = -2×4 = -8'],ans_txt:'-8'},
+    {q:'(x-1)²+(x+1)²를 전개하면?',ex:null,c:['2x²+2','2x²','2x²-2','2x²+4x'],ans:0,
+     st:['(x²-2x+1)+(x²+2x+1)','= 2x²+2'],ans_txt:'2x²+2'},
+    {q:'다음을 전개하면?',ex:'(5a-2b)²',c:['25a²-4b²','25a²-10ab+4b²','25a²-20ab+4b²','5a²-20ab+2b²'],ans:2,
+     st:['(5a)²-2·5a·2b+(2b)²','= 25a²-20ab+4b²'],ans_txt:'25a²-20ab+4b²'},
+  ],
+  // ── Ch 2: (a+b)(a-b) ──────────────────────────
+  [
+    {q:'다음을 전개하면?',ex:'(x+3)(x-3)',c:['x²-9','x²+9','x²-3','x²-6x+9'],ans:0,
+     st:['합차 공식: a=x, b=3','x²-3² = x²-9'],ans_txt:'x²-9'},
+    {q:'다음을 전개하면?',ex:'(2a+b)(2a-b)',c:['4a²-b²','2a²-b²','4a²+b²','4a²-2b²'],ans:0,
+     st:['a=2a, b=b 대입','(2a)²-b² = 4a²-b²'],ans_txt:'4a²-b²'},
+    {q:'빈칸에 알맞은 것은?',ex:'(a+b)(a-b) = □',c:['a²+b²','a²-b²','2a²-2b²','(a-b)²'],ans:1,
+     st:['합차 공식 결과','= a²-b²'],ans_txt:'a²-b²'},
+    {q:'다음을 계산하면?',ex:'99 × 101',c:['9899','9999','10001','10100'],ans:1,
+     st:['(100-1)(100+1) = 100²-1²','= 10000-1 = 9999'],ans_txt:'9999'},
+    {q:'다음을 전개하면?',ex:'(3x+2)(3x-2)',c:['9x²-4','9x²+4','3x²-4','9x²-6x-4'],ans:0,
+     st:['(3x)²-2² = 9x²-4'],ans_txt:'9x²-4'},
+    {q:'다음을 계산하면?',ex:'51 × 49',c:['2400','2401','2499','2500'],ans:2,
+     st:['(50+1)(50-1) = 50²-1²','= 2500-1 = 2499'],ans_txt:'2499'},
+    {q:'다음을 전개하면?',ex:'(x+y)(x-y)',c:['x²-y²','x²+y²','x²-2xy+y²','(x-y)²'],ans:0,
+     st:['합차 공식: a²-b²','= x²-y²'],ans_txt:'x²-y²'},
+    {q:'다음을 전개하면?',ex:'(5+x)(5-x)',c:['25+x²','25-x²','10x-x²','25-10x+x²'],ans:1,
+     st:['a=5, b=x → 5²-x²','= 25-x²'],ans_txt:'25-x²'},
+  ],
+  // ── Ch 3: (x+a)(x+b) ──────────────────────────
+  [
+    {q:'다음을 전개하면?',ex:'(x+2)(x+3)',c:['x²+5x+6','x²+6x+5','x²+5x+5','x²+6x+6'],ans:0,
+     st:['x²+(2+3)x+2×3','= x²+5x+6'],ans_txt:'x²+5x+6'},
+    {q:'다음을 전개하면?',ex:'(x-1)(x+4)',c:['x²+3x-4','x²-3x-4','x²+3x+4','x²-4'],ans:0,
+     st:['x²+(-1+4)x+(-1)×4','= x²+3x-4'],ans_txt:'x²+3x-4'},
+    {q:'다음을 전개하면?',ex:'(x-2)(x-3)',c:['x²-5x+6','x²+5x+6','x²-5x-6','x²-6x+5'],ans:0,
+     st:['x²+(-2-3)x+(-2)×(-3)','= x²-5x+6'],ans_txt:'x²-5x+6'},
+    {q:'(x+a)(x+b) = x² + (a+b)x + □ 의 □는?',ex:null,c:['a+b','ab','2ab','(a+b)²'],ans:1,
+     st:['상수항 = 두 수의 곱','□ = ab'],ans_txt:'ab'},
+    {q:'다음을 전개하면?',ex:'(x+5)(x-2)',c:['x²+3x-10','x²-3x-10','x²+3x+10','x²-10'],ans:0,
+     st:['x²+(5-2)x+5×(-2)','= x²+3x-10'],ans_txt:'x²+3x-10'},
+    {q:'(x+3)(x+4)의 상수항은?',ex:null,c:['3','4','7','12'],ans:3,
+     st:['상수항 = a×b = 3×4','= 12'],ans_txt:'12'},
+    {q:'다음을 전개하면?',ex:'(x-1)(x-5)',c:['x²-6x+5','x²+6x+5','x²-6x-5','x²-4x+5'],ans:0,
+     st:['x²+(-1-5)x+(-1)×(-5)','= x²-6x+5'],ans_txt:'x²-6x+5'},
+    {q:'x²+7x+12 = (x+3)(x+□)에서 □는?',ex:null,c:['3','4','6','12'],ans:1,
+     st:['3+□=7 → □=4','확인: 3×4=12 ✓'],ans_txt:'4'},
+  ],
+  // ── Ch 4: 수의 계산 ────────────────────────────
+  [
+    {q:'곱셈공식을 이용해 계산하면?',ex:'102²',c:['10400','10404','10204','10040'],ans:1,
+     st:['(100+2)² = 100²+2·100·2+2²','= 10000+400+4 = 10404'],ans_txt:'10404'},
+    {q:'곱셈공식을 이용해 계산하면?',ex:'98²',c:['9600','9604','9640','9960'],ans:1,
+     st:['(100-2)² = 100²-2·100·2+2²','= 10000-400+4 = 9604'],ans_txt:'9604'},
+    {q:'곱셈공식을 이용해 계산하면?',ex:'103 × 97',c:['9991','9999','10091','10009'],ans:1,
+     st:['(100+3)(100-3) = 100²-3²','= 10000-9 = 9991'],ans_txt:'9991'},
+    {q:'곱셈공식을 이용해 계산하면?',ex:'52²',c:['2600','2704','2704','2604'],ans:1,
+     st:['(50+2)² = 50²+2·50·2+2²','= 2500+200+4 = 2704'],ans_txt:'2704'},
+    {q:'곱셈공식을 이용해 계산하면?',ex:'48²',c:['2304','2400','2404','2204'],ans:0,
+     st:['(50-2)² = 50²-2·50·2+2²','= 2500-200+4 = 2304'],ans_txt:'2304'},
+    {q:'곱셈공식을 이용해 계산하면?',ex:'201 × 199',c:['39999','40001','39901','40099'],ans:0,
+     st:['(200+1)(200-1) = 200²-1²','= 40000-1 = 39999'],ans_txt:'39999'},
+    {q:'곱셈공식을 이용해 계산하면?',ex:'1002²',c:['1004004','1004000','1000004','1040004'],ans:0,
+     st:['(1000+2)² = 1000²+2·1000·2+4','= 1000000+4000+4 = 1004004'],ans_txt:'1004004'},
+    {q:'곱셈공식을 이용해 계산하면?',ex:'102 × 98',c:['9996','9996','10004','9800'],ans:0,
+     st:['(100+2)(100-2) = 100²-2²','= 10000-4 = 9996'],ans_txt:'9996'},
+  ],
+  // ── Ch 5: 공통인수 ────────────────────────────
+  [
+    {q:'인수분해하면?',ex:'2x + 4',c:['2(x+4)','2(x+2)','x(2+4)','2x+4'],ans:1,
+     st:['2x+4 = 2·x + 2·2','= 2(x+2)'],ans_txt:'2(x+2)'},
+    {q:'인수분해하면?',ex:'ax + ay',c:['a(x+y)','xy(a+a)','a(x·y)','(a+x)(a+y)'],ans:0,
+     st:['공통인수 a','= a(x+y)'],ans_txt:'a(x+y)'},
+    {q:'인수분해하면?',ex:'3x² + 6x',c:['3(x²+2)','3x(x+2)','x(3x+6)','3x²(1+2)'],ans:1,
+     st:['공통인수 3x','= 3x(x+2)'],ans_txt:'3x(x+2)'},
+    {q:'인수분해하면?',ex:'x²y + xy²',c:['xy(x+y)','x²y²','xy(x·y)','(xy)²'],ans:0,
+     st:['공통인수 xy','= xy(x+y)'],ans_txt:'xy(x+y)'},
+    {q:'인수분해하면?',ex:'4a²b - 8ab²',c:['4ab(a-2b)','4ab(a+2b)','4a(ab-2b²)','ab(4a-8b)'],ans:0,
+     st:['공통인수 4ab','= 4ab(a-2b)'],ans_txt:'4ab(a-2b)'},
+    {q:'6x² - 9x = □(2x-3) 에서 □는?',ex:null,c:['3x','3','6x','2x'],ans:0,
+     st:['6x²-9x를 (2x-3)로 나누면','= 3x'],ans_txt:'3x'},
+    {q:'인수분해하면?',ex:'2(x+1) + 3y(x+1)',c:['(x+1)(2+3y)','(x+1)(2-3y)','2+3y(x+1)','(2+3)(x+y+1)'],ans:0,
+     st:['공통인수 (x+1)','= (x+1)(2+3y)'],ans_txt:'(x+1)(2+3y)'},
+    {q:'인수분해하면?',ex:'a(b+c) - b(b+c)',c:['(b+c)(a-b)','(a-b)(b-c)','ab+ac-b²','(b+c)(a+b)'],ans:0,
+     st:['공통인수 (b+c)','= (b+c)(a-b)'],ans_txt:'(b+c)(a-b)'},
+  ],
+  // ── Ch 6: 완전제곱식 ──────────────────────────
+  [
+    {q:'인수분해하면?',ex:'x² + 2x + 1',c:['(x+1)²','(x-1)²','(x+2)(x+1)','(x+1)(x-1)'],ans:0,
+     st:['x²+2·x·1+1²','= (x+1)²'],ans_txt:'(x+1)²'},
+    {q:'인수분해하면?',ex:'x² - 4x + 4',c:['(x-2)²','(x+2)²','(x-4)(x-1)','(x-2)(x+2)'],ans:0,
+     st:['x²-2·x·2+2²','= (x-2)²'],ans_txt:'(x-2)²'},
+    {q:'인수분해하면?',ex:'a² + 6a + 9',c:['(a+3)²','(a-3)²','(a+9)(a+1)','(a+3)(a-3)'],ans:0,
+     st:['a²+2·a·3+3²','= (a+3)²'],ans_txt:'(a+3)²'},
+    {q:'인수분해하면?',ex:'4x² + 4x + 1',c:['(4x+1)²','(2x+1)²','(2x-1)²','4(x+1)²'],ans:1,
+     st:['(2x)²+2·2x·1+1²','= (2x+1)²'],ans_txt:'(2x+1)²'},
+    {q:'인수분해하면?',ex:'9a² - 6a + 1',c:['(3a-1)²','(3a+1)²','(9a-1)(a-1)','3(3a²-2a)'],ans:0,
+     st:['(3a)²-2·3a·1+1²','= (3a-1)²'],ans_txt:'(3a-1)²'},
+    {q:'x² + □x + 25 = (x+5)² 에서 □는?',ex:null,c:['5','10','15','25'],ans:1,
+     st:['(x+5)² = x²+10x+25','□ = 10'],ans_txt:'10'},
+    {q:'인수분해하면?',ex:'x² - 10x + 25',c:['(x-5)²','(x+5)²','(x-5)(x+5)','(x-5)(x-2)'],ans:0,
+     st:['x²-2·x·5+5²','= (x-5)²'],ans_txt:'(x-5)²'},
+    {q:'인수분해하면?',ex:'4a² + 12ab + 9b²',c:['(2a+3b)²','(2a-3b)²','(4a+9b)(a+b)','2(2a+3b)²'],ans:0,
+     st:['(2a)²+2·2a·3b+(3b)²','= (2a+3b)²'],ans_txt:'(2a+3b)²'},
+  ],
+  // ── Ch 7: a²-b² ────────────────────────────────
+  [
+    {q:'인수분해하면?',ex:'x² - 4',c:['(x+2)(x-2)','(x-2)²','(x+4)(x-1)','(x-4)(x+1)'],ans:0,
+     st:['x²-2² = (x+2)(x-2)'],ans_txt:'(x+2)(x-2)'},
+    {q:'인수분해하면?',ex:'a² - 9',c:['(a-3)²','(a+3)(a-3)','(a-9)(a+1)','(a+9)(a-1)'],ans:1,
+     st:['a²-3² = (a+3)(a-3)'],ans_txt:'(a+3)(a-3)'},
+    {q:'인수분해하면?',ex:'4x² - 1',c:['(2x+1)(2x-1)','(4x+1)(x-1)','(2x-1)²','4(x²-1)'],ans:0,
+     st:['(2x)²-1² = (2x+1)(2x-1)'],ans_txt:'(2x+1)(2x-1)'},
+    {q:'인수분해하면?',ex:'9a² - b²',c:['(3a+b)(3a-b)','(9a+b)(a-b)','(3a-b)²','3(3a²-b²)'],ans:0,
+     st:['(3a)²-b² = (3a+b)(3a-b)'],ans_txt:'(3a+b)(3a-b)'},
+    {q:'인수분해하면?',ex:'16 - x²',c:['(4-x)²','(4+x)(4-x)','(x+4)(x+4)','4(4-x²)'],ans:1,
+     st:['4²-x² = (4+x)(4-x)'],ans_txt:'(4+x)(4-x)'},
+    {q:'인수분해하면?',ex:'25a² - 4b²',c:['(5a+2b)(5a-2b)','(25a+4b)(a-b)','(5a-2b)²','5(5a²-4b²)'],ans:0,
+     st:['(5a)²-(2b)² = (5a+2b)(5a-2b)'],ans_txt:'(5a+2b)(5a-2b)'},
+    {q:'인수분해하면?',ex:'x⁴ - 1',c:['(x²+1)(x+1)(x-1)','(x²-1)²','(x+1)(x-1)','(x²+1)(x²-1)'],ans:0,
+     st:['x⁴-1 = (x²+1)(x²-1)','= (x²+1)(x+1)(x-1)'],ans_txt:'(x²+1)(x+1)(x-1)'},
+    {q:'인수분해하면?',ex:'x² - y²',c:['(x+y)(x-y)','(x-y)²','x²-y²','(x+y)²'],ans:0,
+     st:['합차 공식 적용','= (x+y)(x-y)'],ans_txt:'(x+y)(x-y)'},
+  ],
+  // ── Ch 8: x²+px+q ─────────────────────────────
+  [
+    {q:'인수분해하면?',ex:'x² + 5x + 6',c:['(x+2)(x+3)','(x+1)(x+6)','(x+5)(x+1)','(x+3)²'],ans:0,
+     st:['합=5, 곱=6 → 2, 3','= (x+2)(x+3)'],ans_txt:'(x+2)(x+3)'},
+    {q:'인수분해하면?',ex:'x² - 5x + 6',c:['(x-2)(x-3)','(x+2)(x+3)','(x-1)(x-6)','(x-6)(x+1)'],ans:0,
+     st:['합=-5, 곱=6 → -2, -3','= (x-2)(x-3)'],ans_txt:'(x-2)(x-3)'},
+    {q:'인수분해하면?',ex:'x² + x - 6',c:['(x+3)(x-2)','(x-3)(x+2)','(x+6)(x-1)','(x+2)(x+3)'],ans:0,
+     st:['합=1, 곱=-6 → 3, -2','= (x+3)(x-2)'],ans_txt:'(x+3)(x-2)'},
+    {q:'인수분해하면?',ex:'x² - x - 6',c:['(x-3)(x+2)','(x+3)(x-2)','(x-6)(x+1)','(x+6)(x-1)'],ans:0,
+     st:['합=-1, 곱=-6 → -3, 2','= (x-3)(x+2)'],ans_txt:'(x-3)(x+2)'},
+    {q:'인수분해하면?',ex:'x² + 7x + 12',c:['(x+3)(x+4)','(x+2)(x+6)','(x+4)(x+3)','(x+12)(x+1)'],ans:0,
+     st:['합=7, 곱=12 → 3, 4','= (x+3)(x+4)'],ans_txt:'(x+3)(x+4)'},
+    {q:'인수분해하면?',ex:'x² - 8x + 15',c:['(x-3)(x-5)','(x+3)(x+5)','(x-1)(x-15)','(x-5)(x+3)'],ans:0,
+     st:['합=-8, 곱=15 → -3, -5','= (x-3)(x-5)'],ans_txt:'(x-3)(x-5)'},
+    {q:'인수분해하면?',ex:'x² + 2x - 15',c:['(x+5)(x-3)','(x-5)(x+3)','(x+15)(x-1)','(x+3)(x-5)'],ans:0,
+     st:['합=2, 곱=-15 → 5, -3','= (x+5)(x-3)'],ans_txt:'(x+5)(x-3)'},
+    {q:'인수분해하면?',ex:'x² - x - 12',c:['(x-4)(x+3)','(x+4)(x-3)','(x-12)(x+1)','(x-6)(x+2)'],ans:0,
+     st:['합=-1, 곱=-12 → -4, 3','= (x-4)(x+3)'],ans_txt:'(x-4)(x+3)'},
+  ],
+  // ── Ch 9: 종합 ────────────────────────────────
+  [
+    {q:'인수분해하면?',ex:'2x² + 4x',c:['2x(x+2)','2(x²+2)','x(2x+4)','2x(x-2)'],ans:0,
+     st:['공통인수 2x','= 2x(x+2)'],ans_txt:'2x(x+2)'},
+    {q:'인수분해하면?',ex:'3x² - 12',c:['3(x+2)(x-2)','3(x²-4)','3x(x-4)','(3x+2)(x-6)'],ans:0,
+     st:['= 3(x²-4) = 3(x+2)(x-2)'],ans_txt:'3(x+2)(x-2)'},
+    {q:'인수분해하면?',ex:'2x² + 6x + 4',c:['2(x+1)(x+2)','2(x+2)²','(2x+1)(x+4)','2x(x+3)+4'],ans:0,
+     st:['= 2(x²+3x+2)','= 2(x+1)(x+2)'],ans_txt:'2(x+1)(x+2)'},
+    {q:'인수분해하면?',ex:'ax² - a',c:['a(x+1)(x-1)','a(x²-1)','a·x(x-1)','(ax+1)(x-1)'],ans:0,
+     st:['= a(x²-1)','= a(x+1)(x-1)'],ans_txt:'a(x+1)(x-1)'},
+    {q:'인수분해하면?',ex:'x² + 4x + 4 - y²',c:['(x+2+y)(x+2-y)','(x+4-y)(x+y)','(x+2)²-y²','(x-y+2)²'],ans:0,
+     st:['= (x+2)²-y²','= (x+2+y)(x+2-y)'],ans_txt:'(x+2+y)(x+2-y)'},
+    {q:'인수분해하면?',ex:'2x² + 5x + 3',c:['(2x+3)(x+1)','(2x+1)(x+3)','2(x+3)(x+1)','(x+1)²(x+3)'],ans:0,
+     st:['2×3=6, 합=5 → 2, 3','= (2x+3)(x+1)'],ans_txt:'(2x+3)(x+1)'},
+    {q:'인수분해하면?',ex:'x²(a-1) - (a-1)',c:['(a-1)(x+1)(x-1)','(x²-1)(a-1)','a(x²-1)','(a-1)(x²+1)'],ans:0,
+     st:['= (a-1)(x²-1)','= (a-1)(x+1)(x-1)'],ans_txt:'(a-1)(x+1)(x-1)'},
+    {q:'인수분해하면?',ex:'4x² - 4x + 1 - 9y²',c:['(2x-1+3y)(2x-1-3y)','(2x+1)(2x-1)-9y²','(4x-1-9y)(x-1+y)','(2x-3y-1)²'],ans:0,
+     st:['= (2x-1)²-(3y)²','= (2x-1+3y)(2x-1-3y)'],ans_txt:'(2x-1+3y)(2x-1-3y)'},
+  ],
+];
+
+// ══════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════
+const state = {
+  ch: 0, qIdx: 0, score: 0,
+  correct: 0, wrong: 0,
+  unlocked: new Array(10).fill(false),
+  cleared: new Array(10).fill(false),
+};
+state.unlocked.fill(true);
+
+// ══════════════════════════════════════════════
+//  SCREENS
+// ══════════════════════════════════════════════
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function showChapters(){
+  renderChapterGrid();
+  show('chapter-screen');
+}
+
+function showChapters(){
+  renderChapterGrid();
+  show('chapter-screen');
+}
+
+// Stars
+(function makeStars(){
+  const c=document.getElementById('stars');
+  for(let i=0;i<80;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;
+      --d:${1.5+Math.random()*3}s;animation-delay:${Math.random()*3}s;
+      opacity:${0.2+Math.random()*0.8}`;
+    c.appendChild(s);
+  }
+})();
+
+// ── Chapter Grid ──
+function renderChapterGrid(){
+  ['part1','part2'].forEach((part,pi)=>{
+    const grid=document.getElementById('grid-'+part);
+    grid.innerHTML='';
+    CHAPTERS.filter(c=>c.part===pi+1).forEach(ch=>{
+      const unlocked=state.unlocked[ch.id];
+      const cleared=state.cleared[ch.id];
+      const card=document.createElement('div');
+      card.className='ch-card'+(unlocked?'':' locked');
+      card.style.setProperty('--card-glow',
+        `radial-gradient(ellipse at 50% 0%,${ch.color}22,transparent 60%)`);
+      card.style.setProperty('--card-accent',ch.color);
+      card.innerHTML=`
+        ${unlocked?'':'<span class="lock-icon">🔒</span>'}
+        <div class="ch-icon">${ch.icon}</div>
+        <div class="ch-name">${ch.title}</div>
+        <div class="ch-sub">${ch.sub}</div>
+        <div class="ch-stars">${cleared?'⭐⭐⭐':'○○○'}</div>
+        <div class="ch-progress"><div class="ch-progress-fill" style="width:${cleared?100:0}%"></div></div>
+      `;
+      if(unlocked) card.onclick=()=>startChapter(ch.id);
+      grid.appendChild(card);
+    });
+  });
+}
+
+// ── Start Chapter ──
+function startChapter(chId){
+  state.ch=chId;
+  state.qIdx=0;
+  state.score=0;
+  state.correct=0;
+  state.wrong=0;
+  show('quiz-screen');
+  renderQ();
+}
+
+// ── Render Question ──
+function renderQ(){
+  const qs=QS[state.ch];
+  const q=qs[state.qIdx];
+  const total=qs.length;
+
+  // Topbar
+  document.getElementById('q-ch-label').textContent=
+    CHAPTERS[state.ch].icon+' '+CHAPTERS[state.ch].title;
+  document.getElementById('q-prog-fill').style.width=
+    ((state.qIdx/total)*100)+'%';
+  document.getElementById('q-score-label').textContent=state.score+'점';
+
+  // Q number
+  document.getElementById('q-num').textContent=
+    `문제 ${state.qIdx+1} / ${total}`;
+
+  // Q text & expression
+  document.getElementById('q-text').textContent=q.q;
+  const exEl=document.getElementById('q-expr');
+  if(q.ex){exEl.style.display='block';exEl.textContent=q.ex;}
+  else{exEl.style.display='none';}
+
+  // Choices
+  const choicesEl=document.getElementById('choices');
+  const feedbackEl=document.getElementById('feedback');
+  const nextEl=document.getElementById('btn-next');
+  feedbackEl.className='feedback';
+  nextEl.className='btn-next';
+
+  choicesEl.style.display='grid';
+  choicesEl.innerHTML='';
+  q.c.forEach((txt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='choice';
+    btn.textContent=txt;
+    btn.onclick=()=>checkMC(i,btn);
+    choicesEl.appendChild(btn);
+  });
+
+  // Concept panel
+  renderConcept(state.ch);
+}
+
+// ── Check MC ──
+function checkMC(idx,btn){
+  const q=QS[state.ch][state.qIdx];
+  const all=document.querySelectorAll('.choice');
+  all.forEach(b=>b.classList.add('disabled'));
+  btn.onclick=null;
+
+  const ok=(idx===q.ans);
+  btn.classList.add(ok?'correct':'wrong');
+  if(!ok) all[q.ans].classList.add('correct');
+
+  showFeedback(ok,q);
+  if(ok) state.score+=100;
+  else state.wrong++;
+  if(ok) state.correct++;
+  else state.wrong++;
+}
+
+// ── Feedback ──
+function showFeedback(ok,q){
+  const fb=document.getElementById('feedback');
+  fb.className='feedback show '+(ok?'ok':'ng');
+  let html=ok?'<strong>✓ 정답!</strong>':'<strong>✗ 오답</strong> — 정답: <code>'+q.ans_txt+'</code>';
+  if(q.st&&q.st.length){
+    html+='<div class="fb-steps">';
+    q.st.forEach(s=>html+=`<span class="fb-step">▸ ${s}</span>`);
+    html+='</div>';
+  }
+  fb.innerHTML=html;
+  document.getElementById('btn-next').className='btn-next show';
+}
+
+// ── Next Q ──
+function nextQ(){
+  const total=QS[state.ch].length;
+  if(state.qIdx+1>=total){
+    showResult();
+  } else {
+    state.qIdx++;
+    renderQ();
+  }
+}
+
+// ── Concept Panel ──
+function renderConcept(chId){
+  const con=CONCEPTS[chId];
+  const cp=document.getElementById('concept-panel');
+  let html=`<div class="cp-title">📖 개념 정리</div>`;
+  if(con.visual) html+=`<div class="cp-visual">${con.visual}</div>`;
+  html+=`<div class="cp-formula-box">${con.formula.replace(/\n/g,'<br>')}</div>`;
+  if(con.subs&&con.subs.length){
+    con.subs.forEach(s=>{
+      html+=`<div class="cp-sub-formula">
+        <span class="cp-lbl">${s.lbl}</span>
+        <span class="cp-val">${s.val}</span>
+      </div>`;
+    });
+  }
+  if(con.whys&&con.whys.length){
+    html+=`<div class="cp-why"><div class="cp-why-title">❓ 왜 그럴까?</div>`;
+    con.whys.forEach(w=>{
+      html+=`<div class="cp-why-item"><strong>${w.q}</strong><br>${w.a}</div>`;
+    });
+    html+=`</div>`;
+  }
+  if(con.tip) html+=`<div class="cp-tip">💡 ${con.tip}</div>`;
+  cp.innerHTML=html;
+}
+
+// ── Result ──
+function showResult(){
+  const total=QS[state.ch].length;
+  const acc=total>0?Math.round((state.correct/total)*100):0;
+
+  // Unlock next
+  state.cleared[state.ch]=true;
+  if(state.ch<9) state.unlocked[state.ch+1]=true;
+
+  const msgs=[
+    {min:90,icon:'🏆',title:'완벽 마스터!',msg:'놀랍습니다! 이 챕터를 완벽하게 이해했어요.'},
+    {min:70,icon:'⭐',title:'챕터 클리어!',msg:'훌륭해요! 틀린 문제를 다시 확인해 보세요.'},
+    {min:50,icon:'📚',title:'좋은 시도!',msg:'절반 이상 맞혔어요. 개념을 다시 복습하고 도전!'},
+    {min:0, icon:'🔄',title:'다시 도전!',msg:'개념 패널을 잘 읽고 다시 풀어보세요. 할 수 있어요!'},
+  ];
+  const m=msgs.find(m=>acc>=m.min);
+
+  document.getElementById('r-icon').textContent=m.icon;
+  document.getElementById('r-title').textContent=m.title;
+  document.getElementById('r-score').textContent=state.score+'점';
+  document.getElementById('r-correct').textContent=state.correct;
+  document.getElementById('r-wrong').textContent=state.wrong;
+  document.getElementById('r-acc').textContent=acc+'%';
+  document.getElementById('r-msg').textContent=m.msg;
+  show('result-screen');
+}
+
+function retryChapter(){startChapter(state.ch);}
+
+// ── Init ──
+show('title-screen');
+</script>
+</body>
+</html>

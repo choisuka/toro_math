@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수학왕국 🏰 핀란드 초등수학</title>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg1:#0e1b2e;--bg2:#0a2a1a;
+  --card:#fffdf7;
+  --purple:#7c3aed;--green:#16a34a;--gold:#d97706;
+  --text:#1e1b4b;--muted:#6b7280;
+  --radius:20px;
+}
+body{font-family:'Nanum Gothic',sans-serif;background:linear-gradient(160deg,var(--bg1) 0%,var(--bg2) 100%);min-height:100vh;padding:16px}
+h1,h2,h3,.jua{font-family:'Jua',sans-serif}
+.screen{display:none;max-width:500px;margin:0 auto}
+.screen.active{display:block}
+
+/* ── 홈 ── */
+.home-hero{text-align:center;padding:28px 0 20px}
+.home-mascot{font-size:4.5rem;display:block;animation:mascotBounce 2.5s ease-in-out infinite}
+@keyframes mascotBounce{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-14px) rotate(3deg)}}
+.home-title{font-size:2.4rem;margin-bottom:6px;background:linear-gradient(135deg,#fde68a,#fbbf24,#f59e0b,#fde68a);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite}
+@keyframes shimmer{0%{background-position:0%}100%{background-position:200%}}
+.home-sub{color:rgba(255,255,255,.6);font-size:.88rem;margin-bottom:24px}
+.grade-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.grade-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);padding:18px 12px;text-align:center;cursor:pointer;transition:all .22s;color:#fff}
+.grade-card:hover{background:rgba(255,255,255,.16);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.grade-card:active{transform:scale(.96)}
+.grade-emoji{font-size:2.2rem;display:block;margin-bottom:6px}
+.grade-name{font-family:'Jua',sans-serif;font-size:1.05rem;margin-bottom:3px}
+.grade-desc{font-size:.72rem;color:rgba(255,255,255,.6);line-height:1.5}
+
+/* ── 단원 선택 ── */
+.page-header{display:flex;align-items:center;gap:12px;padding:16px 0}
+.back-btn{background:rgba(255,255,255,.1);border:none;color:#fff;width:42px;height:42px;border-radius:13px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.back-btn:hover{background:rgba(255,255,255,.2)}
+.grade-badge{background:rgba(253,230,138,.15);color:#fde68a;font-family:'Jua',sans-serif;font-size:.85rem;padding:5px 16px;border-radius:20px;border:1px solid rgba(253,230,138,.3)}
+.topic-list{display:flex;flex-direction:column;gap:10px;padding-bottom:24px}
+.topic-card{background:var(--card);border-radius:var(--radius);padding:16px 18px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:14px;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.topic-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
+.topic-card:active{transform:scale(.97)}
+.topic-ico{font-size:2.2rem;min-width:50px;text-align:center}
+.topic-title{font-family:'Jua',sans-serif;font-size:1.05rem;color:var(--text);margin-bottom:2px}
+.topic-desc{font-size:.76rem;color:var(--muted);line-height:1.5}
+.topic-tag{display:inline-block;background:#ede9fe;color:#6d28d9;font-size:.65rem;padding:2px 8px;border-radius:20px;margin-top:4px}
+
+/* ── 게임 ── */
+.game-card{background:var(--card);border-radius:var(--radius);padding:18px 16px;box-shadow:0 24px 64px rgba(0,0,0,.45);margin-bottom:16px}
+.game-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.g-back{background:none;border:1px solid #e5e7eb;color:var(--muted);cursor:pointer;font-size:.8rem;display:flex;align-items:center;gap:4px;font-family:inherit;padding:6px 12px;border-radius:10px;transition:all .2s}
+.g-back:hover{background:#f3f4f6}
+.score-chip{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#78350f;padding:5px 14px;border-radius:20px;font-family:'Jua',sans-serif;font-size:.88rem}
+.prog-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.prog-bar{flex:1;height:8px;background:#f0f0f0;border-radius:100px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#a78bfa);border-radius:100px;transition:width .5s ease}
+.q-num{font-size:.76rem;color:var(--muted);white-space:nowrap}
+.mascot-area{text-align:center;font-size:2.4rem;min-height:56px;padding:4px 0;transition:all .3s}
+.q-box{background:linear-gradient(135deg,#f5f3ff,#eff6ff);border:1px solid #ddd6fe;border-radius:16px;padding:16px;margin:10px 0;text-align:center}
+.q-context{font-size:.82rem;color:var(--muted);margin-bottom:8px;line-height:1.75}
+.q-visual{min-height:20px;margin:8px 0}
+.q-text{font-size:1.3rem;font-family:'Jua',sans-serif;color:var(--text);line-height:1.65}
+.choices-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.choice-btn{background:#fff;border:2px solid #e5e7eb;border-radius:14px;padding:14px 8px;cursor:pointer;font-family:'Jua',sans-serif;font-size:.97rem;color:var(--text);transition:all .22s;text-align:center;word-break:break-all;line-height:1.4}
+.choice-btn:hover:not(:disabled){border-color:#7c3aed;background:#f5f3ff;transform:translateY(-2px)}
+.choice-btn:disabled{cursor:default}
+.choice-btn.correct{border-color:#16a34a;background:#f0fdf4;color:#15803d;font-weight:700}
+.choice-btn.wrong{border-color:#dc2626;background:#fff5f5;color:#b91c1c}
+.choice-btn.reveal{border-color:#16a34a;background:#f0fdf4;color:#15803d}
+.input-row{display:flex;gap:10px;margin-top:12px}
+.ans-input{flex:1;border:2px solid #ddd6fe;border-radius:14px;padding:12px 16px;font-size:1.2rem;font-family:'Jua',sans-serif;text-align:center;outline:none;background:#faf5ff;transition:border-color .2s}
+.ans-input:focus{border-color:#7c3aed}
+.submit-btn{background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border:none;border-radius:14px;padding:12px 18px;font-family:'Jua',sans-serif;font-size:1rem;cursor:pointer;white-space:nowrap}
+.feedback{border-radius:14px;padding:11px 16px;margin-top:10px;text-align:center;font-family:'Jua',sans-serif;font-size:.92rem;display:none;line-height:1.6}
+.feedback.show{display:block}
+.feedback.ok{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}
+.feedback.no{background:#fff5f5;color:#b91c1c;border:1px solid #fecaca}
+.next-btn{display:none;width:100%;margin-top:10px;padding:14px;background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border:none;border-radius:50px;font-family:'Jua',sans-serif;font-size:1rem;cursor:pointer;animation:btnPulse 2s ease-in-out infinite}
+.next-btn.show{display:block}
+@keyframes btnPulse{0%,100%{box-shadow:0 4px 16px rgba(124,58,237,.4)}50%{box-shadow:0 8px 28px rgba(124,58,237,.7)}}
+
+/* ── 비주얼 ── */
+.dots-wrap{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:8px}
+.dot{width:22px;height:22px;border-radius:50%;display:inline-block}
+.array-wrap{display:flex;flex-direction:column;gap:5px;align-items:center;padding:6px}
+.array-row{display:flex;gap:5px}
+.array-dot{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a78bfa)}
+.frac-bar-wrap{display:flex;flex-direction:column;gap:5px;padding:6px;align-items:center}
+.frac-bar{display:flex;border-radius:8px;overflow:hidden;border:2px solid #c4b5fd;height:30px;width:220px}
+.frac-seg{flex:1;border-right:1px solid #c4b5fd}
+.frac-seg:last-child{border-right:none}
+.frac-seg.filled{background:linear-gradient(135deg,#7c3aed,#a78bfa)}
+.frac-seg.empty{background:#f5f3ff}
+/* 인라인 분수 가로막대 */
+.math-frac{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1;margin:0 2px;vertical-align:middle}
+.mf-num{font-size:.9em;padding-bottom:1px}
+.mf-bar{width:100%;min-width:12px;border-top:1.5px solid currentColor;display:block}
+.mf-den{font-size:.9em;padding-top:1px}
+.nline-wrap{padding:10px 0;overflow-x:auto}
+.nline{position:relative;height:52px;min-width:280px}
+.nline-bar{position:absolute;top:20px;left:16px;right:16px;height:4px;background:#d1d5db;border-radius:2px}
+.nline-tick{position:absolute;top:13px;width:2px;height:14px;background:#9ca3af;transform:translateX(-50%)}
+.nline-lbl{position:absolute;top:30px;font-size:.62rem;color:#6b7280;transform:translateX(-50%)}
+.nline-dot{position:absolute;top:20px;width:14px;height:14px;background:#7c3aed;border-radius:50%;transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 0 0 2px #7c3aed}
+
+/* ── 결과 ── */
+.result-card{background:var(--card);border-radius:var(--radius);padding:36px 20px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.45);margin-top:16px}
+.result-mascot{font-size:5rem;display:block;margin-bottom:14px;animation:mascotBounce 2s ease-in-out infinite}
+.result-title{font-size:1.7rem;font-family:'Jua',sans-serif;color:var(--text);margin-bottom:6px}
+.result-desc{color:var(--muted);font-size:.9rem;margin-bottom:20px}
+.stars-display{font-size:2.4rem;letter-spacing:6px;margin-bottom:24px}
+.result-btns{display:flex;flex-direction:column;gap:10px}
+.btn-main{background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border:none;border-radius:50px;padding:15px;font-family:'Jua',sans-serif;font-size:1rem;cursor:pointer}
+.btn-sub{background:rgba(0,0,0,.07);color:var(--text);border:none;border-radius:50px;padding:15px;font-family:'Jua',sans-serif;font-size:1rem;cursor:pointer}
+
+/* ── 게임화 모달 공통 ── */
+.gm-overlay{display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1rem;overflow-y:auto}
+.gm-overlay.show{display:flex;animation:gmFadeIn .2s ease}
+@keyframes gmFadeIn{from{opacity:0}to{opacity:1}}
+.gm-box{background:#1e1b4b;border:1.5px solid rgba(167,139,250,.4);border-radius:22px;padding:1.8rem 1.5rem;width:100%;max-width:420px;position:relative;animation:gmPop .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes gmPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.gm-close{position:absolute;top:.8rem;right:.8rem;background:rgba(255,255,255,.1);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem}
+.gm-title{font-family:'Jua',sans-serif;font-size:1.2rem;color:#fff;margin-bottom:1rem;text-align:center}
+/* ── 모드 선택 ── */
+.mode-grid{display:flex;flex-direction:column;gap:12px;padding-bottom:24px}
+.mode-card{background:var(--card);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all .22s;display:flex;align-items:center;gap:16px;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.mode-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
+.mode-card:active{transform:scale(.97)}
+.mode-ico{font-size:2.8rem;min-width:54px;text-align:center}
+.mode-title{font-family:'Jua',sans-serif;font-size:1.15rem;color:var(--text)}
+.mode-desc{font-size:.76rem;color:var(--muted);margin-top:3px;line-height:1.5}
+/* ── 배틀 ── */
+.battle-card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 24px 64px rgba(0,0,0,.45);margin-bottom:16px}
+.hp-hearts{font-size:1.3rem;letter-spacing:2px}
+.monster-area{text-align:center;padding:8px 0 4px}
+.monster-emoji{font-size:3.8rem;display:inline-block;transition:transform .3s}
+.monster-hp-bar{height:10px;background:#fecaca;border-radius:20px;margin:6px 0 10px;overflow:hidden}
+.monster-hp-fill{height:100%;background:linear-gradient(90deg,#f87171,#ef4444);border-radius:20px;transition:width .4s ease}
+.combo-display{text-align:center;font-family:'Jua',sans-serif;font-size:1.1rem;min-height:28px;margin:4px 0}
+@keyframes comboAnim{0%{transform:scale(1.6)}100%{transform:scale(1)}}
+.combo-pop{animation:comboAnim .3s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.shake{animation:shake .3s ease}
+/* ── 타이머 ── */
+.timer-card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 24px 64px rgba(0,0,0,.45);margin-bottom:16px}
+.timer-display{font-family:'Jua',sans-serif;font-size:2rem;color:var(--purple)}
+.timer-display.urgent{color:#ef4444;animation:timerPulse .5s ease-in-out infinite}
+@keyframes timerPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.timer-bar{height:8px;background:#e5e7eb;border-radius:20px;margin-bottom:12px;overflow:hidden}
+.timer-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#f59e0b);border-radius:20px;transition:width .9s linear}
+/* ── XP ── */
+.xp-bar-wrap{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);border-radius:14px;padding:10px 14px;margin-bottom:16px}
+.xp-char{font-size:1.8rem}
+.xp-info{flex:1}
+.xp-level-txt{font-family:'Jua',sans-serif;font-size:.82rem;color:#fde68a}
+.xp-bar{height:6px;background:rgba(255,255,255,.15);border-radius:20px;margin-top:4px;overflow:hidden}
+.xp-fill{height:100%;background:linear-gradient(90deg,#f59e0b,#fde68a);border-radius:20px;transition:width .6s ease}
+/* ── 폭죽 ── */
+.firework-container{position:fixed;inset:0;pointer-events:none;z-index:999}
+.firework{position:absolute;width:10px;height:10px;border-radius:50%;animation:fwAnim 1s ease-out forwards}
+@keyframes fwAnim{0%{transform:translate(0,0);opacity:1}100%{transform:translate(var(--tx),var(--ty));opacity:0}}
+</style>
+<script src="toro_ai.js"></script>
+</head>
+<body>
+
+<!-- ── 게임화 UI ── -->
+<button id="toro-compass-btn" onclick="showCompassHint()" style="position:fixed;bottom:80px;right:20px;z-index:100;width:54px;height:54px;border-radius:50%;border:none;background:linear-gradient(135deg,#1a3a5a,#3498db);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 16px rgba(52,152,219,.4)">🧭</button>
+
+<!-- 나침반 모달 -->
+<div id="compass-modal" class="gm-overlay" onclick="if(event.target===this)closeCompassModal()">
+  <div class="gm-box">
+    <button class="gm-close" onclick="closeCompassModal()">✕</button>
+    <div class="gm-title">🧭 토로의 나침반</div>
+    <div id="compass-hint-text" style="color:#c4b5fd;font-size:.95rem;line-height:1.8;text-align:center;padding:.5rem 0"></div>
+  </div>
+</div>
+
+<!-- 유물 수여 모달 -->
+<div id="artifact-modal" class="gm-overlay" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="gm-box" style="text-align:center">
+    <button class="gm-close" onclick="document.getElementById('artifact-modal').classList.remove('show')">✕</button>
+    <div style="font-size:3rem;margin-bottom:.5rem" id="artifact-modal-emoji">🏅</div>
+    <div class="gm-title" id="artifact-modal-name">유물 획득!</div>
+    <div style="color:#94a3b8;font-size:.85rem;margin-bottom:.5rem" id="artifact-modal-island"></div>
+    <div style="color:#e2e8f0;font-size:.9rem;font-style:italic;padding:.75rem 1rem;background:rgba(255,255,255,.05);border-radius:12px;margin-bottom:1rem" id="artifact-modal-quote"></div>
+    <button onclick="document.getElementById('artifact-modal').classList.remove('show')" style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border:none;border-radius:20px;padding:10px 28px;font-family:'Jua',sans-serif;font-size:.95rem;cursor:pointer">확인!</button>
+  </div>
+</div>
+
+<!-- 유물 컬렉션 모달 -->
+<div id="artifact-collection-modal" class="gm-overlay" onclick="if(event.target===this)closeArtifactCollection()">
+  <div class="gm-box" style="max-width:480px">
+    <button class="gm-close" onclick="closeArtifactCollection()">✕</button>
+    <div class="gm-title">🏆 유물 컬렉션</div>
+    <div id="artifact-collection-inner" style="display:flex;flex-direction:column;gap:.6rem"></div>
+  </div>
+</div>
+
+<!-- 항해 일지 모달 -->
+<div id="log-modal" class="gm-overlay" onclick="if(event.target===this)closeLog()">
+  <div class="gm-box" style="max-width:480px">
+    <button class="gm-close" onclick="closeLog()">✕</button>
+    <div class="gm-title">📖 항해 일지</div>
+    <div id="log-inner" style="display:flex;flex-direction:column;gap:.5rem;max-height:60vh;overflow-y:auto"></div>
+  </div>
+</div>
+
+<!-- ── 홈 ── -->
+<div class="screen active" id="home">
+  <div style="text-align:right;padding:4px 0 8px;display:flex;justify-content:flex-end;gap:8px;align-items:center">
+    <button onclick="showArtifactCollection()" style="font-family:'Jua',sans-serif;font-size:.82rem;background:rgba(212,160,23,.12);border:1px solid rgba(212,160,23,.3);color:#fbbf24;padding:6px 12px;border-radius:20px;cursor:pointer">🏆 <span id="artifact-count-badge">0개</span></button>
+    <button onclick="showLog()" style="font-family:'Jua',sans-serif;font-size:.82rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);padding:6px 12px;border-radius:20px;cursor:pointer">📖 일지</button>
+    <a href="../games.html" style="font-family:'Jua',sans-serif;font-size:.85rem;color:var(--muted);text-decoration:none;background:rgba(255,255,255,.08);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)">← 게임</a>
+  </div>
+  <div class="home-hero">
+    <span class="home-mascot">🦊</span>
+    <h1 class="home-title">수학왕국</h1>
+    <p class="home-sub">핀란드 초등수학 · 1~6학년 · 즐겁게 배워요!</p>
+  </div>
+  <div class="xp-bar-wrap" id="xp-bar-home"></div>
+  <div class="grade-grid" id="grade-grid"></div>
+
+  <!-- 수학 앱 모음 -->
+  <div style="margin-top:24px">
+    <p style="font-family:'Jua',sans-serif;font-size:.85rem;color:rgba(253,230,138,.7);text-align:center;margin-bottom:12px;letter-spacing:.05em">✨ 수학왕국 전체 앱 모음 ✨</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <a href="../index.html" style="display:flex;align-items:center;gap:8px;background:rgba(212,160,23,.12);border:1px solid rgba(212,160,23,.3);border-radius:14px;padding:12px;color:#fde68a;text-decoration:none;font-family:'Jua',sans-serif;font-size:.82rem">🏰 아르모니아 수학왕국</a>
+      <a href="https://choisuka.github.io/hs_math/" style="display:flex;align-items:center;gap:8px;background:rgba(165,180,252,.1);border:1px solid rgba(165,180,252,.3);border-radius:14px;padding:12px;color:#c4b5fd;text-decoration:none;font-family:'Jua',sans-serif;font-size:.82rem">🎓 고등 수학의 탑</a>
+      <a href="../toro_frac/index.html" style="display:flex;align-items:center;gap:8px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:14px;padding:12px;color:#6ee7b7;text-decoration:none;font-family:'Jua',sans-serif;font-size:.82rem">📖 분수·비율 탐험</a>
+      <a href="../math_game/index.html" style="display:flex;align-items:center;gap:8px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);border-radius:14px;padding:12px;color:#fbbf24;text-decoration:none;font-family:'Jua',sans-serif;font-size:.82rem">🔢 수학왕국 드릴형</a>
+      <a href="../algebra_game/algebra_game.html" style="display:flex;align-items:center;gap:8px;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:14px;padding:12px;color:#a78bfa;text-decoration:none;font-family:'Jua',sans-serif;font-size:.82rem">✨ 마법학교 중등형</a>
+      <a href="../detective_math/detective_game.html" style="display:flex;align-items:center;gap:8px;background:rgba(251,113,133,.1);border:1px solid rgba(251,113,133,.25);border-radius:14px;padding:12px;color:#fda4af;text-decoration:none;font-family:'Jua',sans-serif;font-size:.82rem">🕵️ 탐정수학 실전형</a>
+      <a href="../jewish_math/index.html" style="display:flex;align-items:center;gap:8px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);border-radius:14px;padding:12px;color:#6ee7b7;text-decoration:none;font-family:'Jua',sans-serif;font-size:.82rem">✡️ 유대인 수학</a>
+      <a href="../math_blog/index.html" style="display:flex;align-items:center;gap:8px;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.25);border-radius:14px;padding:12px;color:#93c5fd;text-decoration:none;font-family:'Jua',sans-serif;font-size:.82rem;grid-column:1/-1;justify-content:center">📝 수학블로그 정수·유리수</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── 단원 선택 ── -->
+<div class="screen" id="topics">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('home')">←</button>
+    <div class="grade-badge" id="topic-badge">1학년</div>
+    <span style="background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.4);color:#a78bfa;font-size:.7rem;font-weight:700;padding:3px 12px;border-radius:20px;letter-spacing:.5px">🔢 드릴형</span>
+    <span style="font-size:.72rem;color:rgba(255,255,255,.4)">반복 계산 훈련 — 속도·정확도</span>
+  </div>
+  <div class="topic-list" id="topic-list"></div>
+</div>
+
+<!-- ── 게임 ── -->
+<div class="screen" id="game">
+  <div class="game-card">
+    <div class="game-top">
+      <button class="g-back" onclick="showScreen('topics')">← 단원</button>
+      <div class="score-chip">⭐ <span id="g-score">0</span></div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-bar"><div class="prog-fill" id="g-prog" style="width:0%"></div></div>
+      <div class="q-num" id="g-qnum">1/10</div>
+    </div>
+    <div class="mascot-area" id="g-mascot">🦊</div>
+    <div class="q-box">
+      <div class="q-context" id="q-ctx"></div>
+      <div class="q-visual" id="q-vis"></div>
+      <div class="q-text" id="q-txt"></div>
+    </div>
+    <div class="choices-grid" id="q-choices"></div>
+    <div class="input-row" id="q-input" style="display:none">
+      <input class="ans-input" id="ans-input" type="number" placeholder="답 입력">
+      <button class="submit-btn" onclick="submitAns()">확인</button>
+    </div>
+    <div class="feedback" id="q-fb"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQ()">다음 문제 →</button>
+    <button id="skip-btn" onclick="skipQ()" style="display:block;margin:.5rem auto 0;background:none;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.4);border-radius:8px;padding:6px 18px;font-size:.78rem;cursor:pointer">건너뛰기 ↩</button>
+  </div>
+</div>
+
+<!-- ── 결과 ── -->
+<div class="screen" id="result">
+  <div class="result-card">
+    <span class="result-mascot" id="r-mascot">🦊</span>
+    <h2 class="result-title" id="r-title">잘 했어요!</h2>
+    <p class="result-desc" id="r-desc">10개 중 8개 맞혔어요 🎯</p>
+    <div class="stars-display" id="r-stars">⭐⭐⭐</div>
+    <div class="result-btns">
+      <button class="btn-main" onclick="retryGame()">🔄 다시 풀기</button>
+      <button class="btn-sub" onclick="showScreen('topics')">📚 다른 단원</button>
+      <button class="btn-sub" onclick="showScreen('home')">🏠 학년 선택</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 모드 선택 ── -->
+<div class="screen" id="mode-select">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('topics')">←</button>
+    <div class="grade-badge" id="mode-topic-badge">단원</div>
+    <span style="font-size:.78rem;color:rgba(255,255,255,.5)">모드를 선택하세요</span>
+  </div>
+  <div class="mode-grid">
+    <div class="mode-card" onclick="startGame(st.grade,st.topicId,st.gen)">
+      <div class="mode-ico">📚</div>
+      <div>
+        <div class="mode-title">일반 퀴즈</div>
+        <div class="mode-desc">10문제 · 차분하게 집중 · 진도 기록</div>
+      </div>
+    </div>
+    <div class="mode-card" onclick="startBattle(st.grade,st.topicId,st.gen)">
+      <div class="mode-ico">⚔️</div>
+      <div>
+        <div class="mode-title">몬스터 배틀</div>
+        <div class="mode-desc">맞히면 몬스터 공격! 틀리면 체력 감소 · 콤보 보너스</div>
+      </div>
+    </div>
+    <div class="mode-card" onclick="startTimer(st.grade,st.topicId,st.gen)">
+      <div class="mode-ico">⏱️</div>
+      <div>
+        <div class="mode-title">타이머 챌린지</div>
+        <div class="mode-desc">30초 안에 최대한! · 신기록 도전 · 콤보 배율</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 배틀 모드 ── -->
+<div class="screen" id="battle">
+  <div class="battle-card">
+    <div class="game-top">
+      <button class="g-back" onclick="endBattle()">← 나가기</button>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-family:'Jua',sans-serif;font-size:.8rem;color:var(--muted)">파도</span>
+        <span style="font-family:'Jua',sans-serif;font-size:1.1rem;color:var(--purple)" id="b-wave">1</span>
+        <div class="score-chip">⚔️ <span id="b-score">0</span></div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <span style="font-family:'Jua',sans-serif;font-size:.78rem;color:var(--muted)">내 체력</span>
+      <div class="hp-hearts" id="b-player-hp">❤️❤️❤️</div>
+    </div>
+    <div class="monster-area">
+      <div class="monster-emoji" id="b-monster-emoji">👹</div>
+      <div style="font-family:'Jua',sans-serif;font-size:.85rem;color:var(--text);margin:2px 0" id="b-monster-name">수학 몬스터</div>
+      <div class="monster-hp-bar"><div class="monster-hp-fill" id="b-monster-hp-fill" style="width:100%"></div></div>
+    </div>
+    <div class="combo-display" id="b-combo"></div>
+    <div class="q-box">
+      <div class="q-context" id="b-ctx"></div>
+      <div class="q-visual" id="b-vis"></div>
+      <div class="q-text" id="b-txt"></div>
+    </div>
+    <div class="choices-grid" id="b-choices"></div>
+    <div class="feedback" id="b-fb"></div>
+    <button class="next-btn" id="b-next-btn" onclick="nextBattleQ()">계속 싸우기! ⚔️</button>
+  </div>
+</div>
+
+<!-- ── 타이머 챌린지 ── -->
+<div class="screen" id="timer">
+  <div class="timer-card">
+    <div class="game-top">
+      <button class="g-back" onclick="endTimer()">← 나가기</button>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="timer-display" id="t-display">30</span>
+        <div class="score-chip">🔥 <span id="t-score">0</span></div>
+      </div>
+    </div>
+    <div class="timer-bar"><div class="timer-fill" id="t-bar" style="width:100%"></div></div>
+    <div class="combo-display" id="t-combo"></div>
+    <div class="q-box">
+      <div class="q-context" id="t-ctx"></div>
+      <div class="q-visual" id="t-vis"></div>
+      <div class="q-text" id="t-txt"></div>
+    </div>
+    <div class="choices-grid" id="t-choices"></div>
+    <div class="feedback" id="t-fb"></div>
+  </div>
+</div>
+
+<!-- ── 배틀 결과 ── -->
+<div class="screen" id="battle-over">
+  <div class="result-card">
+    <span class="result-mascot" id="bo-mascot">⚔️</span>
+    <h2 class="result-title" id="bo-title">배틀 종료!</h2>
+    <p class="result-desc" id="bo-desc">3파도 돌파!</p>
+    <div class="stars-display" id="bo-stars"></div>
+    <div style="background:#f5f3ff;border-radius:12px;padding:14px;margin:12px 0;text-align:center">
+      <div style="font-family:'Jua',sans-serif;font-size:1.4rem;color:var(--purple)" id="bo-score-big">0점</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:4px" id="bo-best-txt"></div>
+    </div>
+    <div class="result-btns">
+      <button class="btn-main" onclick="startBattle(st.grade,st.topicId,st.gen)">⚔️ 다시 배틀</button>
+      <button class="btn-sub" onclick="showScreen('mode-select')">🎮 모드 선택</button>
+      <button class="btn-sub" onclick="showScreen('home')">🏠 홈</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 타이머 결과 ── -->
+<div class="screen" id="timer-over">
+  <div class="result-card">
+    <span class="result-mascot" id="to-mascot">⏱️</span>
+    <h2 class="result-title" id="to-title">시간 종료!</h2>
+    <p class="result-desc" id="to-desc">30초 챌린지 완료!</p>
+    <div class="stars-display" id="to-stars"></div>
+    <div style="background:#f5f3ff;border-radius:12px;padding:14px;margin:12px 0;text-align:center">
+      <div style="font-family:'Jua',sans-serif;font-size:1.4rem;color:var(--purple)" id="to-score-big">0점</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:4px" id="to-best-txt"></div>
+    </div>
+    <div class="result-btns">
+      <button class="btn-main" onclick="startTimer(st.grade,st.topicId,st.gen)">⏱️ 다시 도전</button>
+      <button class="btn-sub" onclick="showScreen('mode-select')">🎮 모드 선택</button>
+      <button class="btn-sub" onclick="showScreen('home')">🏠 홈</button>
+    </div>
+  </div>
+</div>
+
+<!-- 폭죽 -->
+<div class="firework-container" id="firework-container"></div>
+
+<script>
+// ══════════════════════════════════════════
+//  커리큘럼 데이터
+// ══════════════════════════════════════════
+const GRADES=[
+  {g:1,emoji:'🌱',name:'1학년',desc:'수 세기 · 덧셈 · 뺄셈 · 도형'},
+  {g:2,emoji:'🌿',name:'2학년',desc:'100까지 수 · 곱셈 기초 · 시간'},
+  {g:3,emoji:'🌳',name:'3학년',desc:'구구단 · 나눗셈 · 분수 입문'},
+  {g:4,emoji:'⭐',name:'4학년',desc:'세 자리 계산 · 분수 · 소수 · 넓이'},
+  {g:5,emoji:'🌟',name:'5학년',desc:'분수 곱나눗셈 · 퍼센트 · 혼합 계산'},
+  {g:6,emoji:'✨',name:'6학년',desc:'비율 · 방정식 · 통계 · 비례'},
+  {g:7,emoji:'🔢',name:'중1 — 정수·유리수',desc:'정수 연산 · 유리수 계산 · 부호 규칙'},
+  {g:'3-2',emoji:'🍂',name:'3학년 2학기',desc:'곱셈 · 나눗셈 · 원 · 분수 · 들이와 무게 · 자료의 정리'},
+  {g:'5-1',emoji:'🌻',name:'5학년 1학기',desc:'혼합 계산 · 약수와 배수 · 규칙과 대응 · 약분과 통분 · 분수의 덧셈뺄셈 · 다각형'}
+];
+const TOPICS={
+  1:[
+    {id:'cnt1',emoji:'🫐',name:'수 세기와 비교',desc:'1~20 세기, 크기 비교',tag:'수 감각',gen:'G1cnt'},
+    {id:'add1',emoji:'➕',name:'덧셈 (20 이내)',desc:'두 수를 더해요. 숲 속 친구들과!',tag:'연산',gen:'G1add'},
+    {id:'sub1',emoji:'➖',name:'뺄셈 (20 이내)',desc:'두 수의 차를 구해요',tag:'연산',gen:'G1sub'},
+    {id:'shp1',emoji:'🔷',name:'도형 알아보기',desc:'삼각형·사각형·원을 구별해요',tag:'도형',gen:'G1shp'}
+  ],
+  2:[
+    {id:'plv2',emoji:'🏠',name:'자릿값 (100까지)',desc:'십의 자리, 일의 자리 이해',tag:'수 체계',gen:'G2plv'},
+    {id:'add2',emoji:'➕',name:'두 자리 덧셈',desc:'받아올림 있는 덧셈까지',tag:'연산',gen:'G2add'},
+    {id:'sub2',emoji:'➖',name:'두 자리 뺄셈',desc:'받아내림 있는 뺄셈까지',tag:'연산',gen:'G2sub'},
+    {id:'mul2',emoji:'✖️',name:'곱셈 기초',desc:'같은 수를 여러 번 더하기 → 곱셈',tag:'연산',gen:'G2mul'}
+  ],
+  3:[
+    {id:'tim3',emoji:'🦌',name:'구구단 마스터',desc:'2단~9단을 완전히 익혀요',tag:'연산',gen:'G3tim'},
+    {id:'div3',emoji:'➗',name:'나눗셈',desc:'똑같이 나누는 원리',tag:'연산',gen:'G3div'},
+    {id:'frc3',emoji:'🍕',name:'분수 기초',desc:'½, ⅓, ¼ 이해 & 비교',tag:'분수',gen:'G3frc'},
+    {id:'per3',emoji:'📐',name:'둘레 구하기',desc:'다각형의 둘레를 측정해요',tag:'도형',gen:'G3per'}
+  ],
+  4:[
+    {id:'big4',emoji:'🔢',name:'세 자리 × 한 자리',desc:'세 자리 수 곱셈',tag:'연산',gen:'G4big'},
+    {id:'frc4',emoji:'🍰',name:'분수 덧셈·뺄셈',desc:'같은 분모끼리 계산',tag:'분수',gen:'G4frc'},
+    {id:'dec4',emoji:'💧',name:'소수 기초',desc:'소수점 읽기, 크기 비교',tag:'소수',gen:'G4dec'},
+    {id:'are4',emoji:'📏',name:'넓이 구하기',desc:'직사각형·삼각형 넓이',tag:'도형',gen:'G4are'}
+  ],
+  5:[
+    {id:'frc5mul',emoji:'✖️',name:'분수 곱셈',desc:'진분수×자연수, 진분수×진분수 (→5학년2학기로 이동 예정)',tag:'분수',gen:'G5frcMul',genHard:'G5frcMulHard'},
+    {id:'frc5div',emoji:'➗',name:'분수 나눗셈',desc:'진분수÷자연수, 자연수÷진분수 (→6학년1학기로 이동 예정)',tag:'분수',gen:'G5frcDiv',genHard:'G5frcDivHard'},
+    {id:'pct5',emoji:'💯',name:'퍼센트',desc:'50%, 25%, 10% 실생활 활용 (→6학년1학기 "비와 비율"로 이동 예정)',tag:'퍼센트',gen:'G5pct'},
+    {id:'wrd5',emoji:'🧩',name:'혼합 계산',desc:'핀란드 실생활 응용 문제',tag:'응용',gen:'G5wrd'}
+  ],
+  6:[
+    {id:'rat6',emoji:'⚖️',name:'비와 비율',desc:'두 양의 비를 구하고 활용',tag:'비율',gen:'G6rat'},
+    {id:'pct6',emoji:'📊',name:'퍼센트 활용',desc:'할인, 증감률 계산',tag:'퍼센트',gen:'G6pct'},
+    {id:'equ6',emoji:'🔭',name:'방정식 기초',desc:'□를 구하는 간단한 방정식',tag:'대수',gen:'G6equ'},
+    {id:'sta6',emoji:'📈',name:'통계와 평균',desc:'평균 구하기, 그래프 읽기',tag:'통계',gen:'G6sta'}
+  ],
+  7:[
+    {id:'int7a',emoji:'➕',name:'정수 덧셈·뺄셈',desc:'양수·음수·0 — 부호 규칙 완전 정복',tag:'정수',gen:'G7inta'},
+    {id:'int7m',emoji:'✖️',name:'정수 곱셈·나눗셈',desc:'(−)×(−)=(+) — 부호 결정 법칙',tag:'정수',gen:'G7intm'},
+    {id:'rat7a',emoji:'½',name:'유리수 덧셈·뺄셈',desc:'통분→계산→약분. LCM 활용',tag:'유리수',gen:'G7rata'},
+    {id:'rat7m',emoji:'➗',name:'유리수 곱셈·나눗셈',desc:'역수 개념 — a÷b = a×(1/b)',tag:'유리수',gen:'G7ratm'},
+    {id:'mix7', emoji:'🧮',name:'혼합 연산',desc:'정수·유리수 섞인 종합 문제',tag:'종합',gen:'G7mix'}
+  ],
+  '3-2':[
+    {id:'mul32',emoji:'✖️',name:'(두 자리)×(두 자리) 곱셈',desc:'몇십 곱하기부터 두 자리씩 곱하기까지',tag:'연산',gen:'G32mul',genBattle:'G32mulWord'},
+    {id:'div32',emoji:'➗',name:'나머지가 있는 나눗셈',desc:'몫과 나머지를 모두 구해요',tag:'연산',gen:'G32div',genBattle:'G32divWord'},
+    {id:'circ32',emoji:'⚪',name:'원 — 반지름과 지름',desc:'중심·반지름·지름의 관계를 익혀요',tag:'도형',gen:'G32circ',genBattle:'G32circWord'},
+    {id:'frc32',emoji:'🍕',name:'분수 — 전체와 부분',desc:'분모·분자, 부분을 분수로 나타내기, 크기 비교',tag:'분수',gen:'G32frc',genBattle:'G32frcWord'},
+    {id:'cw32',emoji:'💧',name:'들이와 무게',desc:'L·mL, kg·g 단위 변환과 비교',tag:'들이와 무게',gen:'G32cw',genBattle:'G32cwWord'},
+    {id:'data32',emoji:'📊',name:'자료의 정리',desc:'표와 그림그래프 읽기, 최댓값·최솟값·합계',tag:'자료',gen:'G32data',genBattle:'G32dataWord'}
+  ],
+  '5-1':[
+    {id:'mix51',emoji:'🧮',name:'자연수의 혼합 계산',desc:'괄호와 ×÷가 있으면 먼저! 계산 순서를 익혀요',tag:'혼합계산',gen:'G51mix',genBattle:'G51mixWord'},
+    {id:'gcd51',emoji:'🔢',name:'약수와 배수',desc:'약수·배수·최대공약수·최소공배수',tag:'약수와배수',gen:'G51gcd',genBattle:'G51gcdWord'}
+  ]
+};
+
+// ══════════════════════════════════════════
+//  상태
+// ══════════════════════════════════════════
+const st={grade:1,topicId:null,gen:null,qs:[],cur:0,score:0,total:10,answered:false};
+
+// ══════════════════════════════════════════
+//  유틸
+// ══════════════════════════════════════════
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function shuf(a){return [...a].sort(()=>Math.random()-.5)}
+
+// ── 반복학습 관리 (localStorage) ──
+function qKey(q){return q.q+'::'+q.ans}
+function loadProg(gen){
+  try{const d=JSON.parse(localStorage.getItem('mkProg')||'{}');return d[gen]||{ok:[],shown:{}};}
+  catch(e){return{ok:[],shown:{}};}
+}
+function saveProg(gen,prog){
+  try{const d=JSON.parse(localStorage.getItem('mkProg')||'{}');d[gen]=prog;localStorage.setItem('mkProg',JSON.stringify(d));}catch(e){}
+}
+function saveWrong(gen,q){
+  try{
+    const d=JSON.parse(localStorage.getItem('mkWrong')||'{}');
+    if(!d[gen])d[gen]={};
+    const k=qKey(q);
+    if(!d[gen][k])d[gen][k]={count:0,q:q.q,ans:q.ans};
+    d[gen][k].count++;
+    localStorage.setItem('mkWrong',JSON.stringify(d));
+  }catch(e){}
+}
+
+// ══════════════════════════════════════════
+//  화면 전환
+// ══════════════════════════════════════════
+function showScreen(name){
+  if(typeof tim!=='undefined'&&tim.interval&&name!=='timer'){clearInterval(tim.interval);tim.interval=null;}
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+  window.scrollTo(0,0);
+  if(name==='home')renderXPBar();
+}
+
+// ══════════════════════════════════════════
+//  홈 렌더링
+// ══════════════════════════════════════════
+function renderHome(){
+  document.getElementById('grade-grid').innerHTML=GRADES.map(g=>`
+    <div class="grade-card" onclick="pickGrade('${g.g}')">
+      <span class="grade-emoji">${g.emoji}</span>
+      <div class="grade-name">${g.name}</div>
+      <div class="grade-desc">${g.desc}</div>
+    </div>`).join('');
+}
+function pickGrade(g){
+  st.grade=g;
+  const gInfo=GRADES.find(x=>String(x.g)===String(g));
+  document.getElementById('topic-badge').textContent=gInfo?gInfo.name:g+'학년';
+  document.getElementById('topic-list').innerHTML=TOPICS[g].map(t=>{
+    if(t.genHard){
+      return `<div class="topic-card" style="cursor:default">
+        <div class="topic-ico">${t.emoji}</div>
+        <div style="flex:1">
+          <div class="topic-title">${t.name}</div>
+          <div class="topic-desc">${t.desc}</div>
+          <span class="topic-tag">${t.tag}</span>
+          <div style="display:flex;gap:6px;margin-top:8px">
+            <button onclick="event.stopPropagation();pickMode('${g}','${t.id}','${t.gen}')" style="flex:1;background:#ede9fe;border:1.5px solid #a78bfa;color:#6d28d9;border-radius:10px;padding:7px 0;font-family:'Jua',sans-serif;font-size:.82rem;cursor:pointer">🌱 기초</button>
+            <button onclick="event.stopPropagation();pickMode('${g}','${t.id}_h','${t.genHard}')" style="flex:1;background:#fef3c7;border:1.5px solid #fbbf24;color:#92400e;border-radius:10px;padding:7px 0;font-family:'Jua',sans-serif;font-size:.82rem;cursor:pointer">🔥 심화</button>
+          </div>
+        </div>
+      </div>`;
+    }
+    return `<div class="topic-card" onclick="pickMode('${g}','${t.id}','${t.gen}')">
+      <div class="topic-ico">${t.emoji}</div>
+      <div>
+        <div class="topic-title">${t.name}</div>
+        <div class="topic-desc">${t.desc}</div>
+        <span class="topic-tag">${t.tag}</span>
+      </div>
+    </div>`;
+  }).join('');
+  showScreen('topics');
+}
+
+// ══════════════════════════════════════════
+//  게임
+// ══════════════════════════════════════════
+function startGame(g,tid,gen){
+  st.grade=g;st.topicId=tid;st.gen=gen;
+  st.qs=[];st.cur=0;st.score=0;st.answered=false;
+
+  let prog=loadProg(gen);
+  const okSet=new Set(prog.ok||[]);
+  const shownMap=prog.shown||{};
+  const sessionKeys=new Set();
+  let attempts=0;
+
+  // 셔플 풀: 중복제거 + 정답제외 + 2회초과제외
+  while(st.qs.length<st.total && attempts<300){
+    attempts++;
+    const q=window[gen]();
+    const k=qKey(q);
+    if(okSet.has(k))continue;            // 이미 맞은 문제 제외
+    if((shownMap[k]||0)>=2)continue;     // 2회 이상 출제된 문제 제외
+    if(sessionKeys.has(k))continue;      // 이번 세션 중복 제외
+    sessionKeys.add(k);
+    st.qs.push(q);
+  }
+
+  // 문제가 부족하면 진도 리셋 후 중복 허용해서 채우기
+  if(st.qs.length<st.total){
+    prog={ok:[],shown:{}};
+    saveProg(gen,prog);
+    let fb=0;
+    while(st.qs.length<st.total && fb<500){
+      fb++;
+      st.qs.push(window[gen]());
+    }
+  }
+
+  // shown 카운트 업데이트
+  st.qs.forEach(q=>{const k=qKey(q);prog.shown[k]=(prog.shown[k]||0)+1;});
+  saveProg(gen,prog);
+
+  showScreen('game');renderQ();
+}
+function retryGame(){startGame(st.grade,st.topicId,st.gen)}
+
+function renderQ(){
+  const q=st.qs[st.cur];st.answered=false;
+  document.getElementById('g-score').textContent=st.score;
+  document.getElementById('g-prog').style.width=(st.cur/st.total*100)+'%';
+  document.getElementById('g-qnum').textContent=(st.cur+1)+'/'+st.total;
+  document.getElementById('g-mascot').textContent='🦊';
+  document.getElementById('q-ctx').innerHTML=fmtFrac(q.ctx||'');
+  document.getElementById('q-txt').innerHTML=fmtFrac(q.q);
+  document.getElementById('q-vis').innerHTML=q.vis||'';
+  document.getElementById('q-fb').className='feedback';
+  document.getElementById('next-btn').className='next-btn';
+  document.getElementById('skip-btn').style.display='block';
+  const choicesEl=document.getElementById('q-choices');
+  const inputEl=document.getElementById('q-input');
+  if(q.choices){
+    choicesEl.style.display='grid';inputEl.style.display='none';
+    choicesEl.innerHTML=q.choices.map(c=>`<button class="choice-btn" data-c="${String(c).replace(/"/g,'&quot;')}" onclick="checkC(this)">${fmtFrac(c)}</button>`).join('');
+  } else {
+    choicesEl.style.display='none';inputEl.style.display='flex';
+    const inp=document.getElementById('ans-input');
+    inp.value='';inp.disabled=false;setTimeout(()=>inp.focus(),100);
+  }
+}
+function checkC(btn){
+  if(st.answered)return;st.answered=true;
+  const q=st.qs[st.cur];
+  const correct=btn.dataset.c===String(q.ans);
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.c===String(q.ans))b.classList.add('reveal');
+  });
+  btn.classList.add(correct?'correct':'wrong');
+  finalize(correct);
+}
+function submitAns(){
+  if(st.answered)return;
+  const val=document.getElementById('ans-input').value.trim();
+  if(!val)return;
+  st.answered=true;document.getElementById('ans-input').disabled=true;
+  finalize(val===String(st.qs[st.cur].ans));
+}
+function finalize(ok){
+  const q=st.qs[st.cur];
+  if(ok){
+    st.score++;
+    gainXP(10);
+    if(typeof toroSay==='function') toroSay('math','correct');
+    const prog=loadProg(st.gen);
+    const k=qKey(q);
+    if(!prog.ok.includes(k))prog.ok.push(k);
+    saveProg(st.gen,prog);
+  } else {
+    if(typeof toroSay==='function') toroSay('math','wrong');
+    saveWrong(st.gen,q);
+  }
+  const fb=document.getElementById('q-fb');
+  const msgs=['잘 했어요! 🎉','훌륭해요! ⭐','맞아요! 🌟','완벽해요! 🦊','대단해요! ✨'];
+  if(ok){fb.textContent=pick(msgs);fb.className='feedback show ok';document.getElementById('g-mascot').textContent='🦊✨';}
+  else{fb.innerHTML='아쉬워요! 정답은 <b>'+fmtFrac(q.ans)+'</b>이에요.'+(q.explain?' — '+q.explain:'');fb.className='feedback show no';}
+  document.getElementById('next-btn').className='next-btn show';
+  document.getElementById('skip-btn').style.display='none';
+}
+function skipQ(){
+  if(st.answered) return;
+  st.cur++;
+  if(st.cur>=st.total) showResult(); else renderQ();
+}
+function nextQ(){
+  st.cur++;
+  if(st.cur>=st.total)showResult();else renderQ();
+}
+
+// ══════════════════════════════════════════
+//  결과
+// ══════════════════════════════════════════
+function showResult(){
+  if(typeof toroSay==='function') toroSay('math','complete',{score:st.score,total:st.total});
+  const p=st.score/st.total;
+  const[mascot,title,stars]=p>=.9?['🦊✨✨','완벽해요!','⭐⭐⭐']:p>=.7?['🦊✨','잘 했어요!','⭐⭐']:p>=.5?['🦊','잘 하고 있어요!','⭐']:['🦊','다시 도전해봐요!',''];
+  document.getElementById('r-mascot').textContent=mascot;
+  document.getElementById('r-title').textContent=title;
+  document.getElementById('r-desc').textContent=st.total+'개 중 '+st.score+'개 맞혔어요 🎯';
+  document.getElementById('r-stars').textContent=stars;
+  showScreen('result');
+  if(p>=.9) launchFireworks();
+  // 유물 수여
+  addLog('game','drill','드릴 완료: '+st.score+'/'+st.total+' 정답');
+  if(p>=.5) awardArtifact('drill_basic');
+  if(p>=.9) awardArtifact('drill_master');
+}
+
+// ══════════════════════════════════════════
+//  비주얼 헬퍼
+// ══════════════════════════════════════════
+function dots(n,c='#7c3aed'){return'<div class="dots-wrap">'+Array(n).fill('<span class="dot" style="background:'+c+'"></span>').join('')+'</div>'}
+function makeArr(r,c){return'<div class="array-wrap">'+Array(r).fill(0).map(()=>'<div class="array-row">'+Array(c).fill('<div class="array-dot"></div>').join('')+'</div>').join('')+'</div>'}
+function fracBar(n,d){return'<div class="frac-bar-wrap"><div class="frac-bar">'+Array(d).fill(0).map((_,i)=>'<div class="frac-seg '+(i<n?'filled':'empty')+'"></div>').join('')+'</div></div>'}
+function numLine(lo,hi,mark){
+  const rng=hi-lo;let h='<div class="nline-wrap"><div class="nline"><div class="nline-bar"></div>';
+  for(let i=lo;i<=hi;i++){const p=(i-lo)/rng*100;const px='calc(16px + '+p/100+'*(100% - 32px))';h+='<div class="nline-tick" style="left:'+px+'"></div><div class="nline-lbl" style="left:'+px+'">'+i+'</div>';}
+  if(mark!==undefined){const p=(mark-lo)/rng*100;h+='<div class="nline-dot" style="left:calc(16px + '+p/100+'*(100% - 32px))"></div>';}
+  return h+'</div></div>';
+}
+function barChart(data){
+  const mx=Math.max(...data);
+  return'<div style="display:flex;gap:6px;justify-content:center;padding:8px;align-items:flex-end;height:80px">'+data.map(v=>'<div style="display:flex;flex-direction:column;align-items:center;gap:3px"><span style="font-size:.7rem;color:#6b7280">'+v+'</span><div style="width:26px;height:'+(v/mx*55)+'px;background:linear-gradient(180deg,#7c3aed,#a78bfa);border-radius:4px 4px 0 0"></div></div>').join('')+'</div>';
+}
+
+function fmtFrac(str){
+  return String(str).replace(/(\d+)\/(\d+)/g,
+    '<span class="math-frac"><span class="mf-num">$1</span><span class="mf-bar"></span><span class="mf-den">$2</span></span>');
+}
+
+// ══════════════════════════════════════════
+//  1학년 문제 생성기
+// ══════════════════════════════════════════
+const ITMS=['도토리','딸기','버섯','꽃','솔방울'];
+const ANI=['🐰','🦊','🐿️','🐻','🦔'];
+const PLC=['숲 속에서','냇가에서','언덕 위에서','꽃밭에서'];
+
+function G1cnt(){
+  const n=rnd(3,15),emo=pick(['🫐','🍓','🍄','🌸','🌰']);
+  const ws=shuf([n+1,n+2,Math.max(1,n-1),Math.max(2,n-2)]).slice(0,3);
+  return{ctx:pick(PLC)+' '+pick(ANI)+' 친구가 '+pick(ITMS)+'을 모았어요.',q:emo.repeat(n)+' — 몇 개일까요?',vis:'',choices:shuf([n,...ws]).map(String),ans:String(n)};
+}
+function G1add(){
+  const a=rnd(1,9),b=rnd(1,Math.min(9,15-a)),ans=a+b;
+  return{ctx:pick(ANI)+' 친구들이 모였어요.',q:a+' + '+b+' = ?',vis:dots(a,'#7c3aed')+'<div style="text-align:center;font-size:1.1rem;padding:4px 0">+</div>'+dots(b,'#16a34a'),choices:shuf([ans,ans+1,ans+2,Math.max(1,ans-1)]).map(String),ans:String(ans)};
+}
+function G1sub(){
+  const a=rnd(5,15),b=rnd(1,a-1),ans=a-b;
+  return{ctx:pick(ITMS)+' '+a+'개 중 '+b+'개를 먹었어요.',q:a+' - '+b+' = ?',vis:'',choices:shuf([ans,ans+1,ans+2,Math.max(0,ans-1)]).map(String),ans:String(ans)};
+}
+function G1shp(){
+  const qs=[
+    {q:'꼭짓점이 없는 도형은?',ans:'원 ⭕',opts:['원 ⭕','삼각형 🔺','사각형 🟦','마름모 🔶']},
+    {q:'변이 3개인 도형은?',ans:'삼각형 🔺',opts:['원 ⭕','삼각형 🔺','사각형 🟦','오각형 ⬠']},
+    {q:'변이 4개인 도형은?',ans:'사각형 🟦',opts:['원 ⭕','삼각형 🔺','사각형 🟦','육각형 ⬡']},
+    {q:'굴릴 수 있는 도형은?',ans:'원 ⭕',opts:['원 ⭕','삼각형 🔺','사각형 🟦','마름모 🔶']},
+    {q:'쌓기 좋은 도형은?',ans:'사각형 🟦',opts:['원 ⭕','삼각형 🔺','사각형 🟦','마름모 🔶']}
+  ];
+  const s=pick(qs);return{ctx:'',q:s.q,vis:'',choices:shuf(s.opts),ans:s.ans};
+}
+
+// ══════════════════════════════════════════
+//  2학년 문제 생성기
+// ══════════════════════════════════════════
+function G2plv(){
+  const t=rnd(1,9),o=rnd(0,9),n=t*10+o,type=pick(['tens','ones','make']);
+  if(type==='tens')return{ctx:'',q:n+'의 십의 자리 숫자는?',vis:'<div style="text-align:center;padding:8px;font-size:1.8rem;font-weight:bold;color:#7c3aed">'+n+'</div>',choices:shuf([t,o,t+1,Math.max(0,t-1)]).map(String),ans:String(t)};
+  if(type==='ones')return{ctx:'',q:n+'의 일의 자리 숫자는?',vis:'<div style="text-align:center;padding:8px;font-size:1.8rem;font-weight:bold;color:#7c3aed">'+n+'</div>',choices:shuf([o,t,o===9?0:o+1,Math.max(0,o-1)]).map(String),ans:String(o)};
+  return{ctx:'',q:'십의 자리 '+t+', 일의 자리 '+o+' → 이 수는?',vis:'',choices:shuf([n,n+1,n-1,n+10]).map(String),ans:String(n)};
+}
+function G2add(){
+  const a=rnd(10,60),b=rnd(10,99-a),ans=a+b;
+  return{ctx:'🌲 숲속에서 블루베리를 땄어요.',q:a+' + '+b+' = ?',vis:'',choices:shuf([ans,ans+10,ans-10,ans+1]).map(String),ans:String(ans)};
+}
+function G2sub(){
+  const a=rnd(30,99),b=rnd(10,a-5),ans=a-b;
+  return{ctx:'',q:a+' - '+b+' = ?',vis:'',choices:shuf([ans,ans+10,ans-10,ans+1]).map(String),ans:String(ans)};
+}
+function G2mul(){
+  const n=pick([2,3,4,5]),t=rnd(2,6),ans=n*t;
+  return{ctx:pick(ANI)+' 친구 '+t+'명이 각각 '+n+'개씩 가졌어요.',q:n+' × '+t+' = ?',vis:makeArr(Math.min(t,6),Math.min(n,6)),choices:shuf([ans,ans+n,Math.max(1,ans-n),ans+1]).map(String),ans:String(ans),explain:n+'을 '+t+'번 더하면 '+ans};
+}
+
+// ══════════════════════════════════════════
+//  3학년 문제 생성기
+// ══════════════════════════════════════════
+function G3tim(){
+  const a=rnd(2,9),b=rnd(2,9),ans=a*b;
+  return{ctx:'🦌 라플란드 순록이 달려요!',q:a+' × '+b+' = ?',vis:makeArr(Math.min(a,5),Math.min(b,5)),choices:shuf([ans,ans+a,ans+b,Math.max(1,ans-a)]).map(String),ans:String(ans)};
+}
+function G3div(){
+  const b=rnd(2,9),ans=rnd(2,9),a=b*ans;
+  return{ctx:'사과 '+a+'개를 '+b+'명이 똑같이 나눠요.',q:a+' ÷ '+b+' = ?',vis:'',choices:shuf([ans,ans+1,Math.max(1,ans-1),ans+b]).map(String),ans:String(ans),explain:b+' × '+ans+' = '+a};
+}
+function G3frc(){
+  const ds=[2,3,4,6,8],d=pick(ds),n=rnd(1,d-1),type=pick(['show','bigger','half']);
+  if(type==='show'){
+    const others=ds.filter(x=>x!==d).slice(0,3).map(x=>rnd(1,x-1)+'/'+x);
+    return{ctx:'',q:'색칠된 부분을 분수로 나타내면?',vis:fracBar(n,d),choices:shuf([n+'/'+d,...others]),ans:n+'/'+d};
+  }
+  if(type==='bigger'){
+    const d2=pick(ds.filter(x=>x!==d));
+    const bigger=d<d2?'1/'+d:'1/'+d2;
+    return{ctx:'피자를 나눠요.',q:'1/'+d+'과 1/'+d2+' 중 더 큰 것은?',vis:fracBar(1,d)+fracBar(1,d2),choices:shuf(['1/'+d,'1/'+d2,'같아요']),ans:bigger,explain:'분모가 작을수록 조각이 커요.'};
+  }
+  const w=pick([6,8,10,12]),half=w/2;
+  return{ctx:'과자 '+w+'개가 있어요.',q:w+'개의 1/2은 몇 개?',vis:'',choices:shuf([half,half+1,half-1,w]).map(String),ans:String(half),explain:w+'을 2로 나누면 '+half};
+}
+function G3per(){
+  const type=pick(['sq','rect','tri']);
+  if(type==='sq'){const s=rnd(2,9);return{ctx:'',q:'한 변이 '+s+'cm인 정사각형의 둘레는?',vis:'<div style="display:flex;justify-content:center;margin:8px"><svg width="80" height="80"><rect x="10" y="10" width="60" height="60" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/><text x="40" y="48" text-anchor="middle" font-size="11" fill="#6d28d9">'+s+'cm</text></svg></div>',choices:shuf([4*s,4*s+4,4*s-4,2*s]).map(v=>v+'cm'),ans:4*s+'cm'};}
+  if(type==='rect'){const w=rnd(3,10),h=rnd(2,8),p=2*(w+h);return{ctx:'',q:'가로 '+w+'cm, 세로 '+h+'cm 직사각형의 둘레는?',vis:'<div style="display:flex;justify-content:center;margin:8px"><svg width="100" height="70"><rect x="8" y="8" width="84" height="54" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/><text x="50" y="25" text-anchor="middle" font-size="10" fill="#6d28d9">'+w+'cm</text><text x="90" y="42" text-anchor="middle" font-size="10" fill="#6d28d9">'+h+'cm</text></svg></div>',choices:shuf([p,p+4,p-4,w*h]).map(v=>v+'cm'),ans:p+'cm'};}
+  const s=rnd(2,8);return{ctx:'',q:'한 변이 '+s+'cm인 정삼각형의 둘레는?',vis:'',choices:shuf([3*s,3*s+3,3*s-3,2*s]).map(v=>v+'cm'),ans:3*s+'cm'};
+}
+
+// ══════════════════════════════════════════
+//  3학년 2학기 문제 생성기
+// ══════════════════════════════════════════
+function mc4(ans,...cands){
+  const set=new Set([ans]);const out=[ans];
+  for(const c of cands){if(c>=0&&!set.has(c)&&out.length<4){set.add(c);out.push(c);}}
+  let filler=ans+1;
+  while(out.length<4){if(filler>=0&&!set.has(filler)){set.add(filler);out.push(filler);}filler++;}
+  return shuf(out).map(String);
+}
+// 문자열(분수 등) 정답용 — 숫자 채움 로직 없이 중복만 제거(수량이 부족하면 3개 이하로 반환될 수 있음)
+function mc4s(ans,...cands){
+  const set=new Set([ans]);const out=[ans];
+  for(const c of cands){if(!set.has(c)&&out.length<4){set.add(c);out.push(c);}}
+  return shuf(out);
+}
+// 가중치 랜덤 + 쉬운 유형(easy=true) 연속 2회 넘게 안 나오게 방지
+function _pickWeighted(pairs,state){
+  if(state.streak>=2){
+    const nonEasy=pairs.filter(p=>!p[2]);
+    const totalW=nonEasy.reduce((s,p)=>s+p[1],0);
+    let r=Math.random()*totalW,acc=0;
+    for(const p of nonEasy){acc+=p[1];if(r<acc){state.streak=0;return p[0];}}
+    state.streak=0;
+    return nonEasy[nonEasy.length-1][0];
+  }
+  const totalW=pairs.reduce((s,p)=>s+p[1],0);
+  let r=Math.random()*totalW,acc=0;
+  for(const p of pairs){
+    acc+=p[1];
+    if(r<acc){ if(p[2])state.streak++; else state.streak=0; return p[0]; }
+  }
+  const last=pairs[pairs.length-1];
+  if(last[2])state.streak++; else state.streak=0;
+  return last[0];
+}
+const _mulState={streak:0},_mulWordState={streak:0},_divState={streak:0},_divWordState={streak:0},
+  _circState={streak:0},_circWordState={streak:0},_cwState={streak:0},_dataState={streak:0},_dataWordState={streak:0};
+function G32mul(){
+  const type=_pickWeighted([['tens',0.3,true],['full',0.7,false]],_mulState);
+  if(type==='tens'){
+    const a=rnd(11,40),bTen=rnd(1,4),b=bTen*10,ans=a*b,partial=a*bTen;
+    return{ctx:'',q:a+' × '+b+' = ?',vis:'',choices:shuf([ans,partial,ans+a,ans-a]).map(String),ans:String(ans),explain:a+' × '+bTen+' = '+partial+' 이고, 그 뒤에 0을 하나 붙이면 '+ans};
+  }
+  const a=rnd(11,30),bTen=rnd(1,2),bOne=rnd(1,9),b=bTen*10+bOne,ans=a*b;
+  const p1=a*bTen*10,p2=a*bOne;
+  return{ctx:'🏭 장난감 공장에서 상자를 포장해요.',q:a+' × '+b+' = ?',vis:'<div style="text-align:center;font-size:.85rem;color:#7c3aed;padding:6px">'+a+' × '+b+' = ('+a+' × '+bTen*10+') + ('+a+' × '+bOne+')</div>',choices:shuf([ans,p1,p2,ans+a]).map(String),ans:String(ans),explain:a+'×'+bTen*10+'='+p1+', '+a+'×'+bOne+'='+p2+' → '+p1+'+'+p2+'='+ans};
+}
+function G32mulWord(){
+  const type=_pickWeighted([['tens',0.3,true],['full',0.7,false]],_mulWordState);
+  if(type==='tens'){
+    const a=rnd(11,40),bTen=rnd(1,4),b=bTen*10,ans=a*b,partial=a*bTen;
+    const scenes=[
+      '문구점 초콜릿 상자에 초콜릿이 '+a+'개씩 들어있어요. 상자 '+b+'개에 들어있는 초콜릿은 모두 몇 개일까요?',
+      '버스 한 대에 좌석이 '+a+'개예요. 버스 '+b+'대의 좌석은 모두 몇 개일까요?',
+      '농장에서 하루에 달걀을 '+a+'개씩 모아요. '+b+'일 동안 모은 달걀은 모두 몇 개일까요?'
+    ];
+    return{ctx:pick(scenes),q:'식을 세워 계산해 보세요.',vis:'',choices:shuf([ans,partial,ans+a,ans-a]).map(String),ans:String(ans),explain:a+' × '+b+' = '+ans};
+  }
+  const a=rnd(11,30),bTen=rnd(1,2),bOne=rnd(1,9),b=bTen*10+bOne,ans=a*b;
+  const p1=a*bTen*10,p2=a*bOne;
+  const scenes=[
+    '합창단이 한 줄에 '+a+'명씩 서요. '+b+'줄이 있으면 합창단원은 모두 몇 명일까요?',
+    '장난감 공장에서 상자 하나에 인형을 '+a+'개씩 담아요. 상자가 '+b+'개 있으면 인형은 모두 몇 개일까요?',
+    '과수원에서 사과나무 한 그루에 사과가 '+a+'개씩 열려요. 나무가 '+b+'그루 있으면 사과는 모두 몇 개일까요?'
+  ];
+  return{ctx:pick(scenes),q:'식을 세워 계산해 보세요.',vis:'',choices:shuf([ans,p1,p2,ans+a]).map(String),ans:String(ans),explain:a+' × '+b+' = ('+a+'×'+bTen*10+')+('+a+'×'+bOne+') = '+p1+'+'+p2+' = '+ans};
+}
+function G32div(){
+  const type=_pickWeighted([['noRem',0.25,true],['remQ',0.375,false],['remR',0.375,false]],_divState);
+  const b=rnd(2,9);
+  if(type==='noRem'){
+    const ans=rnd(4,12),a=b*ans;
+    return{ctx:'',q:a+' ÷ '+b+' = ?',vis:'',choices:mc4(ans,ans+1,ans-1,ans+b),ans:String(ans),explain:b+' × '+ans+' = '+a};
+  }
+  const q=rnd(3,12),r=rnd(1,b-1),a=b*q+r;
+  if(type==='remQ'){
+    return{ctx:'',q:a+' ÷ '+b+'의 몫은?',vis:'',choices:mc4(q,q+1,q-1,q+b),ans:String(q),explain:b+'×'+q+'='+(b*q)+', 남은 '+r+'은 '+b+'보다 작으니 몫은 '+q};
+  }
+  return{ctx:'',q:a+' ÷ '+b+'의 나머지는?',vis:'',choices:mc4(r,b-r,r+1,r-1),ans:String(r),explain:b+'×'+q+'='+(b*q)+', '+a+'−'+(b*q)+'='+r};
+}
+function G32divWord(){
+  const type=_pickWeighted([['noRem',0.25,true],['remQ',0.75,false]],_divWordState);
+  const b=rnd(2,9);
+  if(type==='noRem'){
+    const ans=rnd(4,12),a=b*ans;
+    const scenes=[
+      '사탕 '+a+'개를 '+b+'명에게 똑같이 나눠주려고 해요. 한 명이 몇 개씩 받을까요?',
+      '색종이 '+a+'장을 '+b+'묶음으로 똑같이 나누려고 해요. 한 묶음에 몇 장씩일까요?',
+      '학생 '+a+'명이 '+b+'모둠으로 똑같이 나뉘어요. 한 모둠은 몇 명일까요?'
+    ];
+    return{ctx:pick(scenes),q:'식을 세워 계산해 보세요.',vis:'',choices:mc4(ans,ans+1,ans-1,ans+b),ans:String(ans),explain:a+' ÷ '+b+' = '+ans};
+  }
+  const q=rnd(3,12),r=rnd(1,b-1),a=b*q+r;
+  const scenes=[
+    '구슬 '+a+'개를 한 봉지에 '+b+'개씩 담으려고 해요. 몇 봉지를 채울 수 있을까요? (남는 구슬은 생각하지 않아요)',
+    '연필 '+a+'자루를 '+b+'자루씩 묶으려고 해요. 몇 묶음이 될까요? (다 못 묶는 건 빼고요)'
+  ];
+  return{ctx:pick(scenes),q:'식을 세워 계산해 보세요.',vis:'',choices:mc4(q,q+1,q-1,q+b),ans:String(q),explain:a+' ÷ '+b+' = '+q+' ... '+r+'(나머지) → 몫은 '+q};
+}
+function _circSvg(r,showFull){
+  const cx=45,cy=45,rp=35;
+  const line=showFull?'<line x1="10" y1="45" x2="80" y2="45" stroke="#6d28d9" stroke-width="2"/>':'<line x1="45" y1="45" x2="80" y2="45" stroke="#6d28d9" stroke-width="2"/>';
+  return '<div style="display:flex;justify-content:center;margin:8px"><svg width="90" height="90"><circle cx="'+cx+'" cy="'+cy+'" r="'+rp+'" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>'+line+'<circle cx="'+cx+'" cy="'+cy+'" r="2.5" fill="#6d28d9"/></svg></div>';
+}
+function G32circ(){
+  const type=_pickWeighted([['r2d',0.15,true],['d2r',0.15,true],['concept',0.2,false],['compare',0.25,false],['sumdiff',0.25,false]],_circState);
+  if(type==='r2d'){
+    const r=rnd(2,15),d=r*2;
+    return{ctx:'',q:'반지름이 '+r+'cm인 원의 지름은?',vis:_circSvg(r,false),choices:mc4(d,r,d+2,d-2),ans:String(d),explain:'지름 = 반지름 × 2 = '+r+' × 2 = '+d};
+  }
+  if(type==='d2r'){
+    const r=rnd(2,15),d=r*2;
+    return{ctx:'',q:'지름이 '+d+'cm인 원의 반지름은?',vis:_circSvg(r,true),choices:mc4(r,d,r+2,Math.max(1,r-2)),ans:String(r),explain:'반지름 = 지름 ÷ 2 = '+d+' ÷ 2 = '+r};
+  }
+  if(type==='compare'){
+    let rA=rnd(3,20),rB=rnd(3,20);
+    while(rA===rB)rB=rnd(3,20);
+    const aIsDia=Math.random()<0.5;
+    const giveADia=aIsDia,giveBDia=!aIsDia;
+    const aVal=giveADia?rA*2:rA,bVal=giveBDia?rB*2:rB;
+    const aLabel=giveADia?'지름':'반지름',bLabel=giveBDia?'지름':'반지름';
+    const bigger=rA>rB?'A':'B';
+    return{ctx:'',q:'원 A의 '+aLabel+'은 '+aVal+'cm, 원 B의 '+bLabel+'은 '+bVal+'cm예요. 더 큰 원은?',vis:'',choices:shuf(['원 A','원 B']),ans:'원 '+bigger,explain:'원 A의 반지름은 '+rA+'cm, 원 B의 반지름은 '+rB+'cm이므로 '+bigger+'가 더 커요'};
+  }
+  if(type==='sumdiff'){
+    let r1=rnd(3,15),r2=rnd(3,15);
+    while(r1===r2)r2=rnd(3,15);
+    const st=pick(['sum','diff']);
+    if(st==='sum'){
+      const total=r1+r2;
+      return{ctx:'',q:'반지름이 '+r1+'cm인 원과 '+r2+'cm인 원이 있어요. 두 원의 반지름의 합은?',vis:'',choices:mc4(total,total+1,total-1,Math.abs(r1-r2)),ans:String(total),explain:r1+' + '+r2+' = '+total};
+    }
+    const big=Math.max(r1,r2),small=Math.min(r1,r2),diff=big-small;
+    return{ctx:'',q:'반지름이 '+big+'cm인 원과 '+small+'cm인 원이 있어요. 두 반지름의 차는?',vis:'',choices:mc4(diff,diff+1,Math.max(0,diff-1),big+small),ans:String(diff),explain:big+' − '+small+' = '+diff};
+  }
+  const qs=[
+    {q:'한 원에서 반지름의 길이는?',ans:'모두 같아요',opts:['모두 같아요','다 달라요','중심에 가까울수록 짧아요','알 수 없어요']},
+    {q:'원의 중심을 지나는 가장 긴 선분은?',ans:'지름',opts:['지름','반지름','원주','현']},
+    {q:'컴퍼스의 벌린 두 다리 사이 길이는 원의 무엇과 같을까요?',ans:'반지름',opts:['반지름','지름','둘레','중심']},
+    {q:'지름은 반지름의 몇 배일까요?',ans:'2배',opts:['2배','3배','반배','같아요']},
+    {q:'원 위의 한 점에서 원의 중심까지의 거리는?',ans:'반지름과 같아요',opts:['반지름과 같아요','지름과 같아요','항상 달라요','알 수 없어요']},
+    {q:'원의 크기를 결정하는 것은?',ans:'반지름',opts:['반지름','색깔','위치','두께']},
+    {q:'한 원에 그을 수 있는 반지름의 개수는?',ans:'무수히 많아요',opts:['무수히 많아요','1개','2개','4개']}
+  ];
+  const s=pick(qs);
+  return{ctx:'',q:s.q,vis:'',choices:shuf(s.opts),ans:s.ans};
+}
+function G32circWord(){
+  const type=_pickWeighted([['r2d',0.15,true],['d2r',0.15,true],['compare',0.35,false],['sumdiff',0.35,false]],_circWordState);
+  if(type==='r2d'){
+    const r=rnd(2,15),d=r*2;
+    const scenes=[
+      '훌라후프의 반지름이 '+r+'cm예요. 지름은 몇 cm일까요?',
+      '원 모양 시계의 중심에서 테두리까지가 '+r+'cm예요(반지름). 지름은 몇 cm일까요?',
+      '동그란 접시의 반지름이 '+r+'cm예요. 지름은 몇 cm일까요?'
+    ];
+    return{ctx:pick(scenes),q:'식을 세워 계산해 보세요.',vis:_circSvg(r,false),choices:mc4(d,r,d+2,d-2),ans:String(d),explain:'지름 = 반지름 × 2 = '+r+' × 2 = '+d};
+  }
+  if(type==='d2r'){
+    const r=rnd(2,15),d=r*2;
+    const scenes=[
+      '피자의 지름이 '+d+'cm예요. 반지름은 몇 cm일까요?',
+      '축구공이 담긴 원 모양 상자의 지름이 '+d+'cm예요. 반지름은 몇 cm일까요?',
+      '농구 골대의 링 지름이 '+d+'cm예요. 반지름은 몇 cm일까요?'
+    ];
+    return{ctx:pick(scenes),q:'식을 세워 계산해 보세요.',vis:_circSvg(r,true),choices:mc4(r,d,r+2,Math.max(1,r-2)),ans:String(r),explain:'반지름 = 지름 ÷ 2 = '+d+' ÷ 2 = '+r};
+  }
+  if(type==='compare'){
+    let rA=rnd(3,20),rB=rnd(3,20);
+    while(rA===rB)rB=rnd(3,20);
+    const aIsDia=Math.random()<0.5;
+    const giveADia=aIsDia,giveBDia=!aIsDia;
+    const aVal=giveADia?rA*2:rA,bVal=giveBDia?rB*2:rB;
+    const aLabel=giveADia?'지름':'반지름',bLabel=giveBDia?'지름':'반지름';
+    const bigger=rA>rB?'A':'B';
+    return{ctx:'피자 가게에 원 A('+aLabel+' '+aVal+'cm)와 원 B('+bLabel+' '+bVal+'cm) 피자가 있어요. 어느 피자가 더 클까요?',q:'식을 세워 비교해 보세요.',vis:'',choices:shuf(['원 A','원 B']),ans:'원 '+bigger,explain:'원 A의 반지름은 '+rA+'cm, 원 B의 반지름은 '+rB+'cm이므로 '+bigger+'가 더 커요'};
+  }
+  let r1=rnd(3,15),r2=rnd(3,15);
+  while(r1===r2)r2=rnd(3,15);
+  const big=Math.max(r1,r2),small=Math.min(r1,r2),diff=big-small;
+  return{ctx:'훌라후프 두 개의 반지름이 각각 '+big+'cm, '+small+'cm예요. 두 훌라후프의 반지름의 차는 몇 cm일까요?',q:'식을 세워 계산해 보세요.',vis:'',choices:mc4(diff,diff+1,Math.max(0,diff-1),big+small),ans:String(diff),explain:big+' − '+small+' = '+diff};
+}
+function G32frc(){
+  const _tr=Math.random();
+  const type=_tr<0.8?'partWhole':pick(['sameDenom','unitCompare','term']);
+  if(type==='partWhole'){
+    const d=rnd(4,10),n=rnd(1,d-1);
+    const askRemain=Math.random()<0.5;
+    const ansN=askRemain?(d-n):n;
+    const otherN=askRemain?n:(d-n);
+    const scenesGiven=_PW_SCENES_GIVEN(d,n);
+    const scenesRemain=_PW_SCENES_REMAIN(d,n);
+    const idx=_nextIdxFromQueue(_pwSceneQueueQuiz,scenesGiven.length);
+    const ctx=(askRemain?scenesRemain:scenesGiven)[idx];
+    const ansFrac=ansN+'/'+d;
+    const w1n=(ansN+1<=d-1)?(ansN+1):Math.max(1,ansN-2);
+    const w2n=(ansN===1)?Math.min(d-1,ansN+2):Math.max(1,ansN-1);
+    const w1=w1n+'/'+d,w2=w2n+'/'+d,w3=otherN+'/'+d;
+    return{ctx,q:'분수로 나타내 보세요.',vis:fracBar(n,d),choices:mc4s(ansFrac,w1,w2,w3),ans:ansFrac,explain:askRemain?('전체 '+d+' 중 '+n+'을 빼면 남은 것은 '+ansN+' → '+ansFrac):('전체 '+d+' 중 '+n+' → '+ansFrac)};
+  }
+  if(type==='sameDenom'){
+    const d=rnd(5,10);
+    let a=rnd(1,d-1),b=rnd(1,d-1);
+    while(a===b)b=rnd(1,d-1);
+    const askSmaller=Math.random()<0.5;
+    const target=(askSmaller?Math.min(a,b):Math.max(a,b))+'/'+d;
+    return{ctx:'',q:a+'/'+d+'과 '+b+'/'+d+' 중 더 '+(askSmaller?'작은':'큰')+' 분수는?',vis:fracBar(a,d)+fracBar(b,d),choices:shuf([a+'/'+d,b+'/'+d]),ans:target,explain:'분모가 같으면 분자가 클수록 큰 분수예요.'};
+  }
+  if(type==='unitCompare'){
+    let d1=rnd(2,10),d2=rnd(2,10);
+    while(d1===d2)d2=rnd(2,10);
+    const askSmaller=Math.random()<0.5;
+    const target=askSmaller?Math.max(d1,d2):Math.min(d1,d2);
+    return{ctx:'',q:'1/'+d1+'과 1/'+d2+' 중 더 '+(askSmaller?'작은':'큰')+' 분수는?',vis:fracBar(1,d1)+fracBar(1,d2),choices:shuf(['1/'+d1,'1/'+d2]),ans:'1/'+target,explain:'분모가 작을수록 한 조각이 커요.'};
+  }
+  const d=rnd(4,10),n=rnd(1,d-1);
+  const askNum=Math.random()<0.5;
+  const ans=askNum?n:d,other=askNum?d:n;
+  return{ctx:'',q:'분수 '+n+'/'+d+'에서 '+(askNum?'분자':'분모')+'는?',vis:'',choices:mc4s(String(ans),String(other),String(n+d),String(Math.abs(n-d)||(ans+1))),ans:String(ans),explain:askNum?'분자는 분수 위쪽 숫자, '+n+'/'+d+'에서 '+n:'분모는 분수 아래쪽 숫자, '+n+'/'+d+'에서 '+d};
+}
+function _nextIdxFromQueue(queueObj,total){
+  if(queueObj.q.length===0||queueObj.i>=queueObj.q.length){
+    queueObj.q=shuf(Array.from({length:total},(_,i)=>i));
+    queueObj.i=0;
+  }
+  return queueObj.q[queueObj.i++];
+}
+const _pwSceneQueueQuiz={q:[],i:0};
+const _pwSceneQueueBattle={q:[],i:0};
+const _PW_SCENES_GIVEN=(d,n)=>[
+  '피자가 '+d+'조각으로 나뉘어 있어요. 그중 '+n+'조각을 먹었어요. 먹은 피자는 전체의 얼마일까요?',
+  '학생 '+d+'명 중 '+n+'명이 안경을 썼어요. 안경 쓴 학생은 전체의 얼마일까요?',
+  '친구 '+d+'명 중 '+n+'명이 휴대폰이 있어요. 휴대폰이 있는 친구는 전체의 얼마일까요?',
+  '반 친구 '+d+'명 중 '+n+'명이 방학에 여행을 갔어요. 여행을 간 친구는 전체의 얼마일까요?',
+  '색종이 '+d+'장 중 '+n+'장이 빨간색이에요. 빨간 색종이는 전체의 얼마일까요?',
+  '반 친구 '+d+'명 중 '+n+'명이 강아지를 키워요. 강아지를 키우는 친구는 전체의 얼마일까요?'
+];
+const _PW_SCENES_REMAIN=(d,n)=>[
+  '피자가 '+d+'조각으로 나뉘어 있어요. 그중 '+n+'조각을 먹었어요. 남은 피자는 전체의 얼마일까요?',
+  '학생 '+d+'명 중 '+n+'명이 안경을 썼어요. 안경을 쓰지 않은 학생은 전체의 얼마일까요?',
+  '친구 '+d+'명 중 '+n+'명이 휴대폰이 있어요. 휴대폰이 없는 친구는 전체의 얼마일까요?',
+  '반 친구 '+d+'명 중 '+n+'명이 방학에 여행을 갔어요. 여행을 안 간 친구는 전체의 얼마일까요?',
+  '색종이 '+d+'장 중 '+n+'장이 빨간색이에요. 빨간색이 아닌 색종이는 전체의 얼마일까요?',
+  '반 친구 '+d+'명 중 '+n+'명이 강아지를 키워요. 강아지를 키우지 않는 친구는 전체의 얼마일까요?'
+];
+function G32frcWord(){
+  const _tr=Math.random();
+  const type=_tr<0.8?'partWhole':(_tr<0.9?'sameDenom':'unitCompare');
+  if(type==='partWhole'){
+    const d=rnd(4,10),n=rnd(1,d-1);
+    const askRemain=Math.random()<0.5;
+    const ansN=askRemain?(d-n):n;
+    const otherN=askRemain?n:(d-n);
+    const scenesGiven=_PW_SCENES_GIVEN(d,n);
+    const scenesRemain=_PW_SCENES_REMAIN(d,n);
+    const idx=_nextIdxFromQueue(_pwSceneQueueBattle,scenesGiven.length);
+    const ctx=(askRemain?scenesRemain:scenesGiven)[idx];
+    const ansFrac=ansN+'/'+d;
+    const w1n=(ansN+1<=d-1)?(ansN+1):Math.max(1,ansN-2);
+    const w2n=(ansN===1)?Math.min(d-1,ansN+2):Math.max(1,ansN-1);
+    const w1=w1n+'/'+d,w2=w2n+'/'+d,w3=otherN+'/'+d;
+    return{ctx,q:'분수로 나타내 보세요.',vis:fracBar(n,d),choices:mc4s(ansFrac,w1,w2,w3),ans:ansFrac,explain:askRemain?('전체 '+d+' 중 '+n+'을 빼면 남은 것은 '+ansN+' → '+ansFrac):('전체 '+d+' 중 '+n+' → '+ansFrac)};
+  }
+  if(type==='sameDenom'){
+    const d=rnd(5,10);
+    let a=rnd(1,d-1),b=rnd(1,d-1);
+    while(a===b)b=rnd(1,d-1);
+    const askSmaller=Math.random()<0.5;
+    const target=(askSmaller?Math.min(a,b):Math.max(a,b))+'/'+d;
+    return{ctx:'주스를 민수는 '+a+'/'+d+'컵, 지은이는 '+b+'/'+d+'컵 마셨어요. 누가 더 '+(askSmaller?'적게':'많이')+' 마셨을까요?',q:a+'/'+d+'과 '+b+'/'+d+' 중 더 '+(askSmaller?'작은':'큰')+' 분수는?',vis:fracBar(a,d)+fracBar(b,d),choices:shuf([a+'/'+d,b+'/'+d]),ans:target,explain:'분모가 같으면 분자가 클수록 큰 분수예요.'};
+  }
+  let d1=rnd(2,10),d2=rnd(2,10);
+  while(d1===d2)d2=rnd(2,10);
+  const askSmallerUnit=Math.random()<0.5;
+  const targetUnit=askSmallerUnit?Math.max(d1,d2):Math.min(d1,d2);
+  return{ctx:'케이크를 한 판은 '+d1+'조각, 다른 판은 '+d2+'조각으로 똑같이 나눴어요. 한 조각이 더 '+(askSmallerUnit?'작은':'큰')+' 건 어느 판일까요?',q:'1/'+d1+'과 1/'+d2+' 중 더 '+(askSmallerUnit?'작은':'큰')+' 분수는?',vis:fracBar(1,d1)+fracBar(1,d2),choices:shuf(['1/'+d1,'1/'+d2]),ans:'1/'+targetUnit,explain:'조각 수(분모)가 작을수록 한 조각이 커요.'};
+}
+function G32cw(){
+  const type=_pickWeighted([['L2mL',0.1,true],['mL2L',0.1,true],['kg2g',0.1,true],['g2kg',0.1,true],['addSame',0.3,false],['compare',0.3,false]],_cwState);
+  if(type==='L2mL'){
+    const L=rnd(1,9),ans=L*1000;
+    return{ctx:'',q:L+'L는 몇 mL일까요?',vis:'',choices:mc4(ans,ans+100,ans-100,L*100),ans:String(ans),explain:'1L = 1000mL이므로 '+L+'L = '+ans+'mL'};
+  }
+  if(type==='mL2L'){
+    const L=rnd(1,9),ml=L*1000,ans=L;
+    return{ctx:'',q:ml+'mL는 몇 L일까요?',vis:'',choices:mc4(ans,ans+1,Math.max(1,ans-1),Math.round(ml/100)),ans:String(ans),explain:'1000mL = 1L이므로 '+ml+'mL = '+ans+'L'};
+  }
+  if(type==='kg2g'){
+    const kg=rnd(1,9),ans=kg*1000;
+    return{ctx:'',q:kg+'kg는 몇 g일까요?',vis:'',choices:mc4(ans,ans+100,ans-100,kg*100),ans:String(ans),explain:'1kg = 1000g이므로 '+kg+'kg = '+ans+'g'};
+  }
+  if(type==='g2kg'){
+    const kg=rnd(1,9),g=kg*1000,ans=kg;
+    return{ctx:'',q:g+'g은 몇 kg일까요?',vis:'',choices:mc4(ans,ans+1,Math.max(1,ans-1),Math.round(g/100)),ans:String(ans),explain:'1000g = 1kg이므로 '+g+'g = '+ans+'kg'};
+  }
+  if(type==='addSame'){
+    const unit=pick(['L','kg']);
+    const a=rnd(1,9),b=rnd(1,9),sum=a+b;
+    const ansStr=sum+unit;
+    return{ctx:'',q:a+unit+' + '+b+unit+' = ?',vis:'',choices:mc4s(ansStr,(sum+1)+unit,Math.max(1,sum-1)+unit,(a*b)+unit),ans:ansStr,explain:a+' + '+b+' = '+sum+unit};
+  }
+  const useCap=Math.random()<0.5;
+  const bigU=useCap?'L':'kg',smallU=useCap?'mL':'g';
+  const moreWord=useCap?'많은':'무거운',lessWord=useCap?'적은':'가벼운';
+  const aBig=rnd(1,5);
+  let bSmall=rnd(1,59)*100;
+  while(bSmall===aBig*1000)bSmall=rnd(1,59)*100;
+  const aInSmall=aBig*1000;
+  const askLess=Math.random()<0.5;
+  const aWins=aInSmall>bSmall;
+  const winner=askLess?(aWins?'B':'A'):(aWins?'A':'B');
+  return{ctx:'',q:'물건 A('+aBig+bigU+')와 물건 B('+bSmall+smallU+') 중 '+(askLess?lessWord:moreWord)+' 것은?',vis:'',choices:shuf(['물건 A','물건 B']),ans:'물건 '+winner,explain:aBig+bigU+' = '+aInSmall+smallU+'이므로 '+(aInSmall>bSmall?'A':'B')+'가 더 '+moreWord};
+}
+const _cwSceneQueue={q:[],i:0};
+function G32cwWord(){
+  const _tr=Math.random();
+  const type=_tr<0.8?'useRemain':pick(['addSame','compare']);
+  if(type==='useRemain'){
+    const themes=[
+      {name:'물',particle:'은',unit:'L',total:'물통에 물이 ',verbUse:'마셨어요',verbGiven:'마신',verbRemain:'남은'},
+      {name:'우유',particle:'는',unit:'L',total:'우유가 ',verbUse:'마셨어요',verbGiven:'마신',verbRemain:'남은'},
+      {name:'설탕',particle:'은',unit:'kg',total:'설탕이 ',verbUse:'요리에 사용했어요',verbGiven:'사용한',verbRemain:'남은'},
+      {name:'쌀',particle:'은',unit:'kg',total:'쌀이 ',verbUse:'밥을 짓는 데 사용했어요',verbGiven:'사용한',verbRemain:'남은'},
+      {name:'주스',particle:'는',unit:'L',total:'주스가 ',verbUse:'친구와 나눠 마셨어요',verbGiven:'마신',verbRemain:'남은'},
+      {name:'밀가루',particle:'는',unit:'kg',total:'밀가루가 ',verbUse:'빵을 만드는 데 사용했어요',verbGiven:'사용한',verbRemain:'남은'}
+    ];
+    const idx=_nextIdxFromQueue(_cwSceneQueue,themes.length);
+    const th=themes[idx];
+    const total=rnd(5,15),used=rnd(1,total-1),remain=total-used;
+    const askRemain=Math.random()<0.5;
+    const ansN=askRemain?remain:used;
+    const otherN=askRemain?used:remain;
+    const ansStr=ansN+th.unit;
+    const ctx=th.total+total+th.unit+' 있었는데 '+used+th.unit+'를 '+th.verbUse;
+    const q=(askRemain?th.verbRemain:th.verbGiven)+' '+th.name+th.particle+' 몇 '+th.unit+'일까요?';
+    const w1=(ansN+1)+th.unit,w2=Math.max(1,ansN-1)+th.unit,w3=otherN+th.unit;
+    return{ctx,q,vis:'',choices:mc4s(ansStr,w1,w2,w3),ans:ansStr,explain:total+' − '+used+' = '+remain+th.unit};
+  }
+  if(type==='addSame'){
+    const unit=pick(['L','kg']);
+    const a=rnd(1,9),b=rnd(1,9),sum=a+b;
+    const ansStr=sum+unit;
+    const scene=unit==='L'?('물통 두 개에 각각 '+a+'L, '+b+'L의 물이 있어요. 두 물통의 물을 합치면 몇 L일까요?'):('상자 두 개에 각각 '+a+'kg, '+b+'kg의 사과가 있어요. 두 상자를 합치면 몇 kg일까요?');
+    return{ctx:scene,q:'식을 세워 계산해 보세요.',vis:'',choices:mc4s(ansStr,(sum+1)+unit,Math.max(1,sum-1)+unit,(a*b)+unit),ans:ansStr,explain:a+' + '+b+' = '+sum+unit};
+  }
+  const useCap=Math.random()<0.5;
+  const bigU=useCap?'L':'kg',smallU=useCap?'mL':'g';
+  const moreWord=useCap?'많은':'무거운',lessWord=useCap?'적은':'가벼운';
+  const aBig=rnd(1,5);
+  let bSmall=rnd(1,59)*100;
+  while(bSmall===aBig*1000)bSmall=rnd(1,59)*100;
+  const aInSmall=aBig*1000;
+  const askLess=Math.random()<0.5;
+  const aWins=aInSmall>bSmall;
+  const winner=askLess?(aWins?'B':'A'):(aWins?'A':'B');
+  return{ctx:(useCap?'물병 A에는 '+aBig+bigU+', 물병 B에는 '+bSmall+smallU+'가 담겨 있어요.':'상자 A는 '+aBig+bigU+', 상자 B는 '+bSmall+smallU+'예요.'),q:(useCap?'담긴 양':'무게')+'이 더 '+(askLess?lessWord:moreWord)+' 것은?',vis:'',choices:shuf(['물건 A','물건 B']),ans:'물건 '+winner,explain:aBig+bigU+' = '+aInSmall+smallU+'이므로 '+(aInSmall>bSmall?'A':'B')+'가 더 '+moreWord};
+}
+function _hasBatchim(word){
+  const c=word[word.length-1].charCodeAt(0);
+  if(c<0xAC00||c>0xD7A3) return false;
+  return (c-0xAC00)%28!==0;
+}
+function _josa(word,withB,noB){ return _hasBatchim(word)?withB:noB; }
+const DATA_THEMES=[
+  {label:'좋아하는 과일',cats:['사과','바나나','포도','딸기']},
+  {label:'기르고 싶은 동물',cats:['강아지','고양이','토끼','햄스터']},
+  {label:'좋아하는 색깔',cats:['빨강','파랑','노랑','초록']},
+  {label:'좋아하는 계절',cats:['봄','여름','가을','겨울']},
+  {label:'좋아하는 운동',cats:['축구','농구','야구','배드민턴']},
+  {label:'장래희망',cats:['의사','선생님','과학자','요리사']}
+];
+function _dataTableHTML(cats,vals){
+  const rows=cats.map((c,i)=>'<tr><td style="padding:4px 10px;border:1px solid #c4b5fd;font-size:.78rem">'+c+'</td><td style="padding:4px 10px;border:1px solid #c4b5fd;font-size:.78rem;text-align:center;font-weight:bold;color:#6d28d9">'+vals[i]+'</td></tr>').join('');
+  return '<div style="display:flex;justify-content:center;margin:6px 0"><table style="border-collapse:collapse;background:#ede9fe;border-radius:8px;overflow:hidden"><tr><th style="padding:4px 10px;border:1px solid #c4b5fd;font-size:.75rem;color:#6d28d9">항목</th><th style="padding:4px 10px;border:1px solid #c4b5fd;font-size:.75rem;color:#6d28d9">학생 수(명)</th></tr>'+rows+'</table></div>';
+}
+function _pictoHTML(cats,vals,bigUnit){
+  const rows=cats.map((c,i)=>{
+    const big=Math.floor(vals[i]/bigUnit),small=vals[i]%bigUnit;
+    return '<div style="display:flex;align-items:center;gap:6px;margin:3px 0"><span style="width:52px;font-size:.72rem;color:#6d28d9">'+c+'</span><span style="font-size:.85rem">'+'😀'.repeat(big)+'🙂'.repeat(small)+'</span></div>';
+  }).join('');
+  return '<div style="background:#ede9fe;border-radius:8px;padding:8px 10px;margin:6px 0"><div style="font-size:.68rem;color:#6d28d9;margin-bottom:4px">😀 = '+bigUnit+'명, 🙂 = 1명</div>'+rows+'</div>';
+}
+function _genTableVals(theme){
+  let vals;
+  do{ vals=theme.cats.map(()=>rnd(3,15)); } while(new Set(vals).size!==vals.length);
+  return vals;
+}
+const _dataQueueQuiz={q:[],i:0};
+const _dataQueueBattle={q:[],i:0};
+function _dataMaxMin(theme){
+  const vals=_genTableVals(theme);
+  const askMax=Math.random()<0.5;
+  const target=askMax?Math.max(...vals):Math.min(...vals);
+  const winCat=theme.cats[vals.indexOf(target)];
+  return{q:'표에서 '+(askMax?'가장 많은':'가장 적은')+' 것은?',vis:_dataTableHTML(theme.cats,vals),choices:shuf(theme.cats.slice()),ans:winCat};
+}
+function _dataSum(theme){
+  const vals=_genTableVals(theme);
+  const total=vals.reduce((a,b)=>a+b,0);
+  return{q:'조사에 참여한 학생은 모두 몇 명일까요?',vis:_dataTableHTML(theme.cats,vals),choices:mc4(total,total+1,total-1,total+2),ans:String(total)};
+}
+function _dataDiff(theme){
+  const vals=_genTableVals(theme);
+  const maxV=Math.max(...vals),minV=Math.min(...vals),diff=maxV-minV;
+  const maxCat=theme.cats[vals.indexOf(maxV)],minCat=theme.cats[vals.indexOf(minV)];
+  return{q:maxCat+_josa(maxCat,'과','와')+' '+minCat+_josa(minCat,'을','를')+' 좋아하는 학생 수의 차는?',vis:_dataTableHTML(theme.cats,vals),choices:mc4(diff,diff+1,Math.max(0,diff-1),maxV+minV),ans:String(diff)};
+}
+function _dataPicto(theme){
+  const bigUnit=10;
+  let vals;
+  do{ vals=theme.cats.map(()=>rnd(11,49)); } while(new Set(vals).size!==vals.length);
+  const catIdx=rnd(0,3);
+  const val=vals[catIdx],cat=theme.cats[catIdx];
+  return{q:cat+_josa(cat,'은','는')+' 몇 명일까요?',vis:_pictoHTML(theme.cats,vals,bigUnit),choices:mc4(val,Math.floor(val/bigUnit)*bigUnit,(val%bigUnit)*bigUnit+Math.floor(val/bigUnit),val+1),ans:String(val)};
+}
+function G32data(){
+  const idx=_nextIdxFromQueue(_dataQueueQuiz,DATA_THEMES.length);
+  const theme=DATA_THEMES[idx];
+  const type=_pickWeighted([['maxmin',0.15,true],['sum',0.25,false],['diff',0.25,false],['picto',0.35,false]],_dataState);
+  const base=type==='maxmin'?_dataMaxMin(theme):type==='sum'?_dataSum(theme):type==='diff'?_dataDiff(theme):_dataPicto(theme);
+  base.ctx=theme.label+' 조사 결과예요.';
+  return base;
+}
+function G32dataWord(){
+  const idx=_nextIdxFromQueue(_dataQueueBattle,DATA_THEMES.length);
+  const theme=DATA_THEMES[idx];
+  const type=_pickWeighted([['maxmin',0.15,true],['sum',0.25,false],['diff',0.25,false],['picto',0.35,false]],_dataWordState);
+  const base=type==='maxmin'?_dataMaxMin(theme):type==='sum'?_dataSum(theme):type==='diff'?_dataDiff(theme):_dataPicto(theme);
+  base.ctx='반 친구들에게 '+theme.label+_josa(theme.label,'을','를')+' 물어봤어요. 결과를 정리했어요.';
+  return base;
+}
+
+// ══════════════════════════════════════════
+//  5학년 1학기 문제 생성기
+// ══════════════════════════════════════════
+function _mixNoPar(){
+  const st=pick(['a+bc','a-bc','bc+a','bc-a','a+bd','a-bd','bd+a','bd-a']);
+  let a,b,c,expr,correctVal,wrongLR;
+  if(st==='a+bc'){ b=rnd(2,9);c=rnd(2,9);a=rnd(2,20); correctVal=a+b*c; wrongLR=(a+b)*c; expr=a+' + '+b+' × '+c; }
+  else if(st==='a-bc'){ b=rnd(2,9);c=rnd(2,9); const bc=b*c; a=rnd(bc+1,bc+20); correctVal=a-bc; wrongLR=(a-b)*c; expr=a+' − '+b+' × '+c; }
+  else if(st==='bc+a'){ b=rnd(2,9);c=rnd(2,9);a=rnd(2,20); correctVal=b*c+a; wrongLR=b*(c+a); expr=b+' × '+c+' + '+a; }
+  else if(st==='bc-a'){ b=rnd(2,9);c=rnd(2,9); const bc=b*c; a=rnd(1,Math.max(1,bc-1)); correctVal=bc-a; wrongLR=b*(c-a); expr=b+' × '+c+' − '+a; }
+  else if(st==='a+bd'){ c=rnd(2,9); const q=rnd(2,9); b=c*q; a=rnd(2,20); correctVal=a+q; wrongLR=(a+b)/c; expr=a+' + '+b+' ÷ '+c; }
+  else if(st==='a-bd'){ c=rnd(2,9); const q=rnd(2,9); b=c*q; a=rnd(q+1,q+20); correctVal=a-q; wrongLR=(a-b)/c; expr=a+' − '+b+' ÷ '+c; }
+  else if(st==='bd+a'){ c=rnd(2,9); const q=rnd(2,9); b=c*q; a=rnd(2,20); correctVal=q+a; wrongLR=b/(c+a); expr=b+' ÷ '+c+' + '+a; }
+  else { c=rnd(2,9); const q=rnd(2,9); b=c*q; a=rnd(1,Math.max(1,q-1)); correctVal=q-a; wrongLR=(c-a===0)?NaN:b/(c-a); expr=b+' ÷ '+c+' − '+a; }
+  const wrongInt=Number.isFinite(wrongLR)?(Number.isInteger(wrongLR)?wrongLR:Math.round(wrongLR)):correctVal+99;
+  return {ctx:'',q:expr+' = ?',vis:'',choices:mc4(correctVal,wrongInt,correctVal+1,Math.max(0,correctVal-1)),ans:String(correctVal),explain:'곱셈과 나눗셈을 덧셈·뺄셈보다 먼저 계산해요 → '+correctVal};
+}
+function _mixWithPar(){
+  const st=pick(['(a+b)c','a(b+c)','(a-b)c']);
+  let a,b,c,expr,correctVal,wrongNoPar;
+  if(st==='(a+b)c'){ a=rnd(2,9);b=rnd(2,9);c=rnd(2,9); correctVal=(a+b)*c; wrongNoPar=a+b*c; expr='('+a+' + '+b+') × '+c; }
+  else if(st==='a(b+c)'){ a=rnd(2,9);b=rnd(2,9);c=rnd(2,9); correctVal=a*(b+c); wrongNoPar=a*b+c; expr=a+' × ('+b+' + '+c+')'; }
+  else { b=rnd(2,9);a=rnd(b+1,b+9);c=rnd(2,9); correctVal=(a-b)*c; wrongNoPar=a-b*c; if(wrongNoPar<0)wrongNoPar=correctVal+7; expr='('+a+' − '+b+') × '+c; }
+  const wrongInt=Number.isFinite(wrongNoPar)?(Number.isInteger(wrongNoPar)?wrongNoPar:Math.round(wrongNoPar)):correctVal+99;
+  return {ctx:'',q:expr+' = ?',vis:'',choices:mc4(correctVal,wrongInt,correctVal+1,Math.max(0,correctVal-1)),ans:String(correctVal),explain:'괄호가 있으면 괄호 안을 가장 먼저 계산해요 → '+correctVal};
+}
+function _mixOrderConcept(){
+  const useParen=Math.random()<0.5;
+  if(useParen){
+    const st=pick(['(a+b)c','a(b+c)']);
+    let a=rnd(2,9),b=rnd(2,9),c=rnd(2,9),expr,firstPart;
+    if(st==='(a+b)c'){ expr='('+a+' + '+b+') × '+c; firstPart='('+a+' + '+b+')'; }
+    else { expr=a+' × ('+b+' + '+c+')'; firstPart='('+b+' + '+c+')'; }
+    const choices=mc4s(firstPart,a+' × '+b,b+' + '+c+'는 아님',c+'');
+    return {ctx:'',q:expr+' 에서 가장 먼저 계산해야 하는 부분은?',vis:'',choices,ans:firstPart,explain:'괄호 안을 가장 먼저 계산해요'};
+  }
+  const st=pick(['a+bc','bc+a']);
+  let a=rnd(2,20),b=rnd(2,9),c=rnd(2,9),expr,firstPart;
+  if(st==='a+bc'){ expr=a+' + '+b+' × '+c; firstPart=b+' × '+c; }
+  else { expr=b+' × '+c+' + '+a; firstPart=b+' × '+c; }
+  const choices=mc4s(firstPart,a+' + '+b,a+'만 먼저',c+'만 먼저');
+  return {ctx:'',q:expr+' 에서 가장 먼저 계산해야 하는 부분은?',vis:'',choices,ans:firstPart,explain:'덧셈·뺄셈보다 곱셈·나눗셈을 먼저 계산해요'};
+}
+const _mixState={streak:0};
+function G51mix(){
+  const type=_pickWeighted([['noPar',0.5,false],['withPar',0.3,false],['concept',0.2,true]],_mixState);
+  return type==='noPar'?_mixNoPar():type==='withPar'?_mixWithPar():_mixOrderConcept();
+}
+const _mixWordQueue={q:[],i:0};
+function G51mixWord(){
+  const templates=[
+    ()=>{ const b=rnd(2,9),c=rnd(2,9),a=rnd(2,20); return {a,b,c,expr:a+' + '+b+' × '+c,correctVal:a+b*c,wrongLR:(a+b)*c,
+      ctx:'문구점에서 '+a+'원짜리 지우개 1개와, 한 자루에 '+b+'원인 연필 '+c+'자루를 샀어요. 모두 얼마를 냈을까요?'};},
+    ()=>{ const b=rnd(2,9),c=rnd(2,9),bc=b*c,a=rnd(bc+1,bc+20); return {a,b,c,expr:a+' − '+b+' × '+c,correctVal:a-bc,wrongLR:(a-b)*c,
+      ctx:a+'원을 가지고 있었는데, 한 개에 '+b+'원인 사탕을 '+c+'개 샀어요. 남은 돈은 얼마일까요?'};},
+    ()=>{ const b=rnd(2,9),c=rnd(2,9),a=rnd(2,20); return {a,b,c,expr:b+' × '+c+' + '+a,correctVal:b*c+a,wrongLR:b*(c+a),
+      ctx:'한 상자에 '+b+'개씩 들어있는 초콜릿 '+c+'상자와, 낱개로 '+a+'개를 더 샀어요. 모두 몇 개일까요?'};},
+    ()=>{ const c=rnd(2,9),q=rnd(2,9),b=c*q,a=rnd(2,20); return {a,b,c,expr:a+' + '+b+' ÷ '+c,correctVal:a+q,wrongLR:(a+b)/c,
+      ctx:'저금통에 '+a+'원이 있었어요. 구슬 '+b+'개를 친구 '+c+'명이 똑같이 나눠 가진 만큼(한 명 몫만큼)의 용돈을 더 받았어요. 지금 저금통에는 얼마가 있을까요?'};},
+    ()=>{ const c=rnd(2,9),q=rnd(2,9),b=c*q,a=rnd(1,Math.max(1,q-1)); return {a,b,c,expr:b+' ÷ '+c+' − '+a,correctVal:q-a,wrongLR:(c-a===0)?NaN:b/(c-a),
+      ctx:'구슬 '+b+'개를 봉지 '+c+'개에 똑같이 나눠 담았어요. 봉지 하나를 열어서 '+a+'개를 친구에게 줬어요. 그 봉지에 남은 구슬은 몇 개일까요?'};}
+  ];
+  const idx=_nextIdxFromQueue(_mixWordQueue,templates.length);
+  const t=templates[idx]();
+  const wrongInt=Number.isFinite(t.wrongLR)?(Number.isInteger(t.wrongLR)?t.wrongLR:Math.round(t.wrongLR)):t.correctVal+99;
+  return {ctx:t.ctx,q:'식을 세워 계산해 보세요. ('+t.expr+')',vis:'',choices:mc4(t.correctVal,wrongInt,t.correctVal+1,Math.max(0,t.correctVal-1)),ans:String(t.correctVal),explain:t.expr+' = '+t.correctVal};
+}
+function _divisors(n){ const r=[]; for(let i=1;i<=n;i++) if(n%i===0) r.push(i); return r; }
+function _gcd51(a,b){ while(b){ const t=a%b; a=b; b=t; } return a; }
+function _lcm51(a,b){ return a*b/_gcd51(a,b); }
+function G51gcd(){
+  const type=pick(['divCount','divPick','mulNth','gcd','lcm','relation']);
+  if(type==='divCount'){
+    const n=rnd(6,48);
+    const cnt=_divisors(n).length;
+    return{ctx:'',q:n+'의 약수는 모두 몇 개일까요?',vis:'',choices:mc4(cnt,cnt+1,Math.max(1,cnt-1),cnt+2),ans:String(cnt),explain:n+'의 약수: '+_divisors(n).join(', ')+' → '+cnt+'개'};
+  }
+  if(type==='divPick'){
+    let n,divs;
+    do{ n=rnd(12,60); divs=_divisors(n); } while(divs.length<4);
+    const nonDivs=[];
+    for(let i=1;i<=n && nonDivs.length<10;i++) if(n%i!==0) nonDivs.push(i);
+    const wrong=pick(nonDivs);
+    const rightsPicked=shuf(divs.filter(d=>d!==n)).slice(0,3);
+    return{ctx:'',q:'다음 중 '+n+'의 약수가 아닌 것은?',vis:'',choices:shuf([wrong,...rightsPicked]).map(String),ans:String(wrong),explain:n+'÷'+wrong+'은 나누어떨어지지 않아요'};
+  }
+  if(type==='mulNth'){
+    const n=rnd(3,12),k=rnd(3,8);
+    const ans=n*k;
+    return{ctx:'',q:n+'의 배수를 작은 수부터 순서대로 나열할 때, '+k+'번째 수는?',vis:'',choices:mc4(ans,ans+n,Math.max(1,ans-n),n*(k-1)),ans:String(ans),explain:n+'×'+k+'='+ans};
+  }
+  if(type==='gcd'){
+    const a=rnd(6,30),b=rnd(6,30);
+    const g=_gcd51(a,b);
+    return{ctx:'',q:a+'와 '+b+'의 최대공약수는?',vis:'',choices:mc4(g,g*2,Math.max(1,Math.floor(g/2)),g+1),ans:String(g),explain:a+'과 '+b+'의 공약수 중 가장 큰 수는 '+g};
+  }
+  if(type==='lcm'){
+    const a=rnd(2,12),b=rnd(2,12);
+    const l=_lcm51(a,b);
+    return{ctx:'',q:a+'와 '+b+'의 최소공배수는?',vis:'',choices:mc4(l,l*2,Math.max(1,Math.floor(l/2)),a*b),ans:String(l),explain:a+'과 '+b+'의 공배수 중 가장 작은 수는 '+l};
+  }
+  const qs=[
+    {q:'12는 4의 배수예요. 4는 12의 무엇일까요?',ans:'약수',opts:['약수','배수','공약수','공배수']},
+    {q:'어떤 수의 가장 작은 배수는 항상 무엇일까요?',ans:'그 수 자신',opts:['그 수 자신','1','0','2배']},
+    {q:'어떤 수의 가장 큰 약수는 항상 무엇일까요?',ans:'그 수 자신',opts:['그 수 자신','1','절반','2배']},
+    {q:'1은 모든 자연수의 무엇일까요?',ans:'약수',opts:['약수','배수','공배수','최대공약수']},
+    {q:'두 수의 공약수 중 가장 큰 수를 무엇이라 할까요?',ans:'최대공약수',opts:['최대공약수','최소공배수','공배수','약수']},
+    {q:'두 수의 공배수 중 가장 작은 수를 무엇이라 할까요?',ans:'최소공배수',opts:['최소공배수','최대공약수','공약수','배수']}
+  ];
+  const s=pick(qs);
+  return{ctx:'',q:s.q,vis:'',choices:shuf(s.opts),ans:s.ans};
+}
+function G51gcdWord(){
+  const type=pick(['gcd','lcm','mulNth']);
+  if(type==='gcd'){
+    const scenes=[
+      (a,b)=>'사탕 '+a+'개와 초콜릿 '+b+'개를 최대한 많은 학생에게 남김없이 똑같이 나눠주려고 해요. 몇 명에게 나눠줄 수 있을까요?',
+      (a,b)=>'가로 '+a+'cm, 세로 '+b+'cm인 종이를 남는 부분 없이 가장 큰 정사각형 여러 개로 자르려고 해요. 정사각형의 한 변은 몇 cm일까요?',
+      (a,b)=>'구슬 '+a+'개와 딱지 '+b+'개를 최대한 많은 봉지에 남김없이 똑같이 나눠 담으려고 해요. 봉지는 몇 개 필요할까요?'
+    ];
+    let a=rnd(6,30),b=rnd(6,30);
+    while(_gcd51(a,b)===1){ a=rnd(6,30); b=rnd(6,30); }
+    const g=_gcd51(a,b);
+    return{ctx:pick(scenes)(a,b),q:'식을 세워 계산해 보세요.',vis:'',choices:mc4(g,g*2,Math.max(1,Math.floor(g/2)),g+1),ans:String(g),explain:a+'과 '+b+'의 최대공약수 = '+g};
+  }
+  if(type==='lcm'){
+    const scenes=[
+      (a,b)=>'빨간 버스는 '+a+'분마다, 파란 버스는 '+b+'분마다 출발해요. 두 버스가 동시에 출발한 뒤, 다음번에 또 동시에 출발하는 건 몇 분 후일까요?',
+      (a,b)=>'민수는 '+a+'일마다, 지은이는 '+b+'일마다 도서관에 가요. 오늘 두 사람이 도서관에서 만났다면, 다음번에 또 만나는 건 며칠 후일까요?',
+      (a,b)=>'톱니바퀴 A는 '+a+'초마다, 톱니바퀴 B는 '+b+'초마다 한 바퀴를 돌아요. 두 톱니바퀴가 동시에 출발점으로 돌아오는 건 몇 초 후일까요?'
+    ];
+    const a=rnd(2,12),b=rnd(2,12);
+    const l=_lcm51(a,b);
+    return{ctx:pick(scenes)(a,b),q:'식을 세워 계산해 보세요.',vis:'',choices:mc4(l,l*2,Math.max(1,Math.floor(l/2)),a*b),ans:String(l),explain:a+'과 '+b+'의 최소공배수 = '+l};
+  }
+  const n=rnd(3,12),k=rnd(3,8);
+  const ans=n*k;
+  const scenes=[
+    n+'층마다 서는 엘리베이터가 있어요. 1층부터 시작해서 '+n+'층마다 선다면, '+k+'번째로 서는 층은 몇 층일까요?',
+    n+'일마다 우유가 배달돼요. '+k+'번째 배달일은 며칠째 되는 날일까요?'
+  ];
+  return{ctx:pick(scenes),q:'식을 세워 계산해 보세요.',vis:'',choices:mc4(ans,ans+n,Math.max(1,ans-n),n*(k-1)),ans:String(ans),explain:n+'×'+k+'='+ans};
+}
+
+// ══════════════════════════════════════════
+//  4학년 문제 생성기
+// ══════════════════════════════════════════
+function G4big(){
+  const a=rnd(12,99),b=rnd(2,9),ans=a*b;
+  return{ctx:'🌲 나무를 심어요.',q:a+' × '+b+' = ?',vis:'',choices:shuf([ans,ans+b,ans-b,ans+10]).map(String),ans:String(ans)};
+}
+function G4frc(){
+  const d=pick([3,4,5,6,8]),a=rnd(1,d-2),b=rnd(1,d-a-1),isPlus=Math.random()>.4;
+  if(isPlus){const s=a+b;return{ctx:'',q:a+'/'+d+' + '+b+'/'+d+' = ?',vis:fracBar(a,d)+fracBar(b,d),choices:shuf([s+'/'+d,(s+1)+'/'+d,Math.max(1,s-1)+'/'+d,a+'/'+d]),ans:s+'/'+d};}
+  const big=Math.max(a,b)+rnd(1,d-Math.max(a,b)-1),sm=rnd(1,big-1),diff=big-sm;
+  return{ctx:'',q:big+'/'+d+' - '+sm+'/'+d+' = ?',vis:'',choices:shuf([diff+'/'+d,(diff+1)+'/'+d,Math.max(1,diff-1)+'/'+d,(big+sm)+'/'+d]),ans:diff+'/'+d};
+}
+function G4dec(){
+  const a=rnd(1,9),b=rnd(0,9),num=(a+b*0.1).toFixed(1),type=pick(['read','compare']);
+  if(type==='read')return{ctx:'',q:'소수점 아래가 '+b+'인 수는?',vis:'<div style="text-align:center;font-size:2.2rem;font-weight:bold;color:#7c3aed;padding:10px">'+num+'</div>',choices:shuf([num,(+num+0.1).toFixed(1),(+num-0.1).toFixed(1),(+num+1).toFixed(1)]),ans:num};
+  const other=(a+rnd(1,4)*0.1).toFixed(1),bigger=+num>=+other?num:other;
+  return{ctx:'',q:num+'과 '+other+' 중 더 큰 수는?',vis:'',choices:shuf([num,other]),ans:bigger};
+}
+function G4are(){
+  const w=rnd(2,12),h=rnd(2,10),ans=w*h,type=pick(['rect','tri']);
+  if(type==='rect')return{ctx:'',q:'가로 '+w+'cm, 세로 '+h+'cm 직사각형의 넓이는?',vis:'<div style="display:flex;justify-content:center;margin:8px"><svg width="100" height="70"><rect x="8" y="8" width="84" height="54" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/><text x="50" y="25" text-anchor="middle" font-size="10" fill="#6d28d9">'+w+'cm</text><text x="90" y="42" text-anchor="middle" font-size="10" fill="#6d28d9">'+h+'cm</text></svg></div>',choices:shuf([ans,2*(w+h),ans+w,ans+h]).map(v=>v+'cm²'),ans:ans+'cm²'};
+  const base=w,ht=h,ta=Math.floor(base*ht/2);
+  return{ctx:'',q:'밑변 '+base+'cm, 높이 '+ht+'cm 삼각형의 넓이는?',vis:'',choices:shuf([ta,ta*2,ta+base,Math.max(1,ta-ht)]).map(v=>v+'cm²').slice(0,4),ans:ta+'cm²',explain:'밑변×높이÷2 = '+base+'×'+ht+'÷2 = '+ta};
+}
+
+// ══════════════════════════════════════════
+//  5학년 문제 생성기
+// ══════════════════════════════════════════
+function _frcSf(n,d){const g=gcd7(n,d);return[n/g,d/g];}
+function _frcFmt(n,d){if(n<=0||d<=0)return'0';const[sn,sd]=_frcSf(n,d);return sd===1?String(sn):sn+'/'+sd;}
+function _frcFmtMixed(n,d){
+  if(n<=0||d<=0)return'0';
+  const g=gcd7(n,d);const sn=n/g,sd=d/g;
+  if(sd===1)return String(sn);
+  if(sn<sd)return sn+'/'+sd;
+  const w=Math.floor(sn/sd),rem=sn%sd;
+  if(rem===0)return String(w);
+  return w+' '+rem+'/'+sd;
+}
+function _frcMc(ans,...ws){const s=new Set([ans]);const r=[ans];for(const w of ws)if(!s.has(w)&&r.length<4){s.add(w);r.push(w);}return shuf(r);}
+
+function G5frcMul(){
+  const type=pick(['whole','frac']);
+  if(type==='whole'){
+    const d=pick([2,3,4,5]),n=rnd(1,d-1),w=rnd(2,8);
+    const a=_frcFmt(n*w,d);
+    return{ctx:'🫐 블루베리 '+w+'바구니를 샀어요.',
+      q:n+'/'+d+' × '+w+' = ?',vis:'',
+      choices:_frcMc(a,_frcFmt(n*w+1,d),_frcFmt(Math.max(1,n*w-1),d),_frcFmt(n+w,d)),
+      ans:a,explain:'분자 '+n+'×'+w+'='+n*w+(_frcSf(n*w,d)[1]<d?'→ 약분':'')};
+  }
+  const d1=pick([2,3,5]),n1=rnd(1,d1-1),d2=pick([3,4,5]),n2=rnd(1,d2-1);
+  const rn=n1*n2,rd=d1*d2;
+  const a=_frcFmt(rn,rd);
+  return{ctx:'🍰 케이크를 나눠요.',
+    q:n1+'/'+d1+' × '+n2+'/'+d2+' = ?',vis:'',
+    choices:_frcMc(a,_frcFmt(rn+1,rd),_frcFmt(n1+n2,d1+d2),_frcFmt(n1*n2,d1+d2)),
+    ans:a,explain:'분자×분자 '+n1+'×'+n2+'='+rn+', 분모×분모 '+d1+'×'+d2+'='+rd+(_frcSf(rn,rd)[1]<rd?'→ 약분':'')};
+}
+
+function G5frcDiv(){
+  const type=pick(['frac_whole','whole_frac']);
+  if(type==='frac_whole'){
+    const d=pick([2,3,4,6]),n=rnd(1,d-1),w=pick([2,3,4]);
+    const a=_frcFmt(n,d*w);
+    return{ctx:'🍕 피자를 나눠 먹어요.',
+      q:n+'/'+d+' ÷ '+w+' = ?',vis:'',
+      choices:_frcMc(a,_frcFmt(n*w,d),_frcFmt(n,d),_frcFmt(n+1,d*w)),
+      ans:a,explain:'÷'+w+' = ×(1/'+w+'): 분모 '+d+'×'+w+'='+d*w+(_frcSf(n,d*w)[1]<d*w?'→ 약분':'')};
+  }
+  const d=pick([2,3,4,5]),n=rnd(1,d-1),w=rnd(1,6);
+  const a=_frcFmt(w*d,n);
+  return{ctx:'🎂 케이크를 잘라요.',
+    q:w+' ÷ '+n+'/'+d+' = ?',vis:'',
+    choices:_frcMc(a,_frcFmt(w*n,d),String(Math.max(1,w-1)),_frcFmt(w*d+1,n)),
+    ans:a,explain:'역수 곱하기: '+w+' × '+d+'/'+n+' = '+w*d+'/'+n+(_frcSf(w*d,n)[1]<n?'→ 약분':'')};
+}
+
+function G5frc(){
+  return Math.random()<.5?G5frcMul():G5frcDiv();
+}
+
+function G5frcMulHard(){
+  const type=pick(['mixed_whole','frac_frac']);
+  if(type==='mixed_whole'){
+    const d=pick([2,3,4]),w=rnd(1,4),n=rnd(1,d-1),whole=rnd(2,5);
+    const total=(w*d+n)*whole;
+    const a=_frcFmtMixed(total,d);
+    return{ctx:'',q:w+' '+n+'/'+d+' × '+whole+' = ?',vis:'',
+      choices:_frcMc(a,_frcFmtMixed(total+d,d),_frcFmtMixed(Math.max(1,total-d),d),_frcFmtMixed(w*whole*d+n,d)),
+      ans:a,explain:'대분수→가분수: '+(w*d+n)+'/'+d+' → ×'+whole+'='+(w*d+n)*whole+'/'+d};
+  }
+  const d1=pick([3,4,5,6]),n1=rnd(1,d1-1),d2=pick([3,4,5,6]),n2=rnd(1,d2-1);
+  const rn=n1*n2,rd=d1*d2;
+  const a=_frcFmt(rn,rd);
+  return{ctx:'🍰 케이크를 나눠요.',q:n1+'/'+d1+' × '+n2+'/'+d2+' = ?',vis:'',
+    choices:_frcMc(a,_frcFmt(rn+1,rd),_frcFmt(n1+n2,d1+d2),_frcFmt(n1*n2,d1+d2)),
+    ans:a,explain:'분자×분자='+rn+', 분모×분모='+rd+(_frcSf(rn,rd)[1]<rd?'→ 약분':'')};
+}
+
+function G5frcDivHard(){
+  const type=pick(['mixed_whole','whole_frac']);
+  if(type==='mixed_whole'){
+    const d=pick([2,3,4]),w=rnd(1,3),n=rnd(1,d-1),whole=pick([2,3,4]);
+    const total=w*d+n;
+    const a=_frcFmtMixed(total,d*whole);
+    return{ctx:'🎂 케이크를 잘라요.',q:w+' '+n+'/'+d+' ÷ '+whole+' = ?',vis:'',
+      choices:_frcMc(a,_frcFmtMixed(total+1,d*whole),_frcFmtMixed(total,d),_frcFmtMixed(total*whole,d)),
+      ans:a,explain:'대분수→가분수: '+total+'/'+d+' → ÷'+whole+'='+total+'/'+(d*whole)};
+  }
+  const d=pick([2,3,4,5]),n=rnd(1,d-1),w=rnd(2,8);
+  const a=_frcFmtMixed(w*d,n);
+  return{ctx:'',q:w+' ÷ '+n+'/'+d+' = ?',vis:'',
+    choices:_frcMc(a,_frcFmtMixed(w*d+1,n),_frcFmtMixed(w*n,d),_frcFmtMixed(w*d-1,n)),
+    ans:a,explain:'역수 곱하기: '+w+'×'+d+'/'+n+'='+w*d+'/'+n};
+}
+
+function G5frcHard(){
+  return Math.random()<.5?G5frcMulHard():G5frcDivHard();
+}
+function G5pct(){
+  const pcs=[{p:50,div:2},{p:25,div:4},{p:10,div:10},{p:20,div:5}],pc=pick(pcs);
+  const base=rnd(2,10)*pc.div*10,ans=base/pc.div;
+  return{ctx:'💰 '+pc.p+'% 할인 세일!',q:base+'원의 '+pc.p+'%는?',vis:'<div style="text-align:center;padding:12px;font-size:1.2rem">💸 '+base+'원 → '+pc.p+'% OFF</div>',choices:shuf([ans,ans*2,Math.max(1,ans-base/pc.div/2),ans+base/pc.div]).map(v=>v+'원').slice(0,4),ans:ans+'원',explain:base+'÷'+pc.div+'='+ans};
+}
+function G5neg(){
+  const temp=rnd(-15,5),change=rnd(1,10),dir=pick(['올라','내려']),ans=dir==='올라'?temp+change:temp-change;
+  const sign=v=>v>0?'+'+v+'°C':v+'°C';
+  return{ctx:'❄️ 핀란드 라플란드 날씨',q:'현재 '+sign(temp)+', '+change+'°C '+dir+'가면?',vis:numLine(Math.min(temp,ans)-2,Math.max(temp,ans)+2,ans),choices:shuf([ans,ans+1,ans-1,ans+2]).map(sign),ans:sign(ans)};
+}
+function G5wrd(){
+  const scs=[
+    ()=>{const p=rnd(2,9)*100,q=rnd(2,5),d=pick([10,20,50]),t=p*q*(1-d/100);return{ctx:'🛒 핀란드 마켓',q:p+'원짜리 '+q+'개를 '+d+'% 할인 → 총 얼마?',ans:t+'원',opts:shuf([t,t+p,p*q,t-p]).map(v=>v+'원').slice(0,4)}},
+    ()=>{const s=pick([40,50,60,80]),t=rnd(2,5),d=s*t;return{ctx:'🚂 핀란드 기차',q:'시속 '+s+'km로 '+t+'시간 → 몇 km?',ans:d+'km',opts:shuf([d,d+s,d-s,s+t]).map(v=>v+'km').slice(0,4)}},
+    ()=>{const base=rnd(3,8)*100,pct=pick([10,20,25,50]),part=base*pct/100;return{ctx:'🫐 블루베리 수확',q:'전체 '+base+'kg의 '+pct+'%는?',ans:part+'kg',opts:shuf([part,part*2,part/2,base]).map(v=>v+'kg').slice(0,4)}}
+  ];
+  const s=pick(scs)();
+  return{ctx:s.ctx,q:s.q,vis:'',choices:s.opts,ans:s.ans};
+}
+
+// ══════════════════════════════════════════
+//  6학년 문제 생성기
+// ══════════════════════════════════════════
+function G6rat(){
+  const a=rnd(1,5),b=rnd(1,5),unit=rnd(2,4),total=(a+b)*unit,partA=a*unit;
+  return{ctx:'🫐 딸기와 블루베리를 '+a+':'+b+'로 나눠요.',q:'전체 '+total+'개를 '+a+':'+b+'로 나눌 때 앞쪽 몫은?',vis:'',choices:shuf([partA,total-partA,partA+unit,Math.max(1,partA-unit)]).map(String),ans:String(partA),explain:total+'÷'+(a+b)+'×'+a+'='+partA};
+}
+function G6pct(){
+  const scs=[
+    ()=>{const o=rnd(2,9)*100,r=pick([10,20,30,50]),a=o-o*r/100;return{ctx:'💰 할인',q:'원가 '+o+'원에서 '+r+'% 할인하면?',ans:a+'원',opts:shuf([a,o*r/100,a+100,a-100]).map(v=>v+'원').slice(0,4)}},
+    ()=>{const b=rnd(10,90)*10,r=pick([10,20,50]),a=b*(1+r/100);return{ctx:'📈 증가',q:b+'에서 '+r+'% 증가하면?',ans:String(a),opts:shuf([a,b+r,a+b*0.1,a-b*0.1]).map(String).slice(0,4)}},
+    ()=>{const a=rnd(20,80)*5,inc=pick([10,20,50]),b=a+a*inc/100,p=Math.round((b-a)/a*100);return{ctx:'📊 변화율',q:a+'에서 '+b+'로 변하면 증가율은?',ans:p+'%',opts:shuf([p,p+5,p-5,p*2]).map(v=>v+'%').slice(0,4)}}
+  ];
+  const s=pick(scs)();return{ctx:s.ctx,q:s.q,vis:'',choices:s.opts,ans:s.ans};
+}
+function G6equ(){
+  const x=rnd(2,15),b=rnd(1,10),type=pick(['+','-','×']);
+  let q;
+  if(type==='+'){const c=x+b;q='□ + '+b+' = '+c;}
+  else if(type==='-'){const c=x+b;q=c+' - □ = '+b;}
+  else{const c=x*b;q='□ × '+b+' = '+c;}
+  return{ctx:'🔭 □ 안에 알맞은 수를 찾아요.',q,vis:'',choices:shuf([x,x+1,Math.max(1,x-1),x+b]).map(String),ans:String(x)};
+}
+function G6sta(){
+  const data=Array.from({length:5},()=>rnd(2,10));
+  const sum=data.reduce((a,b)=>a+b,0),avg=sum/5,isInt=Number.isInteger(avg),a=isInt?avg:+avg.toFixed(1);
+  const choices=isInt?shuf([a,a+1,a-1,a+2]).map(String):shuf([a,+(a+0.5).toFixed(1),+(a-0.5).toFixed(1),+(a+1).toFixed(1)]).map(String);
+  return{ctx:'📊 5번의 점수',q:'점수: '+data.join(', ')+' — 평균은?',vis:barChart(data),choices,ans:String(a),explain:'합계 '+sum+'÷5='+a};
+}
+
+// ══════════════════════════════════════════
+//  중1 — 정수·유리수 생성기
+// ══════════════════════════════════════════
+function G7inta(){
+  const type=rnd(0,2);
+  if(type===0){// 같은 부호 덧셈
+    const a=rnd(1,12),b=rnd(1,12),sign=pick([-1,1]);
+    const ans=sign*(a+b);
+    const qa=(sign>0?'+':'-')+a,qb=(sign>0?'+':'-')+b;
+    return{ctx:'정수 덧셈',q:'('+qa+') + ('+qb+') = ?',vis:'',choices:shuf([ans,ans+1,ans-1,ans+2]).map(String),ans:String(ans),explain:'같은 부호: 절댓값 합에 공통 부호'};
+  } else if(type===1){// 다른 부호 덧셈
+    const a=rnd(3,12),b=rnd(1,a-1);
+    const ans=a-b;
+    return{ctx:'정수 덧셈',q:'(+'+a+') + (-'+b+') = ?',vis:'',choices:shuf([ans,ans+1,-ans,ans-1]).map(String),ans:String(ans),explain:'다른 부호: 절댓값 차 '+a+'-'+b+'='+ans+', 큰 쪽(+)'};
+  } else {// 뺄셈 → 덧셈 변환
+    const a=rnd(2,10),b=rnd(1,10);
+    const ans=a+b;
+    return{ctx:'뺄셈 변환',q:a+' - (-'+b+') = ?',vis:'',choices:shuf([ans,a-b,ans+1,ans-1]).map(String),ans:String(ans),explain:a+'-(-'+b+') = '+a+'+'+b+' = '+ans};
+  }
+}
+function G7intm(){
+  const type=rnd(0,1);
+  if(type===0){// 곱셈
+    const a=pick([2,3,4,5,6]),b=pick([2,3,4,5]);
+    const signs=pick([[1,1],[1,-1],[-1,1],[-1,-1]]);
+    const ans=signs[0]*signs[1]*a*b;
+    const qa=(signs[0]>0?'+':'-')+a,qb=(signs[1]>0?'+':'-')+b;
+    return{ctx:'정수 곱셈',q:'('+qa+') × ('+qb+') = ?',vis:'',choices:shuf([ans,-ans,ans+signs[0]*signs[1],Math.abs(ans)+1]).map(String),ans:String(ans),explain:'부호: '+(signs[0]*signs[1]>0?'(+)×(+)=(+) or (-)×(-)=(+)':'다른 부호=(−)')};
+  } else {// 나눗셈
+    const b=pick([2,3,4,5]),ans=pick([2,3,4,5]);
+    const a=b*ans;
+    const signs=pick([[1,1],[1,-1],[-1,1],[-1,-1]]);
+    const ra=signs[0]*a,rb=signs[1]*b,rans=signs[0]*signs[1]*ans;
+    return{ctx:'정수 나눗셈',q:'('+ra+') ÷ ('+rb+') = ?',vis:'',choices:shuf([rans,-rans,rans+1,rans-1]).map(String),ans:String(rans),explain:'부호 규칙 적용 후 '+a+'÷'+b+'='+ans};
+  }
+}
+function G7rata(){
+  const type=rnd(0,1);
+  const denoms=[[2,4],[3,6],[4,8],[2,6],[3,4],[5,10],[2,3]];
+  const [d1,d2]=pick(denoms);
+  const n1=rnd(1,d1-1),n2=rnd(1,d2-1);
+  const lcm=d1*d2/gcd7(d1,d2);
+  const num1=n1*(lcm/d1),num2=n2*(lcm/d2);
+  if(type===0){// 덧셈
+    const rn=num1+num2,g=gcd7(rn,lcm);
+    const ans=rn/g+'/'+(lcm/g);
+    return{ctx:'유리수 덧셈',q:n1+'/'+d1+' + '+n2+'/'+d2+' = ?',vis:'',choices:shuf([ans,n1+'/'+d1,(n1+n2)+'/'+(d1+d2),(num1+num2+1)+'/'+lcm]).map(String),ans,explain:'LCM='+lcm+' → '+num1+'/'+lcm+'+'+num2+'/'+lcm+'='+rn+'/'+lcm};
+  } else {// 뺄셈 (큰 것에서 빼기)
+    const big=Math.max(num1,num2),small=Math.min(num1,num2);
+    const rn=big-small;
+    if(rn===0) return G7rata();
+    const g=gcd7(rn,lcm);
+    const ans=rn/g+'/'+(lcm/g);
+    const [fn1,fd1]=big===num1?[n1,d1]:[n2,d2];
+    const [fn2,fd2]=big===num1?[n2,d2]:[n1,d1];
+    return{ctx:'유리수 뺄셈',q:fn1+'/'+fd1+' - '+fn2+'/'+fd2+' = ?',vis:'',choices:shuf([ans,'0',rn+'/'+lcm,(rn+1)+'/'+lcm]).map(String),ans,explain:'LCM='+lcm+' → 통분 후 계산'};
+  }
+}
+function G7ratm(){
+  const type=rnd(0,1);
+  if(type===0){// 곱셈
+    const [a1,b1]=pick([[1,2],[2,3],[3,4],[1,3],[2,5]]);
+    const [a2,b2]=pick([[1,2],[2,3],[3,5],[1,4],[3,4]]);
+    const rn=a1*a2,rd=b1*b2,g=gcd7(rn,rd);
+    const ans=rn/g+'/'+(rd/g);
+    return{ctx:'유리수 곱셈',q:a1+'/'+b1+' × '+a2+'/'+b2+' = ?',vis:'',choices:shuf([ans,(a1+a2)+'/'+(b1+b2),rn+'/'+rd,(a1*a2+1)+'/'+(b1*b2)]).map(String),ans,explain:'분자끼리×분자, 분모끼리×분모 후 약분'};
+  } else {// 나눗셈
+    const [a1,b1]=pick([[2,3],[3,4],[4,5],[1,2],[3,5]]);
+    const [a2,b2]=pick([[1,2],[2,3],[1,3],[2,5],[3,4]]);
+    const rn=a1*b2,rd=b1*a2,g=gcd7(rn,rd);
+    const ans=rn/g+'/'+(rd/g);
+    return{ctx:'유리수 나눗셈',q:a1+'/'+b1+' ÷ '+a2+'/'+b2+' = ?',vis:'',choices:shuf([ans,a1+'/'+b1,(a1*a2)+'/'+(b1*b2),(rn+1)+'/'+(rd)]).map(String),ans,explain:a1+'/'+b1+' × '+b2+'/'+a2+' (역수 곱셈) = '+rn+'/'+rd};
+  }
+}
+function G7mix(){
+  const fns=[G7inta,G7intm,G7rata,G7ratm];
+  return pick(fns)();
+}
+function gcd7(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b];}return a;}
+
+// ══════════════════════════════════════════
+//  Enter 키
+// ══════════════════════════════════════════
+document.getElementById('ans-input').addEventListener('keydown',e=>{if(e.key==='Enter')submitAns()});
+
+// ══════════════════════════════════════════
+//  게임화: 유물·나침반·항해 일지
+// ══════════════════════════════════════════
+const ARTIFACTS={
+  'drill_basic':{island:'드릴 훈련소',emoji:'🔢',quote:'반복은 천재를 만든다.',color:'#7dd3fc'},
+  'drill_master':{island:'드릴 훈련소',emoji:'🏅',quote:'속도와 정확성, 둘 다 잡은 자가 수학왕이다.',color:'#fbbf24'}
+};
+const TORO_COMPASS={
+  'drill':["계산 실수를 줄이는 가장 좋은 방법은 뭘까?","빠른 계산과 정확한 계산, 어느 것이 더 중요할까?"]
+};
+
+function getArtifacts(){
+  try{return JSON.parse(localStorage.getItem('armoonia_artifacts')||'[]');}
+  catch(e){return[];}
+}
+function awardArtifact(setName){
+  var info=ARTIFACTS[setName];
+  if(!info)return;
+  var earned=getArtifacts();
+  if(earned.indexOf(setName)!==-1)return;
+  earned.push(setName);
+  localStorage.setItem('armoonia_artifacts',JSON.stringify(earned));
+  updateArtifactBadge();
+  var modal=document.getElementById('artifact-modal');
+  document.getElementById('artifact-modal-emoji').textContent=info.emoji;
+  document.getElementById('artifact-modal-name').textContent='유물 획득: '+info.island;
+  document.getElementById('artifact-modal-island').textContent=info.island;
+  document.getElementById('artifact-modal-quote').textContent='"'+info.quote+'"';
+  modal.classList.add('show');
+  addLog('artifact','drill','유물 획득: '+info.emoji+' '+info.island);
+}
+function addLog(type,hub,content){
+  var log;
+  try{log=JSON.parse(localStorage.getItem('armoonia_log')||'[]');}
+  catch(e){log=[];}
+  var today=(function(){var d=new Date();return d.getFullYear()+'.'+(d.getMonth()+1).toString().padStart(2,'0')+'.'+d.getDate().toString().padStart(2,'0');})();
+  log.unshift({date:today,type:type,hub:hub,content:content});
+  if(log.length>50)log=log.slice(0,50);
+  localStorage.setItem('armoonia_log',JSON.stringify(log));
+}
+function showArtifactCollection(){
+  var earned=getArtifacts();
+  var inner=document.getElementById('artifact-collection-inner');
+  if(earned.length===0){
+    inner.innerHTML='<div style="text-align:center;color:#64748b;padding:1.5rem">아직 유물이 없어요. 드릴을 완료해 보세요!</div>';
+  }else{
+    inner.innerHTML=earned.map(function(k){
+      var a=ARTIFACTS[k];
+      if(!a)return'';
+      return'<div style="display:flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.05);border-radius:12px;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.08)">'
+        +'<span style="font-size:2rem">'+a.emoji+'</span>'
+        +'<div><div style="color:#e2e8f0;font-weight:700;font-size:.9rem">'+a.island+'</div>'
+        +'<div style="color:#94a3b8;font-size:.78rem;font-style:italic">"'+a.quote+'"</div></div></div>';
+    }).join('');
+  }
+  document.getElementById('artifact-collection-modal').classList.add('show');
+}
+function closeArtifactCollection(){
+  document.getElementById('artifact-collection-modal').classList.remove('show');
+}
+function showLog(){
+  var log;
+  try{log=JSON.parse(localStorage.getItem('armoonia_log')||'[]');}
+  catch(e){log=[];}
+  var inner=document.getElementById('log-inner');
+  if(log.length===0){
+    inner.innerHTML='<div style="text-align:center;color:#64748b;padding:1.5rem">아직 기록이 없어요.</div>';
+  }else{
+    inner.innerHTML=log.map(function(l){
+      return'<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.6rem .9rem;border-left:3px solid #7c3aed">'
+        +'<div style="font-size:.72rem;color:#64748b;margin-bottom:.2rem">'+l.date+' · '+l.hub+'</div>'
+        +'<div style="color:#e2e8f0;font-size:.85rem">'+l.content+'</div></div>';
+    }).join('');
+  }
+  document.getElementById('log-modal').classList.add('show');
+}
+function closeLog(){
+  document.getElementById('log-modal').classList.remove('show');
+}
+function updateArtifactBadge(){
+  var earned=getArtifacts();
+  var badge=document.getElementById('artifact-count-badge');
+  if(badge)badge.textContent=earned.length+'개';
+}
+function showCompassHint(){
+  var hints=TORO_COMPASS['drill'];
+  if(!hints||!hints.length)return;
+  var h=hints[Math.floor(Math.random()*hints.length)];
+  document.getElementById('compass-hint-text').textContent=h;
+  document.getElementById('compass-modal').classList.add('show');
+}
+function closeCompassModal(){
+  document.getElementById('compass-modal').classList.remove('show');
+}
+
+// ══════════════════════════════════════════
+//  모드 선택
+// ══════════════════════════════════════════
+function pickMode(g,tid,gen){
+  st.grade=g;st.topicId=tid;st.gen=gen;
+  const base=tid.replace(/_h$/,'');
+  const t=(TOPICS[g]||[]).find(x=>x.id===base||x.id===tid);
+  document.getElementById('mode-topic-badge').textContent=t?t.name:tid;
+  showScreen('mode-select');
+}
+
+// ══════════════════════════════════════════
+//  XP 시스템
+// ══════════════════════════════════════════
+const XP_THRESH=[0,50,120,220,350,500,700,950,1250,1600,2000];
+const XP_CHARS=['🦊','🐯','🦁','🐉','👑'];
+function loadXP(){try{return JSON.parse(localStorage.getItem('mkXP')||'{"xp":0,"level":1}');}catch(e){return{xp:0,level:1};}}
+function saveXP(d){localStorage.setItem('mkXP',JSON.stringify(d));}
+function gainXP(amt){
+  if(!amt)return;
+  const d=loadXP();
+  d.xp+=amt;
+  while(d.level<XP_THRESH.length-1&&d.xp>=XP_THRESH[d.level])d.level++;
+  saveXP(d);
+  renderXPBar();
+}
+function renderXPBar(){
+  const el=document.getElementById('xp-bar-home');
+  if(!el)return;
+  const d=loadXP();
+  const lv=d.level;
+  const cur=XP_THRESH[lv-1]||0;
+  const nxt=XP_THRESH[lv]||XP_THRESH[XP_THRESH.length-1];
+  const pct=Math.min(100,Math.max(0,(d.xp-cur)/(nxt-cur)*100));
+  const ci=Math.min(Math.floor((lv-1)/3),XP_CHARS.length-1);
+  el.innerHTML='<div class="xp-char">'+XP_CHARS[ci]+'</div>'
+    +'<div class="xp-info">'
+    +'<div class="xp-level-txt">Lv.'+lv+' · '+d.xp+' XP</div>'
+    +'<div class="xp-bar"><div class="xp-fill" style="width:'+pct+'%"></div></div>'
+    +'</div>';
+}
+
+// ══════════════════════════════════════════
+//  폭죽
+// ══════════════════════════════════════════
+function launchFireworks(){
+  const c=document.getElementById('firework-container');
+  if(!c)return;
+  const cols=['#fbbf24','#f87171','#a78bfa','#6ee7b7','#60a5fa','#f472b6'];
+  for(let i=0;i<40;i++){
+    const fw=document.createElement('div');
+    fw.className='firework';
+    const x=Math.random()*window.innerWidth;
+    const y=Math.random()*window.innerHeight*0.6;
+    const tx=(Math.random()-.5)*200;
+    const ty=(Math.random()-.5)*200;
+    const dl=Math.random()*.5;
+    fw.style.cssText='left:'+x+'px;top:'+y+'px;background:'+cols[Math.floor(Math.random()*cols.length)]
+      +';--tx:'+tx+'px;--ty:'+ty+'px;animation-delay:'+dl+'s;animation-duration:'+(0.8+Math.random()*.5)+'s';
+    c.appendChild(fw);
+  }
+  setTimeout(()=>{c.innerHTML='';},2000);
+}
+
+// ══════════════════════════════════════════
+//  몬스터 배틀 모드
+// ══════════════════════════════════════════
+const MONSTERS=[
+  {name:'수학 도깨비',emoji:'👹'},
+  {name:'계산 마법사',emoji:'🧙'},
+  {name:'분수 거인',emoji:'🧌'},
+  {name:'구구단 드래곤',emoji:'🐲'},
+  {name:'최종 보스',emoji:'👿'}
+];
+const bat={grade:1,topicId:null,gen:null,monsterHP:100,playerHP:3,wave:1,score:0,combo:0,q:null,answered:false};
+
+function startBattle(g,tid,gen){
+  const base=tid.replace(/_h$/,'');
+  const t=(TOPICS[g]||[]).find(x=>x.id===base||x.id===tid);
+  const battleGen=(t&&t.genBattle)?t.genBattle:gen;
+  bat.grade=g;bat.topicId=tid;bat.gen=battleGen;
+  bat.monsterHP=100;bat.playerHP=3;bat.wave=1;bat.score=0;bat.combo=0;bat.answered=false;
+  updateBattleUI();
+  renderBattleQ();
+  showScreen('battle');
+}
+function updateBattleUI(){
+  document.getElementById('b-wave').textContent=bat.wave;
+  document.getElementById('b-score').textContent=bat.score;
+  document.getElementById('b-player-hp').textContent='❤️'.repeat(bat.playerHP)+'🖤'.repeat(Math.max(0,3-bat.playerHP));
+  document.getElementById('b-monster-hp-fill').style.width=bat.monsterHP+'%';
+  const mi=Math.min(Math.floor((bat.wave-1)/2),MONSTERS.length-1);
+  const mon=MONSTERS[mi];
+  document.getElementById('b-monster-emoji').textContent=mon.emoji;
+  document.getElementById('b-monster-name').textContent=mon.name+' (파도 '+bat.wave+')';
+}
+function renderBattleQ(){
+  bat.answered=false;
+  const q=bat.q=window[bat.gen]();
+  document.getElementById('b-ctx').innerHTML=fmtFrac(q.ctx||'');
+  document.getElementById('b-vis').innerHTML=q.vis||'';
+  document.getElementById('b-txt').innerHTML=fmtFrac(q.q);
+  document.getElementById('b-fb').className='feedback';
+  document.getElementById('b-next-btn').className='next-btn';
+  document.getElementById('b-choices').innerHTML=(q.choices||[]).map(c=>
+    '<button class="choice-btn" data-c="'+String(c).replace(/"/g,'&quot;')+'" onclick="checkBattleC(this)">'+fmtFrac(c)+'</button>'
+  ).join('');
+}
+function checkBattleC(btn){
+  if(bat.answered)return;bat.answered=true;
+  const correct=btn.dataset.c===String(bat.q.ans);
+  document.querySelectorAll('#b-choices .choice-btn').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.c===String(bat.q.ans))b.classList.add('reveal');
+  });
+  btn.classList.add(correct?'correct':'wrong');
+  const fb=document.getElementById('b-fb');
+  const comboEl=document.getElementById('b-combo');
+  if(correct){
+    bat.combo++;
+    const bonus=bat.combo>=5?3:bat.combo>=3?2:1;
+    bat.score+=10*bonus;
+    bat.monsterHP=Math.max(0,bat.monsterHP-25);
+    gainXP(bat.combo>=3?15:10);
+    if(bat.combo>=2){
+      comboEl.innerHTML='🔥 '+bat.combo+'콤보! ×'+bonus;
+      comboEl.className='combo-display combo-pop';
+      setTimeout(()=>comboEl.className='combo-display',400);
+    }else{comboEl.textContent='';}
+    const monEl=document.getElementById('b-monster-emoji');
+    monEl.classList.add('shake');
+    setTimeout(()=>monEl.classList.remove('shake'),400);
+    if(bat.monsterHP<=0){
+      bat.wave++;bat.monsterHP=100;
+      bat.score+=50;gainXP(50);
+      fb.innerHTML='🎉 <b>몬스터 처치!</b> +50점 · 파도 '+bat.wave+' 시작!';
+    }else{
+      fb.textContent='⚔️ 공격! 몬스터 체력 -25%';
+    }
+    fb.className='feedback show ok';
+    document.getElementById('b-next-btn').className='next-btn show';
+  }else{
+    bat.combo=0;bat.playerHP--;
+    comboEl.textContent='';
+    fb.innerHTML='💔 체력 -1! 정답: <b>'+fmtFrac(bat.q.ans)+'</b>';
+    fb.className='feedback show no';
+    updateBattleUI();
+    if(bat.playerHP<=0){setTimeout(()=>showBattleOver(),1200);return;}
+    document.getElementById('b-next-btn').className='next-btn show';
+  }
+  updateBattleUI();
+}
+function nextBattleQ(){
+  if(bat.playerHP<=0){showBattleOver();return;}
+  renderBattleQ();updateBattleUI();
+}
+function endBattle(){showBattleOver();}
+function showBattleOver(){
+  const key='mkBattle_'+bat.gen;
+  let best=0;try{best=parseInt(localStorage.getItem(key)||'0');}catch(e){}
+  const isNew=bat.score>0&&bat.score>best;
+  if(isNew)localStorage.setItem(key,bat.score);
+  document.getElementById('bo-mascot').textContent=bat.wave>5?'🏆':bat.playerHP<=0?'💀':'⚔️';
+  document.getElementById('bo-title').textContent=bat.playerHP<=0?'쓰러졌어요...':'배틀 종료!';
+  document.getElementById('bo-desc').textContent=(bat.wave-1)+'파도 돌파! · 총 '+bat.score+'점';
+  document.getElementById('bo-score-big').textContent=bat.score+'점';
+  document.getElementById('bo-best-txt').textContent=isNew?'🎊 신기록!':best>0?'최고기록: '+best+'점':'첫 번째 배틀!';
+  document.getElementById('bo-stars').textContent=bat.wave>=5?'⭐⭐⭐':bat.wave>=3?'⭐⭐':bat.wave>=2?'⭐':'';
+  if(isNew)launchFireworks();
+  addLog('game','battle','배틀: '+bat.score+'점 · '+(bat.wave-1)+'파도');
+  showScreen('battle-over');
+}
+
+// ══════════════════════════════════════════
+//  타이머 챌린지 모드
+// ══════════════════════════════════════════
+const tim={grade:1,topicId:null,gen:null,timeLeft:30,score:0,combo:0,totalCorrect:0,interval:null,q:null,answered:false};
+
+function startTimer(g,tid,gen){
+  if(tim.interval)clearInterval(tim.interval);
+  tim.grade=g;tim.topicId=tid;tim.gen=gen;
+  tim.timeLeft=30;tim.score=0;tim.combo=0;tim.totalCorrect=0;tim.answered=false;
+  const dispEl=document.getElementById('t-display');
+  const barEl=document.getElementById('t-bar');
+  if(dispEl){dispEl.textContent=30;dispEl.className='timer-display';}
+  if(barEl)barEl.style.width='100%';
+  document.getElementById('t-score').textContent=0;
+  document.getElementById('t-combo').textContent='';
+  renderTimerQ();
+  showScreen('timer');
+  tim.interval=setInterval(()=>{
+    tim.timeLeft--;
+    if(dispEl)dispEl.textContent=tim.timeLeft;
+    if(barEl)barEl.style.width=(tim.timeLeft/30*100)+'%';
+    if(dispEl)dispEl.className='timer-display'+(tim.timeLeft<=10?' urgent':'');
+    if(tim.timeLeft<=0){clearInterval(tim.interval);tim.interval=null;showTimerOver();}
+  },1000);
+}
+function renderTimerQ(){
+  if(!tim.gen)return;
+  tim.answered=false;
+  const q=tim.q=window[tim.gen]();
+  document.getElementById('t-ctx').innerHTML=fmtFrac(q.ctx||'');
+  document.getElementById('t-vis').innerHTML=q.vis||'';
+  document.getElementById('t-txt').innerHTML=fmtFrac(q.q);
+  document.getElementById('t-fb').className='feedback';
+  document.getElementById('t-choices').innerHTML=(q.choices||[]).map(c=>
+    '<button class="choice-btn" data-c="'+String(c).replace(/"/g,'&quot;')+'" onclick="checkTimerC(this)">'+fmtFrac(c)+'</button>'
+  ).join('');
+}
+function checkTimerC(btn){
+  if(tim.answered||tim.timeLeft<=0)return;
+  tim.answered=true;
+  const correct=btn.dataset.c===String(tim.q.ans);
+  document.querySelectorAll('#t-choices .choice-btn').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.c===String(tim.q.ans))b.classList.add('reveal');
+  });
+  btn.classList.add(correct?'correct':'wrong');
+  const fb=document.getElementById('t-fb');
+  const comboEl=document.getElementById('t-combo');
+  if(correct){
+    tim.combo++;tim.totalCorrect++;
+    const bonus=tim.combo>=5?3:tim.combo>=3?2:1;
+    tim.score+=bonus;gainXP(8);
+    document.getElementById('t-score').textContent=tim.score;
+    if(tim.combo>=3){
+      comboEl.innerHTML='🔥 '+tim.combo+'콤보! +'+bonus;
+      comboEl.className='combo-display combo-pop';
+      setTimeout(()=>comboEl.className='combo-display',400);
+    }else{comboEl.textContent='';}
+    fb.textContent='✅ +'+(bonus>1?bonus+' (콤보!)':bonus);
+    fb.className='feedback show ok';
+  }else{
+    tim.combo=0;comboEl.textContent='';
+    fb.innerHTML='❌ 정답: <b>'+fmtFrac(tim.q.ans)+'</b>';
+    fb.className='feedback show no';
+  }
+  setTimeout(()=>{if(tim.timeLeft>0)renderTimerQ();},600);
+}
+function endTimer(){
+  if(tim.interval){clearInterval(tim.interval);tim.interval=null;}
+  showTimerOver();
+}
+function showTimerOver(){
+  if(tim.interval){clearInterval(tim.interval);tim.interval=null;}
+  const key='mkTimer_'+tim.gen;
+  let best=0;try{best=parseInt(localStorage.getItem(key)||'0');}catch(e){}
+  const isNew=tim.score>0&&tim.score>best;
+  if(isNew)localStorage.setItem(key,tim.score);
+  document.getElementById('to-mascot').textContent=tim.score>=10?'🏆':tim.score>=5?'🎯':'⏱️';
+  document.getElementById('to-title').textContent=isNew?'🎊 신기록!':'시간 종료!';
+  document.getElementById('to-desc').textContent='30초 · '+tim.totalCorrect+'문제 정답';
+  document.getElementById('to-score-big').textContent=tim.score+'점';
+  document.getElementById('to-best-txt').textContent=isNew?'🎊 새 최고기록!':best>0?'최고기록: '+best+'점':'첫 번째 챌린지!';
+  document.getElementById('to-stars').textContent=tim.score>=10?'⭐⭐⭐':tim.score>=6?'⭐⭐':tim.score>=3?'⭐':'';
+  if(isNew)launchFireworks();
+  addLog('game','timer','타이머: '+tim.score+'점 · '+tim.totalCorrect+'개 정답');
+  showScreen('timer-over');
+}
+
+// ══════════════════════════════════════════
+//  초기화
+// ══════════════════════════════════════════
+renderHome();
+updateArtifactBadge();
+renderXPBar();
+</script>
+</body>
+</html>
