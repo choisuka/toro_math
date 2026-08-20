@@ -751,6 +751,22 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🔢 소수의 나눗셈 <span class="badge">초6</span></div><div class="unit-sub">(소수)÷(자연수)·(자연수)÷(자연수)·(소수)÷(소수)·반올림한 몫</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e6decdiv">
+        <div class="cv-grid" id="cv-e6decdiv-grid"></div>
+        <div class="cv-detail" id="cv-e6decdiv-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e6decdiv')">← 목록으로</button>
+          <div id="cv-e6decdiv-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
       <div><div class="unit-title">📊 비율과 백분율 <span class="badge">초6</span></div><div class="unit-sub">비·비율·백분율·할인율</div></div>
       <span class="unit-arrow">▼</span>
     </div>
@@ -7384,6 +7400,378 @@ function pgaSol20(id){
   var diagram = '<div class="fb-diagram">각기둥 밑면 a각형, 각뿔 밑면 b각형이라 하면<br>면의 합: (a+2)+(b+1)='+Fs+' → a+b='+(Fs-3)+'<br>꼭짓점의 합: 2a+(b+1)='+Vs+' → 2a+b='+(Vs-1)+'<br>두 식을 빼면 a='+a+', 남은 식에서 b='+b+'<br>→ <strong style="color:#3fb950">'+PGW_NAMES[a]+'기둥과 '+PGW_NAMES[b]+'뿔</strong></div>';
   rgwRenderToggle(id, diagram, 'pgaSol20');
 }
+const CV_DATA_E6DECDIV = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>친구 3명이서 주스 6.6L를 똑같이 나누어 마시려고 합니다. 한 명이 몇 L씩 마시게 될까요?</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
+      <div style="font-size:.9rem">6.6 ÷ 3 = ?</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">6.6은 66/10이니까, 자연수 66÷3=22를 이용하면 답을 구할 수 있을 것 같아요</div>
+    </div>
+    <p style="margin-top:10px">이렇게 소수를 자연수로 나누거나, 소수끼리 나누는 방법을 배우면 실생활의 다양한 상황(나누어 담기, 잘라 나누기, 평균 구하기)을 정확하게 계산할 수 있어요.</p>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — (소수)÷(자연수), 나누어떨어지는 경우</div>
+    <ul><li>주스 6.6L를 3명이 똑같이 나누어 마시면 한 명은 몇 L씩 마시게 될까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">6.6 = 66/10 → 66÷3=22 → 22/10 = <strong style="color:#3fb950">2.2</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">자연수처럼 66÷3=22를 계산한 뒤, 소수점을 나누어지는 수(6.6)와 같은 자리에 찍어요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — (소수)÷(자연수), 몫이 1보다 작은 경우</div>
+    <ul><li>리본 2.4m를 6명이 나누어 가지면 한 명은 몇 m씩 가질까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">2.4 = 24/10 → 24÷6=4 → 4/10 = <strong style="color:#3fb950">0.4</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">나누어지는 수(2.4)가 나누는 수(6)보다 작으면, 몫의 자연수 부분이 0인 소수(0.4)가 나올 수 있어요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — (자연수)÷(자연수)의 몫을 소수로</div>
+    <ul><li>사과 7개를 2명이 똑같이 나누어 가지면 한 명은 몇 개씩 가지게 될까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">7÷2 = 3...1(나머지) → 나머지 1에 0을 이어 붙여(10) 계속 나누기: 10÷2=5</div>
+      <div style="font-size:.9rem;margin-top:6px">7.0 ÷ 2 = <strong style="color:#3fb950">3.5</strong>(개)</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">자연수 나눗셈이 나누어떨어지지 않으면, 나머지에 0을 이어 붙여 소수로 몫을 계속 구할 수 있어요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — (소수)÷(소수), 자릿수가 같은 경우</div>
+    <ul><li>철사 4.26m를 2.13m씩 자르면 몇 도막이 나올까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.85rem">나누어지는 수와 나누는 수에 <strong>똑같은 수</strong>를 곱해도 몫은 변하지 않아요(분수의 나눗셈에서 배운 성질과 같아요)</div>
+      <div style="font-size:.9rem;margin-top:8px">4.26 ÷ 2.13 = (4.26×100) ÷ (2.13×100) = 426 ÷ 213 = <strong style="color:#3fb950">2</strong>(도막)</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">두 소수의 소수점을 오른쪽으로 같은 자리만큼 옮겨서(자릿수를 맞춰) 나누는 수를 자연수로 만들면, 자연수 나눗셈처럼 풀 수 있어요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — (자연수)÷(소수)</div>
+    <ul><li>철사 6m를 1.5m씩 자르면 몇 도막이 나올까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">6을 6.0으로 생각 → 6.0 ÷ 1.5 = (6.0×10) ÷ (1.5×10) = 60 ÷ 15 = <strong style="color:#3fb950">4</strong>(도막)</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">자연수도 소수점이 있다고 생각하면(6.0), 개념4와 똑같은 방법을 그대로 쓸 수 있어요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념6 — 몫을 반올림하여 나타내기</div>
+    <ul><li>10÷3을 계산하면 몫이 3.333...으로 끝없이 이어집니다. 반올림하여 소수 둘째 자리까지 나타내면?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">10÷3 = 3.333...</div>
+      <div style="font-size:.9rem;margin-top:6px">소수 셋째 자리 숫자(3)가 5보다 작으므로 그대로 버림 → <strong style="color:#3fb950">3.33</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">나눗셈이 끝나지 않을 때는 필요한 자리보다 한 자리 더 계산한 뒤, 그 다음 자리 숫자를 보고 반올림해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념7 — 나누어 주고 남는 양 알아보기</div>
+    <ul><li>철사 5.4m를 2m씩 잘라 나누어 주려고 합니다. 몇 도막을 나누어 줄 수 있고, 남는 철사는 몇 m인가요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">2m씩 2도막을 자르면 4m를 사용 → 남는 철사 = 5.4-4 = <strong style="color:#3fb950">1.4m</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">몫(도막 수)은 2, 나머지(남는 양)는 1.4m예요</div>
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:6px">주의! 나머지의 소수점은 몫이 아니라 원래 나누어지는 수(5.4)의 소수점과 같은 자리에 찍어야 해요 — 세로셈에서 나머지를 14로 잘못 쓰는 실수를 조심하세요</div>
+    </div>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 소수를 자연수로 나눌 때, 몫의 소수점은 왜 나누어지는 수의 소수점과 같은 자리에 찍을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6decdiv-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6decdiv-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6decdiv-h1',0,this)">소수를 분수로 생각하면(6.6=66/10) 분모(10)는 그대로 있고 분자(66)만 나누는 것과 같아서, 소수점도 원래 자리 그대로예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6decdiv-h1',1,this)">그냥 정해진 규칙이라 이유는 없어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6decdiv-h1',2,this)">몫이 작아지니까 소수점을 앞으로 당겨서 찍는 거예요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6decdiv-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 소수÷소수를 계산할 때, 왜 두 수 모두에 같은 수(10배, 100배 등)를 곱해도 답이 똑같을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6decdiv-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6decdiv-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6decdiv-h2',0,this)">나누어지는 수와 나누는 수에 똑같은 수를 곱하면 두 수의 비율(크기 관계)이 그대로 유지되기 때문에 몫이 변하지 않아요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6decdiv-h2',1,this)">소수점을 옮기면 원래 계산이랑 자동으로 똑같아지는 신기한 규칙일 뿐이에요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6decdiv-h2',2,this)">나누는 수만 자연수로 바뀌면 되니까, 나누어지는 수는 안 바꿔도 상관없어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6decdiv-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 나누어 주고 남는 양(나머지)을 구할 때, 왜 나머지의 소수점은 몫이 아니라 원래 나누어지는 수의 소수점 자리를 따라야 할까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6decdiv-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6decdiv-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6decdiv-h3',0,this)">나머지는 "아직 다 나누지 못하고 남은 원래 양"이기 때문에, 몫과는 상관없이 처음 나누어지는 수와 같은 단위(소수점 자리)로 나타내야 해요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6decdiv-h3',1,this)">나머지도 몫과 똑같이 계산 과정에서 자리를 옮겨서 표시해야 해요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6decdiv-h3',2,this)">나머지는 항상 자연수로만 나타내면 되니까 소수점을 신경 쓸 필요 없어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6decdiv-h3"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제: 8.4 ÷ 4를 계산하세요.</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6decdiv-p1',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6decdiv-p1">
+        <div class="sol"><strong>풀이:</strong> 84÷4=21 → 소수점 아래 1자리 → <strong style="color:#3fb950">2.1</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 3.6 ÷ 9를 계산하세요.</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6decdiv-p2',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6decdiv-p2">
+        <div class="sol"><strong>풀이:</strong> 36÷9=4 → 소수점 아래 1자리 → <strong style="color:#3fb950">0.4</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 9 ÷ 4를 소수로 계산하세요.</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6decdiv-p3',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6decdiv-p3">
+        <div class="sol"><strong>풀이:</strong> 9÷4=2...1 → 10÷4=2...2 → 20÷4=5 → <strong style="color:#3fb950">2.25</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 5.4 ÷ 1.8을 계산하세요.</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6decdiv-p4',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6decdiv-p4">
+        <div class="sol"><strong>풀이:</strong> 두 수 모두 ×10 → 54÷18 = <strong style="color:#3fb950">3</strong></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <p>지금까지 배운 소수의 나눗셈을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+      <div id="ddw-1" class="prob-q" data-l="9.6" data-n="8" data-qtext="리본 9.6m를 8명이 똑같이 나누어 가지면 한 명은 몇 m씩 가지나요?" data-solfn="ddwSol1">리본 9.6m를 8명이 똑같이 나누어 가지면 한 명은 몇 m씩 가지나요?<br><button class="havruta-show-btn" onclick="ddwSol1('ddw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="ddwGen1('ddw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+      <div id="ddw-2" class="prob-q" data-w="4.5" data-n="9" data-qtext="사탕 4.5kg을 9봉지에 똑같이 나누어 담으면 봉지 하나에 몇 kg씩 담게 되나요?" data-solfn="ddwSol2">사탕 4.5kg을 9봉지에 똑같이 나누어 담으면 봉지 하나에 몇 kg씩 담게 되나요?<br><button class="havruta-show-btn" onclick="ddwSol2('ddw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="ddwGen2('ddw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+      <div id="ddw-3" class="prob-q" data-a="7" data-b="2" data-qtext="빵 7개를 2명이 똑같이 나누어 먹으면 한 명은 몇 개씩 먹게 되나요?" data-solfn="ddwSol3">빵 7개를 2명이 똑같이 나누어 먹으면 한 명은 몇 개씩 먹게 되나요?<br><button class="havruta-show-btn" onclick="ddwSol3('ddw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="ddwGen3('ddw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+      <div id="ddw-4" class="prob-q" data-a="6.39" data-b="2.13" data-qtext="철사 6.39m를 2.13m씩 자르면 몇 도막이 나올까요?" data-solfn="ddwSol4">철사 6.39m를 2.13m씩 자르면 몇 도막이 나올까요?<br><button class="havruta-show-btn" onclick="ddwSol4('ddw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="ddwGen4('ddw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+      <div id="ddw-5" class="prob-q" data-a="6" data-b="1.5" data-qtext="철사 6m를 1.5m씩 자르면 몇 도막이 나올까요?" data-solfn="ddwSol5">철사 6m를 1.5m씩 자르면 몇 도막이 나올까요?<br><button class="havruta-show-btn" onclick="ddwSol5('ddw-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="ddwGen5('ddw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+      <div id="ddw-6" class="prob-q" data-x="20" data-y="3" data-qtext="리본 20m를 3명이 똑같이 나누어 가지려고 합니다. 한 명이 가지는 길이를 반올림하여 소수 둘째 자리까지 나타내면 몇 m인가요?" data-solfn="ddwSol6">리본 20m를 3명이 똑같이 나누어 가지려고 합니다. 한 명이 가지는 길이를 반올림하여 소수 둘째 자리까지 나타내면 몇 m인가요?<br><button class="havruta-show-btn" onclick="ddwSol6('ddw-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="ddwGen6('ddw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+      <div id="ddw-7" class="prob-q" data-a="17.3" data-b="4" data-qtext="철사 17.3m를 4m씩 잘라 나누어 주려고 합니다. 몇 도막을 나누어 줄 수 있고, 남는 철사는 몇 m인가요?" data-solfn="ddwSol7">철사 17.3m를 4m씩 잘라 나누어 주려고 합니다. 몇 도막을 나누어 줄 수 있고, 남는 철사는 몇 m인가요?<br><button class="havruta-show-btn" onclick="ddwSol7('ddw-7')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="ddwGen7('ddw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+      <div id="ddw-8" class="prob-q" data-a="2.1" data-b="2.6" data-c="1.9" data-qtext="리본 세 개의 길이가 각각 2.1m, 2.6m, 1.9m입니다. 이 리본들의 평균 길이는 몇 m인가요?" data-solfn="ddwSol8">리본 세 개의 길이가 각각 2.1m, 2.6m, 1.9m입니다. 이 리본들의 평균 길이는 몇 m인가요?<br><button class="havruta-show-btn" onclick="ddwSol8('ddw-8')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="ddwGen8('ddw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+      <div id="ddw-9" class="prob-q" data-a="1.68" data-b="0.24" data-qtext="물 1.68L를 0.24L짜리 병에 나누어 담으면 몇 병이 필요한가요?" data-solfn="ddwSol9">물 1.68L를 0.24L짜리 병에 나누어 담으면 몇 병이 필요한가요?<br><button class="havruta-show-btn" onclick="ddwSol9('ddw-9')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="ddwGen9('ddw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+      <div id="ddw-10" class="prob-q" data-w="6" data-area="15.6" data-qtext="가로가 6m이고 넓이가 15.6㎡인 직사각형 모양의 화단이 있습니다. 세로는 몇 m인가요?" data-solfn="ddwSol10">가로가 6m이고 넓이가 15.6㎡인 직사각형 모양의 화단이 있습니다. 세로는 몇 m인가요?<br><button class="havruta-show-btn" onclick="ddwSol10('ddw-10')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="ddwGen10('ddw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 5.4÷2를 계산했는데 몫은 2, 나머지는 14가 나왔어요!</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>어? 나머지가 14라고요? 5.4에서 4를 뺐는데 어떻게 14가 나와요?</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>세로셈으로 54÷2를 계산하듯이 하다 보니, 나머지 자리에서 소수점을 깜빡한 것 같아요.</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>그러면 원래대로 생각해봐요. 2m씩 2도막을 자르면 2×2=4m를 쓴 거고, 남는 철사는 5.4-4니까...</div></div>
+    <div class="fb-diagram">5.4m를 2m씩 자르면: 2m×2도막=4m 사용<br>남는 양 = 5.4-4 = <strong style="color:#3fb950">1.4m</strong> (14m 아님!)<span class="cap">나머지는 원래 나누어지는 수(5.4)와 같은 단위로 표현해야 해요</span></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 나머지는 1.4m예요. 세로셈으로 계산할 때 자연수처럼 54÷2를 하면 몫24, 나머지0이 나오는데, 이건 5.4를 10배(54)한 상태에서 계산한 거예요. 그래서 나머지도 원래대로 10으로 나누어(÷10) 소수점을 되돌려야 해요.</div></div>
+    <div class="story-line"><div class="story-avatar">민준</div><div class="story-bubble"><span class="story-name">민준</span>아! 몫은 그대로 두고, 나머지만 원래 자리로 되돌려야 하는 거네요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! 몫(2도막)은 "몇 번 나눴는지"를 세는 거라 자연수 그대로지만, 나머지(1.4m)는 "원래 수에서 아직 안 나눈 양"이라서 처음 수(5.4)의 소수점 자리를 그대로 따라야 해요. 검산할 때는 (몫×나누는 수)+나머지 = 2×2+1.4 = 5.4로 원래 수가 맞는지 확인하면 실수를 바로 잡을 수 있어요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 소수의 나눗셈에서 나머지는 몫과 다른 역할이에요 — 몫은 자연수 그대로 계산하지만, 나머지는 원래 나누어지는 수와 같은 소수점 자리로 나타내야 해요. 검산(몫×나누는 수+나머지=나누어지는 수)으로 항상 확인하는 습관을 들이면 좋아요.</div>
+  `}
+];
+CV_DATA['e6decdiv'] = CV_DATA_E6DECDIV;
+function ddwGen1(id){
+  var n = 2+Math.floor(Math.random()*7);
+  var aT = 1+Math.floor(Math.random()*12);
+  var LT = aT*n;
+  var L = LT/10;
+  var el = document.getElementById(id);
+  el.setAttribute('data-l', L); el.setAttribute('data-n', n);
+  rgwSetQuestion(el, '리본 '+L+'m를 '+n+'명이 똑같이 나누어 가지면 한 명은 몇 m씩 가지나요?', 'ddwSol1');
+}
+function ddwSol1(id){
+  var el = document.getElementById(id);
+  var L = +el.getAttribute('data-l'), n = +el.getAttribute('data-n');
+  var LT = Math.round(L*10);
+  var aT = LT/n;
+  var ans = dmwFmt(aT/10);
+  var diagram = '<div class="fb-diagram">'+LT+'÷'+n+'='+aT+' (자연수처럼 계산) → 소수점 아래 1자리<br>'+L+'÷'+n+' = <strong style="color:#3fb950">'+ans+'m</strong></div>';
+  rgwRenderToggle(id, diagram, 'ddwSol1');
+}
+function ddwGen2(id){
+  var n = 3+Math.floor(Math.random()*7);
+  var aT = 1+Math.floor(Math.random()*9);
+  var WT = aT*n;
+  var W = WT/10;
+  var el = document.getElementById(id);
+  el.setAttribute('data-w', W); el.setAttribute('data-n', n);
+  rgwSetQuestion(el, '사탕 '+W+'kg을 '+n+'봉지에 똑같이 나누어 담으면 봉지 하나에 몇 kg씩 담게 되나요?', 'ddwSol2');
+}
+function ddwSol2(id){
+  var el = document.getElementById(id);
+  var W = +el.getAttribute('data-w'), n = +el.getAttribute('data-n');
+  var WT = Math.round(W*10);
+  var aT = WT/n;
+  var ans = dmwFmt(aT/10);
+  var diagram = '<div class="fb-diagram">'+WT+'÷'+n+'='+aT+' (자연수처럼 계산) → 소수점 아래 1자리<br>'+W+'÷'+n+' = <strong style="color:#3fb950">'+ans+'kg</strong></div>';
+  rgwRenderToggle(id, diagram, 'ddwSol2');
+}
+function ddwGen3(id){
+  var bOptions = [2,4,5];
+  var b = bOptions[Math.floor(Math.random()*3)];
+  var q = 1+Math.floor(Math.random()*4);
+  var r = 1+Math.floor(Math.random()*(b-1));
+  var a = b*q+r;
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b);
+  rgwSetQuestion(el, '빵 '+a+'개를 '+b+'명이 똑같이 나누어 먹으면 한 명은 몇 개씩 먹게 되나요?', 'ddwSol3');
+}
+function ddwSol3(id){
+  var el = document.getElementById(id);
+  var a = +el.getAttribute('data-a'), b = +el.getAttribute('data-b');
+  var ans = dmwFmt(a/b);
+  var diagram = '<div class="fb-diagram">'+a+'÷'+b+'는 나누어떨어지지 않아요 → 나머지에 0을 이어 붙여 계속 나누기<br>'+a+'÷'+b+' = <strong style="color:#3fb950">'+ans+'개</strong></div>';
+  rgwRenderToggle(id, diagram, 'ddwSol3');
+}
+function ddwGen4(id){
+  var n = 2+Math.floor(Math.random()*5);
+  var Bc = 101+Math.floor(Math.random()*200);
+  var Ac = Bc*n;
+  var A = Ac/100, B = Bc/100;
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', A); el.setAttribute('data-b', B);
+  rgwSetQuestion(el, '철사 '+A+'m를 '+B+'m씩 자르면 몇 도막이 나올까요?', 'ddwSol4');
+}
+function ddwSol4(id){
+  var el = document.getElementById(id);
+  var A = +el.getAttribute('data-a'), B = +el.getAttribute('data-b');
+  var Ac = Math.round(A*100), Bc = Math.round(B*100);
+  var n = Ac/Bc;
+  var diagram = '<div class="fb-diagram">'+A+'×100='+Ac+', '+B+'×100='+Bc+'<br>'+Ac+'÷'+Bc+' = <strong style="color:#3fb950">'+n+'도막</strong></div>';
+  rgwRenderToggle(id, diagram, 'ddwSol4');
+}
+function ddwGen5(id){
+  var kOdds = [1,3,5,7,9,11,13];
+  var k = kOdds[Math.floor(Math.random()*kOdds.length)];
+  var nEvens = [2,4,6,8];
+  var n = nEvens[Math.floor(Math.random()*nEvens.length)];
+  var B = k/2;
+  var A = (k*n)/2;
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', A); el.setAttribute('data-b', B);
+  rgwSetQuestion(el, '철사 '+A+'m를 '+B+'m씩 자르면 몇 도막이 나올까요?', 'ddwSol5');
+}
+function ddwSol5(id){
+  var el = document.getElementById(id);
+  var A = +el.getAttribute('data-a'), B = +el.getAttribute('data-b');
+  var At = Math.round(A*10), Bt = Math.round(B*10);
+  var n = At/Bt;
+  var diagram = '<div class="fb-diagram">'+A+'을(를) '+A+'.0으로 생각 → 둘 다 ×10<br>'+At+'÷'+Bt+' = <strong style="color:#3fb950">'+n+'도막</strong></div>';
+  rgwRenderToggle(id, diagram, 'ddwSol5');
+}
+function ddwGen6(id){
+  var yOptions = [3,6,7,9];
+  var y = yOptions[Math.floor(Math.random()*yOptions.length)];
+  var x = 10+Math.floor(Math.random()*40);
+  var el = document.getElementById(id);
+  el.setAttribute('data-x', x); el.setAttribute('data-y', y);
+  rgwSetQuestion(el, '리본 '+x+'m를 '+y+'명이 똑같이 나누어 가지려고 합니다. 한 명이 가지는 길이를 반올림하여 소수 둘째 자리까지 나타내면 몇 m인가요?', 'ddwSol6');
+}
+function ddwSol6(id){
+  var el = document.getElementById(id);
+  var x = +el.getAttribute('data-x'), y = +el.getAttribute('data-y');
+  var intPart = Math.floor(x/y);
+  var rem = x%y;
+  var r1 = rem*10; var d1 = Math.floor(r1/y); var rem1 = r1%y;
+  var r2 = rem1*10; var d2 = Math.floor(r2/y); var rem2 = r2%y;
+  var r3 = rem2*10; var d3 = Math.floor(r3/y);
+  var hundredths = intPart*100+d1*10+d2;
+  if(d3>=5) hundredths += 1;
+  var whole = Math.floor(hundredths/100);
+  var frac2 = hundredths%100;
+  var ans = whole+'.'+(frac2<10?'0'+frac2:frac2);
+  var diagram = '<div class="fb-diagram">'+x+'÷'+y+' = '+intPart+'.'+d1+d2+d3+'...<br>소수 셋째 자리('+d3+')를 보고 반올림 → <strong style="color:#3fb950">'+ans+'m</strong></div>';
+  rgwRenderToggle(id, diagram, 'ddwSol6');
+}
+function ddwGen7(id){
+  var b = 2+Math.floor(Math.random()*5);
+  var q = 1+Math.floor(Math.random()*5);
+  var remT = 1+Math.floor(Math.random()*(b*10-1));
+  var At = q*b*10+remT;
+  var a = At/10;
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b);
+  rgwSetQuestion(el, '철사 '+a+'m를 '+b+'m씩 잘라 나누어 주려고 합니다. 몇 도막을 나누어 줄 수 있고, 남는 철사는 몇 m인가요?', 'ddwSol7');
+}
+function ddwSol7(id){
+  var el = document.getElementById(id);
+  var a = +el.getAttribute('data-a'), b = +el.getAttribute('data-b');
+  var q = Math.floor(a/b);
+  var used = q*b;
+  var remainder = dmwFmt(a-used);
+  var diagram = '<div class="fb-diagram">'+b+'m×'+q+'도막='+used+'m 사용<br>남는 철사 = '+a+'-'+used+' = <strong style="color:#3fb950">'+remainder+'m</strong> ('+q+'도막을 나누어 줄 수 있음)</div>';
+  rgwRenderToggle(id, diagram, 'ddwSol7');
+}
+function ddwGen8(id){
+  var avgT = 15+Math.floor(Math.random()*21);
+  var d1 = -5+Math.floor(Math.random()*11);
+  var d2 = -5+Math.floor(Math.random()*11);
+  var aT = avgT+d1, bT = avgT+d2, cT = avgT-d1-d2;
+  var a = aT/10, b = bT/10, c = cT/10;
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b); el.setAttribute('data-c', c);
+  rgwSetQuestion(el, '리본 세 개의 길이가 각각 '+a+'m, '+b+'m, '+c+'m입니다. 이 리본들의 평균 길이는 몇 m인가요?', 'ddwSol8');
+}
+function ddwSol8(id){
+  var el = document.getElementById(id);
+  var a = +el.getAttribute('data-a'), b = +el.getAttribute('data-b'), c = +el.getAttribute('data-c');
+  var sumT = Math.round(a*10)+Math.round(b*10)+Math.round(c*10);
+  var avgT = sumT/3;
+  var avg = dmwFmt(avgT/10);
+  var diagram = '<div class="fb-diagram">'+a+'+'+b+'+'+c+' = '+dmwFmt(sumT/10)+'m<br>'+dmwFmt(sumT/10)+'÷3 = <strong style="color:#3fb950">'+avg+'m</strong></div>';
+  rgwRenderToggle(id, diagram, 'ddwSol8');
+}
+function ddwGen9(id){
+  var n = 2+Math.floor(Math.random()*8);
+  var Bc = 5+Math.floor(Math.random()*45);
+  var Ac = Bc*n;
+  var A = Ac/100, B = Bc/100;
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', A); el.setAttribute('data-b', B);
+  rgwSetQuestion(el, '물 '+A+'L를 '+B+'L짜리 병에 나누어 담으면 몇 병이 필요한가요?', 'ddwSol9');
+}
+function ddwSol9(id){
+  var el = document.getElementById(id);
+  var A = +el.getAttribute('data-a'), B = +el.getAttribute('data-b');
+  var Ac = Math.round(A*100), Bc = Math.round(B*100);
+  var n = Ac/Bc;
+  var diagram = '<div class="fb-diagram">'+A+'×100='+Ac+', '+B+'×100='+Bc+'<br>'+Ac+'÷'+Bc+' = <strong style="color:#3fb950">'+n+'병</strong></div>';
+  rgwRenderToggle(id, diagram, 'ddwSol9');
+}
+function ddwGen10(id){
+  var hT = 5+Math.floor(Math.random()*36);
+  var w = 2+Math.floor(Math.random()*8);
+  var areaT = hT*w;
+  var area = areaT/10;
+  var el = document.getElementById(id);
+  el.setAttribute('data-w', w); el.setAttribute('data-area', area);
+  rgwSetQuestion(el, '가로가 '+w+'m이고 넓이가 '+area+'㎡인 직사각형 모양의 화단이 있습니다. 세로는 몇 m인가요?', 'ddwSol10');
+}
+function ddwSol10(id){
+  var el = document.getElementById(id);
+  var w = +el.getAttribute('data-w'), area = +el.getAttribute('data-area');
+  var h = dmwFmt(area/w);
+  var diagram = '<div class="fb-diagram">넓이÷가로 = 세로<br>'+area+'÷'+w+' = <strong style="color:#3fb950">'+h+'m</strong></div>';
+  rgwRenderToggle(id, diagram, 'ddwSol10');
+}
 const CV_DATA_E6CIRC = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
     <p>바퀴, 파이프, 동전, 피자 — 원은 자연과 인공물 어디에나 있어요. 자전거 바퀴가 한 바퀴 굴러가면 얼마나 이동하는지, 피자 한 판에 치즈가 얼마나 필요한지는 모두 원의 둘레와 넓이를 알아야 계산할 수 있어요.</p>
@@ -8798,6 +9186,9 @@ const FB_DIAGRAM_E6FRACDIV_H4 = '<div class="fb-diagram">그림으로 센 값: '
 const FB_DIAGRAM_E6PRISM_H1 = '<div class="fb-diagram">'+prismSvg(4,'#58a6ff')+'<span class="cap">위·아래 두 밑면이 평행하고 합동이라서, 옆면이 모두 반듯한 직사각형이 될 수 있어요</span></div>';
 const FB_DIAGRAM_E6PRISM_H2 = '<div class="fb-diagram">'+pyramidSvg(4,'#f0c040')+'<span class="cap">각뿔의 꼭짓점에서 밑면의 각 변으로 선을 그으면, 밑면이 몇각형이든 옆면은 항상 삼각형이 돼요</span></div>';
 const FB_DIAGRAM_E6PRISM_H3 = '<div class="fb-diagram">'+prismSvg(4,'#3fb950')+'밑면(사각형) 모서리 4개 × 2(위·아래) = 8개<br>옆면을 잇는 세로 모서리 4개<br>8+4 = <strong style="color:#3fb950">12개</strong> (= 밑면 변의 수 4 × 3)</div>';
+const FB_DIAGRAM_E6DECDIV_H1 = '<div class="fb-diagram">6.6 = 66/10<br>66÷3 = 22 (자연수처럼 계산)<br>소수점을 그대로 옮겨서 → <strong style="color:#3fb950">2.2</strong><span class="cap">분모(10)는 그대로 있고 분자(66)만 나뉘기 때문에, 소수점도 원래 자리 그대로예요</span></div>';
+const FB_DIAGRAM_E6DECDIV_H2 = '<div class="fb-diagram">4.26 ÷ 2.13<br>두 수 모두 ×100 → 426 ÷ 213 = <strong style="color:#3fb950">2</strong><span class="cap">분수 a/b에서 분자·분모에 같은 수를 곱해도 크기가 그대로이듯, 나눗셈도 두 수에 같은 수를 곱하면 몫이 그대로예요</span></div>';
+const FB_DIAGRAM_E6DECDIV_H3 = '<div class="fb-diagram">5.4m를 2m씩 자르면: 2m×2도막=4m 사용<br>남는 양 = 5.4-4 = <strong style="color:#3fb950">1.4m</strong> (14m 아님!)<span class="cap">나머지는 "아직 못 나눈 원래 양"이라서, 몫이 아니라 처음 수(5.4)의 소수점 자리를 따라야 해요</span></div>';
 const FB_DIAGRAM_E6PRISM_H4 = '<div class="fb-diagram"><div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">'
   + '<div>'+prismSvg(4,'#58a6ff')+'<div style="font-size:.72rem;color:#58a6ff">각기둥 — 밑면 2개(평행·합동), 옆면은 직사각형</div></div>'
   + '<div>'+pyramidSvg(4,'#f0c040')+'<div style="font-size:.72rem;color:#f0c040">각뿔 — 밑면 1개, 옆면은 모두 삼각형, 한 점(꼭짓점)에서 만남</div></div>'
@@ -8822,6 +9213,21 @@ const HAVRUTA_FB = {
     {ok:true, text:'맞아요! 각기둥은 밑면이 2개(평행·합동)이고 옆면이 직사각형인데, 각뿔은 밑면이 1개뿐이고 옆면이 모두 삼각형이며 한 점(꼭짓점)에 모여요.', diagram:FB_DIAGRAM_E6PRISM_H4},
     {ok:false, text:'전혀 다른 도형이에요! 밑면 개수(2개 vs 1개)와 옆면 모양(직사각형 vs 삼각형)이 서로 달라요.', diagram:FB_DIAGRAM_E6PRISM_H4},
     {ok:false, text:'반대로 알고 있어요! 각기둥의 옆면이 직사각형, 각뿔의 옆면이 삼각형이에요.', diagram:FB_DIAGRAM_E6PRISM_H4}
+  ],
+  'e6decdiv-h1': [
+    {ok:true, text:'맞아요! 소수를 분수로 생각하면(6.6=66/10) 분모(10)는 그대로 있고 분자(66)만 나누는 셈이라서, 몫의 소수점도 나누어지는 수와 같은 자리에 찍어요.', diagram:FB_DIAGRAM_E6DECDIV_H1},
+    {ok:false, text:'이유 없는 규칙이 아니에요! 소수를 분수로 바꿔보면 소수점이 왜 같은 자리에 찍히는지 설명할 수 있어요.', diagram:FB_DIAGRAM_E6DECDIV_H1},
+    {ok:false, text:'몫의 크기와는 상관없어요! 나누어지는 수를 분수로 바꿨을 때 분모가 그대로 남기 때문이에요.', diagram:FB_DIAGRAM_E6DECDIV_H1}
+  ],
+  'e6decdiv-h2': [
+    {ok:true, text:'맞아요! 분수의 분자·분모에 같은 수를 곱해도 크기가 그대로이듯, 나누어지는 수와 나누는 수에 똑같은 수를 곱하면 두 수의 비율이 그대로 유지되어서 몫이 변하지 않아요.', diagram:FB_DIAGRAM_E6DECDIV_H2},
+    {ok:false, text:'신기한 우연이 아니에요! 나누어지는 수와 나누는 수의 비율(크기 관계)이 똑같이 유지되기 때문에 몫이 같은 거예요.', diagram:FB_DIAGRAM_E6DECDIV_H2},
+    {ok:false, text:'둘 다 바꿔야 해요! 나누는 수만 바꾸면 두 수의 비율이 달라져서 몫도 달라져 버려요.', diagram:FB_DIAGRAM_E6DECDIV_H2}
+  ],
+  'e6decdiv-h3': [
+    {ok:true, text:'맞아요! 나머지는 "아직 다 나누지 못하고 남은 원래 양"이기 때문에, 몫과는 상관없이 처음 나누어지는 수와 같은 단위(소수점 자리)로 나타내야 해요.', diagram:FB_DIAGRAM_E6DECDIV_H3},
+    {ok:false, text:'나머지는 몫과 다른 역할이에요! 몫은 "몇 번 나눴는지", 나머지는 "원래 수에서 남은 양"이라서 자리를 옮기면 안 돼요.', diagram:FB_DIAGRAM_E6DECDIV_H3},
+    {ok:false, text:'나머지도 소수점을 정확히 지켜야 해요! 자연수로만 나타내면 원래 양보다 훨씬 큰 값처럼 보이는 실수가 생겨요.', diagram:FB_DIAGRAM_E6DECDIV_H3}
   ],
   'e6fracdiv-h1': [
     {ok:true, text:'맞아요! 케이크 2개를 3명이 나누면, 하나의 케이크를 3등분한 조각을 한 명이 2번(각 케이크에서 1조각씩) 갖는 셈이라, 나누는 수(3)가 분모, 나뉘는 수(2)가 분자가 돼요.', diagram:FB_DIAGRAM_E6FRACDIV_H1},
