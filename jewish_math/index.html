@@ -783,6 +783,22 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📊 여러 가지 그래프 <span class="badge">초6</span></div><div class="unit-sub">띠그래프·원그래프·그래프 해석하기</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e6graph">
+        <div class="cv-grid" id="cv-e6graph-grid"></div>
+        <div class="cv-detail" id="cv-e6graph-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e6graph')">← 목록으로</button>
+          <div id="cv-e6graph-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
       <div><div class="unit-title">📦 직육면체의 부피와 겉넓이 <span class="badge">초6</span></div><div class="unit-sub">부피(cm³)·겉넓이(cm²)·단위 변환</div></div>
       <span class="unit-arrow">▼</span>
     </div>
@@ -7772,6 +7788,351 @@ function ddwSol10(id){
   var diagram = '<div class="fb-diagram">넓이÷가로 = 세로<br>'+area+'÷'+w+' = <strong style="color:#3fb950">'+h+'m</strong></div>';
   rgwRenderToggle(id, diagram, 'ddwSol10');
 }
+const CV_DATA_E6GRAPH = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>6학년 학생들이 좋아하는 계절을 조사했더니 봄·여름·가을·겨울이 각각 몇 명씩 나왔어요. 그런데 "가장 인기 있는 계절이 전체의 몇 % 정도 되는지" 한눈에 보여주고 싶다면 어떤 그래프가 좋을까요?</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
+      ${pieChartHtml([{pct:25,color:'#f0c040',label:'봄'},{pct:30,color:'#58a6ff',label:'여름'},{pct:20,color:'#3fb950',label:'가을'},{pct:25,color:'#bc8cff',label:'겨울'}])}
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">막대그래프는 수량 비교엔 좋지만, "전체 중 몇 %"를 보여주기엔 부족해요</div>
+    </div>
+    <p style="margin-top:10px">전체를 100%로 놓고 각 부분의 비율을 보여주는 <strong>띠그래프</strong>와 <strong>원그래프</strong>를 배워볼게요.</p>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 자료를 표로 정리하고 백분율 구하기</div>
+    <ul><li>6학년 학생 40명이 좋아하는 계절을 조사했습니다. 봄10명, 여름12명, 가을8명, 겨울10명입니다. 각각 백분율로 나타내면?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <table style="width:100%;border-collapse:collapse;font-size:.76rem;text-align:center;border:1px solid #30363d">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">계절</td><td style="border-right:1px solid #30363d">봄</td><td style="border-right:1px solid #30363d">여름</td><td style="border-right:1px solid #30363d">가을</td><td>겨울</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">학생 수(명)</td><td style="border-right:1px solid #30363d">10</td><td style="border-right:1px solid #30363d">12</td><td style="border-right:1px solid #30363d">8</td><td>10</td></tr>
+        <tr><td style="padding:5px;border-right:1px solid #30363d;color:#8b949e">백분율(%)</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">25</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">30</td><td style="border-right:1px solid #30363d;color:#3fb950;font-weight:700">20</td><td style="color:#3fb950;font-weight:700">25</td></tr>
+      </table>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">백분율 = (해당 항목 수÷전체 수)×100 — 예: 봄 10÷40×100=25(%). 백분율의 합은 항상 100%예요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 띠그래프 알아보기</div>
+    <ul><li>위 자료를 띠 모양으로 나타낸 그래프를 보고 무엇을 알 수 있을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${stripBarHtml([{pct:25,color:'#f0c040',label:'봄'},{pct:30,color:'#58a6ff',label:'여름'},{pct:20,color:'#3fb950',label:'가을'},{pct:25,color:'#bc8cff',label:'겨울'}])}
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">띠 전체 길이가 <strong style="color:#3fb950">100%</strong>를 나타내고, 각 부분의 길이가 그 항목의 백분율을 나타내요 — 이런 그래프를 <strong>띠그래프</strong>라고 해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 띠그래프로 나타내기</div>
+    <ul><li>표를 보고 직접 띠그래프를 그린다면 어떤 순서로 해야 할까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.85rem;text-align:left">① 각 항목의 백분율 구하기(합계가 100%인지 확인)<br>② 백분율이 큰 항목부터 순서대로 띠를 나누기<br>③ 나눈 부분에 항목 이름과 백분율 쓰기</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">눈금 한 칸은 보통 1% 또는 5%를 나타내요 — 눈금을 세어가며 정확한 위치에 나누어요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 원그래프 알아보기</div>
+    <ul><li>같은 자료를 원 모양으로 나타내면 어떻게 보일까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      ${pieChartHtml([{pct:25,color:'#f0c040',label:'봄'},{pct:30,color:'#58a6ff',label:'여름'},{pct:20,color:'#3fb950',label:'가을'},{pct:25,color:'#bc8cff',label:'겨울'}])}
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">원 전체가 <strong style="color:#3fb950">100%(360°)</strong>를 나타내고, 각 부분의 중심각 크기가 그 항목의 비율을 나타내요 — 이런 그래프를 <strong>원그래프</strong>라고 해요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념5 — 원그래프로 나타내기</div>
+    <ul><li>봄(25%)의 중심각은 몇 도로 그려야 할까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.9rem">전체 360°가 100%이므로, 1%는 360÷100=3.6°</div>
+      <div style="font-size:.9rem;margin-top:6px">봄(25%)의 중심각 = 25×3.6 = <strong style="color:#3fb950">90°</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">순서: ① 백분율 구하기 → ② 중심각 크기(백분율×3.6°) 계산 → ③ 큰 항목부터 순서대로 그리기</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념6 — 그래프 해석하기</div>
+    <ul><li>남학생 20명, 여학생 20명의 선호 계절을 각각 조사했더니, 남학생은 여름이 40%로 가장 많고 여학생은 봄이 35%로 가장 많았습니다. 무엇을 알 수 있을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.85rem">성별에 따라 좋아하는 계절의 비율이 다르다는 것을 알 수 있어요</div>
+      <div style="font-size:.9rem;margin-top:6px">실제 인원수도 계산 가능: 남학생 중 여름을 좋아하는 학생 = 20×0.4 = <strong style="color:#3fb950">8명</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">그래프를 해석할 때는 비율(%)뿐 아니라, 필요하면 전체 인원을 곱해 실제 수량까지 구해볼 수 있어요</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념7 — 어떤 그래프가 좋을까?</div>
+    <ul><li>막대그래프·꺾은선그래프·띠그래프·원그래프는 각각 언제 쓰면 좋을까요?</li></ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px">
+        <div>${barChartHtml([{val:15,label:'봄'},{val:22,label:'여름'},{val:12,label:'가을'},{val:8,label:'겨울'}],80)}<div style="font-size:.66rem;color:#8b949e;margin-top:4px">막대그래프</div></div>
+        <div>${lineChartHtml([{val:5,label:'3월'},{val:12,label:'4월'},{val:9,label:'5월'},{val:18,label:'6월'}],140,80)}<div style="font-size:.66rem;color:#8b949e;margin-top:4px">꺾은선그래프</div></div>
+        <div>${pieChartHtml([{pct:25,color:'#f0c040',label:'봄'},{pct:30,color:'#58a6ff',label:'여름'},{pct:20,color:'#3fb950',label:'가을'},{pct:25,color:'#bc8cff',label:'겨울'}],90)}<div style="font-size:.66rem;color:#8b949e;margin-top:4px">띠·원그래프</div></div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:.76rem;text-align:center;border:1px solid #30363d">
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:6px;border-right:1px solid #30363d;color:#8b949e">그래프</td><td>잘 보여주는 것</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:6px;border-right:1px solid #30363d">막대그래프</td><td>항목별 수량 비교</td></tr>
+        <tr style="border-bottom:1px solid #30363d"><td style="padding:6px;border-right:1px solid #30363d">꺾은선그래프</td><td>시간에 따른 변화(추이)</td></tr>
+        <tr><td style="padding:6px;border-right:1px solid #30363d">띠·원그래프</td><td style="color:#3fb950;font-weight:700">전체에 대한 각 부분의 비율(%)</td></tr>
+      </table>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">같은 자료라도 무엇을 강조하고 싶은지에 따라 알맞은 그래프를 골라야 해요</div>
+    </div>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 왜 막대그래프나 꺾은선그래프 대신, 띠그래프나 원그래프를 따로 배울까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6graph-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6graph-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6graph-h1',0,this)">막대·꺾은선그래프는 수량이나 변화를 보기 좋고, 띠·원그래프는 전체를 100%로 봤을 때 각 부분이 차지하는 비율을 한눈에 비교하기 좋아요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6graph-h1',1,this)">그냥 취향 차이라서 아무거나 써도 상관없어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6graph-h1',2,this)">막대그래프로도 비율을 충분히 잘 나타낼 수 있어서 굳이 다른 그래프가 필요 없어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6graph-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 띠그래프에서 각 부분의 길이는 무엇을 나타낼까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6graph-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6graph-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6graph-h2',0,this)">전체 길이를 100%로 놓고, 각 항목이 차지하는 비율(백분율)만큼 길이를 나누어 나타내요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6graph-h2',1,this)">그 항목의 실제 인원수를 그대로 나타내요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6graph-h2',2,this)">조사한 순서대로 나열한 것뿐이에요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6graph-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 원그래프에서 각 부분의 중심각의 크기는 어떻게 구할까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6graph-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e6graph-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e6graph-h3',0,this)">원 전체 360°가 100%에 해당하므로, 그 항목의 백분율×3.6°로 구해요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6graph-h3',1,this)">360을 항목 수로 나누면 돼요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e6graph-h3',2,this)">그냥 눈대중으로 크기 순서에 맞게 나누면 돼요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e6graph-h3"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제: 학생 30명 중 6명이 강아지를 키웁니다. 강아지를 키우는 학생은 전체의 몇 %인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6graph-p1',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6graph-p1">
+        <div class="sol"><strong>풀이:</strong> 6÷30×100 = <strong style="color:#3fb950">20%</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 어느 반 학생 25명을 조사한 띠그래프에서 축구를 좋아하는 학생이 전체의 40%였습니다. 축구를 좋아하는 학생은 몇 명인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6graph-p2',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6graph-p2">
+        <div class="sol"><strong>풀이:</strong> 25×0.4 = <strong style="color:#3fb950">10명</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 원그래프에서 어떤 항목이 전체의 15%를 차지합니다. 이 항목의 중심각의 크기는 몇 도인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6graph-p3',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6graph-p3">
+        <div class="sol"><strong>풀이:</strong> 15×3.6 = <strong style="color:#3fb950">54°</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제: 원그래프에서 A항목의 중심각은 72°, B항목의 중심각은 108°입니다. A항목과 B항목의 백분율의 합은 전체의 몇 %인가요?</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e6graph-p4',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e6graph-p4">
+        <div class="sol"><strong>풀이:</strong> 72÷3.6=20(%), 108÷3.6=30(%) → 20+30 = <strong style="color:#3fb950">50%</strong></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <p>지금까지 배운 띠그래프·원그래프를 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
+      <div id="grw-1" class="prob-q" data-t="20" data-part="9" data-pct="45" data-qtext="6학년 학생 20명 중 안경을 쓴 학생이 9명입니다. 안경을 쓴 학생은 전체의 몇 %인가요?" data-solfn="grwSol1">6학년 학생 20명 중 안경을 쓴 학생이 9명입니다. 안경을 쓴 학생은 전체의 몇 %인가요?<br><button class="havruta-show-btn" onclick="grwSol1('grw-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="grwGen1('grw-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2</div>
+      <div id="grw-2" class="prob-q" data-t="25" data-pct="32" data-part="8" data-qtext="전체 학생 25명을 대상으로 좋아하는 운동을 조사한 띠그래프에서 축구를 좋아하는 학생이 전체의 32%였습니다. 축구를 좋아하는 학생은 몇 명인가요?" data-solfn="grwSol2">전체 학생 25명을 대상으로 좋아하는 운동을 조사한 띠그래프에서 축구를 좋아하는 학생이 전체의 32%였습니다. 축구를 좋아하는 학생은 몇 명인가요?<br><button class="havruta-show-btn" onclick="grwSol2('grw-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="grwGen2('grw-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3</div>
+      <div id="grw-3" class="prob-q" data-pct="35" data-angle="126" data-qtext="어떤 항목이 원그래프에서 전체의 35%를 차지합니다. 이 항목의 중심각의 크기는 몇 도인가요?" data-solfn="grwSol3">어떤 항목이 원그래프에서 전체의 35%를 차지합니다. 이 항목의 중심각의 크기는 몇 도인가요?<br><button class="havruta-show-btn" onclick="grwSol3('grw-3')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="grwGen3('grw-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4</div>
+      <div id="grw-4" class="prob-q" data-angle="252" data-pct="70" data-qtext="원그래프에서 어떤 항목의 중심각이 252°입니다. 이 항목은 전체의 몇 %인가요?" data-solfn="grwSol4">원그래프에서 어떤 항목의 중심각이 252°입니다. 이 항목은 전체의 몇 %인가요?<br><button class="havruta-show-btn" onclick="grwSol4('grw-4')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="grwGen4('grw-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5</div>
+      <div id="grw-5" class="prob-q" data-a="45" data-b="15" data-qtext="어떤 자료의 원그래프에서 A항목은 전체의 45%, B항목은 전체의 15%입니다. A항목은 B항목의 몇 배인가요?" data-solfn="grwSol5">어떤 자료의 원그래프에서 A항목은 전체의 45%, B항목은 전체의 15%입니다. A항목은 B항목의 몇 배인가요?<br><button class="havruta-show-btn" onclick="grwSol5('grw-5')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="grwGen5('grw-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6</div>
+      <div id="grw-6" class="prob-q" data-part="17" data-pct="34" data-t="50" data-qtext="어느 학년 학생들을 조사했더니 강아지를 좋아하는 학생이 17명이었고, 이는 전체의 34%였습니다. 이 학년 전체 학생은 몇 명인가요?" data-solfn="grwSol6">어느 학년 학생들을 조사했더니 강아지를 좋아하는 학생이 17명이었고, 이는 전체의 34%였습니다. 이 학년 전체 학생은 몇 명인가요?<br><button class="havruta-show-btn" onclick="grwSol6('grw-6')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="grwGen6('grw-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7</div>
+      <div id="grw-7" class="prob-q" data-a="15" data-b="20" data-c="10" data-qtext="어느 자료를 조사했더니 A항목 15%, B항목 20%, C항목 10%였습니다. D항목은 전체의 몇 %인가요? (A+B+C+D=100%)" data-solfn="grwSol7">어느 자료를 조사했더니 A항목 15%, B항목 20%, C항목 10%였습니다. D항목은 전체의 몇 %인가요? (A+B+C+D=100%)<br><button class="havruta-show-btn" onclick="grwSol7('grw-7')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="grwGen7('grw-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8</div>
+      <div id="grw-8" class="prob-q" data-m="40" data-f="25" data-qtext="어느 학년의 남학생 중 40%, 여학생 중 25%가 축구를 좋아합니다. 남학생이 여학생보다 몇 %P 더 많은가요?" data-solfn="grwSol8">어느 학년의 남학생 중 40%, 여학생 중 25%가 축구를 좋아합니다. 남학생이 여학생보다 몇 %P 더 많은가요?<br><button class="havruta-show-btn" onclick="grwSol8('grw-8')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="grwGen8('grw-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9</div>
+      <div id="grw-9" class="prob-q" data-qtext="다음 중 상황에 알맞은 그래프를 골라보세요. ① 우리 마을의 월별 기온 변화 ② 우리 반 학생들의 혈액형별 비율(전체 대비) ③ 학년별 학생 수 비교" data-solfn="grwSol9">다음 중 상황에 알맞은 그래프를 골라보세요.<br>① 우리 마을의 월별 기온 변화<br>② 우리 반 학생들의 혈액형별 비율(전체 대비)<br>③ 학년별 학생 수 비교<br><button class="havruta-show-btn" onclick="grwSol9('grw-9')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="grwGen9('grw-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10</div>
+      <div id="grw-10" class="prob-q" data-anglea="72" data-angleb="108" data-qtext="어느 자료의 원그래프에서 A항목의 중심각은 72°, B항목의 중심각은 108°입니다. 두 항목의 백분율의 합은 전체의 몇 %인가요? 또, 두 항목을 제외한 나머지는 몇 %인가요?" data-solfn="grwSol10">어느 자료의 원그래프에서 A항목의 중심각은 72°, B항목의 중심각은 108°입니다. 두 항목의 백분율의 합은 전체의 몇 %인가요? 또, 두 항목을 제외한 나머지는 몇 %인가요?<br><button class="havruta-show-btn" onclick="grwSol10('grw-10')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="grwGen10('grw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 원그래프에서 A항목이 B항목보다 중심각이 2배 크면, A가 B보다 학생 수도 항상 2배 많은 거죠?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>어? 그런데 A항목은 6학년 원그래프, B항목은 5학년 원그래프에서 온 거라면 어떨까요? 두 그래프의 "전체"가 서로 다른 학년이잖아요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>아! 6학년이 40명이고 5학년이 20명이면, 같은 비율(%)이라도 실제 인원수는 다를 수 있겠네요.</div></div>
+    <div class="fb-diagram">6학년(40명) 여름 30% → 40×0.3=12명<br>5학년(20명) 여름 30% → 20×0.3=<strong style="color:#3fb950">6명</strong><span class="cap">같은 백분율(30%)이라도 전체 인원이 다르면 실제 인원수는 달라져요</span></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>그럼 민준이 말은 "같은 원그래프 안에서 비교할 때만" 맞는 거네요!</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 같은 원그래프(같은 전체) 안에서는 중심각(또는 백분율)의 비율이 곧 실제 수량의 비율과 같아요. 하지만 서로 다른 두 자료(전체 인원이 다른 두 그래프)를 비교할 때는, 백분율만 보지 말고 "전체가 몇 명인지"까지 함께 확인해야 실제 인원수를 정확히 비교할 수 있어요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 같은 그래프 안에서는 중심각(백분율)의 비율이 실제 수량의 비율과 같지만, 전체 인원이 다른 두 그래프를 비교할 때는 백분율뿐 아니라 전체 인원수까지 함께 봐야 실제 수량을 정확히 비교할 수 있어요.</div>
+  `}
+];
+CV_DATA['e6graph'] = CV_DATA_E6GRAPH;
+function grwGen1(id){
+  var Ts = [20,25];
+  var T = Ts[Math.floor(Math.random()*2)];
+  var step = 100/T;
+  var k = 1+Math.floor(Math.random()*(T-1));
+  var part = k, pct = step*k;
+  var el = document.getElementById(id);
+  el.setAttribute('data-t', T); el.setAttribute('data-part', part);
+  rgwSetQuestion(el, '6학년 학생 '+T+'명 중 안경을 쓴 학생이 '+part+'명입니다. 안경을 쓴 학생은 전체의 몇 %인가요?', 'grwSol1');
+}
+function grwSol1(id){
+  var el = document.getElementById(id);
+  var T = +el.getAttribute('data-t'), part = +el.getAttribute('data-part');
+  var pct = part*100/T;
+  var diagram = '<div class="fb-diagram">'+part+'÷'+T+'×100 = <strong style="color:#3fb950">'+pct+'%</strong></div>';
+  rgwRenderToggle(id, diagram, 'grwSol1');
+}
+function grwGen2(id){
+  var Ts = [20,25];
+  var T = Ts[Math.floor(Math.random()*2)];
+  var step = 100/T;
+  var k = 1+Math.floor(Math.random()*(T-1));
+  var part = k, pct = step*k;
+  var el = document.getElementById(id);
+  el.setAttribute('data-t', T); el.setAttribute('data-pct', pct); el.setAttribute('data-part', part);
+  rgwSetQuestion(el, '전체 학생 '+T+'명을 대상으로 좋아하는 운동을 조사한 띠그래프에서 축구를 좋아하는 학생이 전체의 '+pct+'%였습니다. 축구를 좋아하는 학생은 몇 명인가요?', 'grwSol2');
+}
+function grwSol2(id){
+  var el = document.getElementById(id);
+  var T = +el.getAttribute('data-t'), pct = +el.getAttribute('data-pct');
+  var part = T*pct/100;
+  var diagram = '<div class="fb-diagram">'+T+'×'+pct+'% = '+T+'×'+(pct/100)+' = <strong style="color:#3fb950">'+part+'명</strong></div>';
+  rgwRenderToggle(id, diagram, 'grwSol2');
+}
+function grwGen3(id){
+  var pct = 5*(1+Math.floor(Math.random()*19));
+  var el = document.getElementById(id);
+  el.setAttribute('data-pct', pct);
+  rgwSetQuestion(el, '어떤 항목이 원그래프에서 전체의 '+pct+'%를 차지합니다. 이 항목의 중심각의 크기는 몇 도인가요?', 'grwSol3');
+}
+function grwSol3(id){
+  var el = document.getElementById(id);
+  var pct = +el.getAttribute('data-pct');
+  var angle = pct*3.6;
+  var diagram = '<div class="fb-diagram">'+pct+'×3.6 = <strong style="color:#3fb950">'+angle+'°</strong></div>';
+  rgwRenderToggle(id, diagram, 'grwSol3');
+}
+function grwGen4(id){
+  var pct = 5*(1+Math.floor(Math.random()*19));
+  var angle = pct*3.6;
+  var el = document.getElementById(id);
+  el.setAttribute('data-angle', angle);
+  rgwSetQuestion(el, '원그래프에서 어떤 항목의 중심각이 '+angle+'°입니다. 이 항목은 전체의 몇 %인가요?', 'grwSol4');
+}
+function grwSol4(id){
+  var el = document.getElementById(id);
+  var angle = +el.getAttribute('data-angle');
+  var pct = angle/3.6;
+  var diagram = '<div class="fb-diagram">'+angle+'÷3.6 = <strong style="color:#3fb950">'+pct+'%</strong></div>';
+  rgwRenderToggle(id, diagram, 'grwSol4');
+}
+function grwGen5(id){
+  var pctB = 5*(1+Math.floor(Math.random()*4));
+  var m = 2+Math.floor(Math.random()*3);
+  var pctA = pctB*m;
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', pctA); el.setAttribute('data-b', pctB);
+  rgwSetQuestion(el, '어떤 자료의 원그래프에서 A항목은 전체의 '+pctA+'%, B항목은 전체의 '+pctB+'%입니다. A항목은 B항목의 몇 배인가요?', 'grwSol5');
+}
+function grwSol5(id){
+  var el = document.getElementById(id);
+  var pctA = +el.getAttribute('data-a'), pctB = +el.getAttribute('data-b');
+  var m = pctA/pctB;
+  var diagram = '<div class="fb-diagram">'+pctA+'÷'+pctB+' = <strong style="color:#3fb950">'+m+'배</strong></div>';
+  rgwRenderToggle(id, diagram, 'grwSol5');
+}
+function grwGen6(id){
+  var Ts = [20,25,50];
+  var T = Ts[Math.floor(Math.random()*3)];
+  var step = 100/T;
+  var k = 1+Math.floor(Math.random()*(T-1));
+  var part = k, pct = step*k;
+  var el = document.getElementById(id);
+  el.setAttribute('data-part', part); el.setAttribute('data-pct', pct);
+  rgwSetQuestion(el, '어느 학년 학생들을 조사했더니 강아지를 좋아하는 학생이 '+part+'명이었고, 이는 전체의 '+pct+'%였습니다. 이 학년 전체 학생은 몇 명인가요?', 'grwSol6');
+}
+function grwSol6(id){
+  var el = document.getElementById(id);
+  var part = +el.getAttribute('data-part'), pct = +el.getAttribute('data-pct');
+  var T = part*100/pct;
+  var diagram = '<div class="fb-diagram">'+part+'÷'+pct+'×100 = <strong style="color:#3fb950">'+T+'명</strong></div>';
+  rgwRenderToggle(id, diagram, 'grwSol6');
+}
+function grwGen7(id){
+  var pctA = 5*(1+Math.floor(Math.random()*5));
+  var pctB = 5*(1+Math.floor(Math.random()*5));
+  var pctC = 5*(1+Math.floor(Math.random()*5));
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', pctA); el.setAttribute('data-b', pctB); el.setAttribute('data-c', pctC);
+  rgwSetQuestion(el, '어느 자료를 조사했더니 A항목 '+pctA+'%, B항목 '+pctB+'%, C항목 '+pctC+'%였습니다. D항목은 전체의 몇 %인가요? (A+B+C+D=100%)', 'grwSol7');
+}
+function grwSol7(id){
+  var el = document.getElementById(id);
+  var pctA = +el.getAttribute('data-a'), pctB = +el.getAttribute('data-b'), pctC = +el.getAttribute('data-c');
+  var pctD = 100-pctA-pctB-pctC;
+  var diagram = '<div class="fb-diagram">100-'+pctA+'-'+pctB+'-'+pctC+' = <strong style="color:#3fb950">'+pctD+'%</strong></div>';
+  rgwRenderToggle(id, diagram, 'grwSol7');
+}
+function grwGen8(id){
+  var pctF = 5*(1+Math.floor(Math.random()*10));
+  var diff = 5*(1+Math.floor(Math.random()*5));
+  var pctM = pctF+diff;
+  var el = document.getElementById(id);
+  el.setAttribute('data-m', pctM); el.setAttribute('data-f', pctF);
+  rgwSetQuestion(el, '어느 학년의 남학생 중 '+pctM+'%, 여학생 중 '+pctF+'%가 축구를 좋아합니다. 남학생이 여학생보다 몇 %P 더 많은가요?', 'grwSol8');
+}
+function grwSol8(id){
+  var el = document.getElementById(id);
+  var pctM = +el.getAttribute('data-m'), pctF = +el.getAttribute('data-f');
+  var diff = pctM-pctF;
+  var diagram = '<div class="fb-diagram">'+pctM+'-'+pctF+' = <strong style="color:#3fb950">'+diff+'%P</strong></div>';
+  rgwRenderToggle(id, diagram, 'grwSol8');
+}
+function grwGen9(id){
+  var el = document.getElementById(id);
+  rgwSetQuestion(el, '다음 중 상황에 알맞은 그래프를 골라보세요.<br>① 우리 마을의 월별 기온 변화<br>② 우리 반 학생들의 혈액형별 비율(전체 대비)<br>③ 학년별 학생 수 비교', 'grwSol9');
+}
+function grwSol9(id){
+  var diagram = '<div class="fb-diagram">① 시간에 따른 변화 → <strong style="color:#3fb950">꺾은선그래프</strong><br>② 전체에 대한 비율 → <strong style="color:#3fb950">띠그래프 또는 원그래프</strong><br>③ 수량 비교 → <strong style="color:#3fb950">막대그래프</strong></div>';
+  rgwRenderToggle(id, diagram, 'grwSol9');
+}
+function grwGen10(id){
+  var angleA = 18*(1+Math.floor(Math.random()*8));
+  var angleB = 18*(1+Math.floor(Math.random()*8));
+  var el = document.getElementById(id);
+  el.setAttribute('data-anglea', angleA); el.setAttribute('data-angleb', angleB);
+  rgwSetQuestion(el, '어느 자료의 원그래프에서 A항목의 중심각은 '+angleA+'°, B항목의 중심각은 '+angleB+'°입니다. 두 항목의 백분율의 합은 전체의 몇 %인가요? 또, 두 항목을 제외한 나머지는 몇 %인가요?', 'grwSol10');
+}
+function grwSol10(id){
+  var el = document.getElementById(id);
+  var angleA = +el.getAttribute('data-anglea'), angleB = +el.getAttribute('data-angleb');
+  var pctA = angleA/3.6, pctB = angleB/3.6;
+  var sumPct = pctA+pctB;
+  var restPct = 100-sumPct;
+  var diagram = '<div class="fb-diagram">'+angleA+'÷3.6='+pctA+'%, '+angleB+'÷3.6='+pctB+'%<br>합계 = <strong style="color:#3fb950">'+sumPct+'%</strong>, 나머지 = 100-'+sumPct+' = <strong style="color:#3fb950">'+restPct+'%</strong></div>';
+  rgwRenderToggle(id, diagram, 'grwSol10');
+}
 const CV_DATA_E6CIRC = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
     <p>바퀴, 파이프, 동전, 피자 — 원은 자연과 인공물 어디에나 있어요. 자전거 바퀴가 한 바퀴 굴러가면 얼마나 이동하는지, 피자 한 판에 치즈가 얼마나 필요한지는 모두 원의 둘레와 넓이를 알아야 계산할 수 있어요.</p>
@@ -9189,6 +9550,15 @@ const FB_DIAGRAM_E6PRISM_H3 = '<div class="fb-diagram">'+prismSvg(4,'#3fb950')+'
 const FB_DIAGRAM_E6DECDIV_H1 = '<div class="fb-diagram">6.6 = 66/10<br>66÷3 = 22 (자연수처럼 계산)<br>소수점을 그대로 옮겨서 → <strong style="color:#3fb950">2.2</strong><span class="cap">분모(10)는 그대로 있고 분자(66)만 나뉘기 때문에, 소수점도 원래 자리 그대로예요</span></div>';
 const FB_DIAGRAM_E6DECDIV_H2 = '<div class="fb-diagram">4.26 ÷ 2.13<br>두 수 모두 ×100 → 426 ÷ 213 = <strong style="color:#3fb950">2</strong><span class="cap">분수 a/b에서 분자·분모에 같은 수를 곱해도 크기가 그대로이듯, 나눗셈도 두 수에 같은 수를 곱하면 몫이 그대로예요</span></div>';
 const FB_DIAGRAM_E6DECDIV_H3 = '<div class="fb-diagram">5.4m를 2m씩 자르면: 2m×2도막=4m 사용<br>남는 양 = 5.4-4 = <strong style="color:#3fb950">1.4m</strong> (14m 아님!)<span class="cap">나머지는 "아직 못 나눈 원래 양"이라서, 몫이 아니라 처음 수(5.4)의 소수점 자리를 따라야 해요</span></div>';
+const FB_DIAGRAM_E6GRAPH_H1 = '<div class="fb-diagram">'+
+  '<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;align-items:flex-start">'+
+  '<div>'+barChartHtml([{val:15,label:'봄'},{val:22,label:'여름'},{val:12,label:'가을'},{val:8,label:'겨울'}],90)+'<div style="font-size:.68rem;color:#8b949e;margin-top:4px">막대그래프 — 막대 높이로 <strong style="color:#3fb950">수량</strong>을 비교</div></div>'+
+  '<div>'+lineChartHtml([{val:5,label:'3월'},{val:12,label:'4월'},{val:9,label:'5월'},{val:18,label:'6월'}],160,90)+'<div style="font-size:.68rem;color:#8b949e;margin-top:4px">꺾은선그래프 — 선의 기울기로 <strong style="color:#3fb950">시간에 따른 변화</strong>를 파악</div></div>'+
+  '</div>'+
+  '<div style="margin-top:12px;padding-top:10px;border-top:1px solid #30363d">'+pieChartHtml([{pct:25,color:'#f0c040',label:'봄'},{pct:30,color:'#58a6ff',label:'여름'},{pct:20,color:'#3fb950',label:'가을'},{pct:25,color:'#bc8cff',label:'겨울'}],100)+'<div style="font-size:.68rem;color:#8b949e;margin-top:4px">띠·원그래프 — <strong style="color:#3fb950">전체에 대한 각 부분의 비율(%)</strong>을 한눈에 비교</div></div>'+
+  '<span class="cap">같은 자료라도 무엇을 강조하고 싶은지(수량? 변화? 비율?)에 따라 알맞은 그래프가 달라져요</span></div>';
+const FB_DIAGRAM_E6GRAPH_H2 = '<div class="fb-diagram">'+stripBarHtml([{pct:25,color:'#f0c040',label:'봄'},{pct:30,color:'#58a6ff',label:'여름'},{pct:20,color:'#3fb950',label:'가을'},{pct:25,color:'#bc8cff',label:'겨울'}])+'<span class="cap">띠 전체 길이가 100%이고, 각 부분의 길이가 그 항목의 백분율이에요</span></div>';
+const FB_DIAGRAM_E6GRAPH_H3 = '<div class="fb-diagram">'+pieChartHtml([{pct:25,color:'#f0c040',label:'봄'},{pct:30,color:'#58a6ff',label:'여름'},{pct:20,color:'#3fb950',label:'가을'},{pct:25,color:'#bc8cff',label:'겨울'}])+'<span class="cap">원 전체 360°가 100%이므로, 백분율×3.6°가 각 부분의 중심각이에요(예: 25%→25×3.6=90°)</span></div>';
 const FB_DIAGRAM_E6PRISM_H4 = '<div class="fb-diagram"><div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">'
   + '<div>'+prismSvg(4,'#58a6ff')+'<div style="font-size:.72rem;color:#58a6ff">각기둥 — 밑면 2개(평행·합동), 옆면은 직사각형</div></div>'
   + '<div>'+pyramidSvg(4,'#f0c040')+'<div style="font-size:.72rem;color:#f0c040">각뿔 — 밑면 1개, 옆면은 모두 삼각형, 한 점(꼭짓점)에서 만남</div></div>'
@@ -9228,6 +9598,21 @@ const HAVRUTA_FB = {
     {ok:true, text:'맞아요! 나머지는 "아직 다 나누지 못하고 남은 원래 양"이기 때문에, 몫과는 상관없이 처음 나누어지는 수와 같은 단위(소수점 자리)로 나타내야 해요.', diagram:FB_DIAGRAM_E6DECDIV_H3},
     {ok:false, text:'나머지는 몫과 다른 역할이에요! 몫은 "몇 번 나눴는지", 나머지는 "원래 수에서 남은 양"이라서 자리를 옮기면 안 돼요.', diagram:FB_DIAGRAM_E6DECDIV_H3},
     {ok:false, text:'나머지도 소수점을 정확히 지켜야 해요! 자연수로만 나타내면 원래 양보다 훨씬 큰 값처럼 보이는 실수가 생겨요.', diagram:FB_DIAGRAM_E6DECDIV_H3}
+  ],
+  'e6graph-h1': [
+    {ok:true, text:'맞아요! 막대·꺾은선그래프는 수량이나 변화를 보기 좋고, 띠·원그래프는 전체를 100%로 봤을 때 각 부분이 차지하는 비율을 한눈에 비교하기 좋아요.', diagram:FB_DIAGRAM_E6GRAPH_H1},
+    {ok:false, text:'그냥 취향 차이가 아니에요! 무엇을 보여주고 싶은지(수량 비교 vs 비율 비교)에 따라 알맞은 그래프가 따로 있어요.', diagram:FB_DIAGRAM_E6GRAPH_H1},
+    {ok:false, text:'막대그래프로도 비율을 표현할 수는 있지만, 전체에 대한 부분의 비율을 한눈에 비교하기엔 띠·원그래프가 훨씬 직관적이에요.', diagram:FB_DIAGRAM_E6GRAPH_H1}
+  ],
+  'e6graph-h2': [
+    {ok:true, text:'맞아요! 띠그래프는 전체 길이를 100%로 놓고, 각 항목이 차지하는 비율(백분율)만큼 길이를 나누어 나타내요.', diagram:FB_DIAGRAM_E6GRAPH_H2},
+    {ok:false, text:'실제 인원수가 아니에요! 길이는 항상 전체를 100%로 봤을 때의 비율(백분율)을 나타내요.', diagram:FB_DIAGRAM_E6GRAPH_H2},
+    {ok:false, text:'등장 순서와는 상관없어요! 길이는 오직 그 항목이 차지하는 백분율에 따라 정해져요.', diagram:FB_DIAGRAM_E6GRAPH_H2}
+  ],
+  'e6graph-h3': [
+    {ok:true, text:'맞아요! 원 전체 360°가 100%에 해당하므로, 어떤 항목의 중심각 = 그 항목의 백분율 × 3.6°로 구해요.', diagram:FB_DIAGRAM_E6GRAPH_H3},
+    {ok:false, text:'360÷항목 수가 아니에요! 중심각은 항목 수가 아니라 각 항목의 백분율에 따라 달라져요.', diagram:FB_DIAGRAM_E6GRAPH_H3},
+    {ok:false, text:'그냥 크기 순서로 나누는 게 아니에요! 정확히 백분율×3.6°라는 계산으로 중심각의 크기가 정해져요.', diagram:FB_DIAGRAM_E6GRAPH_H3}
   ],
   'e6fracdiv-h1': [
     {ok:true, text:'맞아요! 케이크 2개를 3명이 나누면, 하나의 케이크를 3등분한 조각을 한 명이 2번(각 케이크에서 1조각씩) 갖는 셈이라, 나누는 수(3)가 분모, 나뉘는 수(2)가 분자가 돼요.', diagram:FB_DIAGRAM_E6FRACDIV_H1},
@@ -14965,6 +15350,66 @@ function fracGridHtml(num, den, filledColor){
     boxes += '<div style="width:18px;height:18px;background:'+color+';border:1px solid #0d1117;display:inline-block"></div>';
   }
   return '<div style="line-height:0;margin:6px 0">'+boxes+'</div>';
+}
+function pieChartHtml(categories, sizePx){
+  sizePx = sizePx || 140;
+  var gapDeg = 1.2;
+  var stops = [];
+  var cur = 0;
+  for(var i=0;i<categories.length;i++){
+    var seg = categories[i].pct*3.6;
+    var start = cur, end = cur+seg-gapDeg;
+    stops.push(categories[i].color+' '+start.toFixed(1)+'deg '+end.toFixed(1)+'deg');
+    stops.push('#0d1117 '+end.toFixed(1)+'deg '+(cur+seg).toFixed(1)+'deg');
+    cur += seg;
+  }
+  var legend = categories.map(function(c){
+    return '<div style="display:flex;align-items:center;gap:5px;font-size:.68rem;color:#c9d1d9;margin-top:3px"><span style="width:10px;height:10px;background:'+c.color+';border-radius:2px;display:inline-block"></span>'+c.label+' '+c.pct+'%</div>';
+  }).join('');
+  return '<div style="display:flex;align-items:center;gap:14px;justify-content:center;flex-wrap:wrap"><div style="width:'+sizePx+'px;height:'+sizePx+'px;border-radius:50%;background:conic-gradient('+stops.join(',')+');flex-shrink:0"></div><div style="text-align:left">'+legend+'</div></div>';
+}
+function stripBarHtml(categories, widthPx){
+  widthPx = widthPx || 280;
+  var segs = categories.map(function(c){
+    return '<div style="width:'+c.pct+'%;background:'+c.color+';display:flex;align-items:center;justify-content:center;font-size:.62rem;color:#0d1117;font-weight:700;min-width:0;overflow:hidden;white-space:nowrap">'+(c.pct>=8?c.pct+'%':'')+'</div>';
+  }).join('');
+  var legend = categories.map(function(c){
+    return '<div style="display:flex;align-items:center;gap:5px;font-size:.68rem;color:#c9d1d9"><span style="width:10px;height:10px;background:'+c.color+';border-radius:2px;display:inline-block"></span>'+c.label+' '+c.pct+'%</div>';
+  }).join('');
+  return '<div style="max-width:'+widthPx+'px;margin:0 auto"><div style="display:flex;height:32px;border-radius:6px;overflow:hidden;border:1px solid #30363d">'+segs+'</div><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px">'+legend+'</div></div>';
+}
+function barChartHtml(items, heightPx, color){
+  heightPx = heightPx || 100;
+  color = color || '#58a6ff';
+  var barAreaPx = heightPx - 34;
+  var maxVal = Math.max.apply(null, items.map(function(d){return d.val;}));
+  var bars = items.map(function(d){
+    var barH = Math.round((d.val/maxVal)*barAreaPx);
+    return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:'+heightPx+'px;flex:1">'+
+      '<div style="font-size:.6rem;color:#c9d1d9;margin-bottom:2px">'+d.val+'</div>'+
+      '<div style="width:26px;height:'+barH+'px;background:'+color+';border-radius:3px 3px 0 0"></div>'+
+      '<div style="font-size:.6rem;color:#8b949e;margin-top:4px">'+d.label+'</div></div>';
+  }).join('');
+  return '<div style="display:flex;align-items:flex-end;gap:6px;justify-content:center">'+bars+'</div>';
+}
+function lineChartHtml(items, widthPx, heightPx, color){
+  widthPx = widthPx || 220; heightPx = heightPx || 100; color = color || '#3fb950';
+  var maxVal = Math.max.apply(null, items.map(function(d){return d.val;}));
+  var minVal = Math.min.apply(null, items.map(function(d){return d.val;}));
+  var pad = 20;
+  var n = items.length;
+  var stepX = (widthPx-2*pad)/(n-1);
+  var range = maxVal-minVal || 1;
+  var points = items.map(function(d,i){
+    var x = pad+i*stepX;
+    var y = pad + (1-(d.val-minVal)/range)*(heightPx-2*pad);
+    return {x:x,y:y,val:d.val,label:d.label};
+  });
+  var polyPts = points.map(function(p){return p.x.toFixed(1)+','+p.y.toFixed(1);}).join(' ');
+  var dots = points.map(function(p){return '<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="3.5" fill="'+color+'"/>';}).join('');
+  var labels = points.map(function(p){return '<text x="'+p.x.toFixed(1)+'" y="'+(heightPx-4)+'" font-size="9" fill="#8b949e" text-anchor="middle">'+p.label+'</text>';}).join('');
+  return '<svg viewBox="0 0 '+widthPx+' '+heightPx+'" style="width:100%;max-width:'+widthPx+'px;height:auto;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">'+
+    '<polyline points="'+polyPts+'" fill="none" stroke="'+color+'" stroke-width="2"/>'+dots+labels+'</svg>';
 }
 function fwSetQuestion(el, qtext, solfn){
   el.setAttribute('data-qtext', qtext);
