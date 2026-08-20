@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>아고라매 수업 자료</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f0f1a;color:#e8e8f0;font-family:'Segoe UI',sans-serif;min-height:100vh;padding-bottom:60px}
+
+/* 헤더 */
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0f0f1a;z-index:10}
+.top-title{font-size:.85rem;font-weight:700;color:#a78bfa}
+.top-link{font-size:.72rem;color:rgba(255,255,255,.4);text-decoration:none;padding:5px 10px;border:1px solid rgba(255,255,255,.1);border-radius:8px}
+.top-link:hover{color:#e8e8f0;border-color:rgba(255,255,255,.3)}
+
+/* 일 선택 */
+.day-nav{display:flex;gap:6px;padding:14px 18px;overflow-x:auto;border-bottom:1px solid rgba(255,255,255,.06)}
+.day-btn{flex-shrink:0;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:none;color:rgba(255,255,255,.35);font-size:.72rem;cursor:pointer;transition:all .2s}
+.day-btn.active{background:rgba(167,139,250,.2);color:#a78bfa;border-color:rgba(167,139,250,.4)}
+.day-btn.locked{opacity:.3;cursor:default}
+
+/* 콘텐츠 */
+.content{max-width:640px;margin:0 auto;padding:24px 18px}
+
+/* 날짜 헤더 */
+.lesson-header{margin-bottom:28px}
+.lesson-week{font-size:.65rem;color:#a78bfa;letter-spacing:.8px;font-weight:700;margin-bottom:6px}
+.lesson-day{font-size:1.5rem;font-weight:800;color:#e8e8f0;line-height:1.3;margin-bottom:4px}
+.lesson-topic{font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:.3px}
+.lesson-time{display:inline-block;margin-top:10px;font-size:.68rem;color:rgba(255,255,255,.35);background:rgba(255,255,255,.05);padding:3px 10px;border-radius:10px}
+
+/* 섹션 */
+.section{margin-bottom:32px}
+.section-label{font-size:.65rem;font-weight:700;letter-spacing:.8px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:10px}
+.section-title{font-size:.95rem;font-weight:800;color:#e8e8f0;margin-bottom:12px}
+
+/* 탐구 문제 박스 */
+.hook-box{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:14px;padding:20px;font-size:.9rem;font-weight:600;color:#fbbf24;line-height:1.7;text-align:center}
+
+/* 개념 카드 */
+.concept-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;margin-bottom:10px}
+.concept-title{font-size:.78rem;font-weight:700;color:#a78bfa;margin-bottom:6px}
+.concept-body{font-size:.8rem;line-height:1.8;color:rgba(255,255,255,.8)}
+.concept-body strong{color:#e8e8f0}
+
+/* 활동 */
+.activity-box{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:12px;padding:16px;font-size:.8rem;line-height:1.8;color:rgba(255,255,255,.8)}
+
+/* 팁 섹션 */
+.tip-section{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;margin-top:8px}
+.tip-item{margin-bottom:20px}
+.tip-num{font-size:.65rem;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.5px;margin-bottom:4px}
+.tip-head{font-size:.82rem;font-weight:700;color:#60a5fa;margin-bottom:8px}
+.tip-body{font-size:.78rem;line-height:1.8;color:rgba(255,255,255,.75)}
+.tip-q{background:rgba(96,165,250,.08);border-left:3px solid #60a5fa;padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0;font-size:.82rem;color:#93c5fd;font-weight:600;line-height:1.6}
+.tip-goal{font-size:.72rem;color:rgba(255,255,255,.4);margin-top:6px;font-style:italic}
+
+/* 수업 지도안 */
+.guide-section{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:20px;margin-bottom:20px}
+.guide-step-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.guide-time-badge{font-size:.65rem;font-weight:700;background:rgba(251,113,133,.15);color:#fb7185;padding:3px 9px;border-radius:10px}
+.guide-step-title{font-size:.85rem;font-weight:700;color:#e8e8f0}
+.guide-body{font-size:.78rem;line-height:1.9;color:rgba(255,255,255,.78)}
+.guide-body .q{color:#fbbf24;font-weight:600}
+.guide-body .a{color:rgba(255,255,255,.5);font-style:italic}
+.guide-body .conclusion{margin-top:8px;background:rgba(167,139,250,.08);border-left:2px solid #a78bfa;padding:6px 10px;border-radius:0 6px 6px 0;font-size:.75rem}
+
+/* 토론 시나리오 */
+.scenario-box{background:rgba(251,191,36,.05);border:1px solid rgba(251,191,36,.15);border-radius:14px;padding:20px;margin-bottom:12px}
+.scenario-speaker{font-size:.72rem;font-weight:700;color:#fbbf24;margin-bottom:6px}
+.scenario-line{font-size:.8rem;line-height:1.8;color:rgba(255,255,255,.82)}
+.scenario-teacher{background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);border-radius:14px;padding:20px;margin-bottom:12px}
+.scenario-teacher .scenario-speaker{color:#a78bfa}
+
+/* 퀴즈 */
+.quiz-box{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:18px}
+.quiz-q{font-size:.85rem;font-weight:600;color:#fca5a5;margin-bottom:14px;line-height:1.7}
+.quiz-a{font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.8}
+.quiz-a strong{color:#34d399}
+
+/* 하단 링크 */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#0f0f1a;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;padding:10px 18px}
+.nav-btn{font-size:.75rem;color:rgba(255,255,255,.4);text-decoration:none;padding:6px 14px;border:1px solid rgba(255,255,255,.1);border-radius:8px}
+.nav-btn.primary{background:rgba(167,139,250,.15);color:#a78bfa;border-color:rgba(167,139,250,.3)}
+</style>
+</head>
+<body>
+
+<a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:999;background:rgba(10,10,26,.88);border:1px solid rgba(168,85,247,.4);color:#c084fc;text-decoration:none;border-radius:20px;padding:6px 15px;font-family:sans-serif;font-size:.8rem;backdrop-filter:blur(8px)">← 토로매쓰</a>
+
+<div class="top-bar">
+  <div class="top-title">🏛️ 아고라매 — 수업 자료</div>
+  <a href="index.html" class="top-link">📋 카드 포맷 →</a>
+</div>
+
+<div class="day-nav">
+  <button class="day-btn active" onclick="showDay(1)">Day 1</button>
+  <button class="day-btn" onclick="showDay(2)">Day 2</button>
+  <button class="day-btn" onclick="showDay(3)">Day 3</button>
+  <button class="day-btn" onclick="showDay(4)">Day 4</button>
+  <button class="day-btn locked">Day 5</button>
+  <button class="day-btn locked">Day 6</button>
+  <button class="day-btn locked">Day 7</button>
+  <button class="day-btn locked">Day 8</button>
+  <button class="day-btn locked">Day 9</button>
+  <button class="day-btn locked">Day 10</button>
+  <button class="day-btn locked">Day 11</button>
+  <button class="day-btn locked">Day 12</button>
+  <button class="day-btn locked">Day 13</button>
+  <button class="day-btn locked">Day 14</button>
+  <button class="day-btn locked">Day 15</button>
+  <button class="day-btn locked">Day 16</button>
+  <button class="day-btn locked">Day 17</button>
+  <button class="day-btn locked">Day 18</button>
+  <button class="day-btn locked">Day 19</button>
+  <button class="day-btn locked">Day 20</button>
+</div>
+
+<div class="content" id="day1-content">
+
+  <!-- ── 헤더 ── -->
+  <div class="lesson-header">
+    <div class="lesson-week">📅 1주차 · 수의 체계와 논리적 사고</div>
+    <div class="lesson-day">Day 1: 정수와 유리수, 수의 체계를 세우다</div>
+    <div class="lesson-topic">Topic: The Rigor of Number Systems</div>
+    <div class="lesson-time">45~60분</div>
+  </div>
+
+  <!-- ── 1. 탐구 문제 ── -->
+  <div class="section">
+    <div class="section-label">1 · The Opening Task</div>
+    <div class="section-title">오늘의 탐구 문제</div>
+    <div class="hook-box">
+      "우리는 왜 0보다 작은 수가 필요했을까?<br>
+      그리고 0.333...과 1/3은 정확히 같은 것일까?"
+    </div>
+    <p style="font-size:.72rem;color:rgba(255,255,255,.35);margin-top:10px;line-height:1.6">
+      학생들에게 바로 정의를 알려주기보다, 이 질문으로 시작합니다.<br>
+      필립스 스타일의 핵심은 '당연한 것을 당연하지 않게 바라보는 것'입니다.
+    </p>
+  </div>
+
+  <!-- ── 2. 핵심 개념 ── -->
+  <div class="section">
+    <div class="section-label">2 · Core Concepts</div>
+    <div class="section-title">핵심 개념</div>
+
+    <div class="concept-card">
+      <div class="concept-title">정수 (Integers, ℤ)</div>
+      <div class="concept-body">단순히 '자연수와 그 음수'가 아니라, <strong>방향성(Direction)</strong>과 상대적 크기를 가진 수로 정의합니다. 수직선 위에서의 <strong>'이동' 개념</strong>으로 접근합니다.</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-title">유리수 (Rational Numbers, ℚ)</div>
+      <div class="concept-body">핵심은 <strong>비(Ratio)</strong>입니다. 두 정수 a, b (단, b≠0)에 대해 <strong>a/b의 형태</strong>로 나타낼 수 있는 모든 수입니다.<br>
+      'Rational'은 '이성적'이라는 뜻도 있지만, 수학에서는 <strong>'Ratio(비)'</strong>에서 왔습니다.</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-title">밀집성 (Density Property)</div>
+      <div class="concept-body">어떤 서로 다른 두 유리수 사이에는 <strong>반드시 또 다른 유리수가 존재</strong>합니다.<br>
+      예: 0.1과 0.2 사이의 수는 무수히 많다 → 0.11, 0.111, 0.1111...</div>
+    </div>
+  </div>
+
+  <!-- ── 3. 심화 활동 ── -->
+  <div class="section">
+    <div class="section-label">3 · Activity</div>
+    <div class="section-title">심화 활동: 수의 지도 그리기</div>
+    <div class="activity-box">
+      단순한 분류표를 넘어, 각 수의 집합이 서로 어떻게 포함되는지 <strong>벤다이어그램으로 시각화</strong>하고, <strong>'정수는 유리수인가?'</strong>라는 명제에 대해 논리적으로 답변하는 훈련을 합니다.
+    </div>
+  </div>
+
+  <!-- ── 4. 필립스 스타일 팁 ── -->
+  <div class="tip-section">
+    <div class="section-label" style="margin-bottom:16px">💡 Instructional Insight · 필립스 스타일 활용 팁</div>
+
+    <div class="tip-item">
+      <div class="tip-num">① Harkness 토론 질문 (Harkness Discussion)</div>
+      <div class="tip-head">Harkness 토론 질문</div>
+      <div class="tip-q">"만약 세상에 유리수만 있고 무리수(Irrational Numbers)가 없다면, 우리가 측정할 수 없는 길이는 무엇이 있을까?"</div>
+      <div class="tip-goal">목표: 학생들 스스로 유리수의 한계를 느끼게 하고, 다음에 배울 실수의 개념을 궁금해하도록 유도합니다.</div>
+    </div>
+
+    <div class="tip-item">
+      <div class="tip-num">② REAL-WORLD CONNECTION</div>
+      <div class="tip-head">실생활 연결</div>
+      <div class="tip-body">
+        <strong>회계와 수의 체계:</strong> 기업의 재무제표에서 '부채(Debt)'를 음의 정수로 표현하는 방식, 혹은 주식 시장에서 소수점 넷째 자리까지 사용하는 유리수의 정밀함에 대해 이야기해 보세요.<br><br>
+        수학이 관념이 아닌 <strong>'약속'</strong>임을 깨닫게 합니다.
+      </div>
+    </div>
+
+    <div class="tip-item">
+      <div class="tip-num">③ EXIT TICKET</div>
+      <div class="tip-head">수업 마무리 퀴즈</div>
+      <div class="quiz-box">
+        <div class="quiz-q">"모든 정수는 유리수이지만, 모든 유리수는 정수가 아니다.<br>이 문장이 참인지 거짓인지 이유와 함께 설명하시오."</div>
+        <div class="quiz-a"><strong>정답: 참</strong><br>
+        정수 n = n/1 이므로 모든 정수는 유리수 (a/b 형태) ✓<br>
+        유리수 1/2 = 0.5는 정수가 아니다 ✓<br>
+        → 정수 ⊂ 유리수, 그러나 유리수 ⊄ 정수</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 수업 지도안 ── -->
+  <div class="section" style="margin-top:36px">
+    <div class="section-label">🍎 수업 지도안 · Lesson Plan</div>
+    <div class="section-title">원장님 수업 스크립트</div>
+
+    <div class="guide-section">
+      <div class="guide-step-head">
+        <span class="guide-time-badge">5분</span>
+        <span class="guide-step-title">도입: 생각 열기</span>
+      </div>
+      <div class="guide-body">
+        <span class="q">(교사 질문)</span> "여러분, 우리는 초등학교 때 '자연수'를 배웠어요. 그런데 왜 중학교에 오니 '음수(−)'와 '0'이 포함된 정수를 배워야 할까요? 만약 세상에 음수가 없다면 어떤 일이 벌어질까요?"<br><br>
+        <span class="a">학생들의 예상 답변: "빚을 표현 못 해요", "영하의 기온을 말 못 해요."</span>
+        <div class="conclusion">교사의 정리: "맞아요. 음수는 단순히 '작은 수'가 아니라, 기준(0)으로부터 <strong>'반대 방향'</strong>이라는 개념을 수학에 도입한 혁명적인 사건이에요."</div>
+      </div>
+    </div>
+
+    <div class="guide-section">
+      <div class="guide-step-head">
+        <span class="guide-time-badge">20분</span>
+        <span class="guide-step-title">전개: 유리수의 정의와 논리</span>
+      </div>
+      <div class="guide-body">
+        <strong>(1) 유리수의 진짜 의미</strong><br>
+        많은 학생이 유리수를 단순히 '분수'라고만 압니다. 하지만 그 어원을 짚어주면 수준이 달라집니다.<br><br>
+        설명: 'Rational'은 '이성적'이라는 뜻도 있지만, 수학에서는 <strong>'Ratio(비)'</strong>에서 왔습니다.<br>
+        정의: 유리수는 <strong>"두 정수의 비(a/b 형태, b≠0)로 나타낼 수 있는 수"</strong>를 말합니다.<br><br>
+        <strong>(2) '밀집성(Density)' 실험</strong><br>
+        <span class="q">질문:</span> "0.1과 0.2 사이에 유리수가 몇 개나 있을까?"<br>
+        유도: 0.11, 0.111, 0.1111... 끝없이 만들 수 있죠?
+        <div class="conclusion">"유리수는 수직선 위에서 아주 빽빽하게(Dense) 존재해. 아무리 좁은 틈이라도 그 사이엔 또 다른 유리수가 있지."</div>
+      </div>
+    </div>
+
+    <div class="guide-section">
+      <div class="guide-step-head">
+        <span class="guide-time-badge">15분</span>
+        <span class="guide-step-title">하크니스 토론 (Harkness Discussion)</span>
+      </div>
+      <div class="guide-body">
+        <strong>주제: 0.999…은 정말로 1인가?</strong><br>
+        이 질문은 미국 사립학교 수학 수업의 단골 소재입니다. 아이들이 서로 논쟁하게 두세요.<br><br>
+        <strong>논리 A (유리수적 접근):</strong> 1/3 = 0.333… → 양변에 3을 곱하면 3/3 = 0.999… → 3/3 = 1 → 따라서 0.999… = 1<br><br>
+        <strong>논리 B (직관적 접근):</strong> "아무리 9가 많아도 1보다는 아주 조금이라도 작지 않을까요?"
+        <div class="conclusion">교사의 개입: "유리수의 정의에 따르면, 두 수 사이에 다른 유리수가 존재하지 않는다면 그 두 수는 같은 수야. 0.999…와 1 사이에 다른 숫자를 넣을 수 있니?"</div>
+      </div>
+    </div>
+
+    <div class="guide-section">
+      <div class="guide-step-head">
+        <span class="guide-time-badge">5분</span>
+        <span class="guide-step-title">마무리: 실전 문제</span>
+      </div>
+      <div class="guide-body">
+        <strong>다음 중 유리수가 아닌 것을 고르고 이유를 설명하세요.</strong><br><br>
+        ① −5 &nbsp; ② 0 &nbsp; ③ 0.333… &nbsp; ④ π (3.141592…)
+        <div class="conclusion"><strong>정답 가이드:</strong> ①②③은 모두 유리수 (−5=−5/1, 0=0/1, 0.333…=1/3)<br>
+        <strong>π</strong>는 아무리 노력해도 정수/정수 꼴로 만들 수 없으므로 유리수가 아닙니다.<br>
+        → 이것이 내일(Day 4) 배울 내용의 복선입니다.</div>
+      </div>
+    </div>
+
+    <div class="guide-section">
+      <div class="guide-step-head">
+        <span class="guide-step-title">💡 원장님을 위한 '수업 컨트롤' 팁</span>
+      </div>
+      <div class="guide-body">
+        <strong>정답을 바로 주지 마세요:</strong> 아이들이 "모르겠어요"라고 하면, <span class="q">"틀려도 괜찮아. 네 논리가 뭐야?"</span>라고 다시 물어봐 주세요.<br><br>
+        <strong>시각 자료 활용:</strong> 칠판에 큰 수직선을 하나 그려두고, 숫자들이 어디에 위치하는지 직접 점을 찍게 하면 훨씬 이해가 빠릅니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 하크니스 시나리오 ── -->
+  <div class="section" style="margin-top:36px">
+    <div class="section-label">🗣️ 하크니스 토론 실전 시나리오</div>
+    <div class="section-title">"유리수는 완벽한가?"</div>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:16px;line-height:1.6">칠판에는 딱 한 문장만 적혀 있습니다:<br>
+    <strong style="color:rgba(255,255,255,.7)">"수직선 위의 모든 점은 유리수로 나타낼 수 있는가?"</strong></p>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">학생 A (발제자)</div>
+      <div class="scenario-line">"난 그렇다고 봐. 아까 우리가 배운 '밀집성(Density)' 때문이야. 어떤 두 유리수 사이를 아무리 현미경으로 확대해도 그 안엔 또 다른 유리수가 있잖아? 0.1과 0.11 사이에도 무수히 많은 분수가 있으니까, 결국 수직선은 유리수로 꽉 차 있는 거 아닐까?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">학생 B (반론)</div>
+      <div class="scenario-line">"A의 말도 일리가 있지만, '무수히 많다'는 게 '빈틈이 없다'는 뜻은 아니라고 생각해. 예를 들어, 피타고라스 정리를 써서 한 변이 1인 직사각형의 대각선 길이를 구하면 √2가 나오잖아. 이 길이는 분명히 수직선 위에 존재하는데, 이걸 정수/정수 꼴로 나타낼 수 있어? 난 없다고 들었어."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">학생 C (보완)</div>
+      <div class="scenario-line">"B의 말이 맞아. 만약 √2가 유리수가 아니라면, 수직선에는 유리수가 '채우지 못한 구멍'이 있다는 뜻이 돼. 유리수는 아주 촘촘하긴 하지만, 연속적(Continuous)이지는 않은 거지. 마치 체에 걸러진 가루처럼 말이야."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">학생 D (심화 질문)</div>
+      <div class="scenario-line">"잠깐, 그럼 우리가 아까 논쟁한 0.999… = 1 문제는 어떻게 돼? 0.999…는 유리수야? 만약 유리수라면, 1과의 사이에 '빈틈'이 없으니까 두 수는 같은 점이어야 해. 하지만 유리수가 아닌 무언가가 그 사이에 끼어들 여지가 있다면?"</div>
+    </div>
+
+    <div class="scenario-teacher">
+      <div class="scenario-speaker">교사 (중재 — 여기서 처음 개입)</div>
+      <div class="scenario-line">"흥미로운 지점이야. D의 질문을 이어가 보자. 만약 수직선에 유리수만 살고 있다면, 우리는 '원(Circle)의 둘레'를 정확히 수직선 위에 표시할 수 있을까? 원주율 π는 어떻게 설명할래?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">학생 E (결론 도출)</div>
+      <div class="scenario-line">"결국 유리수는 세상의 모든 길이를 설명하기엔 '부족한' 수 체계인 것 같아. 수직선을 완전히 메우기 위해서는 유리수 사이사이에 있는 '무리수'라는 접착제가 필요한 거지. 그래서 우리가 이걸 합쳐서 '실수(Real Number)'라고 부르는 게 아닐까?"</div>
+    </div>
+  </div>
+
+  <!-- ── 원장님 가이드 ── -->
+  <div class="section" style="margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="section-label">📝 원장님이 이 토론을 수업에 적용하는 법</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">① "Devil's Advocate" (악마의 대변인) 역할</div>
+      <div class="concept-body">아이들이 너무 쉽게 "맞아요"라고 하면, 반대 사례를 던지세요.<br>
+      <strong>"하지만 유리수는 무한히 많잖아? 무한히 많은데 어떻게 빈틈이 있을 수 있지? 이상하지 않아?"</strong></div>
+    </div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">② 하크니스 테이블(Harkness Table) 기록</div>
+      <div class="concept-body">토론하는 동안 누가 누구에게 질문했는지 선으로 연결하며 기록하세요. 수업 후 이 '대화 지도'를 보여주면 아이들은 자신의 참여도를 객관적으로 보게 됩니다.</div>
+    </div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">③ "So What?" (그래서 뭐?) 던지기</div>
+      <div class="concept-body"><strong>"결국 오늘 토론의 핵심은 이거야. 수학은 눈에 보이는 현상을 더 정밀하게 설명하기 위해 끊임없이 '수 체계'를 확장해온 역사라는 것. 유리수의 한계를 깨달은 여러분은 이제 고등 수학으로 갈 준비가 된 거야."</strong></div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-title">💡 실제 수업에서 아이들에게 줄 토론 수칙</div>
+      <div class="concept-body">
+        · 발언하기 전에 반드시 앞사람의 의견을 요약하거나 언급할 것<br>
+        &nbsp;&nbsp;<em style="color:rgba(255,255,255,.4)">(예: "B가 말한 √2 사례를 듣고 생각난 건데…")</em><br><br>
+        · 답을 맞히는 것이 목표가 아니라, <strong>'우리 모두의 이해도를 높이는 것'</strong>이 목표<br><br>
+        · 교사를 보지 말고 친구의 눈을 보고 말할 것
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3가지 팁 반영 확인 ── -->
+  <div class="section" style="margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="section-label">✅ 요청하신 3가지 팁 반영 확인</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">1. Problem-Based Learning (문제 기반 학습)</div>
+      <div class="concept-body">
+        <strong>반영 내용:</strong> 수업 시작 부분의 <strong>"0.333...과 1/3은 정확히 같은 것일까?"</strong>라는 질문입니다.<br><br>
+        <strong>효과:</strong> 단순히 "유리수는 분수다"라고 정의를 암기시키는 대신, 아이들이 이미 알고 있는 소수와 분수의 관계에 의문을 갖게 하여 스스로 논리를 세우게 유도했습니다.
+      </div>
+    </div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">2. 실생활 연결 (Real-world Connection)</div>
+      <div class="concept-body">
+        <strong>반영 내용:</strong> '회계와 수의 체계' 섹션입니다.<br><br>
+        <strong>효과:</strong> 음수를 단순한 계산 기호가 아니라 '부채(Debt)'라는 경제적 개념으로, 유리수를 주식 시장의 정밀한 수치로 연결했습니다. 수학이 교과서 밖 세상(금융)을 측정하는 필수 도구임을 보여줍니다.
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-title">3. Harkness Table 질문 (토론형 질문)</div>
+      <div class="concept-body">
+        <strong>반영 내용:</strong> 시나리오에 나온 <strong>"수직선 위의 모든 점은 유리수로 나타낼 수 있는가?"</strong>와 마무리 퀴즈의 <strong>"모든 정수는 유리수인가?"</strong>입니다.<br><br>
+        <strong>효과:</strong> "맞다/틀리다"라는 결과보다 <strong>"왜 그렇게 생각하니?"</strong>라는 과정을 묻습니다. 특히 시나리오 속 학생들의 대화처럼 친구의 논리적 허점을 찾거나 보완하는 과정을 유도하도록 설계되었습니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 교재 구성 레이아웃 제안 ── -->
+  <div class="section" style="margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="section-label">💡 원장님을 위한 교재 구성 레이아웃 제안</div>
+    <p style="font-size:.78rem;color:rgba(255,255,255,.55);margin-bottom:16px;line-height:1.7">매일 자료를 만드실 때, 아래와 같은 <strong style="color:#e8e8f0">'고정 틀'</strong>을 사용하면 원장님만의 브랜드가 담긴 수준 높은 교재가 됩니다.</p>
+    <table style="width:100%;border-collapse:collapse;font-size:.78rem">
+      <thead>
+        <tr>
+          <th style="text-align:left;padding:8px 12px;background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(255,255,255,.08);font-size:.7rem;letter-spacing:.5px">섹션 명칭</th>
+          <th style="text-align:left;padding:8px 12px;background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(255,255,255,.08);font-size:.7rem;letter-spacing:.5px">포함 내용</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.07);color:#fbbf24;font-weight:700">Hook (오늘의 화두)</td>
+          <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.78);line-height:1.6">아이들의 뒤통수를 치는 PBL 질문 (예: 0.999...=1?)</td>
+        </tr>
+        <tr style="background:rgba(255,255,255,.02)">
+          <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.07);color:#a78bfa;font-weight:700">Concept (개념의 뼈대)</td>
+          <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.78);line-height:1.6">수식 위주가 아닌, 원리와 정의 위주의 설명</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.07);color:#34d399;font-weight:700">Activity (탐구 활동)</td>
+          <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.78);line-height:1.6">수직선 그리기, 벤다이어그램 채우기 등 직접 하는 활동</td>
+        </tr>
+        <tr style="background:rgba(255,255,255,.02)">
+          <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.07);color:#60a5fa;font-weight:700">Harkness Talk (토론)</td>
+          <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.78);line-height:1.6">정답이 없는 열린 질문과 친구의 의견에 반박해보기</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.07);color:#fb7185;font-weight:700">Real-life (세상 연결)</td>
+          <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.78);line-height:1.6">이 개념이 건축, 코딩, 경제 어디에 쓰이는지 예시</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── Day 1 학생 배포용 요약 노트 ── -->
+  <div class="section" style="margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="section-label">📗 Day 1 · 학생 배포용 &amp; 수업 요약 노트</div>
+    <div class="section-title">정수와 유리수 — "수직선의 빈틈을 찾아서"</div>
+
+    <div class="hook-box" style="margin-bottom:16px;text-align:left">
+      <strong>1. 오늘의 도전 (PBL)</strong><br>
+      <span style="font-size:.85rem;font-weight:400;color:#fbbf24">질문: 0.999...와 1 사이에는 숫자가 존재할까? 만약 존재하지 않는다면, 두 수는 같은 수일까 다른 수일까?</span>
+    </div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">2. 핵심 개념 (Core Concept)</div>
+      <div class="concept-body">
+        <strong>유리수(Q):</strong> 'Ratio(비)'가 가능한 수. 즉, 정수/정수 꼴로 나타낼 수 있는 수.<br><br>
+        <strong>밀집성(Density):</strong> 어떤 두 유리수 사이에도 무수히 많은 유리수가 존재한다.
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-title">3. 하크네스 토론 (Harkness Discussion)</div>
+      <div class="concept-body">
+        <strong>주제:</strong> "수직선은 유리수만으로 완전히 채워질까?"<br><br>
+        <strong>생각해보기:</strong> 한 변의 길이가 1인 정사각형의 대각선 길이를 수직선에 옮기면, 그 지점은 유리수로 이름 붙일 수 있을까?
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 하크네스 토론 현장 (Joshua·Chloe·Leo·Sarah·Ethan) ── -->
+  <div class="section" style="margin-top:36px">
+    <div class="section-label">🎙️ 하크네스 토론 현장</div>
+    <div class="section-title">"수직선 위의 보이지 않는 구멍"</div>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:16px;line-height:1.6">
+      필립스 아카데미(Andover/Exeter) 중등 과정의 수학 수업은 <strong style="color:rgba(255,255,255,.6)">'하크네스 테이블(Harkness Table)'</strong>이라는 커다란 원탁에서 이루어집니다. 교사는 정답을 알려주는 사람이 아니라, 논의가 산으로 가지 않게 방향만 잡아주는 '퍼실리테이터' 역할을 합니다.<br><br>
+      <strong style="color:rgba(255,255,255,.55)">[설정]</strong> 인원: 학생 10명, 교사 1명 | 상황: 아이들은 어제 숙제로 "유리수(Q)만으로 수직선을 완전히 채울 수 있는가?"에 대해 고민해 왔습니다.
+    </p>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">조슈아(Joshua)</div>
+      <div class="scenario-line">"난 어제 수직선을 현미경으로 들여다보는 상상을 해봤어. 유리수의 밀집성(Density)을 생각하면, 아무리 작은 틈이라도 그 사이에 또 다른 분수가 있잖아? 그럼 결국 빈틈이 없어야 하는 거 아닐까?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">클로이(Chloe)</div>
+      <div class="scenario-line">"나도 처음엔 그렇게 생각했어. 그런데 중세 수학자들이 발견한 '무리수'는 어떻게 설명할 거야? 피타고라스 정리에 따르면 한 변이 1인 정사각형의 대각선 길이는 √2잖아. 컴파스로 그 대각선을 수직선에 내리면 분명히 어떤 지점에 점이 찍힐 텐데, 과연 그 점이 우리가 아는 '분수'일까?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">레오(Leo)</div>
+      <div class="scenario-line">"맞아, 클로이. 내가 찾아봤는데 √2는 절대로 정수의 비(a/b)로 나타낼 수 없대. 소수로 써도 끝없이 반복되지 않고 이어지거든. 그렇다면 조슈아의 말처럼 유리수가 '무수히 많긴' 하지만, 수직선 전체를 '연속적으로' 이어주지는 못한다는 뜻 아냐?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">조슈아</div>
+      <div class="scenario-line">"잠깐, 레오. '무수히 많은데 연속적이지 않다'는 게 논리적으로 가능해? 모래 알갱이가 무한히 많으면 결국 모래사장이 되는 거랑 비슷하잖아."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">사라(Sarah)</div>
+      <div class="scenario-line">"좋은 비유네. 하지만 수학에서는 달라. 유리수는 마치 모래알 같아서 아무리 많아도 그 사이사이에 미세한 구멍이 있는 거야. 그 구멍을 메우는 게 √2나 π 같은 무리수들인 거지. 유리수와 무리수를 다 합쳐서 '실수(Real Number)'라고 부르는 이유가 바로 그 구멍을 다 메웠기 때문 아닐까?"</div>
+    </div>
+
+    <div class="scenario-teacher">
+      <div class="scenario-speaker">교사 (지켜보다가 짧게 개입)</div>
+      <div class="scenario-line">"흥미롭구나. 그럼 사라의 말대로라면, 유리수(Q) 집합과 무리수 집합 중 어느 쪽의 '구멍'이 더 많을까? 아니면 둘 다 똑같이 무한할까?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">에단(Ethan)</div>
+      <div class="scenario-line">"와, 그건 생각 안 해봤는데... 유리수도 무한하고 무리수도 무한하지만, 왠지 무리수가 훨씬 더 많을 것 같아. 유리수는 우리가 이름을 붙일 수 있는 '규칙적인' 수들이지만, 무리수는 이름조차 붙일 수 없는 '무작위한' 수들이 수직선에 더 꽉 차 있을 것 같거든."</div>
+    </div>
+  </div>
+
+  <!-- ── 필립스 스타일 토론의 특징 ── -->
+  <div class="section" style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="section-label">🎯 원장님이 주목해야 할 '필립스 스타일' 토론의 특징</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">① 비유와 시각화</div>
+      <div class="concept-body">아이들은 추상적인 개념을 '현미경', '모래 알갱이', '컴파스' 같은 구체적인 이미지로 설명하려고 노력합니다.</div>
+    </div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">② 동료의 의견 인용</div>
+      <div class="concept-body">"조슈아의 말처럼", "클로이가 말한 √2는"처럼 서로의 이름을 부르며 논리를 쌓아 올립니다. (이것이 하크네스의 핵심입니다.)</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-title">③ 반론을 통한 개념 확장</div>
+      <div class="concept-body">"무수히 많은데 어떻게 연속적이지 않을 수 있어?"라는 본질적인 질문이 나오면서, 결국 '실수의 연속성'이라는 고등 개념까지 스스로 도달합니다.</div>
+    </div>
+  </div>
+
+  <!-- ── 수업 적용 전략 ── -->
+  <div class="tip-section" style="margin-top:28px">
+    <div class="section-label" style="margin-bottom:16px">💡 원장님의 수업 적용 전략</div>
+    <p style="font-size:.78rem;color:rgba(255,255,255,.55);margin-bottom:14px;line-height:1.7">아이들에게 이 시나리오를 들려주시거나, 비슷한 질문을 던질 때 <strong style="color:#e8e8f0">다음의 '추임새'</strong>만 넣어주셔도 수업의 격이 달라집니다.</p>
+
+    <div class="tip-q">"방금 ○○이가 말한 '모래알 비유'에 대해서 다른 의견 있는 사람?"</div>
+    <div class="tip-q">"우리가 어제 배운 유리수의 정의만 가지고 이 문제를 해결할 수 있을까?"</div>
+    <div class="tip-q">"정답이 중요한 게 아니라, 네가 그 결론에 도달한 '지도'를 그려서 설명해줘."</div>
+
+    <div class="concept-card" style="margin-top:14px">
+      <div class="concept-body">이런 방식의 수업은 원장님이 모든 답을 알지 못해도 괜찮습니다. 오히려 <strong>"나도 그 빈틈이 어디 있는지 궁금해. 우리 같이 찾아볼까?"</strong>라고 말씀하실 때 아이들은 더 열광하며 참여할 것입니다.</div>
+    </div>
+  </div>
+
+  <!-- ── Day 2 미리보기 ── -->
+  <div class="section" style="margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="section-label">🚀 내일 예고: Day 2 미리보기</div>
+    <div class="section-title">주제: 비율과 백분율의 실전 응용 (Ratios, Rates &amp; Percents)</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">PBL 질문</div>
+      <div class="concept-body">"할인율 20%에 추가 할인 10%를 하면 총 30% 할인일까?"</div>
+    </div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">실생활 연결</div>
+      <div class="concept-body">인플레이션과 이자율, 혹은 건축 설계도의 축척(Scale).</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-title">Harkness 질문</div>
+      <div class="concept-body">"비율(Ratio)과 분수(Fraction)는 같은 개념일까, 다른 개념일까?"</div>
+    </div>
+  </div>
+
+</div><!-- /day1-content -->
+
+<!-- ══ DAY 4 ══ -->
+<div class="content" id="day4-content" style="display:none">
+
+  <div class="lesson-header">
+    <div class="lesson-week">📅 1주차 · 수의 체계와 논리적 사고</div>
+    <div class="lesson-day">Day 4: 실수 체계와 무리수의 발견</div>
+    <div class="lesson-topic">Topic: The Real Number System &amp; Irrationals — "유리수의 빈틈을 찾아서"</div>
+    <div class="lesson-time">⏱ 70분</div>
+  </div>
+
+  <!-- ── 도입: PBL 질문 ── -->
+  <div class="section">
+    <div class="section-label">🎯 도입 · 생각 열기 (PBL 질문)</div>
+    <div class="hook-box">"여러분, 유리수가 수직선에 무수히 많다는 건 어제 배웠죠? 그럼 수직선 위에서 아무 곳이나 눈을 감고 점을 딱 찍었을 때, 그 점이 유리수일 확률이 높을까요, 아니면 우리가 모르는 다른 수일 확률이 높을까요?"</div>
+    <div class="concept-card" style="margin-top:12px">
+      <div class="concept-title">아이들의 예상 vs 반전</div>
+      <div class="concept-body">
+        아이들의 예상: "당연히 유리수죠!", "유리수가 꽉 차 있다면서요?"<br><br>
+        <strong>반전 메시지:</strong> "놀랍게도 유리수가 아닌 '무리수'일 확률이 압도적으로 높아요. 오늘 우리는 그 보이지 않는 주인공들을 만날 겁니다."
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 핵심 개념 ── -->
+  <div class="section">
+    <div class="section-label">📐 핵심 개념: 무리수(I)의 탄생</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">피타고라스의 비극</div>
+      <div class="concept-body">한 변이 1인 정사각형의 대각선(√2)은 아무리 노력해도 분수(a/b)로 나타낼 수 없었습니다. 당시 수학자들에게 이것은 '세상의 질서가 무너지는 사건'이었죠.</div>
+    </div>
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">정의</div>
+      <div class="concept-body">소수점 아래로 끝없이 이어지지만, 순환하지 않는 무한소수.</div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-title">실수(R)</div>
+      <div class="concept-body">유리수와 무리수를 모두 합쳐 비로소 수직선을 <strong>'연속적(Continuous)'</strong>으로 꽉 채운 수 체계.</div>
+    </div>
+  </div>
+
+  <!-- ── 하크네스 토론 ── -->
+  <div class="section">
+    <div class="section-label">🎙️ 하크네스 토론 현장: "이름 없는 수들의 습격"</div>
+    <div class="concept-card" style="margin-bottom:14px">
+      <div class="concept-title">상황 설정</div>
+      <div class="concept-body">아이들은 종이와 컴파스를 들고 한 변이 1인 정사각형을 그려 대각선을 수직선에 내려보았습니다.</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">레오(Leo)</div>
+      <div class="scenario-line">"직접 그려보니까 소름 돋아. 수직선 위에 분명히 점이 찍히는데, 이 길이를 숫자로 쓰려고 하면 1.4142135... 끝이 안 나. 이건 우리가 어제 배운 '비율(Ratio)'의 세계를 벗어난 거잖아?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">클로이(Chloe)</div>
+      <div class="scenario-line">"맞아. 만약 우리가 유리수만 알고 살았다면, 이 대각선의 길이는 '존재하지만 잴 수 없는 것'이 됐을 거야. 수직선에 아주 미세한 구멍이 뚫려 있는 셈이지."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">조슈아(Joshua)</div>
+      <div class="scenario-line">"그럼 우리가 아는 π도 마찬가지겠네? 원의 둘레를 지름으로 나누면 나오는 그 숫자도 끝이 없잖아. 세상에는 유리수보다 이런 '이름 없는 수'들이 더 많은 거 아닐까?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">소피아(Sophia)</div>
+      <div class="scenario-line">"선생님, 그럼 유리수는 '셀 수 있는' 느낌인데, 무리수는 '셀 수 없는' 안개 같은 느낌이에요. 수직선은 이 안개가 걷히면서 완성되는 건가요?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">교사</div>
+      <div class="scenario-line">"소피아, 아주 멋진 표현이야. 수학자 칸토어는 실제로 유리수보다 무리수가 훨씬 더 '거대한 무한'이라는 걸 증명했단다. 수직선은 유리수라는 점들과 무리수라는 안개가 합쳐져 빈틈없이 이어진 실선이 되는 거지."</div>
+    </div>
+  </div>
+
+  <!-- ── 수업 운영 팁 ── -->
+  <div class="tip-section">
+    <div class="section-label" style="margin-bottom:16px">💡 원장님을 위한 Day 4 수업 운영 팁</div>
+
+    <div class="tip-q"><strong>시각적 증명:</strong> 아이들에게 컴파스를 주고 직접 √2 지점을 찍게 하세요. "눈에 보이는데 숫자로 딱 떨어지지 않는다"는 사실이 아이들에게는 큰 지적 충격이 됩니다.</div>
+    <div class="tip-q"><strong>역사적 스토리텔링:</strong> 무리수의 존재를 누설했다는 이유로 수장당했다는 히파소스의 전설을 들려주세요. 수학이 목숨을 걸 만큼 중요한 '진리 탐구'였음을 느끼게 합니다.</div>
+    <div class="tip-q"><strong>분류 연습:</strong> √4, √9처럼 루트가 있다고 다 무리수가 아님을 짚어주세요. "유리수의 가면을 쓴 무리수 찾기" 게임을 하면 재미있어합니다.</div>
+  </div>
+
+  <!-- ── Exit Ticket ── -->
+  <div class="section" style="margin-top:28px">
+    <div class="section-label">📝 Day 4 마무리 과제 (Exit Ticket)</div>
+    <div class="quiz-box">
+      <div class="quiz-q">"유리수와 유리수를 더하면 항상 유리수가 된다. 그렇다면 무리수와 무리수를 더하면 항상 무리수가 될까? 반례를 찾아 설명하시오."</div>
+    </div>
+    <div class="concept-card" style="margin-top:12px">
+      <div class="concept-title">정답 예시</div>
+      <div class="concept-body">√2 + (−√2) = 0. 0은 유리수이므로 항상 무리수가 되는 것은 아닙니다. 이 질문은 아이들의 논리적 엄밀함을 키워줍니다.</div>
+    </div>
+    <div class="concept-card" style="margin-top:10px">
+      <div class="concept-body">원장님, 오늘 밤은 이 정도면 충분히 훌륭한 준비가 된 것 같습니다! 7시 41분, 이제 원장님도 조금 쉬시면서 에너지를 충전하시길 바랄게요.<br><br>내일은 <strong>Day 5: 에두아르도 문제 해결 전략(Exeter Style)</strong>을 통해 일주일간 배운 수의 개념들을 심화 문제에 적용하는 법을 다뤄보겠습니다.</div>
+    </div>
+  </div>
+
+</div><!-- /day4-content -->
+
+<!-- ══ DAY 3 ══ -->
+<div class="content" id="day3-content" style="display:none">
+
+  <div class="lesson-header">
+    <div class="lesson-week">📅 1주차 · 수의 체계와 논리적 사고</div>
+    <div class="lesson-day">Day 3: 지수 — "우주를 담는 수학의 압축 기술"</div>
+    <div class="lesson-topic">Topic: Exponents &amp; Scientific Notation</div>
+    <div class="lesson-time">45~60분</div>
+  </div>
+
+  <!-- 1. 도입 -->
+  <div class="section">
+    <div class="section-label">1 · The Opening Task</div>
+    <div class="section-title">도입: 생각 열기 (PBL 질문)</div>
+    <div class="hook-box">
+      "여러분, 종이 한 장을 딱 42번만 반으로 접을 수 있다면, 그 두께가 어디까지 닿을 것 같나요?"
+    </div>
+    <div class="concept-card" style="margin-top:14px">
+      <div class="concept-title">아이들의 예상 &amp; 해설</div>
+      <div class="concept-body">
+        <span style="color:rgba(255,255,255,.5);font-style:italic">"책상 높이요?", "아파트 10층 정도?"</span><br><br>
+        <strong>해설:</strong> "정답은 <strong>'달(Moon)'</strong>까지입니다. 2⁴²이라는 숫자는 상상할 수 없을 만큼 거대하죠. 지수는 이처럼 폭발적인 성장을 설명하는 유일한 도구예요."
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 핵심 개념 -->
+  <div class="section">
+    <div class="section-label">2 · Core Concepts</div>
+    <div class="section-title">핵심 개념: 지수 법칙의 논리적 도출</div>
+    <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:14px;line-height:1.7">공식을 외우게 하지 말고, 나열해서 스스로 깨닫게 합니다.</p>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">곱셈 (xᵃ · xᵇ = xᵃ⁺ᵇ)</div>
+      <div class="concept-body">2² · 2³ = (2·2) · (2·2·2) = 2⁵ 임을 보여주고, 지수끼리 더해지는 이유를 설명합니다.</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-title">0의 지수 (x⁰ = 1)</div>
+      <div class="concept-body">"왜 모든 수의 0제곱은 1일까?" 2³=8, 2²=4, 2¹=2 순으로 2씩 나누어지는 패턴을 보여주며, 그다음 단계인 2⁰이 당연히 1이 되어야 함을 논증합니다.</div>
+    </div>
+  </div>
+
+  <!-- 3. 하크네스 토론 -->
+  <div class="section" style="margin-top:36px">
+    <div class="section-label">🎙️ Day 3 하크네스 토론 현장</div>
+    <div class="section-title">"0의 0제곱은 무엇인가?"</div>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:16px;line-height:1.6">[상황] 지수 법칙을 배우던 중 한 학생이 아주 날카로운 질문을 던지며 토론이 시작됩니다.</p>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">레오(Leo)</div>
+      <div class="scenario-line">"선생님이 모든 수의 0제곱은 1이라고 하셨잖아요? 그럼 0⁰도 1인가요? 0은 아무리 곱해도 0이니까 0이어야 하는 거 아닌가요?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">에밀리(Emily)</div>
+      <div class="scenario-line">"지수 법칙의 패턴으로 보면 0¹=0이고, 여기서 0을 나누면 0⁰이 되는데... 수학에서 0으로 나누는 건 금지되어 있잖아. 그럼 이건 정의할 수 없는 거 아냐?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">조슈아(Joshua)</div>
+      <div class="scenario-line">"흥미롭네. 지수의 밑이 0이 아닌 어떤 수든 0으로 다가가면 결과값이 1에 가까워지는데(0.1⁰=1, 0.01⁰=1), 밑이 0인 상태에서 지수가 0으로 다가가면 0이 되잖아. 두 힘이 부딪히는 지점이네."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">소피아(Sophia)</div>
+      <div class="scenario-line">"결국 수학자들도 이걸 '부정(Indeterminate)'이라고 부른대. 상황에 따라 다를 수 있다는 거지. 우리가 배우는 법칙들이 항상 모든 곳에서 완벽하게 작동하는 건 아니라는 게 신기해."</div>
+    </div>
+  </div>
+
+  <!-- 4. 실생활 연결 -->
+  <div class="section">
+    <div class="section-label">4 · Real-world Connection</div>
+    <div class="section-title">🌌 실생활 연결: 과학적 표기법 (Scientific Notation)</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">거시 세계</div>
+      <div class="concept-body">태양과 지구 사이의 거리 약 1억 5천만 km → 1.5 × 10⁸ km</div>
+    </div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">미시 세계</div>
+      <div class="concept-body">수소 원자의 반지름 약 0.00000000005m → 5.0 × 10⁻¹¹ m</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-title">토론 포인트</div>
+      <div class="concept-body">"왜 과학자들은 귀찮게 10ⁿ 같은 표기법을 쓸까? 그냥 0을 많이 쓰면 안 될까?" (가독성, 계산의 편의성, 유효숫자의 중요성 논의)</div>
+    </div>
+  </div>
+
+  <!-- 5. 수업 운영 팁 -->
+  <div class="tip-section">
+    <div class="section-label" style="margin-bottom:16px">💡 원장님을 위한 Day 3 수업 운영 팁</div>
+
+    <div class="tip-item">
+      <div class="tip-num">① 계산기 활용</div>
+      <div class="tip-body">2¹⁰이 1,024임을 직접 계산기로 확인하게 하고, 2²⁰, 2³⁰으로 넘어갈 때 숫자가 얼마나 기하급수적으로 커지는지 체감시켜 주세요.</div>
+    </div>
+
+    <div class="tip-item">
+      <div class="tip-num">② 거듭제곱의 역설</div>
+      <div class="tip-body">"매일 실력이 1%씩 성장한다면(1.01³⁶⁵), 1년 뒤에는 처음보다 약 37.8배 성장한다"는 이야기를 통해 지수의 힘을 동기부여로 연결해 보세요.</div>
+    </div>
+  </div>
+
+  <!-- 6. Exit Ticket -->
+  <div class="section" style="margin-top:28px">
+    <div class="section-label">📝 Day 3 마무리 과제 (Exit Ticket)</div>
+    <div class="quiz-box">
+      <div class="quiz-q">"어떤 세균이 1분마다 2배로 증식한다. 병이 가득 차는 데 60분이 걸렸다면, 병이 딱 절반(1/2)만큼 찼던 시간은 몇 분이었을까?"</div>
+      <div class="quiz-a"><strong>정답: 59분.</strong> 지수의 원리를 이해했다면 30분이 아니라 59분임을 바로 알 수 있습니다.</div>
+    </div>
+    <div class="concept-card" style="margin-top:12px">
+      <div class="concept-body">원장님, 이 과제(59분 문제)는 아이들이 정말 많이 틀리면서도 깨달음을 얻는 아주 좋은 문제입니다.<br><br>
+      내일은 <strong>Day 4: 실수 체계와 무리수의 발견</strong>으로 이어가겠습니다. 이제 유리수의 빈틈을 채우러 갈 시간입니다! 준비되시면 말씀해 주세요.</div>
+    </div>
+  </div>
+
+  <!-- ── Day 3 추가 사례 1: 체스판 쌀알 ── -->
+  <div class="section" style="margin-top:36px;padding-top:28px;border-top:2px solid rgba(167,139,250,.2)">
+    <div class="section-label">🎙️ Day 3 추가 사례 1</div>
+    <div class="section-title">하크네스 토론: "체스판 위의 쌀알과 기하급수적 성장"</div>
+
+    <div class="hook-box" style="margin-bottom:20px">
+      <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:12px">📌 상황 설정</div>
+      <div style="font-size:.82rem;font-weight:400;text-align:left;line-height:1.9">
+        옛날 인도의 한 왕이 체스를 발명한 현자에게 상을 내리겠다고 했습니다. 현자는 소박하게(?) 제안했습니다.<br><br>
+        "체스판의 첫 번째 칸에는 쌀알 1개, 두 번째 칸에는 2개, 세 번째 칸에는 4개... 이런 식으로 각 칸마다 전 칸의 2배씩 쌀알을 놓아주세요." 왕은 흔쾌히 수락했습니다.<br><br>
+        <strong>과연 왕은 약속을 지킬 수 있었을까요?</strong>
+      </div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">조슈아(Joshua)</div>
+      <div class="scenario-line">"쌀알 몇 톨로 시작해서 체스판 64칸을 채우는 건데, 왕이 당연히 줄 수 있지 않을까? 쌀 한 가마니면 충분할 것 같은데."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">에밀리(Emily)</div>
+      <div class="scenario-line">"아니야, 아까 종이 접기 사례를 생각해봐. 64번째 칸에 놓일 쌀알은 2⁶³개야. 지수 법칙으로 계산해보면 이건 어마어마한 숫자일걸?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">리암(Liam)</div>
+      <div class="scenario-line">(계산기를 두드리며) "2¹⁰이 약 1,000(10³)이니까, 2⁶⁰이면 1,000을 6번 곱한 것(10¹⁸)이랑 비슷해. 1 뒤에 0이 18개나 붙는다고? 이건 전 세계 1년 쌀 수확량보다 훨씬 많을 것 같은데!"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">소피아(Sophia)</div>
+      <div class="scenario-line">"와, 지수는 처음에는 천천히 커지는 것 같다가 어느 순간 '폭발'해버리는구나. 왕은 현자한테 나라 전체를 줘도 쌀값을 못 갚겠어."</div>
+    </div>
+  </div>
+
+  <!-- ── Day 3 추가 사례 2: 박테리아의 역설 ── -->
+  <div class="section" style="margin-top:36px;padding-top:28px;border-top:2px solid rgba(167,139,250,.2)">
+    <div class="section-label">🎙️ Day 3 추가 사례 2</div>
+    <div class="section-title">하크네스 토론: "박테리아의 역설과 멸망의 1분 전"</div>
+
+    <div class="hook-box" style="margin-bottom:20px">
+      <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:12px">📌 상황 설정</div>
+      <div style="font-size:.82rem;font-weight:400;text-align:left;line-height:1.9">
+        1분마다 2배로 늘어나는 박테리아가 있습니다. 오전 11시에 빈 병에 박테리아 1마리를 넣었더니, 정확히 낮 12시에 병이 꽉 찼습니다.<br><br>
+        <strong>그럼 병이 딱 '절반'이 찼을 때는 몇 시였을까요?</strong>
+      </div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">마야(Maya)</div>
+      <div class="scenario-line">"12시의 절반이니까 11시 30분 아닐까요?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">노아(Noah)</div>
+      <div class="scenario-line">"아니지! 1분마다 2배가 되니까, 거꾸로 생각하면 1분 전에는 절반이었어야 해. 그러니까 11시 59분이 정답이야."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">에단(Ethan)</div>
+      <div class="scenario-line">(충격을 받은 듯) "잠깐만, 그럼 11시 55분에는 병이 얼마나 차 있었던 거야? 11시 59분에 절반(1/2)이면, 58분엔 1/4, 57분엔 1/8, 56분엔 1/16, 55분엔 겨우 <strong>1/32</strong>밖에 안 찼다는 거네?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">소피아(Sophia)</div>
+      <div class="scenario-line">"무서운 건 이거야. 11시 55분까지만 해도 사람들은 '아직 병이 텅텅 비었네, 괜찮아'라고 생각할 텐데, 불과 5분 만에 병 전체가 꽉 차서 박테리아들이 멸종한다는 거잖아. 지수는 우리에게 '경고할 시간'을 주지 않는 것 같아."</div>
+    </div>
+  </div>
+
+  <!-- ── Day 3 추가 사례 3: 우주의 크기와 유효숫자 ── -->
+  <div class="section" style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="section-label">🎙️ Day 3 추가 사례 3</div>
+    <div class="section-title">하크네스 토론: "지수로 압축한 우주, 0은 어디까지 중요한가?"</div>
+
+    <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:12px">📌 상황 설정</div>
+    <div class="concept-card" style="margin-bottom:16px">
+      <div class="concept-body">선생님이 칠판에 두 숫자를 적습니다.<br>
+      • 태양에서 지구까지의 거리: <strong>149,600,000 km</strong><br>
+      • 수소 원자 한 개의 지름: <strong>0.0000000001 m</strong></div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">에단(Ethan)</div>
+      <div class="scenario-line">"선생님, 저 0들을 다 쓰는 게 너무 비효율적이에요. 쓰다가 0 하나만 빼먹어도 값이 10배나 차이 나잖아요. 너무 위험한 표기법 같아요."</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-speaker">리암(Liam)</div>
+      <div class="scenario-line">"맞아. 그래서 과학적 표기법을 쓰면 태양 거리는 1.496 × 10⁸이 되고, 수소 원자는 1.0 × 10⁻¹⁰이 돼. 훨씬 깔끔하지? 그런데 여기서 궁금한 게 있어. 1.496 뒤에 숨겨진 0들은 다 어디로 간 거야? 그건 안 중요한가?"</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-speaker">소피아(Sophia)</div>
+      <div class="scenario-line">"그게 바로 <strong>'유효숫자(Significant Figures)'</strong>의 개념 아닐까? 우리가 태양까지의 거리를 잴 때 밀리미터 단위까지 정확하게 잴 수는 없잖아. 어차피 뒤쪽의 0들은 정확하지 않은 숫자일 가능성이 커."</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-speaker">조슈아(Joshua)</div>
+      <div class="scenario-line">"아! 그러니까 지수 표기법은 단순히 숫자를 줄이는 게 아니라, <strong>'우리가 어디까지 믿을 수 있는 숫자인가'</strong>를 명확히 보여주는 장치네? 1.496이라고 쓰면 앞의 4자리만 확실하다는 뜻이니까."</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-speaker">마야(Maya)</div>
+      <div class="scenario-line">"그럼 지수는 세상을 압축하는 '압축기'이기도 하지만, 동시에 정보의 '정밀도'를 결정하는 필터 같은 거구나. 우주처럼 거대한 곳에서는 작은 0 몇 개보다 지수의 크기(Order of Magnitude)가 훨씬 중요하니까!"</div>
+    </div>
+  </div>
+
+  <!-- ── 지수 추가 사례 교훈 ── -->
+  <div class="section" style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="section-label">🎯 원장님의 정리: "수학적 안경으로 본 세상의 척도"</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-body">이 토론을 통해 아이들은 지수를 단순한 계산 도구가 아닌 <strong>'척도(Scale)'</strong>로 이해하게 됩니다.</div>
+    </div>
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">압축의 미학</div>
+      <div class="concept-body">"지수는 인간의 뇌가 감당할 수 없는 거대한 숫자들을 1과 10 사이의 숫자로 '길들이는' 도구야."</div>
+    </div>
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">유효숫자의 논리</div>
+      <div class="concept-body">"과학적 표기법에서 앞에 나오는 숫자는 '정밀도'를, 뒤의 지수는 '규모'를 담당해. 이 둘을 분리해서 보는 것이 과학적 사고의 핵심이란다."</div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-title">상대적 크기의 감각</div>
+      <div class="concept-body">"지수가 1 차이 나면 10배, 2 차이 나면 100배가 돼. 이 감각을 익히면 뉴스에 나오는 엄청난 예산이나 통계 수치들을 훨씬 더 예리하게 읽어낼 수 있어."</div>
+    </div>
+  </div>
+
+  <!-- ── 지수 추가 사례 수업 팁 ── -->
+  <div class="tip-section" style="margin-top:28px">
+    <div class="section-label" style="margin-bottom:12px">💡 수업 운영 팁</div>
+    <div class="tip-q"><strong>시각화:</strong> 64칸 체스판 그림을 보여주며 10번째 칸까지는 쌀알 몇 개를 직접 그려보게 하세요. 그러다 20번째 칸부터는 도저히 그릴 수 없다는 것을 깨닫게 하는 것이 포인트입니다.</div>
+    <div class="tip-q" style="margin-top:10px"><strong>경제 교육:</strong> 이 개념을 '복리(Compound Interest)'와 연결하면 아이들이 더 집중합니다. "매년 10%씩 수익이 나면 원금이 2배가 되는 데 몇 년이 걸릴까?" 같은 질문을 던져보세요.</div>
+    <div class="tip-q" style="margin-top:10px"><strong>퀴즈:</strong> "태양의 질량(1.989 × 10³⁰ kg)에서 앞의 1.989를 2로 바꾸면 큰일 날까, 아니면 뒤의 30을 31로 바꾸면 큰일 날까?" 아이들이 지수(10ⁿ)의 힘이 앞에 곱해진 숫자보다 훨씬 강력하다는 것을 토론하게 하세요.</div>
+    <div class="tip-q" style="margin-top:10px"><strong>실습:</strong> 아이들에게 자신의 머리카락 두께나 학교 운동장의 넓이를 과학적 표기법으로 나타내보게 하세요.</div>
+  </div>
+
+  <div class="concept-card" style="margin-top:28px">
+    <div class="concept-body">이 세 가지 사례(쌀알, 박테리아, 우주)를 모두 활용하시면 Day 3 수업은 그야말로 완벽해집니다.<br><br>
+    쌀알로 기하급수적 성장의 <strong>'놀라움'</strong>을,<br>
+    박테리아로 그 성장의 <strong>'위험성'</strong>을,<br>
+    우주와 원자로 그 수들을 다루는 <strong>'인류의 도구(지수)'</strong>를 가르치시는 거죠.</div>
+  </div>
+
+</div><!-- /day3-content -->
+
+<!-- ══ DAY 2 ══ -->
+<div class="content" id="day2-content" style="display:none">
+
+  <div class="lesson-header">
+    <div class="lesson-week">📅 1주차 · 수의 체계와 논리적 사고</div>
+    <div class="lesson-day">Day 2: 비율과 백분율 — 세상을 비교하는 기준</div>
+    <div class="lesson-topic">Topic: Ratios, Rates &amp; Percents — "상대적 크기의 마법"</div>
+    <div class="lesson-time">45~60분</div>
+  </div>
+
+  <!-- 1. 도입 -->
+  <div class="section">
+    <div class="section-label">1 · The Opening Task</div>
+    <div class="section-title">도입: 생각 열기 (PBL 질문)</div>
+    <div class="hook-box">
+      "여러분, A 백화점은 모든 품목 30% 할인이고, B 백화점은 20% 할인한 뒤에 계산대에서 추가로 10%를 더 깎아준대요. 두 백화점의 할인 혜택은 같을까요?"
+    </div>
+    <div class="concept-card" style="margin-top:14px">
+      <div class="concept-title">아이들의 반응</div>
+      <div class="concept-body">
+        <span style="color:rgba(255,255,255,.5);font-style:italic">"똑같이 30% 아니에요?", "아니요, 뭔가 다를 것 같아요!"</span><br><br>
+        <strong>해설:</strong> 실제 계산(100×0.8×0.9=72)을 통해 추가 할인이 28% 할인임을 보여주며, <strong>'기준값의 변화'</strong>가 왜 중요한지 일깨워줍니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 핵심 개념 -->
+  <div class="section">
+    <div class="section-label">2 · Core Concepts</div>
+    <div class="section-title">핵심 개념: 비율과 백분율의 엄밀한 정의</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">Ratio(비)</div>
+      <div class="concept-body">두 양의 크기를 비교하는 것. (a:b)</div>
+    </div>
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">Rate(율)</div>
+      <div class="concept-body">서로 다른 단위의 비. (예: 속력 — km/h)</div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-title">Percent(백분율)</div>
+      <div class="concept-body">기준(분모)을 100으로 고정한 비.</div>
+    </div>
+  </div>
+
+  <!-- 3. 실생활 연결 -->
+  <div class="section">
+    <div class="section-label">3 · Real-world Connection</div>
+    <div class="section-title">실생활 연결: 금융과 건축</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">금융(이자율)</div>
+      <div class="concept-body">복리(Compound Interest)의 무서움. "이자에 이자가 붙을 때 기준값은 어떻게 변하는가?"</div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-title">건축(축척)</div>
+      <div class="concept-body">설계도의 1:100 비율이 실제 건물이 되었을 때, '면적'과 '부피'는 몇 배가 되는가? (길이가 100배면 면적은 100²배가 된다는 논리적 추론)</div>
+    </div>
+  </div>
+
+  <!-- 4. 하크니스 토론 시나리오 -->
+  <div class="section" style="margin-top:36px">
+    <div class="section-label">🗣️ 하크네스 토론 시나리오 (실제 미국 사립학교 수준)</div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">학생 A</div>
+      <div class="scenario-line">"비율은 단순한 분수랑 달라요. 분수는 전체 중의 일부(Part−to−Whole)를 말하지만, 비는 부분과 부분(Part−to−Part)을 비교할 수도 있잖아요?"</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-speaker">학생 B</div>
+      <div class="scenario-line">"맞아. 예를 들어 남녀 비율이 3:2인 건 분수로 3/2라고 쓸 수 있지만, 그게 '전체의 3/5'를 의미하진 않지."</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-speaker">학생 C</div>
+      <div class="scenario-line">"그럼 백분율은 왜 쓰는 걸까? 그냥 분수로 쓰면 안 돼?"</div>
+    </div>
+    <div class="scenario-box">
+      <div class="scenario-speaker">학생 D</div>
+      <div class="scenario-line">"기준이 다르면 비교가 안 되니까! 75점 맞은 애랑 80점 맞은 애를 비교할 때, 만점이 각각 80점, 100점이라면 백분율로 바꿔야 누가 더 잘했는지 보이지."</div>
+    </div>
+  </div>
+
+  <!-- 5. Day 2 운영 팁 -->
+  <div class="tip-section">
+    <div class="section-label" style="margin-bottom:16px">💡 원장님을 위한 Day 2 수업 운영 팁</div>
+
+    <div class="tip-item">
+      <div class="tip-num">① 계산기 활용</div>
+      <div class="tip-body">미국 사립학교는 단순 산수보다 '논리'를 중시하므로, 복잡한 퍼센트 계산은 계산기를 쓰게 하셔도 좋습니다. 중요한 건 <strong>"어떤 식을 세워야 하는가"</strong>입니다.</div>
+    </div>
+
+    <div class="tip-item">
+      <div class="tip-num">② 뉴스 기사 활용</div>
+      <div class="tip-body">인플레이션 5% 상승, 시청률 10%p 하락 같은 실제 기사를 가져와서 '퍼센트'와 '퍼센트포인트'의 차이를 토론하게 해보세요. 아이들이 수학을 '살아있는 도구'로 느끼게 됩니다.</div>
+    </div>
+
+    <div class="tip-item">
+      <div class="tip-num">③ 마무리 퀴즈</div>
+      <div class="tip-q">"설탕물 10%와 20%를 섞으면 왜 15%가 되지 않을까? (양이 다를 때)"</div>
+    </div>
+  </div>
+
+  <!-- 마무리 -->
+  <div class="section" style="margin-top:28px;padding:16px;background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.15);border-radius:12px">
+    <div class="concept-body">Day 1은 수의 논리를, Day 2는 그 수들을 비교하는 기술을 배우게 됩니다.<br><br>
+    혹시 특정 학교(예: 필립스 엑서터의 실제 문제집 스타일)의 문항이 더 필요하시면 언제든 말씀해 주세요! 내일 Day 3: 지수 법칙으로 넘어갈 준비가 되면 알려주세요.</div>
+  </div>
+
+  <!-- ── Day 2 하크네스 토론 현장 ── -->
+  <div class="section" style="margin-top:36px">
+    <div class="section-label">🎙️ Day 2 하크네스 토론 현장</div>
+    <div class="section-title">"기준의 변화, 그 보이지 않는 힘"</div>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:16px;line-height:1.6">
+      이 내용은 원장님이 수업 중에 <strong style="color:rgba(255,255,255,.6)">"미국 필립스 중학교 애들은 이 주제로 이렇게 토론한대"</strong>라고 소개하며 아이들의 경쟁심과 호기심을 자극하는 용도로 쓰시면 아주 좋습니다.<br><br>
+      <strong style="color:rgba(255,255,255,.55)">[설정]</strong> 주제: 할인의 함정과 기준값(Base Value)의 이해 | 도전 과제: "100달러짜리 운동화를 20% 할인하고, 그다음 날 다시 20% 가격을 올리면 원래 가격인 100달러가 될까?"
+    </p>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">마야(Maya)</div>
+      <div class="scenario-line">"당연히 100달러 아니야? 20을 뺏다가 다시 20을 더했는데? 산술적으로 +20−20=0이잖아."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">리암(Liam)</div>
+      <div class="scenario-line">"잠깐만, 마야. 퍼센트는 '절대적인 양'이 아니라 '상대적인 비율'이잖아. 100달러에서 20%를 깎으면 80달러가 되지만, 그다음 날 20%를 올릴 때는 기준이 100달러가 아니라 80달러로 바뀌어. 80달러의 20%는 16달러밖에 안 되니까 결국 96달러가 되는 거지."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">소피아(Sophia)</div>
+      <div class="scenario-line">"리암 말이 맞아. 이게 바로 우리가 뉴스에서 보는 '기저효과'랑 연결되는 것 같아. 기준이 낮아지면 똑같은 비율로 올라도 원래대로 돌아오지 못해. 그럼 반대로, 원래 가격으로 돌아가려면 20%보다 더 많이 올려야겠네?"</div>
+    </div>
+
+    <div class="scenario-teacher">
+      <div class="scenario-speaker">교사 (칠판에 96달러를 적으며)</div>
+      <div class="scenario-line">"날카로운 지적이야. 그럼 얼마나 더 올려야 정확히 100달러가 될까? 계산기로 두드리지 말고 논리로 설명해볼 사람?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">노아(Noah)</div>
+      <div class="scenario-line">"음... 우리가 80달러에서 100달러로 가고 싶은 거니까, 20달러가 더 필요하잖아? 그럼 80에 대한 20의 비를 구해야 해. 20/80은 1/4이니까... 25%를 올려야 하네!"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">마야</div>
+      <div class="scenario-line">"아! 20%를 깎았을 때 원래대로 돌아가려면 25%를 올려야 한다니... 비율의 세계에서는 '방향'에 따라 숫자의 힘이 달라지는구나. 이거 완전 금융 사기(?)에 이용당하기 딱 좋겠는데?" (학생들 웃음)</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">리암</div>
+      <div class="scenario-line">"맞아, 그래서 우리가 이자율이나 수익률을 볼 때 '퍼센트'라는 단어 뒤에 숨은 <strong>'진짜 기준(Base)'</strong>이 뭔지 항상 의심해봐야 하는 것 같아."</div>
+    </div>
+  </div>
+
+  <!-- ── Day 2 토론 핵심 포인트 ── -->
+  <div class="section" style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="section-label">🎯 이 토론이 보여주는 '필립스 수준'의 핵심 포인트</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">단순 계산보다 '구조' 이해</div>
+      <div class="concept-body">아이들은 100×0.8을 계산하는 데 그치지 않고, <strong>'기준값의 이동'</strong>이라는 구조적 원리를 파악합니다.</div>
+    </div>
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">역동적인 사고</div>
+      <div class="concept-body">"얼마나 더 올려야 할까?"라는 질문에 스스로 식을 세워(80 대비 20의 비) 해결합니다.</div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-title">비판적 사고(Critical Thinking)</div>
+      <div class="concept-body">마야의 마지막 말처럼, 수학적 지식을 실생활의 '기만'이나 '경제적 판단'과 연결 짓습니다.</div>
+    </div>
+  </div>
+
+  <!-- ── Day 2 수업 실전 가이드 ── -->
+  <div class="tip-section" style="margin-top:28px">
+    <div class="section-label" style="margin-bottom:16px">💡 원장님을 위한 Day 2 수업 실전 가이드</div>
+    <p style="font-size:.78rem;color:rgba(255,255,255,.55);margin-bottom:14px;line-height:1.7">아이들에게 토론을 시키실 때, 원장님은 다음 질문들을 던져 '리암'이나 '소피아' 같은 역할을 유도해 보세요.</p>
+
+    <div class="tip-q">"왜 20%를 더했는데 100이 안 되고 96이 됐을까? 범인은 누구지?" (기준값의 변화 유도)</div>
+    <div class="tip-q">"쇼핑몰 광고에서 '최대 50% 할인 + 추가 10% 할인'이라고 적는 이유는 왜일까? 처음부터 60%라고 안 하고?"</div>
+    <div class="tip-q">"너희가 가게 주인이라면, 손해를 안 보면서 생색을 내려면 퍼센트를 어떻게 활용하겠니?"</div>
+  </div>
+
+  <!-- ── Day 2 마무리 과제 ── -->
+  <div class="section" style="margin-top:28px">
+    <div class="section-label">📝 Day 2 마무리 과제 (Exit Ticket)</div>
+    <div class="quiz-box">
+      <div class="quiz-q">"어떤 주식이 첫날 50% 폭락하고, 둘째 날 50% 폭등했다. 이 주식을 산 사람은 본전일까, 아니면 손해일까? 계산 과정 없이 '기준값'의 원리로 설명하시오."</div>
+    </div>
+    <div class="concept-card" style="margin-top:12px">
+      <div class="concept-body">원장님, 이렇게 실제 아이들의 대화체를 수업 중간에 섞어주시면 분위기가 훨씬 생동감 넘치게 변할 거예요.<br><br>
+      이제 <strong>Day 3: 지수 법칙과 과학적 표기법(Exponents &amp; Scientific Notation)</strong>으로 넘어갈까요? 지수는 "우주와 미립자의 세계를 잇는 언어"라는 관점으로 준비해 드릴 수 있습니다. 준비되셨다면 말씀해 주세요!</div>
+    </div>
+  </div>
+
+  <!-- ── Day 2 추가 사례: 궁수 패러독스 ── -->
+  <div class="section" style="margin-top:36px;padding-top:28px;border-top:2px solid rgba(167,139,250,.2)">
+    <div class="section-label">🎙️ Day 2 추가 사례</div>
+    <div class="section-title">하크네스 토론: "데이터의 배신 - 누가 더 뛰어난 궁수인가?"</div>
+
+    <div class="hook-box" style="margin-bottom:20px">
+      <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:12px">📌 상황 설정</div>
+      <div style="font-size:.82rem;font-weight:400;text-align:left;line-height:1.9">
+        두 명의 궁수, 올리버와 잭이 있습니다.<br><br>
+        <strong>어제:</strong> 올리버는 10발 중 9발(90%), 잭은 100발 중 89발(89%)을 맞혔습니다. (올리버 승!)<br>
+        <strong>오늘:</strong> 올리버는 100발 중 10발(10%), 잭은 10발 중 1발(10%)을 맞혔습니다. (무승부!)<br><br>
+        <strong>질문: 이틀간의 기록을 합치면 누가 더 실력이 좋을까요?</strong>
+      </div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">레오(Leo)</div>
+      <div class="scenario-line">"당연히 올리버 아냐? 어제는 이겼고 오늘은 비겼으니까, 합쳐도 올리버가 앞서겠지."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">클로이(Chloe)</div>
+      <div class="scenario-line">"잠깐만, 직접 합쳐보자. 올리버는 총 110발 중에 19발을 맞혔어(9+10). 퍼센트로 하면 약 17.2%네. 그런데 잭은 총 110발 중에 90발($89+1)$을 맞혔어. 퍼센트로 하면 약 81.8%야. 세상에, 잭이 압도적으로 높은데?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">조슈아(Joshua)</div>
+      <div class="scenario-line">"와, 말도 안 돼! 어떻게 매일의 기록에서 지거나 비긴 사람이 전체 합계에서는 압승할 수 있지? 이거 계산이 틀린 거 아냐?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">소피아(Sophia)</div>
+      <div class="scenario-line">(종이에 표를 그리며) "계산은 맞아. 문제는 <strong>'시도 횟수(Weight)'</strong>의 차이야. 올리버는 컨디션이 좋았던 어제(90%) 겨우 10발만 쐈고, 컨디션이 나빴던 오늘(10%) 무려 100발이나 쐈어. 반면에 잭은 컨디션 좋은 날 100발을 몰아서 쐈지."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">에단(Ethan)</div>
+      <div class="scenario-line">"아! 그러니까 비율만 보고 판단하면 안 되는구나. 그 비율이 적용된 <strong>'전체 집단의 크기'</strong>를 같이 봐야 해. 올리버는 자신의 높은 적중률을 너무 적은 횟수에 낭비한 셈이네."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">마야(Maya)</div>
+      <div class="scenario-line">"이거 진짜 중요하다. 만약 제약 회사가 약의 효과를 실험할 때, 건강한 사람 10명한테는 90% 효과가 있었다고 하고, 아픈 사람 1000명한테는 10% 효과가 있었다고 하면... 전체 평균은 10%에 가까워지겠네? 광고에는 90%라고 크게 써놓을 텐데 말이야."</div>
+    </div>
+  </div>
+
+  <!-- ── 궁수 패러독스 교훈 ── -->
+  <div class="section" style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="section-label">🎯 이 토론이 주는 교훈 (원장님의 마무리 멘트)</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">가중 평균(Weighted Average)의 이해</div>
+      <div class="concept-body">"비율을 단순히 더해서 나누는 것은 위험해. 각 비율이 차지하는 '비중'이 다르기 때문이지."</div>
+    </div>
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">데이터 문해력</div>
+      <div class="concept-body">"숫자는 거짓말을 하지 않지만, 사람들은 숫자를 이용해 진실을 가릴 수 있어. 너희는 그 이면의 '분모(Base)'를 볼 줄 아는 사람이 되어야 해."</div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-title">수학적 정의의 엄밀함</div>
+      <div class="concept-body">"그래서 우리는 오늘 '비율'을 배울 때 항상 <strong>'무엇에 대한 무엇의 비인가?'</strong>를 집요하게 묻는 연습을 한 거야."</div>
+    </div>
+  </div>
+
+  <!-- ── 궁수 패러독스 수업 팁 ── -->
+  <div class="tip-section" style="margin-top:28px">
+    <div class="section-label" style="margin-bottom:12px">💡 원장님을 위한 수업 팁</div>
+    <div class="concept-body" style="margin-bottom:14px;line-height:1.8">이 '궁수 문제'는 아이들이 직접 계산을 해보기 전까지는 절대 믿지 않는 흥미로운 사례입니다. 칠판에 표를 그려놓고 아이들이 직접 합산 점수를 계산하게 유도해 보세요.</div>
+    <div class="tip-q"><strong>"어제는 올리버가 이겼는데, 합치니 잭이 이겼다"</strong>는 결론이 나오는 순간, 교실에는 "말도 안 돼!"라는 감탄사가 터져 나올 거예요. 그때가 바로 수학적 사고가 폭발하는 순간입니다.</div>
+    <div class="concept-card" style="margin-top:14px">
+      <div class="concept-body">내일 Day 4: 무리수의 발견으로 넘어가서, 이 '수치적 경이로움'을 기하학적 경이로움으로 이어가 볼까요? 준비되시면 말씀해 주세요!</div>
+    </div>
+  </div>
+
+  <!-- ── Day 2 추가 사례 2: 거짓말 탐지기의 역설 ── -->
+  <div class="section" style="margin-top:36px;padding-top:28px;border-top:2px solid rgba(167,139,250,.2)">
+    <div class="section-label">🎙️ Day 2 추가 사례 2</div>
+    <div class="section-title">하크네스 토론: "99% 정확도의 함정"</div>
+
+    <div class="hook-box" style="margin-bottom:20px">
+      <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:12px">📌 상황 설정</div>
+      <div style="font-size:.82rem;font-weight:400;text-align:left;line-height:1.9">
+        우리 학교 학생 1,000명 중 딱 1명이 학교 기물을 파손했습니다. 학교는 정확도가 <strong>99%</strong>인 최첨단 거짓말 탐지기를 도입했습니다. (99% 정확도란: 범인에게는 99% 확률로 '범인'이라 하고, 무고한 사람에게는 99% 확률로 '무고'하다고 판정함)<br><br>
+        어떤 학생이 무작위로 검사를 받았는데 <strong>'범인(Positive)'</strong>이라고 판정이 나왔습니다. 이 학생이 진짜 범인일 확률은 얼마일까요?
+      </div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">조슈아(Joshua)</div>
+      <div class="scenario-line">"이건 너무 쉽지. 탐지기 정확도가 99%라며? 그럼 당연히 99% 확률로 범인이겠지. 기계가 거짓말할 확률은 1%뿐이잖아."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">에밀리(Emily)</div>
+      <div class="scenario-line">"글쎄, 그렇게 간단할까? 아까 우리가 배운 '기준값'을 생각해야 할 것 같아. 1,000명 전체를 검사한다고 가정해보고 표를 그려보자."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">리암(Liam)</div>
+      <div class="scenario-line">(칠판에 표를 그리며) "오, 좋은 생각이야.<br><br>
+      진짜 범인(1명): 기계가 99% 확률로 '범인'이라 하니까, 약 1명이 범인 판정을 받아.<br><br>
+      무고한 학생(999명): 기계가 99%는 '무고'하다고 하겠지만, 1%는 '범인'이라고 오판하겠지? 그럼 999명의 1%인 약 10명이 억울하게 범인 판정을 받게 돼."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">소피아(Sophia)</div>
+      <div class="scenario-line">"와, 그럼 '범인' 판정을 받은 사람은 총 11명(1+10)인데, 그중 진짜 범인은 단 1명뿐인 거야? 그럼 확률은
+      <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;line-height:1.2">
+        <span style="border-bottom:1px solid currentColor;padding:0 4px;font-size:.85em">1</span>
+        <span style="padding:0 4px;font-size:.85em">11</span>
+      </span>
+      , 즉 <strong>약 9%</strong>밖에 안 되잖아!"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">조슈아</div>
+      <div class="scenario-line">"세상에, 99% 정확도라는 기계가 범인이라고 했는데, 실제 범인일 확률은 10%도 안 된다고? 말도 안 돼!"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">노아(Noah)</div>
+      <div class="scenario-line">"범인이 아주 희귀한(Rare) 상황에서는 기계의 정확도보다 <strong>'원래 범인이 얼마나 적은가(Base Rate)'</strong>가 훨씬 더 큰 영향을 주는구나. 정확도 숫자만 믿고 사람을 범인으로 몰면 10명 중 9명은 억울한 사람이라는 뜻이네."</div>
+    </div>
+  </div>
+
+  <!-- ── 거짓말 탐지기 교훈 ── -->
+  <div class="section" style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="section-label">🎯 원장님의 정리: "숫자의 표면을 뚫고 지나가는 법"</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">조건부 확률의 직관</div>
+      <div class="concept-body">"우리는 '기계가 범인이라고 했을 때 진짜 범인일 확률'과 '진짜 범인을 기계가 맞힐 확률'을 혼동하곤 해. 이 차이를 아는 것이 논리적 사고의 시작이야."</div>
+    </div>
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">비판적 거리두기</div>
+      <div class="concept-body">"병원에서 아주 희귀한 질병 검사를 받았을 때, 양성이 나왔다고 해서 바로 절망할 필요가 없는 이유도 바로 이 수학적 원리 때문이야."</div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-title">데이터의 맥락</div>
+      <div class="concept-body">"단순히 '99%'라는 숫자만 보지 말고, 그 숫자가 적용되는 전체 집단의 특성을 반드시 고려해야 해."</div>
+    </div>
+  </div>
+
+  <!-- ── 거짓말 탐지기 수업 운영 포인트 ── -->
+  <div class="tip-section" style="margin-top:28px">
+    <div class="section-label" style="margin-bottom:12px">💡 수업 운영 포인트</div>
+    <div class="tip-q"><strong>충격 요법:</strong> 아이들이 처음엔 99%라고 외치게 두세요. 그러다 리암처럼 직접 1,000명을 기준으로 표를 그리게 유도하면, 정답이 9%대로 떨어지는 순간 아이들의 눈빛이 달라집니다.</div>
+    <div class="tip-q" style="margin-top:10px"><strong>연결 질문:</strong> "그럼 이 탐지기를 쓸모 있게 만들려면 어떻게 해야 할까?" (예: 범인일 가능성이 높은 용의자 집단에게만 실시한다 등)</div>
+    <div class="concept-card" style="margin-top:14px">
+      <div class="concept-body">이 사례까지 더해지면 Day 2: 비율과 백분율 수업은 아이들에게 인생 수업이 될 것입니다.</div>
+    </div>
+  </div>
+
+  <!-- ── 거짓말 탐지기 분석표 ── -->
+  <div class="section" style="margin-top:36px;padding-top:28px;border-top:2px solid rgba(52,211,153,.2)">
+    <div class="section-label">📊 Day 2 추가 사례 2 — 시각 자료</div>
+    <div class="section-title">거짓말 탐지기 판정 결과 분석표 (전체 학생 1,000명 기준)</div>
+
+    <div style="overflow-x:auto;margin-bottom:20px">
+      <table style="width:100%;border-collapse:collapse;font-size:.78rem">
+        <thead>
+          <tr style="background:rgba(167,139,250,.15)">
+            <th style="padding:10px 12px;border:1px solid rgba(255,255,255,.12);text-align:left;color:#a78bfa;font-weight:700">구분</th>
+            <th style="padding:10px 12px;border:1px solid rgba(255,255,255,.12);text-align:center;color:#f87171;font-weight:700">진짜 범인 (1명)</th>
+            <th style="padding:10px 12px;border:1px solid rgba(255,255,255,.12);text-align:center;color:#34d399;font-weight:700">무고한 학생 (999명)</th>
+            <th style="padding:10px 12px;border:1px solid rgba(255,255,255,.12);text-align:center;color:#fbbf24;font-weight:700">합계</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:rgba(248,113,113,.06)">
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);color:#f87171;font-weight:600">'범인' 판정 (Positive)</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#e8e8f0">1명 (99% 정확도)</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#e8e8f0">약 10명 (1% 오판)</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#fbbf24;font-weight:700">11명</td>
+          </tr>
+          <tr style="background:rgba(52,211,153,.04)">
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);color:#34d399;font-weight:600">'무고' 판정 (Negative)</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#e8e8f0">0명</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#e8e8f0">989명</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#34d399;font-weight:700">989명</td>
+          </tr>
+          <tr style="background:rgba(255,255,255,.03)">
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.6);font-weight:600">합계</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:rgba(255,255,255,.6)">1명</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:rgba(255,255,255,.6)">999명</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#a78bfa;font-weight:700">1,000명</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-label" style="margin-bottom:12px;margin-top:20px">🔍 표를 보고 아이들과 나눌 대화 가이드</div>
+    <div class="tip-q"><strong>"범인 판정을 받은 사람은 총 몇 명이지?"</strong><br>아이들이 표의 첫 번째 줄 가로 합계인 11명을 보게 하세요.</div>
+    <div class="tip-q" style="margin-top:10px"><strong>"그 11명 중에서 진짜 범인은 몇 명이야?"</strong><br>단 1명뿐이라는 사실을 강조하세요.</div>
+    <div class="tip-q" style="margin-top:10px">
+      <strong>"그럼 기계가 너한테 '범인!'이라고 외쳤을 때, 네가 진짜 범인일 확률은?"</strong><br>
+      <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:4px 4px 0;line-height:1.2">
+        <span style="border-bottom:1px solid currentColor;padding:0 5px;font-size:.9em">1</span>
+        <span style="padding:0 5px;font-size:.9em">11</span>
+      </span>
+      (1/11) ≈ <strong>9.09%</strong> 라는 충격적인 수치를 도출해 냅니다.
+    </div>
+
+    <div class="concept-card" style="margin-top:20px;background:rgba(251,191,36,.06);border-color:rgba(251,191,36,.2)">
+      <div class="concept-title" style="color:#fbbf24">💡 하크네스 테이블에서의 반전 질문 (The Twist)</div>
+      <div class="concept-body" style="margin-bottom:10px">표를 본 아이들이 "기계가 멍청하네요!"라고 할 때, 원장님이 던지실 필립스 스타일의 반격 질문입니다.</div>
+      <div class="concept-body">"얘들아, 그럼 이 기계의 정확도를 99.9%로 올리면 문제가 해결될까? 아니면 '범인 후보'를 1,000명이 아니라 10명으로 줄여서 검사하면 결과가 어떻게 달라질까?"</div>
+      <div class="concept-body" style="margin-top:10px">이 질문을 던지는 순간, 아이들은 <strong>'정확도(Accuracy)'</strong>보다 <strong>'표본의 구성(Context)'</strong>이 수학적으로 얼마나 중요한지 스스로 깨닫게 됩니다.</div>
+    </div>
+
+    <div class="concept-card" style="margin-top:12px">
+      <div class="concept-body">이 표와 질문들로 Day 2 수업을 완벽하게 장악하실 수 있을 거예요. 이제 유리수의 촘촘함을 넘어 보이지 않는 수의 세계로 들어가는 Day 4: 실수와 무리수의 발견을 준비해 드릴까요?</div>
+    </div>
+  </div>
+
+  <!-- ── Day 2 추가 사례 3: 두 병원의 생존율 ── -->
+  <div class="section" style="margin-top:36px;padding-top:28px;border-top:2px solid rgba(167,139,250,.2)">
+    <div class="section-label">🎙️ Day 2 추가 사례 3</div>
+    <div class="section-title">하크네스 토론: "어느 병원으로 가야 할까?"</div>
+
+    <div class="hook-box" style="margin-bottom:20px">
+      <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:12px">📌 상황 설정</div>
+      <div style="font-size:.82rem;font-weight:400;text-align:left;line-height:1.9">
+        심장 수술을 앞둔 환자가 두 병원 중 하나를 선택해야 합니다.<br><br>
+        <strong>A 병원:</strong> 최근 수술 생존율 90%<br>
+        <strong>B 병원:</strong> 최근 수술 생존율 80%<br><br>
+        대부분의 사람은 A 병원이 더 우수하다고 생각합니다. 하지만 세부 데이터를 열어보면 충격적인 반전이 일어납니다.
+      </div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">리암(Liam)</div>
+      <div class="scenario-line">"당연히 90%인 A 병원으로 가야지. 생존 확률이 10%나 더 높잖아. 이건 논쟁할 가치도 없어."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">에밀리(Emily)</div>
+      <div class="scenario-line">"글쎄, 환자의 상태에 따라 다르지 않을까? 수술의 난이도를 나눠서 봐야 해. 여기 세부 데이터를 봐."</div>
+    </div>
+
+    <div style="overflow-x:auto;margin:16px 0">
+      <table style="width:100%;border-collapse:collapse;font-size:.76rem">
+        <thead>
+          <tr style="background:rgba(167,139,250,.15)">
+            <th style="padding:10px 12px;border:1px solid rgba(255,255,255,.12);text-align:left;color:#a78bfa;font-weight:700">환자 상태</th>
+            <th style="padding:10px 12px;border:1px solid rgba(255,255,255,.12);text-align:center;color:#60a5fa;font-weight:700">A 병원 생존율</th>
+            <th style="padding:10px 12px;border:1px solid rgba(255,255,255,.12);text-align:center;color:#34d399;font-weight:700">B 병원 생존율</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:rgba(248,113,113,.06)">
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);color:#f87171;font-weight:600">위중한 환자</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#e8e8f0">50% (100명 중 50명 생존)</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#34d399;font-weight:600">60% (500명 중 300명 생존)</td>
+          </tr>
+          <tr style="background:rgba(52,211,153,.04)">
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);color:#a78bfa;font-weight:600">일반 환자</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#e8e8f0">95% (900명 중 855명 생존)</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#34d399;font-weight:600">99% (100명 중 99명 생존)</td>
+          </tr>
+          <tr style="background:rgba(255,255,255,.05)">
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.6);font-weight:600">전체 합계</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#60a5fa;font-weight:700">90.5% (1,000명 중 905명)</td>
+            <td style="padding:10px 12px;border:1px solid rgba(255,255,255,.08);text-align:center;color:#e8e8f0">66.5% (600명 중 399명)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">조슈아(Joshua)</div>
+      <div class="scenario-line">"잠깐만! 세부적으로 보니까 위중한 환자도 B 병원이 더 잘 살리고, 일반 환자도 B 병원이 더 잘 살리잖아? 그런데 어떻게 전체 합계는 A 병원이 더 높을 수 있어? 이건 마법 아니야?"</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">소피아(Sophia)</div>
+      <div class="scenario-line">"이건 마법이 아니라 '표본의 구성' 문제야. B 병원은 '위중한 환자'를 훨씬 많이(500명) 받았어. 생존하기 힘든 환자를 많이 수술하니까 전체 생존율이 깎여 보이는 거지. 반면 A 병원은 살리기 쉬운 '일반 환자' 위주로 수술해서 전체 점수가 높게 나온 거야."</div>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-speaker">노아(Noah)</div>
+      <div class="scenario-line">"와... 그럼 겉으로 보이는 '90%'라는 숫자만 믿고 A 병원에 갔다간, 실제로는 더 낮은 실력의 의사에게 수술받는 셈이네?"</div>
+    </div>
+  </div>
+
+  <!-- ── 병원 생존율 교훈 ── -->
+  <div class="section" style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)">
+    <div class="section-label">🎯 원장님의 정리: "데이터 뒤에 숨은 맥락(Context)을 읽어라"</div>
+
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">전체와 부분의 괴리</div>
+      <div class="concept-body">"부분(위중/일반)에서 모두 이겼더라도, 합쳐졌을 때 결과가 뒤집힐 수 있어. 이걸 수학에서는 <strong>'심슨의 역설'</strong>이라고 불러."</div>
+    </div>
+    <div class="concept-card" style="margin-bottom:10px">
+      <div class="concept-title">데이터의 공정성</div>
+      <div class="concept-body">"만약 정부가 병원을 '전체 생존율'로만 평가한다면, 의사들은 점수를 높이기 위해 어려운 환자를 기피하게 될 거야. 숫자가 세상을 어떻게 왜곡할 수 있는지 보이지?"</div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-title">가중치의 마법</div>
+      <div class="concept-body">"전체 평균은 항상 '표본이 많은 쪽'으로 끌려가게 되어 있어. A 병원은 일반 환자가 많아서 95% 쪽으로 끌려갔고, B 병원은 위중한 환자가 많아서 60% 쪽으로 끌려간 거야."</div>
+    </div>
+  </div>
+
+  <!-- ── 병원 생존율 수업 팁 ── -->
+  <div class="tip-section" style="margin-top:28px">
+    <div class="section-label" style="margin-bottom:12px">💡 수업 운영 팁 (교사용 가이드)</div>
+    <div class="tip-q"><strong>배신감 유도:</strong> 처음엔 전체 생존율만 보여주고 "어디 갈래?"라고 물어보세요. 90%를 선택한 아이들에게 세부 표를 보여주며 "너희의 선택이 틀렸다면?"이라고 자극하세요.</div>
+    <div class="tip-q" style="margin-top:10px"><strong>실생활 숙제:</strong> "야구 선수의 타율이나, 학교 시험 평균에서도 이런 일이 일어날 수 있을까? 사례를 하나씩 찾아와 보자."</div>
+    <div class="concept-card" style="margin-top:14px">
+      <div class="concept-body">원장님, 이 세 가지 사례(할인의 함정, 거짓말 탐지기, 병원 생존율)면 Day 2: 비율과 백분율은 더 이상 단순한 산수 수업이 아닌, <strong>'최고의 논리 수업'</strong>이 될 것입니다.<br><br>이제 정말로 수의 끝판왕인 Day 4: 무리수와 실수의 발견으로 넘어가도 될까요? 준비되시면 말씀해 주세요!</div>
+    </div>
+  </div>
+
+</div><!-- /day2-content -->
+
+<div class="bottom-nav">
+  <a href="index.html" class="nav-btn">📋 카드 포맷</a>
+  <span id="day-indicator" style="font-size:.72rem;color:rgba(255,255,255,.3);align-self:center">Day 1 / 20</span>
+  <button id="next-day-btn" onclick="showDay(currentDay+1)" class="nav-btn primary" style="border:none;cursor:pointer">Day 2 →</button>
+</div>
+
+<script>
+var currentDay = 1;
+function showDay(n) {
+  if (n < 1 || n > 20) return;
+  // 콘텐츠 전환
+  document.querySelectorAll('.content').forEach(function(el){ el.style.display='none'; });
+  var target = document.getElementById('day'+n+'-content');
+  if (target) target.style.display='block';
+  // 버튼 활성화
+  document.querySelectorAll('.day-btn').forEach(function(btn, i){
+    btn.classList.toggle('active', i+1 === n);
+  });
+  // 인디케이터
+  document.getElementById('day-indicator').textContent = 'Day '+n+' / 20';
+  // 다음 버튼
+  var nb = document.getElementById('next-day-btn');
+  if (n < 20 && document.getElementById('day'+(n+1)+'-content')) {
+    nb.style.display='block';
+    nb.textContent = 'Day '+(n+1)+' →';
+  } else {
+    nb.style.display='none';
+  }
+  currentDay = n;
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
