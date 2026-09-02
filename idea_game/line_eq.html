@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🧠 아이디어 게임 — 직선의 방정식</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--card:#111827;
+  --purple:#7c3aed;--pink:#db2777;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.08);
+  --good:#34d399;--bad:#f87171}
+body{font-family:"Nanum Gothic","Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:520px;margin:0 auto;padding:1.25rem 1.1rem 3rem}
+
+.nav-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem}
+.back-link{font-family:'Jua',sans-serif;font-size:.82rem;color:var(--muted);text-decoration:none;
+  background:rgba(255,255,255,.08);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+.progress-pill{font-family:'Jua',sans-serif;font-size:.78rem;color:#a78bfa;background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.3);padding:5px 12px;border-radius:20px}
+
+.sec-head{text-align:center;margin-bottom:1.3rem}
+.sec-head h1{font-family:'Jua',sans-serif;font-size:1.5rem;margin-bottom:.35rem;
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-head p{color:var(--muted);font-size:.82rem;line-height:1.6}
+
+.score-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.7rem 1rem}
+.score-item{text-align:center}
+.score-item .num{font-family:'Jua',sans-serif;font-size:1.1rem;color:#fff}
+.score-item .lbl{font-size:.68rem;color:var(--muted)}
+.streak-fire{color:#fb923c}
+
+.progress-track{height:6px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:1.2rem;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#db2777);border-radius:4px;transition:width .3s}
+
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem 1.3rem;margin-bottom:1.2rem}
+.quiz-topic{display:inline-block;font-size:.7rem;color:#a78bfa;background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.3);padding:.25rem .65rem;border-radius:10px;margin-bottom:.9rem}
+.quiz-prompt{font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+.quiz-sentence{font-size:1.02rem;font-weight:800;line-height:1.65;color:#fff;margin-bottom:1.3rem}
+.quiz-sentence .hl{color:#fde047}
+
+.choices{display:flex;flex-direction:column;gap:.6rem}
+.choice-btn{display:flex;align-items:center;gap:.6rem;text-align:left;width:100%;
+  background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:14px;
+  padding:.75rem .9rem;color:var(--text);font-size:.88rem;font-family:inherit;cursor:pointer;
+  transition:border-color .15s,background .15s}
+.choice-btn:hover:not(:disabled){border-color:rgba(124,58,237,.5);background:rgba(124,58,237,.08)}
+.choice-btn:disabled{cursor:default}
+.choice-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:var(--muted)}
+.choice-btn.correct{border-color:var(--good);background:rgba(52,211,153,.12)}
+.choice-btn.correct .choice-num{background:var(--good);color:#052e1c}
+.choice-btn.wrong{border-color:var(--bad);background:rgba(248,113,113,.12)}
+.choice-btn.wrong .choice-num{background:var(--bad);color:#3a0a0a}
+
+.explain-box{margin-top:1.1rem;padding:1rem 1.1rem;border-radius:14px;font-size:.85rem;line-height:1.7;display:none}
+.explain-box.show{display:block}
+.explain-box.good{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);color:#a7f3d0}
+.explain-box.bad{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);color:#fecaca}
+.explain-box .verdict{font-family:'Jua',sans-serif;font-size:.92rem;margin-bottom:.4rem}
+
+.next-btn{display:block;width:100%;margin-top:1rem;padding:.85rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.92rem;cursor:pointer;display:none}
+.next-btn.show{display:block}
+
+.end-screen{display:none;text-align:center;background:var(--card);border:1px solid var(--border);
+  border-radius:22px;padding:2.4rem 1.6rem}
+.end-screen.show{display:block}
+.end-icon{font-size:3.2rem;margin-bottom:.8rem}
+.end-title{font-family:'Jua',sans-serif;font-size:1.3rem;margin-bottom:.5rem}
+.end-score{font-family:'Jua',sans-serif;font-size:2.2rem;background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.end-desc{color:var(--muted);font-size:.85rem;margin-bottom:1.4rem;line-height:1.6}
+.retry-btn{display:inline-block;padding:.8rem 1.8rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.88rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav-bar">
+    <a href="../games.html" class="back-link">← 게임 놀이터</a>
+    <span class="progress-pill" id="progPill">1 / 17</span>
+  </div>
+
+  <div class="sec-head">
+    <h1>🧠 아이디어 게임</h1>
+    <p>직선의 방정식 — 계산은 하지 마세요. <b style="color:#e2e8f0">이 문장을 보면 어떤 아이디어가 떠올라야 하는지</b>만 고르세요.</p>
+  </div>
+
+  <div class="score-bar">
+    <div class="score-item"><div class="num" id="scoreNum">0</div><div class="lbl">정답</div></div>
+    <div class="score-item"><div class="num streak-fire" id="streakNum">0🔥</div><div class="lbl">연속정답</div></div>
+    <div class="score-item"><div class="num" id="totalNum">0 / 17</div><div class="lbl">진행</div></div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-topic" id="quizTopic">단원</div>
+    <div class="quiz-prompt">📖 문제 문장(계산 X) — 이 조건을 보면 뭘 떠올려야 할까요?</div>
+    <div class="quiz-sentence" id="quizSentence">문장</div>
+    <div class="choices" id="choices"></div>
+    <div class="explain-box" id="explainBox">
+      <div class="verdict" id="explainVerdict"></div>
+      <div id="explainText"></div>
+    </div>
+    <button class="next-btn" id="nextBtn">다음 문제 →</button>
+  </div>
+
+  <div class="end-screen" id="endScreen">
+    <div class="end-icon">🏆</div>
+    <div class="end-title">완료!</div>
+    <div class="end-score" id="endScore">0 / 17</div>
+    <div class="end-desc" id="endDesc">지문만 보고 아이디어를 떠올리는 연습, 계속 반복하면 실전에서 문제를 읽는 눈이 달라져요.</div>
+    <button class="retry-btn" onclick="restart()">🔄 다시 도전</button>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+{
+  topic: '절편과 삼각형 넓이 (서랍 A1)',
+  sentence: '직선 x+3y−9=0이 x축, y축과 만나 이루는 삼각형의 넓이를 구하시오.',
+  choices: ['x절편·y절편을 구해 (밑변×높이)÷2로 계산', '점과 직선 사이의 거리 공식', '두 직선의 수직 조건', '판별식으로 교점 개수 확인'],
+  answer: 0,
+  why: '좌표축과 만나 생기는 삼각형은 두 절편이 곧 밑변·높이예요. x절편(y=0 대입), y절편(x=0 대입)만 구하면 끝.'
+},
+{
+  topic: '평행·수직 결합 (서랍 A2)',
+  sentence: '직선 l이 y=−4x+2와 평행하고, y=¼x−1과 수직이 되도록 하는 l의 기울기를 구하시오.',
+  choices: ['평행조건(기울기 같음)과 수직조건(곱=−1)을 각각 따로 적용해 확인', '두 직선의 교점을 구한다', '점과 직선 사이의 거리를 구한다', '내분점 공식을 쓴다'],
+  answer: 0,
+  why: '조건이 두 개면 두 도구(평행=기울기 같음, 수직=곱−1)를 각각 그대로 적용하면 돼요 — 새로운 공식이 필요한 게 아니에요.'
+},
+{
+  topic: '점과 직선 사이의 거리 (서랍 A3)',
+  sentence: '점 (−1,3)과 직선 2x+y−5=0 사이의 거리를 구하시오.',
+  choices: ['두 점 사이의 거리 공식', '점과 직선 사이의 거리 공식 |ax₁+by₁+c|/√(a²+b²)', '내분점 공식', '수직이등분선의 방정식'],
+  answer: 1,
+  why: '점 하나 + 직선 하나 = 점과 직선 사이의 거리 공식 전용 신호예요.'
+},
+{
+  topic: '수직이등분선 (서랍 A4)',
+  sentence: '두 점 (0,4), (6,0)을 잇는 선분의 수직이등분선의 방정식을 구하시오.',
+  choices: ['중점을 구하고 원래 선분과 수직인 기울기로 직선을 세운다', '두 점 사이의 거리만 구한다', '두 점을 지나는 직선의 방정식을 구한다', '외분점 공식을 쓴다'],
+  answer: 0,
+  why: '수직이등분선 = 중점(평면좌표의 내분점 1:1) + 수직조건(기울기 곱 −1), 두 단원의 도구가 만나는 자리예요.'
+},
+{
+  topic: '삼각형이 안 되는 조건 — 직선 3개 (서랍 B1)',
+  sentence: 'y=−x+3, y=2x, y=mx−1 세 직선이 삼각형을 이루지 않도록 하는 m을 구하시오.',
+  choices: ['둘 이상이 평행하거나, 세 직선이 한 점에서 만나는 경우로 나눠 확인', '세 점의 기울기를 비교', '넓이 공식이 0인지 확인', '세 직선의 무게중심을 구함'],
+  answer: 0,
+  why: '"직선이 주어지고 삼각형이 안 된다"는 항상 (평행) 또는 (한 점에서 만남) 두 갈래로 나눠 확인해요.'
+},
+{
+  topic: '매개변수 직선의 정점 (서랍 B2)',
+  sentence: 'k(2x−y+1)+(x+3y−7)=0이 k값에 관계없이 항상 지나는 점을 구하시오.',
+  choices: ['k가 곱해진 식과 안 곱해진 식을 각각 0으로 놓고 연립', '판별식을 0으로 놓는다', '두 직선이 평행하다고 놓는다', '넓이를 이등분한다고 놓는다'],
+  answer: 0,
+  why: 'k(…)+(…)=0 꼴은 k값과 무관하게 두 괄호가 동시에 0이 되는 점을 항상 지나요 — 두 식을 각각 0으로 놓고 연립하면 그 점이 나와요.'
+},
+{
+  topic: '매개변수 직선과 선분의 교차 (서랍 B3)',
+  sentence: '직선 y=kx−2가 두 점 A(1,3), B(4,9)를 잇는 선분과 만나도록 하는 k의 범위를 구하시오.',
+  choices: ['정점 (0,−2)에서 A, B를 각각 바라보는 두 기울기 사이의 범위로 잡는다', '판별식으로 실근 개수를 센다', 'A, B 사이의 거리를 구한다', 'A, B의 무게중심을 구한다'],
+  answer: 0,
+  why: 'y=kx−2는 항상 (0,−2)를 지나는 정점 직선이에요. 그 점에서 A, B를 보는 기울기 두 개를 구해서 그 사이 범위로 k를 잡으면 돼요.'
+},
+{
+  topic: '넓이 이등분 — A1의 함정 (서랍 B4)',
+  sentence: '삼각형 O(0,0), A(6,0), B(0,8)에서 꼭짓점 A를 지나며 삼각형의 넓이를 이등분하는 직선을 구하시오.',
+  choices: ['A와 마주보는 변(대변) OB의 중점을 지나는 직선을 구한다', '세 변의 길이를 구해 절편 공식을 쓴다', '세 점 사이의 거리를 각각 구한다', '판별식을 이용한다'],
+  answer: 0,
+  why: '"절편+삼각형"이라 A1(절편·넓이)처럼 보이지만, 진짜 신호는 "넓이 이등분"이에요 — 한 꼭짓점을 지나며 넓이를 반으로 가르는 직선은 항상 대변의 중점을 지나요.'
+},
+{
+  topic: '각도로 오는 기울기',
+  sentence: '직선 l이 x축의 양의 방향과 60°를 이루고 점 (0,2)를 지날 때 l의 방정식을 구하시오.',
+  choices: ['m=tanθ로 기울기부터 구한다', '사인법칙을 쓴다', '코사인법칙을 쓴다', '판별식을 이용한다'],
+  answer: 0,
+  why: '"x축과 이루는 각"은 항상 m=tanθ로 기울기를 감춰놓은 위장술이에요. 각을 보면 자동으로 탄젠트!'
+},
+{
+  topic: '두 직선의 위치관계 판정',
+  sentence: '2x+y−3=0과 4x+2y−6=0의 위치관계(일치·평행·수직·한 점에서 만남)를 계산 없이 판정하시오.',
+  choices: ['일반형 계수의 비(a₁/a₂, b₁/b₂, c₁/c₂)를 비교한다', '두 직선을 좌표평면에 직접 그려본다', '넓이를 구해서 비교한다', '원의 방정식으로 바꿔서 비교한다'],
+  answer: 0,
+  why: '계수비만 보면 바로 판정 가능해요: a₁/a₂=b₁/b₂=c₁/c₂면 일치, a₁/a₂=b₁/b₂≠c₁/c₂면 평행, a₁a₂+b₁b₂=0이면 수직, 그 외엔 한 점에서 만남.'
+},
+{
+  topic: '평행선 사이의 거리',
+  sentence: '두 평행선 y=2x+1, y=2x−9 사이의 거리를 구하시오.',
+  choices: ['한 직선 위의 점을 아무거나 잡아 다른 직선까지 점과 직선 사이의 거리를 구한다', '두 직선의 교점을 구한다', '판별식으로 실근 개수를 센다', '두 y절편의 차를 그대로 거리로 쓴다'],
+  answer: 0,
+  why: '"평행선 사이의 거리" 공식은 따로 없어요 — 한 직선 위에서 점 하나만 골라 점과 직선 사이의 거리 공식에 넣으면 끝. y절편 차를 그대로 쓰면 기울기가 있을 때 틀려요(함정).'
+},
+{
+  topic: '정점과 항등식',
+  sentence: 'k(x−y−1)+(2x+y−5)=0이 k에 관계없이 항상 지나는 점을 구하는 것과, 두 직선 x−y−1=0, 2x+y−5=0의 교점을 구하는 것의 관계는?',
+  choices: ['완전히 같은 작업이다 — k가 곱해진 부분과 아닌 부분을 각각 0으로 놓으면 그 교점이 나온다', '전혀 다른 두 문제다', '항상 답이 다르게 나온다', 'k값에 따라 지나는 점이 계속 달라진다'],
+  answer: 0,
+  why: 'k(A)+(B)=0에서 정점을 구하는 건, A=0과 B=0을 연립해서 교점을 구하는 것과 수학적으로 똑같은 작업이에요.'
+},
+{
+  topic: '점과 수직선',
+  sentence: '직선 l이 점 P(2,3)을 지나고, 직선 m: y=½x−1과 수직이다. l의 방정식을 구하시오.',
+  choices: ['m의 기울기의 음의 역수를 l의 기울기로 잡고 점 P를 대입', 'm의 기울기를 그대로 사용', '점과 직선 사이의 거리 공식을 쓴다', '정점 공식을 쓴다'],
+  answer: 0,
+  why: '수직 조건(기울기 곱=−1)으로 l의 기울기부터 정하고, 점 P를 지난다는 조건으로 y−y₁=m(x−x₁)에 대입하면 끝.'
+},
+{
+  topic: '판정 방법의 동등성',
+  sentence: '두 직선의 위치관계를 기울기로 비교하는 것과 일반형 계수비로 비교하는 것의 관계는?',
+  choices: ['같은 사실을 다른 도구로 보는 것뿐이라 결론이 항상 같다', '서로 다른 결론이 나올 수 있다', '기울기 방법이 항상 더 정확하다', '계수비 방법은 원에서만 쓸 수 있다'],
+  answer: 0,
+  why: '기울기 비교와 계수비 비교는 같은 조건을 다르게 표현한 것뿐이에요 — 둘 다 결국 "a₁/a₂=b₁/b₂"라는 같은 식으로 귀결돼요.'
+},
+{
+  topic: '삼각형이 안 되는 조건 — 점 3개',
+  sentence: '점 A, B, C 세 개가 주어졌을 때, 이 세 점이 삼각형을 이루지 않는 조건을 확인하려면?',
+  choices: ['AB의 기울기와 BC의 기울기를 비교한다', '세 직선이 평행하거나 한 점에서 만나는지 확인한다', '넓이 공식으로 0인지 확인한다', '무게중심을 구한다'],
+  answer: 0,
+  why: '같은 "삼각형이 안 된다"는 말이라도 직선 3개가 주어지면 평행/한 점 만남(B1)을, 점 3개가 주어지면 기울기 비교를 써야 해요 — 무엇이 주어졌는지에 따라 다른 아이디어예요.'
+},
+{
+  topic: '절편+삼각형 — 이번엔 진짜 A1',
+  sentence: '직선 x+2y−8=0이 x축, y축과 만나 이루는 삼각형의 넓이를 구하시오.',
+  choices: ['x절편·y절편을 구해 (밑변×높이)÷2로 넓이를 바로 계산한다', '한 꼭짓점을 지나며 대변의 중점을 구하는 직선을 찾는다', '점과 직선 사이의 거리 공식을 쓴다', '판별식을 쓴다'],
+  answer: 0,
+  why: '"절편+삼각형"이 나와도 "이등분"이라는 신호 단어가 없으면 그냥 A1(넓이 계산)이에요 — 앞 문제(B4)를 보고 지레 의심해서 대변의 중점부터 찾으면 안 돼요. 신호 단어가 있을 때만 서랍을 바꾸세요.'
+},
+{
+  topic: '넓이 이등분 — 꼭짓점을 지나지 않는 경우(평행)',
+  sentence: '삼각형 OAB(O(0,0), A(6,0), B(0,8))에서, 변 AB에 평행하면서 삼각형의 넓이를 정확히 이등분하는 직선을 구하려고 한다. 이 직선은 변 OA, OB와 만난다.',
+  choices: ['잘려나가는 작은 삼각형이 원래 삼각형과 닮음이라는 사실을 이용해 — 넓이비 1:2 ⟹ 닮음비(길이비) 1:√2로 자르는 위치를 정한다', '꼭짓점 O와 마주보는 변 AB의 중점을 연결한다 (B4처럼)', '점과 직선 사이의 거리 공식을 쓴다', '판별식을 쓴다'],
+  answer: 0,
+  why: '이 직선은 어떤 꼭짓점도 지나지 않아서 "대변의 중점"(B4) 아이디어를 쓸 수 없어요. 대신 "평행선으로 잘린 삼각형은 원래 삼각형과 닮음"이라는 사실을 써서, 넓이비 1:2가 되도록 닮음비 1:√2 지점에서 자르면 돼요 — 넓이비=길이비²라는 사실이 핵심.'
+}
+];
+
+let order = [], idx = 0, score = 0, streak = 0, answered = false;
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function restart(){
+  order = shuffle(QUESTIONS.map((_,i)=>i));
+  idx = 0; score = 0; streak = 0;
+  document.getElementById('endScreen').classList.remove('show');
+  document.getElementById('quizCard').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered = false;
+  const q = QUESTIONS[order[idx]];
+  document.getElementById('quizTopic').textContent = q.topic;
+  document.getElementById('quizSentence').textContent = q.sentence;
+  document.getElementById('progPill').textContent = (idx+1)+' / '+QUESTIONS.length;
+  document.getElementById('totalNum').textContent = idx+' / '+QUESTIONS.length;
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+  document.getElementById('progFill').style.width = (idx/QUESTIONS.length*100)+'%';
+
+  const choicesEl = document.getElementById('choices');
+  choicesEl.innerHTML = '';
+  const shuffledChoiceIdx = shuffle(q.choices.map((_,i)=>i));
+  shuffledChoiceIdx.forEach((origIdx, pos)=>{
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.innerHTML = '<span class="choice-num">'+(pos+1)+'</span><span>'+q.choices[origIdx]+'</span>';
+    btn.onclick = ()=> selectChoice(origIdx, btn);
+    choicesEl.appendChild(btn);
+  });
+
+  document.getElementById('explainBox').className = 'explain-box';
+  document.getElementById('nextBtn').className = 'next-btn';
+}
+
+function selectChoice(origIdx, btnEl){
+  if(answered) return;
+  answered = true;
+  const q = QUESTIONS[order[idx]];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b=> b.disabled = true);
+
+  const isCorrect = origIdx === q.answer;
+  if(isCorrect){
+    btnEl.classList.add('correct');
+    score++; streak++;
+  } else {
+    btnEl.classList.add('wrong');
+    allBtns.forEach(b=>{
+      if(b.textContent.trim() === q.choices[q.answer]) b.classList.add('correct');
+    });
+    streak = 0;
+  }
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+
+  const box = document.getElementById('explainBox');
+  box.className = 'explain-box show ' + (isCorrect ? 'good' : 'bad');
+  document.getElementById('explainVerdict').textContent = isCorrect ? '✅ 맞아요!' : '❌ 아쉬워요 — 정답: '+q.choices[q.answer];
+  document.getElementById('explainText').textContent = q.why;
+
+  document.getElementById('nextBtn').className = 'next-btn show';
+}
+
+document.getElementById('nextBtn').onclick = ()=>{
+  idx++;
+  if(idx >= QUESTIONS.length){
+    document.getElementById('quizCard').style.display = 'none';
+    document.getElementById('endScreen').classList.add('show');
+    document.getElementById('endScore').textContent = score+' / '+QUESTIONS.length;
+    document.getElementById('progFill').style.width = '100%';
+    document.getElementById('totalNum').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+    document.getElementById('progPill').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+  } else {
+    renderQuestion();
+  }
+};
+
+restart();
+</script>
+</body>
+</html>

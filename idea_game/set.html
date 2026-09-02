@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🧠 아이디어 게임 — 집합</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--card:#111827;
+  --purple:#7c3aed;--pink:#db2777;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.08);
+  --good:#34d399;--bad:#f87171}
+body{font-family:"Nanum Gothic","Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:520px;margin:0 auto;padding:1.25rem 1.1rem 3rem}
+
+.nav-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem}
+.back-link{font-family:'Jua',sans-serif;font-size:.82rem;color:var(--muted);text-decoration:none;
+  background:rgba(255,255,255,.08);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+.progress-pill{font-family:'Jua',sans-serif;font-size:.78rem;color:#a78bfa;background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.3);padding:5px 12px;border-radius:20px}
+
+.sec-head{text-align:center;margin-bottom:1.3rem}
+.sec-head h1{font-family:'Jua',sans-serif;font-size:1.5rem;margin-bottom:.35rem;
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-head p{color:var(--muted);font-size:.82rem;line-height:1.6}
+
+.score-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.7rem 1rem}
+.score-item{text-align:center}
+.score-item .num{font-family:'Jua',sans-serif;font-size:1.1rem;color:#fff}
+.score-item .lbl{font-size:.68rem;color:var(--muted)}
+.streak-fire{color:#fb923c}
+
+.progress-track{height:6px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:1.2rem;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#db2777);border-radius:4px;transition:width .3s}
+
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem 1.3rem;margin-bottom:1.2rem}
+.quiz-topic{display:inline-block;font-size:.7rem;color:#a78bfa;background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.3);padding:.25rem .65rem;border-radius:10px;margin-bottom:.9rem}
+.quiz-prompt{font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+.quiz-sentence{font-size:1.02rem;font-weight:800;line-height:1.65;color:#fff;margin-bottom:1.3rem}
+.quiz-sentence .hl{color:#fde047}
+
+.choices{display:flex;flex-direction:column;gap:.6rem}
+.choice-btn{display:flex;align-items:center;gap:.6rem;text-align:left;width:100%;
+  background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:14px;
+  padding:.75rem .9rem;color:var(--text);font-size:.88rem;font-family:inherit;cursor:pointer;
+  transition:border-color .15s,background .15s}
+.choice-btn:hover:not(:disabled){border-color:rgba(124,58,237,.5);background:rgba(124,58,237,.08)}
+.choice-btn:disabled{cursor:default}
+.choice-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:var(--muted)}
+.choice-btn.correct{border-color:var(--good);background:rgba(52,211,153,.12)}
+.choice-btn.correct .choice-num{background:var(--good);color:#052e1c}
+.choice-btn.wrong{border-color:var(--bad);background:rgba(248,113,113,.12)}
+.choice-btn.wrong .choice-num{background:var(--bad);color:#3a0a0a}
+
+.explain-box{margin-top:1.1rem;padding:1rem 1.1rem;border-radius:14px;font-size:.85rem;line-height:1.7;display:none}
+.explain-box.show{display:block}
+.explain-box.good{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);color:#a7f3d0}
+.explain-box.bad{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);color:#fecaca}
+.explain-box .verdict{font-family:'Jua',sans-serif;font-size:.92rem;margin-bottom:.4rem}
+
+.next-btn{display:block;width:100%;margin-top:1rem;padding:.85rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.92rem;cursor:pointer;display:none}
+.next-btn.show{display:block}
+
+.end-screen{display:none;text-align:center;background:var(--card);border:1px solid var(--border);
+  border-radius:22px;padding:2.4rem 1.6rem}
+.end-screen.show{display:block}
+.end-icon{font-size:3.2rem;margin-bottom:.8rem}
+.end-title{font-family:'Jua',sans-serif;font-size:1.3rem;margin-bottom:.5rem}
+.end-score{font-family:'Jua',sans-serif;font-size:2.2rem;background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.end-desc{color:var(--muted);font-size:.85rem;margin-bottom:1.4rem;line-height:1.6}
+.retry-btn{display:inline-block;padding:.8rem 1.8rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.88rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav-bar">
+    <a href="../games.html" class="back-link">← 게임 놀이터</a>
+    <span class="progress-pill" id="progPill">1 / 16</span>
+  </div>
+
+  <div class="sec-head">
+    <h1>🧠 아이디어 게임</h1>
+    <p>집합 — 계산은 하지 마세요. <b style="color:#e2e8f0">이 문장을 보면 어떤 서랍(아이디어)이 떠올라야 하는지</b>만 고르세요.</p>
+  </div>
+
+  <div class="score-bar">
+    <div class="score-item"><div class="num" id="scoreNum">0</div><div class="lbl">정답</div></div>
+    <div class="score-item"><div class="num streak-fire" id="streakNum">0🔥</div><div class="lbl">연속정답</div></div>
+    <div class="score-item"><div class="num" id="totalNum">0 / 16</div><div class="lbl">진행</div></div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-topic" id="quizTopic">단원</div>
+    <div class="quiz-prompt">📖 문제 문장(계산 X) — 이 조건을 보면 뭘 떠올려야 할까요?</div>
+    <div class="quiz-sentence" id="quizSentence">문장</div>
+    <div class="choices" id="choices"></div>
+    <div class="explain-box" id="explainBox">
+      <div class="verdict" id="explainVerdict"></div>
+      <div id="explainText"></div>
+    </div>
+    <button class="next-btn" id="nextBtn">다음 문제 →</button>
+  </div>
+
+  <div class="end-screen" id="endScreen">
+    <div class="end-icon">🏆</div>
+    <div class="end-title">완료!</div>
+    <div class="end-score" id="endScore">0 / 16</div>
+    <div class="end-desc" id="endDesc">지문만 보고 아이디어를 떠올리는 연습, 계속 반복하면 실전에서 문제를 읽는 눈이 달라져요.</div>
+    <button class="retry-btn" onclick="restart()">🔄 다시 도전</button>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+{
+  topic: '서랍 S1 — 원소나열/조건제시',
+  sentence: '집합 A={x|x는 12 이하의 소수}를 원소나열법으로 나타내시오.',
+  choices: ['조건을 만족하는 원소를 하나씩 직접 나열한다', '부분집합의 개수 공식(2ⁿ)을 쓴다', '포함배제의 원리를 쓴다', '드모르간의 법칙을 쓴다'],
+  answer: 0,
+  why: '"원소나열법으로"가 직접 신호예요 — 조건을 만족하는 원소를 하나씩 찾아 나열하면 끝.'
+},
+{
+  topic: '서랍 S3 — 부분집합의 개수',
+  sentence: '집합 A={1,2,3,4,5}의 부분집합 중 원소가 3개인 것의 개수를 구하시오.',
+  choices: ['부분집합 개수 공식(조합·2ⁿ 발상)을 이용한다', '원소를 전부 나열해서 하나씩 센다', '포함배제의 원리를 쓴다', '서로소 판별부터 한다'],
+  answer: 0,
+  why: '"부분집합"·"몇 개"가 신호예요. 원소 개수가 정해진 부분집합은 조합(₅C₃)으로 바로 계산해요.'
+},
+{
+  topic: '함정 — "원소의 개수"라고 다 공식은 아니다',
+  sentence: 'A={x|x는 30의 약수}, B={x|x는 20의 약수}일 때, A∩B의 원소 개수를 구하시오.',
+  choices: ['A, B를 직접 나열해서 겹치는 원소를 센다 (공식보다 빠름)', '반드시 포함배제 공식 n(A∪B)=n(A)+n(B)−n(A∩B)부터 세운다', '드모르간의 법칙을 쓴다', '서로소 판정부터 한다'],
+  answer: 0,
+  why: '"원소의 개수"라는 말만 보고 공식(S7)을 먼저 떠올리기 쉽지만, 약수처럼 직접 나열이 가능하면 나열이 훨씬 빨라요. 공식은 나열이 어려울 때(사람 수 등)만 씁니다.'
+},
+{
+  topic: '서랍 S7 — 원소개수 공식(포함배제)',
+  sentence: '학생 100명 중 안경 쓴 학생 40명, 모자 쓴 학생 35명, 둘 다 쓴 학생 10명일 때, 둘 다 안 쓴 학생 수를 구하시오.',
+  choices: ['n(A∪B)=n(A)+n(B)−n(A∩B) 공식으로 구한 뒤 전체에서 뺀다', 'A, B를 직접 나열해서 센다', '서로소 판정부터 한다', '부분집합 개수 공식을 쓴다'],
+  answer: 0,
+  why: '누가 안경·모자를 썼는지 이름을 모르니 직접 나열이 불가능해요 — 이럴 땐 공식으로 갈 수밖에 없어요. 위 문제(약수)와 정반대 상황.'
+},
+{
+  topic: '서랍 S5 — 서로소',
+  sentence: 'A∩B=∅이고 A∪B=U일 때, B를 A로 나타내시오.',
+  choices: ['B=Aᶜ (여집합) — 서로소이면서 합쳐서 전체가 되는 건 여집합의 정의와 같다', 'B=A이다', 'B는 A의 부분집합이다', '포함배제 공식을 쓴다'],
+  answer: 0,
+  why: '"서로소이고 합쳐서 전체집합"은 사실 여집합의 정의 그 자체예요 — 새로운 걸 계산할 필요가 없어요.'
+},
+{
+  topic: '서랍 S6 — 드모르간의 법칙',
+  sentence: '(A∪B)ᶜ을 A, B의 여집합을 이용해서 나타내시오.',
+  choices: ['드모르간의 법칙: (A∪B)ᶜ=Aᶜ∩Bᶜ', '(A∪B)ᶜ=Aᶜ∪Bᶜ', '포함배제의 원리를 쓴다', '원소를 직접 나열해서 확인만 한다'],
+  answer: 0,
+  why: '합집합의 여집합은 각 여집합의 교집합, 교집합의 여집합은 각 여집합의 합집합 — 드모르간은 "∪↔∩가 뒤바뀐다"로 외우면 편해요.'
+},
+{
+  topic: '서랍 S8 — 조건 만족 개수(케이스분류)',
+  sentence: '집합 {1,...,7}의 부분집합 B가 (가)1∈B,7∉B (나)B∩{2,3,4}≠∅을 만족할 때, B의 개수를 구하시오.',
+  choices: ['전체 경우(자유원소 2ⁿ)에서 조건(나)를 위반하는 경우를 빼는 여사건', '조건을 만족하는 경우를 하나하나 나열한다', '포함배제의 원리(3집합)를 쓴다', '드모르간의 법칙을 쓴다'],
+  answer: 0,
+  why: '"적어도 하나"(∩≠∅)라는 조건은 항상 "전체에서 하나도 없는 경우를 뺀다"는 여사건으로 접근해요.'
+},
+{
+  topic: '함정 — 약수 개수가 많다고 포함하는 게 아니다',
+  sentence: 'A={x|x는 8의 약수}, B={x|x는 24의 약수}, C={x|x는 16의 약수}의 포함관계를 판정하시오.',
+  choices: ['세 집합의 원소를 모두 나열해서 하나씩 대조한다', '약수의 개수가 많은 쪽이 항상 다른 쪽을 포함한다', '최소공배수만 비교하면 된다', '포함배제의 원리를 쓴다'],
+  answer: 0,
+  why: 'B(24의 약수)가 C(16의 약수)보다 개수가 많지만, C의 16은 24의 약수가 아니라서 서로 포함관계가 없어요 — 반드시 원소를 나열해서 확인해야 해요.'
+},
+{
+  topic: '서랍 S4 — 낯선 연산기호는 정의로 뜯기',
+  sentence: 'A☆B=(A−B)∪(B−A)라는 새 연산이 정의되어 있을 때, A☆A의 값을 구하시오.',
+  choices: ['정의를 그대로 대입해서 직접 계산한다 (A−A=∅이므로 답은 ∅)', '이미 배운 공식에 대입만 하면 절대 못 푼다', '포함배제의 원리를 쓴다', '드모르간의 법칙만 쓴다'],
+  answer: 0,
+  why: '낯선 기호가 나와도 겁먹지 마세요 — 이미 아는 ∩, ∪, −로 정의를 그대로 뜯어서 대입하면 풀려요.'
+},
+{
+  topic: '서랍 S6 — 분배법칙의 지름길',
+  sentence: 'A∩(B∪C)를 계산해야 하는데, B와 C가 이미 A의 부분집합임을 알고 있다. 더 빠른 방법은?',
+  choices: ['A∩(B∪C)=B∪C로 바로 줄여서 계산한다', '반드시 분배법칙을 전개해서 (A∩B)∪(A∩C)로 계산한다', '포함배제 공식부터 쓴다', '드모르간의 법칙을 쓴다'],
+  answer: 0,
+  why: 'B, C가 이미 A 안에 있으면 B∪C도 자동으로 A 안에 있으니, A와의 교집합은 그대로 B∪C예요 — 전개할 필요가 없어요.'
+},
+{
+  topic: '결합 — 3집합 포함배제 + 부등식',
+  sentence: '세 앱 A,B,C의 사용자 수와 두 앱씩 겹치는 학생 수가 주어졌을 때, 세 앱을 모두 쓰는 학생 수의 최댓값과 최솟값을 구하려면?',
+  choices: ['n(A∪B∪C) 공식을 세우고, "전체 인원 제한"과 "각자만 쓰는 인원은 음수일 수 없다"는 두 조건을 모두 사용', 'n(A∪B) 공식 하나만 쓴다', '서로소 판별만 한다', '부분집합 개수 공식을 쓴다'],
+  answer: 0,
+  why: '전체 인원 제한만 쓰면 최댓값만 나와요. 최솟값까지 구하려면 "각자만 쓰는 인원 ≥ 0"이라는 조건을 추가로 써야 해요 — 조건 하나만 쓰면 놓치는 함정.'
+},
+{
+  topic: '서랍 S8 — 두 조건이 독립이면 곱의 법칙',
+  sentence: '짝수 4개 중 적어도 하나, 홀수 3개 중 적어도 하나를 포함해야 하는 부분집합의 개수를 구하시오.',
+  choices: ['짝수쪽·홀수쪽을 각각 여사건(전체−하나도 안 고르는 경우)으로 구한 뒤 곱한다', '두 조건에서 나온 경우의 수를 더한다', '포함배제 공식으로 한 번에 계산한다', '드모르간의 법칙을 쓴다'],
+  answer: 0,
+  why: '짝수 그룹과 홀수 그룹은 완전히 나뉘어 있고 서로 영향을 안 주니(독립), 각각 여사건으로 구해서 곱하면 돼요.'
+},
+{
+  topic: '서랍 S3 — 자유원소를 배정하는 관점',
+  sentence: 'A∩B={4,5}, A∪B=U, n(A)=6이 주어졌을 때, A의 원소 합의 최댓값을 구하는 데 필요한 발상은?',
+  choices: ['4,5는 항상 A의 원소로 고정하고, 나머지 원소들을 A 또는 B 중 어디에 넣을지 자유롭게 배정하는 관점으로 본다', '포함배제 공식만 쓴다', '드모르간의 법칙을 쓴다', '서로소 판정부터 한다'],
+  answer: 0,
+  why: '교집합 원소는 이미 확정, 나머지는 "어느 집합에 넣을지"를 정하는 자유원소로 보면 부분집합 개수(S3) 발상과 같은 구조예요.'
+},
+{
+  topic: '결합 — S4+S5+S7 종합',
+  sentence: 'n(A)=6, n(B)=5, A와 B는 서로소가 아니다, A∩B의 원소는 모두 짝수 — 이 세 조건을 모두 써서 n(A∩B)의 최댓값·최솟값을 구하려면?',
+  choices: ['"서로소 아님"으로 최솟값을, "원소는 짝수만"으로 후보 범위를 제한해 최댓값을, 포함배제 공식과 함께 순서대로 결합한다', '포함배제 공식 하나만 쓴다', '드모르간의 법칙만 쓴다', '부분집합 개수 공식만 쓴다'],
+  answer: 0,
+  why: '조건이 여러 개(서로소·원소범위·개수)면 서랍을 하나씩 순서대로 적용해서 좁혀가야 해요 — 한 번에 다 풀리는 공식은 없어요.'
+},
+{
+  topic: '새 기호 응용 — 대칭차집합',
+  sentence: 'A△B=(A−B)∪(B−A)로 정의할 때, A△B=A가 성립하기 위한 필요충분조건을 구하려면?',
+  choices: ['양변에 A△를 다시 적용해 결합법칙으로 정리한다 (A△(A△B)=A△A)', '그냥 예시 몇 개를 대입해서 추측만 한다', '포함배제 공식을 쓴다', '드모르간의 법칙만 쓴다'],
+  answer: 0,
+  why: '등식의 양변에 같은 연산을 적용해서 정리하는 건 방정식 풀 때와 똑같은 발상이에요 — A△A=∅이라는 사실과 결합법칙을 쓰면 B=∅이 바로 나와요.'
+},
+{
+  topic: '서랍 S5 — 미지수가 있으면 먼저 나열',
+  sentence: 'A={x|x²−5x+6=0}, B={x|x²−(a+1)x+a=0}이 서로소가 되도록 하는 자연수 a의 개수를 구하시오.',
+  choices: ['먼저 A, B를 인수분해로 원소를 나열한 뒤에 서로소 조건(공통원소 없음)을 건다', '서로소 공식에 바로 a를 대입한다', '포함배제 공식을 쓴다', '부분집합 개수 공식을 쓴다'],
+  answer: 0,
+  why: '미지수 a가 껴 있으면 먼저 인수분해로 두 집합을 구체적인 원소로 나열해야 그다음에 서로소 조건을 걸 수 있어요.'
+}
+];
+
+let order = [], idx = 0, score = 0, streak = 0, answered = false;
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function restart(){
+  order = shuffle(QUESTIONS.map((_,i)=>i));
+  idx = 0; score = 0; streak = 0;
+  document.getElementById('endScreen').classList.remove('show');
+  document.getElementById('quizCard').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered = false;
+  const q = QUESTIONS[order[idx]];
+  document.getElementById('quizTopic').textContent = q.topic;
+  document.getElementById('quizSentence').textContent = q.sentence;
+  document.getElementById('progPill').textContent = (idx+1)+' / '+QUESTIONS.length;
+  document.getElementById('totalNum').textContent = idx+' / '+QUESTIONS.length;
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+  document.getElementById('progFill').style.width = (idx/QUESTIONS.length*100)+'%';
+
+  const choicesEl = document.getElementById('choices');
+  choicesEl.innerHTML = '';
+  const shuffledChoiceIdx = shuffle(q.choices.map((_,i)=>i));
+  shuffledChoiceIdx.forEach((origIdx, pos)=>{
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.innerHTML = '<span class="choice-num">'+(pos+1)+'</span><span>'+q.choices[origIdx]+'</span>';
+    btn.onclick = ()=> selectChoice(origIdx, btn);
+    choicesEl.appendChild(btn);
+  });
+
+  document.getElementById('explainBox').className = 'explain-box';
+  document.getElementById('nextBtn').className = 'next-btn';
+}
+
+function selectChoice(origIdx, btnEl){
+  if(answered) return;
+  answered = true;
+  const q = QUESTIONS[order[idx]];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b=> b.disabled = true);
+
+  const isCorrect = origIdx === q.answer;
+  if(isCorrect){
+    btnEl.classList.add('correct');
+    score++; streak++;
+  } else {
+    btnEl.classList.add('wrong');
+    allBtns.forEach(b=>{
+      if(b.textContent.trim() === q.choices[q.answer]) b.classList.add('correct');
+    });
+    streak = 0;
+  }
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+
+  const box = document.getElementById('explainBox');
+  box.className = 'explain-box show ' + (isCorrect ? 'good' : 'bad');
+  document.getElementById('explainVerdict').textContent = isCorrect ? '✅ 맞아요!' : '❌ 아쉬워요 — 정답: '+q.choices[q.answer];
+  document.getElementById('explainText').textContent = q.why;
+
+  document.getElementById('nextBtn').className = 'next-btn show';
+}
+
+document.getElementById('nextBtn').onclick = ()=>{
+  idx++;
+  if(idx >= QUESTIONS.length){
+    document.getElementById('quizCard').style.display = 'none';
+    document.getElementById('endScreen').classList.add('show');
+    document.getElementById('endScore').textContent = score+' / '+QUESTIONS.length;
+    document.getElementById('progFill').style.width = '100%';
+    document.getElementById('totalNum').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+    document.getElementById('progPill').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+  } else {
+    renderQuestion();
+  }
+};
+
+restart();
+</script>
+</body>
+</html>

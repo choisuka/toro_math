@@ -48,6 +48,17 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
   letter-spacing:.03em;text-decoration:none}
 .game-launch-btn:hover{transform:scale(1.05)}
 .game-launch-note{font-size:.78rem;color:var(--muted);margin-top:.9rem}
+
+.grade-divider{display:flex;align-items:center;gap:.7rem;margin:2.6rem 0 1.3rem;padding-bottom:.7rem;
+  border-bottom:2px solid rgba(255,255,255,.08)}
+.grade-divider:first-of-type{margin-top:0}
+.grade-icon{font-size:1.7rem}
+.grade-title{font-family:'Jua',sans-serif;font-size:1.15rem;color:#fff}
+.grade-desc{font-size:.76rem;color:var(--muted);margin-top:2px}
+
+.empty-state{background:var(--card);border:1px dashed var(--border);border-radius:20px;
+  padding:2rem 1.5rem;text-align:center;color:var(--muted);font-size:.85rem;line-height:1.7}
+.empty-state .icon{font-size:2.2rem;display:block;margin-bottom:.6rem}
 </style>
 </head>
 <body>
@@ -60,7 +71,31 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
     <p>개념 설명 → 힌트 → 퀴즈 → 단계별 풀이까지! 게임으로 수학을 정복하세요</p>
   </div>
 
-  <!-- Game 1: 수학 왕국 (math_game) -->
+  <!-- ══════════ 초등 ══════════ -->
+  <div class="grade-divider">
+    <span class="grade-icon">🧒</span>
+    <div><div class="grade-title">초등</div><div class="grade-desc">연산·분수·비율 기초 다지기</div></div>
+  </div>
+
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🦊 수학왕국</h3>
+      <span class="grade-badge">📚 초1~초6 + 중1~중3</span>
+      <p>Lv.·XP·트로피·일지까지 갖춘 성장형 드릴 게임. 학년별 연산부터 중1~중3 세분화 단원까지 레벨업하며 연습합니다.</p>
+      <div class="game-features">
+        <span class="game-feature">⭐ 레벨·XP</span>
+        <span class="game-feature">🏆 트로피</span>
+        <span class="game-feature">📖 일지</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#1a1000,#2a1a00);border-color:rgba(251,146,60,.4)">
+      <span class="game-launch-icon">🦊</span>
+      <div class="game-launch-title" style="background:linear-gradient(135deg,#fb923c,#fde047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">수학왕국</div>
+      <div class="game-launch-desc">레벨업하며 연산 마스터!</div>
+      <a class="game-launch-btn" href="math-games-kingdom/index.html" style="background:linear-gradient(135deg,#ea580c,#ca8a04)">🦊 왕국 입장</a>
+    </div>
+  </div>
+
   <div class="game-section">
     <div class="game-intro">
       <h3>🎮 수학 왕국 — 정수 · 유리수</h3>
@@ -81,7 +116,91 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
     </div>
   </div>
 
-  <!-- Game 2: 문자와 식 마법학교 (algebra_game) -->
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🦕 토로의 분수·비율 탐험</h3>
+      <span class="grade-badge">📚 초4~초6·중1</span>
+      <p>탄천 청소·숲속 주스 나누기·마법의 징검다리, 세 가지 미션으로 떠나는 분수 통분·덧셈뺄셈과 비와 비율·비례식 스토리 여행. 초4~초6·중1 대상.</p>
+      <div class="game-features">
+        <span class="game-feature">🧺 미션 스토리</span>
+        <span class="game-feature">➗ 통분·덧셈뺄셈</span>
+        <span class="game-feature">📊 비와 비율</span>
+        <span class="game-feature">⚖️ 비례식</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#07200f,#0d3018);border-color:rgba(52,211,153,.4)">
+      <span class="game-launch-icon">🦕</span>
+      <div class="game-launch-title" style="background:linear-gradient(135deg,#34d399,#a3e635);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">분수·비율 탐험</div>
+      <div class="game-launch-desc">미션을 따라 분수와 비율을 정복!</div>
+      <a class="game-launch-btn" href="toro_frac/index.html" style="background:linear-gradient(135deg,#059669,#65a30d)">🦕 탐험 시작</a>
+    </div>
+  </div>
+
+  <!-- ══════════ 중등 ══════════ -->
+  <div class="grade-divider">
+    <span class="grade-icon">🧑‍🎓</span>
+    <div><div class="grade-title">중등</div><div class="grade-desc">문자와 식·방정식 활용·함수 그래프</div></div>
+  </div>
+
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🦊 수학왕국</h3>
+      <span class="grade-badge">📚 초1~초6 + 중1~중3</span>
+      <p>Lv.·XP·트로피·일지까지 갖춘 성장형 드릴 게임. 학년별 연산부터 중1~중3 세분화 단원까지 레벨업하며 연습합니다.</p>
+      <div class="game-features">
+        <span class="game-feature">⭐ 레벨·XP</span>
+        <span class="game-feature">🏆 트로피</span>
+        <span class="game-feature">📖 일지</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#1a1000,#2a1a00);border-color:rgba(251,146,60,.4)">
+      <span class="game-launch-icon">🦊</span>
+      <div class="game-launch-title" style="background:linear-gradient(135deg,#fb923c,#fde047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">수학왕국</div>
+      <div class="game-launch-desc">레벨업하며 연산 마스터!</div>
+      <a class="game-launch-btn" href="math-games-kingdom/index.html" style="background:linear-gradient(135deg,#ea580c,#ca8a04)">🦊 왕국 입장</a>
+    </div>
+  </div>
+
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🎮 수학 왕국 — 정수 · 유리수</h3>
+      <span class="grade-badge">📚 초등 전과정 + 중1~중3</span>
+      <p>정수·소수·분수 연산을 드라마틱한 게임으로! 틀리면 풀이가 전면 팝업으로 등장합니다. 초1~초6 학년별 드릴 + 중1~중3 정수·문자식·함수·이차방정식까지.</p>
+      <div class="game-features">
+        <span class="game-feature">📐 개념 미리보기</span>
+        <span class="game-feature">💡 힌트</span>
+        <span class="game-feature">📚 단계별 풀이</span>
+        <span class="game-feature">⏱️ 타이머</span>
+      </div>
+    </div>
+    <div class="game-launch-box">
+      <span class="game-launch-icon">👑</span>
+      <div class="game-launch-title">수학 왕국</div>
+      <div class="game-launch-desc">정수 · 유리수 · 분수 연산 마스터!</div>
+      <a class="game-launch-btn" href="math_game/phaser_game.html">🚀 게임 열기</a>
+    </div>
+  </div>
+
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🦕 토로의 분수·비율 탐험</h3>
+      <span class="grade-badge">📚 초4~초6·중1</span>
+      <p>탄천 청소·숲속 주스 나누기·마법의 징검다리, 세 가지 미션으로 떠나는 분수 통분·덧셈뺄셈과 비와 비율·비례식 스토리 여행. 초4~초6·중1 대상.</p>
+      <div class="game-features">
+        <span class="game-feature">🧺 미션 스토리</span>
+        <span class="game-feature">➗ 통분·덧셈뺄셈</span>
+        <span class="game-feature">📊 비와 비율</span>
+        <span class="game-feature">⚖️ 비례식</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#07200f,#0d3018);border-color:rgba(52,211,153,.4)">
+      <span class="game-launch-icon">🦕</span>
+      <div class="game-launch-title" style="background:linear-gradient(135deg,#34d399,#a3e635);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">분수·비율 탐험</div>
+      <div class="game-launch-desc">미션을 따라 분수와 비율을 정복!</div>
+      <a class="game-launch-btn" href="toro_frac/index.html" style="background:linear-gradient(135deg,#059669,#65a30d)">🦕 탐험 시작</a>
+    </div>
+  </div>
+
   <div class="game-section">
     <div class="game-intro">
       <h3>🔮 문자와 식 마법학교</h3>
@@ -103,7 +222,6 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
     </div>
   </div>
 
-  <!-- Game 3: 수학 탐정 수사국 (detective_math) -->
   <div class="game-section">
     <div class="game-intro">
       <h3>🔍 수학 탐정 수사국</h3>
@@ -125,44 +243,154 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
     </div>
   </div>
 
-  <!-- Game 4: 토로의 분수·비율 탐험 (toro_frac) -->
   <div class="game-section">
     <div class="game-intro">
-      <h3>🦕 토로의 분수·비율 탐험</h3>
-      <span class="grade-badge">📚 초4~초6·중1</span>
-      <p>탄천 청소·숲속 주스 나누기·마법의 징검다리, 세 가지 미션으로 떠나는 분수 통분·덧셈뺄셈과 비와 비율·비례식 스토리 여행. 초4~초6·중1 대상.</p>
+      <h3>📈 그래프 탐험대</h3>
+      <span class="grade-badge">📚 중1~중2</span>
+      <p>좌표평면과 함수를 탐험하며 익히는 게임. 순서쌍·좌표평면부터 함수의 그래프까지 미션을 깨며 학습합니다.</p>
       <div class="game-features">
-        <span class="game-feature">🧺 미션 스토리</span>
-        <span class="game-feature">➗ 통분·덧셈뺄셈</span>
-        <span class="game-feature">📊 비와 비율</span>
-        <span class="game-feature">⚖️ 비례식</span>
+        <span class="game-feature">📍 좌표평면</span>
+        <span class="game-feature">📈 함수의 그래프</span>
       </div>
     </div>
-    <div class="game-launch-box" style="background:linear-gradient(160deg,#07200f,#0d3018);border-color:rgba(52,211,153,.4)">
-      <span class="game-launch-icon">🦕</span>
-      <div class="game-launch-title" style="background:linear-gradient(135deg,#34d399,#a3e635);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">분수·비율 탐험</div>
-      <div class="game-launch-desc">미션을 따라 분수와 비율을 정복!</div>
-      <a class="game-launch-btn" href="toro_frac/index.html" style="background:linear-gradient(135deg,#059669,#65a30d)">🦕 탐험 시작</a>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#031a1f,#06333d);border-color:rgba(45,212,191,.4)">
+      <span class="game-launch-icon">📈</span>
+      <div class="game-launch-title" style="background:linear-gradient(135deg,#2dd4bf,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">그래프 탐험대</div>
+      <div class="game-launch-desc">좌표와 함수를 정복하는 탐험!</div>
+      <a class="game-launch-btn" href="math-games-kingdom/games/graph.html" style="background:linear-gradient(135deg,#0d9488,#0891b2)">📈 탐험 시작</a>
     </div>
   </div>
 
-  <!-- Game 5: 수학왕국 (math-games-kingdom) -->
+  <!-- ══════════ 공통수학1 ══════════ -->
+  <div class="grade-divider">
+    <span class="grade-icon">1️⃣</span>
+    <div><div class="grade-title">공통수학1</div><div class="grade-desc">다항식·방정식과 부등식·경우의 수·행렬</div></div>
+  </div>
+
+  <div class="game-section">
+    <div class="empty-state">
+      <span class="icon">🚧</span>
+      공수1 아이디어 게임은 준비 중이에요. 곧 추가됩니다!
+    </div>
+  </div>
+
+  <!-- ══════════ 공통수학2 ══════════ -->
+  <div class="grade-divider">
+    <span class="grade-icon">2️⃣</span>
+    <div><div class="grade-title">공통수학2</div><div class="grade-desc">도형의 방정식·집합과 명제·함수</div></div>
+  </div>
+
   <div class="game-section">
     <div class="game-intro">
-      <h3>🦊 수학왕국</h3>
-      <span class="grade-badge">📚 초1~초6 + 중1~중3</span>
-      <p>Lv.·XP·트로피·일지까지 갖춘 성장형 드릴 게임. 학년별 연산부터 중1~중3 세분화 단원까지 레벨업하며 연습합니다.</p>
+      <h3>🧠 아이디어 게임 — 도형의 방정식</h3>
+      <span class="grade-badge">📚 공통수학2</span>
+      <p>계산은 하지 않아요. 문제 문장만 보고 "이 조건엔 어떤 아이디어를 써야 하는지"를 객관식으로 맞히는 훈련 게임 — 지문을 안 읽고 계산부터 하는 습관을 잡아줍니다.</p>
       <div class="game-features">
-        <span class="game-feature">⭐ 레벨·XP</span>
-        <span class="game-feature">🏆 트로피</span>
-        <span class="game-feature">📖 일지</span>
+        <span class="game-feature">📖 지문 읽기 훈련</span>
+        <span class="game-feature">🔍 아이디어 판별</span>
+        <span class="game-feature">🔥 연속정답 스트릭</span>
       </div>
     </div>
-    <div class="game-launch-box" style="background:linear-gradient(160deg,#1a1000,#2a1a00);border-color:rgba(251,146,60,.4)">
-      <span class="game-launch-icon">🦊</span>
-      <div class="game-launch-title" style="background:linear-gradient(135deg,#fb923c,#fde047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">수학왕국</div>
-      <div class="game-launch-desc">레벨업하며 연산 마스터!</div>
-      <a class="game-launch-btn" href="math-games-kingdom/index.html" style="background:linear-gradient(135deg,#ea580c,#ca8a04)">🦊 왕국 입장</a>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#150030,#280045);border-color:rgba(219,39,119,.4)">
+      <span class="game-launch-icon">🧠</span>
+      <div class="game-launch-title">아이디어 게임</div>
+      <div class="game-launch-desc">도형의 방정식 16문항 — 계산 없이 아이디어만!</div>
+      <a class="game-launch-btn" href="idea_game/shape_eq.html">🧠 게임 열기</a>
+    </div>
+  </div>
+
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🧠 아이디어 게임 — 직선의 방정식</h3>
+      <span class="grade-badge">📚 공통수학2</span>
+      <p>절편·평행수직·점직선거리·수직이등분선(A1~A4)부터 정점·삼각형 조건·넓이 이등분(B1~B4)까지, 실제 서랍 태그가 붙은 판별 드릴을 객관식으로 재구성했어요.</p>
+      <div class="game-features">
+        <span class="game-feature">📖 지문 읽기 훈련</span>
+        <span class="game-feature">🎯 A1~B4 서랍</span>
+        <span class="game-feature">⚠️ 함정 판별</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#150030,#280045);border-color:rgba(219,39,119,.4)">
+      <span class="game-launch-icon">🧠</span>
+      <div class="game-launch-title">아이디어 게임</div>
+      <div class="game-launch-desc">직선의 방정식 16문항 — 계산 없이 아이디어만!</div>
+      <a class="game-launch-btn" href="idea_game/line_eq.html">🧠 게임 열기</a>
+    </div>
+  </div>
+
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🧠 아이디어 게임 — 원의 방정식</h3>
+      <span class="grade-badge">📚 공통수학2</span>
+      <p>세 점을 지나는 원·지름의 양 끝점·좌표축 접함부터, 두 접선의 기울기·둘레 이등분·최대최소까지 아이디어①~⑨ 전체를 객관식으로 재구성했어요.</p>
+      <div class="game-features">
+        <span class="game-feature">📖 지문 읽기 훈련</span>
+        <span class="game-feature">🎯 아이디어①~⑨</span>
+        <span class="game-feature">🧩 결합 문제 포함</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#150030,#280045);border-color:rgba(219,39,119,.4)">
+      <span class="game-launch-icon">🧠</span>
+      <div class="game-launch-title">아이디어 게임</div>
+      <div class="game-launch-desc">원의 방정식 16문항 — 계산 없이 아이디어만!</div>
+      <a class="game-launch-btn" href="idea_game/circle_eq.html">🧠 게임 열기</a>
+    </div>
+  </div>
+
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🧠 아이디어 게임 — 집합</h3>
+      <span class="grade-badge">📚 공통수학2</span>
+      <p>원소나열·포함관계·부분집합 개수·서로소·연산법칙·포함배제·케이스분류까지, 실제 서랍 S1~S8 판별 드릴을 객관식으로 재구성했어요. "원소 개수"만 보고 무조건 공식 쓰는 함정도 포함.</p>
+      <div class="game-features">
+        <span class="game-feature">📖 지문 읽기 훈련</span>
+        <span class="game-feature">🎯 S1~S8 서랍</span>
+        <span class="game-feature">⚠️ 함정 판별</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#150030,#280045);border-color:rgba(219,39,119,.4)">
+      <span class="game-launch-icon">🧠</span>
+      <div class="game-launch-title">아이디어 게임</div>
+      <div class="game-launch-desc">집합 16문항 — 계산 없이 아이디어만!</div>
+      <a class="game-launch-btn" href="idea_game/set.html">🧠 게임 열기</a>
+    </div>
+  </div>
+
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🧠 아이디어 게임 — 명제</h3>
+      <span class="grade-badge">📚 공통수학2</span>
+      <p>진리집합·역이대우·필요충분조건·증명법(대우·귀류법·직접증명)부터 심화 서랍 4개(필요충분조건 역산·반례개수·연쇄추론·한정기호)까지 객관식으로 재구성했어요.</p>
+      <div class="game-features">
+        <span class="game-feature">📖 지문 읽기 훈련</span>
+        <span class="game-feature">🎯 증명법 판별</span>
+        <span class="game-feature">⚠️ 함정 판별</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#150030,#280045);border-color:rgba(219,39,119,.4)">
+      <span class="game-launch-icon">🧠</span>
+      <div class="game-launch-title">아이디어 게임</div>
+      <div class="game-launch-desc">명제 16문항 — 계산 없이 아이디어만!</div>
+      <a class="game-launch-btn" href="idea_game/proposition.html">🧠 게임 열기</a>
+    </div>
+  </div>
+
+  <div class="game-section">
+    <div class="game-intro">
+      <h3>🧠🔗 아이디어 게임 — 단원이 만나는 지점</h3>
+      <span class="grade-badge">📚 공통수학2 · 복합</span>
+      <p>이번엔 단원 하나가 아니라 두 단원(평면좌표+직선+원, 집합+명제 등)이 동시에 필요한 문제예요. 어떤 아이디어를 어떤 순서로 조합해야 하는지 판별하는 최고난도 모드.</p>
+      <div class="game-features">
+        <span class="game-feature">🔗 단원 결합</span>
+        <span class="game-feature">🧩 순서 판별</span>
+        <span class="game-feature">🔥 최고난도</span>
+      </div>
+    </div>
+    <div class="game-launch-box" style="background:linear-gradient(160deg,#150030,#280045);border-color:rgba(219,39,119,.4)">
+      <span class="game-launch-icon">🧠🔗</span>
+      <div class="game-launch-title">단원이 만나는 지점</div>
+      <div class="game-launch-desc">복합 16문항 — 두 단원을 잇는 아이디어!</div>
+      <a class="game-launch-btn" href="idea_game/combo.html">🧠 게임 열기</a>
     </div>
   </div>
 </div>

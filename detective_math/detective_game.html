@@ -143,6 +143,11 @@ body{
   display:inline-block;color:var(--amber);
   animation:pGold .9s ease-in-out infinite;}
 @keyframes pGold{0%,100%{transform:scale(1)}50%{transform:scale(1.14);text-shadow:0 0 14px var(--amber)}}
+.lec-prob{
+  background:rgba(96,165,250,.07);border:1.5px solid rgba(96,165,250,.25);
+  border-radius:12px;padding:.85rem;margin:.75rem 0;}
+.lec-prob-lbl{font-size:.68rem;color:#93c5fd;font-weight:700;letter-spacing:.06em;margin-bottom:.35rem}
+.lec-prob-txt{font-size:.85rem;color:var(--paper2);line-height:1.6}
 .lec-ex{
   background:rgba(212,160,23,.07);border:1.5px solid rgba(212,160,23,.2);
   border-radius:12px;padding:.85rem;margin:.75rem 0;text-align:center;}
@@ -307,6 +312,9 @@ body{
   margin:.45rem 0;animation:ePulse 1s ease-in-out infinite}
 @keyframes ePulse{0%,100%{opacity:1}50%{opacity:.6}}
 .exp-title.ok{color:var(--green);animation:none}
+.exp-q{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;
+  padding:.6rem .85rem;margin:.5rem 0;font-size:.85rem;color:var(--paper2);line-height:1.6}
+.exp-q-lbl{font-size:.68rem;color:var(--muted);margin-bottom:.22rem}
 .exp-ans{background:rgba(255,255,255,.05);border-radius:10px;
   padding:.58rem .9rem;margin:.65rem 0;text-align:center;}
 .exp-ans-lbl{font-size:.68rem;color:var(--muted);margin-bottom:.18rem}
@@ -490,6 +498,10 @@ body{
       <div class="ev-formula" id="c-ev-formula"></div>
       <div class="ev-note" id="c-ev-note"></div>
     </div>
+    <div class="lec-prob" id="c-prob-box" style="display:none">
+      <div class="lec-prob-lbl">📝 문제 상황</div>
+      <div class="lec-prob-txt" id="c-prob-txt"></div>
+    </div>
     <div class="lec-ex" id="c-ex-box" style="display:none">
       <div class="lec-expr" id="c-ex-expr"></div>
       <div class="lec-expr-lbl" id="c-ex-lbl"></div>
@@ -507,6 +519,10 @@ body{
   <div class="exp-modal" id="exp-modal" onclick="event.stopPropagation()">
     <span class="exp-icon" id="exp-icon"></span>
     <h2 class="exp-title" id="exp-title"></h2>
+    <div class="exp-q">
+      <div class="exp-q-lbl">📁 문제</div>
+      <div id="exp-q-text"></div>
+    </div>
     <div class="exp-ans">
       <div class="exp-ans-lbl">정답</div>
       <div class="exp-ans-val" id="exp-ans-val"></div>
@@ -655,26 +671,48 @@ const CASES_META = [
 const SLIDES = [
   // CASE 0: 속력·거리
   [
-    {h:'핵심 공식 발견!',
+    {h:'핵심 증거① — 기본 공식',
      det:'코난: "기본이야. 거리(distance)는 속력에 시간을 곱하면 구할 수 있어!"',
      formula:'거리 = 속력 × 시간',
      fnote:'d = v × t',
      b:null,ex:null,
      tip:'속력을 구할 땐: 속력=거리÷시간 / 시간을 구할 땐: 시간=거리÷속력'},
-    {h:'추격전 분석 — 따라잡기 문제',
-     det:'코난: "범인이 먼저 출발했을 때, 내가 따라잡는 시간은?\n<strong>두 사람의 이동 거리가 같을 때</strong>를 찾으면 돼!"',
-     formula:null,
+    {h:'핵심 증거② — 마주보기 & 반대 방향(직선·원형 공통)',
+     det:'홈즈: "두 사람이 <strong>서로를 향해</strong> 가거나 <strong>반대 방향</strong>으로 멀어지면, 둘 사이의 거리는 두 속력을 <strong>더한 값</strong>만큼 매 순간 좁혀지거나 벌어지지. 직선이든 원형 트랙이든 원리는 똑같아."',
+     formula:'만나는(벌어지는) 시간 = 거리 ÷ (속력₁+속력₂)',
+     fnote:null,
      b:null,
+     prob:'둘레가 1800m인 연못에서 A, B가 같은 지점에서 반대 방향으로 동시에 출발한다. A는 분속 60m, B는 분속 30m일 때, 몇 분 후 처음 만나는가?',
+     ex:'(60+30) × t = 1800',
+     exl:'속력의 합으로 원 둘레를 채우면 만남 → t=20분',
+     tip:'직선에서 "마주보고 출발" = 원형에서 "반대 방향" — 항상 속력을 더해요.'},
+    {h:'핵심 증거③ — 같은 지점, 다른 시간 출발(추격)',
+     det:'코난: "범인이 먼저 출발했을 때, 내가 따라잡는 시간은?\n<strong>두 사람의 이동 거리가 같을 때</strong>를 찾으면 돼! 같은 방향이면 속력의 <strong>차</strong>가 핵심이야."',
+     formula:'따라잡는 시간: 두 이동 거리가 같아지는 t',
+     fnote:null,
+     b:null,
+     prob:'범인이 시속 60km로 도주를 시작했다. 30분 후, 경찰이 시속 80km로 추격을 시작했다. 경찰이 범인을 따라잡는 데 걸리는 시간은?',
      ex:'범인: 60×(t+0.5)  =  경찰: 80×t',
      exl:'범인이 30분 먼저 → t + 0.5로 놓기',
      tip:'범인 거리 = 경찰 거리로 방정식 세우면 끝!'},
-    {h:'맞향 / 같은방향 주의!',
-     det:'홈즈: "두 사람이 <strong>마주 달리면</strong> 속력을 더하고, <strong>같은 방향</strong>이면 속력을 빼는 것이 철칙이지."',
-     formula:null,
+    {h:'핵심 증거④ — 기차와 터널(완전통과 vs 내부에 있는 시간)',
+     det:'홈즈: "기차가 터널을 <strong>완전히 통과</strong>하려면 기차 머리가 들어가서 꼬리가 나올 때까지, 즉 <strong>터널+기차 길이</strong>만큼 가야 해. 반대로 기차가 터널 <strong>안에 완전히 갇혀있는</strong> 구간은 <strong>터널−기차 길이</strong>뿐이지. 둘을 헷갈리면 안 돼."',
+     formula:'완전통과 거리 = 터널+기차 &nbsp;|&nbsp; 내부에 있는 거리 = 터널−기차',
+     fnote:null,
      b:null,
-     ex:'마주달리기: 만나는 시간 = 거리 ÷ (속력₁+속력₂)',
-     exl:'반대방향 = 속력 합산!',
-     tip:'같은 방향: 빠른 쪽 속력 - 느린 쪽 속력 = 상대속력'},
+     prob:'길이 300m인 기차가 터널을 완전히 통과하는 데 총 이동 거리 700m가 걸렸다. 터널의 길이는?',
+     ex:'통과거리 = 터널 + 기차 → 700 = x + 300',
+     exl:'x = 700−300 = 400m',
+     tip:'"완전히 통과"는 +기차 길이, "완전히 내부에 있음"은 −기차 길이 — 부호가 반대예요!'},
+    {h:'핵심 증거⑤ — 두 기차의 추월과 엇갈림',
+     det:'코난: "기차 두 대가 얽히면 이동 거리는 항상 <strong>두 기차 길이의 합</strong>이야. <strong>같은 방향</strong>으로 추월할 땐 속력의 <strong>차</strong>로, <strong>마주보고</strong> 엇갈릴 땐 속력의 <strong>합</strong>으로 나누면 돼!"',
+     formula:'추월 시간 = 길이합 ÷ (속력차) &nbsp;|&nbsp; 엇갈림 시간 = 길이합 ÷ (속력합)',
+     fnote:null,
+     b:null,
+     prob:'기차 P(길이 150m, 초속 25m)가 기차 Q(길이 250m, 초속 15m)를 같은 방향에서 완전히 추월하는 데 걸리는 시간은?',
+     ex:'(150+250) ÷ (25−15) = 400 ÷ 10',
+     exl:'두 기차 길이 합을 속력 차로 나눔',
+     tip:'엇갈림(마주보기)이었다면 분모가 속력의 합(25+15)이 됐을 거예요.'},
   ],
   // CASE 1: 원가·정가
   [
@@ -688,6 +726,7 @@ const SLIDES = [
      det:'홈즈: "이익을 붙인 후 할인하면 실제 이익률은 얼마인가? <strong>원가 = x</strong>로 놓고 계산하게."',
      formula:null,
      b:null,
+     prob:'어떤 상품의 원가에 30%의 이익을 붙여 정가를 매긴 후, 정가에서 20%를 할인해서 팔았다. 실제 이익률은 몇 %인가?',
      ex:'원가 x → 정가 1.3x → 20%할인 → 판매가 1.04x',
      exl:'1.3 × 0.8 = 1.04 → 4% 이익',
      tip:'할인 후 이익: (1+이익률)×(1-할인율)이 1보다 크면 이익!'},
@@ -704,6 +743,7 @@ const SLIDES = [
      det:'코난: "A가 먼저 일부를 했다면, <strong>남은 일의 양</strong>을 구한 후 함께 마무리 시간을 계산해!"',
      formula:null,
      b:null,
+     prob:'어떤 일을 A 혼자 하면 a일 만에 끝낼 수 있다. A가 먼저 이 일을 2일 동안 했다면, 남은 일의 양은 전체의 얼마인가?',
      ex:'A가 2일 일함 → 완료: 2/a\n남은 일: 1 - 2/a',
      exl:'남은 일 ÷ (함께 속도) = 남은 시간',
      tip:'수도관 문제: 채우는 속도 - 빼는 속도 = 실제 변화 속도'},
@@ -720,6 +760,7 @@ const SLIDES = [
      det:'홈즈: "물이 증발하면 용액의 총량만 줄고 <strong>소금 양은 그대로</strong>. 소금을 추가하면 분자·분모 모두 증가하지."',
      formula:null,
      b:null,
+     prob:'20%의 소금물 300g이 있다. 이 소금물에서 물을 증발시켰더니 농도가 30%가 되었다. 증발시킨 물의 양은?',
      ex:'20% 소금물 300g → 물 x증발 → 30%로\n60 = (300-x)×0.3 → x = 100g',
      exl:'소금양 불변이 핵심!',
      tip:'소금 추가: (기존소금+추가소금)/(기존용액+추가소금) = 목표농도'},
@@ -736,6 +777,7 @@ const SLIDES = [
      det:'코난: "A:B=2:3, B:C=4:5처럼 연속 비율은 B를 <strong>통분</strong>해서 A:B:C를 한 번에 표현해!"',
      formula:null,
      b:null,
+     prob:'세 사람 A, B, C의 재산 비율이 A:B=2:3, B:C=4:5를 만족한다. A:B:C를 한 번에 나타내면?',
      ex:'A:B=2:3, B:C=4:5\n→ A:B=8:12, B:C=12:15\n→ A:B:C=8:12:15',
      exl:'B를 12로 통일 (3과 4의 LCM)',
      tip:'퍼센트 → "전체의 x%가 얼마" → 전체 = 얼마 ÷ (x/100)'},
@@ -921,6 +963,36 @@ const QS = [
      hint:'버스 시간: 2시간, 기차 시간: 1시간',
      det:'"2-1=1시간 차이야!"',
      st:['버스: 120÷60 = 2시간','기차: 120÷120 = 1시간','차이: 2-1 = <strong>1</strong>시간'],ans_txt:'1시간'},
+    {q:'둘레가 1800m인 연못에서 A, B가 같은 지점에서 반대 방향으로 동시 출발했다. A는 분속 60m이고, 두 사람은 20분 후 처음으로 만났다. B의 속력은? (단위: 분속 m)',
+     ex:'20×(60+x)=1800',
+     c:['분속 20m','분속 25m','분속 30m','분속 35m'],ans:2,fill:'30',
+     hint:'반대 방향은 속력 합산. 20×(60+x)=1800',
+     det:'"원형 트랙에서 반대방향은 속력을 더해! 20(60+x)=1800 → x=30!"',
+     st:['반대 방향 → 두 속력의 합으로 좁혀짐','20×(60+x) = 1800','60+x = 90 → x = <strong>30</strong>(분속m)'],ans_txt:'분속 30m'},
+    {q:'길이 300m인 기차가 초속 25m로 달려 터널을 완전히 통과하는 데 20초가 걸렸다. 터널의 길이는?',
+     ex:'통과거리 = 터널+기차',
+     c:['150m','175m','200m','225m'],ans:2,fill:'200',
+     hint:'총 이동거리 = 25×20=500m. 터널=500-300',
+     det:'"완전통과는 터널+기차 길이! 25×20=500, 500-300=200m!"',
+     st:['총 이동거리 = 25×20 = 500m','통과거리 = 터널+기차','터널 = 500−300 = <strong>200</strong>m'],ans_txt:'200m'},
+    {q:'길이 200m인 기차가 시속 72km(=초속 20m)로 달리고 있다. 이 기차가 길이 800m인 터널 안에 완전히 들어가 있는 시간은?',
+     ex:'터널 안에 있는 시간 = (터널−기차)÷속력',
+     c:['20초','25초','30초','35초'],ans:2,fill:'30',
+     hint:'이동거리 = 터널−기차 = 800−200=600m. 600÷20',
+     det:'"터널−기차 길이만큼만 움직이면 완전히 갇힌 상태! (800−200)÷20=30초!"',
+     st:['속력 72km/h = 20m/s','터널 안에서 이동 거리 = 800−200 = 600m','시간 = 600÷20 = <strong>30</strong>초'],ans_txt:'30초'},
+    {q:'기차 A(길이 200m, 초속 30m)가 기차 B(길이 300m, 초속 20m)를 같은 방향에서 완전히 추월하는 데 걸리는 시간은?',
+     ex:'추월시간 = (두 기차 길이 합)÷(속력차)',
+     c:['40초','45초','50초','55초'],ans:2,fill:'50',
+     hint:'거리=200+300=500m, 속력차=30-20=10m/s. 500÷10',
+     det:'"추월은 길이 합÷속력차! 500÷10=50초!"',
+     st:['이동거리 = 두 기차 길이 합 = 200+300 = 500m','속력차 = 30−20 = 10m/s','시간 = 500÷10 = <strong>50</strong>초'],ans_txt:'50초'},
+    {q:'기차 A(길이 200m, 초속 30m)와 기차 B(길이 300m, 초속 20m)가 서로 마주보며 달려온다. 두 기차가 만나서 완전히 엇갈리는 데 걸리는 시간은?',
+     ex:'엇갈림시간 = (두 기차 길이 합)÷(속력 합)',
+     c:['8초','9초','10초','11초'],ans:2,fill:'10',
+     hint:'거리=200+300=500m, 속력합=30+20=50m/s. 500÷50',
+     det:'"마주보면 길이 합÷속력합! 500÷50=10초!"',
+     st:['이동거리 = 두 기차 길이 합 = 200+300 = 500m','속력합 = 30+20 = 50m/s','시간 = 500÷50 = <strong>10</strong>초'],ans_txt:'10초'},
   ],
   // CASE 1: 원가·정가
   [
@@ -1373,6 +1445,12 @@ function showSlide(){
     document.getElementById('c-ev-formula').textContent=sl.formula;
     document.getElementById('c-ev-note').textContent=sl.fnote||'';
   } else { evBox.style.display='none'; }
+  // problem statement
+  const probBox=document.getElementById('c-prob-box');
+  if(sl.prob){
+    probBox.style.display='block';
+    document.getElementById('c-prob-txt').textContent=sl.prob;
+  } else { probBox.style.display='none'; }
   // example
   const exBox=document.getElementById('c-ex-box');
   if(sl.ex){
@@ -1389,7 +1467,7 @@ function showSlide(){
   prev.style.display=S.slideIdx===0?'none':'block';
   const nxt=document.getElementById('c-next');
   const isLast=S.slideIdx===slides.length-1;
-  nxt.textContent=isLast?'🔍 수사 시작!':'다음 단서 →';
+  nxt.textContent=isLast?'🔍 수사 시작!':'다음 증거 →';
   nxt.className=isLast?'c-start':'c-next';
 }
 
@@ -1573,6 +1651,7 @@ function showExp(q, ok, timeUp){
   if(ok){icon.textContent='🎉';icon.className='exp-icon ok-icon';title.textContent='추리 성공!';title.className='exp-title ok';}
   else if(timeUp){icon.textContent='⏰';icon.className='exp-icon';title.textContent='시간 초과!';title.className='exp-title';}
   else{icon.textContent='❌';icon.className='exp-icon';title.textContent='추리 실패!';title.className='exp-title';}
+  document.getElementById('exp-q-text').textContent=q.q;
   document.getElementById('exp-ans-val').textContent=q.ans_txt||q.fill||'?';
   const cm=CASES_META[S.caseIdx];
   document.getElementById('ded-avatar').textContent=cm.det;

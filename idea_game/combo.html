@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🧠 아이디어 게임 — 단원이 만나는 지점</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--card:#111827;
+  --purple:#7c3aed;--pink:#db2777;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.08);
+  --good:#34d399;--bad:#f87171}
+body{font-family:"Nanum Gothic","Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:520px;margin:0 auto;padding:1.25rem 1.1rem 3rem}
+
+.nav-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem}
+.back-link{font-family:'Jua',sans-serif;font-size:.82rem;color:var(--muted);text-decoration:none;
+  background:rgba(255,255,255,.08);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+.progress-pill{font-family:'Jua',sans-serif;font-size:.78rem;color:#a78bfa;background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.3);padding:5px 12px;border-radius:20px}
+
+.sec-head{text-align:center;margin-bottom:1.3rem}
+.sec-head h1{font-family:'Jua',sans-serif;font-size:1.5rem;margin-bottom:.35rem;
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-head p{color:var(--muted);font-size:.82rem;line-height:1.6}
+
+.score-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.7rem 1rem}
+.score-item{text-align:center}
+.score-item .num{font-family:'Jua',sans-serif;font-size:1.1rem;color:#fff}
+.score-item .lbl{font-size:.68rem;color:var(--muted)}
+.streak-fire{color:#fb923c}
+
+.progress-track{height:6px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:1.2rem;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#db2777);border-radius:4px;transition:width .3s}
+
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem 1.3rem;margin-bottom:1.2rem}
+.quiz-topic{display:inline-block;font-size:.7rem;color:#a78bfa;background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.3);padding:.25rem .65rem;border-radius:10px;margin-bottom:.9rem}
+.quiz-prompt{font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+.quiz-sentence{font-size:1.02rem;font-weight:800;line-height:1.65;color:#fff;margin-bottom:1.3rem}
+.quiz-sentence .hl{color:#fde047}
+
+.choices{display:flex;flex-direction:column;gap:.6rem}
+.choice-btn{display:flex;align-items:center;gap:.6rem;text-align:left;width:100%;
+  background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:14px;
+  padding:.75rem .9rem;color:var(--text);font-size:.88rem;font-family:inherit;cursor:pointer;
+  transition:border-color .15s,background .15s}
+.choice-btn:hover:not(:disabled){border-color:rgba(124,58,237,.5);background:rgba(124,58,237,.08)}
+.choice-btn:disabled{cursor:default}
+.choice-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:var(--muted)}
+.choice-btn.correct{border-color:var(--good);background:rgba(52,211,153,.12)}
+.choice-btn.correct .choice-num{background:var(--good);color:#052e1c}
+.choice-btn.wrong{border-color:var(--bad);background:rgba(248,113,113,.12)}
+.choice-btn.wrong .choice-num{background:var(--bad);color:#3a0a0a}
+
+.explain-box{margin-top:1.1rem;padding:1rem 1.1rem;border-radius:14px;font-size:.85rem;line-height:1.7;display:none}
+.explain-box.show{display:block}
+.explain-box.good{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);color:#a7f3d0}
+.explain-box.bad{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);color:#fecaca}
+.explain-box .verdict{font-family:'Jua',sans-serif;font-size:.92rem;margin-bottom:.4rem}
+
+.next-btn{display:block;width:100%;margin-top:1rem;padding:.85rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.92rem;cursor:pointer;display:none}
+.next-btn.show{display:block}
+
+.end-screen{display:none;text-align:center;background:var(--card);border:1px solid var(--border);
+  border-radius:22px;padding:2.4rem 1.6rem}
+.end-screen.show{display:block}
+.end-icon{font-size:3.2rem;margin-bottom:.8rem}
+.end-title{font-family:'Jua',sans-serif;font-size:1.3rem;margin-bottom:.5rem}
+.end-score{font-family:'Jua',sans-serif;font-size:2.2rem;background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.end-desc{color:var(--muted);font-size:.85rem;margin-bottom:1.4rem;line-height:1.6}
+.retry-btn{display:inline-block;padding:.8rem 1.8rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.88rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav-bar">
+    <a href="../games.html" class="back-link">← 게임 놀이터</a>
+    <span class="progress-pill" id="progPill">1 / 16</span>
+  </div>
+
+  <div class="sec-head">
+    <h1>🧠🔗 단원이 만나는 지점</h1>
+    <p>이번엔 단원 하나가 아니라 <b style="color:#e2e8f0">두 단원의 아이디어가 동시에</b> 필요한 문제예요. 계산은 하지 말고, 어떤 아이디어들을 어떤 순서로 조합해야 하는지만 고르세요.</p>
+  </div>
+
+  <div class="score-bar">
+    <div class="score-item"><div class="num" id="scoreNum">0</div><div class="lbl">정답</div></div>
+    <div class="score-item"><div class="num streak-fire" id="streakNum">0🔥</div><div class="lbl">연속정답</div></div>
+    <div class="score-item"><div class="num" id="totalNum">0 / 16</div><div class="lbl">진행</div></div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-topic" id="quizTopic">단원</div>
+    <div class="quiz-prompt">📖 문제 문장(계산 X) — 어떤 아이디어를 어떤 순서로 조합해야 할까요?</div>
+    <div class="quiz-sentence" id="quizSentence">문장</div>
+    <div class="choices" id="choices"></div>
+    <div class="explain-box" id="explainBox">
+      <div class="verdict" id="explainVerdict"></div>
+      <div id="explainText"></div>
+    </div>
+    <button class="next-btn" id="nextBtn">다음 문제 →</button>
+  </div>
+
+  <div class="end-screen" id="endScreen">
+    <div class="end-icon">🏆</div>
+    <div class="end-title">완료!</div>
+    <div class="end-score" id="endScore">0 / 16</div>
+    <div class="end-desc" id="endDesc">단원과 단원이 만나는 지점을 알아채는 연습, 실전에서 "이 문제 어디서부터 손대야 하지?"를 없애줘요.</div>
+    <button class="retry-btn" onclick="restart()">🔄 다시 도전</button>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+{
+  topic: '평면좌표 + 직선 + 원',
+  sentence: '중심이 직선 y=x 위에 있고 두 점 A, B를 지나는 원의 방정식을 구하시오.',
+  choices: ['중심을 (t,t)로 놓고 "중심-A 거리=중심-B 거리"를 세운다 — 평면좌표의 수직이등분선(두 점에서 같은 거리) 아이디어를 원에 적용', '두 점의 중점을 바로 중심으로 놓는다', '두 점 사이의 거리를 반지름으로 바로 놓는다', '판별식을 세운다'],
+  answer: 0,
+  why: '"중심에서 두 점까지 거리가 같다"는 사실상 평면좌표의 수직이등분선 이야기(두 점에서 같은 거리에 있는 점의 자취)와 똑같은 발상이에요 — 원의 중심을 찾는 데 그대로 재사용돼요.'
+},
+{
+  topic: '원 + 원 — 공통현과 둘레 이등분',
+  sentence: '원 C₁: x²+y²=25와 원 C₂: (x−2)²+(y−1)²=r²이 있다. 원 C₂가 원 C₁의 둘레를 이등분한다고 할 때, r을 구하는 데 필요한 아이디어는?',
+  choices: ['두 원의 방정식을 빼서 공통현(두 교점을 지나는 직선)의 방정식을 구한 뒤, 그 직선이 C₁의 중심을 지난다는 조건을 건다', '두 원의 중심 사이의 거리를 반지름의 합과 같다고 놓는다', '판별식을 0으로 놓는다', '두 원의 넓이를 비교한다'],
+  answer: 0,
+  why: '"원이 다른 원의 둘레를 이등분한다"는 두 원의 공통현이 이등분되는 원의 지름이라는 뜻이에요. 두 원의 방정식을 빼면 공통현의 방정식이 나오고(원끼리의 결합), 거기에 "지름=중심을 지난다"는 조건(둘레 이등분 아이디어)을 걸어야 풀려요 — 두 아이디어가 순서대로 필요한 진짜 결합 문제예요.'
+},
+{
+  topic: '원 + 직선(수직조건)',
+  sentence: '원 밖의 한 점에서 그은 두 접선이 서로 수직이 되도록 하는 조건을 구하시오.',
+  choices: ['접선을 y=mx+n 꼴로 놓고 거리조건으로 이차방정식을 세운 뒤, 두 근(기울기)의 곱이 −1이 되도록 근과 계수의 관계를 쓴다', '판별식을 0으로 놓는다', '두 접점 사이의 거리를 구한다', '원의 둘레 공식을 이용한다'],
+  answer: 0,
+  why: '접선의 기울기를 구하는 이차방정식(원의 아이디어⑦)에, 두 직선이 수직이라는 조건(직선 단원의 기울기 곱=−1)을 "두 근의 곱"으로 연결하는 결합이에요.'
+},
+{
+  topic: '집합 + 명제',
+  sentence: '조건 p가 조건 q이기 위한 충분조건임을 보이려고 한다.',
+  choices: ['진리집합 P, Q를 구해서 집합의 포함관계(P⊂Q)로 판정한다 — 집합 단원의 부분집합 개념을 그대로 재사용', '대우를 구한다', '귀류법을 쓴다', '반례의 개수를 센다'],
+  answer: 0,
+  why: '집합에서 배운 A⊂B(포함관계)가 명제 단원에서는 그대로 "충분조건"의 정의가 돼요 — 새 개념이 아니라 이름만 바뀐 재사용이에요.'
+},
+{
+  topic: '원 + 도형의 이동(대칭)',
+  sentence: '원을 어떤 직선에 대하여 대칭이동해도, 이동 전과 완전히 같은 원이 나온다.',
+  choices: ['그 직선이 원의 중심을 지나야 한다 (대칭축이 지나야 도형이 자기 자신과 겹친다)', '대칭이동한 원과 원래 원의 반지름만 같으면 된다', '판별식을 쓴다', '두 원이 외접해야 한다'],
+  answer: 0,
+  why: '"둘레(넓이)를 이등분하는 직선은 중심을 지난다"(원의 아이디어)와 "대칭이동해도 똑같은 도형이 되려면 대칭축이 중심을 지나야 한다"(도형의 이동)는 사실상 같은 원리예요.'
+},
+{
+  topic: '집합 + 명제',
+  sentence: '명제의 반례의 개수를 세는 공식이, 집합 단원의 어떤 계산과 똑같은가?',
+  choices: ['(p를 만족하는 원소 수)−(p와 q를 모두 만족하는 원소 수), 즉 차집합의 원소 개수 세기와 같다', '포함배제의 원리(3집합)와 같다', '드모르간의 법칙과 같다', '부분집합 개수 공식과 같다'],
+  answer: 0,
+  why: '반례 = p는 만족하지만 q는 아닌 것 = 진리집합으로 보면 P−Q(차집합)예요. "반례 개수 세기"는 사실 집합의 차집합 개수를 세는 것과 똑같은 계산이에요.'
+},
+{
+  topic: '평면좌표 + 원',
+  sentence: '직각삼각형의 세 꼭짓점을 지나는 원(외접원)의 중심을 구하려고 한다.',
+  choices: ['직각을 낀 변의 대변(빗변)의 중점이 바로 외심이라는 평면좌표의 지름길을 바로 쓴다', '세 점을 원의 일반형에 대입해서 매번 연립한다', '무게중심을 외심으로 착각해서 그대로 쓴다', '판별식을 쓴다'],
+  answer: 0,
+  why: '"직각삼각형의 외심=빗변의 중점"은 평면좌표에서 배운 지름길인데, 원의 방정식 단원에서 세 점을 지나는 원(①)을 구할 때 그대로 재사용할 수 있어요 — 매번 연립할 필요가 없어져요.'
+},
+{
+  topic: '평면좌표 + 원(두 원의 위치관계)',
+  sentence: '중심 좌표에 미지수가 포함된 두 원이 서로 외접하도록 하는 조건을 구하시오.',
+  choices: ['두 중심 사이의 거리 공식(평면좌표)을 세운 뒤, 그 값이 두 반지름의 합과 같다고 놓는다 (원의 조건)', '판별식을 쓴다', '포함배제의 원리를 쓴다', '부분집합 개수 공식을 쓴다'],
+  answer: 0,
+  why: '"두 중심 사이의 거리"는 평면좌표의 두 점 사이의 거리 공식 그대로이고, "외접"이라는 조건(반지름의 합과 같다)은 원 단원의 도구예요.'
+},
+{
+  topic: '함정 판별 — "수직"이라는 단어, 어느 단원의 조건?',
+  sentence: '문제에 "수직"이라는 단어가 나왔다. 직선의 수직조건(기울기 곱=−1)을 쓸지, 원의 접선 조건을 쓸지 어떻게 구분하나?',
+  choices: ['무엇이 주어졌는지부터 확인 — 직선 두 개가 이미 주어졌으면 직선의 수직조건, 원 밖의 점에서 그은 접선끼리 수직이면 접선의 기울기(이차방정식의 두 근)로 조건을 건다', '항상 직선의 수직조건만 쓴다', '항상 원의 접선 조건만 쓴다', '판별식만 쓴다'],
+  answer: 0,
+  why: '"수직"이라는 단어 하나로 서랍을 정하면 안 돼요 — 문제에 무엇이 주어졌는지(직선 두 개인지, 원 밖의 점에서 그은 접선인지)를 먼저 확인해야 해요.'
+},
+{
+  topic: '평면좌표 + 원',
+  sentence: '정삼각형의 무게중심과, 그 삼각형의 외접원의 중심이 어떤 관계인지를 이용하는 문제이다.',
+  choices: ['정삼각형에서는 무게중심=외심(외접원의 중심)이 항상 일치한다는 사실(평면좌표+원의 결합)을 활용한다', '무게중심과 외심은 정삼각형에서도 항상 다르다', '판별식을 쓴다', '포함배제의 원리를 쓴다'],
+  answer: 0,
+  why: '정삼각형처럼 대칭성이 있는 도형에서는 평면좌표의 무게중심 공식이 원의 중심(외심)을 구하는 지름길이 될 수 있어요.'
+},
+{
+  topic: '도형의 이동 + 원',
+  sentence: '원을 평행이동했더니 x축에 접하게 되었다. 이동한 만큼(평행이동량)을 구하려고 한다.',
+  choices: ['이동한 중심 좌표를 구한 뒤, 그 y좌표의 절댓값이 반지름과 같다는 조건(원의 축접함 아이디어)을 건다', '원래 중심 좌표에 그 조건을 그대로 건다', '판별식을 쓴다', '두 원의 위치관계를 쓴다'],
+  answer: 0,
+  why: '평행이동(도형의 이동)으로 중심이 어떻게 바뀌는지 먼저 계산한 뒤에, "축에 접함"이라는 원 단원의 조건을 그 이동된 중심에 걸어야 해요 — 순서가 중요해요.'
+},
+{
+  topic: '직선 + 원',
+  sentence: '두 점을 지름의 양 끝점으로 하는 원이 어떤 직선과 만나서 생기는 현의 길이를 구하려고 한다.',
+  choices: ['먼저 지름의 양 끝점(평면좌표+원 결합)으로 원의 중심·반지름을 구한 뒤, 점과 직선 사이의 거리 공식(직선 단원)으로 현의 길이를 계산한다', '점과 직선 사이의 거리 공식만 바로 쓴다', '판별식만으로 현의 길이가 바로 나온다', '두 점 사이의 거리만 구하고 끝낸다'],
+  answer: 0,
+  why: '원의 방정식이 아직 없으니 먼저 확정(지름의 양 끝점)한 다음에야, 직선 단원의 거리 공식을 적용해 현의 길이를 구할 수 있어요 — 순서가 바뀌면 계산 자체가 불가능해요.'
+},
+{
+  topic: '집합 + 명제 종합',
+  sentence: '"어떤 조건이 다른 조건이기 위한 필요충분조건이다"라는 것과, "두 진리집합이 서로 같다(P=Q)"는 것의 관계는?',
+  choices: ['완전히 같은 작업이다 — 필요충분조건 ⟺ 진리집합이 서로 같다(P=Q)', '전혀 다른 개념이다', '필요충분조건이 항상 더 강한 조건이다', '집합이 같다는 게 항상 더 강한 조건이다'],
+  answer: 0,
+  why: 'P⊂Q이면서 Q⊂P이면 P=Q — 이게 바로 필요충분조건의 집합적 정의예요. 명제 단원의 최종 결론이 결국 집합 단원의 언어로 다시 쓰여요.'
+},
+{
+  topic: '원 + 직선(정점)',
+  sentence: '직선 k(x+y−1)+(2x−y+3)=0이 k값과 관계없이 항상 원의 중심을 지나서 원의 넓이를 이등분하도록 하는 원의 중심 조건을 구하시오.',
+  choices: ['먼저 k값과 무관한 정점을 구하고(직선 단원), 그 점이 항상 그 원의 중심이 되도록 조건을 세운다(원 단원)', '판별식만 쓴다', '두 원의 접함 조건을 쓴다', '포함배제를 쓴다'],
+  answer: 0,
+  why: '"k에 관계없이 항상 지나는 점"(정점, 직선 단원)을 먼저 구하고, "넓이 이등분=중심을 지난다"(원 단원)는 사실과 연결하면 원의 중심이 바로 정해져요.'
+},
+{
+  topic: '함정 — 조건이 두 개면 서랍도 두 개',
+  sentence: '직선 l이 원 C에 접하면서, 동시에 다른 직선 m과는 평행하다는 두 조건을 모두 만족시켜야 한다.',
+  choices: ['접함 조건(중심-직선 거리=반지름)과 평행 조건(기울기가 같음)을 각각 따로 세운 뒤 연립한다', '접함 조건 하나만 세우면 평행 조건은 자동으로 만족된다', '평행 조건 하나만 세우면 접함 조건은 자동으로 만족된다', '판별식 하나로 두 조건이 한꺼번에 해결된다'],
+  answer: 0,
+  why: '"접한다"(원 단원의 조건)와 "평행하다"(직선 단원의 조건)는 서로 다른 정보를 담고 있어서, 하나를 세운다고 다른 하나가 저절로 만족되지 않아요 — 각각 식을 세워서 연립해야 해요.'
+},
+{
+  topic: '평면좌표 + 원 + 직선 종합',
+  sentence: '삼각형의 세 변의 수직이등분선이 모두 한 점(외심)에서 만난다는 사실을 이용해서 외접원을 구하려고 한다.',
+  choices: ['두 변의 수직이등분선(평면좌표의 중점+직선의 수직조건)을 각각 구해서 연립하면 외심(원의 중심) 좌표가 나온다', '세 점을 원의 일반형에 무조건 대입해서 연립한다', '무게중심 공식을 바로 쓴다', '판별식을 쓴다'],
+  answer: 0,
+  why: '수직이등분선(평면좌표+직선 결합)을 두 번 구해서 연립하면 외심이 나오는데, 이 외심이 곧 세 점을 지나는 원의 중심이에요 — 세 단원(평면좌표·직선·원)이 한 문제 안에서 순서대로 이어져요.'
+}
+];
+
+let order = [], idx = 0, score = 0, streak = 0, answered = false;
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function restart(){
+  order = shuffle(QUESTIONS.map((_,i)=>i));
+  idx = 0; score = 0; streak = 0;
+  document.getElementById('endScreen').classList.remove('show');
+  document.getElementById('quizCard').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered = false;
+  const q = QUESTIONS[order[idx]];
+  document.getElementById('quizTopic').textContent = q.topic;
+  document.getElementById('quizSentence').textContent = q.sentence;
+  document.getElementById('progPill').textContent = (idx+1)+' / '+QUESTIONS.length;
+  document.getElementById('totalNum').textContent = idx+' / '+QUESTIONS.length;
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+  document.getElementById('progFill').style.width = (idx/QUESTIONS.length*100)+'%';
+
+  const choicesEl = document.getElementById('choices');
+  choicesEl.innerHTML = '';
+  const shuffledChoiceIdx = shuffle(q.choices.map((_,i)=>i));
+  shuffledChoiceIdx.forEach((origIdx, pos)=>{
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.innerHTML = '<span class="choice-num">'+(pos+1)+'</span><span>'+q.choices[origIdx]+'</span>';
+    btn.onclick = ()=> selectChoice(origIdx, btn);
+    choicesEl.appendChild(btn);
+  });
+
+  document.getElementById('explainBox').className = 'explain-box';
+  document.getElementById('nextBtn').className = 'next-btn';
+}
+
+function selectChoice(origIdx, btnEl){
+  if(answered) return;
+  answered = true;
+  const q = QUESTIONS[order[idx]];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b=> b.disabled = true);
+
+  const isCorrect = origIdx === q.answer;
+  if(isCorrect){
+    btnEl.classList.add('correct');
+    score++; streak++;
+  } else {
+    btnEl.classList.add('wrong');
+    allBtns.forEach(b=>{
+      if(b.textContent.trim() === q.choices[q.answer]) b.classList.add('correct');
+    });
+    streak = 0;
+  }
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+
+  const box = document.getElementById('explainBox');
+  box.className = 'explain-box show ' + (isCorrect ? 'good' : 'bad');
+  document.getElementById('explainVerdict').textContent = isCorrect ? '✅ 맞아요!' : '❌ 아쉬워요 — 정답: '+q.choices[q.answer];
+  document.getElementById('explainText').textContent = q.why;
+
+  document.getElementById('nextBtn').className = 'next-btn show';
+}
+
+document.getElementById('nextBtn').onclick = ()=>{
+  idx++;
+  if(idx >= QUESTIONS.length){
+    document.getElementById('quizCard').style.display = 'none';
+    document.getElementById('endScreen').classList.add('show');
+    document.getElementById('endScore').textContent = score+' / '+QUESTIONS.length;
+    document.getElementById('progFill').style.width = '100%';
+    document.getElementById('totalNum').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+    document.getElementById('progPill').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+  } else {
+    renderQuestion();
+  }
+};
+
+restart();
+</script>
+</body>
+</html>
