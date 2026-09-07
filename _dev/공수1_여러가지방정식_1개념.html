@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학1 · 여러 가지 방정식 — 고차방정식 (1/3 개념·도구) — 빌드 파일</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:16px;padding-top:16px;border-top:1px dashed #bbb;font-size:12.5px;color:#333;line-height:1.95}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{display:inline-block;font-size:1.15em;font-weight:800;color:#15803d!important;background:rgba(21,128,61,.08);padding:3px 12px;border-radius:6px;margin-bottom:10px}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.key-term{font-size:1.2em;font-weight:800;color:#4c1d95!important;letter-spacing:-.01em}
+.unit-header{font-size:16px;font-weight:800;color:#4c1d95;text-align:center;padding:9px 0;margin:26px 0 16px;border-top:3px solid #4c1d95;border-bottom:3px solid #4c1d95;letter-spacing:.02em}
+.type-badge{display:inline-flex;align-items:center;justify-content:center;width:1.5em;height:1.5em;border-radius:50%;background:#4c1d95;color:#fff!important;font-weight:800;font-size:1.15em;margin-right:.35em;vertical-align:middle}
+.problem-label{display:inline-block;font-size:1.15em;font-weight:800;color:#1d4ed8!important;background:rgba(29,78,216,.08);padding:3px 12px;border-radius:6px;margin-bottom:10px}
+.solution-label{display:inline-block;font-size:1.15em;font-weight:800;color:#15803d!important;background:rgba(21,128,61,.08);padding:3px 12px;border-radius:6px;margin-bottom:10px}
+.idea-label{display:inline-block;font-size:1.1em;font-weight:800;color:#b45309!important;background:rgba(245,158,11,.1);padding:3px 12px;border-radius:6px;margin:6px 0 8px}
+.box-formula{border:1.5px solid #c4b5fd;background:rgba(139,92,246,.06);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1}
+.box-note{border:1.5px solid #93c5fd;background:rgba(59,130,246,.05);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0}
+@media print{
+svg text{fill:#333!important}
+svg line{stroke:#aaa!important}
+svg rect{stroke:#aaa!important}
+svg circle{stroke:#aaa!important;fill:#999!important}
+svg polygon{stroke:#aaa!important;fill:#eee!important}
+svg path{stroke:#aaa!important}
+}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em;line-height:1.3}
+.frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
+.frac .den{padding:1px 4px 0}
+.synth-table{border-collapse:collapse;margin:10px auto;font-size:.95em}
+.synth-table td{border:1px solid #bbb;padding:6px 12px;text-align:center;min-width:36px}
+.synth-table .synth-head{background:#f3f0ff;font-weight:700;color:#4c1d95}
+.synth-table .synth-result{background:rgba(21,128,61,.08);font-weight:700;color:#15803d}
+.drawer-box{border:1.5px solid #fbbf24;background:rgba(251,191,36,.06);border-radius:8px;padding:.7rem 1rem;margin:.6rem 0;font-size:.92em;line-height:1.85}
+.drawer-title{display:block;font-weight:800;color:#b45309;font-size:1.05em;margin-bottom:2px}
+.cmp-table{border-collapse:collapse;margin:10px auto;font-size:.92em;width:100%}
+.cmp-table th,.cmp-table td{border:1px solid #bbb;padding:7px 10px;text-align:center}
+.cmp-table th{background:#f3f0ff;color:#4c1d95;font-weight:700}
+.toc-box{border:1px solid #ccc;border-radius:8px;padding:.7rem 1rem;margin:.5rem 0;font-size:.95em;line-height:1.9}
+sub,sup{font-size:.68em;line-height:0}
+sup{vertical-align:.5em}
+sub{vertical-align:-.3em}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 공통수학1 · 여러 가지 방정식 (고차방정식, 1/3 개념·도구)</div>
+    <div class="toolbar-sub">개념(주제0: 인수분해 5유형+인수정리·조립제법→x³±1=0→상반방정식→근과 계수의 관계→부호를 바꾼 방정식→켤레근 정리→허근 조건)→다음 파일들에서 이차연립방정식, 부정방정식으로 이어집니다</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 여러 가지 방정식 — 고차방정식 (1/3 개념·도구)</h1>
+
+<div class="card">
+  <div class="card-meta">목차</div>
+  <div class="card-tag">📋 이 파일 미리보기</div>
+  <div class="card-body">
+이 파일의 흐름을 먼저 확인하세요.<br><br>
+<div style="border:1px solid #ccc;border-radius:8px;padding:.7rem 1rem;margin:.5rem 0;font-size:.95em;line-height:1.9">
+<b>주제 0</b> 인수분해 유형 다섯 가지(공통인수·공식·치환·복이차식·내림차순 정리) + 인수정리·조립제법<br>
+<b>주제 1</b> x³=1, x³=−1 — 합·차의 공식으로 인수분해<br>
+<b>주제 2</b> 상반방정식 — 계수가 대칭이면 보이는 지름길<br>
+<b>주제 3</b> 근과 계수의 관계 — 이차에서 삼차로<br>
+<b>주제 4</b> 부호·순서를 바꾼 방정식과 원래 방정식의 근 관계 (역수·음의 역수까지)<br>
+<b>주제 5</b> 실계수·유리계수 다항식의 켤레근 정리<br>
+<b>주제 6</b> 삼차·사차방정식을 인수정리·복이차식으로 낮춘 뒤 판별식으로 허근 조건 판단<br>
+<b>총정리</b> 고차방정식 문제 해결 서랍 총정리
+</div>
+이 단원은 새 계산법을 배우는 게 아니라, <b>이미 배운 도구(인수정리·조립제법·이차방정식의 판별식과 근과 계수의 관계)를 삼차·사차식에 그대로 적용</b>하는 단원이에요. "처음 보는 문제"가 아니라 "낯익은 도구를 새 곳에 쓰는 문제"라는 감각이 이 단원의 핵심입니다.
+  </div>
+</div>
+
+<div class="unit-header" style="margin-top:0">📍 주제 0 — 인수분해 유형 다섯 가지부터 확인하기</div>
+
+<div class="card">
+  <div class="card-meta">인수분해 유형 — 도입 (닻: 다항식 단원 복습)</div>
+  <div class="card-tag">🔙 고차방정식을 풀기 전에, 인수분해 도구부터 다시 꺼내볼게요</div>
+  <div class="card-body">
+고차방정식 P(x)=0을 풀 때 가장 먼저 하는 일은 <b>P(x)를 인수분해하는 것</b>이에요. 다항식 단원에서 배운 인수분해 방법은 딱 다섯 가지 유형으로 정리돼요 — 새 방정식을 만날 때마다 "이 다섯 개 중 뭐가 보이지?"를 순서대로 점검하는 게 습관이 되어야 해요.
+<div class="box-note">
+① 공통인수로 묶기<br>
+② 인수분해 공식 이용하기<br>
+③ 치환으로 낮추기<br>
+④ 복이차식(치환이 안 통할 때)<br>
+⑤ 내림차순 정리(문자가 여러 개일 때)
+</div>
+하나씩 예제로 확인해볼게요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">인수분해 유형① — 공통인수</div>
+  <div class="card-tag">📐 ① 공통인수로 묶기 — 항상 제일 먼저 확인</div>
+  <div class="card-body">
+모든 항에 공통으로 곱해진 문자·숫자가 있으면 가장 먼저 밖으로 묶어낸다.
+<div class="box-formula">
+2x³−8x = 2x(x²−4) = <b>2x(x−2)(x+2)</b>
+</div>
+<div class="toro-note">🦕 토로: 공통인수를 먼저 안 묶고 바로 공식부터 찾으려 하면 계산이 쓸데없이 커져요. <b>제일 먼저 습관적으로 확인</b>하는 유형이에요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">인수분해 유형② — 공식</div>
+  <div class="card-tag">📐 ② 인수분해 공식 이용하기 — 눈에 익은 패턴 찾기</div>
+  <div class="card-body">
+a²−b², (a±b)², a³±b³ 같은 곱셈공식의 패턴이 보이면 그대로 거꾸로 적용한다.
+<div class="box-formula">
+x⁴−16 = (x²−4)(x²+4) = <b>(x−2)(x+2)(x²+4)</b><br>
+<span style="font-size:.85em;color:#555">→ x²−4를 한 번 더 a²−b²로 분해할 수 있는지까지 확인!</span>
+</div>
+🔗 <b>연결</b>: 주제 1의 x³±1=0도 결국 이 유형(a³±b³ 공식)이에요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">인수분해 유형③ — 치환</div>
+  <div class="card-tag">📐 ③ 치환으로 낮추기 — 반복되는 덩어리를 문자 하나로</div>
+  <div class="card-body">
+똑같은 식 덩어리가 반복해서 보이면, 그 덩어리를 통째로 한 문자(보통 t)로 바꿔서 차수를 낮춘다.
+<div class="box-formula">
+(x²+x)²−8(x²+x)+12<br>
+t=x²+x로 치환 → t²−8t+12 = (t−2)(t−6)<br>
+다시 되돌리면 <b>(x²+x−2)(x²+x−6)</b> = (x−1)(x+2)(x+3)(x−2)
+</div>
+<div class="toro-note">🦕 토로: 치환은 "복잡한 식을 단순한 문자로 잠깐 가려두는" 기술이에요. 다 풀고 나면 <b>반드시 원래 문자로 되돌리는 것</b>을 잊지 마세요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">인수분해 유형④ — 복이차식</div>
+  <div class="card-tag">📐 ④ 복이차식 — 치환이 안 통할 때 쓰는 한 수</div>
+  <div class="card-body">
+x⁴+ax²+b 꼴(복이차식)은 보통 t=x²로 치환해서 풀어요. 그런데 <b>치환한 이차식이 깔끔하게 인수분해되지 않을 때</b>가 있어요 — 그럴 때 쓰는 특별한 기술이 있어요.
+<div class="box-formula">
+x⁴+4  (t=x²로 치환하면 t²+4 → 인수분해 안 됨!)<br>
+→ 가운데 항을 <b>더하고 빼서</b> 완전제곱을 만든다<br>
+x⁴+4 = x⁴+4x²+4 −4x² = (x²+2)² − (2x)²<br>
+= <b>(x²+2x+2)(x²−2x+2)</b>
+</div>
+<div class="box-note">
+<b>신호</b>: t=x²로 치환했는데 이차식의 판별식이 완전제곱수가 아니다 → 가운데 항(4x²)을 더하고 빼서 (완전제곱)²−(완전제곱)² 형태로 강제로 만든다.
+</div>
+<div class="toro-note">🦕 토로: 복이차식은 치환의 "특수하고 어려운 사례"예요. 치환해서 바로 풀리면 그냥 유형③이고, <b>안 풀릴 때만</b> 이 더하고 빼는 기술(유형④)을 씁니다.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">인수분해 유형⑤ — 내림차순 정리</div>
+  <div class="card-tag">📐 ⑤ 내림차순 정리 — 문자가 여러 개 섞여 있을 때</div>
+  <div class="card-body">
+문자가 두 개 이상 섞인 식은, <b>차수가 낮은 문자 하나를 기준으로 내림차순 정리</b>하면 인수분해가 보이기 시작해요.
+<div class="box-formula">
+x²+2x+1−y²<br>
+x에 대해 내림차순 정리(이미 x²+2x+1이 보임) → (x²+2x+1)−y²<br>
+= (x+1)² − y² = <b>(x+1+y)(x+1−y)</b>
+</div>
+<div class="toro-note">🦕 토로: 내림차순 정리는 "인수분해를 새로 하는 방법"이 아니라 <b>식을 다시 배열해서 앞의 네 유형(특히 ②공식)이 보이게 만드는 준비 작업</b>이에요. 문자가 여럿이라 막막할 때 가장 먼저 시도해보세요.</div>
+  </div>
+</div>
+
+<div class="unit-header" style="margin-top:14px;border-top:none;padding-top:0">📍 주제 0-보충 — 다섯 유형으로도 안 보이면 (인수정리+조립제법)</div>
+
+<div class="card">
+  <div class="card-meta">고차방정식 — 도입 (닻: 다항식 단원 복습)</div>
+  <div class="card-tag">🔙 기억나요? 인수정리로 인수 하나를 찾는 법</div>
+  <div class="card-body">
+다항식 단원에서 배운 걸 다시 불러올게요.<br><br>
+<div class="box-note">
+<b>인수정리</b>: P(a)=0이면 (x−a)는 P(x)의 인수다.<br>
+<b>조립제법</b>: 인수 하나를 찾으면, 조립제법으로 나눠서 차수를 하나 낮출 수 있다.
+</div>
+삼차방정식 x³−2x²−x+2=0을 예로 들어볼게요. x=1을 넣으면 1−2−1+2=0 — 인수정리로 (x−1)이 인수라는 걸 알았어요. 조립제법으로 나누면:
+<svg viewBox="0 0 260 90" width="100%" style="max-width:240px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
+  <text x="20" y="20" font-size="11" fill="#4c1d95" font-weight="700">1</text>
+  <text x="70" y="20" font-size="11" text-anchor="middle" fill="#1a1a1a">1</text>
+  <text x="120" y="20" font-size="11" text-anchor="middle" fill="#1a1a1a">−2</text>
+  <text x="170" y="20" font-size="11" text-anchor="middle" fill="#1a1a1a">−1</text>
+  <text x="220" y="20" font-size="11" text-anchor="middle" fill="#1a1a1a">2</text>
+  <line x1="10" y1="28" x2="250" y2="28" stroke="#999" stroke-width="1"/>
+  <text x="120" y="45" font-size="10" text-anchor="middle" fill="#c2410c">↓ +1  ↓ −1  ↓ −2</text>
+  <text x="70" y="65" font-size="11" text-anchor="middle" fill="#15803d" font-weight="700">1</text>
+  <text x="120" y="65" font-size="11" text-anchor="middle" fill="#15803d" font-weight="700">−1</text>
+  <text x="170" y="65" font-size="11" text-anchor="middle" fill="#15803d" font-weight="700">−2</text>
+  <text x="220" y="65" font-size="11" text-anchor="middle" fill="#c2410c" font-weight="800">0</text>
+  <text x="220" y="82" font-size="9" fill="#c2410c" text-anchor="middle">나머지 0</text>
+</svg>
+몫은 x²−x−2 = (x−1)(x+2) — 그래서 원래 식은 (x−1)(x−1)(x+2) = (x−1)²(x+2)로 완전히 인수분해돼요.
+
+<div class="box-formula">
+<b>고차방정식을 만나면 이 순서로 시도한다</b><br>
+① 공통인수가 있는지 먼저 본다 (x로 묶이거나 괄호가 겹치는지)<br>
+② 유리근 후보 <span class="frac"><span class="num">(상수항의 약수)</span><span class="den">(최고차항 계수의 약수)</span></span> 를 하나씩 대입해 인수정리로 인수를 찾는다<br>
+③ 인수를 찾았으면 조립제법으로 차수를 낮춘다 — 삼차 이하가 되면 근의 공식이나 인수분해로 마무리
+</div>
+
+<div class="toro-note">🦕 토로: 이 세 단계는 사실 <b>다항식 단원에서 이미 다 배운 도구</b>예요. "고차방정식"이라는 이름 때문에 새로운 게 나올 것 같지만, 실제로는 인수정리·조립제법을 "몇 번 반복해서 쓰느냐"의 문제예요. 다만 이 방법이 안 통하는 <b>특수한 형태</b>들이 있는데, 그건 주제 1·2에서 따로 배울 거예요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">고차방정식 — 기본문제</div>
+  <div class="card-tag">기본 0 — 인수정리+조립제법으로 삼차방정식 풀기</div>
+  <div class="card-body" style="font-weight:600">
+삼차방정식 x³−3x−2=0을 푸세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+유리근 후보 ±1, ±2 중 x=−1을 대입: −1+3−2=0 → (x+1)이 인수<br>
+조립제법으로 나누면 몫 x²−x−2 = (x+1)(x−2)<br>
+원래 식 = (x+1)²(x−2) = 0 → <b>x=−1(중근) 또는 x=2</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">고차방정식 — 유사문제</div>
+  <div class="card-tag">🔄 유사문제로 연습하기</div>
+  <div class="card-body">
+<div class="toc-box">
+<b>유사문제1</b>: 삼차방정식 x³+2x²−5x−6=0을 푸세요.<br>
+<b>유사문제2</b>: 사차방정식 x⁴−2x³−x²+2x=0을 푸세요. (공통인수부터!)
+</div>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 1 — x³=1, x³=−1: 합·차의 공식으로 인수분해</div>
+
+<div class="card">
+  <div class="card-meta">x³±1=0 — 도입 (닻: 곱셈공식 복습)</div>
+  <div class="card-tag">🔙 기억나요? 세제곱의 합·차 공식</div>
+  <div class="card-body">
+다항식 단원 곱셈공식에서 이 두 개를 배웠어요.<br><br>
+<div class="box-note">
+a³+b³ = (a+b)(a²−ab+b²)<br>
+a³−b³ = (a−b)(a²+ab+b²)
+</div>
+이 공식은 <b>a=x, b=1을 넣으면 그대로 삼차방정식 x³=∓1의 인수분해 공식</b>이 돼요. 즉, 새로 외울 게 아니라 이미 아는 공식에 숫자 1을 넣은 것뿐이에요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">x³=1 — 풀이 과정</div>
+  <div class="card-tag">📐 x³−1=0의 세 근 — 실근 하나, 허근 두 개</div>
+  <div class="card-body">
+<div class="problem-label">❓ 예제</div><br>
+x³=1, 즉 x³−1=0을 풀어볼게요.<br><br>
+<div class="box-formula">
+x³−1 = (x−1)(x²+x+1) = 0
+</div>
+(x−1)=0 이면 x=1.<br>
+(x²+x+1)=0 이면 근의 공식으로 x = <span class="frac"><span class="num">−1±√3i</span><span class="den">2</span></span> (판별식 D=1−4=−3&lt;0 이므로 허근)<br><br>
+<div class="box-note">
+<b>세 근: 1, <span class="frac"><span class="num">−1+√3i</span><span class="den">2</span></span>, <span class="frac"><span class="num">−1−√3i</span><span class="den">2</span></span></b>
+</div>
+🔗 <b>연결</b>: 이 허근 두 개는 복소수 단원에서 배운(또는 배울) <b>ω(오메가)</b>예요 — x³=1의 허근을 ω라 하면 ω³=1, ω²+ω+1=0이라는 성질이 그대로 여기서 나온 거예요. 복소수 거듭제곱 정복(레벨3)에서 이 ω를 다시 만나게 됩니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">x³=−1 — 풀이 과정</div>
+  <div class="card-tag">📐 x³+1=0의 세 근</div>
+  <div class="card-body">
+같은 방식으로 x³+1=0을 풀면:
+<div class="box-formula">
+x³+1 = (x+1)(x²−x+1) = 0
+</div>
+(x+1)=0 이면 x=−1.<br>
+(x²−x+1)=0 이면 x = <span class="frac"><span class="num">1±√3i</span><span class="den">2</span></span><br><br>
+<div class="toro-note">🦕 토로: x³=1이든 x³=−1이든 <b>구조는 완전히 똑같아요</b> — "부호 하나만 다른 곱셈공식을 그대로 대입한다"는 같은 서랍을 씁니다. 실전에서는 x³=1, x³=8, x³=−27처럼 오른쪽 숫자가 세제곱수로 바뀌어 나올 수 있는데, 그때도 8=2³, −27=(−3)³으로 보면 a=x, b=2 또는 b=−3을 넣는 것과 똑같아요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">x³±1=0 — 기본문제</div>
+  <div class="card-tag">기본 1 — 세제곱 방정식 풀기</div>
+  <div class="card-body" style="font-weight:600">
+방정식 x³=8을 푸세요. (단, 허근도 모두 구하세요)
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+x³−8=0 → x³−2³=0 → (x−2)(x²+2x+4)=0<br>
+(x−2)=0 → x=2<br>
+(x²+2x+4)=0 → x = <span class="frac"><span class="num">−2±√12i</span><span class="den">2</span></span> = −1±√3i<br>
+<b>x = 2, −1+√3i, −1−√3i</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">x³=1의 허근 ω — 성질 총정리 (기출 필수)</div>
+  <div class="card-tag">🌀 ω(오메가) — 이 단원의 기본핵심, 다양하게 물어봐요</div>
+  <div class="card-body">
+x³=1의 두 허근 중 하나를 <b>ω</b>라 부를게요.<br>
+(복소수 거듭제곱 정복 레벨3에 이미 ω 카드가 있는데, 그 성질들이 사실 여기서 그대로 나온 거예요.)<br><br>
+
+<b>성질 1.</b> ω³=1
+<div class="box-note">
+정의 그 자체예요.
+</div>
+
+<b>성질 2.</b> ω²+ω+1=0
+<div class="box-note">
+ω가 x²+x+1=0의 근이니까요 (앞에서 (x−1)(x²+x+1)=0으로 인수분해했죠).
+</div>
+
+<b>성질 3.</b> 1/ω = ω²
+<div class="box-note">
+ω³=1 이므로 ω·ω²=1.<br>
+🔗 <b>연결</b>: 주제4의 조작②(역수)를 그대로 쓴 결과예요.
+</div>
+
+<b>성질 4.</b> ω의 켤레복소수도 ω²
+<div class="box-note">
+x²+x+1=0은 계수가 실수 → 켤레근 정리(주제5)로 ω의 켤레도 근.<br>
+근이 ω, ω² 딱 둘뿐이니 ω̄=ω².
+</div>
+
+<div class="toro-note">🦕 토로: 이 네 성질은 따로따로가 아니라, <b>이미 배운 도구 세 개(인수분해·역수·켤레근)를 x²+x+1=0 하나에 전부 적용한 결과</b>예요. 참고로 x²+x+1=0은 계수가 1,1,1로 좌우대칭 — 사실 <b>가장 짧은 상반방정식(주제2)</b>이기도 해요!</div>
+
+<div class="problem-label" style="margin-top:10px">❓ 기출형 질문 두 개</div><br>
+<b>Q1.</b> ω<sup>2024</sup>의 값은?<br>
+2024=3×674+2 → ω<sup>2024</sup>=ω<sup>3×674</sup>·ω²=ω²<br><br>
+<b>Q2.</b> (1+ω)(1+ω²)의 값은?<br>
+전개: 1+ω²+ω+ω³ = (1+ω+ω²)+ω³ = 0+1 = <b>1</b>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 2 — 상반방정식: 계수가 대칭이면 보이는 지름길</div>
+
+<div class="card">
+  <div class="card-meta">상반방정식 — 도입</div>
+  <div class="card-tag">🤔 이 사차방정식, 계수가 뭔가 이상하지 않나요?</div>
+  <div class="card-body">
+<div class="problem-label">❓ 던지는 질문</div><br>
+x⁴−3x³+4x²−3x+1=0 의 계수를 순서대로 적어볼게요: 1, −3, 4, −3, 1.<br><br>
+앞에서 읽어도 뒤에서 읽어도 <b>똑같은 순서</b>가 되죠? 이렇게 계수가 좌우대칭인 방정식을 <b>상반방정식</b>이라고 불러요.
+<svg viewBox="0 0 260 60" width="100%" style="max-width:240px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
+  <text x="35" y="25" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="800">1</text>
+  <text x="95" y="25" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="800">−3</text>
+  <text x="155" y="25" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="800">4</text>
+  <text x="215" y="25" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="800">−3</text>
+  <text x="245" y="25" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="800">1</text>
+  <path d="M 35 35 Q 140 55 245 35" fill="none" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <path d="M 95 35 Q 155 48 215 35" fill="none" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="140" y="55" font-size="9" fill="#c2410c" text-anchor="middle">양 끝부터 짝지으면 대칭</text>
+</svg>
+이 대칭성을 이용하면 유리근 후보를 하나씩 대입하는 것보다 <b>훨씬 빠르게</b> 풀 수 있어요. x=0을 넣으면 상수항 1≠0이니 x=0은 근이 아니에요 — 그래서 <b>양변을 x²로 나눠도 안전</b>합니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">상반방정식 — 풀이 과정 (치환)</div>
+  <div class="card-tag">📐 x+1/x = t 로 치환해서 차수 낮추기</div>
+  <div class="card-body">
+x⁴−3x³+4x²−3x+1=0 을 x²으로 나누면:
+<div class="box-formula">
+x² − 3x + 4 − <span class="frac"><span class="num">3</span><span class="den">x</span></span> + <span class="frac"><span class="num">1</span><span class="den">x²</span></span> = 0<br>
+→ (x² + <span class="frac"><span class="num">1</span><span class="den">x²</span></span>) − 3(x + <span class="frac"><span class="num">1</span><span class="den">x</span></span>) + 4 = 0
+</div>
+여기서 t = x + <span class="frac"><span class="num">1</span><span class="den">x</span></span> 로 치환하면, t² = x² + 2 + <span class="frac"><span class="num">1</span><span class="den">x²</span></span> 이므로 x² + <span class="frac"><span class="num">1</span><span class="den">x²</span></span> = t²−2 예요. 대입하면:
+<div class="box-formula">
+(t²−2) − 3t + 4 = 0 → t²−3t+2=0 → (t−1)(t−2)=0 → t=1 또는 t=2
+</div>
+<div class="box-note">
+<b>t=1</b>: x + <span class="frac"><span class="num">1</span><span class="den">x</span></span> = 1 → x²−x+1=0 (허근)<br>
+<b>t=2</b>: x + <span class="frac"><span class="num">1</span><span class="den">x</span></span> = 2 → x²−2x+1=0 → (x−1)²=0 → x=1(중근)
+</div>
+<div class="toro-note">🦕 토로: 상반방정식은 "새 공식"이 아니라 <b>"대칭이 보이면 x²으로 나누고 x+1/x를 t로 바꾼다"는 하나의 전략</b>이에요. 사차 상반방정식뿐 아니라 육차까지도 같은 방식(t=x+1/x로 낮추기)이 통해요 — 핵심은 "계수가 대칭이다 → x²으로 나눈다"는 판단력입니다.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">상반방정식 — 기본문제</div>
+  <div class="card-tag">기본 2 — 치환으로 상반방정식 풀기</div>
+  <div class="card-body" style="font-weight:600">
+방정식 x⁴+x³−4x²+x+1=0을 푸세요. (실근만 구하세요)
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+계수 1,1,−4,1,1 — 대칭 확인. x²으로 나누면 (x²+1/x²)+(x+1/x)−4=0<br>
+t=x+1/x 로 치환: t²−2+t−4=0 → t²+t−6=0 → (t+3)(t−2)=0 → t=−3 또는 t=2<br>
+t=2: x+1/x=2 → x²−2x+1=0 → x=1(중근)<br>
+t=−3: x+1/x=−3 → x²+3x+1=0 → x = <span class="frac"><span class="num">−3±√5</span><span class="den">2</span></span> (실근)<br>
+<b>실근: x=1, <span class="frac"><span class="num">−3+√5</span><span class="den">2</span></span>, <span class="frac"><span class="num">−3−√5</span><span class="den">2</span></span></b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">상반방정식 — 유사문제</div>
+  <div class="card-tag">🔄 유사문제로 연습하기</div>
+  <div class="card-body">
+<div class="toc-box">
+<b>유사문제1</b>: 사차방정식 x⁴−5x³+6x²−5x+1=0을 푸세요. (계수 대칭 확인!)
+</div>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 3 — 근과 계수의 관계: 이차에서 삼차로</div>
+
+<div class="card">
+  <div class="card-meta">근과 계수의 관계 — 도입 (닻: 이차방정식 복습)</div>
+  <div class="card-tag">🔙 기억나요? 이차방정식의 두 근의 합과 곱</div>
+  <div class="card-body">
+이차방정식 단원에서 배운 걸 다시 볼게요.<br><br>
+<div class="box-note">
+ax²+bx+c=0의 두 근을 α, β라 하면<br>
+α+β = <span class="frac"><span class="num">−b</span><span class="den">a</span></span>,  αβ = <span class="frac"><span class="num">c</span><span class="den">a</span></span>
+</div>
+🔗 <b>연결</b>: <b>똑같은 원리가 삼차방정식에도 그대로 적용</b>돼요. 계수와 근 사이의 이 관계는 "이차 전용"이 아니라 "차수에 상관없이 통하는 원리"이기 때문이에요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">근과 계수의 관계 — 삼차방정식 확장</div>
+  <div class="card-tag">📐 삼차방정식의 세 근의 합·곱·짝지은 곱의 합</div>
+  <div class="card-body">
+ax³+bx²+cx+d=0 의 세 근을 α, β, γ 라 하면:
+<div class="box-formula">
+α+β+γ = <span class="frac"><span class="num">−b</span><span class="den">a</span></span><br>
+αβ+βγ+γα = <span class="frac"><span class="num">c</span><span class="den">a</span></span><br>
+αβγ = <span class="frac"><span class="num">−d</span><span class="den">a</span></span>
+</div>
+<table class="cmp-table">
+<tr><th></th><th>이차 ax²+bx+c=0</th><th>삼차 ax³+bx²+cx+d=0</th></tr>
+<tr><td>근의 합</td><td>−b/a</td><td>−b/a</td></tr>
+<tr><td>근의 곱 (전부)</td><td>c/a</td><td>−d/a</td></tr>
+<tr><td>짝지은 곱의 합</td><td>—</td><td>c/a</td></tr>
+</table>
+이 표에서 보이는 규칙: <b>부호는 (−1)ⁿ으로 번갈아 붙고, 항상 (최고차항이 아닌 계수)/(최고차항 계수)</b>예요. 실전에서는 이 공식으로 세 근의 합·곱을 구한 뒤, α²+β²+γ² = (α+β+γ)²−2(αβ+βγ+γα) 같은 대칭식 변형(다항식 단원 곱셈공식과 같은 변형)을 묶어서 쓰는 문제가 자주 나와요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">근과 계수의 관계 — 기본문제</div>
+  <div class="card-tag">기본 3 — 세 근으로 만드는 새 삼차방정식</div>
+  <div class="card-body" style="font-weight:600">
+삼차방정식 x³−2x²+3x−4=0의 세 근을 α, β, γ라 할 때, α+β+γ와 αβγ의 값을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+a=1, b=−2, c=3, d=−4<br>
+α+β+γ = −b/a = <b>2</b><br>
+αβγ = −d/a = <b>4</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">근과 계수의 관계 — 유사문제</div>
+  <div class="card-tag">🔄 유사문제로 연습하기</div>
+  <div class="card-body">
+<div class="toc-box">
+<b>유사문제1</b>: 삼차방정식 2x³+3x²−x+5=0의 세 근을 α, β, γ라 할 때, αβ+βγ+γα의 값은?<br>
+<b>유사문제2</b>: 삼차방정식의 세 근이 α, β, γ이고 α+β+γ=3, αβ+βγ+γα=−2, αβγ=4일 때, α²+β²+γ²의 값은?
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">근과 계수의 관계 — 실전형 응용문제</div>
+  <div class="card-tag">📐 세 근을 몇 배 한 값들을 근으로 하는 새 방정식 (실전 기출형)</div>
+  <div class="card-body">
+<div class="problem-label">❓ 예제 (기출 패턴)</div><br>
+삼차방정식의 세 근이 α, β, γ일 때, <b>2α, 2β, 2γ를 세 근으로 하고 최고차항의 계수가 1인 새 삼차방정식</b>을 만드는 문제가 실제 기출에 자주 나와요. 예를 들어 원래 방정식이 x³+px²+qx+r=0 (세 근 α,β,γ) 라면, 새 방정식의 근과 계수의 관계를 <b>2α+2β+2γ, (2α)(2β)+(2β)(2γ)+(2γ)(2α), (2α)(2β)(2γ)</b> 순서로 하나씩 원래 값의 2배·4배·8배로 바꿔서 새 식을 세워요.
+<div class="box-note">
+<b>왜 2배, 4배, 8배일까?</b><br>
+근의 합(1개씩) → 2배가 그대로 곱해짐 → 2¹배<br>
+짝지은 곱의 합(2개씩 곱함) → 2배가 두 번 곱해짐 → 2²배<br>
+세 근의 곱(3개 곱함) → 2배가 세 번 곱해짐 → 2³배
+</div>
+<div class="toro-note">🦕 토로: "새 근이 원래 근의 k배"라는 문제는 <b>근과 계수의 관계 3개를 한 번에 스케일링</b>하는 문제예요. 합은 k배, 짝지은 곱의 합은 k²배, 전체 곱은 k³배 — 곱하는 근의 개수만큼 k가 곱해진다는 규칙만 기억하면 됩니다.</div>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 4 — 부호·순서를 바꾼 방정식과 원래 방정식의 근 관계</div>
+
+<div class="card">
+  <div class="card-meta">부호를 바꾼 방정식 — 도입 (조작①)</div>
+  <div class="card-tag">🤔 ① f(x)=0의 근이 α라면, f(−x)=0의 근은?</div>
+  <div class="card-body">
+<div class="problem-label">❓ 던지는 질문</div><br>
+f(x) = x³−2x²+3x−4 이고, f(α)=0이라고 해볼게요 (α는 f(x)=0의 근). 그럼 f(−x)=0의 근은 α와 무슨 관계일까요?<br><br>
+f(−x)에 x=−α를 넣어보면 f(−(−α)) = f(α) = 0이 돼요. 즉, <b>x=−α를 넣었더니 f(−x)=0이 성립</b>해요.
+<div class="box-note">
+<b>조작① 부호를 바꾼 방정식의 근</b><br>
+f(x)=0의 근이 α이면, f(−x)=0의 근은 <b>−α</b>이다.<br>
+(f(x)의 계수 부호를 항 순서대로 +,−,+,−… 번갈아 바꾼 식이 바로 f(−x)와 같은 식이 되기 때문)
+</div>
+이걸 계수로 확인하면 더 명확해요. f(x)=x³−2x²+3x−4의 항을 x³, x², x, 상수 순서로 볼 때, x가 홀수제곱(x³, x¹)인 자리는 −x를 넣으면 부호가 바뀌고, 짝수제곱(x², x⁰)인 자리는 부호가 그대로예요. 그래서 f(−x) = −x³−2x²−3x−4 = −(x³+2x²+3x+4) — <b>홀수차항의 부호만 바뀐 식</b>이 됩니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">부호를 바꾼 방정식 — 기본문제</div>
+  <div class="card-tag">기본 4-1 — 부호 반대 방정식의 근 찾기</div>
+  <div class="card-body" style="font-weight:600">
+삼차방정식 x³+x²−2x+3=0의 세 근이 α, β, γ일 때, x³−x²−2x−3=0의 세 근을 α, β, γ로 나타내세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+g(x)=x³−x²−2x−3이 f(x)=x³+x²−2x+3의 f(−x)인지 확인: f(−x) = −x³+x²+2x+3 = −(x³−x²−2x−3)<br>
+g(x) = −f(−x) 이므로 g(x)=0 ⟺ f(−x)=0 ⟺ (−x)가 f의 근 ⟺ x는 f의 근에 −1을 곱한 값<br>
+<b>세 근: −α, −β, −γ</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">계수 순서를 뒤집은 방정식 — 도입 (조작②)</div>
+  <div class="card-tag">🤔 ② 이번엔 계수의 순서를 뒤집으면 근은 어떻게 될까?</div>
+  <div class="card-body">
+<div class="problem-label">❓ 던지는 질문</div><br>
+f(x) = x²−3x+2 = 0 을 풀면 (x−1)(x−2)=0 → 근은 <b>1, 2</b>예요.<br><br>
+이번엔 f(x)의 계수 1, −3, 2를 <b>거꾸로</b> 나열해서 새 식을 만들어볼게요: g(x) = 2x²−3x+1 = 0. 이걸 풀면 (2x−1)(x−1)=0 → 근은 <b>1/2, 1</b>이에요.<br><br>
+원래 근 {1, 2}와 새 근 {1/2, 1}을 나란히 놓아볼까요? 1/2 = 1/2, 1 = 1/1 — <b>새 근은 원래 근의 역수</b>예요!
+<div class="box-note">
+<b>조작② 계수 순서를 뒤집은 방정식의 근</b><br>
+f(x)=a<sub>n</sub>x<sup>n</sup>+…+a<sub>0</sub>=0 (a<sub>0</sub>≠0)의 근이 α(≠0)이면, 계수를 거꾸로 나열한 방정식 a<sub>0</sub>x<sup>n</sup>+…+a<sub>n</sub>=0의 근은 <b>1/α</b>이다.
+</div>
+<div class="problem-label">📐 왜 그럴까? — 먼저 삼차식으로 확인</div><br>
+삼차방정식 a<sub>3</sub>x<sup>3</sup>+a<sub>2</sub>x<sup>2</sup>+a<sub>1</sub>x+a<sub>0</sub>=0 의 근이 α(≠0)라고 해볼게요.<br><br>
+
+<b>1단계.</b> α를 대입하면 0이에요.
+<div class="box-formula">
+a<sub>3</sub>α<sup>3</sup>+a<sub>2</sub>α<sup>2</sup>+a<sub>1</sub>α+a<sub>0</sub> = 0
+</div>
+
+<b>2단계.</b> 양변을 α³으로 나눠요.
+<div class="box-formula">
+a<sub>3</sub> + <span class="frac"><span class="num">a<sub>2</sub></span><span class="den">α</span></span> + <span class="frac"><span class="num">a<sub>1</sub></span><span class="den">α<sup>2</sup></span></span> + <span class="frac"><span class="num">a<sub>0</sub></span><span class="den">α<sup>3</sup></span></span> = 0
+</div>
+
+<b>3단계.</b> 계수를 거꾸로 나열한 식을 만들어요.
+<div class="box-formula">
+g(x) = a<sub>0</sub>x<sup>3</sup>+a<sub>1</sub>x<sup>2</sup>+a<sub>2</sub>x+a<sub>3</sub>
+</div>
+
+<b>4단계.</b> g(x)에 x=1/α를 대입해요.
+<div class="box-formula">
+g(<span class="frac"><span class="num">1</span><span class="den">α</span></span>) = <span class="frac"><span class="num">a<sub>0</sub></span><span class="den">α<sup>3</sup></span></span> + <span class="frac"><span class="num">a<sub>1</sub></span><span class="den">α<sup>2</sup></span></span> + <span class="frac"><span class="num">a<sub>2</sub></span><span class="den">α</span></span> + a<sub>3</sub>
+</div>
+
+<b>5단계.</b> 2단계 식과 비교해요.
+<div class="box-note">
+더하는 <b>순서만 다를 뿐</b>, 같은 네 항이에요.<br>
+그러니 g(1/α) = 0.<br>
+<b>1/α는 g(x)=0의 근!</b>
+</div>
+
+<div class="toro-note">🦕 토로: 핵심은 딱 하나예요 — "<b>α<sup>n</sup>으로 나누기</b>"가 계수 순서를 뒤집는 효과를 만들어요. 나눗셈 한 번이면 충분해요.</div>
+
+<div class="problem-label" style="margin-top:14px">📐 이제 일반적인 n차식으로 확인</div><br>
+차수가 몇이든 <b>완전히 같은 논리</b>예요.<br><br>
+
+<b>1단계.</b> n차방정식의 근 α를 대입.
+<div class="box-formula">
+a<sub>n</sub>α<sup>n</sup>+a<sub>n−1</sub>α<sup>n−1</sup>+…+a<sub>1</sub>α+a<sub>0</sub> = 0
+</div>
+
+<b>2단계.</b> 양변을 α<sup>n</sup>으로 나눔.
+<div class="box-formula">
+a<sub>n</sub> + <span class="frac"><span class="num">a<sub>n−1</sub></span><span class="den">α</span></span> + … + <span class="frac"><span class="num">a<sub>0</sub></span><span class="den">α<sup>n</sup></span></span> = 0
+</div>
+
+<b>3단계.</b> 이 식을 앞에서부터 읽으면, <b>계수를 거꾸로 나열한 식에 x=1/α를 넣은 것</b>과 똑같아요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">부호+순서를 함께 바꾼 방정식 — 도입 (조작①+②)</div>
+  <div class="card-tag">🤔 ③ 순서도 뒤집고 부호도 바꾸면?</div>
+  <div class="card-body">
+<div class="problem-label">❓ 던지는 질문</div><br>
+이미 배운 <b>두 조작을 순서대로 두 번</b> 적용하면 끝이에요 — 새로 배울 게 없어요.<br><br>
+아까 f(x)=x²−3x+2=0 (근 1, 2)에 <b>조작②(순서 뒤집기)</b>를 먼저 적용해서 g(x)=2x²−3x+1=0 (근 1/2, 1)을 만들었죠. 여기에 <b>조작①(부호 뒤집기 — 홀수차항 부호 반전)</b>을 한 번 더 적용해볼게요: x항의 부호만 바꾸면 2x²+3x+1=0. 인수분해하면 (2x+1)(x+1)=0 → 근은 <b>−1/2, −1</b>.<br><br>
+원래 근 {1, 2}와 비교하면: −1/2 = −(1/2), −1 = −(1/1) — <b>음의 역수</b>예요!
+<div class="box-note">
+<b>조작①+② 순서를 뒤집고 부호도 바꾼 방정식의 근</b><br>
+f(x)=0의 근이 α(≠0)이면, 계수 순서를 뒤집고 홀수차항 부호까지 반전한 방정식의 근은 <b>−1/α</b>이다.
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">네 가지 변환 — 총정리 (도구의 동일성)</div>
+  <div class="card-tag">🔗 사실 이건 새 규칙 세 개가 아니라, 스위치 두 개예요</div>
+  <div class="card-body">
+지금까지 배운 조작 세 가지(①②③)는 사실 <b>"부호를 바꾸느냐"와 "순서를 뒤집느냐"라는 독립된 스위치 두 개</b>를 켜고 끄는 것뿐이에요. 표로 정리하면:
+<table class="cmp-table">
+<tr><th></th><th>순서 그대로</th><th>순서 뒤집기</th></tr>
+<tr><td><b>부호 그대로</b></td><td>α (원래 방정식)</td><td>1/α (조작②)</td></tr>
+<tr><td><b>부호 뒤집기</b></td><td>−α (조작①)</td><td>−1/α (조작①+②)</td></tr>
+</table>
+<div class="toro-note">🦕 토로: 스위치가 두 개면 조합은 2×2=4가지뿐이에요. <b>새로운 걸 네 개 외우는 게 아니라, 두 개의 조작을 조합하는 문제</b>라고 생각하면 헷갈릴 일이 없어요. 이건 이 교재에서 계속 강조하는 "도구의 동일성"의 좋은 예시예요 — 겉보기엔 네 가지 다른 방정식 같지만, 사실 두 스위치의 on/off 조합일 뿐이에요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">계수 순서를 뒤집은 방정식 — 기본문제</div>
+  <div class="card-tag">기본 4-2 — 역수를 근으로 하는 방정식 만들기</div>
+  <div class="card-body" style="font-weight:600">
+이차방정식 x²+5x+6=0의 두 근을 α, β라 할 때, 1/α, 1/β를 근으로 하고 계수가 모두 정수인 이차방정식을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+계수 1, 5, 6을 거꾸로 나열: 6x²+5x+1=0<br>
+(직접 확인: x²+5x+6=(x+2)(x+3)=0 → α,β=−2,−3. 1/α,1/β=−1/2,−1/3. 6x²+5x+1=(3x+1)(2x+1)=0 → x=−1/3,−1/2 ✓)<br>
+<b>6x²+5x+1=0</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">부호+순서를 함께 바꾼 방정식 — 기본문제</div>
+  <div class="card-tag">기본 4-3 — 음의 역수를 근으로 하는 방정식 만들기 (실전형: 근을 몰라도 풀린다)</div>
+  <div class="card-body" style="font-weight:600">
+삼차방정식 x³+2x²−3x+1=0의 세 근이 α, β, γ일 때, −1/α, −1/β, −1/γ를 세 근으로 하고 최고차항의 계수가 1인 삼차방정식을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+이 삼차방정식은 실제로 풀 필요가 없어요 — <b>조작①+②만 적용하면 끝</b>이에요.<br>
+1단계(순서 뒤집기, 계수 1,2,−3,1 → 1,−3,2,1): x³−3x²+2x+1=0<br>
+2단계(부호 뒤집기, 홀수차항인 x³·x항 부호 반전): −x³−3x²−2x+1=0<br>
+최고차항 계수를 1로 맞추기 위해 양변에 −1을 곱하면<br>
+<b>x³+3x²+2x−1=0</b>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 5 — 실계수·유리계수 다항식의 켤레근 정리</div>
+
+<div class="card">
+  <div class="card-meta">켤레근 정리 — 도입 (실제 기출 표현)</div>
+  <div class="card-tag">🤔 허근 하나를 찾았는데, 왜 다른 근도 자동으로 정해질까?</div>
+  <div class="card-body">
+<div class="problem-label">❓ 던지는 질문</div><br>
+"삼차방정식의 모든 계수가 실수이므로 허수인 근의 켤레근을 가진다" — 실제 기출 해설에 그대로 나오는 문장이에요. 왜 계수가 실수라는 사실 하나만으로 켤레근까지 자동으로 정해질까요?<br><br>
+복소수 단원에서 배운 켤레복소수의 성질을 떠올려보면: z̄ (z의 켤레)를 사칙연산에 넣어도 켤레는 그대로 유지돼요 (예: <span class="frac"><span class="num">‾</span><span class="den">z+w</span></span> 표기 대신 말로 하면, z+w의 켤레 = z̄+w̄). 계수가 전부 실수인 다항식 f(x)에 z를 대입해서 f(z)=0이 나왔다면, 양변에 켤레를 취해도 등식은 유지돼요 — <b>실수 계수는 켤레를 취해도 그대로(자기 자신의 켤레는 자기 자신)</b>이기 때문에, f(z̄)도 결국 0이 될 수밖에 없어요.
+<div class="box-note">
+<b>실계수 다항식의 켤레근 정리</b><br>
+계수가 모두 <b>실수</b>인 다항식 방정식이 허근 z를 가지면, 그 켤레복소수 z̄도 반드시 근이다.
+</div>
+<div class="box-note">
+<b>유리계수 다항식의 켤레 무리근 정리</b><br>
+계수가 모두 <b>유리수</b>인 다항식 방정식이 무리수근 a+b√m (a,b는 유리수, √m은 무리수)을 가지면, a−b√m도 반드시 근이다.
+</div>
+<div class="toro-note">🦕 토로: 두 정리는 형태가 닮았지만 조건이 달라요 — <b>실계수 → 허근의 켤레</b>, <b>유리계수 → 무리근의 켤레</b>. "계수의 범위가 좁아질수록(실수→유리수), 짝지어지는 근의 종류도 달라진다"는 감각으로 구분하면 헷갈리지 않아요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">켤레근 정리 — 기본문제</div>
+  <div class="card-tag">기본 5 — 켤레근으로 나머지 근 찾기</div>
+  <div class="card-body" style="font-weight:600">
+실계수 삼차방정식의 한 근이 2−i이고, 다른 한 근이 1일 때, 이 방정식의 나머지 한 근을 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+계수가 실수이므로 2−i의 켤레복소수 2+i도 근이다.<br>
+세 근은 이미 1, 2−i, 2+i로 다 찾았으므로 <b>나머지 한 근: 2+i</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">켤레근 정리 — 유사문제</div>
+  <div class="card-tag">🔄 유사문제로 연습하기</div>
+  <div class="card-body">
+<div class="toc-box">
+<b>유사문제1</b>: 유리계수 삼차방정식의 한 근이 1−√2이고 다른 한 근이 3일 때, 나머지 한 근을 구하세요.<br>
+<b>유사문제2</b>: 실계수 사차방정식의 네 근 중 세 근이 3+2i, −1, 2일 때, 나머지 한 근을 구하세요.
+</div>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 6 — 실계수 이차식이 허근을 가질 조건</div>
+
+<div class="card">
+  <div class="card-meta">허근 조건 — 도입 (닻: 판별식 복습, 도구의 동일성)</div>
+  <div class="card-tag">🔙 기억나요? 판별식으로 근의 종류 구분하기</div>
+  <div class="card-body">
+이차방정식 단원에서 배운 판별식을 다시 불러올게요.<br><br>
+<div class="box-note">
+ax²+bx+c=0 (a,b,c는 실수)의 판별식 D=b²−4ac 일 때<br>
+D&gt;0: 서로 다른 두 실근  D=0: 중근(실근)  <b>D&lt;0: 서로 다른 두 허근</b>
+</div>
+🔗 <b>연결</b>: 이 도구는 "이차방정식 전용"이 아니에요. <b>고차방정식을 인수정리로 낮추고 남은 이차식</b>에 그대로 재사용돼요 — 그래서 진짜 "여러가지방정식다운" 판별식 문제는 삼차·사차식을 먼저 인수분해하는 것부터 시작해요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">허근 조건 — 실전형 (삼차방정식 인수정리+판별식)</div>
+  <div class="card-tag">📐 삼차방정식을 인수정리로 낮추고 남은 이차식에 판별식 적용</div>
+  <div class="card-body">
+<div class="problem-label">❓ 예제 (기출 패턴)</div><br>
+삼차방정식 x³−x²+kx−k=0이 <b>오직 하나의 실근만</b> 갖도록 하는 실수 k의 범위를 구하세요.<br><br>
+
+x=1을 대입: 1−1+k−k=0 — <b>k값과 무관하게 항상 0</b>이에요! (x−1)은 항상 인수.<br>
+조립제법으로 나누면 몫은 x²+k.
+<div class="box-formula">
+x³−x²+kx−k = (x−1)(x²+k) = 0
+</div>
+실근이 <b>x=1 하나뿐</b>이려면, 남은 인수 x²+k=0이 <b>허근</b>을 가져야 해요 (실근을 가지면 실근이 2개 이상 됨).
+<div class="box-note">
+x²+k=0의 판별식 D=−4k &lt; 0 → <b>k &gt; 0</b>
+</div>
+<div class="toro-note">🦕 토로: "몇 개의 실근을 갖는가"라는 질문은 <b>인수정리로 하나를 떼어내고, 남은 이차식의 판별식으로 나머지를 센다</b>는 이 조합이 핵심이에요. 이차식 하나만 보고 판별식을 쓴 게 아니라, 삼차식 전체를 먼저 쪼갠 뒤 쓴 거예요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">허근 조건 — 실전형 (사차방정식·복이차식+판별식)</div>
+  <div class="card-tag">📐 사차방정식은 복이차식(주제0 유형③④)으로 낮춘 뒤 판별식</div>
+  <div class="card-body">
+<div class="problem-label">❓ 예제 (기출 패턴)</div><br>
+사차방정식 x⁴+(k−1)x²−k=0이 <b>서로 다른 두 실근과 두 허근</b>을 갖도록 하는 실수 k의 범위를 구하세요.<br><br>
+
+짝수차항만 있으니 t=x²로 치환.
+<div class="box-formula">
+t²+(k−1)t−k = (t−1)(t+k) = 0 → t=1 또는 t=−k
+</div>
+t=1 → x²=1 → <b>x=±1 (실근 두 개, k값과 무관하게 항상 나옴)</b><br>
+t=−k → x²=−k — 이게 <b>허근</b>이어야 나머지 두 근이 실근이 안 돼요.
+<div class="box-note">
+x²=−k 가 허근 ⟺ −k&lt;0 ⟺ <b>k &gt; 0</b>
+</div>
+<div class="toro-note">🦕 토로: 사차식이라고 겁먹을 필요 없어요 — <b>짝수차항만 있으면 치환(주제0 유형③)으로 이차식이 되고, 거기부터는 삼차방정식 예제와 완전히 같은 판별식 논리</b>예요. "차수가 올라갈수록 도구가 늘어나는 게 아니라, 낮추는 방법이 늘어날 뿐"이라는 게 이 단원 전체의 결론이에요.</div>
+  </div>
+</div>
+
+<div class="unit-header">📍 총정리</div>
+
+<div class="card">
+  <div class="card-meta">고차방정식 — 문제 해결 서랍 총정리</div>
+  <div class="card-tag">🗄️ 고차방정식을 만나면 이 순서로 서랍을 열어보세요</div>
+  <div class="card-body">
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 0 — 기본 전략 (인수정리+조립제법)</span>
+공통인수 확인 → 유리근 후보 대입 → 조립제법으로 차수 낮추기. 특수한 형태가 안 보이면 항상 이 서랍부터 연다.
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 1 — x³=±(세제곱수) 꼴이 보이면</span>
+a³±b³ 공식을 그대로 대입. 오른쪽이 8, 27, −64처럼 세제곱수면 이 서랍.
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 2 — 계수가 좌우대칭이면(상반방정식)</span>
+x=0이 근이 아님을 확인 → x²으로 나누기 → t=x+1/x로 치환.
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 3 — "세 근을 몇 배/몇 제곱 한 값" 문제가 보이면</span>
+직접 풀지 말고 근과 계수의 관계(합·짝지은곱의합·전체곱)를 스케일링해서 새 방정식을 세운다.
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 4 — "−α, 1/α, −1/α를 근으로 하는 새 방정식" 문제가 보이면</span>
+직접 풀지 말고 부호 스위치(홀수차항 부호 반전)와 순서 스위치(계수 나열 뒤집기)를 조합한다. 부호만=−α, 순서만=1/α, 둘 다=−1/α.
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 5 — 근 하나가 허수 또는 무리수로 주어지면</span>
+계수가 실수 → 켤레복소수도 근. 계수가 유리수이고 무리근이면 켤레 무리수도 근. 나머지 근을 바로 채워 넣을 수 있다.
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 6 — "실근이 몇 개인가" 같은 조건이 보이면</span>
+인수정리(또는 복이차식 치환)로 먼저 낮추고, 남은 이차식에 판별식을 적용한다. 이차식 자체는 중3 수준 도구지만, 그 앞에 "먼저 낮추기"가 이 단원의 핵심.
+</div>
+
+<div class="toro-note">🦕 토로: 이 단원 전체를 한 줄로 요약하면 — <b>"고차방정식은 새로운 산이 아니라, 다항식·이차방정식·복소수 단원에서 이미 등반해 본 길들을 이어 붙인 산길"</b>이에요. 다음 파일에서는 <b>이차연립방정식</b>(두 이차식을 동시에 만족하는 해)과 <b>부정방정식</b>(정수 조건이 걸린 방정식)을 이어서 다룹니다.</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

@@ -28,6 +28,25 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 .frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
 .frac .den{padding:1px 4px 0}
 
+/* ── 여러가지방정식(공수1) 카드 내부 서식 ── */
+.meq-formula{border:1px solid rgba(196,181,253,.35);background:rgba(139,92,246,.1);border-radius:8px;padding:.7rem 1rem;margin:.5rem 0;font-size:.95em;line-height:1.9;color:#e2e8f0}
+.meq-note{border:1px solid rgba(125,211,252,.35);background:rgba(59,130,246,.09);border-radius:8px;padding:.7rem 1rem;margin:.5rem 0;font-size:.95em;line-height:1.85;color:#e2e8f0}
+.meq-toro{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);border-radius:10px;padding:.6rem .9rem;margin:.6rem 0;font-size:.95em;line-height:1.8;color:#fde68a}
+.meq-drawer{border:1px solid rgba(251,191,36,.35);background:rgba(251,191,36,.08);border-radius:8px;padding:.6rem .9rem;margin:.5rem 0;font-size:.95em;line-height:1.75;color:#fde68a}
+.meq-drawer-title{display:block;font-weight:800;color:#fbbf24;margin-bottom:2px}
+.meq-plabel{display:inline-block;font-weight:800;color:#7dd3fc;background:rgba(125,211,252,.12);padding:2px 10px;border-radius:6px;margin-bottom:6px;font-size:1.05em}
+.meq-slabel{display:inline-block;font-weight:800;color:#86efac;background:rgba(134,239,172,.12);padding:2px 10px;border-radius:6px;margin-bottom:6px;font-size:1.05em}
+.meq-table{border-collapse:collapse;margin:8px auto;font-size:.92em;width:100%}
+.meq-table th,.meq-table td{border:1px solid rgba(255,255,255,.18);padding:6px 8px;text-align:center;color:#e2e8f0}
+.meq-table th{background:rgba(255,255,255,.06);color:#c4b5fd}
+.meq-toc{border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:.6rem .9rem;margin:.5rem 0;font-size:.95em;line-height:1.8;color:#e2e8f0}
+.meq-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:.5rem 0}
+.meq-pair-box{border-radius:8px;padding:.6rem .7rem;font-size:.92em;line-height:1.7}
+.meq-pair-int{border:1px solid rgba(134,239,172,.4);background:rgba(134,239,172,.08);color:#e2e8f0}
+.meq-pair-real{border:1px solid rgba(252,165,165,.4);background:rgba(252,165,165,.08);color:#e2e8f0}
+.meq-pair-lbl{display:block;font-weight:800;margin-bottom:4px}
+@media (max-width:420px){.meq-pair{grid-template-columns:1fr}}
+
 /* ── 공통 ── */
 .screen{display:none;min-height:100vh;padding:20px}
 .screen.active{display:flex;flex-direction:column;align-items:center}
@@ -548,15 +567,26 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">논리<br>허수의 본질</div>
       </div>
     </div>
-    <button onclick="startCards('complex-guide','complex-hub')" style="width:100%;margin-bottom:8px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📖 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(7장)</span> →
-    </button>
-    <button onclick="showScreen('complex-power-hub')" style="width:100%;margin-bottom:8px;background:rgba(196,181,253,.1);border:1px solid rgba(196,181,253,.3);color:#c4b5fd;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      🌀 복소수 거듭제곱 정복 <span style="font-size:.72rem;opacity:.7">(레벨 선택)</span> →
-    </button>
-    <button onclick="startCards('complex-havruta','complex-hub')" style="width:100%;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(3편)</span> →
-    </button>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
+      <div class="topic-card" onclick="startCards('complex-guide','complex-hub')" style="border:1px solid rgba(196,181,253,.3);background:linear-gradient(155deg,#12071e,#1e0f30);grid-column:1/-1">
+        <div class="ico">📖</div>
+        <div class="name" style="color:#c4b5fd">3개국 개념 가이드</div>
+        <div class="desc">i의 탄생·좌표(주소vs명령)·거듭제곱(시계바늘)·나눗셈(각도뺄셈)·탐험가 스토리·통합/수학자 시각</div>
+        <span class="tag" style="background:rgba(196,181,253,.15);color:#c4b5fd;border:1px solid rgba(196,181,253,.35);margin-top:6px">7개 주제</span>
+      </div>
+      <div class="topic-card" onclick="showScreen('complex-power-hub')" style="border:1px solid rgba(196,181,253,.3);background:linear-gradient(155deg,#12071e,#1e0f30);grid-column:1/-1">
+        <div class="ico">🌀</div>
+        <div class="name" style="color:#c4b5fd">복소수 거듭제곱 정복</div>
+        <div class="desc">Level1 i의 4마디·Level2 (1+i)ⁿ·Level3 ω(오메가)·복습판</div>
+        <span class="tag" style="background:rgba(196,181,253,.15);color:#c4b5fd;border:1px solid rgba(196,181,253,.35);margin-top:6px">4개 레벨</span>
+      </div>
+      <div class="topic-card" onclick="startCards('complex-havruta','complex-hub')" style="border:1px solid rgba(253,230,138,.3);background:linear-gradient(155deg,#1e1a07,#2e260d);grid-column:1/-1">
+        <div class="ico">✡️</div>
+        <div class="name" style="color:#fde68a">하브루타 토론관</div>
+        <div class="desc">α³ 실수조건·복소수 z의 정체·대칭과 켤레의 수사대</div>
+        <span class="tag" style="background:rgba(253,230,138,.15);color:#fde68a;border:1px solid rgba(253,230,138,.35);margin-top:6px">3편</span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -627,6 +657,247 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
   </div>
 </div>
 
+<div id="misc-eq-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:1.12rem;text-align:center;color:#f87171">⚡ 여러 가지 방정식·부등식</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:1.12rem;text-align:center;margin-bottom:10px">⚡ "새 산이 아니라, 이미 아는 길들을 이어 붙인 산길"</div>
+    <div style="background:linear-gradient(155deg,rgba(248,113,113,.12),rgba(248,113,113,.04));border:2px solid rgba(248,113,113,.4);border-radius:14px;padding:14px 16px;margin-bottom:14px">
+      <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.95rem;margin-bottom:8px">🦕 토로: 이 카드 전체에서 제일 중요한 네 줄!</div>
+      <div style="font-size:1.00rem;color:#fff;line-height:2;font-weight:800">
+        <div>1. 고차방정식 <span style="color:#94a3b8;font-weight:600">(인수분해 5유형+근과 계수의 관계)</span></div>
+        <div>2. 이차연립방정식 <span style="color:#94a3b8;font-weight:600">(대입법+대칭형)</span></div>
+        <div>3. 부정방정식 <span style="color:#94a3b8;font-weight:600">(정수조건 AB=k, 실수조건 완전제곱합)</span></div>
+        <div>4. 도구의 동일성 <span style="color:#94a3b8;font-weight:600">(인수분해·판별식·근과 계수의 관계를 계속 재사용)</span></div>
+      </div>
+      <div style="font-size:.92rem;color:#fecaca;font-weight:700;margin-top:8px">→ 세 주제 전부 다항식·이차방정식·복소수 단원의 도구를 재사용해요.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
+      <div class="topic-card" onclick="showScreen('higheq-hub')" style="border:1px solid rgba(248,113,113,.3);background:linear-gradient(155deg,#1e0707,#2e0f0f);grid-column:1/-1">
+        <div class="ico">📜</div>
+        <div class="name" style="color:#f87171">고차방정식</div>
+        <div class="desc">인수분해 5유형·x³=±1·상반방정식·근과 계수의 관계·켤레근·판별식</div>
+        <span class="tag" style="background:rgba(248,113,113,.15);color:#f87171;border:1px solid rgba(248,113,113,.35);margin-top:6px">8개 주제</span>
+      </div>
+      <div class="topic-card" onclick="showScreen('quadsys-hub')" style="border:1px solid rgba(251,191,36,.3);background:linear-gradient(155deg,#1e1a07,#2e260d);grid-column:1/-1">
+        <div class="ico">🔗</div>
+        <div class="name" style="color:#fbbf24">이차연립방정식</div>
+        <div class="desc">대입법·인수분해형·대칭연립방정식·판별식</div>
+        <span class="tag" style="background:rgba(251,191,36,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.35);margin-top:6px">5개 주제</span>
+      </div>
+      <div class="topic-card" onclick="showScreen('indeterm-hub')" style="border:1px solid rgba(167,139,250,.3);background:linear-gradient(155deg,#12071e,#1e0f30);grid-column:1/-1">
+        <div class="ico">🧩</div>
+        <div class="name" style="color:#a78bfa">부정방정식</div>
+        <div class="desc">정수조건 AB=k·실수조건 완전제곱합·판별 훈련</div>
+        <span class="tag" style="background:rgba(167,139,250,.15);color:#a78bfa;border:1px solid rgba(167,139,250,.35);margin-top:6px">5개 주제</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="higheq-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 여러 가지 방정식·부등식</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:1.12rem;text-align:center;color:#f87171">📜 고차방정식</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="background:linear-gradient(155deg,rgba(248,113,113,.12),rgba(248,113,113,.04));border:2px solid rgba(248,113,113,.4);border-radius:14px;padding:14px 16px;margin-bottom:14px">
+      <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.95rem;margin-bottom:8px">🦕 토로: 이 카드 전체에서 제일 중요한 여덟 줄!</div>
+      <div style="font-size:1.00rem;color:#fff;line-height:2;font-weight:800">
+        <div>1. 인수분해 5유형 <span style="color:#94a3b8;font-weight:600">(공통인수·공식·치환·복이차식·내림차순)</span></div>
+        <div>2. 그래도 안 보이면 인수정리+조립제법</div>
+        <div>3. x³=±1 <span style="color:#94a3b8;font-weight:600">(오메가 ω)</span></div>
+        <div>4. 상반방정식 <span style="color:#94a3b8;font-weight:600">(x+1/x=t)</span></div>
+        <div>5. 근과 계수의 관계 <span style="color:#94a3b8;font-weight:600">(이차→삼차)</span></div>
+        <div>6. 부호·순서 변환 <span style="color:#94a3b8;font-weight:600">(역수·음의 역수)</span></div>
+        <div>7. 켤레근 정리 <span style="color:#94a3b8;font-weight:600">(실계수·유리계수)</span></div>
+        <div>8. 판별식으로 허근 조건</div>
+      </div>
+      <div style="font-size:.92rem;color:#fecaca;font-weight:700;margin-top:8px">→ 전부 다항식·이차방정식·복소수 단원의 도구를 재사용해요.</div>
+    </div>
+    <div style="font-size:.86rem;color:#8899aa;text-align:center;margin-bottom:10px">주제별로 나뉘어 있어요 — 제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="startCards('higheq-factor','higheq-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(248,113,113,.1),rgba(248,113,113,.03));border:1px solid rgba(248,113,113,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🧩</div>
+        <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.86rem;margin:5px 0 4px;line-height:1.3">① 인수분해 5유형</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">공통인수·공식<br>치환·복이차식</div>
+        <div style="font-size:.70rem;color:#f87171;opacity:.8;margin-top:5px">6장 →</div>
+      </button>
+      <button onclick="startCards('higheq-synthetic','higheq-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(248,113,113,.1),rgba(248,113,113,.03));border:1px solid rgba(248,113,113,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">📐</div>
+        <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.86rem;margin:5px 0 4px;line-height:1.3">② 인수정리·조립제법</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">5유형으로도<br>안 보일 때</div>
+        <div style="font-size:.70rem;color:#f87171;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('higheq-cubic','higheq-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(248,113,113,.1),rgba(248,113,113,.03));border:1px solid rgba(248,113,113,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🔺</div>
+        <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.86rem;margin:5px 0 4px;line-height:1.3">③ x³=±1</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">합·차의 공식<br>오메가(ω)</div>
+        <div style="font-size:.70rem;color:#f87171;opacity:.8;margin-top:5px">5장 →</div>
+      </button>
+      <button onclick="startCards('higheq-palindrome','higheq-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(248,113,113,.1),rgba(248,113,113,.03));border:1px solid rgba(248,113,113,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🪞</div>
+        <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.86rem;margin:5px 0 4px;line-height:1.3">④ 상반방정식</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">계수가 대칭<br>x+1/x=t</div>
+        <div style="font-size:.70rem;color:#f87171;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+      <button onclick="startCards('higheq-vieta','higheq-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(248,113,113,.1),rgba(248,113,113,.03));border:1px solid rgba(248,113,113,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🔗</div>
+        <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.86rem;margin:5px 0 4px;line-height:1.3">⑤ 근과 계수의 관계</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">이차→삼차<br>스케일링 응용</div>
+        <div style="font-size:.70rem;color:#f87171;opacity:.8;margin-top:5px">5장 →</div>
+      </button>
+      <button onclick="startCards('higheq-transform','higheq-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(248,113,113,.1),rgba(248,113,113,.03));border:1px solid rgba(248,113,113,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🔄</div>
+        <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.86rem;margin:5px 0 4px;line-height:1.3">⑥ 부호·순서 변환</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">−α·1/α<br>−1/α</div>
+        <div style="font-size:.70rem;color:#f87171;opacity:.8;margin-top:5px">7장 →</div>
+      </button>
+      <button onclick="startCards('higheq-conjugate','higheq-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(248,113,113,.1),rgba(248,113,113,.03));border:1px solid rgba(248,113,113,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">👥</div>
+        <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.86rem;margin:5px 0 4px;line-height:1.3">⑦ 켤레근 정리</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">실계수·유리계수</div>
+        <div style="font-size:.70rem;color:#f87171;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('higheq-discriminant','higheq-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(248,113,113,.1),rgba(248,113,113,.03));border:1px solid rgba(248,113,113,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🎯</div>
+        <div style="font-family:'Jua',sans-serif;color:#f87171;font-size:.86rem;margin:5px 0 4px;line-height:1.3">⑧ 판별식 조건</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">삼·사차→인수정리<br>+판별식</div>
+        <div style="font-size:.70rem;color:#f87171;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('higheq-summary','higheq-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(148,163,184,.1),rgba(148,163,184,.03));border:1px solid rgba(148,163,184,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🗂️</div>
+        <div style="font-family:'Jua',sans-serif;color:#cbd5e1;font-size:.86rem;margin:5px 0 4px;line-height:1.3">총정리</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">서랍 한눈에<br>보기</div>
+        <div style="font-size:.70rem;color:#cbd5e1;opacity:.8;margin-top:5px">1장 →</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="quadsys-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 여러 가지 방정식·부등식</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:1.12rem;text-align:center;color:#fbbf24">🔗 이차연립방정식</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="background:linear-gradient(155deg,rgba(251,191,36,.12),rgba(251,191,36,.04));border:2px solid rgba(251,191,36,.4);border-radius:14px;padding:14px 16px;margin-bottom:14px">
+      <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.95rem;margin-bottom:8px">🦕 토로: 이 카드 전체에서 제일 중요한 다섯 줄!</div>
+      <div style="font-size:1.00rem;color:#fff;line-height:2;font-weight:800">
+        <div>1. 연립방정식 복습 <span style="color:#94a3b8;font-weight:600">(대입법)</span></div>
+        <div>2. 일차식+이차식 <span style="color:#94a3b8;font-weight:600">(대입해서 낮추기)</span></div>
+        <div>3. 이차식+이차식 <span style="color:#94a3b8;font-weight:600">(인수분해형, 케이스 나누기)</span></div>
+        <div>4. 대칭연립방정식 <span style="color:#94a3b8;font-weight:600">(근과 계수의 관계 재사용)</span></div>
+        <div>5. 실전형 <span style="color:#94a3b8;font-weight:600">(매개변수+판별식)</span></div>
+      </div>
+      <div style="font-size:.92rem;color:#fef3c7;font-weight:700;margin-top:8px">→ 새 도구 없이, 대입법·인수분해·판별식을 조합할 뿐이에요.</div>
+    </div>
+    <div style="font-size:.86rem;color:#8899aa;text-align:center;margin-bottom:10px">주제별로 나뉘어 있어요 — 제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="startCards('quadsys-review','quadsys-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🔙</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.86rem;margin:5px 0 4px;line-height:1.3">① 연립방정식 복습</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">대입법이<br>왜 만능인지</div>
+        <div style="font-size:.70rem;color:#fbbf24;opacity:.8;margin-top:5px">1장 →</div>
+      </button>
+      <button onclick="startCards('quadsys-linear','quadsys-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">📐</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.86rem;margin:5px 0 4px;line-height:1.3">② 일차+이차</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">일차식을<br>이차식에 대입</div>
+        <div style="font-size:.70rem;color:#fbbf24;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('quadsys-factor','quadsys-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🧩</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.86rem;margin:5px 0 4px;line-height:1.3">③ 이차+이차</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">인수분해형<br>케이스 나누기</div>
+        <div style="font-size:.70rem;color:#fbbf24;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('quadsys-symmetric','quadsys-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🔗</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.86rem;margin:5px 0 4px;line-height:1.3">④ 대칭연립방정식</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">근과 계수의 관계<br>+심화</div>
+        <div style="font-size:.70rem;color:#fbbf24;opacity:.8;margin-top:5px">6장 →</div>
+      </button>
+      <button onclick="startCards('quadsys-discriminant','quadsys-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(251,191,36,.1),rgba(251,191,36,.03));border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🎯</div>
+        <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:.86rem;margin:5px 0 4px;line-height:1.3">⑤ 실전형</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">매개변수<br>+판별식</div>
+        <div style="font-size:.70rem;color:#fbbf24;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('quadsys-summary','quadsys-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(148,163,184,.1),rgba(148,163,184,.03));border:1px solid rgba(148,163,184,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🗂️</div>
+        <div style="font-family:'Jua',sans-serif;color:#cbd5e1;font-size:.86rem;margin:5px 0 4px;line-height:1.3">총정리</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">서랍 한눈에<br>보기</div>
+        <div style="font-size:.70rem;color:#cbd5e1;opacity:.8;margin-top:5px">1장 →</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="indeterm-hub" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 여러 가지 방정식·부등식</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:1.12rem;text-align:center;color:#a78bfa">🧩 부정방정식</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="background:linear-gradient(155deg,rgba(167,139,250,.12),rgba(167,139,250,.04));border:2px solid rgba(167,139,250,.4);border-radius:14px;padding:14px 16px;margin-bottom:14px">
+      <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.95rem;margin-bottom:8px">🦕 토로: 이 카드 전체에서 제일 중요한 다섯 줄!</div>
+      <div style="font-size:1.00rem;color:#fff;line-height:2;font-weight:800">
+        <div>1. 부정방정식이란? <span style="color:#94a3b8;font-weight:600">(식보다 미지수가 많을 때)</span></div>
+        <div>2. 정수 조건 <span style="color:#94a3b8;font-weight:600">(AB=k 꼴)</span></div>
+        <div>3. 실수 조건 <span style="color:#94a3b8;font-weight:600">(완전제곱의 합=0)</span></div>
+        <div>4. 판별 훈련 <span style="color:#94a3b8;font-weight:600">("정수"냐 "실수"냐)</span></div>
+        <div>5. 실전형 <span style="color:#94a3b8;font-weight:600">(자연수 조건)</span></div>
+      </div>
+      <div style="font-size:.92rem;color:#ede9fe;font-weight:700;margin-top:8px">→ 핵심은 계산이 아니라, 조건 단어를 보고 도구를 고르는 판단력이에요.</div>
+    </div>
+    <div style="font-size:.86rem;color:#8899aa;text-align:center;margin-bottom:10px">주제별로 나뉘어 있어요 — 제목을 눌러보세요</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="startCards('indeterm-intro','indeterm-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(167,139,250,.1),rgba(167,139,250,.03));border:1px solid rgba(167,139,250,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🤔</div>
+        <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.86rem;margin:5px 0 4px;line-height:1.3">① 부정방정식이란?</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">식보다 미지수가<br>많을 때</div>
+        <div style="font-size:.70rem;color:#a78bfa;opacity:.8;margin-top:5px">1장 →</div>
+      </button>
+      <button onclick="startCards('indeterm-integer','indeterm-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(167,139,250,.1),rgba(167,139,250,.03));border:1px solid rgba(167,139,250,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🧩</div>
+        <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.86rem;margin:5px 0 4px;line-height:1.3">② 정수 조건</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">AB=k 꼴<br>+심화(판별식)</div>
+        <div style="font-size:.70rem;color:#a78bfa;opacity:.8;margin-top:5px">6장 →</div>
+      </button>
+      <button onclick="startCards('indeterm-real','indeterm-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(167,139,250,.1),rgba(167,139,250,.03));border:1px solid rgba(167,139,250,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">⬜</div>
+        <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.86rem;margin:5px 0 4px;line-height:1.3">③ 실수 조건</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">완전제곱의<br>합=0</div>
+        <div style="font-size:.70rem;color:#a78bfa;opacity:.8;margin-top:5px">4장 →</div>
+      </button>
+      <button onclick="startCards('indeterm-discern','indeterm-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(167,139,250,.1),rgba(167,139,250,.03));border:1px solid rgba(167,139,250,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🔍</div>
+        <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.86rem;margin:5px 0 4px;line-height:1.3">④ 판별 훈련</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">"정수"냐<br>"실수"냐</div>
+        <div style="font-size:.70rem;color:#a78bfa;opacity:.8;margin-top:5px">2장 →</div>
+      </button>
+      <button onclick="startCards('indeterm-natural','indeterm-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(167,139,250,.1),rgba(167,139,250,.03));border:1px solid rgba(167,139,250,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🎯</div>
+        <div style="font-family:'Jua',sans-serif;color:#a78bfa;font-size:.86rem;margin:5px 0 4px;line-height:1.3">⑤ 실전형</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">자연수 조건<br>(필터 추가)</div>
+        <div style="font-size:.70rem;color:#a78bfa;opacity:.8;margin-top:5px">3장 →</div>
+      </button>
+      <button onclick="startCards('indeterm-summary','indeterm-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(155deg,rgba(148,163,184,.1),rgba(148,163,184,.03));border:1px solid rgba(148,163,184,.3);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit">
+        <div style="font-size:1.65rem">🗂️</div>
+        <div style="font-family:'Jua',sans-serif;color:#cbd5e1;font-size:.86rem;margin:5px 0 4px;line-height:1.3">총정리</div>
+        <div style="font-size:.72rem;color:#aaa;line-height:1.4">서랍 한눈에<br>보기</div>
+        <div style="font-size:.70rem;color:#cbd5e1;opacity:.8;margin-top:5px">1장 →</div>
+      </button>
+    </div>
+  </div>
+</div>
 <div id="transform-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
@@ -1621,6 +1892,1166 @@ f(k)=0, f(k+3)=k+3=105 → k=102<br>
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">f(1)=2, f(2)=5, f(3)=10일 때, f(x)를 (x−1)(x−2)(x−3)으로 나눈 나머지를 구하여라.</div>`,
     ans:`<b style="color:#86efac">🔍 발견형:</b> "패턴을 봐봐. 2, 5, 10…"<br>학생: "1²+1=2, 2²+1=5, 3²+1=10 — x²+1 패턴이에요!"<br><br><b style="color:#7dd3fc">📊 시각화형:</b> "연립방정식으로 확인: R(x)=ax²+bx+c"<br>학생: "a+b+c=2, 4a+2b+c=5, 9a+3b+c=10 → a=1, b=0, c=1"<br><br><b style="color:#fde68a">✡️ 유대인:</b> "왜 세 점만으로 2차식이 결정될까?"<br>학생: "계수가 3개, 조건도 3개니까요!"<br><br><b style="color:#fde68a">답: x²+1</b>` }
 ],
+
+
+'higheq-factor': [
+  { tag:'🔙 고차방정식을 풀기 전에, 인수분해 도구부터 다시 꺼내볼게요', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">고차방정식 P(x)=0을 풀 때 가장 먼저 하는 일은 <b>P(x)를 인수분해하는 것</b>이에요. 다항식 단원에서 배운 인수분해 방법은 딱 다섯 가지 유형으로 정리돼요 — 새 방정식을 만날 때마다 "이 다섯 개 중 뭐가 보이지?"를 순서대로 점검하는 게 습관이 되어야 해요.
+<div class="meq-note">
+① 공통인수로 묶기<br/>
+② 인수분해 공식 이용하기<br/>
+③ 치환으로 낮추기<br/>
+④ 복이차식(치환이 안 통할 때)<br/>
+⑤ 내림차순 정리(문자가 여러 개일 때)
+</div>
+하나씩 예제로 확인해볼게요.</div>`,
+    ans: null },
+
+  { tag:'📐 ① 공통인수로 묶기 — 항상 제일 먼저 확인', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">모든 항에 공통으로 곱해진 문자·숫자가 있으면 가장 먼저 밖으로 묶어낸다.
+<div class="meq-formula">
+2x³−8x = 2x(x²−4) = <b>2x(x−2)(x+2)</b>
+</div>
+<div class="meq-toro">🦕 토로: 공통인수를 먼저 안 묶고 바로 공식부터 찾으려 하면 계산이 쓸데없이 커져요. <b>제일 먼저 습관적으로 확인</b>하는 유형이에요.</div></div>`,
+    ans: null },
+
+  { tag:'📐 ② 인수분해 공식 이용하기 — 눈에 익은 패턴 찾기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">a²−b², (a±b)², a³±b³ 같은 곱셈공식의 패턴이 보이면 그대로 거꾸로 적용한다.
+<div class="meq-formula">
+x⁴−16 = (x²−4)(x²+4) = <b>(x−2)(x+2)(x²+4)</b><br/>
+<span style="font-size:.85em;color:#94a3b8">→ x²−4를 한 번 더 a²−b²로 분해할 수 있는지까지 확인!</span>
+</div>
+🔗 <b>연결</b>: 주제 1의 x³±1=0도 결국 이 유형(a³±b³ 공식)이에요.</div>`,
+    ans: null },
+
+  { tag:'📐 ③ 치환으로 낮추기 — 반복되는 덩어리를 문자 하나로', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">똑같은 식 덩어리가 반복해서 보이면, 그 덩어리를 통째로 한 문자(보통 t)로 바꿔서 차수를 낮춘다.
+<div class="meq-formula">
+(x²+x)²−8(x²+x)+12<br/>
+t=x²+x로 치환 → t²−8t+12 = (t−2)(t−6)<br/>
+다시 되돌리면 <b>(x²+x−2)(x²+x−6)</b> = (x−1)(x+2)(x+3)(x−2)
+</div>
+<div class="meq-toro">🦕 토로: 치환은 "복잡한 식을 단순한 문자로 잠깐 가려두는" 기술이에요. 다 풀고 나면 <b>반드시 원래 문자로 되돌리는 것</b>을 잊지 마세요.</div></div>`,
+    ans: null },
+
+  { tag:'📐 ④ 복이차식 — 치환이 안 통할 때 쓰는 한 수', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">x⁴+ax²+b 꼴(복이차식)은 보통 t=x²로 치환해서 풀어요. 그런데 <b>치환한 이차식이 깔끔하게 인수분해되지 않을 때</b>가 있어요 — 그럴 때 쓰는 특별한 기술이 있어요.
+<div class="meq-formula">
+x⁴+4  (t=x²로 치환하면 t²+4 → 인수분해 안 됨!)<br/>
+→ 가운데 항을 <b>더하고 빼서</b> 완전제곱을 만든다<br/>
+x⁴+4 = x⁴+4x²+4 −4x² = (x²+2)² − (2x)²<br/>
+= <b>(x²+2x+2)(x²−2x+2)</b>
+</div>
+<div class="meq-note">
+<b>신호</b>: t=x²로 치환했는데 이차식의 판별식이 완전제곱수가 아니다 → 가운데 항(4x²)을 더하고 빼서 (완전제곱)²−(완전제곱)² 형태로 강제로 만든다.
+</div>
+<div class="meq-toro">🦕 토로: 복이차식은 치환의 "특수하고 어려운 사례"예요. 치환해서 바로 풀리면 그냥 유형③이고, <b>안 풀릴 때만</b> 이 더하고 빼는 기술(유형④)을 씁니다.</div></div>`,
+    ans: null },
+
+  { tag:'📐 ⑤ 내림차순 정리 — 문자가 여러 개 섞여 있을 때', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">문자가 두 개 이상 섞인 식은, <b>차수가 낮은 문자 하나를 기준으로 내림차순 정리</b>하면 인수분해가 보이기 시작해요.
+<div class="meq-formula">
+x²+2x+1−y²<br/>
+x에 대해 내림차순 정리(이미 x²+2x+1이 보임) → (x²+2x+1)−y²<br/>
+= (x+1)² − y² = <b>(x+1+y)(x+1−y)</b>
+</div>
+<div class="meq-toro">🦕 토로: 내림차순 정리는 "인수분해를 새로 하는 방법"이 아니라 <b>식을 다시 배열해서 앞의 네 유형(특히 ②공식)이 보이게 만드는 준비 작업</b>이에요. 문자가 여럿이라 막막할 때 가장 먼저 시도해보세요.</div></div>`,
+    ans: null },
+],
+
+
+'higheq-synthetic': [
+  { tag:'🔙 기억나요? 인수정리로 인수 하나를 찾는 법', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">다항식 단원에서 배운 걸 다시 불러올게요.<br/><br/>
+<div class="meq-note">
+<b>인수정리</b>: P(a)=0이면 (x−a)는 P(x)의 인수다.<br/>
+<b>조립제법</b>: 인수 하나를 찾으면, 조립제법으로 나눠서 차수를 하나 낮출 수 있다.
+</div>
+삼차방정식 x³−2x²−x+2=0을 예로 들어볼게요. x=1을 넣으면 1−2−1+2=0 — 인수정리로 (x−1)이 인수라는 걸 알았어요. 조립제법으로 나누면:
+<svg style="max-width:240px;display:block;margin:8px auto" viewBox="0 0 260 90" width="100%" xmlns="http://www.w3.org/2000/svg">
+<text fill="#c4b5fd" font-size="11" font-weight="700" x="20" y="20">1</text>
+<text fill="#e2e8f0" font-size="11" text-anchor="middle" x="70" y="20">1</text>
+<text fill="#e2e8f0" font-size="11" text-anchor="middle" x="120" y="20">−2</text>
+<text fill="#e2e8f0" font-size="11" text-anchor="middle" x="170" y="20">−1</text>
+<text fill="#e2e8f0" font-size="11" text-anchor="middle" x="220" y="20">2</text>
+<line stroke="#64748b" stroke-width="1" x1="10" x2="250" y1="28" y2="28"></line>
+<text fill="#fb923c" font-size="10" text-anchor="middle" x="120" y="45">↓ +1  ↓ −1  ↓ −2</text>
+<text fill="#86efac" font-size="11" font-weight="700" text-anchor="middle" x="70" y="65">1</text>
+<text fill="#86efac" font-size="11" font-weight="700" text-anchor="middle" x="120" y="65">−1</text>
+<text fill="#86efac" font-size="11" font-weight="700" text-anchor="middle" x="170" y="65">−2</text>
+<text fill="#fb923c" font-size="11" font-weight="800" text-anchor="middle" x="220" y="65">0</text>
+<text fill="#fb923c" font-size="9" text-anchor="middle" x="220" y="82">나머지 0</text>
+</svg>
+몫은 x²−x−2 = (x−1)(x+2) — 그래서 원래 식은 (x−1)(x−1)(x+2) = (x−1)²(x+2)로 완전히 인수분해돼요.
+
+<div class="meq-formula">
+<b>고차방정식을 만나면 이 순서로 시도한다</b><br/>
+① 공통인수가 있는지 먼저 본다 (x로 묶이거나 괄호가 겹치는지)<br/>
+② 유리근 후보 <span class="frac"><span class="num">(상수항의 약수)</span><span class="den">(최고차항 계수의 약수)</span></span> 를 하나씩 대입해 인수정리로 인수를 찾는다<br/>
+③ 인수를 찾았으면 조립제법으로 차수를 낮춘다 — 삼차 이하가 되면 근의 공식이나 인수분해로 마무리
+</div>
+<div class="meq-toro">🦕 토로: 이 세 단계는 사실 <b>다항식 단원에서 이미 다 배운 도구</b>예요. "고차방정식"이라는 이름 때문에 새로운 게 나올 것 같지만, 실제로는 인수정리·조립제법을 "몇 번 반복해서 쓰느냐"의 문제예요. 다만 이 방법이 안 통하는 <b>특수한 형태</b>들이 있는데, 그건 주제 1·2에서 따로 배울 거예요.</div></div>`,
+    ans: null },
+
+  { tag:'기본 0 — 인수정리+조립제법으로 삼차방정식 풀기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="hq0-q">삼차방정식 x³−3x−2=0을 푸세요.</div>
+<div id="hq0-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">유리근 후보 중 x=−1을 대입: −1+3−2=0 → (x+1)이 인수<br>조립제법으로 나누면 몫 x²−x−2 = (x+1)(x−2)<br>원래 식 = (x+1)²(x−2) = 0 → <b>x=−1(중근) 또는 x=2</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('hq0-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="higheqCubicGen('hq0-q','hq0-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+
+  { tag:'🔄 유사문제로 연습하기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-toc">
+<b>유사문제1</b>: 삼차방정식 x³+2x²−5x−6=0을 푸세요.<br/>
+<b>유사문제2</b>: 사차방정식 x⁴−2x³−x²+2x=0을 푸세요. (공통인수부터!)
+</div></div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — 조립제법을 두 번 반복해서 사차방정식 풀기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div class="meq-toro">🦕 토로: 사차방정식도 원리는 똑같아요 — 유리근 후보를 대입해 인수를 찾고, 조립제법으로 나눠서 차수를 낮추는 걸 <b>두 번</b> 반복하면 삼차 → 이차가 되어 풀 수 있어요.</div>
+<div id="hq0s-q">사차방정식 x⁴−4x³+2x²+4x−3=0을 푸세요.</div>
+<div id="hq0s-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">유리근 후보 중 x=1을 대입하면 성립 → (x−1)이 인수<br>조립제법으로 나누면 몫 x³−3x²−x+3. 여기서 다시 유리근 후보를 찾으면 x=1도 성립 → (x−1)이 인수<br>한 번 더 조립제법으로 나누면 몫 x²−2x−3 = (x+1)(x−3)<br>원래 식 = (x−1)(x−1)(x+1)(x−3) = 0 → <b>x=1(중근) 또는 x=−1 또는 x=3</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('hq0s-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="higheqQuarticDoubleGen('hq0s-q','hq0s-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+],
+
+
+'higheq-cubic': [
+  { tag:'🔙 기억나요? 세제곱의 합·차 공식', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">다항식 단원 곱셈공식에서 이 두 개를 배웠어요.<br/><br/>
+<div class="meq-note">
+a³+b³ = (a+b)(a²−ab+b²)<br/>
+a³−b³ = (a−b)(a²+ab+b²)
+</div>
+이 공식은 <b>a=x, b=1을 넣으면 그대로 삼차방정식 x³=∓1의 인수분해 공식</b>이 돼요. 즉, 새로 외울 게 아니라 이미 아는 공식에 숫자 1을 넣은 것뿐이에요.</div>`,
+    ans: null },
+
+  { tag:'📐 x³−1=0의 세 근 — 실근 하나, 허근 두 개', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 예제</div><br/>
+x³=1, 즉 x³−1=0을 풀어볼게요.<br/><br/>
+<div class="meq-formula">
+x³−1 = (x−1)(x²+x+1) = 0
+</div>
+(x−1)=0 이면 x=1.<br/>
+(x²+x+1)=0 이면 근의 공식으로 x = <span class="frac"><span class="num">−1±√3i</span><span class="den">2</span></span> (판별식 D=1−4=−3<0 이므로 허근)<br/><br/>
+<div class="meq-note">
+<b>세 근: 1, <span class="frac"><span class="num">−1+√3i</span><span class="den">2</span></span>, <span class="frac"><span class="num">−1−√3i</span><span class="den">2</span></span></b>
+</div>
+🔗 <b>연결</b>: 이 허근 두 개는 복소수 단원에서 배운(또는 배울) <b>ω(오메가)</b>예요 — x³=1의 허근을 ω라 하면 ω³=1, ω²+ω+1=0이라는 성질이 그대로 여기서 나온 거예요. 복소수 거듭제곱 정복(레벨3)에서 이 ω를 다시 만나게 됩니다.</div>`,
+    ans: null },
+
+  { tag:'📐 x³+1=0의 세 근', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">같은 방식으로 x³+1=0을 풀면:
+<div class="meq-formula">
+x³+1 = (x+1)(x²−x+1) = 0
+</div>
+(x+1)=0 이면 x=−1.<br/>
+(x²−x+1)=0 이면 x = <span class="frac"><span class="num">1±√3i</span><span class="den">2</span></span><br/><br/>
+<div class="meq-toro">🦕 토로: x³=1이든 x³=−1이든 <b>구조는 완전히 똑같아요</b> — "부호 하나만 다른 곱셈공식을 그대로 대입한다"는 같은 서랍을 씁니다. 실전에서는 x³=1, x³=8, x³=−27처럼 오른쪽 숫자가 세제곱수로 바뀌어 나올 수 있는데, 그때도 8=2³, −27=(−3)³으로 보면 a=x, b=2 또는 b=−3을 넣는 것과 똑같아요.</div></div>`,
+    ans: null },
+
+  { tag:'기본 1 — 세제곱 방정식 풀기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="hq1-q">방정식 x³=8을 푸세요. (단, 허근도 모두 구하세요)</div>
+<div id="hq1-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">x³−8=0 → (x−2)(x²+2x+4)=0 <span style="opacity:.7">(∵ 8=2³)</span><br>(x−2)=0 → x=2<br>(x²+2x+4)=0 → x = −1±√3i<br><b>x = 2, −1+√3i, −1−√3i</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('hq1-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="higheqCubeGen('hq1-q','hq1-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — ω(오메가): 이 단원의 기본핵심, 다양하게 물어봐요', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">x³=1의 두 허근 중 하나를 <b>ω</b>라 부를게요.<br/>
+(복소수 거듭제곱 정복 레벨3에 이미 ω 카드가 있는데, 그 성질들이 사실 여기서 그대로 나온 거예요.)<br/><br/>
+<b>성질 1.</b> ω³=1
+<div class="meq-note">
+정의 그 자체예요.
+</div>
+<b>성질 2.</b> ω²+ω+1=0
+<div class="meq-note">
+ω가 x²+x+1=0의 근이니까요 (앞에서 (x−1)(x²+x+1)=0으로 인수분해했죠).
+</div>
+<b>성질 3.</b> 1/ω = ω²
+<div class="meq-note">
+ω³=1 이므로 ω·ω²=1.<br/>
+🔗 <b>연결</b>: 주제4의 조작②(역수)를 그대로 쓴 결과예요.
+</div>
+<b>성질 4.</b> ω의 켤레복소수도 ω²
+<div class="meq-note">
+x²+x+1=0은 계수가 실수 → 켤레근 정리(주제5)로 ω의 켤레도 근.<br/>
+근이 ω, ω² 딱 둘뿐이니 ω̄=ω².
+</div>
+<div class="meq-toro">🦕 토로: 이 네 성질은 따로따로가 아니라, <b>이미 배운 도구 세 개(인수분해·역수·켤레근)를 x²+x+1=0 하나에 전부 적용한 결과</b>예요. 참고로 x²+x+1=0은 계수가 1,1,1로 좌우대칭 — 사실 <b>가장 짧은 상반방정식(주제2)</b>이기도 해요!</div>
+<div class="meq-plabel" style="margin-top:10px">❓ 기출형 질문 두 개</div><br/>
+<div id="hqw-q">ω<sup>2024</sup>의 값은?</div>
+<div id="hqw-a" style="display:none;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.9em">2024=3×674+2 → ω<sup>2024</sup>=ω<sup>3×674</sup>·ω²=<b>ω²</b></div>
+<div style="display:flex;gap:8px;margin-top:8px">
+  <button onclick="toggleAns('hqw-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="higheqOmegaGen('hqw-q','hqw-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+<br/>
+<b>Q2.</b> (1+ω)(1+ω²)의 값은?<br/>
+전개: 1+ω²+ω+ω³ = (1+ω+ω²)+ω³ = 0+1 = <b>1</b></div>`,
+    ans: null },
+],
+
+
+'higheq-palindrome': [
+  { tag:'🤔 이 사차방정식, 계수가 뭔가 이상하지 않나요?', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 던지는 질문</div><br/>
+x⁴−3x³+4x²−3x+1=0 의 계수를 순서대로 적어볼게요: 1, −3, 4, −3, 1.<br/><br/>
+앞에서 읽어도 뒤에서 읽어도 <b>똑같은 순서</b>가 되죠? 이렇게 계수가 좌우대칭인 방정식을 <b>상반방정식</b>이라고 불러요.
+<svg style="max-width:240px;display:block;margin:8px auto" viewBox="0 0 260 60" width="100%" xmlns="http://www.w3.org/2000/svg">
+<text fill="#c4b5fd" font-size="13" font-weight="800" text-anchor="middle" x="35" y="25">1</text>
+<text fill="#c4b5fd" font-size="13" font-weight="800" text-anchor="middle" x="95" y="25">−3</text>
+<text fill="#c4b5fd" font-size="13" font-weight="800" text-anchor="middle" x="155" y="25">4</text>
+<text fill="#c4b5fd" font-size="13" font-weight="800" text-anchor="middle" x="215" y="25">−3</text>
+<text fill="#c4b5fd" font-size="13" font-weight="800" text-anchor="middle" x="245" y="25">1</text>
+<path d="M 35 35 Q 140 55 245 35" fill="none" stroke="#fb923c" stroke-dasharray="3,3" stroke-width="1.5"></path>
+<path d="M 95 35 Q 155 48 215 35" fill="none" stroke="#fb923c" stroke-dasharray="3,3" stroke-width="1.5"></path>
+<text fill="#fb923c" font-size="9" text-anchor="middle" x="140" y="55">양 끝부터 짝지으면 대칭</text>
+</svg>
+이 대칭성을 이용하면 유리근 후보를 하나씩 대입하는 것보다 <b>훨씬 빠르게</b> 풀 수 있어요. x=0을 넣으면 상수항 1≠0이니 x=0은 근이 아니에요 — 그래서 <b>양변을 x²로 나눠도 안전</b>합니다.</div>`,
+    ans: null },
+
+  { tag:'📐 x+1/x = t 로 치환해서 차수 낮추기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">x⁴−3x³+4x²−3x+1=0 을 x²으로 나누면:
+<div class="meq-formula">
+x² − 3x + 4 − <span class="frac"><span class="num">3</span><span class="den">x</span></span> + <span class="frac"><span class="num">1</span><span class="den">x²</span></span> = 0<br/>
+→ (x² + <span class="frac"><span class="num">1</span><span class="den">x²</span></span>) − 3(x + <span class="frac"><span class="num">1</span><span class="den">x</span></span>) + 4 = 0
+</div>
+여기서 t = x + <span class="frac"><span class="num">1</span><span class="den">x</span></span> 로 치환하면, t² = x² + 2 + <span class="frac"><span class="num">1</span><span class="den">x²</span></span> 이므로 x² + <span class="frac"><span class="num">1</span><span class="den">x²</span></span> = t²−2 예요. 대입하면:
+<div class="meq-formula">
+(t²−2) − 3t + 4 = 0 → t²−3t+2=0 → (t−1)(t−2)=0 → t=1 또는 t=2
+</div>
+<div class="meq-note">
+<b>t=1</b>: x + <span class="frac"><span class="num">1</span><span class="den">x</span></span> = 1 → x²−x+1=0 (허근)<br/>
+<b>t=2</b>: x + <span class="frac"><span class="num">1</span><span class="den">x</span></span> = 2 → x²−2x+1=0 → (x−1)²=0 → x=1(중근)
+</div>
+<div class="meq-toro">🦕 토로: 상반방정식은 "새 공식"이 아니라 <b>"대칭이 보이면 x²으로 나누고 x+1/x를 t로 바꾼다"는 하나의 전략</b>이에요. 사차 상반방정식뿐 아니라 육차까지도 같은 방식(t=x+1/x로 낮추기)이 통해요 — 핵심은 "계수가 대칭이다 → x²으로 나눈다"는 판단력입니다.</div></div>`,
+    ans: null },
+
+  { tag:'기본 2 — 치환으로 상반방정식 풀기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="hq2-q">방정식 x⁴+x³−4x²+x+1=0을 푸세요. (실근만 구하세요)</div>
+<div id="hq2-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">계수 1,1,−4,1,1 — 대칭 확인. x²으로 나누면 (x²+1/x²)+(x+1/x)−4=0<br>t=x+1/x 로 치환: (t²−2)+t−4=0 → t²+t−6=0 → (t−2)(t+3)=0 → t=2 또는 t=−3<br>t=2: x+1/x=2 → x²−2x+1=0 → x=1(중근)<br>t=−3: x+1/x=−3 → x²+3x+1=0 → x = <span class="frac"><span class="num">−3±√5</span><span class="den">2</span></span> (실근)</div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('hq2-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="higheqPalindromeGen('hq2-q','hq2-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+
+  { tag:'🔄 유사문제로 연습하기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-toc">
+<b>유사문제1</b>: 사차방정식 x⁴−5x³+6x²−5x+1=0을 푸세요. (계수 대칭 확인!)
+</div></div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — 육차 상반방정식 (계수 6개짜리 대칭)', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div class="meq-toro">🦕 토로: 육차 상반방정식도 방식은 같아요. x³으로 나누고 t=x+1/x로 치환하는데, 이번엔 x³+1/x³=t³−3t라는 공식이 하나 더 필요해요 (x²+1/x²=t²−2 유도와 같은 방식으로 나옵니다).</div>
+<div id="hqp6-q">방정식 x⁶−5x⁵+x⁴+14x³+x²−5x+1=0을 푸세요. (실근만 구하세요)</div>
+<div id="hqp6-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">계수 1,−5,1,14,1,−5,1 — 대칭 확인. x³으로 나누고 t=x+1/x로 치환하면 (x²+1/x²=t²−2, x³+1/x³=t³−3t 이용):<br>t³−5t²−2t+24=0 → 인수분해하면 (t+2)(t−3)(t−4)=0 → t=−2 또는 3 또는 4<br>t=−2: x+1/x=−2 → x²+2x+1=0 → x=−1(중근)<br>t=3: x+1/x=3 → x²−3x+1=0 → x = <span class="frac"><span class="num">3±√5</span><span class="den">2</span></span> (실근)<br>t=4: x+1/x=4 → x²−4x+1=0 → x = <span class="frac"><span class="num">4±2√3</span><span class="den">2</span></span> (실근)</div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('hqp6-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="higheqSexticGen('hqp6-q','hqp6-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+],
+
+
+'higheq-vieta': [
+  { tag:'🔙 기억나요? 이차방정식의 두 근의 합과 곱', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">이차방정식 단원에서 배운 걸 다시 볼게요.<br/><br/>
+<div class="meq-note">
+ax²+bx+c=0의 두 근을 α, β라 하면<br/>
+α+β = <span class="frac"><span class="num">−b</span><span class="den">a</span></span>,  αβ = <span class="frac"><span class="num">c</span><span class="den">a</span></span>
+</div>
+🔗 <b>연결</b>: <b>똑같은 원리가 삼차방정식에도 그대로 적용</b>돼요. 계수와 근 사이의 이 관계는 "이차 전용"이 아니라 "차수에 상관없이 통하는 원리"이기 때문이에요.</div>`,
+    ans: null },
+
+  { tag:'📐 삼차방정식의 세 근의 합·곱·짝지은 곱의 합', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">ax³+bx²+cx+d=0 의 세 근을 α, β, γ 라 하면:
+<div class="meq-formula">
+α+β+γ = <span class="frac"><span class="num">−b</span><span class="den">a</span></span><br/>
+αβ+βγ+γα = <span class="frac"><span class="num">c</span><span class="den">a</span></span><br/>
+αβγ = <span class="frac"><span class="num">−d</span><span class="den">a</span></span>
+</div>
+<table class="meq-table">
+<tr><th></th><th>이차 ax²+bx+c=0</th><th>삼차 ax³+bx²+cx+d=0</th></tr>
+<tr><td>근의 합</td><td>−b/a</td><td>−b/a</td></tr>
+<tr><td>근의 곱 (전부)</td><td>c/a</td><td>−d/a</td></tr>
+<tr><td>짝지은 곱의 합</td><td>—</td><td>c/a</td></tr>
+</table>
+이 표에서 보이는 규칙: <b>부호는 (−1)ⁿ으로 번갈아 붙고, 항상 (최고차항이 아닌 계수)/(최고차항 계수)</b>예요. 실전에서는 이 공식으로 세 근의 합·곱을 구한 뒤, α²+β²+γ² = (α+β+γ)²−2(αβ+βγ+γα) 같은 대칭식 변형(다항식 단원 곱셈공식과 같은 변형)을 묶어서 쓰는 문제가 자주 나와요.</div>`,
+    ans: null },
+
+  { tag:'기본 3 — 세 근으로 만드는 새 삼차방정식', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">삼차방정식 x³−2x²+3x−4=0의 세 근을 α, β, γ라 할 때, α+β+γ와 αβγ의 값을 구하세요.</div>`,
+    ans: `<div class="meq-slabel">💡 풀이</div>
+a=1, b=−2, c=3, d=−4<br/>
+α+β+γ = −b/a = <b>2</b><br/>
+αβγ = −d/a = <b>4</b>` },
+
+  { tag:'🔥 심화 — 세 근을 몇 배 한 값들을 근으로 하는 새 방정식 (실전 기출형)', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 예제 (기출 패턴)</div><br/>
+삼차방정식의 세 근이 α, β, γ일 때, <b>2α, 2β, 2γ를 세 근으로 하고 최고차항의 계수가 1인 새 삼차방정식</b>을 만드는 문제가 실제 기출에 자주 나와요. 예를 들어 원래 방정식이 x³+px²+qx+r=0 (세 근 α,β,γ) 라면, 새 방정식의 근과 계수의 관계를 <b>2α+2β+2γ, (2α)(2β)+(2β)(2γ)+(2γ)(2α), (2α)(2β)(2γ)</b> 순서로 하나씩 원래 값의 2배·4배·8배로 바꿔서 새 식을 세워요.
+<div class="meq-note">
+<b>왜 2배, 4배, 8배일까?</b><br/>
+근의 합(1개씩) → 2배가 그대로 곱해짐 → 2¹배<br/>
+짝지은 곱의 합(2개씩 곱함) → 2배가 두 번 곱해짐 → 2²배<br/>
+세 근의 곱(3개 곱함) → 2배가 세 번 곱해짐 → 2³배
+</div>
+<div class="meq-toro">🦕 토로: "새 근이 원래 근의 k배"라는 문제는 <b>근과 계수의 관계 3개를 한 번에 스케일링</b>하는 문제예요. 합은 k배, 짝지은 곱의 합은 k²배, 전체 곱은 k³배 — 곱하는 근의 개수만큼 k가 곱해진다는 규칙만 기억하면 됩니다.</div>
+<div id="hq3s-q" style="margin-top:10px">삼차방정식 x³−2x²+3x−4=0의 세 근이 α, β, γ일 때, 2α, 2β, 2γ를 세 근으로 하고 최고차항의 계수가 1인 삼차방정식을 구하세요.</div>
+<div id="hq3s-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">원래 방정식에서 α+β+γ=−(−2)=2, αβ+βγ+γα=3, αβγ=−(−4)=4<br>새 근의 합 = 2×(2) = <b>4</b><br>새 근의 짝지은 곱의 합 = 2²×(3) = <b>12</b><br>새 근의 곱 = 2³×(4) = <b>32</b><br><b>x³−4x²+12x−32 = 0</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('hq3s-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="higheqVietaScaleGen('hq3s-q','hq3s-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div></div>`,
+    ans: null },
+],
+
+
+'higheq-transform': [
+  { tag:'🤔 ① f(x)=0의 근이 α라면, f(−x)=0의 근은?', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 던지는 질문</div><br/>
+f(x) = x³−2x²+3x−4 이고, f(α)=0이라고 해볼게요 (α는 f(x)=0의 근). 그럼 f(−x)=0의 근은 α와 무슨 관계일까요?<br/><br/>
+f(−x)에 x=−α를 넣어보면 f(−(−α)) = f(α) = 0이 돼요. 즉, <b>x=−α를 넣었더니 f(−x)=0이 성립</b>해요.
+<div class="meq-note">
+<b>조작① 부호를 바꾼 방정식의 근</b><br/>
+f(x)=0의 근이 α이면, f(−x)=0의 근은 <b>−α</b>이다.<br/>
+(f(x)의 계수 부호를 항 순서대로 +,−,+,−… 번갈아 바꾼 식이 바로 f(−x)와 같은 식이 되기 때문)
+</div>
+이걸 계수로 확인하면 더 명확해요. f(x)=x³−2x²+3x−4의 항을 x³, x², x, 상수 순서로 볼 때, x가 홀수제곱(x³, x¹)인 자리는 −x를 넣으면 부호가 바뀌고, 짝수제곱(x², x⁰)인 자리는 부호가 그대로예요. 그래서 f(−x) = −x³−2x²−3x−4 = −(x³+2x²+3x+4) — <b>홀수차항의 부호만 바뀐 식</b>이 됩니다.</div>`,
+    ans: null },
+
+  { tag:'기본 4-1 — 부호 반대 방정식의 근 찾기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="hq4a-q">삼차방정식 x³+x²−2x+3=0의 세 근이 α, β, γ일 때, x³−x²−2x−3=0의 세 근을 α, β, γ로 나타내세요.</div>
+<div id="hq4a-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">g(x)=x³−x²−2x−3이 f(x)=x³+x²−2x+3의 f(−x)인지 확인: f(−x) = −x³+x²+2x+3 = −(x³−x²−2x−3)<br>g(x) = −f(−x) 이므로 g(x)=0 ⟺ f(−x)=0 ⟺ (−x)가 f의 근 ⟺ x는 f의 근에 −1을 곱한 값<br><b>세 근: −α, −β, −γ</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('hq4a-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="higheqSignFlipGen('hq4a-q','hq4a-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+
+  { tag:'🤔 ② 이번엔 계수의 순서를 뒤집으면 근은 어떻게 될까?', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 던지는 질문</div><br/>
+f(x) = x²−3x+2 = 0 을 풀면 (x−1)(x−2)=0 → 근은 <b>1, 2</b>예요.<br/><br/>
+이번엔 f(x)의 계수 1, −3, 2를 <b>거꾸로</b> 나열해서 새 식을 만들어볼게요: g(x) = 2x²−3x+1 = 0. 이걸 풀면 (2x−1)(x−1)=0 → 근은 <b>1/2, 1</b>이에요.<br/><br/>
+원래 근 {1, 2}와 새 근 {1/2, 1}을 나란히 놓아볼까요? 1/2 = 1/2, 1 = 1/1 — <b>새 근은 원래 근의 역수</b>예요!
+<div class="meq-note">
+<b>조작② 계수 순서를 뒤집은 방정식의 근</b><br/>
+f(x)=a<sub>n</sub>x<sup>n</sup>+…+a<sub>0</sub>=0 (a<sub>0</sub>≠0)의 근이 α(≠0)이면, 계수를 거꾸로 나열한 방정식 a<sub>0</sub>x<sup>n</sup>+…+a<sub>n</sub>=0의 근은 <b>1/α</b>이다.
+</div>
+<div class="meq-plabel">📐 왜 그럴까? — 먼저 삼차식으로 확인</div><br/>
+삼차방정식 a<sub>3</sub>x<sup>3</sup>+a<sub>2</sub>x<sup>2</sup>+a<sub>1</sub>x+a<sub>0</sub>=0 의 근이 α(≠0)라고 해볼게요.<br/><br/>
+<b>1단계.</b> α를 대입하면 0이에요.
+<div class="meq-formula">
+a<sub>3</sub>α<sup>3</sup>+a<sub>2</sub>α<sup>2</sup>+a<sub>1</sub>α+a<sub>0</sub> = 0
+</div>
+<b>2단계.</b> 양변을 α³으로 나눠요.
+<div class="meq-formula">
+a<sub>3</sub> + <span class="frac"><span class="num">a<sub>2</sub></span><span class="den">α</span></span> + <span class="frac"><span class="num">a<sub>1</sub></span><span class="den">α<sup>2</sup></span></span> + <span class="frac"><span class="num">a<sub>0</sub></span><span class="den">α<sup>3</sup></span></span> = 0
+</div>
+<b>3단계.</b> 계수를 거꾸로 나열한 식을 만들어요.
+<div class="meq-formula">
+g(x) = a<sub>0</sub>x<sup>3</sup>+a<sub>1</sub>x<sup>2</sup>+a<sub>2</sub>x+a<sub>3</sub>
+</div>
+<b>4단계.</b> g(x)에 x=1/α를 대입해요.
+<div class="meq-formula">
+g(<span class="frac"><span class="num">1</span><span class="den">α</span></span>) = <span class="frac"><span class="num">a<sub>0</sub></span><span class="den">α<sup>3</sup></span></span> + <span class="frac"><span class="num">a<sub>1</sub></span><span class="den">α<sup>2</sup></span></span> + <span class="frac"><span class="num">a<sub>2</sub></span><span class="den">α</span></span> + a<sub>3</sub>
+</div>
+<b>5단계.</b> 2단계 식과 비교해요.
+<div class="meq-note">
+더하는 <b>순서만 다를 뿐</b>, 같은 네 항이에요.<br/>
+그러니 g(1/α) = 0.<br/>
+<b>1/α는 g(x)=0의 근!</b>
+</div>
+<div class="meq-toro">🦕 토로: 핵심은 딱 하나예요 — "<b>α<sup>n</sup>으로 나누기</b>"가 계수 순서를 뒤집는 효과를 만들어요. 나눗셈 한 번이면 충분해요.</div>
+<div class="meq-plabel" style="margin-top:14px">📐 이제 일반적인 n차식으로 확인</div><br/>
+차수가 몇이든 <b>완전히 같은 논리</b>예요.<br/><br/>
+<b>1단계.</b> n차방정식의 근 α를 대입.
+<div class="meq-formula">
+a<sub>n</sub>α<sup>n</sup>+a<sub>n−1</sub>α<sup>n−1</sup>+…+a<sub>1</sub>α+a<sub>0</sub> = 0
+</div>
+<b>2단계.</b> 양변을 α<sup>n</sup>으로 나눔.
+<div class="meq-formula">
+a<sub>n</sub> + <span class="frac"><span class="num">a<sub>n−1</sub></span><span class="den">α</span></span> + … + <span class="frac"><span class="num">a<sub>0</sub></span><span class="den">α<sup>n</sup></span></span> = 0
+</div>
+<b>3단계.</b> 이 식을 앞에서부터 읽으면, <b>계수를 거꾸로 나열한 식에 x=1/α를 넣은 것</b>과 똑같아요.</div>`,
+    ans: null },
+
+  { tag:'🤔 ③ 순서도 뒤집고 부호도 바꾸면?', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 던지는 질문</div><br/>
+이미 배운 <b>두 조작을 순서대로 두 번</b> 적용하면 끝이에요 — 새로 배울 게 없어요.<br/><br/>
+아까 f(x)=x²−3x+2=0 (근 1, 2)에 <b>조작②(순서 뒤집기)</b>를 먼저 적용해서 g(x)=2x²−3x+1=0 (근 1/2, 1)을 만들었죠. 여기에 <b>조작①(부호 뒤집기 — 홀수차항 부호 반전)</b>을 한 번 더 적용해볼게요: x항의 부호만 바꾸면 2x²+3x+1=0. 인수분해하면 (2x+1)(x+1)=0 → 근은 <b>−1/2, −1</b>.<br/><br/>
+원래 근 {1, 2}와 비교하면: −1/2 = −(1/2), −1 = −(1/1) — <b>음의 역수</b>예요!
+<div class="meq-note">
+<b>조작①+② 순서를 뒤집고 부호도 바꾼 방정식의 근</b><br/>
+f(x)=0의 근이 α(≠0)이면, 계수 순서를 뒤집고 홀수차항 부호까지 반전한 방정식의 근은 <b>−1/α</b>이다.
+</div></div>`,
+    ans: null },
+
+  { tag:'🔗 사실 이건 새 규칙 세 개가 아니라, 스위치 두 개예요', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">지금까지 배운 조작 세 가지(①②③)는 사실 <b>"부호를 바꾸느냐"와 "순서를 뒤집느냐"라는 독립된 스위치 두 개</b>를 켜고 끄는 것뿐이에요. 표로 정리하면:
+<table class="meq-table">
+<tr><th></th><th>순서 그대로</th><th>순서 뒤집기</th></tr>
+<tr><td><b>부호 그대로</b></td><td>α (원래 방정식)</td><td>1/α (조작②)</td></tr>
+<tr><td><b>부호 뒤집기</b></td><td>−α (조작①)</td><td>−1/α (조작①+②)</td></tr>
+</table>
+<div class="meq-toro">🦕 토로: 스위치가 두 개면 조합은 2×2=4가지뿐이에요. <b>새로운 걸 네 개 외우는 게 아니라, 두 개의 조작을 조합하는 문제</b>라고 생각하면 헷갈릴 일이 없어요. 이건 이 교재에서 계속 강조하는 "도구의 동일성"의 좋은 예시예요 — 겉보기엔 네 가지 다른 방정식 같지만, 사실 두 스위치의 on/off 조합일 뿐이에요.</div></div>`,
+    ans: null },
+
+  { tag:'기본 4-2 — 역수를 근으로 하는 방정식 만들기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="hq4b-q">삼차방정식 x³+5x²+6x−2=0의 세 근을 α, β, γ라 할 때, 1/α, 1/β, 1/γ를 근으로 하고 계수가 모두 정수인 삼차방정식을 구하세요.</div>
+<div id="hq4b-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">계수 1, 5, 6, −2을 거꾸로 나열: <b>−2x³+6x²+5x+1=0</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('hq4b-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="higheqReciprocalGen('hq4b-q','hq4b-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+
+  { tag:'기본 4-3 — 음의 역수를 근으로 하는 방정식 만들기 (실전형: 근을 몰라도 풀린다)', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">삼차방정식 x³+2x²−3x+1=0의 세 근이 α, β, γ일 때, −1/α, −1/β, −1/γ를 세 근으로 하고 최고차항의 계수가 1인 삼차방정식을 구하세요.</div>`,
+    ans: `<div class="meq-slabel">💡 풀이</div>
+이 삼차방정식은 실제로 풀 필요가 없어요 — <b>조작①+②만 적용하면 끝</b>이에요.<br/>
+1단계(순서 뒤집기, 계수 1,2,−3,1 → 1,−3,2,1): x³−3x²+2x+1=0<br/>
+2단계(부호 뒤집기, 홀수차항인 x³·x항 부호 반전): −x³−3x²−2x+1=0<br/>
+최고차항 계수를 1로 맞추기 위해 양변에 −1을 곱하면<br/>
+<b>x³+3x²+2x−1=0</b>` },
+
+  { tag:'🔥 심화 — 조작①+② 순서대로 적용해서 새 방정식 만들기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div class="meq-toro">🦕 토로: −1/α는 "먼저 역수(조작②), 그다음 부호(조작①)"를 순서대로 적용한 거예요. 방정식을 실제로 풀 필요 없이, 계수를 두 번 조작하기만 하면 끝나요.</div>
+<div id="hq43s-q">삼차방정식 x³+x²−2x+1=0의 세 근이 α, β, γ일 때, −1/α, −1/β, −1/γ를 세 근으로 하고 최고차항의 계수가 1인 삼차방정식을 구하세요.</div>
+<div id="hq43s-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">1단계(순서 뒤집기, 계수 1,1,−2,1 → 1,−2,1,1): x³−2x²+x+1=0<br>2단계(부호 뒤집기, 홀수차항인 x³·x항 부호 반전): −x³−2x²−x+1=0<br>최고차항 계수를 1로 맞추기 위해 양변에 −1을 곱하면<br><b>x³+2x²+x−1 = 0</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('hq43s-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="higheqCombinedGen('hq43s-q','hq43s-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+],
+
+
+'higheq-conjugate': [
+  { tag:'🤔 허근 하나를 찾았는데, 왜 다른 근도 자동으로 정해질까?', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 던지는 질문</div><br/>
+"삼차방정식의 모든 계수가 실수이므로 허수인 근의 켤레근을 가진다" — 실제 기출 해설에 그대로 나오는 문장이에요. 왜 계수가 실수라는 사실 하나만으로 켤레근까지 자동으로 정해질까요?<br/><br/>
+복소수 단원에서 배운 켤레복소수의 성질을 떠올려보면: z̄ (z의 켤레)를 사칙연산에 넣어도 켤레는 그대로 유지돼요 (예: z+w의 켤레는 z̄+w̄ — 켤레를 씌운 채로 더해도 결과가 같아요). 계수가 전부 실수인 다항식 f(x)에 z를 대입해서 f(z)=0이 나왔다면, 양변에 켤레를 취해도 등식은 유지돼요 — <b>실수 계수는 켤레를 취해도 그대로(자기 자신의 켤레는 자기 자신)</b>이기 때문에, f(z̄)도 결국 0이 될 수밖에 없어요.
+<div class="meq-note">
+<b>실계수 다항식의 켤레근 정리</b><br/>
+계수가 모두 <b>실수</b>인 다항식 방정식이 허근 z를 가지면, 그 켤레복소수 z̄도 반드시 근이다.
+</div>
+<div class="meq-note">
+<b>유리계수 다항식의 켤레 무리근 정리</b><br/>
+계수가 모두 <b>유리수</b>인 다항식 방정식이 무리수근 a+b√m (a,b는 유리수, √m은 무리수)을 가지면, a−b√m도 반드시 근이다.
+</div>
+<div class="meq-toro">🦕 토로: 두 정리는 형태가 닮았지만 조건이 달라요 — <b>실계수 → 허근의 켤레</b>, <b>유리계수 → 무리근의 켤레</b>. "계수의 범위가 좁아질수록(실수→유리수), 짝지어지는 근의 종류도 달라진다"는 감각으로 구분하면 헷갈리지 않아요.</div></div>`,
+    ans: null },
+
+  { tag:'기본 5 — 켤레근으로 나머지 근 찾기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">실계수 삼차방정식의 한 근이 2−i이고, 다른 한 근이 1일 때, 이 방정식의 나머지 한 근을 구하세요.</div>`,
+    ans: `<div class="meq-slabel">💡 풀이</div>
+계수가 실수이므로 2−i의 켤레복소수 2+i도 근이다.<br/>
+세 근은 이미 1, 2−i, 2+i로 다 찾았으므로 <b>나머지 한 근: 2+i</b>`  },
+
+  { tag:'🔄 유사문제로 연습하기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-toc">
+<b>유사문제1</b>: 유리계수 삼차방정식의 한 근이 1−√2이고 다른 한 근이 3일 때, 나머지 한 근을 구하세요.<br/>
+<b>유사문제2</b>: 실계수 사차방정식의 네 근 중 세 근이 3+2i, −1, 2일 때, 나머지 한 근을 구하세요.
+</div></div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — 켤레근 찾기 자동생성 (실계수/유리계수)', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="hqc-q">실계수 삼차방정식 x³+px²+qx+r=0의 한 근이 2+3i이고, 다른 한 근이 1일 때, p+q+r의 값을 구하세요.</div>
+<div id="hqc-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">계수가 실수이므로 2+3i의 켤레복소수 2−3i도 근이다. 세 근은 1, 2+3i, 2−3i<br>세 근의 합 = 1+4 = −p → p=−5<br>두 근씩 짝지은 곱의 합 = q → q=17<br>세 근의 곱 = 1×13 = −r → r=−13<br><b>p+q+r = −1</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('hqc-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="higheqConjugateGen('hqc-q','hqc-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+],
+
+
+'higheq-discriminant': [
+  { tag:'🔙 기억나요? 판별식으로 근의 종류 구분하기', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">이차방정식 단원에서 배운 판별식을 다시 불러올게요.<br/><br/>
+<div class="meq-note">
+ax²+bx+c=0 (a,b,c는 실수)의 판별식 D=b²−4ac 일 때<br/>
+D&gt;0: 서로 다른 두 실근  D=0: 중근(실근)  <b>D&lt;0: 서로 다른 두 허근</b>
+</div>
+🔗 <b>연결</b>: 이 도구는 "이차방정식 전용"이 아니에요. <b>고차방정식을 인수정리로 낮추고 남은 이차식</b>에 그대로 재사용돼요 — 그래서 진짜 "여러가지방정식다운" 판별식 문제는 삼차·사차식을 먼저 인수분해하는 것부터 시작해요.</div>`,
+    ans: null },
+
+  { tag:'📐 삼차방정식을 인수정리로 낮추고 남은 이차식에 판별식 적용', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 예제 (기출 패턴)</div><br/>
+삼차방정식 x³−x²+kx−k=0이 <b>오직 하나의 실근만</b> 갖도록 하는 실수 k의 범위를 구하세요.<br/><br/>
+
+x=1을 대입: 1−1+k−k=0 — <b>k값과 무관하게 항상 0</b>이에요! (x−1)은 항상 인수.<br/>
+조립제법으로 나누면 몫은 x²+k.
+<div class="meq-formula">
+x³−x²+kx−k = (x−1)(x²+k) = 0
+</div>
+실근이 <b>x=1 하나뿐</b>이려면, 남은 인수 x²+k=0이 <b>허근</b>을 가져야 해요 (실근을 가지면 실근이 2개 이상 됨).
+<div class="meq-note">
+x²+k=0의 판별식 D=−4k &lt; 0 → <b>k &gt; 0</b>
+</div>
+<div class="meq-toro">🦕 토로: "몇 개의 실근을 갖는가"라는 질문은 <b>인수정리로 하나를 떼어내고, 남은 이차식의 판별식으로 나머지를 센다</b>는 이 조합이 핵심이에요. 이차식 하나만 보고 판별식을 쓴 게 아니라, 삼차식 전체를 먼저 쪼갠 뒤 쓴 거예요.</div></div>`,
+    ans: null },
+
+  { tag:'📐 사차방정식은 복이차식(주제0 유형③④)으로 낮춘 뒤 판별식', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 예제 (기출 패턴)</div><br/>
+사차방정식 x⁴+(k−1)x²−k=0이 <b>서로 다른 두 실근과 두 허근</b>을 갖도록 하는 실수 k의 범위를 구하세요.<br/><br/>
+
+짝수차항만 있으니 t=x²로 치환.
+<div class="meq-formula">
+t²+(k−1)t−k = (t−1)(t+k) = 0 → t=1 또는 t=−k
+</div>
+t=1 → x²=1 → <b>x=±1 (실근 두 개, k값과 무관하게 항상 나옴)</b><br/>
+t=−k → x²=−k — 이게 <b>허근</b>이어야 나머지 두 근이 실근이 안 돼요.
+<div class="meq-note">
+x²=−k 가 허근 ⟺ −k&lt;0 ⟺ <b>k &gt; 0</b>
+</div>
+<div class="meq-toro">🦕 토로: 사차식이라고 겁먹을 필요 없어요 — <b>짝수차항만 있으면 치환(주제0 유형③)으로 이차식이 되고, 거기부터는 삼차방정식 예제와 완전히 같은 판별식 논리</b>예요. "차수가 올라갈수록 도구가 늘어나는 게 아니라, 낮추는 방법이 늘어날 뿐"이라는 게 이 단원 전체의 결론이에요.</div></div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — 인수정리+판별식 자동생성 (삼차/사차)', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="hqd-q">x³−x²+kx−k=0 이 <b>오직 하나의 실근만</b> 갖도록 하는 실수 k의 범위를 구하세요.</div>
+<div id="hqd-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">x=1을 대입: k값과 무관하게 항상 0이에요! (x−1)은 항상 인수.<br>조립제법으로 나누면 몫은 x²+k.<br>x³−x²+kx−k = (x−1)(x²+k) = 0<br>실근이 x=1 하나뿐이려면, 남은 인수 x²+k=0이 <b>허근</b>을 가져야 해요.<br>x²+k=0의 판별식 D=−4k &lt; 0 → <b>k &gt; 0</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('hqd-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="higheqDiscriminantGen('hqd-q','hqd-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+],
+
+
+'higheq-summary': [
+  { tag:'🗄️ 고차방정식을 만나면 이 순서로 서랍을 열어보세요', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 0 — 기본 전략 (인수정리+조립제법)</span>
+공통인수 확인 → 유리근 후보 대입 → 조립제법으로 차수 낮추기. 특수한 형태가 안 보이면 항상 이 서랍부터 연다.
+</div>
+<div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 1 — x³=±(세제곱수) 꼴이 보이면</span>
+a³±b³ 공식을 그대로 대입. 오른쪽이 8, 27, −64처럼 세제곱수면 이 서랍.
+</div>
+<div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 2 — 계수가 좌우대칭이면(상반방정식)</span>
+x=0이 근이 아님을 확인 → x²으로 나누기 → t=x+1/x로 치환.
+</div>
+<div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 3 — "세 근을 몇 배/몇 제곱 한 값" 문제가 보이면</span>
+직접 풀지 말고 근과 계수의 관계(합·짝지은곱의합·전체곱)를 스케일링해서 새 방정식을 세운다.
+</div>
+<div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 4 — "−α, 1/α, −1/α를 근으로 하는 새 방정식" 문제가 보이면</span>
+직접 풀지 말고 부호 스위치(홀수차항 부호 반전)와 순서 스위치(계수 나열 뒤집기)를 조합한다. 부호만=−α, 순서만=1/α, 둘 다=−1/α.
+</div>
+<div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 5 — 근 하나가 허수 또는 무리수로 주어지면</span>
+계수가 실수 → 켤레복소수도 근. 계수가 유리수이고 무리근이면 켤레 무리수도 근. 나머지 근을 바로 채워 넣을 수 있다.
+</div>
+<div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 6 — "실근이 몇 개인가" 같은 조건이 보이면</span>
+인수정리(또는 복이차식 치환)로 먼저 낮추고, 남은 이차식에 판별식을 적용한다. 이차식 자체는 중3 수준 도구지만, 그 앞에 "먼저 낮추기"가 이 단원의 핵심.
+</div>
+<div class="meq-toro">🦕 토로: 이 단원 전체를 한 줄로 요약하면 — <b>"고차방정식은 새로운 산이 아니라, 다항식·이차방정식·복소수 단원에서 이미 등반해 본 길들을 이어 붙인 산길"</b>이에요. 다음 파일에서는 <b>이차연립방정식</b>(두 이차식을 동시에 만족하는 해)과 <b>부정방정식</b>(정수 조건이 걸린 방정식)을 이어서 다룹니다.</div></div>`,
+    ans: null },
+],
+
+
+'quadsys-review': [
+  { tag:'🔙 기억나요? 미지수를 하나로 줄이는 두 가지 방법', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">중학교에서 배운 연립방정식 풀이법은 두 가지였어요.
+<div class="meq-note">
+<b>가감법</b>: 두 식을 더하거나 빼서 문자 하나를 없앤다.<br/>
+<b>대입법</b>: 한 식을 "y=…" 꼴로 정리해서 다른 식에 그대로 밀어넣는다.
+</div>
+가감법은 <b>두 식이 전부 일차식일 때</b>만 깔끔해요 (계수를 맞춰 더하면 문자가 사라지니까). 그런데 이차식이 하나라도 섞이면 가감법으로는 문자가 안 사라져요.
+<div class="meq-toro">🦕 토로: 그래서 이 단원에서는 <b>대입법 하나만 있으면 충분</b>해요. "한 문자를 다른 문자로 표현해서 밀어넣는다"는 원리 자체는 그대로고, 밀어넣는 대상이 이차식으로 바뀔 뿐이에요.</div></div>`,
+    ans: null },
+],
+
+
+'quadsys-linear': [
+  { tag:'📐 일차식을 이차식에 밀어넣기', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 예제</div><br/>
+연립방정식 x+y=3, x²+y²=5 를 풀어볼게요.<br/><br/>
+일차식에서 y를 x로 표현: y=3−x<br/>
+이걸 이차식에 대입:
+<div class="meq-formula">
+x²+(3−x)² = 5<br/>
+x²+9−6x+x² = 5<br/>
+2x²−6x+4 = 0 → x²−3x+2 = 0 → (x−1)(x−2)=0
+</div>
+x=1 또는 x=2. 각각 y=3−x에 다시 넣으면:
+<div class="meq-note">
+<b>(x,y) = (1,2) 또는 (2,1)</b>
+</div>
+<div class="meq-toro">🦕 토로: 일차식은 항상 <b>"한 문자를 다른 문자에 대한 식으로 정리하기 가장 쉬운 식"</b>이에요. 그래서 연립방정식에 일차식이 하나라도 있으면, 그걸 먼저 정리해서 대입하는 게 순서예요.</div></div>`,
+    ans: null },
+
+  { tag:'기본 1 — 대입법으로 일차+이차 연립방정식 풀기', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">연립방정식 x−y=1, x²+y²=13 을 푸세요.</div>`,
+    ans: `<div class="meq-slabel">💡 풀이</div>
+x=y+1을 x²+y²=13에 대입: (y+1)²+y²=13 → 2y²+2y−12=0 → y²+y−6=0 → (y+3)(y−2)=0<br/>
+y=−3 → x=−2, y=2 → x=3<br/>
+<b>(x,y) = (−2,−3) 또는 (3,2)</b>`  },
+
+  { tag:'🔄 유사문제로 연습하기', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-toc">
+<b>유사문제1</b>: 연립방정식 x+2y=5, x²−y²=5 를 푸세요.
+</div></div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — 대입법으로 일차+이차 연립방정식 자동생성', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="qsl-q">연립방정식 x−y=1, x²+y²=13 을 푸세요.</div>
+<div id="qsl-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">x=y+1을 x²+y²=13에 대입: (y+1)²+y²=13 → y²+y−6=0 → (y+3)(y−2)=0 → y=−3 또는 y=2<br>각각 x=y+1에 대입하면<br><b>(x,y) = (−2,−3) 또는 (3,2)</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('qsl-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="qsLinearGen('qsl-q','qsl-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+],
+
+
+'quadsys-factor': [
+  { tag:'🤔 이차식 두 개인데 어떻게 문자를 줄이지?', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 던지는 질문</div><br/>
+연립방정식 x²−y²=0, x+2y=6 을 볼게요. 두 식 다 대입하기엔 애매해요 — 그런데 첫 번째 식을 자세히 보면?<br/><br/>
+x²−y²=(x−y)(x+y)=0 — <b>인수분해가 돼요!</b> 곱이 0이라는 건 둘 중 하나가 0이라는 뜻이니까:
+<div class="meq-note">
+x−y=0 (즉 x=y) <b>또는</b> x+y=0 (즉 x=−y)
+</div>
+🔗 <b>연결</b>: 이건 고차방정식 단원(주제0 유형②)에서 배운 <b>"곱이 0이면 케이스를 나눈다"</b>는 원리를 연립방정식에 그대로 적용한 거예요. 이차식 하나가 인수분해되면, 연립방정식 하나가 <b>두 개의 서로 다른 연립방정식</b>으로 쪼개져요.</div>`,
+    ans: null },
+
+  { tag:'📐 두 갈래로 쪼개서 각각 풀기', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">방금 쪼갠 두 경우를 각각 x+2y=6과 연립해볼게요.
+<div class="meq-formula">
+경우1) x=y 를 x+2y=6에 대입 → y+2y=6 → y=2, x=2<br/>
+경우2) x=−y 를 x+2y=6에 대입 → −y+2y=6 → y=6, x=−6
+</div>
+<div class="meq-note">
+<b>(x,y) = (2,2) 또는 (−6,6)</b>
+</div>
+<div class="meq-toro">🦕 토로: 인수분해형은 <b>"연립방정식 1개 풀기"가 아니라 "간단한 연립방정식 2개를 따로 풀기"</b>예요. 케이스를 나누는 순간 나머지는 전부 주제1(일차+이차)과 똑같습니다.</div></div>`,
+    ans: null },
+
+  { tag:'기본 2 — 인수분해로 케이스를 나눠 풀기', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">연립방정식 x²−xy−2y²=0, x−y=3 을 푸세요.</div>`,
+    ans: `<div class="meq-slabel">💡 풀이</div>
+x²−xy−2y² = (x−2y)(x+y) = 0 → x=2y 또는 x=−y<br/>
+경우1) x=2y를 x−y=3에 대입: 2y−y=3 → y=3, x=6<br/>
+경우2) x=−y를 x−y=3에 대입: −y−y=3 → y=−3/2, x=3/2<br/>
+<b>(x,y) = (6,3) 또는 (3/2,−3/2)</b>` },
+
+  { tag:'🔥 심화 — 인수분해형 연립방정식 자동생성', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="qsf-q">x²−4xy+3y²=0, x²+3y²=12 을 푸세요.</div>
+<div id="qsf-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">x²−4xy+3y² = (x−3y)(x−y) = 0 → x=3y 또는 x=y<br>경우1) x=3y를 x²+3y²=12에 대입: 12y²=12 → y²=1 → y=±1, x=±3<br>경우2) x=y를 x²+3y²=12에 대입: 4y²=12 → y²=3 → y=±√3, x=±√3<br><b>(x,y) = (3,1) 또는 (−3,−1) 또는 (√3,√3) 또는 (−√3,−√3)</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('qsf-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="qsFactorGen('qsf-q','qsf-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+],
+
+
+'quadsys-symmetric': [
+  { tag:'🔙 기억나요? 두 수의 합과 곱을 알면 이차방정식이 된다', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">고차방정식 단원(주제3)에서 배운 걸 거꾸로 써볼게요.<br/><br/>
+<div class="meq-note">
+이차방정식 t²−(합)t+(곱)=0의 두 근이 바로 <b>합과 곱이 그 값인 두 수</b>다.
+</div>
+그러니까 연립방정식이 <b>x+y=(어떤 수), xy=(어떤 수)</b> 꼴로 정리되면, x와 y는 <b>사실 하나의 이차방정식의 두 근</b>이에요. 연립방정식을 푸는 게 아니라, <b>이차방정식 하나를 푸는 문제로 바뀌는 것</b>이죠.</div>`,
+    ans: null },
+
+  { tag:'📐 합과 곱 → t²−(합)t+(곱)=0', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 예제</div><br/>
+연립방정식 x+y=5, xy=6 을 풀어볼게요. (대입법으로 풀어도 되지만, 더 빠른 길이 있어요)
+<div class="meq-formula">
+x, y는 t²−5t+6=0의 두 근<br/>
+(t−2)(t−3)=0 → t=2 또는 t=3
+</div>
+<div class="meq-note">
+<b>(x,y) = (2,3) 또는 (3,2)</b>
+</div>
+<div class="meq-plabel" style="margin-top:10px">❓ 응용 — 합과 곱이 바로 안 보이면?</div><br/>
+연립방정식 x+y=5, x²+y²=13 이라면, 두 번째 식이 곱(xy) 형태가 아니죠. 그런데 곱셈공식을 뒤집으면:
+<div class="meq-formula">
+x²+y² = (x+y)²−2xy → 13 = 25−2xy → xy = 6
+</div>
+이제 x+y=5, xy=6이 됐으니 위와 똑같이 t²−5t+6=0으로 풀면 <b>(x,y)=(2,3) 또는 (3,2)</b>.
+<div class="meq-toro">🦕 토로: x²+y²을 (x+y)²−2xy로 바꾸는 이 변형은 고차방정식 단원(주제3)에서 이미 연습한 대칭식 변형이에요 — <b>같은 도구가 여기서도 그대로</b> 쓰입니다.</div></div>`,
+    ans: null },
+
+  { tag:'기본 3 — 합과 곱으로 바꿔서 풀기', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">연립방정식 x+y=4, x²+y²=10 을 푸세요.</div>`,
+    ans: `<div class="meq-slabel">💡 풀이</div>
+x²+y²=(x+y)²−2xy → 10=16−2xy → xy=3<br/>
+x,y는 t²−4t+3=0의 두 근 → (t−1)(t−3)=0 → t=1 또는 3<br/>
+<b>(x,y) = (1,3) 또는 (3,1)</b>`  },
+
+  { tag:'🔄 유사문제로 연습하기', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-toc">
+<b>유사문제1</b>: 연립방정식 x+y=6, xy=8 을 푸세요.<br/>
+<b>유사문제2</b>: 연립방정식 x−y=2, xy=8 을 푸세요. (힌트: x+(−y)의 합·곱 형태로 바꿔보세요)
+</div></div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — 치환했더니 s, p가 다시 연립방정식이 되는 경우', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 심화 예제</div><br/>
+연립방정식 x+y+xy=7, x²y+xy²=12 를 만족시키는 실수 x, y를 구하세요.<br/><br/>
+두 번째 식을 인수분해하면 x²y+xy²=xy(x+y). s=x+y, p=xy로 치환하면:
+<div class="meq-formula">
+s+p = 7<br/>
+sp = 12
+</div>
+어? <b>s와 p 자체가 합과 곱으로 주어진 연립방정식</b>이 됐어요. 그러니 s, p는 다시 u²−7u+12=0의 두 근이에요 (같은 트릭을 한 번 더!).
+<div class="meq-note">
+u²−7u+12=0 → (u−3)(u−4)=0 → u=3 또는 4<br/>
+(s,p) = (3,4) 또는 (4,3)
+</div>
+이제 각 (s,p)를 각각 t²−st+p=0에 넣어서 x, y를 구해요.
+<div class="meq-formula">
+경우1) (s,p)=(3,4): t²−3t+4=0, D=9−16=−7&lt;0 → <b>실근 없음 (버림)</b><br/>
+경우2) (s,p)=(4,3): t²−4t+3=0 → (t−1)(t−3)=0 → t=1 또는 3
+</div>
+<div class="meq-note">
+<b>(x,y) = (1,3) 또는 (3,1)</b>
+</div>
+<div class="meq-toro">🦕 토로: "합과 곱 → 이차방정식" 트릭을 <b>두 번</b> 쓰는 문제예요 — 한 번은 s,p를 구하려고, 한 번은 x,y를 구하려고. 그리고 (s,p)=(3,4) 쪽처럼 판별식이 음수가 나오면 <b>그 경우는 버려야 한다</b>는 걸 꼭 확인하세요 — 후보가 나왔다고 전부 답은 아니에요.</div></div>`,
+    ans: null  },
+
+  { tag:'🔄 유사문제로 연습하기', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-toc">
+<b>유사문제1</b>: 연립방정식 x+y+xy=5, x²y+xy²=6 을 만족시키는 실수 x, y를 구하세요.
+</div></div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — 합과 곱으로 바꿔 자동생성 연습', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="qss-q">연립방정식 x+y+xy=7, x²y+xy²=12 를 만족시키는 실수 x, y를 구하세요.</div>
+<div id="qss-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">두 번째 식을 인수분해하면 x²y+xy²=xy(x+y). s=x+y, p=xy로 치환하면 s+p=7, sp=12<br>s, p는 u²−7u+12=0의 두 근 → (u−4)(u−3)=0 → u=4 또는 3<br>경우1) (s,p)=(4,3): D=4 → t²−4t+3=0 → t=1 또는 3<br>경우2) (s,p)=(3,4): D=−7<0 → <b>실근 없음 (버림)</b><br><b>(x,y) = (1,3) 또는 (3,1)</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('qss-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="qsSymmetricGen('qss-q','qss-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+],
+
+
+'quadsys-discriminant': [
+  { tag:'🔗 실수해가 "존재하는가"도 결국 판별식', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">실제 기출에는 "연립방정식을 만족시키는 실수 x, y가 존재하도록 하는 자연수 k의 개수(또는 범위)를 구하라" 같은 문제가 나와요. (한영외고 기출 확인: "치환한 뒤 이차방정식이 실근을 가질 조건"을 그대로 쓰는 구조)<br/><br/>
+연립방정식이 대칭형(주제3)으로 정리되면, x,y는 t²−(합)t+(곱)=0의 두 근이에요. <b>이 t의 방정식이 실근을 가져야</b> x,y도 실수가 될 수 있겠죠 — 그래서 <b>판별식</b>이 다시 등장해요.</div>`,
+    ans: null },
+
+  { tag:'📐 대칭형으로 정리 → 판별식으로 k의 범위 찾기', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 예제 (기출 패턴)</div><br/>
+연립방정식 x+y=k, xy=3 을 만족시키는 실수 x, y가 존재하도록 하는 <b>자연수 k의 최솟값</b>을 구하세요.<br/><br/>
+x, y는 t²−kt+3=0의 두 근. 실수 x,y가 존재 ⟺ 이 t의 방정식이 <b>실근</b>을 가져야 해요.
+<div class="meq-formula">
+D = k²−4·3 = k²−12 ≥ 0 → k² ≥ 12 → k ≤ −2√3 또는 k ≥ 2√3
+</div>
+2√3 ≈ 3.46 이므로, 이를 만족하는 <b>자연수 k</b> 중 가장 작은 값은:
+<div class="meq-note">
+<b>k = 4</b>
+</div>
+<div class="meq-toro">🦕 토로: "실수해가 존재하도록 하는 k"라는 문구를 보면 반사적으로 <b>대칭형(주제3)으로 바꾸고 판별식(D≥0)을 건다</b>는 두 단계가 떠올라야 해요. 새 계산이 아니라, 이미 배운 두 도구를 순서대로 쓰는 것뿐이에요.</div></div>`,
+    ans: null  },
+
+  { tag:'🔄 유사문제로 연습하기', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-toc">
+<b>유사문제1</b>: 연립방정식 x+y=k, xy=k+2 를 만족시키는 실수 x, y가 존재하도록 하는 정수 k의 최댓값을 구하세요.
+</div></div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — 실수해 존재조건(자연수 k의 최솟값) 자동생성', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="qsd-q">연립방정식 x+y=k, xy=3 을 만족시키는 실수 x, y가 존재하도록 하는 자연수 k의 최솟값을 구하세요.</div>
+<div id="qsd-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">x, y는 t²−kt+3=0의 두 근. 실수 x,y가 존재 ⟺ 이 t의 방정식이 실근을 가져야 해요.<br>D = k²−4×3 = k²−12 ≥ 0 → k² ≥ 12 → k ≤ −2√3 또는 k ≥ 2√3<br>2√3 ≈ 3.46 이므로, 이를 만족하는 자연수 k 중 가장 작은 값은:<br><b>k = 4</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('qsd-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="qsDiscriminantGen('qsd-q','qsd-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+],
+
+
+'quadsys-summary': [
+  { tag:'🗄️ 이차연립방정식을 만나면 이 순서로 서랍을 열어보세요', tagColor:'#fbbf24',
+    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 0 — 일차식이 하나라도 있으면</span>
+그 식을 "y=…" 꼴로 정리해서 다른 식에 그대로 대입한다.
+</div>
+<div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 1 — 이차식이 인수분해되면</span>
+곱이 0인 형태로 만들어 두 갈래로 쪼갠 뒤, 각 갈래를 남은 식과 따로 연립한다.
+</div>
+<div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 2 — x+y, xy 형태(또는 변형 가능)로 보이면</span>
+t²−(합)t+(곱)=0의 두 근으로 바꿔 푼다. x²+y², x²−y² 등은 곱셈공식으로 합·곱 형태로 바꿀 수 있는지 먼저 확인.
+</div>
+<div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 3 — "실수해가 존재하도록 하는 k" 조건이 보이면</span>
+대칭형(x+y, xy 형태)으로 바꾼 뒤 그 이차방정식의 판별식 D≥0을 건다. s,p 자체가 다시 연립방정식으로 나오면, 서랍2를 한 번 더 적용해서 s,p부터 구한다.
+</div>
+<div class="meq-toro">🦕 토로: 이 단원은 사실 새 도구가 하나도 없어요 — <b>대입법(서랍0), 인수분해(서랍1), 근과 계수의 관계(서랍2), 판별식(서랍3)</b> 전부 앞에서 배운 것들이에요. "이차연립방정식"이라는 이름이 주는 위압감과 달리, 실제로는 이미 가진 도구를 조합하는 문제일 뿐이에요. 다음 파일에서는 정수 조건이 걸린 <b>부정방정식</b>을 다룹니다.</div></div>`,
+    ans: null },
+],
+
+
+'indeterm-intro': [
+  { tag:'🤔 x+y=5, 이 식 하나로 x,y를 다 구할 수 있을까?', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 던지는 질문</div><br/>
+x+y=5 라는 식 하나만 있어요. x=1,y=4도 되고, x=2.5,y=2.5도 되고, x=100,y=−95도 돼요 — <b>해가 무수히 많아요.</b><br/><br/>
+보통 미지수가 2개면 식도 2개 있어야 해가 딱 하나(또는 몇 개)로 정해지는데, 식이 <b>부족</b>하면 이렇게 해가 정해지지 않아요(부정, 不定). 그런데 여기에 <b>"x, y는 정수다"</b> 같은 조건을 하나 걸면 어떻게 될까요? 무수히 많던 해가 갑자기 몇 개로 확 줄어들 수 있어요.
+<div class="meq-note">
+<b>부정방정식</b>: 식의 개수보다 미지수가 많아 해가 무수히 많은 방정식에, <b>정수·자연수·실수</b> 같은 범위 조건을 걸어 유한 개(또는 하나)의 해만 골라내는 방정식.
+</div>
+<div class="meq-toro">🦕 토로: 이 단원은 딱 두 가지 조건만 다뤄요 — <b>"정수(자연수)"</b>일 때와 <b>"실수"</b>일 때. 조건에 따라 쓰는 도구가 완전히 다르니, 문제를 보자마자 어떤 조건인지부터 확인하는 습관이 제일 중요해요.</div></div>`,
+    ans: null },
+],
+
+
+'indeterm-integer': [
+  { tag:'🔙 곱해서 특정 수가 되는 정수 쌍은 몇 개 없다', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">정수 A, B에 대해 <b>A×B=5</b>라면, A와 B는 <b>5의 약수 쌍</b>뿐이에요: (1,5),(5,1),(−1,−5),(−5,−1). 무한하지 않고 딱 4쌍이죠.<br/><br/>
+이 아이디어를 이용해요 — <b>xy가 섞인 식을 (x+b)(y+a)=상수 꼴로 인수분해</b>할 수 있으면, 약수 쌍을 나열해서 정수해를 전부 찾을 수 있어요.</div>`,
+    ans: null },
+
+  { tag:'📐 xy+ax+by+c=0을 (x+b)(y+a)=상수로 바꾸기', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 예제</div><br/>
+xy−2x−3y+1=0 을 만족하는 정수 x, y를 모두 구하세요.<br/><br/>
+x가 있는 항끼리 묶어요:
+<div class="meq-formula">
+x(y−2) − 3y + 1 = 0<br/>
+x(y−2) − 3(y−2) − 6 + 1 = 0<br/>
+(x−3)(y−2) = 5
+</div>
+5의 약수 쌍을 전부 나열하면:
+<div class="meq-note">
+(x−3,y−2) = (1,5),(5,1),(−1,−5),(−5,−1)<br/>
+→ (x,y) = (4,7), (8,3), (2,−3), (−2,1)
+</div>
+🔗 <b>연결</b>: "x가 있는 항끼리 묶는다"는 이 과정은 고차방정식 단원(유형⑤ 내림차순 정리)에서 배운 <b>"한 문자를 기준으로 정리한다"</b>는 원리와 같아요.<br/><br/>
+매번 이렇게 묶기 번거로우니, 일반형으로 외워두면 편해요:
+<div class="meq-formula">
+xy+ax+by+c=0 → <b>(x+b)(y+a) = ab−c</b>
+</div>
+<div class="meq-toro">🦕 토로: 확인해볼게요 — 위 예제는 a=−2, b=−3, c=1 이니까 ab−c = 6−1 = 5. 맞아요!</div></div>`,
+    ans: null },
+
+  { tag:'기본 1 — 그룹핑으로 AB=k 꼴 만들어 정수해 찾기', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">xy−x−2y−1=0 을 만족하는 정수 x, y의 순서쌍의 개수를 구하세요.</div>`,
+    ans: `<div class="meq-slabel">💡 풀이</div>
+x(y−1) − 2y − 1 = 0 → x(y−1) − 2(y−1) − 2 − 1 = 0 → (x−2)(y−1) = 3<br/>
+3의 약수 쌍: (1,3),(3,1),(−1,−3),(−3,−1) → <b>4개</b>`  },
+
+  { tag:'🔄 유사문제로 연습하기', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-toc">
+<b>유사문제1</b>: xy+2x−y−7=0 을 만족하는 정수 x, y의 순서쌍의 개수를 구하세요.
+</div></div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — x², y²이 섞여 그룹핑이 안 통하면: 내림차순+판별식', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 던지는 질문</div><br/>
+지금까지 본 식은 전부 xy 하나만 있고 x², y²은 없었어요. 그런데 <b>x²이나 y²이 함께 있으면</b> (x+b)(y+a)=k 꼴로 그룹핑이 안 통할 때가 있어요. 이럴 땐 어떻게 할까요?<br/><br/>
+<div class="meq-plabel" style="margin-top:6px">❓ 예제</div><br/>
+x²+xy+y²−x−y−1=0 을 만족하는 정수 x, y를 모두 구하세요.<br/><br/>
+x²+xy+y²는 정수 계수로 인수분해가 안 돼요 — 그룹핑이 막혔으니, <b>x에 대한 이차방정식으로 보고 내림차순 정리</b>합니다.
+<div class="meq-formula">
+x² + (y−1)x + (y²−y−1) = 0
+</div>
+x가 <b>실수</b>이려면 판별식 D≥0.
+<div class="meq-formula">
+D = (y−1)² − 4(y²−y−1) = −3y²+2y+5 ≥ 0
+</div>
+이 부등식을 풀면 −1≤y≤5/3 — 정수 y는 <b>−1, 0, 1</b> 셋뿐으로 좁혀져요. 이제 하나씩 대입해서 D가 <b>완전제곱수</b>인지(=x가 정수인지) 확인합니다.
+<div class="meq-note">
+y=−1: D=0 (완전제곱) → x=1<br/>
+y=0: D=5 (완전제곱 아님) → 정수 x 없음<br/>
+y=1: D=4 (완전제곱) → x=1 또는 −1
+</div>
+<div class="meq-note">
+<b>정수해: (1,−1), (1,1), (−1,1) — 3개</b>
+</div>
+<div class="meq-toro">🦕 토로: 여기엔 두 단계 필터가 있어요 — <b>①D≥0</b>은 "x가 실수로 존재할 조건"이고, <b>②D가 완전제곱수</b>는 "그 x가 정수일 조건"이에요. ①로 y의 후보를 확 줄이고, ②로 진짜 정수해만 골라내는 순서예요. 🔗 <b>연결</b>: D≥0으로 범위를 좁히는 이 과정은 이차연립방정식 단원(서랍3)의 판별식 활용과 완전히 같은 도구예요.</div></div>`,
+    ans: null  },
+
+  { tag:'🔄 유사문제로 연습하기', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-toc">
+<b>유사문제1</b>: x²+xy+y²−2x−y−2=0 을 만족하는 정수 x, y를 모두 구하세요.
+</div></div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — 그룹핑으로 정수해 개수 자동생성', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="idg-q">xy−x−2y−1=0 을 만족하는 정수 x, y의 순서쌍의 개수를 구하세요.</div>
+<div id="idg-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">공식 xy+ax+by+c=0 → (x+b)(y+a)=ab−c 를 바로 적용: a=−1, b=−2, c=−1 → (x−2)(y−1) = 3<br>3의 약수 쌍은 총 4쌍 → <b>4개</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('idg-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="indetermGroupGen('idg-q','idg-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+],
+
+
+'indeterm-real': [
+  { tag:'🔙 제곱은 절대 음수가 되지 않는다', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">실수를 제곱하면 항상 0 이상이에요 — 이 당연한 사실이 이번 도구의 전부예요.
+<div class="meq-note">
+A, B가 <b>실수</b>일 때, A²+B²=0 ⟺ <b>A=0 이고 B=0</b><br/>
+(둘 다 0 이상인데 합이 0이려면, 각각 0일 수밖에 없다)
+</div>
+그래서 실수 조건의 부정방정식은 <b>주어진 식을 (완전제곱)+(완전제곱)=0 꼴로 만드는 것</b>이 목표예요. 다항식 단원 곱셈공식(완전제곱식 x²±2ax+a²=(x±a)²)을 그대로 씁니다.</div>`,
+    ans: null },
+
+  { tag:'📐 완전제곱 두 개로 쪼개기', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 예제</div><br/>
+x²+y²−4x+6y+13=0 을 만족하는 실수 x, y를 구하세요.<br/><br/>
+x끼리, y끼리 모아서 완전제곱을 만들어요.
+<div class="meq-formula">
+(x²−4x+4) + (y²+6y+9) = 13−4−9<br/>
+(x−2)² + (y+3)² = 0
+</div>
+<div class="meq-note">
+x−2=0 이고 y+3=0 → <b>x=2, y=−3</b>
+</div>
+<div class="meq-toro">🦕 토로: 상수항을 나눠 넣는 계산(13−4−9)이 헷갈리면, 완전제곱 만들 때 <b>더한 만큼 반대쪽에서 빼준다</b>고 생각하세요 — x²−4x에 +4를 더했으니, 등호를 맞추려면 우변에도 +4를 더해야 해요.</div></div>`,
+    ans: null },
+
+  { tag:'기본 2 — 완전제곱의 합으로 실수해 찾기', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">x²+4y²−2x+16y+17=0 을 만족하는 실수 x, y를 구하세요.</div>`,
+    ans: `<div class="meq-slabel">💡 풀이</div>
+(x²−2x+1) + (4y²+16y+16) = 17−1−16 → (x−1)² + 4(y+2)² = 0<br/>
+x−1=0 이고 y+2=0 → <b>x=1, y=−2</b>`  },
+
+  { tag:'🔄 유사문제로 연습하기', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-toc">
+<b>유사문제1</b>: x²+y²+6x−4y+13=0 을 만족하는 실수 x, y를 구하세요.
+</div></div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — 완전제곱형 실수해 자동생성', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="idr-q">x²+4y²−2x+16y+17=0 을 만족하는 실수 x, y를 구하세요.</div>
+<div id="idr-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">(x²−2x+1) + (4y²+16y+16) = 17−1−16<br>(x−1)² + 4(y+2)² = 0<br>x−1=0 이고 y+2=0 → <b>x=1, y=−2</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('idr-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="indetermRealGen('idr-q','idr-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+],
+
+
+'indeterm-discern': [
+  { tag:'🔍 겉모습은 비슷한데, 조건 단어 하나가 풀이를 바꾼다', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">아래 두 문제를 나란히 비교해보세요. 식의 생김새는 비슷해 보이지만, <b>조건 단어 하나</b>가 완전히 다른 도구를 요구해요.
+<div class="meq-pair">
+<div class="meq-pair-box meq-pair-int">
+<span class="meq-pair-lbl" style="color:#86efac">A. 정수 조건</span>
+xy−x−y−5=0을 만족하는 <b>정수</b> x, y의 순서쌍의 개수는?
+</div>
+<div class="meq-pair-box meq-pair-real">
+<span class="meq-pair-lbl" style="color:#f87171">B. 실수 조건</span>
+x²+y²−2x+2y+2=0을 만족하는 <b>실수</b> x, y의 순서쌍의 개수는?
+</div>
+</div>
+<b>A 풀이</b>: x(y−1) −(y−1) −6=0 → (x−1)(y−1)=6 → 6의 약수 쌍 8개 → <b>8개</b><br/>
+<b>B 풀이</b>: (x−1)²+(y+1)²=0 → x=1,y=−1 하나뿐 → <b>1개</b>
+<div class="meq-toro">🦕 토로: A는 "곱해서 6이 되는 정수 쌍이 몇 개나 있지?"를 묻는 문제라 답이 여러 개고, B는 "제곱의 합이 0이 되려면?"을 묻는 문제라 답이 <b>정확히 하나</b>예요. 문제를 읽을 때 <b>"정수"·"실수"라는 단어에 반드시 형광펜을 긋는 연습</b>을 하세요 — 이 단어 하나가 전체 풀이 방향을 결정합니다.</div></div>`,
+    ans: null },
+
+  { tag:'🔍 "정수" 조건인데 그룹핑도 안 통하면?', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">A, B는 각각 그룹핑(서랍0)과 완전제곱(서랍1)으로 바로 풀렸죠. 그런데 <b>"정수" 조건인데 x², y²이 섞여 그룹핑도 안 통하는 경우</b>가 있어요 — 이땐 주제1 심화에서 배운 <b>내림차순+판별식(서랍2)</b>까지 가야 해요.
+<div class="meq-pair-box meq-pair-int" style="margin:.6rem 0">
+<span class="meq-pair-lbl" style="color:#86efac">판별식 사용한 문제</span>
+x²−xy+y²−3x+3=0 을 만족하는 정수 x, y를 구하세요.
+</div>
+x²−xy+y²는 정수 계수로 인수분해가 안 되니 서랍0(그룹핑) 실패 → x에 대해 내림차순: x²+(−y−3)x+(y²+3)=0<br/>
+D=(y+3)²−4(y²+3) = −3y²+6y−3 = −3(y−1)² ≥ 0 은 y=1일 때만 성립(D=0)<br/>
+x=(y+3)/2=(1+3)/2=2
+<div class="meq-note">
+<b>정수해: (x,y)=(2,1) — 유일하다</b>
+</div>
+<div class="meq-toro">🦕 토로: "정수"라는 단어만 보고 반사적으로 그룹핑부터 시도하면 안 돼요 — <b>먼저 xy만 있는지(그룹핑 가능), x²·y²까지 섞여 있는지(판별식 필요)를 식의 모양으로 먼저 확인</b>하세요. 조건 단어(정수·실수) 하나, 식의 모양(xy만 vs x²·y²도) 하나 — 이 두 가지를 같이 봐야 서랍을 제대로 고를 수 있어요.</div></div>`,
+    ans: null },
+],
+
+
+'indeterm-natural': [
+  { tag:'🔗 "자연수"는 "정수"보다 한 단계 더 좁은 조건', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">실전 문제에서는 "정수"보다 <b>"자연수"</b> 조건이 더 자주 나와요. 자연수는 1 이상의 정수니까, <b>정수 조건으로 구한 해들 중에서 x≥1, y≥1인 것만 다시 골라내면</b> 돼요 — 새 도구가 아니라 주제1 위에 필터 하나를 더 얹는 것뿐이에요.</div>`,
+    ans: null },
+
+  { tag:'📐 정수해를 다 구한 뒤, 자연수 조건으로 한 번 더 거르기', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-plabel">❓ 예제</div><br/>
+xy−3x−2y=0 을 만족하는 <b>자연수</b> x, y의 순서쌍의 개수를 구하세요.<br/><br/>
+먼저 정수 조건처럼 그룹핑: x(y−3) −2y=0 → x(y−3) −2(y−3) −6=0 → (x−2)(y−3)=6
+<div class="meq-formula">
+6의 약수 쌍(정수 전체): (1,6)(2,3)(3,2)(6,1)(−1,−6)(−2,−3)(−3,−2)(−6,−1)<br/>
+→ (x,y): (3,9)(4,6)(5,5)(8,4)(1,−3)(0,0)(−1,1)(−4,2)
+</div>
+이제 <b>x≥1, y≥1</b>(자연수) 조건으로 걸러내면:
+<div class="meq-note">
+(3,9), (4,6), (5,5), (8,4) → <b>4개</b><br/>
+(나머지 4개는 x 또는 y가 1보다 작아서 탈락)
+</div>
+<div class="meq-toro">🦕 토로: "정수"로 물으면 8개, "자연수"로 물으면 4개 — <b>같은 방정식인데 조건 하나로 답이 반토막</b>이 나요. 약수 쌍을 다 나열한 다음, 마지막에 범위 조건으로 한 번 더 체크하는 습관을 들이세요.</div></div>`,
+    ans: null  },
+
+  { tag:'🔄 유사문제로 연습하기', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-toc">
+<b>유사문제1</b>: xy−4x−3y=0 을 만족하는 자연수 x, y의 순서쌍의 개수를 구하세요.
+</div></div>`,
+    ans: null },
+
+  { tag:'🔥 심화 — 자연수 조건 필터링 자동생성', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2">
+<div id="idn-q">xy−3x−2y=0 을 만족하는 자연수 x, y의 순서쌍의 개수를 구하세요.</div>
+<div id="idn-a" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#cbd5e1;font-size:.85em">공식 xy+ax+by+c=0 → (x+b)(y+a)=ab−c 를 적용: (x−2)(y−3) = 6<br>6의 약수 쌍(정수 전체)을 구한 뒤 x≥1, y≥1(자연수) 조건으로 거르면 <b>4개</b></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+  <button onclick="toggleAns('idn-a')" style="flex:1;background:rgba(134,239,172,.15);border:1px solid rgba(134,239,172,.35);color:#86efac;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">💡 정답 보기</button>
+  <button onclick="indetermNaturalGen('idn-q','idn-a')" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:8px;padding:8px;font-size:.78rem;cursor:pointer;font-family:inherit">🔄 유사문제</button>
+</div>
+</div>`,
+    ans: null },
+],
+
+
+'indeterm-summary': [
+  { tag:'🗄️ 부정방정식을 만나면 이 순서로 서랍을 열어보세요', tagColor:'#a78bfa',
+    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
+    body:`<div style="font-size:1rem;color:#e2e8f0;line-height:2"><div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 0 — "정수" 또는 "자연수" 조건이면</span>
+xy+ax+by+c=0 꼴로 그룹핑해서 (x+b)(y+a)=ab−c 를 만들고, 약수 쌍을 전부 나열한다. "자연수"면 x≥1,y≥1 필터를 마지막에 한 번 더 건다.
+</div>
+<div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 1 — "실수" 조건이면</span>
+x끼리, y끼리 모아 완전제곱의 합=0 꼴로 만든다. A²+B²=0 ⟺ A=0이고 B=0.
+</div>
+<div class="meq-drawer">
+<span class="meq-drawer-title">🗄️ 서랍 2 — 그룹핑·완전제곱이 바로 안 보이면</span>
+한 문자(보통 x)에 대해 내림차순으로 정리부터 한다(고차방정식 유형⑤). 정리하고 나면 서랍0·1의 형태가 드러나는 경우가 많다. 그래도 서랍0(AB=k)을 못 쓰면(x²·y²이 섞여 인수분해가 안 되면), x에 대한 이차방정식으로 보고 판별식을 쓴다 — D≥0으로 y의 범위를 좁히고, D가 완전제곱수인 y만 골라 정수 x를 구한다.
+</div>
+<div class="meq-toro">🦕 토로: 부정방정식은 사실 <b>"조건 단어를 읽고 서랍0을 열지, 서랍1을 열지 판단하는 것"</b>이 유일한 새 기술이에요. 그룹핑(인수분해)도, 완전제곱식도, 전부 이미 배운 도구고요. 이걸로 "여러 가지 방정식" 3부작(고차방정식 → 이차연립방정식 → 부정방정식)이 끝났어요 — 세 파일 전부 <b>같은 도구 상자(인수분해·근과 계수의 관계·판별식·완전제곱)를 여러 각도에서 다시 쓴 것</b>이라는 감각을 꼭 챙겨 가세요.</div></div>`,
+    ans: null },
+],
+
 
 /* ── 이차방정식 실근의 위치 — 3개국 가이드 (1장) ─── */
 
@@ -7741,6 +9172,526 @@ function subsetPruneTreeSvg(){
 function toggleAns(id){
   var el = document.getElementById(id);
   el.style.display = el.style.display==='none' ? '' : 'none';
+}
+function meqFmtTerm(coef, label){
+  if(coef===0) return '';
+  var sign = coef<0 ? '−' : '+';
+  var a = Math.abs(coef);
+  var coefStr = (label!=='' && a===1) ? '' : String(a);
+  return sign+coefStr+label;
+}
+function meqFmtVal(v){
+  return (v<0?'−':'')+String(Math.abs(v));
+}
+function meqFactorOf(r){
+  return r>=0 ? ('(x−'+r+')') : ('(x+'+(-r)+')');
+}
+function higheqCubicGen(qid,aid){
+  var pool=[-3,-2,-1,1,2,3];
+  var roots=[];
+  for(var i=0;i<3;i++){ roots.push(pool[Math.floor(Math.random()*pool.length)]); }
+  var r1=roots[0], r2=roots[1], r3=roots[2];
+  var a2=-(r1+r2+r3), a1=(r1*r2+r2*r3+r3*r1), a0=-(r1*r2*r3);
+  var polyStr = 'x³'+meqFmtTerm(a2,'x²')+meqFmtTerm(a1,'x')+meqFmtTerm(a0,'');
+
+  var sorted = roots.slice().sort(function(a,b){return Math.abs(a)-Math.abs(b);});
+  var trial = sorted[0];
+  var others = roots.slice();
+  others.splice(others.indexOf(trial),1);
+  var o1=others[0], o2=others[1];
+
+  var b1=a2+trial, b2=a1+trial*b1;
+  var quotStr = 'x²'+meqFmtTerm(b1,'x')+meqFmtTerm(b2,'');
+
+  var t3=trial*trial*trial, t2=a2*trial*trial, t1=a1*trial, t0=a0;
+  var checkParts=[]; [t3,t2,t1,t0].forEach(function(v){ if(v!==0) checkParts.push(v); });
+  var checkStr = checkParts.map(function(v,i){
+    if(i===0) return meqFmtVal(v);
+    return (v<0?'−':'+')+Math.abs(v);
+  }).join('');
+
+  var counts={}; roots.forEach(function(r){counts[r]=(counts[r]||0)+1;});
+  var uniqRoots = Object.keys(counts).map(Number).sort(function(a,b){return a-b;});
+  var ansStr = uniqRoots.map(function(r){
+    return 'x='+meqFmtVal(r)+(counts[r]>1?'(중근)':'');
+  }).join(' 또는 ');
+
+  document.getElementById(qid).innerHTML = '삼차방정식 '+polyStr+'=0을 푸세요.';
+  document.getElementById(aid).innerHTML =
+    '유리근 후보 중 x='+meqFmtVal(trial)+'을 대입: '+checkStr+'=0 → '+meqFactorOf(trial)+'이 인수<br>'+
+    '조립제법으로 나누면 몫 '+quotStr+' = '+meqFactorOf(o1)+meqFactorOf(o2)+'<br>'+
+    '원래 식 = '+meqFactorOf(trial)+meqFactorOf(o1)+meqFactorOf(o2)+' = 0 → <b>'+ansStr+'</b>';
+  document.getElementById(aid).style.display='none';
+}
+function higheqCubeGen(qid,aid){
+  var pool=[-6,-4,-2,2,4,6];
+  var r = pool[Math.floor(Math.random()*pool.length)];
+  var R = r*r*r;
+  var quadStr = 'x²'+meqFmtTerm(r,'x')+meqFmtTerm(r*r,'');
+  var realPart = -r/2, imagAbs = Math.abs(r)/2;
+  var imagLabel = (imagAbs===1?'':String(imagAbs))+'√3i';
+  var polyEqZero = 'x³'+meqFmtTerm(-R,'')+'=0';
+
+  document.getElementById(qid).innerHTML = '방정식 x³='+meqFmtVal(R)+'을 푸세요. (단, 허근도 모두 구하세요)';
+  document.getElementById(aid).innerHTML =
+    polyEqZero+' → '+meqFactorOf(r)+'('+quadStr+')=0 <span style="opacity:.7">(∵ '+meqFmtVal(R)+'='+meqFmtVal(r)+'³)</span><br>'+
+    meqFactorOf(r)+'=0 → x='+meqFmtVal(r)+'<br>'+
+    '('+quadStr+')=0 → x = '+meqFmtVal(realPart)+'±'+imagLabel+'<br>'+
+    '<b>x = '+meqFmtVal(r)+', '+meqFmtVal(realPart)+'+'+imagLabel+', '+meqFmtVal(realPart)+'−'+imagLabel+'</b>';
+  document.getElementById(aid).style.display='none';
+}
+function meqSimplifySqrt(D){
+  var coef=1, rem=D;
+  for (var i=Math.floor(Math.sqrt(D)); i>=2; i--) {
+    if (D % (i*i) === 0) { coef=i; rem=D/(i*i); break; }
+  }
+  return {coef:coef, rem:rem};
+}
+function meqSqrtLabel(D){
+  var s = meqSimplifySqrt(D);
+  return (s.coef===1?'':String(s.coef))+'√'+s.rem;
+}
+function higheqPalindromeGen(qid,aid){
+  var pool=[-4,-3,-2,2,3,4];
+  var shuffled = pool.slice().sort(function(){return Math.random()-0.5;});
+  var t1=shuffled[0], t2=shuffled[1];
+  var p=-(t1+t2), q=t1*t2+2;
+  var polyStr = 'x⁴'+meqFmtTerm(p,'x³')+meqFmtTerm(q,'x²')+meqFmtTerm(p,'x')+meqFmtTerm(1,'');
+
+  function branchStr(t){
+    var D = t*t-4;
+    if (D===0){
+      var x = t/2;
+      return 't='+meqFmtVal(t)+': x+1/x='+meqFmtVal(t)+' → x²'+meqFmtTerm(-t,'x')+'+1=0 → x='+meqFmtVal(x)+'(중근)';
+    } else {
+      var sq = Math.sqrt(D);
+      if (Number.isInteger(sq)) {
+        var x1=(t+sq)/2, x2=(t-sq)/2;
+        return 't='+meqFmtVal(t)+': x+1/x='+meqFmtVal(t)+' → x²'+meqFmtTerm(-t,'x')+'+1=0 → x='+meqFmtVal(x1)+' 또는 '+meqFmtVal(x2);
+      } else {
+        var fracHtml = '<span class="frac"><span class="num">'+meqFmtVal(t)+'±'+meqSqrtLabel(D)+'</span><span class="den">2</span></span>';
+        return 't='+meqFmtVal(t)+': x+1/x='+meqFmtVal(t)+' → x²'+meqFmtTerm(-t,'x')+'+1=0 → x = '+fracHtml+' (실근)';
+      }
+    }
+  }
+
+  document.getElementById(qid).innerHTML = '방정식 '+polyStr+'=0을 푸세요. (실근만 구하세요)';
+  document.getElementById(aid).innerHTML =
+    '계수 1,'+meqFmtVal(p)+','+meqFmtVal(q)+','+meqFmtVal(p)+',1 — 대칭 확인. x²으로 나누면 (x²+1/x²)'+meqFmtTerm(p,'(x+1/x)')+meqFmtTerm(q,'')+'=0<br>'+
+    't=x+1/x 로 치환: (t²−2)'+meqFmtTerm(p,'t')+meqFmtTerm(q,'')+'=0 → t²'+meqFmtTerm(p,'t')+meqFmtTerm(q-2,'')+'=0 → (t'+meqFmtTerm(-t1,'')+')(t'+meqFmtTerm(-t2,'')+')=0 → t='+meqFmtVal(t1)+' 또는 t='+meqFmtVal(t2)+'<br>'+
+    branchStr(t1)+'<br>'+branchStr(t2);
+  document.getElementById(aid).style.display='none';
+}
+function meqRandInt(lo,hi){ return lo+Math.floor(Math.random()*(hi-lo+1)); }
+function meqRandNonZero(lo,hi){ var v; do{ v=meqRandInt(lo,hi); }while(v===0); return v; }
+function higheqVietaScaleGen(qid,aid){
+  var a2=meqRandInt(-5,5), a1=meqRandInt(-5,5), a0=meqRandNonZero(-5,5);
+  var kPool=[2,3,-2,-3];
+  var k = kPool[Math.floor(Math.random()*kPool.length)];
+  var fStr = 'x³'+meqFmtTerm(a2,'x²')+meqFmtTerm(a1,'x')+meqFmtTerm(a0,'');
+  var sum=-a2, pairsum=a1, prod=-a0;
+  var newSum=k*sum, newPairsum=k*k*pairsum, newProd=k*k*k*prod;
+  var newA2=-newSum, newA1=newPairsum, newA0=-newProd;
+  var gStr = 'x³'+meqFmtTerm(newA2,'x²')+meqFmtTerm(newA1,'x')+meqFmtTerm(newA0,'');
+  var kLabel = k<0 ? ('('+meqFmtVal(k)+')') : meqFmtVal(k);
+
+  document.getElementById(qid).innerHTML = '삼차방정식 '+fStr+'=0의 세 근이 α, β, γ일 때, '+kLabel+'α, '+kLabel+'β, '+kLabel+'γ를 세 근으로 하고 최고차항의 계수가 1인 삼차방정식을 구하세요.';
+  document.getElementById(aid).innerHTML =
+    '원래 방정식에서 α+β+γ=−('+meqFmtVal(a2)+')='+meqFmtVal(sum)+', αβ+βγ+γα='+meqFmtVal(pairsum)+', αβγ=−('+meqFmtVal(a0)+')='+meqFmtVal(prod)+'<br>'+
+    '새 근의 합 = '+kLabel+'×('+meqFmtVal(sum)+') = <b>'+meqFmtVal(newSum)+'</b><br>'+
+    '새 근의 짝지은 곱의 합 = '+kLabel+'²×('+meqFmtVal(pairsum)+') = <b>'+meqFmtVal(newPairsum)+'</b><br>'+
+    '새 근의 곱 = '+kLabel+'³×('+meqFmtVal(prod)+') = <b>'+meqFmtVal(newProd)+'</b><br>'+
+    '<b>'+gStr+' = 0</b>';
+  document.getElementById(aid).style.display='none';
+}
+function higheqSignFlipGen(qid,aid){
+  var a2=meqRandNonZero(-5,5), a1=meqRandInt(-5,5), a0=meqRandNonZero(-5,5);
+  var fStr = 'x³'+meqFmtTerm(a2,'x²')+meqFmtTerm(a1,'x')+meqFmtTerm(a0,'');
+  var gStr = 'x³'+meqFmtTerm(-a2,'x²')+meqFmtTerm(a1,'x')+meqFmtTerm(-a0,'');
+  var negFxStr = '−x³'+meqFmtTerm(a2,'x²')+meqFmtTerm(-a1,'x')+meqFmtTerm(a0,'');
+  document.getElementById(qid).innerHTML = '삼차방정식 '+fStr+'=0의 세 근이 α, β, γ일 때, '+gStr+'=0의 세 근을 α, β, γ로 나타내세요.';
+  document.getElementById(aid).innerHTML =
+    'g(x)='+gStr+'이 f(x)='+fStr+'의 f(−x)인지 확인: f(−x) = '+negFxStr+' = −('+gStr+')<br>'+
+    'g(x) = −f(−x) 이므로 g(x)=0 ⟺ f(−x)=0 ⟺ (−x)가 f의 근 ⟺ x는 f의 근에 −1을 곱한 값<br>'+
+    '<b>세 근: −α, −β, −γ</b>';
+  document.getElementById(aid).style.display='none';
+}
+function higheqReciprocalGen(qid,aid){
+  var p=meqRandInt(-5,5), q=meqRandInt(-5,5), r=meqRandNonZero(-6,6);
+  var qStr = meqPolyStrFromCoeffs([1,p,q,r], ['x³','x²','x','']);
+  var ansStr = meqPolyStrFromCoeffs([r,q,p,1], ['x³','x²','x','']);
+  document.getElementById(qid).innerHTML = '삼차방정식 '+qStr+'=0의 세 근을 α, β, γ라 할 때, 1/α, 1/β, 1/γ를 근으로 하고 계수가 모두 정수인 삼차방정식을 구하세요.';
+  document.getElementById(aid).innerHTML =
+    '계수 1, '+meqFmtVal(p)+', '+meqFmtVal(q)+', '+meqFmtVal(r)+'을 거꾸로 나열: <b>'+ansStr+'=0</b>';
+  document.getElementById(aid).style.display='none';
+}
+function higheqOmegaGen(qid,aid){
+  var n = 10 + Math.floor(Math.random()*2990);
+  var q = Math.floor(n/3), r = n % 3;
+  var valLabel = r===0 ? '1' : (r===1 ? 'ω' : 'ω²');
+  document.getElementById(qid).innerHTML = 'ω<sup>'+n+'</sup>의 값은?';
+  document.getElementById(aid).innerHTML =
+    n+'=3×'+q+(r?'+'+r:'')+' → ω<sup>'+n+'</sup>=ω<sup>3×'+q+'</sup>·ω<sup>'+r+'</sup>=<b>'+valLabel+'</b>';
+  document.getElementById(aid).style.display='none';
+}
+function meqBuildPolyFromRoots(roots){
+  var poly=[1];
+  roots.forEach(function(r){
+    var n=poly.length;
+    var result=new Array(n+1).fill(0);
+    for (var i=0;i<n;i++){ result[i]+=poly[i]; result[i+1]+=-r*poly[i]; }
+    poly=result;
+  });
+  return poly;
+}
+function meqSyntheticDivide(coeffs, root){
+  var result=[coeffs[0]];
+  for (var i=1;i<coeffs.length;i++){ result.push(coeffs[i]+root*result[i-1]); }
+  var remainder = result.pop();
+  return {quotient:result, remainder:remainder};
+}
+function meqPolyStrFromCoeffs(coeffs, degLabels){
+  var parts=[];
+  for (var i=0;i<coeffs.length;i++){
+    var c=coeffs[i], lbl=degLabels[i];
+    if (i===0){
+      if (c===0) continue;
+      parts.push((c<0?'−':'')+(Math.abs(c)===1&&lbl!=='' ? '' : String(Math.abs(c)))+lbl);
+    } else {
+      parts.push(meqFmtTerm(c,lbl));
+    }
+  }
+  return parts.join('');
+}
+function higheqQuarticDoubleGen(qid,aid){
+  var pool=[-3,-2,-1,1,2,3];
+  var roots=[];
+  for(var i=0;i<4;i++){ roots.push(pool[Math.floor(Math.random()*pool.length)]); }
+  var coeffs = meqBuildPolyFromRoots(roots);
+  var polyStr = meqPolyStrFromCoeffs(coeffs, ['x⁴','x³','x²','x','']);
+
+  var sorted = roots.slice().sort(function(a,b){return Math.abs(a)-Math.abs(b);});
+  var trial1 = sorted[0];
+  var d1 = meqSyntheticDivide(coeffs, trial1);
+
+  var remaining = roots.slice();
+  remaining.splice(remaining.indexOf(trial1),1);
+  var sorted2 = remaining.slice().sort(function(a,b){return Math.abs(a)-Math.abs(b);});
+  var trial2 = sorted2[0];
+  var d2 = meqSyntheticDivide(d1.quotient, trial2);
+
+  var last2 = remaining.slice(); last2.splice(last2.indexOf(trial2),1);
+  var o1=last2[0], o2=last2[1];
+
+  var cubicStr = meqPolyStrFromCoeffs(d1.quotient, ['x³','x²','x','']);
+  var quadStr = meqPolyStrFromCoeffs(d2.quotient, ['x²','x','']);
+
+  var counts={}; roots.forEach(function(r){counts[r]=(counts[r]||0)+1;});
+  var uniq = Object.keys(counts).map(Number).sort(function(a,b){return a-b;});
+  var multLabel={2:'(중근)',3:'(삼중근)',4:'(사중근)'};
+  var ansStr = uniq.map(function(r){ return 'x='+meqFmtVal(r)+(multLabel[counts[r]]||''); }).join(' 또는 ');
+
+  document.getElementById(qid).innerHTML = '사차방정식 '+polyStr+'=0을 푸세요.';
+  document.getElementById(aid).innerHTML =
+    '유리근 후보 중 x='+meqFmtVal(trial1)+'을 대입하면 성립 → '+meqFactorOf(trial1)+'이 인수<br>'+
+    '조립제법으로 나누면 몫 '+cubicStr+'. 여기서 다시 유리근 후보를 찾으면 x='+meqFmtVal(trial2)+'도 성립 → '+meqFactorOf(trial2)+'이 인수<br>'+
+    '한 번 더 조립제법으로 나누면 몫 '+quadStr+' = '+meqFactorOf(o1)+meqFactorOf(o2)+'<br>'+
+    '원래 식 = '+meqFactorOf(trial1)+meqFactorOf(trial2)+meqFactorOf(o1)+meqFactorOf(o2)+' = 0 → <b>'+ansStr+'</b>';
+  document.getElementById(aid).style.display='none';
+}
+function meqPalindromeBranch(t){
+  var D = t*t-4;
+  if (D===0){
+    var x = t/2;
+    return 't='+meqFmtVal(t)+': x+1/x='+meqFmtVal(t)+' → x²'+meqFmtTerm(-t,'x')+'+1=0 → x='+meqFmtVal(x)+'(중근)';
+  } else {
+    var sq = Math.sqrt(D);
+    if (Number.isInteger(sq)) {
+      var x1=(t+sq)/2, x2=(t-sq)/2;
+      return 't='+meqFmtVal(t)+': x+1/x='+meqFmtVal(t)+' → x²'+meqFmtTerm(-t,'x')+'+1=0 → x='+meqFmtVal(x1)+' 또는 '+meqFmtVal(x2);
+    } else {
+      var fracHtml = '<span class="frac"><span class="num">'+meqFmtVal(t)+'±'+meqSqrtLabel(D)+'</span><span class="den">2</span></span>';
+      return 't='+meqFmtVal(t)+': x+1/x='+meqFmtVal(t)+' → x²'+meqFmtTerm(-t,'x')+'+1=0 → x = '+fracHtml+' (실근)';
+    }
+  }
+}
+function higheqSexticGen(qid,aid){
+  var pool=[-4,-3,-2,2,3,4];
+  var shuffled = pool.slice().sort(function(){return Math.random()-0.5;});
+  var t1=shuffled[0], t2=shuffled[1], t3=shuffled[2];
+  var sumT=t1+t2+t3, pairT=t1*t2+t2*t3+t3*t1, prodT=t1*t2*t3;
+  var p=-sumT, q=pairT+3, r=2*p-prodT;
+  var polyStr = 'x⁶'+meqFmtTerm(p,'x⁵')+meqFmtTerm(q,'x⁴')+meqFmtTerm(r,'x³')+meqFmtTerm(q,'x²')+meqFmtTerm(p,'x')+meqFmtTerm(1,'');
+
+  document.getElementById(qid).innerHTML = '방정식 '+polyStr+'=0을 푸세요. (실근만 구하세요)';
+  document.getElementById(aid).innerHTML =
+    '계수 1,'+meqFmtVal(p)+','+meqFmtVal(q)+','+meqFmtVal(r)+','+meqFmtVal(q)+','+meqFmtVal(p)+',1 — 대칭 확인. x³으로 나누고 t=x+1/x로 치환하면 (x²+1/x²=t²−2, x³+1/x³=t³−3t 이용):<br>'+
+    't³'+meqFmtTerm(p,'t²')+meqFmtTerm(q-3,'t')+meqFmtTerm(r-2*p,'')+'=0 → 인수분해하면 (t'+meqFmtTerm(-t1,'')+')(t'+meqFmtTerm(-t2,'')+')(t'+meqFmtTerm(-t3,'')+')=0 → t='+meqFmtVal(t1)+' 또는 '+meqFmtVal(t2)+' 또는 '+meqFmtVal(t3)+'<br>'+
+    meqPalindromeBranch(t1)+'<br>'+meqPalindromeBranch(t2)+'<br>'+meqPalindromeBranch(t3);
+  document.getElementById(aid).style.display='none';
+}
+function higheqCombinedGen(qid,aid){
+  var a2=meqRandInt(-5,5), a1=meqRandInt(-5,5);
+  var a0pool=[1,-1];
+  var a0 = a0pool[Math.floor(Math.random()*2)];
+  var fStr = 'x³'+meqFmtTerm(a2,'x²')+meqFmtTerm(a1,'x')+meqFmtTerm(a0,'');
+
+  function polyFromCoeffs3(a3,a2c,a1c,a0c){
+    var parts=[];
+    if(a3!==0){ parts.push((a3<0?'−':'')+(Math.abs(a3)===1?'':String(Math.abs(a3)))+'x³'); }
+    parts.push(meqFmtTerm(a2c,'x²'));
+    parts.push(meqFmtTerm(a1c,'x'));
+    parts.push(meqFmtTerm(a0c,''));
+    return parts.join('');
+  }
+
+  var step1_a3=a0, step1_a2=a1, step1_a1=a2, step1_a0=1;
+  var step1Poly = polyFromCoeffs3(step1_a3, step1_a2, step1_a1, step1_a0);
+
+  var step2_a3=-step1_a3, step2_a2=step1_a2, step2_a1=-step1_a1, step2_a0=step1_a0;
+  var step2Poly = polyFromCoeffs3(step2_a3, step2_a2, step2_a1, step2_a0);
+
+  var finalA3,finalA2,finalA1,finalA0, needStep3;
+  if (step2_a3 === 1) {
+    needStep3=false; finalA3=step2_a3; finalA2=step2_a2; finalA1=step2_a1; finalA0=step2_a0;
+  } else {
+    needStep3=true; finalA3=-step2_a3; finalA2=-step2_a2; finalA1=-step2_a1; finalA0=-step2_a0;
+  }
+  var finalPoly = polyFromCoeffs3(finalA3, finalA2, finalA1, finalA0);
+
+  var sol = '1단계(순서 뒤집기, 계수 1,'+meqFmtVal(a2)+','+meqFmtVal(a1)+','+meqFmtVal(a0)+' → '+meqFmtVal(a0)+','+meqFmtVal(a1)+','+meqFmtVal(a2)+',1): '+step1Poly+'=0<br>'+
+    '2단계(부호 뒤집기, 홀수차항인 x³·x항 부호 반전): '+step2Poly+'=0';
+  if (needStep3) sol += '<br>최고차항 계수를 1로 맞추기 위해 양변에 −1을 곱하면';
+  sol += '<br><b>'+finalPoly+' = 0</b>';
+
+  document.getElementById(qid).innerHTML = '삼차방정식 '+fStr+'=0의 세 근이 α, β, γ일 때, −1/α, −1/β, −1/γ를 세 근으로 하고 최고차항의 계수가 1인 삼차방정식을 구하세요.';
+  document.getElementById(aid).innerHTML = sol;
+  document.getElementById(aid).style.display='none';
+}
+function meqGcd(a,b){ a=Math.abs(a); b=Math.abs(b); while(b){ var t=b; b=a%b; a=t; } return a||1; }
+function meqLcm(a,b){ return Math.abs(a*b)/meqGcd(a,b); }
+function meqFracStr(num, den){
+  if(den<0){ num=-num; den=-den; }
+  var g = meqGcd(num,den);
+  num=num/g; den=den/g;
+  if(den===1) return meqFmtVal(num);
+  return '<span class="frac"><span class="num">'+meqFmtVal(num)+'</span><span class="den">'+den+'</span></span>';
+}
+function qsLinearGen(qid,aid){
+  var pool=[-4,-3,-2,-1,1,2,3,4];
+  var a = pool[Math.floor(Math.random()*pool.length)];
+  var b; do { b = pool[Math.floor(Math.random()*pool.length)]; } while(b===a);
+  var d = -(a+b);
+  var s = a*a+b*b;
+  var x1=a+d, x2=b+d;
+  document.getElementById(qid).innerHTML = '연립방정식 x−y='+meqFmtVal(d)+', x²+y²='+meqFmtVal(s)+' 을 푸세요.';
+  document.getElementById(aid).innerHTML =
+    'x=y'+meqFmtTerm(d,'')+'을 x²+y²='+meqFmtVal(s)+'에 대입: (y'+meqFmtTerm(d,'')+')²+y²='+meqFmtVal(s)+' → y²'+meqFmtTerm(d,'y')+meqFmtTerm(a*b,'')+'=0 → (y'+meqFmtTerm(-a,'')+')(y'+meqFmtTerm(-b,'')+')=0 → y='+meqFmtVal(a)+' 또는 y='+meqFmtVal(b)+'<br>각각 x=y'+meqFmtTerm(d,'')+'에 대입하면<br><b>(x,y) = ('+meqFmtVal(x1)+','+meqFmtVal(a)+') 또는 ('+meqFmtVal(x2)+','+meqFmtVal(b)+')</b>';
+  document.getElementById(aid).style.display='none';
+}
+function qsFactorGen(qid,aid){
+  var mnPool=[1,2,3];
+  var cPool=[-2,-1,1,2,3];
+  var m,n,c,A,B,tries=0;
+  do {
+    m = mnPool[Math.floor(Math.random()*mnPool.length)];
+    do { n = mnPool[Math.floor(Math.random()*mnPool.length)]; } while(n===m);
+    c = cPool[Math.floor(Math.random()*cPool.length)];
+    A = m*m+c; B = n*n+c;
+    tries++;
+  } while ((A===0||B===0) && tries<200);
+  var Aabs=Math.abs(A), Babs=Math.abs(B);
+  var L=meqLcm(Aabs,Babs);
+  var k=meqRandInt(1,3);
+  var magnitude=L*k;
+  var s = A>0 ? magnitude : -magnitude;
+  var y1sq = s/A;
+  var branch2Valid = (A>0)===(B>0);
+  var y2sq = branch2Valid ? s/B : null;
+  function branchStr(ySq, mult){
+    var sq=meqSimplifySqrt(ySq);
+    if (sq.rem===1){ var Y=sq.coef; return {y:String(Y), x:String(mult*Y)}; }
+    var yLbl=(sq.coef===1?'':sq.coef)+'√'+sq.rem;
+    var xCoef=mult*sq.coef;
+    var xLbl=(xCoef===1?'':xCoef)+'√'+sq.rem;
+    return {y:yLbl, x:xLbl};
+  }
+  var b1=branchStr(y1sq,m);
+  var quadStr = 'x²'+meqFmtTerm(-(m+n),'xy')+meqFmtTerm(m*n,'y²');
+  var eq2Str = 'x²'+meqFmtTerm(c,'y²');
+  var mLbl=(m===1?'':m), nLbl=(n===1?'':n);
+  document.getElementById(qid).innerHTML = quadStr+'=0, '+eq2Str+'='+meqFmtVal(s)+' 을 푸세요.';
+  var sol = quadStr+' = (x'+meqFmtTerm(-m,'y')+')(x'+meqFmtTerm(-n,'y')+') = 0 → x='+mLbl+'y 또는 x='+nLbl+'y<br>'+
+    '경우1) x='+mLbl+'y를 '+eq2Str+'='+meqFmtVal(s)+'에 대입: '+meqFmtVal(A)+'y²='+meqFmtVal(s)+' → y²='+y1sq+' → y=±'+b1.y+', x=±'+b1.x+'<br>';
+  if (branch2Valid){
+    var b2=branchStr(y2sq,n);
+    sol += '경우2) x='+nLbl+'y를 '+eq2Str+'='+meqFmtVal(s)+'에 대입: '+meqFmtVal(B)+'y²='+meqFmtVal(s)+' → y²='+y2sq+' → y=±'+b2.y+', x=±'+b2.x+'<br>'+
+      '<b>(x,y) = ('+b1.x+','+b1.y+') 또는 (−'+b1.x+',−'+b1.y+') 또는 ('+b2.x+','+b2.y+') 또는 (−'+b2.x+',−'+b2.y+')</b>';
+  } else {
+    sol += '경우2) x='+nLbl+'y를 '+eq2Str+'='+meqFmtVal(s)+'에 대입: '+meqFmtVal(B)+'y²='+meqFmtVal(s)+' → y²이 음수 → <b>실근 없음 (버림)</b><br>'+
+      '<b>(x,y) = ('+b1.x+','+b1.y+') 또는 (−'+b1.x+',−'+b1.y+')</b>';
+  }
+  document.getElementById(aid).innerHTML = sol;
+  document.getElementById(aid).style.display='none';
+}
+function qsSymmetricGen(qid,aid){
+  var t1,t2,s,p, tries=0;
+  do {
+    t1=meqRandInt(-6,6); t2=meqRandInt(-6,6);
+    s=t1+t2; p=t1*t2;
+    tries++;
+  } while ((t1===t2 || p*p>=4*s || s===p) && tries<500);
+  var A=s+p, B=s*p;
+  document.getElementById(qid).innerHTML = '연립방정식 x+y+xy='+meqFmtVal(A)+', x²y+xy²='+meqFmtVal(B)+' 를 만족시키는 실수 x, y를 구하세요.';
+  document.getElementById(aid).innerHTML =
+    '두 번째 식을 인수분해하면 x²y+xy²=xy(x+y). s=x+y, p=xy로 치환하면 s+p='+meqFmtVal(A)+', sp='+meqFmtVal(B)+'<br>'+
+    's, p는 u²'+meqFmtTerm(-A,'u')+meqFmtTerm(B,'')+'=0의 두 근 → (u'+meqFmtTerm(-s,'')+')(u'+meqFmtTerm(-p,'')+')=0 → u='+meqFmtVal(s)+' 또는 '+meqFmtVal(p)+'<br>'+
+    '경우1) (s,p)=('+meqFmtVal(s)+','+meqFmtVal(p)+'): D='+meqFmtVal(s*s-4*p)+' → t²'+meqFmtTerm(-s,'t')+meqFmtTerm(p,'')+'=0 → t='+meqFmtVal(t1)+' 또는 '+meqFmtVal(t2)+'<br>'+
+    '경우2) (s,p)=('+meqFmtVal(p)+','+meqFmtVal(s)+'): D='+meqFmtVal(p*p-4*s)+'<0 → <b>실근 없음 (버림)</b><br>'+
+    '<b>(x,y) = ('+meqFmtVal(t1)+','+meqFmtVal(t2)+') 또는 ('+meqFmtVal(t2)+','+meqFmtVal(t1)+')</b>';
+  document.getElementById(aid).style.display='none';
+}
+function qsDiscriminantGen(qid,aid){
+  var c = meqRandInt(2,15);
+  var k=1; while(k*k < 4*c) k++;
+  var sq = meqSimplifySqrt(c);
+  var boundLabel = (sq.rem===1) ? String(2*sq.coef) : (String(2*sq.coef)+'√'+sq.rem);
+  document.getElementById(qid).innerHTML = '연립방정식 x+y=k, xy='+c+' 를 만족시키는 실수 x, y가 존재하도록 하는 자연수 k의 최솟값을 구하세요.';
+  document.getElementById(aid).innerHTML =
+    'x, y는 t²−kt+'+c+'=0의 두 근. 실수 x,y가 존재 ⟺ 이 t의 방정식이 실근을 가져야 해요.<br>'+
+    'D = k²−4×'+c+' = k²−'+(4*c)+' ≥ 0 → k² ≥ '+(4*c)+' → k ≤ −'+boundLabel+' 또는 k ≥ '+boundLabel+'<br>'+
+    boundLabel+' ≈ '+(2*Math.sqrt(c)).toFixed(2)+' 이므로, 이를 만족하는 자연수 k 중 가장 작은 값은:<br><b>k = '+k+'</b>';
+  document.getElementById(aid).style.display='none';
+}
+function meqCountDivisorPairs(k){
+  var absK=Math.abs(k), count=0;
+  for(var d=1; d<=absK; d++){ if(absK%d===0) count++; }
+  return count*2;
+}
+function indetermGroupGen(qid,aid){
+  var p=meqRandInt(-5,5), q=meqRandInt(-5,5);
+  var k=meqRandNonZero(-12,12);
+  var A=-q, B=-p, C=p*q-k;
+  var qStr='xy'+meqFmtTerm(A,'x')+meqFmtTerm(B,'y')+meqFmtTerm(C,'');
+  var pairCount = meqCountDivisorPairs(k);
+  document.getElementById(qid).innerHTML = qStr+'=0 을 만족하는 정수 x, y의 순서쌍의 개수를 구하세요.';
+  document.getElementById(aid).innerHTML =
+    '공식 xy+ax+by+c=0 → (x+b)(y+a)=ab−c 를 바로 적용: a='+meqFmtVal(A)+', b='+meqFmtVal(B)+', c='+meqFmtVal(C)+' → (x'+meqFmtTerm(B,'')+')(y'+meqFmtTerm(A,'')+') = '+meqFmtVal(k)+'<br>'+
+    meqFmtVal(k)+'의 약수 쌍은 총 '+pairCount+'쌍 → <b>'+pairCount+'개</b>';
+  document.getElementById(aid).style.display='none';
+}
+function indetermRealGen(qid,aid){
+  var h=meqRandNonZero(-5,5), k=meqRandNonZero(-5,5);
+  var mPool=[1,2,3];
+  var m=mPool[Math.floor(Math.random()*mPool.length)];
+  var Ncoef=m*m;
+  var P=-2*h, Q=-2*Ncoef*k, R=h*h+Ncoef*k*k;
+  var yCoefStr=(Ncoef===1?'':String(Ncoef));
+  var problem = 'x²'+meqFmtTerm(Ncoef,'y²')+meqFmtTerm(P,'x')+meqFmtTerm(Q,'y')+meqFmtTerm(R,'');
+  document.getElementById(qid).innerHTML = problem+'=0 을 만족하는 실수 x, y를 구하세요.';
+  document.getElementById(aid).innerHTML =
+    'x끼리, y끼리 모아서 완전제곱을 만들어요.<br>'+
+    '(x²'+meqFmtTerm(P,'x')+'+'+(h*h)+') + ('+yCoefStr+'y²'+meqFmtTerm(Q,'y')+'+'+(Ncoef*k*k)+') = '+R+'−'+(h*h)+'−'+(Ncoef*k*k)+'<br>'+
+    '(x'+meqFmtTerm(-h,'')+')² + '+yCoefStr+'(y'+meqFmtTerm(-k,'')+')² = 0<br>'+
+    'x'+meqFmtTerm(-h,'')+'=0 이고 y'+meqFmtTerm(-k,'')+'=0 → <b>x='+meqFmtVal(h)+', y='+meqFmtVal(k)+'</b>';
+  document.getElementById(aid).style.display='none';
+}
+function indetermNaturalGen(qid,aid){
+  var p=meqRandInt(1,4), q=meqRandInt(1,4);
+  var k=meqRandNonZero(-15,15);
+  var A=-q, B=-p, C=p*q-k;
+  var qStr='xy'+meqFmtTerm(A,'x')+meqFmtTerm(B,'y')+meqFmtTerm(C,'');
+  var absK=Math.abs(k);
+  var pairs=[];
+  for (var d=1; d<=absK; d++){
+    if (absK%d===0){
+      var e=absK/d;
+      if (k>0){ pairs.push([d,e]); pairs.push([-d,-e]); }
+      else { pairs.push([d,-e]); pairs.push([-d,e]); }
+    }
+  }
+  var validCount=0;
+  pairs.forEach(function(pr){
+    var x=p+pr[0], y=q+pr[1];
+    if (x>=1 && y>=1) validCount++;
+  });
+  document.getElementById(qid).innerHTML = qStr+'=0 을 만족하는 자연수 x, y의 순서쌍의 개수를 구하세요.';
+  document.getElementById(aid).innerHTML =
+    '공식 xy+ax+by+c=0 → (x+b)(y+a)=ab−c 를 적용: (x'+meqFmtTerm(B,'')+')(y'+meqFmtTerm(A,'')+') = '+meqFmtVal(k)+'<br>'+
+    meqFmtVal(k)+'의 약수 쌍(정수 전체)을 구한 뒤 x≥1, y≥1(자연수) 조건으로 거르면 <b>'+validCount+'개</b>';
+  document.getElementById(aid).style.display='none';
+}
+function meqComplexStr(a,b){
+  var bTerm = meqFmtTerm(b,'i');
+  if (a===0) return (b<0?'−':'')+(Math.abs(b)===1?'':Math.abs(b))+'i';
+  return meqFmtVal(a) + bTerm;
+}
+function meqSurdStr(p,q,m){
+  var qTerm = (q<0?'−':'+')+(Math.abs(q)===1?'':Math.abs(q))+'√'+m;
+  return meqFmtVal(p)+qTerm;
+}
+function higheqConjugateGen(qid,aid){
+  var type = Math.random()<0.5 ? 'complex' : 'surd';
+  var t = meqRandInt(-4,4);
+  if (type==='complex'){
+    var a=meqRandInt(-3,3), b=meqRandNonZero(-4,4);
+    var rootStr = meqComplexStr(a,b);
+    var ansStr = meqComplexStr(a,-b);
+    var normSq = a*a+b*b;
+    var P=-(t+2*a), Q=2*a*t+normSq, R=-t*normSq;
+    document.getElementById(qid).innerHTML = '실계수 삼차방정식 x³+px²+qx+r=0의 한 근이 '+rootStr+'이고, 다른 한 근이 '+meqFmtVal(t)+'일 때, p+q+r의 값을 구하세요.';
+    document.getElementById(aid).innerHTML = '계수가 실수이므로 '+rootStr+'의 켤레복소수 '+ansStr+'도 근이다. 세 근은 '+meqFmtVal(t)+', '+rootStr+', '+ansStr+'<br>'+
+      '세 근의 합 = '+meqFmtVal(t)+meqFmtTerm(2*a,'')+' = −p → p='+meqFmtVal(P)+'<br>'+
+      '두 근씩 짝지은 곱의 합 = q → q='+meqFmtVal(Q)+'<br>'+
+      '세 근의 곱 = '+meqFmtVal(t)+'×'+normSq+' = −r → r='+meqFmtVal(R)+'<br>'+
+      '<b>p+q+r = '+meqFmtVal(P+Q+R)+'</b>';
+  } else {
+    var mPool=[2,3,5,6,7];
+    var m = mPool[Math.floor(Math.random()*mPool.length)];
+    var p0=meqRandInt(-3,3), q0=meqRandNonZero(-3,3);
+    var rootStr = meqSurdStr(p0,q0,m);
+    var ansStr = meqSurdStr(p0,-q0,m);
+    var normSq = p0*p0-q0*q0*m;
+    var P=-(t+2*p0), Q=2*p0*t+normSq, R=-t*normSq;
+    document.getElementById(qid).innerHTML = '유리계수 삼차방정식 x³+px²+qx+r=0의 한 근이 '+rootStr+'이고, 다른 한 근이 '+meqFmtVal(t)+'일 때, p+q+r의 값을 구하세요.';
+    document.getElementById(aid).innerHTML = '계수가 유리수이므로 '+rootStr+'의 켤레무리근 '+ansStr+'도 근이다. 세 근은 '+meqFmtVal(t)+', '+rootStr+', '+ansStr+'<br>'+
+      '세 근의 합 = '+meqFmtVal(t)+meqFmtTerm(2*p0,'')+' = −p → p='+meqFmtVal(P)+'<br>'+
+      '두 근씩 짝지은 곱의 합 = q → q='+meqFmtVal(Q)+'<br>'+
+      '세 근의 곱 = '+meqFmtVal(t)+'×('+meqFmtVal(normSq)+') = −r → r='+meqFmtVal(R)+'<br>'+
+      '<b>p+q+r = '+meqFmtVal(P+Q+R)+'</b>';
+  }
+  document.getElementById(aid).style.display='none';
+}
+function meqKTermStr(coef){
+  if (coef===0) return '';
+  var sign = coef<0? '−':'+';
+  var mag = Math.abs(coef);
+  return sign+(mag===1?'':mag)+'k';
+}
+function higheqDiscriminantGen(qid,aid){
+  var kind = Math.random()<0.5 ? 'cubic' : 'quartic';
+  if (kind==='cubic'){
+    var r = meqRandInt(-4,4);
+    var problem = 'x³'+meqFmtTerm(-r,'x²')+'+kx'+meqKTermStr(-r)+'=0';
+    document.getElementById(qid).innerHTML = problem+' 이 <b>오직 하나의 실근만</b> 갖도록 하는 실수 k의 범위를 구하세요.';
+    document.getElementById(aid).innerHTML =
+      'x='+meqFmtVal(r)+'을 대입: k값과 무관하게 항상 0이에요! (x'+meqFmtTerm(-r,'')+')은 항상 인수.<br>'+
+      '조립제법으로 나누면 몫은 x²+k.<br>'+problem.replace('=0','')+' = (x'+meqFmtTerm(-r,'')+')(x²+k) = 0<br>'+
+      '실근이 x='+meqFmtVal(r)+' 하나뿐이려면, 남은 인수 x²+k=0이 <b>허근</b>을 가져야 해요.<br>'+
+      'x²+k=0의 판별식 D=−4k &lt; 0 → <b>k &gt; 0</b>';
+  } else {
+    var s = meqRandInt(1,9);
+    var problem = 'x⁴+(k'+meqFmtTerm(-s,'')+')x²'+meqKTermStr(-s)+'=0';
+    var sq = meqSimplifySqrt(s);
+    var xValStr = (sq.rem===1) ? String(sq.coef) : meqSqrtLabel(s);
+    document.getElementById(qid).innerHTML = problem+' 이 <b>서로 다른 두 실근과 두 허근</b>을 갖도록 하는 실수 k의 범위를 구하세요.';
+    document.getElementById(aid).innerHTML =
+      '짝수차항만 있으니 t=x²로 치환.<br>t²+(k'+meqFmtTerm(-s,'')+')t'+meqKTermStr(-s)+' = (t'+meqFmtTerm(-s,'')+')(t+k) = 0 → t='+s+' 또는 t=−k<br>'+
+      't='+s+' → x²='+s+' → <b>x=±'+xValStr+' (실근 두 개, k값과 무관하게 항상 나옴)</b><br>'+
+      't=−k → x²=−k — 이게 <b>허근</b>이어야 나머지 두 근이 실근이 안 돼요.<br>'+
+      'x²=−k 가 허근 ⟺ −k&lt;0 ⟺ <b>k &gt; 0</b>';
+  }
+  document.getElementById(aid).style.display='none';
 }
 function pickDistinct(n, count){
   var pool=[]; for(var i=1;i<=n;i++) pool.push(i);

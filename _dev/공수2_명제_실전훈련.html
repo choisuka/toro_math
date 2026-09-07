@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학2 · 명제 (2/2 실전훈련) — 빌드 파일</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card:not(:last-child){page-break-after:always}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:16px;padding-top:16px;border-top:1px dashed #bbb;font-size:12.5px;color:#333;line-height:1.95}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{font-size:11px;font-weight:700;color:#666!important;margin-bottom:8px}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.blank{border:1px dashed #bbb;border-radius:6px;padding:6px 10px;margin:2px 0 14px;font-size:.92em;color:#666;font-weight:400}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 공통수학2 · 명제 (2/2 실전훈련)</div>
+    <div class="toolbar-sub">공수2_명제.html(개념파일)에서 실제 기출 재현형 문제(신규1~3, 5)만 분리 · 개념 설명은 명제.html에 그대로 남아있음 · 문항 4개 + 구조신호</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 명제 (2/2 실전훈련)</h1>
+
+<div class="card">
+  <div class="card-meta">명제 — 실전훈련</div>
+  <div class="card-tag">📝 풀기 전에 읽어주세요</div>
+  <div class="card-body">
+각 문항 위 빈칸에, 풀기 전에 이 문제가 어떤 개념(서랍)을 쓰는지 먼저 적어보세요. 개념 설명은 <b>공수2_명제.html</b>에 있으니, 헷갈리면 거기서 확인하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">문항1 — 필요·충분조건 역산 (공수2_명제.html "필요·충분조건 역산" 개념 참고) · 난이도 중</div>
+  <div class="card-tag">문항 1</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+실수 x에 대한 두 조건 p: x²−(2a+4)x+a(a+4)≤0, q: −1≤x≤7이 있다. p가 q이기 위한 충분조건이 되도록 하는 정수 a의 최댓값과 최솟값의 합을 구하여라. [4점]
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">문항1 — 풀이</div>
+  <div class="card-tag">💡 정답 2</div>
+  <div class="card-body">
+p를 인수분해하면 (x−a){x−(a+4)}≤0 → <b>a≤x≤a+4</b> (진리집합 P=[a, a+4])<br>
+q의 진리집합 Q=[−1, 7]<br>
+p가 q이기 위한 충분조건 ⟺ P⊂Q ⟺ a≥−1 <b>그리고</b> a+4≤7 ⟺ −1≤a≤3<br>
+정수 a: −1, 0, 1, 2, 3 → 최댓값 3, 최솟값 −1 → <b>합 = 2</b>
+<div class="toro-note">🦕 <b>구조 신호</b>: "충분조건이 되도록 하는 상수의 범위/최댓값·최솟값"이라는 표현이 나오면 → 명제.html 주제3(필요·충분조건)에서 배운 P⊂Q 판정을 <b>거꾸로</b> 쓰는 문제예요. P, Q 중 어느 쪽에 미지수가 있는지 먼저 확인하고, 구간의 왼쪽 끝·오른쪽 끝을 각각 부등식으로 비교하세요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">문항2 — 반례 개수 세기 (공수2_명제.html "반례 개수 세기" 개념 참고) · 난이도 중</div>
+  <div class="card-tag">문항 2</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+100보다 작은 자연수 n에 대하여 명제 "n이 4의 배수이면 n은 6의 배수이다"가 거짓임을 보여주는 반례는 모두 몇 가지인지 구하여라. [4점]
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">문항2 — 풀이</div>
+  <div class="card-tag">💡 정답 16개</div>
+  <div class="card-body">
+반례는 "4의 배수이면서 6의 배수가 아닌 자연수"<br>
+1≤n≤99 범위에서 4의 배수: ⌊99/4⌋ = 24개<br>
+4의 배수이면서 <b>동시에</b> 6의 배수 → 4와 6의 최소공배수인 12의 배수: ⌊99/12⌋ = 8개<br>
+반례 개수 = 24 − 8 = <b>16개</b>
+<div class="toro-note">🦕 <b>구조 신호</b>: "반례는 모두 몇 가지인가"라는 표현이 나오면 → 반례 하나만 찾는 것과 달리 <b>전체 개수를 세는</b> 문제예요. "p를 만족하는 개수 − p,q를 모두 만족하는 개수"로 접근하세요 (겹치는 부분을 빼는 방식은 집합의 차집합 계산과 원리가 같아요).</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">문항3 — 대우 연쇄추론 (공수2_명제.html "대우 연쇄추론" 개념 참고) · 난이도 상</div>
+  <div class="card-tag">문항 3</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+네 조건 p, q, r, s에 대하여 세 명제 p→q, q→r, r→s가 모두 참이라고 하자. &lt;보기&gt;에서 반드시 참인 명제만을 있는 대로 고른 것은? [4점]<br><br>
+&lt;보기&gt;<br>
+ㄱ. p→s<br>
+ㄴ. q→p<br>
+ㄷ. ~s→~p<br>
+ㄹ. s→r<br><br>
+① ㄱ &nbsp; ② ㄴ &nbsp; ③ ㄱ, ㄷ &nbsp; ④ ㄴ, ㄹ &nbsp; ⑤ ㄱ, ㄴ, ㄷ, ㄹ
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">문항3 — 풀이</div>
+  <div class="card-tag">💡 정답 ③ (ㄱ, ㄷ)</div>
+  <div class="card-body">
+p→q, q→r, r→s가 모두 참 → 진리집합 P⊂Q⊂R⊂S<br>
+ㄱ. p→s: P⊂S이므로 <b>참</b><br>
+ㄴ. q→p: Q⊂P는 보장 안 됨(Q가 P보다 클 수 있음) → 반드시 참은 아님<br>
+ㄷ. ~s→~p: ㄱ(p→s)의 <b>대우</b>이므로 <b>참</b><br>
+ㄹ. s→r: S⊂R은 보장 안 됨(주어진 방향과 반대) → 반드시 참은 아님<br>
+반드시 참인 것은 <b>ㄱ, ㄷ → 정답 ③</b><br><br>
+(오답 설계) ① ㄱ만 고름 — ㄷ이 ㄱ의 대우라는 걸 놓친 경우 / ② ㄴ — 역방향을 참으로 착각 / ④ ㄴ,ㄹ — 두 역방향 오답만 정답이라 착각(가장 흔한 함정) / ⑤ 전부 참 — 대우와 역을 구분하지 않고 화살표만 보고 다 참이라 판단한 경우
+<div class="toro-note">🦕 <b>구조 신호</b>: "여러 명제가 모두 참일 때 &lt;보기&gt;에서 고르시오"라는 표현이 나오면 → 대우와 P⊂Q 포함관계를 동시에 써야 하는 결합문제예요. 원래 주어진 화살표 방향과 그 <b>대우만</b> 참으로 인정하고, 역이나 반대 방향은 근거 없이 참으로 넘겨짚지 마세요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">문항4 — 한정기호 대비쌍 (공수2_명제.html "한정기호 명제" 개념 참고) · 난이도 상</div>
+  <div class="card-tag">문항 4</div>
+  <div class="card-body" style="font-weight:600">
+    <div class="blank">▶ 이 문제가 사용하는 개념: ________________________</div>
+1≤x≤4인 <b>모든</b> 실수 x에 대하여 x²−4x+k≥0이 성립하도록 하는 정수 k의 최솟값을 A,<br>
+1≤x≤4인 <b>어떤</b> 실수 x에 대하여 x²−4x+k≥0이 성립하도록 하는 정수 k의 최솟값을 B라 할 때, A−B의 값을 구하세요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">문항4 — 풀이</div>
+  <div class="card-tag">💡 정답 4 (A=4, B=0)</div>
+  <div class="card-body">
+f(x)=x²−4x+k=(x−2)²+(k−4), 꼭짓점 x=2는 [1,4] 구간 안에 있어요.<br><br>
+<b>A (모든 x)</b>: [1,4]에서 f(x)의 최솟값 ≥ 0이어야 함. 최솟값은 꼭짓점에서: f(2)=k−4 ≥ 0 → k≥4 → <b>A=4</b><br><br>
+<b>B (어떤 x)</b>: [1,4]에서 f(x)의 최댓값 ≥ 0이면 충분. 꼭짓점(x=2)에서 더 먼 끝점이 최댓값 — |4−2|=2 &gt; |1−2|=1이므로 최댓값은 f(4)=16−16+k=k. k≥0 → <b>B=0</b><br><br>
+<b>A−B = 4−0 = 4</b><br><br>
+검산: k=4일 때 f(1)=1−4+4=1≥0, f(4)=16−16+4=4≥0 → [1,4] 전체에서 0 이상 ✓(모든 x 성립). k=0일 때 f(4)=0(딱 하나 만족) → 어떤 x는 성립하지만 f(1)=1−4+0=−3&lt;0이라 모든 x는 실패 → B=0이 "어떤"에서만 통과함을 확인.
+<div class="toro-note">🦕 <b>구조 신호</b>: "모든 x" = 구간 전체를 다 지켜야 하니 <b>더 엄격한(더 큰 k가 필요한)</b> 조건, "어떤 x" = 딱 하나만 걸리면 되니 <b>더 느슨한(더 작은 k로도 되는)</b> 조건이에요. 그래서 항상 A(모든)의 최솟값 ≥ B(어떤)의 최솟값이 성립해요.</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

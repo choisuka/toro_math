@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>공통수학1 · 여러 가지 방정식 — 부정방정식 (3/3 개념·도구) — 빌드 파일</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#e9e9ee;color:#1a1a1a;padding:28px 16px;font-size:13px;line-height:1.65}
+.toolbar{max-width:640px;margin:0 auto 18px;background:#fff;border:1px solid #d8d8e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.toolbar-label{font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.02em}
+.toolbar-sub{font-size:11px;color:#888;margin-top:2px}
+.print-btn{padding:7px 18px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700}
+@media print{.toolbar{display:none}body{background:#fff;padding:8px}}
+.sheet{max-width:640px;margin:0 auto;background:#fff;padding:20px;border-radius:10px}
+@media print{.sheet{box-shadow:none;padding:0}}
+h1{text-align:center;font-size:15px;margin-bottom:22px;color:#333;border-bottom:2px solid #6366f1;padding-bottom:8px}
+.card{border:1px solid #ddd;border-radius:12px;padding:24px 22px;margin-bottom:22px;break-inside:avoid;page-break-inside:avoid}
+.card-meta{font-size:10px;color:#999;margin-bottom:5px}
+.card-tag{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:14px}
+.card-body{font-size:13.5px;line-height:2.0}
+.card-body *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important}
+.card-body b{color:#333!important;font-weight:700}
+.card-extra{margin-top:16px;padding-top:16px;border-top:1px dashed #bbb;font-size:12.5px;color:#333;line-height:1.95}
+.card-extra *{color:#333!important;background:transparent!important;border-color:#ccc!important}
+.extra-lbl{display:inline-block;font-size:1.15em;font-weight:800;color:#15803d!important;background:rgba(21,128,61,.08);padding:3px 12px;border-radius:6px;margin-bottom:10px}
+.toro-note{background:rgba(251,191,36,.08)!important;border:1px solid rgba(251,191,36,.35)!important;border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.95em;line-height:1.8}
+.key-term{font-size:1.2em;font-weight:800;color:#4c1d95!important;letter-spacing:-.01em}
+.unit-header{font-size:16px;font-weight:800;color:#4c1d95;text-align:center;padding:9px 0;margin:26px 0 16px;border-top:3px solid #4c1d95;border-bottom:3px solid #4c1d95;letter-spacing:.02em}
+.type-badge{display:inline-flex;align-items:center;justify-content:center;width:1.5em;height:1.5em;border-radius:50%;background:#4c1d95;color:#fff!important;font-weight:800;font-size:1.15em;margin-right:.35em;vertical-align:middle}
+.problem-label{display:inline-block;font-size:1.15em;font-weight:800;color:#1d4ed8!important;background:rgba(29,78,216,.08);padding:3px 12px;border-radius:6px;margin-bottom:10px}
+.solution-label{display:inline-block;font-size:1.15em;font-weight:800;color:#15803d!important;background:rgba(21,128,61,.08);padding:3px 12px;border-radius:6px;margin-bottom:10px}
+.idea-label{display:inline-block;font-size:1.1em;font-weight:800;color:#b45309!important;background:rgba(245,158,11,.1);padding:3px 12px;border-radius:6px;margin:6px 0 8px}
+.box-formula{border:1.5px solid #c4b5fd;background:rgba(139,92,246,.06);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.1}
+.box-note{border:1.5px solid #93c5fd;background:rgba(59,130,246,.05);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.95em;line-height:2.0}
+@media print{
+svg text{fill:#333!important}
+svg line{stroke:#aaa!important}
+svg rect{stroke:#aaa!important}
+svg circle{stroke:#aaa!important;fill:#999!important}
+svg polygon{stroke:#aaa!important;fill:#eee!important}
+svg path{stroke:#aaa!important}
+}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.92em;line-height:1.3}
+.frac .num{border-bottom:1.4px solid currentColor;padding:0 4px 1px}
+.frac .den{padding:1px 4px 0}
+.drawer-box{border:1.5px solid #fbbf24;background:rgba(251,191,36,.06);border-radius:8px;padding:.7rem 1rem;margin:.6rem 0;font-size:.92em;line-height:1.85}
+.drawer-title{display:block;font-weight:800;color:#b45309;font-size:1.05em;margin-bottom:2px}
+.cmp-table{border-collapse:collapse;margin:10px auto;font-size:.92em;width:100%}
+.cmp-table th,.cmp-table td{border:1px solid #bbb;padding:7px 10px;text-align:center}
+.cmp-table th{background:#f3f0ff;color:#4c1d95;font-weight:700}
+.toc-box{border:1px solid #ccc;border-radius:8px;padding:.7rem 1rem;margin:.5rem 0;font-size:.95em;line-height:1.9}
+sub,sup{font-size:.68em;line-height:0}
+sup{vertical-align:.5em}
+sub{vertical-align:-.3em}
+.pair-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:.6rem 0}
+.pair-box{border-radius:8px;padding:.7rem .8rem;font-size:.88em;line-height:1.8}
+.pair-int{border:1.5px solid #86efac;background:rgba(134,239,172,.07)}
+.pair-real{border:1.5px solid #fca5a5;background:rgba(252,165,165,.07)}
+.pair-lbl{display:block;font-weight:800;margin-bottom:6px}
+@media (max-width:480px){.pair-wrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-label">🚧 빌드 중 — 공통수학1 · 여러 가지 방정식 (부정방정식, 3/3 개념·도구)</div>
+    <div class="toolbar-sub">개념(주제0~4: 부정방정식이란→정수조건 AB=k→실수조건 완전제곱합→판별 훈련→실전형 자연수조건)으로 여러 가지 방정식 3부작 완결</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ 인쇄 미리보기</button>
+</div>
+
+<div class="sheet">
+<h1>🦕 토로의 수학왕국 · 여러 가지 방정식 — 부정방정식 (3/3 개념·도구)</h1>
+
+<div class="card">
+  <div class="card-meta">목차</div>
+  <div class="card-tag">📋 이 파일 미리보기</div>
+  <div class="card-body">
+이 파일의 흐름을 먼저 확인하세요.<br><br>
+<div class="toc-box">
+<b>주제 0</b> 부정방정식이란? — 식보다 미지수가 많을 때<br>
+<b>주제 1</b> 정수 조건 — AB=k 꼴 만들기<br>
+<b>주제 2</b> 실수 조건 — 완전제곱의 합=0<br>
+<b>주제 3</b> 판별 훈련 — "정수"냐 "실수"냐로 풀이가 완전히 갈린다<br>
+<b>주제 4</b> 실전형 — 자연수 조건(정수 조건 위에 필터 하나 더)<br>
+<b>총정리</b> 부정방정식 문제 해결 서랍 총정리
+</div>
+이 단원에서 제일 중요한 건 계산이 아니라 <b>문제에 적힌 조건 단어(정수·자연수·실수)를 보고 어떤 도구를 꺼낼지 판단하는 것</b>이에요. 같은 모양의 식이라도 조건이 다르면 풀이가 완전히 달라집니다.
+  </div>
+</div>
+
+<div class="unit-header" style="margin-top:0">📍 주제 0 — 부정방정식이란? 식보다 미지수가 많을 때</div>
+
+<div class="card">
+  <div class="card-meta">부정방정식 — 도입</div>
+  <div class="card-tag">🤔 x+y=5, 이 식 하나로 x,y를 다 구할 수 있을까?</div>
+  <div class="card-body">
+<div class="problem-label">❓ 던지는 질문</div><br>
+x+y=5 라는 식 하나만 있어요. x=1,y=4도 되고, x=2.5,y=2.5도 되고, x=100,y=−95도 돼요 — <b>해가 무수히 많아요.</b><br><br>
+보통 미지수가 2개면 식도 2개 있어야 해가 딱 하나(또는 몇 개)로 정해지는데, 식이 <b>부족</b>하면 이렇게 해가 정해지지 않아요(부정, 不定). 그런데 여기에 <b>"x, y는 정수다"</b> 같은 조건을 하나 걸면 어떻게 될까요? 무수히 많던 해가 갑자기 몇 개로 확 줄어들 수 있어요.
+<div class="box-note">
+<b>부정방정식</b>: 식의 개수보다 미지수가 많아 해가 무수히 많은 방정식에, <b>정수·자연수·실수</b> 같은 범위 조건을 걸어 유한 개(또는 하나)의 해만 골라내는 방정식.
+</div>
+<div class="toro-note">🦕 토로: 이 단원은 딱 두 가지 조건만 다뤄요 — <b>"정수(자연수)"</b>일 때와 <b>"실수"</b>일 때. 조건에 따라 쓰는 도구가 완전히 다르니, 문제를 보자마자 어떤 조건인지부터 확인하는 습관이 제일 중요해요.</div>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 1 — 정수 조건: AB=k 꼴 만들기</div>
+
+<div class="card">
+  <div class="card-meta">정수 조건 — 도입 (닻: 인수분해, 내림차순 정리)</div>
+  <div class="card-tag">🔙 곱해서 특정 수가 되는 정수 쌍은 몇 개 없다</div>
+  <div class="card-body">
+정수 A, B에 대해 <b>A×B=5</b>라면, A와 B는 <b>5의 약수 쌍</b>뿐이에요: (1,5),(5,1),(−1,−5),(−5,−1). 무한하지 않고 딱 4쌍이죠.<br><br>
+이 아이디어를 이용해요 — <b>xy가 섞인 식을 (x+b)(y+a)=상수 꼴로 인수분해</b>할 수 있으면, 약수 쌍을 나열해서 정수해를 전부 찾을 수 있어요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">정수 조건 — 풀이 과정 (그룹핑)</div>
+  <div class="card-tag">📐 xy+ax+by+c=0을 (x+b)(y+a)=상수로 바꾸기</div>
+  <div class="card-body">
+<div class="problem-label">❓ 예제</div><br>
+xy−2x−3y+1=0 을 만족하는 정수 x, y를 모두 구하세요.<br><br>
+x가 있는 항끼리 묶어요:
+<div class="box-formula">
+x(y−2) − 3y + 1 = 0<br>
+x(y−2) − 3(y−2) − 6 + 1 = 0<br>
+(x−3)(y−2) = 5
+</div>
+5의 약수 쌍을 전부 나열하면:
+<div class="box-note">
+(x−3,y−2) = (1,5),(5,1),(−1,−5),(−5,−1)<br>
+→ (x,y) = (4,7), (8,3), (2,−3), (−2,1)
+</div>
+🔗 <b>연결</b>: "x가 있는 항끼리 묶는다"는 이 과정은 고차방정식 단원(유형⑤ 내림차순 정리)에서 배운 <b>"한 문자를 기준으로 정리한다"</b>는 원리와 같아요.<br><br>
+매번 이렇게 묶기 번거로우니, 일반형으로 외워두면 편해요:
+<div class="box-formula">
+xy+ax+by+c=0 → <b>(x+b)(y+a) = ab−c</b>
+</div>
+<div class="toro-note">🦕 토로: 확인해볼게요 — 위 예제는 a=−2, b=−3, c=1 이니까 ab−c = 6−1 = 5. 맞아요!</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">정수 조건 — 기본문제</div>
+  <div class="card-tag">기본 1 — 그룹핑으로 AB=k 꼴 만들어 정수해 찾기</div>
+  <div class="card-body" style="font-weight:600">
+xy−x−2y−1=0 을 만족하는 정수 x, y의 순서쌍의 개수를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+x(y−1) − 2y − 1 = 0 → x(y−1) − 2(y−1) − 2 − 1 = 0 → (x−2)(y−1) = 3<br>
+3의 약수 쌍: (1,3),(3,1),(−1,−3),(−3,−1) → <b>4개</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">정수 조건 — 유사문제</div>
+  <div class="card-tag">🔄 유사문제로 연습하기</div>
+  <div class="card-body">
+<div class="toc-box">
+<b>유사문제1</b>: xy+2x−y−7=0 을 만족하는 정수 x, y의 순서쌍의 개수를 구하세요.
+</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">정수 조건 — 심화 (그룹핑이 안 통할 때)</div>
+  <div class="card-tag">🔥 심화 — x², y²이 섞여 그룹핑이 안 통하면: 내림차순+판별식</div>
+  <div class="card-body">
+<div class="problem-label">❓ 던지는 질문</div><br>
+지금까지 본 식은 전부 xy 하나만 있고 x², y²은 없었어요. 그런데 <b>x²이나 y²이 함께 있으면</b> (x+b)(y+a)=k 꼴로 그룹핑이 안 통할 때가 있어요. 이럴 땐 어떻게 할까요?<br><br>
+<div class="problem-label" style="margin-top:6px">❓ 예제</div><br>
+x²+xy+y²−x−y−1=0 을 만족하는 정수 x, y를 모두 구하세요.<br><br>
+x²+xy+y²는 정수 계수로 인수분해가 안 돼요 — 그룹핑이 막혔으니, <b>x에 대한 이차방정식으로 보고 내림차순 정리</b>합니다.
+<div class="box-formula">
+x² + (y−1)x + (y²−y−1) = 0
+</div>
+x가 <b>실수</b>이려면 판별식 D≥0.
+<div class="box-formula">
+D = (y−1)² − 4(y²−y−1) = −3y²+2y+5 ≥ 0
+</div>
+이 부등식을 풀면 −1≤y≤5/3 — 정수 y는 <b>−1, 0, 1</b> 셋뿐으로 좁혀져요. 이제 하나씩 대입해서 D가 <b>완전제곱수</b>인지(=x가 정수인지) 확인합니다.
+<div class="box-note">
+y=−1: D=0 (완전제곱) → x=1<br>
+y=0: D=5 (완전제곱 아님) → 정수 x 없음<br>
+y=1: D=4 (완전제곱) → x=1 또는 −1
+</div>
+<div class="box-note">
+<b>정수해: (1,−1), (1,1), (−1,1) — 3개</b>
+</div>
+<div class="toro-note">🦕 토로: 여기엔 두 단계 필터가 있어요 — <b>①D≥0</b>은 "x가 실수로 존재할 조건"이고, <b>②D가 완전제곱수</b>는 "그 x가 정수일 조건"이에요. ①로 y의 후보를 확 줄이고, ②로 진짜 정수해만 골라내는 순서예요. 🔗 <b>연결</b>: D≥0으로 범위를 좁히는 이 과정은 이차연립방정식 단원(서랍3)의 판별식 활용과 완전히 같은 도구예요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">정수 조건 — 심화 유사문제</div>
+  <div class="card-tag">🔄 유사문제로 연습하기</div>
+  <div class="card-body">
+<div class="toc-box">
+<b>유사문제1</b>: x²+xy+y²−2x−y−2=0 을 만족하는 정수 x, y를 모두 구하세요.
+</div>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 2 — 실수 조건: 완전제곱의 합=0</div>
+
+<div class="card">
+  <div class="card-meta">실수 조건 — 도입 (닻: 다항식 단원 완전제곱식)</div>
+  <div class="card-tag">🔙 제곱은 절대 음수가 되지 않는다</div>
+  <div class="card-body">
+실수를 제곱하면 항상 0 이상이에요 — 이 당연한 사실이 이번 도구의 전부예요.
+<div class="box-note">
+A, B가 <b>실수</b>일 때, A²+B²=0 ⟺ <b>A=0 이고 B=0</b><br>
+(둘 다 0 이상인데 합이 0이려면, 각각 0일 수밖에 없다)
+</div>
+그래서 실수 조건의 부정방정식은 <b>주어진 식을 (완전제곱)+(완전제곱)=0 꼴로 만드는 것</b>이 목표예요. 다항식 단원 곱셈공식(완전제곱식 x²±2ax+a²=(x±a)²)을 그대로 씁니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">실수 조건 — 풀이 과정</div>
+  <div class="card-tag">📐 완전제곱 두 개로 쪼개기</div>
+  <div class="card-body">
+<div class="problem-label">❓ 예제</div><br>
+x²+y²−4x+6y+13=0 을 만족하는 실수 x, y를 구하세요.<br><br>
+x끼리, y끼리 모아서 완전제곱을 만들어요.
+<div class="box-formula">
+(x²−4x+4) + (y²+6y+9) = 13−4−9<br>
+(x−2)² + (y+3)² = 0
+</div>
+<div class="box-note">
+x−2=0 이고 y+3=0 → <b>x=2, y=−3</b>
+</div>
+<div class="toro-note">🦕 토로: 상수항을 나눠 넣는 계산(13−4−9)이 헷갈리면, 완전제곱 만들 때 <b>더한 만큼 반대쪽에서 빼준다</b>고 생각하세요 — x²−4x에 +4를 더했으니, 등호를 맞추려면 우변에도 +4를 더해야 해요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">실수 조건 — 기본문제</div>
+  <div class="card-tag">기본 2 — 완전제곱의 합으로 실수해 찾기</div>
+  <div class="card-body" style="font-weight:600">
+x²+4y²−2x+16y+17=0 을 만족하는 실수 x, y를 구하세요.
+  </div>
+  <div class="card-extra">
+    <div class="extra-lbl">💡 풀이</div>
+(x²−2x+1) + (4y²+16y+16) = 17−1−16 → (x−1)² + 4(y+2)² = 0<br>
+x−1=0 이고 y+2=0 → <b>x=1, y=−2</b>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">실수 조건 — 유사문제</div>
+  <div class="card-tag">🔄 유사문제로 연습하기</div>
+  <div class="card-body">
+<div class="toc-box">
+<b>유사문제1</b>: x²+y²+6x−4y+13=0 을 만족하는 실수 x, y를 구하세요.
+</div>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 3 — 판별 훈련: "정수"냐 "실수"냐로 풀이가 완전히 갈린다</div>
+
+<div class="card">
+  <div class="card-meta">판별 훈련 — 대비쌍</div>
+  <div class="card-tag">🔍 겉모습은 비슷한데, 조건 단어 하나가 풀이를 바꾼다</div>
+  <div class="card-body">
+아래 두 문제를 나란히 비교해보세요. 식의 생김새는 비슷해 보이지만, <b>조건 단어 하나</b>가 완전히 다른 도구를 요구해요.
+<div class="pair-wrap">
+<div class="pair-box pair-int">
+<span class="pair-lbl" style="color:#15803d">A. 정수 조건</span>
+xy−x−y−5=0을 만족하는 <b>정수</b> x, y의 순서쌍의 개수는?
+</div>
+<div class="pair-box pair-real">
+<span class="pair-lbl" style="color:#b91c1c">B. 실수 조건</span>
+x²+y²−2x+2y+2=0을 만족하는 <b>실수</b> x, y의 순서쌍의 개수는?
+</div>
+</div>
+<b>A 풀이</b>: x(y−1) −(y−1) −6=0 → (x−1)(y−1)=6 → 6의 약수 쌍 8개 → <b>8개</b><br>
+<b>B 풀이</b>: (x−1)²+(y+1)²=0 → x=1,y=−1 하나뿐 → <b>1개</b>
+<div class="toro-note">🦕 토로: A는 "곱해서 6이 되는 정수 쌍이 몇 개나 있지?"를 묻는 문제라 답이 여러 개고, B는 "제곱의 합이 0이 되려면?"을 묻는 문제라 답이 <b>정확히 하나</b>예요. 문제를 읽을 때 <b>"정수"·"실수"라는 단어에 반드시 형광펜을 긋는 연습</b>을 하세요 — 이 단어 하나가 전체 풀이 방향을 결정합니다.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">판별 훈련 — 세 번째 함정 (판별식이 필요한 경우)</div>
+  <div class="card-tag">🔍 "정수" 조건인데 그룹핑도 안 통하면?</div>
+  <div class="card-body">
+A, B는 각각 그룹핑(서랍0)과 완전제곱(서랍1)으로 바로 풀렸죠. 그런데 <b>"정수" 조건인데 x², y²이 섞여 그룹핑도 안 통하는 경우</b>가 있어요 — 이땐 주제1 심화에서 배운 <b>내림차순+판별식(서랍2)</b>까지 가야 해요.
+<div class="pair-box pair-int" style="margin:.6rem 0">
+<span class="pair-lbl" style="color:#15803d">판별식 사용한 문제</span>
+x²−xy+y²−3x+3=0 을 만족하는 정수 x, y를 구하세요.
+</div>
+x²−xy+y²는 정수 계수로 인수분해가 안 되니 서랍0(그룹핑) 실패 → x에 대해 내림차순: x²+(−y−3)x+(y²+3)=0<br>
+D=(y+3)²−4(y²+3) = −3y²+6y−3 = −3(y−1)² ≥ 0 은 y=1일 때만 성립(D=0)<br>
+x=(y+3)/2=(1+3)/2=2
+<div class="box-note">
+<b>정수해: (x,y)=(2,1) — 유일하다</b>
+</div>
+<div class="toro-note">🦕 토로: "정수"라는 단어만 보고 반사적으로 그룹핑부터 시도하면 안 돼요 — <b>먼저 xy만 있는지(그룹핑 가능), x²·y²까지 섞여 있는지(판별식 필요)를 식의 모양으로 먼저 확인</b>하세요. 조건 단어(정수·실수) 하나, 식의 모양(xy만 vs x²·y²도) 하나 — 이 두 가지를 같이 봐야 서랍을 제대로 고를 수 있어요.</div>
+  </div>
+</div>
+
+<div class="unit-header">📍 주제 4 — 실전형: 자연수 조건 (정수 조건 위에 필터 하나 더)</div>
+
+<div class="card">
+  <div class="card-meta">실전형 — 도입</div>
+  <div class="card-tag">🔗 "자연수"는 "정수"보다 한 단계 더 좁은 조건</div>
+  <div class="card-body">
+실전 문제에서는 "정수"보다 <b>"자연수"</b> 조건이 더 자주 나와요. 자연수는 1 이상의 정수니까, <b>정수 조건으로 구한 해들 중에서 x≥1, y≥1인 것만 다시 골라내면</b> 돼요 — 새 도구가 아니라 주제1 위에 필터 하나를 더 얹는 것뿐이에요.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">실전형 — 예제 (표준 패턴, 참고자료에 이 정확한 형태의 기출은 없어 직접 설계)</div>
+  <div class="card-tag">📐 정수해를 다 구한 뒤, 자연수 조건으로 한 번 더 거르기</div>
+  <div class="card-body">
+<div class="problem-label">❓ 예제</div><br>
+xy−3x−2y=0 을 만족하는 <b>자연수</b> x, y의 순서쌍의 개수를 구하세요.<br><br>
+먼저 정수 조건처럼 그룹핑: x(y−3) −2y=0 → x(y−3) −2(y−3) −6=0 → (x−2)(y−3)=6
+<div class="box-formula">
+6의 약수 쌍(정수 전체): (1,6)(2,3)(3,2)(6,1)(−1,−6)(−2,−3)(−3,−2)(−6,−1)<br>
+→ (x,y): (3,9)(4,6)(5,5)(8,4)(1,−3)(0,0)(−1,1)(−4,2)
+</div>
+이제 <b>x≥1, y≥1</b>(자연수) 조건으로 걸러내면:
+<div class="box-note">
+(3,9), (4,6), (5,5), (8,4) → <b>4개</b><br>
+(나머지 4개는 x 또는 y가 1보다 작아서 탈락)
+</div>
+<div class="toro-note">🦕 토로: "정수"로 물으면 8개, "자연수"로 물으면 4개 — <b>같은 방정식인데 조건 하나로 답이 반토막</b>이 나요. 약수 쌍을 다 나열한 다음, 마지막에 범위 조건으로 한 번 더 체크하는 습관을 들이세요.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">실전형 — 유사문제</div>
+  <div class="card-tag">🔄 유사문제로 연습하기</div>
+  <div class="card-body">
+<div class="toc-box">
+<b>유사문제1</b>: xy−4x−3y=0 을 만족하는 자연수 x, y의 순서쌍의 개수를 구하세요.
+</div>
+  </div>
+</div>
+
+<div class="unit-header">📍 총정리</div>
+
+<div class="card">
+  <div class="card-meta">부정방정식 — 문제 해결 서랍 총정리</div>
+  <div class="card-tag">🗄️ 부정방정식을 만나면 이 순서로 서랍을 열어보세요</div>
+  <div class="card-body">
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 0 — "정수" 또는 "자연수" 조건이면</span>
+xy+ax+by+c=0 꼴로 그룹핑해서 (x+b)(y+a)=ab−c 를 만들고, 약수 쌍을 전부 나열한다. "자연수"면 x≥1,y≥1 필터를 마지막에 한 번 더 건다.
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 1 — "실수" 조건이면</span>
+x끼리, y끼리 모아 완전제곱의 합=0 꼴로 만든다. A²+B²=0 ⟺ A=0이고 B=0.
+</div>
+
+<div class="drawer-box">
+<span class="drawer-title">🗄️ 서랍 2 — 그룹핑·완전제곱이 바로 안 보이면</span>
+한 문자(보통 x)에 대해 내림차순으로 정리부터 한다(고차방정식 유형⑤). 정리하고 나면 서랍0·1의 형태가 드러나는 경우가 많다. 그래도 서랍0(AB=k)을 못 쓰면(x²·y²이 섞여 인수분해가 안 되면), x에 대한 이차방정식으로 보고 판별식을 쓴다 — D≥0으로 y의 범위를 좁히고, D가 완전제곱수인 y만 골라 정수 x를 구한다.
+</div>
+
+<div class="toro-note">🦕 토로: 부정방정식은 사실 <b>"조건 단어를 읽고 서랍0을 열지, 서랍1을 열지 판단하는 것"</b>이 유일한 새 기술이에요. 그룹핑(인수분해)도, 완전제곱식도, 전부 이미 배운 도구고요. 이걸로 "여러 가지 방정식" 3부작(고차방정식 → 이차연립방정식 → 부정방정식)이 끝났어요 — 세 파일 전부 <b>같은 도구 상자(인수분해·근과 계수의 관계·판별식·완전제곱)를 여러 각도에서 다시 쓴 것</b>이라는 감각을 꼭 챙겨 가세요.</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
