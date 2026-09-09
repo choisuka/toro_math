@@ -305,6 +305,11 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
           📖 항해 일지
         </button>
       </div>
+      <div style="margin-bottom:14px">
+        <button onclick="showToroMaster()" style="width:100%;background:linear-gradient(135deg,rgba(212,160,23,.15),rgba(212,160,23,.08));border:1px solid rgba(212,160,23,.4);color:#fbbf24;border-radius:14px;padding:12px 16px;font-family:'Jua',sans-serif;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+          🏆 토로매쓰 마스터
+        </button>
+      </div>
       <!-- 학년/과목별 카테고리 -->
       <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
         <a href="jewish_math/index.html" class="topic-card" style="display:block;text-decoration:none;border:1px solid rgba(253,230,138,.35);background:linear-gradient(155deg,#1e1a07,#2e2a0d);grid-column:1/-1">
@@ -322,25 +327,24 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
         <a href="middle.html" class="topic-card" style="display:block;text-decoration:none;border:1px solid rgba(251,191,36,.35);background:linear-gradient(155deg,#1a1000,#251800);grid-column:1/-1">
           <div class="ico">🌱</div>
           <div class="name" style="color:#fbbf24">중등수학</div>
-          <div class="desc">중1(약수와 배수·소인수분해·방정식 등) · 중2(부등식·연립방정식·일차함수) · 중3(이차방정식·제곱근과 실수)</div>
+          <div class="desc">중1(정수·문자와 식·등식·1차방정식·함수) · 중2(부등식·연립방정식·일차함수) · 중3(제곱근과 실수·이차방정식·이차함수)</div>
           <span class="tag" style="background:rgba(251,191,36,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.35);margin-top:6px">13개 주제</span>
         </a>
         <a href="gongsu1.html" class="topic-card" style="display:block;text-decoration:none;border:1px solid rgba(249,168,212,.35);background:linear-gradient(155deg,#1e0714,#2e0f1e);grid-column:1/-1">
           <div class="ico">📜</div>
           <div class="name" style="color:#f9a8d4">공통수학1</div>
-          <div class="desc">다항식 · 복소수 · 이차방정식·이차함수 · 여러 가지 방정식·부등식</div>
+          <div class="desc">다항식 · 항등식 · 복소수 · 방정식 · 부등식 · 행렬 · 순열조합</div>
           <span class="tag" style="background:rgba(249,168,212,.15);color:#f9a8d4;border:1px solid rgba(249,168,212,.35);margin-top:6px">5개 주제</span>
         </a>
         <a href="gongsu2.html" class="topic-card" style="display:block;text-decoration:none;border:1px solid rgba(125,211,252,.35);background:linear-gradient(155deg,#071520,#0d1f2e);grid-column:1/-1">
           <div class="ico">📍</div>
           <div class="name" style="color:#7dd3fc">공통수학2</div>
-          <div class="desc">평면좌표 · 직선의 방정식 · 원의 방정식 · 도형의 이동</div>
+          <div class="desc">도형의 방정식 · 함수</div>
           <span class="tag" style="background:rgba(125,211,252,.15);color:#7dd3fc;border:1px solid rgba(125,211,252,.35);margin-top:6px">7개 주제</span>
         </a>
         <a href="agora_math/index.html" class="topic-card" style="display:block;text-decoration:none;border:1px solid rgba(52,211,153,.35);background:linear-gradient(155deg,#071e14,#0d2e1e);grid-column:1/-1">
           <div class="ico">🏛️</div>
           <div class="name" style="color:#34d399">생각하는 수학 광장</div>
-          <div class="desc">정수·유리수·비율·백분율·무리수를 이어말하기 원탁·찬반 대결 광장·거꾸로 세미나 3가지 교수법으로 다시 탐구 + 지수법칙·Exeter식 문제해결전략(신규)</div>
           <span class="tag" style="background:rgba(52,211,153,.15);color:#34d399;border:1px solid rgba(52,211,153,.35);margin-top:6px">3가지 교수법 실험</span>
         </a>
         <a href="print_materials.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;border:1px solid rgba(148,163,184,.25);background:rgba(148,163,184,.06);border-radius:10px;padding:8px 12px;grid-column:1/-1">
@@ -357,35 +361,6 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
             <div style="font-size:.68rem;color:var(--gray)">정수·유리수 개념 글 + 학습 카페 + 게임 놀이터 (영통수학여행학원)</div>
           </div>
         </a>
-        <a href="agora_roadmap.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;border:1px solid rgba(167,139,250,.25);background:rgba(167,139,250,.06);border-radius:10px;padding:8px 12px;grid-column:1/-1">
-          <div style="font-size:1.3rem">🧭</div>
-          <div style="flex:1;min-width:0">
-            <div style="font-family:'Jua',sans-serif;font-size:.85rem;color:#a78bfa">생각하는 수학 광장 — 방향 논의</div>
-            <div style="font-size:.68rem;color:var(--gray)">가상 전문가 4인 패널 — 콘텐츠 필요성·연령별 형식·주제 순서 재검토 (2026-08-20)</div>
-          </div>
-        </a>
-      </div>
-
-      <!-- 섹션 7 -->
-      <div style="display:flex;align-items:center;gap:10px;margin:18px 0 10px">
-        <div style="font-size:1.5rem">🧭</div>
-        <div>
-          <div style="font-family:'Jua',sans-serif;color:#7fb8c9;font-size:.9rem">토로매쓰 자체평가</div>
-          <div style="font-size:.68rem;color:#888">콴다·매쓰플랫·발견형·하크네스와 비교한 장단점</div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:6px">
-        <div onclick="startCards('self-review','home')"
-           style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;
-                  border:1px solid rgba(127,184,201,.35);background:linear-gradient(155deg,#0d1a1d,#0d2226);
-                  cursor:pointer">
-          <div style="font-size:1.8rem">🧭</div>
-          <div>
-            <div style="font-size:.72rem;color:#aaa;margin-top:3px">가상 전문가 패널 평가 · 장점·단점·개선안</div>
-            <span style="display:inline-block;margin-top:5px;font-size:.65rem;padding:2px 8px;border-radius:20px;background:rgba(127,184,201,.15);color:#7fb8c9;border:1px solid rgba(127,184,201,.35)">🧭 자체평가 ★토로매쓰</span>
-          </div>
-          <div style="margin-left:auto;color:#7fb8c9;font-size:1rem">→</div>
-        </div>
       </div>
 
     </div><!-- /home-list-view -->
@@ -588,6 +563,60 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
   </div>
 </div>
 
+<!-- 토로매쓰 마스터 모달 -->
+<div id="toro-master-modal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.8);align-items:center;justify-content:center;padding:20px">
+  <div style="background:#1a2a3a;border:1px solid rgba(212,160,23,.3);border-radius:20px;padding:22px 18px;max-width:420px;width:100%;max-height:80vh;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div style="font-family:'Jua',sans-serif;color:#fbbf24;font-size:1rem">🏆 토로매쓰 마스터</div>
+      <button onclick="closeToroMaster()" style="background:rgba(255,255,255,.08);border:none;color:#aaa;border-radius:8px;padding:5px 12px;font-family:'Jua',sans-serif;cursor:pointer">닫기</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <a href="agora_roadmap.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;border:1px solid rgba(167,139,250,.3);background:rgba(167,139,250,.06);border-radius:12px;padding:12px 14px">
+        <div style="font-size:1.4rem">🧭</div>
+        <div>
+          <div style="font-family:'Jua',sans-serif;font-size:.82rem;color:#a78bfa">생각하는 수학 광장 — 방향 논의</div>
+          <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">가상 전문가 4인 패널 — 콘텐츠 필요성·형식·순서 재검토</div>
+        </div>
+      </a>
+      <a href="games_hub/index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;border:1px solid rgba(165,180,252,.3);background:rgba(165,180,252,.06);border-radius:12px;padding:12px 14px">
+        <div style="font-size:1.4rem">🚪</div>
+        <div>
+          <div style="font-family:'Jua',sans-serif;font-size:.82rem;color:#a5b4fc">다른 방식의 공부방</div>
+          <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">별도 사이트 — 수학게임·학습자료 모음</div>
+        </div>
+      </a>
+      <div onclick="closeToroMaster();startCards('self-review','home')" style="cursor:pointer;display:flex;align-items:center;gap:10px;border:1px solid rgba(127,184,201,.3);background:rgba(127,184,201,.06);border-radius:12px;padding:12px 14px">
+        <div style="font-size:1.4rem">🧭</div>
+        <div>
+          <div style="font-family:'Jua',sans-serif;font-size:.82rem;color:#7fb8c9">토로매쓰 자체평가</div>
+          <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">가상 전문가 패널 평가 · 장점·단점·개선안</div>
+        </div>
+      </div>
+      <div onclick="closeToroMaster();startCards('agent-guide','home')" style="cursor:pointer;display:flex;align-items:center;gap:10px;border:1px solid rgba(148,163,184,.3);background:rgba(148,163,184,.06);border-radius:12px;padding:12px 14px">
+        <div style="font-size:1.4rem">🤖</div>
+        <div>
+          <div style="font-family:'Jua',sans-serif;font-size:.82rem;color:#94a3b8">콘텐츠 생성 에이전트</div>
+          <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">variant · advanced · examprep 안내 + 복사용 프롬프트</div>
+        </div>
+      </div>
+      <div onclick="closeToroMaster();startCards('mid-structure-audit','home')" style="cursor:pointer;display:flex;align-items:center;gap:10px;border:1px solid rgba(148,163,184,.3);background:rgba(148,163,184,.06);border-radius:12px;padding:12px 14px">
+        <div style="font-size:1.4rem">🔍</div>
+        <div>
+          <div style="font-family:'Jua',sans-serif;font-size:.82rem;color:#94a3b8">중등 카드 구조 조사</div>
+          <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">구식·신식 템플릿 공존 현황 + 다음 결정 지점</div>
+        </div>
+      </div>
+      <div onclick="closeToroMaster();startCards('agent-conversation-log','home')" style="cursor:pointer;display:flex;align-items:center;gap:10px;border:1px solid rgba(148,163,184,.3);background:rgba(148,163,184,.06);border-radius:12px;padding:12px 14px">
+        <div style="font-size:1.4rem">💬</div>
+        <div>
+          <div style="font-family:'Jua',sans-serif;font-size:.82rem;color:#94a3b8">에이전트 논의 전문</div>
+          <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">19편 — 원문 그대로 (2026-09-08)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- 섬 클릭 토로 말풍선 -->
 <div id="toro-island-popup" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:20px">
   <div style="animation:toroPopIn .3s ease;background:linear-gradient(135deg,#0f1e35,#1a2f4a);border:1.5px solid rgba(125,211,252,.45);border-radius:24px;padding:28px 24px;max-width:300px;width:100%;text-align:center;box-shadow:0 0 40px rgba(56,189,248,.2)">
@@ -614,784 +643,6 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 const CS = { set:'', cards:[], cur:0, from:'home', showAns:false, iStep:0 };
 
 const CARD_DATA = {
-'hs-poly': [
-  { tag:'📘 개념 — 다항식 나눗셈', tagColor:'#a5b4fc',
-    bg:'rgba(165,180,252,.07)', bd:'rgba(165,180,252,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
-<b style="color:#a5b4fc">다항식의 나눗셈 원리</b><br><br>
-정수 나눗셈: 7 ÷ 3 = 2 … 1<br>
-다항식: f(x) = Q(x)·g(x) + R(x)<br><br>
-<b style="color:#fde68a">핵심 공식</b><br>
-f(x) ÷ (x−a) 의 나머지 = f(a) &nbsp;← 나머지 정리<br>
-f(a) = 0 이면 (x−a)는 f(x)의 인수 ← 인수 정리
-</div>`,
-    ans: null },
-
-  { tag:'🔢 문제 1 — 나머지 정리', tagColor:'#a5b4fc',
-    bg:'rgba(165,180,252,.07)', bd:'rgba(165,180,252,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-f(x) = x³ − 3x² + ax + 2를 (x−2)로 나누면 나머지가 6이다. 상수 a를 구하여라.
-</div>`,
-    ans:`<b style="color:#a5b4fc">토로:</b> "나머지 정리를 써볼게!"<br><br>
-나머지 정리: <b>(x−2)로 나눈 나머지 = f(2)</b><br><br>
-f(2) = 8 − 12 + 2a + 2 = 6<br>
-2a − 2 = 6<br>
-<b style="color:#fde68a;font-size:.9rem">a = 4</b><br><br>
-<b style="color:#86efac">토로:</b> "x에 나누는 식의 근(여기서 2)을 대입만 하면 돼. 직접 나눌 필요 없어!"` },
-
-  { tag:'🔢 문제 2 — 인수분해', tagColor:'#a5b4fc',
-    bg:'rgba(165,180,252,.07)', bd:'rgba(165,180,252,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-x³ − 6x² + 11x − 6 을 인수분해하여라.
-</div>`,
-    ans:`<b style="color:#a5b4fc">토로:</b> "상수항 −6의 약수로 근을 먼저 찾아봐!"<br><br>
-f(1) = 1−6+11−6 = 0 ✓ → (x−1)이 인수<br><br>
-조립제법으로 나누면:<br>
-x³−6x²+11x−6 = (x−1)(x²−5x+6)<br>
-= (x−1)(x−2)(x−3)<br><br>
-<b style="color:#fde68a;font-size:.9rem">정답: (x−1)(x−2)(x−3)</b><br><br>
-<b style="color:#86efac">토로:</b> "세 근이 1, 2, 3! 아름답지 않아?"` },
-
-  { tag:'🔢 문제 3 — 항등식', tagColor:'#7dd3fc',
-    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-x²+5x+7 = a(x+1)² + b(x+1) + c 가 x에 대한 항등식일 때,<br>a, b, c의 값을 구하여라.
-</div>`,
-    ans:`<b style="color:#7dd3fc">방법 1 — 수치 대입법</b><br>
-x=−1: 1−5+7=3 → <b>c=3</b><br>
-x=0: 7 = a+b+3 → a+b=4<br>
-x=1: 13 = 4a+2b+3 → 4a+2b=10 → 2a+b=5<br>
-연립: a=1, b=3<br><br>
-<b style="color:#fde68a;font-size:.9rem">a=1, b=3, c=3</b><br><br>
-<b style="color:#a5b4fc">토로:</b> "항등식은 어떤 x를 넣어도 성립하니까, 편한 수를 골라 대입하면 돼!"` },
-
-  { tag:'💬 하브루타 — 이항정리', tagColor:'#fde68a',
-    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">
-(x+y)ⁿ = Σ C(n,k)·xⁿ⁻ᵏ·yᵏ<br><br>
-● (2x−1)⁵의 전개식에서 x³의 계수를 구하여라.
-</div>
-<div style="font-size:.72rem;color:#aaa;font-style:italic">학생: "다 전개해야 하나요? 너무 복잡해요."</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "아니야! x³항만 골라내면 돼."<br><br>
-일반항: C(5,k)·(2x)^(5-k)·(-1)^k<br>
-x³항 → 5−k=3 → k=2<br><br>
-C(5,2)·(2x)³·(−1)² = 10·8x³·1<br>
-<b style="color:#fde68a;font-size:.9rem">x³의 계수 = 80</b><br><br>
-<b style="color:#86efac">토로:</b> "원하는 항만 쏙 뽑아내는 게 이항정리의 진짜 힘이야!"` }
-],
-
-/* ── 수학(공통) 2: 방정식과 부등식 ── */
-
-
-'hs-equation': [
-  { tag:'📘 개념 — 이차방정식·복소수', tagColor:'#f9a8d4',
-    bg:'rgba(249,168,212,.07)', bd:'rgba(249,168,212,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
-<b style="color:#f9a8d4">판별식 D = b²−4ac</b><br>
-D > 0 → 서로 다른 두 실근<br>
-D = 0 → 중근(같은 두 실근)<br>
-D &lt; 0 → 서로 다른 두 허근<br><br>
-<b style="color:#fde68a">근과 계수의 관계</b><br>
-두 근 α, β에 대해:<br>
-α+β = −b/a &nbsp;, &nbsp; αβ = c/a
-</div>`,
-    ans: null },
-
-  { tag:'🔢 문제 1 — 근의 판별', tagColor:'#f9a8d4',
-    bg:'rgba(249,168,212,.07)', bd:'rgba(249,168,212,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-x²−(k+2)x+k+5=0 이 중근을 가지도록 하는 실수 k의 값을 구하여라.
-</div>`,
-    ans:`<b style="color:#f9a8d4">토로:</b> "중근 조건은 D=0이야!"<br><br>
-D = (k+2)²−4(k+5) = 0<br>
-k²+4k+4−4k−20 = 0<br>
-k²−16 = 0<br>
-<b style="color:#fde68a;font-size:.9rem">k = 4 또는 k = −4</b><br><br>
-<b style="color:#86efac">토로:</b> "판별식은 근의 개수를 알려주는 X-ray 같은 거야!"` },
-
-  { tag:'🔢 문제 2 — 근과 계수', tagColor:'#f9a8d4',
-    bg:'rgba(249,168,212,.07)', bd:'rgba(249,168,212,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-x²−3x+1=0의 두 근을 α, β라 할 때,<br>
-α²+β², α³+β³ 의 값을 구하여라.
-</div>`,
-    ans:`<b style="color:#f9a8d4">토로:</b> "근과 계수 관계로 α+β=3, αβ=1을 먼저 구해!"<br><br>
-α²+β² = (α+β)²−2αβ = 9−2 = <b>7</b><br><br>
-α³+β³ = (α+β)(α²−αβ+β²)<br>
-= (α+β)((α²+β²)−αβ)<br>
-= 3·(7−1) = <b>18</b><br><br>
-<b style="color:#fde68a;font-size:.9rem">α²+β²=7, α³+β³=18</b>` },
-
-  { tag:'🔢 문제 3 — 연립이차방정식', tagColor:'#f9a8d4',
-    bg:'rgba(249,168,212,.07)', bd:'rgba(249,168,252,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-x+y=3, xy=1 을 동시에 만족하는 실수 x, y를 구하여라.
-</div>`,
-    ans:`<b style="color:#f9a8d4">토로:</b> "합과 곱을 알면 이차방정식을 세울 수 있어!"<br><br>
-x, y는 t²−3t+1=0의 두 근<br>
-t = (3±√5)/2<br><br>
-<b style="color:#fde68a;font-size:.9rem">(x,y) = ((3+√5)/2, (3−√5)/2) 또는 반대</b><br><br>
-<b style="color:#86efac">토로:</b> "'합·곱 → 이차방정식' 변환은 고등수학의 핵심 기술이야!"` },
-
-  { tag:'💬 하브루타 — 이차부등식', tagColor:'#fde68a',
-    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">
-● x²−5x+6 &lt; 0 을 만족하는 정수 x는 몇 개인가?
-</div>
-<div style="font-size:.72rem;color:#aaa;font-style:italic">학생: "그래프를 그려야 하나요, 아니면 수직선을 써야 하나요?"</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "둘 다 같은 말이야. 방법을 알려줄게!"<br><br>
-x²−5x+6 = (x−2)(x−3) &lt; 0<br>
-→ 2 &lt; x &lt; 3<br><br>
-이 범위의 정수: 없음(2와 3 사이에 정수 없음)<br><br>
-<b style="color:#fde68a;font-size:.9rem">정수 해 없음 (0개)</b><br><br>
-<b style="color:#86efac">토로:</b> "이차부등식은 항상 인수분해 → 부호 분석 → 범위 순서야!"` }
-],
-
-/* ── 수학(공통) 3: 도형의 방정식 ── */
-
-
-'hs-geometry': [
-  { tag:'📘 개념 — 직선과 원', tagColor:'#34d399',
-    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
-<b style="color:#34d399">점과 직선 사이의 거리</b><br>
-점 (x₀,y₀)에서 ax+by+c=0까지: <br>
-d = |ax₀+by₀+c| / √(a²+b²)<br><br>
-<b style="color:#fde68a">원의 방정식</b><br>
-중심 (a,b), 반지름 r:<br>
-(x−a)²+(y−b)² = r²<br><br>
-<b style="color:#7dd3fc">원과 직선의 관계</b><br>
-중심~직선 거리 d, 반지름 r<br>
-d&lt;r: 두 교점 &nbsp; d=r: 접선 &nbsp; d&gt;r: 만나지 않음
-</div>`,
-    ans: null },
-
-  { tag:'🔢 문제 1 — 직선의 방정식', tagColor:'#34d399',
-    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-두 점 A(1,3), B(4,−1)에 대해 선분 AB의 수직이등분선의 방정식을 구하여라.
-</div>`,
-    ans:`<b style="color:#34d399">토로:</b> "수직이등분선은 중점을 지나고, 기울기는 AB의 역수에 부호 반대야!"<br><br>
-AB 중점 M = (5/2, 1)<br>
-AB 기울기 = (−1−3)/(4−1) = −4/3<br>
-수직이등분선 기울기 = 3/4<br><br>
-y−1 = 3/4·(x−5/2)<br>
-4y−4 = 3x−15/2<br>
-<b style="color:#fde68a;font-size:.9rem">6x−8y−7=0</b>` },
-
-  { tag:'🔢 문제 2 — 원의 방정식', tagColor:'#34d399',
-    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-x²+y²−4x+6y−3=0을 표준형으로 변환하고<br>중심과 반지름을 구하여라.
-</div>`,
-    ans:`<b style="color:#34d399">토로:</b> "완전제곱식으로 변환하는 거야!"<br><br>
-(x²−4x+4)+(y²+6y+9) = 3+4+9<br>
-(x−2)²+(y+3)² = 16<br><br>
-<b style="color:#fde68a;font-size:.9rem">중심 (2, −3), 반지름 4</b><br><br>
-<b style="color:#86efac">토로:</b> "등호 오른쪽으로 이항한 수만큼 양변에 더해줘야 해!"` },
-
-  { tag:'🔢 문제 3 — 원과 직선', tagColor:'#34d399',
-    bg:'rgba(52,211,153,.07)', bd:'rgba(52,211,153,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-원 x²+y²=10에 점 P(3,1)에서 그은 접선의 방정식을 구하여라.
-</div>`,
-    ans:`<b style="color:#34d399">토로:</b> "점 P가 원 위에 있는지 먼저 확인해봐!"<br><br>
-3²+1²=10 ✓ → P는 원 위의 점<br><br>
-원 위의 점 (x₀,y₀)에서의 접선:<br>
-x₀·x + y₀·y = r²<br>
-3x + y = 10<br><br>
-<b style="color:#fde68a;font-size:.9rem">접선: 3x+y=10</b>` },
-
-  { tag:'💬 하브루타 — 평행이동', tagColor:'#fde68a',
-    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">
-● 원 (x−1)²+(y+2)²=9를 x축 방향으로 3, y축 방향으로 −1 만큼 평행이동한 원의 방정식은?
-</div>
-<div style="font-size:.72rem;color:#aaa;font-style:italic">학생: "중심을 이동시키면 되는 거 아닌가요?"</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "맞아! 반지름은 그대로고 중심만 이동해!"<br><br>
-원래 중심: (1, −2)<br>
-이동 후 중심: (1+3, −2+(−1)) = (4, −3)<br>
-반지름 3 그대로<br><br>
-<b style="color:#fde68a;font-size:.9rem">(x−4)²+(y+3)²=9</b><br><br>
-<b style="color:#86efac">토로:</b> "y축 방향으로 −1이면 중심의 y좌표는 −1 감소해. 헷갈리지 말자!"` }
-],
-
-/* ── 수학 I: 지수·로그 ── */
-
-
-'hs-exp-log': [
-  { tag:'📘 개념 — 지수·로그 핵심', tagColor:'#fb923c',
-    bg:'rgba(251,146,60,.07)', bd:'rgba(251,146,60,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
-<b style="color:#fb923c">지수법칙</b><br>
-aᵐ·aⁿ=aᵐ⁺ⁿ &nbsp; aᵐ÷aⁿ=aᵐ⁻ⁿ &nbsp; (aᵐ)ⁿ=aᵐⁿ<br><br>
-<b style="color:#fde68a">로그 정의</b><br>
-log_a b = c ⟺ aᶜ=b &nbsp;(a&gt;0, a≠1, b&gt;0)<br><br>
-<b style="color:#86efac">로그 성질</b><br>
-log_a MN = log_a M + log_a N<br>
-log_a (M/N) = log_a M − log_a N<br>
-log_a Mⁿ = n·log_a M
-</div>`,
-    ans: null },
-
-  { tag:'🔢 문제 1 — 지수방정식', tagColor:'#fb923c',
-    bg:'rgba(251,146,60,.07)', bd:'rgba(251,146,60,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-4ˣ − 2ˣ⁺¹ − 8 = 0 을 만족하는 x의 값을 구하여라.
-</div>`,
-    ans:`<b style="color:#fb923c">토로:</b> "4ˣ=(2ˣ)² 로 치환해봐!"<br><br>
-2ˣ = t (t&gt;0)로 놓으면<br>
-t²−2t−8=0<br>
-(t−4)(t+2)=0<br>
-t=4 (t&gt;0이므로 t=−2 제외)<br>
-2ˣ=4=2² → <b style="color:#fde68a;font-size:.9rem">x=2</b><br><br>
-<b style="color:#86efac">토로:</b> "지수방정식의 핵심은 '같은 밑으로 통일' 또는 '치환'이야!"` },
-
-  { tag:'🔢 문제 2 — 로그방정식', tagColor:'#fb923c',
-    bg:'rgba(251,146,60,.07)', bd:'rgba(251,146,60,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-log₂(x+1) + log₂(x+3) = 3 을 만족하는 x를 구하여라.
-</div>`,
-    ans:`<b style="color:#fb923c">토로:</b> "로그의 합 = 로그(곱)으로 합쳐봐!"<br><br>
-log₂{(x+1)(x+3)} = 3<br>
-(x+1)(x+3) = 2³ = 8<br>
-x²+4x+3=8<br>
-x²+4x−5=0<br>
-(x+5)(x−1)=0<br>
-x=1 (진수조건: x+1&gt;0, x+3&gt;0 → x&gt;−1이므로 x=−5 제외)<br><br>
-<b style="color:#fde68a;font-size:.9rem">x = 1</b>` },
-
-  { tag:'🔢 문제 3 — 상용로그', tagColor:'#fb923c',
-    bg:'rgba(251,146,60,.07)', bd:'rgba(251,146,60,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-log 2 = 0.3010, log 3 = 0.4771 일 때<br>
-log 0.12 의 값을 구하여라.
-</div>`,
-    ans:`<b style="color:#fb923c">토로:</b> "0.12를 2와 3의 곱으로 분해해봐!"<br><br>
-0.12 = 12/100 = 4×3/100 = 2²×3/10²<br><br>
-log 0.12 = 2·log2 + log3 − 2·log10<br>
-= 2(0.3010) + 0.4771 − 2<br>
-= 0.6020 + 0.4771 − 2<br>
-<b style="color:#fde68a;font-size:.9rem">= −0.9209</b>` },
-
-  { tag:'💬 하브루타 — 지수함수 그래프', tagColor:'#fde68a',
-    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">
-● y=2ˣ와 y=2⁻ˣ의 그래프는 어떤 관계인가?<br>두 그래프가 만나는 점은 있는가?
-</div>
-<div style="font-size:.72rem;color:#aaa;font-style:italic">학생: "y축에 대해 대칭이라고 배웠어요. 그럼 안 만나나요?"</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "y축 대칭이 맞아. 그런데 만나는지 볼게!"<br><br>
-교점: 2ˣ=2⁻ˣ → 2ˣ=1/2ˣ → 2²ˣ=1=2⁰ → x=0<br>
-x=0일 때 y=1<br><br>
-<b style="color:#fde68a;font-size:.9rem">교점: (0, 1)</b><br><br>
-<b style="color:#86efac">토로:</b> "y축 대칭인 두 함수는 y축 위에서 만나! a&gt;0이면 항상 (0,1)에서 만나지."` }
-],
-
-/* ── 수학 I: 삼각함수 ── */
-
-
-'hs-trig': [
-  { tag:'📘 개념 — 삼각함수 핵심', tagColor:'#e879f9',
-    bg:'rgba(232,121,249,.07)', bd:'rgba(232,121,249,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
-<b style="color:#e879f9">호도법</b> &nbsp; 180° = π rad<br><br>
-<b style="color:#fde68a">삼각함수 값 암기</b><br>
-sin30°=½, cos30°=√3/2, tan30°=1/√3<br>
-sin45°=√2/2, cos45°=√2/2, tan45°=1<br>
-sin60°=√3/2, cos60°=½, tan60°=√3<br><br>
-<b style="color:#86efac">피타고라스 항등식</b><br>
-sin²θ+cos²θ=1<br>
-1+tan²θ=sec²θ
-</div>`,
-    ans: null },
-
-  { tag:'🔢 문제 1 — 사인법칙', tagColor:'#e879f9',
-    bg:'rgba(232,121,249,.07)', bd:'rgba(232,121,249,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-삼각형 ABC에서 A=30°, B=45°, a=3이다.<br>
-b의 값을 구하여라.
-</div>`,
-    ans:`<b style="color:#e879f9">토로:</b> "사인법칙: a/sinA = b/sinB = 2R을 써봐!"<br><br>
-a/sinA = b/sinB<br>
-3/sin30° = b/sin45°<br>
-3/(1/2) = b/(√2/2)<br>
-6 = 2b/√2<br>
-<b style="color:#fde68a;font-size:.9rem">b = 3√2</b><br><br>
-<b style="color:#86efac">토로:</b> "사인법칙은 '변/대응각의 사인 = 상수'라는 아름다운 비례야!"` },
-
-  { tag:'🔢 문제 2 — 코사인법칙', tagColor:'#e879f9',
-    bg:'rgba(232,121,249,.07)', bd:'rgba(232,121,249,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-삼각형 ABC에서 a=7, b=5, c=3일 때<br>
-가장 큰 각 A의 코사인 값을 구하여라.
-</div>`,
-    ans:`<b style="color:#e879f9">토로:</b> "가장 긴 변의 대각이 가장 커. 코사인법칙을 써봐!"<br><br>
-a²=b²+c²−2bc·cosA<br>
-49=25+9−30·cosA<br>
-30cosA=−15<br>
-<b style="color:#fde68a;font-size:.9rem">cosA = −1/2, 즉 A = 120°</b><br><br>
-<b style="color:#86efac">토로:</b> "cosA가 음수 → A는 둔각! 이 삼각형은 둔각삼각형이야."` },
-
-  { tag:'🔢 문제 3 — 삼각함수 방정식', tagColor:'#e879f9',
-    bg:'rgba(232,121,249,.07)', bd:'rgba(232,121,249,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-0 ≤ θ &lt; 2π 에서 2sin²θ − sinθ − 1 = 0 의 해를 구하여라.
-</div>`,
-    ans:`<b style="color:#e879f9">토로:</b> "sinθ = t로 치환해서 이차방정식으로 만들어봐!"<br><br>
-t = sinθ로 놓으면<br>
-2t²−t−1=0 → (2t+1)(t−1)=0<br>
-t=−1/2 또는 t=1<br><br>
-sinθ=−1/2 → θ=7π/6, 11π/6<br>
-sinθ=1 → θ=π/2<br><br>
-<b style="color:#fde68a;font-size:.9rem">θ = π/2, 7π/6, 11π/6</b>` },
-
-  { tag:'💬 하브루타 — 주기와 진폭', tagColor:'#fde68a',
-    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">
-● y = 3sin(2x − π/3) + 1 의 진폭, 주기, 위상변화를 설명하여라.
-</div>
-<div style="font-size:.72rem;color:#aaa;font-style:italic">학생: "숫자가 너무 많아서 헷갈려요."</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "y = A·sin(Bx+C)+D 형태로 각 역할을 기억해!"<br><br>
-A=3 → <b>진폭 3</b> (최댓값 4, 최솟값 −2)<br>
-B=2 → <b>주기 = 2π/2 = π</b><br>
-C=−π/3 → x축으로 <b>π/6 만큼 오른쪽 이동</b><br>
-D=1 → <b>y축으로 1 위로 이동</b><br><br>
-<b style="color:#86efac">토로:</b> "진폭은 |A|, 주기는 2π/|B|만 외우면 나머지는 이동이야!"` }
-],
-
-/* ── 수학 I: 수열 ── */
-
-
-'hs-sequence': [
-  { tag:'📘 개념 — 수열 핵심', tagColor:'#2dd4bf',
-    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
-<b style="color:#2dd4bf">등차수열</b><br>
-일반항: aₙ = a₁+(n−1)d<br>
-합: Sₙ = n/2·(a₁+aₙ) = n/2·(2a₁+(n−1)d)<br><br>
-<b style="color:#fde68a">등비수열</b><br>
-일반항: aₙ = a₁·rⁿ⁻¹<br>
-합: Sₙ = a₁(rⁿ−1)/(r−1) &nbsp;(r≠1)<br><br>
-<b style="color:#86efac">점화식과 귀납법</b><br>
-aₙ₊₁ = f(aₙ) 형태로 수열을 정의
-</div>`,
-    ans: null },
-
-  { tag:'🔢 문제 1 — 등차수열', tagColor:'#2dd4bf',
-    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-등차수열 {aₙ}에서 a₃=11, a₇=27일 때,<br>
-첫째항과 공차, S₁₀을 구하여라.
-</div>`,
-    ans:`<b style="color:#2dd4bf">토로:</b> "항 번호 차이로 공차를 구해봐!"<br><br>
-a₇−a₃ = 4d = 16 → d=4<br>
-a₁ = a₃−2d = 11−8 = 3<br><br>
-S₁₀ = 10/2·(2×3+9×4)<br>
-= 5·(6+36) = 5×42<br>
-<b style="color:#fde68a;font-size:.9rem">a₁=3, d=4, S₁₀=210</b>` },
-
-  { tag:'🔢 문제 2 — 등비수열', tagColor:'#2dd4bf',
-    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-등비수열 {aₙ}에서 a₂=6, a₅=48일 때<br>
-a₈의 값을 구하여라.
-</div>`,
-    ans:`<b style="color:#2dd4bf">토로:</b> "등비수열은 aₙ₊ₖ/aₙ = rᵏ를 활용해봐!"<br><br>
-a₅/a₂ = r³ = 48/6 = 8 → r=2<br>
-a₂ = a₁·r = 6 → a₁=3<br>
-a₈ = a₁·r⁷ = 3×128<br>
-<b style="color:#fde68a;font-size:.9rem">a₈ = 384</b><br><br>
-<b style="color:#86efac">토로:</b> "r을 먼저 구하면 모든 항을 구할 수 있어!"` },
-
-  { tag:'🔢 문제 3 — 수학적 귀납법', tagColor:'#2dd4bf',
-    bg:'rgba(45,212,191,.07)', bd:'rgba(45,212,191,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-수학적 귀납법으로 다음을 증명하여라.<br>
-1+2+3+…+n = n(n+1)/2
-</div>`,
-    ans:`<b style="color:#2dd4bf">토로:</b> "귀납법 = ①n=1 확인 ②k→k+1 증명"<br><br>
-<b>①</b> n=1: 좌변=1, 우변=1×2/2=1 ✓<br><br>
-<b>②</b> n=k일 때 성립 가정: 1+…+k = k(k+1)/2<br>
-n=k+1일 때:<br>
-1+…+k+(k+1) = k(k+1)/2+(k+1)<br>
-= (k+1)(k/2+1) = (k+1)(k+2)/2 ✓<br><br>
-<b style="color:#fde68a;font-size:.9rem">따라서 모든 자연수 n에서 성립</b>` },
-
-  { tag:'💬 하브루타 — 급수와 수렴', tagColor:'#fde68a',
-    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">
-● 무한등비급수 Σ 3·(1/2)ⁿ⁻¹ (n=1~∞) 이 수렴하는지 판별하고 합을 구하여라.
-</div>
-<div style="font-size:.72rem;color:#aaa;font-style:italic">학생: "무한히 더하면 당연히 무한대 아닌가요?"</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "항이 점점 작아지면 수렴할 수 있어!"<br><br>
-등비급수 수렴 조건: |r| &lt; 1<br>
-여기서 r = 1/2, |1/2| &lt; 1 → <b>수렴</b><br><br>
-무한등비급수 합 = a/(1−r)<br>
-= 3/(1−1/2) = 3/(1/2)<br>
-<b style="color:#fde68a;font-size:.9rem">= 6</b><br><br>
-<b style="color:#86efac">토로:</b> "3 + 1.5 + 0.75 + 0.375 + … 더하면 6에 가까워져. 신기하지?"` }
-],
-
-/* ── 수학 II: 함수의 극한과 연속 ── */
-
-
-'hs-limit': [
-  { tag:'📘 개념 — 극한과 연속', tagColor:'#60a5fa',
-    bg:'rgba(96,165,250,.07)', bd:'rgba(96,165,250,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
-<b style="color:#60a5fa">극한의 정의</b><br>
-lim_{x→a} f(x) = L<br>
-x가 a에 한없이 가까워질 때 f(x)→L<br><br>
-<b style="color:#fde68a">연속의 조건 (3가지)</b><br>
-① f(a) 가 정의됨<br>
-② lim_{x→a} f(x) 가 존재<br>
-③ lim_{x→a} f(x) = f(a)<br><br>
-<b style="color:#86efac">중요 극한</b><br>
-lim_{x→0} sinx/x = 1<br>
-lim_{x→∞} (1+1/x)ˣ = e
-</div>`,
-    ans: null },
-
-  { tag:'🔢 문제 1 — 극한 계산', tagColor:'#60a5fa',
-    bg:'rgba(96,165,250,.07)', bd:'rgba(96,165,250,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-lim_{x→2} (x²−4)/(x−2) 를 구하여라.
-</div>`,
-    ans:`<b style="color:#60a5fa">토로:</b> "분모가 0이 되면 인수분해로 약분해봐!"<br><br>
-x²−4 = (x+2)(x−2)<br>
-lim_{x→2} (x+2)(x−2)/(x−2)<br>
-= lim_{x→2} (x+2)<br>
-= 2+2<br>
-<b style="color:#fde68a;font-size:.9rem">= 4</b><br><br>
-<b style="color:#86efac">토로:</b> "x=2를 바로 넣으면 0/0이 나오지만, 인수분해 후엔 넣을 수 있어!"` },
-
-  { tag:'🔢 문제 2 — 연속 판별', tagColor:'#60a5fa',
-    bg:'rgba(96,165,250,.07)', bd:'rgba(96,165,250,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-f(x) = { x²+1 (x≠1), 3 (x=1) } 은 x=1에서 연속인가?
-</div>`,
-    ans:`<b style="color:#60a5fa">토로:</b> "연속 3조건을 하나씩 체크해봐!"<br><br>
-① f(1) = 3 ✓ (정의됨)<br>
-② lim_{x→1} (x²+1) = 1+1 = 2 ✓ (극한 존재)<br>
-③ f(1)=3 ≠ 2=극한값 ✗<br><br>
-<b style="color:#fde68a;font-size:.9rem">x=1에서 불연속</b><br><br>
-<b style="color:#86efac">토로:</b> "③번 조건이 핵심이야. 함수값과 극한값이 같아야 연속이거든!"` },
-
-  { tag:'🔢 문제 3 — 무한대 극한', tagColor:'#60a5fa',
-    bg:'rgba(96,165,250,.07)', bd:'rgba(96,165,250,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-lim_{x→∞} (3x²−2x+1)/(2x²+5x−3) 을 구하여라.
-</div>`,
-    ans:`<b style="color:#60a5fa">토로:</b> "∞/∞ 꼴은 최고차항으로 나눠봐!"<br><br>
-분자·분모를 x²으로 나누면:<br>
-(3−2/x+1/x²) / (2+5/x−3/x²)<br>
-x→∞이면 1/x→0, 1/x²→0<br>
-= 3/2<br><br>
-<b style="color:#fde68a;font-size:.9rem">= 3/2</b><br><br>
-<b style="color:#86efac">토로:</b> "분자·분모의 최고차 계수의 비가 답이야. 차수가 같을 때!"` },
-
-  { tag:'💬 하브루타 — 중간값 정리', tagColor:'#fde68a',
-    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">
-● f(x) = x³−x−1 은 구간 [1,2]에서 반드시 실근을 가지는가?
-</div>
-<div style="font-size:.72rem;color:#aaa;font-style:italic">학생: "직접 풀지 않고도 알 수 있나요?"</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "중간값 정리로 '존재'를 증명할 수 있어!"<br><br>
-f(1)=1−1−1=−1 &lt; 0<br>
-f(2)=8−2−1=5 &gt; 0<br><br>
-f는 연속, f(1)&lt;0&lt;f(2)<br>
-→ 중간값 정리에 의해 f(c)=0인 c∈(1,2) 존재<br><br>
-<b style="color:#fde68a;font-size:.9rem">∴ [1,2]에서 실근이 존재한다.</b><br><br>
-<b style="color:#86efac">토로:</b> "부호가 바뀌면 반드시 중간에 0을 지나쳐야 해. 직관적이지?"` }
-],
-
-/* ── 수학 II: 미분 ── */
-
-
-'hs-diff': [
-  { tag:'📘 개념 — 미분 핵심', tagColor:'#f472b6',
-    bg:'rgba(244,114,182,.07)', bd:'rgba(244,114,182,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
-<b style="color:#f472b6">미분계수</b><br>
-f'(a) = lim_{h→0} {f(a+h)−f(a)}/h<br><br>
-<b style="color:#fde68a">기본 미분 공식</b><br>
-(xⁿ)' = nxⁿ⁻¹<br>
-(sinx)' = cosx &nbsp; (cosx)' = −sinx<br>
-(eˣ)' = eˣ &nbsp; (lnx)' = 1/x<br><br>
-<b style="color:#86efac">활용</b><br>
-증가/감소: f'(x)&gt;0 증가, f'(x)&lt;0 감소<br>
-극대/극소: f'=0이고 부호 변화
-</div>`,
-    ans: null },
-
-  { tag:'🔢 문제 1 — 미분 기본', tagColor:'#f472b6',
-    bg:'rgba(244,114,182,.07)', bd:'rgba(244,114,182,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-f(x) = 2x³ − 3x² + 5x − 1 의 f'(x)를 구하고<br>
-f'(1)의 값을 구하여라.
-</div>`,
-    ans:`<b style="color:#f472b6">토로:</b> "각 항을 미분해봐!"<br><br>
-f'(x) = 6x²−6x+5<br><br>
-f'(1) = 6−6+5<br>
-<b style="color:#fde68a;font-size:.9rem">f'(1) = 5</b><br><br>
-<b style="color:#86efac">토로:</b> "f'(1)=5는 x=1에서의 순간변화율, 즉 접선의 기울기야!"` },
-
-  { tag:'🔢 문제 2 — 극대·극소', tagColor:'#f472b6',
-    bg:'rgba(244,114,182,.07)', bd:'rgba(244,114,182,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-f(x) = x³ − 3x + 2 의 극대·극소를 구하여라.
-</div>`,
-    ans:`<b style="color:#f472b6">토로:</b> "f'=0인 점에서 부호 변화를 확인해봐!"<br><br>
-f'(x) = 3x²−3 = 3(x+1)(x−1) = 0<br>
-x = −1 또는 x = 1<br><br>
-부호표: x&lt;−1(+), −1&lt;x&lt;1(−), x&gt;1(+)<br><br>
-x=−1: f'가 +→− → <b>극대 f(−1)=4</b><br>
-x=1: f'가 −→+ → <b>극소 f(1)=0</b><br><br>
-<b style="color:#fde68a;font-size:.9rem">극대(−1, 4), 극소(1, 0)</b>` },
-
-  { tag:'🔢 문제 3 — 접선의 방정식', tagColor:'#f472b6',
-    bg:'rgba(244,114,182,.07)', bd:'rgba(244,114,182,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-곡선 y = x² + 3x 위의 점 (1, 4)에서의 접선의 방정식을 구하여라.
-</div>`,
-    ans:`<b style="color:#f472b6">토로:</b> "접선 기울기 = 그 점에서의 미분계수야!"<br><br>
-y' = 2x+3<br>
-x=1일 때 기울기 = 2+3 = 5<br><br>
-점 (1,4)를 지나고 기울기 5인 직선:<br>
-y−4 = 5(x−1)<br>
-<b style="color:#fde68a;font-size:.9rem">y = 5x−1</b>` },
-
-  { tag:'💬 하브루타 — 롤의 정리', tagColor:'#fde68a',
-    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">
-● f(x)=x²−4x+3 에서 f(1)=f(3)=0이다.<br>
-f'(c)=0이 되는 c∈(1,3)이 존재하는가?
-</div>
-<div style="font-size:.72rem;color:#aaa;font-style:italic">학생: "그냥 직접 미분해서 0 되는 x 찾으면 되지 않나요?"</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "맞아! 근데 그게 롤의 정리가 보장하는 거야."<br><br>
-f'(x)=2x−4=0 → x=2<br>
-c=2∈(1,3) ✓<br><br>
-<b style="color:#fde68a;font-size:.9rem">c=2에서 f'(c)=0</b><br><br>
-<b style="color:#86efac">롤의 정리:</b> f가 [a,b]에서 연속, (a,b)에서 미분가능, f(a)=f(b)이면 f'(c)=0인 c가 반드시 존재해.<br><br>
-<b style="color:#a5b4fc">토로:</b> "산을 오르고 다시 내려오면 기울기가 0인 정상이 있다는 뜻이야!"` }
-],
-
-/* ── 수학 II: 적분 ── */
-
-
-'hs-integral': [
-  { tag:'📘 개념 — 적분 핵심', tagColor:'#4ade80',
-    bg:'rgba(74,222,128,.07)', bd:'rgba(74,222,128,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
-<b style="color:#4ade80">부정적분</b><br>
-∫xⁿdx = xⁿ⁺¹/(n+1) + C &nbsp;(n≠−1)<br>
-∫sinx dx = −cosx+C<br>
-∫eˣdx = eˣ+C<br><br>
-<b style="color:#fde68a">정적분</b><br>
-∫_a^b f(x)dx = [F(x)]_a^b = F(b)−F(a)<br><br>
-<b style="color:#86efac">넓이 (부호 주의!)</b><br>
-곡선과 x축 사이의 넓이 = ∫|f(x)|dx
-</div>`,
-    ans: null },
-
-  { tag:'🔢 문제 1 — 부정적분', tagColor:'#4ade80',
-    bg:'rgba(74,222,128,.07)', bd:'rgba(74,222,128,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-∫(3x²−4x+1)dx 를 구하여라.
-</div>`,
-    ans:`<b style="color:#4ade80">토로:</b> "항마다 적분해봐!"<br><br>
-= 3·x³/3 − 4·x²/2 + x + C<br>
-= x³ − 2x² + x + C<br><br>
-<b style="color:#fde68a;font-size:.9rem">x³ − 2x² + x + C</b><br><br>
-<b style="color:#86efac">토로:</b> "미분하면 원래 함수가 나오는지 체크해봐. 검산 방법이야!"` },
-
-  { tag:'🔢 문제 2 — 정적분', tagColor:'#4ade80',
-    bg:'rgba(74,222,128,.07)', bd:'rgba(74,222,128,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-∫_1^3 (2x+1)dx 의 값을 구하여라.
-</div>`,
-    ans:`<b style="color:#4ade80">토로:</b> "먼저 부정적분하고, 위끝-아래끝을 대입해봐!"<br><br>
-F(x) = x²+x<br>
-[x²+x]_1^3 = (9+3)−(1+1)<br>
-= 12−2<br>
-<b style="color:#fde68a;font-size:.9rem">= 10</b><br><br>
-<b style="color:#86efac">토로:</b> "정적분은 '넓이의 합'이야. 여기선 직선 아래 사다리꼴 2개!"` },
-
-  { tag:'🔢 문제 3 — 넓이', tagColor:'#4ade80',
-    bg:'rgba(74,222,128,.07)', bd:'rgba(74,222,128,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-곡선 y=x²−4 와 x축으로 둘러싸인 도형의 넓이를 구하여라.
-</div>`,
-    ans:`<b style="color:#4ade80">토로:</b> "먼저 x축과의 교점을 찾아봐!"<br><br>
-x²−4=0 → x=±2<br>
-−2&lt;x&lt;2에서 y&lt;0 → 절댓값 필요<br><br>
-넓이 = ∫_{-2}^{2} |x²−4|dx<br>
-= ∫_{-2}^{2} (4−x²)dx<br>
-= [4x−x³/3]_{-2}^{2}<br>
-= (8−8/3)−(−8+8/3)<br>
-<b style="color:#fde68a;font-size:.9rem">= 32/3</b>` },
-
-  { tag:'💬 하브루타 — 적분과 미분의 관계', tagColor:'#fde68a',
-    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">
-● F(x) = ∫_0^x (t²+1)dt 라 할 때, F'(x)를 구하여라.
-</div>
-<div style="font-size:.72rem;color:#aaa;font-style:italic">학생: "직접 적분하고 미분해야 하나요? 복잡해 보여요."</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "미적분의 기본정리를 쓰면 초간단이야!"<br><br>
-미적분의 기본정리:<br>
-F(x) = ∫_a^x f(t)dt → F'(x) = f(x)<br><br>
-따라서 F'(x) = x²+1<br><br>
-<b style="color:#fde68a;font-size:.9rem">F'(x) = x²+1</b><br><br>
-<b style="color:#86efac">토로:</b> "미분과 적분은 서로 역연산이야. 이게 뉴턴과 라이프니츠의 가장 위대한 발견!"` }
-],
-
-/* ── 확률과 통계 ── */
-
-
-'hs-prob': [
-  { tag:'📘 개념 — 경우의 수·확률', tagColor:'#fbbf24',
-    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
-<b style="color:#fbbf24">순열·조합</b><br>
-P(n,r) = n!/(n−r)! &nbsp;(순서 있음)<br>
-C(n,r) = n!/(r!(n−r)!) &nbsp;(순서 없음)<br><br>
-<b style="color:#fde68a">확률</b><br>
-P(A) = n(A)/n(S)<br>
-P(A∪B) = P(A)+P(B)−P(A∩B)<br><br>
-<b style="color:#86efac">조건부확률</b><br>
-P(B|A) = P(A∩B)/P(A)
-</div>`,
-    ans: null },
-
-  { tag:'🔢 문제 1 — 조합', tagColor:'#fbbf24',
-    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-10명 중 대표 3명을 뽑는 경우의 수는?<br>
-그 중 특정 1명 A가 반드시 포함되는 경우의 수는?
-</div>`,
-    ans:`<b style="color:#fbbf24">토로:</b> "순서 없이 뽑으니까 조합이야!"<br><br>
-전체: C(10,3) = 120<br><br>
-A 포함 조건: 나머지 9명 중 2명 선택<br>
-C(9,2) = 36<br><br>
-<b style="color:#fde68a;font-size:.9rem">전체 120가지, A 포함 36가지</b><br><br>
-<b style="color:#86efac">토로:</b> "조건이 있으면 그 조건을 먼저 고정하고 나머지를 계산해!"` },
-
-  { tag:'🔢 문제 2 — 확률', tagColor:'#fbbf24',
-    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-주사위 2개를 던져 나온 눈의 합이 8 이상인 확률은?
-</div>`,
-    ans:`<b style="color:#fbbf24">토로:</b> "전체 경우의 수 = 6×6 = 36"<br><br>
-합이 8 이상인 경우:<br>
-합=8: (2,6)(3,5)(4,4)(5,3)(6,2) → 5가지<br>
-합=9: (3,6)(4,5)(5,4)(6,3) → 4가지<br>
-합=10: (4,6)(5,5)(6,4) → 3가지<br>
-합=11: (5,6)(6,5) → 2가지<br>
-합=12: (6,6) → 1가지<br><br>
-<b style="color:#fde68a;font-size:.9rem">P = 15/36 = 5/12</b>` },
-
-  { tag:'🔢 문제 3 — 정규분포', tagColor:'#fbbf24',
-    bg:'rgba(251,191,36,.07)', bd:'rgba(251,191,36,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-어떤 시험 점수가 정규분포 N(70, 10²)을 따를 때,<br>
-80점 이상인 학생의 비율을 구하여라.<br>
-(단, P(0≤Z≤1)=0.3413)
-</div>`,
-    ans:`<b style="color:#fbbf24">토로:</b> "표준화 공식 Z=(X−μ)/σ를 써봐!"<br><br>
-Z = (80−70)/10 = 1<br><br>
-P(X≥80) = P(Z≥1)<br>
-= 0.5 − P(0≤Z≤1)<br>
-= 0.5 − 0.3413<br>
-<b style="color:#fde68a;font-size:.9rem">= 0.1587 (약 15.87%)</b><br><br>
-<b style="color:#86efac">토로:</b> "정규분포 문제는 항상 표준화 → 표 찾기 순서야!"` },
-
-  { tag:'💬 하브루타 — 이항분포', tagColor:'#fde68a',
-    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">
-● 동전을 10번 던져 앞면이 정확히 3번 나올 확률은?<br>
-이항분포 B(10, 1/2)의 평균과 분산은?
-</div>
-<div style="font-size:.72rem;color:#aaa;font-style:italic">학생: "10번 중 3번이니까 3/10 아닌가요?"</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "아니야! '정확히 3번'은 이항분포로 구해야 해."<br><br>
-P(X=3) = C(10,3)·(1/2)³·(1/2)⁷<br>
-= 120 × (1/2)¹⁰<br>
-= 120/1024 ≈ 0.117<br><br>
-이항분포 B(n,p): 평균=np, 분산=np(1-p)<br>
-평균=10×1/2=<b>5</b>, 분산=10×1/2×1/2=<b>2.5</b><br><br>
-<b style="color:#86efac">토로:</b> "3/10이 아닌 이유: 다른 7번이 뒷면이어야 한다는 조건도 포함해야 해!"` }
-],
-
-/* ── 기하: 이차곡선 ── */
-
-
-'hs-conic': [
-  { tag:'📘 개념 — 이차곡선', tagColor:'#a78bfa',
-    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.9">
-<b style="color:#a78bfa">포물선</b> y²=4px (초점 (p,0), 준선 x=−p)<br><br>
-<b style="color:#fde68a">타원</b> x²/a²+y²/b²=1 (a&gt;b&gt;0)<br>
-초점 (±c,0), c²=a²−b²<br>
-장축 길이 2a<br><br>
-<b style="color:#f87171">쌍곡선</b> x²/a²−y²/b²=1<br>
-초점 (±c,0), c²=a²+b²<br>
-점근선 y=±(b/a)x
-</div>`,
-    ans: null },
-
-  { tag:'🔢 문제 1 — 포물선', tagColor:'#a78bfa',
-    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-포물선 y²=8x의 초점의 좌표와 준선의 방정식을 구하여라.
-</div>`,
-    ans:`<b style="color:#a78bfa">토로:</b> "y²=4px 형태야. 4p=8이니까 p=2!"<br><br>
-초점: (p, 0) = <b>(2, 0)</b><br>
-준선: x = −p = <b>x = −2</b><br><br>
-<b style="color:#86efac">토로:</b> "포물선은 '초점까지 거리 = 준선까지 거리'인 점들의 집합이야. 이 정의를 기억해!"` },
-
-  { tag:'🔢 문제 2 — 타원', tagColor:'#a78bfa',
-    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-타원 x²/25+y²/9=1 의 장축의 길이, 초점의 좌표를 구하여라.
-</div>`,
-    ans:`<b style="color:#a78bfa">토로:</b> "a²=25, b²=9이므로 a=5, b=3!"<br><br>
-장축 길이 = 2a = <b>10</b><br>
-c² = 25−9 = 16 → c = 4<br>
-초점: <b>(±4, 0)</b><br><br>
-<b style="color:#fde68a;font-size:.9rem">장축 10, 초점 (4,0), (−4,0)</b><br><br>
-<b style="color:#86efac">토로:</b> "타원은 두 초점까지의 거리의 합이 일정한(=2a) 점들의 집합이야!"` },
-
-  { tag:'🔢 문제 3 — 쌍곡선', tagColor:'#a78bfa',
-    bg:'rgba(167,139,250,.07)', bd:'rgba(167,139,250,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">
-쌍곡선 x²/4−y²/5=1 의 점근선의 방정식을 구하여라.
-</div>`,
-    ans:`<b style="color:#a78bfa">토로:</b> "점근선은 y=±(b/a)x야!"<br><br>
-a²=4 → a=2<br>
-b²=5 → b=√5<br>
-점근선: y = ±(√5/2)x<br><br>
-<b style="color:#fde68a;font-size:.9rem">y = (√5/2)x, y = −(√5/2)x</b><br><br>
-<b style="color:#86efac">토로:</b> "쌍곡선은 점근선에 한없이 가까워지지만 절대 닿지 않는 곡선이야!"` },
-
-  { tag:'💬 하브루타 — 벡터', tagColor:'#fde68a',
-    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">
-● 벡터 a⃗=(3,1), b⃗=(1,2)에 대해<br>a⃗·b⃗(내적)와 두 벡터가 이루는 각 θ를 구하여라.
-</div>
-<div style="font-size:.72rem;color:#aaa;font-style:italic">학생: "벡터의 곱이 숫자가 나오는 게 이상해요."</div>`,
-    ans:`<b style="color:#fde68a">토로:</b> "내적은 두 벡터의 '협력도'야!"<br><br>
-a⃗·b⃗ = 3×1+1×2 = <b>5</b><br><br>
-|a⃗|=√10, |b⃗|=√5<br>
-cosθ = 5/(√10·√5) = 5/√50 = 5/(5√2) = 1/√2<br><br>
-<b style="color:#fde68a;font-size:.9rem">θ = 45°</b><br><br>
-<b style="color:#86efac">토로:</b> "내적이 0이면 수직! 내적은 두 벡터가 얼마나 같은 방향인지 알려줘."` }
-]
-
-
-,
-
-/* ── 약수·배수 3국 개념 토론관 (4장) ───────────────── */
-
-
 'self-review': [
   { tag:'🧭 토로매쓰 자체평가 — 가상 전문가 패널', tagColor:'#7fb8c9',
     bg:'rgba(127,184,201,.07)', bd:'rgba(127,184,201,.3)',
@@ -1435,7 +686,307 @@ cosθ = 5/(√10·√5) = 5/√50 = 5/(5√2) = 1/√2<br><br>
 `, ans:null }
 ],
 
-/* ── 집합 (공통수학2) ── */
+/* ── 콘텐츠 생성 에이전트 안내 (Claude Code 전용 — 이 앱에서 직접 실행되지 않음) ── */
+'agent-guide': [
+  { tag:'🤖 안내 — 이 카드는 앱에서 실행되지 않습니다', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+여기 나오는 3개 에이전트는 <b style="color:#fde68a">Claude Code 세션 안에서만</b> 실행됩니다. 이 화면 버튼을 눌러도 실제로 카드가 만들어지지는 않아요 — 대신 아래 문구를 그대로 복사해서 Claude Code에게 붙여넣으면 됩니다.<br><br>
+세 에이전트 모두 서비스 파일을 직접 고치지 않고, <code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px">_dev/</code>에 검토용 파일만 만든 뒤 사람 승인을 기다립니다.</div>`, ans:null },
+  { tag:'🟢 toro-variant-generator — 변형 문제 늘리기', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+이미 있는 카드 1개를 시드로 받아, <b>소재·숫자만</b> 바꾼 변형 카드를 만듭니다. 목적은 연습량 확보.<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;font-family:ui-monospace,Consolas,monospace;font-size:.78rem;color:#c9d3e0">
+"toro-variant-generator 에이전트로 eq-basic 세트 4번 카드 시드로 변형 5개 만들어줘"</div></div>`, ans:null },
+  { tag:'🔴 toro-advanced-generator — 최고난도 신규 창작', tagColor:'#f87171',
+    bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+서로 다른 두 개념을 엮어서, 풀고 나면 "이 둘이 연결되는구나" 하는 깨달음을 주는 신규 최고난도(🔥) 문제를 창작합니다.<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;font-family:ui-monospace,Consolas,monospace;font-size:.78rem;color:#c9d3e0">
+"toro-advanced-generator 에이전트로 제곱근 단원 최고난도 문제 하나 만들어줘"</div></div>`, ans:null },
+  { tag:'🔵 toro-examprep-generator — 시험대비 학습지', tagColor:'#7dd3fc',
+    bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+"정답 계산"이 아니라 <b>"이 문제가 무슨 개념인지 못 알아보는 것"</b>을 훈련시키는 인쇄용 학습지를 만듭니다. 판별 드릴·대비쌍·인터리빙이 핵심.<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;font-family:ui-monospace,Consolas,monospace;font-size:.78rem;color:#c9d3e0">
+"toro-examprep-generator 에이전트로 원의 방정식 단원 시험대비 학습지 만들어줘"</div></div>`, ans:null },
+  { tag:'💬 에이전트1 vs 에이전트2 — 목적이 다릅니다', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+간단히 말하면 목적이 다릅니다.<br><br>
+
+- <b style="color:#86efac">에이전트1(variant)</b>: 이미 있는 난이도의 문제를 소재·숫자만 바꿔서 개수를 늘리는 것. 목적은 연습량 확보.<br>
+- <b style="color:#f87171">에이전트2(advanced)</b>: 아예 없던, <b>더 어려운 새 문제</b>를 만드는 건데, 그냥 계산을 복잡하게 만드는 게 아니라 — <b>서로 다른 두 개념을 한 문제 안에 억지로 엮어서, 풀고 났을 때 "아 이 둘이 연결되는구나" 하는 깨달음을 주는 것</b>이 목표.<br><br>
+
+방금 본 예시로 보면:<br><br>
+
+- 【1】은 부등식(끼워넣기)만 쓰는 문제, 【2】는 그 부등식 결과를 이용해서 "이런 정수 방정식은 답이 없다"를 증명하는 문제. 원래 이 둘은 따로 배운 별개의 도구인데, 이 카드는 둘을 이어붙여서 "부등식으로 완전제곱수 사이를 막아버리면 정수 해가 못 낀다"는 하나의 통찰을 만듭니다.<br>
+- 【3】이 진짜 포인트입니다. 같은 방법을 살짝 다른 식(x²+3x)에 써보면 <b>방법이 갑자기 안 통합니다</b> — x=1에서 실제 해가 생겨버림. 즉 이 카드는 "이 기법을 쓸 줄 안다"에서 끝나지 않고 "이 기법이 어디서 깨지는지, 왜 깨지는지"까지 보게 만듭니다.<br><br>
+
+정리하면: 에이전트1은 <b style="color:#fde68a">양(반복 연습)</b>, 에이전트2는 <b style="color:#fde68a">질(개념 융합 + 방법의 한계까지 보여주는 통찰)</b>을 노리는 겁니다. 그래서 "심화" 문제(하나의 개념을 문장제로 응용)와 다르게, "최고난도" 문제는 최소 2개 개념이 얽혀야 하고 끝에 "숨겨진 의미"를 짚어주는 게 필수 구조예요.<br><br>
+
+<span style="color:#aaa">이해에 도움이 됐나요, 아니면 어느 부분이 계속 안 와닿는지 짚어주시면 더 풀어드리겠습니다.</span>
+  </div>
+`, ans:null }
+],
+
+/* ── 중등 카드 구조 조사 (2026-09-08) ── */
+'mid-structure-audit': [
+  { tag:'🔍 중등 카드 구조 조사 — 두 세대 템플릿 공존', tagColor:'#94a3b8',
+    bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+middle.html의 방정식·기본도형·제곱근·이차방정식·약수와배수, 5개 단원 계열을 실제로 Read해서 조사한 결과예요. 중등에 "하나의 고정 틀"이 있는지 확인하는 게 목적이었어요.<br><br>
+
+<div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+<b style="color:#f87171">① 구식 틀 — 방정식·기본도형·약수배수·제곱근 전반부</b><br>
+<span style="font-size:.82rem">개념카드(발견형·시각화형·유대인식 3국 관점) + 국가로테이션 기본/심화문제 + 하브루타 토론. 초등틀(도입→예제→다양한표현→실전→토론)과 비슷하지만 "다양한 표현"이 국가별 스타일로 치환된 형태.</span>
+</div>
+
+<div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.3);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+<b style="color:#4ade80">② 신식 틀 — mid3-sqrt · mid3-quad-eq (mid3- 접두)</b><br>
+<span style="font-size:.82rem">🗺️전체지도(단원 위치) → 개념설명 → 기본문제 → ⚡심화 → 🔥최고난도 → 하크니스 원탁. 고등 이상적 사례(공수2_도형의방정식)에 훨씬 가까움.</span>
+</div>
+
+<div style="background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.3);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+<b style="color:#a5b4fc">🔗 연결고리 카드 — 전체에 고르지 않고 국지적</b><br>
+<span style="font-size:.82rem">
+· <b>fm-prime-link</b>(9장): "1층(초등 나열법) vs 2층(중1 소인수분해)—업그레이드"로 초등→중1 명시적 연결<br>
+· <b>mid3-sqrt / mid3-quad-eq</b>의 전체지도 카드: "1단원 제곱근→2단원 인수분해→3단원 이차방정식→4단원 이차함수" 흐름 명시<br>
+· 나머지(방정식·기본도형·기하)는 <b style="color:#f87171">연결고리 없음</b>
+</span>
+</div>
+
+<div style="background:rgba(217,173,107,.1);border:1px solid rgba(217,173,107,.35);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+<b style="color:#d9ad6b">🗺️ "지도" 카드 — 고등식과 성격이 다름</b><br>
+<span style="font-size:.82rem">고등식 "문제를 서랍 N개로 분류하는 패턴인식 지도"는 중등 전체에서 사실상 부재(각주 1회뿐). 중등의 "지도"는 문제 서랍 분류가 아니라 <b>단원 순서를 보여주는 커리큘럼 지도</b>에 그침.</span>
+</div>
+
+<div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px">
+<b style="color:#e2e8f0">🎯 결론 / 다음 결정 지점</b><br>
+<span style="font-size:.82rem">mid3- 계열이 이미 사실상 "신식 중등틀"의 프로토타입 역할을 하고 있고, 구식 계열(방정식·기본도형 등)은 아직 그 틀로 안 넘어온 상태. 4번째 템플릿(에이전트)을 만든다면 <b>이 mid3- 신식 틀을 표준으로 삼고, 구식 계열들을 여기 맞춰 리팩터링할지</b>가 다음 결정 지점.</span>
+</div><br>
+
+<span style="font-size:.78rem;color:#64748b">2026-09-08 조사, Explore 서브에이전트가 middle.html 5개 단원 계열(1532~7214번째 줄 부근)을 실제로 Read해서 작성. 이후 리팩터링 여부에 따라 이 내용은 갱신될 수 있음.</span>
+  </div>
+`, ans:null }
+],
+
+/* ── 에이전트 논의 전문 (2026-09-08, 대화 원문 그대로) ── */
+'agent-conversation-log': [
+  { tag:'💬 1. "1은 풀이 단계 분해 아니야?"에 대한 답', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+아니에요 — 그건 에이전트1이 아니라 <b>에이전트 자신의 검증 방법</b>을 말하는 겁니다. 실제로 학생에게 보여주는 결과물은 단계별 분해가 아니에요.<br><br>
+doc 원문(<code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px">toro-variant-generator.md</code> 3번):<br>
+<div style="border-left:3px solid rgba(148,163,184,.4);padding:6px 12px;margin:8px 0;color:#94a3b8;font-style:italic">"정답 재계산: 새 숫자로 처음부터 <b>단계별로 직접 계산해서 검증</b>한다. 시드의 풀이 과정을 그대로 베끼고 숫자만 치환하지 말 것 — 반드시 각 변형마다 독립적으로 재계산해서 오류가 없는지 확인."</div>
+이건 "에이전트가 숫자를 바꿀 때, 원본 풀이를 베껴서 숫자만 갈아끼우면 계산 실수가 생길 수 있으니, 처음부터 직접 다시 계산해서 검산하라"는 <b>내부 작업 지시</b>입니다. 학생에게 보여줄 화면을 여러 단계로 쪼개라는 뜻이 아니에요.<br><br>
+실제로 방금 본 산출물을 보면:<br>
+<div style="border-left:3px solid rgba(148,163,184,.4);padding:6px 12px;margin:8px 0;color:#94a3b8;font-style:italic">5,000 − 750x = 500 → 750x = 4,500 → x = 6</div>
+이 자체는 원본(볼펜)이랑 똑같이 한 줄 흐름이고, 그 뒤에 "왜 이렇게 세우는지" 문단 + "흔한 실수" 경고가 붙었을 뿐입니다. 문제 풀이를 4지선다 결정포인트로 쪼개는 건 (①단계에서 뭐가 필요한지 묻고 선택지 주는 방식) <b>오늘 새로 정리한 설계 지침의 "1단계 워밍업" 개념</b>이고, 에이전트1(variant)이나 에이전트2(advanced)에는 그런 구조가 없습니다.<br><br>
+정리: 세 기존 에이전트 중 "풀이를 단계별 결정포인트로 쪼개는" 기능을 가진 건 하나도 없습니다. 이게 방금 저장한 새 지침에서 처음 등장하는 개념이에요.
+  </div>
+`, ans:null },
+  { tag:'💬 2. 에이전트1 정의 확인 — "왜/흔한실수"는 시드에도 없던 것', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+확인했습니다. 이 정의, 정확합니다. 한 가지만 보태서 확인해드리면:<br><br>
+<b>에이전트1 (variant) 정의</b>:<br>
+- <b>목적</b>: 이미 있는 난이도의 문제를 소재·숫자만 바꿔서 개수를 늘리는 것 — 연습량 확보용<br>
+- <b>검증 방법</b>: "정답 재계산 — 새 숫자로 처음부터 단계별로 직접 계산해서 검증한다. 시드의 풀이 과정을 그대로 베끼고 숫자만 치환하지 말 것 — 반드시 각 변형마다 독립적으로 재계산해서 오류가 없는지 확인." (이건 에이전트 내부 검산 절차, 학생 화면 구조 아님)<br>
+- <b>출력 형태</b>: 계산 자체는 원본과 똑같은 한 줄 흐름(식→정리→답) + 그 뒤에 "왜 이렇게 세우는지" 문단 + "흔한 실수" 경고를 <b>덧붙임</b><br><br>
+<b>보탤 확인 사항 하나</b>: 이번 예시에서 "왜"+"흔한 실수"는 시드(원본 볼펜 카드)에는 없던 겁니다. 원본은 그냥 "5,000−800x=1,800 → x=4"로 끝났고, 계산 이유 설명이나 오답 경고가 없었어요. 즉 변형 카드가 이걸 시드에서 베낀 게 아니라, <b>에이전트 doc 규칙(4번 — "단순 계산 나열 금지, 반드시 포함")에 따라 새로 추가한 것</b>입니다. 그래서 "원본이랑 똑같이"는 계산 흐름에만 해당하고, 설명 부분은 원본에 없어도 항상 새로 만들어 붙이는 게 규칙이라는 뜻으로 이해하시면 정확합니다.
+  </div>
+`, ans:null },
+  { tag:'💬 3. "이건 어디에 있어?" — 규칙 위치', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px">.claude/agents/toro-variant-generator.md</code> 파일의 절차 4번입니다.<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px 12px;font-family:ui-monospace,Consolas,monospace;font-size:.78rem;color:#c9d3e0;white-space:pre-wrap">4. 해설(ans) 작성 — 가장 중요한 부분:
+   - 단순히 "x = 7" 같은 계산 나열 금지.
+   - 시드 카드의 해설 톤(핀란드식=일상 연결, 싱가포르식=시각화, 유대인식/하브루타=질문과 반전)을 유지하며, "왜 이 개념이 필요한지" 또는 "다른 개념과 어떻게 연결되는지"를 짚어주는 한두 문장을 반드시 포함.
+   - 학생이 흔히 하는 실수(오개념)가 있다면 짚어준다.</div>
+<code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px">.claude/agents/toro-variant-generator.md:36-39</code> — 절차 4번 "해설(ans) 작성" 항목입니다.
+  </div>
+`, ans:null },
+  { tag:'💬 4. 출력형태는 doc이 규정 안 함 — 두 가지만 규정', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+맞습니다, 그런 의미입니다. 정확히 짚어보면 doc이 규정하는 건 두 가지뿐입니다:<br><br>
+1. <b>내용 요건</b> (4번, 이미 확인함): "왜" 설명 + "흔한 실수" 경고를 반드시 포함<br>
+2. <b>시각적 형식</b> (2번): "바꾸지 않는 것: 개념, <b>카드 구조</b>(tag/tagColor/bg/bd 형식), 난이도 등급, <b>HTML 스타일 값</b>" — 즉 인라인 CSS·색상·태그 형식은 시드와 똑같이 유지하라고 규정함<br><br>
+하지만 <b>풀이 내용 자체를 몇 단계로 쪼갤지, 한 줄로 갈지 여러 줄로 갈지</b> 같은 "논리적 구조/형태"는 doc 어디에도 별도로 규정돼 있지 않습니다. 그건 규칙이 정한 게 아니라, "시드의 형태를 그대로 유지"(2번 규칙)하다 보니 자연히 시드가 원래 갖고 있던 모양을 따라가는 것뿐입니다 — 시드가 한 줄 흐름이었으니 변형도 한 줄 흐름이 된 것이지, "한 줄로 만들어라"는 별도 지시는 없었습니다.<br><br>
+정리: 출력 형태(단계 수·구조)는 독립적으로 규정된 게 아니라 "시드 그대로 유지"의 부산물이고, doc이 실제로 강제하는 건 스타일 값 일치 + 내용 추가(왜/실수) 두 가지뿐입니다.
+  </div>
+`, ans:null },
+  { tag:'💬 5. "남겨, 삭제해?" — 삭제가 맞음', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+삭제하는 게 맞다고 봅니다. 이유:<br><br>
+"한 줄 흐름(식→정리→답)"은 doc의 규칙이 아니라 <b>이번 예시(볼펜→색연필)에서 우연히 그랬던 것</b>뿐입니다. 시드가 여러 줄 단계식 풀이였다면 변형도 여러 줄이 됐을 거예요 — doc은 그 모양을 규정한 적이 없습니다. 이 문장을 "출력 형태" 항목으로 남기면, 나중에 이 정의를 보고 "아, agent1은 항상 한 줄 흐름으로 만드는 거구나"라고 잘못 일반화될 위험이 있습니다(실제로는 시드 의존적인데).<br><br>
+<b>정리 제안</b>:<br>
+- <s>출력 형태: 계산 자체는 원본과 똑같은 한 줄 흐름 + "왜"+"흔한 실수" 덧붙임</s> (삭제)<br>
+- 대신: <b>"계산 구조·스타일 값은 시드 그대로 유지, 그 위에 '왜' 설명과 '흔한 실수' 경고를 새로 추가"</b> — 이렇게만 남기면 시드가 어떤 모양이든 맞는 정의가 됩니다.
+  </div>
+`, ans:null },
+  { tag:'💬 6. "어디에 추가?" — 2번 절차 아래 제안', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+지금 논의한 정의 자체를 넣을 곳은 <code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px">.claude/agents/toro-variant-generator.md</code> 파일입니다 — 실제로 이 에이전트가 실행될 때 참고하는 문서라서, 여기에 명확히 해두지 않으면 다음에 이 에이전트를 돌릴 때 또 같은 오해(형태를 규정한 것처럼 착각)가 생길 수 있습니다.<br><br>
+구체적으로는 2번 절차의 "바꾸지 않는 것" 항목 바로 아래에 한 줄 추가하는 걸 제안합니다:<br><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px 12px;font-family:ui-monospace,Consolas,monospace;font-size:.78rem;color:#c9d3e0;white-space:pre-wrap">   - 바꾸지 않는 것: 개념(...), 카드 구조(...), 난이도 등급, HTML 스타일 값.
+   - 주의: 풀이의 단계 수·줄 구성(한 줄 흐름인지 여러 단계인지)은 별도로 규정하지 않는다 — 시드가 원래 가진 모양을 그대로 따라간다. "왜" 설명과 "흔한 실수" 경고만 새로 추가하면 된다.</div>
+이렇게 넣을까요, 아니면 다른 위치나 표현을 원하시나요?
+  </div>
+`, ans:null },
+  { tag:'💬 7. "지금 에이전트1 얘기 맞아?" — 맞음, 같은 파일 다른 절차', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+맞습니다, 지금 계속 에이전트1(<code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px">toro-variant-generator</code>) 얘기 중입니다. 제가 방금 제안한 추가 위치도 <code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px">.claude/agents/toro-variant-generator.md</code> 파일 — 바로 그 에이전트1의 정의 파일입니다. 다른 에이전트 파일이 아니에요.<br><br>
+이 위치에 그 문장을 추가할까요?
+  </div>
+`, ans:null },
+  { tag:'💬 8. 에이전트1 최종 정의', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b>에이전트1 (toro-variant-generator) 최종 정의</b><br><br>
+- <b>목적</b>: 이미 있는 난이도의 문제를 소재·숫자만 바꿔서 개수를 늘리는 것. 연습량 확보가 목표.<br>
+- <b>바꾸는 것</b>: 소재(인물/상황), 숫자(계산이 지저분해지지 않는 선에서)<br>
+- <b>바꾸지 않는 것</b>: 개념(난이도 등급), 카드 구조(tag/tagColor/bg/bd 형식), HTML 스타일 값 — 전부 시드 그대로 유지<br>
+- <b>검증 방법(에이전트 내부 작업, 학생 화면과 무관)</b>: 새 숫자로 처음부터 단계별로 직접 재계산해서 검증한다 — 시드 풀이를 베끼고 숫자만 치환하지 않는다.<br>
+- <b>내용상 반드시 추가하는 것</b>: 단순 계산 나열 금지 — "왜 이렇게 세우는지" 설명 + 학생이 흔히 하는 실수 경고를 새로 붙인다 (시드에 없어도 반드시 추가).<br>
+- <b>출력 형태(단계 수·줄 구성)</b>: 별도로 규정 안 함 — 시드가 원래 가진 모양을 그대로 따라간다.
+  </div>
+`, ans:null },
+  { tag:'💬 9. toro-variant-generator.md 전체 규칙 (수정 반영본, 7단계)', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<b>목적/배경</b><br>
+- 기존 카드 1개를 시드로 받아, 소재·숫자만 바꾼 변형 카드 N개 생성 → 연습량 확보용<br>
+- 핵심: 숫자만 바뀐 기계적 반복이 아니라 <b>해설(ans)의 질</b>이 핵심<br><br>
+<b>절차 1 — 시드 확인</b>: set-key 지정받으면 Grep+Read로 원문 정확히 확인 (추측 금지)<br><br>
+<b>절차 2 — 변형 설계</b>:<br>
+- 바꾸는 것: 소재(인물/상황), 숫자(정수로 딱 떨어지게)<br>
+- 바꾸지 않는 것: 개념, 카드 구조(tag/tagColor/bg/bd), 난이도 등급, HTML 스타일 값<br>
+- (신규 추가) 주의: 풀이 단계 수·줄 구성은 규정 안 함 — 시드 모양 그대로 따라감. "왜"+"흔한 실수"만 새로 추가<br><br>
+<b>절차 3 — 정답 재계산</b>: 새 숫자로 처음부터 단계별 재계산해서 검증 (시드 풀이 베끼고 숫자만 치환 금지) — 에이전트 내부 검산 절차<br><br>
+<b>절차 4 — 해설(ans) 작성</b> (가장 중요):<br>
+- 단순 계산 나열 금지<br>
+- "왜 이 개념이 필요한지/연결되는지" 한두 문장 반드시 포함<br>
+- 흔한 실수(오개념) 짚어주기<br><br>
+<b>절차 5 — 개념 난이도 검증</b>: 해설에 쓴 용어가 그 학년 범위를 벗어나면 안 됨 (벗어나면 비유로 대체/자체완결 설명/짧은 예고로 처리) — 통과 못하면 완료 보고 금지<br><br>
+<b>절차 6 — 출력</b>: index.html 직접 수정 금지. <code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px">_dev/variant_review_&lt;set-key&gt;_&lt;날짜&gt;.js</code>에 시드 요약 + 붙여넣기 가능한 JS 객체 + "달라진 점" 주석 형태로 작성<br><br>
+<b>절차 7 — 완료 보고</b>: 개수·경로·검증 결과 요약, <b>절대 스스로 index.html에 병합하지 않음</b> (사전 승인 필수)<br><br>
+<b>남아있는 이슈</b> (아직 미수정): "데이터 구조" 섹션(13~15번째 줄)이 여전히 index.html을 대상 파일로 지목하고 있는데, 실제 eq-basic 등은 지금 middle.html에 있습니다. 이것도 고칠까요?
+  </div>
+`, ans:null },
+  { tag:'💬 10. "이건 에이전트1과 다른거지?" — 같은 파일 다른 섹션', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+맞아요, 다른 에이전트가 아니라 <b>같은 에이전트1 파일 안의 다른 섹션</b>입니다.<br><br>
+- 방금까지 얘기한 건: 절차 2번(34~35번째 줄) — "변형 설계 시 뭘 바꾸고 뭘 유지하는지" 규칙<br>
+- 지금 지적한 건: "데이터 구조" 섹션(13~15번째 줄) — 시드 카드를 <b>어느 파일에서 찾을지</b>(index.html이라고 적혀 있는데 실제론 middle.html에 있음)<br><br>
+즉 같은 문서, 같은 에이전트1인데 완전히 다른 주제(파일 위치 안내)라서 별도 이슈로 구분해 말씀드린 겁니다.
+  </div>
+`, ans:null },
+  { tag:'💬 11. "이해가 안가" — 냉장고 비유로 재설명', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+더 간단히 설명해볼게요.<br><br>
+<code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px">toro-variant-generator.md</code> 파일 안에는 서로 다른 두 가지 내용이 있습니다:<br><br>
+1. <b>"뭘 바꿀지" 규칙</b> (34~35번째 줄) → 방금까지 얘기하던 것<br>
+2. <b>"시드 카드를 어디서 찾을지" 안내</b> (15번째 줄) → 지금 새로 지적한 것, 완전히 다른 얘기<br><br>
+15번째 줄 원문:<br>
+<div style="border-left:3px solid rgba(148,163,184,.4);padding:6px 12px;margin:8px 0;color:#94a3b8;font-style:italic">"index.html의 const CARD_DATA = { (1583번째 줄 부근) 안에 set-key(eq-basic, ineq-hard10, prime-havruta 등)별 카드 배열이 있습니다."</div>
+<b>문제</b>: 이 문장은 "eq-basic 세트를 찾으려면 index.html을 봐라"라고 안내하는데, 실제로 지금 eq-basic은 index.html이 아니라 middle.html의 1736번째 줄에 있습니다 (제가 아까 직접 확인함). index.html에는 지금 hs-poly, hs-equation 같은 다른 세트만 있고요.<br><br>
+비유하자면: "우유는 냉장고에 있다"고 메모해놨는데, 실제론 누가 냉동실로 옮겨놓은 상태예요. 메모(문서)는 안 고쳤고요.<br><br>
+<b>왜 문제인가</b>: 나중에 이 에이전트1을 실행시키면, 문서가 시키는 대로 index.html에서 eq-basic을 찾다가 못 찾거나 헷갈릴 수 있습니다.<br><br>
+이제 이해되셨나요?
+  </div>
+`, ans:null },
+  { tag:'💬 12. "웹으로 보여줘" — 공식문서 + 정리페이지 링크', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+두 가지 다 열었습니다.<br><br>
+1. <b>Claude Code 서브에이전트 공식 문서</b> — https://code.claude.com/docs/en/sub-agents 브라우저에서 열림<br>
+2. <b>토로매쓰 에이전트 3종 정리 페이지</b> — https://claude.ai/code/artifact/318f8c21-9d01-49b9-b7f5-95d1312585f2<br><br>
+정리 페이지에는 위쪽에 3개 비교표, 각 에이전트마다 실제 산출물 예시(방금 대화에서 본 볼펜/색연필, 완전제곱수, 판별드릴)와 절차 요약, 그리고 아까 지적한 "index.html vs middle.html" 미수정 이슈도 경고 박스로 남겨뒀습니다.
+  </div>
+`, ans:null },
+  { tag:'💬 13. "저 에이전트가 언제일해?" — 실행 조건 2가지', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+자동으로 돌아가는 게 아니라, <b>아래 두 경우에만</b> 실행됩니다.<br><br>
+1. <b>사용자가 직접 요청할 때</b>: "eq-basic에 변형 카드 3개 만들어줘" 처럼 말하면, 제가 그 요청에 맞는 에이전트(variant)를 골라서 Agent 도구로 띄웁니다.<br>
+2. <b>제가 알아서 판단해서 위임할 때</b>: 작업 내용이 어느 에이전트의 description(예: variant는 "기존 카드 시드로 변형 생성", advanced는 "최고난도 문제 창작")과 맞아떨어진다고 판단하면, 사용자가 에이전트 이름을 몰라도 제가 알아서 그 에이전트를 호출합니다.<br><br>
+<b>중요한 점</b>: 백그라운드에서 주기적으로 도는 것도 아니고, 파일이 바뀌었다고 저절로 깨어나는 것도 아닙니다. 한 번 호출되면 그 작업(변형 카드 N개 만들기 등)을 한 번 수행하고, 검토용 파일(_dev/*.js 또는 _dev/*.html)을 출력한 뒤 끝납니다 — 그 다음엔 다시 호출하기 전까진 아무 일도 안 합니다.<br><br>
+참고로 <b>오늘 대화에서는 이 세 에이전트가 한 번도 실제로 호출된 적 없습니다</b> — 지금까지는 .claude/agents/*.md 문서 내용을 같이 읽고 규칙을 다듬은 것뿐이고, 실제로 카드를 생성시키려면 "OO 에이전트로 △△단원 변형 만들어줘" 식으로 요청하시면 됩니다.
+  </div>
+`, ans:null },
+  { tag:'💬 14. "카드 올려줘" — 앱 버튼으론 에이전트 실행 불가', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+한 가지 짚어야 할 게 있습니다: 이 에이전트들은 <b>Claude Code 세션 안에서만 실행</b>되는 것이라, 브라우저에서 열리는 정적 HTML 앱(index.html/middle.html/high.html)의 버튼을 클릭한다고 실제로 호출되지는 않습니다. toro_math는 서버·백엔드가 없는 순수 클라이언트 앱이라, 웹페이지 버튼이 Claude Code의 Agent 도구를 실행시킬 방법이 없습니다.<br><br>
+그래서 "카드를 올려줘"가 정확히 어떤 걸 의미하시는지 확인이 필요합니다.
+  </div>
+`, ans:null },
+  { tag:'💬 15. 백엔드 확인 결과 + 안내카드 추가 보고', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+확인 결과: 실제로 API로 호출되는 백엔드는 <b>없습니다</b> — netlify/functions/approve.js 하나만 있는데, 이건 회원가입 승인용(Firebase)이고 Claude/에이전트와는 무관합니다. toro_math는 순수 클라이언트 앱이라 앱 버튼이 에이전트를 실제로 실행시킬 방법은 없습니다.<br><br>
+그래서 추천하신 대로 <b>"사용법 안내" 카드</b>를 넣었습니다.<br><br>
+- index.html 홈 화면 맨 아래(섹션 8), "🧭 토로매쓰 자체평가" 카드 바로 다음에 "🤖 콘텐츠 생성 에이전트" 카드 추가<br>
+- 클릭하면 안내(이 카드는 실행 안 됨) + 에이전트 3개(variant/advanced/examprep) 소개 + 그대로 복사해서 Claude Code에 붙여넣을 수 있는 예시 프롬프트가 카드뷰어로 열림<br>
+- div/svg 균형, JS 문법 체크 통과, 브라우저에 열어둠<br><br>
+확인해보시고 프롬프트 문구나 위치가 마음에 안 드시면 말씀해주세요.<br><br>
+<span style="font-size:.78rem;color:#64748b">(참고: 이 섹션8 배치는 이후 대화에서 "🏆 토로매쓰 마스터" 모달 안으로 옮겨졌습니다 — 이 카드는 그 시점의 원문 그대로입니다.)</span>
+  </div>
+`, ans:null },
+  { tag:'💬 16. "에이전트는 템플릿이다" — 확인, 3개 이미 존재', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+확인 정리:<br><br>
+<b>"에이전트 = 템플릿"</b> — 맞습니다. 정확히는, 매번 말로 설명해야 하는 규칙(뭘 바꾸고 뭘 유지할지, 어떻게 검증할지, 어디에 출력할지)을 문서 하나(.claude/agents/*.md)에 고정해두고, 다음부터는 그 문서를 따라 반복 실행하는 것 — 이게 "수정 줄이고 속도 올리기"의 실체입니다.<br><br>
+<b>"3개 에이전트 = 3개 템플릿 존재?"</b> — 네, 이미 존재합니다:<br>
+1. toro-variant-generator — 변형 문제 늘리기 템플릿<br>
+2. toro-advanced-generator — 최고난도 신규 창작 템플릿<br>
+3. toro-examprep-generator — 시험대비 학습지 템플릿<br><br>
+<b>단, 확인할 게 하나 있습니다</b>: 이 3개는 전부 이 대화 시작 전부터 이미 있던 것이고, 오늘 처음 정리한 <b>새 설계 지침</b>(개념카드/연결고리카드/복습패턴카드 3층위 + 워밍업→실전게임 순서)은 이 3개 중 어디에도 해당하지 않습니다. 즉:<br><br>
+- 지금 있는 템플릿: 3개 (변형/최고난도/시험대비)<br>
+- 오늘 정리한 지침을 템플릿화하면: <b>4번째 템플릿</b>이 될 것 — 아직 안 만들어짐<br><br>
+정리하자면, "에이전트=템플릿"이라는 개념 자체는 맞고 이미 3개가 존재하지만, 오늘 얘기하던 새 지침은 그 3개와 별개로 새로 하나 더 만들어야 하는 상태입니다.
+  </div>
+`, ans:null },
+  { tag:'💬 17. 4번째 템플릿 초안 — toro-unit-architect', tagColor:'#c4b5fd', bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+4번째 템플릿 초안입니다. 파일로 쓰기 전에, 먼저 텍스트로 검토받고 확정하겠습니다 (지침에 없던 세부 판단은 기존 3개 에이전트 관행을 따라 채웠습니다).<br><br>
+<b>이름 제안</b>: toro-unit-architect (기존 3개는 전부 "카드/문제"를 만드는데, 이건 "단원 전체 구조"를 다루는 게 달라서 -generator 대신 -architect로 구분)<br><br>
+<b>description</b>: 새 단원을 개념카드→연결고리카드→워밍업→실전게임→복습패턴카드 5단계 순서로 설계하거나, 기존 단원을 감사해 이 5개 유형 중 뭐가 빠졌는지 점검한다(예: hs-geometry처럼 연결고리 카드가 없는 단원). 대상은 학생이 개념 간 연결을 스스로 못 찾는 학생 — 하크네스식 상위권용 콘텐츠가 아니다.<br><br>
+<b>tools</b>: Read, Grep, Glob, Write, Bash<br><br>
+<b>절차 초안</b>:<br>
+1. 모드 확인 — "신규 단원 설계"인지 "기존 단원 감사"인지 먼저 확인<br>
+2. (감사 모드) 해당 단원의 기존 CARD_DATA 세트를 전부 Grep+Read해서, 5개 유형(①개념 ②연결고리 ③워밍업 ④실전게임 ⑤복습패턴) 중 있는 것/없는 것을 표로 정리. <b>②연결고리 카드가 없으면 그 단원은 무조건 미완성으로 보고</b><br>
+3. (신규 모드) 이 단원이 어느 선수개념에서 오고 다음 어디로 이어지는지 먼저 확인(순서 임의 변경 금지)<br>
+4. 설계 순서 강제: 개념카드 → 연결고리카드 → 워밍업(①) → 실전게임(②) → 복습패턴카드(③) — 이 순서를 건너뛰지 않음<br>
+5. 카드 규칙: 오답 선택지는 실제 흔한 오개념 반영(근거 없는 나열 금지) · 중요 개념은 단독설명+연계설명 모두 포함 · 너무 기초적인 건 깊이 안 다룸 · ③복습카드는 선수개념 출처 재설명 안 함<br>
+6. 워밍업(①) 설계: 문제 1개 → 풀이 3~5단계 분해, 각 단계 "이 단계에서 필요한 것은?" + 결정포인트 4지선다, 자명한 단계는 만들지 않음<br>
+7. 실전게임(②) 설계: 같은 아이디어를 문장/기호/그림으로 재구성, 제한시간/콤보 형식, "같은 단어·다른 유형" 함정 케이스 최소 1개<br>
+8. 정답 검증 — Bash로 Node.js 재계산 (기존 두 generator와 동일 관행)<br>
+9. 개념 난이도 검증 — 학년 범위 벗어난 용어 점검 (기존 세 에이전트와 동일 관행)<br>
+10. 출력 — 서비스 파일 직접 수정 안 함, _dev/unit_review_&lt;단원&gt;_&lt;날짜&gt;.js에 검토용 작성<br>
+11. 완료 보고 — 5개 유형 중 뭘 만들었는지/뭐가 여전히 빠졌는지 요약, 절대 스스로 병합 안 함<br><br>
+<b>확인 필요한 것 하나</b>: 지침 원문에 "수식 표기는 KaTeX로, 정규식 후처리 금지"라고 돼 있는데, toro_math는 지금까지 KaTeX 없이 frac(n,d) 같은 자체 JS 함수로 분수를 표기해왔습니다(빌드 도구·프레임워크 없는 단일 파일 앱 구조상). 이 지침이 "앞으로는 KaTeX 도입하자"는 새 결정인지, 아니면 그 문서를 만들 때(다른 세션) 실제 코드베이스 확인 없이 일반론으로 적은 건지 확인이 필요합니다 — 어느 쪽이든에 따라 절차 문구가 달라집니다.
+  </div>
+`, ans:null },
+  { tag:'💬 18. 설계순서 재정리 — 중등카드/게임 분리', tagColor:'#c4b5fd', bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+실제 파일로 확인하며 다시 정리했습니다.<br><br>
+<b>1. 두 영역 분리</b> — index.html 홈 화면의 두 카드와 그대로 대응됩니다.<br>
+- <b>중등카드</b> (개념·연결고리·복습패턴) → middle.html<br>
+- <b>게임</b> (워밍업·실전게임) → games.html/게임 놀이터<br><br>
+<b>2. 순서</b>: 중등카드(또는 그중 한 유형) 완성 → 그다음 워밍업 생성. <b>워밍업은 이미 완성된 템플릿</b> — 확인해보니 idea_game/linear_speed_cards.html 등에 실제로 구현돼 있습니다:<br>
+<div style="border-left:3px solid rgba(148,163,184,.4);padding:6px 12px;margin:8px 0;color:#94a3b8;font-style:italic">"이 문제에서 무엇을 미지수 x로 두면 풀기 편한가?" → "식을 세우기 위해 필요한 내용은?" → "식은?" (결정포인트 3~4단계 + 4지선다)</div>
+games.html의 "중등수학 연습(워밍업)" 섹션에서 이 파일들로 연결됩니다. 즉 워밍업은 새로 설계할 게 아니라 <b>이 기존 형식을 그대로 재사용</b>하면 됩니다.<br><br>
+<b>3. 중등카드 자체 구조는 아직 미확정 — 논의 필요</b> (말씀대로, 확정하지 않고 남겨둡니다):<br>
+- 초등틀: ①현실연계 도입/논리적 접근 ②예제 ③다양한 표현 ④실전문제 ⑤토론(하브루타)<br>
+- 중등틀: 초등과 다름, 현재 middle.html 카드 구성을 직접 보면서 따로 논의 필요<br>
+- 고등의 이상적 사례 = _dev/공수2_도형의방정식.html 확인함 — 목차 → (개념[발견형]→개념풀이→기본문제) 반복 → <b>"지도"(서랍 7개로 분류, "이 문제는 어느 서랍?")</b> 구조<br><br>
+<b>4. 워밍업·실전카드 위치</b>: games.html(게임 놀이터)<br><br>
+<b>5. 복습카드 패턴 = 중등카드의 핵심 콘텐츠.</b> 가장 잘 구현된 사례는 공수2_도형의방정식.html의 "지도" 파트(서랍별 패턴 분류) — 계산이 아니라 "이 문제가 어느 서랍인지 알아채기" 훈련.<br><br>
+<b>남은 것</b>: 3번(중등카드 자체 틀)은 확정 안 됐으니, 4번째 템플릿을 지금 바로 문서화하기보다 — middle.html의 현재 카드 구성을 같이 보면서 중등틀부터 정리하는 게 다음 순서로 보입니다. 이렇게 진행할까요?
+  </div>
+`, ans:null },
+  { tag:'💬 19. "중등 카드구성 조사?" — 조사 에이전트 실행 결정', tagColor:'#94a3b8', bg:'rgba(148,163,184,.07)', bd:'rgba(148,163,184,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+중등수학 카드 구성 조사, 맞습니다. middle.html에 CARD_DATA 세트가 60개 넘게 있어서 (일차방정식·평면도형·입체도형·기본도형·부등식·일차함수·제곱근·이차방정식·이차함수 등) 직접 다 읽기보다 조사 전담 에이전트에게 맡기겠습니다.<br><br>
+<span style="font-size:.78rem;color:#64748b">(이 조사의 전체 결과는 별도 카드 "🔍 중등 카드 구조 조사"에 정리돼 있습니다.)</span>
+  </div>
+`, ans:null }
+]
 };
 
 // ── complex-power 카드 전용 헬퍼 (i / (1+i)^n / ω 인터랙티브 예제) ──────
@@ -7482,6 +7033,13 @@ function showArtifactCollection() {
 
 function closeArtifactCollection() {
   document.getElementById('artifact-collection-modal').style.display = 'none';
+}
+
+function showToroMaster() {
+  document.getElementById('toro-master-modal').style.display = 'flex';
+}
+function closeToroMaster() {
+  document.getElementById('toro-master-modal').style.display = 'none';
 }
 
 function updateArtifactBadge() {
