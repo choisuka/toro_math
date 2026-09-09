@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🧪 연립방정식의 활용 — 농도</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--card:#111827;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.08);
+  --good:#34d399;--bad:#f87171}
+body{font-family:"Nanum Gothic","Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:520px;margin:0 auto;padding:1.25rem 1.1rem 3rem}
+
+
+.nav-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem;gap:8px}
+.progress-pill{font-family:'Jua',sans-serif;font-size:.78rem;color:#7dd3fc;background:rgba(14,165,233,.12);
+  border:1px solid rgba(14,165,233,.3);padding:5px 12px;border-radius:20px}
+.nav-back{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#ccc;border-radius:8px;
+  padding:6px 12px;font-family:'Jua',sans-serif;font-size:.76rem;cursor:pointer}
+.nav-right{display:flex;align-items:center;gap:8px}
+.print-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#aaa;border-radius:8px;
+  padding:4px 9px;font-size:.85rem;cursor:pointer}
+
+.sec-head{text-align:center;margin-bottom:1.3rem}
+.sec-head h1{font-family:'Jua',sans-serif;font-size:1.4rem;margin-bottom:.35rem;
+  background:linear-gradient(135deg,#38bdf8,#2dd4bf);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-head p{color:var(--muted);font-size:.82rem;line-height:1.6}
+
+.score-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.7rem 1rem}
+.score-item{text-align:center}
+.score-item .num{font-family:'Jua',sans-serif;font-size:1.1rem;color:#fff}
+.score-item .lbl{font-size:.68rem;color:var(--muted)}
+.streak-fire{color:#fb923c}
+
+.progress-track{height:6px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:1.2rem;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#0ea5e9,#14b8a6);border-radius:4px;transition:width .3s}
+
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem 1.3rem;margin-bottom:1.2rem}
+.quiz-topic{display:inline-block;font-size:.7rem;color:#7dd3fc;background:rgba(14,165,233,.12);
+  border:1px solid rgba(14,165,233,.3);padding:.25rem .65rem;border-radius:10px;margin-bottom:.6rem}
+.quiz-source{font-size:1rem;font-weight:800;color:#fff;margin-bottom:1rem;line-height:1.65;
+  background:rgba(255,255,255,.03);border-radius:10px;padding:.85rem .9rem}
+.quiz-source b{color:#fde68a}
+.quiz-prompt{font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+.quiz-sentence{font-size:1rem;font-weight:800;line-height:1.65;color:#fff;margin-bottom:1.3rem}
+
+.choices{display:flex;flex-direction:column;gap:.6rem}
+.choice-btn{display:flex;align-items:flex-start;gap:.6rem;text-align:left;width:100%;
+  background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:14px;
+  padding:.75rem .9rem;color:var(--text);font-size:.86rem;font-family:inherit;cursor:pointer;
+  transition:border-color .15s,background .15s}
+.choice-btn:hover:not(:disabled){border-color:rgba(14,165,233,.5);background:rgba(14,165,233,.08)}
+.choice-btn:disabled{cursor:default}
+.choice-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:var(--muted);margin-top:.1rem}
+.choice-btn.correct{border-color:var(--good);background:rgba(52,211,153,.12)}
+.choice-btn.correct .choice-num{background:var(--good);color:#052e1c}
+.choice-btn.wrong{border-color:var(--bad);background:rgba(248,113,113,.12)}
+.choice-btn.wrong .choice-num{background:var(--bad);color:#3a0a0a}
+
+.explain-box{margin-top:1.1rem;padding:1rem 1.1rem;border-radius:14px;font-size:.85rem;line-height:1.7;display:none}
+.explain-box.show{display:block}
+.explain-box.good{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);color:#a7f3d0}
+.explain-box.bad{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);color:#fecaca}
+.explain-box .verdict{font-family:'Jua',sans-serif;font-size:.92rem;margin-bottom:.4rem}
+
+.qnav{display:flex;gap:8px;margin-top:1rem}
+.qnav-prev{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#ccc;
+  border-radius:14px;padding:.85rem;font-family:'Jua',sans-serif;font-size:.86rem;cursor:pointer}
+.qnav-prev:disabled{opacity:.35;cursor:default}
+.qnav-skip{flex:0 0 auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#888;
+  border-radius:14px;padding:.85rem 1rem;font-family:'Jua',sans-serif;font-size:.8rem;cursor:pointer}
+.qnav-next{flex:1;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border:none;color:#fff;
+  border-radius:14px;padding:.85rem;font-family:'Jua',sans-serif;font-size:.86rem;cursor:pointer}
+.qnav-next:disabled{opacity:.35;cursor:default;background:rgba(255,255,255,.08);color:#666}
+
+.end-screen{display:none;text-align:center;background:var(--card);border:1px solid var(--border);
+  border-radius:22px;padding:2.4rem 1.6rem}
+.end-screen.show{display:block}
+.end-icon{font-size:3.2rem;margin-bottom:.8rem}
+.end-title{font-family:'Jua',sans-serif;font-size:1.3rem;margin-bottom:.5rem}
+.end-score{font-family:'Jua',sans-serif;font-size:2.2rem;background:linear-gradient(135deg,#38bdf8,#2dd4bf);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.end-desc{color:var(--muted);font-size:.85rem;margin-bottom:1.4rem;line-height:1.6}
+.retry-btn{display:inline-block;padding:.8rem 1.8rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.88rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav-bar">
+    <button class="nav-back" onclick="history.back()">← 뒤로</button>
+    <div class="nav-right">
+      <button class="print-btn" onclick="printQuestions()" title="전체 인쇄">🖨️</button>
+      <span class="progress-pill" id="progPill">1 / 20</span>
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <h1>🧪 연립방정식의 활용 — 농도</h1>
+    <p><b style="color:#e2e8f0">미지수 두 개</b>로 풀리는 농도 문제 — 소금 추가·물 추가·두 소금물 혼합, 세 가지 상황을 모두 익혀요.</p>
+  </div>
+
+  <div class="score-bar">
+    <div class="score-item"><div class="num" id="scoreNum">0</div><div class="lbl">정답</div></div>
+    <div class="score-item"><div class="num streak-fire" id="streakNum">0🔥</div><div class="lbl">연속정답</div></div>
+    <div class="score-item"><div class="num" id="totalNum">0 / 20</div><div class="lbl">진행</div></div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-topic" id="quizTopic">단계</div>
+    <div class="quiz-source" id="quizSource">문제</div>
+    <div class="quiz-prompt">📖 이 단계에서 필요한 것은?</div>
+    <div class="quiz-sentence" id="quizSentence">문장</div>
+    <div class="choices" id="choices"></div>
+    <div class="explain-box" id="explainBox">
+      <div class="verdict" id="explainVerdict"></div>
+      <div id="explainText"></div>
+    </div>
+    <div class="qnav">
+      <button class="qnav-prev" id="prevBtn">← 이전</button>
+      <button class="qnav-skip" id="skipBtn">건너뛰기 ↩</button>
+      <button class="qnav-next" id="nextBtn" disabled>다음 →</button>
+    </div>
+  </div>
+
+  <div class="end-screen" id="endScreen">
+    <div class="end-icon">🏆</div>
+    <div class="end-title">완료!</div>
+    <div class="end-score" id="endScore">0 / 20</div>
+    <div class="end-desc" id="endDesc">소금물 문제는 항상 '소금의 양'을 먼저 추적하는 게 핵심이에요.</div>
+    <button class="retry-btn" onclick="restart()">🔄 다시 도전</button>
+  </div>
+
+</div>
+
+<script>
+const WP1 = '[문제1] 농도 <b>10%</b>인 소금물이 있다(양은 모른다). 여기에 소금을 넣었더니 전체 무게가 <b>225g</b>, 농도 <b>20%</b>인 소금물이 되었다. 처음 소금물의 양과 넣은 소금의 양은 각각 얼마인가?';
+const WP2 = '[문제2] 농도 <b>8%</b>인 소금물이 있다(양은 모른다). 여기에 물을 넣었더니 전체 무게가 <b>320g</b>, 농도 <b>5%</b>인 소금물이 되었다. 처음 소금물의 양과 넣은 물의 양은 각각 얼마인가?';
+const WP3 = '[문제3] <b>6%</b> 소금물과 <b>10%</b> 소금물을 섞어서 <b>8%</b> 소금물 <b>400g</b>을 만들려고 한다. 6%와 10% 소금물은 각각 몇 g을 섞어야 할까?';
+const WP4 = '[문제4] 구리를 <b>60%</b> 함유한 합금과 <b>90%</b> 함유한 합금을 섞어서 <b>70%</b> 합금 <b>300g</b>을 만들려고 한다. 60%와 90% 합금은 각각 몇 g씩 섞어야 하는가?';
+const WP5 = '[문제5] 오렌지 원액이 <b>20%</b> 들어있는 주스와 <b>50%</b> 들어있는 주스를 섞어서 원액 <b>35%</b>인 주스 <b>400mL</b>를 만들려고 한다. 20%와 50% 주스는 각각 몇 mL씩 섞어야 하는가?';
+
+const QUESTIONS = [
+{
+  topic: '1번 1단계', source: WP1,
+  sentence: '미지수를 무엇으로 두면 좋을까?',
+  choices: ['처음 소금물의 양 x(g), 넣은 소금의 양 y(g)', '최종 소금물의 농도 x, 최종 양 y', '처음 소금물의 농도 x, 넣은 소금의 양 y', '전체 무게만 x로 둔다'],
+  answer: 0,
+  why: '구하는 값이 처음 소금물의 양과 넣은 소금의 양이므로 두 미지수 x, y로 둬요.'
+},
+{
+  topic: '1번 2단계', source: WP1,
+  sentence: '"전체 무게 225g"을 식으로 나타내면?',
+  choices: ['x + y = 225', 'x − y = 225', 'x × y = 225', 'x + y = 20'],
+  answer: 0,
+  why: '처음 소금물 양(x)에 넣은 소금 양(y)을 더하면 최종 전체 무게(225g)가 돼요.'
+},
+{
+  topic: '1번 3단계', source: WP1,
+  sentence: '처음 소금의 양과 최종 소금의 양을 각각 식으로 나타내면?',
+  choices: ['처음 소금=0.1x, 최종 소금=0.1x+y', '처음 소금=0.1x, 최종 소금=y', '처음 소금=x, 최종 소금=0.1x+y', '처음 소금=0.1x, 최종 소금=0.1(x+y)'],
+  answer: 0,
+  why: '처음 소금물(x g, 농도 10%) 속 소금은 0.1x. 여기에 순수 소금 y를 더하면 최종 소금은 0.1x+y예요.'
+},
+{
+  topic: '1번 4단계', source: WP1,
+  sentence: '"최종 농도 20%"라는 조건을 식으로 나타내면?',
+  choices: ['0.1x + y = 0.2×225', '0.1x + y = 225', 'x + y = 0.2×225', '0.1x + y = 0.2×(x+y)'],
+  answer: 0,
+  why: '최종 소금의 양(0.1x+y)이 최종 전체(225g)의 20%와 같아요. 두 식을 연립하면 x=200g, y=25g.'
+},
+{
+  topic: '2번 1단계', source: WP2,
+  sentence: '미지수를 무엇으로 두면 좋을까?',
+  choices: ['처음 소금물의 양 x(g), 넣은 물의 양 y(g)', '최종 소금물의 농도 x, 최종 양 y', '처음 소금물의 농도 x, 넣은 물의 양 y', '전체 무게만 x로 둔다'],
+  answer: 0,
+  why: '구하는 값이 처음 소금물의 양과 넣은 물의 양이므로 두 미지수 x, y로 둬요.'
+},
+{
+  topic: '2번 2단계', source: WP2,
+  sentence: '"전체 무게 320g"을 식으로 나타내면?',
+  choices: ['x + y = 320', 'x − y = 320', 'x × y = 320', 'x + y = 16'],
+  answer: 0,
+  why: '처음 소금물 양(x)에 넣은 물 양(y)을 더하면 최종 전체 무게(320g)가 돼요.'
+},
+{
+  topic: '2번 3단계', source: WP2,
+  sentence: '처음 소금의 양을 식으로 나타내면? (물만 추가하면 소금의 양은 변하지 않음)',
+  choices: ['0.08x', '0.05x', '0.08(x+y)', '0.08y'],
+  answer: 0,
+  why: '처음 소금물(x g, 농도 8%) 속 소금은 0.08x. 물만 넣으므로 소금의 양은 그대로예요.'
+},
+{
+  topic: '2번 4단계', source: WP2,
+  sentence: '"최종 농도 5%"라는 조건을 식으로 나타내면?',
+  choices: ['0.08x = 0.05×320', '0.08x = 0.05x', '0.08x = 320', 'x = 0.05×320'],
+  answer: 0,
+  why: '변하지 않는 소금의 양(0.08x)이 최종 전체(320g)의 5%와 같아요. 풀면 x=200g, y=120g.'
+},
+{
+  topic: '3번 1단계', source: WP3,
+  sentence: '미지수를 무엇으로 두면 좋을까?',
+  choices: ['6% 소금물 x(g), 10% 소금물 y(g)', '섞기 전 소금의 양을 x, y로 둔다', '최종 농도 x, 최종 양 y로 둔다', '6% 소금물만 x로 두고 10%는 (x−일정값)로 둔다'],
+  answer: 0,
+  why: '구하는 값이 6%, 10% 소금물 각각의 양이므로 두 미지수 x, y로 둬요.'
+},
+{
+  topic: '3번 2단계', source: WP3,
+  sentence: '"섞은 후 전체 양은 400g"을 식으로 나타내면?',
+  choices: ['x + y = 400', 'x − y = 400', 'x × y = 400', 'x + y = 8'],
+  answer: 0,
+  why: '두 소금물을 섞은 전체 양이 400g이라는 조건을 그대로 옮겨요.'
+},
+{
+  topic: '3번 3단계', source: WP3,
+  sentence: '6% 소금물과 10% 소금물 각각에 들어있는 소금의 양을 식으로 나타내면?',
+  choices: ['0.06x(g), 0.10y(g)', '6x(g), 10y(g)', '0.06y(g), 0.10x(g)', 'x/6(g), y/10(g)'],
+  answer: 0,
+  why: '소금의 양 = 소금물 양 × 농도이므로, 6% 소금물의 소금은 0.06x, 10% 소금물의 소금은 0.10y예요.'
+},
+{
+  topic: '3번 4단계', source: WP3,
+  sentence: '"섞은 후 소금의 양은 400×8%=32g"을 식으로 나타내면?',
+  choices: ['0.06x + 0.10y = 32', '0.06x + 0.10y = 400', 'x + y = 32', '0.06x − 0.10y = 32'],
+  answer: 0,
+  why: '섞기 전 두 소금의 합과 섞은 후 소금의 양(32g)이 같아요. 두 식을 연립하면 x=200g, y=200g.'
+},
+{
+  topic: '4번 1단계', source: WP4,
+  sentence: '미지수를 무엇으로 두면 좋을까?',
+  choices: ['60% 합금 x(g), 90% 합금 y(g)','섞기 전 구리의 양을 x, y로 둔다','최종 농도 x, 최종 양 y로 둔다','60% 합금만 x로 두고 90%는 (x−일정값)로 둔다'],
+  answer: 0, why: '구하는 값이 60%, 90% 합금 각각의 양이므로 두 미지수 x, y로 둬요.'
+},
+{
+  topic: '4번 2단계', source: WP4,
+  sentence: '"섞은 후 전체 양은 300g"을 식으로 나타내면?',
+  choices: ['x + y = 300','x − y = 300','x × y = 300','x + y = 7'],
+  answer: 0, why: '두 합금을 섞은 전체 양이 300g이라는 조건을 그대로 옮겨요.'
+},
+{
+  topic: '4번 3단계', source: WP4,
+  sentence: '60% 합금과 90% 합금 각각에 들어있는 구리의 양을 식으로 나타내면?',
+  choices: ['0.6x(g), 0.9y(g)','6x(g), 9y(g)','0.6y(g), 0.9x(g)','x/6(g), y/9(g)'],
+  answer: 0, why: '구리의 양 = 합금 양 × 농도이므로, 60% 합금의 구리는 0.6x, 90% 합금의 구리는 0.9y예요.'
+},
+{
+  topic: '4번 4단계', source: WP4,
+  sentence: '"섞은 후 구리의 양은 300×70%=210g"을 식으로 나타내면?',
+  choices: ['0.6x + 0.9y = 210','0.6x + 0.9y = 300','x + y = 210','0.6x − 0.9y = 210'],
+  answer: 0, why: '섞기 전 두 구리의 합과 섞은 후 구리의 양(210g)이 같아요. 두 식을 연립하면 x=200g, y=100g.'
+},
+{
+  topic: '5번 1단계', source: WP5,
+  sentence: '미지수를 무엇으로 두면 좋을까?',
+  choices: ['20% 주스 x(mL), 50% 주스 y(mL)','섞기 전 원액의 양을 x, y로 둔다','최종 농도 x, 최종 양 y로 둔다','20% 주스만 x로 두고 50%는 (x−일정값)로 둔다'],
+  answer: 0, why: '구하는 값이 20%, 50% 주스 각각의 양이므로 두 미지수 x, y로 둬요.'
+},
+{
+  topic: '5번 2단계', source: WP5,
+  sentence: '"섞은 후 전체 양은 400mL"을 식으로 나타내면?',
+  choices: ['x + y = 400','x − y = 400','x × y = 400','x + y = 35'],
+  answer: 0, why: '두 주스를 섞은 전체 양이 400mL라는 조건을 그대로 옮겨요.'
+},
+{
+  topic: '5번 3단계', source: WP5,
+  sentence: '20% 주스와 50% 주스 각각에 들어있는 원액의 양을 식으로 나타내면?',
+  choices: ['0.2x(mL), 0.5y(mL)','2x(mL), 5y(mL)','0.2y(mL), 0.5x(mL)','x/2(mL), y/5(mL)'],
+  answer: 0, why: '원액의 양 = 주스 양 × 농도이므로, 20% 주스의 원액은 0.2x, 50% 주스의 원액은 0.5y예요.'
+},
+{
+  topic: '5번 4단계', source: WP5,
+  sentence: '"섞은 후 원액의 양은 400×35%=140mL"을 식으로 나타내면?',
+  choices: ['0.2x + 0.5y = 140','0.2x + 0.5y = 400','x + y = 140','0.2x − 0.5y = 140'],
+  answer: 0, why: '섞기 전 두 원액의 합과 섞은 후 원액의 양(140mL)이 같아요. 두 식을 연립하면 x=200mL, y=200mL.'
+}
+];
+
+let order = [], idx = 0, score = 0, streak = 0, answered = false;
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function restart(){
+  order = QUESTIONS.map((_,i)=>i);
+  idx = 0; score = 0; streak = 0;
+  document.getElementById('endScreen').classList.remove('show');
+  document.getElementById('quizCard').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered = false;
+  const q = QUESTIONS[order[idx]];
+  document.getElementById('quizTopic').textContent = q.topic;
+  document.getElementById('quizSource').innerHTML = q.source;
+  document.getElementById('quizSentence').textContent = q.sentence;
+  document.getElementById('progPill').textContent = (idx+1)+' / '+QUESTIONS.length;
+  document.getElementById('totalNum').textContent = idx+' / '+QUESTIONS.length;
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+  document.getElementById('progFill').style.width = (idx/QUESTIONS.length*100)+'%';
+
+  const choicesEl = document.getElementById('choices');
+  choicesEl.innerHTML = '';
+  const shuffledChoiceIdx = shuffle(q.choices.map((_,i)=>i));
+  shuffledChoiceIdx.forEach((origIdx, pos)=>{
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.dataset.idx = origIdx;
+    btn.innerHTML = '<span class="choice-num">'+(pos+1)+'</span><span>'+q.choices[origIdx]+'</span>';
+    btn.onclick = ()=> selectChoice(origIdx, btn);
+    choicesEl.appendChild(btn);
+  });
+
+  document.getElementById('explainBox').className = 'explain-box';
+  document.getElementById('nextBtn').disabled = true;
+  document.getElementById('prevBtn').disabled = (idx === 0);
+}
+
+function selectChoice(origIdx, btnEl){
+  if(answered) return;
+  answered = true;
+  const q = QUESTIONS[order[idx]];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b=> b.disabled = true);
+
+  const isCorrect = origIdx === q.answer;
+  if(isCorrect){
+    btnEl.classList.add('correct');
+    score++; streak++;
+  } else {
+    btnEl.classList.add('wrong');
+    allBtns.forEach(b=>{
+      if(Number(b.dataset.idx) === q.answer) b.classList.add('correct');
+    });
+    streak = 0;
+  }
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+
+  const box = document.getElementById('explainBox');
+  box.className = 'explain-box show ' + (isCorrect ? 'good' : 'bad');
+  document.getElementById('explainVerdict').textContent = isCorrect ? '✅ 맞아요!' : '❌ 아쉬워요 — 정답: '+q.choices[q.answer];
+  document.getElementById('explainText').textContent = q.why;
+
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function goToEnd(){
+  document.getElementById('quizCard').style.display = 'none';
+  document.getElementById('endScreen').classList.add('show');
+  document.getElementById('endScore').textContent = score+' / '+QUESTIONS.length;
+  document.getElementById('progFill').style.width = '100%';
+  document.getElementById('totalNum').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+  document.getElementById('progPill').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+}
+
+document.getElementById('nextBtn').onclick = ()=>{
+  if(document.getElementById('nextBtn').disabled) return;
+  idx++;
+  if(idx >= QUESTIONS.length){ goToEnd(); } else { renderQuestion(); }
+};
+
+document.getElementById('skipBtn').onclick = ()=>{
+  idx++;
+  if(idx >= QUESTIONS.length){ goToEnd(); } else { renderQuestion(); }
+};
+
+document.getElementById('prevBtn').onclick = ()=>{
+  if(idx === 0) return;
+  idx--;
+  renderQuestion();
+};
+
+function printQuestions(){
+  const rows = QUESTIONS.map((q,i)=>`<div class="p-card">
+    <div class="p-meta">${i+1} / ${QUESTIONS.length} · ${q.topic}</div>
+    <div class="p-source">${q.source}</div>
+    <div class="p-sentence">${q.sentence}</div>
+    <ol class="p-choices">${q.choices.map((c,ci)=>`<li${ci===q.answer?' class="correct"':''}>${c}</li>`).join('')}</ol>
+    <div class="p-why"><b>풀이</b> ${q.why}</div>
+  </div>`).join('');
+  const w = window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+  <title>연립방정식의 활용 — 농도 — 인쇄</title>
+  <style>
+    body{font-family:'Nanum Gothic',sans-serif;color:#111;padding:24px;line-height:1.6}
+    .p-card{border:1px solid #ccc;border-radius:10px;padding:14px 16px;margin-bottom:16px;page-break-inside:avoid}
+    .p-meta{font-size:.75rem;color:#666;margin-bottom:6px}
+    .p-source{font-weight:700;margin-bottom:8px;background:#f5f5f5;border-radius:6px;padding:8px}
+    .p-sentence{font-weight:700;margin-bottom:8px}
+    .p-choices{margin:0 0 8px 20px;padding:0}
+    .p-choices li.correct{color:#0a7a3d;font-weight:700}
+    .p-why{font-size:.85rem;color:#333;background:#fafafa;border-radius:6px;padding:8px}
+  </style></head><body>${rows}</body></html>`);
+  w.document.close();
+}
+
+restart();
+</script>
+</body>
+</html>

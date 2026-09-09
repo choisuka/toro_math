@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>⚔️ 부등식 배틀 — 속도 몬스터</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--card:#111827;
+  --purple:#7c3aed;--pink:#db2777;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.08);
+  --good:#34d399;--bad:#f87171}
+body{font-family:"Nanum Gothic","Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:520px;margin:0 auto;padding:1.25rem 1.1rem 3rem}
+
+
+.sec-head{text-align:center;margin-bottom:1.1rem}
+.sec-head h1{font-family:'Jua',sans-serif;font-size:1.4rem;margin-bottom:.35rem;
+  background:linear-gradient(135deg,#f87171,#fbbf24);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-head p{color:var(--muted);font-size:.82rem;line-height:1.6}
+
+.battle-hud{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:.9rem 1rem;margin-bottom:1rem}
+.hud-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.hud-row:last-child{margin-bottom:0}
+.wave-pill{font-family:'Jua',sans-serif;font-size:.78rem;color:#a78bfa;background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.3);padding:4px 11px;border-radius:20px}
+.score-pill{font-family:'Jua',sans-serif;font-size:.78rem;color:#fde68a}
+.player-hp{font-size:1.1rem;letter-spacing:3px}
+.combo-pill{font-family:'Jua',sans-serif;font-size:.8rem;color:#fb923c;min-height:1.2rem}
+
+.monster-area{text-align:center;padding:.6rem 0 .3rem}
+.monster-emoji{font-size:3.6rem;display:inline-block;transition:transform .25s}
+.monster-emoji.hit{animation:monsterHit .3s ease}
+@keyframes monsterHit{0%{transform:scale(1)}40%{transform:scale(1.15) rotate(-4deg)}100%{transform:scale(1)}}
+.monster-name{font-family:'Jua',sans-serif;font-size:.85rem;color:var(--text);margin:.2rem 0 .4rem}
+.monster-hp-bar{height:10px;background:rgba(248,113,113,.15);border-radius:20px;overflow:hidden;margin-bottom:.2rem}
+.monster-hp-fill{height:100%;background:linear-gradient(90deg,#f87171,#ef4444);border-radius:20px;transition:width .4s ease}
+
+.shake{animation:battleShake .3s ease}
+@keyframes battleShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.4rem 1.2rem;margin-bottom:1.2rem}
+.quiz-topic{display:inline-block;font-size:.7rem;color:#a78bfa;background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.3);padding:.25rem .65rem;border-radius:10px;margin-bottom:.6rem}
+.quiz-source{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:1rem;line-height:1.6;
+  background:rgba(255,255,255,.03);border-radius:10px;padding:.8rem .85rem}
+.quiz-source b{color:#fde68a}
+.quiz-prompt{font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+.quiz-sentence{font-size:.98rem;font-weight:800;line-height:1.6;color:#fff;margin-bottom:1.2rem}
+
+.choices{display:flex;flex-direction:column;gap:.6rem}
+.choice-btn{display:flex;align-items:flex-start;gap:.6rem;text-align:left;width:100%;
+  background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:14px;
+  padding:.7rem .85rem;color:var(--text);font-size:.84rem;font-family:inherit;cursor:pointer;
+  transition:border-color .15s,background .15s}
+.choice-btn:hover:not(:disabled){border-color:rgba(124,58,237,.5);background:rgba(124,58,237,.08)}
+.choice-btn:disabled{cursor:default}
+.choice-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:var(--muted);margin-top:.1rem}
+.choice-btn.correct{border-color:var(--good);background:rgba(52,211,153,.12)}
+.choice-btn.correct .choice-num{background:var(--good);color:#052e1c}
+.choice-btn.wrong{border-color:var(--bad);background:rgba(248,113,113,.12)}
+.choice-btn.wrong .choice-num{background:var(--bad);color:#3a0a0a}
+
+.explain-box{margin-top:1.1rem;padding:1rem 1.1rem;border-radius:14px;font-size:.83rem;line-height:1.65;display:none}
+.explain-box.show{display:block}
+.explain-box.good{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);color:#a7f3d0}
+.explain-box.bad{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);color:#fecaca}
+.explain-box .verdict{font-family:'Jua',sans-serif;font-size:.92rem;margin-bottom:.4rem}
+
+.next-btn{display:block;width:100%;margin-top:1rem;padding:.85rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.92rem;cursor:pointer;display:none}
+.next-btn.show{display:block}
+
+.end-screen{display:none;text-align:center;background:var(--card);border:1px solid var(--border);
+  border-radius:22px;padding:2.2rem 1.6rem}
+.end-screen.show{display:block}
+.end-icon{font-size:3.2rem;margin-bottom:.8rem}
+.end-title{font-family:'Jua',sans-serif;font-size:1.3rem;margin-bottom:.5rem}
+.end-score{font-family:'Jua',sans-serif;font-size:2rem;background:linear-gradient(135deg,#fbbf24,#f87171);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.end-stars{font-size:2rem;letter-spacing:6px;margin-bottom:.5rem}
+.end-desc{color:var(--muted);font-size:.85rem;margin-bottom:1.4rem;line-height:1.6}
+.retry-btn{display:inline-block;padding:.8rem 1.8rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.88rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="sec-head">
+    <h1>⚔️ 부등식 배틀 — 속도 몬스터</h1>
+    <p>정답을 맞혀 몬스터를 처치하세요. 틀리면 체력이 줄어요 — 3번 틀리면 게임 오버!</p>
+  </div>
+
+  <div class="battle-hud">
+    <div class="hud-row">
+      <span class="wave-pill" id="wavePill">파도 1</span>
+      <span class="score-pill" id="scorePill">0점</span>
+      <span class="player-hp" id="playerHP">❤️❤️❤️</span>
+    </div>
+    <div class="hud-row" style="margin-bottom:0">
+      <div class="combo-pill" id="comboPill"></div>
+    </div>
+  </div>
+
+  <div class="monster-area" id="monsterArea">
+    <div class="monster-emoji" id="monsterEmoji">🐢</div>
+    <div class="monster-name" id="monsterName">느림보 거북</div>
+    <div class="monster-hp-bar"><div class="monster-hp-fill" id="monsterHPFill" style="width:100%"></div></div>
+  </div>
+
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-topic" id="quizTopic">단계</div>
+    <div class="quiz-source" id="quizSource">문제</div>
+    <div class="quiz-prompt">📖 이 단계에서 필요한 것은?</div>
+    <div class="quiz-sentence" id="quizSentence">문장</div>
+    <div class="choices" id="choices"></div>
+    <div class="explain-box" id="explainBox">
+      <div class="verdict" id="explainVerdict"></div>
+      <div id="explainText"></div>
+    </div>
+    <button class="next-btn" id="nextBtn">다음 공격 →</button>
+  </div>
+
+  <div class="end-screen" id="endScreen">
+    <div class="end-icon" id="endIcon">🏆</div>
+    <div class="end-title" id="endTitle">배틀 종료!</div>
+    <div class="end-score" id="endScore">0점</div>
+    <div class="end-stars" id="endStars">⭐⭐⭐</div>
+    <div class="end-desc" id="endDesc"></div>
+    <button class="retry-btn" onclick="restart()">🔄 다시 도전</button>
+  </div>
+
+</div>
+
+<script>
+const WP8 = '[문제1] 지수는 집에서 도서관까지 시속 <b>60 km</b>로 달리는 버스를 탄다. <b>30분</b> 이내에 도착하려면 집과 도서관 사이 거리는 최대 몇 km이어야 할까?';
+const WP11 = '[문제2] 강물의 유속은 시속 <b>3 km</b>이다. 이 강에서 어떤 배가 하류 방향으로 <b>2시간</b> 동안 <b>20 km</b> 이상 이동하려면 배의 속력은 최소 시속 몇 km여야 할까?';
+const WP12 = '[문제3] 강물의 유속은 시속 <b>2 km</b>이다. 이 강에서 어떤 배가 상류 방향으로 <b>3시간</b> 동안 <b>12 km</b> 이상 이동하려면 배의 속력은 최소 시속 몇 km여야 할까? (단, 배의 속력은 강 유속보다 빠르다)';
+const WP13 = '[문제4] A, B 두 사람이 <b>4200 m</b> 떨어진 곳에서 서로를 향해 동시에 출발한다. A의 속력은 분속 <b>50 m</b>이다. <b>60분</b> 이내에 두 사람이 만나려면 B의 속력은 분속 최소 몇 m여야 할까?';
+const WP14 = '[문제5] 길이가 <b>300 m</b>인 기차가 터널을 완전히 통과하려고 한다. 이 기차가 총 이동 거리 <b>600 m</b> 이하로 통과할 수 있는 터널의 최대 길이는 몇 m일까?';
+const WP15 = '[문제6] 둘레가 <b>1800 m</b>인 연못의 같은 지점에서 A의 속력은 분속 <b>60 m</b>이고, B와 함께 <b>반대 방향</b>으로 동시에 출발한다. <b>20분</b> 이내에 처음으로 만나려면 B의 속력은 분속 최소 몇 m여야 할까?';
+const WP16 = '[문제7] 둘레가 <b>1800 m</b>인 연못의 같은 지점에서 A의 속력은 분속 <b>60 m</b>이고, B는 A보다 빠르다. 둘은 <b>같은 방향</b>으로 동시에 출발한다. <b>60분</b> 이내에 B가 A를 처음으로 따라잡으려면 B의 속력은 분속 최소 몇 m여야 할까?';
+
+const QUESTIONS = [
+{
+  topic: '1번 1단계', source: WP8,
+  sentence: '이 문제에서 무엇을 미지수 d로 두면 풀기 편한가?',
+  choices: ['집과 도서관 사이 거리 d(km)','버스의 속력 d(km/h)','지수가 버스를 기다린 시간 d(분)','버스 요금 d(원)'],
+  answer: 0,
+  why: '문제가 "거리는 최대 몇 km"를 묻고 있으니, 구하는 값을 그대로 d로 두면 부등식을 풀어서 나온 값이 바로 답이 돼요. 속력(60km/h)은 이미 주어진 고정값이고, 나머지는 이 문제에 등장하지 않는 값이에요. (참고: 이동 시간을 미지수로 둬도 풀리지만, 나중에 d=60×시간으로 변환하는 과정이 한 번 더 필요해요.)'
+},
+{
+  topic: '1번 2단계', source: WP8,
+  sentence: '이 문제에서 필요한 식은 어떤 조건을 나타낸 것인가?',
+  choices: ['이동 시간이 30분(0.5시간)을 넘지 않는다','이동 거리가 30km를 넘지 않는다','버스 속력이 60km/h를 넘지 않는다','지수가 정각에 도착한다'],
+  answer: 0,
+  why: '문제가 실제로 준 조건은 "30분 이내에 도착"이에요 — 시간 제한이죠. "거리가 30km 이내"는 이 조건을 풀어서 나오는 답이지, 문제가 준 조건이 아니에요 — 답을 조건인 것처럼 미리 써버리면 순환논리가 돼요. 속력(60km/h)은 이미 고정된 값이에요.'
+},
+{
+  topic: '1번 3단계', source: WP8,
+  sentence: '이 조건을 부등식으로 나타내면?',
+  choices: ['d/60 ≤ 0.5','d/60 ≥ 0.5','60/d ≤ 0.5','d × 60 ≤ 0.5'],
+  answer: 0,
+  why: '거리를 속력으로 나누면 걸리는 시간이에요(d/60). 그 시간이 0.5시간(30분)을 넘지 않아야 하니 d/60 ≤ 0.5예요. 부등호 방향을 반대로 하면 "30분 이상 걸려야 한다"는 뜻이 되어 버려요. (풀면 d≤30, 즉 최대 30km.)'
+},
+{
+  topic: '2번 1단계', source: WP11,
+  sentence: '이 문제에서 무엇을 미지수 x로 두면 풀기 편한가?',
+  choices: ['배의 정지 속력(잔잔한 물에서의 속력) x(km/h)','강물의 유속 x(km/h)','이동 시간 x(시간)','이동 거리 x(km)'],
+  answer: 0,
+  why: '문제가 "배의 속력은 최소 몇 km"를 묻고 있으니 그 값을 x로 둬요. 유속(3km/h)과 이동시간(2시간)은 이미 주어진 고정값이고, 거리(20km)는 조건에 등장하는 목표값이지 구하는 값이 아니에요.'
+},
+{
+  topic: '2번 2단계', source: WP11,
+  sentence: '하류 방향으로 이동할 때, 실제 배의 속력(지면 기준)은 어떻게 나타나는가?',
+  choices: ['x + 3 (배 속력에 강물의 흐름이 더해진다)','x − 3 (배 속력에서 강물의 흐름이 빠진다)','x (강물의 영향을 받지 않는다)','3 − x (강물의 흐름에서 배 속력이 빠진다)'],
+  answer: 0,
+  why: '하류는 강물이 흐르는 방향과 같은 방향으로 가는 거예요. 강물이 배를 밀어주니까, 지면에서 보는 실제 속력은 배 속력 + 강 유속(x+3)이 돼요. 상류(반대 방향)라면 반대로 x−3이 돼요.'
+},
+{
+  topic: '2번 3단계', source: WP11,
+  sentence: '이 조건을 부등식으로 나타내면?',
+  choices: ['2(x+3) ≥ 20','2(x+3) ≤ 20','2(x−3) ≥ 20','(x+3)/2 ≥ 20'],
+  answer: 0,
+  why: '2시간 동안 이동한 거리 = 속력 × 시간 = (x+3)×2. 이 거리가 20km 이상이어야 하니 2(x+3) ≥ 20이에요. 부등호를 반대로 하거나, 하류인데 −3을 쓰거나, 시간을 나누면 틀려요. (풀면 x≥7, 즉 최소 시속 7km.)'
+},
+{
+  topic: '3번 1단계', source: WP12,
+  sentence: '이 문제에서 무엇을 미지수 x로 두면 풀기 편한가?',
+  choices: ['배의 정지 속력(잔잔한 물에서의 속력) x(km/h)','강물의 유속 x(km/h)','이동 시간 x(시간)','이동 거리 x(km)'],
+  answer: 0,
+  why: '문제가 "배의 속력은 최소 몇 km"를 묻고 있으니 그 값을 x로 둬요. 유속(2km/h)과 이동시간(3시간)은 이미 주어진 고정값이고, 거리(12km)는 조건에 등장하는 목표값이지 구하는 값이 아니에요.'
+},
+{
+  topic: '3번 2단계', source: WP12,
+  sentence: '상류 방향으로 이동할 때, 실제 배의 속력(지면 기준)은 어떻게 나타나는가?',
+  choices: ['x − 2 (배 속력에서 강물의 흐름이 빠진다)','x + 2 (배 속력에 강물의 흐름이 더해진다)','x (강물의 영향을 받지 않는다)','2 − x (강물의 흐름에서 배 속력이 빠진다)'],
+  answer: 0,
+  why: '상류는 강물이 흐르는 방향과 반대로 가는 거예요. 강물이 배를 밀어내니까, 지면에서 보는 실제 속력은 배 속력 − 강 유속(x−2)이 돼요. 하류(같은 방향)라면 반대로 x+2가 돼요.'
+},
+{
+  topic: '3번 3단계', source: WP12,
+  sentence: '이 조건을 부등식으로 나타내면?',
+  choices: ['3(x−2) ≥ 12','3(x−2) ≤ 12','3(x+2) ≥ 12','(x−2)/3 ≥ 12'],
+  answer: 0,
+  why: '3시간 동안 이동한 거리 = 속력 × 시간 = (x−2)×3. 이 거리가 12km 이상이어야 하니 3(x−2) ≥ 12예요. (풀면 x≥6, 즉 최소 시속 6km.)'
+},
+{
+  topic: '4번 1단계', source: WP13,
+  sentence: '이 문제에서 무엇을 미지수 x로 두면 풀기 편한가?',
+  choices: ['B의 속력 x(m/분)','두 사람 사이 거리 x(m)','만나는 데 걸리는 시간 x(분)','만나는 데 걸리는 시간의 절반 x(분)'],
+  answer: 0,
+  why: '문제가 "B의 속력은 분속 최소 몇 m"를 묻고 있으니 그 값을 x로 둬요. 거리(4200m)와 시간(60분)은 조건에 등장하는 값이지 구하는 값이 아니에요.'
+},
+{
+  topic: '4번 2단계', source: WP13,
+  sentence: '다음 중 식을 세우기 위해 필요한 내용은?',
+  choices: ['마주보며 만난다는 건 두 사람이 움직인 거리의 합이 (처음) 떨어진 거리와 같다는 것','마주보며 만난다는 건 두 사람이 움직인 거리의 차가 (처음) 떨어진 거리와 같다는 것','A만 이동하고 B는 가만히 있다는 것','두 사람의 속력이 같다는 것'],
+  answer: 0,
+  why: '서로 마주보고 걸으면 두 사람이 함께 거리를 좁혀요. A가 이동한 거리 + B가 이동한 거리를 더하면, 두 사람이 처음 떨어져 있던 거리(4200m)와 같아져요. 이 관계로 다음 단계의 부등식을 세워요.'
+},
+{
+  topic: '4번 3단계', source: WP13,
+  sentence: '이 조건을 부등식으로 나타내면?',
+  choices: ['60(50+x) ≥ 4200','60(50+x) ≤ 4200','60(x−50) ≥ 4200','(50+x)/60 ≥ 4200'],
+  answer: 0,
+  why: '60분 동안 두 사람이 좁히는 총 거리 = 60×(50+x). 이 거리가 두 사람 사이 거리(4200m) 이상이어야 만날 수 있어요. (풀면 x≥20, 즉 분속 최소 20m.)'
+},
+{
+  topic: '5번 1단계', source: WP14,
+  sentence: '이 문제에서 무엇을 미지수 x로 두면 풀기 편한가?',
+  choices: ['터널의 길이 x(m)','기차의 길이 x(m)','총 이동 거리 x(m)','기차가 터널을 통과하는 시간 x(초)'],
+  answer: 0,
+  why: '구하는 값이 터널의 최대 길이이므로 x로 둬요. 기차 길이(300m)는 이미 고정값이고, 총 이동거리는 조건의 한계값(600m 이하)으로 이미 나와있어요. 이 문제엔 시간 정보가 아예 없어요.'
+},
+{
+  topic: '5번 2단계', source: WP14,
+  sentence: '기차가 터널을 완전히 통과할 때까지 이동한 총 거리는 무엇으로 이루어지는가?',
+  choices: ['기차 길이(300m) + 터널 길이(x)','터널 길이(x)만','기차 길이(300m)만','기차 길이(300m) − 터널 길이(x)'],
+  answer: 0,
+  why: '기차가 터널을 "완전히" 통과하려면, 기차 머리가 터널 입구에 들어간 순간부터 기차 꼬리가 터널 출구를 완전히 빠져나올 때까지 이동해야 해요. 그 거리는 터널 길이(x) + 기차 길이(300)예요 — 터널 길이만큼만 가면 아직 기차 꼬리가 터널 안에 남아있어요.'
+},
+{
+  topic: '5번 3단계', source: WP14,
+  sentence: '이 조건을 부등식으로 나타내면?',
+  choices: ['300 + x ≤ 600','300 + x ≥ 600','300 × x ≤ 600','x − 300 ≤ 600'],
+  answer: 0,
+  why: '앞 단계에서 확인한 대로, 통과 거리 = 기차 길이(300) + 터널 길이(x)예요. 이게 600 이하여야 하니 300+x≤600. (풀면 x≤300, 즉 터널 최대 길이 300m.)'
+},
+{
+  topic: '6번 1단계', source: WP15,
+  sentence: '이 문제에서 무엇을 미지수 x로 두면 풀기 편한가?',
+  choices: ['B의 속력 x(m/분)','연못의 둘레 x(m)','만나는 데 걸리는 시간 x(분)','만나는 데 걸리는 시간의 절반 x(분)'],
+  answer: 0,
+  why: '문제가 "B의 속력은 분속 최소 몇 m"를 묻고 있으니 그 값을 x로 둬요. 둘레(1800m)와 시간(20분)은 조건에 등장하는 값이지 구하는 값이 아니에요.'
+},
+{
+  topic: '6번 2단계', source: WP15,
+  sentence: '다음 중 식을 세우기 위해 필요한 내용은?',
+  choices: ['반대 방향으로 돌다가 만난다는 건 두 사람이 움직인 거리의 합이 연못의 둘레와 같다는 것','반대 방향으로 돌다가 만난다는 건 두 사람이 움직인 거리의 차가 연못의 둘레와 같다는 것','A만 이동하고 B는 가만히 있다는 것','두 사람의 속력이 같다는 것'],
+  answer: 0,
+  why: '직선에서 마주보기 = 원형에서 반대 방향이에요. 서로 반대 방향으로 돌면 두 사람이 이동한 거리를 합쳤을 때 연못 한 바퀴(둘레, 1800m)가 되는 순간 처음 만나요. 이 관계로 다음 단계의 부등식을 세워요.'
+},
+{
+  topic: '6번 3단계', source: WP15,
+  sentence: '이 조건을 부등식으로 나타내면?',
+  choices: ['20(60+x) ≥ 1800','20(60+x) ≤ 1800','20(x−60) ≥ 1800','(60+x)/20 ≥ 1800'],
+  answer: 0,
+  why: '20분 동안 두 사람이 좁히는 총 거리 = 20×(60+x). 반대 방향으로 도는 두 사람이 처음 만나려면 이 거리가 연못 둘레(1800m) 이상이어야 해요. (풀면 x≥30, 즉 분속 최소 30m.)'
+},
+{
+  topic: '7번 1단계', source: WP16,
+  sentence: '이 문제에서 무엇을 미지수 x로 두면 풀기 편한가?',
+  choices: ['B의 속력 x(m/분)','연못의 둘레 x(m)','따라잡는 데 걸리는 시간 x(분)','따라잡는 데 걸리는 시간의 절반 x(분)'],
+  answer: 0,
+  why: '문제가 "B의 속력은 분속 최소 몇 m"를 묻고 있으니 그 값을 x로 둬요. 둘레(1800m)와 시간(60분)은 조건에 등장하는 값이지 구하는 값이 아니에요.'
+},
+{
+  topic: '7번 2단계', source: WP16,
+  sentence: '다음 중 식을 세우기 위해 필요한 내용은?',
+  choices: ['같은 방향으로 돌다가 따라잡는다는 건 두 사람이 움직인 거리의 차가 연못의 둘레와 같다는 것','같은 방향으로 돌다가 따라잡는다는 건 두 사람이 움직인 거리의 합이 연못의 둘레와 같다는 것','A만 이동하고 B는 가만히 있다는 것','두 사람의 속력이 같다는 것'],
+  answer: 0,
+  why: '같은 방향으로 돌면 두 사람의 속력 차이만큼만 간격이 벌어져요(또는 좁혀져요). 원형 경로라서 B가 A보다 정확히 한 바퀴(1800m) 더 가야, 즉 두 사람이 움직인 거리의 차가 둘레(1800m)가 되어야 같은 위치에서 다시 만나요(따라잡기). 이 관계로 다음 단계의 부등식을 세워요.'
+},
+{
+  topic: '7번 3단계', source: WP16,
+  sentence: '이 조건을 부등식으로 나타내면?',
+  choices: ['60(x−60) ≥ 1800','60(x−60) ≤ 1800','60(x+60) ≥ 1800','(x−60)/60 ≥ 1800'],
+  answer: 0,
+  why: '60분 동안 B가 A보다 더 간 거리 = 60×(x−60). 이 거리가 연못 한 바퀴(1800m) 이상이어야 따라잡을 수 있어요. (풀면 x≥90, 즉 분속 최소 90m.)'
+}
+];
+
+const MONSTERS = [
+  {emoji:'🐢', name:'느림보 거북'},
+  {emoji:'🚤', name:'급류 보트 몬스터'},
+  {emoji:'🚂', name:'폭주 기차 몬스터'},
+  {emoji:'🐇', name:'질주 토끼 몬스터'},
+  {emoji:'🐉', name:'시공간 드래곤'}
+];
+const DAMAGE_PER_HIT = 25;
+
+let queue = [], qIdx = 0, answered = false;
+let bat = {monsterHP:100, playerHP:3, wave:1, score:0, combo:0};
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function restart(){
+  queue = shuffle(QUESTIONS.map((_,i)=>i));
+  qIdx = 0;
+  bat = {monsterHP:100, playerHP:3, wave:1, score:0, combo:0};
+  document.getElementById('endScreen').classList.remove('show');
+  document.getElementById('quizCard').style.display = 'block';
+  document.querySelector('.battle-hud').style.display = 'block';
+  document.getElementById('monsterArea').style.display = 'block';
+  renderHUD();
+  renderMonster();
+  renderQuestion();
+}
+
+function renderHUD(){
+  document.getElementById('wavePill').textContent = '파도 ' + bat.wave;
+  document.getElementById('scorePill').textContent = bat.score + '점';
+  document.getElementById('playerHP').textContent = '❤️'.repeat(bat.playerHP) + '🖤'.repeat(Math.max(0,3-bat.playerHP));
+  document.getElementById('comboPill').textContent = bat.combo >= 2 ? ('🔥 ' + bat.combo + '콤보!') : '';
+}
+
+function renderMonster(){
+  const mi = Math.min(bat.wave-1, MONSTERS.length-1);
+  const mon = MONSTERS[mi];
+  document.getElementById('monsterEmoji').textContent = mon.emoji;
+  document.getElementById('monsterName').textContent = mon.name + (bat.wave > MONSTERS.length ? ' (강화)' : '');
+  document.getElementById('monsterHPFill').style.width = bat.monsterHP + '%';
+}
+
+function renderQuestion(){
+  answered = false;
+  const q = QUESTIONS[queue[qIdx]];
+  document.getElementById('quizTopic').textContent = q.topic;
+  document.getElementById('quizSource').innerHTML = q.source;
+  document.getElementById('quizSentence').textContent = q.sentence;
+
+  const choicesEl = document.getElementById('choices');
+  choicesEl.innerHTML = '';
+  const shuffledChoiceIdx = shuffle(q.choices.map((_,i)=>i));
+  shuffledChoiceIdx.forEach((origIdx, pos)=>{
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.innerHTML = '<span class="choice-num">'+(pos+1)+'</span><span>'+q.choices[origIdx]+'</span>';
+    btn.onclick = ()=> selectChoice(origIdx, btn);
+    choicesEl.appendChild(btn);
+  });
+
+  document.getElementById('explainBox').className = 'explain-box';
+  document.getElementById('nextBtn').className = 'next-btn';
+}
+
+function selectChoice(origIdx, btnEl){
+  if(answered) return;
+  answered = true;
+  const q = QUESTIONS[queue[qIdx]];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b=> b.disabled = true);
+
+  const isCorrect = origIdx === q.answer;
+  const box = document.getElementById('explainBox');
+
+  if(isCorrect){
+    btnEl.classList.add('correct');
+    bat.combo++;
+    const bonus = bat.combo>=5 ? 3 : bat.combo>=3 ? 2 : 1;
+    bat.score += 10*bonus;
+    bat.monsterHP = Math.max(0, bat.monsterHP - DAMAGE_PER_HIT);
+    const monEl = document.getElementById('monsterEmoji');
+    monEl.classList.remove('hit'); void monEl.offsetWidth; monEl.classList.add('hit');
+
+    box.className = 'explain-box show good';
+    document.getElementById('explainVerdict').textContent = '⚔️ 명중! −' + DAMAGE_PER_HIT + ' 데미지' + (bonus>1 ? ' (콤보 ×'+bonus+')' : '');
+    document.getElementById('explainText').textContent = q.why;
+
+    if(bat.monsterHP <= 0){
+      bat.score += 50;
+      const beatenName = MONSTERS[Math.min(bat.wave-1, MONSTERS.length-1)].name;
+      document.getElementById('explainVerdict').textContent += ' — 🎉 ' + beatenName + ' 처치! +50점';
+      bat.wave++;
+      bat.monsterHP = 100;
+    }
+  } else {
+    btnEl.classList.add('wrong');
+    allBtns.forEach(b=>{
+      if(b.textContent.trim() === q.choices[q.answer]) b.classList.add('correct');
+    });
+    bat.combo = 0;
+    bat.playerHP--;
+    document.querySelector('.container').classList.remove('shake'); void document.querySelector('.container').offsetWidth;
+    document.querySelector('.container').classList.add('shake');
+
+    box.className = 'explain-box show bad';
+    document.getElementById('explainVerdict').textContent = '💔 빗나감! 체력 −1 — 정답: ' + q.choices[q.answer];
+    document.getElementById('explainText').textContent = q.why;
+  }
+
+  renderHUD();
+  renderMonster();
+
+  if(bat.playerHP <= 0){
+    setTimeout(()=> goToEnd(false), 1400);
+    return;
+  }
+  document.getElementById('nextBtn').className = 'next-btn show';
+}
+
+function goToEnd(cleared){
+  document.getElementById('quizCard').style.display = 'none';
+  document.querySelector('.battle-hud').style.display = 'none';
+  document.getElementById('monsterArea').style.display = 'none';
+  const es = document.getElementById('endScreen');
+  es.classList.add('show');
+  const wavesCleared = bat.wave - 1;
+  document.getElementById('endIcon').textContent = bat.playerHP<=0 ? '💀' : '🏆';
+  document.getElementById('endTitle').textContent = bat.playerHP<=0 ? '쓰러졌어요...' : '배틀 클리어!';
+  document.getElementById('endScore').textContent = bat.score + '점';
+  document.getElementById('endStars').textContent = wavesCleared>=5 ? '⭐⭐⭐' : wavesCleared>=3 ? '⭐⭐' : wavesCleared>=1 ? '⭐' : '';
+  document.getElementById('endDesc').textContent = wavesCleared + '마리 처치 · 총 ' + bat.score + '점' + (bat.playerHP<=0 ? ' — 체력을 다 잃었어요.' : ' — 21문제를 모두 풀었어요!');
+}
+
+document.getElementById('nextBtn').onclick = ()=>{
+  qIdx++;
+  if(qIdx >= queue.length){ goToEnd(true); } else { renderQuestion(); }
+};
+
+restart();
+</script>
+</body>
+</html>
