@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3️⃣ 중3대수 — 게임 놀이터</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--card:#111827;
+  --purple:#7c3aed;--pink:#db2777;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.08)}
+body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:640px;margin:0 auto;padding:1.5rem 1.25rem 3rem}
+
+.nav-bar{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+.back-link{font-family:'Jua',sans-serif;font-size:.85rem;color:var(--muted);text-decoration:none;
+  background:rgba(255,255,255,.08);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+
+@keyframes secBounce{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+@keyframes secShimmer{0%{background-position:0%}100%{background-position:200%}}
+.sec-head{margin-bottom:2rem;text-align:center}
+.sec-head .sec-mascot{font-size:2.6rem;display:block;margin-bottom:.3rem;animation:secBounce 2.5s ease-in-out infinite}
+.sec-head h1{font-size:1.9rem;font-weight:900;margin-bottom:.4rem;
+  background:linear-gradient(135deg,#fde68a,#a78bfa,#f472b6,#fde68a);
+  background-size:200% auto;animation:secShimmer 3s linear infinite;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-head p{color:var(--muted);font-size:.9rem}
+
+.empty-state{background:linear-gradient(155deg,var(--card),rgba(124,58,237,.1));border:1px dashed rgba(167,139,250,.3);border-radius:20px;
+  padding:2rem 1.5rem;text-align:center;color:var(--muted);font-size:.85rem;line-height:1.7}
+.empty-state .icon{font-size:2.6rem;display:block;margin-bottom:.6rem;animation:secBounce 2.2s ease-in-out infinite}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav-bar">
+    <a href="games.html" class="back-link">← 게임 놀이터</a>
+  </div>
+  <div class="sec-head">
+    <span class="sec-mascot">3️⃣</span>
+    <h1>중3대수</h1>
+    <p>이차방정식·이차함수의 활용</p>
+  </div>
+  <div class="empty-state">
+    <span class="icon">🚧</span>
+    준비 중입니다<br>이차방정식·이차함수 단원이 곧 추가됩니다
+  </div>
+</div>
+</body>
+</html>

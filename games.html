@@ -17,21 +17,25 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
 .back-link{font-family:'Jua',sans-serif;font-size:.85rem;color:var(--muted);text-decoration:none;
   background:rgba(255,255,255,.08);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
 
+@keyframes secBounce{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+@keyframes secShimmer{0%{background-position:0%}100%{background-position:200%}}
 .sec-head{margin-bottom:2rem;text-align:center}
+.sec-head .sec-mascot{font-size:2.6rem;display:block;margin-bottom:.3rem;animation:secBounce 2.5s ease-in-out infinite}
 .sec-head h1{font-size:1.9rem;font-weight:900;margin-bottom:.4rem;
-  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  background:linear-gradient(135deg,#fde68a,#a78bfa,#f472b6,#fde68a);
+  background-size:200% auto;animation:secShimmer 3s linear infinite;
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .sec-head p{color:var(--muted);font-size:.9rem}
 
 .game-section{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:2.2rem}
 .game-intro{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem}
 .game-intro h3{font-size:1.15rem;font-weight:800;margin-bottom:.4rem}
-.grade-badge{display:inline-block;font-size:.72rem;color:#94a3b8;background:rgba(255,255,255,.06);
-  padding:.2rem .6rem;border-radius:8px;margin-bottom:.6rem}
-.game-intro p{color:var(--muted);font-size:.88rem;line-height:1.7}
+.grade-badge{display:inline-block;font-size:.8rem;color:#c7d2fe;background:rgba(255,255,255,.08);
+  padding:.25rem .7rem;border-radius:8px;margin-bottom:.6rem}
+.game-intro p{color:#cbd5e1;font-size:1rem;line-height:1.75}
 .game-features{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.75rem}
 .game-feature{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);
-  border-radius:10px;padding:.4rem .8rem;font-size:.8rem;color:#a78bfa}
+  border-radius:10px;padding:.4rem .8rem;font-size:.85rem;color:#a78bfa}
 
 .game-launch-box{background:linear-gradient(160deg,#0d0030,#1a0050);
   border:2px solid rgba(124,58,237,.4);border-radius:24px;
@@ -52,13 +56,68 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
 .grade-divider{display:flex;align-items:center;gap:.7rem;margin:2.6rem 0 1.3rem;padding-bottom:.7rem;
   border-bottom:2px solid rgba(255,255,255,.08)}
 .grade-divider:first-of-type{margin-top:0}
-.grade-icon{font-size:1.7rem}
+.grade-icon{font-size:1.7rem;display:inline-block;animation:secBounce 2.5s ease-in-out infinite}
 .grade-title{font-family:'Jua',sans-serif;font-size:1.15rem;color:#fff}
 .grade-desc{font-size:.76rem;color:var(--muted);margin-top:2px}
 
 .empty-state{background:var(--card);border:1px dashed var(--border);border-radius:20px;
   padding:2rem 1.5rem;text-align:center;color:var(--muted);font-size:.85rem;line-height:1.7}
 .empty-state .icon{font-size:2.2rem;display:block;margin-bottom:.6rem}
+
+.screen{display:none}
+.screen.active{display:block}
+@keyframes iconBounce{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1.08)}}
+@keyframes titleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.grade-hub-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.grade-hub-card{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:.5rem;background:linear-gradient(155deg,var(--card),rgba(124,58,237,.12));
+  border:1.5px solid var(--border);
+  border-radius:26px;padding:1.2rem;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;
+  position:relative;overflow:hidden}
+.grade-hub-card::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 15%,rgba(167,139,250,.25),transparent 60%);
+  opacity:0;transition:opacity .3s;pointer-events:none}
+.grade-hub-card:hover{transform:translateY(-6px) scale(1.04);
+  box-shadow:0 14px 36px rgba(124,58,237,.4)}
+.grade-hub-card:hover::before{opacity:1}
+.grade-hub-card:hover .grade-hub-icon{animation:iconBounce .6s ease-in-out infinite}
+.grade-hub-icon{font-size:4rem;flex-shrink:0;display:inline-block;filter:drop-shadow(0 4px 10px rgba(0,0,0,.35))}
+.grade-hub-title{font-family:'Jua',sans-serif;font-size:1.35rem;color:#fff;display:inline-block;animation:titleFloat 2.4s ease-in-out infinite}
+.grade-hub-desc{font-size:.8rem;color:#cbd5e1;line-height:1.4}
+.grade-hub-count{font-size:.72rem;color:#fff;margin-top:.3rem;display:inline-block;
+  padding:.3rem .75rem;border-radius:12px;font-weight:800;background:rgba(255,255,255,.12)}
+@media (max-width:420px){
+  .grade-hub-icon{font-size:3rem}
+  .grade-hub-title{font-size:1.1rem}
+  .grade-hub-desc{font-size:.72rem}
+}
+.grade-hub-card:nth-child(6n+1){background:linear-gradient(160deg,#3d1f00,#2a1400);border-color:rgba(251,146,60,.4)}
+.grade-hub-card:nth-child(6n+1) .grade-hub-title{background:linear-gradient(135deg,#fb923c,#fde047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grade-hub-card:nth-child(6n+1) .grade-hub-count{background:linear-gradient(135deg,#ea580c,#ca8a04)}
+.grade-hub-card:nth-child(6n+1):hover{border-color:rgba(251,146,60,.65)}
+.grade-hub-card:nth-child(6n+2){background:linear-gradient(160deg,#2d0049,#1f0033);border-color:rgba(168,85,247,.4)}
+.grade-hub-card:nth-child(6n+2) .grade-hub-title{background:linear-gradient(135deg,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grade-hub-card:nth-child(6n+2) .grade-hub-count{background:linear-gradient(135deg,#7c3aed,#db2777)}
+.grade-hub-card:nth-child(6n+2):hover{border-color:rgba(168,85,247,.65)}
+.grade-hub-card:nth-child(6n+3){background:linear-gradient(160deg,#053526,#04241a);border-color:rgba(52,211,153,.4)}
+.grade-hub-card:nth-child(6n+3) .grade-hub-title{background:linear-gradient(135deg,#34d399,#a3e635);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grade-hub-card:nth-child(6n+3) .grade-hub-count{background:linear-gradient(135deg,#059669,#65a30d)}
+.grade-hub-card:nth-child(6n+3):hover{border-color:rgba(52,211,153,.65)}
+.grade-hub-card:nth-child(6n+4){background:linear-gradient(160deg,#3d0025,#2a0018);border-color:rgba(244,114,182,.4)}
+.grade-hub-card:nth-child(6n+4) .grade-hub-title{background:linear-gradient(135deg,#f472b6,#fb7185);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grade-hub-card:nth-child(6n+4) .grade-hub-count{background:linear-gradient(135deg,#db2777,#f43f5e)}
+.grade-hub-card:nth-child(6n+4):hover{border-color:rgba(244,114,182,.65)}
+.grade-hub-card:nth-child(6n+5){background:linear-gradient(160deg,#00263d,#001a2a);border-color:rgba(56,189,248,.4)}
+.grade-hub-card:nth-child(6n+5) .grade-hub-title{background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grade-hub-card:nth-child(6n+5) .grade-hub-count{background:linear-gradient(135deg,#0284c7,#4f46e5)}
+.grade-hub-card:nth-child(6n+5):hover{border-color:rgba(56,189,248,.65)}
+.grade-hub-card:nth-child(6n+6){background:linear-gradient(160deg,#3d0c00,#2a0800);border-color:rgba(248,113,113,.4)}
+.grade-hub-card:nth-child(6n+6) .grade-hub-title{background:linear-gradient(135deg,#f87171,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grade-hub-card:nth-child(6n+6) .grade-hub-count{background:linear-gradient(135deg,#dc2626,#d97706)}
+.grade-hub-card:nth-child(6n+6):hover{border-color:rgba(248,113,113,.65)}
+.grade-back-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);color:var(--text);font-family:'Jua',sans-serif;font-size:.82rem;
+  padding:7px 16px;border-radius:20px;cursor:pointer;margin-bottom:1rem}
 </style>
 </head>
 <body>
@@ -67,11 +126,51 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
     <a href="index.html" class="back-link">← 토로매쓰</a>
   </div>
   <div class="sec-head">
-    <h1>🎮 게임 놀이터</h1>
+    <span class="sec-mascot">🎮</span>
+    <h1>게임 놀이터</h1>
     <p>개념 설명 → 힌트 → 퀴즈 → 단계별 풀이까지! 게임으로 수학을 정복하세요</p>
   </div>
 
+  <div class="screen active" id="screen-home">
+    <div class="grade-hub-grid">
+      <div class="grade-hub-card" onclick="showScreen('screen-elem')">
+        <span class="grade-hub-icon">🦊</span>
+        <div>
+          <div class="grade-hub-title">초등</div>
+          <div class="grade-hub-desc">연산·분수·비율 기초 다지기</div>
+          <div class="grade-hub-count">🚪 놀이터 입장</div>
+        </div>
+      </div>
+      <div class="grade-hub-card" onclick="showScreen('screen-middle')">
+        <span class="grade-hub-icon">🦉</span>
+        <div>
+          <div class="grade-hub-title">중등</div>
+          <div class="grade-hub-desc">문자와 식·방정식 활용·함수 그래프</div>
+          <div class="grade-hub-count">게임 10개</div>
+        </div>
+      </div>
+      <div class="grade-hub-card" onclick="showScreen('screen-cs1')">
+        <span class="grade-hub-icon">🧮</span>
+        <div>
+          <div class="grade-hub-title">공통수학1</div>
+          <div class="grade-hub-desc">다항식·방정식과 부등식·경우의 수·행렬</div>
+          <div class="grade-hub-count">준비 중</div>
+        </div>
+      </div>
+      <div class="grade-hub-card" onclick="showScreen('screen-cs2')">
+        <span class="grade-hub-icon">📐</span>
+        <div>
+          <div class="grade-hub-title">공통수학2</div>
+          <div class="grade-hub-desc">도형의 방정식·집합과 명제·함수</div>
+          <div class="grade-hub-count">게임 6개</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ══════════ 초등 ══════════ -->
+  <div class="screen" id="screen-elem">
+  <button class="grade-back-btn" onclick="showScreen('screen-home')">← 학년 선택</button>
   <div class="grade-divider">
     <span class="grade-icon">🧒</span>
     <div><div class="grade-title">초등</div><div class="grade-desc">연산·분수·비율 기초 다지기</div></div>
@@ -79,7 +178,7 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
 
   <div class="game-section">
     <div class="game-intro">
-      <h3>🦊 수학왕국</h3>
+      <h3>🦊 여우와 연산 레벨업 대모험</h3>
       <span class="grade-badge">📚 초1~초6 + 중1~중3</span>
       <p>Lv.·XP·트로피·일지까지 갖춘 성장형 드릴 게임. 학년별 연산부터 중1~중3 세분화 단원까지 레벨업하며 연습합니다.</p>
       <div class="game-features">
@@ -90,29 +189,9 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
     </div>
     <div class="game-launch-box" style="background:linear-gradient(160deg,#1a1000,#2a1a00);border-color:rgba(251,146,60,.4)">
       <span class="game-launch-icon">🦊</span>
-      <div class="game-launch-title" style="background:linear-gradient(135deg,#fb923c,#fde047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">수학왕국</div>
+      <div class="game-launch-title" style="background:linear-gradient(135deg,#fb923c,#fde047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">여우와 연산 레벨업 대모험</div>
       <div class="game-launch-desc">레벨업하며 연산 마스터!</div>
-      <a class="game-launch-btn" href="math-games-kingdom/index.html" style="background:linear-gradient(135deg,#ea580c,#ca8a04)">🦊 왕국 입장</a>
-    </div>
-  </div>
-
-  <div class="game-section">
-    <div class="game-intro">
-      <h3>🎮 수학 왕국 — 정수 · 유리수</h3>
-      <span class="grade-badge">📚 초등 전과정 + 중1~중3</span>
-      <p>정수·소수·분수 연산을 드라마틱한 게임으로! 틀리면 풀이가 전면 팝업으로 등장합니다. 초1~초6 학년별 드릴 + 중1~중3 정수·문자식·함수·이차방정식까지.</p>
-      <div class="game-features">
-        <span class="game-feature">📐 개념 미리보기</span>
-        <span class="game-feature">💡 힌트</span>
-        <span class="game-feature">📚 단계별 풀이</span>
-        <span class="game-feature">⏱️ 타이머</span>
-      </div>
-    </div>
-    <div class="game-launch-box">
-      <span class="game-launch-icon">👑</span>
-      <div class="game-launch-title">수학 왕국</div>
-      <div class="game-launch-desc">정수 · 유리수 · 분수 연산 마스터!</div>
-      <a class="game-launch-btn" href="math_game/phaser_game.html">🚀 게임 열기</a>
+      <a class="game-launch-btn" href="math-games-kingdom/index.html" style="background:linear-gradient(135deg,#ea580c,#ca8a04)">🦊 모험 시작</a>
     </div>
   </div>
 
@@ -135,135 +214,94 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
       <a class="game-launch-btn" href="toro_frac/index.html" style="background:linear-gradient(135deg,#059669,#65a30d)">🦕 탐험 시작</a>
     </div>
   </div>
+  </div>
 
   <!-- ══════════ 중등 ══════════ -->
+  <div class="screen" id="screen-middle">
+  <button class="grade-back-btn" onclick="showScreen('screen-home')">← 학년 선택</button>
   <div class="grade-divider">
     <span class="grade-icon">🧑‍🎓</span>
     <div><div class="grade-title">중등</div><div class="grade-desc">문자와 식·방정식 활용·함수 그래프</div></div>
   </div>
 
-  <div class="game-section">
-    <div class="game-intro">
-      <h3>🦊 수학왕국</h3>
-      <span class="grade-badge">📚 초1~초6 + 중1~중3</span>
-      <p>Lv.·XP·트로피·일지까지 갖춘 성장형 드릴 게임. 학년별 연산부터 중1~중3 세분화 단원까지 레벨업하며 연습합니다.</p>
-      <div class="game-features">
-        <span class="game-feature">⭐ 레벨·XP</span>
-        <span class="game-feature">🏆 트로피</span>
-        <span class="game-feature">📖 일지</span>
-      </div>
+  <div class="grade-hub-grid">
+    <div class="grade-hub-card" onclick="showScreen('screen-mid-practice')" style="cursor:pointer">
+      <span class="grade-hub-icon">📚</span>
+      <div><div class="grade-hub-title">워밍업</div><div class="grade-hub-count">단원별 개념 다지기</div></div>
     </div>
-    <div class="game-launch-box" style="background:linear-gradient(160deg,#1a1000,#2a1a00);border-color:rgba(251,146,60,.4)">
-      <span class="game-launch-icon">🦊</span>
-      <div class="game-launch-title" style="background:linear-gradient(135deg,#fb923c,#fde047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">수학왕국</div>
-      <div class="game-launch-desc">레벨업하며 연산 마스터!</div>
-      <a class="game-launch-btn" href="math-games-kingdom/index.html" style="background:linear-gradient(135deg,#ea580c,#ca8a04)">🦊 왕국 입장</a>
+    <div class="grade-hub-card" onclick="showScreen('screen-mid-challenge')" style="cursor:pointer">
+      <span class="grade-hub-icon">🎮</span>
+      <div><div class="grade-hub-title">첼린지 게임</div><div class="grade-hub-count">타이머·점수 도전</div></div>
     </div>
   </div>
-
-  <div class="game-section">
-    <div class="game-intro">
-      <h3>🎮 수학 왕국 — 정수 · 유리수</h3>
-      <span class="grade-badge">📚 초등 전과정 + 중1~중3</span>
-      <p>정수·소수·분수 연산을 드라마틱한 게임으로! 틀리면 풀이가 전면 팝업으로 등장합니다. 초1~초6 학년별 드릴 + 중1~중3 정수·문자식·함수·이차방정식까지.</p>
-      <div class="game-features">
-        <span class="game-feature">📐 개념 미리보기</span>
-        <span class="game-feature">💡 힌트</span>
-        <span class="game-feature">📚 단계별 풀이</span>
-        <span class="game-feature">⏱️ 타이머</span>
-      </div>
-    </div>
-    <div class="game-launch-box">
-      <span class="game-launch-icon">👑</span>
-      <div class="game-launch-title">수학 왕국</div>
-      <div class="game-launch-desc">정수 · 유리수 · 분수 연산 마스터!</div>
-      <a class="game-launch-btn" href="math_game/phaser_game.html">🚀 게임 열기</a>
-    </div>
   </div>
 
-  <div class="game-section">
-    <div class="game-intro">
-      <h3>🦕 토로의 분수·비율 탐험</h3>
-      <span class="grade-badge">📚 초4~초6·중1</span>
-      <p>탄천 청소·숲속 주스 나누기·마법의 징검다리, 세 가지 미션으로 떠나는 분수 통분·덧셈뺄셈과 비와 비율·비례식 스토리 여행. 초4~초6·중1 대상.</p>
-      <div class="game-features">
-        <span class="game-feature">🧺 미션 스토리</span>
-        <span class="game-feature">➗ 통분·덧셈뺄셈</span>
-        <span class="game-feature">📊 비와 비율</span>
-        <span class="game-feature">⚖️ 비례식</span>
-      </div>
-    </div>
-    <div class="game-launch-box" style="background:linear-gradient(160deg,#07200f,#0d3018);border-color:rgba(52,211,153,.4)">
-      <span class="game-launch-icon">🦕</span>
-      <div class="game-launch-title" style="background:linear-gradient(135deg,#34d399,#a3e635);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">분수·비율 탐험</div>
-      <div class="game-launch-desc">미션을 따라 분수와 비율을 정복!</div>
-      <a class="game-launch-btn" href="toro_frac/index.html" style="background:linear-gradient(135deg,#059669,#65a30d)">🦕 탐험 시작</a>
-    </div>
-  </div>
-
-  <div class="game-section">
-    <div class="game-intro">
-      <h3>🔮 문자와 식 마법학교</h3>
-      <span class="grade-badge">📚 중1~중2</span>
-      <p>문자의 사용·기호 생략·식의 값·동류항까지 7챕터! 강의 → 퀴즈 순서로 문자와 식을 마스터합니다.</p>
-      <div class="game-features">
-        <span class="game-feature">🔤 문자의 사용</span>
-        <span class="game-feature">✖️ 기호 생략</span>
-        <span class="game-feature">🔢 식의 값</span>
-        <span class="game-feature">🧮 동류항</span>
-        <span class="game-feature">⚖️ 등식의 성질</span>
-      </div>
-    </div>
-    <div class="game-launch-box" style="background:linear-gradient(160deg,#0e0030,#1a0050);border-color:rgba(96,165,250,.4)">
-      <span class="game-launch-icon">🔮</span>
-      <div class="game-launch-title" style="background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">문자와 식 마법학교</div>
-      <div class="game-launch-desc">강의 → 퀴즈 → 챕터 클리어!</div>
-      <a class="game-launch-btn" href="algebra_game/algebra_game.html" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">🔮 게임 열기</a>
-    </div>
-  </div>
-
-  <div class="game-section">
-    <div class="game-intro">
-      <h3>🔍 수학 탐정 수사국</h3>
-      <span class="grade-badge">📚 중1~중2</span>
-      <p>셜록 홈즈·코난처럼 사건을 해결하며 방정식 활용을 익혀요! 속력·원가·일·소금물·비율 5가지 사건.</p>
-      <div class="game-features">
-        <span class="game-feature">🚗 속력·거리</span>
-        <span class="game-feature">🎭 원가·정가</span>
-        <span class="game-feature">💣 일 문제</span>
-        <span class="game-feature">🧪 소금물</span>
-        <span class="game-feature">📜 비율</span>
-      </div>
-    </div>
-    <div class="game-launch-box" style="background:linear-gradient(160deg,#1a1000,#251800);border-color:rgba(212,160,23,.4)">
-      <span class="game-launch-icon">🔍</span>
-      <div class="game-launch-title" style="background:linear-gradient(135deg,#d4a017,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">수학 탐정 수사국</div>
-      <div class="game-launch-desc">코난·홈즈와 함께 방정식으로 사건 해결!</div>
-      <a class="game-launch-btn" href="detective_math/detective_game.html" style="background:linear-gradient(135deg,#b45309,#d97706)">🕵️ 수사 시작</a>
-    </div>
-  </div>
-
-  <div class="game-section">
-    <div class="game-intro">
-      <h3>📈 그래프 탐험대</h3>
-      <span class="grade-badge">📚 중1~중2</span>
-      <p>좌표평면과 함수를 탐험하며 익히는 게임. 순서쌍·좌표평면부터 함수의 그래프까지 미션을 깨며 학습합니다.</p>
-      <div class="game-features">
-        <span class="game-feature">📍 좌표평면</span>
-        <span class="game-feature">📈 함수의 그래프</span>
-      </div>
-    </div>
-    <div class="game-launch-box" style="background:linear-gradient(160deg,#031a1f,#06333d);border-color:rgba(45,212,191,.4)">
-      <span class="game-launch-icon">📈</span>
-      <div class="game-launch-title" style="background:linear-gradient(135deg,#2dd4bf,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">그래프 탐험대</div>
-      <div class="game-launch-desc">좌표와 함수를 정복하는 탐험!</div>
-      <a class="game-launch-btn" href="math-games-kingdom/games/graph.html" style="background:linear-gradient(135deg,#0d9488,#0891b2)">📈 탐험 시작</a>
-    </div>
-  </div>
-
-  <!-- ══════════ 공통수학1 ══════════ -->
+  <!-- ══════════ 중등수학 첼린지 게임 ══════════ -->
+  <div class="screen" id="screen-mid-challenge">
+  <button class="grade-back-btn" onclick="showScreen('screen-middle')">← 중등</button>
   <div class="grade-divider">
-    <span class="grade-icon">1️⃣</span>
+    <span class="grade-icon">🎮</span>
+    <div><div class="grade-title">첼린지 게임</div><div class="grade-desc">타이머·점수·오답 재도전이 있는 진짜 게임</div></div>
+  </div>
+  <div class="grade-hub-grid">
+    <a class="grade-hub-card" href="math_game/phaser_game.html">
+      <span class="grade-hub-icon">👑</span>
+      <div><div class="grade-hub-title">정수·유리수<br>스피드 대결</div><div class="grade-hub-count">전학년+중등</div></div>
+    </a>
+    <a class="grade-hub-card" href="algebra_game/algebra_game.html">
+      <span class="grade-hub-icon">🔮</span>
+      <div><div class="grade-hub-title">문자와 식<br>마법학교</div><div class="grade-hub-count">중1~중2</div></div>
+    </a>
+    <a class="grade-hub-card" href="detective_math/detective_game.html">
+      <span class="grade-hub-icon">🔍</span>
+      <div><div class="grade-hub-title">수학 탐정<br>수사국</div><div class="grade-hub-count">중1~중2</div></div>
+    </a>
+    <a class="grade-hub-card" href="math-games-kingdom/games/graph.html">
+      <span class="grade-hub-icon">📈</span>
+      <div><div class="grade-hub-title">그래프<br>탐험대</div><div class="grade-hub-count">중1~중2</div></div>
+    </a>
+  </div>
+  </div>
+
+  <!-- ══════════ 중등수학 연습(워밍업) ══════════ -->
+  <div class="screen" id="screen-mid-practice">
+  <button class="grade-back-btn" onclick="showScreen('screen-middle')">← 중등</button>
+  <div class="grade-divider">
+    <span class="grade-icon">📚</span>
+    <div><div class="grade-title">중등수학 연습</div><div class="grade-desc">첼린지 게임을 하기 전, 개념을 정확히 다지는 워밍업 단계</div></div>
+  </div>
+  <div class="grade-hub-grid">
+    <a class="grade-hub-card" href="games_mid_algebra12.html" style="background:linear-gradient(160deg,#1a1000,#2a1a00);border-color:rgba(251,146,60,.4)">
+      <span class="grade-hub-icon">✏️</span>
+      <div><div class="grade-hub-title" style="background:linear-gradient(135deg,#fb923c,#fde047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">중1대수</div><div class="grade-hub-count" style="background:linear-gradient(135deg,#ea580c,#ca8a04)">문자와 식·일차방정식</div></div>
+    </a>
+    <a class="grade-hub-card" href="games_mid_geo13.html" style="background:linear-gradient(160deg,#07200f,#0d3018);border-color:rgba(52,211,153,.4)">
+      <span class="grade-hub-icon">🔺</span>
+      <div><div class="grade-hub-title" style="background:linear-gradient(135deg,#34d399,#a3e635);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">중1기하</div><div class="grade-hub-count" style="background:linear-gradient(135deg,#059669,#65a30d)">준비 중</div></div>
+    </a>
+    <a class="grade-hub-card" href="games_mid_algebra12.html">
+      <span class="grade-hub-icon">🔗</span>
+      <div><div class="grade-hub-title">중2대수</div><div class="grade-hub-count">연립방정식·일차부등식</div></div>
+    </a>
+    <a class="grade-hub-card" href="games_mid_geo2.html">
+      <span class="grade-hub-icon">🔷</span>
+      <div><div class="grade-hub-title">중2기하</div><div class="grade-hub-count">준비 중</div></div>
+    </a>
+    <a class="grade-hub-card" href="games_mid_algebra3.html">
+      <span class="grade-hub-icon">🎯</span>
+      <div><div class="grade-hub-title">중3대수</div><div class="grade-hub-count">준비 중</div></div>
+    </a>
+    <a class="grade-hub-card" href="games_mid_geo13.html">
+      <span class="grade-hub-icon">⭕</span>
+      <div><div class="grade-hub-title">중3기하</div><div class="grade-hub-count">준비 중</div></div>
+    </a>
+  </div>
+  </div>
+
+  <div class="screen" id="screen-cs1">
+  <button class="grade-back-btn" onclick="showScreen('screen-home')">← 학년 선택</button>
+  <div class="grade-divider">
+    <span class="grade-icon">🧮</span>
     <div><div class="grade-title">공통수학1</div><div class="grade-desc">다항식·방정식과 부등식·경우의 수·행렬</div></div>
   </div>
 
@@ -273,16 +311,19 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
       공수1 아이디어 게임은 준비 중이에요. 곧 추가됩니다!
     </div>
   </div>
+  </div>
 
   <!-- ══════════ 공통수학2 ══════════ -->
+  <div class="screen" id="screen-cs2">
+  <button class="grade-back-btn" onclick="showScreen('screen-home')">← 학년 선택</button>
   <div class="grade-divider">
-    <span class="grade-icon">2️⃣</span>
+    <span class="grade-icon">📐</span>
     <div><div class="grade-title">공통수학2</div><div class="grade-desc">도형의 방정식·집합과 명제·함수</div></div>
   </div>
 
   <div class="game-section">
     <div class="game-intro">
-      <h3>🧠 아이디어 게임 — 도형의 방정식</h3>
+      <h3>📐 도형의 방정식 정복</h3>
       <span class="grade-badge">📚 공통수학2</span>
       <p>계산은 하지 않아요. 문제 문장만 보고 "이 조건엔 어떤 아이디어를 써야 하는지"를 객관식으로 맞히는 훈련 게임 — 지문을 안 읽고 계산부터 하는 습관을 잡아줍니다.</p>
       <div class="game-features">
@@ -292,16 +333,16 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
       </div>
     </div>
     <div class="game-launch-box" style="background:linear-gradient(160deg,#150030,#280045);border-color:rgba(219,39,119,.4)">
-      <span class="game-launch-icon">🧠</span>
-      <div class="game-launch-title">아이디어 게임</div>
-      <div class="game-launch-desc">도형의 방정식 16문항 — 계산 없이 아이디어만!</div>
-      <a class="game-launch-btn" href="idea_game/shape_eq.html">🧠 게임 열기</a>
+      <span class="game-launch-icon">📐</span>
+      <div class="game-launch-title">도형의 방정식 정복</div>
+      <div class="game-launch-desc">도형의 방정식 19문항 — 계산 없이 아이디어만!</div>
+      <a class="game-launch-btn" href="idea_game/shape_eq.html">📐 게임 열기</a>
     </div>
   </div>
 
   <div class="game-section">
     <div class="game-intro">
-      <h3>🧠 아이디어 게임 — 직선의 방정식</h3>
+      <h3>📏 직선의 방정식 격파</h3>
       <span class="grade-badge">📚 공통수학2</span>
       <p>절편·평행수직·점직선거리·수직이등분선(A1~A4)부터 정점·삼각형 조건·넓이 이등분(B1~B4)까지, 실제 서랍 태그가 붙은 판별 드릴을 객관식으로 재구성했어요.</p>
       <div class="game-features">
@@ -311,16 +352,16 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
       </div>
     </div>
     <div class="game-launch-box" style="background:linear-gradient(160deg,#150030,#280045);border-color:rgba(219,39,119,.4)">
-      <span class="game-launch-icon">🧠</span>
-      <div class="game-launch-title">아이디어 게임</div>
+      <span class="game-launch-icon">📏</span>
+      <div class="game-launch-title">직선의 방정식 격파</div>
       <div class="game-launch-desc">직선의 방정식 16문항 — 계산 없이 아이디어만!</div>
-      <a class="game-launch-btn" href="idea_game/line_eq.html">🧠 게임 열기</a>
+      <a class="game-launch-btn" href="idea_game/line_eq.html">📏 게임 열기</a>
     </div>
   </div>
 
   <div class="game-section">
     <div class="game-intro">
-      <h3>🧠 아이디어 게임 — 원의 방정식</h3>
+      <h3>⭕ 원의 방정식 탐험</h3>
       <span class="grade-badge">📚 공통수학2</span>
       <p>세 점을 지나는 원·지름의 양 끝점·좌표축 접함부터, 두 접선의 기울기·둘레 이등분·최대최소까지 아이디어①~⑨ 전체를 객관식으로 재구성했어요.</p>
       <div class="game-features">
@@ -330,16 +371,16 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
       </div>
     </div>
     <div class="game-launch-box" style="background:linear-gradient(160deg,#150030,#280045);border-color:rgba(219,39,119,.4)">
-      <span class="game-launch-icon">🧠</span>
-      <div class="game-launch-title">아이디어 게임</div>
+      <span class="game-launch-icon">⭕</span>
+      <div class="game-launch-title">원의 방정식 탐험</div>
       <div class="game-launch-desc">원의 방정식 16문항 — 계산 없이 아이디어만!</div>
-      <a class="game-launch-btn" href="idea_game/circle_eq.html">🧠 게임 열기</a>
+      <a class="game-launch-btn" href="idea_game/circle_eq.html">⭕ 게임 열기</a>
     </div>
   </div>
 
   <div class="game-section">
     <div class="game-intro">
-      <h3>🧠 아이디어 게임 — 집합</h3>
+      <h3>🗂️ 집합 여행</h3>
       <span class="grade-badge">📚 공통수학2</span>
       <p>원소나열·포함관계·부분집합 개수·서로소·연산법칙·포함배제·케이스분류까지, 실제 서랍 S1~S8 판별 드릴을 객관식으로 재구성했어요. "원소 개수"만 보고 무조건 공식 쓰는 함정도 포함.</p>
       <div class="game-features">
@@ -349,16 +390,16 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
       </div>
     </div>
     <div class="game-launch-box" style="background:linear-gradient(160deg,#150030,#280045);border-color:rgba(219,39,119,.4)">
-      <span class="game-launch-icon">🧠</span>
-      <div class="game-launch-title">아이디어 게임</div>
+      <span class="game-launch-icon">🗂️</span>
+      <div class="game-launch-title">집합 여행</div>
       <div class="game-launch-desc">집합 16문항 — 계산 없이 아이디어만!</div>
-      <a class="game-launch-btn" href="idea_game/set.html">🧠 게임 열기</a>
+      <a class="game-launch-btn" href="idea_game/set.html">🗂️ 게임 열기</a>
     </div>
   </div>
 
   <div class="game-section">
     <div class="game-intro">
-      <h3>🧠 아이디어 게임 — 명제</h3>
+      <h3>💬 명제 즐기기</h3>
       <span class="grade-badge">📚 공통수학2</span>
       <p>진리집합·역이대우·필요충분조건·증명법(대우·귀류법·직접증명)부터 심화 서랍 4개(필요충분조건 역산·반례개수·연쇄추론·한정기호)까지 객관식으로 재구성했어요.</p>
       <div class="game-features">
@@ -368,16 +409,16 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
       </div>
     </div>
     <div class="game-launch-box" style="background:linear-gradient(160deg,#150030,#280045);border-color:rgba(219,39,119,.4)">
-      <span class="game-launch-icon">🧠</span>
-      <div class="game-launch-title">아이디어 게임</div>
+      <span class="game-launch-icon">💬</span>
+      <div class="game-launch-title">명제 즐기기</div>
       <div class="game-launch-desc">명제 16문항 — 계산 없이 아이디어만!</div>
-      <a class="game-launch-btn" href="idea_game/proposition.html">🧠 게임 열기</a>
+      <a class="game-launch-btn" href="idea_game/proposition.html">💬 게임 열기</a>
     </div>
   </div>
 
   <div class="game-section">
     <div class="game-intro">
-      <h3>🧠🔗 아이디어 게임 — 단원이 만나는 지점</h3>
+      <h3>🧩🔗 단원이 만나는 지점</h3>
       <span class="grade-badge">📚 공통수학2 · 복합</span>
       <p>이번엔 단원 하나가 아니라 두 단원(평면좌표+직선+원, 집합+명제 등)이 동시에 필요한 문제예요. 어떤 아이디어를 어떤 순서로 조합해야 하는지 판별하는 최고난도 모드.</p>
       <div class="game-features">
@@ -387,12 +428,21 @@ body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color
       </div>
     </div>
     <div class="game-launch-box" style="background:linear-gradient(160deg,#150030,#280045);border-color:rgba(219,39,119,.4)">
-      <span class="game-launch-icon">🧠🔗</span>
+      <span class="game-launch-icon">🧩🔗</span>
       <div class="game-launch-title">단원이 만나는 지점</div>
       <div class="game-launch-desc">복합 16문항 — 두 단원을 잇는 아이디어!</div>
-      <a class="game-launch-btn" href="idea_game/combo.html">🧠 게임 열기</a>
+      <a class="game-launch-btn" href="idea_game/combo.html">🧩 게임 열기</a>
     </div>
   </div>
+  </div>
 </div>
+
+<script>
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
 </body>
 </html>

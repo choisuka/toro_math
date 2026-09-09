@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1️⃣2️⃣ 중1·2대수 — 게임 놀이터</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--card:#111827;
+  --purple:#7c3aed;--pink:#db2777;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.08)}
+body{font-family:"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:640px;margin:0 auto;padding:1.5rem 1.25rem 3rem}
+
+.nav-bar{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+.back-link{font-family:'Jua',sans-serif;font-size:.85rem;color:var(--muted);text-decoration:none;
+  background:rgba(255,255,255,.08);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+
+@keyframes secBounce{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+@keyframes secShimmer{0%{background-position:0%}100%{background-position:200%}}
+.sec-head{margin-bottom:2rem;text-align:center}
+.sec-head .sec-mascot{font-size:2.6rem;display:block;margin-bottom:.3rem;animation:secBounce 2.5s ease-in-out infinite}
+.sec-head h1{font-size:1.9rem;font-weight:900;margin-bottom:.4rem;
+  background:linear-gradient(135deg,#fde68a,#a78bfa,#f472b6,#fde68a);
+  background-size:200% auto;animation:secShimmer 3s linear infinite;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-head p{color:var(--muted);font-size:.9rem}
+
+.grade-divider{display:flex;align-items:center;gap:.7rem;margin:2.6rem 0 1.3rem;padding-bottom:.7rem;
+  border-bottom:2px solid rgba(255,255,255,.08)}
+.grade-divider:first-of-type{margin-top:0}
+.grade-icon{font-size:1.7rem;display:inline-block;animation:secBounce 2.5s ease-in-out infinite}
+.grade-title{font-family:'Jua',sans-serif;font-size:1.15rem;color:#fff}
+.grade-desc{font-size:.76rem;color:var(--muted);margin-top:2px}
+
+.screen{display:none}
+.screen.active{display:block}
+@keyframes iconBounce{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1.08)}}
+.grade-hub-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.grade-hub-card{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:.5rem;background:linear-gradient(155deg,var(--card),rgba(124,58,237,.12));
+  border:1.5px solid var(--border);
+  border-radius:26px;padding:1.2rem;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;
+  text-decoration:none;position:relative;overflow:hidden}
+.grade-hub-card::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 15%,rgba(167,139,250,.25),transparent 60%);
+  opacity:0;transition:opacity .3s;pointer-events:none}
+.grade-hub-card:hover{transform:translateY(-6px) scale(1.04);
+  box-shadow:0 14px 36px rgba(124,58,237,.4)}
+.grade-hub-card:hover::before{opacity:1}
+.grade-hub-card:hover .grade-hub-icon{animation:iconBounce .6s ease-in-out infinite}
+.grade-hub-icon{font-size:2.6rem;width:74px;height:74px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;margin-bottom:.1rem}
+.grade-hub-title{font-family:'Jua',sans-serif;font-size:1.35rem;color:#fff}
+.grade-hub-desc{font-size:.78rem;color:var(--muted);line-height:1.5}
+.grade-hub-count{font-size:.78rem;color:#a78bfa;margin-top:.2rem}
+@media (max-width:420px){
+  .grade-hub-icon{font-size:2rem;width:60px;height:60px}
+  .grade-hub-title{font-size:1.1rem}
+  .grade-hub-desc{font-size:.72rem}
+}
+.grade-hub-card:nth-child(6n+1){background:linear-gradient(160deg,#2a1400,#1a0d00);border-color:rgba(251,146,60,.5)}
+.grade-hub-card:nth-child(6n+1) .grade-hub-icon{background:radial-gradient(circle,rgba(251,146,60,.35),transparent 70%)}
+.grade-hub-card:nth-child(6n+1) .grade-hub-title{background:linear-gradient(135deg,#fb923c,#fde047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grade-hub-card:nth-child(6n+1):hover{border-color:rgba(251,146,60,.8)}
+.grade-hub-card:nth-child(6n+2){background:linear-gradient(160deg,#1f0033,#12001f);border-color:rgba(168,85,247,.5)}
+.grade-hub-card:nth-child(6n+2) .grade-hub-icon{background:radial-gradient(circle,rgba(168,85,247,.35),transparent 70%)}
+.grade-hub-card:nth-child(6n+2) .grade-hub-title{background:linear-gradient(135deg,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grade-hub-card:nth-child(6n+2):hover{border-color:rgba(168,85,247,.8)}
+.grade-hub-card:nth-child(6n+3){background:linear-gradient(160deg,#04241a,#02150f);border-color:rgba(52,211,153,.5)}
+.grade-hub-card:nth-child(6n+3) .grade-hub-icon{background:radial-gradient(circle,rgba(52,211,153,.35),transparent 70%)}
+.grade-hub-card:nth-child(6n+3) .grade-hub-title{background:linear-gradient(135deg,#34d399,#a3e635);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grade-hub-card:nth-child(6n+3):hover{border-color:rgba(52,211,153,.8)}
+.grade-hub-card:nth-child(6n+4){background:linear-gradient(160deg,#2a0018,#1a000f);border-color:rgba(244,114,182,.5)}
+.grade-hub-card:nth-child(6n+4) .grade-hub-icon{background:radial-gradient(circle,rgba(244,114,182,.35),transparent 70%)}
+.grade-hub-card:nth-child(6n+4) .grade-hub-title{background:linear-gradient(135deg,#f472b6,#fb7185);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grade-hub-card:nth-child(6n+4):hover{border-color:rgba(244,114,182,.8)}
+.grade-hub-card:nth-child(6n+5){background:linear-gradient(160deg,#001a2a,#000f1a);border-color:rgba(56,189,248,.5)}
+.grade-hub-card:nth-child(6n+5) .grade-hub-icon{background:radial-gradient(circle,rgba(56,189,248,.35),transparent 70%)}
+.grade-hub-card:nth-child(6n+5) .grade-hub-title{background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grade-hub-card:nth-child(6n+5):hover{border-color:rgba(56,189,248,.8)}
+.grade-hub-card:nth-child(6n+6){background:linear-gradient(160deg,#2a0800,#1a0500);border-color:rgba(248,113,113,.5)}
+.grade-hub-card:nth-child(6n+6) .grade-hub-icon{background:radial-gradient(circle,rgba(248,113,113,.35),transparent 70%)}
+.grade-hub-card:nth-child(6n+6) .grade-hub-title{background:linear-gradient(135deg,#f87171,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grade-hub-card:nth-child(6n+6):hover{border-color:rgba(248,113,113,.8)}
+.grade-back-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);color:var(--text);font-family:'Jua',sans-serif;font-size:.82rem;
+  padding:7px 16px;border-radius:20px;cursor:pointer;margin-bottom:1rem}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav-bar">
+    <a href="games.html" class="back-link">← 게임 놀이터</a>
+  </div>
+  <div class="sec-head">
+    <span class="sec-mascot">1️⃣2️⃣</span>
+    <h1>중1·2대수</h1>
+    <p>문자와 식·방정식·부등식의 활용</p>
+  </div>
+
+  <div class="screen active" id="screen-select">
+    <div class="grade-hub-grid">
+      <div class="grade-hub-card" onclick="showScreen('screen-mid1-algebra')" style="cursor:pointer">
+        <span class="grade-hub-icon">✏️</span>
+        <div><div class="grade-hub-title">중1대수</div><div class="grade-hub-count">문자와 식·일차방정식</div></div>
+      </div>
+      <div class="grade-hub-card" onclick="showScreen('screen-mid2-algebra')" style="cursor:pointer">
+        <span class="grade-hub-icon">🔗</span>
+        <div><div class="grade-hub-title">중2대수</div><div class="grade-hub-count">연립방정식·일차부등식</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 중1대수 ══════════ -->
+  <div class="screen" id="screen-mid1-algebra">
+  <button class="grade-back-btn" onclick="showScreen('screen-select')">← 학년 선택</button>
+  <div class="grade-divider">
+    <span class="grade-icon">✏️</span>
+    <div><div class="grade-title">중1대수</div><div class="grade-desc">문자와 식·일차방정식의 활용</div></div>
+  </div>
+  <div class="grade-hub-grid" style="grid-template-columns:minmax(0,220px);justify-content:center">
+    <div class="grade-hub-card" onclick="showScreen('screen-linear-topics')" style="cursor:pointer">
+      <span class="grade-hub-icon">➗</span>
+      <div><div class="grade-hub-title">일차방정식의 활용</div><div class="grade-hub-count">6개 단원</div></div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ══════════ 중2대수 ══════════ -->
+  <div class="screen" id="screen-mid2-algebra">
+  <button class="grade-back-btn" onclick="showScreen('screen-select')">← 학년 선택</button>
+  <div class="grade-divider">
+    <span class="grade-icon">🔗</span>
+    <div><div class="grade-title">중2대수</div><div class="grade-desc">연립방정식·일차부등식의 활용</div></div>
+  </div>
+  <div class="grade-hub-grid">
+    <div class="grade-hub-card" onclick="showScreen('screen-simul-topics')" style="cursor:pointer">
+      <span class="grade-hub-icon">🔗</span>
+      <div><div class="grade-hub-title">연립방정식의 활용</div><div class="grade-hub-count">6개 단원</div></div>
+    </div>
+    <div class="grade-hub-card" onclick="showScreen('screen-ineq-topics')" style="cursor:pointer">
+      <span class="grade-hub-icon">⚖️</span>
+      <div><div class="grade-hub-title">일차부등식의 활용</div><div class="grade-hub-count">6개 단원</div></div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ══════════ 일차방정식의 활용 — 단원 목록 ══════════ -->
+  <div class="screen" id="screen-linear-topics">
+  <button class="grade-back-btn" onclick="showScreen('screen-mid1-algebra')">← 중1대수</button>
+  <div class="grade-divider">
+    <span class="grade-icon">➗</span>
+    <div><div class="grade-title">일차방정식의 활용</div><div class="grade-desc">미지수 하나로 풀리는 문장제 단원들</div></div>
+  </div>
+  <div class="grade-hub-grid">
+    <a class="grade-hub-card" href="idea_game/linear_speed_cards.html">
+      <span class="grade-hub-icon">🚗</span>
+      <div><div class="grade-hub-title">속도</div><div class="grade-hub-count">22문항</div></div>
+    </a>
+    <div class="grade-hub-card" style="opacity:.4;cursor:default">
+      <span class="grade-hub-icon">🔧</span>
+      <div><div class="grade-hub-title">일</div><div class="grade-hub-count">준비 중</div></div>
+    </div>
+    <a class="grade-hub-card" href="idea_game/linear_price_cards.html">
+      <span class="grade-hub-icon">💰</span>
+      <div><div class="grade-hub-title">원가정가</div><div class="grade-hub-count">8문항</div></div>
+    </a>
+    <a class="grade-hub-card" href="idea_game/linear_growth_cards.html">
+      <span class="grade-hub-icon">📈</span>
+      <div><div class="grade-hub-title">증가율</div><div class="grade-hub-count">18문항</div></div>
+    </a>
+    <a class="grade-hub-card" href="idea_game/linear_salt_cards.html">
+      <span class="grade-hub-icon">🧪</span>
+      <div><div class="grade-hub-title">농도</div><div class="grade-hub-count">20문항</div></div>
+    </a>
+    <div class="grade-hub-card" style="opacity:.4;cursor:default">
+      <span class="grade-hub-icon">🔢</span>
+      <div><div class="grade-hub-title">약수와배수</div><div class="grade-hub-count">준비 중</div></div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ══════════ 연립방정식의 활용 — 단원 목록 ══════════ -->
+  <div class="screen" id="screen-simul-topics">
+  <button class="grade-back-btn" onclick="showScreen('screen-mid2-algebra')">← 중2대수</button>
+  <div class="grade-divider">
+    <span class="grade-icon">🔗</span>
+    <div><div class="grade-title">연립방정식의 활용</div><div class="grade-desc">미지수 두 개로 풀리는 문장제 단원들</div></div>
+  </div>
+  <div class="grade-hub-grid">
+    <a class="grade-hub-card" href="idea_game/simul_speed_cards.html">
+      <span class="grade-hub-icon">🚗</span>
+      <div><div class="grade-hub-title">속도</div><div class="grade-hub-count">18문항</div></div>
+    </a>
+    <a class="grade-hub-card" href="idea_game/simul_work_cards.html">
+      <span class="grade-hub-icon">🔧</span>
+      <div><div class="grade-hub-title">일</div><div class="grade-hub-count">14문항</div></div>
+    </a>
+    <a class="grade-hub-card" href="idea_game/simul_price_cards.html">
+      <span class="grade-hub-icon">💰</span>
+      <div><div class="grade-hub-title">원가정가</div><div class="grade-hub-count">13문항</div></div>
+    </a>
+    <a class="grade-hub-card" href="idea_game/simul_growth_cards.html">
+      <span class="grade-hub-icon">📈</span>
+      <div><div class="grade-hub-title">증가율</div><div class="grade-hub-count">8문항</div></div>
+    </a>
+    <a class="grade-hub-card" href="idea_game/simul_salt_cards.html">
+      <span class="grade-hub-icon">🧪</span>
+      <div><div class="grade-hub-title">농도</div><div class="grade-hub-count">20문항</div></div>
+    </a>
+    <div class="grade-hub-card" style="opacity:.4;cursor:default">
+      <span class="grade-hub-icon">🔢</span>
+      <div><div class="grade-hub-title">약수와배수</div><div class="grade-hub-count">준비 중</div></div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ══════════ 일차부등식의 활용 — 단원 목록 ══════════ -->
+  <div class="screen" id="screen-ineq-topics">
+  <button class="grade-back-btn" onclick="showScreen('screen-mid2-algebra')">← 중2대수</button>
+  <div class="grade-divider">
+    <span class="grade-icon">⚖️</span>
+    <div><div class="grade-title">일차부등식의 활용</div><div class="grade-desc">이상·이하·최소·최대 조건의 문장제 단원들</div></div>
+  </div>
+  <div class="grade-hub-grid">
+    <a class="grade-hub-card" href="idea_game/ineq_speed_cards.html">
+      <span class="grade-hub-icon">🚗</span>
+      <div><div class="grade-hub-title">속도</div><div class="grade-hub-count">34문항</div></div>
+    </a>
+    <a class="grade-hub-card" href="idea_game/ineq_work_cards.html">
+      <span class="grade-hub-icon">🔧</span>
+      <div><div class="grade-hub-title">일</div><div class="grade-hub-count">12문항</div></div>
+    </a>
+    <a class="grade-hub-card" href="idea_game/ineq_speed_battle.html">
+      <span class="grade-hub-icon">⚔️</span>
+      <div><div class="grade-hub-title">부등식 배틀<br>속도 몬스터</div><div class="grade-hub-count">21문항</div></div>
+    </a>
+    <a class="grade-hub-card" href="idea_game/ineq_price_cards.html">
+      <span class="grade-hub-icon">💰</span>
+      <div><div class="grade-hub-title">원가정가</div><div class="grade-hub-count">8문항</div></div>
+    </a>
+    <a class="grade-hub-card" href="idea_game/ineq_growth_cards.html">
+      <span class="grade-hub-icon">📈</span>
+      <div><div class="grade-hub-title">증가율</div><div class="grade-hub-count">18문항</div></div>
+    </a>
+    <a class="grade-hub-card" href="idea_game/ineq_salt_cards.html">
+      <span class="grade-hub-icon">🧪</span>
+      <div><div class="grade-hub-title">농도</div><div class="grade-hub-count">20문항</div></div>
+    </a>
+    <div class="grade-hub-card" style="opacity:.4;cursor:default">
+      <span class="grade-hub-icon">🔢</span>
+      <div><div class="grade-hub-title">약수와배수</div><div class="grade-hub-count">준비 중</div></div>
+    </div>
+  </div>
+  </div>
+
+</div>
+
+<script>
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
