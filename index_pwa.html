@@ -272,7 +272,10 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
+    // scope를 'index_pwa'로 시작하는 주소만으로 좁힌다.
+    // scope를 안 정해주면 sw.js가 있는 폴더(= /toro_math/) 전체가 범위가 되어서,
+    // 등록 코드가 없는 index.html(원본, 라이브 홈)까지 이 서비스워커의 통제를 받게 된다.
+    navigator.serviceWorker.register('./sw.js', { scope: './index_pwa' }).catch(() => {});
   });
 }
 </script>
