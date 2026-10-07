@@ -80,7 +80,8 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 .tver-badge{font-size:.7rem;font-weight:700;padding:6px 10px;border-radius:8px;margin-bottom:10px;display:inline-block}
 .tver-badge.basic{background:rgba(139,148,158,.15);color:#8b949e;border:1px solid #30363d}
 .tver-badge.story{background:rgba(240,192,64,.12);color:#f0c040;border:1px solid #f0c040}
-.grade-section.unit-grid-mode.active{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:start}
+.grade-section.unit-grid-mode.active{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:start;max-width:620px;margin:0 auto}
+.grade-section.unit-grid-mode .unit-title{font-size:.85rem}
 .semester-divider{grid-column:1/-1;font-size:.85rem;font-weight:700;color:#8b949e;margin:14px 0 2px;padding-bottom:6px;border-bottom:1px solid #30363d}
 .semester-divider:first-child{margin-top:0}
 .grade-section.unit-grid-mode:has(.unit-body.open) .semester-divider{display:none}
@@ -125,6 +126,8 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 .frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:.92em;line-height:1.15;margin:0 2px}
 .frac-n,.frac-d{display:block;padding:0 3px}
 .frac-n{border-bottom:1.5px solid currentColor}
+.print-fab{position:fixed;bottom:20px;right:20px;z-index:200;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,#7a5c00,#f0c040);color:#1a1000;font-size:1.4rem;cursor:pointer;box-shadow:0 4px 16px rgba(240,192,64,.4)}
+.print-fab:hover{filter:brightness(1.08)}
 </style>
 </head>
 <body>
@@ -474,31 +477,12 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
       <span class="unit-arrow">▼</span>
     </div>
     <div class="unit-body">
-      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
-        <p>국가 예산은 수백조 원, 지구에서 태양까지는 약 1억 5천만km. 큰 수를 이해해야 뉴스를 읽고 세상을 이해할 수 있다. 탈무드는 "숫자를 알면 세상의 크기를 안다"고 했다.</p>
-      </div>
-      <div class="section concept"><div class="section-title">📖 개념 설명</div>
-        <ul>
-          <li>만(10,000) = 1,0000 / 억(100,000,000) = 1,0000,0000 / 조 = 1,0000,0000,0000</li>
-          <li>한국식 4자리 단위 vs 서양식 3자리 단위(thousand, million, billion)</li>
-          <li>자릿값: 숫자의 위치에 따라 값이 다름 → 325에서 3은 300을 의미</li>
-          <li>수 읽기: 3,241,567 = 삼백이십사만 천오백육십칠</li>
-        </ul>
-      </div>
-      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
-        <div class="q-item"><strong>Q1.</strong> 1억이 얼마나 큰 수인지 실감할 수 있는 예를 만들어보세요. (1억 초 = 몇 년?)</div>
-        <div class="q-item"><strong>Q2.</strong> 우리나라는 4자리마다 단위가 바뀌는데 미국은 3자리마다 바뀝니다. 어느 쪽이 더 편할까요?</div>
-        <div class="q-item"><strong>Q3.</strong> "무한대(∞)"는 가장 큰 수일까요?</div>
-      </div>
-      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
-        <div class="prob-box">
-          <div class="prob-q">문제: 3억 4천만을 숫자로 쓰시오.</div>
-          <div class="sol"><strong>풀이①(단위분해):</strong> 3억=300,000,000 / 4천만=40,000,000 → 합=340,000,000</div>
-          <div class="sol"><strong>풀이②(자릿값표):</strong> 억의 자리=3, 천만의 자리=4, 나머지=0 → 340,000,000</div>
+      <div class="cv-wrap" id="cv-e4big">
+        <div class="cv-grid" id="cv-e4big-grid"></div>
+        <div class="cv-detail" id="cv-e4big-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e4big')">← 목록으로</button>
+          <div id="cv-e4big-detail-body"></div>
         </div>
-      </div>
-      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
-        <div class="debate-item">1조 원이 생긴다면 어떻게 쓸 것인가요? 하루에 100만 원씩 쓰면 다 쓰는 데 얼마나 걸릴까요? 계산해보세요.</div>
       </div>
     </div>
   </div>
@@ -1242,6 +1226,7 @@ function r2(x){ return Math.round(x*100)/100; }
 function gcd(a,b){ return b?gcd(b,a%b):a; }
 var BADGE61 = '<span style="background:#1f6feb;color:#fff;font-size:.6rem;font-weight:700;padding:1px 6px;border-radius:8px;margin-left:6px;vertical-align:middle;white-space:nowrap">6-1</span>';
 var BADGE62 = '<span style="background:#bc8cff;color:#0d1117;font-size:.6rem;font-weight:700;padding:1px 6px;border-radius:8px;margin-left:6px;vertical-align:middle;white-space:nowrap">6-2</span>';
+var BADGE_ADV = '<span style="background:#f85149;color:#fff;font-size:.6rem;font-weight:700;padding:1px 6px;border-radius:8px;margin-left:6px;vertical-align:middle;white-space:nowrap">범위밖 심화</span>';
 // ── 카드뷰(한 장씩 넘기기) ──
 const CV_DATA = {
   'e3div': [
@@ -8829,6 +8814,57 @@ const CV_DATA_E6CYL = [
       <div id="cyw-10" class="prob-q" data-r="4" data-qtext="밑면의 반지름이 4cm로 같은 원기둥과 원뿔이 있습니다. 두 도형의 밑면의 둘레를 각각 구하고 비교하면? (원주율: 3.14)" data-solfn="cywSol10">밑면의 반지름이 4cm로 같은 원기둥과 원뿔이 있습니다. 두 도형의 밑면의 둘레를 각각 구하고 비교하면? (원주율: 3.14)<br><button class="havruta-show-btn" onclick="cywSol10('cyw-10')">💡 풀이 보기</button></div>
       <button class="havruta-show-btn" onclick="cywGen10('cyw-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
     </div>
+    <p style="margin-top:14px;padding-top:10px;border-top:1px solid #30363d">여기부터는 실제 심화 시험에 나올 법한 <strong style="color:#f0c040">고난도 추가문제</strong>예요. ${BADGE_ADV} 표시가 있는 문제는 부피·겉넓이·피타고라스 정리처럼 이 단원(초6-2)의 표준 범위를 넘어서는 중등 수준 개념이 필요해요 — 도전해보고 싶다면 풀어보세요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 11 (전개도)</div>
+      <div id="cyw-11" class="prob-q" data-qtext="밑면의 반지름이 4cm이고 높이가 10cm인 원기둥이 있습니다. 이 원기둥을 전개도로 만들었을 때, 옆면인 직사각형의 가로와 세로의 길이의 합을 구하시오. (단, 원주율은 3.14입니다.)" data-solfn="cywSol11">밑면의 반지름이 4cm이고 높이가 10cm인 원기둥이 있습니다. 이 원기둥을 전개도로 만들었을 때, 옆면인 직사각형의 가로와 세로의 길이의 합을 구하시오. (단, 원주율은 3.14입니다.)<br><button class="havruta-show-btn" onclick="cywSol11('cyw-11')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cywGen11('cyw-11')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 12 (개념)</div>
+      <div id="cyw-12" class="prob-q" data-qtext="직각삼각형을 한 변을 축으로 하여 1회전 시킬 때 생기는 원뿔에 대한 설명으로 옳은 것은 무엇인가요? ① 회전축에 수직인 단면은 모두 합동인 원이다 ② 회전축에 수직인 단면은 모두 원이지만 크기가 다르다 ③ 회전축을 포함하는 단면은 원이다 ④ 밑면과 옆면의 넓이는 항상 같다" data-solfn="cywSol12">직각삼각형을 한 변을 축으로 하여 1회전 시킬 때 생기는 원뿔에 대한 설명으로 옳은 것은 무엇인가요?<br>① 회전축에 수직인 단면은 모두 합동인 원이다<br>② 회전축에 수직인 단면은 모두 원이지만 크기가 다르다<br>③ 회전축을 포함하는 단면은 원이다<br>④ 밑면과 옆면의 넓이는 항상 같다<br><button class="havruta-show-btn" onclick="cywSol12('cyw-12')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cywGen12('cyw-12')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 13 (역산)</div>
+      <div id="cyw-13" class="prob-q" data-qtext="어떤 구를 어떤 평면으로 잘랐을 때 생기는 단면 중에서 가장 큰 원의 넓이가 78.5cm²입니다. 이 구의 반지름은 몇 cm인가요? (단, 원주율은 3.14입니다.)" data-solfn="cywSol13">어떤 구를 어떤 평면으로 잘랐을 때 생기는 단면 중에서 가장 큰 원의 넓이가 78.5cm²입니다. 이 구의 반지름은 몇 cm인가요? (단, 원주율은 3.14입니다.)<br><button class="havruta-show-btn" onclick="cywSol13('cyw-13')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cywGen13('cyw-13')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 14 (부피)${BADGE_ADV}</div>
+      <div id="cyw-14" class="prob-q" data-qtext="밑면의 지름이 6cm, 높이가 8cm인 원기둥 모양의 그릇에 물이 가득 차 있습니다. 이 물을 밑면의 반지름이 3cm인 원뿔 모양의 그릇에 부으려고 합니다. 원뿔에 물을 넘치지 않게 가득 채우려면 원뿔의 높이는 최소 얼마 이상이어야 하나요?" data-solfn="cywSol14">밑면의 지름이 6cm, 높이가 8cm인 원기둥 모양의 그릇에 물이 가득 차 있습니다. 이 물을 밑면의 반지름이 3cm인 원뿔 모양의 그릇에 부으려고 합니다. 원뿔에 물을 넘치지 않게 가득 채우려면 원뿔의 높이는 최소 얼마 이상이어야 하나요?<br><button class="havruta-show-btn" onclick="cywSol14('cyw-14')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cywGen14('cyw-14')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 15 (전개도·역산)</div>
+      <div id="cyw-15" class="prob-q" data-qtext="직사각형 모양의 종이를 한 변을 축으로 하여 1회전 시켰더니 원기둥이 되었습니다. 이 원기둥의 옆면을 펼쳤더니 정사각형이 되었습니다. 회전시킨 직사각형의 세로(회전축에 평행한 변)가 12cm일 때, 이 원기둥의 밑면의 반지름은 몇 cm인가요? (단, 원주율은 3으로 계산합니다.)" data-solfn="cywSol15">직사각형 모양의 종이를 한 변을 축으로 하여 1회전 시켰더니 원기둥이 되었습니다. 이 원기둥의 옆면을 펼쳤더니 정사각형이 되었습니다. 회전시킨 직사각형의 세로(회전축에 평행한 변)가 12cm일 때, 이 원기둥의 밑면의 반지름은 몇 cm인가요? (단, 원주율은 3으로 계산합니다.)<br><button class="havruta-show-btn" onclick="cywSol15('cyw-15')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cywGen15('cyw-15')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 16 (참거짓)</div>
+      <div id="cyw-16" class="prob-q" data-qtext="다음 중 원기둥, 원뿔, 구에 대한 설명으로 옳은 것만을 보기에서 있는 대로 고르세요. ㄱ. 원뿔을 회전축에 수직인 평면으로 잘랐을 때 생기는 단면이 모두 합동이다. ㄴ. 구는 어느 방향에서 잘라도 그 단면이 항상 원이다. ㄷ. 원기둥의 전개도에서 옆면은 항상 직사각형 또는 정사각형이다. ㄹ. 구를 회전축을 포함하는 평면으로 자르면 생기는 단면은 모두 합동인 원이다." data-solfn="cywSol16">다음 중 원기둥, 원뿔, 구에 대한 설명으로 옳은 것만을 보기에서 있는 대로 고르세요.<br>ㄱ. 원뿔을 회전축에 수직인 평면으로 잘랐을 때 생기는 단면이 모두 합동이다.<br>ㄴ. 구는 어느 방향에서 잘라도 그 단면이 항상 원이다.<br>ㄷ. 원기둥의 전개도에서 옆면은 항상 직사각형 또는 정사각형이다.<br>ㄹ. 구를 회전축을 포함하는 평면으로 자르면 생기는 단면은 모두 합동인 원이다.<br><button class="havruta-show-btn" onclick="cywSol16('cyw-16')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cywGen16('cyw-16')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 17 (부피)${BADGE_ADV}</div>
+      <div id="cyw-17" class="prob-q" data-qtext="반지름이 5cm인 쇠구슬을 녹여서 밑면의 반지름이 5cm인 원기둥을 만들려고 합니다. 이 원기둥의 높이는 몇 cm가 되어야 하나요? (구의 부피는 반지름이 같은 원기둥 부피의 2/3임을 이용하세요.)" data-solfn="cywSol17">반지름이 5cm인 쇠구슬을 녹여서 밑면의 반지름이 5cm인 원기둥을 만들려고 합니다. 이 원기둥의 높이는 몇 cm가 되어야 하나요? (구의 부피는 반지름이 같은 원기둥 부피의 ${frac(2,3)}임을 이용하세요.)<br><button class="havruta-show-btn" onclick="cywSol17('cyw-17')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cywGen17('cyw-17')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 18 (모선·피타고라스)${BADGE_ADV}</div>
+      <div id="cyw-18" class="prob-q" data-qtext="어떤 원뿔을 회전축을 포함하는 평면으로 잘랐을 때 생기는 단면이 밑변의 길이가 10cm, 높이가 12cm인 이등변삼각형입니다. 이 원뿔의 모선 길이는 얼마인가요?" data-solfn="cywSol18">어떤 원뿔을 회전축을 포함하는 평면으로 잘랐을 때 생기는 단면이 밑변의 길이가 10cm, 높이가 12cm인 이등변삼각형입니다. 이 원뿔의 모선 길이는 얼마인가요?<br><button class="havruta-show-btn" onclick="cywSol18('cyw-18')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cywGen18('cyw-18')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 19 (개념)</div>
+      <div id="cyw-19" class="prob-q" data-qtext="다음 중 원기둥의 전개도에서 옆면의 모양이 될 수 없는 것은 무엇인가요? ① 직사각형 ② 정사각형 ③ 평행사변형" data-solfn="cywSol19">다음 중 원기둥의 전개도에서 옆면의 모양이 될 수 없는 것은 무엇인가요?<br>① 직사각형 ② 정사각형 ③ 평행사변형<br><button class="havruta-show-btn" onclick="cywSol19('cyw-19')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cywGen19('cyw-19')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 20 (겉넓이)${BADGE_ADV}</div>
+      <div id="cyw-20" class="prob-q" data-qtext="밑면의 반지름이 3cm이고 높이가 5cm인 원기둥이 있습니다. 이 원기둥의 겉넓이는 몇 cm²인가요? (단, 원주율은 3.14입니다.)" data-solfn="cywSol20">밑면의 반지름이 3cm이고 높이가 5cm인 원기둥이 있습니다. 이 원기둥의 겉넓이는 몇 cm²인가요? (단, 원주율은 3.14입니다.)<br><button class="havruta-show-btn" onclick="cywSol20('cyw-20')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="cywGen20('cyw-20')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 원뿔에서 모선이랑 높이는 같은 거 아니에요? 둘 다 꼭짓점에서 밑면까지 이어지는 선이잖아요.</div></div>
@@ -8968,6 +9004,76 @@ function cywSol10(id){
   var diagram = '<div class="fb-diagram">원기둥 밑면 둘레 = 2×'+r+'×3.14 = '+c+'cm<br>원뿔 밑면 둘레 = 2×'+r+'×3.14 = '+c+'cm<br>→ <strong style="color:#3fb950">두 둘레는 같음</strong>(반지름이 같은 원이므로)</div>';
   rgwRenderToggle(id, diagram, 'cywSol10');
 }
+function cywGen11(id){
+  rgwSetQuestion(document.getElementById(id), '밑면의 반지름이 4cm이고 높이가 10cm인 원기둥이 있습니다. 이 원기둥을 전개도로 만들었을 때, 옆면인 직사각형의 가로와 세로의 길이의 합을 구하시오. (단, 원주율은 3.14입니다.)', 'cywSol11');
+}
+function cywSol11(id){
+  var diagram = '<div class="fb-diagram">세로(높이) = 10cm<br>가로(밑면 둘레) = 4×2×3.14 = 25.12cm<br>합 = 25.12+10 = <strong style="color:#3fb950">35.12cm</strong></div>';
+  rgwRenderToggle(id, diagram, 'cywSol11');
+}
+function cywGen12(id){
+  rgwSetQuestion(document.getElementById(id), '직각삼각형을 한 변을 축으로 하여 1회전 시킬 때 생기는 원뿔에 대한 설명으로 옳은 것은 무엇인가요?<br>① 회전축에 수직인 단면은 모두 합동인 원이다<br>② 회전축에 수직인 단면은 모두 원이지만 크기가 다르다<br>③ 회전축을 포함하는 단면은 원이다<br>④ 밑면과 옆면의 넓이는 항상 같다', 'cywSol12');
+}
+function cywSol12(id){
+  var diagram = '<div class="fb-diagram">원뿔을 회전축에 수직인 평면으로 자르면 단면은 항상 원이지만, 꼭짓점에 가까울수록 작고 밑면에 가까울수록 커요<br>→ <strong style="color:#3fb950">②</strong></div>';
+  rgwRenderToggle(id, diagram, 'cywSol12');
+}
+function cywGen13(id){
+  rgwSetQuestion(document.getElementById(id), '어떤 구를 어떤 평면으로 잘랐을 때 생기는 단면 중에서 가장 큰 원의 넓이가 78.5cm²입니다. 이 구의 반지름은 몇 cm인가요? (단, 원주율은 3.14입니다.)', 'cywSol13');
+}
+function cywSol13(id){
+  var diagram = '<div class="fb-diagram">가장 큰 단면(대원)은 구의 중심을 지나는 원 → 반지름×반지름×3.14 = 78.5<br>반지름×반지름 = 25 → <strong style="color:#3fb950">5cm</strong></div>';
+  rgwRenderToggle(id, diagram, 'cywSol13');
+}
+function cywGen14(id){
+  rgwSetQuestion(document.getElementById(id), '밑면의 지름이 6cm, 높이가 8cm인 원기둥 모양의 그릇에 물이 가득 차 있습니다. 이 물을 밑면의 반지름이 3cm인 원뿔 모양의 그릇에 부으려고 합니다. 원뿔에 물을 넘치지 않게 가득 채우려면 원뿔의 높이는 최소 얼마 이상이어야 하나요?', 'cywSol14');
+}
+function cywSol14(id){
+  var diagram = '<div class="fb-diagram">원기둥 부피 = 3×3×π×8 = 72π<br>원뿔 부피 = '+frac(1,3)+'×3×3×π×(높이) = 3π×(높이)<br>3π×(높이) = 72π → 높이 = <strong style="color:#3fb950">24cm</strong><span class="cap">부피 공식은 중1 과정이에요</span></div>';
+  rgwRenderToggle(id, diagram, 'cywSol14');
+}
+function cywGen15(id){
+  rgwSetQuestion(document.getElementById(id), '직사각형 모양의 종이를 한 변을 축으로 하여 1회전 시켰더니 원기둥이 되었습니다. 이 원기둥의 옆면을 펼쳤더니 정사각형이 되었습니다. 회전시킨 직사각형의 세로(회전축에 평행한 변)가 12cm일 때, 이 원기둥의 밑면의 반지름은 몇 cm인가요? (단, 원주율은 3으로 계산합니다.)', 'cywSol15');
+}
+function cywSol15(id){
+  var diagram = '<div class="fb-diagram">옆면이 정사각형 → 가로(밑면 둘레) = 세로 = 12cm<br>반지름×2×3 = 12 → <strong style="color:#3fb950">2cm</strong></div>';
+  rgwRenderToggle(id, diagram, 'cywSol15');
+}
+function cywGen16(id){
+  rgwSetQuestion(document.getElementById(id), '다음 중 원기둥, 원뿔, 구에 대한 설명으로 옳은 것만을 보기에서 있는 대로 고르세요.<br>ㄱ. 원뿔을 회전축에 수직인 평면으로 잘랐을 때 생기는 단면이 모두 합동이다.<br>ㄴ. 구는 어느 방향에서 잘라도 그 단면이 항상 원이다.<br>ㄷ. 원기둥의 전개도에서 옆면은 항상 직사각형 또는 정사각형이다.<br>ㄹ. 구를 회전축을 포함하는 평면으로 자르면 생기는 단면은 모두 합동인 원이다.', 'cywSol16');
+}
+function cywSol16(id){
+  var diagram = '<div class="fb-diagram">ㄱ. 원뿔의 수직 단면은 크기가 다름 → 옳지 않음<br>ㄴ. 구는 어느 방향이든 단면이 원 → 옳음<br>ㄷ. 원기둥 옆면은 항상 직사각형(정사각형 포함), 평행사변형은 불가능 → 옳음<br>ㄹ. 구를 축 포함 평면으로 자르면 항상 중심을 지나는 대원(합동) → 옳음<br>→ <strong style="color:#3fb950">ㄴ, ㄷ, ㄹ</strong></div>';
+  rgwRenderToggle(id, diagram, 'cywSol16');
+}
+function cywGen17(id){
+  rgwSetQuestion(document.getElementById(id), '반지름이 5cm인 쇠구슬을 녹여서 밑면의 반지름이 5cm인 원기둥을 만들려고 합니다. 이 원기둥의 높이는 몇 cm가 되어야 하나요? (구의 부피는 반지름이 같은 원기둥 부피의 '+frac(2,3)+'임을 이용하세요.)', 'cywSol17');
+}
+function cywSol17(id){
+  var diagram = '<div class="fb-diagram">구를 품는 원기둥(r=5,h=10) 부피 = 5×5×π×10 = 250π<br>구의 부피 = 250π×'+frac(2,3)+' = '+frac(500,3)+'π<br>새 원기둥(r=5) 부피 = 25π×(높이) = '+frac(500,3)+'π → 높이 = <strong style="color:#3fb950">'+frac(20,3)+'cm(=6.67cm)</strong><span class="cap">부피 공식은 중1 과정이에요</span></div>';
+  rgwRenderToggle(id, diagram, 'cywSol17');
+}
+function cywGen18(id){
+  rgwSetQuestion(document.getElementById(id), '어떤 원뿔을 회전축을 포함하는 평면으로 잘랐을 때 생기는 단면이 밑변의 길이가 10cm, 높이가 12cm인 이등변삼각형입니다. 이 원뿔의 모선 길이는 얼마인가요?', 'cywSol18');
+}
+function cywSol18(id){
+  var diagram = '<div class="fb-diagram">이등변삼각형을 반으로 나누면 밑변 5cm, 높이 12cm인 직각삼각형<br>5-12-13 직각삼각형(피타고라스 정리) → 모선 = <strong style="color:#3fb950">13cm</strong><span class="cap">피타고라스 정리는 중2 과정이에요</span></div>';
+  rgwRenderToggle(id, diagram, 'cywSol18');
+}
+function cywGen19(id){
+  rgwSetQuestion(document.getElementById(id), '다음 중 원기둥의 전개도에서 옆면의 모양이 될 수 없는 것은 무엇인가요?<br>① 직사각형 ② 정사각형 ③ 평행사변형', 'cywSol19');
+}
+function cywSol19(id){
+  var diagram = '<div class="fb-diagram">원기둥의 옆면은 항상 밑면에 수직으로 서 있어서 직사각형(정사각형 포함)만 가능해요 — 비스듬히 기운 평행사변형은 될 수 없어요<br>→ <strong style="color:#3fb950">③ 평행사변형</strong></div>';
+  rgwRenderToggle(id, diagram, 'cywSol19');
+}
+function cywGen20(id){
+  rgwSetQuestion(document.getElementById(id), '밑면의 반지름이 3cm이고 높이가 5cm인 원기둥이 있습니다. 이 원기둥의 겉넓이는 몇 cm²인가요? (단, 원주율은 3.14입니다.)', 'cywSol20');
+}
+function cywSol20(id){
+  var diagram = '<div class="fb-diagram">밑넓이(2개) = 3×3×3.14×2 = 56.52cm²<br>옆넓이 = (3×2×3.14)×5 = 94.2cm²<br>겉넓이 = 56.52+94.2 = <strong style="color:#3fb950">150.72cm²</strong><span class="cap">겉넓이 공식은 중1 과정이에요</span></div>';
+  rgwRenderToggle(id, diagram, 'cywSol20');
+}
 const CV_DATA_E5FRACADD = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
     <p>피자 ${frac(1,3)}판을 먹고, 다시 ${frac(1,4)}판을 더 먹었어요. 전체 몇 판을 먹은 걸까요?</p>
@@ -8978,12 +9084,30 @@ const CV_DATA_E5FRACADD = [
     <p style="margin-top:10px">약분과 통분에서 배운 "분모를 같게 만드는 방법"을 이용해서, 분모가 다른 분수끼리도 더하고 빼는 방법을 배워볼게요.</p>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
-    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 분모가 다른 진분수의 덧셈(받아올림 없음)</div>
-    <ul><li>${frac(1,3)} + ${frac(1,4)}는 얼마일까요?</li></ul>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 분모가 다른 분수, 어떻게 더할까?</div>
+    <ul><li>${frac(1,3)} + ${frac(1,4)}는 얼마일까요? 여러분이라면 먼저 어떻게 계산해 보겠어요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
-      ${fracPieHtml(1,3,'#f0c040',52)}+${fracPieHtml(1,4,'#58a6ff',52)}
-      <div style="font-size:.9rem;margin-top:6px">통분(분모 12): ${frac(1,3)}=${frac(4,12)}, ${frac(1,4)}=${frac(3,12)} → ${frac(4,12)}+${frac(3,12)} = <strong style="color:#3fb950">${frac(7,12)}</strong></div>
-      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">먼저 통분해서 분모를 같게 만든 뒤, 분자끼리 더해요</div>
+      <div style="font-size:.85rem">흔히 이렇게 시도해요: "분자는 분자끼리, 분모는 분모끼리 더하면 되지 않을까?"</div>
+      <div style="font-size:.9rem;margin-top:6px">1+1=2, 3+4=7 → ${frac(2,7)}?</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">그림으로 진짜인지 확인해볼까요?</div>
+      <div style="margin-top:10px">${fracPieHtml(1,3,'#f0c040',52)}+${fracPieHtml(1,4,'#58a6ff',52)} vs ${fracPieHtml(2,7,'#f85149',52)}</div>
+      <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:8px">어? ${frac(1,3)}과 ${frac(1,4)}을 합친 양이 ${frac(2,7)}보다 훨씬 커 보여요! 뭔가 이상해요.</div>
+    </div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.85rem">왜 틀렸을까요? ${frac(1,3)}의 조각 하나와 ${frac(1,4)}의 조각 하나는 크기가 같을까요?</div>
+      <div style="font-size:.9rem;margin-top:6px">${frac(1,3)}은 전체를 3등분한 조각, ${frac(1,4)}은 전체를 4등분한 조각 — <strong style="color:#3fb950">크기 자체가 달라요!</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">크기가 다른 조각을 개수만 더하면 의미가 없어요 — 사과 1개와 수박 1개를 더해서 "과일 2개"라고 하면 크기 차이를 무시하는 것과 같아요</div>
+    </div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.85rem">그럼 어떻게 해야 진짜로 더할 수 있을까요? — 두 조각의 <strong>크기(분모)를 같게</strong> 만들면 돼요!</div>
+      <div style="font-size:.85rem;margin-top:8px">분모 3과 4를 둘 다 같은 수로 만들려면? 3과 4의 <strong style="color:#bc8cff">공배수</strong>를 찾으면 돼요 — 약수와 배수 단원에서 배운 그 공배수예요!</div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:6px">3의 배수: 3,6,9,<strong>12</strong>,15... / 4의 배수: 4,8,<strong>12</strong>,16... → 공배수 12(그중 가장 작은 최소공배수)</div>
+      <div style="font-size:.9rem;margin-top:10px">통분(분모 12): ${frac(1,3)}=${frac(4,12)}, ${frac(1,4)}=${frac(3,12)} → ${frac(4,12)}+${frac(3,12)} = <strong style="color:#3fb950">${frac(7,12)}</strong></div>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:8px">검산: ${frac(7,12)}은 ${frac(2,7)}보다 훨씬 크죠? 아까 그림으로 봤던 것과 맞아요</div>
+    </div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700">핵심 정리</div>
+      <div style="font-size:.85rem;margin-top:6px">분모가 다른 분수는 조각의 크기가 달라서 바로 더할 수 없어요. 먼저 <strong style="color:#3fb950">통분(공배수로 분모를 같게 만들기)</strong>을 해야, 분자끼리 더하는 게 의미가 생겨요.</div>
     </div>
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 분모가 다른 진분수의 덧셈(받아올림 있음)</div>
     <ul><li>${frac(2,3)} + ${frac(3,4)}는 얼마일까요?</li></ul>
@@ -9031,7 +9155,33 @@ const CV_DATA_E5FRACADD = [
     </div>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
-    <div class="q-item"><strong>Q1.</strong> 분모가 다른 분수는 왜 바로 더하거나 뺄 수 없고, 통분을 먼저 해야 할까요?
+    <div class="q-item" style="text-align:left">
+      <div style="font-size:.85rem">${frac(1,3)} + ${frac(1,4)}를 하브루타식으로 발견해봅시다 — 공식을 먼저 주지 말고, 학생이 스스로 시도하고 틀려보고 이유를 찾게 하는 방식이에요.</div>
+      <div style="margin-top:14px;font-size:.85rem;color:#f0c040;font-weight:700">1. 먼저 질문</div>
+      <div style="margin-top:6px;font-size:.85rem">"${frac(1,3)} + ${frac(1,4)}은 얼마일까요? 여러분 방법대로 먼저 계산해 보세요."</div>
+      <div style="margin-top:6px;font-size:.85rem">학생이 시도합니다.</div>
+      <div style="margin-top:14px;font-size:.85rem;color:#f0c040;font-weight:700">2. 흔한 오답이 나옵니다</div>
+      <div style="margin-top:6px;font-size:.85rem">"분자는 분자끼리, 분모는 분모끼리 더하면 되지 않을까요? 1+1=2, 3+4=7이니까 ${frac(2,7)}!"</div>
+      <div style="margin-top:14px;font-size:.85rem;color:#f0c040;font-weight:700">3. 다시 질문 — 그림으로 확인</div>
+      <div style="margin-top:6px;font-size:.85rem">"정말 ${frac(2,7)}이 맞을까요? 그림으로 그려서 확인해 볼까요?"</div>
+      <div style="margin-top:6px;font-size:.85rem">학생이 ${frac(1,3)}과 ${frac(1,4)}을 각각 그리고, ${frac(2,7)}도 그려서 크기를 비교합니다.</div>
+      <div style="margin-top:6px;font-size:.9rem;text-align:center">${fracPieHtml(1,3,'#f0c040',44)}+${fracPieHtml(1,4,'#58a6ff',44)} 의 합 &nbsp;vs&nbsp; ${fracPieHtml(2,7,'#f85149',44)}</div>
+      <div style="margin-top:6px;font-size:.85rem"><strong>"어? ${frac(2,7)}이 너무 작은데? 뭔가 이상해요!"</strong></div>
+      <div style="margin-top:14px;font-size:.85rem;color:#f0c040;font-weight:700">4. 여기서 중요한 질문을 합니다</div>
+      <div style="margin-top:6px;font-size:.85rem"><strong>"${frac(1,3)}의 조각 한 개와 ${frac(1,4)}의 조각 한 개는 크기가 같을까요?"</strong></div>
+      <ul style="margin:6px 0 0 20px;font-size:.85rem">
+        <li>${frac(1,3)} → 전체를 3등분한 조각</li>
+        <li>${frac(1,4)} → 전체를 4등분한 조각</li>
+      </ul>
+      <div style="margin-top:6px;font-size:.85rem">학생이 "크기가 다르다!"는 것을 발견합니다.</div>
+      <div style="margin-top:6px;font-size:.85rem">"그래서 분자끼리 개수만 더하면 안 되는 거예요 — 사과 1개와 수박 1개를 더해서 '과일 2개'라고 하면, 크기가 다른 걸 무시하는 셈이잖아요."</div>
+      <div style="margin-top:14px;font-size:.85rem;color:#f0c040;font-weight:700">5. 앞 단원과 연결하는 질문</div>
+      <div style="margin-top:6px;font-size:.85rem"><strong>"그럼 조각의 크기(분모)를 같게 만들려면 어떻게 해야 할까요? 약수와 배수 단원에서 배운 것 중에 쓸 수 있는 게 있을까요?"</strong></div>
+      <div style="margin-top:6px;font-size:.85rem">학생이 생각합니다 — 분모 3과 4를 둘 다 같은 수로 만들려면, 3과 4의 <strong>공배수</strong>를 찾으면 된다는 것을 떠올립니다.</div>
+      <div style="margin-top:6px;font-size:.85rem">3의 배수: 3,6,9,12,15... / 4의 배수: 4,8,12,16... → 공통된 수(공배수) 12</div>
+      <div style="margin-top:14px;font-size:.85rem;color:#f0c040;font-weight:700">6. 그제서야 계산</div>
+      <div style="margin-top:6px;font-size:.9rem;text-align:center">${frac(1,3)}=${frac(4,12)}, ${frac(1,4)}=${frac(3,12)} → ${frac(4,12)}+${frac(3,12)} = ${frac(7,12)}</div>
+      <div style="margin-top:6px;font-size:.85rem">검산: ${frac(7,12)}은 아까 그림에서 본 것처럼 ${frac(2,7)}보다 훨씬 커요 — 맞는 답이네요!</div>
       <button class="havruta-show-btn" onclick="havrutaReveal('e5fracadd-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e5fracadd-h1">
         <div class="havruta-opts">
@@ -9041,6 +9191,8 @@ const CV_DATA_E5FRACADD = [
         </div>
         <div class="havruta-fb" id="fb-e5fracadd-h1"></div>
       </div>
+      <div style="margin-top:14px;font-size:.85rem;color:#f0c040;font-weight:700">핵심</div>
+      <div style="margin-top:6px;font-size:.85rem">"통분부터 하고 계산해"라고 규칙만 던지는 대신, <strong>학생이 먼저 틀려보고, 그림으로 이상함을 발견하고, 왜 안 되는지 이유를 찾고, 이전 단원(약수와 배수)의 지식을 스스로 연결</strong>하게 하는 순서가 하브루타식 개념 수업에 더 적합합니다.</div>
     </div>
     <div class="q-item"><strong>Q2.</strong> 대분수의 덧셈에서 분수 부분의 합이 1보다 커지면, 왜 자연수 부분에 1을 더해줘야 할까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5fracadd-h2',this)">💬 친구들은 이렇게 답했어요</button>
@@ -9081,16 +9233,30 @@ const CV_DATA_E5FRACADD = [
       </div>
     </div>
     <div class="prob-box">
-      <div class="prob-q">문제: 1${frac(1,2)} + 2${frac(1,3)}을 계산하세요.</div>
+      <div class="prob-q">문제(대분수 덧셈·받아올림 없음): 1${frac(1,2)} + 2${frac(1,3)}을 계산하세요.</div>
       <button class="havruta-show-btn" onclick="havrutaReveal('e5fracadd-p3',this)">💡 풀이 보기</button>
       <div class="havruta-reveal" id="rv-e5fracadd-p3">
         <div class="sol"><strong>풀이:</strong> 자연수 1+2=3, 분수 ${frac(1,2)}+${frac(1,3)}=${frac(3,6)}+${frac(2,6)}=${frac(5,6)} → <strong style="color:#3fb950">3${frac(5,6)}</strong></div>
       </div>
     </div>
     <div class="prob-box">
-      <div class="prob-q">문제: 2${frac(1,5)} - 1${frac(1,2)}을 계산하세요.</div>
+      <div class="prob-q">문제(대분수 덧셈·받아올림 있음): 2${frac(3,4)} + 1${frac(2,3)}을 계산하세요.</div>
       <button class="havruta-show-btn" onclick="havrutaReveal('e5fracadd-p4',this)">💡 풀이 보기</button>
       <div class="havruta-reveal" id="rv-e5fracadd-p4">
+        <div class="sol"><strong>풀이:</strong> 자연수 2+1=3, 분수 ${frac(3,4)}+${frac(2,3)}=${frac(9,12)}+${frac(8,12)}=${frac(17,12)}=1${frac(5,12)} → 3+1${frac(5,12)} = <strong style="color:#3fb950">4${frac(5,12)}</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제(대분수 뺄셈·받아내림 없음): 4${frac(3,4)} - 2${frac(1,3)}을 계산하세요.</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5fracadd-p5',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5fracadd-p5">
+        <div class="sol"><strong>풀이:</strong> ${frac(3,4)}≥${frac(1,3)}이라 받아내림 불필요: 자연수 4-2=2, 분수 ${frac(3,4)}-${frac(1,3)}=${frac(9,12)}-${frac(4,12)}=${frac(5,12)} → <strong style="color:#3fb950">2${frac(5,12)}</strong></div>
+      </div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제(대분수 뺄셈·받아내림 있음): 2${frac(1,5)} - 1${frac(1,2)}을 계산하세요.</div>
+      <button class="havruta-show-btn" onclick="havrutaReveal('e5fracadd-p6',this)">💡 풀이 보기</button>
+      <div class="havruta-reveal" id="rv-e5fracadd-p6">
         <div class="sol"><strong>풀이:</strong> ${frac(1,5)}<${frac(1,2)}이라 받아내림: 2${frac(2,10)}=1${frac(12,10)}, ${frac(12,10)}-${frac(5,10)}=${frac(7,10)}, 자연수 1-1=0 → <strong style="color:#3fb950">${frac(7,10)}</strong></div>
       </div>
     </div>
@@ -9159,6 +9325,209 @@ const CV_DATA_E5FRACADD = [
   `}
 ];
 CV_DATA['e5fracadd'] = CV_DATA_E5FRACADD;
+const CV_DATA_E4BIG = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>우리나라 1년 예산은 600조 원이 넘고, 지구에서 태양까지 거리는 약 1억 5천만km예요. 뉴스에서 이런 숫자를 보면 머리가 아득해지죠? 천(1,000)까지만 알면 이런 숫자는 읽을 수조차 없어요.</p>
+    <p style="margin-top:10px">탈무드는 "숫자를 알면 세상의 크기를 안다"고 했어요. 만·억·조를 알아야, 비로소 나라 살림도 읽고 우주의 거리도 가늠할 수 있어요.</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px">
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">자리가 하나씩 늘어날 때마다 10배씩 커져요</div>
+      <div style="display:flex;justify-content:space-around;align-items:flex-end;font-size:.72rem;color:#8b949e;text-align:center">
+        <div>1<br><span style="font-size:1.1rem;color:#58a6ff">●</span></div>
+        <div>10<br><span style="font-size:1.1rem;color:#58a6ff">▮</span></div>
+        <div>100<br><span style="font-size:1.1rem;color:#58a6ff">▦</span></div>
+        <div>1,000<br><span style="font-size:1.1rem;color:#f0c040">🧊</span></div>
+        <div>10,000<br><span style="font-size:.78rem;color:#f0c040;font-weight:700">만!</span></div>
+      </div>
+      <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">1,000(천)의 다음은 새로운 이름 "만"이 필요해져요</div>
+    </div>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 새로운 자리, 만(萬)</div>
+    <ul>
+      <li>1,000이 10개 모이면 10,000 = <strong>만</strong></li>
+      <li>9999 다음 수는? '천의 자리'에서 더 못 올라가니 새 이름 "만"이 필요해짐</li>
+    </ul>
+    <div style="font-size:.78rem;color:#58a6ff;font-weight:700;margin:16px 0 6px">개념2 — 억, 조까지: 왜 4자리씩 끊을까?</div>
+    <ul>
+      <li>만(10⁴)·억(10⁸)·조(10¹²) — 새 단위가 꼭 <strong>4자리(10000배)</strong>마다 나타남</li>
+      <li>그래서 큰 수를 읽을 땐 <strong>오른쪽부터 4자리씩</strong> 끊어 읽어요</li>
+    </ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">254600000을 4자리씩 끊어 읽기</div>
+      <div style="display:flex;justify-content:center;gap:4px;font-size:1.3rem;font-weight:700;font-family:monospace">
+        <span style="color:#f85149">2</span><span style="color:#484f58">|</span><span style="color:#58a6ff">5460</span><span style="color:#484f58">|</span><span style="color:#8b949e">0000</span>
+      </div>
+      <div style="display:flex;justify-content:center;gap:18px;font-size:.7rem;margin-top:6px">
+        <span style="color:#f85149">억의 자리</span><span style="color:#58a6ff">만의 자리</span><span style="color:#8b949e">일의 자리</span>
+      </div>
+      <div style="text-align:center;font-size:.8rem;color:#f0c040;margin-top:8px;font-weight:700">→ 2억 5460만</div>
+    </div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9;margin:10px 0 6px">방금 수는 마지막 4자리가 전부 0이라 쉬웠죠? 이번엔 마지막 자리까지 숫자가 있는 수로 연습해봐요.</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">326407528을 4자리씩 끊어 읽기</div>
+      <div style="display:flex;justify-content:center;gap:4px;font-size:1.3rem;font-weight:700;font-family:monospace">
+        <span style="color:#f85149">3</span><span style="color:#484f58">|</span><span style="color:#58a6ff">2640</span><span style="color:#484f58">|</span><span style="color:#3fb950">7528</span>
+      </div>
+      <div style="display:flex;justify-content:center;gap:18px;font-size:.7rem;margin-top:6px">
+        <span style="color:#f85149">억의 자리</span><span style="color:#58a6ff">만의 자리</span><span style="color:#3fb950">일의 자리</span>
+      </div>
+      <div style="text-align:center;font-size:.8rem;color:#f0c040;margin-top:8px;font-weight:700">→ 3억 2640만 7528</div>
+    </div>
+    <div style="font-size:.78rem;color:#f85149;font-weight:700;margin:16px 0 6px">개념3 — 억도 자리가 꽉 차면 "조"가 돼요</div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9;margin-bottom:8px">"억의 자리"도 사실 1~4자리까지 커질 수 있어요. 천의 자리가 9999 다음에 "만"이 되는 것과 똑같이, 억의 자리도 9999억 다음엔 새 단위 "조"가 돼요.</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="display:flex;flex-direction:column;gap:10px;font-family:monospace;font-size:1rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px"><span><span style="color:#f85149">3</span>억</span><span style="font-size:.68rem;color:#8b949e">억의 자리 1개</span><span style="font-size:.72rem;color:#3fb950;width:100%">읽기: 삼억 (3억)</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px"><span><span style="color:#f85149">32</span>억</span><span style="font-size:.68rem;color:#8b949e">억의 자리 2개</span><span style="font-size:.72rem;color:#3fb950;width:100%">읽기: 3십2억 (삼십이억)</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px"><span><span style="color:#f85149">326</span>억</span><span style="font-size:.68rem;color:#8b949e">억의 자리 3개</span><span style="font-size:.72rem;color:#3fb950;width:100%">읽기: 3백2십6억 (삼백이십육억)</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px"><span><span style="color:#f85149">3264</span>억</span><span style="font-size:.68rem;color:#8b949e">억의 자리 4개 (꽉 참!)</span><span style="font-size:.72rem;color:#3fb950;width:100%">읽기: 3천2백6십4억 (삼천이백육십사억)</span></div>
+        <div style="border-top:1px dashed #30363d;margin:4px 0"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center"><span>9999억 다음은?</span><span style="color:#f0c040;font-weight:700">10000억 = 1조</span></div>
+      </div>
+      <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:10px">억의 자리가 5번째로 넘어가려는 순간, "조"라는 새 이름이 생겨요 — 만이 생겼던 것과 똑같은 원리예요</div>
+      <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:4px">💡 "3264"를 읽을 때도 3학년 때 배운 천·백·십·일 자리를 그대로 써요 — 뒤에 "억"만 붙이면 끝!</div>
+    </div>
+    <div style="font-size:.78rem;color:#bc8cff;font-weight:700;margin:16px 0 6px">개념4 — 쉼표(,)는 3자리, 읽기는 4자리 — 헷갈리는 지점!</div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9;margin-bottom:8px">숫자를 쓸 때 찍는 쉼표(,)는 세계 공통으로 3자리마다 찍지만, 읽을 때는 4자리씩 끊어 읽어요. 이 둘은 기준이 달라요!</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin-bottom:10px">
+      <div style="text-align:center;font-size:1.05rem;font-family:monospace;margin-bottom:4px">254<span style="color:#8b949e">,</span>600<span style="color:#8b949e">,</span>000</div>
+      <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-bottom:10px">↑ 표기할 때 쉼표는 3자리마다(세계 공통)</div>
+      <div style="text-align:center;font-size:1.05rem;font-family:monospace;margin-bottom:4px"><span style="color:#f85149">2</span><span style="color:#484f58">·</span><span style="color:#58a6ff">5460</span><span style="color:#484f58">·</span><span style="color:#8b949e">0000</span></div>
+      <div style="text-align:center;font-size:.68rem;color:#8b949e">↑ 읽을 때는 4자리마다(만·억·조)</div>
+    </div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:16px 0 6px">개념5 — 자릿값: 같은 숫자도 자리에 따라 값이 다름 (일의 자리~조의 자리)</div>
+    <ul>
+      <li><code>325</code>에서 3은 '백의 자리' → 실제 값은 3이 아니라 <strong>300</strong>을 의미</li>
+    </ul>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9;margin:10px 0 8px">이 원리는 조 단위까지 똑같이 이어져요. 수 <strong>1,326,475,289,103</strong>(1조 3264억 7528만 9103)을 자리마다 뜯어보면:</p>
+    <div style="overflow-x:auto;background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:10px">
+      <div style="display:flex;gap:2px;width:max-content;font-family:monospace;font-size:.78rem;text-align:center">
+        <div><div style="background:rgba(188,140,255,.15);color:#bc8cff;padding:4px 6px;border-radius:4px 4px 0 0">조</div><div style="padding:4px 6px;font-weight:700;color:#bc8cff">1</div></div>
+        <div><div style="background:rgba(248,81,73,.15);color:#f85149;padding:4px 6px;border-radius:4px 4px 0 0">천억</div><div style="padding:4px 6px;font-weight:700;color:#f85149">3</div></div>
+        <div><div style="background:rgba(248,81,73,.15);color:#f85149;padding:4px 6px">백억</div><div style="padding:4px 6px;font-weight:700;color:#f85149">2</div></div>
+        <div><div style="background:rgba(248,81,73,.15);color:#f85149;padding:4px 6px">십억</div><div style="padding:4px 6px;font-weight:700;color:#f85149">6</div></div>
+        <div><div style="background:rgba(248,81,73,.15);color:#f85149;padding:4px 6px;border-radius:0 0 4px 4px">억</div><div style="padding:4px 6px;font-weight:700;color:#f85149">4</div></div>
+        <div><div style="background:rgba(88,166,255,.15);color:#58a6ff;padding:4px 6px;border-radius:4px 4px 0 0">천만</div><div style="padding:4px 6px;font-weight:700;color:#58a6ff">7</div></div>
+        <div><div style="background:rgba(88,166,255,.15);color:#58a6ff;padding:4px 6px">백만</div><div style="padding:4px 6px;font-weight:700;color:#58a6ff">5</div></div>
+        <div><div style="background:rgba(88,166,255,.15);color:#58a6ff;padding:4px 6px">십만</div><div style="padding:4px 6px;font-weight:700;color:#58a6ff">2</div></div>
+        <div><div style="background:rgba(88,166,255,.15);color:#58a6ff;padding:4px 6px;border-radius:0 0 4px 4px">만</div><div style="padding:4px 6px;font-weight:700;color:#58a6ff">8</div></div>
+        <div><div style="background:rgba(63,185,80,.15);color:#3fb950;padding:4px 6px;border-radius:4px 4px 0 0">천</div><div style="padding:4px 6px;font-weight:700;color:#3fb950">9</div></div>
+        <div><div style="background:rgba(63,185,80,.15);color:#3fb950;padding:4px 6px">백</div><div style="padding:4px 6px;font-weight:700;color:#3fb950">1</div></div>
+        <div><div style="background:rgba(63,185,80,.15);color:#3fb950;padding:4px 6px">십</div><div style="padding:4px 6px;font-weight:700;color:#3fb950">0</div></div>
+        <div><div style="background:rgba(63,185,80,.15);color:#3fb950;padding:4px 6px;border-radius:0 0 4px 4px">일</div><div style="padding:4px 6px;font-weight:700;color:#3fb950">3</div></div>
+      </div>
+    </div>
+    <p style="font-size:.78rem;color:#8b949e;margin-top:8px">맨 앞의 "1"은 1조, "3"(천억 자리)은 3000억을 의미해요 — 자리가 다르면 같은 숫자도 완전히 다른 크기가 돼요. (옆으로 넘기면 전체가 다 보여요 →)</p>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 큰 수를 왜 4자리씩 끊어 읽을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4big-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4big-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4big-h1',0,this)">만, 억, 조처럼 새 단위가 10000배(4자리)마다 생기기 때문에, 4자리씩 끊어야 단위랑 딱 맞아요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4big-h1',1,this)">쉼표(,)는 3자리마다 찍으니까, 읽을 때도 3자리씩 끊는 게 맞아요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4big-h1',2,this)">숫자가 크면 아무렇게나 끊어 읽어도 상관없어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4big-h1',3,this)">그냥 외워야 하는 규칙이고 이유는 없어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4big-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 254600000과 25460000, 숫자를 하나하나 안 읽고도 어느 게 더 큰지 빨리 아는 방법은?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4big-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4big-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4big-h2',0,this)">자리수(숫자 개수)부터 세어봐요 — 둘 다 양수면 자리수 많은 쪽이 항상 더 커요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4big-h2',1,this)">맨 앞자리 숫자가 큰 쪽이 더 커요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4big-h2',2,this)">숫자 안에 0이 많은 쪽이 더 커요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4big-h2"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제', cls:'problems', html:`
+    <p>"다음 문제" 버튼을 누르면 자리수(길이)가 다른 새 수가 나와요. 짧은 수부터 조 단위의 긴 수까지 골고루 연습해보세요.</p>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1 (백만~억 단위)</div>
+      <div id="big-1" class="prob-q" data-num="254600000" data-qtext="다음 수를 읽어보세요 — 254,600,000" data-solfn="bigSol1">다음 수를 읽어보세요 — 254,600,000<br><button class="havruta-show-btn" onclick="bigSol1('big-1')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="bigGen1('big-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+    <div class="prob-box">
+      <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2 (억~조 단위)</div>
+      <div id="big-2" class="prob-q" data-num="3264075280000" data-qtext="다음 수를 읽어보세요 — 3,264,075,280,000" data-solfn="bigSol2">다음 수를 읽어보세요 — 3,264,075,280,000<br><button class="havruta-show-btn" onclick="bigSol2('big-2')">💡 풀이 보기</button></div>
+      <button class="havruta-show-btn" onclick="bigGen2('big-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 뉴스에서 나라 예산이 600조 원이래요. 그게 얼마나 큰 거예요?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>저는 1조도 상상이 안 가는데... 그냥 숫자가 길다는 느낌밖에 없어요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>1조 원이면 하루에 100만 원씩 써도 다 못 쓰는 거 아니에요?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>진짜요? 그럼 계산해봐요! 1조 ÷ 100만 = ?</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>좋은 질문이에요! 1,000,000,000,000 ÷ 1,000,000 = 1,000,000(100만)이에요. 즉 하루 100만 원씩 써도 100만 일, 약 2,740년이 걸려요!</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>이렇게 직접 계산해보면 "조"라는 수가 얼마나 큰지 몸으로 느껴지죠? 무한대(∞)는 이것보다도 훨씬 커서, 아무리 큰 수를 말해도 그보다 1 더 큰 수가 항상 있어요. 그래서 "가장 큰 수"는 없답니다.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 큰 수는 눈으로만 봐서는 크기가 안 느껴져요. 직접 나눠보거나 익숙한 것(날짜, 걸음 수)으로 바꿔보면 비로소 "진짜 크기"가 느껴져요. 그리고 아무리 큰 수를 말해도, 거기에 1을 더하면 더 큰 수가 되니까 "세상에서 가장 큰 수"는 존재하지 않아요.</div>
+  `}
+];
+CV_DATA['e4big'] = CV_DATA_E4BIG;
+function bigReadCore(digits){
+  var unitNames = ['','만','억','조'], unitColors = ['#3fb950','#58a6ff','#f85149','#bc8cff'];
+  var s = digits, chunks = [];
+  while(s.length > 0){
+    var chunk = s.length > 4 ? s.slice(-4) : s;
+    s = s.length > 4 ? s.slice(0, -4) : '';
+    chunks.unshift(chunk);
+  }
+  var spans = [], parts = [];
+  for(var i=0;i<chunks.length;i++){
+    var u = chunks.length-1-i, v = parseInt(chunks[i],10);
+    spans.push('<span style="color:'+unitColors[u]+'">'+chunks[i]+'</span>');
+    if(v !== 0) parts.push(v+unitNames[u]);
+  }
+  return { group: spans.join('<span style="color:#484f58">|</span>'), read: parts.join(' ') };
+}
+function bigMakeNum(min,max){
+  var len = min + Math.floor(Math.random()*(max-min+1));
+  var d = '' + (1+Math.floor(Math.random()*9));
+  for(var i=1;i<len;i++){ d += Math.floor(Math.random()*10); }
+  return d;
+}
+function bigSetQuestion(el, qtext, solfn){
+  el.setAttribute('data-qtext', qtext);
+  el.setAttribute('data-solfn', solfn);
+  el.setAttribute('data-showing', '0');
+  el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+el.id+'\')">💡 풀이 보기</button>';
+}
+function bigRenderToggle(id, diagramHtml, solfn){
+  var el = document.getElementById(id);
+  var qtext = el.getAttribute('data-qtext');
+  var showing = el.getAttribute('data-showing') === '1';
+  if(showing){
+    el.setAttribute('data-showing', '0');
+    el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">💡 풀이 보기</button>';
+  } else {
+    el.setAttribute('data-showing', '1');
+    el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">👆 접어두기</button>' + diagramHtml;
+  }
+}
+function bigGen1(id){
+  var d = bigMakeNum(7,9);
+  document.getElementById(id).setAttribute('data-num', d);
+  bigSetQuestion(document.getElementById(id), '다음 수를 읽어보세요 — '+d.replace(/\B(?=(\d{3})+(?!\d))/g,','), 'bigSol1');
+}
+function bigSol1(id){
+  var d = document.getElementById(id).getAttribute('data-num');
+  var r = bigReadCore(d);
+  bigRenderToggle(id, '<div class="fb-diagram" style="display:block;padding:12px"><div style="text-align:center;font-size:1.2rem;font-weight:700;font-family:monospace">'+r.group+'</div><div class="cap">4자리씩 끊어서, 큰 자리부터 단위를 붙여 읽어요</div></div><div class="sol"><strong>풀이:</strong> '+r.read+'</div>', 'bigSol1');
+}
+function bigGen2(id){
+  var d = bigMakeNum(10,13);
+  document.getElementById(id).setAttribute('data-num', d);
+  bigSetQuestion(document.getElementById(id), '다음 수를 읽어보세요 — '+d.replace(/\B(?=(\d{3})+(?!\d))/g,','), 'bigSol2');
+}
+function bigSol2(id){
+  var d = document.getElementById(id).getAttribute('data-num');
+  var r = bigReadCore(d);
+  bigRenderToggle(id, '<div class="fb-diagram" style="display:block;padding:12px"><div style="text-align:center;font-size:1.2rem;font-weight:700;font-family:monospace">'+r.group+'</div><div class="cap">4자리씩 끊어서, 큰 자리부터 단위를 붙여 읽어요</div></div><div class="sol"><strong>풀이:</strong> '+r.read+'</div>', 'bigSol2');
+}
 function lcm5(a,b){ return a*b/gcd(a,b); }
 var FAW1_TUPLES = [[1,4,1,3],[1,3,1,5],[2,5,1,4],[1,6,1,2],[1,8,1,3]];
 var FAW2_TUPLES = [[2,3,3,4],[4,5,2,3],[3,4,4,5],[5,6,3,4],[2,3,5,6]];
@@ -10928,6 +11297,8 @@ const FB_DIAGRAM_H1_SAME = '<div class="fb-diagram"><div style="display:flex;gap
   + '</div></div>'
   + '<span class="cap">서로 다른 질문 A, B인데 계산식은 똑같이 15÷5=3 — 그래서 "답(몫)이 같다"고 하는 거예요</span></div>';
 const FB_DIAGRAM_H2 = '<div class="fb-diagram"><span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span><span class="single">🍬</span><span class="cap">13개를 4개씩 묶으면 3묶음 + 나머지 1개 (나머지 1 &lt; 나누는 수 4)</span></div>';
+const FB_DIAGRAM_E4BIG_H1 = '<div class="fb-diagram" style="display:block;padding:10px"><div style="text-align:center;font-size:1.05rem;font-family:monospace"><span style="color:#f85149">2</span><span style="color:#8b949e">,</span>546<span style="color:#8b949e">,</span>0000</div><div class="cap">쉼표(,)는 3자리마다, 단위(억·만)는 4자리마다 — 기준이 서로 다름</div></div>';
+const FB_DIAGRAM_E4BIG_H2 = '<div class="fb-diagram" style="display:block;padding:10px"><div style="text-align:center;font-size:1.05rem;font-family:monospace">254600000 <span style="color:#8b949e">(9자리)</span> &gt; 25460000 <span style="color:#8b949e">(8자리)</span></div><div class="cap">앞자리가 같아도(둘 다 "2") 자리수가 다르면 자리수 많은 쪽이 더 큼</div></div>';
 const FB_DIAGRAM_H3 = '<div class="fb-diagram">🍬🍬🍬🍬🍬 <span class="arrow">➜</span> 0명 <span class="arrow">=</span> ❌<span class="cap">나눠줄 사람이 0명이면 "몇 개씩"이라는 질문 자체가 성립하지 않아요</span></div>';
 const FB_DIAGRAM_H3_ZERO = '<div class="fb-diagram">(사탕 없음) <span class="arrow">➜</span> 5명에게 나눠주면? <span class="arrow">➜</span> 각자 0개<span class="cap">0÷5=0 — 사탕 0개를 5명에게 나누면 한 명당 0개예요</span>'
   + '<div style="margin-top:6px">(사탕 없음) <span class="arrow">➜</span> 3개씩 묶으면? <span class="arrow">➜</span> 0묶음</div><span class="cap">0÷3=0 — 사탕이 아예 없으면 3개씩 묶음도 하나도 못 만들어요</span>'
@@ -11374,6 +11745,17 @@ const HAVRUTA_FB = {
     {ok:true, text:'맞아요! 나눗셈은 "몇 명에게 나누는가"인데, 0명에게 나눈다는 건 애초에 뜻이 성립하지 않아요. 그래서 수학에서는 "0으로 나누는 것은 정의되지 않는다"고 말해요.', diagram:FB_DIAGRAM_H3},
     {ok:false, text:'"무한대"라는 생각도 흥미로운데, 사실 수학에서는 0으로 나누는 걸 아예 "정의하지 않음(undefined)"이라고 해요 — 무한대라는 답조차 정할 수 없다는 뜻이에요. 왜 그런지 뺄셈으로 확인해볼까요?', diagram:FB_DIAGRAM_H3_INF},
     {ok:false, text:'0이 나오는 경우도 실제로 있어요! 다만 그건 "0을 어떤 수로 나눈" 경우(예: 0÷5=0)와 헷갈린 거예요. 지금 질문은 반대로 "어떤 수를 0으로" 나누는 경우라 달라요 — 두 상황을 비교해볼까요?', diagram:FB_DIAGRAM_H3_ZERO}
+  ],
+  'e4big-h1': [
+    {ok:true, text:'맞아요! 만, 억, 조처럼 새 단위가 10000배(4자리)마다 생기기 때문에, 4자리씩 끊어야 단위랑 딱 맞아요. 그런데 궁금하지 않아요? 쉼표는 세계 공통으로 3자리마다 찍는데, 우리는 왜 4자리로 읽을까요? 그건 한글의 "만"이라는 단위가 10000을 가리키기 때문이에요. 영어는 thousand(천)-million(백만)처럼 1000배씩 새 이름이 생겨서 3자리씩 끊어 읽어요 — 언어마다 "묶는 기준"이 다른 거랍니다.', diagram:FB_DIAGRAM_E4BIG_H1},
+    {ok:false, text:'쉼표(,)는 숫자를 쓸 때 3자리마다 찍는 세계 공통 표기 규칙이지만, 한글로 읽을 땐 "만·억·조" 단위가 4자리(10000배)마다 생기기 때문에 4자리씩 끊어 읽어야 해요. 표기 규칙과 읽기 규칙이 서로 다른 거예요!', diagram:FB_DIAGRAM_E4BIG_H1},
+    {ok:false, text:'아무렇게나 끊으면 억·만이 뒤바뀌어서 완전히 다른(훨씬 작거나 큰) 수로 잘못 읽게 돼요. 4자리씩 끊어야 "억의 자리", "만의 자리"가 정확히 맞아떨어져요.', diagram:FB_DIAGRAM_E4BIG_H1},
+    {ok:false, text:'이유 없는 규칙이 아니에요! 만(10⁴)·억(10⁸)·조(10¹²)처럼 새 단위가 꼭 4자리마다 나타나기 때문에, 그 단위에 맞춰 4자리씩 끊어 읽는 거예요.', diagram:FB_DIAGRAM_E4BIG_H1}
+  ],
+  'e4big-h2': [
+    {ok:true, text:'맞아요! 254600000은 9자리, 25460000은 8자리라서 254600000이 더 커요. 앞자리만 보면 둘 다 "2"로 시작해서 헷갈리기 쉬운데, 자리수부터 세는 게 가장 빠른 방법이에요.', diagram:FB_DIAGRAM_E4BIG_H2},
+    {ok:false, text:'앞자리만 보면 위험해요! 두 수 모두 앞자리가 "2"로 시작해서 똑같아 보이지만, 자리수(숫자 개수)가 다르면 비교가 안 돼요. 자리수부터 세어보는 게 먼저예요.', diagram:FB_DIAGRAM_E4BIG_H2},
+    {ok:false, text:'0의 개수는 크기와 직접 상관없어요! 예를 들어 100(0이 2개)보다 99(0이 0개)가 더 작죠? 자리수(숫자 전체 개수)를 세는 게 정확한 방법이에요.', diagram:FB_DIAGRAM_E4BIG_H2}
   ],
   'e5gcd-h1': [
     {ok:true, text:'맞아요! 소수는 약수가 정확히 2개(1과 자기 자신)여야 해요. 1은 약수가 자기 자신 하나뿐이라 이 조건에 맞지 않아서 소수가 아니에요.', diagram:FB_DIAGRAM_GCD1_OK},
@@ -18088,6 +18470,64 @@ function toggle(header) {
   arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
 }
 
+function printOpenUnit() {
+  const openBody = document.querySelector('.grade-section.active .unit-body.open');
+  if (!openBody) { alert('인쇄할 유닛을 먼저 펼쳐주세요.'); return; }
+  const title = openBody.closest('.unit-card').querySelector('.unit-title').textContent.trim();
+  const bodyHtml = openBody.innerHTML;
+  const w = window.open('', '_blank');
+  w.document.write(`<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8">
+<title>${title} — 인쇄</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a1a1a;padding:20px;font-size:13px;line-height:1.7}
+h1{text-align:center;font-size:16px;margin-bottom:18px;color:#333;border-bottom:2px solid #d4a017;padding-bottom:8px}
+.print-unit *{color:#1a1a1a!important;background:transparent!important;border-color:#ccc!important;box-shadow:none!important}
+.section{margin-bottom:16px;break-inside:avoid;page-break-inside:avoid}
+.section-title{display:inline-block;padding:3px 10px;border-radius:12px;font-weight:700;font-size:12px;margin-bottom:7px}
+.why .section-title{color:#a8710a!important;border:1px solid #a8710a!important}
+.concept .section-title{color:#1d4ed8!important;border:1px solid #1d4ed8!important}
+.havruta .section-title{color:#15803d!important;border:1px solid #15803d!important}
+.problems .section-title{color:#7c3aed!important;border:1px solid #7c3aed!important}
+.debate .section-title{color:#b91c1c!important;border:1px solid #b91c1c!important}
+.section p,.section li{font-size:12px;line-height:1.8}
+.section ul,.section ol{padding-left:18px}
+.q-item{border-left:3px solid #15803d!important;padding:8px 12px;border-radius:0 6px 6px 0;margin-bottom:7px}
+.q-item strong{color:#15803d!important}
+.prob-box{border:1px solid #ccc!important;border-radius:8px;padding:12px;margin-bottom:9px;break-inside:avoid;page-break-inside:avoid}
+.prob-box .prob-q{font-weight:700;color:#7c3aed!important;margin-bottom:7px}
+.sol{border-left:3px solid #7c3aed!important;padding:8px 12px;border-radius:0 6px 6px 0;margin-top:6px}
+.sol strong{color:#7c3aed!important}
+.debate-item{border:1px solid #b91c1c!important;border-radius:8px;padding:10px 12px;margin-bottom:7px}
+.story-line{display:flex;gap:8px;margin-bottom:8px;align-items:flex-start}
+.story-avatar{flex:0 0 auto;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border:1px solid #ccc!important;border-radius:50%;font-size:1rem}
+.story-bubble{border:1px solid #ccc!important;border-radius:8px;padding:8px 12px;flex:1}
+.story-bubble .story-name{font-weight:700}
+.story-takeaway{margin-top:10px;border:1px solid #15803d!important;border-radius:8px;padding:10px 12px}
+.story-takeaway strong{color:#15803d!important}
+.badge,.tver-badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;border:1px solid #999!important;margin-left:6px}
+.expr-item{border:1px solid #ccc!important;border-radius:8px;padding:8px 10px;margin-bottom:7px}
+.expr-num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:1px solid #999!important;border-radius:50%;font-size:11px;font-weight:700;margin-right:6px}
+.dtw-table{width:100%;border-collapse:collapse;font-size:11px;text-align:center;margin:6px 0}
+.dtw-table th,.dtw-table td{padding:5px;border:1px solid #ccc!important}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:.92em;line-height:1.15;margin:0 2px}
+.frac-n,.frac-d{display:block;padding:0 3px}
+.frac-n{border-bottom:1.5px solid #1a1a1a!important}
+.havruta-opt{border:1px solid #ccc!important;border-radius:8px;padding:8px 12px;margin-bottom:6px}
+.havruta-fb,.havruta-reveal{display:block!important;margin-top:6px;padding:8px 10px;border:1px solid #ccc!important;border-radius:8px}
+.print-btn{display:block;margin:0 auto 16px;padding:7px 22px;background:#d4a017;color:#1a1000;border:none;border-radius:6px;cursor:pointer;font-size:13px}
+@media print{.print-btn{display:none}body{padding:8px}}
+</style></head><body>
+<button class="print-btn" onclick="window.print()">🖨️ 인쇄하기</button>
+<h1>🦕 토로의 수학왕국 · ${title}</h1>
+<div class="print-unit">${bodyHtml}</div>
+</body></html>`);
+  w.document.close();
+}
+
 </script>
+<button class="print-fab" onclick="printOpenUnit()" title="펼친 유닛 인쇄">🖨️</button>
 </body>
 </html>
