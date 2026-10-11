@@ -493,32 +493,12 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
       <span class="unit-arrow">▼</span>
     </div>
     <div class="unit-body">
-      <div class="section why"><div class="section-title">🌟 왜 배우는가?</div>
-        <p>건물을 짓고, 다리를 놓고, 피라미드를 세우는 데 모두 각도가 필요했다. 솔로몬의 성전을 짓는 데도 정밀한 각도 계산이 사용됐다. 각도는 "방향"을 수학으로 표현하는 언어다.</p>
-      </div>
-      <div class="section concept"><div class="section-title">📖 개념 설명</div>
-        <ul>
-          <li>각: 두 반직선이 만나는 벌어짐의 크기 / 단위: 도(°)</li>
-          <li>직각=90° / 예각<90° / 둔각>90° / 평각=180°</li>
-          <li>삼각형 분류: 예각삼각형·직각삼각형·둔각삼각형 (각도 기준)</li>
-          <li>삼각형 세 각의 합 = 항상 180°</li>
-        </ul>
-      </div>
-      <div class="section havruta"><div class="section-title">💬 하브루타 질문</div>
-        <div class="q-item"><strong>Q1.</strong> 삼각형의 세 각의 합이 항상 180°인 이유를 종이를 접어서 증명해보세요.</div>
-        <div class="q-item"><strong>Q2.</strong> 직각보다 큰 각을 두 개 가진 삼각형이 존재할 수 있나요?</div>
-        <div class="q-item"><strong>Q3.</strong> 왜 360°를 한 바퀴로 정했을까요? 100°로 정하면 어떨까요?</div>
-      </div>
-      <div class="section problems"><div class="section-title">✏️ 예제 문제 & 다양한 풀이</div>
-        <div class="prob-box">
-          <div class="prob-q">문제: 삼각형의 두 각이 65°와 75°일 때 나머지 한 각은?</div>
-          <div class="sol"><strong>풀이①(공식):</strong> 180°−65°−75°=40°</div>
-          <div class="sol"><strong>풀이②(단계):</strong> 65+75=140, 180−140=40°</div>
-          <div class="sol"><strong>풀이③(검증):</strong> 65+75+40=180° ✓ 예각삼각형(세 각 모두 90° 미만)</div>
+      <div class="cv-wrap" id="cv-e4angle">
+        <div class="cv-grid" id="cv-e4angle-grid"></div>
+        <div class="cv-detail" id="cv-e4angle-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e4angle')">← 목록으로</button>
+          <div id="cv-e4angle-detail-body"></div>
         </div>
-      </div>
-      <div class="section debate"><div class="section-title">🔥 심화 토론</div>
-        <div class="debate-item">지구 표면처럼 굽어진 공간에서는 삼각형의 세 각의 합이 180°를 넘는다고 합니다. 수학의 법칙이 공간에 따라 달라질 수 있다면, 수학은 절대적 진리일까요?</div>
       </div>
     </div>
   </div>
@@ -9528,6 +9508,489 @@ function bigSol2(id){
   var r = bigReadCore(d);
   bigRenderToggle(id, '<div class="fb-diagram" style="display:block;padding:12px"><div style="text-align:center;font-size:1.2rem;font-weight:700;font-family:monospace">'+r.group+'</div><div class="cap">4자리씩 끊어서, 큰 자리부터 단위를 붙여 읽어요</div></div><div class="sol"><strong>풀이:</strong> '+r.read+'</div>', 'bigSol2');
 }
+const CV_DATA_E4ANGLE = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>건물을 짓고, 다리를 놓고, 지붕의 기울기를 정하는 데 모두 각도가 필요해요. 솔로몬의 성전을 지을 때도 정밀한 각도 계산이 쓰였대요. 각도는 "얼마나 기울어졌는지, 얼마나 벌어졌는지"를 숫자로 정확하게 말해주는 수학의 언어예요.</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
+      <svg viewBox="0 0 200 110" style="width:100%;max-width:220px">
+        <line x1="20" y1="90" x2="170" y2="90" stroke="#8b949e" stroke-width="2"/>
+        <line x1="20" y1="90" x2="110" y2="20" stroke="#8b949e" stroke-width="2"/>
+        <path d="M 55,90 A 35,35 0 0 0 42.9,64.7" fill="none" stroke="#f0c040" stroke-width="2"/>
+        <text x="48" y="78" font-size="11" fill="#f0c040" font-weight="700">각</text>
+      </svg>
+      <div style="font-size:.7rem;color:#8b949e;margin-top:4px">두 선이 한 점에서 벌어진 정도 = 각</div>
+    </div>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 각이란?</div>
+    <ul>
+      <li>한 점(꼭짓점)에서 두 변이 뻗어나간 "벌어진 정도"</li>
+      <li><strong>변의 길이는 각의 크기와 상관없어요!</strong> 변을 늘여도 각은 안 커져요</li>
+    </ul>
+    <div style="font-size:.78rem;color:#58a6ff;font-weight:700;margin:16px 0 6px">개념2 — 각의 종류</div>
+    <ul>
+      <li><strong>예각</strong>: 0°보다 크고 직각(90°)보다 작은 각</li>
+      <li><strong>직각</strong>: 정확히 90°인 각</li>
+      <li><strong>둔각</strong>: 직각(90°)보다 크고 평각(180°)보다 작은 각</li>
+      <li><strong>평각</strong>: 정확히 180°인 각 — 일직선을 이룸</li>
+    </ul>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
+      <svg viewBox="0 0 310 95" style="width:100%;max-width:340px">
+        <line x1="35" y1="75" x2="75.0" y2="75.0" stroke="#8b949e" stroke-width="2"/>
+        <line x1="35" y1="75" x2="60.7" y2="44.4" stroke="#8b949e" stroke-width="2"/>
+        <polygon points="35.0,75.0 51.0,75.0 50.9,73.3 50.6,71.5 50.2,69.9 49.5,68.2 48.7,66.7 47.7,65.3 46.6,63.9 45.3,62.7" fill="#3fb950" opacity="0.6"/>
+        <line x1="105" y1="75" x2="145.0" y2="75.0" stroke="#8b949e" stroke-width="2"/>
+        <line x1="105" y1="75" x2="105.0" y2="35.0" stroke="#8b949e" stroke-width="2"/>
+        <polygon points="105.0,75.0 121.0,75.0 120.7,71.9 119.8,68.9 118.3,66.1 116.3,63.7 113.9,61.7 111.1,60.2 108.1,59.3 105.0,59.0" fill="#58a6ff" opacity="0.6"/>
+        <line x1="175" y1="75" x2="215.0" y2="75.0" stroke="#8b949e" stroke-width="2"/>
+        <line x1="175" y1="75" x2="149.3" y2="44.4" stroke="#8b949e" stroke-width="2"/>
+        <polygon points="175.0,75.0 191.0,75.0 190.4,70.5 188.5,66.4 185.5,63.0 181.8,60.5 177.4,59.2 172.9,59.1 168.6,60.4 164.7,62.7" fill="#f0c040" opacity="0.6"/>
+        <line x1="235" y1="75" x2="275.0" y2="75.0" stroke="#8b949e" stroke-width="2"/>
+        <line x1="235" y1="75" x2="195.0" y2="75.0" stroke="#8b949e" stroke-width="2"/>
+        <polygon points="235.0,75.0 251.0,75.0 249.8,68.9 246.3,63.7 241.1,60.2 235.0,59.0 228.9,60.2 223.7,63.7 220.2,68.9 219.0,75.0" fill="#f85149" opacity="0.6"/>
+        <text x="35" y="90" font-size="9" fill="#3fb950" text-anchor="middle" font-weight="700">예각</text>
+        <text x="105" y="90" font-size="9" fill="#58a6ff" text-anchor="middle" font-weight="700">직각</text>
+        <text x="175" y="90" font-size="9" fill="#f0c040" text-anchor="middle" font-weight="700">둔각</text>
+        <text x="235" y="90" font-size="9" fill="#f85149" text-anchor="middle" font-weight="700">평각</text>
+      </svg>
+      <div style="font-size:.68rem;color:#8b949e;margin-top:4px">왼쪽부터 점점 더 벌어지는 각 — 예각 → 직각 → 둔각 → 평각(일직선)</div>
+    </div>
+    <div style="font-size:.78rem;color:#bc8cff;font-weight:700;margin:16px 0 6px">개념3 — 삼각형 세 각의 합은 항상 180° (확인하기)</div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9;margin-bottom:8px">엄밀한 증명은 중학교에서 배우지만, 초등 과정에서는 직접 종이를 찢어서 눈으로 확인할 수 있어요. 삼각형 종이의 세 꼭짓점을 찢어서, 세 각이 한 점에 모이도록 나란히 이어 붙이면 어떻게 될까요?</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0">
+      <div style="flex:1;min-width:180px;background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:10px;text-align:center">
+        <div style="font-size:.7rem;color:#8b949e;margin-bottom:4px">① 원래 삼각형의 세 각</div>
+        <svg viewBox="0 0 240 160" style="width:100%;max-width:220px">
+          <polygon points="30,140 210,140 100,30" fill="none" stroke="#8b949e" stroke-width="2"/>
+          <polygon points="30.0,140.0 52.0,140.0 51.7,136.7 50.9,133.1 49.3,129.4 47.1,126.1 44.5,123.4 41.8,121.4" fill="#f85149" opacity="0.55"/>
+          <polygon points="210.0,140.0 188.0,140.0 188.2,137.3 188.7,134.4 189.7,131.6 191.0,128.9 192.6,126.5 194.4,124.4" fill="#58a6ff" opacity="0.55"/>
+          <polygon points="100.0,30.0 88.2,48.6 91.8,50.4 96.7,51.7 102.4,51.9 108.0,50.5 112.4,48.2 115.6,45.6" fill="#3fb950" opacity="0.55"/>
+          <text x="34" y="132" font-size="13" fill="#f85149" font-weight="700">a</text>
+          <text x="186" y="132" font-size="13" fill="#58a6ff" font-weight="700">b</text>
+          <text x="96" y="48" font-size="13" fill="#3fb950" font-weight="700">c</text>
+        </svg>
+      </div>
+      <div style="flex:1;min-width:180px;background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:10px;text-align:center">
+        <div style="font-size:.7rem;color:#8b949e;margin-bottom:4px">② 세 각을 한 점에 모으면 일직선!</div>
+        <svg viewBox="0 0 240 160" style="width:100%;max-width:220px">
+          <polygon points="120.0,135.0 190.0,135.0 189.6,127.2 188.1,118.8 185.4,110.0 181.4,101.3 176.2,93.3 170.3,86.3 163.9,80.5 157.6,75.9" fill="#f85149" opacity="0.55"/>
+          <polygon points="120.0,135.0 157.6,75.9 152.0,72.8 145.8,69.9 139.2,67.7 132.1,66.1 125.0,65.2 117.9,65.0 111.1,65.6 104.8,66.7" fill="#58a6ff" opacity="0.55"/>
+          <polygon points="120.0,135.0 104.8,66.7 95.8,69.3 85.6,74.0 75.1,81.3 65.4,91.2 57.9,102.8 53.0,114.7 50.6,125.6 50.0,135.0" fill="#3fb950" opacity="0.55"/>
+          <line x1="50" y1="135" x2="190" y2="135" stroke="#f0c040" stroke-width="2" stroke-dasharray="4,3"/>
+          <text x="162" y="113" font-size="12" fill="#f85149" font-weight="700">a</text>
+          <text x="128" y="89" font-size="12" fill="#58a6ff" font-weight="700">b</text>
+          <text x="82" y="106" font-size="12" fill="#3fb950" font-weight="700">c</text>
+          <text x="90" y="152" font-size="11" fill="#f0c040" font-weight="700">180° (일직선)</text>
+        </svg>
+      </div>
+    </div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9">a+b+c가 모이면 정확히 일직선(180°)이 돼요. 어떤 모양의 삼각형이든 항상 이렇게 돼요 — 그래서 "삼각형 세 각의 합은 항상 180°"예요.</p>
+    <div style="font-size:.78rem;color:#f85149;font-weight:700;margin:16px 0 6px">개념4 — 사각형 네 각의 합은 항상 360°</div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9">사각형을 대각선 하나로 자르면 삼각형 2개가 돼요 → 180°×2 = <strong>360°</strong></p>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:16px 0 6px">개념5 — 각도의 덧셈·뺄셈</div>
+    <ul>
+      <li>두 각을 변끼리 이어 붙이면 → 두 각을 더한 크기 (예: 30°+45° = 75°)</li>
+      <li>전체 각에서 한 각을 빼면 → 나머지 각 (예: 전체 110°에서 40°를 빼면 70°)</li>
+    </ul>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 각의 크기는 변의 길이와 관계가 있을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4angle-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4angle-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4angle-h1',0,this)">아니요, 각의 크기는 두 변이 벌어진 정도로만 정해지고 변의 길이와는 상관없어요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4angle-h1',1,this)">네, 변이 길수록 각도 더 커요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4angle-h1',2,this)">변이 짧을수록 각이 더 커요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4angle-h1',3,this)">삼각형 전체 크기에 따라 각도 달라져요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4angle-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 삼각형의 세 각을 다 더하면 왜 항상 180°가 될까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4angle-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4angle-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4angle-h2',0,this)">삼각형의 세 꼭짓점을 찢어서 한 점에 모으면 일직선(평각, 180°)이 돼요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4angle-h2',1,this)">그냥 모든 삼각형이 그렇다고 외우면 돼요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4angle-h2',2,this)">삼각형이 크면 180°보다 클 수도 있어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4angle-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 삼각형에 둔각(90°보다 큰 각)이 2개 있을 수 있을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4angle-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4angle-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4angle-h3',0,this)">불가능해요 — 세 각의 합이 180°인데, 둔각 2개만 더해도 벌써 180°를 넘어버려요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4angle-h3',1,this)">가능해요, 세 번째 각이 아주 작으면 돼요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4angle-h3',2,this)">세 번째 각이 음수가 되면 가능해요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4angle-h3"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제', cls:'problems', html:`
+    <div class="prob-box">
+      <div class="prob-q">문제1: 한 삼각형에서 두 각의 크기가 서로 같고, 나머지 한 각은 100°입니다. 서로 같은 두 각은 각각 몇 도인가요?</div>
+      <div class="sol"><strong>풀이①(두 각의 합 구하기):</strong> 180°−100° = 80°</div>
+      <div class="sol"><strong>풀이②(똑같이 나누기):</strong> 80°÷2 = <strong>40°</strong></div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제2: 사각형을 대각선 하나로 나누면 삼각형 2개가 됩니다. 한쪽 삼각형의 세 각이 35°, 60°, 85°이고, 다른 쪽 삼각형의 두 각이 45°, 95°일 때 — (1) 원래 사각형 네 각의 합은 몇 도인가요? (2) 다른 쪽 삼각형의 나머지 한 각은 몇 도인가요?</div>
+      <div class="sol"><strong>풀이(1):</strong> 삼각형 2개 = 180°×2 = <strong>360°</strong></div>
+      <div class="sol"><strong>풀이(2):</strong> 180°−45°−95° = <strong>40°</strong></div>
+    </div>
+    <div class="prob-box">
+      <div class="prob-q">문제3: 직각(90°)이 두 각으로 나뉘어 있어요. 작은 각이 큰 각보다 10° 작습니다. 작은 각과 큰 각은 각각 몇 도인가요?</div>
+      <div class="sol"><strong>풀이①(차이 없다고 치면):</strong> 90°−10° = 80°</div>
+      <div class="sol"><strong>풀이②(똑같이 나누기):</strong> 80°÷2 = 40°(작은 각)</div>
+      <div class="sol"><strong>풀이③(큰 각 구하기):</strong> 40°+10° = <strong>50°</strong>(큰 각) / 검산: 40+50=90° ✓</div>
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 왜 한 바퀴를 360°라고 정했어요? 100°면 계산하기 더 쉬울 것 같은데.</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>저도 궁금해요. 왜 하필 360일까요?</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>100으로 나누면 딱 안 떨어지는 경우가 많아서 그런가?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>어! 360은 2로도, 3으로도, 4로도, 5로도, 6으로도 딱 나누어떨어져요! 100은 3으로는 안 나눠지는데!</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! 아주 오래전 바빌로니아 사람들이 처음 360을 썼는데, 360은 1,2,3,4,5,6,8,9,10,12…처럼 정말 많은 수로 딱 나누어떨어져요. 원을 여러 조각으로 똑같이 나눌 때(3등분, 4등분, 6등분…) 360이 훨씬 편했던 거예요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>100으로 하면 3등분(100÷3=33.333…)이 깔끔하게 안 되죠? 그래서 사람들이 오랫동안 쓰면서 360이 표준으로 자리잡았어요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 360°라는 약속은 계산하기 "편해서" 정해진 거예요. 많은 수로 나누어떨어지는 숫자일수록 원을 다양하게 쪼개기 좋거든요 — 수학의 약속(단위)도 쓰기 편한 이유가 있어요.</div>
+  `},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <p>"다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와요. 대부분 각이 2개만 주어지니, 나머지는 직접 계산해서 알아내야 해요.</p>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1 (직각삼각형)</div><div id="ag-1" class="prob-q" data-given="35" data-qtext="직각삼각형의 한 각이 35°일 때, 나머지 한 각은?" data-solfn="agSol1">직각삼각형의 한 각이 35°일 때, 나머지 한 각은?<br><button class="havruta-show-btn" onclick="agSol1('ag-1')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="agGen1('ag-1')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2 (삼각형 종류 판별)</div><div id="ag-2" class="prob-q" data-a="45" data-b="38" data-c="97" data-type="둔각삼각형" data-qtext="삼각형의 두 각이 45°, 38°입니다. 나머지 한 각은 몇 도이고, 이 삼각형은 예각·직각·둔각삼각형 중 무엇인가요?" data-solfn="agSol2">삼각형의 두 각이 45°, 38°입니다. 나머지 한 각은 몇 도이고, 이 삼각형은 예각·직각·둔각삼각형 중 무엇인가요?<br><button class="havruta-show-btn" onclick="agSol2('ag-2')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="agGen2('ag-2')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3 (사각형 대각선 분할)</div><div id="ag-3" class="prob-q" data-a1="31" data-b1="5" data-c1="144" data-a2="139" data-b2="25" data-c2="16" data-qtext="사각형을 대각선 하나로 나누면 삼각형 2개가 됩니다. 삼각형A의 두 각은 31°,5°이고 삼각형B의 두 각은 139°,25°입니다. (1) 원래 사각형 네 각의 합은 몇 도인가요? (2) 두 삼각형의 나머지 각은 각각 몇 도인가요?" data-solfn="agSol3">사각형을 대각선 하나로 나누면 삼각형 2개가 됩니다. 삼각형A의 두 각은 31°,5°이고 삼각형B의 두 각은 139°,25°입니다. (1) 원래 사각형 네 각의 합은 몇 도인가요? (2) 두 삼각형의 나머지 각은 각각 몇 도인가요?<br><button class="havruta-show-btn" onclick="agSol3('ag-3')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="agGen3('ag-3')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4 (한 점 주위 각)</div><div id="ag-4" class="prob-q" data-a="120" data-b="150" data-qtext="한 점 주위에 각 3개가 모여 한 바퀴(360°)를 이룹니다. 두 각이 120°, 150°일 때 나머지 각은?" data-solfn="agSol4">한 점 주위에 각 3개가 모여 한 바퀴(360°)를 이룹니다. 두 각이 120°, 150°일 때 나머지 각은?<br><button class="havruta-show-btn" onclick="agSol4('ag-4')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="agGen4('ag-4')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5 (평각의 합과 차)</div><div id="ag-5" class="prob-q" data-d="20" data-qtext="평각(180°)이 두 각으로 나뉘어 있고, 큰 각이 작은 각보다 20° 큽니다. 작은 각과 큰 각은 각각 몇 도인가요?" data-solfn="agSol5">평각(180°)이 두 각으로 나뉘어 있고, 큰 각이 작은 각보다 20° 큽니다. 작은 각과 큰 각은 각각 몇 도인가요?<br><button class="havruta-show-btn" onclick="agSol5('ag-5')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="agGen5('ag-5')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6 (실생활 — 문)</div><div id="ag-6" class="prob-q" data-start="40" data-add="35" data-qtext="문이 40° 열려 있다가 35°를 더 열었습니다. 지금 각도는 몇 도이고, 예각·직각·둔각 중 무엇인가요?" data-solfn="agSol6">문이 40° 열려 있다가 35°를 더 열었습니다. 지금 각도는 몇 도이고, 예각·직각·둔각 중 무엇인가요?<br><button class="havruta-show-btn" onclick="agSol6('ag-6')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="agGen6('ag-6')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7 (실생활 — 피자)</div><div id="ag-7" class="prob-q" data-n="6" data-eaten="2" data-qtext="피자 한 판을 6조각으로 똑같이 나누면 한 조각은 몇 도인가요? 2조각을 먹었다면 남은 조각들의 각도 합은 몇 도인가요?" data-solfn="agSol7">피자 한 판을 6조각으로 똑같이 나누면 한 조각은 몇 도인가요? 2조각을 먹었다면 남은 조각들의 각도 합은 몇 도인가요?<br><button class="havruta-show-btn" onclick="agSol7('ag-7')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="agGen7('ag-7')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8 (두 각이 같은 삼각형)</div><div id="ag-8" class="prob-q" data-v="70" data-qtext="삼각형에서 두 각의 크기가 서로 같고 나머지 한 각이 70°일 때, 같은 두 각은 각각 몇 도인가요?" data-solfn="agSol8">삼각형에서 두 각의 크기가 서로 같고 나머지 한 각이 70°일 때, 같은 두 각은 각각 몇 도인가요?<br><button class="havruta-show-btn" onclick="agSol8('ag-8')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="agGen8('ag-8')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9 (사각형 두 각의 합과 차)</div><div id="ag-9" class="prob-q" data-d="40" data-qtext="사각형의 네 각 중 두 각은 각각 90°이고, 나머지 두 각의 합은 180°이면서 한쪽이 다른 쪽보다 40° 큽니다. 나머지 두 각은 각각 몇 도인가요?" data-solfn="agSol9">사각형의 네 각 중 두 각은 각각 90°이고, 나머지 두 각의 합은 180°이면서 한쪽이 다른 쪽보다 40° 큽니다. 나머지 두 각은 각각 몇 도인가요?<br><button class="havruta-show-btn" onclick="agSol9('ag-9')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="agGen9('ag-9')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">🚀 문제 10 (외각, 발전 문제)</div><div id="ag-10" class="prob-q" data-e="115" data-f="40" data-qtext="삼각형의 한 각과 평각을 이루는 바깥쪽 각이 115°입니다. 이 바깥쪽 각과 붙어있는 안쪽 각과, 다른 한 각이 40°라면, 나머지 한 각은 몇 도인가요?" data-solfn="agSol10">삼각형의 한 각과 평각을 이루는 바깥쪽 각이 115°입니다. 이 바깥쪽 각과 붙어있는 안쪽 각과, 다른 한 각이 40°라면, 나머지 한 각은 몇 도인가요?<br><button class="havruta-show-btn" onclick="agSol10('ag-10')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="agGen10('ag-10')" style="width:100%;margin-top:8px">🔄 다음 문제</button></div>
+  `}
+];
+CV_DATA['e4angle'] = CV_DATA_E4ANGLE;
+function agRand(min,max){ return min + Math.floor(Math.random()*(max-min+1)); }
+// 랜덤 생성 문제용 각도 그림 — 매번 실제 각도 값으로 그 자리에서 좌표를 계산해 그린다.
+// parts: [{deg, color, label?}, ...] 를 0°부터 순서대로 이어 붙여서 부채꼴(쐐기)들을 그린다.
+function agWedgeSvg(parts, opts){
+  opts = opts || {};
+  var W = opts.width || 260, H = opts.height || 130;
+  var P = opts.vertex || [W/2, H-12];
+  var r = opts.radius || (Math.min(W,H)-24);
+  function uvec(deg){ var rad=deg*Math.PI/180; return [Math.cos(rad), -Math.sin(rad)]; }
+  var svg = '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;max-width:'+(opts.maxWidth||260)+'px;display:block;margin:0 auto">';
+  var acc = 0, boundaries = [0];
+  parts.forEach(function(p){
+    var a0 = acc, a1 = acc + p.deg;
+    var n = Math.max(2, Math.round(p.deg/12));
+    var pts = [P];
+    for(var i=0;i<=n;i++){
+      var d = a0 + (a1-a0)*i/n;
+      var u = uvec(d);
+      pts.push([P[0]+u[0]*r, P[1]+u[1]*r]);
+    }
+    svg += '<polygon points="'+pts.map(function(q){return q[0].toFixed(1)+','+q[1].toFixed(1);}).join(' ')+'" fill="'+p.color+'" opacity="0.55"/>';
+    var mid = (a0+a1)/2, lu = uvec(mid), lr = r*0.62;
+    var lx = P[0]+lu[0]*lr, ly = P[1]+lu[1]*lr;
+    svg += '<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" font-size="11" fill="'+p.color+'" font-weight="700" text-anchor="middle">'+(p.label!==undefined?p.label:p.deg+'°')+'</text>';
+    acc = a1;
+    boundaries.push(acc);
+  });
+  boundaries.forEach(function(d){
+    var u = uvec(d);
+    svg += '<line x1="'+P[0]+'" y1="'+P[1]+'" x2="'+(P[0]+u[0]*r).toFixed(1)+'" y2="'+(P[1]+u[1]*r).toFixed(1)+'" stroke="#8b949e" stroke-width="1.5"/>';
+  });
+  svg += '</svg>';
+  return svg;
+}
+function agDiagram(parts, opts){
+  return '<div class="fb-diagram" style="display:block;padding:10px;background:#0d1117;border-radius:10px;margin-top:8px">' + agWedgeSvg(parts, opts) + '</div>';
+}
+// 실제 삼각형 모양 — 세 내각(합 180°)으로부터 사인법칙으로 변의 길이 비율을 구해 좌표를 만든다.
+function agTriSvg(angles, opts){
+  opts = opts || {};
+  var W = opts.width || 220, H = opts.height || 160;
+  var colors = opts.colors || ['#f85149','#58a6ff','#3fb950'];
+  function toRad(d){ return d*Math.PI/180; }
+  var sA=Math.sin(toRad(angles[0])), sB=Math.sin(toRad(angles[1])), sC=Math.sin(toRad(angles[2]));
+  var scaleLen = (opts.sizeHint||140)/Math.max(sA,sB,sC);
+  var b=sB*scaleLen, c=sC*scaleLen;
+  var A=[0,0], B=[c,0];
+  var C=[A[0]+b*Math.cos(toRad(angles[0])), A[1]-b*Math.sin(toRad(angles[0]))];
+  var pts=[A,B,C];
+  var xs=pts.map(function(p){return p[0];}), ys=pts.map(function(p){return p[1];});
+  var minX=Math.min.apply(null,xs), maxX=Math.max.apply(null,xs);
+  var minY=Math.min.apply(null,ys), maxY=Math.max.apply(null,ys);
+  var pad=28;
+  var sx=(W-2*pad)/((maxX-minX)||1), sy=(H-2*pad)/((maxY-minY)||1);
+  var scale=Math.min(sx,sy);
+  function tx(p){ return [pad+(p[0]-minX)*scale, pad+(p[1]-minY)*scale]; }
+  var tpts=pts.map(tx);
+  var cx=(tpts[0][0]+tpts[1][0]+tpts[2][0])/3, cy=(tpts[0][1]+tpts[1][1]+tpts[2][1])/3;
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;max-width:'+(opts.maxWidth||220)+'px;display:block;margin:0 auto">';
+  svg += '<polygon points="'+tpts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ')+'" fill="none" stroke="#8b949e" stroke-width="2"/>';
+  for(var i=0;i<3;i++){
+    var p=tpts[i];
+    var dx=cx-p[0], dy=cy-p[1]; var dl=Math.hypot(dx,dy)||1;
+    var lx=p[0]+dx/dl*20, ly=p[1]+dy/dl*20;
+    svg += '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="3" fill="'+colors[i]+'"/>';
+    svg += '<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" font-size="11" fill="'+colors[i]+'" font-weight="700" text-anchor="middle">'+angles[i]+'°</text>';
+  }
+  svg += '</svg>';
+  return svg;
+}
+// 실제 사각형 모양 — 네 내각(합 360°)으로부터, 변 2개 길이를 고정하고 나머지 2개를 닫히도록 역산해서 좌표를 만든다.
+function agQuadSvg(angles, opts){
+  opts = opts || {};
+  var W = opts.width || 220, H = opts.height || 180;
+  var colors = opts.colors || ['#bc8cff','#bc8cff','#3fb950','#f85149'];
+  function uvec(deg){ var r=deg*Math.PI/180; return [Math.cos(r), -Math.sin(r)]; }
+  var dirs=[0], acc=0;
+  for(var i=0;i<3;i++){ acc += 180-angles[i]; dirs.push(acc); }
+  var u = dirs.map(uvec);
+  var L0=70, L1=70;
+  var P0=[0,0];
+  var P1=[P0[0]+L0*u[0][0], P0[1]+L0*u[0][1]];
+  var P2=[P1[0]+L1*u[1][0], P1[1]+L1*u[1][1]];
+  var bx=P0[0]-P2[0], by=P0[1]-P2[1];
+  var det=u[2][0]*u[3][1]-u[3][0]*u[2][1];
+  var L2=(bx*u[3][1]-u[3][0]*by)/det;
+  var L3=(u[2][0]*by-bx*u[2][1])/det;
+  var P3=[P2[0]+L2*u[2][0], P2[1]+L2*u[2][1]];
+  var pts=[P0,P1,P2,P3];
+  var xs=pts.map(function(p){return p[0];}), ys=pts.map(function(p){return p[1];});
+  var minX=Math.min.apply(null,xs), maxX=Math.max.apply(null,xs);
+  var minY=Math.min.apply(null,ys), maxY=Math.max.apply(null,ys);
+  var pad=28;
+  var sx=(W-2*pad)/((maxX-minX)||1), sy=(H-2*pad)/((maxY-minY)||1);
+  var scale=Math.min(sx,sy);
+  function tx(p){ return [pad+(p[0]-minX)*scale, pad+(p[1]-minY)*scale]; }
+  var tpts=pts.map(tx);
+  var cx=(tpts[0][0]+tpts[1][0]+tpts[2][0]+tpts[3][0])/4, cy=(tpts[0][1]+tpts[1][1]+tpts[2][1]+tpts[3][1])/4;
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;max-width:'+(opts.maxWidth||220)+'px;display:block;margin:0 auto">';
+  svg += '<polygon points="'+tpts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ')+'" fill="none" stroke="#8b949e" stroke-width="2"/>';
+  for(var i=0;i<4;i++){
+    var p=tpts[i];
+    var dx=cx-p[0], dy=cy-p[1]; var dl=Math.hypot(dx,dy)||1;
+    var lx=p[0]+dx/dl*18, ly=p[1]+dy/dl*18;
+    svg += '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="3" fill="'+colors[i]+'"/>';
+    svg += '<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" font-size="11" fill="'+colors[i]+'" font-weight="700" text-anchor="middle">'+angles[i]+'°</text>';
+  }
+  svg += '</svg>';
+  return svg;
+}
+function agShuffle3(arr){
+  var a = arr.slice();
+  for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+  return a;
+}
+// 삼각형 종류를 먼저 정한 뒤, 그 종류에 맞는 세 각을 만들고 그중 하나를 숨긴다.
+function agGenTriangle(){
+  var type = ['acute','right','obtuse'][agRand(0,2)];
+  var x,y,z;
+  if(type === 'right'){
+    x = 90; y = agRand(15,75); z = 90-y;
+  } else if(type === 'obtuse'){
+    x = agRand(95,150);
+    var rem = 180-x;
+    y = agRand(5, Math.max(5,rem-5));
+    z = rem-y;
+    if(z < 5){ z = 5; y = rem-5; }
+  } else {
+    do { x = agRand(40,70); y = agRand(40,70); } while(180-x-y <= 0 || 180-x-y >= 90);
+    z = 180-x-y;
+  }
+  var angles = agShuffle3([x,y,z]);
+  var hideIdx = agRand(0,2);
+  var typeName = type === 'right' ? '직각삼각형' : (type === 'obtuse' ? '둔각삼각형' : '예각삼각형');
+  return { shown: angles.filter(function(_,i){ return i !== hideIdx; }), hidden: angles[hideIdx], type: typeName };
+}
+
+// 문제 1 — 직각삼각형
+function agGen1(id){
+  var given = agRand(10,80);
+  var el = document.getElementById(id);
+  el.setAttribute('data-given', given);
+  bigSetQuestion(el, '직각삼각형의 한 각이 '+given+'°일 때, 나머지 한 각은?', 'agSol1');
+}
+function agSol1(id){
+  var el = document.getElementById(id);
+  var given = +el.getAttribute('data-given');
+  var ans = 90-given;
+  var diagram = agDiagram([{deg:given,color:'#3fb950'},{deg:ans,color:'#58a6ff'}], {maxWidth:220, height:110});
+  bigRenderToggle(id, diagram+'<div class="sol"><strong>풀이:</strong> 직각삼각형은 한 각이 90°이고, 세 각의 합은 180°이므로 나머지 두 각의 합은 90°예요. 90°−'+given+'° = <strong>'+ans+'°</strong></div>', 'agSol1');
+}
+
+// 문제 2 — 삼각형 종류 판별 (각 2개만 제시)
+function agGen2(id){
+  var t = agGenTriangle();
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', t.shown[0]); el.setAttribute('data-b', t.shown[1]); el.setAttribute('data-c', t.hidden); el.setAttribute('data-type', t.type);
+  bigSetQuestion(el, '삼각형의 두 각이 '+t.shown[0]+'°, '+t.shown[1]+'°입니다. 나머지 한 각은 몇 도이고, 이 삼각형은 예각·직각·둔각삼각형 중 무엇인가요?', 'agSol2');
+}
+function agSol2(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), c=+el.getAttribute('data-c'), type=el.getAttribute('data-type');
+  var tri = agTriSvg([a,b,c], {colors:['#f85149','#58a6ff','#3fb950'], maxWidth:200});
+  var semi = agWedgeSvg([{deg:a,color:'#f85149'},{deg:b,color:'#58a6ff'},{deg:c,color:'#3fb950'}], {maxWidth:200, height:120});
+  var diagram = '<div class="fb-diagram" style="display:block;padding:10px;background:#0d1117;border-radius:10px;margin-top:8px">'
+    + '<div style="text-align:center;font-size:.68rem;color:#8b949e;margin-bottom:4px">① 실제 삼각형 모양</div>' + tri
+    + '<div style="text-align:center;font-size:.72rem;color:#8b949e;margin:10px 0">세 각을 찢어서 한 점에 모으면 →</div>'
+    + '<div style="text-align:center;font-size:.68rem;color:#8b949e;margin-bottom:4px">② 정확히 평각(180°)</div>' + semi
+    + '</div>';
+  bigRenderToggle(id, diagram+'<div class="sol"><strong>풀이:</strong> 180°−'+a+'°−'+b+'° = <strong>'+c+'°</strong></div><div class="sol"><strong>판별:</strong> 세 각 중 가장 큰 각을 보면 '+type+'이에요.</div>', 'agSol2');
+}
+
+// 문제 3 — 사각형 대각선 분할 (두 삼각형 모두 각 2개만)
+function agGen3(id){
+  var t1 = agGenTriangle(), t2 = agGenTriangle();
+  var el = document.getElementById(id);
+  el.setAttribute('data-a1', t1.shown[0]); el.setAttribute('data-b1', t1.shown[1]); el.setAttribute('data-c1', t1.hidden);
+  el.setAttribute('data-a2', t2.shown[0]); el.setAttribute('data-b2', t2.shown[1]); el.setAttribute('data-c2', t2.hidden);
+  bigSetQuestion(el, '사각형을 대각선 하나로 나누면 삼각형 2개가 됩니다. 삼각형A의 두 각은 '+t1.shown[0]+'°,'+t1.shown[1]+'°이고 삼각형B의 두 각은 '+t2.shown[0]+'°,'+t2.shown[1]+'°입니다. (1) 원래 사각형 네 각의 합은 몇 도인가요? (2) 두 삼각형의 나머지 각은 각각 몇 도인가요?', 'agSol3');
+}
+function agSol3(id){
+  var el = document.getElementById(id);
+  var a1=+el.getAttribute('data-a1'), b1=+el.getAttribute('data-b1'), c1=+el.getAttribute('data-c1');
+  var a2=+el.getAttribute('data-a2'), b2=+el.getAttribute('data-b2'), c2=+el.getAttribute('data-c2');
+  var d1 = agTriSvg([a1,b1,c1], {colors:['#f85149','#58a6ff','#3fb950'], maxWidth:170});
+  var d2 = agTriSvg([a2,b2,c2], {colors:['#f85149','#58a6ff','#3fb950'], maxWidth:170});
+  var diagram = '<div class="fb-diagram" style="display:block;padding:10px;background:#0d1117;border-radius:10px;margin-top:8px"><div style="text-align:center;font-size:.68rem;color:#8b949e;margin-bottom:6px">실제 삼각형 모양 (대각선으로 나뉜 두 조각)</div><div style="display:flex;gap:8px;flex-wrap:wrap"><div style="flex:1;min-width:150px">'+d1+'<div style="text-align:center;font-size:.68rem;color:#8b949e">삼각형A</div></div><div style="flex:1;min-width:150px">'+d2+'<div style="text-align:center;font-size:.68rem;color:#8b949e">삼각형B</div></div></div></div>';
+  bigRenderToggle(id, diagram+'<div class="sol"><strong>풀이(1):</strong> 삼각형 2개 = 180°×2 = <strong>360°</strong> (사각형은 항상 360°)</div><div class="sol"><strong>풀이(2):</strong> 삼각형A: 180°−'+a1+'°−'+b1+'° = <strong>'+c1+'°</strong> / 삼각형B: 180°−'+a2+'°−'+b2+'° = <strong>'+c2+'°</strong></div>', 'agSol3');
+}
+
+// 문제 4 — 한 점 주위 각(360°)
+function agGen4(id){
+  var a,b,c,tries=0;
+  do { a = agRand(40,160); b = agRand(40,160); c = 360-a-b; tries++; } while((c<40 || c>170) && tries<50);
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b);
+  bigSetQuestion(el, '한 점 주위에 각 3개가 모여 한 바퀴(360°)를 이룹니다. 두 각이 '+a+'°, '+b+'°일 때 나머지 각은?', 'agSol4');
+}
+function agSol4(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b');
+  var c = 360-a-b;
+  var diagram = agDiagram([{deg:a,color:'#f85149'},{deg:b,color:'#58a6ff'},{deg:c,color:'#3fb950'}], {width:200,height:200,vertex:[100,100],radius:80,maxWidth:200});
+  bigRenderToggle(id, diagram+'<div class="sol"><strong>풀이:</strong> 한 점 주위의 각은 항상 360°이므로, 360°−'+a+'°−'+b+'° = <strong>'+c+'°</strong></div>', 'agSol4');
+}
+
+// 문제 5 — 평각의 합과 차
+function agGen5(id){
+  var d = agRand(5,30)*2; // 짝수로 만들어 나누어떨어지게
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d);
+  bigSetQuestion(el, '평각(180°)이 두 각으로 나뉘어 있고, 큰 각이 작은 각보다 '+d+'° 큽니다. 작은 각과 큰 각은 각각 몇 도인가요?', 'agSol5');
+}
+function agSol5(id){
+  var el = document.getElementById(id);
+  var d=+el.getAttribute('data-d');
+  var small=(180-d)/2, big=small+d;
+  var diagram = agDiagram([{deg:small,color:'#3fb950'},{deg:big,color:'#f85149'}], {maxWidth:220, height:110});
+  bigRenderToggle(id, diagram+'<div class="sol"><strong>풀이①(차이 없다고 치면):</strong> 180°−'+d+'° = '+(180-d)+'°</div><div class="sol"><strong>풀이②(똑같이 나누기):</strong> '+(180-d)+'°÷2 = <strong>'+small+'°</strong>(작은 각)</div><div class="sol"><strong>풀이③:</strong> '+small+'°+'+d+'° = <strong>'+big+'°</strong>(큰 각) / 검산: '+small+'+'+big+'=180° ✓</div>', 'agSol5');
+}
+
+// 문제 6 — 실생활(문이 열린 각도) + 판별
+function agGen6(id){
+  var start = agRand(10,70);
+  var add = agRand(10, Math.max(11,170-start));
+  var el = document.getElementById(id);
+  el.setAttribute('data-start', start); el.setAttribute('data-add', add);
+  bigSetQuestion(el, '문이 '+start+'° 열려 있다가 '+add+'°를 더 열었습니다. 지금 각도는 몇 도이고, 예각·직각·둔각 중 무엇인가요?', 'agSol6');
+}
+function agSol6(id){
+  var el = document.getElementById(id);
+  var start=+el.getAttribute('data-start'), add=+el.getAttribute('data-add');
+  var total = start+add;
+  var type = total===90 ? '직각' : (total>90 ? '둔각' : '예각');
+  var diagram = agDiagram([{deg:start,color:'#58a6ff'},{deg:add,color:'#f0c040'}], {maxWidth:220, height:110});
+  bigRenderToggle(id, diagram+'<div class="sol"><strong>풀이:</strong> '+start+'°+'+add+'° = <strong>'+total+'°</strong></div><div class="sol"><strong>판별:</strong> '+total+'°는 '+type+'이에요.</div>', 'agSol6');
+}
+
+// 문제 7 — 실생활(피자 등분)
+function agGen7(id){
+  var ns = [4,5,6,8,9,10,12];
+  var n = ns[agRand(0,ns.length-1)];
+  var eaten = agRand(1, n-2);
+  var el = document.getElementById(id);
+  el.setAttribute('data-n', n); el.setAttribute('data-eaten', eaten);
+  bigSetQuestion(el, '피자 한 판을 '+n+'조각으로 똑같이 나누면 한 조각은 몇 도인가요? '+eaten+'조각을 먹었다면 남은 조각들의 각도 합은 몇 도인가요?', 'agSol7');
+}
+function agSol7(id){
+  var el = document.getElementById(id);
+  var n=+el.getAttribute('data-n'), eaten=+el.getAttribute('data-eaten');
+  var one = 360/n, remain = (n-eaten)*one;
+  var parts = [];
+  for(var i=0;i<n;i++){ parts.push({deg:one, color:(i<eaten?'#484f58':'#f0c040'), label:''}); }
+  var diagram = agDiagram(parts, {width:200,height:200,vertex:[100,100],radius:80,maxWidth:200});
+  bigRenderToggle(id, diagram+'<div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:4px">회색 = 먹은 조각('+eaten+'개) / 주황 = 남은 조각('+(n-eaten)+'개)</div><div class="sol"><strong>풀이①(한 조각):</strong> 360°÷'+n+' = <strong>'+one+'°</strong></div><div class="sol"><strong>풀이②(남은 조각 합):</strong> 남은 조각 수 '+(n-eaten)+'개 × '+one+'° = <strong>'+remain+'°</strong></div>', 'agSol7');
+}
+
+// 문제 8 — 두 각이 같은 삼각형
+function agGen8(id){
+  var v = agRand(10,45)*2; // 짝수로
+  var el = document.getElementById(id);
+  el.setAttribute('data-v', v);
+  bigSetQuestion(el, '삼각형에서 두 각의 크기가 서로 같고 나머지 한 각이 '+v+'°일 때, 같은 두 각은 각각 몇 도인가요?', 'agSol8');
+}
+function agSol8(id){
+  var el = document.getElementById(id);
+  var v=+el.getAttribute('data-v');
+  var x=(180-v)/2;
+  var tri = agTriSvg([x,x,v], {colors:['#58a6ff','#58a6ff','#f85149'], maxWidth:200});
+  var semi = agWedgeSvg([{deg:x,color:'#58a6ff'},{deg:x,color:'#58a6ff'},{deg:v,color:'#f85149'}], {maxWidth:200, height:110});
+  var diagram = '<div class="fb-diagram" style="display:block;padding:10px;background:#0d1117;border-radius:10px;margin-top:8px">'
+    + '<div style="text-align:center;font-size:.68rem;color:#8b949e;margin-bottom:4px">① 실제 삼각형 모양 (파랑 두 각이 서로 같음)</div>' + tri
+    + '<div style="text-align:center;font-size:.72rem;color:#8b949e;margin:10px 0">세 각을 찢어서 한 점에 모으면 →</div>'
+    + '<div style="text-align:center;font-size:.68rem;color:#8b949e;margin-bottom:4px">② 정확히 평각(180°)</div>' + semi
+    + '</div>';
+  bigRenderToggle(id, diagram+'<div class="sol"><strong>풀이①(두 각의 합):</strong> 180°−'+v+'° = '+(180-v)+'°</div><div class="sol"><strong>풀이②(똑같이 나누기):</strong> '+(180-v)+'°÷2 = <strong>'+x+'°</strong></div>', 'agSol8');
+}
+
+// 문제 9 — 사각형의 두 각의 합과 차
+function agGen9(id){
+  var d = agRand(5,80)*2;
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d);
+  bigSetQuestion(el, '사각형의 네 각 중 두 각은 각각 90°이고, 나머지 두 각의 합은 180°이면서 한쪽이 다른 쪽보다 '+d+'° 큽니다. 나머지 두 각은 각각 몇 도인가요?', 'agSol9');
+}
+function agSol9(id){
+  var el = document.getElementById(id);
+  var d=+el.getAttribute('data-d');
+  var small=(180-d)/2, big=small+d;
+  var quad = agQuadSvg([90,90,small,big], {colors:['#bc8cff','#bc8cff','#3fb950','#f85149'], maxWidth:200});
+  var circle = agWedgeSvg([{deg:90,color:'#bc8cff'},{deg:90,color:'#bc8cff'},{deg:small,color:'#3fb950'},{deg:big,color:'#f85149'}], {width:200,height:200,vertex:[100,100],radius:80,maxWidth:200});
+  var diagram = '<div class="fb-diagram" style="display:block;padding:10px;background:#0d1117;border-radius:10px;margin-top:8px">'
+    + '<div style="text-align:center;font-size:.68rem;color:#8b949e;margin-bottom:4px">① 실제 사각형 모양</div>' + quad
+    + '<div style="text-align:center;font-size:.72rem;color:#8b949e;margin:10px 0">이 네 각을 찢어서 한 점에 모으면 →</div>'
+    + '<div style="text-align:center;font-size:.68rem;color:#8b949e;margin-bottom:4px">② 네 각을 모으면 정확히 원 한 바퀴(360°)</div>' + circle
+    + '</div>';
+  bigRenderToggle(id, diagram+'<div class="sol"><strong>풀이:</strong> (180°−'+d+'°)÷2 = <strong>'+small+'°</strong>(작은 각), '+small+'°+'+d+'° = <strong>'+big+'°</strong>(큰 각)</div><div class="sol"><strong>검산:</strong> 90+90+'+small+'+'+big+' = 360° ✓</div>', 'agSol9');
+}
+
+// 문제 10 — 외각(발전 문제)
+function agGen10(id){
+  var f = agRand(10,60);
+  var e = f + agRand(10,90);
+  var el = document.getElementById(id);
+  el.setAttribute('data-e', e); el.setAttribute('data-f', f);
+  bigSetQuestion(el, '삼각형의 한 각과 평각을 이루는 바깥쪽 각이 '+e+'°입니다. 이 바깥쪽 각과 붙어있는 안쪽 각과, 다른 한 각이 '+f+'°라면, 나머지 한 각은 몇 도인가요?', 'agSol10');
+}
+function agSol10(id){
+  var el = document.getElementById(id);
+  var e=+el.getAttribute('data-e'), f=+el.getAttribute('data-f');
+  var inner1 = 180-e, ans = 180-inner1-f;
+  var tri = agTriSvg([inner1,f,ans], {colors:['#58a6ff','#3fb950','#f85149'], maxWidth:200});
+  var semi = agWedgeSvg([{deg:inner1,color:'#58a6ff'},{deg:e,color:'#f0c040'}], {maxWidth:200, height:110});
+  var diagram = '<div class="fb-diagram" style="display:block;padding:10px;background:#0d1117;border-radius:10px;margin-top:8px">'
+    + '<div style="text-align:center;font-size:.68rem;color:#8b949e;margin-bottom:4px">① 실제 삼각형 모양 (파랑=안쪽 각, 초록='+f+'°, 빨강=답)</div>' + tri
+    + '<div style="text-align:center;font-size:.72rem;color:#8b949e;margin:10px 0">그 안쪽 각(파랑)과 바깥쪽 각(노랑)을 이어보면 →</div>'
+    + '<div style="text-align:center;font-size:.68rem;color:#8b949e;margin-bottom:4px">② 둘이 합쳐 정확히 평각(180°)</div>' + semi
+    + '</div>';
+  bigRenderToggle(id, diagram+'<div class="sol"><strong>풀이①(붙어있는 안쪽 각):</strong> 180°−'+e+'° = '+inner1+'° (평각이므로)</div><div class="sol"><strong>풀이②(나머지 한 각):</strong> 180°−'+inner1+'°−'+f+'° = <strong>'+ans+'°</strong></div>', 'agSol10');
+}
 function lcm5(a,b){ return a*b/gcd(a,b); }
 var FAW1_TUPLES = [[1,4,1,3],[1,3,1,5],[2,5,1,4],[1,6,1,2],[1,8,1,3]];
 var FAW2_TUPLES = [[2,3,3,4],[4,5,2,3],[3,4,4,5],[5,6,3,4],[2,3,5,6]];
@@ -11299,6 +11762,8 @@ const FB_DIAGRAM_H1_SAME = '<div class="fb-diagram"><div style="display:flex;gap
 const FB_DIAGRAM_H2 = '<div class="fb-diagram"><span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span><span class="bundle">🍬🍬🍬🍬</span><span class="single">🍬</span><span class="cap">13개를 4개씩 묶으면 3묶음 + 나머지 1개 (나머지 1 &lt; 나누는 수 4)</span></div>';
 const FB_DIAGRAM_E4BIG_H1 = '<div class="fb-diagram" style="display:block;padding:10px"><div style="text-align:center;font-size:1.05rem;font-family:monospace"><span style="color:#f85149">2</span><span style="color:#8b949e">,</span>546<span style="color:#8b949e">,</span>0000</div><div class="cap">쉼표(,)는 3자리마다, 단위(억·만)는 4자리마다 — 기준이 서로 다름</div></div>';
 const FB_DIAGRAM_E4BIG_H2 = '<div class="fb-diagram" style="display:block;padding:10px"><div style="text-align:center;font-size:1.05rem;font-family:monospace">254600000 <span style="color:#8b949e">(9자리)</span> &gt; 25460000 <span style="color:#8b949e">(8자리)</span></div><div class="cap">앞자리가 같아도(둘 다 "2") 자리수가 다르면 자리수 많은 쪽이 더 큼</div></div>';
+const FB_DIAGRAM_E4ANGLE_H1 = '<div class="fb-diagram" style="display:block;padding:10px"><svg viewBox="0 0 240 150" style="width:100%;max-width:260px;display:block;margin:0 auto"><line x1="20" y1="130" x2="60.0" y2="130.0" stroke="#8b949e" stroke-width="2"/><line x1="20" y1="130" x2="45.7" y2="99.4" stroke="#8b949e" stroke-width="2"/><polygon points="20.0,130.0 38.0,130.0 37.8,127.6 37.3,125.0 36.3,122.4 35.0,120.0 33.3,117.9 31.6,116.2" fill="#f0c040" opacity="0.6"/><text x="38" y="118" font-size="10" fill="#f0c040" font-weight="700">50°</text><line x1="130" y1="130" x2="225.0" y2="130.0" stroke="#8b949e" stroke-width="2"/><line x1="130" y1="130" x2="191.1" y2="57.2" stroke="#8b949e" stroke-width="2"/><polygon points="130.0,130.0 148.0,130.0 147.8,127.6 147.3,125.0 146.3,122.4 145.0,120.0 143.3,117.9 141.6,116.2" fill="#f0c040" opacity="0.6"/><text x="148" y="118" font-size="10" fill="#f0c040" font-weight="700">50°</text></svg><div class="cap">짧은 변(왼쪽)과 긴 변(오른쪽) 모두 똑같이 50° — 벌어진 정도만 같으면 변 길이는 상관없어요</div></div>';
+const FB_DIAGRAM_E4ANGLE_H2 = '<div class="fb-diagram" style="display:block;padding:10px"><svg viewBox="0 0 240 160" style="width:100%;max-width:240px;display:block;margin:0 auto"><polygon points="120.0,135.0 190.0,135.0 189.6,127.2 188.1,118.8 185.4,110.0 181.4,101.3 176.2,93.3 170.3,86.3 163.9,80.5 157.6,75.9" fill="#f85149" opacity="0.55"/><polygon points="120.0,135.0 157.6,75.9 152.0,72.8 145.8,69.9 139.2,67.7 132.1,66.1 125.0,65.2 117.9,65.0 111.1,65.6 104.8,66.7" fill="#58a6ff" opacity="0.55"/><polygon points="120.0,135.0 104.8,66.7 95.8,69.3 85.6,74.0 75.1,81.3 65.4,91.2 57.9,102.8 53.0,114.7 50.6,125.6 50.0,135.0" fill="#3fb950" opacity="0.55"/><line x1="50" y1="135" x2="190" y2="135" stroke="#f0c040" stroke-width="2" stroke-dasharray="4,3"/><text x="90" y="152" font-size="11" fill="#f0c040" font-weight="700">180° (일직선)</text></svg><div class="cap">세 각(빨강·파랑·초록)을 한 점에 모으면 정확히 일직선(180°)</div></div>';
 const FB_DIAGRAM_H3 = '<div class="fb-diagram">🍬🍬🍬🍬🍬 <span class="arrow">➜</span> 0명 <span class="arrow">=</span> ❌<span class="cap">나눠줄 사람이 0명이면 "몇 개씩"이라는 질문 자체가 성립하지 않아요</span></div>';
 const FB_DIAGRAM_H3_ZERO = '<div class="fb-diagram">(사탕 없음) <span class="arrow">➜</span> 5명에게 나눠주면? <span class="arrow">➜</span> 각자 0개<span class="cap">0÷5=0 — 사탕 0개를 5명에게 나누면 한 명당 0개예요</span>'
   + '<div style="margin-top:6px">(사탕 없음) <span class="arrow">➜</span> 3개씩 묶으면? <span class="arrow">➜</span> 0묶음</div><span class="cap">0÷3=0 — 사탕이 아예 없으면 3개씩 묶음도 하나도 못 만들어요</span>'
@@ -11756,6 +12221,22 @@ const HAVRUTA_FB = {
     {ok:true, text:'맞아요! 254600000은 9자리, 25460000은 8자리라서 254600000이 더 커요. 앞자리만 보면 둘 다 "2"로 시작해서 헷갈리기 쉬운데, 자리수부터 세는 게 가장 빠른 방법이에요.', diagram:FB_DIAGRAM_E4BIG_H2},
     {ok:false, text:'앞자리만 보면 위험해요! 두 수 모두 앞자리가 "2"로 시작해서 똑같아 보이지만, 자리수(숫자 개수)가 다르면 비교가 안 돼요. 자리수부터 세어보는 게 먼저예요.', diagram:FB_DIAGRAM_E4BIG_H2},
     {ok:false, text:'0의 개수는 크기와 직접 상관없어요! 예를 들어 100(0이 2개)보다 99(0이 0개)가 더 작죠? 자리수(숫자 전체 개수)를 세는 게 정확한 방법이에요.', diagram:FB_DIAGRAM_E4BIG_H2}
+  ],
+  'e4angle-h1': [
+    {ok:true, text:'맞아요! 각도기로 잴 때도 변의 길이는 신경 안 쓰고 벌어진 정도만 재요. 짧은 변 두 개로 그린 50°와, 아주 긴 변 두 개로 그린 50°는 크기가 똑같아요 — 변을 늘여도 각은 안 커져요.', diagram:FB_DIAGRAM_E4ANGLE_H1},
+    {ok:false, text:'변을 늘인다고 각이 커지지는 않아요! 아래 그림처럼 짧은 변과 긴 변으로 그려도, 벌어진 정도(각도)가 같으면 똑같은 각이에요.', diagram:FB_DIAGRAM_E4ANGLE_H1},
+    {ok:false, text:'반대예요! 변의 길이는 각의 크기와 상관없어요. 벌어진 정도만 같으면, 변이 짧든 길든 각도는 똑같아요.', diagram:FB_DIAGRAM_E4ANGLE_H1},
+    {ok:false, text:'삼각형 전체가 커져도(변이 다 늘어나도) 각의 크기는 그대로일 수 있어요 — 각은 "벌어진 정도"만 재는 거라서 전체 크기와는 별개예요.', diagram:FB_DIAGRAM_E4ANGLE_H1}
+  ],
+  'e4angle-h2': [
+    {ok:true, text:'정확해요! 세 꼭짓점을 찢어서 한 점에 모으면 항상 일직선(평각, 180°)이 돼요. 이게 "삼각형 세 각의 합=180°"의 증명이에요 — 어떤 모양의 삼각형이든 항상 그래요.', diagram:FB_DIAGRAM_E4ANGLE_H2},
+    {ok:false, text:'그냥 외우는 규칙이 아니에요! 직접 종이 삼각형을 찢어서 세 각을 모아보면, 왜 180°가 되는지 눈으로 확인할 수 있어요.', diagram:FB_DIAGRAM_E4ANGLE_H2},
+    {ok:false, text:'삼각형이 아무리 커도 항상 정확히 180°예요! 세 꼭짓점을 찢어 모으면 크기와 상관없이 늘 일직선이 되거든요.', diagram:FB_DIAGRAM_E4ANGLE_H2}
+  ],
+  'e4angle-h3': [
+    {ok:true, text:'맞아요! 둔각은 90°보다 크니까, 둔각 2개만 더해도 벌써 180°를 넘어버려요. 세 각의 합이 정확히 180°여야 하니까, 둔각은 삼각형에 최대 1개까지만 있을 수 있어요.', diagram:null},
+    {ok:false, text:'세 번째 각이 아무리 작아도 0°보다는 커야 하는데, 둔각 2개(예: 100°+100°=200°)만으로 벌써 180°를 넘어서 버려요. 세 번째 각이 들어갈 자리가 없어요.', diagram:null},
+    {ok:false, text:'각도는 음수가 될 수 없어요! 각은 "벌어진 정도"라서 항상 0°보다 크고, 그래서 둔각 2개가 있으면 세 각의 합이 180°를 넘어버려 삼각형이 될 수 없어요.', diagram:null}
   ],
   'e5gcd-h1': [
     {ok:true, text:'맞아요! 소수는 약수가 정확히 2개(1과 자기 자신)여야 해요. 1은 약수가 자기 자신 하나뿐이라 이 조건에 맞지 않아서 소수가 아니에요.', diagram:FB_DIAGRAM_GCD1_OK},
