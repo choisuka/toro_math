@@ -503,6 +503,22 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
     </div>
   </div>
 
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">✖️ 곱셈과 나눗셈 <span class="badge">초4</span></div><div class="unit-sub">(세 자리 수)×(두 자리 수)·(세 자리 수)÷(두 자리 수)</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e4mul">
+        <div class="cv-grid" id="cv-e4mul-grid"></div>
+        <div class="cv-detail" id="cv-e4mul-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e4mul')">← 목록으로</button>
+          <div id="cv-e4mul-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div><!-- /e4 -->
 
 <!-- ===== 초등 5학년 ===== -->
@@ -9991,6 +10007,578 @@ function agSol10(id){
     + '</div>';
   bigRenderToggle(id, diagram+'<div class="sol"><strong>풀이①(붙어있는 안쪽 각):</strong> 180°−'+e+'° = '+inner1+'° (평각이므로)</div><div class="sol"><strong>풀이②(나머지 한 각):</strong> 180°−'+inner1+'°−'+f+'° = <strong>'+ans+'°</strong></div>', 'agSol10');
 }
+const CV_DATA_E4MUL = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <p>문구점에서 지우개를 한 상자에 234개씩, 56상자를 주문하면 몇 개일까요? 학교 전체 학생 840명을 한 반 28명씩 나누면 몇 반이 될까요? 세 자리 수, 두 자리 수끼리의 곱셈·나눗셈을 알아야 이런 실제 문제를 풀 수 있어요.</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
+      <div style="font-size:1.6rem">📦📦📦📦📦<br>📦📦📦📦📦<br><span style="font-size:.9rem;color:#8b949e">… (56상자)</span></div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-top:8px">한 상자에 234개 × 56상자 = ?</div>
+    </div>
+  `},
+  { title:'📖 개념 설명', cls:'concept', html:`
+    <div style="font-size:.78rem;color:#8b949e;font-weight:700;margin-bottom:6px">🔙 복습 — 초3에서 배운 나눗셈, 기억나나요?</div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9;margin-bottom:8px">나눗셈은 두 가지로 생각할 수 있었죠? 12÷4로 다시 확인해봐요.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin:10px 0">
+      <div style="flex:1;min-width:200px;background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px">
+        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">나눠주기 — 4명에게 똑같이</div>
+        <div style="display:flex;justify-content:space-around;font-size:1.15rem">
+          <div style="text-align:center">🧑<br>🍬🍬🍬</div>
+          <div style="text-align:center">🧑<br>🍬🍬🍬</div>
+          <div style="text-align:center">🧑<br>🍬🍬🍬</div>
+          <div style="text-align:center">🧑<br>🍬🍬🍬</div>
+        </div>
+        <div style="text-align:center;font-size:.75rem;color:#8b949e;margin-top:8px">몇 명에게 줄지 알 때 — 1인당 3개</div>
+      </div>
+      <div style="flex:1;min-width:200px;background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px">
+        <div style="font-size:.78rem;color:#58a6ff;font-weight:700;margin-bottom:8px;text-align:center">묶어보기 — 4개씩 묶으면?</div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:center;font-size:1.05rem">
+          <div style="display:flex;align-items:center;gap:8px"><div style="border:2px dashed #58a6ff;border-radius:8px;padding:4px 8px;background:rgba(88,166,255,.06)">🍬🍬🍬🍬</div><span>→ 🧑</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="border:2px dashed #58a6ff;border-radius:8px;padding:4px 8px;background:rgba(88,166,255,.06)">🍬🍬🍬🍬</div><span>→ 🧑</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="border:2px dashed #58a6ff;border-radius:8px;padding:4px 8px;background:rgba(88,166,255,.06)">🍬🍬🍬🍬</div><span>→ 🧑</span></div>
+        </div>
+        <div style="text-align:center;font-size:.75rem;color:#8b949e;margin-top:8px">한 묶음 크기를 알 때 — 3묶음(=3명)</div>
+      </div>
+    </div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9;margin:10px 0 8px">딱 안 나누어떨어지면 <strong>몫</strong>과 <strong>나머지</strong>가 생겨요. 예를 들어 13개를 4개씩 묶으면?</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin-bottom:10px">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;font-size:1.05rem">
+        <div style="border:2px dashed #58a6ff;border-radius:8px;padding:4px 8px;background:rgba(88,166,255,.06)">🍬🍬🍬🍬</div>
+        <div style="border:2px dashed #58a6ff;border-radius:8px;padding:4px 8px;background:rgba(88,166,255,.06)">🍬🍬🍬🍬</div>
+        <div style="border:2px dashed #58a6ff;border-radius:8px;padding:4px 8px;background:rgba(88,166,255,.06)">🍬🍬🍬🍬</div>
+        <div style="border:2px solid #f85149;border-radius:8px;padding:4px 8px;background:rgba(248,81,73,.08);color:#f85149;font-weight:700">🍬</div>
+      </div>
+      <div style="text-align:center;font-size:.75rem;color:#8b949e;margin-top:8px">4개씩 3묶음(12개) + 남은 1개(빨간 상자) → 13÷4=3…1</div>
+    </div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9;margin-bottom:8px"><strong>나머지는 항상 나누는 수보다 작아야</strong> 했죠 — 나머지(1)가 나누는 수(4)보다 크거나 같으면, 그만큼 몫을 더 늘릴 수 있다는 뜻이니까요. 검산도 배웠어요: <strong>나누는 수×몫+나머지 = 나누어지는 수</strong>로 확인하는 거예요. 방금 그 13÷4=3…1을 검산해볼까요?</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:10px;margin-bottom:10px;text-align:center;font-size:.9rem;color:#c9d1d9">
+      4×3+1 = <strong style="color:#f0c040">13</strong> ✓ (원래 나누어지는 수와 같음)
+    </div>
+    <div style="font-size:.78rem;color:#bc8cff;font-weight:700;margin:16px 0 6px">🔗 연결 — 그런데 이번엔 뭐가 다를까?</div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9">지금까지는 나누는 수가 한 자리(2~9)여서, 구구단만 알면 몫을 바로 찾을 수 있었어요. 그런데 이번엔 나누는 수가 <strong>두 자리</strong>예요. 예를 들어 250÷34 — "34단" 구구단은 없죠? 그래서 몫을 바로 외워서 찾을 수가 없어요. 그래서 이번 단원에서는 새로운 방법이 필요해요 — <strong>몫을 어림해서 가늠하고, 확인하고, 틀리면 수정하는 방법</strong>이에요.</p>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:20px 0 6px">🔜 확장 — 이제부터 새로 배우는 것</div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — (세 자리 수)×(두 자리 수): 쪼개서 곱하고 더하기</div>
+    <ul>
+      <li>234×56을 바로 계산하기 어려우니, 56을 50과 6으로 쪼갬</li>
+      <li>234×56 = 234×50 + 234×6 = 11700 + 1404 = <strong>13104</strong></li>
+    </ul>
+    <div style="display:flex;gap:4px;align-items:flex-end;margin:10px 0;background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px">
+      <div style="flex:5;background:rgba(88,166,255,.25);border:1px solid #58a6ff;border-radius:6px;padding:14px 4px;text-align:center;font-size:.72rem;color:#58a6ff;font-weight:700">234×50<br>=11700</div>
+      <div style="flex:1;background:rgba(63,185,80,.25);border:1px solid #3fb950;border-radius:6px;padding:14px 4px;text-align:center;font-size:.68rem;color:#3fb950;font-weight:700">234×6<br>=1404</div>
+    </div>
+    <p style="font-size:.8rem;color:#8b949e;line-height:1.7">💡 방금 쪼갠 것을 세로셈으로 쓰면 이렇게 돼요 — 자리(칸)를 정확히 맞춰서 써볼까요?</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin:10px 0;display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:center">
+      <div style="display:grid;grid-template-columns:repeat(6,22px);row-gap:4px;font-size:1.05rem;justify-items:center">
+        <div style="grid-row:1;grid-column:4">2</div><div style="grid-row:1;grid-column:5">3</div><div style="grid-row:1;grid-column:6">4</div>
+        <div style="grid-row:2;grid-column:3">×</div><div style="grid-row:2;grid-column:5">5</div><div style="grid-row:2;grid-column:6">6</div>
+        <div style="grid-row:3;grid-column:1/7;justify-self:stretch;border-top:1px solid #8b949e;height:1px;margin:2px 0"></div>
+        <div style="grid-row:4;grid-column:3;color:#3fb950">1</div><div style="grid-row:4;grid-column:4;color:#3fb950">4</div><div style="grid-row:4;grid-column:5;color:#3fb950">0</div><div style="grid-row:4;grid-column:6;color:#3fb950">4</div>
+        <div style="grid-row:5;grid-column:2;color:#58a6ff">1</div><div style="grid-row:5;grid-column:3;color:#58a6ff">1</div><div style="grid-row:5;grid-column:4;color:#58a6ff">7</div><div style="grid-row:5;grid-column:5;color:#58a6ff">0</div><div style="grid-row:5;grid-column:6;color:#58a6ff">0</div>
+        <div style="grid-row:6;grid-column:1/7;justify-self:stretch;border-top:1px solid #8b949e;height:1px;margin:2px 0"></div>
+        <div style="grid-row:7;grid-column:2;color:#f0c040;font-weight:700">1</div><div style="grid-row:7;grid-column:3;color:#f0c040;font-weight:700">3</div><div style="grid-row:7;grid-column:4;color:#f0c040;font-weight:700">1</div><div style="grid-row:7;grid-column:5;color:#f0c040;font-weight:700">0</div><div style="grid-row:7;grid-column:6;color:#f0c040;font-weight:700">4</div>
+      </div>
+      <div style="font-size:.74rem;color:#8b949e;line-height:2.3">
+        <div><span style="color:#3fb950;font-weight:700">초록 1404</span> = 234×6 (일의 자리에 맞춰 씀)</div>
+        <div><span style="color:#58a6ff;font-weight:700">파랑 11700</span> = 234×50 (생략 없이 그대로 씀)</div>
+        <div><span style="color:#f0c040;font-weight:700">13104</span> = 두 줄을 자리 맞춰 그대로 더한 값 (1404+11700)</div>
+      </div>
+    </div>
+    <p style="font-size:.8rem;color:#8b949e;line-height:1.7">파랑 줄(1170)을 한 자리 왼쪽으로 미는 이유는, 이게 사실 "50"을 곱한 값(11700)인데 끝에 0을 안 쓰고 자리만 밀어서 같은 효과를 내는 거예요 — 아까 쪼개서 계산한 것과 똑같은 식이 세로셈 안에 그대로 들어있어요.</p>
+    <div style="font-size:.78rem;color:#58a6ff;font-weight:700;margin:16px 0 6px">개념2 — (세 자리 수)÷(몇십): 어림으로 몫 가늠하기</div>
+    <ul>
+      <li>180÷30을 할 때, 0을 하나씩 지우고 18÷3=6으로 계산해도 몫은 똑같음</li>
+      <li>검산: 30×6=180 ✓</li>
+    </ul>
+    <p style="font-size:.8rem;color:#8b949e;line-height:1.7">💡 <strong>왜 0을 지워도 될까요?</strong> 180과 30은 둘 다 18과 3을 10배 한 수예요(180=18×10, 30=3×10). 나누어지는 수와 나누는 수를 똑같이 10배 하거나 똑같이 10으로 나눠도, 두 수 사이의 비율(몫)은 바뀌지 않아요. 그래서 0을 하나씩 지우고 18÷3=6만 계산해도 180÷30의 몫과 똑같아요.</p>
+    <div style="font-size:.78rem;color:#bc8cff;font-weight:700;margin:16px 0 6px">개념3 — (세 자리 수)÷(두 자리 수): 몫과 나머지</div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="font-size:.78rem;color:#c9d1d9;line-height:1.9"><strong>예1 — 250÷34</strong><br>34×7=238, 250−238=<span style="color:#f0c040;font-weight:700">12(나머지)</span> → 몫 7, 나머지 12</div>
+    </div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="font-size:.78rem;color:#c9d1d9;line-height:1.9"><strong>예2 — 412÷56</strong><br>56×7=392, 412−392=<span style="color:#f0c040;font-weight:700">20(나머지)</span> → 몫 7, 나머지 20</div>
+    </div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="font-size:.78rem;color:#c9d1d9;line-height:1.9"><strong>예3 — 183÷27</strong><br>27×6=162, 183−162=<span style="color:#f0c040;font-weight:700">21(나머지)</span> → 몫 6, 나머지 21</div>
+    </div>
+    <p style="font-size:.78rem;color:#8b949e;text-align:center;margin:6px 0 10px">나머지는 항상 나누는 수보다 작아야 해요 (예1: 12&lt;34 / 예2: 20&lt;56 / 예3: 21&lt;27 — 모두 OK)</p>
+    <div class="prob-box"><div style="font-size:.72rem;color:#bc8cff;font-weight:700;margin-bottom:4px">🔄 유사문제로 연습하기</div><div id="mul-c3" class="prob-q" data-a="250" data-b="34">250÷34의 몫과 나머지를 구하세요.<br><button class="havruta-show-btn" onclick="mulSolC3('mul-c3')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulGenC3('mul-c3')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div style="font-size:.78rem;color:#f85149;font-weight:700;margin:16px 0 6px">개념4 — 몫을 어림하고 수정하기 (이 단원에서 제일 어려운 부분)</div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9;margin-bottom:10px"><strong>문제:</strong> 350÷42를 계산해 봅시다. 그런데 "42단" 구구단은 없어서, 몫을 바로 못 찾아요. 이럴 때는 몫을 어림으로 먼저 가늠해보고, 맞는지 확인하고, 틀리면 고치는 방법을 써요.</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="font-size:.72rem;color:#8b949e;margin-bottom:6px">예1 — 350÷42 (첫 어림이 바로 맞는 경우)</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:#c9d1d9;flex-wrap:wrap;gap:6px">
+        <div style="flex:1;min-width:90px;text-align:center;background:rgba(240,196,64,.12);border:1px solid #f0c040;border-radius:8px;padding:8px">① 어림<br><span style="font-size:.68rem;color:#8b949e">350÷40≈8</span></div>
+        <div style="color:#8b949e">→</div>
+        <div style="flex:1;min-width:90px;text-align:center;background:rgba(88,166,255,.12);border:1px solid #58a6ff;border-radius:8px;padding:8px">② 확인<br><span style="font-size:.68rem;color:#8b949e">42×8=336</span></div>
+        <div style="color:#8b949e">→</div>
+        <div style="flex:1;min-width:90px;text-align:center;background:rgba(63,185,80,.12);border:1px solid #3fb950;border-radius:8px;padding:8px">③ 판정<br><span style="font-size:.68rem;color:#8b949e">350−336=14<br>(42보다 작음 OK)</span></div>
+      </div>
+    </div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9;margin:10px 0">이번엔 어림이 처음부터 안 맞으면 어떻게 고치는지, 두 가지 경우를 더 볼까요?</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="font-size:.72rem;color:#8b949e;margin-bottom:6px"><strong>문제:</strong> 예2 — 207÷21 (어림이 너무 커서 줄이는 경우)</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:#c9d1d9;flex-wrap:wrap;gap:6px">
+        <div style="flex:1;min-width:90px;text-align:center;background:rgba(240,196,64,.12);border:1px solid #f0c040;border-radius:8px;padding:8px">① 어림<br><span style="font-size:.68rem;color:#8b949e">207÷20≈10</span></div>
+        <div style="color:#8b949e">→</div>
+        <div style="flex:1;min-width:90px;text-align:center;background:rgba(88,166,255,.12);border:1px solid #58a6ff;border-radius:8px;padding:8px">② 확인<br><span style="font-size:.68rem;color:#8b949e">21×10=210</span></div>
+        <div style="color:#8b949e">→</div>
+        <div style="flex:1;min-width:90px;text-align:center;background:rgba(248,81,73,.12);border:1px solid #f85149;border-radius:8px;padding:8px">③ 판정<br><span style="font-size:.68rem;color:#f85149">210&gt;207 너무 큼!<br>→ 1 줄이기</span></div>
+      </div>
+      <div style="text-align:center;color:#8b949e;margin:6px 0">↓ 몫을 9로 줄여서 다시</div>
+      <div style="display:flex;justify-content:center;font-size:.78rem;color:#c9d1d9">
+        <div style="text-align:center;background:rgba(63,185,80,.12);border:1px solid #3fb950;border-radius:8px;padding:8px;min-width:160px">④ 재확인<br><span style="font-size:.68rem;color:#8b949e">21×9=189, 207−189=18<br>(21보다 작음 OK) → 몫9, 나머지18</span></div>
+      </div>
+    </div>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="font-size:.72rem;color:#8b949e;margin-bottom:6px"><strong>문제:</strong> 예3 — 206÷25 (어림이 너무 작아서 늘리는 경우)</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:#c9d1d9;flex-wrap:wrap;gap:6px">
+        <div style="flex:1;min-width:90px;text-align:center;background:rgba(240,196,64,.12);border:1px solid #f0c040;border-radius:8px;padding:8px">① 어림<br><span style="font-size:.68rem;color:#8b949e">206÷30≈7</span></div>
+        <div style="color:#8b949e">→</div>
+        <div style="flex:1;min-width:90px;text-align:center;background:rgba(88,166,255,.12);border:1px solid #58a6ff;border-radius:8px;padding:8px">② 확인<br><span style="font-size:.68rem;color:#8b949e">25×7=175</span></div>
+        <div style="color:#8b949e">→</div>
+        <div style="flex:1;min-width:90px;text-align:center;background:rgba(248,81,73,.12);border:1px solid #f85149;border-radius:8px;padding:8px">③ 판정<br><span style="font-size:.68rem;color:#f85149">206−175=31<br>31≥25 너무 작음!<br>→ 1 늘리기</span></div>
+      </div>
+      <div style="text-align:center;color:#8b949e;margin:6px 0">↓ 몫을 8로 늘려서 다시</div>
+      <div style="display:flex;justify-content:center;font-size:.78rem;color:#c9d1d9">
+        <div style="text-align:center;background:rgba(63,185,80,.12);border:1px solid #3fb950;border-radius:8px;padding:8px;min-width:160px">④ 재확인<br><span style="font-size:.68rem;color:#8b949e">25×8=200, 206−200=6<br>(25보다 작음 OK) → 몫8, 나머지6</span></div>
+      </div>
+    </div>
+    <p style="font-size:.78rem;color:#8b949e;text-align:center;margin-top:8px">정리: 확인한 값이 나누어지는 수보다 <strong style="color:#f85149">크면</strong> 몫을 1 줄이고, 남는 차이가 나누는 수보다 <strong style="color:#f85149">크거나 같으면</strong> 몫을 1 늘려요.</p>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f85149;font-weight:700;margin-bottom:4px">🔄 유사문제로 연습하기</div><div id="mul-c4" class="prob-q" data-a="350" data-b="42">350÷42의 몫을 어림하고, 확인해서 필요하면 수정하세요.<br><button class="havruta-show-btn" onclick="mulSolC4('mul-c4')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulGenC4('mul-c4')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:16px 0 6px">개념5 — 검산</div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9;margin-bottom:8px"><strong>문제:</strong> 350÷42를 계산해서 몫 8, 나머지 14를 구했어요. 이 답이 맞는지 어떻게 확인할 수 있을까요?</p>
+    <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
+      <div style="font-size:.85rem;color:#c9d1d9;line-height:2">
+        ① 나누는 수 × 몫: <span style="color:#58a6ff;font-weight:700">42 × 8 = 336</span><br>
+        ② 나머지를 더하기: <span style="color:#3fb950;font-weight:700">336 + 14 = 350</span><br>
+        ③ 원래 나누어지는 수(350)와 비교: <span style="color:#f0c040;font-weight:700">350 = 350 ✓ 맞음!</span>
+      </div>
+    </div>
+    <p style="font-size:.87rem;line-height:1.85;color:#c9d1d9"><strong>정리:</strong> 나눗셈의 답을 확인하려면, 나누는 수에 몫을 곱하고 거기에 나머지를 더해봐요. 그 값이 처음의 나누어지는 수와 똑같이 나오면 답이 맞는 거예요.</p>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">🔄 유사문제로 연습하기</div><div id="mul-c5" class="prob-q" data-a="350" data-b="42" data-q="8" data-r="14">350÷42를 계산해서 몫 8, 나머지 14를 구했습니다. 이 답이 맞는지 검산하세요.<br><button class="havruta-show-btn" onclick="mulSolC5('mul-c5')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulGenC5('mul-c5')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+  `},
+  { title:'📖 곱셈과 다양한 표현 익히기', cls:'concept', html:`
+    <p>234×56=13104, 이 하나의 계산도 묻는 말에 따라 아주 다양하게 표현될 수 있어요. 10가지 표현을 함께 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>곱으로 묻기</strong><br>"234와 56의 곱은 얼마인가요?" → <span class="expr-ans">13104</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>배로 묻기</strong><br>"234의 56배는 얼마인가요?" → <span class="expr-ans">13104</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>전체량 구하기</strong><br>"한 상자에 234개씩 56상자가 있습니다. 전체 개수는?" → <span class="expr-ans">13104개</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>넓이로 묻기</strong><br>"가로 234cm, 세로 56cm인 직사각형의 넓이는?" → <span class="expr-ans">13104cm²</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>반복 덧셈으로 보기</strong><br>"234를 56번 더하면 얼마인가요?" → <span class="expr-ans">13104</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>나눗셈 역방향으로 묻기</strong><br>"어떤 수를 56으로 나누었더니 234가 되었습니다. 어떤 수는?" → <span class="expr-ans">13104</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>단가 응용</strong><br>"한 개에 234원인 물건 56개의 값은?" → <span class="expr-ans">13104원</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>순서를 바꿔도 같은지 확인</strong><br>"234×56과 56×234는 같을까요?" → <span class="expr-ans">같다(둘 다 13104, 교환법칙)</span></div>
+    <div class="expr-item"><span class="expr-num">9</span><strong>식 읽고 뜻 말하기</strong><br>"234×56=13104를 읽고 의미를 말해보세요." → <span class="expr-ans">234의 56배는 13104</span></div>
+    <div class="expr-item"><span class="expr-num">10</span><strong>실생활 적용</strong><br>"하루에 234쪽씩 56일 동안 읽으면 총 몇 쪽?" → <span class="expr-ans">13104쪽</span></div>
+    <p style="margin-top:10px">이렇게 10가지 표현이 전부 <strong>같은 계산(234×56=13104)</strong>을 묻고 있어요. 말이 달라도 "결국 곱셈이구나!"를 알아채는 게 중요해요.</p>
+  `},
+  { title:'📖 나눗셈과 다양한 표현 익히기', cls:'concept', html:`
+    <p>350÷42=8…14, 이 하나의 나눗셈도 묻는 말에 따라 다양하게 표현돼요. 10가지 표현을 함께 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>몫으로 묻기</strong><br>"350을 42로 나누면 몫은 얼마인가요?" → <span class="expr-ans">8 (나머지 14)</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>등분제(나누어주기)로 묻기</strong><br>"350개를 42명에게 똑같이 나누어주면 한 명당 몇 개씩 받고, 몇 개가 남나요?" → <span class="expr-ans">8개씩, 14개 남음</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>포함제(묶어보기)로 묻기</strong><br>"350 안에 42가 몇 번 들어갈 수 있나요?" → <span class="expr-ans">8번 (14 남음)</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>역방향(곱셈 역산)으로 묻기</strong><br>"어떤 수를 42로 나누면 몫 8, 나머지 14가 나옵니다. 어떤 수는?" → <span class="expr-ans">350</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>검산 식으로 묻기</strong><br>"42×8+14는 얼마인가요?" → <span class="expr-ans">350</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>실생활 적용(나눠 담기)</strong><br>"사탕 350개를 한 봉지에 42개씩 담으면 몇 봉지가 되고, 몇 개가 남나요?" → <span class="expr-ans">8봉지, 14개 남음</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>길이 응용</strong><br>"길이 350cm인 끈을 42cm씩 자르면 몇 도막이 되고, 몇 cm가 남나요?" → <span class="expr-ans">8도막, 14cm 남음</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>어림으로 비교하기</strong><br>"350÷42의 몫은 7일까요, 8일까요, 9일까요?" → <span class="expr-ans">8 (42×8=336≤350&lt;42×9=378)</span></div>
+    <div class="expr-item"><span class="expr-num">9</span><strong>식 읽고 뜻 말하기</strong><br>"350÷42=8…14를 읽고 의미를 말해보세요." → <span class="expr-ans">350을 42로 나누면 몫은 8, 나머지는 14</span></div>
+    <div class="expr-item"><span class="expr-num">10</span><strong>조건 추론(최대 개수)</strong><br>"350원을 가지고 한 개 42원짜리 물건을 최대 몇 개까지 살 수 있나요?" → <span class="expr-ans">8개 (14원 남음)</span></div>
+    <p style="margin-top:10px">이렇게 10가지 표현이 전부 <strong>같은 계산(350÷42=8…14)</strong>을 묻고 있어요. 말이 달라도 "결국 나눗셈이구나!"를 알아채는 게 중요해요.</p>
+  `},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="q-item"><strong>Q1.</strong> 180÷30을 계산할 때, 0을 하나씩 지우고 18÷3=6으로 계산해도 되는 이유는?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4mul-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4mul-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4mul-h1',0,this)">180과 30 둘 다 10배 되어 있는 수라서, 똑같이 10으로 나누면 몫은 그대로예요(18÷3=6)</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4mul-h1',1,this)">그냥 0을 지우면 더 쉬워서 쓰는 요령일 뿐, 원래는 틀린 계산이에요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4mul-h1',2,this)">0을 지우면 항상 몫이 10배 작아져요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4mul-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 234×56을 계산할 때 234×6과 234×5를 더한 친구가 있었어요. 뭐가 틀렸을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4mul-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4mul-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4mul-h2',0,this)">234×5가 아니라 234×50이어야 해요 — 5는 십의 자리 숫자라서 실제로는 50을 곱하는 거예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4mul-h2',1,this)">순서를 바꿔서 234×6부터 계산한 게 문제예요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4mul-h2',2,this)">그냥 마지막에 0을 하나 붙이면 돼요, 틀린 게 없어요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4mul-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 나눗셈에서 나머지가 나누는 수보다 크거나 같으면 왜 안 될까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4mul-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4mul-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4mul-h3',0,this)">나머지가 나누는 수보다 크거나 같으면, 그 안에 나누는 수가 또 들어있다는 뜻이라 몫을 하나 더 늘려야 해요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4mul-h3',1,this)">나머지는 항상 0이어야 맞는 답이에요</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4mul-h3',2,this)">그냥 정해진 규칙이라 외워야 해요</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4mul-h3"></div>
+      </div>
+    </div>
+  `},
+  { title:'✏️ 예제 문제', cls:'problems', html:`
+    <p>"다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와요.</p>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1 (쪼개서 곱하기)</div><div id="mul-1" class="prob-q" data-a="127" data-b="34" data-qtext="127×34를 두 수의 곱으로 쪼개서 계산하세요." data-solfn="mulSol1">127×34를 두 수의 곱으로 쪼개서 계산하세요.<br><button class="havruta-show-btn" onclick="mulSol1('mul-1')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulGen1('mul-1')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2 (몫·나머지로 역산)</div><div id="mul-2" class="prob-q" data-d="23" data-q="15" data-r="8" data-qtext="어떤 수를 23으로 나누었더니 몫이 15, 나머지가 8이 나왔습니다. 어떤 수는 얼마인가요?" data-solfn="mulSol2">어떤 수를 23으로 나누었더니 몫이 15, 나머지가 8이 나왔습니다. 어떤 수는 얼마인가요?<br><button class="havruta-show-btn" onclick="mulSol2('mul-2')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulGen2('mul-2')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3 (어림 vs 실제)</div><div id="mul-3" class="prob-q" data-x="392" data-y="48" data-qtext="392÷48을 계산하기 전에 어림으로 몫을 먼저 예상해보고, 실제 몫·나머지와 비교하세요." data-solfn="mulSol3">392÷48을 계산하기 전에 어림으로 몫을 먼저 예상해보고, 실제 몫·나머지와 비교하세요.<br><button class="havruta-show-btn" onclick="mulSol3('mul-3')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulGen3('mul-3')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+  `},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <p>지금까지 배운 곱셈과 나눗셈을 실제 상황에 적용하는 조금 더 어려운 문제들이에요. "유사문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1 (곱셈 응용)</div><div id="mulw-1" class="prob-q" data-a="234" data-b="56" data-item="지우개" data-qtext="문구점에 지우개가 한 상자에 234개씩 들어있습니다. 56상자를 주문하면 지우개는 모두 몇 개인가요?" data-solfn="mulWSol1">문구점에 지우개가 한 상자에 234개씩 들어있습니다. 56상자를 주문하면 지우개는 모두 몇 개인가요?<br><button class="havruta-show-btn" onclick="mulWSol1('mulw-1')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulWGen1('mulw-1')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 2 (나눗셈 응용)</div><div id="mulw-2" class="prob-q" data-b="23" data-q="18" data-r="5" data-item="사탕" data-qtext="사탕 419개를 23명에게 똑같이 나눠주려고 합니다. 한 명당 몇 개씩 받고, 남는 것은 몇 개인가요?" data-solfn="mulWSol2">사탕 419개를 23명에게 똑같이 나눠주려고 합니다. 한 명당 몇 개씩 받고, 남는 것은 몇 개인가요?<br><button class="havruta-show-btn" onclick="mulWSol2('mulw-2')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulWGen2('mulw-2')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 3 (복합: 곱셈→나눗셈)</div><div id="mulw-3" class="prob-q" data-p="27" data-n="8" data-k="17" data-item="구슬" data-qtext="한 상자에 구슬이 27개씩 들어있는 상자가 8개 있습니다. 이 구슬을 학생 17명에게 똑같이 나누어주면 한 명당 몇 개씩 받고, 몇 개가 남나요?" data-solfn="mulWSol3">한 상자에 구슬이 27개씩 들어있는 상자가 8개 있습니다. 이 구슬을 학생 17명에게 똑같이 나누어주면 한 명당 몇 개씩 받고, 몇 개가 남나요?<br><button class="havruta-show-btn" onclick="mulWSol3('mulw-3')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulWGen3('mulw-3')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 4 (나눗셈 오류 찾기)</div><div id="mulw-4" class="prob-q" data-y="24" data-tq="9" data-tr="7" data-name="서연" data-qtext="서연이가 223÷24를 계산했는데 몫을 8, 나머지를 31이라고 했습니다. 이 계산이 왜 틀렸는지 설명하고 바르게 고쳐 보세요." data-solfn="mulWSol4">서연이가 223÷24를 계산했는데 몫을 8, 나머지를 31이라고 했습니다. 이 계산이 왜 틀렸는지 설명하고 바르게 고쳐 보세요.<br><button class="havruta-show-btn" onclick="mulWSol4('mulw-4')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulWGen4('mulw-4')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 5 (포함제 vs 등분제)</div><div id="mulw-5" class="prob-q" data-y="16" data-q="12" data-item="공책" data-qtext="공책 192권이 있습니다. (a) 16명에게 똑같이 나누면 한 명당 몇 권인가요? (b) 한 사람에게 12권씩 나누면 몇 명에게 나눠줄 수 있나요?" data-solfn="mulWSol5">공책 192권이 있습니다. (a) 16명에게 똑같이 나누면 한 명당 몇 권인가요? (b) 한 사람에게 12권씩 나누면 몇 명에게 나눠줄 수 있나요?<br><button class="havruta-show-btn" onclick="mulWSol5('mulw-5')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulWGen5('mulw-5')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 6 (곱셈 오류 찾기)</div><div id="mulw-6" class="prob-q" data-a="312" data-bten="40" data-bone="7" data-name="민준" data-qtext="민준이가 312×47을 다음과 같이 계산했습니다: &quot;312×4=1248, 312×7=2184, 1248+2184=3432.&quot; 이 계산에서 잘못된 부분을 찾아 바르게 고쳐 보세요." data-solfn="mulWSol6">민준이가 312×47을 다음과 같이 계산했습니다: "312×4=1248, 312×7=2184, 1248+2184=3432." 이 계산에서 잘못된 부분을 찾아 바르게 고쳐 보세요.<br><button class="havruta-show-btn" onclick="mulWSol6('mulw-6')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulWGen6('mulw-6')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 7 (어림으로 최대 개수 구하기)</div><div id="mulw-7" class="prob-q" data-price="35" data-budget="520" data-qtext="가진 돈이 520원입니다. 한 개에 35원인 물건을 최대 몇 개까지 살 수 있고, 얼마가 남는지 어림으로 먼저 예상한 후 정확히 계산하세요." data-solfn="mulWSol7">가진 돈이 520원입니다. 한 개에 35원인 물건을 최대 몇 개까지 살 수 있고, 얼마가 남는지 어림으로 먼저 예상한 후 정확히 계산하세요.<br><button class="havruta-show-btn" onclick="mulWSol7('mulw-7')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulWGen7('mulw-7')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 8 (두 방법 비교)</div><div id="mulw-8" class="prob-q" data-x="28" data-y="19" data-qtext="화단에 꽃을 심는 두 가지 방법이 있습니다. 방법 A: 한 줄에 28송이씩 19줄. 방법 B: 한 줄에 19송이씩 28줄. 두 방법 중 어느 쪽이 꽃이 더 많이 필요한가요? 이유도 설명해 보세요." data-solfn="mulWSol8">화단에 꽃을 심는 두 가지 방법이 있습니다. 방법 A: 한 줄에 28송이씩 19줄. 방법 B: 한 줄에 19송이씩 28줄. 두 방법 중 어느 쪽이 꽃이 더 많이 필요한가요? 이유도 설명해 보세요.<br><button class="havruta-show-btn" onclick="mulWSol8('mulw-8')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulWGen8('mulw-8')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 9 (복합: 나눗셈→곱셈)</div><div id="mulw-9" class="prob-q" data-pergroup="18" data-group="15" data-days="23" data-qtext="구슬 270개를 15명에게 똑같이 나누어주었더니 나누어 떨어져서 한 명당 18개씩 받았습니다. 다음 날 같은 방식으로 23명에게 나누어준다면, 구슬이 모두 몇 개 필요한가요?" data-solfn="mulWSol9">구슬 270개를 15명에게 똑같이 나누어주었더니 나누어 떨어져서 한 명당 18개씩 받았습니다. 다음 날 같은 방식으로 23명에게 나누어준다면, 구슬이 모두 몇 개 필요한가요?<br><button class="havruta-show-btn" onclick="mulWSol9('mulw-9')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulWGen9('mulw-9')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 10 (검산으로 오답 찾기)</div><div id="mulw-10" class="prob-q" data-a="575" data-b="37" data-cq="14" data-cr="57" data-qtext="친구가 575÷37을 계산해서 몫 14, 나머지 57이라고 했습니다. 검산을 통해 이 답이 맞는지 확인하고, 틀렸다면 바르게 고쳐 보세요." data-solfn="mulWSol10">친구가 575÷37을 계산해서 몫 14, 나머지 57이라고 했습니다. 검산을 통해 이 답이 맞는지 확인하고, 틀렸다면 바르게 고쳐 보세요.<br><button class="havruta-show-btn" onclick="mulWSol10('mulw-10')">💡 풀이 보기</button></div><button class="havruta-show-btn" onclick="mulWGen10('mulw-10')" style="width:100%;margin-top:8px">🔄 유사문제</button></div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 234×56을 계산하는데 234×50이랑 234×6을 따로 계산해서 더했더니 답이 나왔어요! 근데 왜 이렇게 쪼개도 되는 거예요?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>저도 궁금해요. 그냥 한 번에 곱하면 안 돼요?</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>56개를 한 번에 세기는 어려우니까, 50개 세고 6개 세는 거랑 비슷한 거 아닐까?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하은</span>아! 234개짜리 묶음이 56개 있는 거니까, 50묶음이랑 6묶음으로 나눠서 세고 합치는 거네요!</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>정확해요! 56 = 50+6이니까, 234×56 = 234×(50+6) = 234×50 + 234×6이에요. 이건 "곱셈의 분배법칙"이라고 하는데, 큰 수를 작은 수로 쪼개서 계산하면 실수도 줄고 암산도 더 쉬워져요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>사실 여러분이 2학년 때 배운 "9×7을 9×5+9×2로 쪼개기"랑 완전히 같은 원리예요. 숫자만 커졌을 뿐, 쪼개서 더하는 방법은 똑같아요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 큰 수의 곱셈도 결국 작은 수의 곱셈을 쪼개서 더하는 것뿐이에요. 56을 50+6으로 쪼개듯, 몇 번 곱해야 할지 애매할 때는 쉬운 단위(십의 자리, 일의 자리)로 나눠서 각각 계산한 뒤 합치면 돼요 — 이 원리는 숫자가 더 커져도 똑같이 적용돼요.</div>
+  `}
+];
+CV_DATA['e4mul'] = CV_DATA_E4MUL;
+function mulRand(min,max){ return min + Math.floor(Math.random()*(max-min+1)); }
+
+// 문제 1 — 쪼개서 곱하기
+function mulGen1(id){
+  var a = mulRand(100,999), b = mulRand(10,99);
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b);
+  bigSetQuestion(el, a+'×'+b+'를 두 수의 곱으로 쪼개서 계산하세요.', 'mulSol1');
+}
+function mulSol1(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b');
+  var tens = Math.floor(b/10)*10, ones = b%10;
+  var p1 = a*tens, p2 = a*ones, total = p1+p2;
+  var html = '<div class="sol"><strong>풀이①(쪼개기):</strong> '+b+' = '+tens+' + '+ones+'</div>'
+    + '<div class="sol"><strong>풀이②(각각 곱하기):</strong> '+a+'×'+tens+' = '+p1+' / '+a+'×'+ones+' = '+p2+'</div>'
+    + '<div class="sol"><strong>풀이③(더하기):</strong> '+p1+' + '+p2+' = <strong>'+total+'</strong></div>';
+  bigRenderToggle(id, html, 'mulSol1');
+}
+
+// 문제 2 — 몫·나머지로 원래 수 역산
+function mulGen2(id){
+  var d = mulRand(11,40), q = mulRand(8,30), r = mulRand(0,d-1);
+  var el = document.getElementById(id);
+  el.setAttribute('data-d', d); el.setAttribute('data-q', q); el.setAttribute('data-r', r);
+  bigSetQuestion(el, '어떤 수를 '+d+'으로 나누었더니 몫이 '+q+', 나머지가 '+r+'이 나왔습니다. 어떤 수는 얼마인가요?', 'mulSol2');
+}
+function mulSol2(id){
+  var el = document.getElementById(id);
+  var d=+el.getAttribute('data-d'), q=+el.getAttribute('data-q'), r=+el.getAttribute('data-r');
+  var dq = d*q, x = dq+r;
+  var html = '<div class="sol"><strong>풀이①:</strong> '+d+'×'+q+' = '+dq+'</div>'
+    + '<div class="sol"><strong>풀이②:</strong> '+dq+'+'+r+' = <strong>'+x+'</strong></div>'
+    + '<div class="sol"><strong>검산:</strong> '+x+'÷'+d+' = '+q+'…'+r+' ✓</div>';
+  bigRenderToggle(id, html, 'mulSol2');
+}
+
+// 문제 3 — 어림과 실제 비교
+function mulGen3(id){
+  var x = mulRand(100,999), y = mulRand(10,99);
+  var el = document.getElementById(id);
+  el.setAttribute('data-x', x); el.setAttribute('data-y', y);
+  bigSetQuestion(el, x+'÷'+y+'을 계산하기 전에 어림으로 몫을 먼저 예상해보고, 실제 몫·나머지와 비교하세요.', 'mulSol3');
+}
+function mulSol3(id){
+  var el = document.getElementById(id);
+  var x=+el.getAttribute('data-x'), y=+el.getAttribute('data-y');
+  var rx = Math.round(x/100)*100, ry = Math.round(y/10)*10;
+  var est = Math.round(rx/ry);
+  var q = Math.floor(x/y), r = x - y*q;
+  var html = '<div class="sol"><strong>풀이①(어림):</strong> '+x+'≈'+rx+', '+y+'≈'+ry+' → '+rx+'÷'+ry+'≈<strong>'+est+'</strong></div>'
+    + '<div class="sol"><strong>풀이②(실제):</strong> '+y+'×'+q+'='+ (y*q) +', '+x+'−'+(y*q)+'='+r+' → 몫 <strong>'+q+'</strong>, 나머지 <strong>'+r+'</strong></div>'
+    + '<div class="sol"><strong>비교:</strong> 어림('+est+')과 실제 몫('+q+')이 비슷해요 — 어림은 정확한 몫을 빠르게 가늠하는 데 도움이 돼요.</div>';
+  bigRenderToggle(id, html, 'mulSol3');
+}
+
+// 개념3 유사문제 — 기본 몫·나머지
+function mulGenC3(id){
+  var a = mulRand(100,999), b = mulRand(11,99);
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b);
+  bigSetQuestion(el, a+'÷'+b+'의 몫과 나머지를 구하세요.', 'mulSolC3');
+}
+function mulSolC3(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b');
+  var q = Math.floor(a/b), r = a - b*q;
+  var html = '<div class="sol"><strong>풀이①:</strong> '+b+'×'+q+' = '+(b*q)+'</div>'
+    + '<div class="sol"><strong>풀이②:</strong> '+a+'−'+(b*q)+' = '+r+'(나머지)</div>'
+    + '<div class="sol"><strong>결과:</strong> 몫 <strong>'+q+'</strong>, 나머지 <strong>'+r+'</strong> (나머지 '+r+'은 나누는 수 '+b+'보다 작음 ✓)</div>';
+  bigRenderToggle(id, html, 'mulSolC3');
+}
+
+// 개념4 유사문제 — 어림하고 확인해서 수정하기
+// 생성 시점에 '어림이 ±1 이내로만 빗나가는' 경우만 채택 — 그래야 ①어림②확인③판정(④재확인) 4단계로 항상 깔끔하게 끝남
+function mulGenC4(id){
+  var a, b, ra, rb, est, check, q, r, ok=false, tries=0;
+  while(!ok && tries<30){
+    a = mulRand(100,999); b = mulRand(11,99);
+    ra = Math.round(a/100)*100; rb = Math.round(b/10)*10 || 10;
+    est = Math.max(1, Math.round(ra/rb));
+    check = b*est;
+    if(check > a){ q = est-1; r = a-b*q; }
+    else if(a-check >= b){ q = est+1; r = a-b*q; }
+    else { q = est; r = a-check; }
+    ok = (q>=1 && r>=0 && r<b);
+    tries++;
+  }
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b);
+  bigSetQuestion(el, a+'÷'+b+'의 몫을 어림하고, 확인해서 필요하면 수정하세요.', 'mulSolC4');
+}
+function mulSolC4(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b');
+  var ra = Math.round(a/100)*100, rb = Math.round(b/10)*10 || 10;
+  var est = Math.max(1, Math.round(ra/rb));
+  var check = b*est;
+  var html = '<div class="sol"><strong>①어림:</strong> '+a+'≈'+ra+', '+b+'≈'+rb+' → '+ra+'÷'+rb+'≈<strong>'+est+'</strong></div>'
+    + '<div class="sol"><strong>②확인:</strong> '+b+'×'+est+' = '+check+'</div>';
+  var q, r;
+  if(check > a){
+    q = est - 1; r = a - b*q;
+    html += '<div class="sol" style="color:#f85149"><strong>③판정:</strong> '+check+'&gt;'+a+' 너무 큼! → 몫을 1 줄여요</div>'
+      + '<div class="sol"><strong>④재확인:</strong> '+b+'×'+q+' = '+(b*q)+', '+a+'−'+(b*q)+' = '+r+'('+b+'보다 작음 OK) → 몫 <strong>'+q+'</strong>, 나머지 <strong>'+r+'</strong></div>';
+  } else if(a - check >= b){
+    q = est + 1; r = a - b*q;
+    html += '<div class="sol" style="color:#f85149"><strong>③판정:</strong> '+a+'−'+check+'='+(a-check)+', '+(a-check)+'≥'+b+' 너무 작음! → 몫을 1 늘려요</div>'
+      + '<div class="sol"><strong>④재확인:</strong> '+b+'×'+q+' = '+(b*q)+', '+a+'−'+(b*q)+' = '+r+'('+b+'보다 작음 OK) → 몫 <strong>'+q+'</strong>, 나머지 <strong>'+r+'</strong></div>';
+  } else {
+    q = est; r = a - check;
+    html += '<div class="sol" style="color:#3fb950"><strong>③판정:</strong> '+a+'−'+check+' = '+r+'('+b+'보다 작음 OK) → 첫 어림이 바로 맞았어요! 몫 <strong>'+q+'</strong>, 나머지 <strong>'+r+'</strong></div>';
+  }
+  bigRenderToggle(id, html, 'mulSolC4');
+}
+
+// 개념5 유사문제 — 검산
+function mulGenC5(id){
+  var a = mulRand(200,999), b = mulRand(11,99);
+  var q = Math.floor(a/b), r = a - b*q;
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b); el.setAttribute('data-q', q); el.setAttribute('data-r', r);
+  bigSetQuestion(el, a+'÷'+b+'를 계산해서 몫 '+q+', 나머지 '+r+'을 구했습니다. 이 답이 맞는지 검산하세요.', 'mulSolC5');
+}
+function mulSolC5(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), q=+el.getAttribute('data-q'), r=+el.getAttribute('data-r');
+  var bq = b*q, total = bq+r;
+  var html = '<div class="sol"><strong>①나누는 수×몫:</strong> '+b+'×'+q+' = '+bq+'</div>'
+    + '<div class="sol"><strong>②나머지 더하기:</strong> '+bq+'+'+r+' = '+total+'</div>'
+    + '<div class="sol"><strong>③비교:</strong> '+total+' = '+a+' → <strong style="color:#3fb950">✓ 맞음!</strong></div>';
+  bigRenderToggle(id, html, 'mulSolC5');
+}
+
+// 문장제 심화 10선
+function mulWGen1(id){
+  var items = ['지우개','클립','색연필','스티커','단추'];
+  var item = items[Math.floor(Math.random()*items.length)];
+  var a = mulRand(120,480), b = mulRand(23,87);
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b); el.setAttribute('data-item', item);
+  bigSetQuestion(el, '문구점에 '+item+'이(가) 한 상자에 '+a+'개씩 들어있습니다. '+b+'상자를 주문하면 '+item+'은(는) 모두 몇 개인가요?', 'mulWSol1');
+}
+function mulWSol1(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b');
+  var bTen = Math.floor(b/10)*10, bOne = b%10;
+  var p1=a*bTen, p2=a*bOne, ans=a*b;
+  var html = '<div class="sol"><strong>풀이①(쪼개기):</strong> '+b+' = '+bTen+' + '+bOne+'</div>'
+    + '<div class="sol"><strong>풀이②:</strong> '+a+'×'+bTen+'='+p1+', '+a+'×'+bOne+'='+p2+'</div>'
+    + '<div class="sol"><strong>풀이③:</strong> '+p1+'+'+p2+' = <strong>'+ans+'개</strong></div>';
+  bigRenderToggle(id, html, 'mulWSol1');
+}
+
+function mulWGen2(id){
+  var items = ['사탕','구슬','딱지','색종이'];
+  var item = items[Math.floor(Math.random()*items.length)];
+  var b = mulRand(12,45), q = mulRand(8,25), r = mulRand(0,b-1);
+  var a = b*q+r;
+  var el = document.getElementById(id);
+  el.setAttribute('data-b', b); el.setAttribute('data-q', q); el.setAttribute('data-r', r); el.setAttribute('data-item', item);
+  bigSetQuestion(el, item+' '+a+'개를 '+b+'명에게 똑같이 나눠주려고 합니다. 한 명당 몇 개씩 받고, 남는 것은 몇 개인가요?', 'mulWSol2');
+}
+function mulWSol2(id){
+  var el = document.getElementById(id);
+  var b=+el.getAttribute('data-b'), q=+el.getAttribute('data-q'), r=+el.getAttribute('data-r');
+  var a = b*q+r;
+  var html = '<div class="sol"><strong>풀이:</strong> '+a+'÷'+b+' = <strong>'+q+'</strong>개씩, 나머지 <strong>'+r+'</strong>개</div>'
+    + '<div class="sol"><strong>검산:</strong> '+b+'×'+q+'+'+r+' = '+a+' ✓</div>';
+  bigRenderToggle(id, html, 'mulWSol2');
+}
+
+function mulWGen3(id){
+  var items = ['구슬','사탕','연필'];
+  var item = items[Math.floor(Math.random()*items.length)];
+  var p = mulRand(15,45), n = mulRand(6,9), total = p*n;
+  var k = mulRand(11,30), tries = 0;
+  while(k>=total && tries<20){ k = mulRand(11,30); tries++; }
+  var el = document.getElementById(id);
+  el.setAttribute('data-p', p); el.setAttribute('data-n', n); el.setAttribute('data-k', k); el.setAttribute('data-item', item);
+  bigSetQuestion(el, '한 상자에 '+item+'이(가) '+p+'개씩 들어있는 상자가 '+n+'개 있습니다. 이 '+item+'을(를) 학생 '+k+'명에게 똑같이 나누어주면 한 명당 몇 개씩 받고, 몇 개가 남나요?', 'mulWSol3');
+}
+function mulWSol3(id){
+  var el = document.getElementById(id);
+  var p=+el.getAttribute('data-p'), n=+el.getAttribute('data-n'), k=+el.getAttribute('data-k');
+  var total = p*n, q = Math.floor(total/k), r = total-k*q;
+  var html = '<div class="sol"><strong>①전체 개수:</strong> '+p+'×'+n+' = '+total+'개</div>'
+    + '<div class="sol"><strong>②나누기:</strong> '+total+'÷'+k+' = <strong>'+q+'</strong>개씩, 나머지 <strong>'+r+'</strong>개</div>';
+  bigRenderToggle(id, html, 'mulWSol3');
+}
+
+function mulWGen4(id){
+  var names = ['서연','민준','지호','하은'];
+  var name = names[Math.floor(Math.random()*names.length)];
+  var y = mulRand(11,40), tq = mulRand(5,20), tr = mulRand(0,y-1);
+  var x = y*tq+tr;
+  var wq = tq-1, wr = x-y*wq;
+  var el = document.getElementById(id);
+  el.setAttribute('data-y', y); el.setAttribute('data-tq', tq); el.setAttribute('data-tr', tr); el.setAttribute('data-name', name);
+  bigSetQuestion(el, name+'이가 '+x+'÷'+y+'를 계산했는데 몫을 '+wq+', 나머지를 '+wr+'이라고 했습니다. 이 계산이 왜 틀렸는지 설명하고 바르게 고쳐 보세요.', 'mulWSol4');
+}
+function mulWSol4(id){
+  var el = document.getElementById(id);
+  var y=+el.getAttribute('data-y'), tq=+el.getAttribute('data-tq'), tr=+el.getAttribute('data-tr');
+  var x = y*tq+tr;
+  var wq = tq-1, wr = x-y*wq;
+  var html = '<div class="sol"><strong>왜 틀렸나:</strong> 나머지 '+wr+'은 나누는 수 '+y+'보다 커요(또는 같아요) — 나머지는 항상 나누는 수보다 작아야 해요</div>'
+    + '<div class="sol"><strong>바른 계산:</strong> '+x+'÷'+y+' = <strong>'+tq+'</strong>…<strong>'+tr+'</strong></div>';
+  bigRenderToggle(id, html, 'mulWSol4');
+}
+
+function mulWGen5(id){
+  var items = ['구슬','사탕','클립','단추'];
+  var item = items[Math.floor(Math.random()*items.length)];
+  var y = mulRand(11,25), q = mulRand(8,20);
+  var x = y*q;
+  var el = document.getElementById(id);
+  el.setAttribute('data-y', y); el.setAttribute('data-q', q); el.setAttribute('data-item', item);
+  bigSetQuestion(el, item+' '+x+'개가 있습니다. (a) '+y+'명에게 똑같이 나누면 한 명당 몇 개인가요? (b) 한 사람에게 '+q+'개씩 나누면 몇 명에게 나눠줄 수 있나요?', 'mulWSol5');
+}
+function mulWSol5(id){
+  var el = document.getElementById(id);
+  var y=+el.getAttribute('data-y'), q=+el.getAttribute('data-q');
+  var x = y*q;
+  var html = '<div class="sol"><strong>(a) 등분제:</strong> '+x+'÷'+y+' = <strong>'+q+'</strong>개 (몇 명에게 나눌지 알 때, 한 명 몫을 구해요)</div>'
+    + '<div class="sol"><strong>(b) 포함제:</strong> '+x+'÷'+q+' = <strong>'+y+'</strong>명 (한 묶음 크기를 알 때, 몇 묶음(명)이 되는지 구해요)</div>'
+    + '<div class="sol">같은 '+x+'과 같은 나눗셈 관계인데, 무엇을 구하냐에 따라 질문이 달라져요</div>';
+  bigRenderToggle(id, html, 'mulWSol5');
+}
+
+function mulWGen6(id){
+  var names = ['민준','서연','지호','하은'];
+  var name = names[Math.floor(Math.random()*names.length)];
+  var a = mulRand(120,480);
+  var bTen = mulRand(1,8)*10, bOne = mulRand(1,9);
+  var b = bTen+bOne, tensDigit = bTen/10;
+  var wrongP1 = a*tensDigit, p2 = a*bOne, wrongSum = wrongP1+p2;
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-bten', bTen); el.setAttribute('data-bone', bOne); el.setAttribute('data-name', name);
+  bigSetQuestion(el, name+'이가 '+a+'×'+b+'을 다음과 같이 계산했습니다: "'+a+'×'+tensDigit+'='+wrongP1+', '+a+'×'+bOne+'='+p2+', '+wrongP1+'+'+p2+'='+wrongSum+'." 이 계산에서 잘못된 부분을 찾아 바르게 고쳐 보세요.', 'mulWSol6');
+}
+function mulWSol6(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), bTen=+el.getAttribute('data-bten'), bOne=+el.getAttribute('data-bone');
+  var tensDigit = bTen/10;
+  var p1 = a*bTen, p2 = a*bOne, correct = p1+p2;
+  var html = '<div class="sol"><strong>왜 틀렸나:</strong> '+tensDigit+'는 십의 자리 숫자라서 실제로는 '+bTen+'을 곱해야 해요</div>'
+    + '<div class="sol"><strong>바른 계산:</strong> '+a+'×'+bTen+'='+p1+', '+a+'×'+bOne+'='+p2+', '+p1+'+'+p2+' = <strong>'+correct+'</strong></div>';
+  bigRenderToggle(id, html, 'mulWSol6');
+}
+
+function mulWGen7(id){
+  var price = mulRand(15,80), budget = mulRand(200,900);
+  var el = document.getElementById(id);
+  el.setAttribute('data-price', price); el.setAttribute('data-budget', budget);
+  bigSetQuestion(el, '가진 돈이 '+budget+'원입니다. 한 개에 '+price+'원인 물건을 최대 몇 개까지 살 수 있고, 얼마가 남는지 어림으로 먼저 예상한 후 정확히 계산하세요.', 'mulWSol7');
+}
+function mulWSol7(id){
+  var el = document.getElementById(id);
+  var price=+el.getAttribute('data-price'), budget=+el.getAttribute('data-budget');
+  var rb = Math.round(budget/100)*100, rp = Math.round(price/10)*10 || 10;
+  var est = Math.max(1, Math.round(rb/rp));
+  var q = Math.floor(budget/price), r = budget-price*q;
+  var html = '<div class="sol"><strong>어림:</strong> '+budget+'≈'+rb+', '+price+'≈'+rp+' → '+rb+'÷'+rp+'≈<strong>'+est+'</strong>개 정도</div>'
+    + '<div class="sol"><strong>실제:</strong> '+price+'×'+q+'='+(price*q)+', '+budget+'−'+(price*q)+'='+r+' → <strong>'+q+'</strong>개 살 수 있고, <strong>'+r+'</strong>원 남아요</div>';
+  bigRenderToggle(id, html, 'mulWSol7');
+}
+
+function mulWGen8(id){
+  var x = mulRand(15,45), y = mulRand(15,45), tries = 0;
+  while(y===x && tries<10){ y = mulRand(15,45); tries++; }
+  var el = document.getElementById(id);
+  el.setAttribute('data-x', x); el.setAttribute('data-y', y);
+  bigSetQuestion(el, '화단에 꽃을 심는 두 가지 방법이 있습니다. 방법 A: 한 줄에 '+x+'송이씩 '+y+'줄. 방법 B: 한 줄에 '+y+'송이씩 '+x+'줄. 두 방법 중 어느 쪽이 꽃이 더 많이 필요한가요? 이유도 설명해 보세요.', 'mulWSol8');
+}
+function mulWSol8(id){
+  var el = document.getElementById(id);
+  var x=+el.getAttribute('data-x'), y=+el.getAttribute('data-y');
+  var ans = x*y;
+  var html = '<div class="sol">A: '+x+'×'+y+' = <strong>'+ans+'</strong>송이</div>'
+    + '<div class="sol">B: '+y+'×'+x+' = <strong>'+ans+'</strong>송이</div>'
+    + '<div class="sol">두 방법 모두 '+ans+'송이로 같아요 — 줄 수와 한 줄당 개수를 바꿔도(교환법칙) 전체 개수는 변하지 않아요</div>';
+  bigRenderToggle(id, html, 'mulWSol8');
+}
+
+function mulWGen9(id){
+  var perGroup = mulRand(5,30), group = mulRand(11,40);
+  var total1 = perGroup*group;
+  var days = mulRand(11,40);
+  var el = document.getElementById(id);
+  el.setAttribute('data-pergroup', perGroup); el.setAttribute('data-group', group); el.setAttribute('data-days', days);
+  bigSetQuestion(el, '구슬 '+total1+'개를 '+group+'명에게 똑같이 나누어주었더니 나누어 떨어져서 한 명당 '+perGroup+'개씩 받았습니다. 다음 날 같은 방식으로 '+days+'명에게 나누어준다면, 구슬이 모두 몇 개 필요한가요?', 'mulWSol9');
+}
+function mulWSol9(id){
+  var el = document.getElementById(id);
+  var perGroup=+el.getAttribute('data-pergroup'), group=+el.getAttribute('data-group'), days=+el.getAttribute('data-days');
+  var total1 = perGroup*group, need = perGroup*days;
+  var html = '<div class="sol"><strong>①확인:</strong> '+total1+'÷'+group+' = '+perGroup+'개 (한 명당)</div>'
+    + '<div class="sol"><strong>②필요한 전체 개수:</strong> '+perGroup+'×'+days+' = <strong>'+need+'</strong>개</div>';
+  bigRenderToggle(id, html, 'mulWSol9');
+}
+
+function mulWGen10(id){
+  var a = mulRand(150,900), b = mulRand(12,70);
+  var trueQ = Math.floor(a/b), trueR = a-b*trueQ;
+  var isCorrect = Math.random()<0.5;
+  var cq, cr;
+  if(isCorrect){ cq = trueQ; cr = trueR; }
+  else { cq = trueQ-1; cr = a-b*cq; }
+  var el = document.getElementById(id);
+  el.setAttribute('data-a', a); el.setAttribute('data-b', b); el.setAttribute('data-cq', cq); el.setAttribute('data-cr', cr);
+  bigSetQuestion(el, '친구가 '+a+'÷'+b+'을 계산해서 몫 '+cq+', 나머지 '+cr+'이라고 했습니다. 검산을 통해 이 답이 맞는지 확인하고, 틀렸다면 바르게 고쳐 보세요.', 'mulWSol10');
+}
+function mulWSol10(id){
+  var el = document.getElementById(id);
+  var a=+el.getAttribute('data-a'), b=+el.getAttribute('data-b'), cq=+el.getAttribute('data-cq'), cr=+el.getAttribute('data-cr');
+  var check = b*cq+cr;
+  var trueQ = Math.floor(a/b), trueR = a-b*trueQ;
+  var html;
+  if(cr < b){
+    html = '<div class="sol"><strong>검산:</strong> '+b+'×'+cq+'+'+cr+' = '+check+' = '+a+' ✓</div>'
+      + '<div class="sol">나머지 '+cr+'도 나누는 수 '+b+'보다 작으니, <strong style="color:#3fb950">이 답은 맞아요!</strong></div>';
+  } else {
+    html = '<div class="sol"><strong>검산:</strong> '+b+'×'+cq+'+'+cr+' = '+check+' = '+a+' (식은 맞는 것처럼 보여요)</div>'
+      + '<div class="sol" style="color:#f85149"><strong>그런데:</strong> 나머지 '+cr+'이 나누는 수 '+b+'보다 커요 — 나머지는 항상 나누는 수보다 작아야 하므로 이 답은 틀렸어요</div>'
+      + '<div class="sol"><strong>바른 계산:</strong> '+a+'÷'+b+' = <strong>'+trueQ+'</strong>…<strong>'+trueR+'</strong></div>';
+  }
+  bigRenderToggle(id, html, 'mulWSol10');
+}
+
 function lcm5(a,b){ return a*b/gcd(a,b); }
 var FAW1_TUPLES = [[1,4,1,3],[1,3,1,5],[2,5,1,4],[1,6,1,2],[1,8,1,3]];
 var FAW2_TUPLES = [[2,3,3,4],[4,5,2,3],[3,4,4,5],[5,6,3,4],[2,3,5,6]];
@@ -12237,6 +12825,21 @@ const HAVRUTA_FB = {
     {ok:true, text:'맞아요! 둔각은 90°보다 크니까, 둔각 2개만 더해도 벌써 180°를 넘어버려요. 세 각의 합이 정확히 180°여야 하니까, 둔각은 삼각형에 최대 1개까지만 있을 수 있어요.', diagram:null},
     {ok:false, text:'세 번째 각이 아무리 작아도 0°보다는 커야 하는데, 둔각 2개(예: 100°+100°=200°)만으로 벌써 180°를 넘어서 버려요. 세 번째 각이 들어갈 자리가 없어요.', diagram:null},
     {ok:false, text:'각도는 음수가 될 수 없어요! 각은 "벌어진 정도"라서 항상 0°보다 크고, 그래서 둔각 2개가 있으면 세 각의 합이 180°를 넘어버려 삼각형이 될 수 없어요.', diagram:null}
+  ],
+  'e4mul-h1': [
+    {ok:true, text:'맞아요! 180=18×10, 30=3×10처럼 둘 다 10배 되어 있는 수라서, 똑같이 10으로 나누면(0을 하나씩 지우면) 몫은 변하지 않아요. 18÷3=6, 180÷30=6으로 똑같아요.', diagram:null},
+    {ok:false, text:'요령이 아니라 수학적으로 정확한 방법이에요! 180과 30을 똑같이 10으로 나눠도(0을 하나씩 지워도) 두 수의 비율(몫)은 그대로 유지되거든요.', diagram:null},
+    {ok:false, text:'몫은 그대로 유지돼요! 180과 30을 똑같이 10배 작게 만드는 거라서, 둘 사이의 비율(몫)은 안 바뀌어요.', diagram:null}
+  ],
+  'e4mul-h2': [
+    {ok:true, text:'맞아요! 56에서 "5"는 십의 자리 숫자라서 실제 값은 5가 아니라 50이에요. 234×5(=1170)가 아니라 234×50(=11700)을 더해야 정확한 답이 나와요.', diagram:null},
+    {ok:false, text:'순서는 문제가 아니에요! 234×6을 먼저 하든 234×50을 먼저 하든 더하는 순서는 상관없어요. 진짜 문제는 50을 5로 잘못 계산한 거예요.', diagram:null},
+    {ok:false, text:'0을 그냥 붙이는 건 위험해요! "5"를 "50"으로 제대로 생각하지 않고 암산하면, 복잡한 수에서는 실수하기 쉬워요. 자릿값을 정확히 따져야 해요.', diagram:null}
+  ],
+  'e4mul-h3': [
+    {ok:true, text:'맞아요! 만약 나머지가 나누는 수보다 크거나 같다면, 그 안에 나누는 수가 또 들어있다는 뜻이라 몫을 하나 더 늘려야 해요. 나머지는 "더 이상 못 나누고 남은 것"이라 나누는 수보다 항상 작아야 진짜 나머지예요.', diagram:null},
+    {ok:false, text:'나머지가 항상 0이어야 하는 건 아니에요(0이면 딱 나누어떨어지는 거예요). 나머지는 0 이상이면서 나누는 수보다 작기만 하면 돼요.', diagram:null},
+    {ok:false, text:'규칙을 외우는 것도 좋지만, "왜" 그런지 알면 다음에 헷갈리지 않아요. 나머지가 나누는 수보다 크면 몫을 하나 더 늘릴 수 있다는 뜻이에요.', diagram:null}
   ],
   'e5gcd-h1': [
     {ok:true, text:'맞아요! 소수는 약수가 정확히 2개(1과 자기 자신)여야 해요. 1은 약수가 자기 자신 하나뿐이라 이 조건에 맞지 않아서 소수가 아니에요.', diagram:FB_DIAGRAM_GCD1_OK},
