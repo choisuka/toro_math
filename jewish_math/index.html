@@ -10813,8 +10813,99 @@ const CV_DATA_E4MOVE = [
     <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! 거울, 물에 비친 그림자, 유리창에 비친 모습 — 전부 뒤집기의 예시예요. 그래서 시계를 거울에 비추면 숫자가 반대로 보여서 시간을 읽기 어려운 거랍니다.</div></div>
     <div class="story-takeaway"><strong>정리:</strong> 거울에 비친 모습은 "뒤집기"이지 "돌리기"가 아니에요. 뒤집기는 위아래(또는 좌우) 순서를 그대로 두고 반대쪽만 바꾸지만, 돌리기는 도형이 제자리에서 통째로 빙글 도는 것이라 결과가 완전히 달라요. 결과만 보고 "비슷해 보인다"고 성급히 판단하지 말고, 무엇이 그대로이고 무엇이 바뀌었는지 직접 확인하는 습관이 중요해요.</div>
   `},
+  { title:'✍️ 오늘 배운 것 적기', cls:'problems', noCorpus:true, html:`
+    <p>공부를 마쳤나요? 오늘 배운 것을 내 말로 적어 봐요. 카드의 문장을 그대로 베끼면 인정되지 않아요.</p>
+    <div class="prob-box">
+      <div class="prob-q">밀기·뒤집기·돌리기 중 하나를 골라서, 도형의 무엇이 그대로이고 무엇이 바뀌는지 내 말로 써 보세요.</div>
+      <textarea id="mvn-text" rows="4" maxlength="300" placeholder="여기에 써 보세요 (10글자 이상)" style="width:100%;box-sizing:border-box;background:#161b22;border:1px solid #30363d;border-radius:8px;color:#c9d1d9;padding:10px;font-size:.9rem;font-family:inherit;resize:vertical"></textarea>
+      <button class="havruta-show-btn" onclick="mvNoteSubmit()">✅ 제출하기</button>
+      <div id="mvn-result" style="margin-top:10px"></div>
+    </div>
+  `},
 ];
 CV_DATA['e4move'] = CV_DATA_E4MOVE;
+
+// ── 오늘 배운 것 적기(e4move): 규칙 기반 판정 + 학습 기록 저장 ──
+// 공부 여부를 직접 확인할 수 없어 글로 판단한다(AI 없이 규칙만). 기록은 집중력 정원이 읽어 포인트를 준다.
+var MV_NOTE_KEY = 'toro_study_log_v1';
+var MV_NOTE_GROUPS = {
+  A: /밀|뒤집|돌/,
+  B: /모양|크기|그대로|똑같/,
+  C: /위치|방향|좌우|상하|왼쪽|오른쪽|위쪽|아래쪽/,
+  D: /90|180|270|360|시계방향/
+};
+// 핵심어만 나열해서 통과하는 것을 막기 위해, 핵심 낱말을 걷어내고도 문장 흔적이 남는지 본다
+var MV_NOTE_WORDS = /밀기|뒤집기|돌리기|모양|크기|위치|방향|좌우|상하|왼쪽|오른쪽|위쪽|아래쪽|그대로|똑같|시계방향|\d+/g;
+var MV_NOTE_MSG = {
+  short: '조금 더 길게 써 볼까요? 10글자 이상 적어 주세요.',
+  repeat: '여러 가지 글자와 낱말로 문장을 만들어 써 보세요.',
+  list: '낱말만 적지 말고 문장으로 써 볼까요?',
+  dup: '전에 쓴 글과 똑같아요. 오늘 내 생각으로 새로 써 볼까요?',
+  copy: '카드의 문장과 너무 비슷해요. 내 말로 바꿔 써 볼까요?',
+  keyword: '밀기·뒤집기·돌리기 중 하나와, 무엇이 그대로이고 무엇이 바뀌는지를 함께 적어 주세요.',
+  save: '저장하지 못했어요. 브라우저 설정에서 저장이 막혀 있는지 확인해 주세요.'
+};
+var MV_NOTE_GRAM = 6, MV_NOTE_COPY_RATIO = 0.7, MV_NOTE_LIST_REST = 6;
+var mvNoteCorpus = null;
+function mvNoteNorm(s){ return String(s).replace(/[^가-힣a-zA-Z0-9]/g,''); }
+function mvNoteGrams(s){
+  var out = [];
+  for(var i=0;i+MV_NOTE_GRAM<=s.length;i++) out.push(s.slice(i,i+MV_NOTE_GRAM));
+  return out;
+}
+function mvNoteCorpusSet(){
+  if(!mvNoteCorpus){
+    var txt = CV_DATA_E4MOVE.filter(function(c){ return !c.noCorpus; })
+      .map(function(c){ return c.html.replace(/<[^>]*>/g,''); }).join('');
+    mvNoteCorpus = {};
+    mvNoteGrams(mvNoteNorm(txt)).forEach(function(g){ mvNoteCorpus[g] = 1; });
+  }
+  return mvNoteCorpus;
+}
+// prevNorm: 이전 기록들의 정규화된 글 배열. 반환: {ok, code, groups, bonus}
+function mvNoteJudge(text, prevNorm){
+  var norm = mvNoteNorm(text);
+  var distinct = {}; norm.split('').forEach(function(c){ distinct[c] = 1; });
+  if(norm.length < 10) return {ok:false, code:'short'};
+  if(Object.keys(distinct).length < 5 || text.trim().split(/\s+/).length < 2) return {ok:false, code:'repeat'};
+  if(prevNorm.indexOf(norm) >= 0) return {ok:false, code:'dup'};
+  var grams = mvNoteGrams(norm);
+  if(grams.length){
+    var corpus = mvNoteCorpusSet();
+    var hit = grams.filter(function(g){ return corpus[g]; }).length;
+    if(hit / grams.length >= MV_NOTE_COPY_RATIO) return {ok:false, code:'copy'};
+  }
+  if(norm.replace(MV_NOTE_WORDS,'').length < MV_NOTE_LIST_REST) return {ok:false, code:'list'};
+  var groups = Object.keys(MV_NOTE_GROUPS).filter(function(k){ return MV_NOTE_GROUPS[k].test(norm); });
+  if(groups.indexOf('A') < 0 || groups.length < 2) return {ok:false, code:'keyword'};
+  return {ok:true, groups:groups, bonus:groups.length >= 3};
+}
+function mvNoteLog(){
+  try{ var a = JSON.parse(localStorage.getItem(MV_NOTE_KEY)||'[]'); return Array.isArray(a) ? a : []; }
+  catch(e){ return []; }
+}
+function mvNoteLocalDate(){
+  var d = new Date(), p = function(n){ return (n<10?'0':'')+n; };
+  return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
+}
+function mvNoteSubmit(){
+  var ta = document.getElementById('mvn-text'), out = document.getElementById('mvn-result');
+  var log = mvNoteLog();
+  var r = mvNoteJudge(ta.value, log.map(function(e){ return mvNoteNorm(e.text||''); }));
+  if(r.ok){
+    log.push({unit:'e4move', date:mvNoteLocalDate(), text:ta.value.trim(), groups:r.groups, bonus:r.bonus, ts:Date.now()});
+    try{ localStorage.setItem(MV_NOTE_KEY, JSON.stringify(log)); }
+    catch(e){ r = {ok:false, code:'save'}; }
+  }
+  if(r.ok){
+    out.innerHTML = '<div class="story-takeaway">' + (r.bonus
+      ? '와, 여러 가지를 빠짐없이 적었어요! 보너스 기록까지 저장됐어요 🌟'
+      : '잘 적었어요! 오늘 기록이 저장됐어요 🌱') + '</div>';
+    ta.value = '';
+  } else {
+    out.innerHTML = '<div style="color:#f0c040;font-size:.85rem">' + MV_NOTE_MSG[r.code] + '</div>';
+  }
+}
 
 // 문제1 — 뒤집기 방향 맞추기
 function mvGen1(id){
