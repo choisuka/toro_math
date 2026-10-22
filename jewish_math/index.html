@@ -10907,6 +10907,169 @@ function mvNoteSubmit(){
   }
 }
 
+// ── 복습 예약(e4move): 문제·풀이·채점 기준을 통째로 저장해 두면 정원(focus_game)이 날짜에 맞춰 내고 채점한다 ──
+// 저장만 여기서 하고, 푼 결과는 정원이 자기 데이터에 기록한다(두 앱이 같은 키를 동시에 쓰지 않도록).
+var MV_REVIEW_KEY = 'toro_review_v1';
+function mvDateStr(d){
+  var p = function(n){ return (n<10?'0':'')+n; };
+  return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
+}
+function mvReviewLog(){
+  try{ var a = JSON.parse(localStorage.getItem(MV_REVIEW_KEY)||'[]'); return Array.isArray(a) ? a : []; }
+  catch(e){ return []; }
+}
+function mvReviewHash(s){
+  var h = 5381;
+  for(var i=0;i<s.length;i++){ h = ((h<<5)+h+s.charCodeAt(i))|0; }
+  return String(h);
+}
+function mvReviewClean(html){
+  var box = document.createElement('div');
+  box.innerHTML = html;
+  box.querySelectorAll('button').forEach(function(b){ b.remove(); });
+  return box.innerHTML;
+}
+// 채점 기준. choice=선택(+이유 문장 규칙), num=식(answers 중 하나로 계산되고 givens 중 하나를 써야 함)
+function mvReviewSpec(id, el){
+  var n = function(k){ return +el.getAttribute('data-'+k); };
+  var dirRe = { '좌우':'좌우|왼쪽|오른쪽', '상하':'상하|위|아래' };
+  if(id==='mvw-1') return {kind:'view'};
+  if(id==='mv-1'){
+    var d1 = el.getAttribute('data-dir');
+    return {kind:'choice', options:['좌우','상하'], answer:d1, reason:[dirRe[d1], '바뀌|반대|거울|뒤집|그대로'], reasonAsk:'왜 그렇게 생각했는지 한 문장으로 써 보세요.'};
+  }
+  if(id==='mv-2') return {kind:'choice', options:['90°','180°','270°'], answer:n('deg')+'°', reason:null};
+  if(id==='mv-3'){
+    var cat = mvComputeMove3(el.getAttribute('data-shape'), el.getAttribute('data-move')).category;
+    var catRe = { '밀기':'위치|똑같|그대로|모양', '뒤집기':'거울|반대|뒤집|좌우|상하', '돌리기':'돌|각도|방향|빙글|통째|90|180|270' };
+    return {kind:'choice', options:['밀기','뒤집기','돌리기'], answer:cat, reason:[catRe[cat]], reasonAsk:'왜 그렇게 생각했는지 한 문장으로 써 보세요.'};
+  }
+  if(id==='mvw-2') return {kind:'num', answers:[n('times')*90, (n('times')*90)%360], givens:[90, n('times')], ask:'식을 써 보세요. 예) 90×2=180'};
+  if(id==='mvw-3') return {kind:'choice', options:['같은 모양','다른 모양'], answer:(n('times')%2===0?'같은 모양':'다른 모양'), reason:null};
+  if(id==='mvw-4') return {kind:'num', answers:[360/n('degstep')], givens:[n('degstep')], ask:'식을 써 보세요. 예) 360÷90=4'};
+  if(id==='mvw-5') return {kind:'num', answers:[n('a')*n('b')], givens:[n('a'), n('b')], ask:'식을 써 보세요. 예) 6×4=24'};
+  if(id==='mvw-6') return {kind:'choice', options:['같다','다르다'], answer:'같다', reason:null};
+  if(id==='mvw-7'){
+    var a7 = el.getAttribute('data-actual');
+    return {kind:'choice', options:['좌우','상하'], answer:a7, reason:[dirRe[a7], '바뀌|그대로|반대|착각|잘못'], reasonAsk:'무엇을 잘못 봤는지 한 문장으로 써 보세요.'};
+  }
+  if(id==='mvw-8') return {kind:'num', answers:[n('gap')*3], givens:[n('gap')], ask:'식을 써 보세요. 예) 20×3=60'};
+  if(id==='mvw-9') return {kind:'num', answers:[360-n('deg')], givens:[n('deg')], ask:'식을 써 보세요. 예) 360−270=90'};
+  if(id==='mvw-10') return {kind:'num', answers:[(n('minutes')/15)*90], givens:[n('minutes'), 15, 90], ask:'식을 써 보세요. 예) 30÷15×90=180'};
+  return null;
+}
+// 풀이 보기 버튼은 토글이라, 닫힌 상태(문제)와 열린 상태(문제+풀이)를 한 번씩 찍고 원래 상태로 되돌린다
+function mvReviewSnapshot(id, solFn){
+  var el = document.getElementById(id);
+  var wasShowing = el.getAttribute('data-showing') === '1';
+  if(wasShowing) window[solFn](id);
+  var q = mvReviewClean(el.innerHTML);
+  window[solFn](id);
+  var s = mvReviewClean(el.innerHTML);
+  window[solFn](id);
+  if(wasShowing) window[solFn](id);
+  return {q:q, s:s};
+}
+function mvReviewAsk(id){
+  var box = document.getElementById('rvq-'+id);
+  if(box.innerHTML){ box.innerHTML = ''; return; }
+  box.innerHTML = '<div style="margin-top:8px;font-size:.82rem;color:#c9d1d9">언제 복습할까요?</div>'
+    + '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">'
+    + [1,2,3,7].map(function(d){ return '<button class="havruta-show-btn" style="margin-top:0" onclick="mvReviewSave(\''+id+'\','+d+')">'+d+'일 후</button>'; }).join('')
+    + '<button class="havruta-show-btn" style="margin-top:0" onclick="mvReviewSave(\''+id+'\',0)">오늘</button>'
+    + '</div>';
+}
+function mvReviewSave(id, days){
+  var box = document.getElementById('rvq-'+id);
+  var el = document.getElementById(id) || box;
+  var num = id.replace(/\D/g,'');
+  var spec, snap;
+  if(id.indexOf('card-')===0){
+    // 카드 자체는 문제가 아니라서 풀이 없이 "열어서 확인"만 한다(정원이 링크로 이 카드를 열게 안내)
+    spec = {kind:'open', card:+num, title:CV_DATA_E4MOVE[+num].title};
+    snap = {q:'', s:''};
+  } else {
+    var solFn = id.indexOf('mvw-')===0 ? 'mvWSol'+num : 'mvSol'+num;
+    spec = mvReviewSpec(id, el);
+    snap = mvReviewSnapshot(id, solFn);
+  }
+  var h = mvReviewHash(id+snap.q);
+  var today = mvDateStr(new Date());
+  var due = new Date(); due.setDate(due.getDate()+days);
+  var dueStr = mvDateStr(due);
+  var log = mvReviewLog();
+  if(log.some(function(r){ return r.h===h && r.due>=today; })){
+    box.innerHTML = '<div style="margin-top:8px;font-size:.82rem;color:#f0c040">이 문제는 이미 복습을 예약했어요.</div>';
+    return;
+  }
+  log.push({id:id+'-'+Date.now().toString(36), h:h, type:id, created:today, due:dueStr, spec:spec, q:snap.q, s:snap.s});
+  try{
+    localStorage.setItem(MV_REVIEW_KEY, JSON.stringify(log));
+    box.innerHTML = '<div style="margin-top:8px;font-size:.82rem;color:#3fb950">📌 '+days+'일 뒤('+dueStr+') 정원에서 복습 문제로 나와요.</div>';
+  }catch(e){
+    box.innerHTML = '<div style="margin-top:8px;font-size:.82rem;color:#f0c040">저장하지 못했어요. 브라우저 설정에서 저장이 막혀 있는지 확인해 주세요.</div>';
+  }
+}
+// 기존 카드 본문은 그대로 두고 복습 예약 버튼만 끼워 넣는다
+//  - 문제 칸: 유사문제 버튼 바로 뒤
+//  - 왜 배우는가·개념 설명·하브루타 질문·심화 토론: 카드 맨 끝(풀이할 문제가 없어 "열어서 확인"으로 복습)
+(function(){
+  var re = /(<button class="havruta-show-btn" onclick="mv(?:W)?Gen\d+\('([\w-]+)'\)" style="[^"]*">🔄 유사문제<\/button>)/g;
+  CV_DATA_E4MOVE.forEach(function(card, idx){
+    if(card.title.indexOf('예제 문제')>=0 || card.title.indexOf('문장제 심화')>=0){
+      card.html = card.html.replace(re, function(m, btn, id){
+        return btn + '<button class="havruta-show-btn" onclick="mvReviewAsk(\''+id+'\')" style="width:100%;margin-top:6px">📌 복습할래요</button><div id="rvq-'+id+'"></div>';
+      });
+    } else if([0,1,2,5].indexOf(idx)>=0){
+      card.html += '<div class="prob-box" style="margin-top:14px"><div style="font-size:.78rem;color:#8b949e;margin-bottom:6px">이 내용을 나중에 다시 읽어 볼까요?</div>'
+        + '<button class="havruta-show-btn" onclick="mvReviewAsk(\'card-'+idx+'\')" style="width:100%;margin-top:0">📌 복습할래요</button><div id="rvq-card-'+idx+'"></div></div>';
+    }
+  });
+})();
+// 복습 날짜 이후에 예약한 카드를 열면 "확인함"으로 남긴다. 정원이 이 기록(toro_review_open_v1)을 읽어 포인트를 준다.
+var MV_REVIEW_OPEN_KEY = 'toro_review_open_v1';
+function mvReviewTouch(unitId, idx){
+  if(unitId!=='e4move') return;
+  var today = mvDateStr(new Date());
+  var due = mvReviewLog().filter(function(r){ return r.spec && r.spec.kind==='open' && r.spec.card===idx && r.due<=today; });
+  if(!due.length) return;
+  var touched;
+  try{ touched = JSON.parse(localStorage.getItem(MV_REVIEW_OPEN_KEY)||'{}'); }catch(e){ touched = {}; }
+  if(!touched || typeof touched!=='object' || Array.isArray(touched)) touched = {};
+  var changed = false;
+  due.forEach(function(r){ if(!touched[r.id]){ touched[r.id] = today; changed = true; } });
+  if(changed){ try{ localStorage.setItem(MV_REVIEW_OPEN_KEY, JSON.stringify(touched)); }catch(e){} }
+}
+// 공용 cvShowSection 본문은 건드리지 않고 감싼다(onclick은 전역 이름으로 호출하므로 그대로 적용됨)
+var mvOrigCvShowSection = cvShowSection;
+cvShowSection = function(id, idx){
+  mvOrigCvShowSection(id, idx);
+  mvReviewTouch(id, idx);
+};
+// 정원이 준 바로가기(?open=e4move:2): 단원을 펼치고 해당 카드를 연다
+document.addEventListener('DOMContentLoaded', function(){
+  var m = /[?&]open=([\w]+):(\d+)/.exec(location.search);
+  if(!m) return;
+  setTimeout(function(){
+    var wrap = document.getElementById('cv-'+m[1]);
+    if(!wrap || !CV_DATA[m[1]] || !CV_DATA[m[1]][+m[2]]) return;
+    // 학년 탭(초1~중3)과 학기 탭이 단원을 가리고 있으면 먼저 그쪽을 연다
+    var sec = wrap.closest('.grade-section');
+    if(sec){
+      showGrade(sec.id.replace(/^g-/,''));
+      var grp = wrap.closest('.semester-group');
+      if(grp){
+        var sem = grp.getAttribute('data-sem');
+        sec.querySelectorAll('.semester-group').forEach(function(g){ g.setAttribute('data-hidden', g.getAttribute('data-sem')===sem ? '0' : '1'); });
+        sec.querySelectorAll('.semester-tab-btn').forEach(function(b, i){ b.classList.toggle('active', String(i+1)===sem); });
+      }
+    }
+    var body = wrap.closest('.unit-body');
+    if(body && !body.classList.contains('open')) toggle(body.previousElementSibling);
+    cvShowSection(m[1], +m[2]);
+  }, 0);
+});
+
 // 문제1 — 뒤집기 방향 맞추기
 function mvGen1(id){
   var name = mvPick(Object.keys(MV_SHAPES));
