@@ -532,6 +532,22 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
     </div>
   </div>
 
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📊 막대그래프 <span class="badge">초4</span></div><div class="unit-sub">막대그래프 알아보기·읽기·그리기</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e4bar">
+        <div class="cv-grid" id="cv-e4bar-grid"></div>
+        <div class="cv-detail" id="cv-e4bar-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e4bar')">← 목록으로</button>
+          <div id="cv-e4bar-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div><!-- /e4 -->
 
 <!-- ===== 초등 5학년 ===== -->
@@ -10275,6 +10291,657 @@ function mulWSol10(id){
   bigRenderToggle(id, html, 'mulWSol10');
 }
 
+// ── 막대그래프(e4bar): 눈금 있는 막대그래프 SVG + 카드 데이터 ──
+// 교재 모양: 왼쪽 위 단위, 눈금선, 아래 항목 칸, 왼쪽 아래 대각선 칸. o.step=눈금 한 칸의 크기, o.tickEvery=몇 칸마다 숫자를 쓸지
+function e4barSvg(o){
+  var L=o.L||58, R=o.R||14, T=30, B=34;
+  var cell=o.cellPx, rows=Math.round(o.axisMax/o.step);
+  var ph=rows*cell, W=o.w||330, pw=W-L-R, H=T+ph+B;
+  var n=o.cats.length, cw=pw/n, bw=Math.min(40, cw*0.5);
+  var y=function(v){return T+ph-(v/o.axisMax)*ph;};
+  var xc=function(i){return L+cw*(i+0.5);};
+  var s='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" style="max-width:100%;height:auto;background:#f8fafd;border:1px solid #c5ccd8;border-radius:8px" xmlns="http://www.w3.org/2000/svg" font-family="Nanum Gothic,sans-serif">';
+  s+='<rect x="'+L+'" y="'+T+'" width="'+pw+'" height="'+ph+'" fill="#eaf2fb"/>';
+  s+='<text x="6" y="'+(T-12)+'" fill="#1d2433" font-size="11">('+o.unit+')</text>';
+  for(var k=0;k<=rows;k++){
+    var v=k*o.step, yy=y(v), lab=(k%o.tickEvery===0);
+    s+='<line x1="'+L+'" y1="'+yy+'" x2="'+(L+pw)+'" y2="'+yy+'" stroke="'+(lab?'#4f86c6':'#b9cde4')+'" stroke-width="'+(lab?1.2:0.8)+'"/>';
+  }
+  for(var i=0;i<=n;i++) s+='<line x1="'+(L+i*cw)+'" y1="'+T+'" x2="'+(L+i*cw)+'" y2="'+H+'" stroke="#c5ccd8" stroke-width="1"/>';
+  for(var j=0;j<n;j++){
+    var top=y(o.vals[j]);
+    s+='<rect x="'+(xc(j)-bw/2)+'" y="'+top+'" width="'+bw+'" height="'+(T+ph-top)+'" fill="'+(o.hi===j?'#2f9e57':'#f0a93b')+'" stroke="#f8fafd" stroke-width="0.5"/>';
+  }
+  s+='<rect x="0" y="'+(T+ph)+'" width="'+W+'" height="'+B+'" fill="#ffffff" stroke="#c5ccd8"/>';
+  s+='<line x1="0" y1="'+(T+ph)+'" x2="'+L+'" y2="'+H+'" stroke="#5d6678" stroke-width="1"/>';
+  // 숫자 눈금은 항목 칸을 그린 뒤에 써야 맨 아래 0이 가려지지 않는다
+  for(var q=0;q<=rows;q++){
+    if(q%o.tickEvery===0) s+='<text x="'+(L-6)+'" y="'+(y(q*o.step)+(q===0?-2:4))+'" fill="#1d2433" font-size="11" text-anchor="end">'+(q*o.step)+'</text>';
+  }
+  s+='<text x="'+(L-4)+'" y="'+(T+ph+13)+'" fill="#1d2433" font-size="10" text-anchor="end">'+o.yname+'</text>';
+  s+='<text x="4" y="'+(H-6)+'" fill="#1d2433" font-size="10">'+o.xname+'</text>';
+  for(var m=0;m<n;m++) s+='<text x="'+xc(m)+'" y="'+(T+ph+21)+'" fill="#1d2433" font-size="12" text-anchor="middle">'+o.cats[m]+'</text>';
+  if(o.notes) s+=o.notes({y:y,xc:xc,L:L,T:T,ph:ph,pw:pw,cw:cw,bw:bw});
+  return s+'</svg>';
+}
+function e4barFig(o){ return '<div style="overflow-x:auto">'+e4barSvg(o)+'</div>'; }
+// 격자 표(테두리 있는 가로·세로): head=첫 행, label=둘째 행 머리글, vals=둘째 행 값
+function e4barTable(head, label, vals){
+  var th='border:1.5px solid #5d6678;padding:7px 16px;text-align:center;min-width:54px;background:#e6edf8;color:#1d2433';
+  var td='border:1.5px solid #5d6678;padding:7px 16px;text-align:center;min-width:54px;color:#1d2433';
+  return '<div style="overflow-x:auto"><table style="border-collapse:collapse;margin:10px auto;font-size:.95rem">'
+    +'<tr>'+head.map(function(h){return '<th style="'+th+'">'+h+'</th>';}).join('')+'</tr>'
+    +'<tr><th style="'+th+'">'+label+'</th>'+vals.map(function(v){return '<td style="'+td+'">'+v+'</td>';}).join('')+'</tr>'
+    +'</table></div>';
+}
+// 그림그래프(그림 하나 = 2명). hiRow: 강조할 행 번호
+function e4barPicto(hiRow){
+  var th='border:1.5px solid #5d6678;padding:7px 16px;text-align:center;min-width:54px;background:#e6edf8;color:#1d2433';
+  var td='border:1.5px solid #5d6678;padding:7px 16px;text-align:left;letter-spacing:2px;color:#1d2433';
+  var rows=[['사과','🍎🍎🍎🍎'],['딸기','🍓🍓🍓🍓🍓🍓'],['바나나','🍌🍌🍌'],['포도','🍇🍇🍇🍇🍇']];
+  return '<table style="border-collapse:collapse;margin:10px auto;font-size:.95rem">'
+    +'<tr><th style="'+th+'">과일</th><th style="'+th+'">학생 수</th></tr>'
+    +rows.map(function(r,i){return '<tr><th style="'+th+'">'+r[0]+'</th><td style="'+td+(i===hiRow?';outline:2px solid #2f9e57':'')+'">'+r[1]+'</td></tr>';}).join('')
+    +'</table>';
+}
+var E4BAR_FRUIT = ['사과','딸기','바나나','포도'];
+var CV_DATA_E4BAR = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`<div class="e4bw" style="background:#ffffff;color:#1d2433;border-radius:12px;padding:18px"><style>.e4bw p,.e4bw strong{color:#1d2433}</style>
+    <p>우리 반 친구들이 좋아하는 과일을 조사했더니 이런 표가 나왔어요.</p>
+    ${e4barTable(['과일','사과','딸기','바나나','포도'],'학생 수(명)',[8,12,6,10])}
+    <p>"가장 많은 친구가 좋아하는 과일은?" 표에서는 숫자를 하나씩 읽고 비교해야 해요.<br>같은 자료를 막대로 그리면 어떨까요?</p>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px;margin:10px 0;text-align:center">
+      <div style="font-size:.88rem;font-weight:700;margin-bottom:6px">좋아하는 과일별 학생 수</div>
+      ${e4barFig({unit:'명',yname:'학생 수',xname:'과일',cats:E4BAR_FRUIT,vals:[8,12,6,10],step:2,axisMax:12,tickEvery:1,cellPx:20,w:360})}
+      <div style="font-size:.78rem;color:#5d6678;margin-top:6px">막대가 가장 높은 <span style="color:#2f9e57;font-weight:700">딸기</span>가 한눈에 보여요. 막대 길이가 곧 학생 수예요.</div>
+    </div>
+    <p>이번 단원에서는 자료를 한눈에 보이게 하는 <strong>막대그래프</strong>를 배워요.</p>
+  </div>`},
+  { title:'📖 개념 설명', cls:'concept', html:`<div class="e4bw" style="background:#ffffff;color:#1d2433;border-radius:12px;padding:18px"><style>.e4bw p,.e4bw strong{color:#1d2433}</style>
+    <div style="font-size:.78rem;color:#5d6678;font-weight:700;margin-bottom:6px">🔙복습 — 3학년에서 배운 표와 그림그래프</div>
+    <p>같은 자료를 표와 그림그래프로 나타냈어요.</p>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px;margin:10px 0;text-align:center">
+      <div style="font-size:.88rem;font-weight:700;margin-bottom:6px">좋아하는 과일별 학생 수 (그림그래프)</div>
+      ${e4barPicto(-1)}
+      <div style="font-size:.78rem;color:#5d6678;margin-top:6px">그림 하나 = 2명</div>
+    </div>
+    <p>그림그래프는 그림을 하나씩 <strong>세어서</strong> 몇 명인지 알아냈어요.</p>
+
+    <div style="font-size:.78rem;color:#2f6fd0;font-weight:700;margin:16px 0 6px">🔗연결 — 세는 대신 길이로</div>
+    <p>그림을 세지 않고, 막대의 <strong>길이</strong>로 수량을 나타내면 더 빨리 비교할 수 있어요. 이것이 막대그래프예요.</p>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px;margin:10px 0;text-align:center">
+      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;align-items:flex-start">
+        <div style="min-width:0"><div style="font-size:.88rem;font-weight:700;margin-bottom:6px">그림그래프</div>${e4barPicto(1)}</div>
+        <div style="min-width:0"><div style="font-size:.88rem;font-weight:700;margin-bottom:6px">막대그래프</div>${e4barFig({unit:'명',yname:'학생 수',xname:'과일',cats:E4BAR_FRUIT,vals:[8,12,6,10],step:2,axisMax:12,tickEvery:1,cellPx:14,w:300,hi:1})}</div>
+      </div>
+      <div style="font-size:.78rem;color:#5d6678;margin-top:6px">딸기: 🍓 6개 × 2명 = 12명 → 딸기 막대의 길이도 12명만큼</div>
+    </div>
+
+    <div style="font-size:.78rem;color:#a8730a;font-weight:700;margin:16px 0 6px">🔜확장</div>
+
+    <div style="font-size:.78rem;color:#a8730a;font-weight:700;margin-bottom:6px">개념1 — 막대그래프가 뭐예요?</div>
+    <p>조사한 수를 막대의 길이로 나타낸 그래프예요.</p>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px;margin:10px 0;text-align:center">
+      ${e4barFig({unit:'명',yname:'학생 수',xname:'과일',cats:E4BAR_FRUIT,vals:[8,12,6,10],step:2,axisMax:12,tickEvery:1,cellPx:26,w:560,R:240,
+        notes:function(g){
+          var tx=g.L+g.pw+14, o='';
+          function call(ty,color,text,x2,y2){
+            o+='<text x="'+tx+'" y="'+ty+'" fill="'+color+'" font-size="12" font-weight="700">'+text+'</text>';
+            o+='<line x1="'+(tx-3)+'" y1="'+(ty-4)+'" x2="'+x2+'" y2="'+y2+'" stroke="'+color+'" stroke-width="1.2" stroke-dasharray="3 2"/>';
+          }
+          call(g.T+14,'#2f6fd0','막대 길이 = 학생 수',g.xc(1)+22,g.y(12)+8);
+          call(g.T+44,'#a8730a','눈금 한 칸 = 2명',g.L+4,g.y(1));
+          call(g.T+74,'#2f9e57','세로 : 학생 수(눈금)',g.L-24,g.T+g.ph/2);
+          call(g.T+104,'#7a4fc2','가로 : 과일 이름(항목)',g.xc(3)+10,g.T+g.ph+30);
+          return o;
+        }})}
+      <div style="font-size:.78rem;color:#5d6678;margin-top:6px">가로에는 항목(과일 이름), 세로에는 수량(눈금)을 써요.</div>
+    </div>
+
+    <div style="font-size:.78rem;color:#a8730a;font-weight:700;margin:16px 0 6px">개념2 — 눈금 한 칸이 얼마인지 먼저 봐요</div>
+    <p>세로 눈금 한 칸이 나타내는 크기는 그래프마다 달라요. 같은 자료(사과 8, 딸기 12, 바나나 4, 포도 16)를 눈금 한 칸의 크기만 바꿔서 세 개 그렸어요.</p>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px;margin:10px 0;text-align:center">
+      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;align-items:flex-end">
+        <div style="min-width:0"><div style="font-size:.88rem;font-weight:700;margin-bottom:6px">한 칸 = 1명</div>${e4barFig({unit:'명',yname:'학생 수',xname:'과일',cats:E4BAR_FRUIT,vals:[8,12,4,16],step:1,axisMax:16,tickEvery:4,cellPx:16,w:280,L:50,R:8,notes:e4barNoteBar('12칸')})}</div>
+        <div style="min-width:0"><div style="font-size:.88rem;font-weight:700;margin-bottom:6px">한 칸 = 2명</div>${e4barFig({unit:'명',yname:'학생 수',xname:'과일',cats:E4BAR_FRUIT,vals:[8,12,4,16],step:2,axisMax:16,tickEvery:2,cellPx:16,w:280,L:50,R:8,notes:e4barNoteBar('6칸')})}</div>
+        <div style="min-width:0"><div style="font-size:.88rem;font-weight:700;margin-bottom:6px">한 칸 = 4명</div>${e4barFig({unit:'명',yname:'학생 수',xname:'과일',cats:E4BAR_FRUIT,vals:[8,12,4,16],step:4,axisMax:16,tickEvery:1,cellPx:16,w:280,L:50,R:8,notes:e4barNoteBar('3칸')})}</div>
+      </div>
+      <div style="font-size:.78rem;color:#5d6678;margin-top:6px">막대의 높이는 달라도 <span style="color:#2f9e57;font-weight:700">딸기는 모두 12명</span>이에요.</div>
+    </div>
+    <p>왜 그럴까요? 한 칸이 클수록 필요한 칸은 줄어요. 하지만 <strong>(칸 수) × (한 칸의 크기)</strong>는 똑같아요.</p>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px;margin:10px 0;font-size:.92rem">
+      한 칸 = 1명 → 딸기 <span style="background:#e6edf8;border-radius:6px;padding:1px 8px">12칸</span> × 1명 = 12명<br>
+      한 칸 = 2명 → 딸기 <span style="background:#e6edf8;border-radius:6px;padding:1px 8px">6칸</span> × 2명 = 12명<br>
+      한 칸 = 4명 → 딸기 <span style="background:#e6edf8;border-radius:6px;padding:1px 8px">3칸</span> × 4명 = 12명
+    </div>
+    <p><span style="color:#d6403a;font-weight:700">주의!</span> 같은 그래프 안에서는 막대 높이로 누가 더 많은지 비교할 수 있어요. 하지만 정확한 수는 눈금을 읽어야 알 수 있어요.</p>
+
+    <div style="font-size:.78rem;color:#a8730a;font-weight:700;margin:16px 0 6px">개념3 — 눈금 사이에 있는 값 읽기</div>
+    <p>모둠별 줄넘기 횟수 그래프예요.</p>
+    ${e4barTable(['이름','가온','나래','다솜','라온'],'횟수(회)',[50,130,90,110])}
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px;margin:10px 0;text-align:center">
+      <div style="font-size:.88rem;font-weight:700;margin-bottom:6px">줄넘기 횟수 (눈금 한 칸 = 10회)</div>
+      ${e4barFig({unit:'회',yname:'횟수',xname:'이름',cats:['가온','나래','다솜','라온'],vals:[50,130,90,110],step:10,axisMax:150,tickEvery:5,cellPx:15,w:470,L:54,R:150,hi:1,
+        notes:function(g){
+          var o='', y130=g.y(130), y100=g.y(100), x1=g.xc(1), bx=x1+34, tx=g.L+g.pw+12;
+          o+='<line x1="'+g.L+'" y1="'+y100+'" x2="'+(x1+30)+'" y2="'+y100+'" stroke="#d6403a" stroke-width="1.6" stroke-dasharray="4 3"/>';
+          o+='<line x1="'+g.L+'" y1="'+y130+'" x2="'+(x1+30)+'" y2="'+y130+'" stroke="#d6403a" stroke-width="1.6" stroke-dasharray="4 3"/>';
+          o+='<line x1="'+bx+'" y1="'+y100+'" x2="'+bx+'" y2="'+y130+'" stroke="#a8730a" stroke-width="2"/>';
+          o+='<text x="'+tx+'" y="'+(y100+4)+'" fill="#d6403a" font-size="12" font-weight="700">① 숫자 눈금 100</text>';
+          o+='<text x="'+tx+'" y="'+(y130+4)+'" fill="#a8730a" font-size="12" font-weight="700">② 위로 3칸 (3칸 = 30)</text>';
+          o+='<text x="'+tx+'" y="'+(y130-12)+'" fill="#2f9e57" font-size="12" font-weight="700">③ 100 + 30 = 130회</text>';
+          return o;
+        }})}
+      <div style="font-size:.78rem;color:#5d6678;margin-top:6px">나래의 막대 끝은 숫자 눈금 100과 150 사이에 있어요.</div>
+    </div>
+    <p><strong>읽는 방법</strong></p>
+    <p>① 막대 끝에서 가까운 아래 숫자 눈금을 찾아요 → <span style="background:#e6edf8;border-radius:6px;padding:1px 8px">100</span><br>
+       ② 그 위로 몇 칸 올라갔는지 세어요 → <span style="background:#e6edf8;border-radius:6px;padding:1px 8px">3칸</span><br>
+       ③ 100 + 3칸 × 10 = <span style="color:#2f9e57;font-weight:700">130회</span></p>
+    <p>이어서 알 수 있는 것: 가장 많이 한 사람은 <span style="color:#2f9e57;font-weight:700">나래</span>, 가장 적게 한 사람은 <span style="color:#2f9e57;font-weight:700">가온</span>, 나래와 가온의 차는 130 − 50 = <span style="color:#2f9e57;font-weight:700">80회</span>예요.</p>
+
+    <div style="font-size:.78rem;color:#a8730a;font-weight:700;margin:16px 0 6px">개념4 — 막대그래프 그리는 순서</div>
+    <p>자료: 한 달 동안 읽은 책 수(권)</p>
+    ${e4barTable(['이름','민수','서연','하나','지호'],'책 수(권)',[14,20,8,16])}
+    <p>① 가로와 세로에 무엇을 쓸지 정해요.<br>
+       ② 눈금 한 칸의 크기를 정해요.<br>
+       ③ 막대를 그려요.<br>
+       ④ 제목을 써요.</p>
+    <p>눈금 한 칸의 크기는 <strong>가장 큰 값(20)이 들어가도록</strong> 정해요. 세 가지로 그려 볼까요?</p>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px;margin:10px 0;text-align:center">
+      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;align-items:flex-start">
+        <div style="min-width:0"><div style="font-size:.88rem;font-weight:700;margin-bottom:6px">한 칸 = 1권</div>${e4barFig({unit:'권',yname:'책 수',xname:'이름',cats:['민수','서연','하나','지호'],vals:[14,20,8,16],step:1,axisMax:20,tickEvery:5,cellPx:12,w:240,L:46,R:6})}<div style="font-size:.78rem;color:#d6403a;font-weight:700;margin-top:6px">세로가 20칸이라 너무 길어요</div></div>
+        <div style="min-width:0"><div style="font-size:.88rem;font-weight:700;margin-bottom:6px">한 칸 = 2권</div>${e4barFig({unit:'권',yname:'책 수',xname:'이름',cats:['민수','서연','하나','지호'],vals:[14,20,8,16],step:2,axisMax:20,tickEvery:2,cellPx:24,w:240,L:46,R:6})}<div style="font-size:.78rem;color:#2f9e57;font-weight:700;margin-top:6px">10칸, 알맞아요</div></div>
+        <div style="min-width:0"><div style="font-size:.88rem;font-weight:700;margin-bottom:6px">한 칸 = 10권</div>${e4barFig({unit:'권',yname:'책 수',xname:'이름',cats:['민수','서연','하나','지호'],vals:[14,20,8,16],step:10,axisMax:20,tickEvery:1,cellPx:24,w:240,L:46,R:6})}<div style="font-size:.78rem;color:#d6403a;font-weight:700;margin-top:6px">차이가 안 보여요</div></div>
+      </div>
+    </div>
+    <p>눈금이 너무 좁으면 그래프가 길어지고, 너무 크면 막대 사이의 차이가 잘 안 보여요.</p>
+  </div>`},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`${e4barWrapOpen()}
+    <div class="q-item"><strong>Q1.</strong> 같은 자료를 눈금 한 칸의 크기만 바꿔서 그렸어요. 한 칸 = 1명 그래프에서 딸기 막대는 12칸, 한 칸 = 4명 그래프에서는 3칸이에요. 두 그래프의 딸기는 각각 몇 명일까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4bar-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4bar-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4bar-h1',0,this)">막대가 낮은 쪽이 학생이 더 적어요. 3칸이니까 3명이에요.</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4bar-h1',1,this)">막대 높이는 달라도 칸 수에 한 칸의 크기를 곱하면 둘 다 12명이에요.</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4bar-h1',2,this)">한 칸이 4명이니까 4명이에요.</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4bar-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> 줄넘기 그래프에서 나래의 막대 끝이 숫자 눈금 100과 150 사이에 있어요. 눈금 한 칸은 10회예요. 나래는 몇 번 넘었을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4bar-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4bar-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4bar-h2',0,this)">100과 150의 가운데니까 125회예요.</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4bar-h2',1,this)">100에서 3칸 위니까 100 + 30 = 130회예요.</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4bar-h2',2,this)">150에 더 가까우니까 150회예요.</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4bar-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 두 반의 연필 개수를 그렸어요. 가 반 눈금 한 칸 = 1자루, 나 반 눈금 한 칸 = 5자루예요. 두 그래프 모두 막대가 6칸이에요. 두 반의 연필 수는 같을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4bar-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4bar-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4bar-h3',0,this)">막대 높이가 같으니까 연필 수도 같아요.</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4bar-h3',1,this)">눈금 한 칸의 크기를 확인해야 해요. 가 반은 6자루, 나 반은 30자루예요.</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4bar-h3',2,this)">그래프로는 높이가 비교가 안 돼요.</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4bar-h3"></div>
+      </div>
+    </div>
+  </div>`},
+  { title:'✏️ 예제 문제', cls:'problems', html:`${e4barWrapOpen()}
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 1 (눈금 한 칸 읽기)</div>
+      <div class="prob-q">우리 반이 좋아하는 운동을 조사해 막대그래프로 나타냈어요.
+        <div style="text-align:center;margin:8px 0">${e4barFig(e4barOpt1(0))}</div>
+        (1) 눈금 한 칸은 몇 명을 나타내나요?<br>(2) 가장 많은 학생이 좋아하는 운동은 무엇인가요?<br>(3) 달리기를 좋아하는 학생은 몇 명인가요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'eb-sol-1')">💡 풀이 보기</button>
+      <div id="eb-sol-1" style="display:none;margin-top:8px">
+        <div class="fb-diagram" style="text-align:left">
+          <div style="text-align:center;margin-bottom:6px">${e4barFig(e4barOpt1(1))}</div>
+          (1) 숫자 눈금 0과 10 사이가 5칸이에요. 10 ÷ 5 = 2 → 한 칸은 <strong style="color:#2f9e57">2명</strong><br>
+          (2) 가장 높은 막대 → <strong style="color:#2f9e57">축구</strong><br>
+          (3) 달리기 막대는 4칸 → 4 × 2 = <strong style="color:#2f9e57">8명</strong>
+        </div>
+      </div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 2 (눈금 사이 값 읽기, 차 구하기)</div>
+      <div class="prob-q">네 모둠이 한 달 동안 모은 빈 병 수를 막대그래프로 나타냈어요.
+        <div style="text-align:center;margin:8px 0">${e4barFig(e4barOpt2(0))}</div>
+        (1) 구름 모둠이 모은 빈 병은 몇 개인가요?<br>(2) 가장 많이 모은 모둠과 가장 적게 모은 모둠의 차는 몇 개인가요?<br>(3) 네 모둠이 모은 빈 병은 모두 몇 개인가요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'eb-sol-2')">💡 풀이 보기</button>
+      <div id="eb-sol-2" style="display:none;margin-top:8px">
+        <div class="fb-diagram" style="text-align:left">
+          <div style="text-align:center;margin-bottom:6px">${e4barFig(e4barOpt2(1))}</div>
+          (1) 숫자 눈금 40 위로 1칸. 한 칸은 5개(0~10 사이 2칸이므로 10 ÷ 2 = 5) → 40 + 5 = <strong style="color:#2f9e57">45개</strong><br>
+          (2) 가장 많은 구름 45개, 가장 적은 바다 20개 → 45 − 20 = <strong style="color:#2f9e57">25개</strong><br>
+          (3) 35 + 20 + 45 + 30 = <strong style="color:#2f9e57">130개</strong>
+        </div>
+      </div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 3 (눈금 한 칸의 크기 정하기)</div>
+      <div class="prob-q">책 종류별로 학급 문고의 책 수를 조사했어요.
+        <div style="background:#ffffff;border-radius:8px;padding:4px 8px;margin:8px 0">${e4barTable(['종류','동화','과학','역사','위인전'],'책 수(권)',[25,40,15,30])}</div>
+        막대그래프로 나타내려고 해요. 눈금 한 칸의 크기를 얼마로 하면 알맞을까요?<br>① 1권 &nbsp; ② 5권 &nbsp; ③ 100권</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'eb-sol-3')">💡 풀이 보기</button>
+      <div id="eb-sol-3" style="display:none;margin-top:8px">
+        <div class="fb-diagram" style="text-align:left">
+          정답: <strong style="color:#2f9e57">② 5권</strong><br>가장 큰 값 40이 들어가야 하고, 막대 높이가 읽기 좋아야 해요.
+          <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px;text-align:center">
+            <div style="min-width:0"><div style="font-weight:700;margin-bottom:4px">한 칸 = 1권</div>${e4barFig(e4barOpt3(1))}<div style="color:#d6403a;font-weight:700;margin-top:4px">40칸, 너무 길어요</div></div>
+            <div style="min-width:0"><div style="font-weight:700;margin-bottom:4px">한 칸 = 5권</div>${e4barFig(e4barOpt3(5))}<div style="color:#2f9e57;font-weight:700;margin-top:4px">8칸, 알맞아요</div></div>
+            <div style="min-width:0"><div style="font-weight:700;margin-bottom:4px">한 칸 = 100권</div>${e4barFig(e4barOpt3(100))}<div style="color:#d6403a;font-weight:700;margin-top:4px">차이가 안 보여요</div></div>
+          </div>
+          <div style="margin-top:8px">10권으로 해도 그릴 수는 있어요. 다만 25와 15는 눈금선 사이에 놓여서 읽기가 어려워요.</div>
+        </div>
+      </div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 4 (그래프를 보고 설명 판단하기)</div>
+      <div class="prob-q">예제 1의 그래프를 보고 한 설명 중 틀린 것을 찾아보세요.
+        <div style="text-align:center;margin:8px 0">${e4barFig(e4barOpt1(0))}</div>
+        ① 축구를 좋아하는 학생은 18명이에요.<br>② 줄넘기를 좋아하는 학생은 피구를 좋아하는 학생보다 2명 많아요.<br>③ 달리기를 좋아하는 학생이 가장 적어요.<br>④ 피구를 좋아하는 학생은 축구를 좋아하는 학생의 반이에요.</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'eb-sol-4')">💡 풀이 보기</button>
+      <div id="eb-sol-4" style="display:none;margin-top:8px">
+        <div class="fb-diagram" style="text-align:left">
+          정답: <strong style="color:#2f9e57">④</strong>
+          <div style="text-align:center;margin:6px 0">${e4barFig(e4barOpt1(4))}</div>
+          ① 9칸 × 2 = 18명 ○ &nbsp; ② 14 − 12 = 2명 ○ &nbsp; ③ 8명으로 가장 적음 ○<br>
+          ④ 축구의 반은 18 ÷ 2 = 9명인데 피구는 12명이라 틀려요 ✕
+        </div>
+      </div>
+    </div>
+  </div>`},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="e4bw e4b5" style="background:#ffffff;color:#1d2433;border-radius:12px;padding:18px"><style>.e4bw p,.e4bw strong{color:#1d2433}.e4b5 .eb5-prob{border:1px solid #c5ccd8;border-radius:12px;padding:16px;margin-bottom:16px}.e4b5 .eb5-label{font-size:.78rem;font-weight:700;color:#a8730a;margin-bottom:6px}.e4b5 .eb5-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.e4b5 .eb5-btn{font-family:inherit;font-size:.9rem;font-weight:700;border-radius:8px;padding:8px 14px;cursor:pointer;border:1.5px solid #2f6fd0;background:#f4f6fa;color:#2f6fd0}.e4b5 .eb5-btn.main{background:#2f6fd0;color:#ffffff}.e4b5 .eb5-sol{margin-top:12px;background:#f4f6fa;border:1px solid #c5ccd8;border-radius:10px;padding:12px 14px}</style>
+      <p>"🔄 유사문제"를 누르면 항목 이름, 숫자, 눈금 한 칸의 크기가 바뀐 비슷한 문제가 나와요.</p>
+      ${e4barProbHtml()}
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`${e4barWrapOpen()}
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>우리 모둠이 한 달 동안 읽은 책 수를 막대그래프로 그리는데요. 14권, 20권, 8권, 16권이에요. 눈금 한 칸을 3권으로 하면 안 돼요?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">지호</span>왜 안 돼? 눈금 한 칸은 내 마음대로 정하면 되지. 어차피 막대 높이만 보면 누가 많이 읽었는지는 다 보이잖아.</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>많고 적음은 맞는데... 그럼 민수가 몇 권 읽었는지는 어떻게 읽어? 14권이면 막대 끝이 어디에 와?</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">하은</span>한 칸이 3권이면 4칸이 12권, 5칸이 15권이잖아. 14권은 4칸과 5칸 사이 어디쯤이라서 정확한 수를 알 수 없어요.</div></div>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px;margin:6px 0 12px;text-align:center">
+      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;align-items:flex-end">
+        <div style="min-width:0"><div style="font-size:.88rem;font-weight:700;margin-bottom:6px">한 칸 = 3권</div>${e4barFig({unit:'권',yname:'책 수',xname:'이름',cats:['민수','서연','하나','지호'],vals:[14,20,8,16],step:3,axisMax:21,tickEvery:2,cellPx:22,w:300,L:48,R:70,
+          notes:function(g){
+            var x2=g.xc(0)+30, tx=g.L+g.pw+4;
+            return '<line x1="'+g.L+'" y1="'+g.y(12)+'" x2="'+x2+'" y2="'+g.y(12)+'" stroke="#d6403a" stroke-width="1.6" stroke-dasharray="4 3"/>'
+              +'<line x1="'+g.L+'" y1="'+g.y(15)+'" x2="'+x2+'" y2="'+g.y(15)+'" stroke="#d6403a" stroke-width="1.6" stroke-dasharray="4 3"/>'
+              +'<text x="'+tx+'" y="'+(g.y(15)+4)+'" fill="#d6403a" font-size="10" font-weight="700">5칸 = 15</text>'
+              +'<text x="'+tx+'" y="'+(g.y(12)+4)+'" fill="#d6403a" font-size="10" font-weight="700">4칸 = 12</text>'
+              +'<text x="'+(g.xc(0))+'" y="'+(g.y(14)-4)+'" text-anchor="middle" font-size="12" font-weight="700" fill="#a8730a">?</text>';
+          }})}<div style="font-size:.78rem;color:#d6403a;font-weight:700;margin-top:4px">14권이 4칸과 5칸 사이에 걸려요</div></div>
+        <div style="min-width:0"><div style="font-size:.88rem;font-weight:700;margin-bottom:6px">한 칸 = 2권</div>${e4barFig({unit:'권',yname:'책 수',xname:'이름',cats:['민수','서연','하나','지호'],vals:[14,20,8,16],step:2,axisMax:20,tickEvery:5,cellPx:15,w:300,L:48,R:8,
+          notes:function(g){return '<text x="'+g.xc(0)+'" y="'+(g.y(14)-4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="#2f9e57">7칸</text>';}})}<div style="font-size:.78rem;color:#2f9e57;font-weight:700;margin-top:4px">모든 막대 끝이 눈금선 위에 있어요</div></div>
+      </div>
+    </div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>지호의 말에도 맞는 부분이 있어요. 한 그래프 안에서는 막대 높이만 봐도 누가 더 많은지 비교할 수 있어요.<br>하지만 하은이 말처럼 정확한 수는 눈금을 읽어야 알 수 있어요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>눈금 한 칸을 3권으로 정해서 그릴 수는 있어요. 그런데 14권처럼 눈금선 사이에 걸리면 정확한 수를 알 수 없어요.<br>오른쪽 그래프는 한 칸이 2권이라서 14, 20, 8, 16이 모두 눈금선 위에 있어서 바로 읽을 수 있어요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>아하! 그래서 눈금 한 칸의 크기를 아무 수나 하지 않고 자료의 수가 눈금선 위에 오도록 정하는구나!</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! 그래서 막대그래프를 그릴 때는 가장 큰 값이 들어가면서, 자료의 수를 읽기 쉬운 눈금 한 칸의 크기를 골라요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 한 그래프 안에서는 막대 높이로 많고 적음을 비교할 수 있어요. 정확한 수는 눈금을 읽어야 알 수 있어요.<br>그래서 막대그래프를 그릴 때는 자료의 수가 눈금선 위에 놓이도록 눈금 한 칸의 크기를 정해요.</div>
+  </div>`},
+];
+CV_DATA['e4bar'] = CV_DATA_E4BAR;
+// 딸기(두 번째) 막대 위에 칸 수를 적는다
+function e4barNoteBar(txt){
+  return function(g){ return '<text x="'+g.xc(1)+'" y="'+(g.y(12)-4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="#a8730a">'+txt+'</text>'; };
+}
+// ── 문장제 심화 10선(e4bar): 랜덤 생성기. 이름 충돌을 막으려고 함수 안에 가둔다 ──
+function e4barGen(){
+  if(e4barGen._c) return e4barGen._c;
+  function rnd(a,b){return a+Math.floor(Math.random()*(b-a+1));}
+  function pick(arr){return arr[rnd(0,arr.length-1)];}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=rnd(0,i);var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  var C={fg:'#1d2433',muted:'#5d6678',line:'#c5ccd8',plot:'#eaf2fb',grid:'#b9cde4',gridb:'#4f86c6',bar:'#f0a93b',hi:'#2f9e57',gold:'#a8730a',red:'#d6403a',blue:'#2f6fd0',card:'#ffffff'};
+
+  // 눈금 있는 막대그래프. o.hidden: 가려진 막대 번호(? 표시), o.notes(g): 풀이용 덧그림
+  function barSvg(o){
+    var L=o.L||56, R=o.R||14, T=30, B=34;
+    var cell=o.cellPx, rows=Math.round(o.axisMax/o.step);
+    var ph=rows*cell, W=o.w||380, pw=W-L-R, H=T+ph+B;
+    var n=o.cats.length, cw=pw/n, bw=Math.min(40,cw*0.5);
+    var y=function(v){return T+ph-(v/o.axisMax)*ph;};
+    var xc=function(i){return L+cw*(i+0.5);};
+    var s='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" style="max-width:100%;height:auto;background:#f8fafd;border:1px solid '+C.line+';border-radius:8px" xmlns="http://www.w3.org/2000/svg" font-family="Nanum Gothic,sans-serif">';
+    s+='<rect x="'+L+'" y="'+T+'" width="'+pw+'" height="'+ph+'" fill="'+C.plot+'"/>';
+    s+='<text x="6" y="'+(T-12)+'" fill="'+C.fg+'" font-size="11">('+o.unit+')</text>';
+    for(var k=0;k<=rows;k++){
+      var lab=(k%o.tickEvery===0);
+      s+='<line x1="'+L+'" y1="'+y(k*o.step)+'" x2="'+(L+pw)+'" y2="'+y(k*o.step)+'" stroke="'+(lab?C.gridb:C.grid)+'" stroke-width="'+(lab?1.2:0.7)+'"/>';
+    }
+    for(var i=0;i<=n;i++) s+='<line x1="'+(L+i*cw)+'" y1="'+T+'" x2="'+(L+i*cw)+'" y2="'+H+'" stroke="'+C.line+'" stroke-width="1"/>';
+    for(var j=0;j<n;j++){
+      if(o.vals[j]===null){
+        s+='<rect x="'+(xc(j)-bw/2)+'" y="'+(T+ph*0.35)+'" width="'+bw+'" height="'+(ph*0.65)+'" fill="none" stroke="'+C.muted+'" stroke-dasharray="4 3"/>';
+        s+='<text x="'+xc(j)+'" y="'+(T+ph*0.7)+'" text-anchor="middle" font-size="18" font-weight="700" fill="'+C.muted+'">?</text>';
+        continue;
+      }
+      var top=y(o.vals[j]);
+      s+='<rect x="'+(xc(j)-bw/2)+'" y="'+top+'" width="'+bw+'" height="'+(T+ph-top)+'" fill="'+(o.hi===j?C.hi:C.bar)+'" stroke="#f8fafd" stroke-width="0.5"/>';
+    }
+    s+='<rect x="0" y="'+(T+ph)+'" width="'+W+'" height="'+B+'" fill="'+C.card+'" stroke="'+C.line+'"/>';
+    s+='<line x1="0" y1="'+(T+ph)+'" x2="'+L+'" y2="'+H+'" stroke="'+C.muted+'" stroke-width="1"/>';
+    for(var q=0;q<=rows;q++){
+      if(q%o.tickEvery===0) s+='<text x="'+(L-6)+'" y="'+(y(q*o.step)+(q===0?-2:4))+'" fill="'+C.fg+'" font-size="11" text-anchor="end">'+(q*o.step)+'</text>';
+    }
+    s+='<text x="'+(L-4)+'" y="'+(T+ph+13)+'" fill="'+C.fg+'" font-size="10" text-anchor="end">'+o.yname+'</text>';
+    s+='<text x="4" y="'+(H-6)+'" fill="'+C.fg+'" font-size="10">'+o.xname+'</text>';
+    for(var m=0;m<n;m++) s+='<text x="'+xc(m)+'" y="'+(T+ph+21)+'" fill="'+C.fg+'" font-size="12" text-anchor="middle">'+o.cats[m]+'</text>';
+    if(o.notes) s+=o.notes({y:y,xc:xc,L:L,T:T,ph:ph,pw:pw,cw:cw,bw:bw});
+    return s+'</svg>';
+  }
+  function box(inner){return '<div style="overflow-x:auto;text-align:center;margin:8px 0">'+inner+'</div>';}
+  function tbl(head,label,vals){
+    var th='border:1.5px solid '+C.muted+';padding:6px 14px;text-align:center;min-width:54px;background:#e6edf8';
+    var td='border:1.5px solid '+C.muted+';padding:6px 14px;text-align:center;min-width:54px';
+    return '<div style="overflow-x:auto"><table style="border-collapse:collapse;margin:8px auto;font-size:.95rem"><tr>'
+      +head.map(function(h){return '<th style="'+th+'">'+h+'</th>';}).join('')+'</tr><tr><th style="'+th+'">'+label+'</th>'
+      +vals.map(function(v){return '<td style="'+td+'">'+v+'</td>';}).join('')+'</tr></table></div>';
+  }
+  function ans(t){return '<strong style="color:'+C.hi+'">'+t+'</strong>';}
+
+  var THEMES=[
+    {cats:['사과','딸기','바나나','포도','귤','수박'],unit:'명',yname:'학생 수',xname:'과일',lead:'우리 반 친구들이 좋아하는 과일을 조사해 막대그래프로 나타냈어요.'},
+    {cats:['축구','피구','달리기','줄넘기','농구','배드민턴'],unit:'명',yname:'학생 수',xname:'운동',lead:'우리 반이 좋아하는 운동을 조사해 막대그래프로 나타냈어요.'},
+    {cats:['하늘','바다','구름','별','달','해'],unit:'개',yname:'병 수',xname:'모둠',lead:'모둠별로 한 달 동안 모은 빈 병 수를 막대그래프로 나타냈어요.'},
+    {cats:['동화','과학','역사','위인전','만화','시집'],unit:'권',yname:'책 수',xname:'종류',lead:'학급 문고의 종류별 책 수를 막대그래프로 나타냈어요.'},
+    {cats:['월요일','화요일','수요일','목요일','금요일','토요일'],unit:'명',yname:'방문자 수',xname:'요일',lead:'도서관의 요일별 방문자 수를 막대그래프로 나타냈어요.'},
+    {cats:['1반','2반','3반','4반','5반','6반'],unit:'자루',yname:'연필 수',xname:'반',lead:'반별로 모은 연필 수를 막대그래프로 나타냈어요.'}
+  ];
+  // tick: 숫자 눈금이 몇 칸마다 나오는가, cmax: 막대 최대 칸 수
+  var STEPS=[{s:1,tick:5,cmax:18},{s:2,tick:5,cmax:20},{s:5,tick:2,cmax:20},{s:10,tick:5,cmax:15},{s:20,tick:5,cmax:12}];
+
+  function makeData(theme,cfg,need){
+    for(var t=0;t<500;t++){
+      var cats=shuffle(theme.cats).slice(0,4), cells=[];
+      while(cells.length<4){var c=rnd(3,cfg.cmax); if(cells.indexOf(c)<0) cells.push(c);}
+      if(need && !need(cells,cfg)) continue;
+      var vals=cells.map(function(c){return c*cfg.s;});
+      var LI=cfg.s*cfg.tick, maxV=Math.max.apply(null,vals);
+      var axisMax=(Math.floor(maxV/LI)+1)*LI, rows=axisMax/cfg.s;
+      return {theme:theme,cfg:cfg,cats:cats,cells:cells,vals:vals,LI:LI,axisMax:axisMax,cellPx:Math.max(8,Math.min(16,Math.floor(180/rows)))};
+    }
+    throw new Error('makeData failed');
+  }
+  function spec(d,extra){
+    var o={unit:d.theme.unit,yname:d.theme.yname,xname:d.theme.xname,cats:d.cats,vals:d.vals,step:d.cfg.s,axisMax:d.axisMax,tickEvery:d.cfg.tick,cellPx:d.cellPx,w:380,L:56,R:14};
+    for(var k in (extra||{})) o[k]=extra[k];
+    return o;
+  }
+  function wide(o){o.w=o.w+160;o.R=174;return o;}
+  function bracket(g,v1,v2,x,color){
+    return '<line x1="'+x+'" y1="'+g.y(v1)+'" x2="'+x+'" y2="'+g.y(v2)+'" stroke="'+color+'" stroke-width="2"/>'
+      +'<line x1="'+(x-4)+'" y1="'+g.y(v1)+'" x2="'+(x+4)+'" y2="'+g.y(v1)+'" stroke="'+color+'" stroke-width="2"/>'
+      +'<line x1="'+(x-4)+'" y1="'+g.y(v2)+'" x2="'+(x+4)+'" y2="'+g.y(v2)+'" stroke="'+color+'" stroke-width="2"/>';
+  }
+  function note(g,yv,color,text,dy){
+    return '<text x="'+(g.L+g.pw+12)+'" y="'+(g.y(yv)+(dy||4))+'" fill="'+color+'" font-size="12" font-weight="700">'+text+'</text>';
+  }
+  function hline(g,v,x2,color){
+    return '<line x1="'+g.L+'" y1="'+g.y(v)+'" x2="'+x2+'" y2="'+g.y(v)+'" stroke="'+color+'" stroke-width="1.6" stroke-dasharray="4 3"/>';
+  }
+  function dpick(){return makeData(pick(THEMES),pick(STEPS));}
+  function cat(d,i){return '「'+d.cats[i]+'」';}
+
+  // 1. 눈금 한 칸 구하기
+  function G1(){
+    var d=dpick(), U=d.theme.unit;
+    var q='<p>'+d.theme.lead+'</p>'+box(barSvg(spec(d)))+'<p>눈금 한 칸의 크기는 얼마인가요? (단위: '+U+')</p>';
+    var sol='<div>'+box(barSvg(wide(spec(d,{notes:function(g){
+      return bracket(g,0,d.LI,g.L+9,C.gold)+note(g,d.LI/2,C.gold,'0~'+d.LI+' 사이 '+d.cfg.tick+'칸',-2)+note(g,d.LI/2,C.gold,d.LI+' ÷ '+d.cfg.tick+' = '+d.cfg.s,14);}}))))
+      +'<p>정답: '+ans(d.cfg.s+U)+'</p></div>';
+    return {q:q,sol:sol,meta:{d:d,answer:d.cfg.s}};
+  }
+  // 2. 막대 읽기 (눈금 사이 값)
+  function G2(){
+    var d=makeData(pick(THEMES),pick(STEPS),function(cells,cfg){return cells.some(function(c){return c%cfg.tick!==0;});});
+    var cand=[];d.cells.forEach(function(c,i){if(c%d.cfg.tick!==0)cand.push(i);});
+    var i=pick(cand), c=d.cells[i], lowerCells=Math.floor(c/d.cfg.tick)*d.cfg.tick, lower=lowerCells*d.cfg.s, extra=c-lowerCells, v=d.vals[i], U=d.theme.unit;
+    var q='<p>'+d.theme.lead+'</p>'+box(barSvg(spec(d)))+'<p>'+cat(d,i)+'의 '+d.theme.yname+'는 몇 '+U+'인가요?</p>';
+    var sol='<div>'+box(barSvg(wide(spec(d,{hi:i,notes:function(g){
+      return hline(g,lower,g.xc(i)+30,C.red)+hline(g,v,g.xc(i)+30,C.red)+bracket(g,lower,v,g.xc(i)+34,C.gold)
+        +note(g,v,C.hi,'③ '+lower+' + '+extra+'×'+d.cfg.s+' = '+v,-8)+note(g,v,C.gold,'② 위로 '+extra+'칸 (1칸 = '+d.cfg.s+')',6)+note(g,lower,C.red,'① 숫자 눈금 '+lower,14);}}))))
+      +'<p>정답: '+ans(v+U)+'</p></div>';
+    return {q:q,sol:sol,meta:{d:d,i:i,answer:v,lower:lower,extra:extra}};
+  }
+  // 3. 가장 많은 것과 가장 적은 것의 차
+  function G3(){
+    var d=dpick(), U=d.theme.unit, mx=d.vals.indexOf(Math.max.apply(null,d.vals)), mn=d.vals.indexOf(Math.min.apply(null,d.vals)), diff=d.vals[mx]-d.vals[mn];
+    var q='<p>'+d.theme.lead+'</p>'+box(barSvg(spec(d)))+'<p>'+d.theme.yname+'가 가장 많은 '+d.theme.xname+'와 가장 적은 '+d.theme.xname+'의 차는 몇 '+U+'인가요?</p>';
+    var sol='<div>'+box(barSvg(wide(spec(d,{hi:mx,notes:function(g){
+      return hline(g,d.vals[mx],g.xc(mx)+30,C.red)+hline(g,d.vals[mn],g.xc(mn)+30,C.red)
+        +note(g,d.vals[mx],C.hi,'가장 많음 '+d.vals[mx]+U,4)+note(g,d.vals[mn],C.red,'가장 적음 '+d.vals[mn]+U,4);}}))))
+      +'<p>가장 많은 것: '+cat(d,mx)+' '+d.vals[mx]+U+', 가장 적은 것: '+cat(d,mn)+' '+d.vals[mn]+U+'<br>'+d.vals[mx]+' − '+d.vals[mn]+' = '+ans(diff+U)+'</p></div>';
+    return {q:q,sol:sol,meta:{d:d,mx:mx,mn:mn,answer:diff}};
+  }
+  // 4. 전체 합
+  function G4(){
+    var d=dpick(), U=d.theme.unit, total=d.vals.reduce(function(a,b){return a+b;},0);
+    var q='<p>'+d.theme.lead+'</p>'+box(barSvg(spec(d)))+'<p>네 '+d.theme.xname+'의 '+d.theme.yname+'를 모두 합하면 몇 '+U+'인가요?</p>';
+    var sol='<div>'+box(barSvg(spec(d)))+'<p>'+d.cats.map(function(c,i){return c+' '+d.vals[i];}).join(' / ')+'<br>'+d.vals.join(' + ')+' = '+ans(total+U)+'</p></div>';
+    return {q:q,sol:sol,meta:{d:d,answer:total}};
+  }
+  // 5. 몇 개 더 많을까? (눈금 사이 값이 있는 항목끼리 비교)
+  function G5(){
+    var d=dpick(), U=d.theme.unit, idx=shuffle([0,1,2,3]), a=idx[0], b=idx[1];
+    if(d.vals[a]<d.vals[b]){var t=a;a=b;b=t;}
+    var diff=d.vals[a]-d.vals[b], dc=d.cells[a]-d.cells[b];
+    var q='<p>'+d.theme.lead+'</p>'+box(barSvg(spec(d)))+'<p>'+cat(d,a)+'의 '+d.theme.yname+'는 '+cat(d,b)+'의 '+d.theme.yname+'보다 몇 '+U+' 더 많은가요?</p>';
+    var sol='<div>'+box(barSvg(wide(spec(d,{hi:a,notes:function(g){
+      return hline(g,d.vals[a],g.xc(a)+30,C.red)+hline(g,d.vals[b],g.xc(b)+30,C.red)+bracket(g,d.vals[b],d.vals[a],g.xc(Math.max(a,b))+36,C.gold)
+        +note(g,d.vals[a],C.hi,cat(d,a)+' '+d.vals[a]+U,4)+note(g,d.vals[b],C.red,cat(d,b)+' '+d.vals[b]+U,4);}}))))
+      +'<p>'+d.vals[a]+' − '+d.vals[b]+' = '+ans(diff+U)+' <span style="color:'+C.muted+'">(칸으로 세면 '+dc+'칸 × '+d.cfg.s+')</span></p></div>';
+    return {q:q,sol:sol,meta:{d:d,a:a,b:b,answer:diff}};
+  }
+  // 6. 눈금 한 칸의 크기 고르기
+  function G6(){
+    var th=pick(THEMES), s=pick([5,10,20]), cells=[];
+    for(var t=0;t<500;t++){
+      cells=[];while(cells.length<4){var c=rnd(3,10); if(cells.indexOf(c)<0)cells.push(c);}
+      var mx=Math.max.apply(null,cells); if(mx>=6) break;
+    }
+    var vals=cells.map(function(c){return c*s;}), maxV=Math.max.apply(null,vals), cats=shuffle(th.cats).slice(0,4), U=th.unit;
+    var opts=shuffle([1,s,s*10]), right=opts.indexOf(s), mk=['①','②','③'];
+    function graph(x){
+      var rows=Math.ceil(maxV/x), axisMax=rows*x;
+      var tickEvery=x===1?rows:(x===s?2:1);
+      return barSvg({unit:U,yname:th.yname,xname:th.xname,cats:cats,vals:vals,step:x,axisMax:axisMax,tickEvery:tickEvery,cellPx:Math.max(1,Math.floor(150/rows)),w:250,L:46,R:6});
+    }
+    var q='<p>'+th.xname+'별 '+th.yname+'를 조사했어요.</p>'+tbl([th.xname].concat(cats),th.yname+'('+U+')',vals)
+      +'<p>막대그래프로 나타내려고 해요. 눈금 한 칸의 크기를 얼마로 하면 알맞을까요?<br>'+opts.map(function(x,i){return mk[i]+' '+x+U;}).join(' &nbsp; ')+'</p>';
+    var cap={};cap[1]='<span style="color:'+C.red+';font-weight:700">'+maxV+'칸, 너무 길어요</span>';
+    cap[s]='<span style="color:'+C.hi+';font-weight:700">'+(maxV/s)+'칸, 알맞아요</span>';
+    cap[s*10]='<span style="color:'+C.red+';font-weight:700">'+(maxV<s*10?'1칸도 안 돼요':'1칸')+', 차이가 안 보여요</span>';
+    var sol='<div><p>정답: '+ans(mk[right]+' '+s+U)+'<br>가장 큰 값 '+maxV+'이 들어가야 하고, 막대 높이가 읽기 좋아야 해요.</p><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;text-align:center">'
+      +[1,s,s*10].map(function(x){return '<div style="min-width:0"><div style="font-weight:700;margin-bottom:4px">한 칸 = '+x+U+'</div>'+box(graph(x))+cap[x]+'</div>';}).join('')+'</div></div>';
+    return {q:q,sol:sol,meta:{s:s,maxV:maxV,opts:opts,right:right,cells:cells}};
+  }
+  // 7. 표를 보고 막대 칸 수 구하기
+  function G7(){
+    var th=pick(THEMES), cfg=pick(STEPS), s=cfg.s, c=rnd(3,cfg.cmax), v=c*s, i=rnd(0,3), cats=shuffle(th.cats).slice(0,4), U=th.unit;
+    var d=makeData(th,cfg); d.cats=cats; d.cells[i]=c; d.vals[i]=v;
+    var maxV=Math.max.apply(null,d.vals), LI=s*cfg.tick; d.axisMax=(Math.floor(maxV/LI)+1)*LI;
+    d.cellPx=Math.max(8,Math.min(16,Math.floor(180/(d.axisMax/s))));
+    var q='<p>눈금 한 칸의 크기가 '+s+U+'인 막대그래프를 그리려고 해요. '+cat(d,i)+'의 '+th.yname+'는 '+v+U+'입니다.</p><p>'+cat(d,i)+'의 막대는 몇 칸으로 그려야 하나요?</p>';
+    var sol='<div>'+box(barSvg(wide(spec(d,{hi:i,notes:function(g){
+      return bracket(g,0,v,g.xc(i)+34,C.gold)+hline(g,v,g.xc(i)+30,C.red)+note(g,v,C.hi,v+' ÷ '+s+' = '+c+'칸',4);}}))))
+      +'<p>'+v+' ÷ '+s+' = '+ans(c+'칸')+'</p></div>';
+    return {q:q,sol:sol,meta:{s:s,v:v,answer:c}};
+  }
+  // 8. 설명 판단 (틀린 것 찾기)
+  function G8(){
+    var d=dpick(), U=d.theme.unit, s=d.cfg.s, Y=d.theme.yname, n=d.vals.length;
+    var mx=d.vals.indexOf(Math.max.apply(null,d.vals)), mn=d.vals.indexOf(Math.min.apply(null,d.vals)), total=d.vals.reduce(function(a,b){return a+b;},0);
+    var kinds=['val','diff','max','min','sum','half'], falseKind=pick(kinds);
+    var trueKinds=shuffle(kinds.filter(function(k){return k!==falseKind&&k!=='half';})).slice(0,3);
+    function make(kind,truth){
+      var idx=shuffle([0,1,2,3]), a=idx[0], b=idx[1];
+      if(kind==='val'){var vv=truth?d.vals[a]:d.vals[a]+s*pick([-2,-1,1,2]); if(vv<=0)vv=d.vals[a]+s;
+        return {kind:kind,a:a,claim:vv,truth:truth,text:cat(d,a)+'의 '+Y+'는 '+vv+U+'입니다.'};}
+      if(kind==='diff'){if(d.vals[a]<d.vals[b]){var t=a;a=b;b=t;} var dd=d.vals[a]-d.vals[b], cl=truth?dd:dd+s*pick([-1,1,2]); if(cl<=0)cl=dd+s;
+        return {kind:kind,a:a,b:b,claim:cl,truth:truth,text:cat(d,a)+'의 '+Y+'는 '+cat(d,b)+'의 '+Y+'보다 '+cl+U+' 많습니다.'};}
+      if(kind==='max'){var ci=truth?mx:pick([0,1,2,3].filter(function(x){return x!==mx;}));
+        return {kind:kind,claim:ci,truth:truth,text:Y+'가 가장 많은 '+d.theme.xname+'는 '+cat(d,ci)+'입니다.'};}
+      if(kind==='min'){var cj=truth?mn:pick([0,1,2,3].filter(function(x){return x!==mn;}));
+        return {kind:kind,claim:cj,truth:truth,text:Y+'가 가장 적은 '+d.theme.xname+'는 '+cat(d,cj)+'입니다.'};}
+      if(kind==='sum'){var st=truth?total:total+s*pick([-2,-1,1,2]);
+        return {kind:kind,claim:st,truth:truth,text:'네 '+d.theme.xname+'의 '+Y+'를 모두 합하면 '+st+U+'입니다.'};}
+      // half: 거짓일 때만 만든다 (한 항목이 다른 항목의 반이라고 주장)
+      for(var t2=0;t2<50;t2++){var p=pick([0,1,2,3]), r=pick([0,1,2,3]); if(p!==r && d.vals[p]*2!==d.vals[r])
+        return {kind:'half',a:p,b:r,truth:false,text:cat(d,p)+'의 '+Y+'는 '+cat(d,r)+'의 '+Y+'의 반입니다.'};}
+    }
+    var sts=trueKinds.map(function(k){return make(k,true);}); sts.push(make(falseKind,false));
+    sts=shuffle(sts); var right=sts.findIndex(function(x){return !x.truth;}), mk=['①','②','③','④'];
+    var q='<p>'+d.theme.lead+'</p>'+box(barSvg(spec(d)))+'<p>그래프를 보고 한 설명 중 틀린 것을 찾아보세요.</p><p>'+sts.map(function(x,i){return mk[i]+' '+x.text;}).join('<br>')+'</p>';
+    var sol='<div><p>정답: '+ans(mk[right])+'</p>'+box(barSvg(spec(d)))+'<p>'+sts.map(function(x,i){
+      return mk[i]+' '+(x.truth?'<span style="color:'+C.hi+';font-weight:700">○</span>':'<span style="color:'+C.red+';font-weight:700">✕</span>')+' '+x.text;}).join('<br>')
+      +'<br><span style="color:'+C.muted+'">그래프의 값: '+d.cats.map(function(c,i){return c+' '+d.vals[i];}).join(', ')+'</span></p></div>';
+    return {q:q,sol:sol,meta:{d:d,sts:sts,right:right,total:total,mx:mx,mn:mn}};
+  }
+  // 9. 두 그래프 비교 (막대는 같은 칸 수, 눈금 한 칸의 크기가 다름)
+  function G9(){
+    var th=pick(THEMES), s1=pick([2,5]), s2=pick([10,20]), cfg1=STEPS.filter(function(x){return x.s===s1;})[0], cfg2=STEPS.filter(function(x){return x.s===s2;})[0];
+    var k=rnd(4,9), cats=shuffle(th.cats).slice(0,4), xi=rnd(0,3), U=th.unit;
+    function mk(cfg){
+      var cells=[];for(var i=0;i<4;i++){var c; do{c=rnd(3,Math.min(cfg.cmax,12));}while(cells.indexOf(c)>=0||c===k); cells.push(c);}
+      cells[xi]=k;
+      var vals=cells.map(function(c){return c*cfg.s;}), LI=cfg.s*cfg.tick, maxV=Math.max.apply(null,vals);
+      return {theme:th,cfg:cfg,cats:cats,cells:cells,vals:vals,LI:LI,axisMax:(Math.floor(maxV/LI)+1)*LI,cellPx:10};
+    }
+    var A=mk(cfg1), B=mk(cfg2), vA=k*s1, vB=k*s2, diff=vB-vA;
+    var q='<p>가 반과 나 반이 각각 '+th.xname+'별 '+th.yname+'를 조사해 막대그래프로 나타냈어요. 두 그래프의 눈금은 서로 달라요.</p>'
+      +'<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><div style="min-width:0;text-align:center"><div style="font-weight:700;margin-bottom:4px">가 반</div>'+box(barSvg(spec(A,{w:300,L:48,R:8})))+'</div>'
+      +'<div style="min-width:0;text-align:center"><div style="font-weight:700;margin-bottom:4px">나 반</div>'+box(barSvg(spec(B,{w:300,L:48,R:8})))+'</div></div>'
+      +'<p>두 그래프에서 '+cat(A,xi)+'의 막대는 둘 다 '+k+'칸이에요.<br>(1) 가 반과 나 반의 '+cat(A,xi)+'의 '+th.yname+'는 각각 몇 '+U+'인가요?<br>(2) 어느 반이 몇 '+U+' 더 많은가요?</p>';
+    var sol='<div><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><div style="min-width:0;text-align:center"><div style="font-weight:700;margin-bottom:4px">가 반 (한 칸 = '+s1+U+')</div>'+box(barSvg(spec(A,{w:300,L:48,R:8,hi:xi})))+'</div>'
+      +'<div style="min-width:0;text-align:center"><div style="font-weight:700;margin-bottom:4px">나 반 (한 칸 = '+s2+U+')</div>'+box(barSvg(spec(B,{w:300,L:48,R:8,hi:xi})))+'</div></div>'
+      +'<p>(1) 가 반: '+k+'칸 × '+s1+' = '+ans(vA+U)+', 나 반: '+k+'칸 × '+s2+' = '+ans(vB+U)+'<br>(2) 나 반이 '+vB+' − '+vA+' = '+ans(diff+U)+' 더 많아요.'
+      +'<br><span style="color:'+C.muted+'">막대 높이는 같아도 눈금 한 칸의 크기가 달라서 수가 달라요.</span></p></div>';
+    return {q:q,sol:sol,meta:{s1:s1,s2:s2,k:k,vA:vA,vB:vB,diff:diff}};
+  }
+  // 10. 빠진 값 구하기 (가려진 막대)
+  function G10(){
+    var d=dpick(), U=d.theme.unit, h=rnd(0,3), total=d.vals.reduce(function(a,b){return a+b;},0), rest=total-d.vals[h];
+    var shown=d.vals.map(function(v,i){return i===h?null:v;});
+    var q='<p>'+d.theme.xname+'별 '+d.theme.yname+'를 막대그래프로 나타냈는데 '+cat(d,h)+'의 막대가 가려졌어요.</p>'+box(barSvg(spec(d,{vals:shown})))
+      +'<p>네 '+d.theme.xname+'의 '+d.theme.yname+'를 모두 합하면 '+total+U+'입니다. '+cat(d,h)+'의 '+d.theme.yname+'는 몇 '+U+'인가요?</p>';
+    var sol='<div>'+box(barSvg(spec(d,{hi:h})))+'<p>보이는 세 '+d.theme.xname+': '+shown.filter(function(v){return v!==null;}).join(' + ')+' = '+rest+'<br>'+total+' − '+rest+' = '+ans(d.vals[h]+U)+'</p></div>';
+    return {q:q,sol:sol,meta:{d:d,h:h,total:total,rest:rest,answer:d.vals[h]}};
+  }
+  var PROBS=[
+    {name:'눈금 한 칸 구하기',gen:G1},{name:'막대 읽기',gen:G2},{name:'가장 많은 것과 적은 것의 차',gen:G3},{name:'전체 합',gen:G4},{name:'몇 개 더 많을까?',gen:G5},
+    {name:'눈금 한 칸의 크기 고르기',gen:G6},{name:'막대 칸 수 구하기',gen:G7},{name:'틀린 설명 찾기',gen:G8},{name:'두 그래프 비교',gen:G9},{name:'가려진 값 구하기',gen:G10}
+  ];
+
+
+  e4barGen._c = {PROBS:PROBS};
+  return e4barGen._c;
+}
+function e4barProbHtml(){
+  var P = e4barGen().PROBS, html = '';
+  P.forEach(function(p,i){
+    var r = p.gen();
+    html += '<div class="eb5-prob"><div class="eb5-label">문제 '+(i+1)+' · '+p.name+'</div><div id="eb5-pb-'+i+'">'+r.q+'</div>'
+      +'<div class="eb5-btns"><button class="eb5-btn main" id="eb5-bs-'+i+'" onclick="e4barProbToggle('+i+')">💡 풀이 보기</button><button class="eb5-btn" onclick="e4barProbRegen('+i+')">🔄 유사문제</button></div>'
+      +'<div class="eb5-sol" id="eb5-ps-'+i+'" hidden>'+r.sol+'</div></div>';
+  });
+  return html;
+}
+function e4barProbRegen(i){
+  var r = e4barGen().PROBS[i].gen();
+  document.getElementById('eb5-pb-'+i).innerHTML = r.q;
+  var s = document.getElementById('eb5-ps-'+i); s.innerHTML = r.sol; s.hidden = true;
+  document.getElementById('eb5-bs-'+i).textContent = '💡 풀이 보기';
+}
+function e4barProbToggle(i){
+  var s = document.getElementById('eb5-ps-'+i); s.hidden = !s.hidden;
+  document.getElementById('eb5-bs-'+i).textContent = s.hidden ? '💡 풀이 보기' : '👆 접어두기';
+}
+
+// 흰 바탕 패널: 앱 공통 부품(보기 버튼·말풍선·풀이 상자)의 색을 이 패널 안에서만 라이트로 덮어쓴다
+function e4barWrapOpen(){
+  return '<div class="e4bw" style="background:#ffffff;color:#1d2433;border-radius:12px;padding:18px"><style>'
+    +'.e4bw p,.e4bw li,.e4bw strong{color:#1d2433}'
+    +'.e4bw .q-item{background:#f4f6fa;color:#1d2433;border-left-color:#2f9e57}.e4bw .q-item strong{color:#1f7a42}'
+    +'.e4bw .havruta-show-btn{background:#fff3d1;border:1px solid #c9a227;color:#7a5600}.e4bw .havruta-show-btn:hover{background:#ffe9a8}'
+    +'.e4bw .havruta-opt{background:#ffffff;border:2px solid #c5ccd8;color:#1d2433;box-shadow:0 3px 0 rgba(0,0,0,.12)}.e4bw .havruta-opt:hover{border-color:#2f9e57}.e4bw .havruta-opt.selected{border-color:#2f9e57;background:#e6f6ec}'
+    +'.e4bw .story-avatar{background:#f4f6fa;border-color:#c5ccd8}'
+    +'.e4bw .story-bubble{background:#fdeeee;border-color:#e8b4b1;color:#1d2433}.e4bw .story-bubble .story-name{color:#c0362f}'
+    +'.e4bw .story-bubble.teacher{background:#fff8e1;border-color:#e0c36a}.e4bw .story-bubble.teacher .story-name{color:#8a6100}'
+    +'.e4bw .story-takeaway{background:#e8f6ec;border-color:#9bd0ab;color:#1d2433}.e4bw .story-takeaway strong{color:#1f7a42}'
+    +'.e4bw .prob-box{background:#f8fafd;border-color:#c5ccd8}.e4bw .prob-box .prob-q{color:#4b3590}'
+    +'.e4bw .fb-diagram{background:#f4f6fa;border-color:#c5ccd8;color:#1d2433}'
+    +'</style>';
+}
+// 예제 풀이 보기/접기: 문제 본문을 건드리지 않고 풀이 상자만 열고 닫는다
+function e4barSolToggle(btn, id){
+  var el = document.getElementById(id);
+  var open = el.style.display === 'none';
+  el.style.display = open ? '' : 'none';
+  btn.textContent = open ? '👆 접어두기' : '💡 풀이 보기';
+}
+// 예제 1·4 그래프. sol: 0=문제(힌트 없음), 1=풀이(칸 번호), 4=풀이(축구의 반 비교)
+function e4barOpt1(sol){
+  var o = {unit:'명',yname:'학생 수',xname:'운동',cats:['축구','피구','달리기','줄넘기'],vals:[18,12,8,14],step:2,axisMax:20,tickEvery:5,cellPx:14,w:340};
+  if(sol===1){
+    o.w = 480; o.R = 150;
+    o.notes = function(g){
+      var s='';
+      for(var k=1;k<=5;k++){
+        var yc=(g.y((k-1)*2)+g.y(k*2))/2;
+        s+='<circle cx="'+(g.L+7)+'" cy="'+yc+'" r="5" fill="#ffffff" stroke="#a8730a"/><text x="'+(g.L+7)+'" y="'+(yc+3)+'" text-anchor="middle" font-size="8" fill="#a8730a" font-weight="700">'+k+'</text>';
+      }
+      var tx=g.L+g.pw+12;
+      s+='<text x="'+tx+'" y="'+(g.y(5)-4)+'" fill="#a8730a" font-size="12" font-weight="700">0~10 사이 5칸</text>';
+      s+='<text x="'+tx+'" y="'+(g.y(5)+12)+'" fill="#a8730a" font-size="12" font-weight="700">10 ÷ 5 = 2 (한 칸 = 2명)</text>';
+      s+='<text x="'+g.xc(2)+'" y="'+(g.y(8)+14)+'" text-anchor="middle" font-size="10" fill="#1d2433" font-weight="700">4칸</text>';
+      return s;
+    };
+  }
+  if(sol===4){
+    o.w = 480; o.R = 150;
+    o.notes = function(g){
+      var tx=g.L+g.pw+12;
+      var s='<line x1="'+g.L+'" y1="'+g.y(9)+'" x2="'+(g.xc(1)+30)+'" y2="'+g.y(9)+'" stroke="#d6403a" stroke-width="1.6" stroke-dasharray="4 3"/>';
+      s+='<line x1="'+g.L+'" y1="'+g.y(12)+'" x2="'+(g.xc(1)+30)+'" y2="'+g.y(12)+'" stroke="#a8730a" stroke-width="1.6" stroke-dasharray="4 3"/>';
+      s+='<text x="'+tx+'" y="'+(g.y(9)+14)+'" fill="#d6403a" font-size="12" font-weight="700">축구의 반 = 9명</text>';
+      s+='<text x="'+tx+'" y="'+(g.y(12)+4)+'" fill="#a8730a" font-size="12" font-weight="700">피구 = 12명</text>';
+      return s;
+    };
+  }
+  return o;
+}
+// 예제 2 그래프. sol: 0=문제, 1=풀이(40에서 위로 1칸)
+function e4barOpt2(sol){
+  var o = {unit:'개',yname:'병 수',xname:'모둠',cats:['하늘','바다','구름','별'],vals:[35,20,45,30],step:5,axisMax:50,tickEvery:2,cellPx:14,w:340};
+  if(sol===1){
+    o.w = 480; o.R = 150;
+    o.notes = function(g){
+      var tx=g.L+g.pw+12, x2=g.xc(2)+30, bx=g.xc(2)+34;
+      var s='<line x1="'+g.L+'" y1="'+g.y(40)+'" x2="'+x2+'" y2="'+g.y(40)+'" stroke="#d6403a" stroke-width="1.6" stroke-dasharray="4 3"/>';
+      s+='<line x1="'+g.L+'" y1="'+g.y(45)+'" x2="'+x2+'" y2="'+g.y(45)+'" stroke="#d6403a" stroke-width="1.6" stroke-dasharray="4 3"/>';
+      s+='<line x1="'+bx+'" y1="'+g.y(40)+'" x2="'+bx+'" y2="'+g.y(45)+'" stroke="#a8730a" stroke-width="2"/>';
+      s+='<text x="'+tx+'" y="'+(g.y(45)-8)+'" fill="#2f9e57" font-size="12" font-weight="700">③ 40 + 5 = 45개</text>';
+      s+='<text x="'+tx+'" y="'+(g.y(45)+4)+'" fill="#a8730a" font-size="12" font-weight="700">② 위로 1칸 (1칸 = 5)</text>';
+      s+='<text x="'+tx+'" y="'+(g.y(40)+12)+'" fill="#d6403a" font-size="12" font-weight="700">① 숫자 눈금 40</text>';
+      return s;
+    };
+  }
+  return o;
+}
+// 예제 3 풀이 그래프: 한 칸의 크기(1·5·100권)만 다르고 전체 높이는 같게 그린다
+function e4barOpt3(step){
+  var axisMax = step===100 ? 100 : 40;
+  var rows = Math.round(axisMax/step);
+  return {unit:'권',yname:'책 수',xname:'종류',cats:['동화','과학','역사','위인전'],vals:[25,40,15,30],step:step,axisMax:axisMax,
+    tickEvery: step===1 ? 10 : (step===5 ? 2 : 1), cellPx: Math.round(160/rows), w:250, L:46, R:6};
+}
+
 // ── 평면도형의 이동(e4move): 좌표 변환 + SVG 렌더링 ──
 // 기준 도형: L자(비대칭) — 좌우/상하 모두 비대칭이라 밀기·뒤집기·돌리기 결과가 전부 다르게 보임
 var MV_L_SHAPE = [[0,0],[20,0],[20,40],[50,40],[50,60],[0,60]];
@@ -13109,6 +13776,38 @@ const FB_DIAGRAM_E6PRISM_H4 = '<div class="fb-diagram"><div style="display:flex;
   + '<div>'+prismSvg(4,'#58a6ff')+'<div style="font-size:.72rem;color:#58a6ff">각기둥 — 밑면 2개(평행·합동), 옆면은 직사각형</div></div>'
   + '<div>'+pyramidSvg(4,'#f0c040')+'<div style="font-size:.72rem;color:#f0c040">각뿔 — 밑면 1개, 옆면은 모두 삼각형, 한 점(꼭짓점)에서 만남</div></div>'
   + '</div></div>';
+// 막대그래프(e4bar) 하브루타 답변 그림
+const FB_DIAGRAM_E4BAR_H1 = '<div class="fb-diagram"><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">'
+  +'<div style="min-width:0;text-align:center"><div style="font-weight:700;margin-bottom:4px">한 칸 = 1명</div>'
+  +e4barFig({unit:'명',yname:'학생 수',xname:'과일',cats:['사과','딸기','바나나','포도'],vals:[8,12,4,16],step:1,axisMax:16,tickEvery:4,cellPx:16,w:250,L:48,R:8,
+    notes:function(g){return '<text x="'+g.xc(1)+'" y="'+(g.y(12)-4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="#a8730a">12칸</text>';}})+'</div>'
+  +'<div style="min-width:0;text-align:center"><div style="font-weight:700;margin-bottom:4px">한 칸 = 4명</div>'
+  +e4barFig({unit:'명',yname:'학생 수',xname:'과일',cats:['사과','딸기','바나나','포도'],vals:[8,12,4,16],step:4,axisMax:16,tickEvery:1,cellPx:16,w:250,L:48,R:8,
+    notes:function(g){return '<text x="'+g.xc(1)+'" y="'+(g.y(12)-4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="#a8730a">3칸</text>';}})+'</div></div>'
+  +'<div style="margin-top:8px;text-align:center">딸기: 12칸 × 1명 = <strong style="color:#2f9e57">12명</strong> &nbsp;·&nbsp; 3칸 × 4명 = <strong style="color:#2f9e57">12명</strong></div></div>';
+const FB_DIAGRAM_E4BAR_H2 = '<div class="fb-diagram"><div style="text-align:center">'
+  +e4barFig({unit:'회',yname:'횟수',xname:'이름',cats:['가온','나래','다솜','라온'],vals:[50,130,90,110],step:10,axisMax:150,tickEvery:5,cellPx:15,w:460,L:54,R:140,hi:1,
+    notes:function(g){
+      var s='', tx=g.L+g.pw+12, bx=g.xc(1)-18;
+      for(var k=1;k<=5;k++){
+        var yc=(g.y(100+(k-1)*10)+g.y(100+k*10))/2;
+        s+='<circle cx="'+bx+'" cy="'+yc+'" r="5.5" fill="#ffffff" stroke="#a8730a"/><text x="'+bx+'" y="'+(yc+3)+'" text-anchor="middle" font-size="8" font-weight="700" fill="#a8730a">'+k+'</text>';
+      }
+      s+='<line x1="'+g.L+'" y1="'+g.y(125)+'" x2="'+(g.xc(1)+30)+'" y2="'+g.y(125)+'" stroke="#d6403a" stroke-width="1.4" stroke-dasharray="4 3"/>';
+      s+='<text x="'+tx+'" y="'+(g.y(130)-3)+'" fill="#2f9e57" font-size="12" font-weight="700">막대 끝 = 3칸째 (130)</text>';
+      s+='<text x="'+tx+'" y="'+(g.y(125)+13)+'" fill="#d6403a" font-size="12" font-weight="700">125는 2칸 반</text>';
+      return s;
+    }})
+  +'</div><div style="margin-top:8px;text-align:center">100에서 칸을 세어요: ①②③ → 100 + 3칸 × 10 = <strong style="color:#2f9e57">130회</strong></div></div>';
+const FB_DIAGRAM_E4BAR_H3 = '<div class="fb-diagram"><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">'
+  +'<div style="min-width:0;text-align:center"><div style="font-weight:700;margin-bottom:4px">가 반 (한 칸 = 1자루)</div>'
+  +e4barFig({unit:'자루',yname:'연필 수',xname:'모둠',cats:['1모둠','2모둠'],vals:[3,6],step:1,axisMax:8,tickEvery:2,cellPx:14,w:230,L:50,R:8,
+    notes:function(g){return '<text x="'+g.xc(1)+'" y="'+(g.y(6)-4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="#a8730a">6칸</text>';}})+'</div>'
+  +'<div style="min-width:0;text-align:center"><div style="font-weight:700;margin-bottom:4px">나 반 (한 칸 = 5자루)</div>'
+  +e4barFig({unit:'자루',yname:'연필 수',xname:'모둠',cats:['1모둠','2모둠'],vals:[15,30],step:5,axisMax:40,tickEvery:2,cellPx:14,w:230,L:50,R:8,
+    notes:function(g){return '<text x="'+g.xc(1)+'" y="'+(g.y(30)-4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="#a8730a">6칸</text>';}})+'</div></div>'
+  +'<div style="margin-top:8px;text-align:center">2모둠: 6칸 × 1자루 = <strong style="color:#2f9e57">6자루</strong> &nbsp;·&nbsp; 6칸 × 5자루 = <strong style="color:#2f9e57">30자루</strong></div>'
+  +'<div style="margin-top:6px;text-align:center"><strong style="color:#a8730a">정리:</strong> 높이로 서로 비교할 수 있고, 정확한 수는 눈금을 읽어서 알아요.</div></div>';
 const HAVRUTA_FB = {
   'e6prism-h1': [
     {ok:true, text:'맞아요! 두 밑면이 평행하고 합동이어야, 그 사이를 잇는 옆면들이 위아래 폭이 똑같은 반듯한 직사각형이 될 수 있어요.', diagram:FB_DIAGRAM_E6PRISM_H1},
@@ -13432,6 +14131,21 @@ const HAVRUTA_FB = {
     {ok:true, text:'맞아요! 뒤집기를 두 번 하면 원래 모양으로 돌아와요 — 거울에 비친 모습을 다시 거울에 비추면 원래대로 보이는 것과 같은 원리예요.', diagram:FB_DIAGRAM_E4MOVE_H3},
     {ok:false, text:'더 많이 뒤집히는 게 아니에요! 뒤집기는 "좌우가 반대인가, 원래인가" 둘 중 하나라서, 두 번 뒤집으면 다시 원래(반대의 반대 = 원래)로 돌아와요.', diagram:FB_DIAGRAM_E4MOVE_H3},
     {ok:false, text:'뒤집기는 몇 번이든 할 수 있어요! 다만 짝수 번 뒤집으면 원래 모양으로, 홀수 번 뒤집으면 뒤집힌 모양으로 돌아온다는 규칙이 있어요.', diagram:FB_DIAGRAM_E4MOVE_H3}
+  ],
+  'e4bar-h1': [
+    {ok:false, text:'한 그래프 안에서는 낮은 막대가 더 적은 게 맞아요. 하지만 이건 서로 다른 두 그래프예요. 한 칸의 크기가 다르면 높이만으로는 몇 명인지 알 수 없어요. 눈금을 읽어야 해요.', diagram:FB_DIAGRAM_E4BAR_H1},
+    {ok:true, text:'맞아요! 칸 수가 줄면 한 칸의 크기가 커지니까 곱하면 같아요. 딸기는 12칸 × 1명 = 12명, 3칸 × 4명 = 12명이에요.', diagram:FB_DIAGRAM_E4BAR_H1},
+    {ok:false, text:'한 칸이 4명이라는 건 "한 칸의 크기"예요. 딸기는 3칸이니까 3 × 4 = 12명이에요.', diagram:FB_DIAGRAM_E4BAR_H1}
+  ],
+  'e4bar-h2': [
+    {ok:false, text:'가운데가 아니라 칸을 세어야 해요. 100과 150 사이는 5칸이고, 막대 끝은 3칸째예요. (125라면 2칸 반이에요)', diagram:FB_DIAGRAM_E4BAR_H2},
+    {ok:true, text:'맞아요! 100에서 칸을 세어 보면 ①②③, 3칸이에요. 100 + 3칸 × 10 = 130회예요.', diagram:FB_DIAGRAM_E4BAR_H2},
+    {ok:false, text:'막대 끝이 가까워 보여도 값은 눈금선에서 읽어요. 150 눈금선까지는 아직 2칸이 남아 있어요.', diagram:FB_DIAGRAM_E4BAR_H2}
+  ],
+  'e4bar-h3': [
+    {ok:false, text:'그래프가 둘일 때는 한 칸의 크기가 같은지 먼저 봐야 해요. 가 반은 6칸 × 1 = 6자루, 나 반은 6칸 × 5 = 30자루예요.', diagram:FB_DIAGRAM_E4BAR_H3},
+    {ok:true, text:'맞아요! 높이는 같아도 한 칸의 크기가 달라서 가 반은 6자루, 나 반은 30자루예요.', diagram:FB_DIAGRAM_E4BAR_H3},
+    {ok:false, text:'한 그래프 안에서는 높이로 비교할 수 있어요. 가 반 그래프에서 3칸 막대와 6칸 막대를 보면 6칸 쪽이 2배예요. 하지만 정확한 수는 눈금을 읽어야 알 수 있어요(3칸 × 1자루 = 3자루, 6칸 × 1자루 = 6자루).', diagram:FB_DIAGRAM_E4BAR_H3}
   ],
   'e5gcd-h1': [
     {ok:true, text:'맞아요! 소수는 약수가 정확히 2개(1과 자기 자신)여야 해요. 1은 약수가 자기 자신 하나뿐이라 이 조건에 맞지 않아서 소수가 아니에요.', diagram:FB_DIAGRAM_GCD1_OK},
