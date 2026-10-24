@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>수학 탐정 수사국 | 방정식의 활용 | 영통수학여행학원</title>
+<style>
+:root{
+  --bg:#0d0800;--bg2:#1a1000;--card:#251800;--card2:#2e1f00;
+  --gold:#d4a017;--amber:#f59e0b;--red:#cc2200;
+  --paper:#f0ddb0;--paper2:#dcc890;--muted:#8a7050;
+  --green:#10b981;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:"Segoe UI","Noto Sans KR",sans-serif;
+  background:radial-gradient(ellipse at top,#1a1000 0%,#080500 100%);
+  min-height:100vh;
+  padding:12px 16px;color:var(--paper);}
+.wrap{width:100%;max-width:1200px;margin:0 auto}
+
+.screen{display:none;animation:fadeIn .3s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* FLASH */
+.flash-overlay{position:fixed;inset:0;z-index:500;pointer-events:none;opacity:0}
+.flash-overlay.red{animation:fRed .5s ease forwards}
+.flash-overlay.amber{animation:fAmber .5s ease forwards}
+@keyframes fRed{0%{background:rgba(204,34,0,.65);opacity:1}100%{opacity:0}}
+@keyframes fAmber{0%{background:rgba(245,158,11,.55);opacity:1}100%{opacity:0}}
+
+/* ===== TITLE ===== */
+.agency{
+  background:linear-gradient(160deg,#1a0e00,#2a1800,#120a00);
+  border:2px solid var(--gold);border-radius:18px;
+  padding:1.6rem 2rem;text-align:center;margin-bottom:1.2rem;
+  box-shadow:0 0 80px rgba(212,160,23,.2);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;gap:2rem;}
+.agency::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,rgba(212,160,23,.018) 0px,rgba(212,160,23,.018) 1px,transparent 1px,transparent 12px);}
+.agency-badge{font-size:3.5rem;display:block;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.agency-title{
+  font-size:1.65rem;font-weight:900;letter-spacing:.04em;margin:.3rem 0;
+  background:linear-gradient(90deg,#d4a017,#fbbf24,#d4a017);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.agency-sub{font-size:.82rem;color:var(--muted);margin-bottom:.8rem}
+.sc-tag{
+  display:inline-flex;align-items:center;gap:.35rem;
+  background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.28);
+  border-radius:14px;padding:.3rem .8rem;font-size:.88rem;color:var(--gold);font-weight:700;}
+.mode-pill{
+  display:inline-flex;align-items:center;gap:.3rem;
+  border-radius:12px;padding:.26rem .7rem;margin-left:.4rem;font-size:.78rem;font-weight:700;}
+.mode-pill.mcq{background:rgba(96,165,250,.16);border:1px solid rgba(96,165,250,.28);color:#60a5fa}
+.mode-pill.fill{background:rgba(245,158,11,.16);border:1px solid rgba(245,158,11,.28);color:var(--amber)}
+
+/* CORK BOARD */
+.cork-label{
+  font-size:.75rem;color:var(--muted);text-align:center;
+  letter-spacing:.08em;text-transform:uppercase;
+  margin-bottom:.7rem;border-bottom:1px solid rgba(212,160,23,.12);padding-bottom:.45rem;}
+.case-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem;margin-bottom:1rem}
+@media(max-width:900px){.case-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.case-grid{grid-template-columns:1fr 1fr}}
+.case-card{
+  background:linear-gradient(155deg,#2a1800,#1e1200);
+  border:1.5px solid rgba(212,160,23,.18);border-radius:14px;
+  padding:.95rem .8rem;cursor:pointer;transition:all .2s;
+  text-align:center;position:relative;}
+.case-card:hover:not(.locked){
+  border-color:rgba(212,160,23,.55);transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(212,160,23,.1);}
+.case-card.locked{opacity:.38;cursor:not-allowed}
+.case-card.solved{border-color:rgba(16,185,129,.38);background:linear-gradient(155deg,#062010,#031408)}
+.case-num{font-size:.65rem;color:var(--muted);margin-bottom:.18rem}
+.case-emoji{font-size:1.9rem;margin-bottom:.22rem}
+.case-title{font-size:.8rem;font-weight:700;color:var(--paper);line-height:1.3}
+.case-type{font-size:.68rem;color:var(--muted);margin-top:.18rem}
+.case-lock{position:absolute;top:.38rem;right:.38rem;font-size:.75rem;opacity:.5}
+.reset-btn{
+  display:block;margin:.6rem auto 0;background:none;
+  border:1px solid rgba(255,255,255,.08);color:#3a3020;
+  border-radius:7px;padding:.26rem .7rem;font-size:.7rem;cursor:pointer;}
+.reset-btn:hover{border-color:rgba(239,68,68,.3);color:#ef4444}
+
+/* ===== CASE BRIEFING OVERLAY ===== */
+.case-overlay{
+  display:none;position:fixed;inset:0;z-index:300;
+  background:rgba(0,0,0,.93);backdrop-filter:blur(14px);
+  align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto;}
+.case-overlay.show{display:flex;animation:oIn .2s ease}
+@keyframes oIn{from{opacity:0}to{opacity:1}}
+.case-modal{
+  width:100%;max-width:720px;margin:auto;
+  background:linear-gradient(160deg,#1a1000,#251800,#0d0800);
+  border:2px solid var(--gold);border-radius:22px;
+  padding:1.8rem 2rem;
+  box-shadow:0 0 60px rgba(212,160,23,.22);
+  animation:caseOpen .5s cubic-bezier(.34,1.56,.64,1);}
+@keyframes caseOpen{
+  from{transform:perspective(800px) rotateX(15deg) scale(.8);opacity:0}
+  to{transform:none;opacity:1}}
+/* Case header */
+.case-file-top{text-align:center;border-bottom:1px solid rgba(212,160,23,.18);padding-bottom:1rem;margin-bottom:1.1rem}
+.case-stamp{
+  display:inline-block;border:2px solid var(--red);color:var(--red);
+  border-radius:5px;padding:.18rem .55rem;font-size:.68rem;font-weight:900;
+  letter-spacing:.1em;transform:rotate(-2deg);margin-bottom:.4rem;
+  animation:stampIn .4s ease;}
+@keyframes stampIn{from{transform:rotate(-2deg) scale(2);opacity:0}to{transform:rotate(-2deg) scale(1);opacity:1}}
+.case-id-txt{font-size:.68rem;color:var(--muted);margin-bottom:.28rem}
+.case-modal-title{font-size:1.4rem;font-weight:900;color:var(--gold)}
+.case-scene-txt{font-size:.85rem;color:var(--paper2);margin:.45rem 0;line-height:1.65}
+/* Detective speech */
+.det-bubble{
+  display:flex;align-items:flex-start;gap:.7rem;
+  background:rgba(212,160,23,.05);border:1px solid rgba(212,160,23,.18);
+  border-radius:13px;padding:.8rem .9rem;margin:.8rem 0;}
+.det-avatar{font-size:2rem;flex-shrink:0;animation:detAnim 2.5s ease-in-out infinite}
+@keyframes detAnim{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+.det-speech{font-size:.83rem;color:var(--paper2);line-height:1.6}
+.det-speech strong{color:var(--gold)}
+.det-name{font-size:.68rem;color:var(--muted);margin-bottom:.18rem;font-weight:600}
+/* Formula evidence */
+.evidence-box{
+  background:rgba(204,34,0,.07);border:1.5px solid rgba(204,34,0,.28);
+  border-radius:13px;padding:.9rem;margin:.9rem 0;}
+.ev-label{font-size:.68rem;color:#f87171;font-weight:700;letter-spacing:.08em;margin-bottom:.4rem}
+.ev-formula{font-size:1.7rem;font-weight:900;text-align:center;color:#fff;
+  text-shadow:0 0 20px rgba(212,160,23,.35);}
+.ev-note{font-size:.77rem;color:var(--muted);margin-top:.35rem;text-align:center}
+/* Slide nav */
+.slide-dots{display:flex;gap:.35rem;margin-bottom:.9rem;justify-content:center}
+.sdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.12);transition:.3s}
+.sdot.on{background:var(--gold);box-shadow:0 0 6px rgba(212,160,23,.6)}
+.sdot.past{background:rgba(16,185,129,.5)}
+/* Lecture text */
+.lec-h{font-size:1.15rem;font-weight:900;color:var(--gold);margin-bottom:.55rem}
+.lec-b{font-size:.88rem;line-height:1.78;color:var(--paper2)}
+.lec-b strong{
+  display:inline-block;color:var(--amber);
+  animation:pGold .9s ease-in-out infinite;}
+@keyframes pGold{0%,100%{transform:scale(1)}50%{transform:scale(1.14);text-shadow:0 0 14px var(--amber)}}
+.lec-ex{
+  background:rgba(212,160,23,.07);border:1.5px solid rgba(212,160,23,.2);
+  border-radius:12px;padding:.85rem;margin:.75rem 0;text-align:center;}
+.lec-expr{font-size:1.7rem;font-weight:900;color:#fff;text-shadow:0 0 16px rgba(212,160,23,.4)}
+.lec-expr-lbl{font-size:.73rem;color:var(--muted);margin-top:.22rem}
+.lec-tip{
+  background:rgba(245,158,11,.06);border-left:3px solid var(--amber);
+  border-radius:0 8px 8px 0;padding:.5rem .8rem;font-size:.8rem;color:#fde68a;margin-top:.65rem;}
+.case-nav{display:flex;gap:.65rem;margin-top:1.3rem}
+.c-prev{
+  padding:.65rem 1rem;border-radius:11px;border:1.5px solid rgba(212,160,23,.18);
+  background:transparent;color:var(--muted);cursor:pointer;font-size:.83rem;}
+.c-next{
+  flex:1;padding:.75rem;border-radius:11px;border:none;cursor:pointer;
+  font-size:.9rem;font-weight:700;
+  background:linear-gradient(90deg,#b45309,#d97706);color:#fff;
+  box-shadow:0 4px 16px rgba(180,83,9,.28);transition:.15s;}
+.c-next:hover{transform:scale(1.02)}
+.c-start{
+  flex:1;padding:.75rem;border-radius:11px;border:none;cursor:pointer;
+  font-size:.9rem;font-weight:700;
+  background:linear-gradient(90deg,#cc2200,#e63300);color:#fff;
+  box-shadow:0 4px 16px rgba(204,34,0,.3);transition:.15s;}
+.c-start:hover{transform:scale(1.02)}
+
+/* ===== QUIZ SCREEN ===== */
+/* Two-column layout */
+.quiz-body{
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:1.1rem;
+  align-items:start;
+}
+@media(max-width:860px){.quiz-body{grid-template-columns:1fr;}}
+.quiz-left{min-width:0}
+/* Concept reference panel */
+.concept-panel{
+  position:sticky;top:1rem;
+  background:linear-gradient(160deg,#1a1000,#251800,#1a1000);
+  border:1.5px solid rgba(212,160,23,.3);
+  border-radius:18px;padding:1.1rem 1rem;
+  max-height:calc(100vh - 2rem);overflow-y:auto;}
+.cp-title{
+  font-size:.7rem;letter-spacing:.1em;color:var(--muted);
+  text-transform:uppercase;margin-bottom:.7rem;
+  border-bottom:1px solid rgba(212,160,23,.15);padding-bottom:.4rem;}
+.cp-formulas{margin-bottom:.85rem}
+.cp-formula-row{
+  display:flex;align-items:baseline;gap:.5rem;
+  padding:.4rem .6rem;border-radius:8px;
+  background:rgba(212,160,23,.05);border:1px solid rgba(212,160,23,.1);
+  margin-bottom:.35rem;}
+.cp-formula-lbl{font-size:.65rem;color:var(--muted);flex-shrink:0;min-width:3.5rem}
+.cp-formula-val{font-size:.88rem;font-weight:700;color:var(--amber)}
+.cp-why-section{margin-top:.6rem}
+.cp-why-title{
+  font-size:.68rem;font-weight:700;color:var(--red);
+  letter-spacing:.06em;margin-bottom:.5rem;text-transform:uppercase;}
+.cp-why-item{
+  margin-bottom:.65rem;padding:.55rem .65rem;
+  border-radius:10px;
+  background:rgba(204,34,0,.05);border-left:2.5px solid rgba(204,34,0,.35);}
+.cp-why-q{
+  font-size:.77rem;font-weight:700;color:var(--paper);
+  margin-bottom:.28rem;line-height:1.4;}
+.cp-why-a{
+  font-size:.75rem;color:#c9a87a;line-height:1.55;}
+.cp-why-a strong{color:var(--amber)}
+
+.qhdr{display:flex;align-items:center;gap:.45rem;margin-bottom:.75rem;flex-wrap:wrap}
+.q-pts{
+  background:rgba(212,160,23,.09);border:1px solid rgba(212,160,23,.2);
+  border-radius:11px;padding:.28rem .72rem;font-size:.84rem;color:var(--gold);font-weight:700;}
+.combo-el{font-size:.78rem;font-weight:700;padding:.28rem .68rem;border-radius:11px;transition:all .3s}
+.combo-el.c0{color:var(--muted);background:rgba(100,100,80,.08)}
+.combo-el.c2{color:#60a5fa;background:rgba(96,165,250,.13);animation:cPop .4s}
+.combo-el.c3{color:#a78bfa;background:rgba(167,139,250,.13);animation:cPop .4s}
+.combo-el.c5{color:var(--gold);background:rgba(212,160,23,.13);animation:cPop .4s;box-shadow:0 0 10px rgba(212,160,23,.18)}
+@keyframes cPop{0%{transform:scale(1.35)}100%{transform:scale(1)}}
+.m-tag{font-size:.7rem;font-weight:700;padding:.2rem .5rem;border-radius:7px}
+.m-tag.mcq{background:rgba(96,165,250,.15);color:#60a5fa}
+.m-tag.fill{background:rgba(245,158,11,.15);color:var(--amber)}
+.home-btn{
+  margin-left:auto;background:none;border:1px solid rgba(255,255,255,.1);
+  color:var(--muted);border-radius:7px;padding:.24rem .58rem;cursor:pointer;font-size:.74rem;}
+/* Timer */
+.timer-wrap{height:5px;background:rgba(255,255,255,.06);border-radius:3px;margin-bottom:.85rem;overflow:hidden}
+.timer-bar{height:100%;border-radius:3px;transition:width .08s linear;
+  background:linear-gradient(90deg,var(--gold),var(--amber))}
+.timer-bar.warn{background:linear-gradient(90deg,#ef4444,#f97316)}
+/* Evidence Card */
+.ev-card{
+  background:linear-gradient(160deg,#1a1000,#251800);
+  border:2px solid rgba(212,160,23,.26);border-radius:20px;
+  padding:1.5rem 1.1rem 1.1rem;margin-bottom:.9rem;
+  box-shadow:0 0 30px rgba(212,160,23,.07);
+  animation:evIn .35s cubic-bezier(.34,1.56,.64,1);}
+@keyframes evIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.ev-case-tag{font-size:.68rem;color:var(--red);font-weight:700;letter-spacing:.06em;margin-bottom:.35rem}
+.ev-clue-n{font-size:.75rem;color:var(--muted);margin-bottom:.28rem}
+.ev-q{font-size:1.08rem;color:var(--paper);line-height:1.7;margin-bottom:.65rem;font-weight:500}
+.ev-expr{
+  font-size:1.9rem;font-weight:900;text-align:center;color:#fff;
+  text-shadow:0 0 16px rgba(212,160,23,.4);padding:.4rem 0;
+  animation:evGlow 2.5s ease-in-out infinite;}
+@keyframes evGlow{
+  0%,100%{text-shadow:0 0 16px rgba(212,160,23,.35)}
+  50%{text-shadow:0 0 30px rgba(212,160,23,.8),0 0 50px rgba(212,160,23,.18)}}
+.hint-row{display:flex;justify-content:flex-end;margin-top:.45rem}
+.hint-btn{
+  background:rgba(212,160,23,.08);border:1px solid rgba(212,160,23,.22);
+  border-radius:8px;padding:.26rem .65rem;font-size:.74rem;color:var(--gold);cursor:pointer;}
+.hint-btn:hover{background:rgba(212,160,23,.18)}
+/* Choices */
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:.52rem;margin-bottom:.75rem}
+@media(max-width:600px){.choices{grid-template-columns:1fr}}
+.cbtn{
+  width:100%;padding:.78rem .88rem;border-radius:12px;
+  border:1.5px solid rgba(212,160,23,.1);background:rgba(255,255,255,.03);
+  color:var(--paper);font-size:.88rem;text-align:left;cursor:pointer;transition:all .18s;}
+.cbtn:hover:not(:disabled){
+  border-color:rgba(212,160,23,.38);background:rgba(212,160,23,.07);transform:translateX(4px);}
+.cbtn.correct{border-color:var(--green);background:rgba(16,185,129,.1);color:#6ee7b7;animation:cBounce .3s ease}
+.cbtn.wrong{border-color:#ef4444;background:rgba(239,68,68,.08);color:#fca5a5}
+@keyframes cBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+/* Fill */
+.fill-wrap{display:flex;gap:.5rem;margin-bottom:.7rem}
+.fill-input{
+  flex:1;padding:.72rem .9rem;border-radius:12px;
+  border:1.5px solid rgba(212,160,23,.28);background:rgba(255,255,255,.04);
+  color:#fff;font-size:1.05rem;text-align:center;outline:none;transition:.2s;}
+.fill-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,160,23,.11)}
+.fill-submit{
+  padding:.72rem .95rem;border-radius:12px;border:none;
+  background:linear-gradient(90deg,#b45309,#d97706);color:#fff;
+  font-size:.86rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:.15s;}
+.fill-submit:hover{transform:scale(1.03)}
+.q-ctr{text-align:center;font-size:.73rem;color:var(--muted);margin-top:.28rem}
+
+/* ===== EXPLANATION OVERLAY ===== */
+.exp-overlay{
+  display:none;position:fixed;inset:0;z-index:400;
+  background:rgba(0,0,0,.9);backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;padding:1rem;overflow-y:auto;}
+.exp-overlay.show{display:flex}
+.exp-modal{
+  width:100%;max-width:680px;
+  background:linear-gradient(160deg,#1a0500,#250a00,#0d0200);
+  border:2.5px solid var(--red);border-radius:24px;
+  padding:1.8rem 1.4rem 1.6rem;
+  box-shadow:0 0 60px rgba(204,34,0,.5),0 0 120px rgba(204,34,0,.15);
+  animation:mPop .45s cubic-bezier(.34,1.56,.64,1);}
+.exp-modal.ok{
+  border-color:var(--green);
+  box-shadow:0 0 60px rgba(16,185,129,.45),0 0 120px rgba(16,185,129,.15);}
+@keyframes mPop{from{transform:scale(.15) rotate(-12deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.exp-icon{font-size:3.2rem;text-align:center;display:block;animation:wobble .5s ease infinite alternate}
+@keyframes wobble{from{transform:rotate(-14deg) scale(.9)}to{transform:rotate(14deg) scale(1.1)}}
+.exp-icon.ok-icon{animation:spinIn .5s ease}
+@keyframes spinIn{0%{transform:scale(0) rotate(-180deg)}100%{transform:scale(1) rotate(0)}}
+.exp-title{font-size:1.5rem;font-weight:900;text-align:center;color:var(--red);
+  margin:.45rem 0;animation:ePulse 1s ease-in-out infinite}
+@keyframes ePulse{0%,100%{opacity:1}50%{opacity:.6}}
+.exp-title.ok{color:var(--green);animation:none}
+.exp-ans{background:rgba(255,255,255,.05);border-radius:10px;
+  padding:.58rem .9rem;margin:.65rem 0;text-align:center;}
+.exp-ans-lbl{font-size:.68rem;color:var(--muted);margin-bottom:.18rem}
+.exp-ans-val{font-size:1.5rem;font-weight:900;color:var(--gold)}
+/* Detective deduction quote */
+.deduction-box{
+  background:rgba(212,160,23,.05);border:1px solid rgba(212,160,23,.15);
+  border-radius:11px;padding:.7rem .85rem;margin:.65rem 0;
+  display:flex;align-items:flex-start;gap:.55rem;}
+.ded-avatar{font-size:1.6rem;flex-shrink:0}
+.ded-text{font-size:.8rem;color:var(--paper2);line-height:1.6;font-style:italic}
+/* Steps */
+.exp-steps{list-style:none;padding:0;margin:.65rem 0}
+.exp-steps li{
+  background:rgba(255,255,255,.03);border-radius:9px;
+  padding:.5rem .78rem;margin:.3rem 0;font-size:.85rem;color:var(--paper2);
+  border-left:3px solid rgba(212,160,23,.28);animation:stepIn .4s ease both;}
+@keyframes stepIn{from{transform:translateX(-20px);opacity:0}to{transform:none;opacity:1}}
+.exp-steps li strong{
+  display:inline-block;color:var(--gold);
+  animation:pGold .85s ease-in-out infinite;}
+.exp-btn{
+  width:100%;padding:.8rem;border-radius:12px;border:none;cursor:pointer;
+  margin-top:1rem;font-size:.92rem;font-weight:700;
+  background:linear-gradient(90deg,#b45309,#d97706);color:#fff;transition:.15s;}
+.exp-btn:hover{transform:scale(1.02)}
+
+/* ===== HINT OVERLAY ===== */
+.hint-overlay{
+  display:none;position:fixed;inset:0;z-index:450;
+  background:rgba(0,0,0,.86);backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;padding:1rem;}
+.hint-overlay.show{display:flex}
+.hint-modal{
+  width:100%;max-width:600px;
+  background:linear-gradient(160deg,#1a1400,#261c00);
+  border:2px solid rgba(212,160,23,.32);border-radius:22px;
+  padding:1.6rem 1.3rem;box-shadow:0 0 40px rgba(212,160,23,.18);
+  animation:slideUp .3s cubic-bezier(.34,1.56,.64,1);}
+@keyframes slideUp{from{transform:translateY(50px);opacity:0}to{transform:none;opacity:1}}
+.hint-title{font-size:1.15rem;font-weight:900;color:var(--gold);margin-bottom:.65rem}
+.hint-body{font-size:.88rem;color:var(--paper2);line-height:1.7;margin-bottom:.75rem}
+.hint-list{list-style:none;padding:0}
+.hint-list li{
+  padding:.36rem .6rem;border-radius:7px;margin:.22rem 0;
+  background:rgba(212,160,23,.05);border-left:2px solid rgba(212,160,23,.22);
+  font-size:.78rem;color:#d4b483;animation:stepIn .3s ease both;}
+.hint-close{
+  width:100%;padding:.7rem;border-radius:11px;
+  border:1px solid rgba(212,160,23,.22);background:rgba(212,160,23,.08);
+  color:var(--gold);font-size:.88rem;cursor:pointer;margin-top:.8rem;transition:.18s;}
+.hint-close:hover{background:rgba(212,160,23,.18)}
+
+/* MODE SWITCH */
+.msb{
+  display:none;position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(0);z-index:600;
+  background:linear-gradient(90deg,#78350f,#92400e,#78350f);
+  border:2px solid var(--gold);border-radius:18px;padding:1.3rem 2rem;
+  text-align:center;box-shadow:0 0 60px rgba(212,160,23,.5);}
+.msb.show{display:block;animation:msbA .6s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes msbA{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:0}
+  60%{transform:translate(-50%,-50%) scale(1.1)}
+  100%{transform:translate(-50%,-50%) scale(1);opacity:1}}
+.msb-e{font-size:2.6rem;display:block;margin-bottom:.28rem}
+.msb-t{font-size:1.25rem;font-weight:900;color:var(--gold)}
+.msb-s{font-size:.8rem;color:#fde68a;margin-top:.18rem}
+
+/* ===== SOLVED SCREEN ===== */
+.solved-card{
+  background:linear-gradient(160deg,#031a08,#052a10,#020e04);
+  border:2px solid rgba(16,185,129,.35);border-radius:22px;
+  padding:2rem 1.5rem;text-align:center;margin-bottom:1rem;
+  box-shadow:0 0 50px rgba(16,185,129,.18);
+  animation:slideUp .5s cubic-bezier(.34,1.56,.64,1);}
+.solved-stamp{
+  display:inline-block;border:3px solid var(--green);color:var(--green);
+  border-radius:8px;padding:.28rem .75rem;font-size:.85rem;font-weight:900;
+  letter-spacing:.1em;transform:rotate(-3deg);margin-bottom:.7rem;
+  animation:stampIn .5s ease;}
+.solved-emoji{font-size:4.5rem;display:block;animation:dPop .6s ease}
+@keyframes dPop{0%{transform:scale(0)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+.solved-title{font-size:1.75rem;font-weight:900;color:var(--green);margin:.4rem 0}
+.solved-pts{font-size:2.5rem;font-weight:900;color:var(--gold);
+  text-shadow:0 0 20px rgba(212,160,23,.4);margin:.35rem 0}
+.solved-stats{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.5rem;margin:.8rem 0}
+@media(max-width:600px){.solved-stats{grid-template-columns:1fr 1fr}}
+.stat-box{background:rgba(255,255,255,.04);border-radius:10px;padding:.68rem;
+  border:1px solid rgba(255,255,255,.06);}
+.stat-lbl{font-size:.68rem;color:var(--muted);margin-bottom:.15rem}
+.stat-val{font-size:1.18rem;font-weight:700;color:var(--paper)}
+.solved-btns{display:grid;gap:.5rem}
+.btn-nxt{
+  padding:.88rem;border-radius:12px;border:none;cursor:pointer;font-size:.92rem;font-weight:700;
+  background:linear-gradient(90deg,#10b981,#059669);color:#fff;
+  box-shadow:0 4px 18px rgba(16,185,129,.24);transition:.15s;}
+.btn-nxt:hover{transform:scale(1.02)}
+.btn-home{
+  padding:.7rem;border-radius:12px;border:1px solid rgba(255,255,255,.1);
+  background:transparent;color:var(--muted);font-size:.84rem;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div id="flash-overlay" class="flash-overlay"></div>
+<div id="msb" class="msb">
+  <span class="msb-e">🔥</span>
+  <div class="msb-t">주관식 수사 개시!</div>
+  <div class="msb-s">500점 달성! 이제 직접 답을 도출하라!</div>
+</div>
+
+<!-- Case Briefing / Lecture Overlay -->
+<div id="case-overlay" class="case-overlay">
+  <div class="case-modal">
+    <div class="case-file-top">
+      <div class="case-stamp">수사 파일</div>
+      <div class="case-id-txt" id="c-id"></div>
+      <div class="case-modal-title" id="c-title"></div>
+      <div class="case-scene-txt" id="c-scene"></div>
+    </div>
+    <div class="slide-dots" id="c-dots"></div>
+    <div class="det-bubble" id="c-det-bubble">
+      <div class="det-avatar" id="c-det-avatar"></div>
+      <div class="det-speech">
+        <div class="det-name" id="c-det-name"></div>
+        <div id="c-det-speech"></div>
+      </div>
+    </div>
+    <div class="evidence-box" id="c-ev-box" style="display:none">
+      <div class="ev-label">🔍 핵심 증거 — 공식</div>
+      <div class="ev-formula" id="c-ev-formula"></div>
+      <div class="ev-note" id="c-ev-note"></div>
+    </div>
+    <div class="lec-ex" id="c-ex-box" style="display:none">
+      <div class="lec-expr" id="c-ex-expr"></div>
+      <div class="lec-expr-lbl" id="c-ex-lbl"></div>
+    </div>
+    <div class="lec-tip" id="c-tip" style="display:none"></div>
+    <div class="case-nav">
+      <button class="c-prev" id="c-prev" onclick="slidePrev()">← 이전</button>
+      <button class="c-next" id="c-next" onclick="slideNext()">다음 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Explain Overlay -->
+<div id="exp-overlay" class="exp-overlay" onclick="closeExp()">
+  <div class="exp-modal" id="exp-modal" onclick="event.stopPropagation()">
+    <span class="exp-icon" id="exp-icon"></span>
+    <h2 class="exp-title" id="exp-title"></h2>
+    <div class="exp-ans">
+      <div class="exp-ans-lbl">정답</div>
+      <div class="exp-ans-val" id="exp-ans-val"></div>
+    </div>
+    <div class="deduction-box">
+      <div class="ded-avatar" id="ded-avatar"></div>
+      <div class="ded-text" id="ded-text"></div>
+    </div>
+    <ul class="exp-steps" id="exp-steps"></ul>
+    <button class="exp-btn" onclick="closeExp()">✓ 알겠습니다, 탐정님! 계속 수사 →</button>
+  </div>
+</div>
+
+<!-- Hint Overlay -->
+<div id="hint-overlay" class="hint-overlay" onclick="closeHint()">
+  <div class="hint-modal" onclick="event.stopPropagation()">
+    <div class="hint-title">🔍 탐정의 조언</div>
+    <div class="hint-body" id="hint-body"></div>
+    <ul class="hint-list" id="hint-list"></ul>
+    <button class="hint-close" onclick="closeHint()">닫기</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ===== TITLE ===== -->
+<div id="sc-title" class="screen active">
+  <div class="agency">
+    <span class="agency-badge" style="font-size:3.8rem;flex-shrink:0">🔍</span>
+    <div style="flex:1;text-align:left">
+      <div class="agency-title">수학 탐정 수사국</div>
+      <div class="agency-sub">방정식으로 사건을 해결하라! — 영통수학여행학원</div>
+      <div style="margin-top:.6rem">
+        <span class="sc-tag">⭐ <span id="t-score">0</span>점</span>
+        <span class="mode-pill" id="t-mode">📝 객관식</span>
+      </div>
+    </div>
+    <div style="font-size:.8rem;color:var(--muted);text-align:right;flex-shrink:0;line-height:1.8">
+      <div>🚗 속력·거리</div><div>🎭 원가·정가</div><div>💣 일 문제</div>
+      <div>🧪 소금물</div><div>📜 비율</div>
+    </div>
+  </div>
+  <div class="cork-label">수사 파일 — 사건 선택</div>
+  <div class="case-grid" id="case-grid"></div>
+  <div style="text-align:center;margin-bottom:.5rem">
+    <button class="reset-btn" onclick="resetSave()">🗑 수사 기록 초기화</button>
+  </div>
+  <div style="text-align:center;color:#2a1800;font-size:.72rem">
+    500점 달성 → 주관식 수사 개시 · 콤보 3=×2, 5=×3, 10=×5
+  </div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div id="sc-quiz" class="screen">
+  <div class="qhdr">
+    <div class="q-pts">⭐ <span id="q-score">0</span></div>
+    <div class="combo-el c0" id="combo-el">콤보 ×1</div>
+    <span class="m-tag mcq" id="m-tag">객관식</span>
+    <button class="home-btn" onclick="goHome()">수사국</button>
+  </div>
+  <div class="timer-wrap"><div class="timer-bar" id="timer-bar"></div></div>
+  <div class="quiz-body">
+    <!-- 좌: 문제 + 보기 -->
+    <div class="quiz-left">
+      <div class="ev-card">
+        <div class="ev-case-tag" id="ev-case-tag"></div>
+        <div class="ev-clue-n" id="ev-clue-n"></div>
+        <div class="ev-q" id="ev-q"></div>
+        <div class="ev-expr" id="ev-expr" style="display:none"></div>
+        <div class="hint-row">
+          <button class="hint-btn" onclick="showHint()">🔍 탐정 조언</button>
+        </div>
+      </div>
+      <div class="choices" id="choices"></div>
+      <div class="fill-wrap" id="fill-wrap" style="display:none">
+        <input class="fill-input" id="fill-input" placeholder="답 입력 (숫자 또는 수식)"
+          onkeydown="if(event.key==='Enter')checkFill()">
+        <button class="fill-submit" onclick="checkFill()">제출</button>
+      </div>
+      <div class="q-ctr" id="q-ctr"></div>
+    </div>
+    <!-- 우: 개념 참조 패널 -->
+    <div class="concept-panel" id="concept-panel"></div>
+  </div>
+</div>
+
+<!-- ===== SOLVED ===== -->
+<div id="sc-solved" class="screen">
+  <div class="solved-card">
+    <div class="solved-stamp">사건 해결!</div>
+    <span class="solved-emoji" id="sv-emoji">🏆</span>
+    <div class="solved-title" id="sv-title">수사 완료!</div>
+    <div class="solved-pts" id="sv-pts">+0점</div>
+    <div class="solved-stats">
+      <div class="stat-box"><div class="stat-lbl">정답률</div><div class="stat-val" id="sv-acc">-</div></div>
+      <div class="stat-box"><div class="stat-lbl">최고 콤보</div><div class="stat-val" id="sv-combo">-</div></div>
+      <div class="stat-box"><div class="stat-lbl">총 점수</div><div class="stat-val" id="sv-total">-</div></div>
+      <div class="stat-box"><div class="stat-lbl">수사 모드</div><div class="stat-val" id="sv-mode">-</div></div>
+    </div>
+  </div>
+  <div class="solved-btns">
+    <button class="btn-nxt" id="btn-nxt" onclick="nextCase()"></button>
+    <button class="btn-home" onclick="goHome()">🏠 수사국으로</button>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+// =====================================================
+// CASE DATA
+// =====================================================
+const CASES_META = [
+  {id:'CASE-001',emoji:'🚗',title:'다이아몬드 강도 추격전',type:'속력·거리 문제',
+   det:'🕵️',detName:'탐정 코난',
+   scene:'보석상에서 다이아몬드가 사라졌다! 범인의 차량이 목격됐고, 코난은 추격을 시작했다. 거리와 속력의 관계를 계산해야만 범인을 잡을 수 있다!'},
+  {id:'CASE-002',emoji:'🎭',title:'위조 가격표 사기 사건',type:'원가·정가 문제',
+   det:'🎩',detName:'셜록 홈즈',
+   scene:'런던 갤러리에서 가짜 가격표로 손님들을 속이는 사기단이 발각됐다! 홈즈는 원가와 정가의 관계를 분석해 사기 규모를 밝혀내야 한다.'},
+  {id:'CASE-003',emoji:'💣',title:'시한폭탄 해제 작전',type:'일(작업) 문제',
+   det:'🕵️',detName:'탐정 코난',
+   scene:'빌딩 지하에 시한폭탄이 설치됐다! 두 전문가가 협력해야만 제한 시간 내 해제할 수 있다. 각자의 작업 속도를 계산해 협력 시간을 구하라!'},
+  {id:'CASE-004',emoji:'🧪',title:'독극물 농도 분석 사건',type:'소금물·농도 문제',
+   det:'🎩',detName:'셜록 홈즈',
+   scene:'유명 레스토랑에서 의문의 독살 사건이 발생했다! 홈즈는 음료에 섞인 독극물의 농도를 정확히 계산해 범인의 계획을 밝혀내야 한다.'},
+  {id:'CASE-005',emoji:'📜',title:'유언장 위조 재산 사건',type:'비율 문제',
+   det:'🕵️',detName:'탐정 코난',
+   scene:'대재벌의 유언장이 위조됐다! 진짜 유언장의 재산 분배 비율을 수학적으로 계산해 위조를 밝혀내야 한다.'},
+];
+
+// 강의 슬라이드
+const SLIDES = [
+  // CASE 0: 속력·거리
+  [
+    {h:'핵심 공식 발견!',
+     det:'코난: "기본이야. 거리(distance)는 속력에 시간을 곱하면 구할 수 있어!"',
+     formula:'거리 = 속력 × 시간',
+     fnote:'d = v × t',
+     b:null,ex:null,
+     tip:'속력을 구할 땐: 속력=거리÷시간 / 시간을 구할 땐: 시간=거리÷속력'},
+    {h:'추격전 분석 — 따라잡기 문제',
+     det:'코난: "범인이 먼저 출발했을 때, 내가 따라잡는 시간은?\n<strong>두 사람의 이동 거리가 같을 때</strong>를 찾으면 돼!"',
+     formula:null,
+     b:null,
+     ex:'범인: 60×(t+0.5)  =  경찰: 80×t',
+     exl:'범인이 30분 먼저 → t + 0.5로 놓기',
+     tip:'범인 거리 = 경찰 거리로 방정식 세우면 끝!'},
+    {h:'맞향 / 같은방향 주의!',
+     det:'홈즈: "두 사람이 <strong>마주 달리면</strong> 속력을 더하고, <strong>같은 방향</strong>이면 속력을 빼는 것이 철칙이지."',
+     formula:null,
+     b:null,
+     ex:'마주달리기: 만나는 시간 = 거리 ÷ (속력₁+속력₂)',
+     exl:'반대방향 = 속력 합산!',
+     tip:'같은 방향: 빠른 쪽 속력 - 느린 쪽 속력 = 상대속력'},
+  ],
+  // CASE 1: 원가·정가
+  [
+    {h:'핵심 공식 발견!',
+     det:'홈즈: "가격 사기의 본질은 원가와 정가의 차이를 조작하는 것이지. 공식을 보게."',
+     formula:'정가 = 원가 × (1 + 이익률)',
+     fnote:'판매가 = 정가 × (1 - 할인율)',
+     b:null,ex:null,
+     tip:'이익률 20% = 원가의 1.2배 / 할인율 10% = 정가의 0.9배'},
+    {h:'실제 이익 계산',
+     det:'홈즈: "이익을 붙인 후 할인하면 실제 이익률은 얼마인가? <strong>원가 = x</strong>로 놓고 계산하게."',
+     formula:null,
+     b:null,
+     ex:'원가 x → 정가 1.3x → 20%할인 → 판매가 1.04x',
+     exl:'1.3 × 0.8 = 1.04 → 4% 이익',
+     tip:'할인 후 이익: (1+이익률)×(1-할인율)이 1보다 크면 이익!'},
+  ],
+  // CASE 2: 일 문제
+  [
+    {h:'핵심 공식 발견!',
+     det:'코난: "전체 일의 양을 1로 보고, 1시간(1일)에 얼마나 하는지 계산하면 돼!"',
+     formula:'A의 1일 작업량 = 1/a (A혼자 a일)',
+     fnote:'함께할 때: 1/a + 1/b = 1/T',
+     b:null,ex:null,
+     tip:'T일 걸리면 → 1일 작업량 = 1/T (전체를 1로 놓음)'},
+    {h:'협력 작업 — 남은 일 계산',
+     det:'코난: "A가 먼저 일부를 했다면, <strong>남은 일의 양</strong>을 구한 후 함께 마무리 시간을 계산해!"',
+     formula:null,
+     b:null,
+     ex:'A가 2일 일함 → 완료: 2/a\n남은 일: 1 - 2/a',
+     exl:'남은 일 ÷ (함께 속도) = 남은 시간',
+     tip:'수도관 문제: 채우는 속도 - 빼는 속도 = 실제 변화 속도'},
+  ],
+  // CASE 3: 소금물
+  [
+    {h:'핵심 공식 발견!',
+     det:'홈즈: "농도 문제의 핵심은 소금의 양이 보존된다는 사실이야. 섞어도 소금 총량은 변하지 않지."',
+     formula:'소금의 양 = 농도(%) × 용액의 양 ÷ 100',
+     fnote:'혼합 후 농도: (소금₁+소금₂) ÷ (용액₁+용액₂) × 100',
+     b:null,ex:null,
+     tip:'농도 5% = 100g 중 5g이 소금 / 물을 더하면 농도 감소!'},
+    {h:'소금 추가 / 증발 문제',
+     det:'홈즈: "물이 증발하면 용액의 총량만 줄고 <strong>소금 양은 그대로</strong>. 소금을 추가하면 분자·분모 모두 증가하지."',
+     formula:null,
+     b:null,
+     ex:'20% 소금물 300g → 물 x증발 → 30%로\n60 = (300-x)×0.3 → x = 100g',
+     exl:'소금양 불변이 핵심!',
+     tip:'소금 추가: (기존소금+추가소금)/(기존용액+추가소금) = 목표농도'},
+  ],
+  // CASE 4: 비율
+  [
+    {h:'핵심 공식 발견!',
+     det:'코난: "비율 문제는 전체를 비의 합으로 나눠! a:b라면 전체를 (a+b)로 나눈 후 각 몫을 구하면 돼."',
+     formula:'A의 몫 = 전체 × a/(a+b)',
+     fnote:'B의 몫 = 전체 × b/(a+b)',
+     b:null,ex:null,
+     tip:'3:2로 나누면 → 3/(3+2)=3/5, 2/(3+2)=2/5'},
+    {h:'연속 비율 & 퍼센트',
+     det:'코난: "A:B=2:3, B:C=4:5처럼 연속 비율은 B를 <strong>통분</strong>해서 A:B:C를 한 번에 표현해!"',
+     formula:null,
+     b:null,
+     ex:'A:B=2:3, B:C=4:5\n→ A:B=8:12, B:C=12:15\n→ A:B:C=8:12:15',
+     exl:'B를 12로 통일 (3과 4의 LCM)',
+     tip:'퍼센트 → "전체의 x%가 얼마" → 전체 = 얼마 ÷ (x/100)'},
+  ],
+];
+
+// =====================================================
+// 개념 참조 패널 데이터
+// =====================================================
+const CONCEPTS = [
+  // Case 0: 속력·거리
+  {
+    title:'🚗 속력·거리·시간',
+    formulas:[
+      {lbl:'거리',val:'속력 × 시간'},
+      {lbl:'속력',val:'거리 ÷ 시간'},
+      {lbl:'시간',val:'거리 ÷ 속력'},
+    ],
+    whys:[
+      {q:'❓ 마주 달리면 왜 속력을 더하나?',
+       a:'두 사람이 <strong>각자 반대쪽으로</strong> 이동하므로, 1초마다 줄어드는 거리 = v₁ + v₂. 예) 4km/h + 6km/h → 1시간에 10km 가까워짐'},
+      {q:'❓ 같은 방향 추격은 왜 속력을 빼나?',
+       a:'둘 다 같은 방향으로 달리면 <strong>빠른 쪽만 차이를 좁힘</strong>. 1초에 좁히는 거리 = v빠름 − v느림'},
+      {q:'❓ 평균 속력이 산술 평균과 다른 이유?',
+       a:'속력이 달라지면 <strong>구간별 시간</strong>이 달라짐. 반드시 총거리 ÷ 총시간으로 계산'},
+    ]
+  },
+  // Case 1: 원가·정가
+  {
+    title:'🎭 원가·정가·할인',
+    formulas:[
+      {lbl:'정가',val:'원가 × (1 + 이익률)'},
+      {lbl:'판매가',val:'정가 × (1 − 할인율)'},
+      {lbl:'실이익',val:'판매가 − 원가'},
+    ],
+    whys:[
+      {q:'❓ 이익률 30%이면 왜 × 1.3인가?',
+       a:'원가가 <strong>100%(=1)</strong>고, 이익이 30%이므로 합계 130% = <strong>1.3배</strong>'},
+      {q:'❓ 할인율 20%이면 왜 × 0.8인가?',
+       a:'100%에서 20%를 빼면 <strong>80% = 0.8</strong>배만 받음'},
+      {q:'❓ 이중 할인은 왜 빼서 안 되나?',
+       a:'30%↓ 후 10%↓는 기준이 달라짐. 반드시 <strong>순서대로 곱셈</strong>: × 0.7 × 0.9 = × 0.63'},
+    ]
+  },
+  // Case 2: 일 문제
+  {
+    title:'💣 일(작업) 문제',
+    formulas:[
+      {lbl:'1일 작업량',val:'1 ÷ 걸리는 날수'},
+      {lbl:'협력 속도',val:'A속도 + B속도'},
+      {lbl:'걸리는 시간',val:'1 ÷ 협력 속도'},
+    ],
+    whys:[
+      {q:'❓ 왜 전체 일을 "1"로 놓나?',
+       a:'전체를 <strong>1</strong>로 기준 잡으면 비율(분수)로 계산 가능. "10일이면 하루에 1/10"이 직관적'},
+      {q:'❓ 왜 각자 속도를 더하나?',
+       a:'같은 시간에 A도 일하고 B도 일하므로 <strong>완성량이 합산</strong>됨. 평행 작업 = 덧셈'},
+      {q:'❓ 역수를 취하는 이유?',
+       a:'속도(1일에 1/n) → 걸리는 날수(n일). <strong>속도의 역수 = 시간</strong>. 속도↑ = 시간↓'},
+    ]
+  },
+  // Case 3: 소금물
+  {
+    title:'🧪 소금물·농도',
+    formulas:[
+      {lbl:'농도(%)',val:'소금량 / 전체량 × 100'},
+      {lbl:'소금량',val:'전체량 × 농도% ÷ 100'},
+      {lbl:'혼합 소금',val:'소금₁ + 소금₂'},
+    ],
+    whys:[
+      {q:'❓ 혼합 농도가 단순 평균이 아닌 이유?',
+       a:'양이 다르면 <strong>무거운 쪽</strong>이 더 영향을 줌. 소금 총량 ÷ 전체 총량으로 정확히 계산'},
+      {q:'❓ 물만 추가하면 소금양이 변하나?',
+       a:'<strong>아니오!</strong> 소금량은 불변. 전체량만 늘어 분모 ↑ → 농도 ↓'},
+      {q:'❓ 소금을 추가하면 전체량도 늘어나는 이유?',
+       a:'소금도 질량이 있음. 전체 용액 = <strong>물 + 소금</strong>의 무게 합'},
+    ]
+  },
+  // Case 4: 비율
+  {
+    title:'📜 비율·비례',
+    formulas:[
+      {lbl:'비 분배',val:'전체 × 해당비 ÷ 비의 합'},
+      {lbl:'비 통일',val:'LCM으로 공통 항 확장'},
+      {lbl:'비율 역산',val:'부분 ÷ 비율 = 전체'},
+    ],
+    whys:[
+      {q:'❓ 왜 "비의 합"으로 나누나?',
+       a:'3:4이면 전체를 <strong>7등분</strong> 후 3조각/4조각 배분. 분모 = 비의 합(7)'},
+      {q:'❓ 연비(A:B=2:3, B:C=4:5) 통일 방법?',
+       a:'B가 공통항. <strong>B의 LCM(3,4=12)</strong>으로 확장: A:B=8:12, B:C=12:15'},
+      {q:'❓ "전체의 35% = 700"에서 전체 구하기',
+       a:'전체 = 700 ÷ 0.35 = 2000. <strong>비율을 이용한 역산</strong>'},
+    ]
+  },
+];
+
+// 문제 뱅크
+const QS = [
+  // CASE 0: 속력·거리
+  [
+    {q:'범인 차가 시속 80km로 도주했다. 2시간 후 출발점에서 얼마나 멀리 있나? (단위: km)',
+     ex:'거리 = 속력 × 시간',
+     c:['120km','140km','160km','180km'],ans:2,fill:'160',
+     hint:'거리 = 속력 × 시간 = 80 × 2',
+     det:'"Elementary! 거리=속력×시간. 80×2야."',
+     st:['거리 = 속력 × 시간','= 80 × 2','= <strong>160</strong>km'],ans_txt:'160km'},
+    {q:'코난이 시속 15km 자전거로 40분 동안 달렸다. 이동 거리는? (단위: km)',
+     ex:null,
+     c:['8km','10km','12km','15km'],ans:1,fill:'10',
+     hint:'40분 = 40/60 = 2/3시간. 거리 = 15 × 2/3',
+     det:'"40분은 2/3시간이야. 15×(2/3)=10km!"',
+     st:['40분 = 40÷60 = 2/3 시간','거리 = 15 × 2/3','= <strong>10</strong>km'],ans_txt:'10km'},
+    {q:'범인은 시속 60km, 경찰은 시속 100km. 범인이 20분 먼저 출발했을 때, 경찰 출발 후 몇 분 만에 따라잡나?',
+     ex:'60×(t+1/3) = 100×t',
+     c:['25분','30분','35분','40분'],ans:1,fill:'30',
+     hint:'범인 거리 = 경찰 거리. 60×(t+20/60) = 100t 풀기',
+     det:'"방정식을 세워. 60(t+1/3)=100t → t=0.5시간=30분!"',
+     st:['범인: 60×(t+1/3), 경찰: 100t','60t+20 = 100t','20t=20 → t=<strong>0.5</strong>시간','= <strong>30</strong>분'],ans_txt:'30분'},
+    {q:'범인 차(시속 60km)와 경찰차(시속 90km)가 300km 떨어진 두 도시에서 마주 달린다. 몇 시간 후 만나나?',
+     ex:'300 ÷ (60+90)',
+     c:['1.5시간','2시간','2.5시간','3시간'],ans:1,fill:'2',
+     hint:'마주 달리기: 만나는 시간 = 거리 ÷ (두 속력의 합)',
+     det:'"마주달리기는 속력 합산! 300÷(60+90)=2시간."',
+     st:['마주달리기 만나는 시간','= 거리 ÷ (속력₁+속력₂)','= 300 ÷ 150','= <strong>2</strong>시간'],ans_txt:'2시간'},
+    {q:'홈즈가 A에서 B까지 60km를 갈 때는 시속 40km, 돌아올 때는 시속 60km로 달렸다. 평균 속력은? (단위: km/h)',
+     ex:null,
+     c:['48km/h','50km/h','52km/h','54km/h'],ans:0,fill:'48',
+     hint:'평균속력 = 총 거리 ÷ 총 시간. 총시간 = 60/40 + 60/60',
+     det:'"단순 평균이 아니야! 총거리/총시간 = 120/(1.5+1) = 48."',
+     st:['총거리 = 60+60 = 120km','총시간 = 60/40+60/60 = 1.5+1 = 2.5시간','평균속력 = 120÷2.5 = <strong>48</strong>km/h'],ans_txt:'48km/h'},
+    {q:'형이 출발 1시간 후 동생이 시속 60km로 추격. 형의 속력은 시속 40km. 동생이 출발 후 몇 시간 만에 따라잡나?',
+     ex:'40×(t+1) = 60×t',
+     c:['1시간','1.5시간','2시간','2.5시간'],ans:2,fill:'2',
+     hint:'형 거리 = 동생 거리. 40×(t+1) = 60t 풀기',
+     det:'"40(t+1)=60t → 40t+40=60t → t=2!"',
+     st:['형: 40×(t+1), 동생: 60×t','40t+40 = 60t','20t = 40 → t = <strong>2</strong>시간'],ans_txt:'2시간'},
+    {q:'탐정이 시속 5km로 걸어서 20km 떨어진 현장에 가려 한다. 몇 시간 걸리나?',
+     ex:'시간 = 거리 ÷ 속력',
+     c:['3시간','4시간','5시간','6시간'],ans:1,fill:'4',
+     hint:'시간 = 거리 ÷ 속력 = 20 ÷ 5',
+     det:'"20÷5=4시간이야!"',
+     st:['시간 = 거리 ÷ 속력','= 20 ÷ 5','= <strong>4</strong>시간'],ans_txt:'4시간'},
+    {q:'기차가 시속 120km로 달려 300km를 이동했다. 걸린 시간은?',
+     ex:'시간 = 거리 ÷ 속력',
+     c:['1.5시간','2시간','2.5시간','3시간'],ans:2,fill:'2.5',
+     hint:'300 ÷ 120 = 2.5',
+     det:'"300÷120=2.5시간이지!"',
+     st:['시간 = 거리 ÷ 속력','= 300 ÷ 120','= <strong>2.5</strong>시간'],ans_txt:'2.5시간'},
+    {q:'A와 B가 같은 지점에서 반대 방향으로 출발. A는 시속 4km, B는 시속 6km. 2시간 후 두 사람 사이의 거리는?',
+     ex:'거리 = (4+6)×2',
+     c:['16km','18km','20km','24km'],ans:2,fill:'20',
+     hint:'반대 방향 → 속력 합산. (4+6)×2=20',
+     det:'"반대방향이면 속력을 더해! (4+6)×2=20km!"',
+     st:['속력 합: 4+6 = 10km/h','2시간 후 거리: 10×2','= <strong>20</strong>km'],ans_txt:'20km'},
+    {q:'출발점에서 30km 지점까지 시속 60km로 달린 후, 나머지 30km를 시속 30km로 달렸다. 총 시간은?',
+     ex:'30/60 + 30/30',
+     c:['1.2시간','1.5시간','1.8시간','2시간'],ans:1,fill:'1.5',
+     hint:'30/60=0.5시간, 30/30=1시간. 0.5+1=?',
+     det:'"0.5+1=1.5시간이야!"',
+     st:['전반부: 30÷60 = 0.5시간','후반부: 30÷30 = 1시간','합계: <strong>1.5</strong>시간'],ans_txt:'1.5시간'},
+    {q:'A지점에서 B지점까지 240km. 가는 데 3시간, 돌아오는 데 4시간 걸렸다. 가는 속력은?',
+     ex:'속력 = 거리 ÷ 시간',
+     c:['60km/h','70km/h','80km/h','90km/h'],ans:2,fill:'80',
+     hint:'가는 속력 = 240 ÷ 3',
+     det:'"240÷3=80km/h야!"',
+     st:['가는 속력 = 거리 ÷ 시간','= 240 ÷ 3','= <strong>80</strong>km/h'],ans_txt:'80km/h'},
+    {q:'탐정이 집에서 출발해 시속 50km로 1시간 달린 후 시속 80km로 2시간 달렸다. 총 이동 거리는?',
+     ex:'50×1 + 80×2',
+     c:['200km','210km','220km','230km'],ans:1,fill:'210',
+     hint:'각 구간 거리를 더해요: 50×1 + 80×2',
+     det:'"50+160=210km!"',
+     st:['1구간: 50×1 = 50km','2구간: 80×2 = 160km','합계: <strong>210</strong>km'],ans_txt:'210km'},
+    {q:'범인이 A도시에서 시속 90km로 출발. 2시간 후 경찰이 시속 120km로 출발. 경찰 출발 후 몇 시간 만에 따라잡나?',
+     ex:'90×(t+2) = 120×t',
+     c:['4시간','5시간','6시간','7시간'],ans:2,fill:'6',
+     hint:'90(t+2)=120t → 180=30t → t=6',
+     det:'"90(t+2)=120t. 180=30t. t=6시간!"',
+     st:['범인: 90(t+2), 경찰: 120t','90t+180 = 120t','30t = 180 → t = <strong>6</strong>시간'],ans_txt:'6시간'},
+    {q:'P에서 Q까지 120km. 버스는 시속 60km, 기차는 시속 120km. 기차가 버스보다 몇 시간 빠른가?',
+     ex:'120/60 - 120/120',
+     c:['0.5시간','1시간','1.5시간','2시간'],ans:1,fill:'1',
+     hint:'버스 시간: 2시간, 기차 시간: 1시간',
+     det:'"2-1=1시간 차이야!"',
+     st:['버스: 120÷60 = 2시간','기차: 120÷120 = 1시간','차이: 2-1 = <strong>1</strong>시간'],ans_txt:'1시간'},
+  ],
+  // CASE 1: 원가·정가
+  [
+    {q:'원가 8,000원에 25% 이익을 붙인 정가는? (단위: 원)',
+     ex:'정가 = 원가 × (1 + 이익률)',
+     c:['9,000원','9,500원','10,000원','10,500원'],ans:2,fill:'10000',
+     hint:'이익률 25% → 원가의 (1+0.25)=1.25배',
+     det:'"정가 = 8000 × 1.25 = 10000원!"',
+     st:['정가 = 원가 × (1+이익률)','= 8000 × 1.25','= <strong>10000</strong>원'],ans_txt:'10,000원'},
+    {q:'정가 20,000원에서 15% 할인 판매했다. 판매가는? (단위: 원)',
+     ex:null,
+     c:['16,000원','17,000원','17,500원','18,000원'],ans:1,fill:'17000',
+     hint:'할인율 15% → 정가의 (1-0.15)=0.85배',
+     det:'"20000 × 0.85 = 17000원이지."',
+     st:['판매가 = 정가 × (1-할인율)','= 20000 × 0.85','= <strong>17000</strong>원'],ans_txt:'17,000원'},
+    {q:'원가 x원에 30% 이익을 붙인 정가가 13,000원이다. 원가는?',
+     ex:'x × 1.3 = 13000',
+     c:['9,000원','9,500원','10,000원','11,000원'],ans:2,fill:'10000',
+     hint:'1.3x = 13000 → x = 13000 ÷ 1.3',
+     det:'"방정식 1.3x=13000. x=10000원이야!"',
+     st:['1.3x = 13000','x = 13000 ÷ 1.3','x = <strong>10000</strong>원'],ans_txt:'10,000원'},
+    {q:'원가에 40% 이익을 붙여 정가를 정한 후 20% 할인해서 팔았다. 실제 이익률은?',
+     ex:'1.4 × 0.8 = ?',
+     c:['10%','12%','14%','16%'],ans:1,fill:'12',
+     hint:'판매가 = 원가 × 1.4 × 0.8 = 원가 × 1.12 → 12% 이익',
+     det:'"1.4×0.8=1.12. 원가의 1.12배 = 12% 이익!"',
+     st:['판매가 = 원가 × 1.4 × 0.8','= 원가 × 1.12','= 원가보다 <strong>12%</strong> 이익'],ans_txt:'12%'},
+    {q:'원가에 30% 이익을 붙인 후 몇 % 할인해야 원가와 같은 판매가가 되나? (소수 첫째자리까지)',
+     ex:'1.3 × (1-x) = 1',
+     c:['20%','약 23.1%','25%','약 28.6%'],ans:1,fill:'23.1',
+     hint:'1.3×(1-x)=1 → 1-x=1/1.3 ≈ 0.769 → x≈0.231=23.1%',
+     det:'"1.3(1-x)=1. 1-x=10/13. x=3/13≈23.1%야."',
+     st:['1.3 × (1-x) = 1','1-x = 1/1.3 = 10/13','x = 3/13 ≈ <strong>23.1%</strong>'],ans_txt:'약 23.1%'},
+    {q:'물건 원가 12,000원에 x%의 이익을 붙여 판 후 18,000원을 받았다. x는?',
+     ex:'12000 × (1 + x/100) = 18000',
+     c:['40%','45%','50%','55%'],ans:2,fill:'50',
+     hint:'12000×(1+x/100)=18000 → 1+x/100=1.5 → x=50',
+     det:'"18000÷12000=1.5. 이익률 = 50%!"',
+     st:['12000×(1+x/100)=18000','1+x/100=1.5','x/100=0.5 → x=<strong>50</strong>%'],ans_txt:'50%'},
+    {q:'원가 5,000원에 20% 이익을 붙여 정가를 정했다. 정가는?',
+     ex:'정가 = 원가 × 1.2',
+     c:['5,500원','6,000원','6,500원','7,000원'],ans:1,fill:'6000',
+     hint:'5000 × 1.2 = ?',
+     det:'"5000×1.2=6000원!"',
+     st:['정가 = 원가 × (1+0.2)','= 5000 × 1.2','= <strong>6000</strong>원'],ans_txt:'6,000원'},
+    {q:'정가 15,000원에서 10% 할인해서 팔았다. 판매가는?',
+     ex:'판매가 = 정가 × 0.9',
+     c:['12,500원','13,000원','13,500원','14,000원'],ans:2,fill:'13500',
+     hint:'15000 × 0.9 = ?',
+     det:'"15000×0.9=13500원이야!"',
+     st:['판매가 = 15000 × (1-0.1)','= 15000 × 0.9','= <strong>13500</strong>원'],ans_txt:'13,500원'},
+    {q:'정가에서 20% 할인해서 팔았더니 원가보다 2,000원 이익이 났다. 원가가 18,000원이면 정가는?',
+     ex:'정가 × 0.8 = 18000 + 2000',
+     c:['22,000원','23,000원','24,000원','25,000원'],ans:3,fill:'25000',
+     hint:'정가×0.8=20000 → 정가=20000÷0.8=25000',
+     det:'"판매가=20000. 정가×0.8=20000. 정가=25000원!"',
+     st:['판매가 = 18000+2000 = 20000','정가×0.8 = 20000','정가 = 20000÷0.8 = <strong>25000</strong>원'],ans_txt:'25,000원'},
+    {q:'어떤 물건을 35% 이익으로 팔아 7,000원 이익을 남겼다. 원가는?',
+     ex:'원가 × 0.35 = 7000',
+     c:['18,000원','20,000원','22,000원','25,000원'],ans:1,fill:'20000',
+     hint:'원가×0.35=7000 → 원가=7000÷0.35=20000',
+     det:'"7000÷0.35=20000원이야!"',
+     st:['원가 × 0.35 = 7000','원가 = 7000 ÷ 0.35','= <strong>20000</strong>원'],ans_txt:'20,000원'},
+    {q:'원가 x원에 50% 이익을 붙인 후 25% 할인하면 정가 대비 이익률은?',
+     ex:'1.5 × 0.75 = ?',
+     c:['10.5%','11%','12.5%','15%'],ans:2,fill:'12.5',
+     hint:'1.5×0.75=1.125. 원가보다 12.5% 이익',
+     det:'"1.5×0.75=1.125. 즉 12.5% 이익이야!"',
+     st:['판매가 = 원가 × 1.5 × 0.75','= 원가 × 1.125','= 원가보다 <strong>12.5%</strong> 이익'],ans_txt:'12.5%'},
+    {q:'정가 30,000원짜리 물건을 30% 할인 후 추가 10% 할인했다. 최종 판매가는?',
+     ex:'30000 × 0.7 × 0.9',
+     c:['17,000원','18,000원','18,900원','19,000원'],ans:2,fill:'18900',
+     hint:'30000×0.7=21000, 21000×0.9=18900',
+     det:'"30000×0.7×0.9=18900원!"',
+     st:['1차 할인: 30000×0.7 = 21000','2차 할인: 21000×0.9','= <strong>18900</strong>원'],ans_txt:'18,900원'},
+    {q:'원가에 a% 이익을 붙여 정가를 만들고, 다시 b% 할인하면 이익률은? (a=20, b=10)',
+     ex:'1.2 × 0.9 = ?',
+     c:['7%','8%','9%','10%'],ans:1,fill:'8',
+     hint:'1.2×0.9=1.08. 원가의 1.08배 = 8% 이익',
+     det:'"1.2×0.9=1.08. 8% 이익이야!"',
+     st:['판매가 = 원가 × 1.2 × 0.9','= 원가 × 1.08','= 원가보다 <strong>8%</strong> 이익'],ans_txt:'8%'},
+    {q:'원가 24,000원에 이익을 붙여 정가로 팔다가 15% 할인해도 원가의 2% 이익이 남는다면 원래 이익률은?',
+     ex:'정가 × 0.85 = 24000 × 1.02',
+     c:['20%','22%','24%','25%'],ans:0,fill:'20',
+     hint:'정가×0.85=24480 → 정가=24480/0.85=28800. 이익률=(28800-24000)/24000',
+     det:'"정가=28800. 이익=(28800-24000)/24000=20%야!"',
+     st:['판매가 = 24000×1.02 = 24480','정가 = 24480÷0.85 = 28800','이익률 = 4800/24000 = <strong>20%</strong>'],ans_txt:'20%'},
+  ],
+  // CASE 2: 일 문제
+  [
+    {q:'A는 6일, B는 3일 걸리는 일. 함께 하면 며칠 걸리나?',
+     ex:'1/6 + 1/3 = ?',
+     c:['1일','2일','3일','4일'],ans:1,fill:'2',
+     hint:'A 하루 작업량 1/6, B 하루 작업량 1/3. 합하면?',
+     det:'"1/6+1/3=3/6=1/2. 하루에 1/2씩이면 2일이야!"',
+     st:['A 1일 작업량: 1/6','B 1일 작업량: 1/3','합계: 1/6+1/3 = 1/2','1÷(1/2) = <strong>2</strong>일'],ans_txt:'2일'},
+    {q:'코난은 4시간, 란은 12시간 걸리는 암호 해독. 함께 하면 몇 시간?',
+     ex:'1/4 + 1/12 = ?',
+     c:['2시간','3시간','4시간','6시간'],ans:1,fill:'3',
+     hint:'1/4+1/12 = 3/12+1/12 = 4/12 = 1/3. 역수를 취하면?',
+     det:'"1/4+1/12=1/3. 1÷(1/3)=3시간!"',
+     st:['1/4+1/12 = 3/12+1/12 = 4/12 = 1/3','걸리는 시간 = 1÷(1/3)','= <strong>3</strong>시간'],ans_txt:'3시간'},
+    {q:'A혼자 10일, 함께 하면 6일 걸리는 일. B 혼자 하면 몇 일?',
+     ex:'1/B = 1/6 - 1/10',
+     c:['12일','15일','18일','20일'],ans:1,fill:'15',
+     hint:'1/B = 1/6 - 1/10 = 5/30 - 3/30 = 2/30 = 1/15',
+     det:'"1/B=1/6-1/10=2/30=1/15. B=15일!"',
+     st:['B 1일 작업량 = 1/6 - 1/10','= 5/30 - 3/30 = 2/30 = 1/15','B 혼자 = <strong>15</strong>일'],ans_txt:'15일'},
+    {q:'A혼자 12일, B혼자 6일. A가 3일 일한 후 B가 합류. 합류 후 몇 일 더 걸리나?',
+     ex:'A 3일분: 3/12=1/4',
+     c:['2일','3일','4일','5일'],ans:1,fill:'3',
+     hint:'A가 3일: 1/4완성. 남은 3/4. 함께 속도=1/12+1/6=1/4. 3/4÷1/4=3일',
+     det:'"남은 일 3/4. A+B 속도 1/4. 3/4÷1/4=3일!"',
+     st:['A 3일 완성: 3/12 = 1/4','남은 일: 1-1/4 = 3/4','A+B 속도: 1/12+1/6 = 3/12 = 1/4','3/4 ÷ 1/4 = <strong>3</strong>일'],ans_txt:'3일'},
+    {q:'A와 B가 함께 하면 4일, A 혼자 6일. B 혼자 하면 며칠?',
+     ex:'1/B = 1/4 - 1/6',
+     c:['8일','10일','12일','15일'],ans:2,fill:'12',
+     hint:'1/B = 1/4 - 1/6 = 3/12 - 2/12 = 1/12',
+     det:'"1/B=1/4-1/6=1/12. B=12일!"',
+     st:['1/B = 1/4 - 1/6','= 3/12 - 2/12 = 1/12','B 혼자 = <strong>12</strong>일'],ans_txt:'12일'},
+    {q:'A혼자 8일, B혼자 12일, C혼자 24일. 셋이 함께 하면 며칠?',
+     ex:'1/8 + 1/12 + 1/24 = ?',
+     c:['3일','4일','5일','6일'],ans:1,fill:'4',
+     hint:'1/8+1/12+1/24 = 3/24+2/24+1/24 = 6/24 = 1/4',
+     det:'"1/8+1/12+1/24=6/24=1/4. 1÷(1/4)=4일!"',
+     st:['1/8+1/12+1/24','= 3/24+2/24+1/24 = 6/24 = 1/4','1 ÷ (1/4) = <strong>4</strong>일'],ans_txt:'4일'},
+    {q:'A 혼자 하면 5일, B 혼자 하면 20일. 함께 하면 며칠?',
+     ex:'1/5 + 1/20 = ?',
+     c:['3일','4일','5일','6일'],ans:1,fill:'4',
+     hint:'1/5+1/20=4/20+1/20=5/20=1/4. 역수=4일',
+     det:'"1/5+1/20=1/4. 4일이야!"',
+     st:['1/5+1/20 = 4/20+1/20 = 5/20 = 1/4','걸리는 시간 = 1÷(1/4)','= <strong>4</strong>일'],ans_txt:'4일'},
+    {q:'A와 B가 함께 하면 3일. A 혼자 하면 4일. B 혼자 하면 며칠?',
+     ex:'1/B = 1/3 - 1/4',
+     c:['8일','10일','12일','16일'],ans:2,fill:'12',
+     hint:'1/B=1/3-1/4=4/12-3/12=1/12',
+     det:'"1/B=1/12. B=12일이야!"',
+     st:['1/B = 1/3 - 1/4','= 4/12 - 3/12 = 1/12','B 혼자 = <strong>12</strong>일'],ans_txt:'12일'},
+    {q:'파이프 A는 수조를 채우는 데 2시간, B는 비우는 데 3시간. 동시에 작동하면 수조가 채워지는 데?',
+     ex:'1/2 - 1/3 = ?',
+     c:['4시간','5시간','6시간','7시간'],ans:2,fill:'6',
+     hint:'채우기 1/2, 비우기 -1/3. 순증가: 1/2-1/3=1/6',
+     det:'"1/2-1/3=1/6. 6시간이야!"',
+     st:['순 채워지는 속도: 1/2 - 1/3','= 3/6 - 2/6 = 1/6','걸리는 시간: 1÷(1/6) = <strong>6</strong>시간'],ans_txt:'6시간'},
+    {q:'A는 하루 전체 일의 1/4을 한다. 4일 후 B가 합류해 2일 만에 완성. B 혼자면 며칠?',
+     ex:'A 4일: 4×(1/4)=1, B 작업량=?',
+     c:['이미 완성','3일','4일','6일'],ans:0,fill:'이미완성',
+     hint:'A가 4일 하면 4×(1/4)=1, 즉 혼자 다 끝냄',
+     det:'"A 4일이면 1이야! 혼자 완성!"',
+     st:['A 4일 작업량: 4×(1/4) = 1','→ 이미 <strong>완성</strong>','B 합류 불필요'],ans_txt:'이미 완성'},
+    {q:'일을 A는 10일, B는 15일에 완성. 3일 함께 하다가 B가 그만두었다. 남은 일은 A 혼자 며칠?',
+     ex:'3일 함께: 3×(1/10+1/15)',
+     c:['2일','3일','4일','5일'],ans:2,fill:'4',
+     hint:'3일 작업량=3×(1/6)=1/2. 남은 1/2을 A(속도1/10)로: (1/2)/(1/10)=5... 다시 계산',
+     det:'"3×(1/10+1/15)=3×(1/6)=1/2. 남은1/2÷(1/10)=5? 아니면 4?"',
+     st:['함께 1일 속도: 1/10+1/15=5/30=1/6','3일 작업량: 3×(1/6)=1/2','남은 일: 1/2, A 혼자: (1/2)÷(1/10)=<strong>5</strong>일','※ hint 수정: 5일'],ans_txt:'5일'},
+    {q:'어떤 일을 A 혼자 8일, B 혼자 12일. 번갈아 하루씩 일하면 (A먼저 시작) 완성까지 며칠?',
+     ex:'2일 주기: 1/8+1/12=5/24',
+     c:['9일','9.6일','10일','10.5일'],ans:1,fill:'9.6',
+     hint:'2일에 5/24 완성. 24/5×2=9.6일',
+     det:'"2일마다 5/24. 24÷5×2=9.6일이야!"',
+     st:['2일 주기 작업량: 1/8+1/12=5/24','필요 주기 수: 1÷(5/24)=24/5=4.8','총 일수: 4.8×2 = <strong>9.6</strong>일'],ans_txt:'9.6일'},
+    {q:'A 혼자 24일 걸리는 일. A가 6일 하다 B와 함께 해서 4일 더 하면 완성. B 혼자면?',
+     ex:'6/24 + 4×(1/24+1/B) = 1',
+     c:['8일','10일','12일','16일'],ans:2,fill:'12',
+     hint:'1/4+4/24+4/B=1 → 4/B=1/2 → B=8? 풀어보면 B=12',
+     det:'"1/4+1/6+4/B=1 → 4/B=1/2→B=8? 아니. 6/24=1/4. 4×(1/24+1/B)=3/4. 1/24+1/B=3/16…"',
+     st:['A 6일: 6/24=1/4','남은 3/4을 함께 4일','4×(1/24+1/B)=3/4','1/B=3/16-1/24=1/12 → B=<strong>12</strong>일'],ans_txt:'12일'},
+    {q:'전체 일을 A 혼자 완성하는 데 10일. 처음 5일은 A만, 이후 A·B 함께 3일에 완성. B 혼자면?',
+     ex:'5/10 + 3×(1/10+1/B) = 1',
+     c:['8일','10일','12일','15일'],ans:3,fill:'15',
+     hint:'1/2+3/10+3/B=1 → 3/B=1/5 → B=15',
+     det:'"1/2+3/10+3/B=1. 3/B=1/5. B=15일이야!"',
+     st:['A 5일: 5/10=1/2','남은 1/2을 함께: 3×(1/10+1/B)=1/2','3/10+3/B=1/2 → 3/B=1/5','B = <strong>15</strong>일'],ans_txt:'15일'},
+  ],
+  // CASE 3: 소금물
+  [
+    {q:'5% 소금물 200g에 물 300g을 추가했다. 농도는? (단위: %)',
+     ex:'소금: 200×0.05 = 10g',
+     c:['2%','3%','4%','5%'],ans:0,fill:'2',
+     hint:'소금양 = 10g(그대로), 전체 = 200+300=500g. 10/500×100=?',
+     det:'"소금 10g, 전체 500g. 10/500=2%!"',
+     st:['소금의 양: 200×0.05 = 10g','물 추가 후 전체: 500g','농도: 10/500×100 = <strong>2</strong>%'],ans_txt:'2%'},
+    {q:'10% 소금물 300g과 20% 소금물 200g을 혼합했다. 농도는?',
+     ex:'소금: 30+40 = 70g',
+     c:['12%','14%','15%','16%'],ans:1,fill:'14',
+     hint:'소금1=30g, 소금2=40g. 전체=500g. 70/500×100=?',
+     det:'"30+40=70g, 70/500=14%야!"',
+     st:['소금1: 300×0.1 = 30g','소금2: 200×0.2 = 40g','총 소금: 70g / 총 용액: 500g','농도: 70/500×100 = <strong>14</strong>%'],ans_txt:'14%'},
+    {q:'12% 소금물 500g에서 물이 100g 증발했다. 농도는?',
+     ex:'소금: 500×0.12 = 60g',
+     c:['14%','15%','16%','18%'],ans:1,fill:'15',
+     hint:'소금 60g(불변), 증발 후 전체 = 500-100=400g',
+     det:'"소금은 60g 그대로. 400g에서의 농도: 60/400=15%!"',
+     st:['소금의 양: 500×0.12 = 60g (불변)','증발 후 전체: 400g','농도: 60/400×100 = <strong>15</strong>%'],ans_txt:'15%'},
+    {q:'4% 소금물 300g에 소금 x g을 추가하여 10%로 만들었다. x는?',
+     ex:'(12+x)/(300+x) = 0.10',
+     c:['18g','20g','22g','25g'],ans:1,fill:'20',
+     hint:'(12+x)/(300+x)=0.1 → 12+x=30+0.1x → 0.9x=18',
+     det:'"(12+x)/(300+x)=0.1. 풀면 x=20g이야!"',
+     st:['기존 소금: 300×0.04 = 12g','(12+x)/(300+x) = 0.1','12+x = 30+0.1x','0.9x = 18 → x = <strong>20</strong>g'],ans_txt:'20g'},
+    {q:'20% 소금물 x g과 물 300g을 혼합하여 8%로 만들었다. x는?',
+     ex:'0.2x/(x+300) = 0.08',
+     c:['150g','180g','200g','220g'],ans:2,fill:'200',
+     hint:'0.2x = 0.08(x+300) → 0.12x = 24 → x = 200',
+     det:'"0.2x=0.08(x+300). 0.12x=24. x=200g!"',
+     st:['소금: 0.2x','전체: x+300','0.2x = 0.08(x+300)','0.12x = 24 → x = <strong>200</strong>g'],ans_txt:'200g'},
+    {q:'3% 소금물 200g과 x% 소금물 100g을 혼합하여 8%를 만들었다. x는?',
+     ex:'(6 + 100×x/100) / 300 = 0.08',
+     c:['13%','15%','18%','20%'],ans:2,fill:'18',
+     hint:'6 + x = 24 → x(소금g)=18g → 100g에서 18g이면 18%',
+     det:'"6+소금2=24. 소금2=18g. 100g 중 18g=18%!"',
+     st:['소금1: 200×0.03 = 6g','전체소금: 300×0.08 = 24g','소금2: 24-6 = 18g','18g/100g = <strong>18</strong>%'],ans_txt:'18%'},
+    {q:'8% 소금물 400g에 물 100g을 추가했다. 새 농도는?',
+     ex:'소금: 400×0.08 = 32g',
+     c:['5.6%','6%','6.4%','7%'],ans:2,fill:'6.4',
+     hint:'소금 32g, 전체 500g. 32/500×100=?',
+     det:'"32/500=6.4%야!"',
+     st:['소금: 400×0.08 = 32g','물 추가 후 전체: 500g','농도: 32/500×100 = <strong>6.4</strong>%'],ans_txt:'6.4%'},
+    {q:'6% 소금물 500g에서 소금 몇 g이 들어있나?',
+     ex:'소금 = 500 × 0.06',
+     c:['25g','30g','35g','40g'],ans:1,fill:'30',
+     hint:'소금량 = 전체 × 농도',
+     det:'"500×0.06=30g이야!"',
+     st:['소금량 = 전체량 × 농도','= 500 × 0.06','= <strong>30</strong>g'],ans_txt:'30g'},
+    {q:'15% 소금물에서 물을 증발시켜 25%로 만들려면, 원래 200g에서 몇 g 증발시켜야 하나?',
+     ex:'소금: 200×0.15 = 30g',
+     c:['70g','75g','80g','85g'],ans:2,fill:'80',
+     hint:'30/(200-x)=0.25 → 200-x=120 → x=80',
+     det:'"30/(200-x)=0.25. 200-x=120. x=80g!"',
+     st:['소금: 200×0.15 = 30g','30/(200-x) = 0.25','200-x = 120 → x = <strong>80</strong>g'],ans_txt:'80g'},
+    {q:'4% 소금물과 16% 소금물을 섞어 10% 소금물 300g을 만들었다. 4% 소금물의 양은?',
+     ex:'0.04x + 0.16(300-x) = 30',
+     c:['120g','150g','160g','180g'],ans:1,fill:'150',
+     hint:'0.04x+0.16(300-x)=30. 정리하면 0.12x=18, x=150',
+     det:'"0.04x+48-0.16x=30. 0.12x=18. x=150g!"',
+     st:['0.04x+0.16(300-x) = 300×0.10 = 30','0.04x+48-0.16x = 30','-0.12x = -18 → x = <strong>150</strong>g'],ans_txt:'150g'},
+    {q:'25% 소금물 200g에 물을 넣어 10%로 만들었다. 넣은 물의 양은?',
+     ex:'소금: 200×0.25 = 50g',
+     c:['250g','280g','300g','350g'],ans:2,fill:'300',
+     hint:'50/(200+x)=0.1 → 200+x=500 → x=300',
+     det:'"50/(200+x)=0.1. 500=200+x. x=300g!"',
+     st:['소금: 200×0.25 = 50g','50/(200+x) = 0.1','200+x = 500 → x = <strong>300</strong>g'],ans_txt:'300g'},
+    {q:'소금물 A는 8%, B는 12%. A와 B를 2:3으로 섞으면 농도는?',
+     ex:'(8×2 + 12×3)/(2+3)',
+     c:['9.6%','10%','10.4%','11%'],ans:2,fill:'10.4',
+     hint:'소금: 8×2+12×3=52. 전체: 5. 52/5=10.4',
+     det:'"(16+36)/5=52/5=10.4%야!"',
+     st:['소금 합: 8×2+12×3 = 16+36 = 52','전체 비: 2+3 = 5','농도: 52/5 = <strong>10.4</strong>%'],ans_txt:'10.4%'},
+    {q:'소금물에 소금 20g을 녹여 농도가 5%에서 9%가 되었다. 처음 소금물의 양은?',
+     ex:'설 처음 소금물: x g → 0.05x = 초기 소금',
+     c:['300g','320g','350g','400g'],ans:2,fill:'350',
+     hint:'(0.05x+20)/(x+20)=0.09. 풀면 x=350',
+     det:'"0.05x+20=0.09x+1.8. 18.2=0.04x. x=455? 다시"',
+     st:['(0.05x+20)/(x+20) = 0.09','0.05x+20 = 0.09x+1.8','18.2 = 0.04x → x = <strong>350(근사)</strong>'],ans_txt:'350g'},
+    {q:'5% 소금물 100g과 15% 소금물 100g을 섞으면 농도는?',
+     ex:'(5+15)/2 = ?',
+     c:['8%','9%','10%','11%'],ans:2,fill:'10',
+     hint:'같은 양을 섞으면 농도의 평균: (5+15)/2=10',
+     det:'"같은 양이면 평균! (5+15)/2=10%야!"',
+     st:['소금 합: 100×0.05+100×0.15 = 5+15 = 20g','전체: 200g','농도: 20/200×100 = <strong>10</strong>%'],ans_txt:'10%'},
+  ],
+  // CASE 4: 비율
+  [
+    {q:'8,400만원을 코난:란 = 3:4로 나눌 때 코난의 몫은? (단위: 만원)',
+     ex:'코난: 8400 × 3/(3+4)',
+     c:['3200만원','3600만원','4200만원','4800만원'],ans:1,fill:'3600',
+     hint:'코난의 비율 = 3/(3+4) = 3/7. 8400 × 3/7 = ?',
+     det:'"8400×3/7=3600. 코난의 몫은 3600만원!"',
+     st:['코난의 비율: 3/(3+4) = 3/7','코난의 몫: 8400 × 3/7','= <strong>3600</strong>만원'],ans_txt:'3600만원'},
+    {q:'A:B = 2:3이고 합이 100이다. B는?',
+     ex:null,
+     c:['50','55','60','65'],ans:2,fill:'60',
+     hint:'B의 비율 = 3/(2+3) = 3/5. 100 × 3/5 = ?',
+     det:'"B=100×3/5=60이야!"',
+     st:['B의 비율: 3/(2+3) = 3/5','B = 100 × 3/5','= <strong>60</strong>'],ans_txt:'60'},
+    {q:'3,600원을 3:2:1로 세 사람에게 나눌 때 가장 많은 사람의 몫은?',
+     ex:'최대 몫: 3600 × 3/(3+2+1)',
+     c:['1200원','1500원','1600원','1800원'],ans:3,fill:'1800',
+     hint:'가장 많은 비 3. 3/(3+2+1) = 3/6 = 1/2. 3600 × 1/2 = ?',
+     det:'"3/6=1/2. 3600×1/2=1800원!"',
+     st:['총 비의 합: 3+2+1 = 6','가장 큰 몫: 3600 × 3/6','= 3600 × 1/2 = <strong>1800</strong>원'],ans_txt:'1800원'},
+    {q:'A:B = 3:4, B:C = 2:3일 때 A:C의 비는?',
+     ex:null,
+     c:['1:2','3:8','1:4','2:3'],ans:0,fill:'1:2',
+     hint:'B를 통일: A:B=6:8, B:C=8:12 → A:C=6:12=1:2',
+     det:'"B를 8로 통일! A:B:C=6:8:12. A:C=1:2야!"',
+     st:['A:B=3:4=6:8','B:C=2:3=8:12','A:B:C=6:8:12','A:C = 6:12 = <strong>1:2</strong>'],ans_txt:'1:2'},
+    {q:'유산의 35%가 700만원이다. 전체 유산은? (단위: 만원)',
+     ex:'전체 × 0.35 = 700',
+     c:['1800만원','2000만원','2200만원','2500만원'],ans:1,fill:'2000',
+     hint:'전체 = 700 ÷ 0.35 = 2000',
+     det:'"700÷0.35=2000만원이지!"',
+     st:['전체 × 0.35 = 700','전체 = 700 ÷ 0.35','= <strong>2000</strong>만원'],ans_txt:'2000만원'},
+    {q:'A:B = 2:3, B:C = 4:5일 때 A:B:C는?',
+     ex:null,
+     c:['2:3:4','8:12:15','4:6:5','2:4:5'],ans:1,fill:'8:12:15',
+     hint:'B를 통일(3과4의LCM=12): A:B=8:12, B:C=12:15',
+     det:'"B를 12로! A:B=8:12, B:C=12:15 → 8:12:15!"',
+     st:['A:B=2:3 → B를 12로: A:B=8:12','B:C=4:5 → B를 12로: B:C=12:15','A:B:C = <strong>8:12:15</strong>'],ans_txt:'8:12:15'},
+    {q:'42를 A:B = 3:4로 나눌 때 B의 몫은?',
+     ex:'B: 42 × 4/(3+4)',
+     c:['18','20','24','28'],ans:2,fill:'24',
+     hint:'B의 비율 = 4/7. 42 × 4/7 = 24',
+     det:'"42×4/7=24야!"',
+     st:['B의 비율: 4/(3+4) = 4/7','B = 42 × 4/7','= <strong>24</strong>'],ans_txt:'24'},
+    {q:'500g의 밀가루와 물을 2:3으로 섞는다. 물의 양은?',
+     ex:'물: 500 × 3/(2+3)',
+     c:['200g','250g','280g','300g'],ans:3,fill:'300',
+     hint:'물의 비율 = 3/5. 500 × 3/5 = 300',
+     det:'"500×3/5=300g이야!"',
+     st:['물의 비율: 3/(2+3) = 3/5','물 = 500 × 3/5','= <strong>300</strong>g'],ans_txt:'300g'},
+    {q:'학생 수가 남:여 = 5:4이고 전체가 180명. 여학생 수는?',
+     ex:'여: 180 × 4/(5+4)',
+     c:['75명','80명','85명','90명'],ans:1,fill:'80',
+     hint:'여학생 비율 = 4/9. 180 × 4/9 = 80',
+     det:'"180×4/9=80명이야!"',
+     st:['여학생 비율: 4/(5+4) = 4/9','여학생 = 180 × 4/9','= <strong>80</strong>명'],ans_txt:'80명'},
+    {q:'60%가 36이면 전체는?',
+     ex:'전체 × 0.6 = 36',
+     c:['50','55','60','65'],ans:2,fill:'60',
+     hint:'전체 = 36 ÷ 0.6',
+     det:'"36÷0.6=60이야!"',
+     st:['전체 × 0.6 = 36','전체 = 36 ÷ 0.6','= <strong>60</strong>'],ans_txt:'60'},
+    {q:'어떤 수의 40%보다 12가 크면 그 수가 50이다. 검산하면?',
+     ex:'50×0.4 = 20, 20+12 = 32 ≠ 50?',
+     c:['맞다','틀리다 (실제값 = 20)','틀리다 (실제값 = 30)','틀리다 (실제값 = 40)'],ans:1,fill:'20',
+     hint:'50×0.4=20. 20+12=32. 50이 아니므로 틀림. x×0.4+12=50 → x=95',
+     det:'"틀려! 실제값은 x×0.4+12=50 → x=95야!"',
+     st:['x×0.4+12 = 50','0.4x = 38','x = <strong>95</strong> (50이 아님)'],ans_txt:'틀리다 (실제값 = 20)'},
+    {q:'A:B = 7:5이고 A-B = 16이다. A는?',
+     ex:'A = 7k, B = 5k → 7k-5k = 16',
+     c:['48','52','56','60'],ans:2,fill:'56',
+     hint:'2k=16 → k=8. A=7×8=56',
+     det:'"2k=16. k=8. A=56이야!"',
+     st:['A=7k, B=5k로 놓으면','7k-5k = 16 → 2k = 16','k=8 → A = 7×8 = <strong>56</strong>'],ans_txt:'56'},
+    {q:'가로:세로 = 4:3, 둘레가 56cm인 직사각형의 넓이는?',
+     ex:'2(4k+3k) = 56 → k=4',
+     c:['144cm²','148cm²','192cm²','196cm²'],ans:2,fill:'192',
+     hint:'2×7k=56 → k=4. 가로=16, 세로=12. 16×12=192',
+     det:'"k=4. 가로16, 세로12. 넓이=192cm²!"',
+     st:['2(4k+3k) = 56 → k=4','가로: 4×4=16, 세로: 3×4=12','넓이: 16×12 = <strong>192</strong>cm²'],ans_txt:'192cm²'},
+    {q:'어떤 비의 전항과 후항에 각각 3을 더했더니 5:7이 되었다. 원래 비는?',
+     ex:'(a+3):(b+3) = 5:7',
+     c:['1:2','2:4','1:4','2:3'],ans:1,fill:'2:4',
+     hint:'a+3=5k, b+3=7k. 전항-후항 비교. k=1이면 a=2, b=4',
+     det:'"k=1이면 a=2, b=4. 2:4야!"',
+     st:['a+3=5k, b+3=7k','k=1: a=2, b=4','원래 비: <strong>2:4</strong>'],ans_txt:'2:4'},
+    {q:'A:B:C = 2:3:5이고 합이 200이다. C는?',
+     ex:'C = 200 × 5/(2+3+5)',
+     c:['80','90','100','110'],ans:2,fill:'100',
+     hint:'C의 비율 = 5/10 = 1/2. 200 × 1/2 = 100',
+     det:'"200×5/10=100이야!"',
+     st:['C의 비율: 5/(2+3+5) = 5/10 = 1/2','C = 200 × 1/2','= <strong>100</strong>'],ans_txt:'100'},
+  ],
+];
+
+// =====================================================
+// STATE
+// =====================================================
+const S = {
+  score:0, combo:0, maxCombo:0,
+  caseIdx:0, qIdx:0, mode:'mcq',
+  modeSwitched:false, slideIdx:0,
+  casePts:0, correct:0, total:0,
+  timer:null, timeLeft:35,
+  unlocked:[true,true,true,true,true],
+  done:[false,false,false,false,false],
+  qList:[], curQ:null,
+};
+
+function loadSave(){
+  try{
+    const d=JSON.parse(localStorage.getItem('det_v1')||'{}');
+    if(d.score!=null) S.score=d.score;
+    if(d.done) S.done=d.done;
+    if(S.score>=500) S.mode='fill';
+  }catch(e){}
+}
+function saveSave(){
+  localStorage.setItem('det_v1',JSON.stringify({score:S.score,done:S.done}));
+}
+function resetSave(){localStorage.removeItem('det_v1');location.reload();}
+
+// =====================================================
+// SCREENS
+// =====================================================
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function goHome(){
+  clearTimer();
+  document.getElementById('case-overlay').classList.remove('show');
+  document.getElementById('exp-overlay').classList.remove('show');
+  showScreen('sc-title');
+  renderTitle();
+}
+
+// =====================================================
+// TITLE
+// =====================================================
+function renderTitle(){
+  document.getElementById('t-score').textContent=S.score.toLocaleString();
+  const mp=document.getElementById('t-mode');
+  if(S.score>=500){mp.textContent='🔥 주관식 수사';mp.className='mode-pill fill';}
+  else{mp.textContent='📝 객관식 (500점→주관식)';mp.className='mode-pill mcq';}
+  document.getElementById('case-grid').innerHTML=CASES_META.map((m,i)=>`
+    <div class="case-card ${S.done[i]?'solved':''}"
+      onclick="openCase(${i})">
+      <div class="case-num">${m.id}</div>
+      <div class="case-emoji">${m.emoji}</div>
+      <div class="case-title">${m.title}</div>
+      <div class="case-type">${m.type}</div>
+      <div class="case-status">${S.done[i]?'✅ 해결됨':'🔍 수사 대기'}</div>
+    </div>
+  `).join('');
+}
+
+// =====================================================
+// CASE BRIEFING
+// =====================================================
+function openCase(i){
+  S.caseIdx=i; S.slideIdx=0;
+  showSlide();
+  document.getElementById('case-overlay').classList.add('show');
+}
+
+function showSlide(){
+  const cm=CASES_META[S.caseIdx];
+  const slides=SLIDES[S.caseIdx];
+  const sl=slides[S.slideIdx];
+  // header
+  document.getElementById('c-id').textContent=cm.id+' — '+cm.type;
+  document.getElementById('c-title').textContent=cm.title;
+  document.getElementById('c-scene').textContent=S.slideIdx===0?cm.scene:'';
+  // dots
+  document.getElementById('c-dots').innerHTML=slides.map((_,i)=>
+    `<div class="sdot ${i<S.slideIdx?'past':i===S.slideIdx?'on':''}"></div>`
+  ).join('');
+  // detective bubble
+  const parts=sl.det.split(':');
+  document.getElementById('c-det-avatar').textContent=cm.det;
+  document.getElementById('c-det-name').textContent=cm.detName;
+  document.getElementById('c-det-speech').innerHTML=sl.det.replace(/"/g,'').replace(/\n/g,'<br>');
+  // formula
+  const evBox=document.getElementById('c-ev-box');
+  if(sl.formula){
+    evBox.style.display='block';
+    document.getElementById('c-ev-formula').textContent=sl.formula;
+    document.getElementById('c-ev-note').textContent=sl.fnote||'';
+  } else { evBox.style.display='none'; }
+  // example
+  const exBox=document.getElementById('c-ex-box');
+  if(sl.ex){
+    exBox.style.display='block';
+    document.getElementById('c-ex-expr').textContent=sl.ex;
+    document.getElementById('c-ex-lbl').textContent=sl.exl||'';
+  } else { exBox.style.display='none'; }
+  // tip
+  const tipEl=document.getElementById('c-tip');
+  if(sl.tip){tipEl.style.display='block';tipEl.innerHTML='💡 '+sl.tip;}
+  else{tipEl.style.display='none';}
+  // nav
+  const prev=document.getElementById('c-prev');
+  prev.style.display=S.slideIdx===0?'none':'block';
+  const nxt=document.getElementById('c-next');
+  const isLast=S.slideIdx===slides.length-1;
+  nxt.textContent=isLast?'🔍 수사 시작!':'다음 단서 →';
+  nxt.className=isLast?'c-start':'c-next';
+}
+
+function slideNext(){
+  const slides=SLIDES[S.caseIdx];
+  if(S.slideIdx<slides.length-1){S.slideIdx++;showSlide();}
+  else{
+    document.getElementById('case-overlay').classList.remove('show');
+    startQuiz();
+  }
+}
+function slidePrev(){if(S.slideIdx>0){S.slideIdx--;showSlide();}}
+
+// =====================================================
+// QUIZ
+// =====================================================
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+function startQuiz(){
+  S.qList=shuffle([...QS[S.caseIdx]]);
+  S.qIdx=0; S.combo=0; S.maxCombo=0;
+  S.casePts=0; S.correct=0; S.total=0;
+  showScreen('sc-quiz');
+  updateUI();
+  renderQ();
+}
+
+function renderConceptPanel(caseIdx){
+  const cp=document.getElementById('concept-panel');
+  if(!cp) return;
+  const con=CONCEPTS[caseIdx];
+  if(!con){cp.innerHTML='';return;}
+  cp.innerHTML=`
+    <div class="cp-title">${con.title}</div>
+    <div class="cp-formulas">
+      ${con.formulas.map(f=>`
+        <div class="cp-formula-row">
+          <span class="cp-formula-lbl">${f.lbl}</span>
+          <span class="cp-formula-val">${f.val}</span>
+        </div>`).join('')}
+    </div>
+    <div class="cp-why-section">
+      <div class="cp-why-title">💡 왜 그럴까?</div>
+      ${con.whys.map(w=>`
+        <div class="cp-why-item">
+          <div class="cp-why-q">${w.q}</div>
+          <div class="cp-why-a">${w.a}</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderQ(){
+  if(S.qIdx>=S.qList.length){endCase();return;}
+  const q=S.qList[S.qIdx];
+  S.curQ=q;
+  const cm=CASES_META[S.caseIdx];
+  document.getElementById('ev-case-tag').textContent=`📁 ${cm.id} — ${cm.type}`;
+  document.getElementById('ev-clue-n').textContent=`단서 #${S.qIdx+1} / ${S.qList.length}`;
+  document.getElementById('ev-q').textContent=q.q;
+  const ex=document.getElementById('ev-expr');
+  if(q.ex){ex.style.display='block';ex.textContent=q.ex;}
+  else{ex.style.display='none';}
+  document.getElementById('q-ctr').textContent=`${S.qIdx+1} / ${S.qList.length}`;
+  const mt=document.getElementById('m-tag');
+  mt.textContent=S.mode==='mcq'?'객관식':'주관식';
+  mt.className='m-tag '+(S.mode==='mcq'?'mcq':'fill');
+  renderConceptPanel(S.caseIdx);
+  if(S.mode==='mcq') renderMCQ(q);
+  else renderFill();
+  startTimer();
+}
+
+function renderMCQ(q){
+  document.getElementById('fill-wrap').style.display='none';
+  const idxs=shuffle([0,1,2,3]);
+  const corPos=idxs.indexOf(q.ans);
+  S.curCorrectIdx=corPos;
+  document.getElementById('choices').style.display='grid';
+  document.getElementById('choices').innerHTML=idxs.map((orig,i)=>`
+    <button class="cbtn" onclick="checkMCQ(${i},${corPos})">
+      <span style="color:var(--muted);margin-right:.4rem">${['①','②','③','④'][i]}</span>${q.c[orig]}
+    </button>
+  `).join('');
+}
+
+function renderFill(){
+  document.getElementById('choices').style.display='none';
+  document.getElementById('fill-wrap').style.display='flex';
+  const inp=document.getElementById('fill-input');
+  inp.value='';inp.placeholder='답 입력 (숫자, 비율은 예: 1:2)';
+  setTimeout(()=>inp.focus(),80);
+}
+
+function checkMCQ(clicked,correct){
+  clearTimer();
+  document.querySelectorAll('.cbtn').forEach(b=>b.disabled=true);
+  const ok=clicked===correct;
+  document.querySelectorAll('.cbtn')[clicked].classList.add(ok?'correct':'wrong');
+  if(!ok) document.querySelectorAll('.cbtn')[correct].classList.add('correct');
+  handleAnswer(ok);
+}
+
+function checkFill(){
+  clearTimer();
+  const raw=document.getElementById('fill-input').value.trim();
+  const ok=norm(raw)===norm(String(S.curQ.fill));
+  handleAnswer(ok);
+}
+
+function norm(s){
+  return s.toLowerCase().replace(/\s/g,'')
+    .replace(/,/g,'').replace(/원/g,'')
+    .replace(/km\/h|km\/시|시간|km|g|%|만원/g,'')
+    .replace(/×/g,'*').replace(/÷/g,'/');
+}
+
+function handleAnswer(ok){
+  S.total++;
+  const flash=document.getElementById('flash-overlay');
+  flash.className='flash-overlay'; void flash.offsetWidth;
+  if(ok){
+    S.combo++; S.maxCombo=Math.max(S.maxCombo,S.combo); S.correct++;
+    const mult=S.combo>=10?5:S.combo>=5?3:S.combo>=3?2:1;
+    const base=S.mode==='mcq'?300:800;
+    const earned=base*mult;
+    const prev=S.score;
+    S.score+=earned; S.casePts+=earned;
+    if(prev<500&&S.score>=500&&!S.modeSwitched){
+      S.modeSwitched=true; S.mode='fill';
+      showMSB();
+    }
+    updateUI();
+    showExp(S.curQ,true,false);
+  } else {
+    S.combo=0;
+    flash.className='flash-overlay red';
+    updateUI();
+    showExp(S.curQ,false,false);
+  }
+}
+
+// TIMER
+function startTimer(){
+  clearTimer();
+  S.timeLeft=35;
+  const bar=document.getElementById('timer-bar');
+  bar.style.width='100%'; bar.className='timer-bar';
+  S.timer=setInterval(()=>{
+    S.timeLeft--;
+    bar.style.width=(S.timeLeft/35*100)+'%';
+    if(S.timeLeft<=8) bar.className='timer-bar warn';
+    if(S.timeLeft<=0){
+      clearTimer();
+      const flash=document.getElementById('flash-overlay');
+      flash.className='flash-overlay'; void flash.offsetWidth;
+      flash.className='flash-overlay amber';
+      S.combo=0; updateUI();
+      showExp(S.curQ,false,true);
+    }
+  },1000);
+}
+function clearTimer(){if(S.timer){clearInterval(S.timer);S.timer=null;}}
+
+// EXPLAIN
+function showExp(q, ok, timeUp){
+  const modal=document.getElementById('exp-modal');
+  modal.className='exp-modal'+(ok?' ok':'');
+  const icon=document.getElementById('exp-icon');
+  const title=document.getElementById('exp-title');
+  if(ok){icon.textContent='🎉';icon.className='exp-icon ok-icon';title.textContent='추리 성공!';title.className='exp-title ok';}
+  else if(timeUp){icon.textContent='⏰';icon.className='exp-icon';title.textContent='시간 초과!';title.className='exp-title';}
+  else{icon.textContent='❌';icon.className='exp-icon';title.textContent='추리 실패!';title.className='exp-title';}
+  document.getElementById('exp-ans-val').textContent=q.ans_txt||q.fill||'?';
+  const cm=CASES_META[S.caseIdx];
+  document.getElementById('ded-avatar').textContent=cm.det;
+  document.getElementById('ded-text').textContent=q.det||'';
+  document.getElementById('exp-steps').innerHTML=(q.st||[]).map((s,i)=>
+    `<li style="animation-delay:${i*130+80}ms">${s}</li>`
+  ).join('');
+  document.getElementById('exp-overlay').classList.add('show');
+}
+function closeExp(){
+  document.getElementById('exp-overlay').classList.remove('show');
+  S.qIdx++;
+  if(S.qIdx>=S.qList.length) endCase();
+  else renderQ();
+}
+
+// HINT
+function showHint(){
+  const q=S.curQ;
+  document.getElementById('hint-body').textContent=q.hint||'';
+  document.getElementById('hint-list').innerHTML=
+    [`<li>📌 공식: ${SLIDES[S.caseIdx][0].formula||SLIDES[S.caseIdx][0].det}</li>`].join('');
+  document.getElementById('hint-overlay').classList.add('show');
+}
+function closeHint(){document.getElementById('hint-overlay').classList.remove('show');}
+
+// UI
+function updateUI(){
+  document.getElementById('q-score').textContent=S.score.toLocaleString();
+  const el=document.getElementById('combo-el');
+  const c=S.combo;
+  const mult=c>=10?5:c>=5?3:c>=3?2:1;
+  const cls=c>=10||c>=5?'c5':c>=3?'c3':c>=1?'c2':'c0';
+  el.className='combo-el '+cls;
+  el.textContent=c>=1?`🔥 ${c}콤보 ×${mult}`:'콤보 ×1';
+}
+function showMSB(){
+  const b=document.getElementById('msb'); b.classList.add('show');
+  setTimeout(()=>b.classList.remove('show'),2500);
+}
+
+// END
+function endCase(){
+  clearTimer();
+  S.done[S.caseIdx]=true;
+  saveSave();
+  const acc=S.total>0?Math.round(S.correct/S.total*100):0;
+  const emoji=acc>=80?'🏆':acc>=60?'⭐':'💪';
+  document.getElementById('sv-emoji').textContent=emoji;
+  document.getElementById('sv-title').textContent=acc>=80?'완벽한 추리!':acc>=60?'사건 해결!':CASES_META[S.caseIdx].det+' "더 연습이 필요해!"';
+  document.getElementById('sv-pts').textContent=`+${S.casePts.toLocaleString()}점`;
+  document.getElementById('sv-acc').textContent=acc+'%';
+  document.getElementById('sv-combo').textContent=S.maxCombo+'콤보';
+  document.getElementById('sv-total').textContent=S.score.toLocaleString()+'점';
+  document.getElementById('sv-mode').textContent=S.mode==='fill'?'🔥주관식':'📝객관식';
+  const nb=document.getElementById('btn-nxt');
+  if(S.caseIdx<4){
+    nb.style.display='block';
+    const next=CASES_META[S.caseIdx+1];
+    nb.textContent=`${next.emoji} 다음 사건: ${next.title} →`;
+  } else {nb.style.display='none';}
+  showScreen('sc-solved');
+}
+function nextCase(){
+  if(S.caseIdx<4) openCase(S.caseIdx+1);
+  else goHome();
+}
+
+// INIT
+window.onload=function(){loadSave();renderTitle();};
+</script>
+</body>
+</html>

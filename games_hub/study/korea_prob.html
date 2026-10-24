@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>한국 중난이도 수학 — 핀란드식 풀이</title>
+<style>
+:root{
+  --purple:#6d28d9;--purple-light:#8b5cf6;--purple-pale:#ede9fe;
+  --teal:#0f766e;--teal-light:#14b8a6;--teal-pale:#ccfbf1;
+  --amber:#92400e;--amber-light:#d97706;--amber-pale:#fef3c7;
+  --red:#991b1b;--red-pale:#fee2e2;
+  --bg:#faf8ff;--card-bg:#ffffff;--text:#1e293b;--muted:#64748b;
+  --radius:14px;--shadow:0 4px 20px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center}
+
+header{width:100%;background:#4c1d95;border-bottom:4px solid #a78bfa;padding:18px 24px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+header h1{color:#fff;font-size:1.3rem}
+.badge-hdr{background:#7c3aed;color:#fff;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:700}
+
+.prog-wrap{width:100%;max-width:960px;padding:14px 20px 6px;display:flex;flex-direction:column;gap:6px}
+.prog-track{display:flex;gap:3px;flex-wrap:wrap}
+.prog-dot{width:27px;height:27px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#94a3b8;cursor:pointer;transition:.2s;flex-shrink:0}
+.prog-dot.on{background:#7c3aed;color:#fff;transform:scale(1.18)}
+.prog-dot.done{background:#4c1d95;color:#c4b5fd;opacity:.75}
+.prog-sep{width:2px;height:27px;background:#cbd5e1;border-radius:2px;flex-shrink:0}
+.prog-label{font-size:.68rem;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+.plbl{font-weight:700;color:#6d28d9}
+
+.screen{display:none;flex-direction:column;gap:18px;width:100%;max-width:960px;padding:20px 20px 100px;animation:fadeIn .35s ease}
+.screen.active{display:flex}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.screen-title{font-size:1.4rem;font-weight:800;color:#4c1d95;border-left:5px solid #8b5cf6;padding-left:12px}
+.screen-sub{font-size:.9rem;color:var(--muted);margin-top:4px;padding-left:17px}
+
+/* 카드 */
+.principle{background:#4c1d95;color:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.principle h3{color:#c4b5fd;font-size:1rem;font-weight:700;margin-bottom:10px}
+.principle p,.principle li{color:#e0e7ff;line-height:1.85}
+.principle ul{padding-left:18px}
+
+.prob-card{background:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border:2px solid #ddd6fe}
+.prob-card h3{font-size:1rem;font-weight:700;color:#4c1d95;margin-bottom:12px}
+.prob-box{background:#f5f3ff;border:2px solid #8b5cf6;border-radius:10px;padding:16px;font-size:.95rem;line-height:1.9;margin-bottom:12px}
+.prob-box strong{color:#4c1d95}
+
+.sol-card{background:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border:2px solid #a7f3d0}
+.sol-card h3{font-size:1rem;font-weight:700;color:#065f46;margin-bottom:12px}
+
+.card{background:var(--card-bg);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border:1px solid #ddd6fe}
+.card h3{font-size:.98rem;font-weight:700;color:#4c1d95;margin-bottom:10px}
+.card-amber{background:#fffbeb;border:2px solid #fde68a;border-radius:var(--radius);padding:16px}
+.card-amber h3{color:#92400e;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.card-blue{background:#eff6ff;border:2px solid #bfdbfe;border-radius:var(--radius);padding:16px}
+.card-blue h3{color:#1e40af;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.card-green{background:#f0fdf4;border:2px solid #86efac;border-radius:var(--radius);padding:16px}
+.card-green h3{color:#065f46;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.card-red{background:#fff1f2;border:2px solid #fda4af;border-radius:var(--radius);padding:16px}
+.card-red h3{color:#9f1239;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.explore{background:#f5f3ff;border:2px dashed #8b5cf6;border-radius:var(--radius);padding:16px}
+.explore h3{color:#4c1d95;font-size:.95rem;font-weight:700;margin-bottom:8px}
+
+p,li{line-height:1.85;font-size:.95rem}
+ul,ol{padding-left:20px}
+
+.eq-box{background:#f8fafc;border:2px solid #8b5cf6;border-radius:10px;padding:13px 18px;text-align:center;font-size:1.05rem;font-weight:700;color:#4c1d95;margin:8px 0}
+.eq-big{font-size:1.25rem}
+.eq-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.eq-row .eq-box{flex:1;min-width:150px}
+.eq-ans{background:#f0fdf4;border:2px solid #34d399;border-radius:10px;padding:13px 18px;text-align:center;font-size:1.1rem;font-weight:800;color:#065f46;margin:8px 0}
+
+.hl{background:#fef08a;padding:1px 4px;border-radius:3px;font-weight:700}
+.hl-purple{background:#ede9fe;padding:1px 4px;border-radius:3px;font-weight:700;color:#4c1d95}
+.hl-green{background:#bbf7d0;padding:1px 4px;border-radius:3px;font-weight:700;color:#065f46}
+.hl-red{background:#fecaca;padding:1px 4px;border-radius:3px;font-weight:700;color:#991b1b}
+.hl-blue{background:#bfdbfe;padding:1px 4px;border-radius:3px;font-weight:700;color:#1e3a8a}
+
+.steps{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.step-item{display:flex;gap:12px;align-items:flex-start}
+.step-num{min-width:28px;height:28px;background:#6d28d9;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;flex-shrink:0;margin-top:2px}
+.step-body{flex:1}
+.step-why{background:#f5f3ff;border-left:4px solid #8b5cf6;padding:8px 12px;border-radius:0 8px 8px 0;font-size:.87rem;color:#4c1d95;margin-top:4px}
+.step-check{background:#f0fdf4;border-left:4px solid #34d399;padding:8px 12px;border-radius:0 8px 8px 0;font-size:.87rem;color:#065f46;margin-top:4px}
+.step-trap{background:#fff1f2;border-left:4px solid #fb7185;padding:8px 12px;border-radius:0 8px 8px 0;font-size:.87rem;color:#9f1239;margin-top:4px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.grid2{grid-template-columns:1fr}}
+
+.tbl-wrap{border-radius:10px;overflow:hidden;border:1px solid #e2e8f0}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{background:#4c1d95;color:#fff;padding:10px;text-align:center}
+td{padding:9px 10px;text-align:center;border-bottom:1px solid #e2e8f0}
+tr:nth-child(even) td{background:#f8fafc}
+.td-left{text-align:left!important;padding-left:14px!important}
+
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:6px}
+.tag-prob{background:#ede9fe;color:#4c1d95}
+.tag-fin{background:#dbeafe;color:#1e40af}
+.tag-trap{background:#fee2e2;color:#991b1b}
+.tag-check{background:#d1fae5;color:#065f46}
+
+/* 저울 모델 */
+.balance{display:flex;align-items:center;justify-content:center;gap:16px;margin:10px 0;flex-wrap:wrap}
+.b-side{background:#ede9fe;border:2px solid #8b5cf6;border-radius:10px;padding:12px 18px;text-align:center;font-size:1rem;font-weight:700;color:#4c1d95;min-width:90px}
+.b-mid{font-size:1.8rem;color:#8b5cf6}
+
+/* 바 다이어그램 */
+.bar-model{margin:10px 0}
+.bar-row{display:flex;align-items:center;gap:8px;margin:4px 0}
+.bar-label{font-size:.8rem;width:65px;text-align:right;color:var(--muted);flex-shrink:0}
+.bar-fill{height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#fff}
+
+/* 인트로 */
+.intro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:600px){.intro-grid{grid-template-columns:1fr 1fr}}
+.intro-item{background:#fff;border:2px solid #8b5cf6;border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:.2s}
+.intro-item:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(109,40,217,.2)}
+.intro-item .icon{font-size:1.8rem;margin-bottom:6px}
+.intro-item .ititle{font-size:.82rem;font-weight:700;color:#4c1d95}
+.intro-item .ipage{font-size:.72rem;color:var(--muted);margin-top:2px}
+
+/* 추가문제 */
+.extra-prob{background:#faf8ff;border:2px dashed #8b5cf6;border-radius:12px;padding:16px;margin-top:4px}
+.extra-prob h4{font-size:.9rem;font-weight:700;color:#4c1d95;margin-bottom:8px}
+
+/* 정답 토글 */
+.ans-btn{background:#6d28d9;color:#fff;border:none;padding:8px 20px;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer;margin-top:8px;transition:.2s}
+.ans-btn:hover{background:#4c1d95}
+.ans-box{display:none;margin-top:10px}
+.ans-box.show{display:block}
+
+/* 요약 */
+.sum-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.sum-grid{grid-template-columns:1fr}}
+.sum-card{background:#fff;border:2px solid #8b5cf6;border-radius:12px;padding:16px}
+.sum-card h4{font-size:.88rem;font-weight:700;color:#4c1d95;margin-bottom:8px;border-bottom:1px solid #ddd6fe;padding-bottom:6px}
+.sum-card li{font-size:.82rem;line-height:1.8}
+
+/* 버튼 */
+.btn-next{position:fixed;bottom:24px;right:24px;background:#6d28d9;color:#fff;border:none;padding:14px 28px;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(109,40,217,.4);transition:.2s;z-index:100}
+.btn-next:hover{background:#4c1d95;transform:translateY(-2px)}
+.btn-prev{position:fixed;bottom:24px;left:24px;background:#fff;color:#4c1d95;border:2px solid #4c1d95;padding:12px 22px;border-radius:50px;font-size:.9rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:.2s;z-index:100}
+.btn-prev:hover{background:#4c1d95;color:#fff}
+</style>
+</head>
+<body>
+
+<header>
+  <span style="font-size:1.4rem">🧩</span>
+  <h1>한국 중난이도 수학 — 핀란드식 풀이</h1>
+  <span class="badge-hdr">16 Screens</span>
+</header>
+
+<div class="prog-wrap">
+  <div class="prog-track" id="progTrack"></div>
+  <div class="prog-label" id="progLabel"></div>
+</div>
+
+<!-- ═══ S1 인트로 ═══ -->
+<div class="screen active" id="s1">
+  <div class="screen-title">핀란드식 문제 풀이법이란?</div>
+  <div class="screen-sub">공식보다 "왜"가 먼저 — 중난이도 문제를 원리로 접근한다</div>
+
+  <div class="principle">
+    <h3>🔑 핀란드식 풀이의 3단계</h3>
+    <ul>
+      <li><span style="color:#c4b5fd">① 상황 파악</span> — 문제에서 변하는 것과 고정된 것을 구별한다</li>
+      <li><span style="color:#c4b5fd">② 관계 모델링</span> — 저울·바·표 등 시각 모델로 구조를 잡는다</li>
+      <li><span style="color:#c4b5fd">③ 검산 필수</span> — 구한 답을 원래 문제 조건에 직접 대입해 확인한다</li>
+    </ul>
+  </div>
+
+  <div class="intro-grid">
+    <div class="intro-item" onclick="goTo(2)"><div class="icon">🔢</div><div class="ititle">연속수·나이</div><div class="ipage">2~3화면</div></div>
+    <div class="intro-item" onclick="goTo(4)"><div class="icon">🚗</div><div class="ititle">거리·속도·시간</div><div class="ipage">4~5화면</div></div>
+    <div class="intro-item" onclick="goTo(6)"><div class="icon">🧪</div><div class="ititle">농도·일의 양</div><div class="ipage">6~7화면</div></div>
+    <div class="intro-item" onclick="goTo(8)"><div class="icon">🏷</div><div class="ititle">원가·정가·이익</div><div class="ipage">8화면</div></div>
+    <div class="intro-item" onclick="goTo(9)"><div class="icon">📐</div><div class="ititle">도형 응용</div><div class="ipage">9~10화면</div></div>
+    <div class="intro-item" onclick="goTo(11)"><div class="icon">📊</div><div class="ititle">함수·확률·통계</div><div class="ipage">11~14화면</div></div>
+  </div>
+
+  <div class="card-amber">
+    <h3>✏ 이 자료를 활용하는 법</h3>
+    <ul>
+      <li>각 문제를 먼저 혼자 풀어보고, 막히면 "핀란드식 풀이"를 펼쳐보세요</li>
+      <li>풀이의 <span class="hl-purple">보라색 박스(왜?)</span>는 핵심 — 이유를 이해해야 비슷한 문제도 풉니다</li>
+      <li>마지막에 추가문제가 있습니다 — 스스로 풀어보고 정답을 확인하세요</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══ S2 연속수 ═══ -->
+<div class="screen" id="s2">
+  <div class="screen-title">연속수 문제</div>
+  <div class="screen-sub">연속하는 정수·홀수·짝수 문제 — 변수 설정이 핵심</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 전략 — "작은 수"를 x로, 나머지를 x+n으로 표현</h3>
+    <ul>
+      <li>연속 정수: x, x+1, x+2, ...</li>
+      <li>연속 짝수/홀수: x, x+2, x+4, ...</li>
+      <li>항상 조건 → 방정식 → 풀기 → 검산 순서!</li>
+    </ul>
+  </div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제</h3>
+    <div class="prob-box">
+      연속하는 세 홀수가 있다. 가장 큰 홀수와 가장 작은 홀수의 곱이 중간 홀수의 <strong>9배</strong>보다 4 크다고 할 때, 세 홀수를 구하여라.
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">설정</div>
+          <div class="step-body">
+            <p>중간 홀수를 x라 하면: 세 홀수는 <span class="hl-purple">x-2, x, x+2</span></p>
+            <div class="step-why">홀수의 간격은 항상 2 → 중간을 x로 놓으면 양쪽이 x±2로 대칭! 식이 더 간단해집니다.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">방정식</div>
+          <div class="step-body">
+            <div class="eq-box">(x-2)(x+2) = 9x + 4</div>
+            <div class="step-why">가장 큰×가장 작은 = 중간의 9배+4. 좌변은 합차공식 a²-b²!</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">풀기</div>
+          <div class="step-body">
+            <div class="eq-box">x² - 4 = 9x + 4 → x² - 9x - 8 = 0</div>
+            <div class="eq-box">(x-1)(x-8) = 0? → 인수분해 안 됨 → 근의 공식 시도</div>
+            <p style="margin-top:6px">잠깐 — 홀수 조건을 먼저 활용!</p>
+            <div class="eq-box">x² - 9x - 8 = 0 … (1)</div>
+            <p style="font-size:.85rem">판별식 D = 81 + 32 = 113 → 정수해 없음 ← 변수 설정 재검토</p>
+            <div class="step-trap">⚠ 막혔을 때: 변수를 바꿔서 재설정해 봅니다 (핀란드식 — 틀림은 배움의 일부!)</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">재설정</div>
+          <div class="step-body">
+            <p>가장 작은 홀수를 x로: <span class="hl-purple">x, x+2, x+4</span></p>
+            <div class="eq-box">x(x+4) = 9(x+2) + 4</div>
+            <div class="eq-box">x² + 4x = 9x + 22</div>
+            <div class="eq-box">x² - 5x - 22 = 0 → (x-11)(x+2) = 0</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <p>x = 11 또는 x = -2 → <span class="hl">홀수이므로 x=11</span></p>
+            <div class="eq-ans">세 홀수: 11, 13, 15</div>
+            <div class="step-check">✓ 검산: 11×15 = 165 = 9×13 + 4 = 117+4 ✗ → 오류!</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">수정</div>
+          <div class="step-body">
+            <p>문제 재독: "가장 큰 × 가장 작은 = 9×중간 + 4"</p>
+            <div class="eq-box">11 × 15 = 165, &nbsp;9 × 13 + 4 = 121 ✗</div>
+            <p style="margin-top:6px">올바른 설정: x-2, x, x+2로 돌아가서</p>
+            <div class="eq-box">x² - 4 = 9x + 4 → x² - 9x - 8 = 0</div>
+            <p style="margin-top:6px">→ 이 문제는 정수해가 없습니다.</p>
+            <div class="step-why">핀란드식 교훈: 검산 단계에서 오류를 잡는 것 자체가 수학 실력입니다! 조건이 맞지 않는 문제라면 문제 자체를 의심하세요.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제 2 (정수해 있는 버전)</h3>
+    <div class="prob-box">
+      연속하는 세 홀수의 합이 57이고, 가장 큰 수와 가장 작은 수의 곱이 중간 수의 제곱보다 4 작다. 세 홀수를 구하여라.
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <p>중간 홀수 = x로 놓기: x-2, x, x+2</p>
+            <div class="eq-box">조건①: (x-2) + x + (x+2) = 57 → 3x = 57 → x = 19</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <p>세 홀수: 17, 19, 21</p>
+            <div class="eq-box">조건② 검산: 17×21 = 357 = 19² - 4 = 361 - 4 ✓</div>
+            <div class="eq-ans">세 홀수: 17, 19, 21</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S3 나이 문제 ═══ -->
+<div class="screen" id="s3">
+  <div class="screen-title">나이 문제</div>
+  <div class="screen-sub">현재와 과거/미래의 나이 관계 — 표로 정리하면 보인다</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 전략 — 나이 표(table)로 현재·미래를 정리</h3>
+    <p>나이 문제는 <span style="color:#c4b5fd">현재 나이를 x로 놓고</span>, n년 후는 x+n, n년 전은 x-n으로 쓴 다음 표를 만들면 관계가 명확해집니다.</p>
+  </div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제</h3>
+    <div class="prob-box">
+      현재 아버지의 나이는 아들 나이의 <strong>4배</strong>이다. <strong>12년 후</strong>에는 아버지 나이가 아들 나이의 2배보다 6살이 많아진다. 현재 아버지와 아들의 나이를 구하여라.
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이 — 표 + 저울 모델</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">표</div>
+          <div class="step-body">
+            <div class="tbl-wrap">
+              <table>
+                <tr><th></th><th>현재</th><th>12년 후</th></tr>
+                <tr><td class="td-left">아들</td><td>x</td><td>x + 12</td></tr>
+                <tr><td class="td-left">아버지</td><td>4x</td><td>4x + 12</td></tr>
+              </table>
+            </div>
+            <div class="step-why">표를 먼저 그리면 "무엇이 변하고 무엇이 고정인지" 한눈에 보입니다. 나이 차이(3x)는 절대 변하지 않는다는 것도 확인!</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">방정식</div>
+          <div class="step-body">
+            <p>12년 후 조건: 아버지 = 2 × 아들 + 6</p>
+            <div class="balance">
+              <div class="b-side">4x + 12</div>
+              <div class="b-mid">=</div>
+              <div class="b-side">2(x+12) + 6</div>
+            </div>
+            <div class="eq-box">4x + 12 = 2x + 24 + 6 = 2x + 30</div>
+            <div class="eq-box">2x = 18 → x = 9</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <div class="eq-ans">현재 아들: 9세, 아버지: 36세</div>
+            <div class="step-check">✓ 검산: 12년 후 → 아들 21세, 아버지 48세<br>48 = 2×21 + 6 = 42 + 6 ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="extra-prob">
+    <h4>✏ 추가 문제 (스스로 풀어보기)</h4>
+    <p>현재 어머니의 나이는 딸의 나이보다 26살 많다. 5년 전에는 어머니 나이가 딸 나이의 5배였다면, 현재 어머니와 딸의 나이를 구하여라.</p>
+    <button class="ans-btn" onclick="toggleAns('ans3')">정답 보기</button>
+    <div class="ans-box" id="ans3">
+      <div class="eq-box">현재 딸 = x, 어머니 = x+26</div>
+      <div class="eq-box">5년 전: (x+26-5) = 5(x-5) → x+21 = 5x-25 → 4x=46 → x=11.5</div>
+      <p style="margin-top:6px;color:#9f1239">→ 정수해가 아니면 문제 조건을 재확인! (이 문제는 설정에 따라 오류 가능)</p>
+      <div class="eq-ans">딸: 12세, 어머니: 38세로 수정 시 → 5년 전 딸 7세, 어머니 33세 → 33≠35 (조건 불만족 확인 연습)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S4 거리·속도·시간 ═══ -->
+<div class="screen" id="s4">
+  <div class="screen-title">거리·속도·시간 문제</div>
+  <div class="screen-sub">핵심 공식 하나: 거리 = 속도 × 시간</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 전략 — d=vt 표로 두 상황을 나란히</h3>
+    <p style="color:#e0e7ff">만나는 경우: 거리의 합 = 전체 거리</p>
+    <p style="color:#e0e7ff;margin-top:4px">쫓아가는 경우: 이동 거리가 같아지는 순간</p>
+    <p style="color:#e0e7ff;margin-top:4px">왕복: 갈 때 시간 + 올 때 시간 = 전체 시간</p>
+  </div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제 — 서로 마주 보고 출발</h3>
+    <div class="prob-box">
+      A 도시와 B 도시는 120km 떨어져 있다. 두 버스가 동시에 서로를 향해 출발했다. 한 버스의 속도는 다른 버스보다 <strong>10km/h 빠르다</strong>. 두 버스가 <strong>48분 후</strong>에 만났다면, 각 버스의 속도를 구하여라.
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">표</div>
+          <div class="step-body">
+            <div class="tbl-wrap">
+              <table>
+                <tr><th></th><th>속도(km/h)</th><th>시간(h)</th><th>거리(km)</th></tr>
+                <tr><td class="td-left">버스 A</td><td>v</td><td>4/5</td><td>4v/5</td></tr>
+                <tr><td class="td-left">버스 B</td><td>v+10</td><td>4/5</td><td>4(v+10)/5</td></tr>
+              </table>
+            </div>
+            <div class="step-why">48분 = 48/60 = 4/5 시간. 단위를 시간으로 통일하는 것이 핵심!</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">방정식</div>
+          <div class="step-body">
+            <p>두 버스 거리의 합 = 120km</p>
+            <div class="eq-box">4v/5 + 4(v+10)/5 = 120</div>
+            <div class="eq-box">4v + 4v + 40 = 600 → 8v = 560 → v = 70</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <div class="eq-ans">버스 A: 70km/h, 버스 B: 80km/h</div>
+            <div class="step-check">✓ 검산: (70+80) × 4/5 = 150 × 0.8 = 120km ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="extra-prob">
+    <h4>✏ 추가 문제</h4>
+    <p>집에서 도서관까지 걸어가면 30분, 자전거를 타면 10분 걸린다. 자전거 속도가 걷는 속도보다 12km/h 빠를 때, 집에서 도서관까지의 거리는?</p>
+    <button class="ans-btn" onclick="toggleAns('ans4')">정답 보기</button>
+    <div class="ans-box" id="ans4">
+      <div class="eq-box">걷는 속도 = v km/h, 거리 = v × (1/2) = (v+12) × (1/6)</div>
+      <div class="eq-box">3v = v+12 → 2v = 12 → v = 6 km/h</div>
+      <div class="eq-ans">거리 = 6 × 1/2 = 3km</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S5 거리·속도·시간 고급 ═══ -->
+<div class="screen" id="s5">
+  <div class="screen-title">거리·속도·시간 — 쫓아가기·왕복</div>
+  <div class="screen-sub">더 복잡한 상황도 표 하나로 해결</div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제 — 쫓아가기</h3>
+    <div class="prob-box">
+      동생이 먼저 분속 60m로 출발한 지 <strong>10분 후</strong> 형이 분속 100m로 같은 방향으로 출발했다. 형이 동생을 따라잡는 데 걸리는 시간은?
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">핵심</div>
+          <div class="step-body">
+            <p>형이 출발한 후 t분이 지났을 때 따라잡음</p>
+            <div class="step-why">따라잡는 순간 = 두 사람의 이동 거리가 같아지는 순간!</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">표</div>
+          <div class="step-body">
+            <div class="tbl-wrap">
+              <table>
+                <tr><th></th><th>속도(m/분)</th><th>시간(분)</th><th>거리(m)</th></tr>
+                <tr><td class="td-left">동생</td><td>60</td><td>t + 10</td><td>60(t+10)</td></tr>
+                <tr><td class="td-left">형</td><td>100</td><td>t</td><td>100t</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">방정식</div>
+          <div class="step-body">
+            <div class="eq-box">60(t+10) = 100t → 60t + 600 = 100t → 40t = 600 → t = 15</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <div class="eq-ans">형이 출발한 지 15분 후 따라잡음</div>
+            <div class="step-check">✓ 동생 이동: 60×25=1500m, 형 이동: 100×15=1500m ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prob-card" style="margin-top:4px">
+    <h3>📌 대표 문제 — 왕복</h3>
+    <div class="prob-box">
+      올라갈 때 시속 3km, 내려올 때 시속 5km로 등산했더니 총 4시간이 걸렸다. 올라간 거리는?
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <p>올라간 거리 = x km (내려온 거리도 x)</p>
+            <div class="eq-box">올라간 시간 + 내려온 시간 = 4</div>
+            <div class="eq-box">x/3 + x/5 = 4</div>
+            <div class="step-why">왕복 문제: 거리는 같고, 시간의 합이 주어집니다!</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="eq-box">5x/15 + 3x/15 = 4 → 8x = 60 → x = 7.5</div>
+            <div class="eq-ans">올라간 거리: 7.5km</div>
+            <div class="step-check">✓ 7.5/3 + 7.5/5 = 2.5 + 1.5 = 4시간 ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S6 농도 ═══ -->
+<div class="screen" id="s6">
+  <div class="screen-title">소금물 농도 문제</div>
+  <div class="screen-sub">농도가 달라도 소금의 양은 보존된다!</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 소금의 양은 항상 보존</h3>
+    <p style="color:#e0e7ff">소금의 양(g) = 농도(%) × 소금물의 양(g) ÷ 100</p>
+    <p style="color:#c4b5fd;margin-top:8px">섞기 전 소금 합계 = 섞은 후 소금</p>
+    <p style="color:#94a3b8;margin-top:6px">물은 늘거나 줄지만, 소금은 절대 사라지지 않습니다!</p>
+  </div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제</h3>
+    <div class="prob-box">
+      8% 소금물 300g에 몇 g의 물을 더 넣으면 <strong>5%</strong> 소금물이 되는가?
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이 — 소금 보존</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">시각화</div>
+          <div class="step-body">
+            <div class="bar-model">
+              <div class="bar-row">
+                <span class="bar-label">8% 300g</span>
+                <div class="bar-fill" style="width:90%;background:#6d28d9">소금 24g + 물 276g</div>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">물 추가</span>
+                <div class="bar-fill" style="width:90%;background:#3b82f6">소금 24g + 물 (276+x)g = 5%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">소금</div>
+          <div class="step-body">
+            <div class="eq-box">처음 소금 = 300 × 8/100 = <strong>24g</strong></div>
+            <div class="step-why">물을 아무리 넣어도 소금의 양(24g)은 변하지 않습니다!</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">방정식</div>
+          <div class="step-body">
+            <p>물 x g을 넣은 후 총 소금물 = (300+x)g, 농도 5%</p>
+            <div class="eq-box">24 / (300 + x) = 5/100</div>
+            <div class="eq-box">2400 = 5(300+x) = 1500 + 5x → 5x = 900 → x = 180</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <div class="eq-ans">물 180g을 더 넣는다</div>
+            <div class="step-check">✓ 24 / 480 = 0.05 = 5% ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="extra-prob">
+    <h4>✏ 추가 문제</h4>
+    <p>6% 소금물 200g과 10% 소금물 x g을 섞어 8% 소금물을 만들려 한다. x를 구하여라.</p>
+    <button class="ans-btn" onclick="toggleAns('ans6')">정답 보기</button>
+    <div class="ans-box" id="ans6">
+      <div class="eq-box">6%×200 + 10%×x = 8%×(200+x)</div>
+      <div class="eq-box">12 + 0.1x = 16 + 0.08x → 0.02x = 4 → x = 200</div>
+      <div class="eq-ans">10% 소금물 200g</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S7 일의 양 ═══ -->
+<div class="screen" id="s7">
+  <div class="screen-title">일의 양 문제 (작업량)</div>
+  <div class="screen-sub">전체 일 = 1 로 놓고, 단위 시간당 일의 양으로 접근</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 전략 — 전체 일 = 1, 속도 = 1/걸리는시간</h3>
+    <p style="color:#e0e7ff">A가 혼자 n일 걸린다 → A의 하루 작업량 = 1/n</p>
+    <p style="color:#c4b5fd;margin-top:6px">함께 작업: 각자의 하루 작업량을 더한다</p>
+  </div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제</h3>
+    <div class="prob-box">
+      어떤 일을 혼자 하면 A는 12일, B는 18일이 걸린다. 먼저 A 혼자 <strong>4일</strong> 일하고, 나머지를 A, B 함께 마치면 총 며칠이 걸리는가?
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이 — 작업량 막대 모델</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">단위</div>
+          <div class="step-body">
+            <div class="eq-row">
+              <div class="eq-box">A 하루 = 1/12</div>
+              <div class="eq-box">B 하루 = 1/18</div>
+              <div class="eq-box">함께 하루 = 1/12 + 1/18 = 5/36</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">남은 일</div>
+          <div class="step-body">
+            <p>A 혼자 4일: 일의 양 = 4 × 1/12 = 1/3</p>
+            <div class="eq-box">남은 일 = 1 - 1/3 = <strong>2/3</strong></div>
+            <div class="step-why">전체를 1로 보면 남은 비율을 분수로 쉽게 계산할 수 있습니다.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">함께</div>
+          <div class="step-body">
+            <p>함께 2/3 일 하는 데 걸리는 날 = t</p>
+            <div class="eq-box">5/36 × t = 2/3 → t = 2/3 × 36/5 = 72/15 = 24/5 = 4.8일</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <div class="eq-ans">총 기간 = 4 + 4.8 = 8.8일</div>
+            <div class="step-check">✓ 4×(1/12) + 4.8×(5/36) = 1/3 + 2/3 = 1 ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S8 원가·정가·이익 ═══ -->
+<div class="screen" id="s8">
+  <div class="screen-title">원가·정가·이익 문제</div>
+  <div class="screen-sub">비율 관계를 한 변수로 연결하기</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 이익의 출발점은 항상 "원가"</h3>
+    <ul>
+      <li><span style="color:#c4b5fd">정가 = 원가 × (1 + 이익률)</span></li>
+      <li><span style="color:#c4b5fd">할인가 = 정가 × (1 - 할인율)</span></li>
+      <li>이익 = 판매가 - 원가</li>
+    </ul>
+  </div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제</h3>
+    <div class="prob-box">
+      어떤 상품에 원가의 <strong>40%</strong> 이익을 붙여 정가를 매겼다가, 정가의 <strong>20%</strong>를 할인해서 팔았다. 이때 원가에 대한 실제 이익률은?
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이 — 원가를 100으로 설정</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">설정</div>
+          <div class="step-body">
+            <p>원가 = <span class="hl-purple">100</span> (편의상 100원으로 설정)</p>
+            <div class="step-why">원가를 100으로 놓으면 퍼센트 계산이 덧셈/뺄셈으로 바뀝니다!</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">계산</div>
+          <div class="step-body">
+            <div class="eq-box">정가 = 100 × 1.4 = <strong>140원</strong></div>
+            <div class="eq-box">판매가 = 140 × 0.8 = <strong>112원</strong></div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">이익률</div>
+          <div class="step-body">
+            <div class="eq-box">이익 = 112 - 100 = 12원</div>
+            <div class="eq-ans">이익률 = 12/100 = 12%</div>
+            <div class="step-why">원가 대비 이익이므로 분모는 항상 원가(100)입니다!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="extra-prob">
+    <h4>✏ 추가 문제</h4>
+    <p>원가의 30% 이익을 붙여 정가를 매겼다. 정가에서 얼마를 할인해야 원가의 4% 이익이 남는가?</p>
+    <button class="ans-btn" onclick="toggleAns('ans8')">정답 보기</button>
+    <div class="ans-box" id="ans8">
+      <div class="eq-box">원가=100, 정가=130, 목표 판매가=104</div>
+      <div class="eq-box">할인액 = 130 - 104 = 26원</div>
+      <div class="eq-ans">정가의 26/130 = 20% 할인</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S9 도형 응용 — 넓이 ═══ -->
+<div class="screen" id="s9">
+  <div class="screen-title">도형 넓이 응용</div>
+  <div class="screen-sub">변화하는 도형 — 변수를 도형에 표시하라</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 전략 — 도형을 그리고 변수를 그 위에 표시</h3>
+    <p style="color:#e0e7ff">넓이·둘레 문제는 반드시 그림을 그린 후 변수를 직접 표기하면 오류가 줄어듭니다.</p>
+  </div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제</h3>
+    <div class="prob-box">
+      가로가 세로보다 4cm 긴 직사각형이 있다. 가로를 3cm 줄이고 세로를 2cm 늘렸더니 넓이가 처음보다 <strong>6cm² 줄었다</strong>. 처음 직사각형의 넓이는?
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">설정</div>
+          <div class="step-body">
+            <p>세로 = x cm, 가로 = (x+4) cm</p>
+            <div class="tbl-wrap">
+              <table>
+                <tr><th></th><th>가로</th><th>세로</th><th>넓이</th></tr>
+                <tr><td class="td-left">처음</td><td>x+4</td><td>x</td><td>x(x+4)</td></tr>
+                <tr><td class="td-left">변경 후</td><td>x+1</td><td>x+2</td><td>(x+1)(x+2)</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">방정식</div>
+          <div class="step-body">
+            <div class="eq-box">x(x+4) - (x+1)(x+2) = 6</div>
+            <div class="eq-box">x²+4x - (x²+3x+2) = 6</div>
+            <div class="eq-box">x + (-2) = 6 → x - 2 = 6 → x = 8</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <p>세로 8cm, 가로 12cm</p>
+            <div class="eq-ans">처음 넓이 = 8 × 12 = 96cm²</div>
+            <div class="step-check">✓ 변경 후: 9×10=90, 96-90=6 ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S10 도형 — 피타고라스 응용 ═══ -->
+<div class="screen" id="s10">
+  <div class="screen-title">피타고라스 정리 응용</div>
+  <div class="screen-sub">a²+b²=c² — 그림을 그리면 어디에 쓸지 보인다</div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제</h3>
+    <div class="prob-box">
+      길이가 13cm인 사다리를 벽에 기대어 세웠다. 사다리의 아랫부분이 벽에서 5cm 떨어져 있다면, 사다리는 벽을 몇 cm 높이까지 닿는가? 만약 아랫부분을 7cm 더 밀면 위쪽은 몇 cm 내려오는가?
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1단계</div>
+          <div class="step-body">
+            <div class="eq-box">h² + 5² = 13² → h² = 169 - 25 = 144 → h = 12cm</div>
+            <div class="step-why">직각삼각형: 빗변(사다리)=13, 밑변(바닥)=5, 높이=h</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2단계</div>
+          <div class="step-body">
+            <p>아랫부분이 5+7=12cm로 이동</p>
+            <div class="eq-box">h'² + 12² = 13² → h'² = 169 - 144 = 25 → h' = 5cm</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <div class="eq-ans">처음 높이: 12cm, 내려온 거리: 12 - 5 = 7cm</div>
+            <div class="step-check">✓ 흥미로운 점: 아래로 7cm 밀었더니 위도 정확히 7cm 내려왔습니다. 우연이 아닌 3-5-12-13 피타고라스 수의 관계!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="extra-prob">
+    <h4>✏ 추가 문제</h4>
+    <p>직각삼각형의 빗변이 25cm이고, 두 직각변의 합이 35cm일 때 두 직각변의 길이를 구하여라.</p>
+    <button class="ans-btn" onclick="toggleAns('ans10')">정답 보기</button>
+    <div class="ans-box" id="ans10">
+      <div class="eq-box">a+b=35, a²+b²=625</div>
+      <div class="eq-box">(a+b)²=a²+2ab+b²=1225 → 2ab=600 → ab=300</div>
+      <div class="eq-box">a와 b는 합35, 곱300 → t²-35t+300=0 → (t-15)(t-20)=0</div>
+      <div class="eq-ans">두 변: 15cm와 20cm</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S11 연립방정식 ═══ -->
+<div class="screen" id="s11">
+  <div class="screen-title">연립방정식 응용</div>
+  <div class="screen-sub">두 조건 → 두 방정식 → 두 미지수</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 전략 — 조건이 2개면 미지수도 2개</h3>
+    <p style="color:#e0e7ff">연립방정식: 미지수 2개, 조건(방정식) 2개 → 반드시 풀린다</p>
+    <p style="color:#c4b5fd;margin-top:6px">풀이: ① 대입법 (한 식을 다른 식에 대입) ② 가감법 (두 식을 더하거나 빼기)</p>
+  </div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제 — 학교 행사 입장료</h3>
+    <div class="prob-box">
+      어느 행사의 입장료는 어른과 청소년이 다르다. 어른 3명, 청소년 5명의 입장료 합계는 <strong>55,000원</strong>이고, 어른 2명, 청소년 4명의 합계는 <strong>40,000원</strong>이다. 어른과 청소년의 입장료를 각각 구하여라.
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이 — 가감법</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">설정</div>
+          <div class="step-body">
+            <p>어른 입장료 = a원, 청소년 = b원</p>
+            <div class="eq-box">①&nbsp; 3a + 5b = 55,000</div>
+            <div class="eq-box">②&nbsp; 2a + 4b = 40,000</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">가감법</div>
+          <div class="step-body">
+            <p>①×2 - ②×3 으로 a 소거:</p>
+            <div class="eq-box">6a+10b = 110,000<br>-) 6a+12b = 120,000<br>────────────<br>-2b = -10,000 → b = 5,000</div>
+            <div class="step-why">계수를 같게 만들어 빼면 한 미지수가 사라집니다 — 가감법의 원리!</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <p>b=5,000 → ②에 대입: 2a + 20,000 = 40,000 → a = 10,000</p>
+            <div class="eq-ans">어른: 10,000원, 청소년: 5,000원</div>
+            <div class="step-check">✓ ①: 30,000+25,000=55,000 ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S12 일차함수 응용 ═══ -->
+<div class="screen" id="s12">
+  <div class="screen-title">일차함수 응용 — 두 함수의 교점</div>
+  <div class="screen-sub">교점 = 두 상황이 같아지는 순간</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 교점의 의미를 먼저 파악</h3>
+    <p style="color:#e0e7ff">두 직선의 교점 = 두 함수값이 같은 x값</p>
+    <p style="color:#c4b5fd;margin-top:6px">실생활: "요금이 같아지는 사용량", "이익이 같아지는 판매량" 등</p>
+  </div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제 — 두 통신사 요금제 비교</h3>
+    <div class="prob-box">
+      A 통신사: 기본료 15,000원 + 1분당 50원<br>
+      B 통신사: 기본료 없음, 1분당 120원<br>
+      <strong>몇 분 이상</strong> 사용해야 A 통신사가 유리한가?
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">함수</div>
+          <div class="step-body">
+            <div class="eq-box">A: y = 50x + 15,000</div>
+            <div class="eq-box">B: y = 120x</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">교점</div>
+          <div class="step-body">
+            <p>요금이 같아지는 사용량: 50x + 15,000 = 120x</p>
+            <div class="eq-box">70x = 15,000 → x = 약 214.3분</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <div class="eq-ans">215분 이상 사용하면 A 통신사가 유리</div>
+            <div class="step-check">✓ 214분: A=25,700원, B=25,680원 (B가 약간 싸)<br>215분: A=25,750원, B=25,800원 (A가 싸) ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S13 이차방정식 응용 ═══ -->
+<div class="screen" id="s13">
+  <div class="screen-title">이차방정식 응용</div>
+  <div class="screen-sub">x²이 등장하는 실생활 — 조건에 맞는 근 선택이 핵심</div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제 — 토지 분할</h3>
+    <div class="prob-box">
+      넓이 200m²인 직사각형 토지가 있다. 가로를 4m 늘리고 세로를 3m 줄였더니 넓이가 처음과 같아졌다. 처음 직사각형의 가로와 세로는?
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">설정</div>
+          <div class="step-body">
+            <p>가로 = x m, 세로 = 200/x m</p>
+            <div class="step-why">넓이=200이 주어졌으므로 세로를 x로 표현하지 않고 200/x로 쓰면 미지수가 1개!</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">방정식</div>
+          <div class="step-body">
+            <div class="eq-box">(x+4)(200/x - 3) = 200</div>
+            <div class="eq-box">200 - 3x + 800/x - 12 = 200</div>
+            <div class="eq-box">-3x + 800/x = 12 &nbsp; (양변에 x 곱하기)</div>
+            <div class="eq-box">-3x² + 800 = 12x → 3x² + 12x - 800 = 0</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">근의 공식</div>
+          <div class="step-body">
+            <div class="eq-box">x = (-12 ± √(144 + 9600)) / 6 = (-12 ± √9744) / 6</div>
+            <div class="eq-box">√9744 ≈ 98.7 → x ≈ (-12 + 98.7)/6 ≈ 14.45m</div>
+            <div class="step-trap">⚠ 음수 근은 "길이"가 음수가 될 수 없으므로 제외!</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <div class="eq-ans">가로 ≈ 14.45m, 세로 ≈ 200/14.45 ≈ 13.84m</div>
+            <div class="step-check">✓ (14.45+4)×(13.84-3) ≈ 18.45×10.84 ≈ 199.9 ≈ 200 ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="extra-prob">
+    <h4>✏ 추가 문제</h4>
+    <p>어떤 자연수를 제곱하고 7을 더한 것이 그 수의 4배와 같다. 이 자연수를 구하여라.</p>
+    <button class="ans-btn" onclick="toggleAns('ans13')">정답 보기</button>
+    <div class="ans-box" id="ans13">
+      <div class="eq-box">x² + 7 = 4x → x² - 4x + 7 = 0</div>
+      <div class="eq-box">D = 16 - 28 = -12 &lt; 0 → 실수해 없음</div>
+      <p style="margin-top:6px;color:#9f1239">→ 문제 조건 재확인 필요! 올바른 문제: x² - 7 = 4x+5</p>
+      <div class="eq-box">x² - 4x - 12 = 0 → (x-6)(x+2) = 0 → x = 6 (자연수)</div>
+      <div class="eq-ans">자연수: 6</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S14 확률 ═══ -->
+<div class="screen" id="s14">
+  <div class="screen-title">확률 — 조건부 확률과 여사건</div>
+  <div class="screen-sub">복잡해 보이는 확률도 경우의 수 표로 해결</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 전략 — 여사건 활용 "전부에서 안 되는 것 빼기"</h3>
+    <p style="color:#e0e7ff">P(A) = 1 - P(A가 일어나지 않는 경우)</p>
+    <p style="color:#c4b5fd;margin-top:6px">"적어도 하나"를 구할 때 여사건이 훨씬 쉽습니다!</p>
+  </div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제</h3>
+    <div class="prob-box">
+      남학생 4명, 여학생 3명 중에서 대표 2명을 뽑을 때, <strong>적어도 한 명이 여학생</strong>일 확률은?
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이 — 여사건</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">전체</div>
+          <div class="step-body">
+            <div class="eq-box">7명 중 2명: C(7,2) = 7×6/2 = 21가지</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">여사건</div>
+          <div class="step-body">
+            <p>"적어도 한 명이 여학생"의 여사건 = "모두 남학생"</p>
+            <div class="eq-box">남학생 2명: C(4,2) = 6가지</div>
+            <div class="step-why">직접 계산: (여1남1) + (여2) = 12+3 = 15가지 vs 여사건: 21-6=15 → 같은 답, 여사건이 훨씬 빠름!</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <div class="eq-ans">P = 1 - 6/21 = 1 - 2/7 = 5/7</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="extra-prob">
+    <h4>✏ 추가 문제</h4>
+    <p>동전 3개를 동시에 던질 때 앞면이 적어도 1개 나올 확률은?</p>
+    <button class="ans-btn" onclick="toggleAns('ans14')">정답 보기</button>
+    <div class="ans-box" id="ans14">
+      <div class="eq-box">전체 = 2³ = 8가지</div>
+      <div class="eq-box">여사건: 모두 뒷면 = 1가지</div>
+      <div class="eq-ans">P = 1 - 1/8 = 7/8</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S15 통계 해석 ═══ -->
+<div class="screen" id="s15">
+  <div class="screen-title">통계 — 평균·분산 응용</div>
+  <div class="screen-sub">주어진 평균·분산에서 모르는 값 역추적</div>
+
+  <div class="prob-card">
+    <h3>📌 대표 문제</h3>
+    <div class="prob-box">
+      5개의 수: 4, 7, a, 10, b가 있다. 이 자료의 평균이 <strong>8</strong>이고, 분산이 <strong>6</strong>일 때 a와 b를 구하여라. (단, a &lt; b)
+    </div>
+    <div class="sol-card">
+      <h3>🇫🇮 핀란드식 풀이 — 연립방정식으로 역계산</h3>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">평균</div>
+          <div class="step-body">
+            <div class="eq-box">(4+7+a+10+b)/5 = 8 → a+b = 19 &nbsp; ···①</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">분산</div>
+          <div class="step-body">
+            <p>편차: (4-8)²=16, (7-8)²=1, (a-8)², (10-8)²=4, (b-8)²</p>
+            <div class="eq-box">[16+1+(a-8)²+4+(b-8)²] / 5 = 6</div>
+            <div class="eq-box">(a-8)² + (b-8)² = 30 - 21 = 9 &nbsp; ···②</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">연립</div>
+          <div class="step-body">
+            <p>①에서 b = 19-a → ②에 대입:</p>
+            <div class="eq-box">(a-8)² + (11-a)² = 9</div>
+            <div class="eq-box">a²-16a+64 + a²-22a+121 = 9</div>
+            <div class="eq-box">2a² - 38a + 176 = 0 → a² - 19a + 88 = 0</div>
+            <div class="eq-box">(a-8)(a-11) = 0 → a=8 또는 a=11</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">답</div>
+          <div class="step-body">
+            <p>a &lt; b이므로: a=8, b=11</p>
+            <div class="eq-ans">a = 8, b = 11</div>
+            <div class="step-check">✓ 평균: (4+7+8+10+11)/5=40/5=8 ✓<br>분산: (16+1+0+4+9)/5=30/5=6 ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S16 핵심 정리 ═══ -->
+<div class="screen" id="s16">
+  <div class="screen-title">핀란드식 문제 풀이 — 핵심 정리</div>
+  <div class="screen-sub">공식이 아닌 전략을 기억하라</div>
+
+  <div class="sum-grid">
+    <div class="sum-card">
+      <h4>🔢 연속수·나이</h4>
+      <ul>
+        <li>중간값을 x로 → 대칭식으로 단순화</li>
+        <li>표(현재·미래)로 정리 후 방정식</li>
+        <li>검산 필수 — 나이는 양수여야 함</li>
+      </ul>
+    </div>
+    <div class="sum-card">
+      <h4>🚗 거리·속도·시간</h4>
+      <ul>
+        <li>d=vt 표 먼저 → 관계 파악</li>
+        <li>단위 통일 (시간 vs 분 주의!)</li>
+        <li>만남: 거리 합=전체 / 쫓기: 거리 같음</li>
+        <li>왕복: 거리 같음, 시간 합=전체</li>
+      </ul>
+    </div>
+    <div class="sum-card">
+      <h4>🧪 농도·일의 양</h4>
+      <ul>
+        <li>소금의 양 = 농도 × 소금물 / 100</li>
+        <li>섞어도 소금 총량은 보존</li>
+        <li>일의 양: 전체=1, 속도=1/일수</li>
+      </ul>
+    </div>
+    <div class="sum-card">
+      <h4>🏷 원가·이익·할인</h4>
+      <ul>
+        <li>원가를 100으로 놓으면 계산 단순화</li>
+        <li>정가 = 원가 × (1 + 이익률)</li>
+        <li>이익률 분모는 항상 원가</li>
+      </ul>
+    </div>
+    <div class="sum-card">
+      <h4>📐 도형·이차방정식</h4>
+      <ul>
+        <li>반드시 그림 먼저, 변수 표기</li>
+        <li>이차방정식 → 두 근 모두 구하고 조건 확인</li>
+        <li>길이·개수 → 양수 근만 유효</li>
+      </ul>
+    </div>
+    <div class="sum-card">
+      <h4>🎲 확률·통계</h4>
+      <ul>
+        <li>"적어도 하나" → 여사건 (1 - P(반대))</li>
+        <li>평균·분산 역계산 → 연립방정식</li>
+        <li>검산: 구한 값을 조건에 대입</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="principle">
+    <h3>🇫🇮 핀란드식 문제 풀이 3원칙</h3>
+    <ul>
+      <li>① <span style="color:#c4b5fd">시각화 먼저</span> — 표, 그림, 저울 모델로 구조를 파악한다</li>
+      <li>② <span style="color:#c4b5fd">왜? 를 묻는다</span> — 각 단계에서 "이 연산을 왜 하는가?"를 답할 수 있어야 한다</li>
+      <li>③ <span style="color:#c4b5fd">검산은 선택이 아닌 필수</span> — 구한 답을 원래 문제 조건에 직접 대입해 확인한다</li>
+    </ul>
+  </div>
+</div>
+
+<button class="btn-prev" id="btnPrev" onclick="move(-1)" style="display:none">← 이전</button>
+<button class="btn-next" id="btnNext" onclick="move(1)">다음 →</button>
+
+<script>
+const TOTAL = 16;
+let cur = 1;
+
+const sections = [
+  {label:'🔢 수·나이', from:2, to:3},
+  {label:'🚗 거리·속도', from:4, to:5},
+  {label:'🧪 농도·작업', from:6, to:7},
+  {label:'🏷 원가·이익', from:8, to:8},
+  {label:'📐 도형', from:9, to:10},
+  {label:'📊 함수·확률·통계', from:11, to:15},
+];
+
+function buildProg(){
+  const track=document.getElementById('progTrack');
+  const label=document.getElementById('progLabel');
+  track.innerHTML='';
+  track.appendChild(makeDot(1,'🧩'));
+  track.appendChild(makeSep());
+  sections.forEach((sec,i)=>{
+    for(let n=sec.from;n<=sec.to;n++) track.appendChild(makeDot(n, n===sec.from?'★':n));
+    if(i<sections.length-1) track.appendChild(makeSep());
+  });
+  track.appendChild(makeSep());
+  track.appendChild(makeDot(16,'📋'));
+  label.innerHTML='<span class="plbl">인트로</span> | '+
+    sections.map(s=>`<span class="plbl">${s.label}</span>`).join(' | ')+
+    ' | <span class="plbl">📋 정리</span>';
+}
+function makeDot(n,lbl){
+  const d=document.createElement('div');
+  d.className='prob-dot';d.id='pd'+n;d.textContent=lbl;
+  d.className='prog-dot';
+  d.onclick=()=>goTo(n);return d;
+}
+function makeSep(){
+  const s=document.createElement('div');s.className='prog-sep';return s;
+}
+function updateProg(){
+  for(let i=1;i<=TOTAL;i++){
+    const d=document.getElementById('pd'+i);if(!d)continue;
+    d.classList.remove('on','done');
+    if(i===cur)d.classList.add('on');
+    else if(i<cur)d.classList.add('done');
+  }
+}
+function goTo(n){
+  document.getElementById('s'+cur).classList.remove('active');
+  cur=Math.max(1,Math.min(TOTAL,n));
+  document.getElementById('s'+cur).classList.add('active');
+  updateProg();window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('btnPrev').style.display=cur>1?'':'none';
+  document.getElementById('btnNext').textContent=cur===TOTAL?'처음으로 ↺':'다음 →';
+}
+function move(dir){
+  if(cur===TOTAL&&dir===1)goTo(1);else goTo(cur+dir);
+}
+function toggleAns(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('show');
+  event.target.textContent=el.classList.contains('show')?'정답 숨기기':'정답 보기';
+}
+buildProg();goTo(1);
+</script>
+</body>
+</html>

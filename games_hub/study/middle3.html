@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>중3 수학 전 과정</title>
+<style>
+:root{
+  --orange:#d97706;--orange-light:#fbbf24;
+  --navy:#1e3a5f;--sky:#0ea5e9;
+  --bg:#fdf8f0;--card-bg:#fffbf5;
+  --text:#1e293b;--muted:#64748b;
+  --radius:14px;--shadow:0 4px 20px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center}
+
+/* ── 헤더 ── */
+header{width:100%;background:var(--navy);border-bottom:4px solid var(--orange);padding:18px 24px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+header h1{color:#fff;font-size:1.3rem}
+.badge{background:var(--orange);color:#fff;padding:3px 10px;border-radius:20px;font-size:.78rem;font-weight:700}
+
+/* ── 진행 바 ── */
+.prog-wrap{width:100%;max-width:900px;padding:14px 20px 6px;display:flex;flex-direction:column;gap:6px}
+.prog-track{display:flex;gap:4px;flex-wrap:wrap}
+.prog-dot{width:28px;height:28px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#94a3b8;cursor:pointer;transition:.2s;flex-shrink:0}
+.prog-dot.on{background:var(--orange);color:#fff;transform:scale(1.15)}
+.prog-dot.done{background:#92400e;color:#fff;opacity:.7}
+.prog-sep{width:2px;height:28px;background:#cbd5e1;border-radius:2px;flex-shrink:0}
+.prog-label{font-size:.7rem;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+.prog-section-name{font-weight:600;color:#92400e}
+
+/* ── 화면 ── */
+.screen{display:none;flex-direction:column;gap:18px;width:100%;max-width:900px;padding:20px 20px 100px;animation:fadeIn .35s ease}
+.screen.active{display:flex}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── 제목 ── */
+.screen-title{font-size:1.4rem;font-weight:800;color:var(--navy);border-left:5px solid var(--orange);padding-left:12px}
+.screen-sub{font-size:.9rem;color:var(--muted);margin-top:4px;padding-left:17px}
+
+/* ── 카드들 ── */
+.card{background:var(--card-bg);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border:1px solid #fde68a}
+.card h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px}
+.principle{background:#1e3a5f;color:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.principle h3{color:#fbbf24;font-size:1rem;font-weight:700;margin-bottom:10px}
+.principle p,.principle li{color:#e2e8f0;line-height:1.8}
+.principle ul{padding-left:18px}
+.card-amber{background:#fffbeb;border:2px solid #fde68a;border-radius:var(--radius);padding:16px}
+.card-amber h3{color:#92400e;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.card-blue{background:#f0f9ff;border:2px solid #bae6fd;border-radius:var(--radius);padding:16px}
+.card-blue h3{color:#0369a1;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.card-green{background:#f0fdf4;border:2px solid #bbf7d0;border-radius:var(--radius);padding:16px}
+.card-green h3{color:#166534;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.card-orange{background:#fff7ed;border:2px solid #fed7aa;border-radius:var(--radius);padding:16px}
+.card-orange h3{color:#9a3412;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.card-purple{background:#faf5ff;border:2px solid #e9d5ff;border-radius:var(--radius);padding:16px}
+.card-purple h3{color:#6b21a8;font-size:.95rem;font-weight:700;margin-bottom:8px}
+
+/* ── 텍스트 ── */
+p,li{line-height:1.85;font-size:.95rem}
+ul,ol{padding-left:20px}
+
+/* ── 수식 박스 ── */
+.eq-box{background:#f8fafc;border:2px solid var(--orange);border-radius:10px;padding:14px 18px;text-align:center;font-size:1.05rem;font-weight:700;color:var(--navy);margin:8px 0}
+.eq-big{font-size:1.3rem}
+.eq-highlight{color:var(--orange);font-weight:800}
+.eq-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.eq-row .eq-box{flex:1;min-width:160px}
+
+/* ── 단계 ── */
+.steps{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.step-item{display:flex;gap:12px;align-items:flex-start}
+.step-num{min-width:28px;height:28px;background:var(--orange);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;flex-shrink:0;margin-top:2px}
+.step-body{flex:1}
+.step-why{background:#fff3cd;border-left:4px solid var(--orange-light);padding:8px 12px;border-radius:0 8px 8px 0;font-size:.88rem;color:#713f12;margin-top:4px}
+
+/* ── 비교 그리드 ── */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:600px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* ── 표 ── */
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{background:var(--navy);color:#fff;padding:10px;text-align:center}
+td{padding:10px;text-align:center;border-bottom:1px solid #e2e8f0}
+tr:nth-child(even) td{background:#f8fafc}
+.tbl-wrap{border-radius:10px;overflow:hidden;border:1px solid #e2e8f0}
+
+/* ── 코너 태그 ── */
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:6px}
+.tag-why{background:#fef3c7;color:#92400e}
+.tag-ex{background:#dbeafe;color:#1e40af}
+.tag-tip{background:#dcfce7;color:#166534}
+.tag-key{background:#fce7f3;color:#9d174d}
+.tag-warn{background:#fee2e2;color:#991b1b}
+
+/* ── 형광 강조 ── */
+.hl{background:#fef08a;padding:1px 4px;border-radius:3px;font-weight:700}
+.hl-orange{background:#fed7aa;padding:1px 4px;border-radius:3px;font-weight:700;color:#9a3412}
+.hl-blue{background:#bae6fd;padding:1px 4px;border-radius:3px;font-weight:700;color:#0369a1}
+.hl-green{background:#bbf7d0;padding:1px 4px;border-radius:3px;font-weight:700;color:#166534}
+
+/* ── 버튼 ── */
+.btn-next{position:fixed;bottom:24px;right:24px;background:var(--orange);color:#fff;border:none;padding:14px 28px;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(217,119,6,.4);transition:.2s;z-index:100}
+.btn-next:hover{background:#b45309;transform:translateY(-2px)}
+.btn-prev{position:fixed;bottom:24px;left:24px;background:#fff;color:var(--navy);border:2px solid var(--navy);padding:12px 22px;border-radius:50px;font-size:.9rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:.2s;z-index:100}
+.btn-prev:hover{background:var(--navy);color:#fff}
+
+/* ── 인트로 특별 스타일 ── */
+.intro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+@media(max-width:600px){.intro-grid{grid-template-columns:1fr 1fr}}
+.intro-item{background:var(--card-bg);border:2px solid var(--orange);border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:.2s}
+.intro-item:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(217,119,6,.2)}
+.intro-item .icon{font-size:1.8rem;margin-bottom:6px}
+.intro-item .title{font-size:.82rem;font-weight:700;color:var(--navy)}
+.intro-item .page{font-size:.72rem;color:var(--muted);margin-top:2px}
+
+/* ── 삼각형 SVG 강조 ── */
+.tri-wrap{display:flex;justify-content:center;margin:12px 0}
+.tri-wrap svg{max-width:280px;width:100%}
+
+/* ── 정리 카드 ── */
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.summary-grid{grid-template-columns:1fr}}
+.summary-card{background:#fff;border:2px solid var(--orange);border-radius:12px;padding:16px}
+.summary-card h4{font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:8px;border-bottom:1px solid #fde68a;padding-bottom:6px}
+.summary-card li{font-size:.82rem;line-height:1.8;color:var(--text)}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📐 중3 수학 전 과정</h1>
+  <span class="badge">18 Screens</span>
+</header>
+
+<div class="prog-wrap">
+  <div class="prog-track" id="progTrack"></div>
+  <div class="prog-label" id="progLabel"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S1 인트로
+═══════════════════════════════════════════════════ -->
+<div class="screen active" id="s1">
+  <div class="screen-title">중3 수학, 끝까지 함께!</div>
+  <div class="screen-sub">제곱근 · 인수분해 · 이차방정식 · 이차함수 · 삼각비 · 통계 — 원리부터 차근차근</div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">중3 수학이 어려운 이유</span>
+    <p>중3부터는 <span class="hl">수의 범위가 무리수까지 확장</span>되고, 방정식도 이차(²)가 됩니다. "왜 이런 공식이 나왔지?"를 이해하지 않으면 암기만 늘어납니다. 이 자료는 모든 공식의 탄생 이유부터 설명합니다.</p>
+  </div>
+
+  <div class="intro-grid">
+    <div class="intro-item" onclick="goTo(2)"><div class="icon">√</div><div class="title">제곱근과 실수</div><div class="page">2~6화면</div></div>
+    <div class="intro-item" onclick="goTo(7)"><div class="icon">🔧</div><div class="title">인수분해</div><div class="page">7~8화면</div></div>
+    <div class="intro-item" onclick="goTo(9)"><div class="icon">²</div><div class="title">이차방정식</div><div class="page">9~11화면</div></div>
+    <div class="intro-item" onclick="goTo(12)"><div class="icon">∪</div><div class="title">이차함수</div><div class="page">12~14화면</div></div>
+    <div class="intro-item" onclick="goTo(15)"><div class="icon">📐</div><div class="title">삼각비</div><div class="page">15~16화면</div></div>
+    <div class="intro-item" onclick="goTo(17)"><div class="icon">📊</div><div class="title">통계</div><div class="page">17화면</div></div>
+  </div>
+
+  <div class="card-green">
+    <h3>💡 공부 방법</h3>
+    <ul>
+      <li>각 화면에서 <strong>원리 박스(진한 파란 배경)</strong>를 먼저 읽으세요</li>
+      <li>공식은 "왜 이렇게 됐는가"를 이해한 뒤 외우면 오래 기억됩니다</li>
+      <li>오른쪽 아래 화살표 버튼으로 순서대로 진행하세요</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S2 제곱근의 뜻
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s2">
+  <div class="screen-title">제곱근의 뜻과 표현</div>
+  <div class="screen-sub">√ 기호가 탄생한 이유</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — "제곱해서 a가 되는 수"</h3>
+    <p>3² = 9, (-3)² = 9 이므로 9의 제곱근은 <strong>+3과 -3</strong> 두 개입니다.</p>
+    <p style="margin-top:8px">일반적으로 양수 a의 제곱근: <span style="color:#fbbf24">√a (양의 제곱근)</span>과 <span style="color:#fbbf24">-√a (음의 제곱근)</span></p>
+    <p style="margin-top:8px;color:#94a3b8">※ √ 기호는 'radix'(뿌리)의 r을 변형한 것입니다.</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">왜 제곱근이 2개인가?</span>
+    <p>x² = 9를 풀면 x = ±3이 됩니다. 양수의 제곱근은 항상 양수 1개, 음수 1개로 총 2개입니다.</p>
+    <div class="eq-box">x² = 9 ⟹ x = <span class="eq-highlight">+3</span> 또는 x = <span class="eq-highlight">-3</span></div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">중요한 구별</span>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>표현</th><th>뜻</th><th>값</th></tr>
+        <tr><td>9의 제곱근</td><td>제곱하면 9가 되는 수</td><td>+3, -3 (두 개)</td></tr>
+        <tr><td>√9</td><td>9의 <strong>양의</strong> 제곱근</td><td>3 (한 개)</td></tr>
+        <tr><td>-√9</td><td>9의 <strong>음의</strong> 제곱근</td><td>-3 (한 개)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>√a² = |a| 이해하기</h3>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>√9 = √(3²) = 3 → OK</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><p>√(-3)² = √9 = 3 → <span class="hl-orange">3이지, -3이 아님!</span></p>
+          <div class="step-why">√ 기호는 항상 <strong>양의 값</strong>을 나타냅니다. 그래서 √a² = |a|입니다.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S3 제곱근의 성질
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s3">
+  <div class="screen-title">제곱근의 성질</div>
+  <div class="screen-sub">제곱근끼리의 계산 규칙</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 곱셈·나눗셈 법칙</h3>
+    <ul>
+      <li>√a × √b = √(ab) &nbsp;(a≥0, b≥0)</li>
+      <li>√a ÷ √b = √(a/b) &nbsp;(a≥0, b>0)</li>
+      <li>(√a)² = a &nbsp;→ √와 ²는 서로 상쇄</li>
+    </ul>
+    <p style="margin-top:10px;color:#94a3b8">왜?: √a = a^(1/2) 이므로 지수 법칙과 동일합니다.</p>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">분모의 유리화</span>
+    <p>분모에 √가 있으면 계산이 불편합니다. 분모와 분자에 같은 √를 곱해 분모를 정수로 만듭니다.</p>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="eq-box">1/√2 = (1×√2)/(√2×√2) = √2/2</div>
+          <div class="step-why">분모 √2에 √2를 곱하면 (√2)² = 2가 되어 정수!</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">3/√5 = 3√5/5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">덧셈·뺄셈은 왜 √끼리 바로 안 되나?</span>
+    <p>√2 + √3 ≠ √5 ← <strong>틀린 것!</strong></p>
+    <p>덧셈은 <span class="hl">같은 √끼리만</span> 묶을 수 있습니다.</p>
+    <div class="eq-box">2√3 + 5√3 = <span class="eq-highlight">7√3</span></div>
+    <p style="margin-top:8px">왜?: √3을 문자 x처럼 생각하면, 2x + 5x = 7x 와 동일합니다.</p>
+  </div>
+
+  <div class="card-green">
+    <h3>√ 안 간단히 하기</h3>
+    <div class="eq-box">√48 = √(16×3) = √16 × √3 = 4√3</div>
+    <p style="margin-top:8px">핵심: √안의 수에서 <span class="hl">완전제곱수(1,4,9,16,25...)</span>를 찾아 꺼내기</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S4 무리수와 실수
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s4">
+  <div class="screen-title">무리수와 실수</div>
+  <div class="screen-sub">수의 세계가 완성되는 순간</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 실수 체계</h3>
+    <p>유리수(분수로 나타낼 수 있는 수)만으로는 세상 모든 수를 표현할 수 없습니다.</p>
+    <p style="margin-top:8px">√2, π같이 <strong>분수로 나타낼 수 없는 수</strong> = <span style="color:#fbbf24">무리수</span></p>
+    <p style="margin-top:8px">유리수 + 무리수 = <span style="color:#fbbf24">실수</span> (수직선 위의 모든 점)</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">왜 √2는 분수가 안 될까?</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>가정: √2 = p/q (기약분수, p·q는 정수)</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><p>2 = p²/q² 이므로 p² = 2q² → p²은 짝수 → p도 짝수</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body"><p>p = 2k로 놓으면 4k² = 2q² → q² = 2k² → q도 짝수</p>
+          <div class="step-why">p와 q 모두 짝수 → 기약분수 가정 모순! → √2는 분수 불가</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">실수의 분류 구조</span>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>실수</th><th>포함</th><th>예시</th></tr>
+        <tr><td>유리수</td><td>정수, 유한소수, 순환소수</td><td>3, -1, 1/2, 0.333...</td></tr>
+        <tr><td>무리수</td><td>순환하지 않는 무한소수</td><td>√2, π, √3</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>실수와 수직선</h3>
+    <p>수직선 위의 모든 점은 정확히 하나의 실수에 대응합니다.</p>
+    <div class="eq-box">0 ─── 1 ─── √2 ─── √3 ─── 2 ─── π ─── 3</div>
+    <p style="margin-top:8px">√2 ≈ 1.414, √3 ≈ 1.732, π ≈ 3.14159...</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S5 제곱근 곱셈·나눗셈 계산
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s5">
+  <div class="screen-title">제곱근 계산 — 곱셈·나눗셈·혼합</div>
+  <div class="screen-sub">실수 범위의 계산 능숙하게 하기</div>
+
+  <div class="principle">
+    <h3>🔑 계산 흐름 4단계</h3>
+    <ul>
+      <li>① √안의 수를 소인수분해해서 완전제곱수 찾기</li>
+      <li>② 완전제곱수를 √밖으로 꺼내기</li>
+      <li>③ 분모에 √가 있으면 유리화</li>
+      <li>④ 같은 √끼리 덧셈·뺄셈</li>
+    </ul>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">곱셈 예제</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="eq-box">√12 × √3 = √36 = 6</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">2√3 × 3√5 = 6√15</div>
+          <div class="step-why">앞의 숫자끼리, √안 숫자끼리 따로 곱합니다</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-ex">덧뺄셈 예제</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="eq-box">3√2 + 5√2 = 8√2</div>
+          <div class="step-why">√2 같은 것끼리 계수(앞 숫자)를 더합니다</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">√8 + √18 = 2√2 + 3√2 = 5√2</div>
+          <div class="step-why">√8=√(4×2)=2√2, √18=√(9×2)=3√2 → 같은 √2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>혼합 계산</h3>
+    <div class="eq-box">(√5+√2)(√5-√2) = 5-2 = <span class="eq-highlight">3</span></div>
+    <p style="margin-top:8px">왜?: (a+b)(a-b) = a²-b² 공식 적용. (√5)²=5, (√2)²=2</p>
+    <div class="eq-box" style="margin-top:12px">(1+√3)² = 1 + 2√3 + 3 = 4 + 2√3</div>
+    <p style="margin-top:8px">왜?: (a+b)² = a²+2ab+b² 공식 적용</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S6 이차식의 인수분해 — 완전제곱식
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s6">
+  <div class="screen-title">인수분해 — 완전제곱식과 합차 공식</div>
+  <div class="screen-sub">전개를 거꾸로 돌리는 기술</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 전개의 역방향</h3>
+    <p>전개: (a+b)² → a²+2ab+b²</p>
+    <p style="margin-top:6px">인수분해: a²+2ab+b² → <span style="color:#fbbf24">(a+b)²</span></p>
+    <p style="margin-top:8px;color:#94a3b8">인수분해는 다항식을 더 간단한 곱의 형태로 분해하는 것입니다.</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">완전제곱식 패턴 인식법</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>x² + 6x + 9 에서 → 첫째항과 마지막항이 완전제곱수인지 확인</p>
+          <p>√(x²) = x, √9 = 3</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><p>중간항 = 2 × x × 3 = 6x ✓</p>
+          <div class="step-why">중간항이 2×(첫째√)×(마지막√)이면 완전제곱식!</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body"><div class="eq-box">x² + 6x + 9 = (x+3)²</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">합차 공식 인수분해</span>
+    <div class="eq-box">a² - b² = (a+b)(a-b)</div>
+    <div class="steps" style="margin-top:10px">
+      <div class="step-item">
+        <div class="step-num">예</div>
+        <div class="step-body">
+          <div class="eq-box">x² - 9 = x² - 3² = (x+3)(x-3)</div>
+          <div class="step-why">두 항이 각각 완전제곱수이고 빼기(-) 부호면 합차 공식 사용!</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">예</div>
+        <div class="step-body">
+          <div class="eq-box">4x² - 25 = (2x)² - 5² = (2x+5)(2x-5)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>공통인수 먼저!</h3>
+    <div class="eq-box">2x² + 4x = 2x(x + 2)</div>
+    <p style="margin-top:8px">항상 공통인수를 먼저 묶은 뒤 나머지 공식을 적용합니다.</p>
+    <div class="eq-box" style="margin-top:10px">3x² - 12 = 3(x²-4) = 3(x+2)(x-2)</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S7 인수분해 공식 — ax²+bx+c 형
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s7">
+  <div class="screen-title">인수분해 공식 — x²+bx+c 형</div>
+  <div class="screen-sub">두 수의 합과 곱으로 인수분해하기</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 전개의 역</h3>
+    <p>(x+p)(x+q) = x² + (p+q)x + pq</p>
+    <p style="margin-top:8px;color:#fbbf24">역방향: x² + bx + c 에서 합이 b, 곱이 c인 두 정수 p, q를 찾는다!</p>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">x² + 5x + 6</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>합이 5, 곱이 6인 두 수? → <span class="hl">2와 3</span></p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><div class="eq-box">x² + 5x + 6 = (x+2)(x+3)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">x² - x - 6</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>합이 -1, 곱이 -6인 두 수? → <span class="hl">+2와 -3</span></p>
+          <div class="step-why">2+(-3)=-1 ✓, 2×(-3)=-6 ✓</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><div class="eq-box">x² - x - 6 = (x+2)(x-3)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">왜 두 수를 찾는 방법이 항상 통하나?</span>
+    <p>(x+p)(x+q)를 전개하면 반드시 계수가 <strong>합=b, 곱=c</strong>가 됩니다. 이 관계를 거꾸로 이용하는 것입니다.</p>
+    <p style="margin-top:8px">인수분해가 안 되는 경우도 있습니다 → 정수 p,q가 존재하지 않을 때는 근의 공식을 사용합니다.</p>
+  </div>
+
+  <div class="card-green">
+    <h3>중요 인수분해 공식 총정리</h3>
+    <div class="eq-row">
+      <div class="eq-box">ma+mb = m(a+b)</div>
+      <div class="eq-box">a²+2ab+b² = (a+b)²</div>
+    </div>
+    <div class="eq-row">
+      <div class="eq-box">a²-2ab+b² = (a-b)²</div>
+      <div class="eq-box">a²-b² = (a+b)(a-b)</div>
+    </div>
+    <div class="eq-row">
+      <div class="eq-box">x²+(p+q)x+pq = (x+p)(x+q)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S8 이차방정식 — 뜻과 인수분해 풀이
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s8">
+  <div class="screen-title">이차방정식 — 뜻과 인수분해 풀이</div>
+  <div class="screen-sub">ax² + bx + c = 0 의 세계</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 이차방정식이란?</h3>
+    <p>ax² + bx + c = 0 (a≠0) 형태의 방정식을 <strong>이차방정식</strong>이라 합니다.</p>
+    <p style="margin-top:8px">이 방정식을 만족하는 x의 값을 <span style="color:#fbbf24">근(해)</span>이라 하며, 최대 2개가 존재합니다.</p>
+    <p style="margin-top:8px;color:#94a3b8">왜 최대 2개?: x²이 있으므로 그래프가 포물선이고, y=0(x축)과의 교점이 최대 2개</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">핵심 도구 — AB = 0이면 A=0 또는 B=0</span>
+    <p>두 수의 곱이 0이 되려면 반드시 적어도 한 수가 0이어야 합니다!</p>
+    <div class="eq-box">(x-2)(x-3) = 0 ⟹ x=2 또는 x=3</div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">인수분해로 풀기</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">문제</div>
+        <div class="step-body"><div class="eq-box">x² - 5x + 6 = 0</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>인수분해: 합=-5, 곱=6 → -2와 -3</p>
+          <div class="eq-box">(x-2)(x-3) = 0</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><p>AB=0 원리 적용</p>
+          <div class="eq-box">x = 2 또는 x = 3</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">완전제곱식으로 풀기</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">문제</div>
+        <div class="step-body"><div class="eq-box">x² - 4 = 0</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><div class="eq-box">x² = 4 → x = ±2</div>
+          <div class="step-why">양변에 √를 취하면: √(x²) = ±√4, 즉 |x| = 2</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S9 근의 공식
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s9">
+  <div class="screen-title">근의 공식과 판별식</div>
+  <div class="screen-sub">모든 이차방정식을 푸는 공식</div>
+
+  <div class="principle">
+    <h3>🔑 근의 공식 — 왜 이 공식이 나왔나?</h3>
+    <p>ax² + bx + c = 0 에서 완전제곱식으로 변형하면:</p>
+    <p style="margin-top:8px;color:#fbbf24;text-align:center;font-size:1.1rem">x = (-b ± √(b²-4ac)) / 2a</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">근의 공식 유도 과정</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>ax² + bx + c = 0 → a로 나누기</p>
+          <div class="eq-box">x² + (b/a)x + c/a = 0</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><p>상수항 우변으로</p>
+          <div class="eq-box">x² + (b/a)x = -c/a</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body"><p>양변에 (b/2a)² 더하기 (완전제곱식 만들기)</p>
+          <div class="eq-box">(x + b/2a)² = (b²-4ac)/4a²</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body"><p>√ 취하기</p>
+          <div class="eq-box">x = (-b ± √(b²-4ac)) / 2a</div>
+          <div class="step-why">이것이 근의 공식! 어떤 이차방정식이든 이걸로 풀립니다.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">판별식 D = b²-4ac</span>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>D의 값</th><th>근의 개수</th><th>의미</th></tr>
+        <tr><td>D > 0</td><td>서로 다른 두 실근</td><td>포물선이 x축과 2점 교차</td></tr>
+        <tr><td>D = 0</td><td>중근 (같은 두 실근)</td><td>포물선이 x축에 접함</td></tr>
+        <tr><td>D < 0</td><td>실근 없음</td><td>포물선이 x축과 만나지 않음</td></tr>
+      </table>
+    </div>
+    <div class="step-why" style="margin-top:8px">왜?: √(음수)는 실수 범위에서 불가능하기 때문!</div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">근의 공식 사용 예</span>
+    <div class="eq-box">2x² - 3x - 2 = 0</div>
+    <div class="steps" style="margin-top:8px">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>a=2, b=-3, c=-2 대입</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">x = (3 ± √(9+16)) / 4 = (3 ± 5) / 4</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="eq-box">x = 2 또는 x = -1/2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S10 이차방정식 활용
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s10">
+  <div class="screen-title">이차방정식 활용</div>
+  <div class="screen-sub">실생활 문제를 이차방정식으로</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 문제 해결 전략</h3>
+    <ul>
+      <li>① 모르는 양을 x로 놓기</li>
+      <li>② 조건을 이차방정식으로 세우기</li>
+      <li>③ 풀어서 근 구하기</li>
+      <li>④ 문제 조건에 맞는 근 선택 (음수 길이, 음수 개수 등 제외)</li>
+    </ul>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">예제 1 — 연속된 두 자연수</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">문제</div>
+        <div class="step-body"><p>연속된 두 자연수의 곱이 56이다. 두 수는?</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>작은 수를 x라 하면 큰 수는 x+1</p>
+          <div class="eq-box">x(x+1) = 56</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">x² + x - 56 = 0 → (x+8)(x-7) = 0</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body"><p>x = -8 또는 x = 7 → 자연수이므로 <span class="hl-orange">x = 7</span></p>
+          <p>두 수: <strong>7, 8</strong></p>
+          <div class="step-why">음수 근은 "자연수" 조건에 위배되므로 제외!</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">예제 2 — 넓이 문제</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">문제</div>
+        <div class="step-body"><p>가로가 세로보다 3m 긴 직사각형의 넓이가 28m²이다. 세로는?</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>세로 = x m, 가로 = (x+3) m</p>
+          <div class="eq-box">x(x+3) = 28 → x² + 3x - 28 = 0</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">(x+7)(x-4) = 0 → x = 4 (양수 선택)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S11 이차함수 y = ax²
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s11">
+  <div class="screen-title">이차함수 y = ax²</div>
+  <div class="screen-sub">포물선의 기본 모양</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 이차함수란?</h3>
+    <p>y = ax² + bx + c (a≠0) 형태를 <strong>이차함수</strong>라 합니다.</p>
+    <p style="margin-top:8px">가장 기본형: <span style="color:#fbbf24">y = ax²</span> — 꼭짓점이 원점, 축이 y축인 포물선</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">a의 역할</span>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>a > 0</th><th>a < 0</th></tr>
+        <tr><td>위로 열린 포물선 ∪</td><td>아래로 열린 포물선 ∩</td></tr>
+        <tr><td>꼭짓점이 최솟값</td><td>꼭짓점이 최댓값</td></tr>
+        <tr><td>|a| 클수록 좁아짐</td><td>|a| 클수록 좁아짐</td></tr>
+      </table>
+    </div>
+    <div class="step-why" style="margin-top:8px">|a|가 클수록: x가 조금만 변해도 y가 많이 변함 → 폭이 좁아집니다</div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">y = 2x² 의 특징</span>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>x</th><th>-2</th><th>-1</th><th>0</th><th>1</th><th>2</th></tr>
+        <tr><th>y</th><td>8</td><td>2</td><td>0</td><td>2</td><td>8</td></tr>
+      </table>
+    </div>
+    <p style="margin-top:8px">x=0일 때 y=0 → 꼭짓점 (0,0), y축 대칭</p>
+  </div>
+
+  <div class="card-green">
+    <h3>y = ax² 핵심 사실</h3>
+    <ul>
+      <li>꼭짓점: <strong>(0, 0)</strong> (원점)</li>
+      <li>대칭축: <strong>y축</strong> (x=0)</li>
+      <li>a > 0: 아래로 볼록, 최솟값 0</li>
+      <li>a < 0: 위로 볼록, 최댓값 0</li>
+      <li>y = ax²와 y = -ax²는 x축 대칭</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S12 이차함수 y = a(x-p)² + q
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s12">
+  <div class="screen-title">이차함수 y = a(x-p)² + q</div>
+  <div class="screen-sub">포물선을 평행이동하기</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 평행이동</h3>
+    <p>y = ax²의 꼭짓점을 (p, q)로 이동하면:</p>
+    <p style="margin-top:8px;color:#fbbf24;text-align:center;font-size:1.1rem">y = a(x-p)² + q</p>
+    <p style="margin-top:8px;color:#94a3b8">꼭짓점: (p, q), 축: x = p</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">왜 (x-p)²인데 x축 방향으로 +p이동인가?</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>y=x²의 꼭짓점은 y=0일 때, 즉 x=0</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><p>y=(x-3)²의 꼭짓점은 y=0일 때, 즉 x-3=0 → x=3</p>
+          <div class="step-why">x-p=0이 되는 x가 꼭짓점의 x좌표! 그래서 x축으로 +p 이동입니다.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">예제 — y = 2(x-3)² + 1</span>
+    <ul>
+      <li>a = 2 > 0 → 위로 열린 포물선</li>
+      <li>꼭짓점: (3, 1)</li>
+      <li>축: x = 3</li>
+      <li>최솟값: 1 (x=3일 때)</li>
+      <li>y = 2x²을 x축 방향으로 +3, y축 방향으로 +1 이동한 것</li>
+    </ul>
+  </div>
+
+  <div class="card-green">
+    <h3>평행이동 공식 정리</h3>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>이동</th><th>식의 변화</th><th>효과</th></tr>
+        <tr><td>x축 방향 +p</td><td>x → x-p</td><td>꼭짓점 x좌표 p 증가</td></tr>
+        <tr><td>y축 방향 +q</td><td>+q 추가</td><td>꼭짓점 y좌표 q 증가</td></tr>
+      </table>
+    </div>
+    <div class="step-why" style="margin-top:8px">x방향: x를 x-p로 바꾸고 (부호 주의!), y방향: 그냥 +q</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S13 이차함수 y = ax²+bx+c 표준형
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s13">
+  <div class="screen-title">y = ax²+bx+c 를 표준형으로</div>
+  <div class="screen-sub">완전제곱식으로 꼭짓점 찾기</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 완전제곱식 변형</h3>
+    <p>y = ax²+bx+c 를 y = a(x-p)²+q 로 변형하면 꼭짓점을 알 수 있습니다.</p>
+    <p style="margin-top:8px;color:#fbbf24">꼭짓점 공식: p = -b/2a, q = c - b²/4a</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">변형 과정 이해하기</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">문제</div>
+        <div class="step-body"><div class="eq-box">y = x² - 4x + 3</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>x²-4x 부분을 완전제곱식으로</p>
+          <div class="eq-box">x² - 4x = (x-2)² - 4</div>
+          <div class="step-why">(x-2)²를 전개하면 x²-4x+4 → 4를 빼서 원래 식 유지</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">y = (x-2)² - 4 + 3 = (x-2)² - 1</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body"><p>꼭짓점: <span class="hl-orange">(2, -1)</span>, 최솟값: -1</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">x축과의 교점 (이차방정식과 연결!)</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>y = 0으로 놓으면 이차방정식:</p>
+          <div class="eq-box">x² - 4x + 3 = 0 → (x-1)(x-3) = 0</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><p>x축과의 교점: <span class="hl">(1, 0)</span>과 <span class="hl">(3, 0)</span></p>
+          <div class="step-why">이차함수와 이차방정식은 같은 식! 방정식의 근 = 함수의 x절편</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>이차함수 그래프 특징 요약</h3>
+    <ul>
+      <li>꼭짓점: p=-b/2a, q=f(p) 대입</li>
+      <li>y절편: x=0 대입 → y = c</li>
+      <li>x절편: y=0으로 이차방정식 풀기</li>
+      <li>축: x = p (꼭짓점의 x좌표)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S14 삼각비 정의
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s14">
+  <div class="screen-title">삼각비 — sin, cos, tan</div>
+  <div class="screen-sub">직각삼각형의 변의 비</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 왜 삼각비가 필요한가?</h3>
+    <p>직각삼각형에서 한 각이 같으면 크기와 무관하게 <strong>변의 비</strong>가 항상 같습니다.</p>
+    <p style="margin-top:8px;color:#fbbf24">이 일정한 비를 이용하면 측정 불가능한 거리·높이를 계산할 수 있습니다!</p>
+  </div>
+
+  <div class="tri-wrap">
+    <svg viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- 직각삼각형 -->
+      <polygon points="40,160 220,160 220,40" fill="#fff7ed" stroke="#d97706" stroke-width="2.5"/>
+      <!-- 직각 표시 -->
+      <rect x="205" y="145" width="15" height="15" fill="none" stroke="#d97706" stroke-width="1.5"/>
+      <!-- 각도 A -->
+      <path d="M40,160 A30,30 0 0,1 65,142" fill="none" stroke="#0ea5e9" stroke-width="2"/>
+      <text x="28" y="157" font-size="13" fill="#0ea5e9" font-weight="bold">A</text>
+      <!-- 변 이름 -->
+      <text x="115" y="178" text-anchor="middle" font-size="13" fill="#1e3a5f">밑변(b)</text>
+      <text x="232" y="108" text-anchor="start" font-size="13" fill="#1e3a5f">높이(a)</text>
+      <text x="108" y="90" text-anchor="middle" font-size="13" fill="#d97706" font-weight="bold">빗변(c)</text>
+    </svg>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">삼각비 정의</span>
+    <div class="eq-row">
+      <div class="eq-box">sin A = <span class="eq-highlight">a/c</span><br><small>(높이/빗변)</small></div>
+      <div class="eq-box">cos A = <span class="eq-highlight">b/c</span><br><small>(밑변/빗변)</small></div>
+      <div class="eq-box">tan A = <span class="eq-highlight">a/b</span><br><small>(높이/밑변)</small></div>
+    </div>
+    <p style="margin-top:10px;text-align:center;font-size:.85rem;color:#0369a1">암기법: <strong>사인은 세로/빗변, 코사인은 수평/빗변, 탄젠트는 세로/수평</strong></p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">왜 크기에 상관없이 비가 같나?</span>
+    <p>직각삼각형에서 한 각의 크기가 같으면 삼각형은 닮음입니다. 닮음 도형은 대응변의 비가 모두 같으므로 sin, cos, tan 값도 항상 같습니다.</p>
+  </div>
+
+  <div class="card-green">
+    <h3>30°, 45°, 60° 삼각비 (중요!)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>각</th><th>sin</th><th>cos</th><th>tan</th></tr>
+        <tr><td>30°</td><td>1/2</td><td>√3/2</td><td>1/√3 = √3/3</td></tr>
+        <tr><td>45°</td><td>√2/2</td><td>√2/2</td><td>1</td></tr>
+        <tr><td>60°</td><td>√3/2</td><td>1/2</td><td>√3</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S15 삼각비 활용
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s15">
+  <div class="screen-title">삼각비 활용</div>
+  <div class="screen-sub">높이·거리·넓이 구하기</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 실생활에서 삼각비 활용</h3>
+    <ul>
+      <li>각도와 한 변을 알면 → 나머지 변을 구할 수 있음</li>
+      <li>sin: 각도·빗변→높이, 또는 각도·높이→빗변</li>
+      <li>tan: 각도·밑변→높이 (측량에서 자주 사용)</li>
+    </ul>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">예제 1 — 건물 높이</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">문제</div>
+        <div class="step-body"><p>건물에서 10m 떨어진 곳에서 꼭대기를 올려봤을 때 앙각이 60°이다. 높이는?</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>tan60° = 높이/10</p>
+          <div class="eq-box">높이 = 10 × tan60° = 10√3 m</div>
+          <div class="step-why">tan = 높이/밑변이므로, 높이 = 밑변 × tan(각도)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">예제 2 — 삼각형 넓이</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">공식</div>
+        <div class="step-body">
+          <div class="eq-box">넓이 = (1/2) × a × b × sinC</div>
+          <div class="step-why">두 변 a, b와 그 사이각 C를 알 때 삼각형 넓이</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">예</div>
+        <div class="step-body"><p>두 변이 4, 6이고 사이각이 30°일 때</p>
+          <div class="eq-box">넓이 = (1/2) × 4 × 6 × sin30° = 12 × (1/2) = 6</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">sin²A + cos²A = 1 관계</span>
+    <p>직각삼각형에서 피타고라스 정리: a² + b² = c²</p>
+    <p>양변을 c²으로 나누면: (a/c)² + (b/c)² = 1</p>
+    <div class="eq-box">sin²A + cos²A = 1</div>
+    <p style="margin-top:8px">이 관계식은 각도를 모를 때도 sin과 cos 중 하나를 구하는 데 사용!</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S16 대푯값과 산포도
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s16">
+  <div class="screen-title">통계 — 대푯값과 산포도</div>
+  <div class="screen-sub">데이터를 요약하고 퍼짐을 측정하기</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 대푯값이란?</h3>
+    <p>여러 데이터를 하나의 수로 요약하는 것이 <strong>대푯값</strong>입니다.</p>
+    <ul style="margin-top:8px">
+      <li><span style="color:#fbbf24">평균</span>: 모든 값의 합 ÷ 개수</li>
+      <li><span style="color:#fbbf24">중앙값</span>: 크기 순 정렬 후 가운데 값</li>
+      <li><span style="color:#fbbf24">최빈값</span>: 가장 자주 나오는 값</li>
+    </ul>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">평균만으로 부족한 이유</span>
+    <p>A반 성적: 50, 50, 50, 50, 50 → 평균 50</p>
+    <p>B반 성적: 10, 20, 50, 80, 90 → 평균 50</p>
+    <p style="margin-top:8px">평균은 같지만 데이터의 <strong>퍼짐</strong>은 완전히 다릅니다.</p>
+    <p style="margin-top:6px">→ 퍼짐의 정도를 나타내는 것이 <span class="hl">산포도</span>!</p>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">분산과 표준편차</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p><strong>편차</strong> = 각 값 - 평균</p>
+          <div class="step-why">편차는 평균에서 얼마나 떨어져 있는지를 나타냄</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><p><strong>분산</strong> = (편차²의 합) ÷ 개수</p>
+          <div class="step-why">편차를 그냥 더하면 합이 항상 0이 됨 → 제곱해서 더함!</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body"><p><strong>표준편차</strong> = √분산</p>
+          <div class="step-why">분산은 단위가 원래 데이터의 제곱 → √를 취해 단위 맞춤</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">계산 예제 — 자료: 2, 4, 6, 8, 10</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>평균 = (2+4+6+8+10)/5 = 30/5 = <span class="hl">6</span></p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><p>편차: -4, -2, 0, +2, +4</p>
+          <p>편차²: 16, 4, 0, 4, 16</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="eq-box">분산 = (16+4+0+4+16)/5 = 40/5 = <span class="eq-highlight">8</span></div>
+          <div class="eq-box">표준편차 = √8 = 2√2 ≈ <span class="eq-highlight">2.83</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S17 통계 — 상관관계
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s17">
+  <div class="screen-title">통계 — 상관관계와 산점도</div>
+  <div class="screen-sub">두 변수의 관계 파악하기</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 원리 — 상관관계란?</h3>
+    <p>두 변수 x, y 사이의 관계를 파악하는 것이 <strong>상관관계</strong>입니다.</p>
+    <ul style="margin-top:8px">
+      <li><span style="color:#fbbf24">양의 상관관계</span>: x 증가 → y 증가 (공부시간↑, 성적↑)</li>
+      <li><span style="color:#fbbf24">음의 상관관계</span>: x 증가 → y 감소 (TV시간↑, 성적↓)</li>
+      <li><span style="color:#fbbf24">상관관계 없음</span>: 규칙성이 없음</li>
+    </ul>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">산점도 읽기</span>
+    <div class="grid2">
+      <div class="card-green" style="text-align:center">
+        <h3>양의 상관관계</h3>
+        <p style="font-size:2rem">↗</p>
+        <p style="font-size:.85rem">점들이 왼쪽 아래에서<br>오른쪽 위로 분포</p>
+      </div>
+      <div class="card-orange" style="text-align:center">
+        <h3>음의 상관관계</h3>
+        <p style="font-size:2rem">↘</p>
+        <p style="font-size:.85rem">점들이 왼쪽 위에서<br>오른쪽 아래로 분포</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-warn">주의! 상관관계 ≠ 인과관계</span>
+    <p>아이스크림 판매량과 익사 사고 건수는 양의 상관관계 → 그러나 아이스크림이 익사를 유발하는 것은 아닙니다!</p>
+    <p style="margin-top:8px">원인은 제3의 변수(기온)입니다. 상관관계가 있다고 해서 원인-결과 관계는 아닙니다.</p>
+  </div>
+
+  <div class="card-green">
+    <h3>줄기와 잎 그림 / 도수분포표 정리</h3>
+    <ul>
+      <li><strong>줄기와 잎 그림</strong>: 원래 데이터를 보존하며 분포 파악</li>
+      <li><strong>도수분포표</strong>: 구간별 빈도 정리</li>
+      <li><strong>상대도수</strong> = (그 계급의 도수) / (전체 도수)</li>
+      <li><strong>누적상대도수</strong> = 처음부터 그 계급까지 상대도수의 합</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     S18 핵심 정리
+═══════════════════════════════════════════════════ -->
+<div class="screen" id="s18">
+  <div class="screen-title">중3 수학 핵심 정리</div>
+  <div class="screen-sub">꼭 외워야 할 공식과 원리</div>
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <h4>√ 제곱근과 실수</h4>
+      <ul>
+        <li>√a²= |a|</li>
+        <li>√a × √b = √(ab)</li>
+        <li>분모 유리화: 분모·분자에 동일한 √ 곱하기</li>
+        <li>유리수 + 무리수 = 실수</li>
+        <li>무리수: 순환하지 않는 무한소수</li>
+      </ul>
+    </div>
+    <div class="summary-card">
+      <h4>🔧 인수분해 공식</h4>
+      <ul>
+        <li>ma + mb = m(a+b)</li>
+        <li>a²+2ab+b² = (a+b)²</li>
+        <li>a²-2ab+b² = (a-b)²</li>
+        <li>a²-b² = (a+b)(a-b)</li>
+        <li>x²+(p+q)x+pq = (x+p)(x+q)</li>
+      </ul>
+    </div>
+    <div class="summary-card">
+      <h4>² 이차방정식</h4>
+      <ul>
+        <li>근의 공식: x=(-b±√(b²-4ac))/2a</li>
+        <li>D>0: 서로 다른 두 실근</li>
+        <li>D=0: 중근</li>
+        <li>D&lt;0: 실근 없음</li>
+        <li>AB=0 ⟹ A=0 또는 B=0</li>
+      </ul>
+    </div>
+    <div class="summary-card">
+      <h4>∪ 이차함수</h4>
+      <ul>
+        <li>y=ax²: 꼭짓점 (0,0), 축 x=0</li>
+        <li>y=a(x-p)²+q: 꼭짓점 (p,q)</li>
+        <li>표준형 변환: 완전제곱식</li>
+        <li>a>0: ∪(최솟값), a&lt;0: ∩(최댓값)</li>
+        <li>x절편: y=0 놓고 이차방정식 풀기</li>
+      </ul>
+    </div>
+    <div class="summary-card">
+      <h4>📐 삼각비</h4>
+      <ul>
+        <li>sinA = 높이/빗변</li>
+        <li>cosA = 밑변/빗변</li>
+        <li>tanA = 높이/밑변</li>
+        <li>sin²A + cos²A = 1</li>
+        <li>삼각형 넓이 = ½absinC</li>
+      </ul>
+    </div>
+    <div class="summary-card">
+      <h4>📊 통계</h4>
+      <ul>
+        <li>평균 = 합계 ÷ 개수</li>
+        <li>편차 = (각 값) - 평균</li>
+        <li>분산 = (편차²의 합) ÷ 개수</li>
+        <li>표준편차 = √분산</li>
+        <li>양/음의 상관관계</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>🎉 중학교 수학 전 과정 완주!</h3>
+    <p>중1부터 중3까지, 모든 수학 개념의 원리를 이해했습니다. 외운 공식이 아니라 <strong>왜 그 공식이 나왔는지</strong>를 알면, 새로운 문제도 스스로 풀어낼 수 있습니다.</p>
+    <p style="margin-top:10px">다시 보고 싶은 단원을 위의 인트로 화면(1번)에서 선택해 복습하세요!</p>
+  </div>
+
+  <div style="text-align:center;padding:20px;color:var(--muted);font-size:.85rem">
+    ← 이전 버튼으로 처음부터 다시 볼 수 있습니다
+  </div>
+</div>
+
+<!-- 버튼 -->
+<button class="btn-prev" id="btnPrev" onclick="move(-1)" style="display:none">← 이전</button>
+<button class="btn-next" id="btnNext" onclick="move(1)">다음 →</button>
+
+<script>
+const TOTAL = 18;
+let cur = 1;
+
+/* ── 진행 바 생성 ── */
+const sections = [
+  {label:'√ 제곱근·실수', from:2, to:5, icon:'√'},
+  {label:'🔧 인수분해', from:6, to:7, icon:'🔧'},
+  {label:'² 이차방정식', from:8, to:10, icon:'²'},
+  {label:'∪ 이차함수', from:11, to:13, icon:'∪'},
+  {label:'📐 삼각비', from:14, to:15, icon:'📐'},
+  {label:'📊 통계', from:16, to:17, icon:'📊'},
+];
+
+function buildProg(){
+  const track = document.getElementById('progTrack');
+  const label = document.getElementById('progLabel');
+  track.innerHTML = '';
+
+  // 인트로 dot
+  const d0 = makeDot(1,'📖');
+  track.appendChild(d0);
+  track.appendChild(makeSep());
+
+  // 섹션별
+  sections.forEach((sec,i)=>{
+    for(let n=sec.from;n<=sec.to;n++){
+      track.appendChild(makeDot(n, n===sec.from? sec.icon : n));
+    }
+    if(i < sections.length-1) track.appendChild(makeSep());
+  });
+
+  // 정리 dot
+  track.appendChild(makeSep());
+  const dEnd = makeDot(18,'📋');
+  track.appendChild(dEnd);
+
+  // 레이블
+  label.innerHTML = '<span class="prog-section-name">인트로</span> | ' +
+    sections.map(s=>`<span class="prog-section-name">${s.label}</span>`).join(' | ') +
+    ' | <span class="prog-section-name">📋 핵심정리</span>';
+}
+
+function makeDot(n, label){
+  const d = document.createElement('div');
+  d.className = 'prog-dot';
+  d.id = 'pd'+n;
+  d.textContent = label;
+  d.title = n+'번';
+  d.onclick = ()=>goTo(n);
+  return d;
+}
+function makeSep(){
+  const s = document.createElement('div');
+  s.className = 'prog-sep';
+  return s;
+}
+
+function updateProg(){
+  for(let i=1;i<=TOTAL;i++){
+    const d = document.getElementById('pd'+i);
+    if(!d) continue;
+    d.classList.remove('on','done');
+    if(i===cur) d.classList.add('on');
+    else if(i<cur) d.classList.add('done');
+  }
+}
+
+function goTo(n){
+  document.getElementById('s'+cur).classList.remove('active');
+  cur = Math.max(1, Math.min(TOTAL, n));
+  document.getElementById('s'+cur).classList.add('active');
+  updateProg();
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  document.getElementById('btnPrev').style.display = cur>1?'':'none';
+  document.getElementById('btnNext').textContent = cur===TOTAL? '처음으로 ↺' : '다음 →';
+}
+
+function move(dir){
+  if(cur===TOTAL && dir===1) goTo(1);
+  else goTo(cur+dir);
+}
+
+buildProg();
+goTo(1);
+</script>
+</body>
+</html>

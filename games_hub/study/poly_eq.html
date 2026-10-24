@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>다항식과 방정식 | 수학여행학원</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1e3a5f;--blue:#2563eb;--sky:#38bdf8;
+  --amber:#d97706;--green:#059669;--red:#dc2626;
+  --purple:#7c3aed;--pink:#db2777;
+  --bg:#f5f0e8;--card:#fff;--text:#1e1e2e;--muted:#6b7280;
+}
+body{background:var(--bg);color:var(--text);font-family:'Malgun Gothic','맑은 고딕',sans-serif;min-height:100vh;overflow-x:hidden}
+
+/* ── TOP BAR ── */
+header{background:var(--navy);padding:.9rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--blue)}
+header h1{color:#fff;font-size:1.1rem;font-weight:700}
+.back-link{color:#bfdbfe;text-decoration:none;font-size:.82rem}
+
+/* ── PROGRESS ── */
+.prog-bar{display:flex;justify-content:center;gap:0;padding:.5rem .6rem;background:#d0e8ff;align-items:center;flex-wrap:wrap}
+.prog-section{display:flex;align-items:center;gap:.32rem;padding:0 .5rem}
+.prog-section-label{font-size:.66rem;font-weight:700;color:#374151;white-space:nowrap;letter-spacing:.02em}
+.prog-sep{width:1px;height:20px;background:#93c5fd;margin:0 .1rem}
+.prog-dot{width:14px;height:14px;border-radius:50%;background:#aac4e0;transition:background .3s,transform .3s;cursor:pointer}
+.prog-dot.on{background:var(--blue);transform:scale(1.3)}
+.prog-dot.done{background:var(--green)}
+
+/* ── PROB NAV BAR ── */
+.prob-nav-bar{display:flex;align-items:center;gap:.35rem;margin-bottom:.9rem;flex-wrap:wrap;padding:.5rem .7rem;background:#eff6ff;border-radius:.65rem;border:1px solid #bfdbfe}
+.prob-nav-lbl{font-size:.78rem;font-weight:700;color:var(--navy);white-space:nowrap}
+.prob-num-btn{padding:.28rem .5rem;border-radius:.4rem;border:2px solid #bfdbfe;background:#fff;font-size:.78rem;font-weight:700;cursor:pointer;color:var(--navy);transition:all .15s}
+.prob-num-btn:hover{background:#dbeafe;border-color:var(--blue)}
+.prob-num-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* ── SCREENS ── */
+.screen{display:none;animation:fadeIn .35s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ── CONTENT WRAPPER ── */
+.wrap{max-width:700px;margin:0 auto;padding:1.2rem 1rem}
+
+/* ── CARDS ── */
+.card{background:var(--card);border-radius:1rem;padding:1.4rem;margin:.8rem 0;border:1px solid #d4c9b8;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card-navy{background:var(--navy);color:#fff;border:none}
+.card-amber{background:#fffbeb;border-left:4px solid var(--amber)}
+.card-green{background:#f0fdf4;border-left:4px solid var(--green)}
+.card-red{background:#fef2f2;border-left:4px solid var(--red)}
+.card-blue{background:#eff6ff;border-left:4px solid var(--blue)}
+.card-purple{background:#f5f3ff;border-left:4px solid var(--purple)}
+
+/* ── TYPOGRAPHY ── */
+h2{font-size:1.4rem;font-weight:800;margin-bottom:.6rem;line-height:1.35}
+h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
+p{font-size:.95rem;line-height:1.8;margin:.35rem 0}
+.big{font-size:1.6rem;font-weight:900;color:var(--blue)}
+.muted{color:var(--muted);font-size:.88rem}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;padding:.18rem .55rem;border-radius:999px;margin-bottom:.4rem}
+.tag-blue{background:#dbeafe;color:#1e40af}
+.tag-amber{background:#fef3c7;color:#92400e}
+.tag-red{background:#fee2e2;color:#991b1b}
+.tag-green{background:#dcfce7;color:#14532d}
+.tag-purple{background:#ede9fe;color:#5b21b6}
+.tag-navy{background:#1e3a5f;color:#fff}
+
+/* ── EQUATION BOX ── */
+.eq-box{text-align:center;font-size:1.2rem;font-weight:800;background:#eff6ff;border:2px solid var(--blue);border-radius:.75rem;padding:.8rem 1rem;margin:.6rem 0;letter-spacing:.03em;color:var(--navy);font-family:'Courier New',monospace;line-height:1.6}
+.eq-hi{color:var(--red)}
+.eq-ans{color:var(--green)}
+.eq-box-amber{background:#fffbeb;border-color:var(--amber);color:#92400e}
+.eq-box-green{background:#f0fdf4;border-color:var(--green);color:#065f46}
+
+/* ── THINK BOX ── */
+.think{background:#fff7ed;border:2px solid var(--amber);border-radius:.75rem;padding:.8rem 1rem;margin:.6rem 0;text-align:center}
+.think p{font-size:.95rem;font-weight:700;color:#92400e}
+
+/* ── PRINCIPLE BOX ── */
+.principle{background:var(--navy);color:#fff;border-radius:.75rem;padding:1rem 1.2rem;margin:.7rem 0}
+.principle h3{color:#bfdbfe;font-size:.9rem;font-weight:700;margin-bottom:.5rem;letter-spacing:.06em}
+.principle p{font-size:.92rem;color:#e2e8f0;line-height:1.8}
+.principle .key{color:#fde68a;font-weight:700}
+
+/* ── STEPS ── */
+.steps{display:flex;flex-direction:column;gap:.5rem;margin:.7rem 0}
+.step-item{padding:.6rem .9rem;border-radius:.6rem;background:#f8fafc;border:1px solid #e2e8f0}
+.step-num{display:inline-block;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--blue);color:#fff;font-size:.75rem;font-weight:700;text-align:center;line-height:1.6rem;margin-right:.5rem;vertical-align:middle}
+.step-why{font-size:.82rem;color:var(--amber);font-weight:700;margin-top:.25rem;display:block}
+
+/* ── PROBLEM STEPS (reveal) ── */
+.prob-step{background:#f8fafc;border-radius:.6rem;border:1px solid #e2e8f0;padding:.75rem 1rem;margin:.45rem 0;display:none}
+.prob-step.show{display:block;animation:fadeIn .3s ease}
+.ps-label{font-size:.72rem;font-weight:700;letter-spacing:.06em;margin-bottom:.3rem}
+
+/* ── PRACTICE BOX ── */
+.practice{background:#f9fafb;border:2px dashed #bfdbfe;border-radius:.75rem;padding:1rem 1.2rem;margin:.8rem 0}
+.practice-title{font-size:.78rem;font-weight:700;color:var(--navy);margin-bottom:.5rem;letter-spacing:.04em}
+
+/* ── BUTTONS ── */
+.btn-row{display:flex;gap:.6rem;justify-content:space-between;margin-top:1.2rem;flex-wrap:wrap}
+.btn{padding:.65rem 1.4rem;border-radius:.55rem;border:none;cursor:pointer;font-size:.9rem;font-weight:700;font-family:'Malgun Gothic',sans-serif;transition:all .18s}
+.btn-prev{background:#e8e0d0;color:#374151}
+.btn-prev:hover{background:#d4c9b8}
+.btn-next{background:var(--navy);color:#fff;margin-left:auto}
+.btn-next:hover{background:var(--blue)}
+.btn-reveal{background:var(--amber);color:#fff;width:100%;margin:.3rem 0;padding:.6rem 1rem;border-radius:.55rem;border:none;cursor:pointer;font-size:.88rem;font-weight:700;font-family:'Malgun Gothic',sans-serif;transition:all .18s}
+.btn-reveal:hover{opacity:.88}
+.btn-reveal:disabled{background:#d4c9b8;cursor:default}
+.btn-reveal-sm{background:#dbeafe;color:var(--navy);border:2px solid var(--blue);border-radius:.45rem;padding:.4rem .9rem;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Malgun Gothic',sans-serif;transition:all .18s;margin:.3rem 0}
+.btn-reveal-sm:hover{background:#bfdbfe}
+.btn-reveal-sm:disabled{background:#f3f4f6;color:#9ca3af;border-color:#e5e7eb;cursor:default}
+
+/* ── SUMMARY ── */
+.checklist{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.checklist li{font-size:.92rem;padding:.4rem .6rem;background:#eff6ff;border-radius:.4rem;border-left:3px solid var(--blue)}
+.checklist li::before{content:"✅ ";margin-right:.3rem}
+
+/* ── HL ── */
+.hl{background:#fef9c3;border-radius:.25rem;padding:.05rem .22rem;font-weight:700;color:#78350f}
+.hlb{background:#dbeafe;border-radius:.25rem;padding:.05rem .22rem;font-weight:700;color:#1e40af}
+.hlg{background:#dcfce7;border-radius:.25rem;padding:.05rem .22rem;font-weight:700;color:#14532d}
+sup{font-size:.65em;vertical-align:super}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📊 다항식과 방정식</h1>
+  <a class="back-link" href="../index.html">← 홈</a>
+</header>
+
+<div class="prog-bar" id="prog"></div>
+
+
+<!-- ════════════════════════════
+     S1: 인트로
+════════════════════════════ -->
+<div class="screen active" id="s1">
+<div class="wrap">
+  <div class="card card-navy" style="text-align:center;padding:2rem 1.4rem">
+    <div style="font-size:3rem;margin-bottom:.6rem">📊</div>
+    <h2 style="color:#fff;font-size:1.6rem">다항식과 방정식<br><span style="font-size:1rem;font-weight:400;color:#bfdbfe">2022 강남구 고1 수학상 중간고사</span></h2>
+    <p style="color:#93c5fd;margin-top:.8rem;font-size:.92rem">경기고 출제 — 6개 핵심 유형 완전 분석</p>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">이 시험의 핵심 단원</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.6rem">
+      <div style="background:#fff;border-radius:.5rem;padding:.6rem .8rem;border:1px solid #fde68a;font-size:.88rem"><b>📐 다항식의 연산</b><br><span style="color:var(--muted);font-size:.78rem">덧셈·뺄셈·인수분해</span></div>
+      <div style="background:#fff;border-radius:.5rem;padding:.6rem .8rem;border:1px solid #fde68a;font-size:.88rem"><b>🔑 나머지 정리</b><br><span style="color:var(--muted);font-size:.78rem">f(a)=나머지 원리</span></div>
+      <div style="background:#fff;border-radius:.5rem;padding:.6rem .8rem;border:1px solid #fde68a;font-size:.88rem"><b>🌀 복소수</b><br><span style="color:var(--muted);font-size:.78rem">i의 거듭제곱 순환</span></div>
+      <div style="background:#fff;border-radius:.5rem;padding:.6rem .8rem;border:1px solid #fde68a;font-size:.88rem"><b>⚖️ 근과 계수의 관계</b><br><span style="color:var(--muted);font-size:.78rem">비에타 공식</span></div>
+      <div style="background:#fff;border-radius:.5rem;padding:.6rem .8rem;border:1px solid #fde68a;font-size:.88rem"><b>🎯 판별식</b><br><span style="color:var(--muted);font-size:.78rem">D=b²-4ac</span></div>
+      <div style="background:#fff;border-radius:.5rem;padding:.6rem .8rem;border:1px solid #fde68a;font-size:.88rem"><b>📈 이차함수</b><br><span style="color:var(--muted);font-size:.78rem">판별식 활용</span></div>
+    </div>
+  </div>
+
+  <div class="card card-blue">
+    <span class="tag tag-blue">공부법</span>
+    <p>계산 방법을 외우기 전에<br><span class="hl">왜 그렇게 되는지 원리</span>를 먼저 이해하면<br>응용 문제가 훨씬 쉬워집니다.</p>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-next" onclick="goTo(2)">시작하기 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S2: 다항식의 연산 원리
+════════════════════════════ -->
+<div class="screen" id="s2">
+<div class="wrap">
+  <span class="tag tag-blue">📖 개념 1 / 6</span>
+  <h2 style="margin-top:.3rem">📐 다항식의 연산</h2>
+  <p class="muted">덧셈·뺄셈·계수 결정</p>
+
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p><span class="key">다항식은 문자를 수처럼</span> 더하고 뺄 수 있습니다.<br>
+    같은 차수의 항끼리(동류항) 모아서 계산합니다.</p>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">왜 이게 되는 걸까?</span>
+    <p>3x + 2x = 5x가 성립하는 이유는?<br>
+    x를 어떤 수로 바꿔도 항상 성립하기 때문입니다.</p>
+    <div class="eq-box">3<span class="eq-hi">x</span> + 2<span class="eq-hi">x</span> = (3+2)<span class="eq-hi">x</span> = 5<span class="eq-hi">x</span></div>
+    <p style="font-size:.88rem;color:var(--muted)">→ 분배법칙: ax + bx = (a+b)x</p>
+  </div>
+
+  <div class="card">
+    <span class="tag tag-blue">계산 순서</span>
+    <div class="steps">
+      <div class="step-item">
+        <span class="step-num">①</span><b>괄호 안을 먼저</b> 전개 (분배법칙)
+        <span class="step-why">2(x²-3x+1) = 2x²-6x+2 ← 각 항에 2를 곱함</span>
+      </div>
+      <div class="step-item">
+        <span class="step-num">②</span>같은 차수끼리 <b>동류항 정리</b>
+        <span class="step-why">x² 항끼리, x 항끼리, 상수끼리 모음</span>
+      </div>
+      <div class="step-item">
+        <span class="step-num">③</span>차수 <b>높은 순서</b>로 정리
+        <span class="step-why">최고차항부터 내림차순으로 씀</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="think">
+    <p>두 다항식 A, B가 주어질 때<br><span style="font-size:1.1rem">kA + mB는 A에 k를 곱하고 B에 m을 곱한 뒤 더한다</span></p>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(1)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(3)">나머지 정리 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S3: 나머지 정리 원리
+════════════════════════════ -->
+<div class="screen" id="s3">
+<div class="wrap">
+  <span class="tag tag-blue">📖 개념 2 / 6</span>
+  <h2 style="margin-top:.3rem">🔑 나머지 정리</h2>
+  <p class="muted">f(a)가 나머지인 이유</p>
+
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>다항식 f(x)를 (x−a)로 나누면:<br>
+    <span class="key">f(x) = Q(x)·(x−a) + r</span><br>
+    양변에 x=a를 대입하면:<br>
+    <span class="key">f(a) = Q(a)·0 + r = r</span></p>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">왜 x=a를 대입하면 나머지가 나올까?</span>
+    <p>(x−a)에 x=a를 넣으면 <b>0이 되기 때문</b>입니다.<br>
+    Q(x)가 아무리 복잡해도 Q(a)·(a−a) = Q(a)·<span class="hl">0 = 0</span><br>
+    그래서 f(a) = 0 + r = r만 남습니다.</p>
+    <div class="eq-box">f(<span class="eq-hi">a</span>) = Q(<span class="eq-hi">a</span>)·(<span class="eq-hi">a</span>−a) + r = <span class="eq-ans">r</span></div>
+  </div>
+
+  <div class="card card-blue">
+    <span class="tag tag-blue">나머지 정리 확장</span>
+    <p><b>f(x)+g(x)</b>를 (x−a)로 나눈 나머지는?<br>
+    → [f(a)+g(a)]<br><br>
+    <b>f(x)·g(x)</b>를 (x−a)로 나눈 나머지는?<br>
+    → [f(a)·g(a)]<br><br>
+    <span class="hl">핵심: (x−a)로 나눈 나머지 = x=a 대입한 값</span></p>
+  </div>
+
+  <div class="card card-red">
+    <span class="tag tag-red">자주 하는 실수</span>
+    <p>(x+2)로 나눈 나머지 → x=<span class="eq-hi">−2</span> 대입!<br>
+    (x+a)는 x=<b>+a</b>가 아니라 x=<b>−a</b>입니다.</p>
+    <div class="eq-box-amber eq-box">(x<span class="eq-hi">+</span>2)로 나눈 나머지 → x = <span class="eq-ans">−2</span> 대입</div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(2)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(4)">인수분해 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S4: 인수분해와 항등식
+════════════════════════════ -->
+<div class="screen" id="s4">
+<div class="wrap">
+  <span class="tag tag-blue">📖 개념 3 / 6</span>
+  <h2 style="margin-top:.3rem">🧩 인수분해와 항등식</h2>
+  <p class="muted">계수를 결정하는 두 가지 방법</p>
+
+  <div class="principle">
+    <h3>⭐ 핵심 원리 — 항등식</h3>
+    <p><span class="key">항등식</span>: 모든 x값에서 성립하는 등식<br>
+    → 양변의 <span class="key">같은 차수 계수가 반드시 같음</span></p>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">계수 비교법 vs 수 대입법</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.5rem">
+      <div style="background:#fff;border-radius:.5rem;padding:.7rem;border:1px solid #fde68a">
+        <b style="color:var(--amber)">계수 비교법</b>
+        <p style="font-size:.85rem;margin-top:.3rem">양변을 전개한 뒤 x의 각 차수의 계수를 비교</p>
+        <p style="font-size:.78rem;color:var(--muted)">정확하지만 계산이 복잡할 수 있음</p>
+      </div>
+      <div style="background:#fff;border-radius:.5rem;padding:.7rem;border:1px solid #bfdbfe">
+        <b style="color:var(--blue)">수 대입법</b>
+        <p style="font-size:.85rem;margin-top:.3rem">특정 x값(보통 근)을 대입해 계수를 구함</p>
+        <p style="font-size:.78rem;color:var(--muted)">빠르지만 미지수 개수만큼 대입 필요</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-blue">
+    <span class="tag tag-blue">인수분해로 계수 결정</span>
+    <p>예: <b>x² + ax + b = (x+2)(x−3)</b>일 때 a, b 구하기</p>
+    <p style="margin-top:.5rem">우변 전개: x² − x − 6</p>
+    <p>계수 비교: <span class="hlb">a = −1</span>, <span class="hlb">b = −6</span></p>
+    <div class="eq-box-green eq-box">전개 → 계수 비교 → a, b 결정</div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(3)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(5)">복소수 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S5: 복소수
+════════════════════════════ -->
+<div class="screen" id="s5">
+<div class="wrap">
+  <span class="tag tag-blue">📖 개념 4 / 6</span>
+  <h2 style="margin-top:.3rem">🌀 복소수와 i의 거듭제곱</h2>
+  <p class="muted">i² = −1의 4주기 순환</p>
+
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p><span class="key">i² = −1</span>로 정의하면:<br>
+    i¹ = i, i² = −1, i³ = −i, i⁴ = 1<br>
+    <span class="key">→ 4개마다 순환!</span></p>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">왜 4주기일까?</span>
+    <p>i² = −1을 두 번 곱하면:</p>
+    <div class="eq-box">i⁴ = (i²)² = (−1)² = <span class="eq-ans">1</span></div>
+    <p>1로 돌아오므로 <span class="hl">이후는 똑같이 반복</span>됩니다.</p>
+    <div style="display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-top:.6rem">
+      <div style="background:#dbeafe;padding:.4rem .7rem;border-radius:.4rem;font-size:.85rem;font-weight:700">i¹ = <span style="color:var(--blue)">i</span></div>
+      <div style="background:#fee2e2;padding:.4rem .7rem;border-radius:.4rem;font-size:.85rem;font-weight:700">i² = <span style="color:var(--red)">−1</span></div>
+      <div style="background:#fef3c7;padding:.4rem .7rem;border-radius:.4rem;font-size:.85rem;font-weight:700">i³ = <span style="color:var(--amber)">−i</span></div>
+      <div style="background:#dcfce7;padding:.4rem .7rem;border-radius:.4rem;font-size:.85rem;font-weight:700">i⁴ = <span style="color:var(--green)">1</span></div>
+    </div>
+  </div>
+
+  <div class="card card-blue">
+    <span class="tag tag-blue">iⁿ을 빠르게 구하는 법</span>
+    <p><b>n ÷ 4의 나머지</b>를 확인합니다.</p>
+    <div class="steps">
+      <div class="step-item">나머지 1 → i<sup>n</sup> = <b>i</b></div>
+      <div class="step-item">나머지 2 → i<sup>n</sup> = <b>−1</b></div>
+      <div class="step-item">나머지 3 → i<sup>n</sup> = <b>−i</b></div>
+      <div class="step-item">나머지 0 → i<sup>n</sup> = <b>1</b></div>
+    </div>
+    <p class="muted" style="margin-top:.4rem">예: i²⁰²² → 2022 ÷ 4 = 505 나머지 2 → i²⁰²² = <b>−1</b></p>
+  </div>
+
+  <div class="card card-purple">
+    <span class="tag tag-purple">복소수의 실수/허수 분리</span>
+    <p>a + bi = c + di이면 (a,b,c,d가 실수일 때)<br>
+    → <span class="hl">a = c</span> 이고 <span class="hl">b = d</span><br>
+    실수 부분, 허수 부분을 따로 같다고 놓으면 됩니다.</p>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(4)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(6)">근과 계수의 관계 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S6: 근과 계수의 관계
+════════════════════════════ -->
+<div class="screen" id="s6">
+<div class="wrap">
+  <span class="tag tag-blue">📖 개념 5 / 6</span>
+  <h2 style="margin-top:.3rem">⚖️ 근과 계수의 관계</h2>
+  <p class="muted">비에타 공식 — 왜 성립할까?</p>
+
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>ax² + bx + c = 0의 두 근이 α, β이면<br>
+    a(x−α)(x−β) = 0으로 쓸 수 있습니다.<br>
+    전개하면: a[x² − (α+β)x + αβ] = 0<br>
+    이것과 ax² + bx + c = 0을 비교하면:<br>
+    <span class="key">α + β = −b/a</span>,&nbsp;&nbsp;<span class="key">αβ = c/a</span></p>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">왜 이렇게 되는지 한 눈에</span>
+    <div class="eq-box">ax² + bx + c = a(x−α)(x−β)</div>
+    <div class="eq-box">= a[x² − (α+β)x + αβ]</div>
+    <p style="margin-top:.5rem">계수 비교: <span class="hlb">b = −a(α+β)</span> → α+β = −b/a<br>
+    상수 비교: <span class="hlg">c = a·αβ</span> → αβ = c/a</p>
+  </div>
+
+  <div class="card card-green">
+    <span class="tag tag-green">자주 쓰이는 공식</span>
+    <div class="steps">
+      <div class="step-item"><b>α² + β²</b> = (α+β)² − 2αβ</div>
+      <div class="step-item"><b>(α−β)²</b> = (α+β)² − 4αβ</div>
+      <div class="step-item"><b>1/α + 1/β</b> = (α+β) / αβ</div>
+      <div class="step-item"><b>역으로</b>: α+β=p, αβ=q이면 → x² − px + q = 0</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(5)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(7)">판별식 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S7: 판별식
+════════════════════════════ -->
+<div class="screen" id="s7">
+<div class="wrap">
+  <span class="tag tag-blue">📖 개념 6 / 6</span>
+  <h2 style="margin-top:.3rem">🎯 판별식과 이차함수</h2>
+  <p class="muted">D = b² − 4ac의 의미</p>
+
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>근의 공식: x = (−b ± √(b²−4ac)) / 2a<br>
+    <span class="key">루트 안 = D = b² − 4ac</span><br>
+    D의 부호가 근의 종류를 결정합니다!</p>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">판별식 D의 부호 → 근의 종류</span>
+    <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem">
+      <div style="background:#dcfce7;padding:.6rem .9rem;border-radius:.5rem;border-left:4px solid var(--green)">
+        <b>D &gt; 0</b> → 서로 다른 두 실근 ← √D &gt; 0이므로 두 값이 다름
+      </div>
+      <div style="background:#fff;padding:.6rem .9rem;border-radius:.5rem;border-left:4px solid var(--blue)">
+        <b>D = 0</b> → 중근 (같은 두 실근) ← √0 = 0이므로 ±0 → 같은 값
+      </div>
+      <div style="background:#fef2f2;padding:.6rem .9rem;border-radius:.5rem;border-left:4px solid var(--red)">
+        <b>D &lt; 0</b> → 허근 (실근 없음) ← 음수의 제곱근 → 허수
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-blue">
+    <span class="tag tag-blue">이차함수와의 연결</span>
+    <p>y = ax² + bx + c의 그래프가 직선 y = k와 만나는 점의 수:</p>
+    <div class="steps">
+      <div class="step-item">ax² + bx + c = k로 놓으면 → ax² + bx + (c−k) = 0<br>
+      <span class="step-why">D = b² − 4a(c−k)의 부호가 교점 수를 결정!</span></div>
+      <div class="step-item">D &gt; 0 → 두 점 교차 | D = 0 → 접선 | D &lt; 0 → 안 만남</div>
+    </div>
+  </div>
+
+  <div class="card card-green">
+    <span class="tag tag-green">중근 조건 핵심 공식</span>
+    <div class="eq-box">중근 ↔ <span class="eq-ans">D = b² − 4ac = 0</span></div>
+    <p style="text-align:center;font-size:.88rem;color:var(--muted)">(b가 짝수면 D/4 = (b/2)² − ac = 0으로 계산)</p>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(6)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(8)">연습 문제 시작 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S8: 연습 — 다항식 연산
+════════════════════════════ -->
+<div class="screen" id="s8">
+<div class="wrap">
+  <div class="prob-nav-bar">
+    <span class="prob-nav-lbl">✏️</span>
+    <button class="prob-num-btn" data-target="8" onclick="goTo(8)">1. 다항식연산</button>
+    <button class="prob-num-btn" data-target="9" onclick="goTo(9)">2. 나머지기본</button>
+    <button class="prob-num-btn" data-target="10" onclick="goTo(10)">3. 나머지응용</button>
+    <button class="prob-num-btn" data-target="11" onclick="goTo(11)">4. 인수분해</button>
+    <button class="prob-num-btn" data-target="12" onclick="goTo(12)">5. 근과계수</button>
+    <button class="prob-num-btn" data-target="13" onclick="goTo(13)">6. 판별식</button>
+  </div>
+
+  <span class="tag tag-navy">대표 문제</span>
+  <h2 style="margin-top:.3rem">📐 다항식의 연산</h2>
+  <div class="card card-blue">
+    <p><b>문제.</b> 두 다항식 A = 2x² − 3x + 1, B = x² + x − 2에 대하여<br>
+    <b>2A − B</b>를 간단히 하면?</p>
+  </div>
+
+  <div id="d1s1" class="prob-step">
+    <div class="ps-label tag tag-blue">① 각각 전개</div>
+    <p>2A = 2(2x² − 3x + 1) = <b>4x² − 6x + 2</b></p>
+    <p>B = x² + x − 2 (그대로)</p>
+  </div>
+  <div id="d1s2" class="prob-step">
+    <div class="ps-label tag tag-amber">② 빼기 (부호 조심!)</div>
+    <p>2A − B = (4x² − 6x + 2) − (x² + x − 2)</p>
+    <p>= 4x² − 6x + 2 <span class="eq-hi">− x² − x + 2</span></p>
+    <p class="muted">→ B 앞에 −가 붙으면 B의 모든 항의 부호가 반대!</p>
+  </div>
+  <div id="d1s3" class="prob-step">
+    <div class="ps-label tag tag-green">③ 동류항 정리 → 정답</div>
+    <p>= (4−1)x² + (−6−1)x + (2+2)</p>
+    <div class="eq-box-green eq-box"><span class="eq-ans">3x² − 7x + 4</span></div>
+  </div>
+  <button class="btn btn-reveal" id="d1btn" onclick="reveal('d1s',1,3,'d1btn')">풀이 보기 ▼</button>
+
+  <!-- 연습 1 -->
+  <div class="practice" style="margin-top:1.2rem">
+    <div class="practice-title">✏️ 연습 1</div>
+    <p><b>문제.</b> A = x² − 2x + 3, B = 2x² + x − 1일 때, <b>A − 2B</b>를 간단히 하면?</p>
+    <div id="d2ans" class="prob-step" style="margin-top:.5rem">
+      <div class="ps-label tag tag-green">풀이</div>
+      <p>A − 2B = (x² − 2x + 3) − 2(2x² + x − 1)</p>
+      <p>= x² − 2x + 3 − 4x² − 2x + 2</p>
+      <div class="eq-box-green eq-box"><span class="eq-ans">−3x² − 4x + 5</span></div>
+    </div>
+    <button class="btn btn-reveal-sm" id="d2btn" onclick="showAns('d2ans','d2btn')">정답 확인 ▼</button>
+  </div>
+
+  <!-- 연습 2 -->
+  <div class="practice">
+    <div class="practice-title">✏️ 연습 2</div>
+    <p><b>문제.</b> A = x³ + ax² + 2, B = x³ − x² + b이고 A + B = 2x³ + x² + 5일 때, <b>a + b</b>의 값은?</p>
+    <div id="d3ans" class="prob-step" style="margin-top:.5rem">
+      <div class="ps-label tag tag-green">풀이</div>
+      <p>A + B = (x³ + ax² + 2) + (x³ − x² + b)</p>
+      <p>= 2x³ + (a−1)x² + (2+b)</p>
+      <p>이것이 2x³ + x² + 5와 같으므로:</p>
+      <p>x²의 계수: a−1 = 1 → <b>a = 2</b></p>
+      <p>상수: 2+b = 5 → <b>b = 3</b></p>
+      <div class="eq-box-green eq-box">a + b = <span class="eq-ans">5</span></div>
+    </div>
+    <button class="btn btn-reveal-sm" id="d3btn" onclick="showAns('d3ans','d3btn')">정답 확인 ▼</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(7)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(9)">나머지 정리 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S9: 연습 — 나머지 정리 기본
+════════════════════════════ -->
+<div class="screen" id="s9">
+<div class="wrap">
+  <div class="prob-nav-bar">
+    <span class="prob-nav-lbl">✏️</span>
+    <button class="prob-num-btn" data-target="8" onclick="goTo(8)">1. 다항식연산</button>
+    <button class="prob-num-btn" data-target="9" onclick="goTo(9)">2. 나머지기본</button>
+    <button class="prob-num-btn" data-target="10" onclick="goTo(10)">3. 나머지응용</button>
+    <button class="prob-num-btn" data-target="11" onclick="goTo(11)">4. 인수분해</button>
+    <button class="prob-num-btn" data-target="12" onclick="goTo(12)">5. 근과계수</button>
+    <button class="prob-num-btn" data-target="13" onclick="goTo(13)">6. 판별식</button>
+  </div>
+
+  <span class="tag tag-navy">대표 문제</span>
+  <h2 style="margin-top:.3rem">🔑 나머지 정리 — 기본</h2>
+  <div class="card card-blue">
+    <p><b>문제.</b> f(x)를 (x−1)로 나눈 나머지가 4이고,<br>
+    g(x)를 (x−1)로 나눈 나머지가 −2일 때,<br>
+    <b>2f(x) + 3g(x)</b>를 (x−1)로 나눈 나머지는?</p>
+  </div>
+
+  <div id="r1s1" class="prob-step">
+    <div class="ps-label tag tag-blue">① 핵심 확인</div>
+    <p>(x−1)로 나눈 나머지 = <b>x = 1을 대입한 값</b></p>
+    <p>f(<b>1</b>) = 4,&nbsp;&nbsp; g(<b>1</b>) = −2</p>
+  </div>
+  <div id="r1s2" class="prob-step">
+    <div class="ps-label tag tag-amber">② 2f(x)+3g(x)에 x=1 대입</div>
+    <p>2f(1) + 3g(1) = 2×4 + 3×(−2)</p>
+    <p>= 8 − 6</p>
+  </div>
+  <div id="r1s3" class="prob-step">
+    <div class="ps-label tag tag-green">③ 정답</div>
+    <div class="eq-box-green eq-box">나머지 = <span class="eq-ans">2</span></div>
+    <p style="font-size:.85rem;color:var(--muted)">나머지 정리에 의해 2f(x)+3g(x)를 (x−1)로 나눈 나머지 = 2f(1)+3g(1) = 2</p>
+  </div>
+  <button class="btn btn-reveal" id="r1btn" onclick="reveal('r1s',1,3,'r1btn')">풀이 보기 ▼</button>
+
+  <div class="practice" style="margin-top:1.2rem">
+    <div class="practice-title">✏️ 연습 1</div>
+    <p><b>문제.</b> x³ + 2x² − x + k를 (x−2)로 나눈 나머지가 10일 때, <b>상수 k</b>의 값은?</p>
+    <div id="r2ans" class="prob-step" style="margin-top:.5rem">
+      <div class="ps-label tag tag-green">풀이</div>
+      <p>나머지 정리: f(2) = 10</p>
+      <p>f(2) = 2³ + 2·2² − 2 + k = 8 + 8 − 2 + k = 14 + k</p>
+      <p>14 + k = 10 → k = −4</p>
+      <div class="eq-box-green eq-box">k = <span class="eq-ans">−4</span></div>
+    </div>
+    <button class="btn btn-reveal-sm" id="r2btn" onclick="showAns('r2ans','r2btn')">정답 확인 ▼</button>
+  </div>
+
+  <div class="practice">
+    <div class="practice-title">✏️ 연습 2</div>
+    <p><b>문제.</b> f(x)를 (x+3)으로 나눈 나머지가 7이고, g(x)를 (x+3)으로 나눈 나머지가 2일 때,<br>
+    <b>f(x)·g(x)</b>를 (x+3)으로 나눈 나머지는?</p>
+    <div id="r3ans" class="prob-step" style="margin-top:.5rem">
+      <div class="ps-label tag tag-green">풀이</div>
+      <p>(x+3)으로 나눈 나머지 = x = −3을 대입한 값</p>
+      <p>f(−3) = 7,&nbsp;&nbsp; g(−3) = 2</p>
+      <p>f(−3)·g(−3) = 7 × 2 = 14</p>
+      <div class="eq-box-green eq-box">나머지 = <span class="eq-ans">14</span></div>
+    </div>
+    <button class="btn btn-reveal-sm" id="r3btn" onclick="showAns('r3ans','r3btn')">정답 확인 ▼</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(8)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(10)">나머지 응용 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S10: 연습 — 나머지 정리 응용
+════════════════════════════ -->
+<div class="screen" id="s10">
+<div class="wrap">
+  <div class="prob-nav-bar">
+    <span class="prob-nav-lbl">✏️</span>
+    <button class="prob-num-btn" data-target="8" onclick="goTo(8)">1. 다항식연산</button>
+    <button class="prob-num-btn" data-target="9" onclick="goTo(9)">2. 나머지기본</button>
+    <button class="prob-num-btn" data-target="10" onclick="goTo(10)">3. 나머지응용</button>
+    <button class="prob-num-btn" data-target="11" onclick="goTo(11)">4. 인수분해</button>
+    <button class="prob-num-btn" data-target="12" onclick="goTo(12)">5. 근과계수</button>
+    <button class="prob-num-btn" data-target="13" onclick="goTo(13)">6. 판별식</button>
+  </div>
+
+  <span class="tag tag-navy">대표 문제</span>
+  <h2 style="margin-top:.3rem">🔑 나머지 정리 — 응용</h2>
+  <div class="card card-blue">
+    <p><b>문제.</b> 다항식 f(x)를 (x−1)로 나눈 나머지가 3이고,<br>
+    (x−2)로 나눈 나머지가 −1일 때,<br>
+    f(x)를 <b>(x−1)(x−2)</b>로 나눈 나머지 <b>ax + b</b>에서<br>
+    a + b의 값은?</p>
+    <p class="muted" style="margin-top:.4rem">→ 나누는 식이 이차식이면 나머지는 일차식 이하!</p>
+  </div>
+
+  <div id="ra1s1" class="prob-step">
+    <div class="ps-label tag tag-blue">① 나머지를 ax+b로 설정</div>
+    <p>(x−1)(x−2)로 나눈 나머지의 차수 &lt; 나누는 식의 차수(2차)</p>
+    <p>→ 나머지 = ax + b (일차식) 으로 놓는다</p>
+    <p>f(x) = Q(x)(x−1)(x−2) + <b>ax + b</b></p>
+  </div>
+  <div id="ra1s2" class="prob-step">
+    <div class="ps-label tag tag-amber">② x = 1 대입</div>
+    <p>f(1) = Q(1)·0·(1−2) + a·1 + b = a + b = <b>3</b></p>
+    <div class="eq-box">a + b = 3 &nbsp;··· ㉠</div>
+  </div>
+  <div id="ra1s3" class="prob-step">
+    <div class="ps-label tag tag-amber">③ x = 2 대입</div>
+    <p>f(2) = Q(2)·(2−1)·0 + a·2 + b = 2a + b = <b>−1</b></p>
+    <div class="eq-box">2a + b = −1 &nbsp;··· ㉡</div>
+  </div>
+  <div id="ra1s4" class="prob-step">
+    <div class="ps-label tag tag-green">④ 연립 → 정답</div>
+    <p>㉡ − ㉠: a = −4,&nbsp;&nbsp; b = 3 − (−4) = 7</p>
+    <div class="eq-box-green eq-box">a + b = −4 + 7 = <span class="eq-ans">3</span></div>
+  </div>
+  <button class="btn btn-reveal" id="ra1btn" onclick="reveal('ra1s',1,4,'ra1btn')">풀이 보기 ▼</button>
+
+  <div class="practice" style="margin-top:1.2rem">
+    <div class="practice-title">✏️ 연습 1</div>
+    <p><b>문제.</b> 다항식 f(x)를 (x+1)로 나누면 나머지가 5이고,<br>
+    (x−2)로 나누면 나머지가 2이다.<br>
+    f(x)를 <b>(x+1)(x−2)</b>로 나눈 나머지 <b>px + q</b>에서 p + q의 값은?</p>
+    <div id="ra2ans" class="prob-step" style="margin-top:.5rem">
+      <div class="ps-label tag tag-green">풀이</div>
+      <p>f(x) = Q(x)(x+1)(x−2) + px + q</p>
+      <p>x = −1 대입: p(−1) + q = 5 → −p + q = 5 ··· ㉠</p>
+      <p>x = 2 대입: 2p + q = 2 ··· ㉡</p>
+      <p>㉡ − ㉠: 3p = −3 → p = −1, q = 4</p>
+      <div class="eq-box-green eq-box">p + q = −1 + 4 = <span class="eq-ans">3</span></div>
+    </div>
+    <button class="btn btn-reveal-sm" id="ra2btn" onclick="showAns('ra2ans','ra2btn')">정답 확인 ▼</button>
+  </div>
+
+  <div class="practice">
+    <div class="practice-title">✏️ 연습 2</div>
+    <p><b>문제.</b> 다항식 f(x)를 (x−3)으로 나눈 나머지가 −2이다.<br>
+    다항식 <b>f(x²−1)</b>을 (x−2)로 나눈 나머지는?</p>
+    <div id="ra3ans" class="prob-step" style="margin-top:.5rem">
+      <div class="ps-label tag tag-green">풀이</div>
+      <p>나머지 정리: f(x²−1)을 (x−2)로 나눈 나머지 = <b>x=2를 대입</b></p>
+      <p>x = 2 → x²−1 = 4−1 = 3</p>
+      <p>f(3) = f((2)²−1) = f(3)</p>
+      <p>f(3)은 f(x)를 (x−3)으로 나눈 나머지 = −2</p>
+      <div class="eq-box-green eq-box">나머지 = <span class="eq-ans">−2</span></div>
+    </div>
+    <button class="btn btn-reveal-sm" id="ra3btn" onclick="showAns('ra3ans','ra3btn')">정답 확인 ▼</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(9)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(11)">인수분해 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S11: 연습 — 인수분해 계수
+════════════════════════════ -->
+<div class="screen" id="s11">
+<div class="wrap">
+  <div class="prob-nav-bar">
+    <span class="prob-nav-lbl">✏️</span>
+    <button class="prob-num-btn" data-target="8" onclick="goTo(8)">1. 다항식연산</button>
+    <button class="prob-num-btn" data-target="9" onclick="goTo(9)">2. 나머지기본</button>
+    <button class="prob-num-btn" data-target="10" onclick="goTo(10)">3. 나머지응용</button>
+    <button class="prob-num-btn" data-target="11" onclick="goTo(11)">4. 인수분해</button>
+    <button class="prob-num-btn" data-target="12" onclick="goTo(12)">5. 근과계수</button>
+    <button class="prob-num-btn" data-target="13" onclick="goTo(13)">6. 판별식</button>
+  </div>
+
+  <span class="tag tag-navy">대표 문제</span>
+  <h2 style="margin-top:.3rem">🧩 인수분해와 계수 결정</h2>
+  <div class="card card-blue">
+    <p><b>문제.</b> 다항식 x³ + ax + b가<br>
+    (x − 1)(x² + cx + 1)로 인수분해될 때,<br>
+    <b>a + b + c</b>의 값은? (단, a, b, c는 상수)</p>
+  </div>
+
+  <div id="f1s1" class="prob-step">
+    <div class="ps-label tag tag-blue">① 우변 전개</div>
+    <p>(x−1)(x² + cx + 1)</p>
+    <p>= x³ + cx² + x − x² − cx − 1</p>
+    <p>= x³ + (c−1)x² + (1−c)x − 1</p>
+  </div>
+  <div id="f1s2" class="prob-step">
+    <div class="ps-label tag tag-amber">② 계수 비교 (좌변과 우변)</div>
+    <p>좌변: x³ + 0·x² + ax + b</p>
+    <p>우변: x³ + (c−1)x² + (1−c)x − 1</p>
+    <p>x² 계수: c − 1 = 0 → <b>c = 1</b></p>
+    <p>x 계수: 1 − c = a → 1 − 1 = 0 → <b>a = 0</b></p>
+    <p>상수: −1 = b → <b>b = −1</b></p>
+  </div>
+  <div id="f1s3" class="prob-step">
+    <div class="ps-label tag tag-green">③ 정답</div>
+    <div class="eq-box-green eq-box">a + b + c = 0 + (−1) + 1 = <span class="eq-ans">0</span></div>
+  </div>
+  <button class="btn btn-reveal" id="f1btn" onclick="reveal('f1s',1,3,'f1btn')">풀이 보기 ▼</button>
+
+  <div class="practice" style="margin-top:1.2rem">
+    <div class="practice-title">✏️ 연습 1</div>
+    <p><b>문제.</b> 2x² + ax + b가 (x − 1)(2x + 3)으로 인수분해될 때, <b>a − b</b>의 값은?</p>
+    <div id="f2ans" class="prob-step" style="margin-top:.5rem">
+      <div class="ps-label tag tag-green">풀이</div>
+      <p>(x−1)(2x+3) = 2x² + 3x − 2x − 3 = 2x² + x − 3</p>
+      <p>계수 비교: a = 1, b = −3</p>
+      <div class="eq-box-green eq-box">a − b = 1 − (−3) = <span class="eq-ans">4</span></div>
+    </div>
+    <button class="btn btn-reveal-sm" id="f2btn" onclick="showAns('f2ans','f2btn')">정답 확인 ▼</button>
+  </div>
+
+  <div class="practice">
+    <div class="practice-title">✏️ 연습 2</div>
+    <p><b>문제.</b> x² + px + q가 (x − 1)과 (x − 5)로 나누어 떨어질 때, <b>p + q</b>의 값은?</p>
+    <div id="f3ans" class="prob-step" style="margin-top:.5rem">
+      <div class="ps-label tag tag-green">풀이</div>
+      <p>(x−1)로 나누어 떨어짐 → f(1) = 1 + p + q = 0 → p + q = −1 ··· ㉠</p>
+      <p>(x−5)로 나누어 떨어짐 → f(5) = 25 + 5p + q = 0 → 5p + q = −25 ··· ㉡</p>
+      <p>㉡ − ㉠: 4p = −24 → p = −6, q = 5</p>
+      <div class="eq-box-green eq-box">p + q = <span class="eq-ans">−1</span></div>
+    </div>
+    <button class="btn btn-reveal-sm" id="f3btn" onclick="showAns('f3ans','f3btn')">정답 확인 ▼</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(10)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(12)">근과 계수 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S12: 연습 — 근과 계수의 관계
+════════════════════════════ -->
+<div class="screen" id="s12">
+<div class="wrap">
+  <div class="prob-nav-bar">
+    <span class="prob-nav-lbl">✏️</span>
+    <button class="prob-num-btn" data-target="8" onclick="goTo(8)">1. 다항식연산</button>
+    <button class="prob-num-btn" data-target="9" onclick="goTo(9)">2. 나머지기본</button>
+    <button class="prob-num-btn" data-target="10" onclick="goTo(10)">3. 나머지응용</button>
+    <button class="prob-num-btn" data-target="11" onclick="goTo(11)">4. 인수분해</button>
+    <button class="prob-num-btn" data-target="12" onclick="goTo(12)">5. 근과계수</button>
+    <button class="prob-num-btn" data-target="13" onclick="goTo(13)">6. 판별식</button>
+  </div>
+
+  <span class="tag tag-navy">대표 문제</span>
+  <h2 style="margin-top:.3rem">⚖️ 근과 계수의 관계</h2>
+  <div class="card card-blue">
+    <p><b>문제.</b> x에 대한 이차방정식<br>
+    <b>x² − 6x + 4 = 0</b>의 두 근을 α, β라 할 때,<br>
+    <b>α² + β²</b>의 값은?</p>
+  </div>
+
+  <div id="b1s1" class="prob-step">
+    <div class="ps-label tag tag-blue">① 근과 계수의 관계 적용</div>
+    <p>x² − 6x + 4 = 0에서</p>
+    <p>α + β = <b>6</b>&nbsp;&nbsp;&nbsp;&nbsp; (−(−6)/1)</p>
+    <p>αβ = <b>4</b>&nbsp;&nbsp;&nbsp;&nbsp; (4/1)</p>
+  </div>
+  <div id="b1s2" class="prob-step">
+    <div class="ps-label tag tag-amber">② 공식 사용: α² + β² = (α+β)² − 2αβ</div>
+    <p>직접 구하면 α²+β² = ?</p>
+    <p>→ 대신 <span class="hl">(α+β)² = α² + 2αβ + β²</span> 변형</p>
+    <p>→ α² + β² = (α+β)² − 2αβ</p>
+  </div>
+  <div id="b1s3" class="prob-step">
+    <div class="ps-label tag tag-green">③ 계산 → 정답</div>
+    <p>= 6² − 2×4 = 36 − 8</p>
+    <div class="eq-box-green eq-box">α² + β² = <span class="eq-ans">28</span></div>
+  </div>
+  <button class="btn btn-reveal" id="b1btn" onclick="reveal('b1s',1,3,'b1btn')">풀이 보기 ▼</button>
+
+  <div class="practice" style="margin-top:1.2rem">
+    <div class="practice-title">✏️ 연습 1</div>
+    <p><b>문제.</b> x² − 3x − 5 = 0의 두 근 α, β에 대해 <b>1/α + 1/β</b>의 값은?</p>
+    <div id="b2ans" class="prob-step" style="margin-top:.5rem">
+      <div class="ps-label tag tag-green">풀이</div>
+      <p>α + β = 3,&nbsp;&nbsp; αβ = −5</p>
+      <p>1/α + 1/β = (α + β) / αβ = 3 / (−5)</p>
+      <div class="eq-box-green eq-box">1/α + 1/β = <span class="eq-ans">−3/5</span></div>
+    </div>
+    <button class="btn btn-reveal-sm" id="b2btn" onclick="showAns('b2ans','b2btn')">정답 확인 ▼</button>
+  </div>
+
+  <div class="practice">
+    <div class="practice-title">✏️ 연습 2</div>
+    <p><b>문제.</b> 두 수의 합이 4이고 곱이 −5인 이차방정식을 구하면?<br>
+    (단, 최고차항의 계수는 1)</p>
+    <div id="b3ans" class="prob-step" style="margin-top:.5rem">
+      <div class="ps-label tag tag-green">풀이</div>
+      <p>근과 계수의 관계를 역으로 이용!</p>
+      <p>두 근 α+β = 4, αβ = −5이면 이차방정식은:</p>
+      <p>x² − (α+β)x + αβ = 0</p>
+      <div class="eq-box-green eq-box"><span class="eq-ans">x² − 4x − 5 = 0</span></div>
+      <p class="muted" style="margin-top:.3rem">검증: (x−5)(x+1) = 0 → 두 근 5, −1 → 합=4, 곱=−5 ✓</p>
+    </div>
+    <button class="btn btn-reveal-sm" id="b3btn" onclick="showAns('b3ans','b3btn')">정답 확인 ▼</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(11)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(13)">판별식 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S13: 연습 — 판별식
+════════════════════════════ -->
+<div class="screen" id="s13">
+<div class="wrap">
+  <div class="prob-nav-bar">
+    <span class="prob-nav-lbl">✏️</span>
+    <button class="prob-num-btn" data-target="8" onclick="goTo(8)">1. 다항식연산</button>
+    <button class="prob-num-btn" data-target="9" onclick="goTo(9)">2. 나머지기본</button>
+    <button class="prob-num-btn" data-target="10" onclick="goTo(10)">3. 나머지응용</button>
+    <button class="prob-num-btn" data-target="11" onclick="goTo(11)">4. 인수분해</button>
+    <button class="prob-num-btn" data-target="12" onclick="goTo(12)">5. 근과계수</button>
+    <button class="prob-num-btn" data-target="13" onclick="goTo(13)">6. 판별식</button>
+  </div>
+
+  <span class="tag tag-navy">대표 문제</span>
+  <h2 style="margin-top:.3rem">🎯 판별식</h2>
+  <div class="card card-blue">
+    <p><b>문제.</b> 이차방정식 <b>x² − 2kx + k + 6 = 0</b>이<br>
+    중근을 가질 때, 상수 k의 값을 모두 구하면?</p>
+  </div>
+
+  <div id="p1s1" class="prob-step">
+    <div class="ps-label tag tag-blue">① 중근 조건</div>
+    <p>중근 ↔ 판별식 D = 0</p>
+    <p>여기서 b = −2k이므로, D/4를 사용합니다.</p>
+    <p>D/4 = (b/2)² − ac = k² − (k + 6)</p>
+  </div>
+  <div id="p1s2" class="prob-step">
+    <div class="ps-label tag tag-amber">② D/4 = 0 설정</div>
+    <p>k² − k − 6 = 0</p>
+    <p>(k − 3)(k + 2) = 0</p>
+  </div>
+  <div id="p1s3" class="prob-step">
+    <div class="ps-label tag tag-green">③ 정답</div>
+    <div class="eq-box-green eq-box">k = <span class="eq-ans">3</span> 또는 k = <span class="eq-ans">−2</span></div>
+    <p class="muted" style="margin-top:.3rem">k=3: x²−6x+9=0 → (x−3)²=0 (중근 3) ✓<br>k=−2: x²+4x+4=0 → (x+2)²=0 (중근 −2) ✓</p>
+  </div>
+  <button class="btn btn-reveal" id="p1btn" onclick="reveal('p1s',1,3,'p1btn')">풀이 보기 ▼</button>
+
+  <div class="practice" style="margin-top:1.2rem">
+    <div class="practice-title">✏️ 연습 1</div>
+    <p><b>문제.</b> x² + 2ax + a + 2 = 0이 <b>허근</b>을 가지도록 하는 정수 a의 최솟값은?</p>
+    <div id="p2ans" class="prob-step" style="margin-top:.5rem">
+      <div class="ps-label tag tag-green">풀이</div>
+      <p>허근 조건: D &lt; 0</p>
+      <p>D/4 = a² − (a+2) = a² − a − 2 &lt; 0</p>
+      <p>(a−2)(a+1) &lt; 0 → −1 &lt; a &lt; 2</p>
+      <p>정수 a = 0, 1 → 최솟값은 0</p>
+      <div class="eq-box-green eq-box">최솟값 = <span class="eq-ans">0</span></div>
+    </div>
+    <button class="btn btn-reveal-sm" id="p2btn" onclick="showAns('p2ans','p2btn')">정답 확인 ▼</button>
+  </div>
+
+  <div class="practice">
+    <div class="practice-title">✏️ 연습 2</div>
+    <p><b>문제.</b> 직선 <b>y = 2x + k</b>가 포물선 <b>y = x²</b>에 접할 때, 상수 k의 값은?</p>
+    <div id="p3ans" class="prob-step" style="margin-top:.5rem">
+      <div class="ps-label tag tag-green">풀이</div>
+      <p>접선 조건: 연립방정식의 판별식 D = 0</p>
+      <p>x² = 2x + k → x² − 2x − k = 0</p>
+      <p>D/4 = (−1)² − (1)(−k) = 1 + k = 0</p>
+      <p>k = −1</p>
+      <div class="eq-box-green eq-box">k = <span class="eq-ans">−1</span></div>
+      <p class="muted" style="margin-top:.3rem">검증: x² − 2x + 1 = 0 → (x−1)² = 0 → x=1 (접점) ✓</p>
+    </div>
+    <button class="btn btn-reveal-sm" id="p3btn" onclick="showAns('p3ans','p3btn')">정답 확인 ▼</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(12)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(14)">핵심 정리 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════════════════════════════
+     S14: 핵심 정리
+════════════════════════════ -->
+<div class="screen" id="s14">
+<div class="wrap">
+  <span class="tag tag-navy">📋 정리</span>
+  <h2 style="margin-top:.3rem">핵심 공식 한눈에 보기</h2>
+
+  <div class="card card-blue">
+    <span class="tag tag-blue">다항식의 연산</span>
+    <ul class="checklist" style="margin-top:.5rem">
+      <li>kA + mB → A, B 각각에 k, m 곱한 뒤 동류항 정리</li>
+      <li>부호 조심: A − B에서 B의 모든 항 부호 반대</li>
+    </ul>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">나머지 정리</span>
+    <div class="eq-box">f(x)를 (x−a)로 나눈 나머지 = f(<span class="eq-hi">a</span>)</div>
+    <ul class="checklist" style="margin-top:.4rem">
+      <li>(x+a)로 나누면 x = <b>−a</b> 대입 (부호 반대!)</li>
+      <li>이차식으로 나누면 나머지는 일차식 이하 → ax+b로 설정</li>
+      <li>f(g(x))를 (x−a)로 나눈 나머지 → x=a 대입 후 f(g(a))</li>
+    </ul>
+  </div>
+
+  <div class="card card-green">
+    <span class="tag tag-green">인수분해와 항등식</span>
+    <ul class="checklist" style="margin-top:.5rem">
+      <li>인수분해 형태 주어지면 → 전개 후 계수 비교</li>
+      <li>항등식: 특정 값 대입 → 미지수 결정</li>
+    </ul>
+  </div>
+
+  <div class="card card-purple">
+    <span class="tag tag-purple">근과 계수의 관계</span>
+    <div class="eq-box">ax²+bx+c=0의 두 근 α,β<br>
+    α+β = <span class="eq-hi">−b/a</span>&nbsp;&nbsp;, αβ = <span class="eq-ans">c/a</span></div>
+    <ul class="checklist" style="margin-top:.4rem">
+      <li>α²+β² = (α+β)² − 2αβ</li>
+      <li>(α−β)² = (α+β)² − 4αβ</li>
+      <li>1/α + 1/β = (α+β) / αβ</li>
+    </ul>
+  </div>
+
+  <div class="card card-red">
+    <span class="tag tag-red">판별식</span>
+    <div class="eq-box">D = b² − 4ac</div>
+    <ul class="checklist" style="margin-top:.4rem">
+      <li>D &gt; 0 : 서로 다른 두 실근</li>
+      <li>D = 0 : 중근 (접선 조건)</li>
+      <li>D &lt; 0 : 허근 (그래프가 만나지 않음)</li>
+    </ul>
+  </div>
+
+  <div class="card card-navy" style="text-align:center;padding:1.4rem">
+    <p style="color:#bfdbfe;font-size:.92rem">공식을 외우는 것보다</p>
+    <p style="color:#fff;font-size:1.2rem;font-weight:800;margin:.4rem 0">왜 그렇게 되는지 이해하면<br>변형 문제도 풀 수 있습니다</p>
+    <p style="color:#93c5fd;font-size:.88rem">2022 강남구 수학상 중간고사 완성 🎉</p>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(13)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(1)" style="background:var(--green)">처음부터 →</button>
+  </div>
+</div>
+</div>
+
+
+<script>
+const TOTAL = 14;
+
+/* ── Progress bar 생성 ── */
+(function(){
+  const bar = document.getElementById('prog');
+  function makeSection(label, from, to){
+    const sec = document.createElement('div');
+    sec.className = 'prog-section';
+    if(label){
+      const lbl = document.createElement('span');
+      lbl.className = 'prog-section-label';
+      lbl.textContent = label;
+      sec.appendChild(lbl);
+    }
+    for(let i = from; i <= to; i++){
+      const d = document.createElement('div');
+      d.className = 'prog-dot';
+      d.onclick = () => goTo(i);
+      d.id = 'dot' + i;
+      sec.appendChild(d);
+    }
+    return sec;
+  }
+  function makeSep(){
+    const s = document.createElement('div');
+    s.className = 'prog-sep';
+    return s;
+  }
+  bar.appendChild(makeSection('📖 개념', 1, 7));
+  bar.appendChild(makeSep());
+  bar.appendChild(makeSection('✏️ 연습', 8, 13));
+  bar.appendChild(makeSep());
+  bar.appendChild(makeSection('📋 정리', 14, 14));
+  updateDots(1);
+})();
+
+function updateDots(cur){
+  for(let i = 1; i <= TOTAL; i++){
+    const d = document.getElementById('dot' + i);
+    if(!d) continue;
+    d.className = 'prog-dot' + (i === cur ? ' on' : i < cur ? ' done' : '');
+  }
+}
+
+function goTo(n){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('s' + n);
+  if(!target) return;
+  target.classList.add('active');
+  updateDots(n);
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  document.querySelectorAll('.prob-num-btn').forEach(btn => {
+    btn.classList.toggle('active', +btn.dataset.target === n);
+  });
+}
+
+/* ── 단계별 풀이 공개 ── */
+function reveal(pfx, step, max, btnId){
+  const el = document.getElementById(pfx + step);
+  if(el) el.classList.add('show');
+  const btn = document.getElementById(btnId);
+  if(!btn) return;
+  if(step < max){
+    btn.textContent = '다음 단계 ▼';
+    btn.onclick = () => reveal(pfx, step + 1, max, btnId);
+  } else {
+    btn.textContent = '✓ 완료';
+    btn.disabled = true;
+  }
+}
+
+/* ── 정답 한 번에 공개 ── */
+function showAns(id, btnId){
+  const el = document.getElementById(id);
+  if(el) el.classList.add('show');
+  const btn = document.getElementById(btnId);
+  if(btn){ btn.textContent = '✓ 확인'; btn.disabled = true; }
+}
+</script>
+</body>
+</html>

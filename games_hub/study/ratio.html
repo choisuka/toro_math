@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>비와 비율 | 수학여행학원-영통</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1e3a5f;--blue:#2563eb;--sky:#38bdf8;
+  --amber:#d97706;--green:#059669;--red:#dc2626;
+  --purple:#7c3aed;--teal:#0d9488;
+  --bg:#f0fff8;--card:#fff;--text:#1e1e2e;--muted:#6b7280;
+}
+body{background:var(--bg);color:var(--text);font-family:'Malgun Gothic','맑은 고딕',sans-serif;min-height:100vh;overflow-x:hidden}
+
+header{background:var(--navy);padding:.9rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--teal)}
+header h1{color:#fff;font-size:1.1rem;font-weight:700}
+.back-link{color:#99f6e4;text-decoration:none;font-size:.82rem}
+
+.prog-bar{display:flex;justify-content:center;gap:.45rem;padding:.65rem;background:#ccfbf1}
+.prog-dot{width:10px;height:10px;border-radius:50%;background:#99e6d8;transition:background .3s,transform .3s;cursor:pointer}
+.prog-dot.on{background:var(--teal);transform:scale(1.3)}
+.prog-dot.done{background:var(--green)}
+
+.screen{display:none;animation:fadeIn .35s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.wrap{max-width:700px;margin:0 auto;padding:1.2rem 1rem}
+
+.card{background:var(--card);border-radius:1rem;padding:1.4rem;margin:.8rem 0;border:1px solid #b2f0e8;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card-navy{background:var(--navy);color:#fff;border:none}
+.card-teal{background:#f0fdfa;border-left:4px solid var(--teal)}
+.card-amber{background:#fffbeb;border-left:4px solid var(--amber)}
+.card-green{background:#f0fdf4;border-left:4px solid var(--green)}
+.card-red{background:#fef2f2;border-left:4px solid var(--red)}
+.card-blue{background:#eff6ff;border-left:4px solid var(--blue)}
+.card-purple{background:#f5f3ff;border-left:4px solid var(--purple)}
+
+h2{font-size:1.4rem;font-weight:800;margin-bottom:.6rem;line-height:1.35}
+h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
+p{font-size:.95rem;line-height:1.8;margin:.35rem 0}
+.muted{color:var(--muted);font-size:.88rem}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;padding:.18rem .55rem;border-radius:999px;margin-bottom:.4rem}
+.tag-teal{background:#ccfbf1;color:#134e4a}
+.tag-blue{background:#dbeafe;color:#1e40af}
+.tag-amber{background:#fef3c7;color:#92400e}
+.tag-red{background:#fee2e2;color:#991b1b}
+.tag-green{background:#dcfce7;color:#14532d}
+.tag-purple{background:#ede9fe;color:#5b21b6}
+.tag-navy{background:#1e3a5f;color:#99f6e4}
+
+.eq-box{text-align:center;font-size:1.2rem;font-weight:800;background:#f0fdfa;border:2px solid var(--teal);border-radius:.75rem;padding:.8rem 1rem;margin:.6rem 0;color:var(--navy);font-family:'Courier New',monospace}
+.eq-hi{color:var(--red)}
+.eq-ans{color:var(--green)}
+.def-box{text-align:center;font-size:1.1rem;font-weight:800;background:#f5f3ff;border:2px solid var(--purple);border-radius:.75rem;padding:.8rem 1rem;margin:.6rem 0;color:var(--purple)}
+
+.think{background:#fff7ed;border:2px solid var(--amber);border-radius:.75rem;padding:.9rem 1rem;margin:.7rem 0;text-align:center}
+.think p{font-size:1rem;font-weight:700;color:#92400e}
+
+/* Bar ratio visual */
+.ratio-bar{display:flex;height:2.2rem;border-radius:.5rem;overflow:hidden;margin:.8rem 0;border:2px solid #b2f0e8}
+.ratio-a{background:#2563eb;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.88rem;transition:flex .6s}
+.ratio-b{background:#0d9488;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.88rem;transition:flex .6s}
+
+/* Percent bar */
+.pct-bar-wrap{margin:.8rem 0}
+.pct-bar{height:2rem;border-radius:.5rem;background:linear-gradient(to right,var(--teal),var(--blue));display:flex;align-items:center;padding:0 .7rem;color:#fff;font-weight:700;font-size:.9rem;transition:width .6s}
+
+/* Proportion box */
+.prop-box{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.6rem 0}
+.prop-cell{background:#f0fdfa;border:2px solid var(--teal);border-radius:.6rem;padding:.6rem;text-align:center;font-weight:700;font-size:1rem}
+.prop-cell.hi{background:#fef3c7;border-color:var(--amber)}
+.prop-cross{text-align:center;font-size:.85rem;color:var(--red);font-weight:700;padding:.3rem 0}
+
+/* Problem steps */
+.prob-step{background:#f8fafc;border-radius:.6rem;border:1px solid #e2e8f0;padding:.75rem 1rem;margin:.5rem 0;display:none}
+.prob-step.show{display:block;animation:fadeIn .3s ease}
+.ps-label{font-size:.72rem;font-weight:700;letter-spacing:.06em;margin-bottom:.3rem}
+
+/* Diff tabs */
+.diff-tabs{display:flex;gap:.5rem;margin:.7rem 0}
+.diff-btn{flex:1;padding:.55rem;border-radius:.55rem;border:2px solid #e2e8f0;background:#fff;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s}
+.diff-btn.lv1.active{background:#dcfce7;border-color:#22c55e;color:#14532d}
+.diff-btn.lv2.active{background:#fef3c7;border-color:var(--amber);color:#92400e}
+.diff-btn.lv3.active{background:#fee2e2;border-color:var(--red);color:#991b1b}
+.diff-prob{display:none}
+.diff-prob.active{display:block}
+
+/* Steps */
+.steps{display:flex;flex-direction:column;gap:.55rem;margin:.8rem 0}
+.step-item{display:flex;align-items:flex-start;gap:.75rem;padding:.6rem .8rem;border-radius:.6rem;background:#f8fafc;border:1px solid #e2e8f0;opacity:.35;transition:opacity .4s,border-color .4s}
+.step-item.on{opacity:1;border-color:var(--teal);background:#f0fdfa}
+.step-num{flex-shrink:0;width:1.8rem;height:1.8rem;border-radius:50%;background:var(--teal);color:#fff;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step-body{flex:1}
+.step-title{font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:.18rem}
+.step-desc{font-size:.85rem;color:#374151;line-height:1.6}
+
+/* Buttons */
+.btn-row{display:flex;gap:.6rem;justify-content:space-between;margin-top:1.2rem;flex-wrap:wrap}
+.btn{padding:.65rem 1.4rem;border-radius:.55rem;border:none;cursor:pointer;font-size:.9rem;font-weight:700;font-family:'Malgun Gothic',sans-serif;transition:all .18s}
+.btn-prev{background:#ccfbf1;color:#374151}
+.btn-prev:hover{background:#99f6e4}
+.btn-next{background:var(--navy);color:#fff;margin-left:auto}
+.btn-next:hover{background:var(--teal)}
+.btn-reveal{background:var(--amber);color:#fff;width:100%;margin:.3rem 0}
+.btn-reveal:hover{opacity:.88}
+.btn-reveal:disabled{background:#aab8c9;cursor:default}
+
+.hl{background:#ccfbf1;border-radius:.25rem;padding:.1rem .25rem;font-weight:700;color:#134e4a}
+
+.vs-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:.5rem}
+.vs-table th{padding:.4rem;text-align:center;background:#f0fdfa;color:#134e4a;border-bottom:2px solid #99f6e4}
+.vs-table td{padding:.4rem;text-align:center;border-bottom:1px solid #ccfbf1}
+
+.final-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:.5rem}
+.final-table th{padding:.4rem .5rem;background:var(--navy);color:#fff;text-align:center}
+.final-table td{padding:.4rem .5rem;border-bottom:1px solid #e2e8f0;text-align:center}
+.final-table tr:nth-child(even) td{background:#f8fafc}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📊 비와 비율</h1>
+  <a class="back-link" href="../index.html">← 홈</a>
+</header>
+
+<div class="prog-bar" id="prog"></div>
+
+
+<!-- ════ SCREEN 1: 도입 ════ -->
+<div class="screen active" id="s1">
+<div class="wrap">
+  <div class="card card-navy" style="text-align:center;padding:2rem 1.4rem">
+    <div style="font-size:3rem;margin-bottom:.6rem">🍊🍎</div>
+    <h2 style="color:#fff;font-size:1.6rem">오렌지 3개, 사과 4개<br>"비"로 어떻게 나타낼까요?</h2>
+    <p style="color:#99f6e4;margin-top:.8rem">비(比)는 두 수를 비교하는 방법입니다</p>
+  </div>
+
+  <div class="card card-teal">
+    <span class="tag tag-teal">비교의 두 가지 방법</span>
+    <table class="vs-table">
+      <tr><th>방법</th><th>예시</th><th>의미</th></tr>
+      <tr><td><b>빼기 비교</b></td><td>4 - 3 = 1</td><td>사과가 1개 더 많다</td></tr>
+      <tr><td><b>나누기 비교 (비)</b></td><td>3 : 4</td><td>오렌지는 사과의 3/4배</td></tr>
+    </table>
+    <p class="muted" style="margin-top:.5rem">비는 <b>나누기로 비교</b>할 때 사용합니다</p>
+  </div>
+
+  <div class="ratio-bar" id="demoBar">
+    <div class="ratio-a" style="flex:3" id="barA">오렌지 3</div>
+    <div class="ratio-b" style="flex:4" id="barB">사과 4</div>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">비가 중요한 이유</span>
+    <p>오렌지 30개, 사과 40개여도 비율은 같다!</p>
+    <div class="eq-box" style="font-size:1rem">3 : 4 = 30 : 40 = 300 : 400</div>
+    <p class="muted">→ 실제 양이 달라도 <span class="hl">관계(비율)</span>는 같을 수 있습니다</p>
+  </div>
+
+  <div class="think">
+    <p>💭 "몇 배?" 라는 질문에 답하는 것이 바로 <span style="color:var(--teal)">비</span>입니다!</p>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-next" onclick="goTo(2)">비 쓰는 법 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 2: 비 표현 방법 ════ -->
+<div class="screen" id="s2">
+<div class="wrap">
+  <span class="tag tag-teal">개념 1</span>
+  <h2 style="margin-top:.3rem">비(比) 읽고 쓰는 법</h2>
+
+  <div class="def-box">a : b &nbsp;→&nbsp; "<span style="color:var(--teal)">a</span> 대 <span style="color:var(--purple)">b</span>" 또는 "a 의 b 에 대한 비"</div>
+
+  <div class="card card-teal">
+    <span class="tag tag-teal">용어 정리</span>
+    <table class="vs-table">
+      <tr><th>용어</th><th>위치</th><th>예) 3 : 4</th></tr>
+      <tr><td><b>전항</b></td><td>: 앞의 수</td><td style="color:var(--teal);font-weight:700">3</td></tr>
+      <tr><td><b>후항</b></td><td>: 뒤의 수</td><td style="color:var(--purple);font-weight:700">4</td></tr>
+      <tr><td><b>비율</b></td><td>전항 ÷ 후항</td><td>3 ÷ 4 = 0.75</td></tr>
+    </table>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">⚡ 핵심: 순서가 바뀌면 다른 비!</span>
+    <div class="eq-box" style="font-size:1rem">3 : 4  ≠  4 : 3</div>
+    <p>3 : 4 = 오렌지를 기준으로 사과 비교 (3/4배)</p>
+    <p>4 : 3 = 사과를 기준으로 오렌지 비교 (4/3배)</p>
+  </div>
+
+  <div class="card card-blue">
+    <span class="tag tag-blue">비율 계산</span>
+    <p>비율 = 전항 ÷ 후항 = <b>비교하는 양 ÷ 기준량</b></p>
+    <div class="eq-box" style="font-size:1rem">3 : 4 의 비율 = 3 ÷ 4 = <span class="eq-ans">0.75</span></div>
+    <p class="muted">비율은 소수 또는 분수로 나타냅니다</p>
+  </div>
+
+  <div class="card card-green">
+    <span class="tag tag-green">비의 성질 — 같은 비</span>
+    <p>전항과 후항에 같은 수를 <b>곱하거나 나누어도</b> 비는 같습니다</p>
+    <div class="eq-box" style="font-size:1rem">2:3 = 4:6 = 6:9 = 20:30</div>
+    <p class="muted">→ 분수를 약분·통분하는 것과 같은 원리!</p>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(1)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(3)">비율 자세히 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 3: 비율 ════ -->
+<div class="screen" id="s3">
+<div class="wrap">
+  <span class="tag tag-teal">개념 2</span>
+  <h2 style="margin-top:.3rem">비율 — 기준에 대한 비교</h2>
+
+  <div class="def-box">비율 = 비교하는 양 ÷ <span style="color:var(--purple)">기준량</span></div>
+
+  <div class="card card-teal">
+    <span class="tag tag-teal">핵심 공식</span>
+    <div class="eq-box">비율 = <span class="eq-hi">비교하는 양</span> / <span class="eq-ans">기준량</span></div>
+    <p>예) 학생 20명 중 여학생 8명의 비율</p>
+    <div class="eq-box" style="font-size:1rem">8 ÷ 20 = <span class="eq-ans">0.4</span> (= 2/5)</div>
+    <p class="muted">기준량 = 전체(20명), 비교하는 양 = 여학생(8명)</p>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">비율로 알 수 있는 것</span>
+    <p>A반: 30명 중 여학생 12명 → 비율 = 12/30 = <b>0.4</b></p>
+    <p>B반: 20명 중 여학생 10명 → 비율 = 10/20 = <b>0.5</b></p>
+    <p>→ 전체 수는 다르지만 비율로 비교 가능!</p>
+    <p style="color:var(--red);font-weight:700">B반의 여학생 비율이 더 높다</p>
+  </div>
+
+  <div class="card card-blue">
+    <span class="tag tag-blue">세 가지 표현법</span>
+    <table class="vs-table">
+      <tr><th>표현</th><th>계산</th><th>예 (8/20)</th></tr>
+      <tr><td>분수</td><td>전항/후항</td><td>2/5</td></tr>
+      <tr><td>소수</td><td>분수 계산</td><td>0.4</td></tr>
+      <tr><td>백분율 (%)</td><td>소수 × 100</td><td>40%</td></tr>
+    </table>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(2)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(4)">백분율(%) 배우기 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 4: 백분율 ════ -->
+<div class="screen" id="s4">
+<div class="wrap">
+  <span class="tag tag-teal">개념 3</span>
+  <h2 style="margin-top:.3rem">백분율(%) — 100 기준 비율</h2>
+
+  <div class="def-box">백분율(%) = 비율 × <span style="color:var(--green)">100</span></div>
+
+  <div class="card card-teal">
+    <span class="tag tag-teal">공식 정리</span>
+    <div class="eq-box" style="font-size:1rem">비율 = 비교하는 양 ÷ 기준량<br>백분율 = 비율 × 100 (%)</div>
+  </div>
+
+  <div class="card card-blue" style="margin-top:.8rem">
+    <span class="tag tag-blue">예제: 할인율</span>
+    <p>정가 10000원짜리 제품을 8000원에 팔 때 할인율은?</p>
+    <div class="steps" id="steps4">
+      <div class="step-item" id="s4t1">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">할인된 금액</div>
+          <div class="step-desc">10000 - 8000 = <b>2000원</b></div>
+        </div>
+      </div>
+      <div class="step-item" id="s4t2">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">비율 계산</div>
+          <div class="step-desc">2000 ÷ 10000 = <b>0.2</b></div>
+        </div>
+      </div>
+      <div class="step-item" id="s4t3">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">백분율로 변환</div>
+          <div class="step-desc">0.2 × 100 = <b>20%</b> 할인!</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-reveal" id="stepBtn4" onclick="revealStep4()">▶ 1단계 보기</button>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">백분율 ↔ 비율 변환</span>
+    <table class="vs-table">
+      <tr><th>비율 → 백분율</th><th>백분율 → 비율</th></tr>
+      <tr><td>× 100</td><td>÷ 100</td></tr>
+      <tr><td>0.35 → 35%</td><td>75% → 0.75</td></tr>
+      <tr><td>1/4 = 0.25 → 25%</td><td>40% → 0.4 = 2/5</td></tr>
+    </table>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(3)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(5)">비례식 배우기 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 5: 비례식 ════ -->
+<div class="screen" id="s5">
+<div class="wrap">
+  <span class="tag tag-purple">개념 4</span>
+  <h2 style="margin-top:.3rem">비례식 — 두 비가 같다!</h2>
+
+  <div class="def-box">a : b = c : d &nbsp;→&nbsp; 두 비가 <span style="color:var(--green)">같음</span>을 나타내는 식</div>
+
+  <div class="card card-teal">
+    <span class="tag tag-teal">용어</span>
+    <div class="prop-box">
+      <div class="prop-cell hi" style="color:var(--red)">외항<br><b>a</b></div>
+      <div class="prop-cell">내항<br><b>b</b></div>
+      <div class="prop-cell">내항<br><b>c</b></div>
+      <div class="prop-cell hi" style="color:var(--red)">외항<br><b>d</b></div>
+    </div>
+    <p class="muted" style="text-align:center">a:b = c:d 에서 b, c = 내항 / a, d = 외항</p>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">⭐ 비례식의 성질</span>
+    <div class="eq-box" style="font-size:1.05rem">외항의 곱 = 내항의 곱<br><span class="eq-hi">a × d</span> = <span class="eq-ans">b × c</span></div>
+    <p>예) 2 : 3 = 4 : 6</p>
+    <p>외항: 2 × 6 = 12 &nbsp;|&nbsp; 내항: 3 × 4 = 12 ✓</p>
+  </div>
+
+  <div class="card card-blue">
+    <span class="tag tag-blue">활용 — x 구하기</span>
+    <p>3 : 4 = x : 12 에서 x는?</p>
+    <p>외항의 곱 = 내항의 곱: <b>3 × 12 = 4 × x</b></p>
+    <p>36 = 4x → <b>x = 9</b></p>
+    <div class="eq-box" style="font-size:1rem">검증: 3:4 = 9:12 → 9÷4=2.25? 아니, 3÷4=9÷12=0.75 ✓</div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(4)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(6)">비례식 연습 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 6: 비례식 활용 ════ -->
+<div class="screen" id="s6">
+<div class="wrap">
+  <span class="tag tag-purple">개념 4 심화</span>
+  <h2 style="margin-top:.3rem">비례식으로 미지수 구하기</h2>
+
+  <div class="card card-teal">
+    <span class="tag tag-teal">5단계 풀이법</span>
+    <div class="steps" id="steps6">
+      <div class="step-item" id="s6t1">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">비례식 세우기</div>
+          <div class="step-desc">문제의 대응 관계를 찾아 a:b = c:d 형태로</div>
+        </div>
+      </div>
+      <div class="step-item" id="s6t2">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">외항과 내항 확인</div>
+          <div class="step-desc">: 기준으로 앞(외항/내항) 구분</div>
+        </div>
+      </div>
+      <div class="step-item" id="s6t3">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">외항의 곱 = 내항의 곱</div>
+          <div class="step-desc">a × d = b × c 식 세우기</div>
+        </div>
+      </div>
+      <div class="step-item" id="s6t4">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">x 계산</div>
+          <div class="step-desc">방정식 풀어서 미지수 값 구하기</div>
+        </div>
+      </div>
+      <div class="step-item" id="s6t5">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">검증</div>
+          <div class="step-desc">두 비율이 같은지 확인</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-reveal" id="stepBtn6" onclick="revealStep6()">▶ 1단계 보기</button>
+  </div>
+
+  <div class="card card-amber" style="margin-top:.8rem">
+    <span class="tag tag-amber">예제: 지도 문제</span>
+    <p>지도에서 2 cm가 실제 5 km일 때, 지도에서 8 cm는 실제 몇 km?</p>
+    <div class="eq-box" style="font-size:1rem">2 : 5 = 8 : x<br>2x = 40 → x = <span class="eq-ans">20 km</span></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(5)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(7)">비례배분 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 7: 비례배분 ════ -->
+<div class="screen" id="s7">
+<div class="wrap">
+  <span class="tag tag-teal">개념 5</span>
+  <h2 style="margin-top:.3rem">비례배분 — 비대로 나누기</h2>
+
+  <div class="def-box">전체를 주어진 비로 나누기</div>
+
+  <div class="card card-teal">
+    <span class="tag tag-teal">공식</span>
+    <p>전체 W를 a : b로 나누면:</p>
+    <div class="eq-box" style="font-size:1rem">
+      A의 몫 = W × <span class="eq-hi">a</span> / (a+b)<br>
+      B의 몫 = W × <span class="eq-ans">b</span> / (a+b)
+    </div>
+  </div>
+
+  <div class="card card-blue">
+    <span class="tag tag-blue">예제</span>
+    <p>60개의 사탕을 철수와 영희가 <b>2 : 3</b>으로 나눌 때</p>
+    <p>합 = 2 + 3 = <b>5</b></p>
+    <p>철수: 60 × 2/5 = <b>24개</b></p>
+    <p>영희: 60 × 3/5 = <b>36개</b></p>
+    <div class="ratio-bar">
+      <div class="ratio-a" style="flex:2">철수 24개</div>
+      <div class="ratio-b" style="flex:3">영희 36개</div>
+    </div>
+    <p class="muted">검증: 24 + 36 = 60 ✓ &nbsp; 24:36 = 2:3 ✓</p>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">세 사람으로 나누면?</span>
+    <p>120을 A:B:C = 1:2:3으로 나누면</p>
+    <p>합 = 1+2+3 = 6</p>
+    <p>A = 120×1/6 = 20 &nbsp; B = 120×2/6 = 40 &nbsp; C = 120×3/6 = 60</p>
+    <div class="eq-box" style="font-size:.95rem">20 + 40 + 60 = 120 ✓</div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(6)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(8)">연속비 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 8: 연속비 ════ -->
+<div class="screen" id="s8">
+<div class="wrap">
+  <span class="tag tag-teal">개념 6</span>
+  <h2 style="margin-top:.3rem">연속비 & 비 간소화</h2>
+
+  <div class="card card-teal">
+    <span class="tag tag-teal">비 간소화 (가장 간단한 자연수의 비)</span>
+    <p>전항·후항을 최대공약수로 나누면 됩니다!</p>
+    <div class="eq-box" style="font-size:1rem">12 : 18 → GCF=6 → <span class="eq-ans">2 : 3</span></div>
+    <p class="muted">분수의 약분과 같은 원리</p>
+  </div>
+
+  <div class="card card-blue">
+    <span class="tag tag-blue">소수·분수 비 → 자연수 비</span>
+    <p><b>소수 비:</b> 0.4 : 0.6 → 양쪽 × 10 → <b>4 : 6</b> → GCF=2 → <b>2 : 3</b></p>
+    <p><b>분수 비:</b> 1/3 : 1/4 → 양쪽 × LCM(3,4)=12 → <b>4 : 3</b></p>
+  </div>
+
+  <div class="card card-amber">
+    <span class="tag tag-amber">연속비 — 세 수의 비</span>
+    <p>A:B = 2:3, B:C = 3:4 일 때 A:B:C는?</p>
+    <p>B의 값을 맞춰주면: A:B = 2:3, B:C = 3:4</p>
+    <p>B가 이미 3으로 같으므로:</p>
+    <div class="eq-box" style="font-size:1rem">A : B : C = <span class="eq-ans">2 : 3 : 4</span></div>
+  </div>
+
+  <div class="card card-purple">
+    <span class="tag tag-purple">B 값이 다를 때</span>
+    <p>A:B = 2:3, B:C = 4:5 → B를 맞춰야 함</p>
+    <p>LCM(3, 4) = 12</p>
+    <p>A:B = 8:12 &nbsp; B:C = 12:15</p>
+    <div class="eq-box" style="font-size:1rem">A : B : C = <span class="eq-ans">8 : 12 : 15</span></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(7)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(9)">예제 풀기 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 9: 예제 1 — 비율 계산 ════ -->
+<div class="screen" id="s9">
+<div class="wrap">
+  <span class="tag tag-purple">예제 1 — 비율 계산</span>
+  <h2 style="margin-top:.3rem">난이도를 선택하세요</h2>
+
+  <div class="diff-tabs">
+    <button class="diff-btn lv1 active" onclick="switchDiff(9,1)">🟢 하</button>
+    <button class="diff-btn lv2" onclick="switchDiff(9,2)">🟡 중</button>
+    <button class="diff-btn lv3" onclick="switchDiff(9,3)">🔴 상</button>
+  </div>
+
+  <!-- 하 -->
+  <div class="diff-prob active" id="prob9-1">
+    <div class="card card-blue">
+      <span class="tag tag-blue">문제 (하)</span>
+      <p>전체 30명 중 안경 쓴 학생이 12명입니다. 안경 쓴 학생의 비율을 분수, 소수, 백분율로 나타내시오.</p>
+    </div>
+    <div id="p9Ls1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 비율(분수)</div>
+      <div class="eq-box" style="font-size:1rem">12 / 30 = <span class="eq-ans">2/5</span></div>
+    </div>
+    <div id="p9Ls2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 소수 변환</div>
+      <div class="eq-box" style="font-size:1rem">2 ÷ 5 = <span class="eq-ans">0.4</span></div>
+    </div>
+    <div id="p9Ls3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 백분율</div>
+      <div class="eq-box" style="font-size:1rem">0.4 × 100 = <span class="eq-ans">40%</span></div>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: 2/5, 0.4, 40%</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p9Lbtn" onclick="revealProbD('p9L',3)">▶ 풀이 보기</button>
+  </div>
+
+  <!-- 중 -->
+  <div class="diff-prob" id="prob9-2">
+    <div class="card card-amber">
+      <span class="tag tag-amber">문제 (중)</span>
+      <p>A마트는 5000원짜리 물건을 4000원에 팔고, B마트는 8000원짜리 물건을 6000원에 팝니다. 어느 마트의 할인율이 더 높나요?</p>
+    </div>
+    <div id="p9Ms1" class="prob-step">
+      <div class="ps-label tag tag-blue">① A마트 할인율</div>
+      <p>할인액: 5000 - 4000 = 1000원</p>
+      <div class="eq-box" style="font-size:1rem">1000 ÷ 5000 = 0.2 = <span class="eq-ans">20%</span></div>
+    </div>
+    <div id="p9Ms2" class="prob-step">
+      <div class="ps-label tag tag-amber">② B마트 할인율</div>
+      <p>할인액: 8000 - 6000 = 2000원</p>
+      <div class="eq-box" style="font-size:1rem">2000 ÷ 8000 = 0.25 = <span class="eq-ans">25%</span></div>
+    </div>
+    <div id="p9Ms3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 비교</div>
+      <p>20% vs 25% → B마트 할인율이 더 높다!</p>
+      <p class="muted">할인액만 보면 A=1000원, B=2000원이지만 <b>비율</b>로 비교해야 공정!</p>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: B마트 (25% > 20%)</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p9Mbtn" onclick="revealProbD('p9M',3)">▶ 풀이 보기</button>
+  </div>
+
+  <!-- 상 -->
+  <div class="diff-prob" id="prob9-3">
+    <div class="card card-red">
+      <span class="tag tag-red">문제 (상)</span>
+      <p>어떤 소금물 200g에 소금이 30g 들어 있습니다. 물을 50g 더 넣으면 농도는 몇 %가 되나요?</p>
+    </div>
+    <div id="p9Hs1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 처음 상태 파악</div>
+      <p>소금물: 200g, 소금: 30g, 물: 170g</p>
+    </div>
+    <div id="p9Hs2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 물 추가 후 상태</div>
+      <p>소금물: 200 + 50 = <b>250g</b></p>
+      <p>소금: <b>30g</b> (소금은 변하지 않음!)</p>
+    </div>
+    <div id="p9Hs3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 새 농도</div>
+      <div class="eq-box" style="font-size:1rem">30 ÷ 250 = 0.12 = <span class="eq-ans">12%</span></div>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: 12%</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p9Hbtn" onclick="revealProbD('p9H',3)">▶ 풀이 보기</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(8)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(10)">예제 2 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 10: 예제 2 — 비례식으로 미지수 ════ -->
+<div class="screen" id="s10">
+<div class="wrap">
+  <span class="tag tag-purple">예제 2 — 비례식</span>
+  <h2 style="margin-top:.3rem">난이도를 선택하세요</h2>
+
+  <div class="diff-tabs">
+    <button class="diff-btn lv1 active" onclick="switchDiff(10,1)">🟢 하</button>
+    <button class="diff-btn lv2" onclick="switchDiff(10,2)">🟡 중</button>
+    <button class="diff-btn lv3" onclick="switchDiff(10,3)">🔴 상</button>
+  </div>
+
+  <!-- 하 -->
+  <div class="diff-prob active" id="prob10-1">
+    <div class="card card-blue">
+      <span class="tag tag-blue">문제 (하)</span>
+      <p>3 : 5 = x : 20 에서 x를 구하시오.</p>
+    </div>
+    <div id="p10Ls1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 외항·내항 확인</div>
+      <p>외항: 3, 20 &nbsp;|&nbsp; 내항: 5, x</p>
+      <div class="eq-box" style="font-size:1rem">3 × 20 = 5 × x</div>
+    </div>
+    <div id="p10Ls2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 계산</div>
+      <p>60 = 5x &nbsp;→&nbsp; x = 60 ÷ 5</p>
+      <div class="eq-box">x = <span class="eq-ans">12</span></div>
+    </div>
+    <div id="p10Ls3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 검증</div>
+      <p>3:5 = 12:20 → 3÷5 = 0.6, 12÷20 = 0.6 ✓</p>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: x = 12</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p10Lbtn" onclick="revealProbD('p10L',3)">▶ 풀이 보기</button>
+  </div>
+
+  <!-- 중 -->
+  <div class="diff-prob" id="prob10-2">
+    <div class="card card-amber">
+      <span class="tag tag-amber">문제 (중)</span>
+      <p>자동차가 일정한 속력으로 3시간에 180 km를 달린다면, 5시간에는 몇 km를 달리나요?</p>
+    </div>
+    <div id="p10Ms1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 비례식 세우기</div>
+      <p>시간:거리 = 일정한 비 → 시간 : 거리 = 3 : 180</p>
+      <div class="eq-box" style="font-size:1rem">3 : 180 = 5 : x</div>
+    </div>
+    <div id="p10Ms2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 풀기</div>
+      <p>3 × x = 180 × 5</p>
+      <p>3x = 900</p>
+      <div class="eq-box">x = <span class="eq-ans">300 km</span></div>
+    </div>
+    <div id="p10Ms3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 검증</div>
+      <p>3:180 = 5:300 → 3÷180 = 1/60, 5÷300 = 1/60 ✓</p>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: 300 km</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p10Mbtn" onclick="revealProbD('p10M',3)">▶ 풀이 보기</button>
+  </div>
+
+  <!-- 상 -->
+  <div class="diff-prob" id="prob10-3">
+    <div class="card card-red">
+      <span class="tag tag-red">문제 (상)</span>
+      <p>두 수의 비가 3 : 4이고 두 수의 합이 56일 때, 두 수를 각각 구하시오.</p>
+    </div>
+    <div id="p10Hs1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 전체 몫 계산</div>
+      <p>3 + 4 = 7 (전체를 7로 나눔)</p>
+    </div>
+    <div id="p10Hs2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 비례배분</div>
+      <p>첫 번째 수: 56 × 3/7 = <b>24</b></p>
+      <p>두 번째 수: 56 × 4/7 = <b>32</b></p>
+    </div>
+    <div id="p10Hs3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 검증</div>
+      <p>24 + 32 = 56 ✓ &nbsp; 24 : 32 = 3 : 4 ✓</p>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: 24와 32</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p10Hbtn" onclick="revealProbD('p10H',3)">▶ 풀이 보기</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(9)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(11)">예제 3 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 11: 예제 3 — 비례배분 ════ -->
+<div class="screen" id="s11">
+<div class="wrap">
+  <span class="tag tag-teal">예제 3 — 비례배분</span>
+  <h2 style="margin-top:.3rem">난이도를 선택하세요</h2>
+
+  <div class="diff-tabs">
+    <button class="diff-btn lv1 active" onclick="switchDiff(11,1)">🟢 하</button>
+    <button class="diff-btn lv2" onclick="switchDiff(11,2)">🟡 중</button>
+    <button class="diff-btn lv3" onclick="switchDiff(11,3)">🔴 상</button>
+  </div>
+
+  <!-- 하 -->
+  <div class="diff-prob active" id="prob11-1">
+    <div class="card card-blue">
+      <span class="tag tag-blue">문제 (하)</span>
+      <p>90개의 구슬을 A와 B가 2 : 3으로 나눌 때, 각각 몇 개씩 받나요?</p>
+    </div>
+    <div id="p11Ls1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 전체 몫</div>
+      <p>2 + 3 = <b>5</b></p>
+    </div>
+    <div id="p11Ls2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 각각 계산</div>
+      <p>A = 90 × 2/5 = <b>36개</b></p>
+      <p>B = 90 × 3/5 = <b>54개</b></p>
+    </div>
+    <div id="p11Ls3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 검증</div>
+      <p>36 + 54 = 90 ✓ &nbsp; 36:54 = 2:3 ✓</p>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: A = 36개, B = 54개</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p11Lbtn" onclick="revealProbD('p11L',3)">▶ 풀이 보기</button>
+  </div>
+
+  <!-- 중 -->
+  <div class="diff-prob" id="prob11-2">
+    <div class="card card-amber">
+      <span class="tag tag-amber">문제 (중)</span>
+      <p>세 친구가 함께 12만원을 모아 선물을 샀습니다. A가 2만원, B가 4만원, C가 6만원을 냈다면, 선물을 3 : 2 : 1 비율로 나눌 수 있는 경우 A는 선물을 총 몇 % 받나요?</p>
+    </div>
+    <div id="p11Ms1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 전체 몫</div>
+      <p>3 + 2 + 1 = <b>6</b></p>
+    </div>
+    <div id="p11Ms2" class="prob-step">
+      <div class="ps-label tag tag-amber">② A의 몫</div>
+      <p>A = 전체 × 3/6 = 전체 × <b>1/2</b></p>
+    </div>
+    <div id="p11Ms3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 백분율</div>
+      <div class="eq-box" style="font-size:1rem">1/2 × 100 = <span class="eq-ans">50%</span></div>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: 50%</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p11Mbtn" onclick="revealProbD('p11M',3)">▶ 풀이 보기</button>
+  </div>
+
+  <!-- 상 -->
+  <div class="diff-prob" id="prob11-3">
+    <div class="card card-red">
+      <span class="tag tag-red">문제 (상)</span>
+      <p>A, B, C 세 사람이 일을 나눠서 합니다. A:B = 3:2, B:C = 4:5일 때, 전체 120의 일을 비례배분하면 각각 얼마씩인가요?</p>
+    </div>
+    <div id="p11Hs1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 연속비 구하기</div>
+      <p>A:B = 3:2, B:C = 4:5 → B를 LCM(2,4)=8로 통일</p>
+      <p>A:B = 12:8 &nbsp; B:C = 8:10</p>
+      <div class="eq-box" style="font-size:1rem">A : B : C = <span class="eq-ans">12 : 8 : 10</span></div>
+    </div>
+    <div id="p11Hs2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 비례배분</div>
+      <p>합 = 12+8+10 = 30</p>
+      <p>A = 120 × 12/30 = <b>48</b></p>
+      <p>B = 120 × 8/30 = <b>32</b></p>
+      <p>C = 120 × 10/30 = <b>40</b></p>
+    </div>
+    <div id="p11Hs3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 검증</div>
+      <p>48+32+40=120 ✓ &nbsp; 48:32=3:2 ✓ &nbsp; 32:40=4:5 ✓</p>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>A=48, B=32, C=40</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p11Hbtn" onclick="revealProbD('p11H',3)">▶ 풀이 보기</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(10)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(12)">실생활 문제 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 12: 예제 4 — 비율 실생활 ════ -->
+<div class="screen" id="s12">
+<div class="wrap">
+  <span class="tag tag-teal">예제 4 — 실생활 (백분율)</span>
+  <h2 style="margin-top:.3rem">난이도를 선택하세요</h2>
+
+  <div class="diff-tabs">
+    <button class="diff-btn lv1 active" onclick="switchDiff(12,1)">🟢 하</button>
+    <button class="diff-btn lv2" onclick="switchDiff(12,2)">🟡 중</button>
+    <button class="diff-btn lv3" onclick="switchDiff(12,3)">🔴 상</button>
+  </div>
+
+  <!-- 하 -->
+  <div class="diff-prob active" id="prob12-1">
+    <div class="card card-blue">
+      <span class="tag tag-blue">문제 (하)</span>
+      <p>원가 6000원에 30% 이익을 붙여 팔 때 판매가는 얼마인가요?</p>
+    </div>
+    <div id="p12Ls1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 이익 계산</div>
+      <div class="eq-box" style="font-size:1rem">이익 = 6000 × 0.3 = <span class="eq-ans">1800원</span></div>
+    </div>
+    <div id="p12Ls2" class="prob-step">
+      <div class="ps-label tag tag-green">② 판매가</div>
+      <div class="eq-box" style="font-size:1rem">6000 + 1800 = <span class="eq-ans">7800원</span></div>
+      <p class="muted">또는 6000 × 1.3 = 7800 (빠른 계산)</p>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: 7800원</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p12Lbtn" onclick="revealProbD('p12L',2)">▶ 풀이 보기</button>
+  </div>
+
+  <!-- 중 -->
+  <div class="diff-prob" id="prob12-2">
+    <div class="card card-amber">
+      <span class="tag tag-amber">문제 (중)</span>
+      <p>작년 학교 학생 수는 500명이었고 올해는 15% 증가했습니다. 올해 학생 수는 몇 명인가요? 그리고 여학생이 올해 학생의 48%라면 여학생은 몇 명인가요?</p>
+    </div>
+    <div id="p12Ms1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 올해 학생 수</div>
+      <div class="eq-box" style="font-size:1rem">500 × 1.15 = <span class="eq-ans">575명</span></div>
+    </div>
+    <div id="p12Ms2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 여학생 수</div>
+      <div class="eq-box" style="font-size:1rem">575 × 0.48 = <span class="eq-ans">276명</span></div>
+    </div>
+    <div id="p12Ms3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 검증</div>
+      <p>증가분: 575-500=75, 75/500=0.15=15% ✓</p>
+      <p>여학생: 276/575=0.48=48% ✓</p>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>올해 575명, 여학생 276명</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p12Mbtn" onclick="revealProbD('p12M',3)">▶ 풀이 보기</button>
+  </div>
+
+  <!-- 상 -->
+  <div class="diff-prob" id="prob12-3">
+    <div class="card card-red">
+      <span class="tag tag-red">문제 (상)</span>
+      <p>어떤 물건을 원가의 40%를 이익으로 붙여 정가를 만들었습니다. 그런데 안 팔려서 정가에서 20% 할인해서 팔았습니다. 원가가 5000원일 때, 실제 이익은 얼마이고 이익률은 몇 %인가요?</p>
+    </div>
+    <div id="p12Hs1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 정가 계산</div>
+      <div class="eq-box" style="font-size:1rem">5000 × 1.4 = <span class="eq-ans">7000원</span></div>
+    </div>
+    <div id="p12Hs2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 판매가 (20% 할인)</div>
+      <div class="eq-box" style="font-size:1rem">7000 × 0.8 = <span class="eq-ans">5600원</span></div>
+    </div>
+    <div id="p12Hs3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 실제 이익과 이익률</div>
+      <p>실제 이익: 5600 - 5000 = <b>600원</b></p>
+      <div class="eq-box" style="font-size:1rem">이익률: 600 ÷ 5000 = <span class="eq-ans">12%</span></div>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>이익 600원, 이익률 12%</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p12Hbtn" onclick="revealProbD('p12H',3)">▶ 풀이 보기</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(11)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(13)">예제 5 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 13: 예제 5 — 비례식 실생활 ════ -->
+<div class="screen" id="s13">
+<div class="wrap">
+  <span class="tag tag-teal">예제 5 — 실생활 (비례식)</span>
+  <h2 style="margin-top:.3rem">난이도를 선택하세요</h2>
+
+  <div class="diff-tabs">
+    <button class="diff-btn lv1 active" onclick="switchDiff(13,1)">🟢 하</button>
+    <button class="diff-btn lv2" onclick="switchDiff(13,2)">🟡 중</button>
+    <button class="diff-btn lv3" onclick="switchDiff(13,3)">🔴 상</button>
+  </div>
+
+  <!-- 하 -->
+  <div class="diff-prob active" id="prob13-1">
+    <div class="card card-blue">
+      <span class="tag tag-blue">문제 (하)</span>
+      <p>레시피에 밀가루와 설탕의 비가 3 : 1입니다. 밀가루를 240g 쓰면 설탕은 몇 g 필요한가요?</p>
+    </div>
+    <div id="p13Ls1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 비례식 세우기</div>
+      <div class="eq-box" style="font-size:1rem">3 : 1 = 240 : x</div>
+    </div>
+    <div id="p13Ls2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 풀기</div>
+      <p>3 × x = 1 × 240</p>
+      <div class="eq-box">x = <span class="eq-ans">80 g</span></div>
+    </div>
+    <div id="p13Ls3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 검증</div>
+      <p>240:80 = 3:1 ✓</p>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: 80 g</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p13Lbtn" onclick="revealProbD('p13L',3)">▶ 풀이 보기</button>
+  </div>
+
+  <!-- 중 -->
+  <div class="diff-prob" id="prob13-2">
+    <div class="card card-amber">
+      <span class="tag tag-amber">문제 (중)</span>
+      <p>지도에서 5 cm가 실제 20 km를 나타냅니다. 지도에서 두 도시 간 거리가 13 cm일 때, 실제 거리는 몇 km인가요?</p>
+    </div>
+    <div id="p13Ms1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 비례식</div>
+      <div class="eq-box" style="font-size:1rem">5 : 20 = 13 : x</div>
+    </div>
+    <div id="p13Ms2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 풀기</div>
+      <p>5x = 20 × 13 = 260</p>
+      <div class="eq-box">x = <span class="eq-ans">52 km</span></div>
+    </div>
+    <div id="p13Ms3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 검증</div>
+      <p>5:20 = 1:4 &nbsp; 13:52 = 1:4 ✓</p>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: 52 km</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p13Mbtn" onclick="revealProbD('p13M',3)">▶ 풀이 보기</button>
+  </div>
+
+  <!-- 상 -->
+  <div class="diff-prob" id="prob13-3">
+    <div class="card card-red">
+      <span class="tag tag-red">문제 (상)</span>
+      <p>두 수 A와 B의 비가 5 : 3이고, A에서 6을 빼고 B에 6을 더하면 두 수의 비가 1 : 1이 됩니다. A와 B를 각각 구하시오.</p>
+    </div>
+    <div id="p13Hs1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 식 세우기</div>
+      <p>A:B = 5:3 이므로 A = 5k, B = 3k로 놓자</p>
+    </div>
+    <div id="p13Hs2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 조건 적용</div>
+      <p>(5k - 6) : (3k + 6) = 1 : 1</p>
+      <p>→ 5k - 6 = 3k + 6</p>
+      <p>→ 2k = 12 → <b>k = 6</b></p>
+    </div>
+    <div id="p13Hs3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 결과 + 검증</div>
+      <p>A = 5×6 = <b>30</b> &nbsp; B = 3×6 = <b>18</b></p>
+      <p>30:18 = 5:3 ✓ &nbsp; (30-6):(18+6) = 24:24 = 1:1 ✓</p>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: A = 30, B = 18</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p13Hbtn" onclick="revealProbD('p13H',3)">▶ 풀이 보기</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(12)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(14)">🔥 심화 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 14: 예제 6 — 심화 ════ -->
+<div class="screen" id="s14">
+<div class="wrap">
+  <span class="tag tag-red">예제 6 — 심화</span>
+  <h2 style="margin-top:.3rem">비율 복합 문제</h2>
+
+  <div class="diff-tabs">
+    <button class="diff-btn lv1 active" onclick="switchDiff(14,1)">🟢 하</button>
+    <button class="diff-btn lv2" onclick="switchDiff(14,2)">🟡 중</button>
+    <button class="diff-btn lv3" onclick="switchDiff(14,3)">🔴 상</button>
+  </div>
+
+  <!-- 하 -->
+  <div class="diff-prob active" id="prob14-1">
+    <div class="card card-blue">
+      <span class="tag tag-blue">문제 (하)</span>
+      <p>0.6 : 0.9를 가장 간단한 자연수의 비로 나타내고, 비율을 구하시오.</p>
+    </div>
+    <div id="p14Ls1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 자연수로 변환</div>
+      <p>0.6 : 0.9 → × 10 → <b>6 : 9</b></p>
+    </div>
+    <div id="p14Ls2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 간소화</div>
+      <p>GCF(6, 9) = 3 → ÷ 3</p>
+      <div class="eq-box">6 : 9 = <span class="eq-ans">2 : 3</span></div>
+    </div>
+    <div id="p14Ls3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 비율</div>
+      <div class="eq-box">비율 = 2 ÷ 3 = <span class="eq-ans">2/3 ≈ 0.667</span></div>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>가장 간단한 비: 2:3, 비율: 2/3</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p14Lbtn" onclick="revealProbD('p14L',3)">▶ 풀이 보기</button>
+  </div>
+
+  <!-- 중 -->
+  <div class="diff-prob" id="prob14-2">
+    <div class="card card-amber">
+      <span class="tag tag-amber">문제 (중)</span>
+      <p>작년 A마을 인구는 1200명이었습니다. 올해 남자는 10% 증가, 여자는 5% 감소했습니다. 작년 남녀 비가 3:2였다면, 올해 인구는 몇 명인가요?</p>
+    </div>
+    <div id="p14Ms1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 작년 남녀 인구</div>
+      <p>합 = 3+2 = 5</p>
+      <p>남: 1200 × 3/5 = <b>720명</b></p>
+      <p>여: 1200 × 2/5 = <b>480명</b></p>
+    </div>
+    <div id="p14Ms2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 올해 인구 계산</div>
+      <p>남: 720 × 1.1 = <b>792명</b></p>
+      <p>여: 480 × 0.95 = <b>456명</b></p>
+    </div>
+    <div id="p14Ms3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 합계</div>
+      <div class="eq-box">792 + 456 = <span class="eq-ans">1248명</span></div>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>정답: 1248명</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p14Mbtn" onclick="revealProbD('p14M',3)">▶ 풀이 보기</button>
+  </div>
+
+  <!-- 상 -->
+  <div class="diff-prob" id="prob14-3">
+    <div class="card card-red">
+      <span class="tag tag-red">문제 (상)</span>
+      <p>어항에 물이 가득 차 있습니다. 처음 전체의 1/4을 꺼내고, 남은 물의 1/3을 꺼냈습니다. 처음 물의 양을 1로 볼 때, 최종적으로 남은 비율은 얼마인가요? 또, 처음 600 mL였다면 남은 양은?</p>
+    </div>
+    <div id="p14Hs1" class="prob-step">
+      <div class="ps-label tag tag-blue">① 1/4 꺼낸 후</div>
+      <p>남은 것: 1 - 1/4 = <b>3/4</b></p>
+    </div>
+    <div id="p14Hs2" class="prob-step">
+      <div class="ps-label tag tag-amber">② 남은 것의 1/3 꺼낸 후</div>
+      <p>꺼낸 것: 3/4 × 1/3 = 1/4</p>
+      <p>남은 것: 3/4 - 1/4 = <b>2/4 = 1/2</b></p>
+    </div>
+    <div id="p14Hs3" class="prob-step">
+      <div class="ps-label tag tag-green">③ 결과</div>
+      <p>남은 비율: <b>1/2 = 50%</b></p>
+      <div class="eq-box" style="font-size:1rem">600 × 1/2 = <span class="eq-ans">300 mL</span></div>
+      <div class="card card-green" style="text-align:center;padding:.6rem"><b>남은 비율: 50%, 남은 양: 300 mL</b></div>
+    </div>
+    <button class="btn btn-reveal" id="p14Hbtn" onclick="revealProbD('p14H',3)">▶ 풀이 보기</button>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(13)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(15)">핵심 정리 →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ════ SCREEN 15: 핵심 정리 ════ -->
+<div class="screen" id="s15">
+<div class="wrap">
+  <div class="card card-navy" style="text-align:center;padding:1.8rem">
+    <div style="font-size:2.5rem;margin-bottom:.6rem">🏆</div>
+    <div style="font-size:1.3rem;font-weight:800;color:#fff;line-height:1.6">
+      비율은<br>
+      <span style="color:#99f6e4">"얼마나 큰가?"가 아니라</span><br>
+      <span style="color:#fde68a">"몇 배인가?"를 묻는 것!</span>
+    </div>
+  </div>
+
+  <div class="card card-teal">
+    <h3>📋 개념 정리</h3>
+    <table class="final-table">
+      <tr><th>개념</th><th>공식/정의</th><th>예</th></tr>
+      <tr><td><b>비</b></td><td>a : b (순서 중요)</td><td>3:4 ≠ 4:3</td></tr>
+      <tr><td><b>비율</b></td><td>비교÷기준</td><td>3÷4=0.75</td></tr>
+      <tr><td><b>백분율</b></td><td>비율×100 (%)</td><td>0.75→75%</td></tr>
+      <tr><td><b>비의 성질</b></td><td>×,÷ 같은 수 → 같은 비</td><td>2:3=4:6</td></tr>
+      <tr><td><b>비례식</b></td><td>a:b=c:d → ad=bc</td><td>외항곱=내항곱</td></tr>
+      <tr><td><b>비례배분</b></td><td>W×a/(a+b)</td><td>60을 2:3→24,36</td></tr>
+    </table>
+  </div>
+
+  <div class="card card-amber">
+    <h3>🎯 문제 유형 판단</h3>
+    <table class="final-table">
+      <tr><th>키워드</th><th>전략</th></tr>
+      <tr><td>몇 %인가? 비율은?</td><td>비교÷기준 × 100</td></tr>
+      <tr><td>x를 구하라 (두 비가 같을 때)</td><td>비례식: ad=bc</td></tr>
+      <tr><td>비로 나누기</td><td>비례배분: W×a/(a+b)</td></tr>
+      <tr><td>가장 간단한 자연수 비</td><td>GCF로 나누기</td></tr>
+      <tr><td>소수/분수 비 → 자연수 비</td><td>× 10, 또는 × LCM</td></tr>
+    </table>
+  </div>
+
+  <div class="card card-green">
+    <h3>💡 핵심 공식 한 줄</h3>
+    <div class="eq-box" style="font-size:1rem">비율 = 비교 ÷ 기준 &nbsp;|&nbsp; 백분율 = 비율 × 100<br>비례식: 외항의 곱 = 내항의 곱</div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(14)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(1)">처음부터 🔄</button>
+  </div>
+</div>
+</div>
+
+
+<script>
+const TOTAL = 15;
+let stepIdx4 = 0, stepIdx6 = 0;
+const probIdx = {};
+
+(function(){
+  const bar = document.getElementById('prog');
+  for(let i = 1; i <= TOTAL; i++){
+    const d = document.createElement('div');
+    d.className = 'prog-dot';
+    d.onclick = () => goTo(i);
+    d.id = 'dot' + i;
+    bar.appendChild(d);
+  }
+  updateDots(1);
+})();
+
+function updateDots(n){
+  for(let i = 1; i <= TOTAL; i++){
+    const d = document.getElementById('dot' + i);
+    d.className = 'prog-dot' + (i === n ? ' on' : i < n ? ' done' : '');
+  }
+}
+
+function goTo(n){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('s' + n);
+  if(!target) return;
+  target.classList.add('active');
+  updateDots(n);
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  if(n >= 9 && n <= 14) switchDiff(n, 1);
+}
+
+// s4 steps
+function revealStep4(){
+  stepIdx4++;
+  const st = document.getElementById('s4t' + stepIdx4);
+  if(st) st.classList.add('on');
+  const btn = document.getElementById('stepBtn4');
+  if(stepIdx4 >= 3){ btn.textContent = '✅ 완료!'; btn.disabled = true; }
+  else btn.textContent = '▶ ' + (stepIdx4 + 1) + '단계 보기';
+}
+
+// s6 steps
+function revealStep6(){
+  stepIdx6++;
+  const st = document.getElementById('s6t' + stepIdx6);
+  if(st) st.classList.add('on');
+  const btn = document.getElementById('stepBtn6');
+  if(stepIdx6 >= 5){ btn.textContent = '✅ 완료!'; btn.disabled = true; }
+  else btn.textContent = '▶ ' + (stepIdx6 + 1) + '단계 보기';
+}
+
+// difficulty tabs
+function switchDiff(screenNum, level){
+  const screen = document.getElementById('s' + screenNum);
+  screen.querySelectorAll('.diff-prob').forEach(p => {
+    p.style.display = 'none';
+    p.classList.remove('active');
+  });
+  screen.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+  const prob = document.getElementById('prob' + screenNum + '-' + level);
+  if(prob){ prob.style.display = 'block'; prob.classList.add('active'); }
+  const btns = screen.querySelectorAll('.diff-btn');
+  if(btns[level - 1]) btns[level - 1].classList.add('active');
+}
+
+// problem step reveal
+function revealProbD(id, total){
+  if(!probIdx[id]) probIdx[id] = 0;
+  probIdx[id]++;
+  const step = document.getElementById(id + 's' + probIdx[id]);
+  if(step) step.classList.add('show');
+  const btn = document.getElementById(id + 'btn');
+  if(!btn) return;
+  if(probIdx[id] >= total){
+    btn.textContent = '✅ 풀이 완료!';
+    btn.disabled = true;
+  } else {
+    btn.textContent = '▶ ' + (probIdx[id] + 1) + '단계 보기';
+  }
+}
+</script>
+</body>
+</html>

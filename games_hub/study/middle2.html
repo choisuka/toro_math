@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학교 2학년 수학 | 수학여행학원</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1e3a5f;--blue:#2563eb;--amber:#d97706;--green:#059669;--red:#dc2626;--purple:#7c3aed;--bg:#f0f5eb;--card:#fff;--text:#1e1e2e;--muted:#6b7280}
+body{background:var(--bg);color:var(--text);font-family:'Malgun Gothic','맑은 고딕',sans-serif;min-height:100vh;overflow-x:hidden}
+header{background:var(--navy);padding:.9rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #059669}
+header h1{color:#fff;font-size:1.1rem;font-weight:700}
+.back-link{color:#bbf7d0;text-decoration:none;font-size:.82rem}
+.prog-bar{display:flex;justify-content:center;gap:0;padding:.5rem .6rem;background:#d1fae5;align-items:center;flex-wrap:wrap}
+.prog-section{display:flex;align-items:center;gap:.32rem;padding:0 .5rem}
+.prog-section-label{font-size:.66rem;font-weight:700;color:#374151;white-space:nowrap}
+.prog-sep{width:1px;height:20px;background:#6ee7b7;margin:0 .1rem}
+.prog-dot{width:14px;height:14px;border-radius:50%;background:#a7d9b8;transition:background .3s,transform .3s;cursor:pointer}
+.prog-dot.on{background:var(--green);transform:scale(1.3)}
+.prog-dot.done{background:var(--blue)}
+.screen{display:none;animation:fadeIn .35s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.wrap{max-width:700px;margin:0 auto;padding:1.2rem 1rem}
+.card{background:var(--card);border-radius:1rem;padding:1.4rem;margin:.8rem 0;border:1px solid #c8e6c9;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card-navy{background:var(--navy);color:#fff;border:none}
+.card-amber{background:#fffbeb;border-left:4px solid var(--amber)}
+.card-green{background:#f0fdf4;border-left:4px solid var(--green)}
+.card-red{background:#fef2f2;border-left:4px solid var(--red)}
+.card-blue{background:#eff6ff;border-left:4px solid var(--blue)}
+.card-purple{background:#f5f3ff;border-left:4px solid var(--purple)}
+h2{font-size:1.4rem;font-weight:800;margin-bottom:.6rem;line-height:1.35}
+h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
+p{font-size:.95rem;line-height:1.8;margin:.35rem 0}
+.muted{color:var(--muted);font-size:.88rem}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;padding:.18rem .55rem;border-radius:999px;margin-bottom:.4rem}
+.tag-blue{background:#dbeafe;color:#1e40af}
+.tag-amber{background:#fef3c7;color:#92400e}
+.tag-green{background:#dcfce7;color:#14532d}
+.tag-navy{background:#1e3a5f;color:#fff}
+.tag-red{background:#fee2e2;color:#991b1b}
+.tag-purple{background:#ede9fe;color:#5b21b6}
+.eq-box{text-align:center;font-size:1.15rem;font-weight:800;background:#eff6ff;border:2px solid var(--blue);border-radius:.75rem;padding:.8rem 1rem;margin:.6rem 0;color:var(--navy);font-family:'Courier New',monospace;line-height:1.7}
+.eq-hi{color:var(--red)}
+.eq-ans{color:var(--green)}
+.eq-box-green{background:#f0fdf4;border-color:var(--green);color:#065f46}
+.principle{background:var(--navy);color:#fff;border-radius:.75rem;padding:1rem 1.2rem;margin:.7rem 0}
+.principle h3{color:#bbf7d0;font-size:.9rem;font-weight:700;margin-bottom:.5rem}
+.principle p{font-size:.92rem;color:#e2e8f0;line-height:1.8}
+.principle .key{color:#fde68a;font-weight:700}
+.steps{display:flex;flex-direction:column;gap:.5rem;margin:.7rem 0}
+.step-item{padding:.65rem .9rem;border-radius:.6rem;background:#f8fafc;border:1px solid #e2e8f0;font-size:.9rem;line-height:1.75}
+.step-num{display:inline-block;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--green);color:#fff;font-size:.75rem;font-weight:700;text-align:center;line-height:1.6rem;margin-right:.5rem;vertical-align:middle}
+.step-why{font-size:.82rem;color:var(--amber);font-weight:700;margin-top:.3rem;display:block}
+.think{background:#fff7ed;border:2px solid var(--amber);border-radius:.75rem;padding:.8rem 1rem;margin:.6rem 0}
+.think p{font-size:.95rem;font-weight:700;color:#92400e;text-align:center}
+.btn-row{display:flex;gap:.6rem;justify-content:space-between;margin-top:1.2rem;flex-wrap:wrap}
+.btn{padding:.65rem 1.4rem;border-radius:.55rem;border:none;cursor:pointer;font-size:.9rem;font-weight:700;font-family:'Malgun Gothic',sans-serif;transition:all .18s}
+.btn-prev{background:#d1fae5;color:#374151}
+.btn-prev:hover{background:#a7f3d0}
+.btn-next{background:var(--navy);color:#fff;margin-left:auto}
+.btn-next:hover{background:var(--green)}
+.checklist{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.checklist li{font-size:.92rem;padding:.4rem .6rem;background:#f0fdf4;border-radius:.4rem;border-left:3px solid var(--green)}
+.checklist li::before{content:"✅ ";margin-right:.3rem}
+.hl{background:#fef9c3;border-radius:.25rem;padding:.05rem .22rem;font-weight:700;color:#78350f}
+.hlb{background:#dbeafe;border-radius:.25rem;padding:.05rem .22rem;font-weight:700;color:#1e40af}
+.hlg{background:#dcfce7;border-radius:.25rem;padding:.05rem .22rem;font-weight:700;color:#14532d}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:.6rem 0}
+.grid-cell{background:#fff;border-radius:.5rem;padding:.65rem .8rem;border:1px solid #c8e6c9;font-size:.88rem;line-height:1.5}
+sup{font-size:.65em;vertical-align:super}
+</style>
+</head>
+<body>
+<header>
+  <h1>📗 중학교 2학년 수학</h1>
+  <a class="back-link" href="../index.html">← 홈</a>
+</header>
+<div class="prog-bar" id="prog"></div>
+
+<!-- S1 인트로 -->
+<div class="screen active" id="s1"><div class="wrap">
+  <div class="card card-navy" style="text-align:center;padding:2rem 1.4rem">
+    <div style="font-size:3rem;margin-bottom:.5rem">📗</div>
+    <h2 style="color:#fff;font-size:1.6rem">중학교 2학년 수학<br><span style="font-size:.95rem;font-weight:400;color:#bbf7d0">전 과정 원리 중심 완전 정복</span></h2>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">이 페이지에서 배울 것</span>
+    <div class="grid2" style="margin-top:.6rem">
+      <div class="grid-cell"><b>🔢 유리수와 순환소수</b><br><span style="color:var(--muted);font-size:.78rem">유한·무한소수 원리</span></div>
+      <div class="grid-cell"><b>📐 식의 계산</b><br><span style="color:var(--muted);font-size:.78rem">지수·곱셈공식·인수분해</span></div>
+      <div class="grid-cell"><b>📊 부등식</b><br><span style="color:var(--muted);font-size:.78rem">부등호 방향 원리</span></div>
+      <div class="grid-cell"><b>⚖️ 연립방정식</b><br><span style="color:var(--muted);font-size:.78rem">대입법·가감법</span></div>
+      <div class="grid-cell"><b>📈 일차함수</b><br><span style="color:var(--muted);font-size:.78rem">기울기·y절편·그래프</span></div>
+      <div class="grid-cell"><b>🎲 확률</b><br><span style="color:var(--muted);font-size:.78rem">경우의 수·확률</span></div>
+    </div>
+  </div>
+  <div class="btn-row"><button class="btn btn-next" onclick="goTo(2)">시작하기 →</button></div>
+</div></div>
+
+<!-- S2 유리수와 소수 -->
+<div class="screen" id="s2"><div class="wrap">
+  <span class="tag tag-green">📖 유리수와 순환소수 1</span>
+  <h2 style="margin-top:.3rem">🔢 유한소수 vs 무한소수</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>분수 a/b를 소수로 나타낼 때 (기약분수 기준)<br>
+    <span class="key">분모의 소인수가 2와 5뿐</span>이면 유한소수<br>
+    그 외 소인수가 있으면 무한소수(순환소수)</p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">왜 분모에 2와 5만 있어야 할까?</span>
+    <p>소수를 만들려면 분모가 10의 거듭제곱(10, 100, 1000...)이어야 합니다.<br>
+    10 = 2 × 5 이므로 분모가 2ᵃ × 5ᵇ 형태면 가능합니다.</p>
+    <div class="steps">
+      <div class="step-item"><b>3/20</b> = 3/(2² × 5) → 분모에 5 부족 → 분자·분모 ×5<br>
+      = 15/(2² × 5²) = 15/100 = <span style="color:var(--green);font-weight:700">0.15</span> (유한소수)</div>
+      <div class="step-item"><b>1/3</b> → 분모 3은 소인수가 3 → 10의 거듭제곱으로 못 만듦<br>
+      = <span style="color:var(--red);font-weight:700">0.333...</span> (무한소수)</div>
+    </div>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">판별 방법</span>
+    <div class="steps">
+      <div class="step-item">분수를 기약분수로 → 분모를 소인수분해<br>
+      분모 = 2ᵃ × 5ᵇ 형태이면 유한소수</div>
+      <div class="step-item">7/12 = 7/(2² × 3) → 분모에 3이 있으므로 <b>순환소수</b></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(1)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(3)">순환소수 분수 변환 →</button>
+  </div>
+</div></div>
+
+<!-- S3 순환소수를 분수로 -->
+<div class="screen" id="s3"><div class="wrap">
+  <span class="tag tag-green">📖 유리수와 순환소수 2</span>
+  <h2 style="margin-top:.3rem">♻️ 순환소수 → 분수 변환</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>x = 순환소수로 놓고, <span class="key">10배 해서 빼면</span> 순환 부분이 사라집니다</p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">예시 1: 0.3̄ (= 0.333...)</span>
+    <div class="steps">
+      <div class="step-item"><span class="step-num">①</span> x = 0.333...</div>
+      <div class="step-item"><span class="step-num">②</span> 10x = 3.333...</div>
+      <div class="step-item"><span class="step-num">③</span> ②−①: 10x − x = 3 → 9x = 3</div>
+      <div class="step-item"><span class="step-num">④</span> x = <span style="color:var(--green);font-weight:700">3/9 = 1/3</span></div>
+    </div>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">예시 2: 0.12̄ (= 0.1222...)</span>
+    <div class="steps">
+      <div class="step-item"><span class="step-num">①</span> x = 0.1222...</div>
+      <div class="step-item"><span class="step-num">②</span> 10x = 1.222..., &nbsp; 100x = 12.222...</div>
+      <div class="step-item"><span class="step-num">③</span> 100x − 10x = 11 → 90x = 11</div>
+      <div class="step-item"><span class="step-num">④</span> x = <span style="color:var(--green);font-weight:700">11/90</span></div>
+    </div>
+    <p class="muted" style="margin-top:.4rem">순환 시작 자리에 맞춰 10의 배수를 곱하는 것이 핵심!</p>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(2)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(4)">지수법칙 →</button>
+  </div>
+</div></div>
+
+<!-- S4 지수법칙 -->
+<div class="screen" id="s4"><div class="wrap">
+  <span class="tag tag-green">📖 식의 계산 1</span>
+  <h2 style="margin-top:.3rem">🔢 지수법칙</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>지수 = 같은 수를 <span class="key">몇 번 곱했는가</span>를 나타냄<br>
+    곱셈 시 지수를 더하는 이유: 개수를 합산</p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">왜 지수를 더하나?</span>
+    <div class="eq-box">a³ × a² = (a×a×a) × (a×a) = a<sup>5</sup></div>
+    <p>a를 3번 곱한 것과 2번 곱한 것을 이어 붙이면 5번 곱한 것!</p>
+    <p>→ <span class="hl">aᵐ × aⁿ = aᵐ⁺ⁿ</span></p>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">지수법칙 모음</span>
+    <div class="steps">
+      <div class="step-item"><b>aᵐ × aⁿ = aᵐ⁺ⁿ</b><br>
+      <span class="step-why">같은 밑끼리 곱: 지수 더하기</span></div>
+      <div class="step-item"><b>aᵐ ÷ aⁿ = aᵐ⁻ⁿ</b> (m > n일 때)<br>
+      <span class="step-why">같은 수끼리 약분: m − n개 남음</span></div>
+      <div class="step-item"><b>(aᵐ)ⁿ = aᵐⁿ</b><br>
+      <span class="step-why">aᵐ을 n번 곱 → 지수끼리 곱</span></div>
+      <div class="step-item"><b>(ab)ⁿ = aⁿbⁿ</b><br>
+      <span class="step-why">분배해서 각각 n번 곱하면 됨</span></div>
+      <div class="step-item"><b>a⁰ = 1</b> (a ≠ 0)<br>
+      <span class="step-why">a² ÷ a² = a⁰ = 1, 어떤 수도 자신으로 나누면 1</span></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(3)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(5)">단항식의 계산 →</button>
+  </div>
+</div></div>
+
+<!-- S5 단항식의 계산 -->
+<div class="screen" id="s5"><div class="wrap">
+  <span class="tag tag-green">📖 식의 계산 2</span>
+  <h2 style="margin-top:.3rem">✖️ 단항식의 곱셈과 나눗셈</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p><span class="key">계수끼리</span> 곱하고, <span class="key">문자끼리</span> (지수법칙으로) 계산</p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">곱셈 예시</span>
+    <div class="steps">
+      <div class="step-item">3a²b × (−2ab³)<br>
+      = (3 × −2) × (a² × a) × (b × b³)<br>
+      = <span style="color:var(--green);font-weight:700">−6a³b⁴</span>
+      <span class="step-why">계수: 3×(−2)=−6 / 문자: a²⁺¹=a³, b¹⁺³=b⁴</span></div>
+    </div>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">나눗셈 예시</span>
+    <div class="steps">
+      <div class="step-item">−12x³y² ÷ 4xy<br>
+      = (−12 ÷ 4) × (x³ ÷ x) × (y² ÷ y)<br>
+      = <span style="color:var(--green);font-weight:700">−3x²y</span>
+      <span class="step-why">분자/분모에서 같은 문자끼리 약분</span></div>
+      <div class="step-item">복잡한 경우: ÷ A = × (1/A) (역수 곱하기)</div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(4)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(6)">다항식과 곱셈공식 →</button>
+  </div>
+</div></div>
+
+<!-- S6 다항식과 곱셈공식 -->
+<div class="screen" id="s6"><div class="wrap">
+  <span class="tag tag-green">📖 식의 계산 3</span>
+  <h2 style="margin-top:.3rem">📐 곱셈 공식</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>모두 <span class="key">분배법칙의 적용</span>입니다.<br>
+    외우는 것이 아니라 전개해서 이해하세요.</p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">왜 (a+b)² = a² + 2ab + b²일까?</span>
+    <p>(a+b)² = (a+b)(a+b) 를 분배법칙으로 전개:</p>
+    <div class="eq-box" style="font-size:1rem">(a+b)(a+b)<br>= a·a + a·b + b·a + b·b<br>= a² + ab + ab + b²<br>= a² + <span class="eq-hi">2</span>ab + b²</div>
+    <p class="muted">가운데 항 2ab가 생기는 이유: 교차 곱이 두 번 나옴</p>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">4가지 곱셈 공식</span>
+    <div class="steps">
+      <div class="step-item"><b>(a+b)² = a² + 2ab + b²</b></div>
+      <div class="step-item"><b>(a−b)² = a² − 2ab + b²</b></div>
+      <div class="step-item"><b>(a+b)(a−b) = a² − b²</b><br>
+      <span class="step-why">가운데 교차 항이 상쇄: +ab−ab=0</span></div>
+      <div class="step-item"><b>(x+a)(x+b) = x² + (a+b)x + ab</b><br>
+      <span class="step-why">계수의 합이 x 앞에, 곱이 상수에</span></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(5)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(7)">인수분해 →</button>
+  </div>
+</div></div>
+
+<!-- S7 인수분해 -->
+<div class="screen" id="s7"><div class="wrap">
+  <span class="tag tag-green">📖 식의 계산 4</span>
+  <h2 style="margin-top:.3rem">🧩 인수분해</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>인수분해 = <span class="key">곱셈 공식의 역</span><br>
+    전개한 식을 다시 곱의 형태로 되돌리는 것</p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">인수분해 전략 (순서대로 시도)</span>
+    <div class="steps">
+      <div class="step-item"><span class="step-num">①</span> <b>공통인수</b> 먼저 묶기<br>
+      2x² + 4x = 2x(x + 2)</div>
+      <div class="step-item"><span class="step-num">②</span> <b>완전제곱식</b> 확인<br>
+      x² + 6x + 9 = (x+3)² &nbsp;← 가운데 항이 2×x×3=6x인지 체크</div>
+      <div class="step-item"><span class="step-num">③</span> <b>합차공식</b> 확인<br>
+      x² − 16 = (x+4)(x−4) &nbsp;← 두 수의 제곱의 차</div>
+      <div class="step-item"><span class="step-num">④</span> <b>두 수 찾기</b><br>
+      x² + 5x + 6 = (x+2)(x+3) &nbsp;← 합=5, 곱=6인 두 수: 2와 3</div>
+    </div>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">인수분해가 필요한 이유</span>
+    <p>방정식을 풀 때: ax² + bx + c = 0<br>
+    → (x−α)(x−β) = 0 형태로 → x=α 또는 x=β</p>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(6)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(8)">부등식의 성질 →</button>
+  </div>
+</div></div>
+
+<!-- S8 부등식의 성질 -->
+<div class="screen" id="s8"><div class="wrap">
+  <span class="tag tag-green">📖 부등식 1</span>
+  <h2 style="margin-top:.3rem">📊 부등식의 성질</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>음수를 곱하거나 나누면 <span class="key">부등호 방향이 바뀝니다</span></p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">왜 음수 곱하면 부등호가 바뀔까?</span>
+    <p>수직선으로 생각해봅시다:</p>
+    <div class="steps">
+      <div class="step-item">3 > 1 (수직선에서 3이 오른쪽)</div>
+      <div class="step-item">×(−2) 곱하기: <br>
+      3×(−2) = −6 &nbsp;↔&nbsp; 1×(−2) = −2<br>
+      <span class="step-why">음수 곱 = 수직선에서 반대로 뒤집힘</span></div>
+      <div class="step-item">−6 < −2 → 부등호 방향이 바뀜!</div>
+    </div>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">부등식의 성질 정리</span>
+    <div class="steps">
+      <div class="step-item">A > B → A + c > B + c (양변에 같은 수 더하기 OK)</div>
+      <div class="step-item">A > B, c > 0 → Ac > Bc (양수 곱: 부등호 유지)</div>
+      <div class="step-item">A > B, c < 0 → <span style="color:var(--red);font-weight:700">Ac &lt; Bc</span> (음수 곱: 부등호 <b>반전!</b>)</div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(7)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(9)">일차부등식 →</button>
+  </div>
+</div></div>
+
+<!-- S9 일차부등식 -->
+<div class="screen" id="s9"><div class="wrap">
+  <span class="tag tag-green">📖 부등식 2</span>
+  <h2 style="margin-top:.3rem">📉 일차부등식과 연립부등식</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>일차방정식과 같은 방법으로 풀되<br>
+    <span class="key">음수로 나누거나 곱할 때 부등호 반전</span></p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">풀이 예시</span>
+    <div class="steps">
+      <div class="step-item">−2x + 3 > 7을 풀어라<br>
+      −2x > 4<br>
+      x < <span style="color:var(--green);font-weight:700">−2</span>
+      <span class="step-why">÷(−2): 음수로 나누므로 &gt; 가 &lt;로 반전!</span></div>
+    </div>
+    <p class="muted" style="margin-top:.4rem">수직선 표현: ←─────────○ (x &lt; −2)</p>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">연립부등식</span>
+    <p>두 부등식을 동시에 만족하는 해 = <b>공통 부분</b></p>
+    <div class="steps">
+      <div class="step-item">① x > 2 ② x ≤ 5 → 공통: <span style="color:var(--green);font-weight:700">2 < x ≤ 5</span></div>
+      <div class="step-item">① x > 4 ② x < 2 → 공통 없음 → <span style="color:var(--red);font-weight:700">해 없음</span></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(8)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(10)">연립방정식 대입법 →</button>
+  </div>
+</div></div>
+
+<!-- S10 연립방정식 대입법 -->
+<div class="screen" id="s10"><div class="wrap">
+  <span class="tag tag-green">📖 연립방정식 1</span>
+  <h2 style="margin-top:.3rem">⚖️ 연립방정식 — 대입법</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>한 방정식에서 변수를 표현 → 다른 방정식에 대입<br>
+    <span class="key">미지수를 하나씩 줄여 나가는 전략</span></p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">예시 풀이</span>
+    <p>{ x + y = 7 ... ①<br>
+    { 2x − y = 2 ... ②</p>
+    <div class="steps">
+      <div class="step-item"><span class="step-num">①</span> ①에서 y를 x로 표현: y = 7 − x</div>
+      <div class="step-item"><span class="step-num">②</span> ②에 y = 7−x 대입:<br>
+      2x − (7−x) = 2<br>
+      2x − 7 + x = 2<br>
+      3x = 9 → <span style="color:var(--green);font-weight:700">x = 3</span></div>
+      <div class="step-item"><span class="step-num">③</span> y = 7 − 3 = <span style="color:var(--green);font-weight:700">4</span></div>
+      <div class="step-item"><span class="step-num">④</span> 검증: 3+4=7 ✓, 2×3−4=2 ✓</div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(9)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(11)">연립방정식 가감법 →</button>
+  </div>
+</div></div>
+
+<!-- S11 연립방정식 가감법 -->
+<div class="screen" id="s11"><div class="wrap">
+  <span class="tag tag-green">📖 연립방정식 2</span>
+  <h2 style="margin-top:.3rem">➕➖ 연립방정식 — 가감법</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>두 방정식을 더하거나 빼서 <span class="key">한 변수를 소거</span></p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">예시 풀이</span>
+    <p>{ 3x + 2y = 11 ... ①<br>
+    { x − 2y = 1 &nbsp;&nbsp;&nbsp;... ②</p>
+    <div class="steps">
+      <div class="step-item"><span class="step-num">①</span> y의 계수가 2, −2 → 더하면 소거<br>
+      ① + ②: 4x = 12 → <span style="color:var(--green);font-weight:700">x = 3</span></div>
+      <div class="step-item"><span class="step-num">②</span> x=3을 ②에: 3 − 2y = 1 → 2y = 2 → <span style="color:var(--green);font-weight:700">y = 1</span></div>
+    </div>
+    <p class="muted" style="margin-top:.4rem">계수가 다르면: 적절한 배수를 곱해 계수를 같게 만들어 소거!</p>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">연립방정식 활용</span>
+    <div class="steps">
+      <div class="step-item">미지수 2개 필요 → 방정식도 2개 필요<br>
+      구하려는 것 2개를 x, y로 놓고 관계식 2개 세우기</div>
+      <div class="step-item">예: 어른 3명과 어린이 2명의 입장료가 13,000원,<br>
+      어른 1명과 어린이 4명이 11,000원<br>→ 3x+2y=13000, x+4y=11000</div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(10)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(12)">일차함수 →</button>
+  </div>
+</div></div>
+
+<!-- S12 일차함수의 개념 -->
+<div class="screen" id="s12"><div class="wrap">
+  <span class="tag tag-green">📖 일차함수 1</span>
+  <h2 style="margin-top:.3rem">📈 일차함수의 개념</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p><b>함수</b>: x값 하나에 y값이 <span class="key">정확히 하나</span> 대응<br>
+    <b>일차함수</b>: y = ax + b (a ≠ 0) 형태</p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">기울기(a)와 y절편(b)의 의미</span>
+    <div class="steps">
+      <div class="step-item"><b>기울기 a</b>: x가 1 증가할 때 y가 a만큼 변화<br>
+      <span class="step-why">a = (y의 변화량) / (x의 변화량)</span></div>
+      <div class="step-item"><b>y절편 b</b>: x = 0일 때 y의 값<br>
+      <span class="step-why">y = a×0 + b = b → 그래프가 y축과 만나는 점의 y좌표</span></div>
+    </div>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">y = 2x + 3의 예</span>
+    <div class="steps">
+      <div class="step-item">기울기 = 2: x가 1 늘면 y가 2 늘어남</div>
+      <div class="step-item">y절편 = 3: 점 (0, 3)을 지남</div>
+      <div class="step-item">그래프: 두 점 (0, 3), (1, 5)를 지나는 직선</div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(11)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(13)">일차함수 그래프 →</button>
+  </div>
+</div></div>
+
+<!-- S13 일차함수 그래프 -->
+<div class="screen" id="s13"><div class="wrap">
+  <span class="tag tag-green">📖 일차함수 2</span>
+  <h2 style="margin-top:.3rem">📉 일차함수 그래프와 식 구하기</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>기울기와 한 점, 또는 두 점이 주어지면 식을 결정할 수 있습니다</p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">그래프 변화 원리</span>
+    <div class="steps">
+      <div class="step-item">a > 0: 오른쪽 위 (양의 기울기)</div>
+      <div class="step-item">a < 0: 오른쪽 아래 (음의 기울기)</div>
+      <div class="step-item">|a|가 클수록 가파름</div>
+      <div class="step-item">b 변화 → 그래프가 위아래로 평행이동</div>
+    </div>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">식 구하기 예시</span>
+    <div class="steps">
+      <div class="step-item"><b>기울기 3, 점 (1, 5)</b> 통과할 때:<br>
+      y = 3x + b 에 x=1, y=5 대입<br>
+      5 = 3 + b → b = 2 → <span style="color:var(--green);font-weight:700">y = 3x + 2</span></div>
+      <div class="step-item"><b>두 점 (0, 2), (3, 8)</b> 지날 때:<br>
+      기울기 = (8−2)/(3−0) = 2, y절편 = 2<br>
+      → <span style="color:var(--green);font-weight:700">y = 2x + 2</span></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(12)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(14)">경우의 수 →</button>
+  </div>
+</div></div>
+
+<!-- S14 경우의 수 -->
+<div class="screen" id="s14"><div class="wrap">
+  <span class="tag tag-green">📖 확률 1</span>
+  <h2 style="margin-top:.3rem">🎲 경우의 수</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p><span class="key">합의 법칙</span>: 동시에 일어나지 않는 사건 → 경우의 수 합산<br>
+    <span class="key">곱의 법칙</span>: 차례로 일어나는 사건 → 경우의 수 곱셈</p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">합의 법칙 — 더하기</span>
+    <p>버스 3가지, 지하철 2가지 노선으로 갈 수 있을 때<br>
+    (버스 또는 지하철 → 동시에 못 탐)</p>
+    <div class="eq-box">3 + 2 = <span class="eq-ans">5</span>가지</div>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">곱의 법칙 — 곱하기</span>
+    <p>상의 4가지, 하의 3가지 중 각각 하나씩 선택 시<br>
+    (상의 선택 후 하의 선택 → 연속으로 일어남)</p>
+    <div class="eq-box">4 × 3 = <span class="eq-ans">12</span>가지</div>
+    <p class="muted" style="margin-top:.3rem">이유: 상의 1가지당 하의 3가지 선택 → 4번 반복</p>
+  </div>
+  <div class="card card-purple">
+    <span class="tag tag-purple">순열 (간단히)</span>
+    <p>3명이 일렬로 줄 서는 경우의 수:<br>
+    첫 자리: 3명 / 두 번째: 2명 / 세 번째: 1명<br>
+    = 3 × 2 × 1 = <b>6</b>가지</p>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(13)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(15)">확률 →</button>
+  </div>
+</div></div>
+
+<!-- S15 확률 -->
+<div class="screen" id="s15"><div class="wrap">
+  <span class="tag tag-green">📖 확률 2</span>
+  <h2 style="margin-top:.3rem">🎯 확률의 뜻과 계산</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>확률 = 사건이 일어나는 경우의 수 / 전체 경우의 수<br>
+    <span class="key">0 ≤ P(A) ≤ 1</span> (0: 절대 안 일어남, 1: 반드시 일어남)</p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">예시</span>
+    <div class="steps">
+      <div class="step-item">주사위를 던져 3의 배수가 나올 확률:<br>
+      전체: 1~6 (6가지), 3의 배수: 3, 6 (2가지)<br>
+      P = 2/6 = <span style="color:var(--green);font-weight:700">1/3</span></div>
+    </div>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">여사건 활용</span>
+    <p>P(A) = 직접 구하기 어려울 때<br>
+    P(A) = 1 − P(A의 여사건)</p>
+    <div class="steps">
+      <div class="step-item">동전 3개 던져 적어도 1개 앞면 확률<br>
+      여사건: 모두 뒷면 = (1/2)³ = 1/8<br>
+      P(적어도 1개 앞) = 1 − 1/8 = <span style="color:var(--green);font-weight:700">7/8</span>
+      <span class="step-why">"적어도"가 나오면 여사건 사용이 편리!</span></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(14)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(16)">도형의 성질 →</button>
+  </div>
+</div></div>
+
+<!-- S16 도형의 성질 -->
+<div class="screen" id="s16"><div class="wrap">
+  <span class="tag tag-green">📖 도형의 성질</span>
+  <h2 style="margin-top:.3rem">📐 삼각형과 사각형의 성질</h2>
+  <div class="principle">
+    <h3>⭐ 핵심 원리</h3>
+    <p>도형의 성질은 <span class="key">합동·닮음·평행</span>에서 비롯됩니다</p>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">삼각형 합동 조건 (왜 3가지인가?)</span>
+    <div class="steps">
+      <div class="step-item"><b>SSS</b>: 세 변의 길이가 같으면 → 삼각형 유일하게 결정</div>
+      <div class="step-item"><b>SAS</b>: 두 변과 끼인각 → 나머지 변도 유일 결정</div>
+      <div class="step-item"><b>ASA</b>: 한 변과 양 끝각 → 두 꼭짓점 위치 유일 결정</div>
+    </div>
+  </div>
+  <div class="card card-blue">
+    <span class="tag tag-blue">평행사변형의 성질</span>
+    <div class="steps">
+      <div class="step-item">대변이 평행하고 길이가 같다</div>
+      <div class="step-item">대각의 크기가 같다</div>
+      <div class="step-item">대각선이 서로를 이등분한다</div>
+    </div>
+    <p class="muted" style="margin-top:.4rem">직사각형: 네 각이 90° / 마름모: 네 변이 같음 / 정사각형: 둘 다</p>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(15)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(17)">핵심 정리 →</button>
+  </div>
+</div></div>
+
+<!-- S17 핵심 정리 -->
+<div class="screen" id="s17"><div class="wrap">
+  <span class="tag tag-navy">📋 정리</span>
+  <h2 style="margin-top:.3rem">중2 수학 핵심 요약</h2>
+  <div class="card card-blue">
+    <span class="tag tag-blue">유리수와 순환소수</span>
+    <ul class="checklist" style="margin-top:.5rem">
+      <li>분모 소인수가 2와 5뿐 → 유한소수</li>
+      <li>순환소수 → 분수: 10배 빼기로 소거</li>
+    </ul>
+  </div>
+  <div class="card card-amber">
+    <span class="tag tag-amber">식의 계산</span>
+    <ul class="checklist" style="margin-top:.5rem">
+      <li>지수법칙: 곱할 때 더하기, 나눌 때 빼기, 거듭제곱 때 곱하기</li>
+      <li>(a+b)² = a²+2ab+b², (a+b)(a-b) = a²−b²</li>
+      <li>인수분해: 공통인수 → 완전제곱 → 합차 → 두 수 찾기</li>
+    </ul>
+  </div>
+  <div class="card card-green">
+    <span class="tag tag-green">방정식과 부등식</span>
+    <ul class="checklist" style="margin-top:.5rem">
+      <li>부등식: 음수 곱·나눌 때 부등호 방향 반전</li>
+      <li>연립방정식: 대입법(하나를 표현해 대입) / 가감법(소거)</li>
+    </ul>
+  </div>
+  <div class="card card-purple">
+    <span class="tag tag-purple">일차함수와 확률</span>
+    <ul class="checklist" style="margin-top:.5rem">
+      <li>y = ax + b: 기울기 a, y절편 b</li>
+      <li>확률 = 사건 경우수 / 전체 경우수 (0 ≤ P ≤ 1)</li>
+      <li>여사건: P(A) = 1 − P(Aᶜ)</li>
+    </ul>
+  </div>
+  <div class="card card-navy" style="text-align:center;padding:1.4rem">
+    <p style="color:#fff;font-size:1.15rem;font-weight:800">중2 수학 완성! 🎉</p>
+    <p style="color:#bbf7d0;font-size:.88rem;margin-top:.4rem">원리가 쌓이면 중3이 쉬워집니다</p>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="goTo(16)">← 이전</button>
+    <button class="btn btn-next" onclick="goTo(1)" style="background:var(--green)">처음으로 →</button>
+  </div>
+</div></div>
+
+<script>
+const TOTAL = 17;
+(function(){
+  const bar = document.getElementById('prog');
+  function makeSection(label, from, to){
+    const sec = document.createElement('div'); sec.className='prog-section';
+    if(label){const lbl=document.createElement('span');lbl.className='prog-section-label';lbl.textContent=label;sec.appendChild(lbl);}
+    for(let i=from;i<=to;i++){const d=document.createElement('div');d.className='prog-dot';d.onclick=()=>goTo(i);d.id='dot'+i;sec.appendChild(d);}
+    return sec;
+  }
+  function makeSep(){const s=document.createElement('div');s.className='prog-sep';return s;}
+  bar.appendChild(makeSection('📖 개념',1,16));
+  bar.appendChild(makeSep());
+  bar.appendChild(makeSection('📋 정리',17,17));
+  updateDots(1);
+})();
+function updateDots(cur){
+  for(let i=1;i<=TOTAL;i++){const d=document.getElementById('dot'+i);if(!d)continue;d.className='prog-dot'+(i===cur?' on':i<cur?' done':'');}
+}
+function goTo(n){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const t=document.getElementById('s'+n);if(!t)return;
+  t.classList.add('active');updateDots(n);window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>🧠 아이디어 게임 — 도형의 방정식</title>
+<title>📐 아이디어 게임 — 도형의 방정식</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
@@ -58,6 +58,13 @@ body{font-family:"Nanum Gothic","Segoe UI",sans-serif;background:var(--bg);color
 .choice-btn.correct .choice-num{background:var(--good);color:#052e1c}
 .choice-btn.wrong{border-color:var(--bad);background:rgba(248,113,113,.12)}
 .choice-btn.wrong .choice-num{background:var(--bad);color:#3a0a0a}
+.choice-btn.selected{border-color:rgba(167,139,250,.8);background:rgba(124,58,237,.16)}
+.choice-btn.selected .choice-num{background:rgba(167,139,250,.8);color:#1e1033}
+.submit-btn{display:none;width:100%;margin-top:1rem;padding:.85rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.92rem;cursor:pointer;opacity:.4;pointer-events:none}
+.submit-btn.show{display:block}
+.submit-btn.ready{opacity:1;pointer-events:auto}
 
 .explain-box{margin-top:1.1rem;padding:1rem 1.1rem;border-radius:14px;font-size:.85rem;line-height:1.7;display:none}
 .explain-box.show{display:block}
@@ -92,7 +99,7 @@ body{font-family:"Nanum Gothic","Segoe UI",sans-serif;background:var(--bg);color
   </div>
 
   <div class="sec-head">
-    <h1>🧠 아이디어 게임</h1>
+    <h1>📐 아이디어 게임</h1>
     <p>Ⅰ. 도형의 방정식 — 계산은 하지 마세요. <b style="color:#e2e8f0">이 문장을 보면 어떤 아이디어가 떠올라야 하는지</b>만 고르세요.</p>
   </div>
 
@@ -112,6 +119,7 @@ body{font-family:"Nanum Gothic","Segoe UI",sans-serif;background:var(--bg);color
       <div class="verdict" id="explainVerdict"></div>
       <div id="explainText"></div>
     </div>
+    <button class="submit-btn" id="submitBtn">제출하기 ✓</button>
     <button class="next-btn" id="nextBtn">다음 문제 →</button>
   </div>
 
@@ -130,9 +138,30 @@ const QUESTIONS = [
 {
   topic: '두 점 사이의 거리·내분점',
   sentence: '선분 AB를 2:3으로 나누는 점 P의 좌표를 구하시오.',
-  choices: ['내분점 공식', '외분점 공식', '두 점 사이의 거리 공식', '무게중심 공식'],
+  choices: ['내분점 공식', '수직이등분선의 방정식', '두 점 사이의 거리 공식', '무게중심 공식'],
   answer: 0,
-  why: '"m:n으로 나누는 점"은 항상 내분점 공식이 신호예요. 외분점은 "바깥으로 연장해서 나누는" 경우에만 씁니다.'
+  why: '"m:n으로 나누는 점"은 항상 내분점 공식이 신호예요. 두 점 사이의 거리나 무게중심과 헷갈리지 말고 "나누는 점"이라는 표현에 집중하세요.'
+},
+{
+  topic: '내분 vs 거리의 비 ①',
+  sentence: '점 P가 선분 AB를 2:3으로 나눈다.',
+  choices: ['내분점 공식 (P는 선분 AB 위의 한 점)', '아폴로니우스 원 (거리의 비가 일정한 점들의 자취)', '무게중심 공식 (세 점의 좌표 평균)', '수직이등분선 (선분 PA, PB의 길이가 같다)'],
+  answer: 0,
+  why: '"선분을 나눈다"는 P가 선분 AB 위에 있다는 뜻이에요. 위치가 그 자리 하나로 정해지니, 내분점 공식으로 바로 좌표를 구하면 돼요.'
+},
+{
+  topic: '내분 vs 거리의 비 ② (심화)',
+  sentence: '점 P에서 A, B까지의 거리의 비가 2:3이다.',
+  choices: ['아폴로니우스 원 (거리의 비가 일정한 점들의 자취)', '내분점 공식 (P는 선분 AB 위의 한 점)', '무게중심 공식 (세 점의 좌표 평균)', '수직이등분선 (선분 PA, PB의 길이가 같다)'],
+  answer: 0,
+  why: '이번엔 "선분 위에 있다"는 말이 없어요! PA:PB가 2:3으로만 일정할 뿐, P가 어디 있는지는 안 정해져서 그런 점들을 모두 모으면 자취(원)가 나와요. PA:PB=2:3 → 3·PA=2·PB → 양변을 제곱해서 정리하면 원의 방정식(아폴로니우스 원)이 나와요 — 바로 앞 문제(내분)와 문장이 비슷해 보여도 완전히 다른 아이디어예요. (참고: 만약 비율이 1:1이었다면 PA=PB가 되어 수직이등분선이 나왔을 거예요.)'
+},
+{
+  topic: '내분 vs 거리의 비 ③ (심화)',
+  sentence: '점 P에서 A, B까지의 거리의 비가 2:3인 점 P가 그리는 도형의 방정식을 구하려면, 어떤 것이 필요한가?',
+  choices: ['3·PA=2·PB로 식을 세운다', '점 P를 (x, y)로 나타내고 두 점 사이의 거리 공식 이용', '내분점 공식을 이용해 P의 좌표를 바로 구한다', '점과 직선 사이의 거리 공식을 이용한다'],
+  answer: [0,1],
+  why: 'PA:PB=2:3이라는 "거리의 비" 조건을 방정식으로 바꾸려면 두 가지가 다 필요해요 — ① 점 P를 (x,y)로 두고 두 점 사이의 거리 공식으로 PA, PB를 각각 식으로 나타내고, ② 그 두 식을 3·PA=2·PB로 연결해야 완성돼요. 하나만 있으면 식을 세울 수 없어요. P의 위치가 하나로 정해진 게 아니라 자취(원)를 구하는 문제라서 내분점 공식은 쓸 수 없어요.'
 },
 {
   topic: '두 점 사이의 거리·수직이등분선',
@@ -144,7 +173,7 @@ const QUESTIONS = [
 {
   topic: '직선의 방정식·일직선 조건',
   sentence: '세 점 A, B, C가 한 직선 위에 있다.',
-  choices: ['세 점이 이루는 삼각형의 넓이 공식', 'AB의 기울기와 BC의 기울기가 같다', '무게중심 공식', '외분점 공식'],
+  choices: ['세 점이 이루는 삼각형의 넓이 공식', 'AB의 기울기와 BC의 기울기가 같다', '무게중심 공식', '두 점 사이의 거리 공식'],
   answer: 1,
   why: '"한 직선 위에 있다(일직선)"는 기울기 같음 조건으로 바꾸는 게 핵심 아이디어예요. 삼각형 넓이=0으로 접근해도 되지만, 가장 먼저 떠올려야 할 건 기울기 비교예요.'
 },
@@ -212,11 +241,18 @@ const QUESTIONS = [
   why: '"대칭이동해도 똑같다"는 계수 비교 문제로 바뀌어요 — y 대신 −y를 넣은 식이 원래 식과 완전히 같아지도록 미지수를 정하는 거예요.'
 },
 {
-  topic: '무게중심',
-  sentence: '세 점을 꼭짓점으로 하는 삼각형의 무게중심의 좌표를 구하시오.',
-  choices: ['세 좌표의 평균(무게중심 공식)', '두 점 사이의 거리 공식', '내분점 공식', '외분점 공식'],
+  topic: '원의 대칭이동',
+  sentence: '원을 x축에 대칭이동해도 처음과 똑같은 원이 나온다.',
+  choices: ['원의 중심이 x축 위에 있다', '원의 반지름이 1이다', '원이 y축과 만난다', '원의 중심이 원점이다'],
   answer: 0,
-  why: '"무게중심"이라는 단어 자체가 신호예요 — x좌표 평균, y좌표 평균을 바로 계산하면 돼요.'
+  why: '원을 x축에 대칭이동하면 중심의 y좌표만 부호가 바뀌어요(중심 (a,b) → (a,−b)). 대칭이동해도 똑같은 원이 되려면 b=−b, 즉 b=0 — 중심이 x축 위에 있으면 충분해요. 중심이 꼭 원점이어야 하는 건 아니에요(원점은 x축 위의 한 점일 뿐).'
+},
+{
+  topic: '무게중심',
+  sentence: '세 점 A(x₁,y₁), B(x₂,y₂), C(x₃,y₃)를 꼭짓점으로 하는 삼각형의 무게중심의 좌표는?',
+  choices: ['((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3)', '((x₁+x₂+x₃)/2, (y₁+y₂+y₃)/2)', '((x₁+x₂)/2, (y₁+y₂)/2)', '(x₁+x₂+x₃, y₁+y₂+y₃)'],
+  answer: 0,
+  why: '무게중심은 세 꼭짓점의 x좌표 평균, y좌표 평균이에요 — 꼭짓점이 3개이니 각각 더해서 3으로 나눠야 해요. 2로 나누면 두 점의 중점 공식과 헷갈린 거고, 안 나누면 합만 구한 거예요.'
 },
 {
   topic: '두 원의 위치 관계',
@@ -224,13 +260,6 @@ const QUESTIONS = [
   choices: ['중심거리 = 두 반지름의 합', '중심거리 = 두 반지름의 차', '중심거리 = 0', '중심거리 > 두 반지름의 합'],
   answer: 0,
   why: '외접(바깥에서 만남)은 중심 사이 거리가 반지름을 "더한" 값과 같아요. 내접(안에서 만남)은 반지름을 "뺀" 값이라 헷갈리지 않게 구분해야 해요.'
-},
-{
-  topic: '외분점',
-  sentence: '선분 AB를 1:2로 외분하는 점의 좌표를 구하시오.',
-  choices: ['내분점 공식', '외분점 공식', '무게중심 공식', '수직이등분선'],
-  answer: 1,
-  why: '"외분"이라는 단어가 명시적으로 나왔으니 바로 외분점 공식. 내분과 부호(분모의 차)만 다르다는 걸 떠올리면 돼요.'
 },
 {
   topic: '원과 직선의 위치관계 — 판별식 활용',
@@ -242,6 +271,7 @@ const QUESTIONS = [
 ];
 
 let order = [], idx = 0, score = 0, streak = 0, answered = false;
+let selectedSet = new Set();
 
 function shuffle(arr){
   const a = arr.slice();
@@ -259,9 +289,11 @@ function restart(){
 
 function renderQuestion(){
   answered = false;
+  selectedSet = new Set();
   const q = QUESTIONS[order[idx]];
+  const isMulti = Array.isArray(q.answer);
   document.getElementById('quizTopic').textContent = q.topic;
-  document.getElementById('quizSentence').textContent = q.sentence;
+  document.getElementById('quizSentence').textContent = q.sentence + (isMulti ? ' (모두 고르시오)' : '');
   document.getElementById('progPill').textContent = (idx+1)+' / '+QUESTIONS.length;
   document.getElementById('totalNum').textContent = idx+' / '+QUESTIONS.length;
   document.getElementById('scoreNum').textContent = score;
@@ -274,13 +306,15 @@ function renderQuestion(){
   shuffledChoiceIdx.forEach((origIdx, pos)=>{
     const btn = document.createElement('button');
     btn.className = 'choice-btn';
+    btn.dataset.idx = origIdx;
     btn.innerHTML = '<span class="choice-num">'+(pos+1)+'</span><span>'+q.choices[origIdx]+'</span>';
-    btn.onclick = ()=> selectChoice(origIdx, btn);
+    btn.onclick = isMulti ? (()=> toggleChoice(origIdx, btn)) : (()=> selectChoice(origIdx, btn));
     choicesEl.appendChild(btn);
   });
 
   document.getElementById('explainBox').className = 'explain-box';
   document.getElementById('nextBtn').className = 'next-btn';
+  document.getElementById('submitBtn').className = 'submit-btn' + (isMulti ? ' show' : '');
 }
 
 function selectChoice(origIdx, btnEl){
@@ -297,7 +331,7 @@ function selectChoice(origIdx, btnEl){
   } else {
     btnEl.classList.add('wrong');
     allBtns.forEach(b=>{
-      if(b.textContent.trim() === q.choices[q.answer]) b.classList.add('correct');
+      if(Number(b.dataset.idx) === q.answer) b.classList.add('correct');
     });
     streak = 0;
   }
@@ -311,6 +345,52 @@ function selectChoice(origIdx, btnEl){
 
   document.getElementById('nextBtn').className = 'next-btn show';
 }
+
+function toggleChoice(origIdx, btnEl){
+  if(answered) return;
+  if(selectedSet.has(origIdx)){
+    selectedSet.delete(origIdx);
+    btnEl.classList.remove('selected');
+  } else {
+    selectedSet.add(origIdx);
+    btnEl.classList.add('selected');
+  }
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.classList.toggle('ready', selectedSet.size > 0);
+}
+
+function submitMulti(){
+  if(answered) return;
+  if(selectedSet.size === 0) return;
+  answered = true;
+  const q = QUESTIONS[order[idx]];
+  const answerSet = new Set(q.answer);
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b=> b.disabled = true);
+
+  const isCorrect = selectedSet.size === answerSet.size && [...selectedSet].every(i=> answerSet.has(i));
+
+  allBtns.forEach(b=>{
+    const oi = Number(b.dataset.idx);
+    if(answerSet.has(oi)) b.classList.add('correct');
+    else if(selectedSet.has(oi)) b.classList.add('wrong');
+  });
+
+  if(isCorrect){ score++; streak++; } else { streak = 0; }
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+
+  const correctList = q.answer.map(i=> q.choices[i]).join(' + ');
+  const box = document.getElementById('explainBox');
+  box.className = 'explain-box show ' + (isCorrect ? 'good' : 'bad');
+  document.getElementById('explainVerdict').textContent = isCorrect ? '✅ 맞아요!' : '❌ 아쉬워요 — 정답: '+correctList;
+  document.getElementById('explainText').textContent = q.why;
+
+  document.getElementById('submitBtn').className = 'submit-btn';
+  document.getElementById('nextBtn').className = 'next-btn show';
+}
+
+document.getElementById('submitBtn').onclick = submitMulti;
 
 document.getElementById('nextBtn').onclick = ()=>{
   idx++;

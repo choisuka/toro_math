@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>⬡ 평면도형 — 다각형 판별</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--card:#111827;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.08);
+  --good:#34d399;--bad:#f87171}
+body{font-family:"Nanum Gothic","Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:520px;margin:0 auto;padding:1.25rem 1.1rem 3rem}
+
+.nav-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem}
+.back-link{font-family:'Jua',sans-serif;font-size:.82rem;color:var(--muted);text-decoration:none;
+  background:rgba(255,255,255,.08);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+.progress-pill{font-family:'Jua',sans-serif;font-size:.78rem;color:#fbbf24;background:rgba(251,191,36,.12);
+  border:1px solid rgba(251,191,36,.3);padding:5px 12px;border-radius:20px}
+
+.sec-head{text-align:center;margin-bottom:1.3rem}
+.sec-head h1{font-family:'Jua',sans-serif;font-size:1.5rem;margin-bottom:.35rem;
+  background:linear-gradient(135deg,#fbbf24,#fb923c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-head p{color:var(--muted);font-size:.82rem;line-height:1.6}
+
+.score-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.7rem 1rem}
+.score-item{text-align:center}
+.score-item .num{font-family:'Jua',sans-serif;font-size:1.1rem;color:#fff}
+.score-item .lbl{font-size:.68rem;color:var(--muted)}
+.streak-fire{color:#fb923c}
+
+.progress-track{height:6px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:1.2rem;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#f59e0b,#fb923c);border-radius:4px;transition:width .3s}
+
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem 1.3rem;margin-bottom:1.2rem}
+.quiz-topic{display:inline-block;font-size:.7rem;color:#fbbf24;background:rgba(251,191,36,.12);
+  border:1px solid rgba(251,191,36,.3);padding:.25rem .65rem;border-radius:10px;margin-bottom:.9rem}
+.quiz-prompt{font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+.quiz-sentence{font-size:1.02rem;font-weight:800;line-height:1.65;color:#fff;margin-bottom:1.3rem}
+
+.choices{display:flex;flex-direction:column;gap:.6rem}
+.choice-btn{display:flex;align-items:center;gap:.6rem;text-align:left;width:100%;
+  background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:14px;
+  padding:.75rem .9rem;color:var(--text);font-size:.88rem;font-family:inherit;cursor:pointer;
+  transition:border-color .15s,background .15s}
+.choice-btn:hover:not(:disabled){border-color:rgba(251,191,36,.5);background:rgba(251,191,36,.08)}
+.choice-btn:disabled{cursor:default}
+.choice-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:var(--muted)}
+.choice-btn.correct{border-color:var(--good);background:rgba(52,211,153,.12)}
+.choice-btn.correct .choice-num{background:var(--good);color:#052e1c}
+.choice-btn.wrong{border-color:var(--bad);background:rgba(248,113,113,.12)}
+.choice-btn.wrong .choice-num{background:var(--bad);color:#3a0a0a}
+
+.explain-box{margin-top:1.1rem;padding:1rem 1.1rem;border-radius:14px;font-size:.85rem;line-height:1.7;display:none}
+.explain-box.show{display:block}
+.explain-box.good{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);color:#a7f3d0}
+.explain-box.bad{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);color:#fecaca}
+.explain-box .verdict{font-family:'Jua',sans-serif;font-size:.92rem;margin-bottom:.4rem}
+
+.next-btn{display:block;width:100%;margin-top:1rem;padding:.85rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#f59e0b,#fb923c);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.92rem;cursor:pointer;display:none}
+.next-btn.show{display:block}
+
+.end-screen{display:none;text-align:center;background:var(--card);border:1px solid var(--border);
+  border-radius:22px;padding:2.4rem 1.6rem}
+.end-screen.show{display:block}
+.end-icon{font-size:3.2rem;margin-bottom:.8rem}
+.end-title{font-family:'Jua',sans-serif;font-size:1.3rem;margin-bottom:.5rem}
+.end-score{font-family:'Jua',sans-serif;font-size:2.2rem;background:linear-gradient(135deg,#fbbf24,#fb923c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.end-desc{color:var(--muted);font-size:.85rem;margin-bottom:1.4rem;line-height:1.6}
+.retry-btn{display:inline-block;padding:.8rem 1.8rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#f59e0b,#fb923c);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.88rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav-bar">
+    <a href="../games_mid_geo13.html" class="back-link">← 중1기하</a>
+    <span class="progress-pill" id="progPill">1 / 10</span>
+  </div>
+
+  <div class="sec-head">
+    <h1>⬡ 다각형 판별</h1>
+    <p>평면도형 — 대각선·내각·외각, 공식을 정확히 골라 쓰는 연습입니다.</p>
+  </div>
+
+  <div class="score-bar">
+    <div class="score-item"><div class="num" id="scoreNum">0</div><div class="lbl">정답</div></div>
+    <div class="score-item"><div class="num streak-fire" id="streakNum">0🔥</div><div class="lbl">연속정답</div></div>
+    <div class="score-item"><div class="num" id="totalNum">0 / 10</div><div class="lbl">진행</div></div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-topic" id="quizTopic">단원</div>
+    <div class="quiz-prompt">📖 문장을 보고 알맞은 답을 고르세요</div>
+    <div class="quiz-sentence" id="quizSentence">문장</div>
+    <div class="choices" id="choices"></div>
+    <div class="explain-box" id="explainBox">
+      <div class="verdict" id="explainVerdict"></div>
+      <div id="explainText"></div>
+    </div>
+    <button class="next-btn" id="nextBtn">다음 문제 →</button>
+  </div>
+
+  <div class="end-screen" id="endScreen">
+    <div class="end-icon">🏆</div>
+    <div class="end-title">완료!</div>
+    <div class="end-score" id="endScore">0 / 10</div>
+    <div class="end-desc">"꼭짓점에서 그을 때"와 "내부의 점에서 그을 때"처럼 비슷해 보이지만 다른 상황을 구분하는 게 핵심이에요.</div>
+    <button class="retry-btn" onclick="restart()">🔄 다시 도전</button>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+{
+  topic: '다각형의 대각선 개수',
+  sentence: 'n각형에서 그을 수 있는 대각선의 총 개수를 구하는 식은?',
+  choices: ['n(n-3)/2', 'n(n-2)/2', 'n-3', '(n-2)×180°'],
+  answer: 0,
+  why: '한 꼭짓점에서 그을 수 있는 대각선은 (n-3)개, 꼭짓점이 n개라서 n(n-3)개처럼 보이지만 대각선 하나를 두 번씩 세었으므로 2로 나눠요.'
+},
+{
+  topic: '대각선 개수 역산',
+  sentence: '한 꼭짓점에서 그을 수 있는 대각선이 7개인 다각형의 변의 개수는?',
+  choices: ['10개', '7개', '9개', '12개'],
+  answer: 0,
+  why: '한 꼭짓점에서 그을 수 있는 대각선은 (n-3)개이므로 n-3=7, n=10이에요.'
+},
+{
+  topic: '다각형의 내각의 합',
+  sentence: '팔각형(8각형)의 내각의 합은?',
+  choices: ['1080°', '1440°', '900°', '720°'],
+  answer: 0,
+  why: '내각의 합 = (n-2)×180° = (8-2)×180° = 6×180° = 1080°예요.'
+},
+{
+  topic: '오목다각형도 성립할까',
+  sentence: '오목한(화살표 모양) 사각형도 내각의 합이 360°로 똑같이 성립할까?',
+  choices: ['성립한다 — 대각선으로 삼각형 2개로 나뉘기만 하면 된다', '성립하지 않는다 — 오목하면 공식이 깨진다', '오목하면 항상 360°보다 작다', '오목하면 항상 360°보다 크다'],
+  answer: 0,
+  why: '오목사각형도 대각선 하나로 삼각형 2개로 나뉘기만 하면 180°+180°=360°가 그대로 성립해요. 오목·볼록은 상관없어요.'
+},
+{
+  topic: '삼각형의 외각의 성질',
+  sentence: '삼각형의 한 외각의 크기는?',
+  choices: ['그와 이웃하지 않는 두 내각의 합과 같다', '세 내각의 합과 같다', '항상 90°이다', '이웃한 내각과 같다'],
+  answer: 0,
+  why: '삼각형의 한 외각은 그와 이웃하지 않는 두 내각의 합과 같아요 — 내각의 합(180°)과 평각(180°)을 함께 쓰면 유도돼요.'
+},
+{
+  topic: '다각형 외각의 합',
+  sentence: '변이 20개인 볼록다각형의 외각의 합은?',
+  choices: ['360°(변의 개수와 무관)', '20×180°', '18×180°', '3240°'],
+  answer: 0,
+  why: '볼록다각형은 변의 개수와 상관없이 외각의 합이 항상 360°예요 — 한 바퀴 돌면 방향이 원래대로 돌아오기 때문이에요.'
+},
+{
+  topic: '외각+대각선 결합',
+  sentence: '한 외각의 크기가 20°인 정n각형의 대각선의 개수는?',
+  choices: ['135개', '170개', '152개', '119개'],
+  answer: 0,
+  why: '360°÷20°=18 → n=18. 대각선=18×15÷2=135개예요. "외각의 합=360°"와 "대각선 개수" 두 공식을 순서대로 써야 해요.'
+},
+{
+  topic: '내각+대각선 연립',
+  sentence: '어떤 다각형의 내각의 합과 대각선의 개수의 합이 729일 때, 이 다각형의 변의 개수는?',
+  choices: ['6개', '9개', '7개', '5개'],
+  answer: 0,
+  why: 'n=6일 때: 내각의 합=(6-2)×180=720, 대각선=6×3÷2=9, 720+9=729 ✓ → 육각형이에요.'
+},
+{
+  topic: '함정 — 내부의 점',
+  sentence: '다각형 내부의 한 점에서 각 꼭짓점에 선을 그으면 삼각형이 몇 개 생기는가? (변의 개수를 n이라 할 때)',
+  choices: ['n개', 'n-2개', 'n-1개', 'n+1개'],
+  answer: 0,
+  why: '꼭짓점에서 대각선을 그어 나눌 때는 (n-2)개지만, 내부의 점에서 모든 꼭짓점으로 선을 그으면 자기 자신 삭감이 없어서 n개가 생겨요.'
+},
+{
+  topic: '함정 — 별모양 각의 합',
+  sentence: '5개의 점을 2개씩 건너뛰며 이은 보통의 5점 별에서, 다섯 뾰족각의 합은?',
+  choices: ['180°', '360°', '540°', '900°'],
+  answer: 0,
+  why: '180°예요. 단, 이건 "별은 무조건 180°"라는 뜻이 아니에요 — 7개의 점을 2개씩 건너뛰어 만든 별은 540°로 달라져요. 점의 개수와 몇 개씩 건너뛰는지에 따라 답이 바뀌어요.'
+}
+];
+
+let order = [], idx = 0, score = 0, streak = 0, answered = false;
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function restart(){
+  order = shuffle(QUESTIONS.map((_,i)=>i));
+  idx = 0; score = 0; streak = 0;
+  document.getElementById('endScreen').classList.remove('show');
+  document.getElementById('quizCard').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered = false;
+  const q = QUESTIONS[order[idx]];
+  document.getElementById('quizTopic').textContent = q.topic;
+  document.getElementById('quizSentence').textContent = q.sentence;
+  document.getElementById('progPill').textContent = (idx+1)+' / '+QUESTIONS.length;
+  document.getElementById('totalNum').textContent = idx+' / '+QUESTIONS.length;
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+  document.getElementById('progFill').style.width = (idx/QUESTIONS.length*100)+'%';
+
+  const choicesEl = document.getElementById('choices');
+  choicesEl.innerHTML = '';
+  const shuffledChoiceIdx = shuffle(q.choices.map((_,i)=>i));
+  shuffledChoiceIdx.forEach((origIdx, pos)=>{
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.dataset.idx = origIdx;
+    btn.innerHTML = '<span class="choice-num">'+(pos+1)+'</span><span>'+q.choices[origIdx]+'</span>';
+    btn.onclick = ()=> selectChoice(origIdx, btn);
+    choicesEl.appendChild(btn);
+  });
+
+  document.getElementById('explainBox').className = 'explain-box';
+  document.getElementById('nextBtn').className = 'next-btn';
+}
+
+function selectChoice(origIdx, btnEl){
+  if(answered) return;
+  answered = true;
+  const q = QUESTIONS[order[idx]];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b=> b.disabled = true);
+
+  const isCorrect = origIdx === q.answer;
+  if(isCorrect){
+    btnEl.classList.add('correct');
+    score++; streak++;
+  } else {
+    btnEl.classList.add('wrong');
+    allBtns.forEach(b=>{
+      if(Number(b.dataset.idx) === q.answer) b.classList.add('correct');
+    });
+    streak = 0;
+  }
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+
+  const box = document.getElementById('explainBox');
+  box.className = 'explain-box show ' + (isCorrect ? 'good' : 'bad');
+  document.getElementById('explainVerdict').textContent = isCorrect ? '✅ 맞아요!' : '❌ 아쉬워요 — 정답: '+q.choices[q.answer];
+  document.getElementById('explainText').textContent = q.why;
+
+  document.getElementById('nextBtn').className = 'next-btn show';
+}
+
+document.getElementById('nextBtn').onclick = ()=>{
+  idx++;
+  if(idx >= QUESTIONS.length){
+    document.getElementById('quizCard').style.display = 'none';
+    document.getElementById('endScreen').classList.add('show');
+    document.getElementById('endScore').textContent = score+' / '+QUESTIONS.length;
+    document.getElementById('progFill').style.width = '100%';
+    document.getElementById('totalNum').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+    document.getElementById('progPill').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+  } else {
+    renderQuestion();
+  }
+};
+
+restart();
+</script>
+</body>
+</html>

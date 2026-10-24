@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>핀란드 중등 수학</title>
+<style>
+:root{
+  --blue:#1e40af;--blue-light:#3b82f6;--blue-pale:#dbeafe;
+  --green:#065f46;--green-light:#059669;--green-pale:#d1fae5;
+  --amber:#92400e;--amber-light:#d97706;--amber-pale:#fef3c7;
+  --red:#991b1b;--red-pale:#fee2e2;
+  --bg:#f0f8ff;--card-bg:#ffffff;--text:#1e293b;--muted:#64748b;
+  --radius:14px;--shadow:0 4px 20px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center}
+
+header{width:100%;background:var(--blue);border-bottom:4px solid #93c5fd;padding:18px 24px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+header h1{color:#fff;font-size:1.3rem}
+.flag{font-size:1.5rem}
+.badge-hdr{background:#3b82f6;color:#fff;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:700}
+
+.prog-wrap{width:100%;max-width:960px;padding:14px 20px 6px;display:flex;flex-direction:column;gap:6px}
+.prog-track{display:flex;gap:3px;flex-wrap:wrap}
+.prog-dot{width:27px;height:27px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#94a3b8;cursor:pointer;transition:.2s;flex-shrink:0}
+.prog-dot.on{background:var(--blue);color:#fff;transform:scale(1.18)}
+.prog-dot.done{background:#1e3a8a;color:#bfdbfe;opacity:.75}
+.prog-sep{width:2px;height:27px;background:#cbd5e1;border-radius:2px;flex-shrink:0}
+.prog-label{font-size:.68rem;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+.plbl{font-weight:700;color:#1e40af}
+
+.screen{display:none;flex-direction:column;gap:18px;width:100%;max-width:960px;padding:20px 20px 100px;animation:fadeIn .35s ease}
+.screen.active{display:flex}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.screen-title{font-size:1.4rem;font-weight:800;color:var(--blue);border-left:5px solid #3b82f6;padding-left:12px}
+.screen-sub{font-size:.9rem;color:var(--muted);margin-top:4px;padding-left:17px}
+.fin-quote{background:var(--blue);color:#fff;border-radius:10px;padding:12px 18px;font-size:.9rem;font-style:italic;margin-bottom:4px}
+.fin-quote span{color:#93c5fd;font-weight:700}
+
+/* Cards */
+.principle{background:#1e3a8a;color:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.principle h3{color:#93c5fd;font-size:1rem;font-weight:700;margin-bottom:10px}
+.principle p,.principle li{color:#e0e7ff;line-height:1.85}
+.principle ul{padding-left:18px}
+.card{background:var(--card-bg);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border:1px solid #bfdbfe}
+.card h3{font-size:.98rem;font-weight:700;color:var(--blue);margin-bottom:10px}
+.card-amber{background:#fffbeb;border:2px solid #fde68a;border-radius:var(--radius);padding:16px}
+.card-amber h3{color:#92400e;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.card-blue{background:#eff6ff;border:2px solid #bfdbfe;border-radius:var(--radius);padding:16px}
+.card-blue h3{color:#1e40af;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.card-green{background:#f0fdf4;border:2px solid #86efac;border-radius:var(--radius);padding:16px}
+.card-green h3{color:#065f46;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.card-red{background:#fff5f5;border:2px solid #fca5a5;border-radius:var(--radius);padding:16px}
+.card-red h3{color:#991b1b;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.card-purple{background:#faf5ff;border:2px solid #d8b4fe;border-radius:var(--radius);padding:16px}
+.card-purple h3{color:#6b21a8;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.explore{background:#f0fdf4;border:2px dashed #34d399;border-radius:var(--radius);padding:16px}
+.explore h3{color:#065f46;font-size:.95rem;font-weight:700;margin-bottom:8px}
+
+p,li{line-height:1.85;font-size:.95rem}
+ul,ol{padding-left:20px}
+
+.eq-box{background:#f8fafc;border:2px solid #3b82f6;border-radius:10px;padding:13px 18px;text-align:center;font-size:1.05rem;font-weight:700;color:#1e40af;margin:8px 0}
+.eq-big{font-size:1.3rem}
+.eq-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.eq-row .eq-box{flex:1;min-width:150px}
+.hl{background:#fef08a;padding:1px 4px;border-radius:3px;font-weight:700}
+.hl-blue{background:#bfdbfe;padding:1px 4px;border-radius:3px;font-weight:700;color:#1e3a8a}
+.hl-green{background:#bbf7d0;padding:1px 4px;border-radius:3px;font-weight:700;color:#065f46}
+.hl-red{background:#fecaca;padding:1px 4px;border-radius:3px;font-weight:700;color:#991b1b}
+
+.steps{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.step-item{display:flex;gap:12px;align-items:flex-start}
+.step-num{min-width:28px;height:28px;background:#1e40af;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;flex-shrink:0;margin-top:2px}
+.step-body{flex:1}
+.step-why{background:#eff6ff;border-left:4px solid #3b82f6;padding:8px 12px;border-radius:0 8px 8px 0;font-size:.87rem;color:#1e40af;margin-top:4px}
+.step-real{background:#f0fdf4;border-left:4px solid #34d399;padding:8px 12px;border-radius:0 8px 8px 0;font-size:.87rem;color:#065f46;margin-top:4px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:600px){.grid2,.grid3{grid-template-columns:1fr}}
+
+.tbl-wrap{border-radius:10px;overflow:hidden;border:1px solid #e2e8f0}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{background:#1e40af;color:#fff;padding:10px;text-align:center}
+td{padding:9px 10px;text-align:center;border-bottom:1px solid #e2e8f0}
+tr:nth-child(even) td{background:#f8fafc}
+
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:6px}
+.tag-fin{background:#dbeafe;color:#1e40af}
+.tag-real{background:#d1fae5;color:#065f46}
+.tag-ex{background:#dbeafe;color:#1e40af}
+.tag-why{background:#fef3c7;color:#92400e}
+.tag-disc{background:#f3e8ff;color:#6b21a8}
+.tag-tip{background:#d1fae5;color:#065f46}
+.tag-warn{background:#fee2e2;color:#991b1b}
+
+/* SVG diagram wrappers */
+.svg-center{display:flex;justify-content:center;margin:12px 0}
+.svg-center svg{max-width:100%;width:100%}
+
+/* Balance model */
+.balance{display:flex;align-items:center;justify-content:center;gap:20px;margin:12px 0}
+.balance-side{background:#eff6ff;border:2px solid #3b82f6;border-radius:10px;padding:14px 20px;text-align:center;font-size:1.1rem;font-weight:700;min-width:100px}
+.balance-mid{font-size:2rem;color:#3b82f6}
+
+/* Bar model */
+.bar-model{margin:10px 0}
+.bar-row{display:flex;align-items:center;gap:8px;margin:4px 0}
+.bar-label{font-size:.82rem;width:60px;text-align:right;color:var(--muted);flex-shrink:0}
+.bar-fill{height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#fff;transition:.5s}
+.bar-num{font-size:.82rem;width:40px;color:var(--text);margin-left:4px}
+
+/* Number line */
+.numline{background:#f8fafc;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.nl-track{position:relative;height:4px;background:#cbd5e1;border-radius:2px;margin:16px 8px}
+.nl-point{position:absolute;top:-10px;transform:translateX(-50%);font-size:.72rem;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:3px}
+.nl-dot{width:10px;height:10px;border-radius:50%;margin-top:5px}
+
+/* Function machine */
+.fn-machine{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0;flex-wrap:wrap}
+.fn-input{background:#fef3c7;border:2px solid #d97706;border-radius:10px;padding:10px 16px;font-weight:700;font-size:1rem}
+.fn-box{background:#1e40af;color:#fff;border-radius:12px;padding:12px 18px;font-weight:700;font-size:.95rem;text-align:center}
+.fn-arrow{font-size:1.5rem;color:#3b82f6}
+.fn-output{background:#d1fae5;border:2px solid #059669;border-radius:10px;padding:10px 16px;font-weight:700;font-size:1rem}
+
+/* Intro grid */
+.intro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:600px){.intro-grid{grid-template-columns:1fr 1fr}}
+.intro-item{background:#fff;border:2px solid #3b82f6;border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:.2s}
+.intro-item:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(59,130,246,.25)}
+.intro-item .icon{font-size:1.8rem;margin-bottom:6px}
+.intro-item .ititle{font-size:.82rem;font-weight:700;color:#1e40af}
+.intro-item .ipage{font-size:.72rem;color:var(--muted);margin-top:2px}
+
+/* Summary */
+.sum-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.sum-grid{grid-template-columns:1fr}}
+.sum-card{background:#fff;border:2px solid #3b82f6;border-radius:12px;padding:16px}
+.sum-card h4{font-size:.88rem;font-weight:700;color:#1e40af;margin-bottom:8px;border-bottom:1px solid #bfdbfe;padding-bottom:6px}
+.sum-card li{font-size:.82rem;line-height:1.8}
+
+/* Buttons */
+.btn-next{position:fixed;bottom:24px;right:24px;background:#1e40af;color:#fff;border:none;padding:14px 28px;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(30,64,175,.4);transition:.2s;z-index:100}
+.btn-next:hover{background:#1e3a8a;transform:translateY(-2px)}
+.btn-prev{position:fixed;bottom:24px;left:24px;background:#fff;color:#1e40af;border:2px solid #1e40af;padding:12px 22px;border-radius:50px;font-size:.9rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:.2s;z-index:100}
+.btn-prev:hover{background:#1e40af;color:#fff}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="flag">🇫🇮</span>
+  <h1>핀란드 중등 수학</h1>
+  <span class="badge-hdr">7~9학년 · 20 Screens</span>
+</header>
+
+<div class="prog-wrap">
+  <div class="prog-track" id="progTrack"></div>
+  <div class="prog-label" id="progLabel"></div>
+</div>
+
+<!-- S1 인트로 -->
+<div class="screen active" id="s1">
+  <div class="screen-title">핀란드 수학 — 왜 세계 최고인가?</div>
+  <div class="screen-sub">탐구하고, 연결하고, 이해한다</div>
+
+  <div class="fin-quote">"수학은 외워야 할 공식이 아니라, <span>탐구해야 할 언어</span>이다." — 핀란드 국가교육과정(FNCC)</div>
+
+  <div class="card-blue">
+    <span class="tag tag-fin">핀란드 수학의 3원칙</span>
+    <div class="grid3">
+      <div style="text-align:center;padding:8px">
+        <div style="font-size:2rem">🔍</div>
+        <div style="font-weight:700;color:#1e40af;margin-top:4px">탐구</div>
+        <div style="font-size:.8rem;color:var(--muted)">규칙을 직접 발견한다</div>
+      </div>
+      <div style="text-align:center;padding:8px">
+        <div style="font-size:2rem">🌍</div>
+        <div style="font-weight:700;color:#1e40af;margin-top:4px">연결</div>
+        <div style="font-size:.8rem;color:var(--muted)">실생활과 수학을 잇는다</div>
+      </div>
+      <div style="text-align:center;padding:8px">
+        <div style="font-size:2rem">💡</div>
+        <div style="font-weight:700;color:#1e40af;margin-top:4px">이해</div>
+        <div style="font-size:.8rem;color:var(--muted)">왜? 를 항상 묻는다</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro-grid">
+    <div class="intro-item" onclick="goTo(2)"><div class="icon">🔢</div><div class="ititle">수와 연산</div><div class="ipage">2~4화면</div></div>
+    <div class="intro-item" onclick="goTo(5)"><div class="icon">📐</div><div class="ititle">대수</div><div class="ipage">5~7화면</div></div>
+    <div class="intro-item" onclick="goTo(8)"><div class="icon">📈</div><div class="ititle">함수</div><div class="ipage">8~9화면</div></div>
+    <div class="intro-item" onclick="goTo(10)"><div class="icon">🔷</div><div class="ititle">기하</div><div class="ipage">10~13화면</div></div>
+    <div class="intro-item" onclick="goTo(14)"><div class="icon">🎲</div><div class="ititle">확률·통계</div><div class="ipage">14~15화면</div></div>
+    <div class="intro-item" onclick="goTo(16)"><div class="icon">²</div><div class="ititle">제곱·이차</div><div class="ipage">16~19화면</div></div>
+  </div>
+
+  <div class="card-green">
+    <h3>🌲 핀란드 수학 교과서의 특징</h3>
+    <ul>
+      <li>모든 문제에 <strong>실생활 맥락</strong> 부여 (숲, 기온, 건축, 스포츠)</li>
+      <li><strong>탐구하기</strong> 코너로 학생이 직접 규칙을 발견</li>
+      <li><strong>시각적 모델</strong> (바 다이어그램, 수직선, 면적 모델) 적극 활용</li>
+      <li>계산기 사용 허용 — 개념 이해에 집중</li>
+    </ul>
+  </div>
+</div>
+
+<!-- S2 유리수와 실생활 -->
+<div class="screen" id="s2">
+  <div class="screen-title">유리수 — 실생활 속의 수</div>
+  <div class="screen-sub">핀란드 교과서는 기온과 해발고도로 음수를 가르친다</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 수직선으로 모든 유리수를 시각화</h3>
+    <p>핀란드 7학년은 수직선을 도구로 삼아 양수·음수·0의 관계를 탐구합니다.</p>
+    <p style="margin-top:8px;color:#93c5fd">유리수(有理數) = 두 정수의 비로 나타낼 수 있는 수. 정수·분수·소수 모두 포함.</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">🌡 핀란드 실생활 맥락 — 헬싱키 겨울 기온</span>
+    <p>헬싱키의 1월 평균 기온: <strong>-6°C</strong>. 오울루: <strong>-12°C</strong>.</p>
+    <p style="margin-top:8px">오울루가 헬싱키보다 <span class="hl-red">얼마나 추운가?</span></p>
+    <div class="eq-box">(-12) - (-6) = -12 + 6 = <strong style="color:#991b1b">-6°C 더 춥다</strong></div>
+    <div class="step-why">빼기(-)를 더하기(+)로 바꾸고 부호를 반전 — "빼기의 빼기는 더하기"</div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 탐구하기 — 수직선에서 덧셈·뺄셈</span>
+    <div class="numline">
+      <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);padding:0 8px">
+        <span>-10</span><span>-5</span><span>0</span><span>+5</span><span>+10</span>
+      </div>
+      <div class="nl-track">
+        <div class="nl-point" style="left:15%"><span>-7</span><div class="nl-dot" style="background:#991b1b"></div></div>
+        <div class="nl-point" style="left:50%"><span>0</span><div class="nl-dot" style="background:#6b7280"></div></div>
+        <div class="nl-point" style="left:75%"><span>+5</span><div class="nl-dot" style="background:#059669"></div></div>
+      </div>
+    </div>
+    <p style="font-size:.85rem">수직선에서 <span class="hl-blue">오른쪽 = 더하기</span>, <span class="hl-red">왼쪽 = 빼기</span></p>
+    <div class="eq-box">(-7) + 12 = +5 &nbsp;→&nbsp; -7에서 오른쪽으로 12칸 이동</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card-green">
+      <h3>유리수 계산 4규칙</h3>
+      <ol>
+        <li>같은 부호 → 더하고 그 부호 유지</li>
+        <li>다른 부호 → 차를 구하고 큰 수의 부호</li>
+        <li>곱셈: 같은 부호 → (+), 다른 부호 → (-)</li>
+        <li>나눗셈도 곱셈과 동일한 부호 규칙</li>
+      </ol>
+    </div>
+    <div class="card-amber">
+      <h3>왜 (-)×(-) = (+)?</h3>
+      <p>패턴으로 발견하기:</p>
+      <p>3×(-2) = -6</p>
+      <p>2×(-2) = -4</p>
+      <p>1×(-2) = -2</p>
+      <p>0×(-2) = 0</p>
+      <p>(-1)×(-2) = <span class="hl">+2</span> ← 패턴이 +2씩 증가!</p>
+    </div>
+  </div>
+</div>
+
+<!-- S3 비율과 백분율 -->
+<div class="screen" id="s3">
+  <div class="screen-title">비율과 백분율</div>
+  <div class="screen-sub">핀란드 수학이 가장 중시하는 실생활 수학</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 백분율은 "100 중에 몇"</h3>
+    <p>percent = per(~당) + cent(100) → 100당 얼마인가?</p>
+    <p style="margin-top:8px;color:#93c5fd">p% = p/100 = 소수로는 0.01×p</p>
+    <p style="margin-top:6px">20% = 20/100 = 0.20 = 1/5 — 세 가지 표현이 모두 같습니다!</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">🛒 핀란드 마트 세일 계산</span>
+    <p>정가 80,000원짜리 스키 장갑이 25% 할인 중. 판매가는?</p>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">방법1</div>
+        <div class="step-body">
+          <div class="eq-box">할인액 = 80,000 × 0.25 = 20,000원 → 판매가 = 80,000 - 20,000 = <strong>60,000원</strong></div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">방법2</div>
+        <div class="step-body">
+          <div class="eq-box">판매가 = 80,000 × (1 - 0.25) = 80,000 × 0.75 = <strong>60,000원</strong></div>
+          <div class="step-why">100%에서 25%를 빼면 75%가 남으므로 0.75를 바로 곱합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 탐구 — 바 다이어그램으로 비율 시각화</span>
+    <p>80,000원을 100%라 할 때:</p>
+    <div class="bar-model">
+      <div class="bar-row">
+        <span class="bar-label">전체</span>
+        <div class="bar-fill" style="width:100%;background:#1e40af">80,000원 (100%)</div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">할인</span>
+        <div class="bar-fill" style="width:25%;background:#991b1b">20,000원</div>
+        <div class="bar-fill" style="width:75%;background:#059669">60,000원</div>
+      </div>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted);margin-top:6px">바 다이어그램은 비율 관계를 눈으로 확인하는 핀란드식 도구입니다.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card-green">
+      <h3>백분율 ↔ 소수 ↔ 분수 변환</h3>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>백분율</th><th>소수</th><th>분수</th></tr>
+          <tr><td>50%</td><td>0.5</td><td>1/2</td></tr>
+          <tr><td>25%</td><td>0.25</td><td>1/4</td></tr>
+          <tr><td>10%</td><td>0.1</td><td>1/10</td></tr>
+          <tr><td>33.3%</td><td>0.333...</td><td>1/3</td></tr>
+          <tr><td>125%</td><td>1.25</td><td>5/4</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card-amber">
+      <h3>역계산 — 원가 구하기</h3>
+      <p>부가세(10%) 포함 가격이 132,000원이라면 순수 가격은?</p>
+      <div class="eq-box">132,000 = x × 1.10<br>x = 132,000 ÷ 1.10 = <strong>120,000원</strong></div>
+      <p style="font-size:.83rem;margin-top:6px">핀란드 교과서는 "역계산"을 특히 강조합니다 — 결과에서 출발해 원인을 찾는 사고.</p>
+    </div>
+  </div>
+</div>
+
+<!-- S4 비례 추론 -->
+<div class="screen" id="s4">
+  <div class="screen-title">비례 추론 — 세상을 이해하는 도구</div>
+  <div class="screen-sub">직접비례·반비례, 단위비율, 축척</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 비례란 "일정한 비율 관계"</h3>
+    <p>두 양 x, y가 항상 같은 비율을 유지할 때: <span style="color:#93c5fd">y = kx (k = 비례상수)</span></p>
+    <p style="margin-top:8px">k = y/x 가 항상 같다면 직접비례, xy = k(일정)이면 반비례</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">🌲 핀란드 숲 측량 — 단위비율</span>
+    <p>숲 관리원이 나무 12그루를 심는 데 3시간 걸린다. 20그루 심으면?</p>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>단위 비율 구하기: 1그루 당 시간 = 3 ÷ 12 = <span class="hl">0.25시간</span></p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><div class="eq-box">20그루 × 0.25시간/그루 = <strong>5시간</strong></div></div>
+      </div>
+    </div>
+    <div class="step-real">핀란드 교과서 핵심 전략: 먼저 "1단위당 얼마인지"를 구하면 어떤 경우도 계산 가능합니다.</div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 탐구 — 비례 vs 비비례 구별하기</span>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>x (km)</th><th>y (시간, 60km/h)</th><th>y/x</th><th>비례?</th></tr>
+        <tr><td>60</td><td>1</td><td>1/60</td><td>✓</td></tr>
+        <tr><td>120</td><td>2</td><td>1/60</td><td>✓</td></tr>
+        <tr><td>180</td><td>3</td><td>1/60</td><td>✓</td></tr>
+      </table>
+    </div>
+    <div class="step-why" style="margin-top:8px">y/x가 항상 같으면 직접비례. 표를 만들어 확인하는 것이 핀란드식 탐구 방법입니다.</div>
+  </div>
+
+  <div class="card-green">
+    <h3>지도 축척 (Scale) — 실제 측량 응용</h3>
+    <p>핀란드 지형도 축척 1:50000</p>
+    <div class="eq-box">지도 1cm = 실제 50000cm = <strong>500m</strong></div>
+    <p style="margin-top:8px">지도에서 두 도시의 거리가 3.4cm이면 실제 거리:</p>
+    <div class="eq-box">3.4 × 500m = <strong>1700m = 1.7km</strong></div>
+  </div>
+</div>
+
+<!-- S5 대수 — 변수와 식 -->
+<div class="screen" id="s5">
+  <div class="screen-title">대수 — 변수와 식</div>
+  <div class="screen-sub">수를 문자로 일반화하는 순간</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 대수의 힘: 특수한 것에서 일반적인 것으로</h3>
+    <p>3 + 5 = 8 은 특정한 경우. a + b = b + a 는 <span style="color:#93c5fd">모든 수에 적용되는 법칙</span>.</p>
+    <p style="margin-top:8px">변수(variable)는 "변하는 수"를 나타내는 문자 — 수학의 대명사!</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">🏠 핀란드 건축 — 식 세우기</span>
+    <p>사우나 방의 타일을 붙이려 한다. 가로 n개, 세로 m개 타일이 필요할 때 총 타일 수는?</p>
+    <div class="eq-box">타일 수 = n × m = nm</div>
+    <p style="margin-top:8px">n=8, m=6이면 → 48개. n=10, m=7이면 → 70개.</p>
+    <div class="step-real">하나의 식 nm이 수천 가지 경우를 한 번에 표현합니다. 이것이 대수의 핵심!</div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 탐구 — 분배법칙 시각화 (면적 모델)</span>
+    <div class="svg-center">
+      <svg viewBox="0 0 300 120" style="max-width:340px">
+        <rect x="10" y="10" width="180" height="100" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+        <rect x="190" y="10" width="100" height="100" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+        <text x="100" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e40af">a×c</text>
+        <text x="240" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#065f46">b×c</text>
+        <text x="155" y="8" text-anchor="middle" font-size="11" fill="#1e40af">a</text>
+        <text x="240" y="8" text-anchor="middle" font-size="11" fill="#065f46">b</text>
+        <text x="4" y="60" text-anchor="end" font-size="11" fill="#374151">c</text>
+      </svg>
+    </div>
+    <div class="eq-box" style="margin-top:4px">(a+b) × c = ac + bc</div>
+    <div class="step-why">직사각형의 넓이로 분배법칙이 왜 성립하는지 눈으로 확인!</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card-green">
+      <h3>곱셈 공식 (전개)</h3>
+      <div class="eq-box">(a+b)² = a² + 2ab + b²</div>
+      <div class="eq-box">(a-b)² = a² - 2ab + b²</div>
+      <div class="eq-box">(a+b)(a-b) = a² - b²</div>
+      <p style="font-size:.83rem;margin-top:8px">각 공식은 면적 모델로 시각화 가능합니다.</p>
+    </div>
+    <div class="card-purple">
+      <h3>식의 값 계산</h3>
+      <p>2a + 3b에서 a=4, b=-1이면?</p>
+      <div class="eq-box">2(4) + 3(-1) = 8 - 3 = <strong>5</strong></div>
+      <p style="margin-top:8px">핀란드 교과서: 변수에 값을 대입하기 전에 식이 의미하는 것을 먼저 파악하세요.</p>
+    </div>
+  </div>
+</div>
+
+<!-- S6 방정식 — 저울 모델 -->
+<div class="screen" id="s6">
+  <div class="screen-title">방정식 — 저울의 균형</div>
+  <div class="screen-sub">핀란드 교과서의 대표 시각 모델</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 방정식 = 양쪽이 같다는 선언</h3>
+    <p>등호(=)는 저울이 균형 잡힌 상태. 한쪽에 무언가를 하면 <span style="color:#93c5fd">반드시 다른 쪽에도 똑같이</span> 해야 균형이 유지됩니다.</p>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 탐구 — 저울 모델로 방정식 풀기</span>
+    <div class="eq-box eq-big">3x + 5 = 20</div>
+    <div class="steps" style="margin-top:10px">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="balance">
+            <div class="balance-side">3x + 5</div>
+            <div class="balance-mid">=</div>
+            <div class="balance-side">20</div>
+          </div>
+          <p style="font-size:.85rem">양쪽에서 5를 빼기</p>
+          <div class="balance">
+            <div class="balance-side">3x</div>
+            <div class="balance-mid">=</div>
+            <div class="balance-side">15</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p style="font-size:.85rem">양쪽을 3으로 나누기</p>
+          <div class="balance">
+            <div class="balance-side">x</div>
+            <div class="balance-mid">=</div>
+            <div class="balance-side">5</div>
+          </div>
+          <div class="step-why">저울의 원리: 양쪽에 같은 연산을 하면 등호가 유지됩니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">🏃 핀란드 마라톤 — 방정식 활용</span>
+    <p>마리아는 처음 42분 동안 6km를 달렸고, 이후 일정한 속도로 더 달려 총 2시간 24분에 완주했다. 나중 속도는?</p>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>남은 시간: 144 - 42 = 102분, 남은 거리: 42 - 6 = 36km</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">속도 = 36km ÷ (102/60)h = 36 × 60/102 ≈ <strong>21.2 km/h</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>방정식 풀이 전략 (핀란드식)</h3>
+    <ol>
+      <li><strong>등호의 의미 파악</strong> — 무엇과 무엇이 같은가?</li>
+      <li><strong>x를 고립</strong> — 상수를 반대편으로</li>
+      <li><strong>계수 처리</strong> — 나누거나 곱하기</li>
+      <li><strong>검산</strong> — 답을 원래 식에 대입해서 확인</li>
+    </ol>
+  </div>
+</div>
+
+<!-- S7 부등식 -->
+<div class="screen" id="s7">
+  <div class="screen-title">부등식과 수직선</div>
+  <div class="screen-sub">범위를 수직선으로 시각화하기</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 부등식은 "범위"를 나타낸다</h3>
+    <p>방정식이 하나의 점(해)이라면, 부등식은 <span style="color:#93c5fd">수직선 위의 구간(범위)</span>을 나타냅니다.</p>
+    <p style="margin-top:8px">중요 규칙: 양변에 <strong>음수를 곱하거나 나누면 부등호 방향이 뒤집힌다!</strong></p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-why">왜 음수 곱하면 부등호가 뒤집히나?</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>3 > 1 은 참</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><p>양변에 -1 곱하면: -3 ___  -1</p>
+          <p>수직선에서 -3은 -1보다 <strong>왼쪽(더 작음)</strong> → -3 < -1</p>
+          <div class="step-why">수직선에서 음수를 곱하면 위치가 뒤집히므로 순서도 뒤집힙니다!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-real">❄ 핀란드 기온 부등식</span>
+    <p>도로가 결빙되는 온도는 T < 0°C. 제설 차량이 출동하는 조건은 T ≤ -3°C.</p>
+    <div class="eq-box">-3x + 6 ≤ 15</div>
+    <div class="steps" style="margin-top:8px">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><div class="eq-box">-3x ≤ 9</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">x ≥ -3 &nbsp;← 음수(-3)로 나누므로 부등호 반전!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>수직선으로 해 표현</h3>
+    <div class="numline">
+      <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);padding:0 8px">
+        <span>-6</span><span>-3</span><span>0</span><span>3</span><span>6</span>
+      </div>
+      <div class="nl-track">
+        <div class="nl-point" style="left:35%">
+          <span style="color:#065f46">-3</span>
+          <div class="nl-dot" style="background:#059669;border:2px solid #065f46"></div>
+        </div>
+        <div style="position:absolute;left:35%;top:0;width:65%;height:4px;background:#059669;border-radius:2px"></div>
+      </div>
+    </div>
+    <p style="font-size:.84rem">● (채운 점) = 그 점 포함 (≤, ≥) / ○ (빈 점) = 그 점 미포함 (&lt;, >)</p>
+  </div>
+</div>
+
+<!-- S8 함수 개념 -->
+<div class="screen" id="s8">
+  <div class="screen-title">함수 — 입출력 기계</div>
+  <div class="screen-sub">핀란드식 함수 도입: 기계 모델</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 함수는 입력을 받아 출력을 내는 규칙</h3>
+    <p>입력값 x → 함수 f → 출력값 f(x)</p>
+    <p style="margin-top:8px;color:#93c5fd">핵심 조건: 하나의 입력에 대해 출력이 <strong>정확히 하나</strong>여야 한다.</p>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 탐구 — 자판기 모델</span>
+    <div class="fn-machine">
+      <div class="fn-input">입력: x</div>
+      <div class="fn-arrow">→</div>
+      <div class="fn-box">f(x) = 2x + 1</div>
+      <div class="fn-arrow">→</div>
+      <div class="fn-output">출력: f(x)</div>
+    </div>
+    <div class="tbl-wrap" style="margin-top:10px">
+      <table>
+        <tr><th>입력 x</th><th>계산</th><th>출력 f(x)</th></tr>
+        <tr><td>-2</td><td>2(-2)+1</td><td>-3</td></tr>
+        <tr><td>0</td><td>2(0)+1</td><td>1</td></tr>
+        <tr><td>3</td><td>2(3)+1</td><td>7</td></tr>
+        <tr><td>10</td><td>2(10)+1</td><td>21</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">💱 실생활 함수 — 달러↔원 환율 계산</span>
+    <div class="fn-machine">
+      <div class="fn-input">달러 x</div>
+      <div class="fn-arrow">→</div>
+      <div class="fn-box">y = 1,300x</div>
+      <div class="fn-arrow">→</div>
+      <div class="fn-output">원화 y</div>
+    </div>
+    <p style="margin-top:8px">x = 100달러 → y = 130,000원</p>
+    <p>x = 50달러 → y = 65,000원</p>
+    <div class="step-real">해외직구·여행 환전할 때 이 함수를 사용합니다! (환율은 매일 바뀌므로 k가 변수)</div>
+  </div>
+
+  <div class="card-green">
+    <h3>함수의 정의역·공역·치역</h3>
+    <ul>
+      <li><strong>정의역</strong>: 입력값(x)의 범위 — "어떤 값을 넣을 수 있나?"</li>
+      <li><strong>공역</strong>: 출력값이 될 수 있는 전체 범위</li>
+      <li><strong>치역</strong>: 실제로 나오는 출력값의 범위</li>
+    </ul>
+    <div class="eq-box" style="margin-top:8px">f(x) = x² 의 경우: 정의역 = 모든 실수, 치역 = x≥0</div>
+  </div>
+</div>
+
+<!-- S9 선형함수 -->
+<div class="screen" id="s9">
+  <div class="screen-title">선형함수 y = ax + b</div>
+  <div class="screen-sub">기울기와 y절편으로 직선 그리기</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — y = ax + b 두 매개변수의 의미</h3>
+    <p><span style="color:#93c5fd">a = 기울기</span>: x가 1 증가할 때 y가 얼마나 변하는가?</p>
+    <p style="margin-top:6px"><span style="color:#93c5fd">b = y절편</span>: x=0일 때 y값 (직선이 y축을 만나는 점)</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">🚗 한국 택시 요금</span>
+    <p>기본요금 4,800원, km당 1,500원. 총 요금 y(원)와 거리 x(km)의 관계:</p>
+    <div class="eq-box">y = 1,500x + 4,800</div>
+    <div class="grid2" style="margin-top:10px">
+      <div>
+        <p style="font-size:.85rem">a = 1,500 → 1km마다 1,500원 증가</p>
+        <p style="font-size:.85rem">b = 4,800 → 타자마자 4,800원</p>
+      </div>
+      <div>
+        <p style="font-size:.85rem">10km → y = 15,000 + 4,800 = <strong>19,800원</strong></p>
+        <p style="font-size:.85rem">y=25,000일 때 → x = (25,000-4,800)/1,500 ≈ 13.5km</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 탐구 — 두 점으로 직선의 식 구하기</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">문제</div>
+        <div class="step-body"><p>두 점 (1, 3)과 (4, 9)를 지나는 직선</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="eq-box">기울기 a = (9-3)/(4-1) = 6/3 = <strong>2</strong></div>
+          <div class="step-why">기울기 = (y의 변화량)/(x의 변화량) = △y/△x</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p>y = 2x + b에 점 (1,3) 대입: 3 = 2 + b → b = 1</p>
+          <div class="eq-box">y = 2x + 1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>기울기의 실제 의미</h3>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>기울기 a</th><th>의미</th><th>예시</th></tr>
+        <tr><td>a > 0</td><td>오른쪽 위로 상승</td><td>시간→거리 (이동 중)</td></tr>
+        <tr><td>a < 0</td><td>오른쪽 아래로 하강</td><td>시간→온도 (냉각)</td></tr>
+        <tr><td>a = 0</td><td>수평선 (변화 없음)</td><td>시간→온도 (일정)</td></tr>
+        <tr><td>|a| 클수록</td><td>더 급한 기울기</td><td>더 빠른 변화</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- S10 기하 — 넓이의 원리 -->
+<div class="screen" id="s10">
+  <div class="screen-title">기하 — 넓이 공식의 원리</div>
+  <div class="screen-sub">공식을 외우지 말고, 왜 그런지를 이해하라</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 모든 넓이 공식은 직사각형에서 출발</h3>
+    <p>직사각형 넓이 = 가로 × 세로</p>
+    <p style="margin-top:8px;color:#93c5fd">삼각형, 평행사변형, 원 — 모두 직사각형으로 변환해서 유도합니다!</p>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 삼각형 넓이 공식 유도</span>
+    <div class="svg-center">
+      <svg viewBox="0 0 340 130" style="max-width:380px">
+        <rect x="10" y="20" width="140" height="100" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <polygon points="10,120 150,120 80,20" fill="#bfdbfe" stroke="#1e40af" stroke-width="2"/>
+        <text x="80" y="80" text-anchor="middle" font-size="12" fill="#1e40af" font-weight="bold">삼각형</text>
+        <text x="75" y="115" text-anchor="middle" font-size="11" fill="#374151">= 직사각형의 절반</text>
+        <text x="230" y="65" text-anchor="middle" font-size="13" fill="#1e3a8a" font-weight="bold">½ × 밑변 × 높이</text>
+        <text x="230" y="85" text-anchor="middle" font-size="11" fill="#374151">= ½ × b × h</text>
+      </svg>
+    </div>
+    <div class="step-why">삼각형은 같은 크기의 삼각형 2개를 붙이면 직사각형이 됩니다. 따라서 넓이는 직사각형의 절반!</div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 원의 넓이 유도 — 피자 자르기</span>
+    <div class="svg-center">
+      <svg viewBox="0 0 320 100" style="max-width:360px">
+        <circle cx="60" cy="50" r="40" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+        <text x="60" y="55" text-anchor="middle" font-size="11" fill="#1e40af" font-weight="bold">반지름 r</text>
+        <text x="170" y="45" font-size="20" fill="#374151">→</text>
+        <rect x="200" y="20" width="110" height="60" fill="#d1fae5" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
+        <text x="255" y="55" text-anchor="middle" font-size="10" fill="#065f46" font-weight="bold">πr × r = πr²</text>
+        <text x="255" y="95" text-anchor="middle" font-size="10" fill="#374151">가로≈πr, 세로=r</text>
+      </svg>
+    </div>
+    <p style="font-size:.85rem">원을 무한히 잘게 잘라 직사각형처럼 배열하면: 가로 = 원둘레의 절반 = πr, 세로 = r</p>
+    <div class="eq-box">원의 넓이 = πr × r = <strong>πr²</strong></div>
+  </div>
+
+  <div class="card-green">
+    <h3>핀란드식 넓이 공식 정리</h3>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>도형</th><th>공식</th><th>기억법</th></tr>
+        <tr><td>직사각형</td><td>ab</td><td>가로×세로</td></tr>
+        <tr><td>삼각형</td><td>½bh</td><td>직사각형의 절반</td></tr>
+        <tr><td>평행사변형</td><td>bh</td><td>잘라서 붙이면 직사각형</td></tr>
+        <tr><td>사다리꼴</td><td>½(a+b)h</td><td>두 삼각형의 합</td></tr>
+        <tr><td>원</td><td>πr²</td><td>피자 조각 배열</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- S11 기하 — 부피 -->
+<div class="screen" id="s11">
+  <div class="screen-title">기하 — 부피의 원리</div>
+  <div class="screen-sub">3차원 공간을 수로 측정하기</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 부피 = 밑넓이 × 높이</h3>
+    <p>기둥(직육면체·원기둥·삼각기둥): <span style="color:#93c5fd">V = 밑넓이(S) × 높이(h)</span></p>
+    <p style="margin-top:8px">뿔(피라미드·원뿔): <span style="color:#93c5fd">V = ⅓ × 밑넓이 × 높이</span></p>
+    <p style="margin-top:8px;color:#94a3b8">왜 1/3?: 같은 밑넓이·높이의 기둥을 물로 채우면 뿔에 정확히 3번 부을 수 있습니다!</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">🌊 핀란드 호수 수량 계산</span>
+    <p>사이마 호수의 일부 구역: 반지름 2km인 원형, 평균 깊이 17m</p>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>밑넓이 = π × 2² = 4π km²</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">V = 4π × 0.017 ≈ 0.214 km³</div>
+          <div class="step-real">단위 주의: 17m = 0.017km로 통일!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 탐구 — 구의 부피</span>
+    <div class="eq-box">V = (4/3)πr³</div>
+    <p style="margin-top:8px">왜?: 구를 원뿔 3개로 채울 수 없지만, 실험적으로 구의 부피는 같은 지름의 원기둥 부피의 2/3임이 알려져 있습니다.</p>
+    <p style="margin-top:8px">원기둥 V = πr² × 2r = 2πr³ → 구 = 2/3 × 2πr³ = 4πr³/3 ✓</p>
+    <div class="step-why">아르키메데스가 욕조에서 "유레카!"를 외친 것도 부피 발견이었습니다.</div>
+  </div>
+
+  <div class="card-green">
+    <h3>부피 공식 요약</h3>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>입체</th><th>공식</th></tr>
+        <tr><td>직육면체</td><td>abc (가로×세로×높이)</td></tr>
+        <tr><td>원기둥</td><td>πr²h</td></tr>
+        <tr><td>각뿔·원뿔</td><td>⅓ × 밑넓이 × h</td></tr>
+        <tr><td>구</td><td>(4/3)πr³</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- S12 피타고라스 정리 -->
+<div class="screen" id="s12">
+  <div class="screen-title">피타고라스 정리</div>
+  <div class="screen-sub">직각삼각형의 가장 아름다운 비밀</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — a² + b² = c²</h3>
+    <p>직각삼각형에서 <span style="color:#93c5fd">두 직각변의 제곱합 = 빗변의 제곱</span></p>
+    <p style="margin-top:8px">이 정리는 기원전 2000년경부터 알려졌고, 현재까지 370가지 이상의 증명법이 있습니다!</p>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 넓이로 증명하기</span>
+    <div class="svg-center">
+      <svg viewBox="0 0 300 280" style="max-width:300px">
+        <!-- 큰 정사각형 (c²) -->
+        <rect x="60" y="20" width="200" height="200" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+        <!-- 직각삼각형들 (4개) -->
+        <polygon points="60,20 140,20 60,120" fill="#bfdbfe" stroke="#1e40af" stroke-width="1.5"/>
+        <polygon points="140,20 260,20 260,100" fill="#bfdbfe" stroke="#1e40af" stroke-width="1.5"/>
+        <polygon points="60,120 60,220 160,220" fill="#bfdbfe" stroke="#1e40af" stroke-width="1.5"/>
+        <polygon points="160,220 260,100 260,220" fill="#bfdbfe" stroke="#1e40af" stroke-width="1.5"/>
+        <!-- 중앙 정사각형 -->
+        <polygon points="140,20 260,100 160,220 60,120" fill="#93c5fd" stroke="#1e40af" stroke-width="2"/>
+        <text x="175" y="130" text-anchor="middle" font-size="14" fill="#1e3a8a" font-weight="bold">c²</text>
+        <!-- 레이블 -->
+        <text x="95" y="15" font-size="11" fill="#374151">a</text>
+        <text x="55" y="75" font-size="11" fill="#374151">b</text>
+        <text x="270" y="20" font-size="11" fill="#374151">b</text>
+        <text x="150" y="275" text-anchor="middle" font-size="11" fill="#374151">큰 정사각형 = 4삼각형 + c² → a²+b²=c² 유도</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">🏗 핀란드 건축 — 대각선 확인</span>
+    <p>6m × 8m 방의 직각을 확인하려면? 대각선 길이를 측정!</p>
+    <div class="eq-box">c = √(6² + 8²) = √(36 + 64) = √100 = <strong>10m</strong></div>
+    <div class="step-real">건축 현장에서 대각선이 정확히 10m이면 직각이 보장됩니다. (3-4-5 배수)</div>
+  </div>
+
+  <div class="card-green">
+    <h3>피타고라스 수 쌍 (자연수 해)</h3>
+    <div class="eq-row">
+      <div class="eq-box">3, 4, 5</div>
+      <div class="eq-box">5, 12, 13</div>
+      <div class="eq-box">8, 15, 17</div>
+    </div>
+    <p style="margin-top:8px;font-size:.85rem">이 수 쌍의 배수도 모두 피타고라스 수 쌍: 6-8-10, 9-12-15, ...</p>
+    <div class="step-why">왜 유용한가?: 소수(小數) 계산 없이 정확한 직각삼각형을 만들 수 있습니다!</div>
+  </div>
+</div>
+
+<!-- S13 닮음과 축척 -->
+<div class="screen" id="s13">
+  <div class="screen-title">닮음과 축척</div>
+  <div class="screen-sub">모양은 같고 크기만 다른 도형</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 닮음비(축척)로 모든 대응 변 계산 가능</h3>
+    <p>두 도형이 닮음이면: 대응각이 모두 같고, 대응변의 비(닮음비)가 모두 같다.</p>
+    <p style="margin-top:8px;color:#93c5fd">닮음비 = k : 1 이면, 넓이비 = k² : 1, 부피비 = k³ : 1</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">📸 핀란드 사진 인화 — 닮음 활용</span>
+    <p>원본 사진: 4cm × 6cm. 이것을 15cm × ?cm으로 확대하면?</p>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>가로 닮음비: 15 ÷ 4 = 3.75</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">세로 = 6 × 3.75 = <strong>22.5cm</strong></div>
+          <div class="step-why">닮음이려면 가로·세로 모두 같은 비율로 확대해야 합니다!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 탐구 — 그림자로 나무 높이 측정</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">상황</div>
+        <div class="step-body"><p>키 1.6m 사람의 그림자: 2m. 나무 그림자: 15m. 나무 높이는?</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>같은 시각 → 태양 각도 같음 → 닮음 삼각형</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">1.6 / 2 = 나무높이 / 15 → 나무 = 1.6×15/2 = <strong>12m</strong></div>
+          <div class="step-real">고대 이집트에서 피라미드 높이를 이 방법으로 측정했습니다!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>닮음비·넓이비·부피비</h3>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>닮음비</th><th>넓이비</th><th>부피비</th></tr>
+        <tr><td>1:2</td><td>1:4</td><td>1:8</td></tr>
+        <tr><td>1:3</td><td>1:9</td><td>1:27</td></tr>
+        <tr><td>2:5</td><td>4:25</td><td>8:125</td></tr>
+      </table>
+    </div>
+    <div class="step-why" style="margin-top:8px">지구가 달보다 반지름 3.7배 → 부피는 3.7³ ≈ 50배! 이것이 지수의 힘입니다.</div>
+  </div>
+</div>
+
+<!-- S14 확률 -->
+<div class="screen" id="s14">
+  <div class="screen-title">확률 — 불확실성을 수로 표현</div>
+  <div class="screen-sub">핀란드식 접근: 시뮬레이션으로 먼저 탐구</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 확률 = 원하는 경우 / 전체 경우</h3>
+    <p>확률 P(A) = (사건 A가 일어나는 경우의 수) ÷ (전체 경우의 수)</p>
+    <p style="margin-top:8px;color:#93c5fd">항상 0 ≤ P(A) ≤ 1. 불가능한 사건=0, 확실한 사건=1</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">🎿 핀란드 복권 스키점프 — 확률</span>
+    <p>스키 점프 대회에서 18명 선수 중 핀란드 선수 5명. 무작위로 1명을 뽑을 때 핀란드 선수일 확률?</p>
+    <div class="eq-box">P = 5/18 ≈ 0.278 = 약 <strong>27.8%</strong></div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 탐구 — 덧셈 법칙과 곱셈 법칙</span>
+    <div class="grid2">
+      <div>
+        <p style="font-weight:700;color:#1e40af;margin-bottom:6px">덧셈 법칙 (또는)</p>
+        <p>A 또는 B가 일어날 확률</p>
+        <div class="eq-box">P(A∪B) = P(A)+P(B)-P(A∩B)</div>
+        <div class="step-why">겹치는 부분을 한 번만 세야 하므로 빼줍니다!</div>
+      </div>
+      <div>
+        <p style="font-weight:700;color:#1e40af;margin-bottom:6px">곱셈 법칙 (그리고)</p>
+        <p>A 그리고 B가 모두 일어날 확률 (독립사건)</p>
+        <div class="eq-box">P(A∩B) = P(A) × P(B)</div>
+        <div class="step-why">독립: A의 결과가 B에 영향을 주지 않을 때</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-ex">예제 — 주사위 두 개</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">문제</div>
+        <div class="step-body"><p>주사위 2개를 던질 때 합이 7이 될 확률?</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>전체: 6×6 = 36가지</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><p>합이 7: (1,6)(2,5)(3,4)(4,3)(5,2)(6,1) → 6가지</p>
+          <div class="eq-box">P = 6/36 = <strong>1/6 ≈ 16.7%</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S15 통계 -->
+<div class="screen" id="s15">
+  <div class="screen-title">통계 — 데이터로 세상 읽기</div>
+  <div class="screen-sub">핀란드 교과서: 실제 데이터로 직접 분석</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 통계의 두 질문</h3>
+    <p>"데이터를 <span style="color:#93c5fd">어떻게 요약</span>할 것인가?" → 대푯값 (평균·중앙값·최빈값)</p>
+    <p style="margin-top:8px">"데이터가 <span style="color:#93c5fd">얼마나 퍼져</span> 있는가?" → 산포도 (범위·분산·표준편차)</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">🌡 핀란드 기온 데이터 분석</span>
+    <p>헬싱키 월평균 기온(°C): -6, -7, -3, 3, 10, 15, 18, 16, 11, 6, 1, -4</p>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">평균</div>
+        <div class="step-body">
+          <div class="eq-box">합계 60 ÷ 12 = <strong>5°C</strong></div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">중앙값</div>
+        <div class="step-body"><p>정렬: -7,-6,-4,-3,1,3,6,10,11,15,16,18</p>
+          <div class="eq-box">6번째·7번째 평균 = (3+6)/2 = <strong>4.5°C</strong></div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">범위</div>
+        <div class="step-body"><div class="eq-box">18 - (-7) = <strong>25°C</strong></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 평균 vs 중앙값 — 언제 무엇을?</span>
+    <div class="grid2">
+      <div>
+        <p style="font-weight:700;color:#1e40af">평균 사용</p>
+        <ul style="font-size:.85rem">
+          <li>데이터가 대칭적일 때</li>
+          <li>극단값(이상치)이 없을 때</li>
+          <li>예: 시험 점수 평균</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-weight:700;color:#065f46">중앙값 사용</p>
+        <ul style="font-size:.85rem">
+          <li>극단값이 있을 때</li>
+          <li>소득, 부동산 가격 등</li>
+          <li>예: 헬싱키 집값 중앙값</li>
+        </ul>
+      </div>
+    </div>
+    <div class="step-why" style="margin-top:8px">핀란드 통계청은 소득 통계에 평균 대신 중앙값을 사용합니다 — 소수의 고소득자가 평균을 왜곡하기 때문!</div>
+  </div>
+
+  <div class="card-green">
+    <h3>박스플롯 (Box Plot) — 핀란드 교과서 필수 그래프</h3>
+    <div class="svg-center">
+      <svg viewBox="0 0 360 80" style="max-width:400px">
+        <!-- 수선 -->
+        <line x1="30" y1="40" x2="330" y2="40" stroke="#cbd5e1" stroke-width="1"/>
+        <!-- 박스 -->
+        <rect x="120" y="25" width="120" height="30" fill="#bfdbfe" stroke="#1e40af" stroke-width="2"/>
+        <!-- 중앙선 -->
+        <line x1="190" y1="25" x2="190" y2="55" stroke="#1e40af" stroke-width="3"/>
+        <!-- 수염 -->
+        <line x1="50" y1="40" x2="120" y2="40" stroke="#1e40af" stroke-width="2"/>
+        <line x1="240" y1="40" x2="310" y2="40" stroke="#1e40af" stroke-width="2"/>
+        <line x1="50" y1="30" x2="50" y2="50" stroke="#1e40af" stroke-width="2"/>
+        <line x1="310" y1="30" x2="310" y2="50" stroke="#1e40af" stroke-width="2"/>
+        <!-- 레이블 -->
+        <text x="50" y="70" text-anchor="middle" font-size="9" fill="#374151">최솟값</text>
+        <text x="120" y="70" text-anchor="middle" font-size="9" fill="#374151">Q1</text>
+        <text x="190" y="70" text-anchor="middle" font-size="9" fill="#374151">중앙값</text>
+        <text x="240" y="70" text-anchor="middle" font-size="9" fill="#374151">Q3</text>
+        <text x="310" y="70" text-anchor="middle" font-size="9" fill="#374151">최댓값</text>
+      </svg>
+    </div>
+    <p style="font-size:.83rem">박스플롯은 데이터의 퍼짐과 대칭성을 한눈에 보여주는 핀란드 교과서의 필수 도구입니다.</p>
+  </div>
+</div>
+
+<!-- S16 제곱과 지수 -->
+<div class="screen" id="s16">
+  <div class="screen-title">제곱과 지수 법칙</div>
+  <div class="screen-sub">반복 곱셈을 간단하게 표현하기</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 지수는 "몇 번 곱했는가"</h3>
+    <p>aⁿ = a를 n번 곱한 것 (n은 자연수)</p>
+    <p style="margin-top:8px;color:#93c5fd">지수 법칙은 모두 이 정의에서 논리적으로 유도됩니다!</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-disc">🔍 지수 법칙 탐구 — 곱셈</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="eq-box">a³ × a² = (a×a×a) × (a×a) = a⁵ = a^(3+2)</div>
+          <div class="step-why">지수끼리 더하는 이유: 반복 곱셈의 횟수가 합산되기 때문!</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">(a³)² = a³ × a³ = a⁶ = a^(3×2)</div>
+          <div class="step-why">거듭제곱의 거듭제곱: 지수를 곱합니다</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="eq-box">a⁰ = 1 (단, a≠0)</div>
+          <div class="step-why">a³ ÷ a³ = a^(3-3) = a⁰ = 1. 같은 수를 나누면 항상 1!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-real">💰 핀란드 저축 — 복리 계산</span>
+    <p>연 5% 이자, 100만 원을 10년간 복리 저축하면?</p>
+    <div class="eq-box">A = 1,000,000 × (1.05)¹⁰ ≈ 1,000,000 × 1.629 = <strong>1,629,000원</strong></div>
+    <p style="margin-top:8px">지수가 없으면 이 계산을 10번 해야 합니다! 지수 표기법의 실용적 가치.</p>
+    <div class="step-real">20년이면 (1.05)²⁰ ≈ 2.653 → 약 265만 원. 돈이 2.6배 이상 불어납니다!</div>
+  </div>
+
+  <div class="card-green">
+    <h3>지수 법칙 요약</h3>
+    <div class="eq-row">
+      <div class="eq-box">aᵐ × aⁿ = a^(m+n)</div>
+      <div class="eq-box">aᵐ ÷ aⁿ = a^(m-n)</div>
+    </div>
+    <div class="eq-row">
+      <div class="eq-box">(aᵐ)ⁿ = a^(mn)</div>
+      <div class="eq-box">(ab)ⁿ = aⁿbⁿ</div>
+    </div>
+    <div class="eq-row">
+      <div class="eq-box">a⁻ⁿ = 1/aⁿ</div>
+      <div class="eq-box">a^(1/n) = ⁿ√a</div>
+    </div>
+  </div>
+</div>
+
+<!-- S17 이차방정식 -->
+<div class="screen" id="s17">
+  <div class="screen-title">이차방정식 — 포물선과의 만남</div>
+  <div class="screen-sub">핀란드식: 그래프 → 방정식 연결 학습</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 이차방정식의 해 = 포물선의 x절편</h3>
+    <p>ax² + bx + c = 0 의 해는 그래프 y = ax² + bx + c 가 x축을 만나는 점입니다.</p>
+    <p style="margin-top:8px;color:#93c5fd">핀란드 교과서: 그래프 → 인수분해 → 근의 공식 순서로 학습합니다.</p>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 탐구 — 인수분해법</span>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">문제</div>
+        <div class="step-body"><div class="eq-box">x² - 5x + 6 = 0</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>합이 -5, 곱이 6인 두 수: -2와 -3</p>
+          <div class="eq-box">(x-2)(x-3) = 0</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">x = 2 또는 x = 3</div>
+          <div class="step-why">AB = 0이면 A = 0 또는 B = 0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">🚀 핀란드 물리 — 포물선 운동</span>
+    <p>공을 던졌을 때 높이 h(m)와 시간 t(초): h = -5t² + 20t</p>
+    <p style="margin-top:8px">공이 땅에 닿는 시간? (h = 0)</p>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="eq-box">-5t² + 20t = 0 → -5t(t - 4) = 0</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">t = 0 (출발) 또는 t = <strong>4초</strong> (착지)</div>
+          <div class="step-real">최고 높이: t=2일 때 h = -5(4)+40 = 20m</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>근의 공식과 판별식</h3>
+    <div class="eq-box eq-big">x = (-b ± √(b²-4ac)) / 2a</div>
+    <div class="tbl-wrap" style="margin-top:10px">
+      <table>
+        <tr><th>D = b²-4ac</th><th>근의 개수</th><th>그래프 상황</th></tr>
+        <tr><td>D > 0</td><td>서로 다른 두 실근</td><td>x축과 2점 교차</td></tr>
+        <tr><td>D = 0</td><td>중근 (1개)</td><td>x축에 접함</td></tr>
+        <tr><td>D < 0</td><td>실근 없음</td><td>x축과 교차 없음</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- S18 삼각비 -->
+<div class="screen" id="s18">
+  <div class="screen-title">삼각비 — 각도로 거리 측정하기</div>
+  <div class="screen-sub">핀란드 교과서의 실용적 접근법</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 직각삼각형의 변의 비는 각도에 의해 결정된다</h3>
+    <p>같은 각도(A)를 가진 직각삼각형은 크기와 무관하게 변의 비가 항상 같습니다.</p>
+    <p style="margin-top:8px;color:#93c5fd">sin A = 대변/빗변, cos A = 인접변/빗변, tan A = 대변/인접변</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">⛵ 핀란드 항해 — 삼각비 활용</span>
+    <p>등대가 배에서 북쪽으로 보이며 앙각이 12°, 배에서 등대까지 수평거리 800m</p>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>tan12° = 등대 높이 / 800</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">높이 = 800 × tan12° ≈ 800 × 0.213 ≈ <strong>170m</strong></div>
+          <div class="step-real">GPS 이전 시대 핀란드 선원들이 실제로 사용한 방법!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 사인 법칙과 코사인 법칙</span>
+    <div class="grid2">
+      <div>
+        <p style="font-weight:700;color:#1e40af;margin-bottom:6px">사인 법칙</p>
+        <div class="eq-box">a/sinA = b/sinB = c/sinC</div>
+        <p style="font-size:.83rem;margin-top:6px">각과 대변의 비가 일정<br>두 각·한 변 또는 두 변·한 각(대변) 알 때</p>
+      </div>
+      <div>
+        <p style="font-weight:700;color:#065f46;margin-bottom:6px">코사인 법칙</p>
+        <div class="eq-box">c² = a²+b²-2ab·cosC</div>
+        <p style="font-size:.83rem;margin-top:6px">피타고라스의 일반화<br>C=90°이면 cosC=0 → 피타고라스!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>특수각 삼각비 (핀란드 교과서 암기 필수)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>각도</th><th>sin</th><th>cos</th><th>tan</th></tr>
+        <tr><td>30°</td><td>1/2</td><td>√3/2</td><td>1/√3</td></tr>
+        <tr><td>45°</td><td>√2/2</td><td>√2/2</td><td>1</td></tr>
+        <tr><td>60°</td><td>√3/2</td><td>1/2</td><td>√3</td></tr>
+        <tr><td>90°</td><td>1</td><td>0</td><td>정의 안 됨</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- S19 수열과 패턴 -->
+<div class="screen" id="s19">
+  <div class="screen-title">수열과 패턴</div>
+  <div class="screen-sub">핀란드 수학의 꽃 — 규칙성 발견</div>
+
+  <div class="principle">
+    <h3>🔑 핵심 — 수열은 순서 있는 수의 목록</h3>
+    <p>수열의 각 수 = 항(term). n번째 항 = aₙ</p>
+    <p style="margin-top:8px;color:#93c5fd">등차수열: 일정하게 더함 / 등비수열: 일정하게 곱함</p>
+  </div>
+
+  <div class="card-amber">
+    <span class="tag tag-real">🌲 핀란드 숲 성장 — 등비수열</span>
+    <p>소나무 묘목이 매년 12%씩 성장한다. 처음 높이 50cm, 10년 후 높이는?</p>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>공비 r = 1.12 (12% 성장 = 전년의 1.12배)</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">a₁₀ = 50 × 1.12⁹ ≈ 50 × 2.773 ≈ <strong>138.6cm</strong></div>
+          <div class="step-real">자연계의 성장은 대부분 등비수열(지수 성장)입니다!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue">
+    <span class="tag tag-disc">🔍 탐구 — 등차수열 합의 공식 발견</span>
+    <p>가우스의 방법: 1+2+3+...+100 = ?</p>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><p>수열을 두 번 쓰기:</p>
+          <p>앞: 1 + 2 + 3 + ... + 100</p>
+          <p>뒤: 100 + 99 + 98 + ... + 1</p>
+          <p>합: 101 + 101 + 101 + ... (100번) = 10100</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="eq-box">1+2+...+100 = 10100 ÷ 2 = <strong>5050</strong></div>
+          <div class="step-why">일반 공식: Sₙ = n(첫째항 + 끝항)/2 = n(a₁+aₙ)/2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>피보나치 수열 — 자연의 수학</h3>
+    <div class="eq-box">1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...</div>
+    <p style="margin-top:8px">규칙: 앞 두 항의 합 = 다음 항</p>
+    <p style="margin-top:8px">핀란드 교과서: 해바라기 씨앗 배열, 소라 껍데기, 나뭇가지 분기 — 모두 피보나치!</p>
+    <p style="margin-top:8px">인접한 두 항의 비: 1.618... → 황금비 φ (phi)</p>
+  </div>
+</div>
+
+<!-- S20 핵심 정리 -->
+<div class="screen" id="s20">
+  <div class="screen-title">핀란드 중등 수학 핵심 정리</div>
+  <div class="screen-sub">이해한 것만이 진짜 내 것이다</div>
+
+  <div class="fin-quote">"수학을 배운다는 것은 도구를 얻는 것이 아니라, <span>사고하는 방식을 기르는 것</span>이다." — Pekka Kupari, 핀란드 수학교육학자</div>
+
+  <div class="sum-grid">
+    <div class="sum-card">
+      <h4>🔢 수와 연산</h4>
+      <ul>
+        <li>유리수: 수직선으로 시각화</li>
+        <li>음수×음수 = 양수 (패턴으로 이해)</li>
+        <li>백분율: 원가↔할인↔역계산</li>
+        <li>비례: 단위비율 먼저 구하기</li>
+      </ul>
+    </div>
+    <div class="sum-card">
+      <h4>📐 대수</h4>
+      <ul>
+        <li>변수 = 수학의 대명사</li>
+        <li>방정식 = 저울의 균형</li>
+        <li>부등식: 음수 곱하면 부등호 반전</li>
+        <li>분배법칙: 면적 모델로 이해</li>
+      </ul>
+    </div>
+    <div class="sum-card">
+      <h4>📈 함수</h4>
+      <ul>
+        <li>함수 = 입출력 기계</li>
+        <li>y=ax+b: 기울기·y절편</li>
+        <li>기울기 = Δy/Δx</li>
+        <li>이차함수 해 = x절편</li>
+      </ul>
+    </div>
+    <div class="sum-card">
+      <h4>🔷 기하</h4>
+      <ul>
+        <li>모든 넓이 → 직사각형에서 유도</li>
+        <li>a²+b²=c² (피타고라스)</li>
+        <li>닮음비k: 넓이비k², 부피비k³</li>
+        <li>삼각비: sin·cos·tan</li>
+      </ul>
+    </div>
+    <div class="sum-card">
+      <h4>🎲 확률·통계</h4>
+      <ul>
+        <li>P(A) = 원하는 경우/전체 경우</li>
+        <li>평균 vs 중앙값: 상황에 맞게</li>
+        <li>박스플롯: 퍼짐을 시각화</li>
+        <li>상관관계 ≠ 인과관계</li>
+      </ul>
+    </div>
+    <div class="sum-card">
+      <h4>² 제곱·수열</h4>
+      <ul>
+        <li>지수 법칙: 반복 곱셈의 규칙</li>
+        <li>복리 = 등비수열</li>
+        <li>가우스 합 = n(a₁+aₙ)/2</li>
+        <li>피보나치 = 자연의 수열</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-green">
+    <h3>🎉 핀란드 수학의 마지막 메시지</h3>
+    <p>핀란드 교육은 <strong>"왜?"</strong>를 묻는 것을 두려워하지 않습니다. 이 자료의 모든 공식에는 이유가 있었습니다. 그 이유를 기억하면, 공식을 잊어도 다시 유도할 수 있습니다.</p>
+    <p style="margin-top:10px">수학은 외우는 과목이 아니라, <span class="hl-green">생각하는 과목</span>입니다. 🌲</p>
+  </div>
+
+  <div style="text-align:center;padding:20px;color:var(--muted);font-size:.85rem">
+    인트로(1번)로 돌아가 원하는 단원을 골라 복습하세요
+  </div>
+</div>
+
+<button class="btn-prev" id="btnPrev" onclick="move(-1)" style="display:none">← 이전</button>
+<button class="btn-next" id="btnNext" onclick="move(1)">다음 →</button>
+
+<script>
+const TOTAL = 20;
+let cur = 1;
+
+const sections = [
+  {label:'🔢 수와 연산', from:2, to:4},
+  {label:'📐 대수', from:5, to:7},
+  {label:'📈 함수', from:8, to:9},
+  {label:'🔷 기하', from:10, to:13},
+  {label:'🎲 확률·통계', from:14, to:15},
+  {label:'² 제곱·수열', from:16, to:19},
+];
+
+function buildProg(){
+  const track = document.getElementById('progTrack');
+  const label = document.getElementById('progLabel');
+  track.innerHTML='';
+  // 인트로
+  track.appendChild(makeDot(1,'🇫🇮'));
+  track.appendChild(makeSep());
+  sections.forEach((sec,i)=>{
+    for(let n=sec.from;n<=sec.to;n++) track.appendChild(makeDot(n,n===sec.from?'★':n));
+    if(i<sections.length-1) track.appendChild(makeSep());
+  });
+  track.appendChild(makeSep());
+  track.appendChild(makeDot(20,'📋'));
+  label.innerHTML='<span class="plbl">인트로</span> | '+
+    sections.map(s=>`<span class="plbl">${s.label}</span>`).join(' | ')+
+    ' | <span class="plbl">📋 정리</span>';
+}
+function makeDot(n,lbl){
+  const d=document.createElement('div');
+  d.className='prog-dot';d.id='pd'+n;d.textContent=lbl;
+  d.title=n+'번';d.onclick=()=>goTo(n);return d;
+}
+function makeSep(){
+  const s=document.createElement('div');s.className='prog-sep';return s;
+}
+function updateProg(){
+  for(let i=1;i<=TOTAL;i++){
+    const d=document.getElementById('pd'+i);if(!d)continue;
+    d.classList.remove('on','done');
+    if(i===cur)d.classList.add('on');
+    else if(i<cur)d.classList.add('done');
+  }
+}
+function goTo(n){
+  document.getElementById('s'+cur).classList.remove('active');
+  cur=Math.max(1,Math.min(TOTAL,n));
+  document.getElementById('s'+cur).classList.add('active');
+  updateProg();window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('btnPrev').style.display=cur>1?'':'none';
+  document.getElementById('btnNext').textContent=cur===TOTAL?'처음으로 ↺':'다음 →';
+}
+function move(dir){
+  if(cur===TOTAL&&dir===1)goTo(1);else goTo(cur+dir);
+}
+buildProg();goTo(1);
+</script>
+</body>
+</html>

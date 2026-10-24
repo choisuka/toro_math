@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🧭 기본도형 — 위치관계 판별</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--card:#111827;
+  --purple:#7c3aed;--pink:#db2777;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.08);
+  --good:#34d399;--bad:#f87171}
+body{font-family:"Nanum Gothic","Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:520px;margin:0 auto;padding:1.25rem 1.1rem 3rem}
+
+.nav-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem}
+.back-link{font-family:'Jua',sans-serif;font-size:.82rem;color:var(--muted);text-decoration:none;
+  background:rgba(255,255,255,.08);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+.progress-pill{font-family:'Jua',sans-serif;font-size:.78rem;color:#86efac;background:rgba(34,197,94,.12);
+  border:1px solid rgba(34,197,94,.3);padding:5px 12px;border-radius:20px}
+
+.sec-head{text-align:center;margin-bottom:1.3rem}
+.sec-head h1{font-family:'Jua',sans-serif;font-size:1.5rem;margin-bottom:.35rem;
+  background:linear-gradient(135deg,#86efac,#7dd3fc);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-head p{color:var(--muted);font-size:.82rem;line-height:1.6}
+
+.score-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.7rem 1rem}
+.score-item{text-align:center}
+.score-item .num{font-family:'Jua',sans-serif;font-size:1.1rem;color:#fff}
+.score-item .lbl{font-size:.68rem;color:var(--muted)}
+.streak-fire{color:#fb923c}
+
+.progress-track{height:6px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:1.2rem;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#22c55e,#38bdf8);border-radius:4px;transition:width .3s}
+
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem 1.3rem;margin-bottom:1.2rem}
+.quiz-topic{display:inline-block;font-size:.7rem;color:#86efac;background:rgba(34,197,94,.12);
+  border:1px solid rgba(34,197,94,.3);padding:.25rem .65rem;border-radius:10px;margin-bottom:.9rem}
+.quiz-prompt{font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+.quiz-sentence{font-size:1.02rem;font-weight:800;line-height:1.65;color:#fff;margin-bottom:1.3rem}
+
+.choices{display:flex;flex-direction:column;gap:.6rem}
+.choice-btn{display:flex;align-items:center;gap:.6rem;text-align:left;width:100%;
+  background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:14px;
+  padding:.75rem .9rem;color:var(--text);font-size:.88rem;font-family:inherit;cursor:pointer;
+  transition:border-color .15s,background .15s}
+.choice-btn:hover:not(:disabled){border-color:rgba(34,197,94,.5);background:rgba(34,197,94,.08)}
+.choice-btn:disabled{cursor:default}
+.choice-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:var(--muted)}
+.choice-btn.correct{border-color:var(--good);background:rgba(52,211,153,.12)}
+.choice-btn.correct .choice-num{background:var(--good);color:#052e1c}
+.choice-btn.wrong{border-color:var(--bad);background:rgba(248,113,113,.12)}
+.choice-btn.wrong .choice-num{background:var(--bad);color:#3a0a0a}
+.choice-btn.selected{border-color:rgba(52,211,153,.8);background:rgba(34,197,94,.16)}
+.choice-btn.selected .choice-num{background:rgba(52,211,153,.8);color:#052e1c}
+.submit-btn{display:none;width:100%;margin-top:1rem;padding:.85rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#22c55e,#0ea5e9);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.92rem;cursor:pointer;opacity:.4;pointer-events:none}
+.submit-btn.show{display:block}
+.submit-btn.ready{opacity:1;pointer-events:auto}
+
+.explain-box{margin-top:1.1rem;padding:1rem 1.1rem;border-radius:14px;font-size:.85rem;line-height:1.7;display:none}
+.explain-box.show{display:block}
+.explain-box.good{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);color:#a7f3d0}
+.explain-box.bad{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);color:#fecaca}
+.explain-box .verdict{font-family:'Jua',sans-serif;font-size:.92rem;margin-bottom:.4rem}
+
+.next-btn{display:block;width:100%;margin-top:1rem;padding:.85rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#22c55e,#0ea5e9);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.92rem;cursor:pointer;display:none}
+.next-btn.show{display:block}
+
+.end-screen{display:none;text-align:center;background:var(--card);border:1px solid var(--border);
+  border-radius:22px;padding:2.4rem 1.6rem}
+.end-screen.show{display:block}
+.end-icon{font-size:3.2rem;margin-bottom:.8rem}
+.end-title{font-family:'Jua',sans-serif;font-size:1.3rem;margin-bottom:.5rem}
+.end-score{font-family:'Jua',sans-serif;font-size:2.2rem;background:linear-gradient(135deg,#86efac,#7dd3fc);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.end-desc{color:var(--muted);font-size:.85rem;margin-bottom:1.4rem;line-height:1.6}
+.retry-btn{display:inline-block;padding:.8rem 1.8rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#22c55e,#0ea5e9);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.88rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav-bar">
+    <a href="../games_mid_geo13.html" class="back-link">← 중1기하</a>
+    <span class="progress-pill" id="progPill">1 / 10</span>
+  </div>
+
+  <div class="sec-head">
+    <h1>🧭 위치관계 판별</h1>
+    <p>기본도형 — 평면·공간에서 두 직선, 직선과 평면, 두 평면의 위치관계를 정확히 판별하세요.</p>
+  </div>
+
+  <div class="score-bar">
+    <div class="score-item"><div class="num" id="scoreNum">0</div><div class="lbl">정답</div></div>
+    <div class="score-item"><div class="num streak-fire" id="streakNum">0🔥</div><div class="lbl">연속정답</div></div>
+    <div class="score-item"><div class="num" id="totalNum">0 / 10</div><div class="lbl">진행</div></div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-topic" id="quizTopic">단원</div>
+    <div class="quiz-prompt">📖 문장을 보고 알맞은 위치관계를 고르세요</div>
+    <div class="quiz-sentence" id="quizSentence">문장</div>
+    <div class="choices" id="choices"></div>
+    <div class="explain-box" id="explainBox">
+      <div class="verdict" id="explainVerdict"></div>
+      <div id="explainText"></div>
+    </div>
+    <button class="submit-btn" id="submitBtn">제출하기 ✓</button>
+    <button class="next-btn" id="nextBtn">다음 문제 →</button>
+  </div>
+
+  <div class="end-screen" id="endScreen">
+    <div class="end-icon">🏆</div>
+    <div class="end-title">완료!</div>
+    <div class="end-score" id="endScore">0 / 10</div>
+    <div class="end-desc" id="endDesc">위치관계는 "같은 평면 위인지"부터 확인하는 습관이 핵심이에요. 계속 반복하면 헷갈리지 않아요.</div>
+    <button class="retry-btn" onclick="restart()">🔄 다시 도전</button>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+{
+  topic: '평면에서 두 직선의 위치관계',
+  sentence: '한 평면 위에 있는 두 직선 l, m이 있다. 다음 중 l과 m의 관계가 될 수 없는 것은?',
+  choices: ['평행하다', '한 점에서 만난다', '일치한다', '꼬인 위치이다'],
+  answer: 3,
+  why: '꼬인 위치는 두 직선이 같은 평면 위에 있지 않을 때만 가능해요. 평면 위의 두 직선은 반드시 만나거나(교차·일치) 평행할 뿐이에요.'
+},
+{
+  topic: '공간에서 두 직선의 위치관계',
+  sentence: '직육면체에서 서로 다른 두 모서리가 평행하지도 않고 만나지도 않는다. 이 관계는?',
+  choices: ['꼬인 위치', '수직', '일치', '동위각'],
+  answer: 0,
+  why: '평행도 아니고 만나지도 않는 두 직선은 같은 평면 위에 있을 수 없어요. 이런 관계를 꼬인 위치라고 해요 — 평면 도형에서는 나올 수 없는, 공간(3차원)만의 관계예요.'
+},
+{
+  topic: '위치관계 판별 — 무엇부터 볼까',
+  sentence: '두 직선이 꼬인 위치인지 확인하려면 가장 먼저 무엇을 봐야 하는가?',
+  choices: ['같은 평면 위에 있는지부터 확인한다', '길이가 같은지 확인한다', '각의 크기를 먼저 잰다', '두 직선의 교점 좌표를 구한다'],
+  answer: 0,
+  why: '꼬인 위치는 애초에 "같은 평면 위에 있지 않을 때"만 성립하는 개념이에요. 그래서 가장 먼저 확인할 건 평면을 공유하는지 여부예요.'
+},
+{
+  topic: '동위각과 엇각의 이름',
+  sentence: '두 직선이 횡단선과 만나 생기는 8개의 각 중, 같은 쪽 같은 자리에 있는 한 쌍을 무엇이라 하는가?',
+  choices: ['동위각', '엇각', '맞꼭지각', '평각'],
+  answer: 0,
+  why: '같은 쪽 같은 자리(같은 위치)에 있는 각의 쌍이 동위각이에요. 두 평행선 사이에서 엇갈린 위치에 있는 건 엇각이에요.'
+},
+{
+  topic: '평행선의 성질',
+  sentence: '두 직선 l, m이 평행할 때, 동위각과 엇각의 크기는 어떻게 되는가?',
+  choices: ['둘 다 같다', '동위각만 같다', '엇각만 같다', '항상 다르다'],
+  answer: 0,
+  why: '두 직선이 평행하면 동위각도 같고 엇각도 같아요. 평행선의 성질 중 가장 기본이 되는 사실이에요.'
+},
+{
+  topic: '평행선의 판정 (거꾸로 쓰기)',
+  sentence: '횡단선과 두 직선이 만나 생긴 동위각이 서로 다른 크기로 측정됐다. 이 두 직선은 평행일까?',
+  choices: ['평행이 아니다', '평행이다', '알 수 없다', '엇각도 확인해야만 알 수 있다'],
+  answer: 0,
+  why: '평행선이면 동위각이 반드시 같아야 하는데 다르므로, 대우로 두 직선은 평행이 아니에요. "크기가 같다 → 평행하다"를 거꾸로 쓰는 게 평행선의 판정이에요.'
+},
+{
+  topic: '함정 — 이름 vs 크기',
+  sentence: '두 직선이 평행하지 않을 때도 "동위각"이라는 위치 이름은 존재한다. 맞는 설명은?',
+  choices: ['위치 이름은 항상 정의되고, 크기가 같아지는 건 평행할 때뿐이다', '평행하지 않으면 동위각이라는 이름 자체가 없다', '평행하지 않으면 동위각은 항상 다른 크기다', '동위각은 평행할 때만 존재하는 개념이다'],
+  answer: 0,
+  why: '동위각·엇각이라는 위치 이름은 두 직선이 평행하든 아니든 항상 정의돼요. 크기가 같아진다는 결론만 평행이라는 조건이 있어야 나와요.'
+},
+{
+  topic: '직선과 평면의 위치관계',
+  sentence: '직선 l이 평면 P 위에 있지도 않고, P와 만나지도 않는다. l과 P의 관계는?',
+  choices: ['평행하다', '수직이다', '포함된다', '꼬인 위치이다'],
+  answer: 0,
+  why: '꼬인 위치는 직선과 직선 사이에서만 쓰는 용어예요. 직선과 평면이 안 만나면 그냥 평행이라고 해요.'
+},
+{
+  topic: '두 평면의 위치관계 (복수 정답)',
+  sentence: '서로 다른 두 평면 P, Q가 있다. 둘의 관계로 가능한 것을 모두 고르면?',
+  choices: ['평행하다', '한 직선(교선)에서 만난다', '일치한다', '꼬인 위치이다'],
+  answer: [0,1],
+  why: '서로 다른 두 평면은 안 만나면 평행, 만나면 반드시 하나의 직선(교선)으로 만나요. "일치"는 서로 다른 평면이라는 조건에 어긋나고, "꼬인 위치"는 평면이 아니라 직선끼리에만 쓰는 용어라서 해당하지 않아요.'
+},
+{
+  topic: '함정 심화 — 같은 것에 평행해도',
+  sentence: '직선 l이 평면 P에 평행하고, 직선 m도 평면 P에 평행하다. l과 m의 관계는?',
+  choices: ['정해지지 않는다 (만나거나 평행하거나 꼬인 위치일 수 있다)', '반드시 평행하다', '반드시 만난다', '반드시 꼬인 위치다'],
+  answer: 0,
+  why: '같은 평면에 평행한 두 직선이라도 서로 다른 방향을 향할 수 있어서, l과 m은 만나거나 평행하거나 꼬인 위치일 수 있어요. "같은 것에 대해 같은 관계다"라고 해서 서로도 같은 관계라고 착각하면 안 돼요.'
+}
+];
+
+let order = [], idx = 0, score = 0, streak = 0, answered = false;
+let selectedSet = new Set();
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function restart(){
+  order = shuffle(QUESTIONS.map((_,i)=>i));
+  idx = 0; score = 0; streak = 0;
+  document.getElementById('endScreen').classList.remove('show');
+  document.getElementById('quizCard').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered = false;
+  selectedSet = new Set();
+  const q = QUESTIONS[order[idx]];
+  const isMulti = Array.isArray(q.answer);
+  document.getElementById('quizTopic').textContent = q.topic;
+  document.getElementById('quizSentence').textContent = q.sentence + (isMulti ? ' (모두 고르시오)' : '');
+  document.getElementById('progPill').textContent = (idx+1)+' / '+QUESTIONS.length;
+  document.getElementById('totalNum').textContent = idx+' / '+QUESTIONS.length;
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+  document.getElementById('progFill').style.width = (idx/QUESTIONS.length*100)+'%';
+
+  const choicesEl = document.getElementById('choices');
+  choicesEl.innerHTML = '';
+  const shuffledChoiceIdx = shuffle(q.choices.map((_,i)=>i));
+  shuffledChoiceIdx.forEach((origIdx, pos)=>{
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.dataset.idx = origIdx;
+    btn.innerHTML = '<span class="choice-num">'+(pos+1)+'</span><span>'+q.choices[origIdx]+'</span>';
+    btn.onclick = isMulti ? (()=> toggleChoice(origIdx, btn)) : (()=> selectChoice(origIdx, btn));
+    choicesEl.appendChild(btn);
+  });
+
+  document.getElementById('explainBox').className = 'explain-box';
+  document.getElementById('nextBtn').className = 'next-btn';
+  document.getElementById('submitBtn').className = 'submit-btn' + (isMulti ? ' show' : '');
+}
+
+function selectChoice(origIdx, btnEl){
+  if(answered) return;
+  answered = true;
+  const q = QUESTIONS[order[idx]];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b=> b.disabled = true);
+
+  const isCorrect = origIdx === q.answer;
+  if(isCorrect){
+    btnEl.classList.add('correct');
+    score++; streak++;
+  } else {
+    btnEl.classList.add('wrong');
+    allBtns.forEach(b=>{
+      if(Number(b.dataset.idx) === q.answer) b.classList.add('correct');
+    });
+    streak = 0;
+  }
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+
+  const box = document.getElementById('explainBox');
+  box.className = 'explain-box show ' + (isCorrect ? 'good' : 'bad');
+  document.getElementById('explainVerdict').textContent = isCorrect ? '✅ 맞아요!' : '❌ 아쉬워요 — 정답: '+q.choices[q.answer];
+  document.getElementById('explainText').textContent = q.why;
+
+  document.getElementById('nextBtn').className = 'next-btn show';
+}
+
+function toggleChoice(origIdx, btnEl){
+  if(answered) return;
+  if(selectedSet.has(origIdx)){
+    selectedSet.delete(origIdx);
+    btnEl.classList.remove('selected');
+  } else {
+    selectedSet.add(origIdx);
+    btnEl.classList.add('selected');
+  }
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.classList.toggle('ready', selectedSet.size > 0);
+}
+
+function submitMulti(){
+  if(answered) return;
+  if(selectedSet.size === 0) return;
+  answered = true;
+  const q = QUESTIONS[order[idx]];
+  const answerSet = new Set(q.answer);
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b=> b.disabled = true);
+
+  const isCorrect = selectedSet.size === answerSet.size && [...selectedSet].every(i=> answerSet.has(i));
+
+  allBtns.forEach(b=>{
+    const oi = Number(b.dataset.idx);
+    if(answerSet.has(oi)) b.classList.add('correct');
+    else if(selectedSet.has(oi)) b.classList.add('wrong');
+  });
+
+  if(isCorrect){ score++; streak++; } else { streak = 0; }
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+
+  const correctList = q.answer.map(i=> q.choices[i]).join(' + ');
+  const box = document.getElementById('explainBox');
+  box.className = 'explain-box show ' + (isCorrect ? 'good' : 'bad');
+  document.getElementById('explainVerdict').textContent = isCorrect ? '✅ 맞아요!' : '❌ 아쉬워요 — 정답: '+correctList;
+  document.getElementById('explainText').textContent = q.why;
+
+  document.getElementById('submitBtn').className = 'submit-btn';
+  document.getElementById('nextBtn').className = 'next-btn show';
+}
+
+document.getElementById('submitBtn').onclick = submitMulti;
+
+document.getElementById('nextBtn').onclick = ()=>{
+  idx++;
+  if(idx >= QUESTIONS.length){
+    document.getElementById('quizCard').style.display = 'none';
+    document.getElementById('endScreen').classList.add('show');
+    document.getElementById('endScore').textContent = score+' / '+QUESTIONS.length;
+    document.getElementById('progFill').style.width = '100%';
+    document.getElementById('totalNum').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+    document.getElementById('progPill').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+  } else {
+    renderQuestion();
+  }
+};
+
+restart();
+</script>
+</body>
+</html>

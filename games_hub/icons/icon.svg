@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="80" fill="#0f172a"/>
+  <!-- Gradient overlay -->
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="crown-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="80" fill="url(#glow)"/>
+
+  <!-- Crown -->
+  <g transform="translate(256, 200)">
+    <!-- Crown base -->
+    <rect x="-100" y="20" width="200" height="60" rx="10" fill="url(#crown-grad)"/>
+    <!-- Crown points -->
+    <polygon points="-100,20 -100,-60 -55,0 0,-80 55,0 100,-60 100,20" fill="url(#crown-grad)"/>
+    <!-- Crown jewels -->
+    <circle cx="-55" cy="0" r="12" fill="#ef4444"/>
+    <circle cx="0" cy="-80" r="15" fill="#38bdf8"/>
+    <circle cx="55" cy="0" r="12" fill="#34d399"/>
+    <!-- Shine -->
+    <circle cx="-55" cy="-4" r="5" fill="white" opacity="0.6"/>
+    <circle cx="0" cy="-84" r="6" fill="white" opacity="0.6"/>
+    <circle cx="55" cy="-4" r="5" fill="white" opacity="0.6"/>
+  </g>
+
+  <!-- Math symbols -->
+  <text x="256" y="355" text-anchor="middle" font-family="serif" font-size="44" font-weight="bold" fill="url(#text-grad)">수학여행학원</text>
+  <text x="256" y="405" text-anchor="middle" font-family="serif" font-size="44" font-weight="bold" fill="url(#text-grad)">-영통</text>
+
+  <!-- Small decorative math symbols -->
+  <text x="80" y="160" font-family="monospace" font-size="32" fill="#38bdf8" opacity="0.5">∑</text>
+  <text x="390" y="140" font-family="monospace" font-size="28" fill="#34d399" opacity="0.5">π</text>
+  <text x="60" y="360" font-family="monospace" font-size="24" fill="#f59e0b" opacity="0.4">√</text>
+  <text x="420" y="380" font-family="monospace" font-size="24" fill="#a78bfa" opacity="0.4">∞</text>
+</svg>
