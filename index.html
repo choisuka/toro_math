@@ -6,9 +6,9 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>🦕 수학여행 학원</title>
+<title>🦕 수학여행</title>
 <meta property="og:type" content="website">
-<meta property="og:title" content="🦕 수학여행 학원">
+<meta property="og:title" content="🦕 수학여행">
 <meta property="og:description" content="직관 · 시각 · 논리 — 세 가지 방식으로 수학을 정복하세요">
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -234,6 +234,8 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 @keyframes seaWave{0%,100%{transform:translateX(0) scaleY(1)}50%{transform:translateX(-18px) scaleY(1.08)}}
 @keyframes seaGlow{0%,100%{opacity:.12}50%{opacity:.28}}
 @keyframes toroPopIn{0%{opacity:0;transform:scale(.85) translateY(10px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes heroTitleDrift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes heroTitleFloat{0%,100%{transform:translate(0,0)}25%{transform:translate(3px,-3px)}50%{transform:translate(0,-5px)}75%{transform:translate(-3px,-3px)}}
 
 /* ── 칸아카데미 패널 (Method A — equation) ── */
 .khan-panel{margin:0 0 12px;border-radius:14px;overflow:hidden;border:1px solid rgba(251,191,36,.22)}
@@ -269,10 +271,10 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <!-- Home - Armonia Math Kingdom -->
 <div id="home" class="screen active">
   <div style="width:100%;max-width:620px">
-    <div style="text-align:center;padding:16px 0 16px">
-      <h1 style="font-size:2.2rem;margin:0;position:relative;display:inline-block">
-        <span style="position:absolute;left:-6%;right:-6%;bottom:6%;height:38%;background:linear-gradient(90deg,#fca5a5,#fde68a,#86efac,#7dd3fc);opacity:.55;border-radius:6px;transform:skewX(-6deg);z-index:1"></span>
-        <span style="position:relative;z-index:2;font-family:'Nanum Gothic',sans-serif;font-weight:800;color:#f8fafc">수학여행 학원</span>
+    <div style="text-align:center;padding:16px 0 16px;position:relative">
+      <div style="font-size:1.9rem;display:inline-block;animation:toroBounce 2s ease-in-out infinite;margin-bottom:2px">🦕</div>
+      <h1 style="font-size:2.3rem;margin:0;position:relative;display:inline-block">
+        <span style="position:relative;z-index:2;font-family:'Jua',sans-serif;font-weight:400;background:linear-gradient(90deg,#fca5a5,#fde68a,#86efac,#7dd3fc,#fca5a5);background-size:300% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;display:inline-block;animation:heroTitleDrift 4s ease-in-out infinite,heroTitleFloat 5s ease-in-out infinite">수학여행</span>
       </h1>
       <p style="font-size:.72rem;margin-top:6px;font-family:'Nanum Gothic',sans-serif;font-weight:700;background:linear-gradient(90deg,#fca5a5,#fde68a,#86efac,#7dd3fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">직관 · 시각 · 논리 — 세 가지 방식으로 수학을 정복하세요</p>
     </div>
@@ -324,6 +326,12 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
           <div class="desc">수학 왕국(드릴) · 문자와 식 마법학교 · 수학 탐정 수사국 · 분수·비율 탐험 · 수학왕국(레벨업) — 게임형 5종</div>
           <span class="tag" style="background:rgba(167,139,250,.15);color:#c4b5fd;border:1px solid rgba(167,139,250,.35);margin-top:6px">게임형 5종</span>
         </a>
+        <a href="https://choisuka.github.io/focus_game/" class="topic-card" style="display:block;text-decoration:none;border:1px solid rgba(74,222,128,.35);background:linear-gradient(155deg,#052e16,#0a1f14);grid-column:1/-1">
+          <div class="ico">🌱</div>
+          <div class="name" style="color:#4ade80">토로의 집중력 정원</div>
+          <div class="desc">주간 계획 · 집중 타이머 · 회복 3종(명상/글쓰기/낙서) · 주의력 게임</div>
+          <span class="tag" style="background:rgba(74,222,128,.15);color:#4ade80;border:1px solid rgba(74,222,128,.35);margin-top:6px">계획·집중</span>
+        </a>
         <a href="middle.html" class="topic-card" style="display:block;text-decoration:none;border:1px solid rgba(251,191,36,.35);background:linear-gradient(155deg,#1a1000,#251800);grid-column:1/-1">
           <div class="ico">🌱</div>
           <div class="name" style="color:#fbbf24">중등수학</div>
@@ -358,7 +366,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
           <div style="font-size:1.3rem">📝</div>
           <div style="flex:1;min-width:0">
             <div style="font-family:'Jua',sans-serif;font-size:.85rem;color:#f472b6">수학여행 블로그</div>
-            <div style="font-size:.68rem;color:var(--gray)">정수·유리수 개념 글 + 학습 카페 + 게임 놀이터 (영통수학여행학원)</div>
+            <div style="font-size:.68rem;color:var(--gray)">정수·유리수 개념 글 + 학습 카페 + 게임 놀이터 (수학여행)</div>
           </div>
         </a>
       </div>
@@ -613,6 +621,13 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
           <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">19편 — 원문 그대로 (2026-09-08)</div>
         </div>
       </div>
+      <a href="print_materials.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;border:1px solid rgba(251,191,36,.3);background:rgba(251,191,36,.06);border-radius:12px;padding:12px 14px">
+        <div style="font-size:1.4rem">👨‍👩‍👧</div>
+        <div>
+          <div style="font-family:'Jua',sans-serif;font-size:.82rem;color:#fbbf24">학부모 자료 — 메타인지와 공부 계획</div>
+          <div style="font-size:.68rem;color:#94a3b8;margin-top:2px">학부모 설명회 안내서 · 체크리스트·주간계획표 포함, 공수 인쇄자료에서 인쇄 가능</div>
+        </div>
+      </a>
     </div>
   </div>
 </div>
