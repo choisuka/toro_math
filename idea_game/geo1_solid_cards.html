@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🎲 입체도형 판별</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--card:#111827;
+  --text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.08);
+  --good:#34d399;--bad:#f87171}
+body{font-family:"Nanum Gothic","Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:520px;margin:0 auto;padding:1.25rem 1.1rem 3rem}
+
+.nav-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem}
+.back-link{font-family:'Jua',sans-serif;font-size:.82rem;color:var(--muted);text-decoration:none;
+  background:rgba(255,255,255,.08);padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+.progress-pill{font-family:'Jua',sans-serif;font-size:.78rem;color:#fbbf24;background:rgba(251,191,36,.12);
+  border:1px solid rgba(251,191,36,.3);padding:5px 12px;border-radius:20px}
+
+.sec-head{text-align:center;margin-bottom:1.3rem}
+.sec-head h1{font-family:'Jua',sans-serif;font-size:1.5rem;margin-bottom:.35rem;
+  background:linear-gradient(135deg,#fbbf24,#fb923c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-head p{color:var(--muted);font-size:.82rem;line-height:1.6}
+
+.score-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.7rem 1rem}
+.score-item{text-align:center}
+.score-item .num{font-family:'Jua',sans-serif;font-size:1.1rem;color:#fff}
+.score-item .lbl{font-size:.68rem;color:var(--muted)}
+.streak-fire{color:#fb923c}
+
+.progress-track{height:6px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:1.2rem;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#f59e0b,#fb923c);border-radius:4px;transition:width .3s}
+
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem 1.3rem;margin-bottom:1.2rem}
+.quiz-topic{display:inline-block;font-size:.7rem;color:#fbbf24;background:rgba(251,191,36,.12);
+  border:1px solid rgba(251,191,36,.3);padding:.25rem .65rem;border-radius:10px;margin-bottom:.9rem}
+.quiz-prompt{font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+.quiz-sentence{font-size:1.02rem;font-weight:800;line-height:1.65;color:#fff;margin-bottom:1.3rem}
+
+.choices{display:flex;flex-direction:column;gap:.6rem}
+.choice-btn{display:flex;align-items:center;gap:.6rem;text-align:left;width:100%;
+  background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:14px;
+  padding:.75rem .9rem;color:var(--text);font-size:.88rem;font-family:inherit;cursor:pointer;
+  transition:border-color .15s,background .15s}
+.choice-btn:hover:not(:disabled){border-color:rgba(251,191,36,.5);background:rgba(251,191,36,.08)}
+.choice-btn:disabled{cursor:default}
+.choice-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:var(--muted)}
+.choice-btn.correct{border-color:var(--good);background:rgba(52,211,153,.12)}
+.choice-btn.correct .choice-num{background:var(--good);color:#052e1c}
+.choice-btn.wrong{border-color:var(--bad);background:rgba(248,113,113,.12)}
+.choice-btn.wrong .choice-num{background:var(--bad);color:#3a0a0a}
+
+.explain-box{margin-top:1.1rem;padding:1rem 1.1rem;border-radius:14px;font-size:.85rem;line-height:1.7;display:none}
+.explain-box.show{display:block}
+.explain-box.good{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);color:#a7f3d0}
+.explain-box.bad{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);color:#fecaca}
+.explain-box .verdict{font-family:'Jua',sans-serif;font-size:.92rem;margin-bottom:.4rem}
+
+.next-btn{display:block;width:100%;margin-top:1rem;padding:.85rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#f59e0b,#fb923c);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.92rem;cursor:pointer;display:none}
+.next-btn.show{display:block}
+
+.end-screen{display:none;text-align:center;background:var(--card);border:1px solid var(--border);
+  border-radius:22px;padding:2.4rem 1.6rem}
+.end-screen.show{display:block}
+.end-icon{font-size:3.2rem;margin-bottom:.8rem}
+.end-title{font-family:'Jua',sans-serif;font-size:1.3rem;margin-bottom:.5rem}
+.end-score{font-family:'Jua',sans-serif;font-size:2.2rem;background:linear-gradient(135deg,#fbbf24,#fb923c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.end-desc{color:var(--muted);font-size:.85rem;margin-bottom:1.4rem;line-height:1.6}
+.retry-btn{display:inline-block;padding:.8rem 1.8rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#f59e0b,#fb923c);color:#fff;font-family:'Jua',sans-serif;
+  font-size:.88rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav-bar">
+    <a href="../games_mid_geo13.html" class="back-link">← 중1기하</a>
+    <span class="progress-pill" id="progPill">1 / 10</span>
+  </div>
+
+  <div class="sec-head">
+    <h1>🎲 입체도형 판별</h1>
+    <p>다면체·정다면체·오일러공식·회전체·겉넓이·부피, 개념을 정확히 구분하는 연습입니다.</p>
+  </div>
+
+  <div class="score-bar">
+    <div class="score-item"><div class="num" id="scoreNum">0</div><div class="lbl">정답</div></div>
+    <div class="score-item"><div class="num streak-fire" id="streakNum">0🔥</div><div class="lbl">연속정답</div></div>
+    <div class="score-item"><div class="num" id="totalNum">0 / 10</div><div class="lbl">진행</div></div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-topic" id="quizTopic">단원</div>
+    <div class="quiz-prompt">📖 문장을 보고 알맞은 답을 고르세요</div>
+    <div class="quiz-sentence" id="quizSentence">문장</div>
+    <div class="choices" id="choices"></div>
+    <div class="explain-box" id="explainBox">
+      <div class="verdict" id="explainVerdict"></div>
+      <div id="explainText"></div>
+    </div>
+    <button class="next-btn" id="nextBtn">다음 문제 →</button>
+  </div>
+
+  <div class="end-screen" id="endScreen">
+    <div class="end-icon">🏆</div>
+    <div class="end-title">완료!</div>
+    <div class="end-score" id="endScore">0 / 10</div>
+    <div class="end-desc">원기둥·원뿔·구는 다면체가 아니라 "회전체"예요 — 옆면이 곡면인지 평면(다각형)인지로 구분하는 게 핵심이에요.</div>
+    <button class="retry-btn" onclick="restart()">🔄 다시 도전</button>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+{
+  topic: '함정 — 원기둥은 다면체일까?',
+  sentence: '다음 중 다면체가 아닌 것은?',
+  choices: ['원기둥', '삼각기둥', '사각뿔', '오각기둥'],
+  answer: 0,
+  why: '다면체는 평면(다각형)으로만 둘러싸인 도형인데, 원기둥의 옆면은 곡면이라 다면체가 아니에요. 원기둥·원뿔·구는 회전체예요.'
+},
+{
+  topic: '뿔대의 정의',
+  sentence: '각뿔대의 두 밑면의 관계는?',
+  choices: ['서로 닮음이지만 합동은 아니다', '서로 합동이다', '평행하지 않다', '모양이 다른 다각형이다'],
+  answer: 0,
+  why: '각뿔대는 각뿔을 밑면과 평행하게 잘라 꼭짓점 쪽을 떼어낸 모양이라, 두 밑면은 평행하면서 닮음이지만 크기가 달라 합동은 아니에요.'
+},
+{
+  topic: '정다면체는 몇 개?',
+  sentence: '정다면체는 모두 몇 가지인가?',
+  choices: ['5가지', '4가지', '6가지', '무한히 많다'],
+  answer: 0,
+  why: '한 꼭짓점에 모이는 각의 합이 360°보다 작아야 한다는 조건 때문에 정삼각형·정사각형·정오각형 조합만 가능해서 딱 5가지예요.'
+},
+{
+  topic: '함정 — 정육각형으로는 왜 안 될까',
+  sentence: '정육각형 3개로는 왜 정다면체의 꼭짓점을 만들 수 없을까?',
+  choices: ['한 내각 120°×3=360°라서 완전히 평평해져 접을 수 없다', '정육각형은 정다각형이 아니라서', '변의 개수가 너무 많아서', '꼭짓점이 모자라서'],
+  answer: 0,
+  why: '한 꼭짓점에 모이는 각의 합이 360°면 틈 없이 완전히 평평해서 뾰족하게 접어 올릴 수 없어요. 360°보다 작아야(틈이 있어야) 입체의 꼭짓점이 생겨요.'
+},
+{
+  topic: '오일러 공식',
+  sentence: '면이 12개, 모서리가 30개인 정다면체의 꼭짓점의 개수는?',
+  choices: ['20개', '18개', '22개', '24개'],
+  answer: 0,
+  why: '오일러 공식 F-E+V=2에 대입: 12-30+V=2 → V=20 (정십이면체예요).'
+},
+{
+  topic: '회전체의 단면',
+  sentence: '원뿔을 회전축에 수직으로 자른 단면은 항상 어떤 모양인가?',
+  choices: ['원', '삼각형', '타원', '사다리꼴'],
+  answer: 0,
+  why: '회전축에 수직인 단면은 회전체의 종류와 상관없이 항상 원이에요.'
+},
+{
+  topic: '함정 — 빗변을 축으로 돌리면?',
+  sentence: '직각삼각형을 빗변을 회전축으로 하여 한 바퀴 돌리면 생기는 입체는?',
+  choices: ['쌍원뿔(원뿔 2개가 밑면끼리 붙은 모양)', '원뿔 1개', '원기둥', '구'],
+  answer: 0,
+  why: '직각변을 축으로 할 때만 원뿔 1개가 나와요. 빗변을 축으로 하면 직각 꼭짓점이 그리는 원을 공통 밑면으로 하는 원뿔 2개, 즉 쌍원뿔이 돼요.'
+},
+{
+  topic: '회전체 모양 맞추기',
+  sentence: '반원을 지름을 회전축으로 하여 돌리면 생기는 입체는?',
+  choices: ['구', '원기둥', '원뿔', '원뿔대'],
+  answer: 0,
+  why: '반원을 지름(지름이 곧 축)으로 돌리면 구가 돼요.'
+},
+{
+  topic: '뿔의 부피',
+  sentence: '밑면과 높이가 같은 각기둥과 각뿔이 있을 때, 각뿔의 부피는 각기둥의 부피의 몇 배인가?',
+  choices: ['1/3배', '1/2배', '2/3배', '3배'],
+  answer: 0,
+  why: '밑면과 높이가 같으면 뿔의 부피는 항상 기둥의 1/3이에요 — 정육면체를 한 꼭짓점에서 합동인 삼각뿔 3개로 나누는 방법으로 증명돼요.'
+},
+{
+  topic: '원뿔의 겉넓이',
+  sentence: '원뿔을 전개도로 펼쳤을 때, 옆면(부채꼴)의 호의 길이는 밑면의 무엇과 같은가?',
+  choices: ['밑면인 원의 둘레(원주)', '밑면인 원의 지름', '밑면인 원의 반지름', '밑면인 원의 넓이'],
+  answer: 0,
+  why: '원뿔을 펼치면 옆면은 부채꼴이 되는데, 이 부채꼴의 호가 밑면 원의 둘레와 정확히 이어져 맞물려요. 그래서 부채꼴의 호의 길이 = 밑면 원의 둘레예요.'
+}
+];
+
+let order = [], idx = 0, score = 0, streak = 0, answered = false;
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function restart(){
+  order = shuffle(QUESTIONS.map((_,i)=>i));
+  idx = 0; score = 0; streak = 0;
+  document.getElementById('endScreen').classList.remove('show');
+  document.getElementById('quizCard').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered = false;
+  const q = QUESTIONS[order[idx]];
+  document.getElementById('quizTopic').textContent = q.topic;
+  document.getElementById('quizSentence').textContent = q.sentence;
+  document.getElementById('progPill').textContent = (idx+1)+' / '+QUESTIONS.length;
+  document.getElementById('totalNum').textContent = idx+' / '+QUESTIONS.length;
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+  document.getElementById('progFill').style.width = (idx/QUESTIONS.length*100)+'%';
+
+  const choicesEl = document.getElementById('choices');
+  choicesEl.innerHTML = '';
+  const shuffledChoiceIdx = shuffle(q.choices.map((_,i)=>i));
+  shuffledChoiceIdx.forEach((origIdx, pos)=>{
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.dataset.idx = origIdx;
+    btn.innerHTML = '<span class="choice-num">'+(pos+1)+'</span><span>'+q.choices[origIdx]+'</span>';
+    btn.onclick = ()=> selectChoice(origIdx, btn);
+    choicesEl.appendChild(btn);
+  });
+
+  document.getElementById('explainBox').className = 'explain-box';
+  document.getElementById('nextBtn').className = 'next-btn';
+}
+
+function selectChoice(origIdx, btnEl){
+  if(answered) return;
+  answered = true;
+  const q = QUESTIONS[order[idx]];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b=> b.disabled = true);
+
+  const isCorrect = origIdx === q.answer;
+  if(isCorrect){
+    btnEl.classList.add('correct');
+    score++; streak++;
+  } else {
+    btnEl.classList.add('wrong');
+    allBtns.forEach(b=>{
+      if(Number(b.dataset.idx) === q.answer) b.classList.add('correct');
+    });
+    streak = 0;
+  }
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak+'🔥';
+
+  const box = document.getElementById('explainBox');
+  box.className = 'explain-box show ' + (isCorrect ? 'good' : 'bad');
+  document.getElementById('explainVerdict').textContent = isCorrect ? '✅ 맞아요!' : '❌ 아쉬워요 — 정답: '+q.choices[q.answer];
+  document.getElementById('explainText').textContent = q.why;
+
+  document.getElementById('nextBtn').className = 'next-btn show';
+}
+
+document.getElementById('nextBtn').onclick = ()=>{
+  idx++;
+  if(idx >= QUESTIONS.length){
+    document.getElementById('quizCard').style.display = 'none';
+    document.getElementById('endScreen').classList.add('show');
+    document.getElementById('endScore').textContent = score+' / '+QUESTIONS.length;
+    document.getElementById('progFill').style.width = '100%';
+    document.getElementById('totalNum').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+    document.getElementById('progPill').textContent = QUESTIONS.length+' / '+QUESTIONS.length;
+  } else {
+    renderQuestion();
+  }
+};
+
+restart();
+</script>
+</body>
+</html>

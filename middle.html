@@ -262,6 +262,16 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 .khan-self-no:hover{background:rgba(248,113,113,.22)}
 .khan-self-msg{text-align:center;font-size:.78rem;padding:7px 0;min-height:22px;transition:.3s}
 .katex{color:inherit!important;font-size:1em!important}
+/* ── 중1 대수 화면 색상 선택: 다크(기본 모습) / 본문만 흰색(.lm-a) / 전체 배경까지(.lm-b) ── */
+body.lm-a .lm-panel{--white:#1d2433;--gray:#5b6472;--card:#f4f6fa;--card2:#eef1f6;--green:#1f7a42;--yellow:#8a6100;--red:#c0362f;--blue:#1f5fae;--purple:#6d3fb0;--orange:#b3560f;background:#ffffff;color:#1d2433;border-radius:14px;padding:16px;width:100%}
+body.lm-b{--white:#1d2433;--gray:#5b6472;--card:#f4f6fa;--card2:#eef1f6;--green:#1f7a42;--yellow:#8a6100;--red:#c0362f;--blue:#1f5fae;--purple:#6d3fb0;--orange:#b3560f;--bg:#eef1f6;background:#eef1f6;color:#1d2433}
+body.lm-a .lm-panel .progress-wrap,body.lm-b .progress-wrap{background:#dfe4ec}
+body.lm-a .lm-panel .btn-sub,body.lm-b .btn-sub{border-color:#c5ccd8}
+body.lm-a .lm-panel .bubble-text,body.lm-a .lm-panel .q-card,body.lm-b .bubble-text,body.lm-b .q-card{border-color:#c5ccd8}
+#lmPick{display:none;position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:9000;gap:4px;padding:4px;border-radius:12px;background:rgba(15,25,35,.85);border:1px solid rgba(255,255,255,.15)}
+#lmPick.show{display:flex}
+#lmPick button{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#f0f4f8;border-radius:8px;padding:5px 9px;font-size:.72rem;cursor:pointer;font-family:inherit}
+#lmPick button.on{background:#f1c40f;color:#1a1a1a;border-color:#f1c40f;font-weight:700}
 </style>
 </head>
 <body>
@@ -304,7 +314,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="grade-mid1" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#fbbf24">🌱 중1 대수</h2>
       <div style="width:60px"></div>
     </div>
@@ -341,7 +351,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="grade-mid1-geo" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#c4b5fd">📐 중1 기하</h2>
       <div style="width:60px"></div>
     </div>
@@ -365,7 +375,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="grade-mid2-geo" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#7dd3fc">📐 중2 기하</h2>
       <div style="width:60px"></div>
     </div>
@@ -378,7 +388,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="grade-mid3-geo" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#34d399">📐 중3 기하</h2>
       <div style="width:60px"></div>
     </div>
@@ -391,7 +401,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="grade-mid2" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#f87171">⚖️ 중2 대수</h2>
       <div style="width:60px"></div>
     </div>
@@ -415,7 +425,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="grade-mid3" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#2dd4bf">🌊 중3 대수</h2>
       <div style="width:60px"></div>
     </div>
@@ -446,7 +456,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="factmult" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:1rem;text-align:center;color:#fbbf24">🔢 약수와 배수 — 3단계 융합</h2>
       <div style="width:60px"></div>
     </div>
@@ -494,7 +504,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="prime-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#a5b4fc">🧬 소인수분해 — 3단계 융합</h2>
       <div style="width:60px"></div>
     </div>
@@ -552,7 +562,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="equation-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#d8b4fe">⚖️ 일차방정식의 활용</h2>
       <div style="width:60px"></div>
     </div>
@@ -649,7 +659,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="eq-identity-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#a5b4fc">📜 항등식의 법전</h2>
       <div style="width:60px"></div>
     </div>
@@ -751,7 +761,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="avg-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#86efac">📊 평균과 가능성</h2>
       <div style="width:60px"></div>
     </div>
@@ -884,7 +894,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="simultaneous-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#7dd3fc">🔗 연립방정식</h2>
       <div style="width:60px"></div>
     </div>
@@ -942,25 +952,25 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="geometry-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#c4b5fd">📐 기본 도형</h2>
       <div style="width:60px"></div>
     </div>
     <div style="font-family:'Jua',sans-serif;color:#c4b5fd;font-size:.95rem;text-align:center;margin-bottom:10px">📐 "점·선·면으로 만드는 세상"</div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
       <div style="background:linear-gradient(155deg,rgba(134,239,172,.08),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">🇫🇮</div>
+        <div style="font-size:1.4rem">🔍</div>
         <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.78rem;margin:4px 0">발견형</div>
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">직관<br>자연 속 도형</div>
       </div>
       <div style="background:linear-gradient(155deg,rgba(125,211,252,.08),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">🇸🇬</div>
+        <div style="font-size:1.4rem">📊</div>
         <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.78rem;margin:4px 0">시각화형</div>
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">시각화<br>작도 실습</div>
       </div>
       <div style="background:linear-gradient(155deg,rgba(253,230,138,.08),rgba(253,230,138,.03));border:1px solid rgba(253,230,138,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">✡️</div>
-        <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.78rem;margin:4px 0">유대인</div>
+        <div style="font-size:1.4rem">💡</div>
+        <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.78rem;margin:4px 0">논리형</div>
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">논리<br>공간의 철학</div>
       </div>
     </div>
@@ -972,7 +982,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       </div>
       <div class="topic-card" onclick="startCards('geometry-guide-construction','geometry-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 6px;border:1px solid rgba(125,211,252,.3);background:linear-gradient(155deg,#071520,#0d1f2e)">
         <div class="ico" style="font-size:1.4rem">📐</div>
-        <div class="name" style="color:#7dd3fc;font-size:.66rem;margin-top:4px;line-height:1.3">작도<br><span style="opacity:.6;font-size:.9em">(4장)</span></div>
+        <div class="name" style="color:#7dd3fc;font-size:.66rem;margin-top:4px;line-height:1.3">작도<br><span style="opacity:.6;font-size:.9em">(6장)</span></div>
       </div>
       <div class="topic-card" onclick="startCards('geometry-guide-congruence','geometry-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 6px;border:1px solid rgba(196,181,253,.3);background:linear-gradient(155deg,#12071e,#1c0f2e)">
         <div class="ico" style="font-size:1.4rem">≅</div>
@@ -980,16 +990,16 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
       </div>
     </div>
     <button onclick="startCards('geometry-hard-basic','geometry-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.08);border:1px solid rgba(134,239,172,.25);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      🌱 기본 문제 <span style="font-size:.72rem;opacity:.7">(4장)</span> →
+      🌱 기본 문제 <span style="font-size:.72rem;opacity:.7">(5장)</span> →
     </button>
     <button onclick="startCards('geometry-hard-advanced','geometry-hub')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25);color:#f87171;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      ⚡ 심화 문제 <span style="font-size:.72rem;opacity:.7">(16장)</span> →
+      ⚡ 심화 문제 <span style="font-size:.72rem;opacity:.7">(18장)</span> →
     </button>
     <button onclick="startCards('geometry-example','geometry-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🔍 발견형 풀이 예시 <span style="font-size:.72rem;opacity:.7">(1장)</span> →
     </button>
     <button onclick="startCards('geometry-havruta','geometry-hub')" style="width:100%;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(9편)</span> →
+      💬 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(9편)</span> →
     </button>
   </div>
 </div>
@@ -1000,38 +1010,38 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="plane-shape-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#fbbf24">🔷 평면도형의 각도 궁전</h2>
       <div style="width:60px"></div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
       <div style="background:linear-gradient(155deg,rgba(134,239,172,.08),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">🇫🇮</div>
+        <div style="font-size:1.4rem">🔍</div>
         <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.78rem;margin:4px 0">발견형</div>
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">직관<br>조각 맞추기</div>
       </div>
       <div style="background:linear-gradient(155deg,rgba(125,211,252,.08),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">🇸🇬</div>
+        <div style="font-size:1.4rem">📊</div>
         <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.78rem;margin:4px 0">시각화형</div>
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">시각화<br>삼각형 분할</div>
       </div>
       <div style="background:linear-gradient(155deg,rgba(253,230,138,.08),rgba(253,230,138,.03));border:1px solid rgba(253,230,138,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">✡️</div>
-        <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.78rem;margin:4px 0">유대인</div>
+        <div style="font-size:1.4rem">💡</div>
+        <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.78rem;margin:4px 0">논리형</div>
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">논리<br>반례로 증명</div>
       </div>
     </div>
     <button onclick="startCards('plane-shape-guide','plane-shape-hub')" style="width:100%;margin-bottom:8px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);color:#fbbf24;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📐 개념 가이드 <span style="font-size:.72rem;opacity:.7">(3장 — 다각형의 내각·외각, 부채꼴)</span> →
+      📐 개념 가이드 <span style="font-size:.72rem;opacity:.7">(7장 — 다각형의 성질·내각·외각, 부채꼴)</span> →
     </button>
     <button onclick="startCards('plane-shape-hard','plane-shape-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.08);border:1px solid rgba(134,239,172,.25);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      ⚡ 기본·심화 문제 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
+      ⚡ 기본·심화 문제 <span style="font-size:.72rem;opacity:.7">(12장)</span> →
     </button>
     <button onclick="startCards('plane-shape-example','plane-shape-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🔍 발견형 풀이 예시 <span style="font-size:.72rem;opacity:.7">(1장)</span> →
     </button>
     <button onclick="startCards('plane-shape-havruta','plane-shape-hub')" style="width:100%;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(2편)</span> →
+      💬 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(2편)</span> →
     </button>
   </div>
 </div>
@@ -1042,38 +1052,38 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="solid-shape-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#fb923c">🔺 입체도형의 오일러 신전</h2>
       <div style="width:60px"></div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
       <div style="background:linear-gradient(155deg,rgba(134,239,172,.08),rgba(134,239,172,.03));border:1px solid rgba(134,239,172,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">🇫🇮</div>
+        <div style="font-size:1.4rem">🔍</div>
         <div style="font-family:'Jua',sans-serif;color:#86efac;font-size:.78rem;margin:4px 0">발견형</div>
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">직관<br>정다면체 5개</div>
       </div>
       <div style="background:linear-gradient(155deg,rgba(125,211,252,.08),rgba(125,211,252,.03));border:1px solid rgba(125,211,252,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">🇸🇬</div>
+        <div style="font-size:1.4rem">📊</div>
         <div style="font-family:'Jua',sans-serif;color:#7dd3fc;font-size:.78rem;margin:4px 0">시각화형</div>
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">시각화<br>회전체 단면</div>
       </div>
       <div style="background:linear-gradient(155deg,rgba(253,230,138,.08),rgba(253,230,138,.03));border:1px solid rgba(253,230,138,.25);border-radius:12px;padding:10px 8px;text-align:center">
-        <div style="font-size:1.4rem">✡️</div>
-        <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.78rem;margin:4px 0">유대인</div>
+        <div style="font-size:1.4rem">💡</div>
+        <div style="font-family:'Jua',sans-serif;color:#fde68a;font-size:.78rem;margin:4px 0">논리형</div>
         <div style="font-size:.68rem;color:#aaa;line-height:1.4">논리<br>각도로 증명</div>
       </div>
     </div>
     <button onclick="startCards('solid-shape-guide','solid-shape-hub')" style="width:100%;margin-bottom:8px;background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.3);color:#fb923c;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      📐 개념 가이드 <span style="font-size:.72rem;opacity:.7">(3장 — 정다면체·오일러공식, 회전체, 겉넓이·부피)</span> →
+      📐 개념 가이드 <span style="font-size:.72rem;opacity:.7">(11장 — 다면체 분류, 정다면체·오일러공식, 회전체, 겉넓이·부피)</span> →
     </button>
     <button onclick="startCards('solid-shape-hard','solid-shape-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.08);border:1px solid rgba(134,239,172,.25);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      ⚡ 기본·심화 문제 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
+      ⚡ 기본·심화 문제 <span style="font-size:.72rem;opacity:.7">(12장)</span> →
     </button>
     <button onclick="startCards('solid-shape-example','solid-shape-hub')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       🔍 발견형 풀이 예시 <span style="font-size:.72rem;opacity:.7">(1장)</span> →
     </button>
     <button onclick="startCards('solid-shape-havruta','solid-shape-hub')" style="width:100%;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      ✡️ 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(1편)</span> →
+      💬 하브루타 토론관 <span style="font-size:.72rem;opacity:.7">(1편)</span> →
     </button>
   </div>
 </div>
@@ -1084,7 +1094,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="inequality-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#f87171">📊 일차부등식</h2>
       <div style="width:60px"></div>
     </div>
@@ -1152,7 +1162,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="linear-func-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#34d399">📈 일차함수</h2>
       <div style="width:60px"></div>
     </div>
@@ -1200,7 +1210,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="quadratic-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#fb923c">🎯 이차방정식</h2>
       <div style="width:60px"></div>
     </div>
@@ -1243,7 +1253,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="sqrt-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.95rem;text-align:center;color:#2dd4bf">🌱 제곱근과 실수</h2>
       <div style="width:60px"></div>
     </div>
@@ -1306,7 +1316,7 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 <div id="mid3-hub" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
-      <button class="nav-back" onclick="goBack()">← 수학여행 학원</button>
+      <button class="nav-back" onclick="goBack()">← 수학여행</button>
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.88rem;text-align:center;color:#a78bfa">🏰 중3-1학기 완전정복</h2>
       <div style="width:60px"></div>
     </div>
@@ -2550,11 +2560,29 @@ y = 3 × 5 = 15
 
 
 'plane-shape-guide': [
+  { tag:'🔍 발견형 — 다각형의 성질, 대각선의 개수', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 오각형 한 꼭짓점에서 대각선을 몇 개나 그을 수 있을까요?</div>
+<svg viewBox="0 0 220 195" style="display:block;margin:8px auto;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="195" fill="#0d1a28" rx="8"/>
+<polygon points="110,20 190,80 160,175 60,175 30,80" fill="none" stroke="#93c5fd" stroke-width="2"/>
+<line x1="110" y1="20" x2="160" y2="175" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="110" y1="20" x2="60" y2="175" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,3"/>
+<circle cx="110" cy="20" r="2.5" fill="#e2e8f0"/><circle cx="190" cy="80" r="2.5" fill="#e2e8f0"/>
+<circle cx="160" cy="175" r="2.5" fill="#e2e8f0"/><circle cx="60" cy="175" r="2.5" fill="#e2e8f0"/>
+<circle cx="30" cy="80" r="2.5" fill="#e2e8f0"/>
+<text x="100" y="14" fill="#fde68a" font-size="11">V1</text>
+<text x="194" y="76" fill="#e2e8f0" font-size="10">V2</text>
+<text x="163" y="189" fill="#e2e8f0" font-size="10">V3</text>
+<text x="46" y="189" fill="#e2e8f0" font-size="10">V4</text>
+<text x="8" y="76" fill="#e2e8f0" font-size="10">V5</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">V1에서는 자기 자신과 양옆 V2, V5로는 대각선을 그을 수 없습니다(변이니까요). 남은 건 V3, V4 — 딱 <b style="color:#fde68a">2개</b>(노란 점선)뿐입니다.<br><br>일반화하면, n각형의 한 꼭짓점에서 그을 수 있는 대각선은 <b style="color:#7dd3fc">(n-3)개</b>(자기 자신·양옆 2개 제외). 꼭짓점이 n개이니 n(n-3)개처럼 보이지만, 대각선 하나마다 양 끝에서 두 번씩 세어졌으므로 2로 나눕니다:<br><br><b style="color:#86efac">대각선의 개수 = n(n-3) ÷ 2</b><br><br><span style="color:#aaa">오각형: 5×2÷2=5개, 육각형: 6×3÷2=9개 — 직접 그려서 세어봐도 맞습니다.</span></div>`,
+    ans:null },
   { tag:'🔍 발견형 — 다각형의 내각의 합', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 다각형 하나를 삼각형 여러 개로 쪼개면, 각의 합을 쉽게 구할 수 있습니다.</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">한 꼭짓점에서 다른 꼭짓점까지 대각선을 모두 그으면, n각형은 삼각형 <b style="color:#fde68a">(n-2)개</b>로 나뉩니다. 삼각형 하나의 각의 합은 항상 180°니까:<br><br><b style="color:#7dd3fc">다각형의 내각의 합 = (n-2) × 180°</b><br><br>정n각형이면 한 내각 = (n-2)×180° ÷ n<br>또한 볼록다각형은 <b style="color:#fde68a">외각의 합이 항상 360°</b>입니다(변의 개수와 무관).</div>`,
     ans:null },
-  { tag:'✡️ 유대인식 — 오목한 다각형도 똑같을까?', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">✡️ 방금 공식은 반듯한(볼록) 다각형 이야기였죠. 안으로 움푹 들어간 오목한 사각형(화살표 모양)도 내각의 합이 똑같이 360°일까요?</div>
+  { tag:'💡 논리형 — 오목한 다각형도 똑같을까?', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">💡 방금 공식은 반듯한(볼록) 다각형 이야기였죠. 안으로 움푹 들어간 오목한 사각형(화살표 모양)도 내각의 합이 똑같이 360°일까요?</div>
 <svg viewBox="0 0 240 200" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
 <rect width="240" height="200" fill="#0d1a28" rx="8"/>
 <polygon points="120,20 200,180 120,130 40,180" fill="rgba(251,191,36,.12)" stroke="#fbbf24" stroke-width="2"/>
@@ -2568,8 +2596,109 @@ y = 3 × 5 = 15
 </svg>
 <div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">오목한 꼭짓점 C에서 마주보는 A까지 대각선을 그으면(점선), 오목사각형도 삼각형 ABC와 삼각형 ACD, 딱 2개로 나뉩니다.<br><br>(180°+180°)로 <b style="color:#fde68a">여전히 360°</b> — 오목·볼록에 상관없이, 대각선으로 삼각형 (n-2)개로 나눌 수만 있다면 공식은 그대로 성립합니다!</div>`,
     ans:null },
+  { tag:'🔍 발견형 — 삼각형의 외각의 성질', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 삼각형의 한 변을 밖으로 늘이면, 원래 각의 바깥쪽에 새로운 각(외각)이 생깁니다.</div>
+<svg viewBox="0 0 220 160" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="160" fill="#0d1a28" rx="8"/>
+<polygon points="30,140 190,140 130,40" fill="none" stroke="#93c5fd" stroke-width="2"/>
+<line x1="130" y1="40" x2="161.8" y2="8.2" stroke="#f9a8d4" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="30" cy="140" r="2.5" fill="#e2e8f0"/><circle cx="190" cy="140" r="2.5" fill="#e2e8f0"/>
+<circle cx="130" cy="40" r="2.5" fill="#e2e8f0"/>
+<text x="16" y="155" fill="#e2e8f0" font-size="11">A</text>
+<text x="194" y="155" fill="#e2e8f0" font-size="11">B</text>
+<text x="126" y="30" fill="#e2e8f0" font-size="11">C</text>
+<text x="150" y="18" fill="#f9a8d4" font-size="11">D</text>
+<text x="46" y="130" fill="#f87171" font-size="11">∠A</text>
+<text x="164" y="130" fill="#7dd3fc" font-size="11">∠B</text>
+<text x="140" y="55" fill="#fde68a" font-size="10">∠BCD(외각)</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">변 AC를 C 너머로 늘여서 점 D를 잡으면, ∠BCD가 <b style="color:#fde68a">외각</b>입니다. C에서 ∠BCA와 ∠BCD는 평각(180°)을 이룹니다.<br><br>삼각형 세 내각의 합도 180°이므로:<br>∠A+∠B+∠BCA = 180° = ∠BCA+∠BCD<br>양쪽에서 ∠BCA를 빼면:<br><br><b style="color:#86efac">외각(∠BCD) = ∠A + ∠B</b> (이웃하지 않는 두 내각의 합)<br><br><span style="color:#aaa">외각 하나가 나머지 두 내각을 통째로 담고 있는 셈이라, 삼각형 문제에서 각을 "건너뛰어" 계산할 때 자주 쓰입니다.</span></div>`,
+    ans:null },
+  { tag:'🔍 발견형 — 다각형의 외각의 합', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 정사각형 둘레를 화살표를 들고 걸어간다고 생각해봅시다. 한 변을 걷고 다음 변으로 꺾을 때마다 오른쪽으로 몇 도씩 돌까요?</div>
+<svg viewBox="0 0 220 220" style="display:block;margin:8px auto;max-width:230px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="220" fill="#0d1a28" rx="8"/>
+<polygon points="40,40 160,40 160,160 40,160" fill="none" stroke="#93c5fd" stroke-width="2.5"/>
+<line x1="160" y1="40" x2="190" y2="40" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="160" y1="160" x2="160" y2="190" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="40" y1="160" x2="10" y2="160" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="40" y1="40" x2="40" y2="10" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<circle cx="40" cy="40" r="11" fill="#111827" stroke="#fde68a" stroke-width="1.5"/><text x="40" y="45" fill="#fde68a" font-size="11" text-anchor="middle">①</text>
+<circle cx="160" cy="40" r="11" fill="#111827" stroke="#fde68a" stroke-width="1.5"/><text x="160" y="45" fill="#fde68a" font-size="11" text-anchor="middle">②</text>
+<circle cx="160" cy="160" r="11" fill="#111827" stroke="#fde68a" stroke-width="1.5"/><text x="160" y="165" fill="#fde68a" font-size="11" text-anchor="middle">③</text>
+<circle cx="40" cy="160" r="11" fill="#111827" stroke="#fde68a" stroke-width="1.5"/><text x="40" y="165" fill="#fde68a" font-size="11" text-anchor="middle">④</text>
+<text x="176" y="30" fill="#f87171" font-size="12" font-weight="bold">90°</text>
+<text x="175" y="180" fill="#f87171" font-size="12" font-weight="bold">90°</text>
+<text x="24" y="185" fill="#f87171" font-size="12" font-weight="bold">90°</text>
+<text x="24" y="30" fill="#f87171" font-size="12" font-weight="bold">90°</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">회색 점선은 "그대로 직진했다면 갔을 방향"이고, 실선(정사각형의 변)은 "실제로 꺾어서 간 방향"이에요. 그 사이 벌어진 각(빨간 90°)이 바로 <b style="color:#fde68a">외각</b> — 몸이 실제로 꺾은 각도예요.<br><br>①→②→③→④를 거쳐 다시 ①로 돌아오면, <b style="color:#7dd3fc">몸의 방향도 처음과 똑같은 방향</b>으로 돌아와 있어요. 즉 90°씩 4번 꺾은 것 = 제자리에서 한 바퀴(360°) 돈 것과 같아요.<br><span style="color:#94a3b8">90°×4 = 360°</span></div>`,
+    extra:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 이번엔 정육각형으로 — 변의 개수가 달라져도 결과가 같을까요?</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8;margin-bottom:8px">정육각형은 한 내각이 120°니까, 외각(180°-120°)은 <b style="color:#fde68a">60°</b>씩입니다. 변이 6개니까 60°×6을 확인해봅시다.</div>
+<svg viewBox="0 0 220 220" style="display:block;margin:8px auto;max-width:230px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="220" fill="#0d1a28" rx="8"/>
+<polygon points="190,110 150,179.3 70,179.3 30,110 70,40.7 150,40.7" fill="none" stroke="#93c5fd" stroke-width="2.5"/>
+<line x1="150" y1="179.3" x2="136" y2="203.5" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="70" y1="179.3" x2="42" y2="179.3" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="30" y1="110" x2="16" y2="85.7" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="70" y1="40.7" x2="84" y2="16.5" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="150" y1="40.7" x2="178" y2="40.7" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="190" y1="110" x2="204" y2="134.2" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<circle cx="190" cy="110" r="10" fill="#111827" stroke="#fde68a" stroke-width="1.5"/><text x="190" y="114" fill="#fde68a" font-size="10" text-anchor="middle">①</text>
+<circle cx="150" cy="179.3" r="10" fill="#111827" stroke="#fde68a" stroke-width="1.5"/><text x="150" y="183" fill="#fde68a" font-size="10" text-anchor="middle">②</text>
+<circle cx="70" cy="179.3" r="10" fill="#111827" stroke="#fde68a" stroke-width="1.5"/><text x="70" y="183" fill="#fde68a" font-size="10" text-anchor="middle">③</text>
+<circle cx="30" cy="110" r="10" fill="#111827" stroke="#fde68a" stroke-width="1.5"/><text x="30" y="114" fill="#fde68a" font-size="10" text-anchor="middle">④</text>
+<circle cx="70" cy="40.7" r="10" fill="#111827" stroke="#fde68a" stroke-width="1.5"/><text x="70" y="44.7" fill="#fde68a" font-size="10" text-anchor="middle">⑤</text>
+<circle cx="150" cy="40.7" r="10" fill="#111827" stroke="#fde68a" stroke-width="1.5"/><text x="150" y="44.7" fill="#fde68a" font-size="10" text-anchor="middle">⑥</text>
+<text x="145" y="198" fill="#f87171" font-size="11" font-weight="bold">60°</text>
+<text x="45" y="192" fill="#f87171" font-size="11" font-weight="bold">60°</text>
+<text x="0" y="100" fill="#f87171" font-size="11" font-weight="bold">60°</text>
+<text x="88" y="10" fill="#f87171" font-size="11" font-weight="bold">60°</text>
+<text x="180" y="30" fill="#f87171" font-size="11" font-weight="bold">60°</text>
+<text x="205" y="128" fill="#f87171" font-size="11" font-weight="bold">60°</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">①→②→③→④→⑤→⑥를 거쳐 다시 ①로 돌아와도 몸의 방향은 처음과 똑같아요. 이번엔 60°씩 6번 꺾었으니:<br><span style="color:#94a3b8">60°×6 = 360°</span> — 정사각형(90°×4)과 <b style="color:#fde68a">변의 개수도 외각의 크기도 다른데 결과는 똑같이 360°</b>입니다.</div>
+<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin:14px 0 10px">🔍 변이 삐뚤빼뚤한 다각형이어도 똑같을까요? — 꺾은 각을 한 점에 모아보기</div>
+<svg viewBox="0 0 220 220" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="220" fill="#0d1a28" rx="8"/>
+<path d="M 110 110 L 200 110 A 90 90 0 0 1 167.9 178.9 Z" fill="rgba(248,113,113,.35)" stroke="#f87171" stroke-width="1.5"/>
+<path d="M 110 110 L 167.9 178.9 A 90 90 0 0 1 52.1 178.9 Z" fill="rgba(251,146,60,.35)" stroke="#fb923c" stroke-width="1.5"/>
+<path d="M 110 110 L 52.1 178.9 A 90 90 0 0 1 21.4 94.4 Z" fill="rgba(253,230,138,.35)" stroke="#fde68a" stroke-width="1.5"/>
+<path d="M 110 110 L 21.4 94.4 A 90 90 0 0 1 140.8 25.4 Z" fill="rgba(134,239,172,.35)" stroke="#86efac" stroke-width="1.5"/>
+<path d="M 110 110 L 140.8 25.4 A 90 90 0 0 1 200 110 Z" fill="rgba(125,211,252,.35)" stroke="#7dd3fc" stroke-width="1.5"/>
+<circle cx="110" cy="110" r="2.5" fill="#e2e8f0"/>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">오각형처럼 다섯 꼭짓점의 각도가 전부 다른 경우에도, 실제로 꺾은 각(빨강·주황·노랑·초록·파랑)을 한 점에 모아 붙이면 <b style="color:#fde68a">빈틈도 겹침도 없이 딱 원 하나(360°)</b>를 채웁니다. 다각형을 한 바퀴 걸으면(모양이 어떻든) 처음 향했던 방향으로 반드시 되돌아오기 때문에, 꺾은 각도를 전부 더하면 정확히 한 바퀴일 수밖에 없어요.</div>
+<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin:14px 0 10px">🔍 수식으로 완전히 증명하기</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">그림으로 확인한 걸 식으로도 보일 수 있어요. 이미 배운 <b style="color:#fde68a">"다각형의 내각의 합 = (n-2)×180°"</b>를 그대로 이용합니다.</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.9;background:rgba(255,255,255,.04);border-radius:10px;padding:12px 14px;margin-top:8px">
+한 꼭짓점에서 내각과 외각은 평각(180°)을 이루므로, 꼭짓점마다:<br>
+<b style="color:#fde68a">외각 = 180° − 내각</b><br><br>
+n개의 꼭짓점 전부에서 이 식을 세우고 다 더하면:<br>
+(외각₁+외각₂+⋯+외각ₙ)<br>
+= (180°−내각₁)+(180°−내각₂)+⋯+(180°−내각ₙ)<br>
+= 180°를 n번 더한 것 − (내각₁+내각₂+⋯+내각ₙ)<br>
+= <b style="color:#7dd3fc">n×180° − (내각의 합)</b><br><br>
+이미 아는 내각의 합((n-2)×180°)을 대입하면:<br>
+외각의 합 = n×180° − (n-2)×180° = 180°×[n−(n-2)] = 180°×2 = <b style="color:#86efac;font-size:.95rem">360°</b>
+</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8;margin-top:10px"><b style="color:#fde68a">핵심:</b> 계산 과정에서 n이 완전히 사라져요(n과 (n-2)가 상쇄) — 그래서 변의 개수가 몇 개든 결과는 항상 360°입니다.<br><br><span style="color:#aaa">내각의 합((n-2)×180°)은 변의 개수에 따라 계속 커지는데, 외각의 합은 항상 360°로 고정이라는 게 대비되는 재미있는 사실입니다.</span></div>`,
+    ans:null },
+  { tag:'🔍 발견형 — 부채꼴의 중심각과 호의 관계', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 반지름이 똑같은 두 부채꼴, 중심각만 다르면 호의 길이는 어떻게 달라질까요?</div>
+<svg viewBox="0 0 220 140" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="140" fill="#0d1a28" rx="8"/>
+<path d="M 55 95 L 100 95 A 45 45 0 0 0 89.5 66.1 Z" fill="rgba(134,239,172,.15)" stroke="#86efac" stroke-width="2"/>
+<path d="M 165 95 L 210 95 A 45 45 0 0 0 172.8 50.7 Z" fill="rgba(125,211,252,.15)" stroke="#7dd3fc" stroke-width="2"/>
+<text x="65" y="80" fill="#fde68a" font-size="11">40°</text>
+<text x="172" y="72" fill="#fde68a" font-size="11">80°</text>
+<text x="45" y="112" fill="#e2e8f0" font-size="10">반지름 r</text>
+<text x="155" y="112" fill="#e2e8f0" font-size="10">반지름 r (같음)</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">반지름은 똑같은데 중심각이 40°→80°로 <b style="color:#fde68a">2배</b>가 되니, 부채꼴 조각도 눈으로 보기에 <b style="color:#7dd3fc">2배</b> 커졌습니다.<br><br>원 전체는 항상 360°이고 그 중 x°만큼의 "조각 비율"이 x/360이므로, 중심각이 커지는 만큼 호의 길이도 넓이도 똑같은 비율로 커집니다:<br><br><b style="color:#86efac">중심각 ∝ 호의 길이 ∝ 넓이</b> (반지름이 같을 때, 모두 정비례)<br><br><span style="color:#aaa">그래서 다음 카드의 공식(l=2πr×x/360, S=πr²×x/360)에 x/360이 똑같이 들어가는 겁니다 — 우연이 아니라 이 비례관계 때문입니다.</span></div>`,
+    ans:null },
   { tag:'📊 시각화형 — 부채꼴의 호의 길이와 넓이', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📊 부채꼴은 원을 중심각만큼 '피자 조각'으로 자른 모양입니다. 원 전체(360°) 중 몇 조각인지가 핵심입니다.</div>
+    body:`<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px"><span style="font-size:.72rem;padding:4px 10px;border-radius:12px;font-weight:700;background:rgba(148,163,184,.18);color:#cbd5e1">🔁 초6에서 배웠어요: 원주율 · 원의 넓이(πr²)</span><span style="font-size:.72rem;padding:4px 10px;border-radius:12px;font-weight:700;background:rgba(134,239,172,.18);color:#86efac">🆕 새로 배워요: 부채꼴 = 원의 x/360</span></div><div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📊 부채꼴은 원을 중심각만큼 '피자 조각'으로 자른 모양입니다. 원 전체(360°) 중 몇 조각인지가 핵심입니다.</div>
 <svg viewBox="0 0 200 180" style="display:block;margin:8px auto;max-width:180px" xmlns="http://www.w3.org/2000/svg">
 <rect width="200" height="180" fill="#0d1a28" rx="8"/>
 <path d="M 100 100 L 170 100 A 70 70 0 0 0 135 39.3 Z" fill="rgba(125,211,252,.15)" stroke="#7dd3fc" stroke-width="2"/>
@@ -2586,7 +2715,7 @@ y = 3 × 5 = 15
 
 
 'plane-shape-hard': [
-  { tag:'🌱 기본 1/3 — 정육각형의 내각·외각', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
+  { tag:'🌱 기본 1/12 — 정육각형의 내각·외각', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">정육각형의 한 내각과 한 외각의 크기를 각각 구하세요.</div>`,
     ans:`<svg viewBox="0 0 140 150" style="display:block;margin:8px auto;max-width:140px" xmlns="http://www.w3.org/2000/svg">
 <rect width="140" height="150" fill="#0d1a28" rx="8"/>
@@ -2596,23 +2725,25 @@ y = 3 × 5 = 15
 <text x="14" y="85" fill="#93c5fd" font-size="11">60°</text>
 </svg>
 <b style="color:#86efac">풀이:</b><br>내각의 합 = (6-2)×180° = 720°<br>정육각형은 6개 각이 모두 같으므로 한 내각 = 720°÷6 = <b style="color:#fde68a;font-size:.9rem">120°</b><br>한 외각 = 180° - 120° = <b style="color:#fde68a;font-size:.9rem">60°</b><br><br><span style="color:#aaa">검산: 외각의 합 = 60°×6 = 360° ✓ (볼록다각형은 항상 외각의 합이 360°)</span>` },
-  { tag:'⚡ 심화 2/3 — 오목사각형의 반사각', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+  { tag:'⚡ 심화 2/12 — 오목사각형의 반사각', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">오목사각형 ABCD에서 오목한 꼭짓점은 C입니다. ∠A=30°, ∠B=100°, ∠D=30°일 때, ∠C(반사각)의 크기는?</div>`,
-    ans:`<svg viewBox="0 0 240 200" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
-<rect width="240" height="200" fill="#0d1a28" rx="8"/>
-<polygon points="120,20 200,180 120,130 40,180" fill="rgba(248,113,113,.1)" stroke="#f87171" stroke-width="2"/>
-<line x1="120" y1="20" x2="120" y2="130" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="4,3"/>
-<text x="108" y="14" fill="#e2e8f0" font-size="11">A</text>
-<text x="204" y="184" fill="#e2e8f0" font-size="11">B</text>
-<text x="126" y="126" fill="#f87171" font-size="11">C</text>
-<text x="20" y="184" fill="#e2e8f0" font-size="11">D</text>
-<text x="112" y="49" fill="#fbbf24" font-size="12" font-weight="bold">30°</text>
-<text x="173" y="166" fill="#fbbf24" font-size="12" font-weight="bold">100°</text>
-<text x="49" y="166" fill="#fbbf24" font-size="12" font-weight="bold">30°</text>
-<text x="116" y="109" fill="#93c5fd" font-size="12" font-weight="bold">?</text>
+    ans:`<svg viewBox="0 0 160 200" style="display:block;margin:8px auto;max-width:160px" xmlns="http://www.w3.org/2000/svg">
+<rect width="160" height="200" fill="#0d1a28" rx="8"/>
+<polygon points="25,15 75,101.6 55,118.4 25,170.3" fill="rgba(248,113,113,.1)" stroke="#f87171" stroke-width="2"/>
+<line x1="25" y1="15" x2="55" y2="118.4" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="4,3"/>
+<circle cx="25" cy="15" r="2.5" fill="#e2e8f0"/><circle cx="75" cy="101.6" r="2.5" fill="#e2e8f0"/>
+<circle cx="55" cy="118.4" r="2.5" fill="#e2e8f0"/><circle cx="25" cy="170.3" r="2.5" fill="#e2e8f0"/>
+<text x="10" y="12" fill="#e2e8f0" font-size="11">A</text>
+<text x="80" y="100" fill="#e2e8f0" font-size="11">B</text>
+<text x="58" y="132" fill="#f87171" font-size="11">C</text>
+<text x="10" y="185" fill="#e2e8f0" font-size="11">D</text>
+<text x="28" y="36" fill="#fbbf24" font-size="12" font-weight="bold">30°</text>
+<text x="55" y="92" fill="#fbbf24" font-size="12" font-weight="bold">100°</text>
+<text x="6" y="150" fill="#fbbf24" font-size="12" font-weight="bold">30°</text>
+<text x="35" y="70" fill="#93c5fd" font-size="12" font-weight="bold">?</text>
 </svg>
 <b style="color:#f87171">풀이:</b><br>오목사각형도 내각의 합은 여전히 360°(대각선으로 삼각형 2개 분할)<br>∠C = 360° - (30°+100°+30°) = 360° - 160° = <b style="color:#fde68a;font-size:.9rem">200°</b><br><br><span style="color:#aaa">200°는 180°보다 크므로 실제로 '오목하게' 파인 반사각이 맞습니다.</span>` },
-  { tag:'🌱 기본 3/3 — 부채꼴의 호의 길이와 넓이', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
+  { tag:'🌱 기본 3/12 — 부채꼴의 호의 길이와 넓이', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">반지름 6cm, 중심각 120°인 부채꼴의 호의 길이와 넓이를 각각 구하세요.</div>`,
     ans:`<svg viewBox="0 0 200 180" style="display:block;margin:8px auto;max-width:180px" xmlns="http://www.w3.org/2000/svg">
 <rect width="200" height="180" fill="#0d1a28" rx="8"/>
@@ -2622,7 +2753,169 @@ y = 3 × 5 = 15
 <text x="104" y="126" fill="#fbbf24" font-size="12" font-weight="bold">120°</text>
 <text x="130" y="92" fill="#7dd3fc" font-size="10">6cm</text>
 </svg>
-<b style="color:#86efac">풀이:</b><br>호의 길이 l = 2π×6×(120/360) = 12π×⅓ = <b style="color:#fde68a;font-size:.9rem">4π cm</b><br>넓이 S = π×6²×(120/360) = 36π×⅓ = <b style="color:#fde68a;font-size:.9rem">12π cm²</b><br><br><span style="color:#aaa">검산: S=(1/2)rl = (1/2)×6×4π = 12π ✓</span>` }
+<b style="color:#86efac">풀이:</b><br>호의 길이 l = 2π×6×(120/360) = 12π×⅓ = <b style="color:#fde68a;font-size:.9rem">4π cm</b><br>넓이 S = π×6²×(120/360) = 36π×⅓ = <b style="color:#fde68a;font-size:.9rem">12π cm²</b><br><br><span style="color:#aaa">검산: S=(1/2)rl = (1/2)×6×4π = 12π ✓</span>` },
+  { tag:'⚡ 심화 4/12 — 내각의 합 + 대각선, 두 공식의 연립', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">어떤 다각형의 내각의 합과 대각선의 개수의 합이 1287일 때, 이 다각형의 변의 개수는?</div>`,
+    ans:`<b style="color:#f87171">풀이:</b><br>내각의 합=(n-2)×180, 대각선의 개수=n(n-3)/2 — 두 식을 더한 값이 1287:<br>
+(n-2)×180 + n(n-3)/2 = 1287<br>
+양변에 2를 곱해 정리: 360(n-2) + n(n-3) = 2574<br>
+360n-720+n²-3n = 2574 → n²+357n-3294 = 0<br>
+n=9를 대입: 81+3213-3294=0 ✓ → <b style="color:#fde68a;font-size:.9rem">n=9 (정구각형)</b><br><br>
+<span style="color:#aaa">검산: 내각의 합=(9-2)×180=1260, 대각선=9×6÷2=27, 1260+27=1287 ✓</span>` },
+  { tag:'⚡ 심화 5/12 — 외각과 대각선의 결합', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">한 외각의 크기가 24°인 정n각형의 대각선의 개수는?</div>
+<svg viewBox="0 0 160 160" style="display:block;margin:8px auto;max-width:140px" xmlns="http://www.w3.org/2000/svg">
+<rect width="160" height="160" fill="#0d1a28" rx="8"/>
+<polygon points="80,20 130,45 140,100 100,140 60,140 20,100 30,45" fill="none" stroke="#93c5fd" stroke-width="2"/>
+</svg>`,
+    ans:`<b style="color:#f87171">풀이:</b><br>모든 다각형의 외각의 합은 360°이고, 정n각형은 외각이 전부 같으므로:<br>
+360° ÷ n = 24° → n = 360÷24 = <b style="color:#fde68a;font-size:.9rem">15</b><br><br>
+대각선의 개수 = n(n-3)/2 = 15×12÷2 = <b style="color:#fde68a;font-size:.9rem">90개</b><br><br>
+<span style="color:#aaa">"외각의 합=360°" 카드와 "대각선 개수" 카드, 두 개를 순서대로 써야 풀립니다.</span>` },
+  { tag:'⚡ 심화 6/12 — 내부의 한 점이 만드는 삼각형의 개수', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">다각형 내부의 한 점 O에서 각 꼭짓점에 선분을 그어 생긴 삼각형이 모두 18개일 때, 이 다각형의 대각선의 개수는?</div>
+<svg viewBox="0 0 220 220" style="display:block;margin:8px auto;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="220" fill="#0d1a28" rx="8"/>
+<polygon points="190,110 150,179.3 70,179.3 30,110 70,40.7 150,40.7" fill="none" stroke="#93c5fd" stroke-width="2"/>
+<line x1="110" y1="110" x2="190" y2="110" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="3,2"/>
+<line x1="110" y1="110" x2="150" y2="179.3" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="3,2"/>
+<line x1="110" y1="110" x2="70" y2="179.3" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="3,2"/>
+<line x1="110" y1="110" x2="30" y2="110" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="3,2"/>
+<line x1="110" y1="110" x2="70" y2="40.7" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="3,2"/>
+<line x1="110" y1="110" x2="150" y2="40.7" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="3,2"/>
+<circle cx="110" cy="110" r="3" fill="#f87171"/>
+<text x="116" y="106" fill="#f87171" font-size="11">O</text>
+</svg>
+<div style="font-size:.74rem;color:#94a3b8;margin-bottom:4px">(그림은 육각형 예시 — 꼭짓점이 6개면 내부의 점에서 삼각형 6개가 생깁니다)</div>`,
+    ans:`<b style="color:#f87171">풀이:</b><br>다각형 내부의 한 점에서 각 꼭짓점으로 선분을 그으면, 변의 개수만큼 삼각형이 생깁니다(꼭짓점에서 긋는 대각선처럼 (n-2)개가 아니라 <b style="color:#f87171">n개</b> — 내부의 점은 다각형의 꼭짓점이 아니라서 "자기 자신" 삭감이 없습니다).<br><br>
+삼각형이 18개 → n=18<br>
+대각선의 개수 = 18×15÷2 = <b style="color:#fde68a;font-size:.9rem">135개</b><br><br>
+<span style="color:#aaa">꼭짓점에서 그을 때(n-2개 삼각형)와 내부의 점에서 그을 때(n개 삼각형)를 헷갈리지 않는 게 핵심입니다.</span>` },
+  { tag:'⚡ 심화 7/12 — 별모양 각의 합 (+ 왜 180°인지 증명)', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">아래 별 모양에서 다섯 뾰족각 중 네 개가 32°, 38°, 41°, 36°일 때, 나머지 하나(x)는?</div>
+<svg viewBox="0 0 220 190" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="190" fill="#0d1a28" rx="8"/>
+<polygon points="110,25 127.6,75.7 181.3,76.8 138.5,109.3 154.1,160.7 110,130 65.9,160.7 81.5,109.3 38.7,76.8 92.4,75.7" fill="rgba(248,113,113,.1)" stroke="#f87171" stroke-width="2"/>
+<text x="102" y="16" fill="#fbbf24" font-size="12" font-weight="bold">32°</text>
+<text x="186" y="72" fill="#fbbf24" font-size="12" font-weight="bold">38°</text>
+<text x="158" y="178" fill="#93c5fd" font-size="12" font-weight="bold">x</text>
+<text x="42" y="178" fill="#fbbf24" font-size="12" font-weight="bold">41°</text>
+<text x="8" y="72" fill="#fbbf24" font-size="12" font-weight="bold">36°</text>
+</svg>`,
+    ans:`<b style="color:#f87171">풀이:</b> x = 180° − (32°+38°+41°+36°) = 180° − 147° = <b style="color:#fde68a;font-size:.9rem">33°</b>`,
+    extra:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">💡 왜 다섯 뾰족각의 합은 항상 180°일까? (증명)</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">별 안쪽에는 작은 오각형이 숨어 있습니다(아래 점선). 다섯 개의 뾰족한 삼각형이 이 오각형의 다섯 변에 하나씩 붙어있는 구조입니다.</div>
+<svg viewBox="0 0 220 190" style="display:block;margin:8px auto;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="190" fill="#0d1a28" rx="8"/>
+<polygon points="110,25 127.6,75.7 181.3,76.8 138.5,109.3 154.1,160.7 110,130 65.9,160.7 81.5,109.3 38.7,76.8 92.4,75.7" fill="rgba(248,113,113,.06)" stroke="#f87171" stroke-width="1.5"/>
+<polygon points="127.6,75.7 138.5,109.3 110,130 81.5,109.3 92.4,75.7" fill="none" stroke="#86efac" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="102" y="16" fill="#f87171" font-size="11">t₁</text>
+<text x="186" y="72" fill="#f87171" font-size="11">t₂</text>
+<text x="158" y="178" fill="#f87171" font-size="11">t₃</text>
+<text x="42" y="178" fill="#f87171" font-size="11">t₄</text>
+<text x="8" y="72" fill="#f87171" font-size="11">t₅</text>
+<text x="131" y="72" fill="#86efac" font-size="10">q₁</text>
+<text x="140" y="117" fill="#86efac" font-size="10">q₂</text>
+<text x="108" y="124" fill="#86efac" font-size="10">q₃</text>
+<text x="76" y="117" fill="#86efac" font-size="10">q₄</text>
+<text x="88" y="72" fill="#86efac" font-size="10">q₅</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">① 안쪽 오각형(초록 점선)의 내각의 합은 이미 배운 공식으로 <b style="color:#86efac">(5-2)×180° = 540°</b> → q₁+q₂+q₃+q₄+q₅ = 540°<br><br>
+② 뾰족한 삼각형 하나(예: t₁)를 보면, 밑변의 두 각은 각각 오각형의 인접한 두 내각(q₅, q₁)과 일직선(평각)을 이룹니다 — 즉 밑각 = 180°−q₅, 180°−q₁<br><br>
+③ 삼각형 내각의 합(180°)을 쓰면:<br>
+t₁ + (180°−q₅) + (180°−q₁) = 180° → <b style="color:#fde68a">t₁ = q₅+q₁−180°</b><br><br>
+④ 이 식을 5개의 뾰족각 전부에 적용해 모두 더하면, 오각형의 각 변마다 양 끝의 q가 이웃한 두 삼각형에 한 번씩, 총 <b>두 번씩</b> 쓰이므로:<br>
+t₁+t₂+t₃+t₄+t₅ = 2×(q₁+q₂+q₃+q₄+q₅) − 5×180°<br>
+= 2×540° − 900° = 1080°−900° = <b style="color:#fde68a;font-size:.95rem">180°</b><br><br>
+<span style="color:#aaa">이미 배운 "다각형의 내각의 합" 공식(오각형=540°)이 이 증명의 핵심 재료입니다 — 두 카드가 직접 연결됩니다.</span></div>` },
+  { tag:'🔥 심화 8/12 — 7개의 별, "5점 별과 똑같이 180°"는 함정', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">아래처럼 7개의 점을 2개씩 건너뛰며 이어 그린 별에서, 일곱 뾰족각의 합 ∠a+∠b+∠c+∠d+∠e+∠f+∠g는?</div>
+<svg viewBox="0 0 220 220" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="220" fill="#0d1a28" rx="8"/>
+<polygon points="110,25 192.9,128.9 73.1,186.6 43.5,57 176.5,57 146.9,186.6 27.1,128.9" fill="rgba(248,113,113,.08)" stroke="#f87171" stroke-width="2"/>
+<circle cx="110" cy="25" r="2.5" fill="#e2e8f0"/><circle cx="176.5" cy="57" r="2.5" fill="#e2e8f0"/>
+<circle cx="192.9" cy="128.9" r="2.5" fill="#e2e8f0"/><circle cx="146.9" cy="186.6" r="2.5" fill="#e2e8f0"/>
+<circle cx="73.1" cy="186.6" r="2.5" fill="#e2e8f0"/><circle cx="27.1" cy="128.9" r="2.5" fill="#e2e8f0"/>
+<circle cx="43.5" cy="57" r="2.5" fill="#e2e8f0"/>
+<text x="102" y="16" fill="#fbbf24" font-size="12">a</text>
+<text x="182" y="50" fill="#fbbf24" font-size="12">b</text>
+<text x="198" y="128" fill="#fbbf24" font-size="12">c</text>
+<text x="150" y="203" fill="#fbbf24" font-size="12">d</text>
+<text x="63" y="203" fill="#fbbf24" font-size="12">e</text>
+<text x="10" y="128" fill="#fbbf24" font-size="12">f</text>
+<text x="30" y="50" fill="#fbbf24" font-size="12">g</text>
+</svg>`,
+    ans:`<b style="color:#c4b5fd">💡 5점 별은 왜 180°였고, 이건 왜 다를까?</b><br><br>
+"다각형의 외각의 합=360°" 카드의 핵심은 <b style="color:#fde68a">"한 바퀴 돌아 제자리로 오면 방향도 원래대로 돌아온다 → 꺾은 각의 합=360°"</b>였습니다.<br><br>
+그런데 <b style="color:#f87171">별 모양은 선이 중심을 여러 번 두르고서야 닫힙니다</b> — 5점 별은 2바퀴를 돌고 닫히고, 이 7점 별도 "2개씩 건너뛰는" 방식이라 역시 <b style="color:#fde68a">2바퀴</b>를 돌고 닫힙니다.<br><br>
+그래서 꺾은 각(외각)의 합은 360°가 아니라 <b style="color:#86efac">360°×2=720°</b>입니다.<br>
+뾰족각의 합 = n×180° − 720° = 7×180° − 720° = 1260° − 720° = <b style="color:#fde68a;font-size:.95rem">540°</b><br><br>
+<span style="color:#aaa">5점 별(180°)과 다릅니다 — "별이니까 무조건 180°"라고 외우면 틀립니다. 7개를 3개씩 건너뛰면 다시 180°가 나옵니다(일반식: 뾰족각의 합=180°×n−360°×k, k=건너뛰는 수).</span>` },
+  { tag:'⚡ 심화 9/12 — 부채꼴, 비율과 합의 연립', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">두 부채꼴 AOB, COD의 중심각의 합이 180°이고, 넓이의 비가 2:3일 때, ∠AOB의 크기는? (두 부채꼴은 반지름이 같은 원에서 나온 것입니다)</div>
+<svg viewBox="0 0 220 140" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="140" fill="#0d1a28" rx="8"/>
+<path d="M 55 90 L 100 90 A 45 45 0 0 1 83.9 124.5 Z" fill="rgba(248,113,113,.2)" stroke="#f87171" stroke-width="2"/>
+<path d="M 165 90 L 210 90 A 45 45 0 0 1 136.1 124.5 Z" fill="rgba(125,211,252,.2)" stroke="#7dd3fc" stroke-width="2"/>
+<text x="66" y="78" fill="#fde68a" font-size="11">x°</text>
+<text x="172" y="68" fill="#fde68a" font-size="11">y°</text>
+<text x="30" y="100" fill="#e2e8f0" font-size="10">넓이 2</text>
+<text x="155" y="100" fill="#e2e8f0" font-size="10">넓이 3</text>
+</svg>`,
+    ans:`<b style="color:#f87171">풀이:</b><br>같은 원에서 부채꼴의 넓이는 중심각에 정비례하므로, 중심각의 비도 넓이의 비와 같은 2:3<br>
+x+y=180°, x:y=2:3 → x = 180°×(2/(2+3)) = 180°×(2/5) = <b style="color:#fde68a;font-size:.9rem">72°</b><br><br>
+<span style="color:#aaa">비례 조건(넓이∝중심각)과 선형 조건(합=180°)을 동시에 써야 풀리는 문제입니다 — 하나만으로는 x, y가 각각 정해지지 않습니다.</span>` },
+  { tag:'⚡ 심화 10/12 — 반원 합성도형, 숫자 대신 문자식 증명', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">선분 AD 위의 두 점 B, C의 위치와 상관없이 AB=a, BC=b, CD=c라 할 때, AB·BC·CD를 각각 지름으로 하는 작은 반원 3개의 호 길이의 합이 AD를 지름으로 하는 큰 반원의 호 길이와 항상 같음을 문자식으로 증명하시오.</div>
+<svg viewBox="0 0 170 160" style="display:block;margin:8px auto;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+<rect width="170" height="160" fill="#0d1a28" rx="8"/>
+<line x1="20" y1="120" x2="140" y2="120" stroke="#4b5563" stroke-width="1.5"/>
+<path d="M 20 120 A 60 60 0 0 1 140 120" fill="none" stroke="#7dd3fc" stroke-width="2.5"/>
+<path d="M 20 120 A 15 15 0 0 0 50 120" fill="none" stroke="#f87171" stroke-width="2.5"/>
+<path d="M 50 120 A 25 25 0 0 0 100 120" fill="none" stroke="#fb923c" stroke-width="2.5"/>
+<path d="M 100 120 A 20 20 0 0 0 140 120" fill="none" stroke="#fde68a" stroke-width="2.5"/>
+<circle cx="20" cy="120" r="2.5" fill="#e2e8f0"/><circle cx="50" cy="120" r="2.5" fill="#e2e8f0"/>
+<circle cx="100" cy="120" r="2.5" fill="#e2e8f0"/><circle cx="140" cy="120" r="2.5" fill="#e2e8f0"/>
+<text x="12" y="135" fill="#e2e8f0" font-size="11">A</text>
+<text x="46" y="135" fill="#e2e8f0" font-size="11">B</text>
+<text x="96" y="135" fill="#e2e8f0" font-size="11">C</text>
+<text x="136" y="135" fill="#e2e8f0" font-size="11">D</text>
+<text x="25" y="150" fill="#f87171" font-size="10">a</text>
+<text x="65" y="150" fill="#fb923c" font-size="10">b</text>
+<text x="112" y="150" fill="#fde68a" font-size="10">c</text>
+</svg>`,
+    ans:`<b style="color:#f87171">풀이:</b><br>반원의 호 길이 = π×반지름 = π×(지름÷2)<br>
+작은 반원 셋의 합 = π×(a/2) + π×(b/2) + π×(c/2) = π×(a+b+c)/2<br>
+AD = a+b+c 이므로, 큰 반원의 호 길이 = π×(AD/2) = π×(a+b+c)/2<br><br>
+→ 두 값이 <b style="color:#fde68a">완전히 같은 식</b>이므로, B·C가 AD 위 어디에 있든(a,b,c가 무엇이든) 항상 성립합니다. <b style="color:#86efac">숫자 하나를 확인한 게 아니라, 모든 경우에 대해 증명한 것</b>입니다.` },
+  { tag:'🔥 심화 11/12 — 사분원 2개가 만드는 "잎" 모양', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">한 변의 길이가 12cm인 정사각형 ABCD에서, 대각선 방향 두 꼭짓점 B, D를 각각 중심으로 반지름 12cm인 사분원을 정사각형 안쪽에 그렸습니다. 두 사분원이 겹치는 잎 모양 부분의 넓이는?</div>
+<svg viewBox="0 0 160 160" style="display:block;margin:8px auto;max-width:180px" xmlns="http://www.w3.org/2000/svg">
+<rect width="160" height="160" fill="#0d1a28" rx="8"/>
+<polygon points="20,20 140,20 140,140 20,140" fill="none" stroke="#4b5563" stroke-width="1.5"/>
+<path d="M 20 20 A 120 120 0 0 1 140 140 A 120 120 0 0 1 20 20" fill="rgba(125,211,252,.3)" stroke="#7dd3fc" stroke-width="2"/>
+<circle cx="20" cy="20" r="2.5" fill="#e2e8f0"/><circle cx="140" cy="20" r="2.5" fill="#e2e8f0"/>
+<circle cx="140" cy="140" r="2.5" fill="#e2e8f0"/><circle cx="20" cy="140" r="2.5" fill="#e2e8f0"/>
+<text x="8" y="14" fill="#e2e8f0" font-size="11">A</text>
+<text x="144" y="14" fill="#e2e8f0" font-size="11">D</text>
+<text x="144" y="154" fill="#e2e8f0" font-size="11">C</text>
+<text x="8" y="154" fill="#e2e8f0" font-size="11">B</text>
+</svg>`,
+    ans:`<b style="color:#f87171">풀이:</b><br>두 사분원 넓이의 합에서 정사각형 넓이를 빼면 잎 모양 넓이(두 사분원의 합이 정사각형을 정확히 빈틈없이 덮고, 잎 부분만 두 번 겹치기 때문):<br>
+2×(¼×π×12²) − 12² = 2×36π − 144 = <b style="color:#fde68a;font-size:.9rem">72π − 144 (cm²)</b>` },
+  { tag:'🔥 심화 12/12 — 외각 부채꼴 6개를 합치면 원 하나', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">한 변의 길이가 6cm인 정육각형의 각 꼭짓점마다, 그 변의 길이를 반지름으로 하고 정육각형의 외각(60°)을 중심각으로 하는 부채꼴을 바깥쪽에 하나씩(총 6개) 그렸습니다. 6개 부채꼴의 넓이의 합은?</div>
+<svg viewBox="0 0 260 220" style="display:block;margin:8px auto;max-width:240px" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="220" fill="#0d1a28" rx="8"/>
+<polygon points="190,110 150,179.3 70,179.3 30,110 70,40.7 150,40.7" fill="none" stroke="#93c5fd" stroke-width="2"/>
+<path d="M 190 110 L 230 179.3 A 80 80 0 0 1 150 179.3 Z" fill="rgba(248,113,113,.25)" stroke="#f87171" stroke-width="2"/>
+<text x="208" y="150" fill="#fde68a" font-size="11">60°</text>
+<text x="205" y="60" fill="#94a3b8" font-size="10">(나머지 5개 꼭짓점에도</text>
+<text x="205" y="74" fill="#94a3b8" font-size="10">똑같이 하나씩)</text>
+</svg>`,
+    ans:`<b style="color:#f87171">풀이:</b><br>6개 부채꼴의 중심각을 모두 더하면 정육각형의 <b style="color:#fde68a">외각의 합(360°, 이미 배운 카드)</b>과 똑같습니다. 반지름도 전부 6cm로 같으므로, 6개를 이어 붙이면 <b style="color:#86efac">반지름 6cm인 원 하나</b>와 정확히 같은 모양이 됩니다.<br><br>
+넓이 = π×6² = <b style="color:#fde68a;font-size:.9rem">36π cm²</b><br><br>
+<span style="color:#aaa">각각 따로 계산해서 더할 필요 없이, "외각의 합=360°" 하나로 바로 원 전체 넓이가 나옵니다 — 공식 암기가 아니라 개념 연결로 풀리는 문제입니다.</span>` }
 ],
 
 /* ── 평면도형 발견형 풀이 예시 (1장) ───────── */
@@ -2677,6 +2970,28 @@ y = 3 × 5 = 15
 
 
 'solid-shape-guide': [
+  { tag:'🔍 발견형 — 다면체의 분류, 기둥·뿔·뿔대', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 다면체는 "밑면이 몇 개인지"와 "옆면이 어떤 모양인지"로 세 종류로 나눌 수 있습니다.</div>
+<svg viewBox="0 0 260 140" style="display:block;margin:8px auto;max-width:260px" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="140" fill="#0d1a28" rx="8"/>
+<polygon points="20,30 80,30 80,110 20,110" fill="rgba(134,239,172,.12)" stroke="#86efac" stroke-width="2"/>
+<line x1="20" y1="30" x2="80" y2="30" stroke="#fde68a" stroke-width="3"/>
+<line x1="20" y1="110" x2="80" y2="110" stroke="#fde68a" stroke-width="3"/>
+<polygon points="130,30 160,110 100,110" fill="rgba(125,211,252,.12)" stroke="#7dd3fc" stroke-width="2"/>
+<line x1="100" y1="110" x2="160" y2="110" stroke="#fde68a" stroke-width="3"/>
+<polygon points="195,30 225,30 240,110 180,110" fill="rgba(253,230,138,.12)" stroke="#fde68a" stroke-width="2"/>
+<line x1="195" y1="30" x2="225" y2="30" stroke="#fde68a" stroke-width="3"/>
+<line x1="180" y1="110" x2="240" y2="110" stroke="#fde68a" stroke-width="3"/>
+<text x="30" y="125" fill="#86efac" font-size="11">기둥</text>
+<text x="112" y="125" fill="#7dd3fc" font-size="11">뿔</text>
+<text x="196" y="125" fill="#fde68a" font-size="11">뿔대</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85"><b style="color:#86efac">① 각기둥:</b> 밑면 <b>2개</b>(서로 합동, 평행) + 옆면은 모두 <b>직사각형</b>(노란 선=밑면)<br><br>
+<b style="color:#7dd3fc">② 각뿔:</b> 밑면 <b>1개</b> + 옆면은 모두 한 점(꼭짓점)에서 만나는 <b>삼각형</b><br><br>
+<b style="color:#fde68a">③ 각뿔대:</b> 각뿔을 밑면과 평행하게 잘라 꼭짓점 쪽을 들어낸 모양 — 밑면 <b>2개</b>(평행하지만 닮음일 뿐 합동은 아님) + 옆면은 모두 <b>사다리꼴</b><br><br>
+<span style="color:#aaa">이름은 밑면의 모양을 따서 붙입니다 — 밑면이 삼각형이면 삼각기둥·삼각뿔·삼각뿔대, 사각형이면 사각기둥·사각뿔·사각뿔대 식입니다.<br><br>
+<b style="color:#f87171">주의:</b> 원기둥·원뿔은 여기 포함되지 않습니다! 다면체는 "평면(다각형)으로만 둘러싸인" 도형인데, 원기둥·원뿔의 옆면은 평평한 다각형이 아니라 <b>곡면</b>이기 때문입니다(전개도로 펼쳐야 직사각형·부채꼴이 됨). 원기둥·원뿔·구는 다음 카드의 "회전체"라는 완전히 다른 범주입니다.</span></div>`,
+    ans:null },
   { tag:'🔍 발견형 — 다면체와 정다면체', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 평면(다각형)으로만 둘러싸인 입체도형을 다면체라고 합니다. 그중에서도 모든 면이 합동인 정다각형이고, 각 꼭짓점에 모이는 면의 개수가 똑같은 특별한 다면체를 정다면체라고 합니다.</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">정다면체는 딱 <b style="color:#fde68a">5가지</b>뿐입니다:</div>
 <div style="overflow-x:auto;margin:8px 0">
@@ -2691,11 +3006,292 @@ y = 3 × 5 = 15
 </div>
 <div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">5개 모두 신기한 공통점이 있습니다: <b style="color:#7dd3fc">면(F) − 모서리(E) + 꼭짓점(V) = 2</b> — 이것을 <b style="color:#fde68a">오일러의 공식</b>이라고 합니다. (예: 정육면체 6−12+8=2 ✓)</div>`,
     ans:null },
-  { tag:'📊 시각화형 — 회전체의 성질', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📊 평면도형을 한 직선(회전축)을 중심으로 한 바퀴 돌리면 입체도형이 만들어지는데, 이를 회전체라고 합니다.</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">직사각형을 돌리면 <b style="color:#86efac">원기둥</b>, 직각삼각형을 돌리면 <b style="color:#7dd3fc">원뿔</b>, 반원을 돌리면 <b style="color:#fde68a">구</b>가 됩니다.<br><br>회전체는 두 가지 중요한 성질이 있습니다:<br>① 회전축에 <b>수직</b>으로 자른 단면은 항상 <b style="color:#fde68a">원</b>입니다.<br>② 회전축을 <b>포함</b>하는 평면으로 자른 단면은 회전축을 대칭축으로 하는 <b style="color:#fde68a">선대칭도형</b>입니다.</div>`,
+  { tag:'🔍 발견형 — 정다면체는 왜 딱 5개뿐일까?', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 정다면체가 왜 하필 5개뿐인지, 두 가지 규칙만으로 직접 확인할 수 있습니다.</div>
+<svg viewBox="0 0 260 160" style="display:block;margin:8px auto;max-width:260px" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="160" fill="#0d1a28" rx="8"/>
+<polygon points="60,100 60,50 103.3,75" fill="rgba(134,239,172,.15)" stroke="#86efac" stroke-width="1.5"/>
+<polygon points="60,100 103.3,75 103.3,125" fill="rgba(134,239,172,.1)" stroke="#86efac" stroke-width="1.5"/>
+<polygon points="60,100 103.3,125 60,150" fill="rgba(134,239,172,.15)" stroke="#86efac" stroke-width="1.5"/>
+<text x="20" y="104" fill="#86efac" font-size="10">180°</text>
+<text x="40" y="35" fill="#e2e8f0" font-size="9">틈이 있어서</text>
+<text x="40" y="46" fill="#e2e8f0" font-size="9">접어 올릴 수 있음</text>
+<polygon points="200,100 250,100 225,143.3" fill="rgba(248,113,113,.12)" stroke="#f87171" stroke-width="1.2"/>
+<polygon points="200,100 225,143.3 175,143.3" fill="rgba(248,113,113,.08)" stroke="#f87171" stroke-width="1.2"/>
+<polygon points="200,100 175,143.3 150,100" fill="rgba(248,113,113,.12)" stroke="#f87171" stroke-width="1.2"/>
+<polygon points="200,100 150,100 175,56.7" fill="rgba(248,113,113,.08)" stroke="#f87171" stroke-width="1.2"/>
+<polygon points="200,100 175,56.7 225,56.7" fill="rgba(248,113,113,.12)" stroke="#f87171" stroke-width="1.2"/>
+<polygon points="200,100 225,56.7 250,100" fill="rgba(248,113,113,.08)" stroke="#f87171" stroke-width="1.2"/>
+<text x="150" y="155" fill="#f87171" font-size="10">360° — 완전히 평평함, 못 접음</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85"><b style="color:#fde68a">규칙 ①:</b> 한 꼭짓점에 면이 <b>3개 이상</b> 모여야 입체의 뾰족한 모서리가 생깁니다(2개로는 그냥 접힌 평면일 뿐).<br><br>
+<b style="color:#fde68a">규칙 ②:</b> 한 꼭짓점에 모이는 각의 <b>합이 360°보다 작아야</b> 합니다. 왼쪽 그림(정삼각형 3개, 60°×3=180°)처럼 틈이 있어야 그 틈을 오므려 뾰족하게 접을 수 있습니다. 오른쪽(60°×6=360°)처럼 꽉 채우면 이미 완전히 평평해서 더 접을 수 없습니다.</div>
+<div style="overflow-x:auto;margin:10px 0">
+<table style="width:100%;border-collapse:collapse;font-size:.72rem;color:#e2e8f0">
+<tr style="background:rgba(255,255,255,.05)"><th style="padding:5px 6px;text-align:left;border-bottom:1px solid rgba(255,255,255,.15)">밑면</th><th style="padding:5px 6px;border-bottom:1px solid rgba(255,255,255,.15)">한 내각</th><th style="padding:5px 6px;border-bottom:1px solid rgba(255,255,255,.15)">3개(×3)</th><th style="padding:5px 6px;border-bottom:1px solid rgba(255,255,255,.15)">4개(×4)</th><th style="padding:5px 6px;border-bottom:1px solid rgba(255,255,255,.15)">5개(×5)</th><th style="padding:5px 6px;border-bottom:1px solid rgba(255,255,255,.15)">6개(×6)</th></tr>
+<tr><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.08)">정삼각형</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">60°</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#86efac">180° ✓</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#86efac">240° ✓</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#86efac">300° ✓</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#f87171">360° ✗</td></tr>
+<tr><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.08)">정사각형</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">90°</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#86efac">270° ✓</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#f87171">360° ✗</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">-</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">-</td></tr>
+<tr><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.08)">정오각형</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">108°</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#86efac">324° ✓</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#f87171">432° ✗</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">-</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">-</td></tr>
+<tr><td style="padding:4px 6px">정육각형</td><td style="padding:4px 6px;text-align:center">120°</td><td style="padding:4px 6px;text-align:center;color:#f87171">360° ✗</td><td style="padding:4px 6px;text-align:center">-</td><td style="padding:4px 6px;text-align:center">-</td><td style="padding:4px 6px;text-align:center">-</td></tr>
+</table>
+</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">✓표시가 정확히 <b style="color:#fde68a">5개</b>입니다 — 정삼각형 3·4·5개(정사면체·정팔면체·정이십면체), 정사각형 3개(정육면체), 정오각형 3개(정십이면체). 정육각형부터는 한 내각(120°)이 이미 커서 3개만 모여도 360°를 채워버려 아예 하나도 성립하지 않습니다.<br><br>
+<span style="color:#aaa">정다면체가 5개인 건 암기할 사실이 아니라, 이 표처럼 직접 따져서 "더 이상은 불가능하다"고 증명할 수 있는 결론입니다.</span></div>`,
     ans:null },
-  { tag:'✡️ 유대인식 — 겉넓이와 부피 공식 총정리', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">✡️ 공식을 따로따로 외우지 말고, 두 그룹으로 나눠서 관계를 이해하세요.</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.85"><b style="color:#86efac">기둥(각기둥·원기둥):</b> 부피 = 밑넓이 × 높이<br>겉넓이 = 밑넓이×2 + 옆넓이<br><br><b style="color:#7dd3fc">뿔(각뿔·원뿔):</b> 부피 = ⅓ × 밑넓이 × 높이 <span style="color:#aaa">(같은 밑넓이·높이의 기둥의 딱 ⅓)</span><br><br><b style="color:#fde68a">구:</b> 부피 = (4/3)πr³, 겉넓이 = 4πr²<br><br><span style="color:#f87171">핵심:</span> 뿔의 부피가 기둥의 ⅓인 건 우연이 아니라, 같은 밑넓이·높이의 기둥 하나에 뿔 모양 물통 3개를 채우면 정확히 가득 차는 것으로 실험 확인이 가능합니다.</div>`,
+  { tag:'🔍 발견형 — F·E·V는 어디서 나온 숫자일까?', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 정육면체는 면6·모서리12·꼭짓점8 — 이 숫자들, 외운 게 아니라 직접 계산해서 나온 겁니다. 방금 찾은 (한 면의 모양 n, 한 꼭짓점에 모이는 면의 수 m) 조합으로 F·E·V를 전부 구할 수 있습니다.</div>
+<svg viewBox="0 0 160 160" style="display:block;margin:8px auto;max-width:150px" xmlns="http://www.w3.org/2000/svg">
+<rect width="160" height="160" fill="#0d1a28" rx="8"/>
+<polygon points="40,100 110,100 75,50" fill="rgba(134,239,172,.15)" stroke="#86efac" stroke-width="1.5"/>
+<polygon points="40,100 110,100 75,150" fill="rgba(125,211,252,.15)" stroke="#7dd3fc" stroke-width="1.5"/>
+<line x1="40" y1="100" x2="110" y2="100" stroke="#fde68a" stroke-width="3"/>
+<text x="55" y="118" fill="#fde68a" font-size="10">이 모서리, 두 면이 공유</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85"><b style="color:#fde68a">① 모서리(E) 세기:</b> 면 하나가 변을 n개 가지므로 "면의 개수(F)×n"을 세면 되는데, 모서리 하나는 항상 <b>두 면이 공유</b>해서 두 번씩 중복으로 세어집니다. 그래서:<br>
+<b style="color:#86efac">E = F×n ÷ 2</b><br><br>
+<b style="color:#fde68a">② 꼭짓점(V) 세기:</b> 면 하나가 꼭짓점을 n개 가지므로 "F×n"을 세면, 한 꼭짓점은 <b>m개의 면</b>에서 공유되어 m번씩 중복됩니다. 그래서:<br>
+<b style="color:#86efac">V = F×n ÷ m</b><br><br>
+<b style="color:#fde68a">③ 오일러 공식에 대입:</b> F − E + V = 2 에 ①②를 넣으면 F만 남은 식이 되어 F를 구할 수 있습니다.</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85;margin-top:10px">앞 카드에서 찾은 5개의 (n, m) 조합을 전부 이 방법으로 실제 계산하면:</div>
+<div style="overflow-x:auto;margin:8px 0">
+<table style="width:100%;border-collapse:collapse;font-size:.72rem;color:#e2e8f0">
+<tr style="background:rgba(255,255,255,.05)"><th style="padding:5px 6px;text-align:left;border-bottom:1px solid rgba(255,255,255,.15)">이름</th><th style="padding:5px 6px;border-bottom:1px solid rgba(255,255,255,.15)">(n,m)</th><th style="padding:5px 6px;border-bottom:1px solid rgba(255,255,255,.15)">오일러식 대입</th><th style="padding:5px 6px;border-bottom:1px solid rgba(255,255,255,.15)">F</th><th style="padding:5px 6px;border-bottom:1px solid rgba(255,255,255,.15)">E=Fn÷2</th><th style="padding:5px 6px;border-bottom:1px solid rgba(255,255,255,.15)">V=Fn÷m</th></tr>
+<tr><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.08)">정사면체</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">(3,3)</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">4F−6F+3F=8</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#fde68a">4</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#fde68a">6</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#fde68a">4</td></tr>
+<tr><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.08)">정육면체</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">(4,3)</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">6F−12F+8F=12</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#fde68a">6</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#fde68a">12</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#fde68a">8</td></tr>
+<tr><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.08)">정팔면체</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">(3,4)</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">4F−6F+3F=8</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#fde68a">8</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#fde68a">12</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#fde68a">6</td></tr>
+<tr><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.08)">정십이면체</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">(5,3)</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)">6F−30F+20F=12</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#fde68a">12</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#fde68a">30</td><td style="padding:4px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);color:#fde68a">20</td></tr>
+<tr><td style="padding:4px 6px">정이십면체</td><td style="padding:4px 6px;text-align:center">(3,5)</td><td style="padding:4px 6px;text-align:center">20F−30F+12F=8</td><td style="padding:4px 6px;text-align:center;color:#fde68a">20</td><td style="padding:4px 6px;text-align:center;color:#fde68a">30</td><td style="padding:4px 6px;text-align:center;color:#fde68a">12</td></tr>
+</table>
+</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8"><span style="color:#aaa">("오일러식 대입" 칸은 F−E+V=2 양쪽에 분모(2 또는 m)를 곱해 정리한 식입니다 — 예를 들어 정팔면체는 F−(3F/2)+(3F/4)=2의 양변에 4를 곱한 "4F−6F+3F=8".) 5개 전부 맨 처음 카드의 표 숫자와 정확히 일치합니다 — F·E·V는 외운 숫자가 아니라 n, m 두 숫자에서 전부 "계산"으로 나온 결과입니다.</span></div>`,
+    ans:null },
+  { tag:'🔍 발견형 — 오일러 공식은 어디서 나왔을까?', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 F−E+V=2, 이 공식도 증명할 수 있습니다. 다면체의 면 하나를 떼어내고 나머지를 평평하게 펼친 뒤(그물처럼), 모든 면을 삼각형까지 쪼갠다고 생각해봅시다.</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">삼각형 1개부터 시작해서 하나씩 붙여가며 똑같은 모양을 다시 만든다고 생각하면, 삼각형을 붙이는 방법은 딱 두 가지뿐입니다. 앞 카드에서 본 "정삼각형 6개로 만든 정육각형"을 그대로 다시 만들어가며 두 방법을 직접 확인해봅시다.</div>
+<svg viewBox="0 0 320 330" style="display:block;margin:8px auto;max-width:300px" xmlns="http://www.w3.org/2000/svg">
+<rect width="320" height="330" fill="#0d1a28" rx="8"/>
+<g transform="translate(5,5)">
+<polygon points="70,75 70,35 104.6,55" fill="rgba(134,239,172,.35)" stroke="#86efac" stroke-width="2"/>
+<circle cx="70" cy="75" r="3" fill="#86efac"/><circle cx="70" cy="35" r="3" fill="#86efac"/><circle cx="104.6" cy="55" r="3" fill="#86efac"/>
+<text x="10" y="132" fill="#86efac" font-size="11" font-weight="bold">① 출발: 삼각형 1개</text>
+<text x="10" y="146" fill="#e2e8f0" font-size="10">V=3, E=3, F=1</text>
+</g>
+<g transform="translate(165,5)">
+<polygon points="70,75 70,35 104.6,55" fill="rgba(134,239,172,.12)" stroke="#86efac" stroke-width="1.2"/>
+<polygon points="70,75 104.6,55 104.6,95" fill="rgba(253,230,138,.3)" stroke="#fde68a" stroke-width="2"/>
+<line x1="70" y1="75" x2="104.6" y2="55" stroke="#7dd3fc" stroke-width="3"/>
+<circle cx="104.6" cy="95" r="4" fill="#f87171"/>
+<text x="4" y="132" fill="#fde68a" font-size="11" font-weight="bold">② 방법A: 새 꼭짓점 1개</text>
+<text x="10" y="146" fill="#e2e8f0" font-size="10">V 3→4, E 3→5, F 1→2</text>
+</g>
+<g transform="translate(5,165)">
+<polygon points="70,75 70,35 104.6,55" fill="rgba(134,239,172,.18)" stroke="#86efac" stroke-width="1.2"/>
+<polygon points="70,75 104.6,55 104.6,95" fill="rgba(134,239,172,.18)" stroke="#86efac" stroke-width="1.2"/>
+<polygon points="70,75 104.6,95 70,115" fill="rgba(134,239,172,.18)" stroke="#86efac" stroke-width="1.2"/>
+<polygon points="70,75 70,115 35.4,95" fill="rgba(134,239,172,.18)" stroke="#86efac" stroke-width="1.2"/>
+<polygon points="70,75 35.4,95 35.4,55" fill="rgba(134,239,172,.18)" stroke="#86efac" stroke-width="1.2"/>
+<line x1="70" y1="75" x2="35.4" y2="55" stroke="#f87171" stroke-width="2" stroke-dasharray="4,3"/>
+<line x1="70" y1="75" x2="70" y2="35" stroke="#f87171" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="48" y="50" fill="#f87171" font-size="11" font-weight="bold">틈!</text>
+<text x="2" y="132" fill="#e2e8f0" font-size="11" font-weight="bold">③ 삼각형 5개 — 틈 1개 남음</text>
+<text x="10" y="146" fill="#e2e8f0" font-size="10">V=7, E=11, F=5</text>
+</g>
+<g transform="translate(165,165)">
+<polygon points="70,75 70,35 104.6,55" fill="rgba(134,239,172,.12)" stroke="#86efac" stroke-width="1.2"/>
+<polygon points="70,75 104.6,55 104.6,95" fill="rgba(134,239,172,.12)" stroke="#86efac" stroke-width="1.2"/>
+<polygon points="70,75 104.6,95 70,115" fill="rgba(134,239,172,.12)" stroke="#86efac" stroke-width="1.2"/>
+<polygon points="70,75 70,115 35.4,95" fill="rgba(134,239,172,.12)" stroke="#86efac" stroke-width="1.2"/>
+<polygon points="70,75 35.4,95 35.4,55" fill="rgba(134,239,172,.12)" stroke="#86efac" stroke-width="1.2"/>
+<polygon points="70,75 35.4,55 70,35" fill="rgba(248,113,113,.3)" stroke="#f87171" stroke-width="2"/>
+<line x1="70" y1="75" x2="35.4" y2="55" stroke="#7dd3fc" stroke-width="3"/>
+<line x1="70" y1="75" x2="70" y2="35" stroke="#7dd3fc" stroke-width="3"/>
+<line x1="35.4" y1="55" x2="70" y2="35" stroke="#f87171" stroke-width="2.5"/>
+<text x="4" y="132" fill="#f87171" font-size="11" font-weight="bold">④ 방법B: 새 꼭짓점 0개</text>
+<text x="10" y="146" fill="#e2e8f0" font-size="10">V=7(그대로), E 11→12, F 5→6</text>
+</g>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">
+<b style="color:#86efac">① 출발</b> — 삼각형 1개(V=3,E=3,F=1)에서 시작합니다.<br><br>
+<b style="color:#fde68a">② 방법A</b> — 기존 변 하나(파란선)에 삼각형을 뾰족하게 붙이면, 그 삼각형의 반대쪽 꼭짓점은 전에 없던 <b style="color:#f87171">새 꼭짓점</b>(빨간 점)입니다. 새 꼭짓점 1개 + 새 변 2개 + 새 면 1개 → <b style="color:#fde68a">V−E+F의 변화량 = 1−2+1 = 0</b><br><br>
+<b>③ 방법A를 4번 더 반복</b>하면 삼각형 5개가 붙어 정육각형이 거의 채워지지만, 한 조각이 빠진 <b style="color:#f87171">틈</b>이 남습니다. 이 틈의 양쪽 변(빨간 점선)은 <b>둘 다 이미 그려져 있던 변</b>입니다 — 새로 그릴 필요가 없습니다.<br><br>
+<b style="color:#f87171">④ 방법B</b> — 이 틈을 마지막 삼각형으로 메우면, 세 꼭짓점이 전부 이미 있던 점이라 <b>새 꼭짓점이 0개</b>입니다. 양쪽 변(파란선)은 이미 있던 걸 그대로 쓰고, 딱 한 변(빨간선)만 새로 생깁니다 → <b style="color:#fde68a">V−E+F의 변화량 = 0−1+1 = 0</b></div>
+<div style="font-size:.78rem;color:#f87171;font-weight:700;line-height:1.8;margin:14px 0 4px">⚠ 여기서 중요한 건 — 정육각형은 "증명"이 아니라 "예시"일 뿐입니다</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">정육각형이 특별해서 되는 게 아닙니다. 모양·각도가 완전히 달라도 같은 두 가지 방법만 쓰입니다 — 아래는 모양도, 각도(80°·70°·90°·120°)도 전혀 다른 비뚤어진 도형입니다:</div>
+<svg viewBox="0 0 220 220" style="display:block;margin:8px auto;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="220" fill="#0d1a28" rx="8"/>
+<polygon points="70,75 63.06,35.61 107.59,61.32" fill="rgba(134,239,172,.18)" stroke="#86efac" stroke-width="1.3"/>
+<polygon points="70,75 107.59,61.32 95.71,105.64" fill="rgba(134,239,172,.18)" stroke="#86efac" stroke-width="1.3"/>
+<polygon points="70,75 95.71,105.64 39.36,100.71" fill="rgba(134,239,172,.18)" stroke="#86efac" stroke-width="1.3"/>
+<polygon points="70,75 39.36,100.71 63.06,35.61" fill="rgba(248,113,113,.3)" stroke="#f87171" stroke-width="2"/>
+<line x1="70" y1="75" x2="39.36" y2="100.71" stroke="#7dd3fc" stroke-width="3"/>
+<line x1="70" y1="75" x2="63.06" y2="35.61" stroke="#7dd3fc" stroke-width="3"/>
+<line x1="39.36" y1="100.71" x2="63.06" y2="35.61" stroke="#f87171" stroke-width="2.5"/>
+<text x="6" y="200" fill="#e2e8f0" font-size="10">모양이 비뚤어져도 마지막 조각은</text>
+<text x="6" y="213" fill="#e2e8f0" font-size="10">똑같이 "방법B"(새 꼭짓점 0개)</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">초록 삼각형 3개는 똑같이 <b style="color:#fde68a">방법A</b>로 하나씩 붙었고(매번 바깥쪽에 새 꼭짓점이 생김), 마지막 빨간 삼각형만 양쪽 변(파란선)이 <b>이미 둘 다 있던 변</b>이라 <b style="color:#fde68a">방법B</b>로 틈을 메웠습니다. 모양이 통째로 바뀌어도 "새 꼭짓점이 생기는 경우(A)"와 "틈이 메워지며 새 꼭짓점이 안 생기는 경우(B)", 이 두 가지 외에는 삼각형을 붙일 방법이 없습니다 — 그래서 어떤 다면체를 펼쳐서 삼각형으로 쪼갠 그림이든, 그 그림이 무슨 모양이든 상관없이 똑같은 논리가 적용됩니다.</div>
+
+<div style="font-size:.78rem;color:#fde68a;font-weight:700;line-height:1.8;margin:14px 0 4px">🔑 왜 "두 가지뿐"이라고 확신할 수 있을까? — 울타리로 생각하기</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.9">
+삼각형 타일을 바닥에 하나씩 붙여나간다고 생각해보세요. 지금까지 붙인 타일 전체를 "덩어리"라 하면, 덩어리는 항상 구멍 없이 하나로 붙어있고, 그 가장자리는 울타리처럼 하나의 닫힌 테두리(변·꼭짓점의 고리)를 이룹니다.<br><br>
+새 타일 1개를 덩어리에 붙일 때, 그 타일은 반드시 울타리의 어딘가에 붙습니다. 이때 일어날 수 있는 경우는 딱 두 가지뿐입니다.<br>
+<b style="color:#86efac">(A) 울타리를 바깥으로 늘리기</b> — 새 타일이 울타리 변 <b>1개</b>에만 걸쳐 있고, 반대쪽 꼭짓점은 울타리 밖으로 새로 튀어나옴. 울타리 변 1개 → 새 변 2개, 새 꼭짓점 1개.<br>
+<b style="color:#f87171">(B) 울타리의 홈을 메우기</b> — 새 타일의 세 꼭짓점이 전부 이미 울타리 위에 있던 점들이고, 서로 붙어있는 울타리 변 <b>2개</b>를 양쪽으로 쓰면서 가운데 빠진 변 1개만 새로 채움. 새 꼭짓점 0개.<br><br>
+이 두 가지 외에는 방법이 없습니다 — 울타리 변을 0개 쓰면 애초에 덩어리에 안 붙는 것이고, 3개를 다 쓰면 그 타일은 이미 덩어리 안에 들어있었다는 뜻이라 "새로" 붙이는 게 아닙니다.<br><br>
+<b>그래서</b> — 어떤 모양의 삼각형 그림이든, 맨 마지막에 붙인 타일부터 거꾸로 하나씩 떼어내면 항상 (A)나 (B) 방식으로 떼어낼 수 있고, 결국 "삼각형 1개 → (A)·(B) 반복 → 완성"의 순서로 반드시 재구성됩니다. 시작(삼각형 1개)일 때 V−E+F=1이고 (A)·(B) 둘 다 이 값을 바꾸지 않으니, <b style="color:#fde68a">모양이 무엇이든</b> 완성된 그림도 V−E+F=1입니다. 정육각형과 비뚤어진 도형은 "진짜로 이 두 경우뿐"이라는 걸 보여준 샘플일 뿐이고, 증명의 진짜 힘은 바로 이 "울타리" 논리에 있습니다.</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85;margin-top:10px">
+<span style="color:#aaa">두 방법 다 V−E+F를 전혀 바꾸지 않으므로, 삼각형 6개를 다 붙인 정육각형도 처음(V−E+F=1)과 똑같이 <b style="color:#fde68a">V−E+F=1</b>입니다(확인: 7−12+6=1, 그리고 비뚤어진 도형도 확인: 4개 삼각형, V=5,E=8,F=4 → 5−8+4=1 ✓). 어떤 다면체의 펼친 그림이든 삼각형 1개에서 시작해 방법A·B만 반복하면 만들 수 있으므로 항상 V−E+F=1이고, 맨 처음 떼어냈던 면 1개를 다시 더하면 F가 1 늘어서 V−E+F = 1+1 = <b style="color:#fde68a">2</b> — 이게 오일러 공식입니다.</span></div>`,
+    ans:null },
+  { tag:'📊 시각화형 — 회전체의 성질', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📊 평면도형을 한 직선(회전축)을 중심으로 한 바퀴 돌리면 입체도형이 만들어지는데, 이를 회전체라고 합니다.</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.8">직사각형을 돌리면 <b style="color:#86efac">원기둥</b>, 직각삼각형을 돌리면 <b style="color:#7dd3fc">원뿔</b>, 반원을 돌리면 <b style="color:#fde68a">구</b>가 됩니다.<br><br>회전체는 두 가지 중요한 성질이 있습니다.</div>
+
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8;margin:12px 0 4px"><b style="color:#fde68a">① 회전축에 수직인 단면은 항상 원</b></div>
+<svg viewBox="0 0 280 150" style="display:block;margin:8px auto;max-width:280px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="150" fill="#0d1a28" rx="8"/>
+<line x1="90" y1="18" x2="90" y2="122" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="90" y1="20" x2="30" y2="120" stroke="#7dd3fc" stroke-width="2"/>
+<line x1="90" y1="20" x2="150" y2="120" stroke="#7dd3fc" stroke-width="2"/>
+<ellipse cx="90" cy="120" rx="60" ry="14" fill="none" stroke="#7dd3fc" stroke-width="2"/>
+<ellipse cx="90" cy="70" rx="30" ry="7" fill="rgba(253,230,138,.5)" stroke="#fde68a" stroke-width="2"/>
+<text x="4" y="66" fill="#e2e8f0" font-size="10">축</text>
+<text x="170" y="75" fill="#e2e8f0" font-size="16">→</text>
+<circle cx="230" cy="70" r="28" fill="none" stroke="#fde68a" stroke-width="2"/>
+<text x="200" y="115" fill="#fde68a" font-size="11">단면 = 원</text>
+</svg>
+<div style="font-size:.74rem;color:#aaa;line-height:1.7;margin-bottom:4px">(얇게 그려서 타원처럼 보이지만, 축에 수직으로 똑바로 잘라서 꺼내 보면 실제로는 <b style="color:#fde68a">완전한 원</b>입니다.)</div>
+
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8;margin:14px 0 4px"><b style="color:#86efac">② 회전축을 포함하는 단면은 선대칭도형</b></div>
+<svg viewBox="0 0 280 150" style="display:block;margin:8px auto;max-width:280px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="150" fill="#0d1a28" rx="8"/>
+<polygon points="90,20 30,120 150,120" fill="rgba(134,239,172,.18)" stroke="#86efac" stroke-width="2"/>
+<line x1="90" y1="15" x2="90" y2="125" stroke="#86efac" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="54.9" y1="66.9" x2="65.1" y2="73.1" stroke="#86efac" stroke-width="2"/>
+<line x1="114.9" y1="73.1" x2="125.1" y2="66.9" stroke="#86efac" stroke-width="2"/>
+<text x="95" y="18" fill="#e2e8f0" font-size="10">축(대칭축)</text>
+<text x="190" y="75" fill="#e2e8f0" font-size="16">⟺</text>
+<text x="215" y="55" fill="#86efac" font-size="11">왼쪽</text>
+<text x="215" y="95" fill="#86efac" font-size="11">오른쪽</text>
+</svg>
+<div style="font-size:.74rem;color:#aaa;line-height:1.7">축(점선)을 경계로 자른 단면을 종이접기처럼 <b style="color:#86efac">접으면 왼쪽과 오른쪽이 완전히 겹칩니다</b> — 두 변의 눈금 표시(✓)도 길이가 같다는 뜻입니다. 이게 선대칭도형입니다.</div>`,
+    ans:null },
+  { tag:'🔍 발견형 — 직각삼각형, 어느 변을 축으로 돌려야 원뿔일까?', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 직각삼각형엔 변이 3개(두 직각변, 빗변)입니다. 어느 변을 회전축으로 하느냐에 따라 전혀 다른 모양이 나옵니다.</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8;margin-bottom:6px"><b style="color:#86efac">① 직각변(다리)을 축으로 돌리면</b> — 원뿔</div>
+<svg viewBox="0 0 280 150" style="display:block;margin:8px auto;max-width:280px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="150" fill="#0d1a28" rx="8"/>
+<line x1="40" y1="15" x2="40" y2="125" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<polygon points="40,15 40,125 85,125" fill="rgba(134,239,172,.15)" stroke="#86efac" stroke-width="2"/>
+<rect x="40" y="118" width="7" height="7" fill="none" stroke="#86efac" stroke-width="1.2"/>
+<text x="10" y="70" fill="#e2e8f0" font-size="10">축</text>
+<text x="100" y="80" fill="#e2e8f0" font-size="16">→</text>
+<ellipse cx="205" cy="125" rx="45" ry="10" fill="none" stroke="#86efac" stroke-width="2"/>
+<line x1="205" y1="15" x2="160" y2="125" stroke="#86efac" stroke-width="2"/>
+<line x1="205" y1="15" x2="250" y2="125" stroke="#86efac" stroke-width="2"/>
+<text x="195" y="145" fill="#86efac" font-size="11">원뿔</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8;margin-bottom:6px"><b style="color:#f87171">② 빗변을 축으로 돌리면</b> — 원뿔이 아니라 "쌍원뿔"!</div>
+<svg viewBox="0 0 280 150" style="display:block;margin:8px auto;max-width:280px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="150" fill="#0d1a28" rx="8"/>
+<line x1="70" y1="15" x2="70" y2="115" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+<polygon points="70,15 70,115 115,65" fill="rgba(248,113,113,.12)" stroke="#f87171" stroke-width="2"/>
+<polygon points="115,65 109.3,59.3 103.7,65 109.3,70.7" fill="none" stroke="#f87171" stroke-width="1.2"/>
+<text x="35" y="70" fill="#e2e8f0" font-size="10">축</text>
+<text x="135" y="70" fill="#e2e8f0" font-size="16">→</text>
+<ellipse cx="210" cy="65" rx="35" ry="8" fill="none" stroke="#f87171" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="210" y1="15" x2="175" y2="65" stroke="#f87171" stroke-width="2"/>
+<line x1="210" y1="15" x2="245" y2="65" stroke="#f87171" stroke-width="2"/>
+<line x1="210" y1="115" x2="175" y2="65" stroke="#f87171" stroke-width="2"/>
+<line x1="210" y1="115" x2="245" y2="65" stroke="#f87171" stroke-width="2"/>
+<text x="165" y="140" fill="#f87171" font-size="11">쌍원뿔(원뿔 2개가 밑면끼리 붙음)</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">직각삼각형의 직각 꼭짓점을 C, 빗변의 양 끝을 A·B라 하면, 빗변 AB를 축으로 돌릴 때 A와 B는 축 위에 고정된 채 <b>그대로 두 개의 꼭짓점</b>이 되고, C는 축에서 수직인 거리(C에서 AB까지의 거리)만큼 떨어진 원을 그립니다.<br>
+CA가 쓸고 지나간 면과 CB가 쓸고 지나간 면, 이렇게 <b style="color:#fde68a">원뿔 2개</b>가 그 원을 공통 밑면으로 삼아 반대 방향으로 붙은 모양이 됩니다 — 그래서 꼭짓점이 하나가 아니라 둘입니다.<br><br>
+<span style="color:#aaa">결론: "직각삼각형을 돌리면 원뿔"이라는 말은 <b>직각변을 축으로 할 때만</b> 맞습니다. 빗변을 축으로 하면 완전히 다른 입체(쌍원뿔)가 나옵니다 — 축을 어느 변으로 잡느냐가 결과를 바꾼다는 걸 꼭 확인해야 합니다.</span></div>`,
+    ans:null },
+  { tag:'📊 시각화형 — 회전체 갤러리, 단면→회전→결과', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📊 평면도형을 축에 대고 한 바퀴 돌리면 어떤 입체가 나오는지, 네 가지 단면으로 한눈에 정리합니다.</div>
+<svg viewBox="0 0 280 400" style="display:block;margin:8px auto;max-width:260px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="400" fill="#0d1a28" rx="8"/>
+<line x1="35" y1="15" x2="35" y2="65" stroke="#4b5563" stroke-width="1.2" stroke-dasharray="3,2"/>
+<rect x="35" y="15" width="35" height="50" fill="rgba(134,239,172,.15)" stroke="#86efac" stroke-width="1.5"/>
+<text x="90" y="44" fill="#e2e8f0" font-size="14">→</text>
+<ellipse cx="190" cy="65" rx="40" ry="8" fill="none" stroke="#86efac" stroke-width="1.5"/>
+<line x1="150" y1="15" x2="150" y2="65" stroke="#86efac" stroke-width="1.5"/>
+<line x1="230" y1="15" x2="230" y2="65" stroke="#86efac" stroke-width="1.5"/>
+<ellipse cx="190" cy="15" rx="40" ry="8" fill="none" stroke="#86efac" stroke-width="1.5" stroke-dasharray="3,2"/>
+<text x="10" y="90" fill="#86efac" font-size="10">직사각형 → 원기둥</text>
+
+<line x1="35" y1="110" x2="35" y2="165" stroke="#4b5563" stroke-width="1.2" stroke-dasharray="3,2"/>
+<polygon points="35,110 35,165 70,165" fill="rgba(125,211,252,.15)" stroke="#7dd3fc" stroke-width="1.5"/>
+<text x="90" y="144" fill="#e2e8f0" font-size="14">→</text>
+<ellipse cx="190" cy="165" rx="40" ry="8" fill="none" stroke="#7dd3fc" stroke-width="1.5"/>
+<line x1="190" y1="110" x2="150" y2="165" stroke="#7dd3fc" stroke-width="1.5"/>
+<line x1="190" y1="110" x2="230" y2="165" stroke="#7dd3fc" stroke-width="1.5"/>
+<text x="10" y="190" fill="#7dd3fc" font-size="10">직각삼각형(직각변 축) → 원뿔</text>
+
+<line x1="35" y1="210" x2="35" y2="260" stroke="#4b5563" stroke-width="1.2" stroke-dasharray="3,2"/>
+<path d="M 35 210 A 25 25 0 0 1 35 260 Z" fill="rgba(253,230,138,.15)" stroke="#fde68a" stroke-width="1.5"/>
+<text x="90" y="239" fill="#e2e8f0" font-size="14">→</text>
+<circle cx="190" cy="235" r="25" fill="none" stroke="#fde68a" stroke-width="1.5"/>
+<ellipse cx="190" cy="235" rx="25" ry="7" fill="none" stroke="#fde68a" stroke-width="1" stroke-dasharray="2,2"/>
+<text x="30" y="285" fill="#fde68a" font-size="10">반원 → 구</text>
+
+<line x1="35" y1="310" x2="35" y2="360" stroke="#4b5563" stroke-width="1.2" stroke-dasharray="3,2"/>
+<polygon points="35,310 50,310 75,360 35,360" fill="rgba(251,146,60,.15)" stroke="#fb923c" stroke-width="1.5"/>
+<text x="90" y="339" fill="#e2e8f0" font-size="14">→</text>
+<ellipse cx="190" cy="360" rx="40" ry="8" fill="none" stroke="#fb923c" stroke-width="1.5"/>
+<line x1="150" y1="360" x2="175" y2="310" stroke="#fb923c" stroke-width="1.5"/>
+<line x1="230" y1="360" x2="205" y2="310" stroke="#fb923c" stroke-width="1.5"/>
+<ellipse cx="190" cy="310" rx="15" ry="5" fill="none" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="3,2"/>
+<text x="10" y="385" fill="#fb923c" font-size="10">사다리꼴 → 원뿔대</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8"><b style="color:#86efac">직사각형</b>은 양쪽 변 모두 축과 평행 → <b>원기둥</b>(위아래 밑면 크기가 같음)<br>
+<b style="color:#7dd3fc">직각삼각형</b>(직각변 축) → <b>원뿔</b>(꼭짓점이 하나)<br>
+<b style="color:#fde68a">반원</b>(지름을 축으로) → <b>구</b>(모든 방향으로 똑같이 둥긂)<br>
+<b style="color:#fb923c">사다리꼴</b>(평행한 두 변이 축과 수직) → <b>원뿔대</b>(원뿔을 잘라낸 모양, 위아래 밑면 크기가 다름)<br><br>
+<span style="color:#aaa">공통점: 평면도형의 "축에 닿아있지 않은 변의 모양"이 회전체의 옆면 윤곽선을 그대로 결정합니다 — 직선이면 원기둥/원뿔/원뿔대, 둥근 호면 구가 됩니다.</span></div>`,
+    ans:null },
+  { tag:'💡 논리형 — 겉넓이와 부피 공식 총정리', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px"><span style="font-size:.72rem;padding:4px 10px;border-radius:12px;font-weight:700;background:rgba(148,163,184,.18);color:#cbd5e1">🔁 초6에서 배웠어요: 직육면체 부피(밑넓이×높이) · 겉넓이</span><span style="font-size:.72rem;padding:4px 10px;border-radius:12px;font-weight:700;background:rgba(134,239,172,.18);color:#86efac">🆕 새로 배워요: 뿔의 1/3 · 구</span></div><div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">💡 공식을 따로따로 외우지 말고, 두 그룹으로 나눠서 관계를 이해하세요.</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.85"><b style="color:#86efac">기둥(각기둥·원기둥):</b> 부피 = 밑넓이 × 높이<br>겉넓이 = 밑넓이×2 + 옆넓이<br><br><b style="color:#7dd3fc">뿔(각뿔·원뿔):</b> 부피 = ⅓ × 밑넓이 × 높이 <span style="color:#aaa">(같은 밑넓이·높이의 기둥의 딱 ⅓)</span><br><br><b style="color:#fde68a">구:</b> 부피 = (4/3)πr³, 겉넓이 = 4πr²<br><br><span style="color:#f87171">핵심:</span> 뿔의 부피가 기둥의 ⅓인 건 우연이 아니라, 같은 밑넓이·높이의 기둥 하나에 뿔 모양 물통 3개를 채우면 정확히 가득 차는 것으로 실험 확인이 가능합니다.</div>`,
+    ans:null },
+  { tag:'📊 시각화형 — 원뿔의 전개도, 부채꼴의 비밀', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📊 원뿔을 펼치면 밑면(원)과 옆면(부채꼴) 두 조각이 나옵니다. 이 둘 사이엔 숨겨진 연결고리가 있습니다.</div>
+<svg viewBox="0 0 260 150" style="display:block;margin:8px auto;max-width:260px" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="150" fill="#0d1a28" rx="8"/>
+<ellipse cx="60" cy="110" rx="35" ry="10" fill="none" stroke="#86efac" stroke-width="2"/>
+<line x1="25" y1="110" x2="60" y2="25" stroke="#7dd3fc" stroke-width="2"/>
+<line x1="95" y1="110" x2="60" y2="25" stroke="#7dd3fc" stroke-width="2"/>
+<text x="38" y="125" fill="#86efac" font-size="10">r</text>
+<text x="40" y="65" fill="#7dd3fc" font-size="10">l</text>
+<path d="M 150 100 L 225 100 A 75 75 0 0 0 92.5 51.8 Z" fill="rgba(125,211,252,.15)" stroke="#7dd3fc" stroke-width="2"/>
+<path d="M 92.5 51.8 A 75 75 0 0 1 225 100" fill="none" stroke="#fbbf24" stroke-width="3"/>
+<text x="195" y="90" fill="#7dd3fc" font-size="10">l</text>
+<text x="140" y="60" fill="#fbbf24" font-size="10">호의 길이</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85"><b style="color:#fde68a">핵심 연결고리:</b> 옆면(부채꼴)의 호의 길이는 밑면(원)의 둘레와 <b>정확히 같습니다</b> — 펼치기 전에도 옆면과 밑면은 그 자리에서 맞닿아 있었으니까요.<br><br>
+부채꼴의 호의 길이 = 2πr (밑면 원의 둘레)<br><br>
+이 사실로 옆면(부채꼴) 넓이를 구할 수 있습니다 — 부채꼴 넓이 공식 S=(1/2)×반지름×호의 길이에 반지름=l, 호의 길이=2πr을 대입하면:<br>
+옆넓이 = (1/2)×l×2πr = <b style="color:#fde68a">πrl</b><br><br>
+<b style="color:#86efac">원뿔의 겉넓이</b> = 밑넓이 + 옆넓이 = πr² + πrl<br><br>
+<span style="color:#aaa">"부채꼴의 호의 길이·넓이" 카드에서 배운 S=(1/2)rl 공식이 여기서 그대로 재활용됩니다 — 평면도형과 입체도형이 이렇게 연결됩니다.</span></div>`,
+    ans:null },
+  { tag:'🔍 발견형 — 뿔의 부피는 왜 기둥의 ⅓일까?', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">🔍 "물통 실험"보다 더 확실한 증거가 있습니다 — 정육면체 하나를 똑같은 각뿔 3개로 정확히 나눌 수 있습니다.</div>
+<svg viewBox="0 0 160 150" style="display:block;margin:8px auto;max-width:150px" xmlns="http://www.w3.org/2000/svg">
+<rect width="160" height="150" fill="#0d1a28" rx="8"/>
+<polygon points="40,120 100,120 100,60 40,60" fill="none" stroke="#4b5563" stroke-width="1.2"/>
+<polygon points="40,60 100,60 130,30 70,30" fill="none" stroke="#4b5563" stroke-width="1.2"/>
+<polygon points="100,60 100,120 130,90 130,30" fill="rgba(134,239,172,.15)" stroke="#4b5563" stroke-width="1.2"/>
+<line x1="40" y1="120" x2="130" y2="30" stroke="#86efac" stroke-width="2"/>
+<line x1="100" y1="120" x2="130" y2="30" stroke="#86efac" stroke-width="2"/>
+<line x1="40" y1="60" x2="130" y2="30" stroke="#86efac" stroke-width="2"/>
+<circle cx="130" cy="30" r="3" fill="#fde68a"/>
+<text x="134" y="28" fill="#fde68a" font-size="10">꼭짓점 P</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">정육면체의 한 꼭짓점 P를 잡고, P와 닿지 않는 세 면 각각을 밑면으로 하는 각뿔 3개(꼭짓점은 전부 P)를 그리면, 이 세 각뿔이 정육면체를 <b style="color:#fde68a">빈틈도 겹침도 없이 정확히</b> 채웁니다.<br><br>
+각뿔 하나의 밑면은 정육면체의 한 면(넓이=한 변²), 높이는 정육면체의 한 변 길이와 같습니다. 세 각뿔의 부피가 모두 같고 합쳐서 정육면체 전체가 되므로:<br><br>
+<b style="color:#86efac">각뿔 하나의 부피 = 정육면체 부피 ÷ 3 = (밑넓이×높이) ÷ 3 = ⅓ × 밑넓이 × 높이</b><br><br>
+<span style="color:#aaa">정육면체(=한 종류의 기둥)에서 정확히 증명된 사실이고, 모든 각뿔·원뿔로 일반화된다는 것은 더 높은 학년에서 배웁니다 — 지금은 "우연이 아니라 진짜로 나눠진다"는 것만 확인하면 충분합니다.</span></div>`,
     ans:null }
 ],
 
@@ -2703,7 +3299,7 @@ y = 3 × 5 = 15
 
 
 'solid-shape-hard': [
-  { tag:'🌱 기본 1/3 — 오일러 공식으로 모서리 구하기', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
+  { tag:'🌱 기본 1/12 — 오일러 공식으로 모서리 구하기', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">정십이면체는 면이 12개, 꼭짓점이 20개입니다. 오일러 공식(F−E+V=2)을 이용해 모서리의 개수를 구하세요.</div>`,
     ans:`<svg viewBox="0 0 170 150" style="display:block;margin:8px auto;max-width:150px" xmlns="http://www.w3.org/2000/svg">
 <rect width="170" height="150" fill="#0d1a28" rx="8"/>
@@ -2717,7 +3313,19 @@ y = 3 × 5 = 15
 <text x="104" y="52" fill="#fbbf24" font-size="10">꼭짓점(V)</text>
 </svg>
 <b style="color:#86efac">풀이:</b><br>F−E+V=2 → 12−E+20=2<br>32−E=2 → E = <b style="color:#fde68a;font-size:.9rem">30개</b><br><br><span style="color:#aaa">실제로 정십이면체는 정오각형 12개, 모서리 30개, 꼭짓점 20개로 이루어져 있습니다. (그림은 면·모서리·꼭짓점이 무엇인지 보여주는 정육면체 예시입니다)</span>` },
-  { tag:'⚡ 심화 2/3 — 미지의 다면체 추론', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+  { tag:'🌱 기본 2/12 — 원뿔의 부피', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">밑면의 반지름이 3cm, 높이가 9cm인 원뿔의 부피를 구하세요.</div>`,
+    ans:`<svg viewBox="0 0 140 150" style="display:block;margin:8px auto;max-width:130px" xmlns="http://www.w3.org/2000/svg">
+<rect width="140" height="150" fill="#0d1a28" rx="8"/>
+<ellipse cx="70" cy="120" rx="45" ry="14" fill="none" stroke="#86efac" stroke-width="2"/>
+<line x1="70" y1="20" x2="25" y2="120" stroke="#86efac" stroke-width="2"/>
+<line x1="70" y1="20" x2="115" y2="120" stroke="#86efac" stroke-width="2"/>
+<line x1="70" y1="20" x2="70" y2="120" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="74" y="72" fill="#93c5fd" font-size="11">9cm</text>
+<text x="42" y="132" fill="#fbbf24" font-size="11">3cm</text>
+</svg>
+<b style="color:#86efac">풀이:</b><br>원뿔의 부피 = ⅓ × 밑넓이 × 높이<br>= ⅓ × (π×3²) × 9 = ⅓ × 9π × 9<br>= <b style="color:#fde68a;font-size:.9rem">27π cm³</b><br><br><span style="color:#aaa">같은 밑면·높이의 원기둥(밑넓이×9=81π cm³)의 정확히 ⅓입니다.</span>` },
+  { tag:'⚡ 심화 3/12 — 미지의 다면체 추론', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">어떤 다면체의 면이 8개, 모서리가 12개입니다. 이 다면체의 꼭짓점은 몇 개일까요? (이름까지 맞혀보세요)</div>`,
     ans:`<svg viewBox="0 0 170 150" style="display:block;margin:8px auto;max-width:150px" xmlns="http://www.w3.org/2000/svg">
 <rect width="170" height="150" fill="#0d1a28" rx="8"/>
@@ -2730,18 +3338,318 @@ y = 3 × 5 = 15
 <text x="88" y="14" fill="#e2e8f0" font-size="10">위아래로 마주보는 두 꼭짓점도 있어요(정팔면체 개략도)</text>
 </svg>
 <b style="color:#f87171">풀이:</b><br>F−E+V=2 → 8−12+V=2<br>−4+V=2 → V = <b style="color:#fde68a;font-size:.9rem">6개</b><br><br><span style="color:#aaa">면8·모서리12·꼭짓점6 — 이건 정팔면체입니다! 도형을 직접 안 봐도 개수만으로 정체를 추론할 수 있습니다.</span>` },
-  { tag:'🌱 기본 3/3 — 원뿔의 부피', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">밑면의 반지름이 3cm, 높이가 9cm인 원뿔의 부피를 구하세요.</div>`,
-    ans:`<svg viewBox="0 0 140 150" style="display:block;margin:8px auto;max-width:130px" xmlns="http://www.w3.org/2000/svg">
-<rect width="140" height="150" fill="#0d1a28" rx="8"/>
-<ellipse cx="70" cy="120" rx="45" ry="14" fill="none" stroke="#86efac" stroke-width="2"/>
-<line x1="70" y1="20" x2="25" y2="120" stroke="#86efac" stroke-width="2"/>
-<line x1="70" y1="20" x2="115" y2="120" stroke="#86efac" stroke-width="2"/>
-<line x1="70" y1="20" x2="70" y2="120" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="4,3"/>
-<text x="74" y="72" fill="#93c5fd" font-size="11">9cm</text>
-<text x="42" y="132" fill="#fbbf24" font-size="11">3cm</text>
+  { tag:'⚡ 심화 4/12 — [함정] 정다면체 설명 중 틀린 것', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">정다면체에 대한 설명 중 옳지 <u>않은</u> 것은?<br><br>① 정다면체는 5가지뿐이다<br>② 각 꼭짓점에 모이는 면의 개수가 모두 같다<br>③ 모든 면이 합동인 정다각형이다<br>④ 정다면체의 면의 모양은 정삼각형·정사각형·정육각형 중 하나다<br>⑤ 면이 정삼각형인 다면체는 정사면체·정팔면체·정이십면체다</div>`,
+    ans:`<svg viewBox="0 0 260 170" style="display:block;margin:8px auto;max-width:260px" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="170" fill="#0d1a28" rx="8"/>
+<polygon points="130,100 130,150 173.3,75" fill="rgba(248,113,113,.15)" stroke="#f87171" stroke-width="1.5"/>
+<polygon points="130,100 173.3,75 86.7,75" fill="rgba(248,113,113,.1)" stroke="#f87171" stroke-width="1.5"/>
+<polygon points="130,100 86.7,75 130,150" fill="rgba(248,113,113,.15)" stroke="#f87171" stroke-width="1.5"/>
+<text x="10" y="20" fill="#e2e8f0" font-size="11">정육각형 3개가 한 꼭짓점에 모이면</text>
+<text x="10" y="163" fill="#f87171" font-size="11">120°×3=360° — 완전히 평평해서 못 접음</text>
 </svg>
-<b style="color:#86efac">풀이:</b><br>원뿔의 부피 = ⅓ × 밑넓이 × 높이<br>= ⅓ × (π×3²) × 9 = ⅓ × 9π × 9<br>= <b style="color:#fde68a;font-size:.9rem">27π cm³</b><br><br><span style="color:#aaa">같은 밑면·높이의 원기둥(밑넓이×9=81π cm³)의 정확히 ⅓입니다.</span>` }
+<b style="color:#f87171">풀이:</b> 정답은 <b style="color:#fde68a">④</b>번입니다.<br><br>정육각형의 한 내각은 120°인데, 한 꼭짓점에 3개(정다면체에서 가능한 최소 개수)가 모이면 120°×3=360°가 되어 <b>완전히 평평</b>해집니다. 틈이 전혀 없으니 뾰족하게 접어 올려 입체의 꼭짓점을 만들 수 없습니다.<br><br><span style="color:#aaa">그래서 정다면체의 면은 정삼각형·정사각형·정오각형 중 하나뿐이고, 정육각형(과 그 이상)은 애초에 후보에서 제외됩니다 — 개념 가이드의 "정다면체는 왜 딱 5개뿐일까" 카드에서 증명한 바로 그 이유입니다.</span>` },
+  { tag:'⚡ 심화 5/12 — 정육면체의 단면 (모서리 깎기)', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">정육면체에서 한 꼭짓점 A와, A에 모서리로 연결된 세 꼭짓점을 지나는 평면으로 A를 잘라낼 때 생기는 단면의 모양은?<br><br>① 정삼각형 ② 이등변삼각형 ③ 직각삼각형 ④ 정사각형</div>`,
+    ans:`<svg viewBox="0 0 160 230" style="display:block;margin:8px auto;max-width:150px" xmlns="http://www.w3.org/2000/svg">
+<rect width="160" height="230" fill="#0d1a28" rx="8"/>
+<line x1="35" y1="215" x2="90" y2="215" stroke="#64748b" stroke-width="1.2"/>
+<line x1="90" y1="215" x2="90" y2="160" stroke="#64748b" stroke-width="1.2"/>
+<line x1="90" y1="160" x2="35" y2="160" stroke="#64748b" stroke-width="1.2"/>
+<line x1="35" y1="160" x2="35" y2="215" stroke="#64748b" stroke-width="1.2"/>
+<line x1="52.05" y1="204.55" x2="107.05" y2="204.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="107.05" y1="204.55" x2="107.05" y2="149.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="107.05" y1="149.55" x2="52.05" y2="149.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="52.05" y1="149.55" x2="52.05" y2="204.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="35" y1="215" x2="52.05" y2="204.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="90" y1="215" x2="107.05" y2="204.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="90" y1="160" x2="107.05" y2="149.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="35" y1="160" x2="52.05" y2="149.55" stroke="#64748b" stroke-width="1.2"/>
+<polygon points="90,215 35,160 52.05,204.55" fill="rgba(248,113,113,.4)" stroke="#f87171" stroke-width="2"/>
+<circle cx="35" cy="215" r="3" fill="#fde68a"/>
+<circle cx="90" cy="215" r="3" fill="#86efac"/>
+<circle cx="35" cy="160" r="3" fill="#86efac"/>
+<circle cx="52.05" cy="204.55" r="3" fill="#86efac"/>
+<text x="20" y="226" fill="#fde68a" font-size="9">A</text>
+<text x="10" y="20" fill="#e2e8f0" font-size="10">A의 이웃 꼭짓점 3개(초록 점)를 직접 지나는 단면</text>
+</svg>
+<b style="color:#f87171">풀이:</b> 정답은 <b style="color:#fde68a">① 정삼각형</b>입니다.<br><br>A와 모서리로 연결된 세 꼭짓점은, 서로 두 개씩 짝지으면 항상 "같은 정사각형 면의 대각선"으로 이어집니다. 정육면체의 모든 면은 합동이므로 그 대각선 길이도 전부 같습니다.<br><br><span style="color:#aaa">세 변의 길이가 전부 같다 → 정삼각형. "면의 대각선 길이가 모두 같다"는 사실이 이 문제의 숨은 열쇠입니다.</span>` },
+  { tag:'⚡ 심화 6/12 — 정사면체의 단면 (중점 활용)', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">정사면체 ABCD에서 AB, AC의 중점을 각각 L, M이라 하자. 세 점 L, M, D를 지나는 평면으로 자를 때 생기는 단면의 모양은?<br><br>① 이등변삼각형 ② 정삼각형 ③ 직사각형 ④ 직각삼각형</div>`,
+    ans:`<svg viewBox="0 0 200 180" style="display:block;margin:8px auto;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+<rect width="200" height="180" fill="#0d1a28" rx="8"/>
+<polygon points="90,25 40,130 140,130" fill="none" stroke="#64748b" stroke-width="1.3"/>
+<line x1="90" y1="25" x2="90" y2="162" stroke="#64748b" stroke-width="1.3"/>
+<line x1="40" y1="130" x2="90" y2="162" stroke="#64748b" stroke-width="1.3"/>
+<line x1="140" y1="130" x2="90" y2="162" stroke="#64748b" stroke-width="1.3"/>
+<polygon points="65,77.5 115,77.5 90,162" fill="rgba(248,113,113,.3)" stroke="#f87171" stroke-width="2"/>
+<circle cx="65" cy="77.5" r="2.5" fill="#fde68a"/>
+<circle cx="115" cy="77.5" r="2.5" fill="#fde68a"/>
+<text x="90" y="18" fill="#e2e8f0" font-size="11">A</text>
+<text x="25" y="135" fill="#e2e8f0" font-size="11">B</text>
+<text x="145" y="135" fill="#e2e8f0" font-size="11">C</text>
+<text x="94" y="175" fill="#e2e8f0" font-size="11">D</text>
+<text x="48" y="73" fill="#fde68a" font-size="10">L</text>
+<text x="120" y="73" fill="#fde68a" font-size="10">M</text>
+</svg>
+<b style="color:#f87171">풀이:</b> 정답은 <b style="color:#fde68a">① 이등변삼각형</b>입니다. (모서리 길이를 1이라 하고 좌표로 검증한 결과)<br><br>LM은 삼각형 ABC의 중점연결정리에 따라 BC와 평행하고 길이는 BC의 절반 = <b style="color:#fde68a">0.5</b>.<br>반면 LD, MD는 둘 다 "모서리 길이 × (√3/2) ≈ <b style="color:#fde68a">0.866</b>"로 서로 같습니다(대칭 구조이므로).<br><br><span style="color:#aaa">LM만 다르고 LD=MD이므로 정삼각형이 아니라 이등변삼각형입니다. "중점을 지나면 무조건 작은 정삼각형"이라고 성급히 판단하면 틀리는 함정 문제입니다.</span>` },
+  { tag:'⚡ 심화 7/12 — [서술형] 정육면체 속의 정팔면체', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">정육면체의 각 면의 중심(두 대각선의 교점)을 모두 찾아 이웃한 면의 중심끼리 이으면 어떤 입체도형이 되는지 말하고, 그 이유를 설명하시오.<br><span style="font-size:.78rem;color:#f87171">(서술형)</span></div>`,
+    ans:`<svg viewBox="0 0 280 150" style="display:block;margin:8px auto;max-width:280px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="150" fill="#0d1a28" rx="8"/>
+<line x1="20" y1="120" x2="75" y2="120" stroke="#64748b" stroke-width="1.2"/>
+<line x1="75" y1="120" x2="75" y2="65" stroke="#64748b" stroke-width="1.2"/>
+<line x1="75" y1="65" x2="20" y2="65" stroke="#64748b" stroke-width="1.2"/>
+<line x1="20" y1="65" x2="20" y2="120" stroke="#64748b" stroke-width="1.2"/>
+<line x1="37.05" y1="109.55" x2="92.05" y2="109.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="92.05" y1="109.55" x2="92.05" y2="54.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="92.05" y1="54.55" x2="37.05" y2="54.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="37.05" y1="54.55" x2="37.05" y2="109.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="20" y1="120" x2="37.05" y2="109.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="75" y1="120" x2="92.05" y2="109.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="75" y1="65" x2="92.05" y2="54.55" stroke="#64748b" stroke-width="1.2"/>
+<line x1="20" y1="65" x2="37.05" y2="54.55" stroke="#64748b" stroke-width="1.2"/>
+<circle cx="47.5" cy="92.5" r="3" fill="#fde68a"/>
+<circle cx="56.03" cy="59.78" r="3" fill="#fde68a"/>
+<circle cx="83.53" cy="87.28" r="3" fill="#fde68a"/>
+<polygon points="47.5,92.5 56.03,59.78 83.53,87.28" fill="rgba(253,230,138,.35)" stroke="#fde68a" stroke-width="2"/>
+<text x="5" y="18" fill="#e2e8f0" font-size="10">앞·위·오른쪽 면의 중심(노란 점)을 이으면</text>
+<text x="5" y="30" fill="#e2e8f0" font-size="10">삼각형 1개(완성될 정팔면체의 면 1개)</text>
+<text x="140" y="75" fill="#e2e8f0" font-size="16">→</text>
+<polygon points="225,30 200,60 225,65 250,60" fill="rgba(248,113,113,.15)" stroke="#f87171" stroke-width="1.5"/>
+<polygon points="225,65 200,60 225,95 250,60" fill="rgba(248,113,113,.1)" stroke="#f87171" stroke-width="1.5"/>
+<line x1="200" y1="60" x2="250" y2="60" stroke="#f87171" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="195" y="110" fill="#f87171" font-size="10">완성된 정팔면체</text>
+</svg>
+<b style="color:#f87171">풀이:</b> <b style="color:#fde68a">정팔면체</b>가 됩니다.<br><br>정육면체는 면이 6개이므로 중심점도 6개 생기고, 이 6개가 정팔면체의 꼭짓점(V=6, 가이드 카드 표와 일치)이 됩니다. 서로 이웃한(모서리를 공유하는) 두 면의 중심을 이은 선분 하나하나가 정팔면체의 모서리가 되고, 한 꼭짓점(정육면체의 꼭짓점) 둘레에 모이는 세 면의 중심을 이으면 정팔면체의 삼각형 면 1개가 만들어집니다.<br><br><span style="color:#aaa">정육면체(면6·꼭짓점8)와 정팔면체(면8·꼭짓점6)는 면의 개수와 꼭짓점의 개수가 서로 자리를 바꾼 "쌍둥이"(쌍대다면체) 관계입니다.</span>` },
+  { tag:'⚡ 심화 8/12 — [서술형] 정다면체 5개의 쌍대 관계', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">앞 카드에서 본 "정육면체 → 정팔면체"는 사실 더 큰 패턴의 한 조각입니다. 정사면체·정육면체·정팔면체·정십이면체·정이십면체, 정다면체 5가지 전부에 "각 면의 중심을 꼭짓점으로 연결하기"를 적용하면 각각 어떤 정다면체가 나오는지 모두 말하고, 그 이유를 설명하시오.<br><span style="font-size:.78rem;color:#f87171">(서술형)</span></div>`,
+    ans:`<div style="font-size:.76rem;color:#e2e8f0;line-height:1.7;margin-bottom:8px">아래 그림은 각 정다면체를 실제 3D 좌표로 그리고, 그 위에 <b style="color:#fde68a">각 면의 중심을 서로 이은 선(점선)</b>을 겹쳐 그린 것입니다 — 점선만 따로 떼어 보면 그게 바로 새로 생기는 다면체입니다.</div>
+<div style="font-size:.76rem;color:#c4b5fd;font-weight:700;margin-bottom:4px">① 정사면체 — 면의 중심을 이으면 자기 자신(더 작은 정사면체)</div>
+<svg viewBox="0 0 200 140" style="display:block;margin:4px auto;max-width:180px" xmlns="http://www.w3.org/2000/svg">
+<rect width="200" height="140" fill="#0d1a28" rx="8"/>
+<line x1="143.2" y1="51.5" x2="84.3" y2="106.4" stroke="#c4b5fd" stroke-width="1.5"/>
+<line x1="143.2" y1="51.5" x2="65.7" y2="33.6" stroke="#c4b5fd" stroke-width="1.5"/>
+<line x1="143.2" y1="51.5" x2="106.8" y2="88.5" stroke="#c4b5fd" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="84.3" y1="106.4" x2="65.7" y2="33.6" stroke="#c4b5fd" stroke-width="1.5"/>
+<line x1="84.3" y1="106.4" x2="106.8" y2="88.5" stroke="#c4b5fd" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="65.7" y1="33.6" x2="106.8" y2="88.5" stroke="#c4b5fd" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="97.7" y1="63.8" x2="111.4" y2="82.1" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="97.7" y1="63.8" x2="105.2" y2="57.9" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="97.7" y1="63.8" x2="85.6" y2="76.2" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="111.4" y1="82.1" x2="105.2" y2="57.9" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="111.4" y1="82.1" x2="85.6" y2="76.2" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="105.2" y1="57.9" x2="85.6" y2="76.2" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<circle cx="97.7" cy="63.8" r="2.3" fill="#fde68a"/><circle cx="111.4" cy="82.1" r="2.3" fill="#fde68a"/><circle cx="105.2" cy="57.9" r="2.3" fill="#fde68a"/><circle cx="85.6" cy="76.2" r="2.3" fill="#fde68a"/>
+</svg>
+
+<div style="font-size:.76rem;color:#e2e8f0;font-weight:700;margin:10px 0 4px">② 정육면체 — 면 6개의 중심(노란 점·점선)을 이으면 정팔면체</div>
+<svg viewBox="0 0 160 140" style="display:block;margin:4px auto;max-width:150px" xmlns="http://www.w3.org/2000/svg">
+<rect width="160" height="140" fill="#0d1a28" rx="8"/>
+<line x1="31.1" y1="86.7" x2="55.8" y2="102.7" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="31.1" y1="86.7" x2="39.2" y2="37.3" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="31.1" y1="86.7" x2="76.1" y2="86.7" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="55.8" y1="102.7" x2="63.9" y2="53.3" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="55.8" y1="102.7" x2="100.8" y2="102.7" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="39.2" y1="37.3" x2="63.9" y2="53.3" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="39.2" y1="37.3" x2="84.2" y2="37.3" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="63.9" y1="53.3" x2="108.9" y2="53.3" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="76.1" y1="86.7" x2="100.8" y2="102.7" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="76.1" y1="86.7" x2="84.2" y2="37.3" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="100.8" y1="102.7" x2="108.9" y2="53.3" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="84.2" y1="37.3" x2="108.9" y2="53.3" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="47.5" y1="70" x2="66" y2="94.7" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="47.5" y1="70" x2="57.6" y2="62" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="47.5" y1="70" x2="82.4" y2="78" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="47.5" y1="70" x2="74" y2="45.3" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="66" y1="94.7" x2="57.6" y2="62" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="66" y1="94.7" x2="82.4" y2="78" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="66" y1="94.7" x2="92.5" y2="70" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="57.6" y1="62" x2="74" y2="45.3" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="57.6" y1="62" x2="92.5" y2="70" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="82.4" y1="78" x2="74" y2="45.3" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="82.4" y1="78" x2="92.5" y2="70" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<line x1="74" y1="45.3" x2="92.5" y2="70" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="2,2"/>
+<circle cx="47.5" cy="70" r="2.3" fill="#fde68a"/><circle cx="66" cy="94.7" r="2.3" fill="#fde68a"/><circle cx="57.6" cy="62" r="2.3" fill="#fde68a"/><circle cx="82.4" cy="78" r="2.3" fill="#fde68a"/><circle cx="74" cy="45.3" r="2.3" fill="#fde68a"/><circle cx="92.5" cy="70" r="2.3" fill="#fde68a"/>
+</svg>
+<div style="font-size:.72rem;color:#64748b;text-align:center">(반대로 정팔면체의 면 8개 중심을 이으면 다시 정육면체가 됩니다 — 그림은 한쪽 방향만 표시)</div>
+
+<div style="font-size:.76rem;color:#e2e8f0;font-weight:700;margin:10px 0 4px">③ 정십이면체 — 면 12개의 중심(초록 점·점선)을 이으면 정이십면체</div>
+<svg viewBox="0 0 160 140" style="display:block;margin:4px auto;max-width:150px" xmlns="http://www.w3.org/2000/svg">
+<rect width="160" height="140" fill="#0d1a28" rx="8"/>
+<line x1="45" y1="72.5" x2="50.5" y2="38.6" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="89.5" y1="101.4" x2="95" y2="67.5" stroke="#94a3b8" stroke-width="1"/>
+<line x1="47.3" y1="114.4" x2="78.2" y2="114.4" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="61.8" y1="25.6" x2="92.7" y2="25.6" stroke="#94a3b8" stroke-width="1"/>
+<line x1="21.1" y1="64.5" x2="38" y2="75.5" stroke="#94a3b8" stroke-width="1"/>
+<line x1="102" y1="64.5" x2="118.9" y2="75.5" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="26.8" y1="88.5" x2="45" y2="72.5" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="26.8" y1="88.5" x2="47.3" y2="114.4" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="26.8" y1="88.5" x2="21.1" y2="64.5" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="54.3" y1="106.4" x2="89.5" y2="101.4" stroke="#94a3b8" stroke-width="1"/>
+<line x1="54.3" y1="106.4" x2="47.3" y2="114.4" stroke="#94a3b8" stroke-width="1"/>
+<line x1="54.3" y1="106.4" x2="38" y2="75.5" stroke="#94a3b8" stroke-width="1"/>
+<line x1="35.7" y1="33.6" x2="50.5" y2="38.6" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="35.7" y1="33.6" x2="61.8" y2="25.6" stroke="#94a3b8" stroke-width="1"/>
+<line x1="35.7" y1="33.6" x2="21.1" y2="64.5" stroke="#94a3b8" stroke-width="1"/>
+<line x1="63.2" y1="51.5" x2="95" y2="67.5" stroke="#94a3b8" stroke-width="1"/>
+<line x1="63.2" y1="51.5" x2="61.8" y2="25.6" stroke="#94a3b8" stroke-width="1"/>
+<line x1="63.2" y1="51.5" x2="38" y2="75.5" stroke="#94a3b8" stroke-width="1"/>
+<line x1="76.8" y1="88.5" x2="45" y2="72.5" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="76.8" y1="88.5" x2="78.2" y2="114.4" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="76.8" y1="88.5" x2="102" y2="64.5" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="104.3" y1="106.4" x2="89.5" y2="101.4" stroke="#94a3b8" stroke-width="1"/>
+<line x1="104.3" y1="106.4" x2="78.2" y2="114.4" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="104.3" y1="106.4" x2="118.9" y2="75.5" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="85.7" y1="33.6" x2="50.5" y2="38.6" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="85.7" y1="33.6" x2="92.7" y2="25.6" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="85.7" y1="33.6" x2="102" y2="64.5" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="113.2" y1="51.5" x2="95" y2="67.5" stroke="#94a3b8" stroke-width="1"/>
+<line x1="113.2" y1="51.5" x2="92.7" y2="25.6" stroke="#94a3b8" stroke-width="1"/>
+<line x1="113.2" y1="51.5" x2="118.9" y2="75.5" stroke="#94a3b8" stroke-width="1"/>
+<line x1="37.5" y1="89.9" x2="44" y2="50.1" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="35.8" y1="59.6" x2="72" y2="59.6" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="54.8" y1="95.7" x2="74.7" y2="108.6" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="68" y1="80.4" x2="104.2" y2="80.4" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="65.3" y1="31.4" x2="85.2" y2="44.3" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="96" y1="89.9" x2="102.5" y2="50.1" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="37.5" y1="89.9" x2="35.8" y2="59.6" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="37.5" y1="89.9" x2="54.8" y2="95.7" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="37.5" y1="89.9" x2="68" y2="80.4" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="37.5" y1="89.9" x2="74.7" y2="108.6" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="35.8" y1="59.6" x2="54.8" y2="95.7" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="35.8" y1="59.6" x2="44" y2="50.1" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="35.8" y1="59.6" x2="65.3" y2="31.4" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="54.8" y1="95.7" x2="96" y2="89.9" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="54.8" y1="95.7" x2="72" y2="59.6" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="68" y1="80.4" x2="74.7" y2="108.6" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="68" y1="80.4" x2="44" y2="50.1" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="68" y1="80.4" x2="85.2" y2="44.3" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="74.7" y1="108.6" x2="96" y2="89.9" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="74.7" y1="108.6" x2="104.2" y2="80.4" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="44" y1="50.1" x2="65.3" y2="31.4" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="44" y1="50.1" x2="85.2" y2="44.3" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="65.3" y1="31.4" x2="72" y2="59.6" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="65.3" y1="31.4" x2="102.5" y2="50.1" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="85.2" y1="44.3" x2="104.2" y2="80.4" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="85.2" y1="44.3" x2="102.5" y2="50.1" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="96" y1="89.9" x2="72" y2="59.6" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="96" y1="89.9" x2="104.2" y2="80.4" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="72" y1="59.6" x2="102.5" y2="50.1" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="104.2" y1="80.4" x2="102.5" y2="50.1" stroke="#86efac" stroke-width="1" stroke-dasharray="2,2"/>
+<circle cx="37.5" cy="89.9" r="2" fill="#86efac"/><circle cx="35.8" cy="59.6" r="2" fill="#86efac"/><circle cx="54.8" cy="95.7" r="2" fill="#86efac"/><circle cx="68" cy="80.4" r="2" fill="#86efac"/><circle cx="74.7" cy="108.6" r="2" fill="#86efac"/><circle cx="44" cy="50.1" r="2" fill="#86efac"/><circle cx="65.3" cy="31.4" r="2" fill="#86efac"/><circle cx="85.2" cy="44.3" r="2" fill="#86efac"/><circle cx="96" cy="89.9" r="2" fill="#86efac"/><circle cx="72" cy="59.6" r="2" fill="#86efac"/><circle cx="104.2" cy="80.4" r="2" fill="#86efac"/><circle cx="102.5" cy="50.1" r="2" fill="#86efac"/>
+</svg>
+<div style="font-size:.7rem;color:#64748b;text-align:center">(점선이 빽빽해 보이지만 전부 실제 좌표로 계산한 정확한 모서리입니다 — 정이십면체는 모서리가 30개나 되거든요)</div>
+<b style="color:#f87171">풀이:</b> 세 쌍 모두 "면의 중심 → 새 다면체의 꼭짓점"이라는 같은 규칙이 적용됩니다.<br><br>
+<b style="color:#c4b5fd">① 정사면체(면4·꼭짓점4) → 정사면체:</b> 면 4개의 중심이 꼭짓점 4개가 되어 <b>자기 자신</b>이 나옵니다 — 5개 중 유일하게 "자기 자신과 쌍을 이루는" 경우(자기쌍대).<br><br>
+<b style="color:#c4b5fd">② 정육면체(면6·꼭짓점8) ⇄ 정팔면체(면8·꼭짓점6):</b> 정육면체의 면 6개의 중심 → 정팔면체의 꼭짓점 6개. 거꾸로 정팔면체의 면 8개의 중심 → 정육면체의 꼭짓점 8개. 서로 면과 꼭짓점의 개수를 맞바꾸는 짝입니다.<br><br>
+<b style="color:#c4b5fd">③ 정십이면체(면12·꼭짓점20) ⇄ 정이십면체(면20·꼭짓점12):</b> 역시 면 12개 ↔ 꼭짓점 12개, 꼭짓점 20개 ↔ 면 20개로 정확히 맞바뀝니다.<br><br>
+<span style="color:#aaa">핵심 규칙: <b style="color:#fde68a">새로 생기는 다면체의 꼭짓점 개수 = 원래 다면체의 면의 개수</b>가 5개 전부에서 항상 성립합니다. 이렇게 "면과 꼭짓점이 서로 자리를 바꾸는" 짝 관계를 <b style="color:#fde68a">쌍대다면체</b>라고 부릅니다.</span>` },
+  { tag:'⚡ 심화 9/12 — [함정] 원뿔의 축단면 성질', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">원뿔을 회전축을 포함하는 평면으로 자를 때 생기는 단면이 가지는 성질로 옳지 <u>않은</u> 것은?<br><br>① 이등변삼각형이다 ② 단면은 항상 원이다 ③ 단면에 모선이 포함된다 ④ 단면에 원뿔의 높이가 포함된다 ⑤ 회전축에 대하여 선대칭도형이다</div>`,
+    ans:`<svg viewBox="0 0 260 150" style="display:block;margin:8px auto;max-width:240px" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="150" fill="#0d1a28" rx="8"/>
+<ellipse cx="70" cy="120" rx="45" ry="12" fill="none" stroke="#64748b" stroke-width="1.3"/>
+<line x1="70" y1="20" x2="25" y2="120" stroke="#64748b" stroke-width="1.3"/>
+<line x1="70" y1="20" x2="115" y2="120" stroke="#64748b" stroke-width="1.3"/>
+<line x1="70" y1="20" x2="70" y2="120" stroke="#64748b" stroke-width="1" stroke-dasharray="3,2"/>
+<polygon points="70,20 25,120 115,120" fill="rgba(248,113,113,.3)" stroke="#f87171" stroke-width="2"/>
+<text x="4" y="18" fill="#f87171" font-size="11">축단면 = 이등변삼각형(원 아님!)</text>
+<circle cx="200" cy="45" r="22" fill="none" stroke="#64748b" stroke-width="1.5"/>
+<line x1="178" y1="23" x2="222" y2="67" stroke="#f87171" stroke-width="2.5"/>
+<text x="168" y="85" fill="#e2e8f0" font-size="10">"단면=원"은 축에 수직으로 자를 때만</text>
+</svg>
+<b style="color:#f87171">풀이:</b> 정답은 <b style="color:#fde68a">②</b>번입니다.<br><br>축을 포함하는 평면으로 자르면 단면은 두 모선과 밑면의 지름으로 이루어진 <b>이등변삼각형</b>입니다. "단면=원"이 되는 건 축에 <b>수직</b>으로 자를 때뿐입니다.<br><br><span style="color:#aaa">①③④⑤는 모두 맞는 설명입니다 — 축포함 단면은 이등변삼각형(①)이고, 그 안에 모선 2개(③)와 원뿔의 높이(④, 축 자체)가 포함되며, 축을 대칭축으로 하는 선대칭도형(⑤)입니다. 개념 가이드의 "회전체의 성질" 카드와 정확히 같은 내용입니다.</span>` },
+  { tag:'⚡ 심화 10/12 — [함정] 회전체의 성질 중 틀린 것', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">회전체에 대한 설명 중 옳지 <u>않은</u> 것은?<br><br>① 회전체에는 원기둥, 원뿔, 원뿔대, 구 등이 있다<br>② 구는 어떤 방향으로 잘라도 그 단면은 항상 원이다<br>③ 회전체를 회전축에 평행한 평면으로 자른 단면은 항상 원이다<br>④ 회전체는 평면도형을 한 직선(회전축)으로 1회전시켜 만든 입체도형이다<br>⑤ 회전축을 포함하는 평면으로 자른 단면은 회전축에 대하여 선대칭도형이다</div>`,
+    ans:`<svg viewBox="0 0 260 150" style="display:block;margin:8px auto;max-width:240px" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="150" fill="#0d1a28" rx="8"/>
+<ellipse cx="70" cy="25" rx="45" ry="12" fill="none" stroke="#64748b" stroke-width="1.3" stroke-dasharray="3,2"/>
+<line x1="25" y1="25" x2="25" y2="115" stroke="#64748b" stroke-width="1.3"/>
+<line x1="115" y1="25" x2="115" y2="115" stroke="#64748b" stroke-width="1.3"/>
+<ellipse cx="70" cy="115" rx="45" ry="12" fill="none" stroke="#64748b" stroke-width="1.3"/>
+<rect x="45" y="25" width="25" height="90" fill="rgba(248,113,113,.3)" stroke="#f87171" stroke-width="2"/>
+<text x="2" y="18" fill="#f87171" font-size="11">축에 평행하지만 축을 비껴간 단면 = 직사각형(원 아님!)</text>
+<text x="40" y="140" fill="#e2e8f0" font-size="10">회전축</text>
+</svg>
+<b style="color:#f87171">풀이:</b> 정답은 <b style="color:#fde68a">③</b>번입니다.<br><br>"단면=원"은 축에 <b>수직</b>일 때만 성립합니다. 축에 <b>평행</b>한 평면으로 자르면(축을 포함하지 않는 한) 원기둥의 경우 그림처럼 <b>직사각형</b> 모양의 단면이 생깁니다.<br><br><span style="color:#aaa">"평행"과 "수직"을 헷갈리면 바로 틀리는 전형적인 함정입니다. ①②④⑤는 모두 맞는 설명이고, 특히 ②는 구만 가진 특별한 성질(어느 방향으로 잘라도 항상 원)입니다.</span>` },
+  { tag:'⚡ 심화 11/12 — 원뿔 전개도의 중심각', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">모선의 길이가 18cm, 밑면의 반지름이 6cm인 원뿔이 있습니다. 전개도에서 옆면(부채꼴)의 중심각의 크기는?<br><br>① 120° ② 100° ③ 150° ④ 60°</div>`,
+    ans:`<svg viewBox="0 0 220 170" style="display:block;margin:8px auto;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="170" fill="#0d1a28" rx="8"/>
+<path d="M 110 30 L 32.1 75 A 90 90 0 0 0 187.9 75 Z" fill="rgba(248,113,113,.15)" stroke="#f87171" stroke-width="1.5"/>
+<text x="100" y="55" fill="#fde68a" font-size="13">x°</text>
+<text x="52" y="48" fill="#e2e8f0" font-size="10">18cm</text>
+<circle cx="110" cy="140" r="20" fill="none" stroke="#64748b" stroke-width="1.5"/>
+<text x="122" y="135" fill="#e2e8f0" font-size="10">6cm</text>
+</svg>
+<b style="color:#f87171">풀이:</b> 정답은 <b style="color:#fde68a">① 120°</b>입니다.<br><br>부채꼴의 호의 길이 = 밑면 원의 둘레(개념 가이드 "원뿔의 전개도" 카드).<br>2π×18×(x/360) = 2π×6<br>18x = 6×360 → x = <b style="color:#fde68a;font-size:.9rem">120°</b><br><br><span style="color:#aaa">모선이 길어질수록(부채꼴이 커질수록) 같은 밑면을 덮는 중심각은 오히려 작아집니다 — 비례식의 방향을 거꾸로 생각하면 틀리기 쉬운 포인트입니다.</span>` },
+  { tag:'🌟 최상위 12/12 — [서술형] 정육면체를 자르면? 모든 단면의 모양', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">정육면체를 한 평면으로 자를 때 생기는 단면의 모양으로 가능한 것을 모두 찾고, 그렇게 생각한 이유를 설명하시오.</div>`,
+    ans:`<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85;margin-bottom:10px"><b style="color:#fde68a">핵심 원리:</b> 자르는 평면이 "몇 개의 면을 통과하는지"가 곧 단면의 변의 개수입니다. 정육면체는 면이 <b>6개뿐</b>이므로, 평면이 지나갈 수 있는 면의 개수는 최소 3개~최대 6개 — 그래서 단면은 <b style="color:#fde68a">삼각형·사각형·오각형·육각형</b> 네 종류만 가능하고, 칠각형 이상은 절대 나올 수 없습니다.</div>
+
+<div style="font-size:.78rem;color:#e2e8f0;font-weight:700;margin:10px 0 4px">정육면체를 꼭짓점·모서리를 지나는 여러 평면으로 자르면, 단면의 모양은 다음과 같습니다</div>
+<svg viewBox="0 0 540 245" style="display:block;margin:4px auto;max-width:540px" xmlns="http://www.w3.org/2000/svg">
+<rect width="540" height="245" fill="#0d1a28" rx="8"/>
+<line x1="35" y1="215" x2="90" y2="215" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="90" y1="215" x2="90" y2="160" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="90" y1="160" x2="35" y2="160" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="35" y1="160" x2="35" y2="215" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="107.05" y1="204.55" x2="107.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="107.05" y1="149.55" x2="52.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="90" y1="215" x2="107.05" y2="204.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="90" y1="160" x2="107.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="35" y1="160" x2="52.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="52.05" y1="204.55" x2="107.05" y2="204.55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="52.05" y1="149.55" x2="52.05" y2="204.55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="35" y1="215" x2="52.05" y2="204.55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<polygon points="62.5,215 35,187.5 43.52,209.78" fill="rgba(217,165,102,.55)" stroke="#d97706" stroke-width="2"/>
+<text x="71" y="232" fill="#e2e8f0" font-size="11" text-anchor="middle">&lt;정삼각형&gt;</text>
+<line x1="170" y1="215" x2="225" y2="215" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="225" y1="215" x2="225" y2="160" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="225" y1="160" x2="170" y2="160" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="170" y1="160" x2="170" y2="215" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="242.05" y1="204.55" x2="242.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="242.05" y1="149.55" x2="187.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="225" y1="215" x2="242.05" y2="204.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="225" y1="160" x2="242.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="170" y1="160" x2="187.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="187.05" y1="204.55" x2="242.05" y2="204.55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="187.05" y1="149.55" x2="187.05" y2="204.55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="170" y1="215" x2="187.05" y2="204.55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<polygon points="185.34,205.59 219.5,215 219.5,160 185.34,150.59" fill="rgba(217,165,102,.55)" stroke="#d97706" stroke-width="2"/>
+<text x="206" y="232" fill="#e2e8f0" font-size="11" text-anchor="middle">&lt;직사각형&gt;</text>
+<line x1="305" y1="215" x2="360" y2="215" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="360" y1="215" x2="360" y2="160" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="360" y1="160" x2="305" y2="160" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="305" y1="160" x2="305" y2="215" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="377.05" y1="204.55" x2="377.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="377.05" y1="149.55" x2="322.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="360" y1="215" x2="377.05" y2="204.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="360" y1="160" x2="377.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="305" y1="160" x2="322.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="322.05" y1="204.55" x2="377.05" y2="204.55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="322.05" y1="149.55" x2="322.05" y2="204.55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="305" y1="215" x2="322.05" y2="204.55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<polygon points="322.05,177.05 335.8,204.55 346.25,215 318.75,160 313.52,154.78" fill="rgba(217,165,102,.55)" stroke="#d97706" stroke-width="2"/>
+<text x="341" y="232" fill="#e2e8f0" font-size="11" text-anchor="middle">&lt;오각형&gt;</text>
+<line x1="440" y1="215" x2="495" y2="215" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="495" y1="215" x2="495" y2="160" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="495" y1="160" x2="440" y2="160" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="440" y1="160" x2="440" y2="215" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="512.05" y1="204.55" x2="512.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="512.05" y1="149.55" x2="457.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="495" y1="215" x2="512.05" y2="204.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="495" y1="160" x2="512.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="440" y1="160" x2="457.05" y2="149.55" stroke="#94a3b8" stroke-width="1.3"/>
+<line x1="457.05" y1="204.55" x2="512.05" y2="204.55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="457.05" y1="149.55" x2="457.05" y2="204.55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="440" y1="215" x2="457.05" y2="204.55" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2"/>
+<polygon points="457.05,177.05 484.55,204.55 503.53,209.78 495,187.5 467.5,160 448.52,154.78" fill="rgba(217,165,102,.55)" stroke="#d97706" stroke-width="2"/>
+<text x="476" y="232" fill="#e2e8f0" font-size="11" text-anchor="middle">&lt;육각형&gt;</text>
+</svg>
+
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85;margin-top:12px"><b style="color:#fde68a">정리:</b> 정육면체를 한 평면으로 자르면 삼각형·사각형·오각형·육각형 <b>네 가지</b>가 모두 가능하고, 그 이상(칠각형 이상)은 나올 수 없습니다. 이유는 간단합니다 — 평면 하나가 그을 수 있는 "통과한 면과의 교차선"은 정육면체가 가진 면의 개수(6개)를 절대 넘을 수 없기 때문입니다.<br><br><span style="color:#aaa">같은 원리를 일반화하면: 어떤 다면체를 평면으로 자를 때, 단면의 변의 개수는 그 다면체의 면의 개수를 절대 넘을 수 없습니다.</span><br><br><a href="https://m.blog.naver.com/tndhkqnr86/222074091551" target="_blank" rel="noopener" style="color:#7dd3fc;font-size:.72rem">🔗 더 읽어보기</a></div>` }
 ],
 
 /* ── 입체도형 발견형 풀이 예시 (1장) ───────── */
@@ -3061,6 +3969,65 @@ y = 3 × 5 = 15
 합동인 두 삼각형의 대응각은 같으므로 <b style="color:#fde68a">∠POR = ∠QOR</b> — 즉 OR은 각 POQ를 정확히 반으로 나눕니다.<br><br>
 <span style="color:#aaa">작도는 '그냥 되는 것'이 아니라, 매 단계가 합동이라는 논리로 뒷받침됩니다.</span>
 </div>` },
+  { tag:'📊 개념 — 크기가 같은 각의 작도 (각 옮기기)', tagColor:'#c4b5fd',
+    bg:'rgba(196,181,253,.07)', bd:'rgba(196,181,253,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📊 각도기 없이, 컴퍼스만으로 어떤 각과 똑같은 크기의 각을 다른 위치에 그대로 옮길 수 있습니다.</div>
+<svg viewBox="0 0 280 220" style="display:block;margin:8px auto;max-width:270px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="220" fill="#0d1a28" rx="8"/>
+<line x1="50" y1="180" x2="150" y2="180" stroke="#93c5fd" stroke-width="2"/>
+<line x1="50" y1="180" x2="134" y2="68" stroke="#93c5fd" stroke-width="2"/>
+<line x1="190" y1="180" x2="270" y2="180" stroke="#fde68a" stroke-width="2"/>
+<line x1="190" y1="180" x2="232" y2="124" stroke="#fde68a" stroke-width="2" stroke-dasharray="5,3"/>
+<circle cx="50" cy="180" r="45" fill="none" stroke="#86efac" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+<circle cx="190" cy="180" r="45" fill="none" stroke="#86efac" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+<circle cx="235" cy="180" r="40.25" fill="none" stroke="#f9a8d4" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+<path d="M 93.9 139.75 A 40.25 40.25 0 0 0 77 144" fill="none" stroke="#f9a8d4" stroke-width="2.5"/>
+<path d="M 233.9 139.75 A 40.25 40.25 0 0 0 217 144" fill="none" stroke="#f9a8d4" stroke-width="2.5"/>
+<circle cx="50" cy="180" r="2.5" fill="#e2e8f0"/><circle cx="95" cy="180" r="2.5" fill="#e2e8f0"/>
+<circle cx="77" cy="144" r="2.5" fill="#e2e8f0"/>
+<circle cx="190" cy="180" r="2.5" fill="#e2e8f0"/><circle cx="235" cy="180" r="2.5" fill="#e2e8f0"/>
+<circle cx="217" cy="144" r="2.5" fill="#e2e8f0"/>
+<text x="36" y="196" fill="#e2e8f0" font-size="11">A</text>
+<text x="99" y="196" fill="#e2e8f0" font-size="11">B</text>
+<text x="60" y="140" fill="#e2e8f0" font-size="11">C</text>
+<text x="176" y="196" fill="#e2e8f0" font-size="11">P</text>
+<text x="239" y="196" fill="#e2e8f0" font-size="11">D</text>
+<text x="220" y="140" fill="#e2e8f0" font-size="11">E</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85">각 A(두 변 AB, AC 방향)를 점 P의 위치로 옮겨봅시다.<br><b style="color:#fde68a">① 원 그리기:</b> A를 중심으로 원을 그려 두 변과의 교점 B, C를 잡습니다.<br><b style="color:#fde68a">② 반직선 하나 긋기:</b> P에서 새 반직선 하나(각의 한 변이 될 것)를 긋습니다.<br><b style="color:#fde68a">③ 같은 반지름 옮기기:</b> P를 중심으로 <b>①과 같은 반지름</b>의 원을 그려 그 반직선과의 교점 D를 잡습니다.<br><b style="color:#fde68a">④ 폭 옮기기:</b> 컴퍼스로 <span style="text-decoration:overline">BC</span>의 길이를 재서, D를 중심으로 그 반지름의 원을 그려 ③의 원과 만나는 점 E를 찾습니다.<br><b style="color:#fde68a">⑤ 완성:</b> P와 E를 이으면 ∠DPE = ∠BAC — 크기가 똑같은 각이 완성됩니다.</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8;margin-top:8px"><span style="color:#aaa">왜 이렇게 하면 각이 같을까요? △ABC와 △PDE를 비교하면 AB=PD, AC=PE(둘 다 같은 반지름), BC=DE(폭을 그대로 옮김) — 세 변이 모두 같으므로 SSS 합동, 따라서 대응각 ∠BAC=∠DPE가 같습니다. 이 "각 옮기기"가 앞으로 나올 수직이등분선·각의 이등분선·평행선 작도의 공통 부품입니다.</span></div>`,
+    ans:null },
+  { tag:'📊 개념 — 평행선의 작도 (동위각 이용)', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📊 "동위각이 같으면 평행하다"는 성질을 거꾸로 이용하면, 점 P를 지나며 직선 l에 평행한 직선을 작도할 수 있습니다.</div>
+<svg viewBox="0 0 260 230" style="display:block;margin:8px auto;max-width:260px" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="230" fill="#0d1a28" rx="8"/>
+<line x1="20" y1="190" x2="260" y2="190" stroke="#7dd3fc" stroke-width="2"/>
+<line x1="55" y1="215" x2="240" y2="70" stroke="#fde68a" stroke-width="1.5"/>
+<line x1="140" y1="110" x2="260" y2="110" stroke="#86efac" stroke-width="2"/>
+<circle cx="90" cy="190" r="40" fill="none" stroke="#93c5fd" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+<circle cx="190" cy="110" r="40" fill="none" stroke="#93c5fd" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+<circle cx="221.2" cy="85" r="26.5" fill="none" stroke="#f9a8d4" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+<path d="M 130 190 A 40 40 0 0 0 121.2 165" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+<path d="M 221.2 85 A 40 40 0 0 1 230 110" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+<circle cx="90" cy="190" r="2.5" fill="#e2e8f0"/>
+<circle cx="130" cy="190" r="2.5" fill="#e2e8f0"/>
+<circle cx="121.2" cy="165" r="2.5" fill="#e2e8f0"/>
+<circle cx="190" cy="110" r="2.5" fill="#e2e8f0"/>
+<circle cx="221.2" cy="85" r="2.5" fill="#e2e8f0"/>
+<circle cx="230" cy="110" r="2.5" fill="#e2e8f0"/>
+<text x="78" y="205" fill="#e2e8f0" font-size="11">A</text>
+<text x="134" y="188" fill="#e2e8f0" font-size="11">B</text>
+<text x="103" y="160" fill="#e2e8f0" font-size="11">C</text>
+<text x="196" y="106" fill="#e2e8f0" font-size="11">P</text>
+<text x="225" y="78" fill="#e2e8f0" font-size="11">D</text>
+<text x="234" y="106" fill="#e2e8f0" font-size="11">E</text>
+<text x="14" y="205" fill="#7dd3fc" font-size="11">l</text>
+<text x="245" y="110" fill="#86efac" font-size="11">새 평행선</text>
+</svg>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.85"><b style="color:#fde68a">① 횡단선 긋기:</b> l 위의 한 점 A와 점 P를 지나는 직선(횡단선)을 긋습니다.<br><b style="color:#fde68a">② 각 표시:</b> A를 중심으로 원을 그려 l, 횡단선과의 교점 B, C를 잡습니다(∠BAC가 만들어짐).<br><b style="color:#fde68a">③ 각 옮기기 준비:</b> P를 중심으로 <b>같은 반지름</b>의 원을 그려 횡단선과의 교점 D를 잡습니다.<br><b style="color:#fde68a">④ 폭 옮기기:</b> 컴퍼스로 <span style="text-decoration:overline">BC</span> 길이를 재서, D를 중심으로 그 반지름만큼 원을 그려 ③의 원과 만나는 점 E를 찾습니다.<br><b style="color:#fde68a">⑤ 완성:</b> P와 E를 지나는 직선이 바로 l에 평행한 새 직선입니다 — ∠DPE(동위각)가 ∠BAC와 같아졌기 때문입니다.</div>
+<div style="font-size:.78rem;color:#e2e8f0;line-height:1.8;margin-top:8px"><span style="color:#aaa">핵심: 이 작도는 바로 앞 카드에서 배운 "각 옮기기"를 그대로 재사용한 것입니다 — 동위각의 위치에 각을 옮겨 붙이면, 그게 곧 평행선의 작도입니다.</span></div>`,
+    ans:null },
   { tag:'📊 개념 — 삼각형의 작도, 합동조건과 통한다', tagColor:'#86efac',
     bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">📊 삼각형은 아무 조건이나 준다고 유일하게 그려지지 않습니다. 삼각형이 <b style="color:#fde68a">단 하나로</b> 작도되는 조건은 딱 3가지 — 어디서 많이 본 조건들이죠?</div><div style="font-size:.78rem;color:#e2e8f0;line-height:1.85"><b style="color:#86efac">① 세 변의 길이</b>가 주어질 때 (SSS)<br><b style="color:#7dd3fc">② 두 변의 길이와 그 끼인각</b>이 주어질 때 (SAS)<br><b style="color:#fde68a">③ 한 변의 길이와 그 양 끝각</b>이 주어질 때 (ASA)<br><br><span style="color:#f87171">이 3가지 조건 외에는?</span> 삼각형이 아예 안 그려지거나(예: 세 변의 길이가 삼각형부등식을 만족 못 함), 2개 이상의 서로 다른 삼각형이 그려집니다(SSA의 반례처럼).</div>
@@ -3117,8 +4084,8 @@ y = 3 × 5 = 15
 <line x1="45" y1="102" x2="53" y2="98" stroke="#f87171" stroke-width="2"/>
 <line x1="160" y1="96" x2="168" y2="92" stroke="#f87171" stroke-width="2"/>
 <line x1="165" y1="102" x2="173" y2="98" stroke="#f87171" stroke-width="2"/>
-<path d="M 45 140 A 15 15 0 0 1 34 126" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
-<path d="M 165 140 A 15 15 0 0 1 154 126" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
+<path d="M 45 140 A 15 15 0 0 0 34 126" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
+<path d="M 165 140 A 15 15 0 0 0 154 126" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
 </svg>
 <div style="font-size:.78rem;color:#e2e8f0;line-height:1.8;margin-bottom:14px">위 그림은 <b style="color:#7dd3fc">SAS</b>의 예시입니다: <span style="text-decoration:overline">AB</span>=<span style="text-decoration:overline">DE</span>(노란 눈금 1개), <span style="text-decoration:overline">AC</span>=<span style="text-decoration:overline">DF</span>(빨간 눈금 2개), 그 끼인각 ∠A=∠D(파란 호 표시) — 이 세 가지만 같으면 나머지(<span style="text-decoration:overline">BC</span>=<span style="text-decoration:overline">EF</span>, ∠B=∠E, ∠C=∠F)는 자동으로 결정됩니다.</div>
 <b style="color:#fde68a">③ ASA (각-끼인변-각)</b>
@@ -3134,10 +4101,10 @@ y = 3 × 5 = 15
 <text x="177" y="32" fill="#e2e8f0" font-size="11">F</text>
 <line x1="65.0" y1="145.0" x2="65.0" y2="135.0" stroke="#fde68a" stroke-width="2"/>
 <line x1="185.0" y1="145.0" x2="185.0" y2="135.0" stroke="#fde68a" stroke-width="2"/>
-<path d="M 45 140 A 15 15 0 0 1 34 126" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
-<path d="M 85 140 A 15 15 0 0 0 94.43 126.07" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
-<path d="M 165 140 A 15 15 0 0 1 154 126" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
-<path d="M 205 140 A 15 15 0 0 0 214.43 126.07" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
+<path d="M 45 140 A 15 15 0 0 0 34 126" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
+<path d="M 85 140 A 15 15 0 0 1 94.43 126.07" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
+<path d="M 165 140 A 15 15 0 0 0 154 126" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
+<path d="M 205 140 A 15 15 0 0 1 214.43 126.07" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
 </svg>
 <div style="font-size:.78rem;color:#e2e8f0;line-height:1.8;margin-bottom:8px">위 그림은 <b style="color:#fde68a">ASA</b>의 예시입니다: ∠A=∠D, ∠B=∠E(파란 호 표시), 그 끼인변 <span style="text-decoration:overline">AB</span>=<span style="text-decoration:overline">DE</span>(노란 눈금) — 대응하는 두 각의 크기와 그 끼인변의 길이가 같으면 두 삼각형은 합동입니다.</div>
 <div style="font-size:.78rem;color:#e2e8f0;line-height:1.85"><b style="color:#86efac">SSS</b> (변-변-변): 대응하는 세 변의 길이가 각각 같다<br><b style="color:#7dd3fc">SAS</b> (변-끼인각-변): 대응하는 두 변의 길이와 그 <b>끼인각</b>의 크기가 각각 같다<br><b style="color:#fde68a">ASA</b> (각-끼인변-각): 대응하는 두 각의 크기와 그 <b>끼인변</b>의 길이가 각각 같다<br><br><span style="color:#f87171">주의:</span> 변-변-각(끼인각이 아닌 각)이나 각-각-각(AAA)은 합동 조건이 아닙니다 — AAA는 모양은 같아도 크기가 다를 수 있어요(그건 '닮음'이라는 다른 개념).</div>`,
@@ -3148,7 +4115,7 @@ y = 3 × 5 = 15
 
 
 'geometry-hard-basic': [
-  { tag:'🌱 기본 1/4 — 동위각·엇각 계산', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
+  { tag:'🌱 기본 1/5 — 동위각·엇각 계산', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">두 직선 l, m이 평행합니다. 횡단선과 l이 만나 생긴 한 각이 70°일 때, 이 각의 동위각과 엇각(m쪽, 평행선 사이)의 크기를 각각 구하세요.</div>`,
     ans:`<svg viewBox="0 0 260 190" style="display:block;margin:8px auto;max-width:240px" xmlns="http://www.w3.org/2000/svg">
 <rect width="260" height="190" fill="#0d1a28" rx="8"/>
@@ -3164,7 +4131,7 @@ y = 3 × 5 = 15
 <text x="168" y="74" fill="#93c5fd" font-size="12" font-weight="bold">엇각?</text>
 </svg>
 <b style="color:#86efac">풀이:</b><br>두 직선이 평행하면 동위각의 크기는 서로 같다 → 동위각 = <b style="color:#fde68a;font-size:.9rem">70°</b><br>엇각의 크기도 서로 같다 → 엇각 = <b style="color:#fde68a;font-size:.9rem">70°</b><br><br><span style="color:#aaa">동위각·엇각·(같은 직선 위) 맞꼭지각은 평행선에서 모두 크기가 같은 각의 무리입니다.</span>` },
-  { tag:'🌱 기본 2/4 — 합동조건 판별', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
+  { tag:'🌱 기본 2/5 — 합동조건 판별', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">삼각형 ABC와 삼각형 DEF에서 <span style="text-decoration:overline">AB</span>=<span style="text-decoration:overline">DE</span>, <span style="text-decoration:overline">BC</span>=<span style="text-decoration:overline">EF</span>, ∠B=∠E일 때 두 삼각형은 합동입니다. 이때 사용된 합동조건은 SSS·SAS·ASA 중 무엇일까요?</div>`,
     ans:`<svg viewBox="0 0 260 170" style="display:block;margin:8px auto;max-width:240px" xmlns="http://www.w3.org/2000/svg">
 <rect width="260" height="170" fill="#0d1a28" rx="8"/>
@@ -3186,7 +4153,7 @@ y = 3 × 5 = 15
 <path d="M 150 125 A 15 15 0 0 1 165 140" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
 </svg>
 <b style="color:#86efac">풀이:</b><br>주어진 것: 변 <span style="text-decoration:overline">AB</span>(노란 눈금), 변 <span style="text-decoration:overline">BC</span>(빨간 눈금), 그 사이의 각 ∠B(파란 호) — ∠B는 <span style="text-decoration:overline">AB</span>와 <span style="text-decoration:overline">BC</span>가 만나서 만드는 끼인각<br>변-끼인각-변 순서 → <b style="color:#fde68a;font-size:.9rem">SAS</b><br><br><span style="color:#aaa">만약 ∠B가 <span style="text-decoration:overline">AB</span>, <span style="text-decoration:overline">BC</span>의 끼인각이 아니라 다른 각이었다면(변-변-각) 이 조건만으로는 합동을 확정할 수 없습니다.</span>` },
-  { tag:'🌱 기본 3/4 — 삼각형 속 평행선, 동위각', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
+  { tag:'🌱 기본 3/5 — 삼각형 속 평행선, 동위각', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">△ABC에서 D는 <span style="text-decoration:overline">AB</span> 위의 점, E는 <span style="text-decoration:overline">AC</span> 위의 점이고 <span style="text-decoration:overline">DE</span>∥<span style="text-decoration:overline">BC</span>입니다. ∠ADE=72°일 때 ∠ABC의 크기는?</div>`,
     ans:`<svg viewBox="0 0 240 190" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
 <rect width="240" height="190" fill="#0d1a28" rx="8"/>
@@ -3201,7 +4168,7 @@ y = 3 × 5 = 15
 <text x="43" y="163" fill="#f87171" font-size="12" font-weight="bold">?</text>
 </svg>
 <b style="color:#86efac">풀이:</b><br><span style="text-decoration:overline">DE</span>∥<span style="text-decoration:overline">BC</span>이고 <span style="text-decoration:overline">AB</span>는 이 둘을 가로지르는 횡단선입니다.<br>∠ADE와 ∠ABC는 동위각 관계 → 크기가 서로 같습니다.<br>∠ABC = <b style="color:#fde68a;font-size:.9rem">72°</b><br><br><span style="color:#aaa">삼각형 안쪽 각(∠ADE)과 삼각형의 꼭짓점 각(∠ABC)이 서로 다른 자리처럼 보여도, <span style="text-decoration:overline">DE</span>∥<span style="text-decoration:overline">BC</span>라는 사실 하나로 바로 연결됩니다.</span>` },
-  { tag:'🌱 기본 4/4 — 삼각형이 작도되지 않는 경우', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
+  { tag:'🌱 기본 4/5 — 삼각형이 작도되지 않는 경우', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">세 변의 길이가 각각 3cm, 4cm, 8cm로 주어졌습니다. 이 세 변으로 삼각형을 작도할 수 있을까요?</div>`,
     ans:`<svg viewBox="0 0 220 90" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
 <rect width="220" height="90" fill="#0d1a28" rx="8"/>
@@ -3214,7 +4181,108 @@ y = 3 × 5 = 15
 <text x="8" y="18" fill="#86efac" font-size="10">A중심 반지름 3cm</text>
 <text x="140" y="18" fill="#7dd3fc" font-size="10">B중심 반지름 4cm</text>
 </svg>
-<b style="color:#86efac">풀이:</b><br>가장 긴 변(8cm)의 양 끝 A, B에서 각각 3cm, 4cm 반지름의 원을 그려 세 번째 꼭짓점을 찾으려 합니다.<br>두 원이 만나려면 반지름의 합이 두 중심 사이 거리보다 <b>커야</b> 합니다: 3+4=7cm < 8cm — 두 원이 서로 안 닿습니다(그림처럼 벌어짐).<br><br>→ <b style="color:#fde68a;font-size:.9rem">삼각형을 작도할 수 없습니다</b><br><br><span style="color:#aaa">삼각형이 되려면 항상 '가장 긴 변 < 나머지 두 변의 합'(삼각형의 부등식)을 만족해야 합니다. SSS 합동조건도 애초에 삼각형이 성립하는 세 변에서만 의미가 있습니다.</span>` }
+<b style="color:#86efac">풀이:</b><br>가장 긴 변(8cm)의 양 끝 A, B에서 각각 3cm, 4cm 반지름의 원을 그려 세 번째 꼭짓점을 찾으려 합니다.<br>두 원이 만나려면 반지름의 합이 두 중심 사이 거리보다 <b>커야</b> 합니다: 3+4=7cm < 8cm — 두 원이 서로 안 닿습니다(그림처럼 벌어짐).<br><br>→ <b style="color:#fde68a;font-size:.9rem">삼각형을 작도할 수 없습니다</b><br><br><span style="color:#aaa">삼각형이 되려면 항상 '가장 긴 변 < 나머지 두 변의 합'(삼각형의 부등식)을 만족해야 합니다. SSS 합동조건도 애초에 삼각형이 성립하는 세 변에서만 의미가 있습니다.</span>` },
+  { tag:'🌱 기본 5/5 — 공간에서의 위치관계, 직육면체로 확인하기', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:8px">직육면체 ABCD-EFGH가 있습니다(아래 면 ABCD, 윗면 EFGH, A 위에 E, B 위에 F, C 위에 G, D 위에 H). 다음 관계를 각각 판별하세요.</div>
+<svg viewBox="0 0 280 240" style="display:block;margin:8px auto;max-width:240px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="240" fill="#0d1a28" rx="8"/>
+<polygon points="70,200 190,200 230,150 110,150" fill="rgba(148,163,184,.05)" stroke="#4b5563" stroke-width="1.5"/>
+<polygon points="70,100 190,100 230,50 110,50" fill="rgba(148,163,184,.05)" stroke="#4b5563" stroke-width="1.5"/>
+<line x1="70" y1="200" x2="70" y2="100" stroke="#4b5563" stroke-width="1.5"/>
+<line x1="190" y1="200" x2="190" y2="100" stroke="#4b5563" stroke-width="1.5"/>
+<line x1="230" y1="150" x2="230" y2="50" stroke="#4b5563" stroke-width="1.5"/>
+<line x1="110" y1="150" x2="110" y2="50" stroke="#4b5563" stroke-width="1.5"/>
+<circle cx="70" cy="200" r="2.5" fill="#e2e8f0"/><circle cx="190" cy="200" r="2.5" fill="#e2e8f0"/>
+<circle cx="230" cy="150" r="2.5" fill="#e2e8f0"/><circle cx="110" cy="150" r="2.5" fill="#e2e8f0"/>
+<circle cx="70" cy="100" r="2.5" fill="#e2e8f0"/><circle cx="190" cy="100" r="2.5" fill="#e2e8f0"/>
+<circle cx="230" cy="50" r="2.5" fill="#e2e8f0"/><circle cx="110" cy="50" r="2.5" fill="#e2e8f0"/>
+<text x="56" y="216" fill="#e2e8f0" font-size="12">A</text>
+<text x="196" y="216" fill="#e2e8f0" font-size="12">B</text>
+<text x="236" y="146" fill="#e2e8f0" font-size="12">C</text>
+<text x="86" y="146" fill="#e2e8f0" font-size="12">D</text>
+<text x="52" y="90" fill="#e2e8f0" font-size="12">E</text>
+<text x="196" y="90" fill="#e2e8f0" font-size="12">F</text>
+<text x="236" y="42" fill="#e2e8f0" font-size="12">G</text>
+<text x="86" y="42" fill="#e2e8f0" font-size="12">H</text>
+</svg>
+<div style="font-size:.8rem;color:#e2e8f0;line-height:2;margin-top:6px">① 모서리 AB와 모서리 EF<br>② 모서리 AB와 모서리 CG<br>③ 모서리 AE와 면 ABCD<br>④ 면 ABCD와 면 EFGH<br>⑤ 모서리 AB와 면 EFGH</div>`,
+    ans:`<b style="color:#86efac">풀이:</b>
+<div style="margin-top:8px">
+<b style="color:#86efac">① AB와 EF → 평행</b>
+<svg viewBox="0 0 280 240" style="display:block;margin:6px auto;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="240" fill="#0d1a28" rx="8"/>
+<polygon points="70,200 190,200 230,150 110,150" fill="none" stroke="#374151" stroke-width="1.2"/>
+<polygon points="70,100 190,100 230,50 110,50" fill="none" stroke="#374151" stroke-width="1.2"/>
+<line x1="70" y1="200" x2="70" y2="100" stroke="#374151" stroke-width="1.2"/>
+<line x1="190" y1="200" x2="190" y2="100" stroke="#374151" stroke-width="1.2"/>
+<line x1="230" y1="150" x2="230" y2="50" stroke="#374151" stroke-width="1.2"/>
+<line x1="110" y1="150" x2="110" y2="50" stroke="#374151" stroke-width="1.2"/>
+<line x1="70" y1="200" x2="190" y2="200" stroke="#86efac" stroke-width="3.5"/>
+<line x1="70" y1="100" x2="190" y2="100" stroke="#86efac" stroke-width="3.5"/>
+<text x="56" y="216" fill="#e2e8f0" font-size="11">A</text><text x="196" y="216" fill="#e2e8f0" font-size="11">B</text>
+<text x="52" y="90" fill="#e2e8f0" font-size="11">E</text><text x="196" y="90" fill="#e2e8f0" font-size="11">F</text>
+</svg>
+<div style="font-size:.78rem;color:#94a3b8">두 모서리 모두 같은 방향, 절대 안 만남 → 평행</div>
+</div>
+<div style="margin-top:12px">
+<b style="color:#f87171">② AB와 CG → 꼬인 위치</b>
+<svg viewBox="0 0 280 240" style="display:block;margin:6px auto;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="240" fill="#0d1a28" rx="8"/>
+<polygon points="70,200 190,200 230,150 110,150" fill="none" stroke="#374151" stroke-width="1.2"/>
+<polygon points="70,100 190,100 230,50 110,50" fill="none" stroke="#374151" stroke-width="1.2"/>
+<line x1="70" y1="200" x2="70" y2="100" stroke="#374151" stroke-width="1.2"/>
+<line x1="190" y1="200" x2="190" y2="100" stroke="#374151" stroke-width="1.2"/>
+<line x1="110" y1="150" x2="110" y2="50" stroke="#374151" stroke-width="1.2"/>
+<line x1="70" y1="200" x2="190" y2="200" stroke="#f87171" stroke-width="3.5"/>
+<line x1="230" y1="150" x2="230" y2="50" stroke="#93c5fd" stroke-width="3.5"/>
+<text x="56" y="216" fill="#e2e8f0" font-size="11">A</text><text x="196" y="216" fill="#e2e8f0" font-size="11">B</text>
+<text x="236" y="146" fill="#e2e8f0" font-size="11">C</text><text x="236" y="42" fill="#e2e8f0" font-size="11">G</text>
+</svg>
+<div style="font-size:.78rem;color:#94a3b8">방향도 다르고(평행 아님), 아무리 늘여도 안 만남 → 꼬인 위치</div>
+</div>
+<div style="margin-top:12px">
+<b style="color:#fde68a">③ AE와 면 ABCD → 수직</b>
+<svg viewBox="0 0 280 240" style="display:block;margin:6px auto;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="240" fill="#0d1a28" rx="8"/>
+<polygon points="70,200 190,200 230,150 110,150" fill="rgba(253,230,138,.15)" stroke="#374151" stroke-width="1.2"/>
+<polygon points="70,100 190,100 230,50 110,50" fill="none" stroke="#374151" stroke-width="1.2"/>
+<line x1="190" y1="200" x2="190" y2="100" stroke="#374151" stroke-width="1.2"/>
+<line x1="230" y1="150" x2="230" y2="50" stroke="#374151" stroke-width="1.2"/>
+<line x1="110" y1="150" x2="110" y2="50" stroke="#374151" stroke-width="1.2"/>
+<line x1="70" y1="200" x2="70" y2="100" stroke="#fde68a" stroke-width="3.5"/>
+<text x="56" y="216" fill="#e2e8f0" font-size="11">A</text>
+<text x="52" y="90" fill="#e2e8f0" font-size="11">E</text>
+</svg>
+<div style="font-size:.78rem;color:#94a3b8">AE는 세워진 모서리, 바닥 면 ABCD와 직각으로 만남 → 수직</div>
+</div>
+<div style="margin-top:12px">
+<b style="color:#c4b5fd">④ 면 ABCD와 면 EFGH → 평행</b>
+<svg viewBox="0 0 280 240" style="display:block;margin:6px auto;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="240" fill="#0d1a28" rx="8"/>
+<polygon points="70,200 190,200 230,150 110,150" fill="rgba(134,239,172,.18)" stroke="#86efac" stroke-width="2"/>
+<polygon points="70,100 190,100 230,50 110,50" fill="rgba(125,211,252,.18)" stroke="#7dd3fc" stroke-width="2"/>
+<line x1="70" y1="200" x2="70" y2="100" stroke="#374151" stroke-width="1.2"/>
+<line x1="190" y1="200" x2="190" y2="100" stroke="#374151" stroke-width="1.2"/>
+<line x1="230" y1="150" x2="230" y2="50" stroke="#374151" stroke-width="1.2"/>
+<line x1="110" y1="150" x2="110" y2="50" stroke="#374151" stroke-width="1.2"/>
+</svg>
+<div style="font-size:.78rem;color:#94a3b8">두 면은 절대 만나지 않음(위·아래로 나란히) → 평행</div>
+</div>
+<div style="margin-top:12px">
+<b style="color:#fbbf24">⑤ AB와 면 EFGH → 평행</b>
+<svg viewBox="0 0 280 240" style="display:block;margin:6px auto;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="240" fill="#0d1a28" rx="8"/>
+<polygon points="70,200 190,200 230,150 110,150" fill="none" stroke="#374151" stroke-width="1.2"/>
+<polygon points="70,100 190,100 230,50 110,50" fill="rgba(125,211,252,.18)" stroke="#7dd3fc" stroke-width="2"/>
+<line x1="70" y1="200" x2="70" y2="100" stroke="#374151" stroke-width="1.2"/>
+<line x1="190" y1="200" x2="190" y2="100" stroke="#374151" stroke-width="1.2"/>
+<line x1="230" y1="150" x2="230" y2="50" stroke="#374151" stroke-width="1.2"/>
+<line x1="110" y1="150" x2="110" y2="50" stroke="#374151" stroke-width="1.2"/>
+<line x1="70" y1="200" x2="190" y2="200" stroke="#fbbf24" stroke-width="3.5"/>
+<text x="56" y="216" fill="#e2e8f0" font-size="11">A</text><text x="196" y="216" fill="#e2e8f0" font-size="11">B</text>
+</svg>
+<div style="font-size:.78rem;color:#94a3b8">AB는 면 ABCD 위에 있고, 면 ABCD가 면 EFGH와 평행하므로 AB도 면 EFGH와 만나지 않음 → 평행</div>
+</div>` }
 ],
 
 /* ── 기본 도형 심화 문제 (16장) ─────────────── */
@@ -3405,12 +4473,10 @@ y = 3 × 5 = 15
 ⑤ ㉣에서 컴퍼스로 잰 <span style="text-decoration:overline">RS</span>의 길이는 ㉡, ㉢ 원의 반지름과 같다.`,
     ans:`<b style="color:#f87171">풀이:</b><br>①②③④는 모두 이 작도법의 표준 절차와 원리를 정확히 설명합니다 (참).<br>⑤ <span style="text-decoration:overline">RS</span>는 원 위의 두 점 R, S를 <b>이은 선분(현)</b>의 길이이지, 원의 반지름이 아닙니다. 반지름(㉡,㉢의 원)은 ∠RQS의 크기와 무관하게 항상 같지만, <span style="text-decoration:overline">RS</span>의 길이는 ∠RQS가 얼마냐에 따라 달라집니다 — 각이 정확히 60°일 때만 우연히 반지름과 같아집니다. → <b style="color:#f87171;font-size:.9rem">⑤가 옳지 않음</b><br><br><span style="color:#aaa">"반지름으로 그린 원"과 "그 원 위의 두 점을 이은 거리"는 다른 개념입니다 — 작도 문제에서 자주 헷갈리는 지점이니 그림에서 무엇이 반지름이고 무엇이 현인지 항상 구분해서 볼 것.</span>` },
   { tag:'⚡ 심화 8/16 — 4단 꺾인 평행선, 문자식으로 풀기', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">네 평행선 l₁, l₂, l₃, l₄ 사이를 지그재그로 잇는 선이 있습니다. 점 A에서 l₁과 이루는 각은 25°, 점 D에서 l₄와 이루는 각은 35°입니다. 꺾인각 ∠B=(x+15)°, ∠C=(2x−10)°일 때, x의 값은?<br><span style="font-size:.78rem;color:#f87171;font-weight:400">(힌트: B와 C 각각에서 평행선에 평행한 보조선을 그어보세요.)</span></div>
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">평행한 두 직선 l₁, l₄ 사이를 A, B, C, D를 차례로 잇는 꺾인 선이 있습니다. 점 A에서 l₁과 이루는 각은 25°, 점 D에서 l₄와 이루는 각은 35°입니다. 꺾인각 ∠B=(x+15)°, ∠C=(2x−10)°일 때, x의 값은?</div>
 <svg viewBox="0 0 240 250" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
 <rect width="240" height="250" fill="#0d1a28" rx="8"/>
 <line x1="20" y1="20" x2="220" y2="20" stroke="#7dd3fc" stroke-width="2"/>
-<line x1="20" y1="90" x2="220" y2="90" stroke="#7dd3fc" stroke-width="2"/>
-<line x1="20" y1="160" x2="220" y2="160" stroke="#7dd3fc" stroke-width="2"/>
 <line x1="20" y1="230" x2="220" y2="230" stroke="#7dd3fc" stroke-width="2"/>
 <polyline points="40,20 190.1,90 40,160 139.96,230" fill="none" stroke="#fde68a" stroke-width="2"/>
 <circle cx="40" cy="20" r="2.5" fill="#e2e8f0"/>
@@ -3418,8 +4484,6 @@ y = 3 × 5 = 15
 <circle cx="40" cy="160" r="2.5" fill="#e2e8f0"/>
 <circle cx="139.96" cy="230" r="2.5" fill="#e2e8f0"/>
 <text x="224" y="24" fill="#7dd3fc" font-size="11">l₁</text>
-<text x="224" y="94" fill="#7dd3fc" font-size="11">l₂</text>
-<text x="224" y="164" fill="#7dd3fc" font-size="11">l₃</text>
 <text x="224" y="234" fill="#7dd3fc" font-size="11">l₄</text>
 <text x="30" y="14" fill="#e2e8f0" font-size="11">A</text>
 <text x="195" y="88" fill="#e2e8f0" font-size="11">B</text>
@@ -3431,7 +4495,34 @@ y = 3 × 5 = 15
 <text x="120.9" y="228" fill="#fbbf24" font-size="11" font-weight="bold">35°</text>
 </svg>
 ① 30    ② 32    ③ 35    ④ 38    ⑤ 40`,
-    ans:`<b style="color:#f87171">풀이:</b><br>① 점 B를 지나고 l₂(=l₁∥l₂)에 평행한 보조선을 그으면, ∠B는 두 엇각으로 쪼개집니다: (A쪽 엇각)+(C쪽 엇각) = 25° + (BC가 l₂와 이루는 각)<br>→ (BC가 l₂와 이루는 각) = (x+15)−25 = <b style="color:#fde68a">(x−10)°</b><br><br>② 마찬가지로 점 C를 지나는 보조선으로 ∠C를 쪼개면: ∠C = (BC가 l₃와 이루는 각) + 35°<br>→ (BC가 l₃와 이루는 각) = (2x−10)−35 = <b style="color:#fde68a">(2x−45)°</b><br><br>③ l₂∥l₃이므로 BC가 l₂와 이루는 각 = BC가 l₃와 이루는 각(둘 다 같은 선분 BC가 평행한 두 직선과 만나 생기는 엇각) → <b style="color:#fde68a">x−10 = 2x−45</b><br>→ x = <b style="color:#fde68a;font-size:.9rem">35</b><br><br><span style="color:#aaa">꺾인 점이 늘어나도 원리는 같습니다 — 각 꺾인 점마다 보조선을 긋고 엇각으로 쪼갠 뒤, "가운데 선분(BC)이 두 평행선(l₂,l₃)과 만드는 각은 같다"는 사실로 연결하면 풀립니다.</span>` },
+    ans:`<b style="color:#f87171">풀이:</b>
+<svg viewBox="0 0 240 250" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
+<rect width="240" height="250" fill="#0d1a28" rx="8"/>
+<line x1="20" y1="20" x2="220" y2="20" stroke="#7dd3fc" stroke-width="2"/>
+<line x1="20" y1="230" x2="220" y2="230" stroke="#7dd3fc" stroke-width="2"/>
+<line x1="20" y1="90" x2="220" y2="90" stroke="#86efac" stroke-width="1.6" stroke-dasharray="6 4"/>
+<line x1="20" y1="160" x2="220" y2="160" stroke="#86efac" stroke-width="1.6" stroke-dasharray="6 4"/>
+<polyline points="40,20 190.1,90 40,160 139.96,230" fill="none" stroke="#fde68a" stroke-width="2"/>
+<circle cx="40" cy="20" r="2.5" fill="#e2e8f0"/>
+<circle cx="190.1" cy="90" r="2.5" fill="#e2e8f0"/>
+<circle cx="40" cy="160" r="2.5" fill="#e2e8f0"/>
+<circle cx="139.96" cy="230" r="2.5" fill="#e2e8f0"/>
+<text x="224" y="24" fill="#7dd3fc" font-size="11">l₁</text>
+<text x="224" y="94" fill="#86efac" font-size="11">m</text>
+<text x="224" y="164" fill="#86efac" font-size="11">n</text>
+<text x="224" y="234" fill="#7dd3fc" font-size="11">l₄</text>
+<text x="30" y="14" fill="#e2e8f0" font-size="11">A</text>
+<text x="195" y="88" fill="#e2e8f0" font-size="11">B</text>
+<text x="28" y="172" fill="#e2e8f0" font-size="11">C</text>
+<text x="144" y="245" fill="#e2e8f0" font-size="11">D</text>
+<text x="59.5" y="28" fill="#fbbf24" font-size="11" font-weight="bold">25°</text>
+<text x="124" y="84" fill="#fbbf24" font-size="11" font-weight="bold">25°</text>
+<text x="104" y="106" fill="#fbbf24" font-size="11" font-weight="bold">(x−10)°</text>
+<text x="62" y="154" fill="#fbbf24" font-size="11" font-weight="bold">(2x−45)°</text>
+<text x="62" y="176" fill="#fbbf24" font-size="11" font-weight="bold">35°</text>
+<text x="120.9" y="228" fill="#fbbf24" font-size="11" font-weight="bold">35°</text>
+</svg>
+① 점 B를 지나고 l₁에 평행한 보조선 m을 그으면, ∠B는 두 엇각으로 쪼개집니다: (A쪽 엇각)+(C쪽 엇각) = 25° + (BC가 m과 이루는 각)<br>→ (BC가 m과 이루는 각) = (x+15)−25 = <b style="color:#fde68a">(x−10)°</b><br><br>② 마찬가지로 점 C를 지나고 l₁에 평행한 보조선 n으로 ∠C를 쪼개면: ∠C = (BC가 n과 이루는 각) + 35°<br>→ (BC가 n과 이루는 각) = (2x−10)−35 = <b style="color:#fde68a">(2x−45)°</b><br><br>③ m∥n이므로 BC가 m과 이루는 각 = BC가 n과 이루는 각(둘 다 같은 선분 BC가 평행한 두 직선과 만나 생기는 엇각) → <b style="color:#fde68a">x−10 = 2x−45</b><br>→ x = <b style="color:#fde68a;font-size:.9rem">35</b><br><br><span style="color:#aaa">꺾인 점이 늘어나도 원리는 같습니다 — 각 꺾인 점마다 보조선을 긋고 엇각으로 쪼갠 뒤, "가운데 선분(BC)이 두 평행선(m,n)과 만드는 각은 같다"는 사실로 연결하면 풀립니다.</span>` },
   { tag:'⚡ 심화 9/16 — 비율로 나뉜 각, 맞꼭지각과 결합', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">세 직선이 한 점 O에서 만납니다. 그림처럼 평각(180°)을 이루는 세 각 ∠a, ∠b, ∠c의 크기의 비가 2:3:4일 때, (1) 가장 큰 각 ∠c의 크기와 (2) ∠c의 맞꼭지각의 크기를 각각 구하세요.</div>
 <svg viewBox="0 0 260 200" style="display:block;margin:8px auto;max-width:230px" xmlns="http://www.w3.org/2000/svg">
@@ -3553,7 +4644,7 @@ y = 3 × 5 = 15
 </svg>
 <span style="font-size:.78rem;color:#94a3b8">(길이가 같은 두 변을 a, 밑변을 b라 하면 2a+b=17)</span>`,
     ans:`<b style="color:#f87171">풀이:</b> 길이가 같은 두 변을 a, 밑변을 b(자연수)라 하면 <b style="color:#fde68a">2a+b=17</b>, 즉 b=17−2a<br><br>① <b>b가 자연수(1 이상)이려면:</b> 17−2a≥1 → a≤8<br>② <b>삼각형부등식(가장 긴 변 &lt; 나머지 두 변의 합, 즉 b&lt;a+a=2a)을 만족하려면:</b> 17−2a&lt;2a → 17&lt;4a → a&gt;4.25 → a≥5<br><br>③ 두 조건을 합치면 <b style="color:#fde68a">5≤a≤8</b>인 자연수 a 각각에 대해 삼각형이 하나씩 결정됩니다:<br>a=5→b=7 (5,5,7) &nbsp; a=6→b=5 (6,6,5) &nbsp; a=7→b=3 (7,7,3) &nbsp; a=8→b=1 (8,8,1)<br><br>→ 만들 수 있는 이등변삼각형은 모두 <b style="color:#fde68a;font-size:.9rem">4개</b><br><br><span style="color:#aaa">"자연수 조건"과 "삼각형부등식 조건"을 동시에 만족하는 정수 a의 범위를 부등식으로 좁혀나가는 것이 핵심입니다 — 삼각형의 작도 가능 조건이 여기서는 "경우의 수 세기"와 결합됐습니다.</span>` },
-  { tag:'⚡ 심화 16/16 — 공간 위치관계 종합 판별 (보기 7개)', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+  { tag:'⚡ 심화 16/18 — 공간 위치관계 종합 판별 (보기 7개)', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
     body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">공간에서 서로 다른 두 직선 l, m, n과 서로 다른 두 평면 P, Q에 대한 다음 설명 중, <b style="color:#f87171">항상</b> 옳은 것을 모두 고르세요.</div>
 <div style="font-size:.8rem;color:#e2e8f0;line-height:2.1;margin-top:8px">
 ① l∥P, l∥Q이면 P∥Q이다<br>
@@ -3573,7 +4664,60 @@ y = 3 × 5 = 15
 <b style="color:#f87171">⑥ 거짓</b> — l⊥Q라는 조건은 l이 Q의 법선 방향과 같다는 뜻인데, P⊥Q이면 P 안에도 그 방향과 나란한 직선이 있을 수 있습니다. 이 경우 l은 P와 평행한 게 아니라 아예 <b>P 위에 포함</b>될 수도 있어서, "항상 l∥P"라고 단정할 수 없습니다.<br><br>
 <b style="color:#86efac">⑦ 참</b> — P∥Q이므로 P와 Q는 절대 만나지 않습니다. l이 P 안에 있으므로 l도 Q와 만날 수 없고, l은 P⊂아니라 Q에 포함되지도 않으므로(P≠Q, P∥Q) → l과 Q는 만나지도 포함되지도 않는 관계, 즉 l∥Q.<br><br>
 → 항상 옳은 것: <b style="color:#fde68a;font-size:.9rem">②, ③, ④, ⑦</b><br><br>
-<span style="color:#aaa">공간도형 참/거짓 문제의 함정은 대부분 "①⑤처럼 조건이 두 대상에게 '따로따로' 주어진 경우"입니다 — 두 직선(또는 평면)이 '같은 하나'에 대해 같은 관계를 가진다고 해서, 그 둘끼리도 같은 관계라고 착각하기 쉽습니다. 항상 반례(꼬인위치, 포함관계)부터 의심할 것.</span>` }
+<span style="color:#aaa">공간도형 참/거짓 문제의 함정은 대부분 "①⑤처럼 조건이 두 대상에게 '따로따로' 주어진 경우"입니다 — 두 직선(또는 평면)이 '같은 하나'에 대해 같은 관계를 가진다고 해서, 그 둘끼리도 같은 관계라고 착각하기 쉽습니다. 항상 반례(꼬인위치, 포함관계)부터 의심할 것.</span>` },
+  { tag:'🔥 Challenge 17/18 — 전개도를 접어 꼬인위치 찾기', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">아래 전개도를 접어 정육면체를 만들 때, 모서리 AB와 꼬인위치에 있는 모서리를 모두 고르면? (정답 3개)</div>
+<svg viewBox="0 0 220 180" style="display:block;margin:8px auto;max-width:280px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="180" fill="#0d1a28" rx="8"/>
+<g transform="translate(10,10)">
+<rect x="60" y="20" width="40" height="40" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
+<rect x="20" y="60" width="40" height="40" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
+<rect x="60" y="60" width="40" height="40" fill="rgba(248,113,113,.15)" stroke="#f87171" stroke-width="2"/>
+<rect x="100" y="60" width="40" height="40" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
+<rect x="140" y="60" width="40" height="40" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
+<rect x="60" y="100" width="40" height="40" fill="none" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="56" y="16" fill="#fde68a" font-size="11">H</text>
+<text x="96" y="16" fill="#fde68a" font-size="11">G</text>
+<text x="96" y="64" fill="#fde68a" font-size="11">C</text>
+<text x="56" y="64" fill="#fde68a" font-size="11">D</text>
+<text x="16" y="56" fill="#fde68a" font-size="11">H</text>
+<text x="56" y="104" fill="#86efac" font-size="11">A</text>
+<text x="16" y="104" fill="#fde68a" font-size="11">E</text>
+<text x="96" y="104" fill="#86efac" font-size="11">B</text>
+<text x="136" y="64" fill="#fde68a" font-size="11">G</text>
+<text x="136" y="104" fill="#f87171" font-size="11">F</text>
+<text x="176" y="64" fill="#fde68a" font-size="11">H</text>
+<text x="176" y="104" fill="#fde68a" font-size="11">E</text>
+<text x="56" y="144" fill="#fde68a" font-size="11">E</text>
+<text x="96" y="144" fill="#f87171" font-size="11">F</text>
+<line x1="60" y1="100" x2="100" y2="100" stroke="#86efac" stroke-width="3"/>
+</g>
+</svg>
+<div style="font-size:.74rem;color:#94a3b8;text-align:center">(굵은 초록선 = 모서리 AB. 같은 글자는 접었을 때 같은 꼭짓점으로 만납니다)</div>
+<div style="font-size:.78rem;color:#e2e8f0;margin-top:6px">① CG ② DA ③ FG ④ DC ⑤ EH ⑥ BC</div>`,
+    ans:`<b style="color:#f87171">풀이:</b> 정답 <b style="color:#fde68a;font-size:.9rem">①③⑤ (CG, FG, EH)</b><br><br>
+AB와 평행: DC, EF, GH(방향이 같은 3개)<br>
+AB와 만남(한 점 공유): AE, AD, BF, BC<br>
+나머지 CG, HD, FG, EH는 평행하지도 만나지도 않는 <b style="color:#f87171">꼬인위치</b>입니다.<br><br>
+<span style="color:#aaa">전개도를 실제 (x,y,z) 좌표로 접어서 8개 꼭짓점의 위치를 구한 뒤, 12개 모서리 전부에 대해 평행·교차·꼬인위치를 직접 계산해 확인한 결과입니다.</span>` },
+  { tag:'🔥 Challenge 18/18 — 90°는 왜 3등분이 가능할까?', tagColor:'#f87171', bg:'rgba(248,113,113,.07)', bd:'rgba(248,113,113,.25)',
+    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">"각의 3등분은 일반적으로 작도 불가능하다"고 배웠습니다. 그런데 90°를 정확히 3등분(30°씩)하는 것은 가능할까요? 가능하다면 어떻게 작도할 수 있을까요?</div>
+<svg viewBox="0 0 220 200" style="display:block;margin:8px auto;max-width:220px" xmlns="http://www.w3.org/2000/svg">
+<rect width="220" height="200" fill="#0d1a28" rx="8"/>
+<line x1="60" y1="180" x2="200" y2="180" stroke="#93c5fd" stroke-width="2"/>
+<line x1="60" y1="180" x2="60" y2="40" stroke="#93c5fd" stroke-width="2"/>
+<line x1="60" y1="180" x2="181.2" y2="110" stroke="#fde68a" stroke-width="2" stroke-dasharray="5,3"/>
+<line x1="60" y1="180" x2="130" y2="58.8" stroke="#fde68a" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="46" y="192" fill="#e2e8f0" font-size="11">O</text>
+<text x="150" y="175" fill="#f87171" font-size="12" font-weight="bold">30°</text>
+<text x="110" y="140" fill="#f87171" font-size="12" font-weight="bold">30°</text>
+<text x="78" y="90" fill="#f87171" font-size="12" font-weight="bold">30°</text>
+</svg>`,
+    ans:`<b style="color:#c4b5fd">답: 가능합니다.</b> 단, "3등분 작도법"이 따로 있어서가 아니라, 결과인 30°라는 각이 <b style="color:#fde68a">다른 방법으로 독립적으로 작도 가능</b>하기 때문입니다.<br><br>
+① 정삼각형을 작도(세 변이 같은 SSS — "삼각형의 작도" 카드)하면 내각 <b style="color:#86efac">60°</b>가 생깁니다<br><br>
+② 60°를 이등분("각의 이등분선 작도" 카드)하면 정확히 <b style="color:#86efac">30°</b>가 만들어집니다<br><br>
+③ 이 30°를 원래 90°각의 한 변에서부터 "각 옮기기"(각의 작도 카드)로 두 번 복제하면, 90°가 30°+30°+30°로 정확히 나뉩니다<br><br>
+<span style="color:#f87171">핵심 통찰:</span> 이건 "모든 각을 3등분하는" 일반적 방법이 아닙니다 — 90°라는 특수한 경우의 결과(30°)가 우연히 다른 길(정삼각형+이등분)로 작도 가능했을 뿐입니다. 예를 들어 <b>60°를 3등분(20°씩)</b>하려면 이 방법이 통하지 않습니다 — 20°는 눈금 없는 자와 컴퍼스로 독립적으로 작도할 수 없는 각이기 때문입니다.` }
 ],
 
 /* ── 기본 도형 발견형 풀이 예시 (1장) ────────── */
@@ -3582,7 +4726,20 @@ y = 3 × 5 = 15
 'geometry-example': [
   { tag:'🔍 발견형 — 꺾인 평행선 풀이 예시', tagColor:'#86efac',
     bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
-    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">[문제] 두 평행선 l ∥ m 사이의 점 P에서, l쪽 선분과 l이 이루는 각이 55°, m쪽 선분과 m이 이루는 각이 35°입니다. 꺾인각 ∠P는?</div>`,
+    body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.8;font-weight:600;margin-bottom:10px">[문제] 두 평행선 l ∥ m 사이의 점 P에서, l쪽 선분과 l이 이루는 각이 55°, m쪽 선분과 m이 이루는 각이 35°입니다. 꺾인각 ∠P는?</div>
+<svg viewBox="0 0 260 180" style="display:block;margin:8px auto;max-width:240px" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="180" fill="#0d1a28" rx="8"/>
+<line x1="20" y1="30" x2="240" y2="30" stroke="#7dd3fc" stroke-width="2"/>
+<line x1="20" y1="150" x2="240" y2="150" stroke="#7dd3fc" stroke-width="2"/>
+<line x1="60" y1="90" x2="102" y2="30" stroke="#fde68a" stroke-width="2"/>
+<line x1="60" y1="90" x2="146" y2="150" stroke="#fde68a" stroke-width="2"/>
+<circle cx="60" cy="90" r="2.5" fill="#e2e8f0"/>
+<text x="244" y="26" fill="#7dd3fc" font-size="11">l</text>
+<text x="244" y="146" fill="#7dd3fc" font-size="11">m</text>
+<text x="40" y="94" fill="#f87171" font-size="11">P</text>
+<text x="74" y="48" fill="#fbbf24" font-size="12" font-weight="bold">55°</text>
+<text x="104" y="143" fill="#fbbf24" font-size="12" font-weight="bold">35°</text>
+</svg>`,
     ans:`<svg viewBox="0 0 260 180" style="display:block;margin:8px auto;max-width:240px" xmlns="http://www.w3.org/2000/svg">
 <rect width="260" height="180" fill="#0d1a28" rx="8"/>
 <line x1="20" y1="30" x2="240" y2="30" stroke="#7dd3fc" stroke-width="2"/>
@@ -13405,6 +14562,7 @@ function activateScreen(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(name).classList.add('active');
   window.scrollTo(0,0);
+  if(window.lmOnScreen) window.lmOnScreen(name);
 }
 let navStack = ['middle-home'];
 const NAV_STATEFUL_SCREENS = ['cardviewer','quiz','result','fm-quiz','fm-report'];
@@ -17008,7 +18166,167 @@ function renderNotebook(){
   list.innerHTML=html;
 }
 </script>
-</body>
-</html>
+<div id="lmPick" aria-label="화면 색상 선택">
+  <button type="button" data-m="dark" onclick="lmChoose('dark')">🌙 다크</button>
+  <button type="button" data-m="lm-a" onclick="lmChoose('lm-a')">☀️ 본문만 흰색</button>
+  <button type="button" data-m="lm-b" onclick="lmChoose('lm-b')">🔆 전체 배경까지</button>
+</div>
+<script>
+// 중1 대수 화면에서만 색상 선택을 보여준다. 카드 본문(HTML)은 수정하지 않고, 연한 글자색을 같은 계열의 진한 색으로 실행 중에 바꾼다.
+(function(){
+  var CARDS = ['geometry-example','geometry-guide-congruence','geometry-guide-construction','geometry-guide-position','geometry-hard-advanced','geometry-hard-basic','geometry-havruta','plane-shape-example','plane-shape-guide','plane-shape-hard','plane-shape-havruta','solid-shape-example','solid-shape-guide','solid-shape-hard','solid-shape-havruta','fm-advanced','fm-prime-link','prime-guide','prime-havruta','eq-basic','eq-hard','eq-guide','eq-havruta-lesson','eq-zero-div','eq-havruta-cards','eq-identity','eq-identity-havruta','eq-guarantee','eq-identity-discussion','avg-guide','avg-hard','avg-example','avg-havruta'];
+  var KEY = 'toro_mid_theme';
+  var mode = 'dark';
+  function pref(){ try{ var v = localStorage.getItem(KEY); return (v==='dark'||v==='lm-b') ? v : 'lm-a'; }catch(e){ return 'lm-a'; } }
+  // 허브·선택 화면은 원래 모습 그대로 두고, 카드를 눌러 열린 카드 화면에서만 적용한다
+  function inScope(name){ return name==='cardviewer' && typeof CS!=='undefined' && CARDS.indexOf(CS.set)>=0; }
+  function wrapPanel(id){
+    var sc = document.getElementById(id); if(!sc || sc.querySelector('.lm-panel')) return;
+    var nav = sc.querySelector('.nav-bar'); if(!nav) return;
+    var panel = document.createElement('div'); panel.className = 'lm-panel';
+    var moved = [], n = nav.nextSibling; while(n){ moved.push(n); n = n.nextSibling; }
+    moved.forEach(function(x){ panel.appendChild(x); }); nav.parentElement.appendChild(panel);
+  }
+  function rgbOf(s){ var m = s && s.match(/rgba?\(([^)]+)\)/); if(!m) return null; var p = m[1].split(',').map(parseFloat); return {r:p[0],g:p[1],b:p[2],a:p.length>3?p[3]:1}; }
+  function lumOf(c){ var a = [c.r,c.g,c.b].map(function(v){ v/=255; return v<=.03928 ? v/12.92 : Math.pow((v+.055)/1.055,2.4); }); return .2126*a[0]+.7152*a[1]+.0722*a[2]; }
+  function toHsl(c){
+    var r=c.r/255,g=c.g/255,b=c.b/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2,h=0,s=0,d=mx-mn;
+    if(d){ s = l>.5 ? d/(2-mx-mn) : d/(mx+mn); h = mx===r ? (g-b)/d+(g<b?6:0) : mx===g ? (b-r)/d+2 : (r-g)/d+4; h*=60; }
+    return [h,s,l];
+  }
+  function darker(c){
+    var hsl = toHsl(c);
+    if(hsl[1]<.12) return lumOf(c)>.6 ? '#1d2433' : '#475569';
+    // 흰 바탕에서 또렷하고 어울리는 계열별 대표색(채도가 살아 있는 중간 어두기)
+    var h = hsl[0];
+    if(h<18 || h>=345) return '#b91c1c';
+    if(h<40)  return '#c2410c';
+    if(h<70)  return '#b45309';
+    if(h<165) return '#15803d';
+    if(h<195) return '#0f766e';
+    if(h<220) return '#0369a1';
+    if(h<255) return '#1d4ed8';
+    if(h<295) return '#6d28d9';
+    return '#be185d';
+  }
+  function bgKind(el){
+    while(el && el.nodeType===1){
+      var cs = getComputedStyle(el);
+      if(cs.backgroundImage && cs.backgroundImage!=='none'){
+        // 그라데이션은 색 멈춤점을 흰 바탕 위에 겹쳐 본 밝기로 판단한다(은은한 투명 그라데이션이면 밝은 바탕)
+        var stops = cs.backgroundImage.match(/rgba?\([^)]+\)/g) || [];
+        if(!stops.length) return 'grad';
+        var allLight = stops.every(function(t){
+          var s = rgbOf(t); if(!s) return false;
+          var f = function(v){ return 255*(1-s.a)+v*s.a; };
+          return lumOf({r:f(s.r),g:f(s.g),b:f(s.b)}) > .55;
+        });
+        return allLight ? 'light' : 'grad';
+      }
+      var c = rgbOf(cs.backgroundColor); if(c && c.a>.5) return lumOf(c)>.4 ? 'light' : 'dark';
+      el = el.parentElement;
+    }
+    return 'light';
+  }
+  function restore(){
+    document.querySelectorAll('[data-lm-oc]').forEach(function(e){
+      e.style.removeProperty('color'); e.style.removeProperty('fill');
+      var o = e.getAttribute('data-lm-oc'); if(o) e.style.color = o;
+      e.removeAttribute('data-lm-oc');
+    });
+    document.querySelectorAll('[data-lm-bg]').forEach(function(e){
+      e.style.removeProperty('background-image'); e.style.removeProperty('background-color');
+      var o = JSON.parse(e.getAttribute('data-lm-bg'));
+      if(o.i) e.style.backgroundImage = o.i; if(o.c) e.style.backgroundColor = o.c;
+      e.removeAttribute('data-lm-bg');
+    });
+    document.querySelectorAll('[data-lm-sh]').forEach(function(e){
+      var o = JSON.parse(e.getAttribute('data-lm-sh'));
+      e.style.removeProperty('stroke'); e.style.removeProperty('fill');
+      if(o.s) e.style.stroke = o.s; if(o.f) e.style.fill = o.f;
+      e.removeAttribute('data-lm-sh');
+    });
+  }
+  // 그림(SVG) 안에 그림 대부분을 덮는 어두운 바탕 사각형이 있으면 찾아 돌려준다
+  function boardRects(svg){
+    var out = [], sr = svg.getBoundingClientRect(), area = sr.width*sr.height; if(!area) return out;
+    svg.querySelectorAll('rect').forEach(function(r){
+      var cs = getComputedStyle(r), f = rgbOf(cs.fill); if(!f || cs.fill==='none') return;
+      if(f.a*parseFloat(cs.fillOpacity)<.5 || lumOf(f)>.15) return;
+      var rr = r.getBoundingClientRect(); if(rr.width*rr.height >= area*.8) out.push(r);
+    });
+    return out;
+  }
+  function lightenShapes(root){
+    root.querySelectorAll('svg').forEach(function(svg){
+      if(bgKind(svg)!=='light') return;
+      boardRects(svg).forEach(function(r){
+        if(r.hasAttribute('data-lm-sh')) return;
+        r.setAttribute('data-lm-sh', JSON.stringify({s:r.style.stroke||'', f:r.style.fill||''}));
+        r.style.setProperty('fill', '#f4f6fa', 'important');
+      });
+      svg.querySelectorAll('line,path,circle,rect,polygon,polyline,ellipse').forEach(function(e){
+        if(e.hasAttribute('data-lm-sh')) return;
+        var cs = getComputedStyle(e), st = rgbOf(cs.stroke), fl = rgbOf(cs.fill), ns = null, nf = null;
+        if(st && cs.stroke!=='none' && parseFloat(cs.strokeWidth)>0 && st.a*parseFloat(cs.strokeOpacity)>.4 && lumOf(st)>.45) ns = darker(st);
+        if(fl && cs.fill!=='none' && fl.a*parseFloat(cs.fillOpacity)>.4 && lumOf(fl)>.8) nf = darker(fl);
+        if(!ns && !nf) return;
+        e.setAttribute('data-lm-sh', JSON.stringify({s:e.style.stroke||'', f:e.style.fill||''}));
+        if(ns) e.style.setProperty('stroke', ns, 'important');
+        if(nf) e.style.setProperty('fill', nf, 'important');
+      });
+    });
+  }
+  // 아주 어두운 그라데이션 타일은 연한 바탕으로 바꾼다(그 안의 파스텔 글자는 아래에서 진한 색으로 바뀜)
+  function lightenTiles(root){
+    root.querySelectorAll('*').forEach(function(el){
+      if(el.hasAttribute('data-lm-bg') || el.closest('#lmPick') || el.namespaceURI.indexOf('svg')>=0) return;
+      var cs = getComputedStyle(el), bi = cs.backgroundImage;
+      if(!bi || bi==='none' || bi.indexOf('gradient')<0) return;
+      var stops = bi.match(/rgba?\([^)]+\)/g) || []; if(!stops.length) return;
+      var allDark = stops.every(function(t){ var s = rgbOf(t); return s && s.a>.8 && lumOf(s)<.08; });
+      if(!allDark) return;
+      el.setAttribute('data-lm-bg', JSON.stringify({i:el.style.backgroundImage||'', c:el.style.backgroundColor||''}));
+      el.style.setProperty('background-image','none','important');
+      el.style.setProperty('background-color','#f4f6fa','important');
+    });
+  }
+  function lighten(){
+    if(mode!=='lm-a' && mode!=='lm-b') return;
+    var roots = mode==='lm-a' ? document.querySelectorAll('.lm-panel') : [document.body];
+    Array.prototype.forEach.call(roots, function(root){
+      lightenTiles(root);
+      lightenShapes(root);
+      root.querySelectorAll('*').forEach(function(el){
+        if(el.closest('#lmPick') || el.hasAttribute('data-lm-oc')) return;
+        var own = false; for(var n=el.firstChild;n;n=n.nextSibling){ if(n.nodeType===3 && n.textContent.trim()){ own = true; break; } }
+        if(!own) return;
+        var svg = el.namespaceURI.indexOf('svg')>=0, cs = getComputedStyle(el), c = rgbOf(svg ? cs.fill : cs.color);
+        if(!c || c.a<.3 || lumOf(c)<.2 || bgKind(el)!=='light') return;
+        el.setAttribute('data-lm-oc', el.style.color||'');
+        el.style.setProperty(svg?'fill':'color', darker(c), 'important');
+      });
+    });
+  }
+  var queued = false;
+  function queue(){ if(queued) return; queued = true; requestAnimationFrame(function(){ queued = false; lighten(); }); }
+  function setMode(m){
+    restore(); mode = m;
+    document.body.classList.remove('lm-a','lm-b'); if(m==='lm-a'||m==='lm-b') document.body.classList.add(m);
+    document.querySelectorAll('#lmPick button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-m')===(m==='dark'?'dark':m)); });
+    lighten();
+  }
+  window.lmApply = lighten;
+  window.lmChoose = function(m){ try{ localStorage.setItem(KEY, m); }catch(e){} setMode(m); };
+  window.lmOnScreen = function(name){
+    var on = inScope(name);
+    document.getElementById('lmPick').classList.toggle('show', on);
+    if(!on){ setMode('dark'); return; }
+    wrapPanel(name);
+    setMode(pref());
+  };
+  new MutationObserver(queue).observe(document.body, {childList:true, subtree:true});
+})();
+</script>
 </body>
 </html>
