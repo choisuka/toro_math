@@ -10870,10 +10870,11 @@ function e4barGen(){
 }
 function e4barProbHtml(){
   var P = e4barGen().PROBS, html = '';
+  e4barProbHtml._last = e4barProbHtml._last || {};
   P.forEach(function(p,i){
-    var r = p.gen();
+    var r = p.gen(); e4barProbHtml._last[i] = r;
     html += '<div class="eb5-prob"><div class="eb5-label">문제 '+(i+1)+' · '+p.name+'</div><div id="eb5-pb-'+i+'">'+r.q+'</div>'
-      +'<div class="eb5-btns"><button class="eb5-btn main" id="eb5-bs-'+i+'" onclick="e4barProbToggle('+i+')">💡 풀이 보기</button><button class="eb5-btn" onclick="e4barProbRegen('+i+')">🔄 유사문제</button></div>'
+      +'<div class="eb5-btns"><button class="eb5-btn main" id="eb5-bs-'+i+'" onclick="e4barProbToggle('+i+')">💡 풀이 보기</button><button class="eb5-btn" onclick="e4barProbRegen('+i+')">🔄 유사문제</button><button class="eb5-btn" onclick="usReviewAsk(\'e4bar\',\'p5-'+i+'\')">📌 복습할래요</button></div><div id="rvq-e4bar-p5-'+i+'"></div>'
       +'<div class="eb5-sol" id="eb5-ps-'+i+'" hidden>'+r.sol+'</div></div>';
   });
   return html;
@@ -10883,6 +10884,8 @@ function e4barProbRegen(i){
   document.getElementById('eb5-pb-'+i).innerHTML = r.q;
   var s = document.getElementById('eb5-ps-'+i); s.innerHTML = r.sol; s.hidden = true;
   document.getElementById('eb5-bs-'+i).textContent = '💡 풀이 보기';
+  e4barProbHtml._last[i] = r;
+  var rq = document.getElementById('rvq-e4bar-p5-'+i); if(rq) rq.innerHTML = '';
 }
 function e4barProbToggle(i){
   var s = document.getElementById('eb5-ps-'+i); s.hidden = !s.hidden;
@@ -11314,10 +11317,11 @@ function e4patGen(){
 }
 function e4patProbHtml(){
   var P=e4patGen().PROBS, html='';
+  e4patProbHtml._last=e4patProbHtml._last||{};
   P.forEach(function(p,i){
-    var r=p.gen();
+    var r=p.gen(); e4patProbHtml._last[i]=r;
     html+='<div class="ep5-prob"><div class="ep5-label">문제 '+(i+1)+' · '+p.name+'</div><div id="ep5-pb-'+i+'">'+r.q+'</div>'
-      +'<div class="ep5-btns"><button class="ep5-btn ep5-main" id="ep5-bs-'+i+'" onclick="e4patProbToggle('+i+')">💡 풀이 보기</button><button class="ep5-btn" onclick="e4patProbRegen('+i+')">🔄 유사문제</button></div>'
+      +'<div class="ep5-btns"><button class="ep5-btn ep5-main" id="ep5-bs-'+i+'" onclick="e4patProbToggle('+i+')">💡 풀이 보기</button><button class="ep5-btn" onclick="e4patProbRegen('+i+')">🔄 유사문제</button><button class="ep5-btn" onclick="usReviewAsk(\'e4pat\',\'p5-'+i+'\')">📌 복습할래요</button></div><div id="rvq-e4pat-p5-'+i+'"></div>'
       +'<div class="ep5-sol" id="ep5-ps-'+i+'" hidden>'+r.sol+'</div></div>';
   });
   return html;
@@ -11327,6 +11331,8 @@ function e4patProbRegen(i){
   document.getElementById('ep5-pb-'+i).innerHTML=r.q;
   var s=document.getElementById('ep5-ps-'+i); s.innerHTML=r.sol; s.hidden=true;
   document.getElementById('ep5-bs-'+i).textContent='💡 풀이 보기';
+  e4patProbHtml._last[i]=r;
+  var rq=document.getElementById('rvq-e4pat-p5-'+i); if(rq) rq.innerHTML='';
 }
 function e4patProbToggle(i){
   var s=document.getElementById('ep5-ps-'+i); s.hidden=!s.hidden;
@@ -11634,6 +11640,235 @@ var CV_DATA_E4PAT = [
   </div>`},
 ];
 CV_DATA['e4pat'] = CV_DATA_E4PAT;
+
+// ── 단원 공통(새 단원용): 오늘 배운 것 적기 + 복습 예약. e4move(mv*)와 같은 저장 키·형식을 쓴다 ──
+// 두 앱(교재·정원)은 같은 localStorage 키로만 연결된다. 교재는 편지를 넣기만 하고 정원이 채점·삭제한다.
+var US_NOTE_KEY = 'toro_study_log_v1', US_REVIEW_KEY = 'toro_review_v1', US_OPEN_KEY = 'toro_review_open_v1';
+var US_UNITS = {};
+var US_NOTE_MSG = {
+  short: '조금 더 길게 써 볼까요? 10글자 이상 적어 주세요.',
+  repeat: '여러 가지 글자와 낱말로 문장을 만들어 써 보세요.',
+  list: '낱말만 적지 말고 문장으로 써 볼까요?',
+  dup: '전에 쓴 글과 똑같아요. 오늘 내 생각으로 새로 써 볼까요?',
+  copy: '카드의 문장과 너무 비슷해요. 내 말로 바꿔 써 볼까요?',
+  save: '저장하지 못했어요. 브라우저 설정에서 저장이 막혀 있는지 확인해 주세요.'
+};
+function usDateStr(d){ var p=function(n){return (n<10?'0':'')+n;}; return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
+function usNorm(s){ return String(s).replace(/[^가-힣a-zA-Z0-9]/g,''); }
+function usGrams(s){ var o=[]; for(var i=0;i+6<=s.length;i++) o.push(s.slice(i,i+6)); return o; }
+function usList(key){ try{ var a=JSON.parse(localStorage.getItem(key)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+function usHash(s){ var h=5381; for(var i=0;i<s.length;i++){ h=((h<<5)+h+s.charCodeAt(i))|0; } return String(h); }
+function usCorpus(u){
+  var c=US_UNITS[u];
+  if(!c.corpus){
+    var txt=c.cards().filter(function(x){return !x.noCorpus;})
+      .map(function(x){return x.html.replace(/<style[\s\S]*?<\/style>/g,'').replace(/<[^>]*>/g,'');}).join('');
+    c.corpus={}; usGrams(usNorm(txt)).forEach(function(g){c.corpus[g]=1;});
+  }
+  return c.corpus;
+}
+// 규칙 기반 판정(AI 없이). 반환: {ok, code, groups, bonus}
+function usNoteJudge(u, text, prevNorm){
+  var c=US_UNITS[u], norm=usNorm(text), distinct={};
+  norm.split('').forEach(function(ch){distinct[ch]=1;});
+  if(norm.length<10) return {ok:false,code:'short'};
+  if(Object.keys(distinct).length<5 || text.trim().split(/\s+/).length<2) return {ok:false,code:'repeat'};
+  if(prevNorm.indexOf(norm)>=0) return {ok:false,code:'dup'};
+  var grams=usGrams(norm);
+  if(grams.length){
+    var corpus=usCorpus(u), hit=grams.filter(function(g){return corpus[g];}).length;
+    if(hit/grams.length>=0.7) return {ok:false,code:'copy'};
+  }
+  if(norm.replace(c.words,'').length<6) return {ok:false,code:'list'};
+  var groups=Object.keys(c.groups).filter(function(k){return c.groups[k].test(norm);});
+  if(groups.indexOf('A')<0 || groups.length<2) return {ok:false,code:'keyword'};
+  return {ok:true,groups:groups,bonus:groups.length>=3};
+}
+function usNoteSubmit(u){
+  var c=US_UNITS[u], ta=document.getElementById('usn-text-'+u), out=document.getElementById('usn-result-'+u);
+  var log=usList(US_NOTE_KEY);
+  var r=usNoteJudge(u, ta.value, log.map(function(e){return usNorm(e.text||'');}));
+  if(r.ok){
+    log.push({unit:u, date:usDateStr(new Date()), text:ta.value.trim(), groups:r.groups, bonus:r.bonus, ts:Date.now()});
+    try{ localStorage.setItem(US_NOTE_KEY, JSON.stringify(log)); }catch(e){ r={ok:false,code:'save'}; }
+  }
+  if(r.ok){
+    out.innerHTML='<div class="story-takeaway">'+(r.bonus?'와, 여러 가지를 빠짐없이 적었어요! 보너스 기록까지 저장됐어요 🌟':'잘 적었어요! 오늘 기록이 저장됐어요 🌱')+'</div>';
+    ta.value='';
+  }else{
+    out.innerHTML='<div style="color:#8a6100;font-size:.85rem">'+(r.code==='keyword'?c.keywordMsg:US_NOTE_MSG[r.code])+'</div>';
+  }
+}
+function usNoteCard(u){
+  var c=US_UNITS[u];
+  return {title:'✍️ 오늘 배운 것 적기', cls:'problems', noCorpus:true, html:c.wrapOpen()
+    +'<p>공부를 마쳤나요? 오늘 배운 것을 내 말로 적어 봐요. 카드의 문장을 그대로 베끼면 인정되지 않아요.</p>'
+    +'<div class="prob-box"><div class="prob-q">'+c.prompt+'</div>'
+    +'<textarea id="usn-text-'+u+'" rows="4" maxlength="300" placeholder="여기에 써 보세요 (10글자 이상)" style="width:100%;box-sizing:border-box;background:#ffffff;border:1px solid #c5ccd8;border-radius:8px;color:#1d2433;padding:10px;font-size:.9rem;font-family:inherit;resize:vertical"></textarea>'
+    +'<button class="havruta-show-btn" onclick="usNoteSubmit(\''+u+'\')">✅ 제출하기</button>'
+    +'<div id="usn-result-'+u+'" style="margin-top:10px"></div></div></div>'};
+}
+// 정원에서 보일 문제·풀이는 흰 패널에 담아 보낸다(교재 안에서 쓰는 밝은 색이 정원의 어두운 바탕에서도 읽히게)
+function usSnapWrap(u, html){
+  var box=document.createElement('div'); box.innerHTML=html;
+  box.querySelectorAll('button').forEach(function(b){b.remove();});
+  box.querySelectorAll('[hidden]').forEach(function(x){x.removeAttribute('hidden');});
+  return '<div class="'+US_UNITS[u].scope+'" style="background:#ffffff;color:#1d2433;border-radius:10px;padding:12px">'+(US_UNITS[u].snapCss||'')+box.innerHTML+'</div>';
+}
+function usReviewAsk(u, id){
+  var box=document.getElementById('rvq-'+u+'-'+id);
+  if(box.innerHTML){ box.innerHTML=''; return; }
+  box.innerHTML='<div style="margin-top:8px;font-size:.82rem">언제 복습할까요?</div>'
+    +'<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">'
+    +[1,2,3,7].map(function(d){return '<button class="havruta-show-btn" style="margin-top:0" onclick="usReviewSave(\''+u+'\',\''+id+'\','+d+')">'+d+'일 후</button>';}).join('')
+    +'<button class="havruta-show-btn" style="margin-top:0" onclick="usReviewSave(\''+u+'\',\''+id+'\',0)">오늘</button></div>';
+}
+function usReviewSave(u, id, days){
+  var c=US_UNITS[u], box=document.getElementById('rvq-'+u+'-'+id), spec, snap;
+  if(id.indexOf('card-')===0){
+    var num=+id.slice(5);
+    spec={kind:'open', card:num, title:c.cards()[num].title, url:location.href.split('#')[0].split('?')[0]+'?open='+u+':'+num};
+    snap={q:'',s:''};
+  }else{
+    var r=c.make(id);
+    if(!r){ box.innerHTML='<div style="margin-top:8px;font-size:.82rem;color:#8a6100">이 문제는 복습으로 보낼 수 없어요.</div>'; return; }
+    spec=r.spec; snap={q:r.q,s:r.s};
+  }
+  var h=usHash(u+id+snap.q), today=usDateStr(new Date()), due=new Date(); due.setDate(due.getDate()+days);
+  var dueStr=usDateStr(due), log=usList(US_REVIEW_KEY);
+  if(log.some(function(x){return x.h===h && x.due>=today;})){
+    box.innerHTML='<div style="margin-top:8px;font-size:.82rem;color:#8a6100">이 문제는 이미 복습을 예약했어요.</div>'; return;
+  }
+  log.push({id:u+'-'+id+'-'+Date.now().toString(36), h:h, type:u+':'+id, created:today, due:dueStr, spec:spec, q:snap.q, s:snap.s});
+  try{
+    localStorage.setItem(US_REVIEW_KEY, JSON.stringify(log));
+    box.innerHTML='<div style="margin-top:8px;font-size:.82rem;color:#1f7a42">📌 '+days+'일 뒤('+dueStr+') 정원에서 복습 문제로 나와요.</div>';
+  }catch(e){
+    box.innerHTML='<div style="margin-top:8px;font-size:.82rem;color:#8a6100">'+US_NOTE_MSG.save+'</div>';
+  }
+}
+// 복습 날짜 이후에 예약한 카드를 열면 "확인함"으로 남긴다(정원이 읽어 포인트를 주고 편지를 지운다)
+function usReviewTouch(u, idx){
+  if(!US_UNITS[u]) return;
+  var today=usDateStr(new Date());
+  var due=usList(US_REVIEW_KEY).filter(function(x){return x && x.type===u+':card-'+idx && x.spec && x.spec.kind==='open' && x.due<=today;});
+  if(!due.length) return;
+  var touched; try{ touched=JSON.parse(localStorage.getItem(US_OPEN_KEY)||'{}'); }catch(e){ touched={}; }
+  if(!touched || typeof touched!=='object' || Array.isArray(touched)) touched={};
+  var changed=false;
+  due.forEach(function(x){ if(!touched[x.id]){ touched[x.id]=today; changed=true; } });
+  if(changed){ try{ localStorage.setItem(US_OPEN_KEY, JSON.stringify(touched)); }catch(e){} }
+}
+var usOrigCvShowSection = cvShowSection;
+cvShowSection = function(id, idx){ usOrigCvShowSection(id, idx); usReviewTouch(id, idx); };
+// 기존 카드 본문은 그대로 두고 복습 버튼만 끼운다: 예제는 풀이 보기 버튼 뒤, 문제 없는 카드는 카드 끝(패널 안)
+function usInject(u, exCardIdx, solRe, cardIdxList){
+  var c=US_UNITS[u], arr=c.cards();
+  arr[exCardIdx].html=arr[exCardIdx].html.replace(solRe, function(m, btn, n){
+    return btn+'<button class="havruta-show-btn" onclick="usReviewAsk(\''+u+'\',\'ex-'+n+'\')" style="width:100%;margin-top:6px">📌 복습할래요</button><div id="rvq-'+u+'-ex-'+n+'"></div>';
+  });
+  cardIdxList.forEach(function(idx){
+    var box='<div class="prob-box" style="margin-top:14px"><div style="font-size:.78rem;color:#5d6678;margin-bottom:6px">이 내용을 나중에 다시 읽어 볼까요?</div>'
+      +'<button class="havruta-show-btn" onclick="usReviewAsk(\''+u+'\',\'card-'+idx+'\')" style="width:100%;margin-top:0">📌 복습할래요</button><div id="rvq-'+u+'-card-'+idx+'"></div></div>';
+    arr[idx].html=arr[idx].html.replace(/<\/div>\s*$/, box+'</div>');
+  });
+  arr.push(usNoteCard(u));
+}
+function usPlain(el){ return el ? el.innerHTML : ''; }
+// 정적 예제의 문제·풀이 HTML(문제 칸 .prob-q 와 풀이 상자)
+function usStaticQS(solId){
+  var s=document.getElementById(solId); if(!s) return null;
+  var pb=s.closest('.prob-box'); return {q:pb.querySelector('.prob-q').innerHTML, s:s.innerHTML};
+}
+
+// ── 막대그래프(e4bar) 설정 ──
+US_UNITS['e4bar'] = {
+  scope:'e4bw', cards:function(){return CV_DATA_E4BAR;}, wrapOpen:function(){return e4barWrapOpen();},
+  groups:{A:/막대|눈금|그래프/, B:/한칸|크기|칸/, C:/수|명|개|권|많|적|비교|읽|값/, D:/가로|세로|항목|높이|길이|표|그림그래프/},
+  words:/막대그래프|막대|눈금|그래프|한칸|크기|가로|세로|항목|높이|길이|비교|그림그래프|\d+/g,
+  keywordMsg:'막대그래프(또는 눈금)와, 눈금 한 칸의 크기나 막대 길이가 무엇을 뜻하는지를 함께 적어 주세요.',
+  prompt:'막대그래프에서 눈금 한 칸의 크기를 먼저 봐야 하는 이유를 내 말로 써 보세요.',
+  make:function(id){
+    var ask='식을 써 보세요. 예) ', st;
+    var ST={
+      'ex-1':{kind:'num',answers:[8],givens:[4,2],ask:'(3)번: 달리기를 좋아하는 학생 수를 구하는 식을 써 보세요. 예) 5×3=15'},
+      'ex-2':{kind:'num',answers:[45],givens:[40,5,1],ask:'(1)번: 구름 모둠이 모은 빈 병 수를 구하는 식을 써 보세요. 예) 30+2×5=40'},
+      'ex-3':{kind:'choice',options:['1권','5권','100권'],answer:'5권',reason:null},
+      'ex-4':{kind:'choice',options:['축구를 좋아하는 학생은 18명이에요.','줄넘기를 좋아하는 학생은 피구를 좋아하는 학생보다 2명 많아요.','달리기를 좋아하는 학생이 가장 적어요.','피구를 좋아하는 학생은 축구를 좋아하는 학생의 반이에요.'],answer:'피구를 좋아하는 학생은 축구를 좋아하는 학생의 반이에요.',reason:null}
+    };
+    if(ST[id]){
+      st=usStaticQS('eb-sol-'+id.slice(3)); if(!st) return null;
+      return {spec:ST[id], q:usSnapWrap('e4bar',st.q), s:usSnapWrap('e4bar',st.s)};
+    }
+    var m=/^p5-(\d+)$/.exec(id); if(!m) return null;
+    var i=+m[1], rec=(e4barProbHtml._last||{})[i]; if(!rec) return null;
+    var mt=rec.meta, d=mt.d, spec;
+    var pbEl=document.getElementById('eb5-pb-'+i), psEl=document.getElementById('eb5-ps-'+i);
+    switch(i){
+      case 0: spec={kind:'num',answers:[mt.answer],givens:[d.LI,d.cfg.tick],ask:ask+'40÷4=10'}; break;
+      case 1: spec={kind:'num',answers:[mt.answer],givens:[mt.lower,mt.extra,d.cfg.s],ask:ask+'50+2×10=70'}; break;
+      case 2: spec={kind:'num',answers:[mt.answer],givens:[d.vals[mt.mx],d.vals[mt.mn]],ask:ask+'90−30=60'}; break;
+      case 3: spec={kind:'num',answers:[mt.answer],givens:d.vals.slice(),ask:ask+'10+20+30+40=100'}; break;
+      case 4: spec={kind:'num',answers:[mt.answer],givens:[d.vals[mt.a],d.vals[mt.b]],ask:ask+'60−25=35'}; break;
+      case 5:
+        var opts=[]; (pbEl.textContent.match(/[①②③]\s*\S+/g)||[]).forEach(function(x){opts.push(x.replace(/^[①②③]\s*/,''));});
+        spec={kind:'choice',options:opts,answer:opts[mt.right],reason:null}; break;
+      case 6: spec={kind:'num',answers:[mt.answer],givens:[mt.v,mt.s],ask:ask+'60÷5=12'}; break;
+      case 7: spec={kind:'choice',options:mt.sts.map(function(x){return x.text;}),answer:mt.sts[mt.right].text,reason:null}; break;
+      case 8: spec={kind:'num',answers:[mt.vA,mt.vB,mt.diff],givens:[mt.k,mt.s1,mt.s2,mt.vA,mt.vB],ask:ask+'6×5=30'}; break;
+      case 9: spec={kind:'num',answers:[mt.answer],givens:[mt.total,mt.rest],ask:ask+'300−250=50'}; break;
+      default: return null;
+    }
+    return {spec:spec, q:usSnapWrap('e4bar',pbEl.innerHTML), s:usSnapWrap('e4bar',psEl.innerHTML)};
+  }
+};
+usInject('e4bar', 3, /(onclick="e4barSolToggle\(this,'eb-sol-(\d)'\)">💡 풀이 보기<\/button>)/g, [0,1,2,5]);
+
+// ── 규칙 찾기(e4pat) 설정 ──
+US_UNITS['e4pat'] = {
+  scope:'e4pat', snapCss:null, cards:function(){return CV_DATA_E4PAT;}, wrapOpen:function(){return e4patWrapOpen();},
+  groups:{A:/규칙/, B:/다음|미리|추측|알수|예측|확인/, C:/씩|커지|작아지|늘어|줄어|더하|빼|곱|나누|배/, D:/배열|계산식|달력|도형|모양|무늬|표/},
+  words:/규칙|다음|미리|추측|예측|확인|씩|커지|작아지|늘어|줄어|더하|빼|곱|나누|배열|수배열표|계산식|달력|도형|모양|무늬|\d+/g,
+  keywordMsg:'규칙과, 그 규칙으로 무엇을 알 수 있는지(다음 수·모양·결과 등)를 함께 적어 주세요.',
+  prompt:'내가 찾은 규칙 하나를 예로 들어, 규칙을 찾으면 무엇을 알 수 있는지 내 말로 써 보세요.',
+  make:function(id){
+    var ask='식을 써 보세요. 예) ', st;
+    var ST={
+      'ex-1':{kind:'num',answers:[21],givens:[18,3,11,10],ask:'㉠에 알맞은 수를 구하는 식을 써 보세요. 예) 30+4=34'},
+      'ex-2':{kind:'num',answers:[45],givens:[54,9],ask:'(2)번 □에 알맞은 수를 구하는 식을 써 보세요. 예) 40−6=34'},
+      'ex-3':{kind:'num',answers:[9],givens:[7,2],ask:'(2)번 넷째 모양의 블록 수를 구하는 식을 써 보세요. 예) 15+4=19'},
+      'ex-4':{kind:'num',answers:[909],givens:[707,202],ask:'(1)번 □에 알맞은 수를 구하는 식을 써 보세요. 예) 505+101=606'}
+    };
+    if(ST[id]){
+      st=usStaticQS('ep-sol-'+id.slice(3)); if(!st) return null;
+      return {spec:ST[id], q:usSnapWrap('e4pat',st.q), s:usSnapWrap('e4pat',st.s)};
+    }
+    var m=/^p5-(\d+)$/.exec(id); if(!m) return null;
+    var i=+m[1], rec=(e4patProbHtml._last||{})[i]; if(!rec) return null;
+    var mt=rec.meta, spec;
+    var pbEl=document.getElementById('ep5-pb-'+i), psEl=document.getElementById('ep5-ps-'+i);
+    function val(r,c){ return mt.a+mt.rd*r+mt.cd*c; }
+    switch(i){
+      case 0:
+        var b=mt.bl[0], nb, stp;
+        if(b.c>0){ nb=val(b.r,b.c-1); stp=mt.cd; } else if(b.r>0){ nb=val(b.r-1,b.c); stp=mt.rd; } else { nb=val(b.r,b.c+1); stp=mt.cd; }
+        spec={kind:'num',answers:[mt.answer[0]],givens:[nb,stp],ask:'㉠에 알맞은 수를 구하는 식을 써 보세요. 예) 30+4=34'}; break;
+      case 1: spec={kind:'num',answers:[mt.t[4]],givens:[mt.t[3],mt.d],ask:'첫 번째 □에 알맞은 수를 구하는 식을 써 보세요. 예) 40+3=43'}; break;
+      case 2: spec={kind:'num',answers:[mt.t[5]],givens:[mt.t[4],mt.e0+4],ask:ask+'20+6=26'}; break;
+      case 3: spec={kind:'num',answers:[mt.answer],givens:[mt.a,mt.d,mt.n-1],ask:ask+'1000+300×4=2200'}; break;
+      case 4: spec={kind:'num',answers:[mt.answer],givens:[mt.first,mt.inc,mt.n-1,mt.n],ask:ask+'4+3×2=10'}; break;
+      case 5: spec={kind:'num',answers:[mt.answer],givens:[mt.sum,3,mt.vertical?7:1],ask:ask+'45÷3−1=14'}; break;
+      case 6: spec={kind:'num',answers:[mt.x*(mt.m0+3*mt.g)],givens:[mt.x*mt.g,mt.x*(mt.m0+2*mt.g)],ask:'□에 알맞은 수를 구하는 식을 써 보세요. 예) 100+25=125'}; break;
+      case 7: spec={kind:'num',answers:[mt.rows[3][1]],givens:[mt.rows[2][1],Math.abs(mt.step)],ask:'□에 알맞은 수를 구하는 식을 써 보세요. 예) 450+30=480'}; break;
+      case 8: spec={kind:'num',answers:[mt.answer],givens:[mt.rows[2][1],10],ask:'□에 알맞은 수를 구하는 식을 써 보세요. 예) 40×10=400'}; break;
+      case 9: spec={kind:'choice',options:mt.all.map(function(x){return x.t;}),answer:mt.all[mt.idx].t,reason:null}; break;
+      default: return null;
+    }
+    return {spec:spec, q:usSnapWrap('e4pat',pbEl.innerHTML), s:usSnapWrap('e4pat',psEl.innerHTML)};
+  }
+};
+US_UNITS['e4pat'].snapCss = e4patCss();
+usInject('e4pat', 3, /(onclick="e4barSolToggle\(this,'ep-sol-(\d)'\)">💡 풀이 보기<\/button>)/g, [0,1,2,5]);
 
 // ── 평면도형의 이동(e4move): 좌표 변환 + SVG 렌더링 ──
 // 기준 도형: L자(비대칭) — 좌우/상하 모두 비대칭이라 밀기·뒤집기·돌리기 결과가 전부 다르게 보임
