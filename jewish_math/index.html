@@ -12016,7 +12016,9 @@ function mvReviewSave(id, days){
   var spec, snap;
   if(id.indexOf('card-')===0){
     // 카드 자체는 문제가 아니라서 풀이 없이 "열어서 확인"만 한다(정원이 링크로 이 카드를 열게 안내)
-    spec = {kind:'open', card:+num, title:CV_DATA_E4MOVE[+num].title};
+    // url: 정원이 이 카드를 열 때 쓰는 주소(정원은 교재의 단원·폴더를 모르므로 편지에 적어 보낸다)
+    spec = {kind:'open', card:+num, title:CV_DATA_E4MOVE[+num].title,
+      url:location.href.split('#')[0].split('?')[0] + '?open=e4move:' + num};
     snap = {q:'', s:''};
   } else {
     var solFn = id.indexOf('mvw-')===0 ? 'mvWSol'+num : 'mvSol'+num;
