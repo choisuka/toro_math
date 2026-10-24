@@ -468,6 +468,11 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 <!-- ===== 초등 4학년 ===== -->
 <div id="g-e4" class="grade-section unit-grid-mode">
 
+  <div class="semester-tabs">
+    <button class="semester-tab-btn active" onclick="showSemester('e4',1,this)">1학기</button>
+    <button class="semester-tab-btn" onclick="showSemester('e4',2,this)">2학기</button>
+  </div>
+  <div class="semester-group" data-sem="1">
   <div class="unit-card">
     <div class="unit-header" onclick="toggle(this)">
       <div><div class="unit-title">🔢 큰 수와 자릿값 <span class="badge">초4</span></div><div class="unit-sub">만·억·조 / 다섯 자리 이상 수</div></div>
@@ -562,6 +567,11 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
         </div>
       </div>
     </div>
+  </div>
+
+  </div>
+  <div class="semester-group" data-sem="2" data-hidden="1">
+  <div class="semester-divider">초4-2 단원을 순서대로 만들고 있어요</div>
   </div>
 
 </div><!-- /e4 -->
