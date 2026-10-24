@@ -128,6 +128,60 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 .frac-n{border-bottom:1.5px solid currentColor}
 .print-fab{position:fixed;bottom:20px;right:20px;z-index:200;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,#7a5c00,#f0c040);color:#1a1000;font-size:1.4rem;cursor:pointer;box-shadow:0 4px 16px rgba(240,192,64,.4)}
 .print-fab:hover{filter:brightness(1.08)}
+/* ── 흰 바탕 패널(.lw): LIGHT_UNITS에 든 단원의 카드 본문을 흰 바탕으로. 카드 본문은 수정하지 않고 아래 규칙으로 덮어씀 ── */
+.lw-bar{display:flex;justify-content:flex-end;margin-bottom:6px}
+.lw-btn{background:rgba(255,255,255,.06);border:1px solid #30363d;color:#c9d1d9;border-radius:8px;padding:4px 10px;font-size:.74rem;cursor:pointer;font-family:inherit}
+.lw-btn:hover{border-color:#f0c040}
+.lw{background:#ffffff;color:#1d2433;border-radius:12px;padding:18px}
+.lw p,.lw li,.lw strong,.lw td,.lw th{color:#1d2433}
+.lw .q-item{background:#f4f6fa;color:#1d2433;border-left-color:#2f9e57}.lw .q-item strong{color:#1f7a42}
+.lw .havruta-show-btn{background:#fff3d1;border:1px solid #c9a227;color:#7a5600}.lw .havruta-show-btn:hover{background:#ffe9a8}
+.lw .havruta-opt{background:#ffffff;border:2px solid #c5ccd8;color:#1d2433;box-shadow:0 3px 0 rgba(0,0,0,.12)}.lw .havruta-opt:hover{border-color:#2f9e57}.lw .havruta-opt.selected{border-color:#2f9e57;background:#e6f6ec}
+.lw .havruta-fb.ok,.lw .havruta-fb.think{color:#1d2433}
+.lw .story-avatar{background:#f4f6fa;border-color:#c5ccd8}
+.lw .story-bubble{background:#fdeeee;border-color:#e8b4b1;color:#1d2433}.lw .story-bubble .story-name{color:#c0362f}
+.lw .story-bubble.teacher{background:#fff8e1;border-color:#e0c36a}.lw .story-bubble.teacher .story-name{color:#8a6100}
+.lw .story-takeaway{background:#e8f6ec;border-color:#9bd0ab;color:#1d2433}.lw .story-takeaway strong{color:#1f7a42}
+.lw .prob-box{background:#f8fafd;border-color:#c5ccd8;color:#1d2433}.lw .prob-box .prob-q{color:#4b3590}
+.lw .sol{background:#f4f0fb;color:#1d2433}.lw .sol strong{color:#4b3590}
+.lw .debate-item{background:#fdf1f0;border-color:#e8b4b1;color:#1d2433}
+.lw .fb-diagram{background:#f4f6fa;border-color:#c5ccd8;color:#1d2433}
+.lw .fb-diagram .arrow,.lw .fb-diagram .cap{color:#5b6472}
+.lw .expr-item{background:#f8fafd;border-color:#c5ccd8;color:#1d2433}
+.lw .expr-num{background:#fff3d1;color:#7a5600}.lw .expr-item strong{color:#4b3590}.lw .expr-ans{color:#1f7a42}
+.lw .dtw-table{border-color:#c5ccd8}.lw .dtw-table th{background:#f4f6fa;color:#1d2433;border-color:#c5ccd8}.lw .dtw-table td{border-color:#c5ccd8}
+.lw .tinput{background:#ffffff;border-color:#c5ccd8;color:#1d2433}
+/* 글자색만 덮어씀(background:#색 으로 칠한 막대·배지는 그대로 두기 위해 "color:#색"으로 시작/;뒤에 오는 경우만 선택) */
+.lw [style^="color:#8b949e"],.lw [style*=";color:#8b949e"],.lw [style*="; color:#8b949e"]{color:#5b6472 !important}
+.lw [style^="color:#f0c040"],.lw [style*=";color:#f0c040"],.lw [style*="; color:#f0c040"]{color:#8a6100 !important}
+.lw [style^="color:#3fb950"],.lw [style*=";color:#3fb950"],.lw [style*="; color:#3fb950"]{color:#1f7a42 !important}
+.lw [style^="color:#f85149"],.lw [style*=";color:#f85149"],.lw [style*="; color:#f85149"]{color:#c0362f !important}
+.lw [style^="color:#58a6ff"],.lw [style*=";color:#58a6ff"],.lw [style*="; color:#58a6ff"]{color:#1f5fae !important}
+.lw [style^="color:#bc8cff"],.lw [style*=";color:#bc8cff"],.lw [style*="; color:#bc8cff"]{color:#4b3590 !important}
+.lw [style^="color:#c9d1d9"],.lw [style*=";color:#c9d1d9"],.lw [style*="; color:#c9d1d9"]{color:#3a4458 !important}
+.lw pre{color:#1d2433}
+.lw .tver-badge.basic{background:#eef0f4;color:#5b6472;border-color:#c5ccd8}
+.lw .tver-badge.story{background:#fff3d1;color:#7a5600;border-color:#c9a227}
+.lw .tcolor-box{background:#f4f6fa;border-color:#c5ccd8}.lw .tcolor-box.filled{background:#58a6ff;border-color:#58a6ff}
+.lw .tstar-bar{background:#f4f6fa;border-color:#c5ccd8;color:#8a6100}
+.lw [style*="background:#1a0d0d"]{background:#fdf1f0 !important;border-color:#e8b4b1 !important}
+/* 다양한 표현 카드의 작은 설명·계산 줄을 예제 카드 글자처럼 진하게 (LW_BOLD 단원만) */
+.lw-bold .expr-item div[style*="font-size:.68rem"]:not([style*="font-weight:700"]){color:#2b3446 !important}
+.lw-bold .expr-item div[style*="font-size:.72rem"]{color:#1d2433 !important}
+.lw-bold .expr-item{font-weight:700;font-size:.98rem;line-height:1.7;color:#1a62e8}
+.lw-bold .expr-item strong{font-size:.74rem;font-weight:500;color:#7a3fe0}
+.lw-bold .expr-ans{font-size:.72rem}
+.lw-bold .expr-item div:not([style*="font-weight"]){font-weight:400}
+.lw [style*="background:#30363d"]{color:#e6edf3 !important}
+.lw [style*="background:#0d1117"],.lw [style*="background:#161b22"]{background:#f4f6fa !important;border-color:#c5ccd8 !important}
+.lw [style*="#30363d"]{border-color:#c5ccd8 !important}
+.lw svg text[fill="#8b949e"]{fill:#5b6472}
+.lw svg text[fill="#f0c040"]{fill:#8a6100}
+.lw svg text[fill="#3fb950"]{fill:#1f7a42}
+.lw svg text[fill="#58a6ff"]{fill:#1f5fae}
+.lw svg text[fill="#f85149"]{fill:#c0362f}
+.lw svg text[fill="#bc8cff"]{fill:#4b3590}
+.lw svg text[fill="#7dd3fc"]{fill:#0b6a94}
 </style>
 </head>
 <body>
@@ -19816,7 +19870,7 @@ function cvShowSection(id, idx){
     cvRenderGroupGrid(id, idx);
   } else {
     document.getElementById('cv-'+id+'-detail-body').innerHTML =
-      '<div class="section '+d.cls+'"><div class="section-title">'+d.title+'</div>'+d.html+'</div>';
+      '<div class="section '+d.cls+'"><div class="section-title">'+d.title+'</div>'+lwWrap(id, d.html)+'</div>';
   }
   detail.scrollIntoView({behavior:'smooth', block:'start'});
 }
@@ -19839,7 +19893,27 @@ function cvShowSubSection(id, groupIdx, subIdx){
   const d = CV_DATA[id][groupIdx].items[subIdx];
   document.getElementById('cv-'+id+'-detail-body').innerHTML =
     '<button class="cv-back-btn" onclick="cvShowSection(\''+id+'\','+groupIdx+')">← 미션 목록으로</button>'
-    + '<div class="section '+d.cls+'"><div class="section-title">'+d.title+'</div>'+d.html+'</div>';
+    + '<div class="section '+d.cls+'"><div class="section-title">'+d.title+'</div>'+lwWrap(id, d.html)+'</div>';
+}
+// 흰 바탕 패널: 대상 단원 + 학생이 끈 선택(이 기기 localStorage)
+var LIGHT_UNITS = new Set(['e5mix','e5gcd','e5corr','e5frac2','e5fracadd','e5poly','e5range','e5fracmul','e5sym','e5decmul','e5box','e5avg',
+  'e6fracdiv','e6prism','e6decdiv','e6ratio','e6graph','e6cyl','e6pct','e6vol','e6circ','e6cube',
+  'e3div','e3mul','e3frac','e3frac2','e3frac3','e3frac4','e3circ','e3msr','e3data']);
+var LW_BOLD = new Set(['e6ratio','e6fracdiv','e6pct','e5gcd','e5frac2','e5range','e5fracmul','e5decmul','e5avg','e3div','e3mul','e3frac','e3frac2','e3frac3','e3frac4','e3circ']);
+function lwIsOff(){ try{ return localStorage.getItem('toro_lw_off')==='1'; }catch(e){ return false; } }
+function lwWrap(id, html){
+  if(!LIGHT_UNITS.has(id)) return html;
+  var off = lwIsOff();
+  return '<div class="lw-bar"><button class="lw-btn" onclick="lwToggle(this)">'+(off?'☀️ 흰 바탕 켜기':'🌙 흰 바탕 끄기')+'</button></div>'
+    + '<div class="'+(off?'lw-off':'lw')+(LW_BOLD.has(id)?' lw-bold':'')+'">'+html+'</div>';
+}
+function lwToggle(btn){
+  var host = btn.parentElement.nextElementSibling;
+  var turnOff = host.classList.contains('lw');
+  host.classList.toggle('lw', !turnOff);
+  host.classList.toggle('lw-off', turnOff);
+  btn.textContent = turnOff ? '☀️ 흰 바탕 켜기' : '🌙 흰 바탕 끄기';
+  try{ localStorage.setItem('toro_lw_off', turnOff?'1':'0'); }catch(e){}
 }
 function cvShowGrid(id){
   document.getElementById('cv-'+id+'-detail').style.display = 'none';
