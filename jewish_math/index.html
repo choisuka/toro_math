@@ -11816,12 +11816,9 @@ function usReviewTouch(u, idx){
 }
 var usOrigCvShowSection = cvShowSection;
 cvShowSection = function(id, idx){ usOrigCvShowSection(id, idx); usReviewTouch(id, idx); };
-// 기존 카드 본문은 그대로 두고 복습 버튼만 끼운다: 예제는 풀이 보기 버튼 뒤, 문제 없는 카드는 카드 끝(패널 안)
-function usInject(u, exCardIdx, solRe, cardIdxList){
+// 기존 카드 본문은 그대로 두고 복습 버튼만 끼운다: 문제 없는 카드는 카드 끝(패널 안). 예제 문제는 복습에서 제외(사용자 결정 2026-10-24)
+function usInject(u, cardIdxList){
   var c=US_UNITS[u], arr=c.cards();
-  arr[exCardIdx].html=arr[exCardIdx].html.replace(solRe, function(m, btn, n){
-    return btn+'<button class="havruta-show-btn" onclick="usReviewAsk(\''+u+'\',\'ex-'+n+'\')" style="width:100%;margin-top:6px">📌 복습할래요</button><div id="rvq-'+u+'-ex-'+n+'"></div>';
-  });
   cardIdxList.forEach(function(idx){
     var box='<div class="prob-box" style="margin-top:14px"><div style="font-size:.78rem;color:#5d6678;margin-bottom:6px">이 내용을 나중에 다시 읽어 볼까요?</div>'
       +'<button class="havruta-show-btn" onclick="usReviewAsk(\''+u+'\',\'card-'+idx+'\')" style="width:100%;margin-top:0">📌 복습할래요</button><div id="rvq-'+u+'-card-'+idx+'"></div></div>';
@@ -11830,11 +11827,6 @@ function usInject(u, exCardIdx, solRe, cardIdxList){
   arr.push(usNoteCard(u));
 }
 function usPlain(el){ return el ? el.innerHTML : ''; }
-// 정적 예제의 문제·풀이 HTML(문제 칸 .prob-q 와 풀이 상자)
-function usStaticQS(solId){
-  var s=document.getElementById(solId); if(!s) return null;
-  var pb=s.closest('.prob-box'); return {q:pb.querySelector('.prob-q').innerHTML, s:s.innerHTML};
-}
 
 // ── 막대그래프(e4bar) 설정 ──
 US_UNITS['e4bar'] = {
@@ -11844,17 +11836,7 @@ US_UNITS['e4bar'] = {
   keywordMsg:'막대그래프(또는 눈금)와, 눈금 한 칸의 크기나 막대 길이가 무엇을 뜻하는지를 함께 적어 주세요.',
   prompt:'막대그래프에서 눈금 한 칸의 크기를 먼저 봐야 하는 이유를 내 말로 써 보세요.',
   make:function(id){
-    var ask='식을 써 보세요. 예) ', st;
-    var ST={
-      'ex-1':{kind:'num',answers:[8],givens:[4,2],ask:'(3)번: 달리기를 좋아하는 학생 수를 구하는 식을 써 보세요. 예) 5×3=15'},
-      'ex-2':{kind:'num',answers:[45],givens:[40,5,1],ask:'(1)번: 구름 모둠이 모은 빈 병 수를 구하는 식을 써 보세요. 예) 30+2×5=40'},
-      'ex-3':{kind:'choice',options:['1권','5권','100권'],answer:'5권',reason:null},
-      'ex-4':{kind:'choice',options:['축구를 좋아하는 학생은 18명이에요.','줄넘기를 좋아하는 학생은 피구를 좋아하는 학생보다 2명 많아요.','달리기를 좋아하는 학생이 가장 적어요.','피구를 좋아하는 학생은 축구를 좋아하는 학생의 반이에요.'],answer:'피구를 좋아하는 학생은 축구를 좋아하는 학생의 반이에요.',reason:null}
-    };
-    if(ST[id]){
-      st=usStaticQS('eb-sol-'+id.slice(3)); if(!st) return null;
-      return {spec:ST[id], q:usSnapWrap('e4bar',st.q), s:usSnapWrap('e4bar',st.s)};
-    }
+    var ask='식을 써 보세요. 예) ';
     var m=/^p5-(\d+)$/.exec(id); if(!m) return null;
     var i=+m[1], rec=(e4barProbHtml._last||{})[i]; if(!rec) return null;
     var mt=rec.meta, d=mt.d, spec;
@@ -11877,7 +11859,7 @@ US_UNITS['e4bar'] = {
     return {spec:spec, q:usSnapWrap('e4bar',pbEl.innerHTML), s:usSnapWrap('e4bar',psEl.innerHTML)};
   }
 };
-usInject('e4bar', 3, /(onclick="e4barSolToggle\(this,'eb-sol-(\d)'\)">💡 풀이 보기<\/button>)/g, [0,1,2,5]);
+usInject('e4bar', [0,1,2,5]);
 
 // ── 규칙 찾기(e4pat) 설정 ──
 US_UNITS['e4pat'] = {
@@ -11887,17 +11869,7 @@ US_UNITS['e4pat'] = {
   keywordMsg:'규칙과, 그 규칙으로 무엇을 알 수 있는지(다음 수·모양·결과 등)를 함께 적어 주세요.',
   prompt:'내가 찾은 규칙 하나를 예로 들어, 규칙을 찾으면 무엇을 알 수 있는지 내 말로 써 보세요.',
   make:function(id){
-    var ask='식을 써 보세요. 예) ', st;
-    var ST={
-      'ex-1':{kind:'num',answers:[21],givens:[18,3,11,10],ask:'㉠에 알맞은 수를 구하는 식을 써 보세요. 예) 30+4=34'},
-      'ex-2':{kind:'num',answers:[45],givens:[54,9],ask:'(2)번 □에 알맞은 수를 구하는 식을 써 보세요. 예) 40−6=34'},
-      'ex-3':{kind:'num',answers:[9],givens:[7,2],ask:'(2)번 넷째 모양의 블록 수를 구하는 식을 써 보세요. 예) 15+4=19'},
-      'ex-4':{kind:'num',answers:[909],givens:[707,202],ask:'(1)번 □에 알맞은 수를 구하는 식을 써 보세요. 예) 505+101=606'}
-    };
-    if(ST[id]){
-      st=usStaticQS('ep-sol-'+id.slice(3)); if(!st) return null;
-      return {spec:ST[id], q:usSnapWrap('e4pat',st.q), s:usSnapWrap('e4pat',st.s)};
-    }
+    var ask='식을 써 보세요. 예) ';
     var m=/^p5-(\d+)$/.exec(id); if(!m) return null;
     var i=+m[1], rec=(e4patProbHtml._last||{})[i]; if(!rec) return null;
     var mt=rec.meta, spec;
@@ -11923,7 +11895,7 @@ US_UNITS['e4pat'] = {
   }
 };
 US_UNITS['e4pat'].snapCss = e4patCss();
-usInject('e4pat', 3, /(onclick="e4barSolToggle\(this,'ep-sol-(\d)'\)">💡 풀이 보기<\/button>)/g, [0,1,2,5]);
+usInject('e4pat', [0,1,2,5]);
 
 // ── 평면도형의 이동(e4move): 좌표 변환 + SVG 렌더링 ──
 // 기준 도형: L자(비대칭) — 좌우/상하 모두 비대칭이라 밀기·뒤집기·돌리기 결과가 전부 다르게 보임
@@ -12264,16 +12236,6 @@ function mvReviewSpec(id, el){
   var n = function(k){ return +el.getAttribute('data-'+k); };
   var dirRe = { '좌우':'좌우|왼쪽|오른쪽', '상하':'상하|위|아래' };
   if(id==='mvw-1') return {kind:'view'};
-  if(id==='mv-1'){
-    var d1 = el.getAttribute('data-dir');
-    return {kind:'choice', options:['좌우','상하'], answer:d1, reason:[dirRe[d1], '바뀌|반대|거울|뒤집|그대로'], reasonAsk:'왜 그렇게 생각했는지 한 문장으로 써 보세요.'};
-  }
-  if(id==='mv-2') return {kind:'choice', options:['90°','180°','270°'], answer:n('deg')+'°', reason:null};
-  if(id==='mv-3'){
-    var cat = mvComputeMove3(el.getAttribute('data-shape'), el.getAttribute('data-move')).category;
-    var catRe = { '밀기':'위치|똑같|그대로|모양', '뒤집기':'거울|반대|뒤집|좌우|상하', '돌리기':'돌|각도|방향|빙글|통째|90|180|270' };
-    return {kind:'choice', options:['밀기','뒤집기','돌리기'], answer:cat, reason:[catRe[cat]], reasonAsk:'왜 그렇게 생각했는지 한 문장으로 써 보세요.'};
-  }
   if(id==='mvw-2') return {kind:'num', answers:[n('times')*90, (n('times')*90)%360], givens:[90, n('times')], ask:'식을 써 보세요. 예) 90×2=180'};
   if(id==='mvw-3') return {kind:'choice', options:['같은 모양','다른 모양'], answer:(n('times')%2===0?'같은 모양':'다른 모양'), reason:null};
   if(id==='mvw-4') return {kind:'num', answers:[360/n('degstep')], givens:[n('degstep')], ask:'식을 써 보세요. 예) 360÷90=4'};
@@ -12348,7 +12310,7 @@ function mvReviewSave(id, days){
 (function(){
   var re = /(<button class="havruta-show-btn" onclick="mv(?:W)?Gen\d+\('([\w-]+)'\)" style="[^"]*">🔄 유사문제<\/button>)/g;
   CV_DATA_E4MOVE.forEach(function(card, idx){
-    if(card.title.indexOf('예제 문제')>=0 || card.title.indexOf('문장제 심화')>=0){
+    if(card.title.indexOf('문장제 심화')>=0){   // 예제 문제는 복습에서 제외(사용자 결정 2026-10-24)
       card.html = card.html.replace(re, function(m, btn, id){
         return btn + '<button class="havruta-show-btn" onclick="mvReviewAsk(\''+id+'\')" style="width:100%;margin-top:6px">📌 복습할래요</button><div id="rvq-'+id+'"></div>';
       });
