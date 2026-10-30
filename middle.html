@@ -279,9 +279,11 @@ body.lm-b{--white:#1d2433;--gray:#5b6472;--card:#f4f6fa;--card2:#eef1f6;--green:
 body.lm-a .lm-panel .progress-wrap,body.lm-b .progress-wrap{background:#dfe4ec}
 body.lm-a .lm-panel .btn-sub,body.lm-b .btn-sub{border-color:#c5ccd8}
 body.lm-a .lm-panel .bubble-text,body.lm-a .lm-panel .q-card,body.lm-b .bubble-text,body.lm-b .q-card{border-color:#c5ccd8}
-#lmPick{display:none;position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:9000;gap:4px;padding:4px;border-radius:12px;background:rgba(15,25,35,.85);border:1px solid rgba(255,255,255,.15)}
+#lmPick{display:none;position:fixed;bottom:6px;left:50%;transform:translateX(-50%);z-index:9000;gap:3px;padding:3px;border-radius:10px;background:rgba(15,25,35,.85);border:1px solid rgba(255,255,255,.15)}
 #lmPick.show{display:flex}
-#lmPick button{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#f0f4f8;border-radius:8px;padding:5px 9px;font-size:.72rem;cursor:pointer;font-family:inherit}
+/* 색상 버튼이 아래쪽 이전·건너뛰기·다음 버튼을 가리지 않도록, 버튼이 보일 때 화면 아래에 여백을 둔다 */
+body.lm-pick-on .screen.active{padding-bottom:64px}
+#lmPick button{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#f0f4f8;border-radius:7px;padding:3px 7px;font-size:.62rem;cursor:pointer;font-family:inherit;white-space:nowrap}
 #lmPick button.on{background:#f1c40f;color:#1a1a1a;border-color:#f1c40f;font-weight:700}
 </style>
 </head>
@@ -18410,6 +18412,7 @@ function renderNotebook(){
   window.lmOnScreen = function(name){
     var on = inScope(name);
     document.getElementById('lmPick').classList.toggle('show', on);
+    document.body.classList.toggle('lm-pick-on', on);
     if(!on){ setMode('dark'); return; }
     wrapPanel(name);
     setMode(pref());
