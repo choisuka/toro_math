@@ -7983,20 +7983,43 @@ A=8a, B=8b, 최대공약수(a,b)=1, a×b = 240÷8 = 30
   { tag:'⚡ 6/9 — 약수 개수가 홀수인 수의 비밀', tagColor:'#a5b4fc',
     bg:'rgba(165,180,252,.07)', bd:'rgba(165,180,252,.3)',
     body:`<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">
-<b style="color:#a5b4fc;font-size:.92rem">왜 어떤 수는 약수의 개수가 홀수일까?</b><br><br>
-<b style="color:#fde68a">✡️ 유대인식 — 쌍의 논리</b><br>
-약수는 항상 쌍으로 존재한다.<br>
-예: 12의 약수 → (1,12), (2,6), (3,4) → 짝수 6개<br>
-예: 9의 약수 → (1,9), (3,3) → 3이 자기 자신과 쌍을 이룸 → 홀수 3개<br><br>
+<b style="color:#a5b4fc;font-size:.92rem">약수의 개수가 홀수이면, 왜 반드시 제곱수일까?</b><br><br>
+<div style="font-family:Jua,sans-serif;font-size:1.1rem;margin:6px 0 6px"><span>✨ </span><span style="background:linear-gradient(90deg,#ea580c,#db2777,#7c3aed);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent">우리가 늘 궁금한 원리 — 쌍의 논리</span></div>
+<b style="color:#fde68a">🔢 수로 먼저 — 예를 찾아봐요</b><br>
 <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.8rem;margin-bottom:8px">
-<b style="color:#a5b4fc">결론:</b> 약수 개수가 홀수 ↔ <b style="color:#fde68a">완전제곱수</b><br>
-n = p^2a × q^2b × ... 이면 (2a+1)(2b+1)... = 홀수 × 홀수 = 홀수
+12의 약수 → 곱이 12가 되는 짝을 지어 봐요<br>
+(1, 12), (2, 6), (3, 4) → 1×12 = 12, 2×6 = 12, 3×4 = 12<br>
+→ 모두 짝이 있어서 6개 <b style="color:#fde68a">(짝수)</b><br><br>
+9의 약수 → (1, 9), (3, 3) → 3×3 = 9, <b style="color:#86efac">3은 자기 자신과 짝</b><br>
+→ 3개 <b style="color:#fde68a">(홀수)</b><br><br>
+16의 약수 → (1, 16), (2, 8), (4, 4) → 4×4 = 16, <b style="color:#86efac">4는 자기 자신과 짝</b><br>
+→ 5개 <b style="color:#fde68a">(홀수)</b>
+</div>
+<b style="color:#7dd3fc">🔤 문자로 넓히기 — 모든 수에서도 그럴까요?</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.8rem;margin-bottom:8px">
+n의 약수 a가 있으면 b = n÷a 도 약수이고, 둘은 <b style="color:#fde68a">(a, b)</b>로 짝이 되어 <b style="color:#fde68a">a × b = n</b> 입니다.<br>
+a ≠ b 이면 두 약수가 한 쌍이라 약수의 개수가 2개씩 늘어납니다.<br>
+짝이 자기 자신인 약수는 a = b 일 때뿐이고, 그때 <b style="color:#86efac">a × a = n</b> 입니다.<br><br>
+약수의 개수 = (둘씩 짝을 이룬 약수들) + (자기 자신과 짝인 약수, 많아야 1개)<br>
+개수가 홀수가 되려면 자기 자신과 짝인 약수가 있어야 하고, 그것은 <b style="color:#fde68a">n = a × a</b>, 즉 n이 제곱수라는 뜻입니다.<br>
+거꾸로 n = a × a 이면 a 하나만 짝이 없으므로 약수의 개수는 홀수입니다.
+</div>
+<b style="color:#c4b5fd">🧮 소인수분해로 확인 (중1 연결)</b><br>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.8rem;margin-bottom:8px">
+n = 2<sup>x</sup> × 3<sup>y</sup> × 5<sup>z</sup> × … 이면 약수의 개수 = (x+1)(y+1)(z+1)×…<br>
+곱이 홀수가 되려면 곱하는 수가 모두 홀수여야 합니다.<br>
+→ x+1, y+1, z+1, … 이 모두 홀수 → x, y, z, … 가 모두 짝수<br>
+→ n = (2<sup>x÷2</sup> × 3<sup>y÷2</sup> × 5<sup>z÷2</sup> × …)² 이므로 n은 제곱수입니다.<br><br>
+36 = 2<sup>2</sup>×3<sup>2</sup> → (2+1)(2+1) = 9개 <b style="color:#fde68a">(홀수)</b><br>
+12 = 2<sup>2</sup>×3<sup>1</sup> → (2+1)(1+1) = 6개 <b style="color:#fde68a">(짝수)</b>
+</div>
+<div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;font-size:.8rem;margin-bottom:8px">
+<b style="color:#a5b4fc">결론:</b> 약수의 개수가 홀수 ↔ <b style="color:#fde68a">제곱수</b>
 </div>
 <b style="color:#86efac">🔍 발견형 직관:</b><br>
 "짝이 안 맞는 약수가 있다 → 그 약수가 자기 자신과 곱해서 n이 됨 → n은 제곱수!"<br><br>
-<b style="color:#7dd3fc">📊 시각화형 문제:</b><br>
-1부터 50까지 자연수 중 약수의 개수가 홀수인 수의 개수는?<br>
-<span style="font-size:.79rem;color:#aaa">완전제곱수: 1,4,9,16,25,36,49 → 7개</span>
+<b style="color:#7dd3fc">📝 확인 문제:</b><br>
+1부터 50까지 자연수 중 약수의 개수가 홀수인 수의 개수는?
 </div>`, ans:`약수 개수가 홀수인 수 = 완전제곱수
 
 1~50 중: 1, 4, 9, 16, 25, 36, 49
