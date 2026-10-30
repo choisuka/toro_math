@@ -17513,7 +17513,7 @@ function renderFactmult(){
       <div class="fm-info">
         <div class="fm-title">${m.name}</div>
         <div class="fm-sub">${m.sub}</div>
-        ${done?`<div style="font-size:.78rem;color:var(--green);margin-top:4px;font-weight:700">✅ 완료 — 점수: ${getFMScore(k)}/3 · 다시 도전 가능</div>`:`<div style="font-size:.75rem;color:rgba(255,255,255,.3);margin-top:4px">아직 시작 안 함</div>`}
+        ${done?'':`<div style="font-size:.75rem;color:rgba(255,255,255,.3);margin-top:4px">아직 시작 안 함</div>`}
       </div>
       <div style="font-size:1.5rem">${done?'✅':'▶'}</div>
     </div>`;
