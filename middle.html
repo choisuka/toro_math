@@ -18262,12 +18262,12 @@ function renderNotebook(){
 <script>
 // 중1 대수 화면에서만 색상 선택을 보여준다. 카드 본문(HTML)은 수정하지 않고, 연한 글자색을 같은 계열의 진한 색으로 실행 중에 바꾼다.
 (function(){
-  var CARDS = ['geometry-example','geometry-guide-congruence','geometry-guide-construction','geometry-guide-position','geometry-hard-advanced','geometry-hard-basic','geometry-havruta','plane-shape-example','plane-shape-guide','plane-shape-hard','plane-shape-havruta','solid-shape-example','solid-shape-guide','solid-shape-hard','solid-shape-havruta','fm-advanced','fm-prime-link','prime-guide','prime-havruta','eq-basic','eq-hard','eq-guide','eq-havruta-lesson','eq-zero-div','eq-havruta-cards','eq-identity','eq-identity-havruta','eq-guarantee','eq-identity-discussion','avg-guide','avg-hard','avg-example','avg-havruta'];
+  var CARDS = ['geometry-example','geometry-guide-congruence','geometry-guide-construction','geometry-guide-position','geometry-hard-advanced','geometry-hard-basic','geometry-havruta','plane-shape-example','plane-shape-guide','plane-shape-hard','plane-shape-havruta','solid-shape-example','solid-shape-guide','solid-shape-hard','solid-shape-havruta','fm-advanced','fm-prime-link','fm-finland','fm-singapore','fm-jewish','prime-guide','prime-havruta','eq-basic','eq-hard','eq-guide','eq-havruta-lesson','eq-zero-div','eq-havruta-cards','eq-identity','eq-identity-havruta','eq-guarantee','eq-identity-discussion','avg-guide','avg-hard','avg-example','avg-havruta'];
   var KEY = 'toro_mid_theme';
   var mode = 'dark';
   function pref(){ try{ var v = localStorage.getItem(KEY); return (v==='dark'||v==='lm-a'||v==='lm-b') ? v : 'dark'; }catch(e){ return 'dark'; } }
   // 허브·선택 화면은 원래 모습 그대로 두고, 카드를 눌러 열린 카드 화면에서만 적용한다
-  function inScope(name){ return name==='cardviewer' && typeof CS!=='undefined' && CARDS.indexOf(CS.set)>=0; }
+  function inScope(name){ return name==='fm-problems' || (name==='cardviewer' && typeof CS!=='undefined' && CARDS.indexOf(CS.set)>=0); }
   function wrapPanel(id){
     var sc = document.getElementById(id); if(!sc || sc.querySelector('.lm-panel')) return;
     var nav = sc.querySelector('.nav-bar'); if(!nav) return;
