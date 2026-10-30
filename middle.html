@@ -222,6 +222,17 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 .fm-info{flex:1}
 .fm-title{font-family:'Jua',sans-serif;font-size:1.05rem}
 .fm-sub{font-size:.78rem;color:var(--gray);margin-top:3px;line-height:1.5}
+.fm-sq-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px}
+.fm-sq-grid .fm-card{aspect-ratio:1;flex-direction:column;justify-content:center;text-align:center;gap:2px;margin-bottom:0;padding:6px 4px;width:auto;overflow:hidden}
+.fm-sq-grid .fm-flag{width:auto;font-size:1.6rem}
+.fm-sq-grid .fm-card>div:last-child{display:none}
+.fm-sq-grid .fm-info{flex:0 1 auto}
+.fm-sq-grid .fm-title{font-size:.78rem}
+.fm-sq-grid .fm-sub{font-size:.68rem;margin-top:1px}
+.fm-sq-grid .fm-info>div:last-child:not(.fm-sub):not(.fm-title){font-size:.58rem!important;margin-top:2px!important}
+.fm-cheer{font-family:'Jua',sans-serif;font-size:.66rem;margin-top:2px;text-align:center;line-height:1.25;background:linear-gradient(90deg,#f9a8d4,#fde68a,#86efac,#7dd3fc,#c4b5fd,#f9a8d4);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:fmCheer 3s linear infinite}
+@keyframes fmCheer{0%{background-position:0 0}100%{background-position:200% 0}}
+@media (prefers-reduced-motion:reduce){.fm-cheer{animation:none}}
 .fm-badge-box{background:linear-gradient(135deg,#1a1000,#2d1e00);border:2px solid #d4a017;border-radius:16px;padding:14px 18px;text-align:center;box-shadow:0 0 24px rgba(212,160,23,.18);width:100%;max-width:620px}
 .bar-row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
 .bar-label{font-size:.78rem;color:var(--gray);width:52px;flex-shrink:0;text-align:right}
@@ -457,36 +468,41 @@ body.lm-a .lm-panel .bubble-text,body.lm-a .lm-panel .q-card,body.lm-b .bubble-t
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
       <button class="nav-back" onclick="goBack()">← 수학여행</button>
-      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:1rem;text-align:center;color:#fbbf24">🔢 약수와 배수 — 3단계 융합</h2>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:1rem;text-align:center;color:#fbbf24">🔢 약수와 배수</h2>
       <div style="width:60px"></div>
     </div>
     <div style="background:var(--card2);border-radius:14px;padding:14px 16px;margin-bottom:16px;font-size:.85rem;line-height:1.7;color:#c8d8e8">
       <span style="font-family:'Jua',sans-serif;color:#fbbf24">단계별로 완전히 내 것으로!</span><br>
       세 가지 방식을 모두 완료하면 <b style="color:#d4a017">🏆 토로매쓰 마스터 뱃지</b>를 얻어요.
     </div>
-    <!-- 🟢 개념 — 나라별 방 -->
-    <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#86efac;letter-spacing:.08em;margin:4px 0 8px;padding-left:4px">🟢 개념 — 나라별 방</div>
-    <div id="fm-cards"></div>
-
-    <!-- 🟡 기본 연습 -->
-    <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#fde68a;letter-spacing:.08em;margin:0 0 8px;padding-left:4px">🟡 기본 연습</div>
-    <button class="btn btn-main" onclick="startQuiz('fm','factmult')" style="width:100%;margin-bottom:12px;background:linear-gradient(135deg,#78350f,#d97706)">
-      📚 기본 퀴즈 — 최대공약수·최소공배수·약수 (10문항)
-    </button>
-
-    <!-- 🔴 종합 도전 -->
-    <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#f87171;letter-spacing:.08em;margin:0 0 8px;padding-left:4px">🔴 종합 도전</div>
-    <button onclick="startCards('fm-advanced','factmult')" style="width:100%;margin-bottom:12px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      🧩 3국 종합 도전 — 항구의 조명 (5장) →
-      <div style="font-size:.73rem;color:rgba(248,113,113,.7);margin-top:3px">세 나라가 같은 문제를 다르게 푼다 — 방 3개 완료 후 도전 추천</div>
-    </button>
-
-    <!-- 🔵 소인수분해 연결 -->
-    <div style="font-family:'Jua',sans-serif;font-size:.75rem;color:#7dd3fc;letter-spacing:.08em;margin:0 0 6px;padding-left:4px">🔵 소인수분해 연결 — 중1 이후</div>
-    <div style="font-size:.75rem;color:#64748b;margin-bottom:8px;padding-left:4px">소인수분해(중1)를 배운 후 돌아오세요 →</div>
-    <button onclick="startCards('fm-prime-link','factmult')" style="width:100%;margin-bottom:12px;background:rgba(125,211,252,.07);border:1px solid rgba(125,211,252,.25);color:#7dd3fc;border-radius:12px;padding:12px;font-family:Jua,sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
-      🔗 소인수분해로 다시 보는 약수·배수 (9장) →
-    </button>
+    <!-- 정사각형 카드 5개 (3열) -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">
+      <div class="topic-card" onclick="showScreen('fm-concept')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;overflow:hidden;border:1px solid rgba(212,160,23,.25);background:linear-gradient(155deg,#1a1000,#251800)">
+        <div class="ico" style="font-size:1.5rem">🌲</div>
+        <div class="name" style="color:#fbbf24;font-size:.76rem;margin-top:3px;text-align:center;line-height:1.25">약수와 배수 개념 이해하기</div>
+        <div class="desc" style="font-size:.62rem;color:#94a3b8;text-align:center;margin-top:2px">(초5에서 연결)</div>
+      </div>
+      <div class="topic-card" onclick="startQuiz('fm','factmult')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;overflow:hidden;border:1px solid rgba(217,119,6,.4);background:linear-gradient(155deg,#2a1503,#3b1f05)">
+        <div class="ico" style="font-size:1.5rem">📚</div>
+        <div class="name" style="color:#fde68a;font-size:.8rem;margin-top:3px;text-align:center;line-height:1.3">기본 퀴즈</div>
+        <div class="desc" style="font-size:.58rem;color:#a8a29e;text-align:center;margin-top:2px;line-height:1.3">최대공약수·최소공배수·약수 (10문항)</div>
+      </div>
+      <div class="topic-card" onclick="showScreen('fm-problems')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;overflow:hidden;border:1px solid rgba(244,114,182,.35);background:linear-gradient(155deg,#1f0a1e,#2a1238)">
+        <div class="ico" style="font-size:1.5rem">📝</div>
+        <div class="name" style="color:#f9a8d4;font-size:.85rem;margin-top:3px;text-align:center">문제</div>
+        <div class="fm-cheer">이제는 잘 할 수 있어요!</div>
+      </div>
+      <div class="topic-card" onclick="startCards('fm-advanced','factmult')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;overflow:hidden;border:1px solid rgba(248,113,113,.3);background:rgba(248,113,113,.1)">
+        <div class="ico" style="font-size:1.5rem">🧩</div>
+        <div class="name" style="color:#f87171;font-size:.7rem;margin-top:3px;text-align:center;line-height:1.3">하나의 문제를 서로 다른 세 개의 풀이로 해결하다</div>
+      </div>
+      <div class="topic-card" onclick="startCards('fm-prime-link','factmult')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;overflow:hidden;border:1px solid rgba(125,211,252,.25);background:rgba(125,211,252,.07)">
+        <div class="ico" style="font-size:1.5rem">🔗</div>
+        <div class="name" style="color:#7dd3fc;font-size:.76rem;margin-top:3px;text-align:center;line-height:1.3">소인수분해로 다시 보기</div>
+        <div class="desc" style="font-size:.62rem;color:#94a3b8;text-align:center;margin-top:2px">(중1 이후)</div>
+      </div>
+    </div>
+    <div style="font-size:.72rem;color:rgba(248,113,113,.75);margin:-4px 0 14px;padding-left:4px">🧩 세 나라가 같은 문제를 다르게 푼다 — 방 3개 완료 후 도전 추천</div>
     <div id="fm-badge-unit" style="display:none">
       <div class="fm-badge-box">
         <div style="font-size:2.4rem;margin-bottom:6px">🏆</div>
@@ -495,6 +511,30 @@ body.lm-a .lm-panel .bubble-text,body.lm-a .lm-panel .q-card,body.lm-b .bubble-t
       </div>
     </div>
     <button class="fm-parent-btn" onclick="showScreen('fm-report')">📊 학부모 학습 리포트 보기</button>
+  </div>
+</div>
+
+<!-- 약수와 배수: 개념 이해하기 (방 3개) -->
+<div id="fm-concept" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 돌아가기</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.82rem;text-align:center;color:#fbbf24">🌲 약수와 배수 개념 이해하기 (초5에서 연결)</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div id="fm-cards" class="fm-sq-grid"></div>
+  </div>
+</div>
+
+<!-- 약수와 배수: 문제 모음 (세 방의 문제를 초등처럼 나열) -->
+<div id="fm-problems" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 돌아가기</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:1rem;text-align:center;color:#f9a8d4">📝 문제</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div id="fm-problems-body"></div>
   </div>
 </div>
 
@@ -17404,9 +17444,9 @@ function prevQ(){
 
 // FM_METHODS + FM_QS
 const FM_METHODS = {
-  fi: { key:'fi', flag:'🔍', name:'발견형 방', sub:'퀴즈 3문제 → 실생활 개념 카드 6장', color:'var(--green)', tagStyle:'background:rgba(46,204,113,.15);border:1px solid rgba(46,204,113,.3);color:#2ecc71' },
-  sg: { key:'sg', flag:'📊', name:'시각화형 방', sub:'퀴즈 3문제 → 막대 모델 개념 카드 6장', color:'var(--blue)', tagStyle:'background:rgba(52,152,219,.15);border:1px solid rgba(52,152,219,.3);color:#3498db' },
-  jw: { key:'jw', flag:'✡️', name:'하브루타 방', sub:'퀴즈 3문제 → 논리·심화 개념 카드 8장', color:'var(--yellow)', tagStyle:'background:rgba(241,196,15,.15);border:1px solid rgba(241,196,15,.3);color:#f1c40f' }
+  fi: { key:'fi', flag:'🔍', name:'발견형 방', sub:'실생활 개념', color:'var(--green)', tagStyle:'background:rgba(46,204,113,.15);border:1px solid rgba(46,204,113,.3);color:#2ecc71' },
+  sg: { key:'sg', flag:'📊', name:'시각화형 방', sub:'막대모델', color:'var(--blue)', tagStyle:'background:rgba(52,152,219,.15);border:1px solid rgba(52,152,219,.3);color:#3498db' },
+  jw: { key:'jw', flag:'✡️', name:'하브루타 방', sub:'why?', color:'var(--yellow)', tagStyle:'background:rgba(241,196,15,.15);border:1px solid rgba(241,196,15,.3);color:#f1c40f' }
 };
 
 const FM_QS = {
@@ -17468,7 +17508,7 @@ function renderFactmult(){
   const order=['fi','sg','jw'];
   document.getElementById('fm-cards').innerHTML=order.map(k=>{
     const m=FM_METHODS[k]; const done=p[k];
-    return `<div class="fm-card ${k} ${done?'done':''}" onclick="startCards('${{fi:'fm-finland',sg:'fm-singapore',jw:'fm-jewish'}[k]}','factmult')">
+    return `<div class="fm-card ${k} ${done?'done':''}" onclick="startCards('${{fi:'fm-finland',sg:'fm-singapore',jw:'fm-jewish'}[k]}','fm-concept')">
       <div class="fm-flag">${m.flag}</div>
       <div class="fm-info">
         <div class="fm-title">${m.name}</div>
@@ -17479,6 +17519,30 @@ function renderFactmult(){
     </div>`;
   }).join('');
   document.getElementById('fm-badge-unit').style.display=badge?'block':'none';
+}
+
+// 세 방의 문제(확인 문제 + 연습)를 초등처럼 쭉 나열. 문제 글은 CARD_DATA를 그대로 참조한다.
+function renderFMProblems(){
+  var rooms=[['fm-finland','🔍 발견형','실생활 개념','#86efac'],['fm-singapore','📊 시각화','막대모델','#7dd3fc'],['fm-jewish','✡️ 하브루타','why?','#fde68a']];
+  var isProb=/확인 문제|연습|추론|비밀번호|논쟁|미지의 수/;
+  var html='';
+  rooms.forEach(function(r){
+    var items=(CARD_DATA[r[0]]||[]).filter(function(c){ return isProb.test(c.tag); });
+    html+='<div style="font-family:Jua,sans-serif;font-size:.8rem;color:'+r[3]+';letter-spacing:.06em;margin:14px 0 8px;padding-left:4px">'+r[1]+' — '+r[2]+' ('+items.length+'문제)</div>';
+    items.forEach(function(c){
+      html+='<div style="background:'+c.bg+';border:1px solid '+c.bd+';border-radius:12px;padding:16px;margin-bottom:10px">'
+        +'<div style="font-family:Jua,sans-serif;color:'+c.tagColor+';font-size:.72rem;margin-bottom:10px">'+c.tag+'</div>'+c.body
+        +(c.ans?'<button class="btn btn-ghost" onclick="fmToggleSol(this)" style="width:100%;margin-top:10px">💡 정답/풀이 보기</button>'
+          +'<div class="fm-sol" style="display:none;margin-top:10px;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.2);border-radius:10px;padding:12px;font-size:.9rem;color:#e2e8f0;line-height:1.85">'+c.ans+'</div>':'')
+        +'</div>';
+    });
+  });
+  document.getElementById('fm-problems-body').innerHTML=fixRadicals(html);
+}
+function fmToggleSol(btn){
+  var box=btn.nextElementSibling, open=box.style.display==='none';
+  box.style.display=open?'':'none';
+  btn.textContent=open?'🙈 정답 숨기기':'💡 정답/풀이 보기';
 }
 
 function startFM(method){
@@ -17620,7 +17684,8 @@ function renderFMReport(){
 const _origShowScreen=showScreen;
 showScreen=function(name){
   _origShowScreen(name);
-  if(name==='factmult') renderFactmult();
+  if(name==='factmult' || name==='fm-concept') renderFactmult();
+  if(name==='fm-problems') renderFMProblems();
   if(name==='fm-report') renderFMReport();
   if(name==='notebook') renderNotebook();
   // badge 갱신
