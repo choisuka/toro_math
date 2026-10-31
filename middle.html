@@ -267,7 +267,7 @@ body.lm-a .fmd-card,body.lm-b .fmd-card{background:#fbfcfe !important;border-col
 #factmult .fm-hubgrid{width:100%}
 @media (min-width:600px){
 #factmult .fm-hubrow{display:flex;gap:12px;align-items:stretch;margin-top:18px;margin-bottom:24px}
-#factmult .fm-hubgrid{flex:1 1 auto;min-width:0;margin-bottom:0 !important;min-height:calc(100vh - 179px);align-content:space-between;grid-template-columns:repeat(4,1fr) !important;max-width:max(440px,calc(200vh - 430px))}
+#factmult .fm-hubgrid{flex:1 1 auto;min-width:0;margin-bottom:0 !important;grid-template-columns:repeat(4,1fr) !important;max-width:max(440px,calc(200vh - 430px))}
 #factmult #fm-badge-unit{flex:0 0 104px}
 #factmult #fm-badge-unit .fm-badge-box{word-break:keep-all;height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8px 6px;border-radius:14px}
 #factmult #fm-badge-unit .fm-badge-box > div:nth-child(1){font-size:1.9rem !important;margin-bottom:4px !important}
@@ -17725,6 +17725,19 @@ function renderFMProblems(){
   });
   document.getElementById('fm-problems-body').innerHTML=fixRadicals(html);
 }
+// 약수와 배수 허브(태블릿·노트북): 남는 세로 공간을 "카드 위 · 두 줄 사이 · 카드 아래" 세 곳에 똑같이 나눠 카드가 한쪽에 몰리지 않게 한다.
+// 카드 아래 몫만큼 화면 아래가 비므로 학부모 리포트 버튼은 첫 화면 아래로 내려간다.
+function fmHubLayout(){
+  var row = document.querySelector('#factmult .fm-hubrow'), g = row && row.querySelector('.fm-hubgrid');
+  if(!g) return;
+  g.style.rowGap = '10px'; row.style.marginTop = ''; row.style.marginBottom = '';
+  if(window.innerWidth < 600) return;
+  var cs = g.querySelectorAll('.topic-card'); if(cs.length < 5) return;
+  var s = cs[0].getBoundingClientRect().height, top = row.getBoundingClientRect().top;
+  var spare = Math.max(0, window.innerHeight - top - 12 - (2 * s + 10)), e = Math.round(spare / 3);
+  g.style.rowGap = (10 + e) + 'px'; row.style.marginTop = (18 + e) + 'px'; row.style.marginBottom = (24 + e) + 'px';
+}
+window.addEventListener('resize', function(){ var f = document.getElementById('factmult'); if(f && f.classList.contains('active')) fmHubLayout(); });
 // 약수와 배수 "서랍으로 찾기": 문제를 읽고 "무엇을 찾는 문제인가"(공약수·공배수·최대공약수·최소공배수)를 먼저 고른다.
 // 기존 문제는 CARD_DATA·FM_QS를 그대로 참조하고(문제 글만 보이고 힌트·해설은 정답을 고른 뒤에 보임), 새 공약수 문제만 여기에 둔다.
 const FMD_LABEL = {cd:'공약수', cm:'공배수', gcd:'최대공약수', lcm:'최소공배수'};
@@ -17989,6 +18002,7 @@ showScreen=function(name){
   if(name==='fm-scroll') renderFMScroll();
   if(name==='fm-drawer') renderFMDrawer();
   if(name==='factmult' || name==='fm-concept' || name==='fm-talkhub') fmWaveText(document.getElementById(name));
+  if(name==='factmult') fmHubLayout();
   if(name==='fm-report') renderFMReport();
   if(name==='notebook') renderNotebook();
   // badge 갱신
