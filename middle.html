@@ -248,6 +248,20 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 @keyframes fmSmile{0%,55%,100%{opacity:1}62%,82%{opacity:0}}
 @keyframes fmTalk{0%,55%,100%{opacity:0;transform:scaleY(.6)}62%{opacity:1;transform:scaleY(1)}72%{opacity:1;transform:scaleY(.55)}82%{opacity:1;transform:scaleY(1)}86%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.fm-ch,.fm-fc,.fm-eye,.fm-brow,.fm-m1,.fm-m2{animation:none}.fm-m2{opacity:0}}
+@keyframes fmIco{0%,100%{transform:translateY(0) rotate(0) scale(1)}25%{transform:translateY(-3px) rotate(-7deg) scale(1.07)}50%{transform:translateY(0) rotate(0) scale(1)}75%{transform:translateY(-2px) rotate(7deg) scale(1.05)}}
+#factmult .topic-card .ico,#fm-talkhub .topic-card .ico,#fm-concept .fm-flag{display:inline-block;animation:fmIco 2.8s ease-in-out infinite}
+#factmult .topic-card:nth-child(2) .ico,#fm-talkhub .topic-card:nth-child(2) .ico{animation-delay:.35s}
+#factmult .topic-card:nth-child(3) .ico,#fm-talkhub .topic-card:nth-child(3) .ico{animation-delay:.7s}
+#factmult .topic-card:nth-child(4) .ico,#fm-talkhub .topic-card:nth-child(4) .ico{animation-delay:1.05s}
+#factmult .topic-card:nth-child(5) .ico{animation-delay:1.4s}
+#factmult .topic-card:nth-child(6) .ico{animation-delay:1.75s}
+#fm-concept .fm-card:nth-child(2) .fm-flag{animation-delay:.5s}
+#fm-concept .fm-card:nth-child(3) .fm-flag{animation-delay:1s}
+.fm-ww{display:inline-block;white-space:nowrap}
+.fm-wv{display:inline-block;animation:fmWave 2.6s ease-in-out infinite}
+.fm-wv.sm{animation-name:fmWaveSm}
+@keyframes fmWaveSm{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-1.4px)}}
+@media (prefers-reduced-motion:reduce){#factmult .topic-card .ico,#fm-talkhub .topic-card .ico,#fm-concept .fm-flag,.fm-wv{animation:none}}
 .fm-badge-box{background:linear-gradient(135deg,#1a1000,#2d1e00);border:2px solid #d4a017;border-radius:16px;padding:14px 18px;text-align:center;box-shadow:0 0 24px rgba(212,160,23,.18);width:100%;max-width:620px}
 .bar-row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
 .bar-label{font-size:.78rem;color:var(--gray);width:52px;flex-shrink:0;text-align:right}
@@ -17612,6 +17626,26 @@ function renderFactmult(){
   document.getElementById('fm-badge-unit').style.display=badge?'block':'none';
 }
 
+// 약수와 배수 카드 화면: 카드 안의 글씨를 한 글자씩 물결처럼 움직이게 한다(글자 내용은 그대로, 움직임 줄이기 설정이면 멈춤)
+function fmWaveText(root){
+  if(!root) return;
+  root.querySelectorAll('.name, .desc, .fm-title, .fm-sub').forEach(function(el){
+    if(el.dataset.fmw || el.classList.contains('fm-cheer') || el.querySelector('.fm-ch, .fm-wv') || el.children.length) return;
+    var t = el.textContent; if(!t.trim()) return;
+    var small = el.classList.contains('desc') || el.classList.contains('fm-sub');
+    var frag = document.createDocumentFragment(), k = 0, words = t.split(' ');
+    el.setAttribute('aria-label', t);
+    words.forEach(function(w, wi){
+      var ws = document.createElement('span'); ws.className = 'fm-ww';
+      for(var i = 0; i < w.length; i++){
+        var sp = document.createElement('span'); sp.className = 'fm-wv' + (small ? ' sm' : '');
+        sp.style.animationDelay = (k * 0.07).toFixed(2) + 's'; sp.textContent = w[i]; ws.appendChild(sp); k++;
+      }
+      frag.appendChild(ws); if(wi < words.length - 1) frag.appendChild(document.createTextNode(' '));
+    });
+    el.textContent = ''; el.appendChild(frag); el.dataset.fmw = '1';
+  });
+}
 // 카드 한 묶음을 위에서 아래로 쭉 보여 준다(카드 화면의 "내려보기" 버튼). 글은 CARD_DATA를 그대로 참조한다.
 const FM_SCROLL_NAMES = {'fm-guide':'세 가지 시선으로 보는 약수·배수','fm-gcd':'최대공약수·최소공배수 세 가지 풀이','fm-worksheet':'토론 워크시트','fm-hard10':'사고력 도전 10선'};
 function renderFMScroll(){
@@ -17792,6 +17826,7 @@ showScreen=function(name){
   if(name==='factmult' || name==='fm-concept') renderFactmult();
   if(name==='fm-problems') renderFMProblems();
   if(name==='fm-scroll') renderFMScroll();
+  if(name==='factmult' || name==='fm-concept' || name==='fm-talkhub') fmWaveText(document.getElementById(name));
   if(name==='fm-report') renderFMReport();
   if(name==='notebook') renderNotebook();
   // badge 갱신
