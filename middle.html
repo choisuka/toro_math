@@ -579,6 +579,18 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
   </div>
 </div>
 
+<!-- 약수와 배수: 내려보기 (카드 한 묶음을 위에서 아래로 쭉) -->
+<div id="fm-scroll" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="showScreen('cardviewer')">← 카드로 보기</button>
+      <h2 id="fm-scroll-title" style="flex:1;font-family:'Jua',sans-serif;font-size:.9rem;text-align:center;color:#6ee7b7">⬇ 내려보기</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div id="fm-scroll-body"></div>
+  </div>
+</div>
+
 <!-- 약수와 배수: 문제 모음 (세 방의 문제를 초등처럼 나열) -->
 <div id="fm-problems" class="screen">
   <div style="width:100%;max-width:620px">
@@ -1475,6 +1487,7 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
     <div style="height:5px;background:rgba(255,255,255,.08);border-radius:3px;margin-bottom:14px">
       <div id="cv-prog-fill" style="height:5px;border-radius:3px;background:linear-gradient(90deg,#a855f7,#fde68a);transition:.35s;width:0%"></div>
     </div>
+    <button id="cv-scroll-btn" onclick="showScreen('fm-scroll')" style="display:none;width:100%;margin:0 0 10px;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.35);color:#6ee7b7;border-radius:10px;padding:8px;font-family:'Jua',sans-serif;font-size:.85rem;cursor:pointer">⬇ 내려보기 — 이 묶음의 카드를 위에서 아래로 쭉</button>
     <div id="cv-inner"></div>
     <div id="cv-ans-area" style="display:none;margin-top:10px;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.2);border-radius:10px;padding:12px;font-size:.9rem;color:#e2e8f0;line-height:1.85"></div>
     <button id="cv-ans-btn" onclick="toggleCVAnswer()" style="display:none;width:100%;margin-top:10px;background:rgba(253,230,138,.1);border:1px solid rgba(253,230,138,.3);color:#fde68a;border-radius:10px;padding:10px;font-family:'Jua',sans-serif;font-size:.82rem;cursor:pointer">
@@ -14509,6 +14522,7 @@ function startCards(set, from) {
 
 function renderCard() {
   const d = CS.cards[CS.cur];
+  var _sb = document.getElementById('cv-scroll-btn'); if(_sb) _sb.style.display = (typeof FM_SCROLL_NAMES!=='undefined' && FM_SCROLL_NAMES[CS.set]) ? '' : 'none';
   const tot = CS.cards.length;
   document.getElementById('cv-title').textContent = d.tag;
   document.getElementById('cv-num').textContent = (CS.cur+1) + ' / ' + tot;
@@ -14682,7 +14696,7 @@ function activateScreen(name){
   if(window.lmOnScreen) window.lmOnScreen(name);
 }
 let navStack = ['middle-home'];
-const NAV_STATEFUL_SCREENS = ['cardviewer','quiz','result','fm-quiz','fm-report'];
+const NAV_STATEFUL_SCREENS = ['cardviewer','quiz','result','fm-quiz','fm-report','fm-scroll'];
 function showScreen(name){
   activateScreen(name);
   if(NAV_STATEFUL_SCREENS.includes(name)) return;
@@ -17598,6 +17612,20 @@ function renderFactmult(){
   document.getElementById('fm-badge-unit').style.display=badge?'block':'none';
 }
 
+// 카드 한 묶음을 위에서 아래로 쭉 보여 준다(카드 화면의 "내려보기" 버튼). 글은 CARD_DATA를 그대로 참조한다.
+const FM_SCROLL_NAMES = {'fm-guide':'세 가지 시선으로 보는 약수·배수','fm-gcd':'최대공약수·최소공배수 세 가지 풀이','fm-worksheet':'토론 워크시트','fm-hard10':'사고력 도전 10선'};
+function renderFMScroll(){
+  var cards=CS.cards||[], html='';
+  cards.forEach(function(c){
+    html+='<div style="background:'+c.bg+';border:1px solid '+c.bd+';border-radius:12px;padding:16px;margin-bottom:10px">'
+      +'<div style="font-family:Jua,sans-serif;color:'+c.tagColor+';font-size:.72rem;margin-bottom:10px">'+c.tag+'</div>'+c.body
+      +((c.ans||c.extra)?'<button class="btn btn-ghost" onclick="fmToggleSol(this)" style="width:100%;margin-top:10px">💡 정답/풀이 보기</button>'
+        +'<div class="fm-sol" style="display:none;margin-top:10px;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.2);border-radius:10px;padding:12px;font-size:.9rem;color:#e2e8f0;line-height:1.85">'+(c.extra||c.ans)+'</div>':'')
+      +'</div>';
+  });
+  document.getElementById('fm-scroll-title').textContent='⬇ '+(FM_SCROLL_NAMES[CS.set]||'내려보기')+' ('+cards.length+'장)';
+  document.getElementById('fm-scroll-body').innerHTML=fixRadicals(html);
+}
 // 세 방의 문제(확인 문제 + 연습)를 초등처럼 쭉 나열. 문제 글은 CARD_DATA를 그대로 참조한다.
 function renderFMProblems(){
   var rooms=[['fm-finland','🔍 발견형','실생활 개념','#86efac'],['fm-singapore','📊 시각화','막대모델','#7dd3fc'],['fm-jewish','✡️ 하브루타','why?','#fde68a']];
@@ -17763,6 +17791,7 @@ showScreen=function(name){
   _origShowScreen(name);
   if(name==='factmult' || name==='fm-concept') renderFactmult();
   if(name==='fm-problems') renderFMProblems();
+  if(name==='fm-scroll') renderFMScroll();
   if(name==='fm-report') renderFMReport();
   if(name==='notebook') renderNotebook();
   // badge 갱신
@@ -18321,7 +18350,7 @@ function renderNotebook(){
   var mode = 'dark';
   function pref(){ try{ var v = localStorage.getItem(KEY); return (v==='dark'||v==='lm-a'||v==='lm-b') ? v : 'dark'; }catch(e){ return 'dark'; } }
   // 허브·선택 화면은 원래 모습 그대로 두고, 카드를 눌러 열린 카드 화면에서만 적용한다
-  function inScope(name){ return name==='fm-problems' || (name==='cardviewer' && typeof CS!=='undefined' && CARDS.indexOf(CS.set)>=0); }
+  function inScope(name){ return name==='fm-problems' || name==='fm-scroll' || (name==='cardviewer' && typeof CS!=='undefined' && CARDS.indexOf(CS.set)>=0); }
   function wrapPanel(id){
     var sc = document.getElementById(id); if(!sc || sc.querySelector('.lm-panel')) return;
     var nav = sc.querySelector('.nav-bar'); if(!nav) return;
