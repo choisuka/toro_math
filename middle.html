@@ -477,8 +477,12 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
       <span style="font-family:'Jua',sans-serif;color:#fbbf24">단계별로 완전히 내 것으로!</span><br>
       세 가지 방식을 모두 완료하면 <b style="color:#d4a017">🏆 토로매쓰 마스터 뱃지</b>를 얻어요.
     </div>
-    <!-- 정사각형 카드 5개 (3열) -->
+    <!-- 정사각형 카드 6개 (3열 x 2줄) -->
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">
+      <div class="topic-card" onclick="startCards('fm-talk','factmult')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;overflow:hidden;border:1px solid rgba(52,211,153,.4);background:linear-gradient(155deg,#04231b,#0b3a2c)">
+        <div class="ico" style="font-size:1.5rem">💬</div>
+        <div class="name" style="color:#6ee7b7;font-size:.7rem;margin-top:3px;text-align:center;line-height:1.3">약수와 배수에 대한 친구들의 토론을 보자!</div>
+      </div>
       <div class="topic-card" onclick="showScreen('fm-concept')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;overflow:hidden;border:1px solid rgba(212,160,23,.25);background:linear-gradient(155deg,#1a1000,#251800)">
         <div class="ico" style="font-size:1.5rem">🌲</div>
         <div class="name" style="color:#fbbf24;font-size:.76rem;margin-top:3px;text-align:center;line-height:1.25">약수와 배수 개념 이해하기</div>
@@ -17748,6 +17752,8 @@ function setHomeView(v) {
 
 // FM 나라별 방 조합 (FM_METHODS·FM_QS 정의 후 실행)
 buildFMRooms();
+// 약수와 배수 '친구들의 토론' 카드: 안내 → 3국 풀이 → 토론 워크시트 → 도전 10선 → 해설지 순서로 이어서 보여 준다
+CARD_DATA['fm-talk'] = [].concat(CARD_DATA['fm-guide'], CARD_DATA['fm-gcd'], CARD_DATA['fm-worksheet'], CARD_DATA['fm-hard10'], CARD_DATA['fm-solution']);
 
 // init
 var _fmBadgeEl3 = document.getElementById('fm-badge-home');
@@ -18264,7 +18270,7 @@ function renderNotebook(){
 <script>
 // 중1 대수 화면에서만 색상 선택을 보여준다. 카드 본문(HTML)은 수정하지 않고, 연한 글자색을 같은 계열의 진한 색으로 실행 중에 바꾼다.
 (function(){
-  var CARDS = ['geometry-example','geometry-guide-congruence','geometry-guide-construction','geometry-guide-position','geometry-hard-advanced','geometry-hard-basic','geometry-havruta','plane-shape-example','plane-shape-guide','plane-shape-hard','plane-shape-havruta','solid-shape-example','solid-shape-guide','solid-shape-hard','solid-shape-havruta','fm-advanced','fm-prime-link','fm-finland','fm-singapore','fm-jewish','prime-guide','prime-havruta','eq-basic','eq-hard','eq-guide','eq-havruta-lesson','eq-zero-div','eq-havruta-cards','eq-identity','eq-identity-havruta','eq-guarantee','eq-identity-discussion','avg-guide','avg-hard','avg-example','avg-havruta'];
+  var CARDS = ['geometry-example','geometry-guide-congruence','geometry-guide-construction','geometry-guide-position','geometry-hard-advanced','geometry-hard-basic','geometry-havruta','plane-shape-example','plane-shape-guide','plane-shape-hard','plane-shape-havruta','solid-shape-example','solid-shape-guide','solid-shape-hard','solid-shape-havruta','fm-advanced','fm-prime-link','fm-finland','fm-singapore','fm-jewish','fm-talk','prime-guide','prime-havruta','eq-basic','eq-hard','eq-guide','eq-havruta-lesson','eq-zero-div','eq-havruta-cards','eq-identity','eq-identity-havruta','eq-guarantee','eq-identity-discussion','avg-guide','avg-hard','avg-example','avg-havruta'];
   var KEY = 'toro_mid_theme';
   var mode = 'dark';
   function pref(){ try{ var v = localStorage.getItem(KEY); return (v==='dark'||v==='lm-a'||v==='lm-b') ? v : 'dark'; }catch(e){ return 'dark'; } }
