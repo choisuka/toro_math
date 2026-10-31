@@ -17726,7 +17726,7 @@ function renderFMProblems(){
   document.getElementById('fm-problems-body').innerHTML=fixRadicals(html);
 }
 // 약수와 배수 허브(태블릿·노트북): 남는 세로 공간을 "카드 위 · 두 줄 사이 · 카드 아래" 세 곳에 똑같이 나눠 카드가 한쪽에 몰리지 않게 한다.
-// 카드 아래 몫만큼 화면 아래가 비므로 학부모 리포트 버튼은 첫 화면 아래로 내려간다.
+// 한 곳의 몫은 60px까지만 늘려 큰 화면에서 카드가 떠 보이지 않게 한다. 카드 아래 몫만큼 화면 아래가 비므로 학부모 리포트 버튼은 보통 첫 화면 아래로 내려간다.
 function fmHubLayout(){
   var row = document.querySelector('#factmult .fm-hubrow'), g = row && row.querySelector('.fm-hubgrid');
   if(!g) return;
@@ -17734,8 +17734,10 @@ function fmHubLayout(){
   if(window.innerWidth < 600) return;
   var cs = g.querySelectorAll('.topic-card'); if(cs.length < 5) return;
   var s = cs[0].getBoundingClientRect().height, top = row.getBoundingClientRect().top;
-  var spare = Math.max(0, window.innerHeight - top - 12 - (2 * s + 10)), e = Math.round(spare / 3);
-  g.style.rowGap = (10 + e) + 'px'; row.style.marginTop = (18 + e) + 'px'; row.style.marginBottom = (24 + e) + 'px';
+  var spare = Math.max(0, window.innerHeight - top - 12 - (2 * s + 10)), e = Math.min(60, Math.round(spare / 3));
+  g.style.rowGap = (10 + e) + 'px'; row.style.marginTop = (18 + e) + 'px'; row.style.marginBottom = '24px';
+  // 학부모 리포트 버튼이 첫 화면 아래에 오도록 카드 아래 여백을 보정한다(카드 간격은 그대로)
+  row.style.marginBottom = Math.max(24, Math.round(window.innerHeight - row.getBoundingClientRect().bottom + 8)) + 'px';
 }
 window.addEventListener('resize', function(){ var f = document.getElementById('factmult'); if(f && f.classList.contains('active')) fmHubLayout(); });
 // 약수와 배수 "서랍으로 찾기": 문제를 읽고 "무엇을 찾는 문제인가"(공약수·공배수·최대공약수·최소공배수)를 먼저 고른다.
