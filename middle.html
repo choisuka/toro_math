@@ -248,6 +248,15 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 @keyframes fmSmile{0%,55%,100%{opacity:1}62%,82%{opacity:0}}
 @keyframes fmTalk{0%,55%,100%{opacity:0;transform:scaleY(.6)}62%{opacity:1;transform:scaleY(1)}72%{opacity:1;transform:scaleY(.55)}82%{opacity:1;transform:scaleY(1)}86%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.fm-ch,.fm-fc,.fm-eye,.fm-brow,.fm-m1,.fm-m2{animation:none}.fm-m2{opacity:0}}
+.fmd-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.fmd-opt{font-family:'Jua',sans-serif;font-size:.85rem;padding:9px 6px;border-radius:10px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#e2e8f0;cursor:pointer}
+.fmd-opt.ok{background:rgba(52,211,153,.25);border-color:#34d399;color:#a7f3d0}
+.fmd-opt.no{background:rgba(248,113,113,.2);border-color:#f87171;color:#fecaca;opacity:.7}
+.fmd-opt:disabled{cursor:default}
+body.lm-a .fmd-opt,body.lm-b .fmd-opt{background:#f4f6fa;border-color:#b8c0cf;color:#1d2433}
+body.lm-a .fmd-opt.ok,body.lm-b .fmd-opt.ok{background:#d1fae5;border-color:#10b981;color:#065f46}
+body.lm-a .fmd-opt.no,body.lm-b .fmd-opt.no{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+body.lm-a .fmd-card,body.lm-b .fmd-card{background:#fbfcfe !important;border-color:#c5ccd8 !important}
 @keyframes fmIco{0%,100%{transform:translateY(0) rotate(0) scale(1)}25%{transform:translateY(-3px) rotate(-7deg) scale(1.07)}50%{transform:translateY(0) rotate(0) scale(1)}75%{transform:translateY(-2px) rotate(7deg) scale(1.05)}}
 #factmult .topic-card .ico,#fm-talkhub .topic-card .ico,#fm-concept .fm-flag{display:inline-block;animation:fmIco 2.8s ease-in-out infinite}
 #factmult .topic-card:nth-child(2) .ico,#fm-talkhub .topic-card:nth-child(2) .ico{animation-delay:.35s}
@@ -620,7 +629,20 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
       <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:1rem;text-align:center;color:#f9a8d4">📝 문제</h2>
       <div style="width:60px"></div>
     </div>
+    <button class="btn btn-ghost" onclick="showScreen('fm-drawer')" style="width:100%;margin:0 0 12px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.4);color:#fbbf24;border-radius:10px;padding:10px;font-family:'Jua',sans-serif;font-size:.9rem;cursor:pointer">🗄️ 서랍으로 찾아보기 — 무엇을 찾는 문제일까? (22문제)</button>
     <div id="fm-problems-body"></div>
+  </div>
+</div>
+
+<!-- 약수와 배수: 서랍으로 찾기 (문제마다 공약수·공배수·최대공약수·최소공배수 중 무엇을 찾는지 고르기) -->
+<div id="fm-drawer" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 돌아가기</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:1rem;text-align:center;color:#fbbf24">🗄️ 서랍으로 찾기</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div id="fm-drawer-body"></div>
   </div>
 </div>
 
@@ -17685,6 +17707,120 @@ function renderFMProblems(){
   });
   document.getElementById('fm-problems-body').innerHTML=fixRadicals(html);
 }
+// 약수와 배수 "서랍으로 찾기": 문제를 읽고 "무엇을 찾는 문제인가"(공약수·공배수·최대공약수·최소공배수)를 먼저 고른다.
+// 기존 문제는 CARD_DATA·FM_QS를 그대로 참조하고(문제 글만 보이고 힌트·해설은 정답을 고른 뒤에 보임), 새 공약수 문제만 여기에 둔다.
+const FMD_LABEL = {cd:'공약수', cm:'공배수', gcd:'최대공약수', lcm:'최소공배수'};
+const FMD_W0 = '<div style="font-size:.84rem;color:#e2e8f0;line-height:1.85">', FMD_W1 = '</div>';
+function fmdP(title, text, ask){ return FMD_W0 + '<b style="color:#fde68a">' + title + '</b><br><br>' + text + '<br><b style="color:#fde68a">' + ask + '</b>' + FMD_W1; }
+const FMD_NEW = {
+  candy: { body: fmdP('🍬 사탕 봉지', '사탕 <b style="color:#86efac">12개</b>와 초콜릿 <b style="color:#7dd3fc">18개</b>를 남김없이 똑같이 나누어 봉지에 담으려고 합니다.<br>', '가능한 봉지 수를 모두 구하세요.'),
+    ans: '<b>풀이</b><br>봉지 수는 12와 18을 모두 나누는 수 → 12와 18의 공약수<br>12의 약수: 1, 2, 3, 4, 6, 12<br>18의 약수: 1, 2, 3, 6, 9, 18<br>공약수: 1, 2, 3, 6<br><br>정답: <b>1봉지, 2봉지, 3봉지, 6봉지</b><br>예) 3봉지 → 한 봉지에 사탕 4개, 초콜릿 6개' },
+  boat: { body: fmdP('🚤 보트 타기', '남학생 <b style="color:#86efac">18명</b>, 여학생 <b style="color:#7dd3fc">24명</b>이 보트를 탑니다.<br>모든 보트에 남학생 수가 같고 여학생 수도 같게 탑니다.<br>보트는 2척 이상이고, 한 보트에 타는 사람은 15명 이하입니다.<br>', '가능한 보트 수를 모두 구하세요.'),
+    ans: '<b>풀이</b><br>보트 수는 18과 24의 공약수: 1, 2, 3, 6<br>1척은 2척 이상 조건에서 제외<br>2척 → 남학생 9명 + 여학생 12명 = 21명 → 15명 초과, 제외<br>3척 → 남학생 6명 + 여학생 8명 = 14명 ✓<br>6척 → 남학생 3명 + 여학생 4명 = 7명 ✓<br><br>정답: <b>3척, 6척</b>' },
+  anysu: { body: fmdP('🔢 어떤 수', '어떤 자연수로 <b style="color:#86efac">28</b>을 나누어도, <b style="color:#7dd3fc">42</b>를 나누어도 나머지가 0입니다.<br>', '이런 한 자리 자연수를 모두 구하세요.'),
+    ans: '<b>풀이</b><br>28과 42를 모두 나누는 수 → 공약수<br>28의 약수: 1, 2, 4, 7, 14, 28<br>42의 약수: 1, 2, 3, 6, 7, 14, 21, 42<br>공약수: 1, 2, 7, 14 → 14는 두 자리 수라 제외<br><br>정답: <b>1, 2, 7</b>' },
+  room: { body: fmdP('🏨 여행 가서 방 나누기', '수학여행에서 남학생 <b style="color:#86efac">20명</b>, 여학생 <b style="color:#7dd3fc">28명</b>이 방을 씁니다.<br>남학생과 여학생은 따로 자고, 모든 방에 같은 인원이 잡니다.<br>', '한 방에 2명 이상 잘 때, 가능한 한 방의 인원을 모두 구하세요.'),
+    ans: '<b>풀이</b><br>20의 약수: 1, 2, 4, 5, 10, 20<br>28의 약수: 1, 2, 4, 7, 14, 28<br>공약수: 1, 2, 4 → 1명은 조건에서 제외<br>4명씩 → 남학생 5방, 여학생 7방<br>2명씩 → 남학생 10방, 여학생 14방<br><br>정답: <b>2명, 4명</b>' },
+  apple: { body: fmdP('🍎 사과와 배', '사과 <b style="color:#86efac">30개</b>와 배 <b style="color:#7dd3fc">45개</b>를 남김없이 똑같이 나누어 주려고 합니다.<br>', '2명 이상에게 나누어 줄 때, 가능한 사람 수를 모두 구하세요.'),
+    ans: '<b>풀이</b><br>30의 약수: 1, 2, 3, 5, 6, 10, 15, 30<br>45의 약수: 1, 3, 5, 9, 15, 45<br>공약수: 1, 3, 5, 15 → 1명은 조건에서 제외<br>예) 5명 → 사과 6개, 배 9개씩<br><br>정답: <b>3명, 5명, 15명</b>' },
+  tile: { body: fmdP('🔲 정사각형 타일', '가로 <b style="color:#86efac">16cm</b>, 세로 <b style="color:#7dd3fc">24cm</b>인 직사각형을 빈틈없이 똑같은 정사각형으로 채우려고 합니다.<br>', '정사각형 한 변의 길이(자연수 cm)로 가능한 값을 모두 구하세요.'),
+    ans: '<b>풀이</b><br>16의 약수: 1, 2, 4, 8, 16<br>24의 약수: 1, 2, 3, 4, 6, 8, 12, 24<br>공약수: 1, 2, 4, 8<br><br>정답: <b>1cm, 2cm, 4cm, 8cm</b>' },
+  bus: { body: fmdP('🚌 버스 타기', '1반 <b style="color:#86efac">36명</b>, 2반 <b style="color:#7dd3fc">48명</b>이 버스를 타고 갑니다.<br>반이 섞이지 않게 타고, 모든 버스에 같은 인원이 탑니다.<br>', '한 대에 5명 이상 15명 이하가 탈 때, 가능한 한 대의 인원을 모두 구하세요.'),
+    ans: '<b>풀이</b><br>36의 약수: 1, 2, 3, 4, 6, 9, 12, 18, 36<br>48의 약수: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48<br>공약수: 1, 2, 3, 4, 6, 12 → 5명 이상 15명 이하: 6, 12<br>6명씩 → 1반 6대, 2반 8대<br>12명씩 → 1반 3대, 2반 4대<br><br>정답: <b>6명, 12명</b>' },
+  rem: { body: fmdP('🧮 나머지가 있는 경우', '어떤 자연수로 <b style="color:#86efac">43</b>을 나누면 <b style="color:#f87171">3</b>이 남고, <b style="color:#7dd3fc">61</b>을 나누면 <b style="color:#f87171">1</b>이 남습니다.<br>', '이런 자연수를 모두 구하세요.'),
+    ans: '<b>풀이</b><br>43−3 = 40, 61−1 = 60 은 어떤 수로 나누어떨어집니다.<br>40의 약수: 1, 2, 4, 5, 8, 10, 20, 40<br>60의 약수: 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60<br>공약수: 1, 2, 4, 5, 10, 20<br>나누는 수는 나머지 3보다 커야 하므로 1, 2는 제외<br><br>정답: <b>4, 5, 10, 20</b>' },
+  limit: { body: fmdP('📒 공책과 연필', '공책 <b style="color:#86efac">36권</b>과 연필 <b style="color:#7dd3fc">60자루</b>를 남김없이 똑같이 나누어 주려고 합니다.<br>', '학생이 10명 이하일 때, 가능한 학생 수를 모두 구하세요.'),
+    ans: '<b>풀이</b><br>36의 약수: 1, 2, 3, 4, 6, 9, 12, 18, 36<br>60의 약수: 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60<br>공약수: 1, 2, 3, 4, 6, 12 → 10명 이하: 1, 2, 3, 4, 6<br><br>정답: <b>1명, 2명, 3명, 4명, 6명</b>' },
+  reverse: { body: fmdP('🔄 거꾸로 생각하기', '두 자연수의 최대공약수가 <b style="color:#86efac">12</b>입니다.<br>', '이 두 수의 공약수를 모두 구하세요.'),
+    ans: '<b>풀이</b><br>두 수의 공약수는 최대공약수의 약수와 같습니다.<br>12의 약수: 1, 2, 3, 4, 6, 12<br><br>정답: <b>1, 2, 3, 4, 6, 12</b>' }
+};
+// 화면에 나오는 순서. 겉모습이 비슷한데 답이 다른 문제(타일 설계↔정사각형 타일, 비밀번호↔나머지가 있는 경우 등)는 멀리 떼어 둔다.
+const FMD_ORDER = [
+  {src:'quiz', m:'fi', i:2, find:['lcm'], why:['"다음에 둘 다 하는 날"은 3의 배수와 4의 배수가 <b>처음으로</b> 만나는 날이에요.']},
+  {src:'new', id:'candy', find:['cd'], why:['"가능한 것을 <b>모두</b>" 구하라고 했고 "가장 큰"은 없어요. 12와 18을 모두 나누는 수들이에요.']},
+  {src:'card', key:'fm-singapore', tag:'타일 설계', find:['gcd'], why:['<b>가장 큰</b> 정사각형으로 자르는 거예요. 가장 큰 공약수를 찾아요.']},
+  {src:'card', key:'fm-finland', tag:'약 복용법', find:['cm'], why:['동시에 먹는 때는 6의 배수이면서 9의 배수인 때예요. 그 때를 <b>모두</b> 찾아 횟수를 세요.']},
+  {src:'new', id:'boat', find:['cd'], why:['남학생 수와 여학생 수를 모두 똑같이 나눠야 해요. 18과 24를 모두 나누는 수 중 "가능한 것을 모두" 찾아요.']},
+  {src:'card', key:'fm-finland', tag:'교통 관제', find:['lcm'], why:['"다음번으로 동시에 만나는 시각"은 <b>처음으로</b> 겹치는 때예요.']},
+  {src:'new', id:'anysu', find:['cd'], why:['28도 42도 나누어떨어지는 수들을 <b>모두</b> 찾아요.']},
+  {src:'card', key:'fm-singapore', tag:'종이 자르기', find:['gcd'], why:['<b>가장 큰</b> 정사각형 카드로 자르는 거예요.']},
+  {src:'quiz', m:'sg', i:0, find:['lcm'], why:['두 줄이 <b>처음으로</b> 같은 길이가 되는 곳이에요.']},
+  {src:'new', id:'room', find:['cd'], why:['남학생 수와 여학생 수를 모두 똑같이 나눠야 해요. "가능한 인원을 <b>모두</b>" 찾아요.']},
+  {src:'card', key:'fm-jewish', tag:'비밀번호', find:['cm'], why:['n+1이 4, 5, 6으로 모두 나누어떨어져요. 4, 5, 6의 공배수 중에서 세 자리 수 조건에 맞는 것을 찾아요.']},
+  {src:'card', key:'fm-finland', tag:'조명 아트', find:['lcm'], why:['"다시 <b>처음으로</b> 동시에 켜지는" 때예요. (켜짐+꺼짐)이 한 바퀴예요.']},
+  {src:'new', id:'apple', find:['cd'], why:['사과와 배를 모두 똑같이 나눠야 해요. 가능한 사람 수를 <b>모두</b> 찾아요.']},
+  {src:'card', key:'fm-singapore', tag:'달력 주기', find:['lcm','cm'], why:['① "다음번 동시 청소"는 <b>처음으로</b> 겹치는 날이에요.', '② 100일 안에서 동시 청소가 되는 날을 <b>모두</b> 찾아 횟수를 세요.']},
+  {src:'new', id:'tile', find:['cd'], why:['"가장 큰"이라는 말이 없어요. 가능한 길이를 <b>모두</b> 찾아요.']},
+  {src:'card', key:'fm-singapore', tag:'상자 쌓기', find:['lcm'], why:['<b>가장 작은</b> 정육면체로 쌓는(이어 붙이는) 거예요.']},
+  {src:'new', id:'bus', find:['cd'], why:['36명과 48명을 각각 똑같이 나눠야 해요. 가능한 인원을 <b>모두</b> 찾아요.']},
+  {src:'quiz', m:'sg', i:1, find:['lcm'], why:['두 줄이 <b>처음으로</b> 같아지는 길이예요.']},
+  {src:'new', id:'rem', find:['cd'], why:['나머지를 뺀 두 수(40과 60)를 모두 나누는 수들 중에서 조건에 맞는 것을 <b>모두</b> 찾아요.']},
+  {src:'quiz', m:'sg', i:2, find:['lcm'], why:['두 줄이 <b>처음으로</b> 같아지는 길이예요.']},
+  {src:'new', id:'limit', find:['cd'], why:['공책과 연필을 모두 똑같이 나눠야 해요. 가능한 학생 수를 <b>모두</b> 찾아요.']},
+  {src:'new', id:'reverse', find:['cd'], why:['최대공약수를 알고 있고 공약수를 <b>모두</b> 구해요. 공약수는 최대공약수의 약수예요.']}
+];
+// 기존 문제 카드에서 문제 글만 남긴다(힌트·막대 그림·정답 암시 상자는 정답을 고른 뒤 풀이에서 볼 수 있다)
+function fmdStrip(html){
+  var cut = html.length;
+  ['<div style="background', '<span style="color:#aaa;font-size:.78rem">💡'].forEach(function(t){ var i = html.indexOf(t); if(i >= 0 && i < cut) cut = i; });
+  return html.slice(0, cut).replace(/(<br>\s*)+$/, '') + FMD_W1;
+}
+function fmdItems(){
+  return FMD_ORDER.map(function(o){
+    var body, ans;
+    if(o.src === 'quiz'){ var q = FM_QS[o.m][o.i]; body = FMD_W0 + q.q + FMD_W1; ans = q.explain; }
+    else if(o.src === 'card'){
+      var c = (CARD_DATA[o.key] || []).filter(function(x){ return x.tag.indexOf(o.tag) >= 0; })[0];
+      body = fmdStrip(c.body); ans = c.ans;
+    } else { body = FMD_NEW[o.id].body; ans = FMD_NEW[o.id].ans; }
+    return {body: body, ans: ans, find: o.find, why: o.why};
+  });
+}
+let FMD_ITEMS = [], FMD_DONE = {};
+function renderFMDrawer(){
+  FMD_ITEMS = fmdItems(); FMD_DONE = {};
+  var bx = 'border-radius:12px;padding:12px 14px;margin-bottom:8px;font-size:.84rem;line-height:1.85;color:#e2e8f0;';
+  var html = '<div style="' + bx + 'background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.3)">'
+    + '<div style="font-family:Jua,sans-serif;color:#fbbf24;font-size:1rem;margin-bottom:6px">👀 관찰하자!</div>'
+    + '<b style="color:#fbbf24">①</b> 큰 면적을 조각내기 → 최대공약수<br>작은 조각으로 채우기 → 최소공배수<br><br>'
+    + '<b style="color:#fbbf24">②</b> 모든 반복 현상<br>예) 약을 6시간마다 먹는다. 지하철은 5분마다 온다. 가로등은 10초 켜지고 1초 꺼진다<br>예) 지하철은 5분마다, 버스는 8분마다 온다<br>두 가지가 함께 되풀이될 때, 처음으로 동시에 일어나는 때 → 최소공배수<br><br>'
+    + '<b style="color:#fbbf24">③</b> 소인수 조합으로 수의 약속 찾기</div>'
+    + '<details style="' + bx + 'background:rgba(125,211,252,.06);border:1px solid rgba(125,211,252,.25)"><summary style="cursor:pointer;font-family:Jua,sans-serif;color:#7dd3fc">🧭 헷갈릴 때 보는 힌트</summary>'
+    + '<div style="margin-top:6px">나누기 · 자르기 · 나누어 주기 → <b>약수</b> 쪽<br>&nbsp;&nbsp;"가장 큰" → 최대공약수 / "가능한 것 모두" → 공약수<br>되풀이 · 이어 붙이기 · 동시에 → <b>배수</b> 쪽<br>&nbsp;&nbsp;"처음으로 · 가장 작은" → 최소공배수 / "모두 · 몇 번" → 공배수</div></details>'
+    + '<div id="fmd-count" style="font-family:Jua,sans-serif;font-size:.8rem;color:#94a3b8;text-align:right;margin:6px 4px 10px">맞힌 문제 0 / ' + FMD_ITEMS.length + '</div>';
+  FMD_ITEMS.forEach(function(it, i){
+    html += '<div class="fmd-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:16px;margin-bottom:10px">'
+      + '<div style="font-family:Jua,sans-serif;color:#fbbf24;font-size:.72rem;margin-bottom:10px">' + (i + 1) + '번</div>' + it.body;
+    it.find.forEach(function(f, p){
+      var ask = it.find.length > 1 ? ['①', '②'][p] + '에서 찾는 것은?' : '이 문제에서 찾는 것은?';
+      html += '<div style="font-family:Jua,sans-serif;font-size:.8rem;color:#fde68a;margin-top:12px">' + ask + '</div><div class="fmd-opts">';
+      ['cd', 'cm', 'gcd', 'lcm'].forEach(function(k){
+        html += '<button type="button" class="fmd-opt" onclick="fmdPick(this,' + i + ',' + p + ",'" + k + "')\">" + FMD_LABEL[k] + '</button>';
+      });
+      html += '</div><div class="fmd-fb" style="display:none;margin-top:8px;font-size:.84rem;line-height:1.7;color:#e2e8f0"></div>';
+    });
+    html += '<button id="fmd-sol-' + i + '" class="btn btn-ghost" onclick="fmToggleSol(this)" style="display:none;width:100%;margin-top:10px">💡 정답/풀이 보기</button>'
+      + '<div class="fm-sol" style="display:none;margin-top:10px;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.2);border-radius:10px;padding:12px;font-size:.9rem;color:#e2e8f0;line-height:1.85">' + it.ans + '</div></div>';
+  });
+  document.getElementById('fm-drawer-body').innerHTML = html;
+}
+function fmdPick(btn, i, p, key){
+  var it = FMD_ITEMS[i], row = btn.parentNode, fb = row.nextElementSibling;
+  fb.style.display = '';
+  if(key !== it.find[p]){
+    btn.classList.add('no'); btn.disabled = true;
+    fb.innerHTML = '다시 생각해 보세요. 문제의 "가장", "모두", "처음으로" 같은 말을 살펴보세요.';
+    return;
+  }
+  Array.prototype.forEach.call(row.children, function(b){ b.disabled = true; });
+  btn.classList.add('ok');
+  fb.innerHTML = '✔ 정답 — <b>' + FMD_LABEL[key] + '</b><br>' + it.why[p];
+  FMD_DONE[i] = (FMD_DONE[i] || 0) + 1;
+  if(FMD_DONE[i] === it.find.length){
+    document.getElementById('fmd-sol-' + i).style.display = '';
+    document.getElementById('fmd-count').textContent = '맞힌 문제 ' + Object.keys(FMD_DONE).filter(function(k){ return FMD_DONE[k] === FMD_ITEMS[k].find.length; }).length + ' / ' + FMD_ITEMS.length;
+  }
+}
 function fmToggleSol(btn){
   var box=btn.nextElementSibling, open=box.style.display==='none';
   box.style.display=open?'':'none';
@@ -17833,6 +17969,7 @@ showScreen=function(name){
   if(name==='factmult' || name==='fm-concept') renderFactmult();
   if(name==='fm-problems') renderFMProblems();
   if(name==='fm-scroll') renderFMScroll();
+  if(name==='fm-drawer') renderFMDrawer();
   if(name==='factmult' || name==='fm-concept' || name==='fm-talkhub') fmWaveText(document.getElementById(name));
   if(name==='fm-report') renderFMReport();
   if(name==='notebook') renderNotebook();
@@ -18392,7 +18529,7 @@ function renderNotebook(){
   var mode = 'dark';
   function pref(){ try{ var v = localStorage.getItem(KEY); return (v==='dark'||v==='lm-a'||v==='lm-b') ? v : 'dark'; }catch(e){ return 'dark'; } }
   // 허브·선택 화면은 원래 모습 그대로 두고, 카드를 눌러 열린 카드 화면에서만 적용한다
-  function inScope(name){ return name==='fm-problems' || name==='fm-scroll' || (name==='cardviewer' && typeof CS!=='undefined' && CARDS.indexOf(CS.set)>=0); }
+  function inScope(name){ return name==='fm-problems' || name==='fm-scroll' || name==='fm-drawer' || (name==='cardviewer' && typeof CS!=='undefined' && CARDS.indexOf(CS.set)>=0); }
   function wrapPanel(id){
     var sc = document.getElementById(id); if(!sc || sc.querySelector('.lm-panel')) return;
     var nav = sc.querySelector('.nav-bar'); if(!nav) return;
