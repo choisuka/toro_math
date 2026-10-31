@@ -264,7 +264,6 @@ body.lm-a .fmd-card,body.lm-b .fmd-card{background:#fbfcfe !important;border-col
 #factmult .topic-card:nth-child(4) .ico,#fm-talkhub .topic-card:nth-child(4) .ico{animation-delay:1.05s}
 #factmult .topic-card:nth-child(5) .ico{animation-delay:1.4s}
 #factmult .topic-card:nth-child(6) .ico{animation-delay:1.75s}
-#factmult .topic-card:nth-child(7) .ico{animation-delay:2.1s}
 #fm-concept .fm-card:nth-child(2) .fm-flag{animation-delay:.5s}
 #fm-concept .fm-card:nth-child(3) .fm-flag{animation-delay:1s}
 .fm-ww{display:inline-block;white-space:nowrap}
@@ -523,6 +522,15 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
       <span style="font-family:'Jua',sans-serif;color:#fbbf24">단계별로 완전히 내 것으로!</span><br>
       세 가지 방식을 모두 완료하면 <b style="color:#d4a017">🏆 토로매쓰 마스터 뱃지</b>를 얻어요.
     </div>
+    <!-- 서랍으로 찾기: 첫 화면에서 바로 보이도록 카드 위에 얇은 띠로 둔다 -->
+    <div class="topic-card" onclick="showScreen('fm-drawer')" style="display:flex;align-items:center;gap:12px;padding:8px 14px;margin-bottom:12px;border:1px solid rgba(251,191,36,.45);background:linear-gradient(155deg,#2a1c03,#3a2706);cursor:pointer">
+      <div class="ico" style="font-size:1.5rem">🗄️</div>
+      <div style="flex:1;min-width:0">
+        <div class="name" style="color:#fbbf24;font-size:.85rem;line-height:1.3">서랍으로 찾기</div>
+        <div class="desc" style="font-size:.64rem;color:#a8a29e;line-height:1.3">무엇을 찾는 문제일까? (22문제)</div>
+      </div>
+      <div style="color:#fbbf24;font-size:1rem">▶</div>
+    </div>
     <!-- 정사각형 카드 6개 (3열 x 2줄) -->
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">
       <div class="topic-card" onclick="showScreen('fm-talkhub')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;overflow:hidden;border:1px solid rgba(52,211,153,.45);background:linear-gradient(155deg,#04231b,#0b3a2c)">
@@ -552,11 +560,6 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
         <div class="ico" style="font-size:1.5rem">🔗</div>
         <div class="name" style="color:#7dd3fc;font-size:.76rem;margin-top:3px;text-align:center;line-height:1.3">소인수분해로 다시 보기</div>
         <div class="desc" style="font-size:.62rem;color:#94a3b8;text-align:center;margin-top:2px">(중1 이후)</div>
-      </div>
-      <div class="topic-card" onclick="showScreen('fm-drawer')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;overflow:hidden;border:1px solid rgba(251,191,36,.45);background:linear-gradient(155deg,#2a1c03,#3a2706)">
-        <div class="ico" style="font-size:1.5rem">🗄️</div>
-        <div class="name" style="color:#fbbf24;font-size:.8rem;margin-top:3px;text-align:center;line-height:1.3">서랍으로 찾기</div>
-        <div class="desc" style="font-size:.6rem;color:#a8a29e;text-align:center;margin-top:2px;line-height:1.3">무엇을 찾는 문제일까? (22문제)</div>
       </div>
     </div>
     <div id="fm-badge-unit" style="display:none">
