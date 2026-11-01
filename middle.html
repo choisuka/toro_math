@@ -17887,25 +17887,54 @@ MR_UNITS['fmdrawer'] = {
     };
   }
 };
-// 약수와 배수 카드 복습(open 형): 문제 없는 카드(입문·개념·하브루타·토론)에만 버튼을 붙인다. 문제 카드는 서랍에서 복습한다.
+// 약수와 배수 카드 복습: 모든 카드에 "복습할래요"를 붙이고, 카드 종류에 따라 정원에서 복습하는 방식이 다르다.
+//  open   = 입문·개념·마무리처럼 문제가 없는 카드 → 정원이 카드를 열어 보게 한다(열어 봄 기록 → 포인트)
+//  self   = 연습 문제 카드 → 정원에서 답을 써서 제출하면 풀이가 열리고, 학생이 스스로 채점한다
+//  choice = 확인 문제 카드(선택형) → 정원이 자동으로 채점한다
 // 카드는 "세트 이름 + 그 세트 안의 번호"로 가리키고, 번호가 밀려도 찾을 수 있게 카드 제목(tag)도 주소에 같이 적는다.
-const FMC_PICK = {'fm-finland': ['1/6', '2/6', '6/6'], 'fm-singapore': ['1/6', '2/6'], 'fm-jewish': ['1/8', '2/8', '3/8', '6/8', '8/8']};
+const FMC_KIND = {
+  'fm-finland':   {open: ['1/6', '2/6', '6/6'],        self: ['3/6', '4/6', '5/6']},
+  'fm-singapore': {open: ['1/6', '2/6'],               self: ['3/6', '4/6', '5/6', '6/6']},
+  'fm-jewish':    {open: ['1/8', '2/8', '3/8', '8/8'], self: ['4/8', '5/8', '6/8', '7/8']}
+};
+const FMC_METHOD = {'fm-finland': 'fi', 'fm-singapore': 'sg', 'fm-jewish': 'jw'};
+function fmcKind(set, tag){
+  var k = FMC_KIND[set]; if(!k) return null;
+  if(tag.indexOf('확인 문제') >= 0) return 'choice';
+  var has = function(list){ return list.some(function(n){ return tag.indexOf(n + ' —') >= 0; }); };
+  return has(k.open) ? 'open' : has(k.self) ? 'self' : null;
+}
 MR_UNITS['fmcard'] = {
   make: function(id){
     var m = /^c-(.+)-(\d+)$/.exec(id); if(!m) return null;
     var c = (CARD_DATA[m[1]] || [])[+m[2]]; if(!c) return null;
-    return {
+    var kind = fmcKind(m[1], c.tag);
+    if(kind === 'open') return {
       spec: {kind: 'open', card: +m[2], title: c.tag, url: location.href.split('#')[0].split('?')[0] + '?open=' + m[1] + ':' + m[2] + '&t=' + encodeURIComponent(c.tag)},
       q: '', s: ''
     };
+    if(kind === 'self') return {
+      spec: {kind: 'self'},
+      q: mrSnapWrap(fmdStrip(c.body)),
+      s: mrSnapWrap(FMD_W0 + c.ans + FMD_W1)
+    };
+    if(kind === 'choice'){
+      var n = /확인 문제 (\d+)\//.exec(c.tag), q = n && FM_QS[FMC_METHOD[m[1]]][+n[1] - 1]; if(!q) return null;
+      return {
+        spec: {kind: 'choice', options: q.choices.slice(), answer: q.choices[q.ans], reason: null},
+        q: mrSnapWrap(FMD_W0 + '<b style="color:#fde68a">' + q.q + '</b>' + FMD_W1),
+        s: mrSnapWrap(FMD_W0 + c.ans + FMD_W1)
+      };
+    }
+    return null;
   }
 };
 function fmcOnCard(){
-  var d = CS.cards[CS.cur];
-  if(!d || !(FMC_PICK[CS.set] || []).some(function(n){ return d.tag.indexOf(n + ' —') >= 0; })) return;
+  var d = CS.cards[CS.cur], kind = d && fmcKind(CS.set, d.tag);
+  if(!kind) return;
   var id = 'c-' + CS.set + '-' + CS.cur;
-  document.getElementById('cv-inner').insertAdjacentHTML('beforeend', mrCardBox('fmcard', id));
-  mrTouch('fmcard', id);
+  document.getElementById('cv-inner').insertAdjacentHTML('beforeend', mrCardBox('fmcard', id, kind === 'open' ? '' : '이 문제를 나중에 다시 풀어 볼까요?'));
+  if(kind === 'open') mrTouch('fmcard', id);
 }
 const _fmcOrigRenderCard = renderCard;
 renderCard = function(){ _fmcOrigRenderCard(); fmcOnCard(); };

@@ -40,9 +40,9 @@ function mrSave(u, id, days){
 // ── 카드 열어 보기(open 형) ──
 // 편지에는 정원이 그 카드를 여는 완성된 주소(spec.url)를 적어 보낸다. 날짜가 지난 뒤 카드를 열면 "열어 봄" 기록만 남기고, 포인트·삭제는 정원이 한다.
 var MR_OPEN_KEY = 'toro_review_open_v1';
-function mrCardBox(u, id){
+function mrCardBox(u, id, ask){
   return '<div style="margin-top:14px;padding:12px;border:1px dashed rgba(255,255,255,.25);border-radius:10px">'
-    + '<div style="font-size:.78rem;color:#94a3b8;margin-bottom:6px">이 내용을 나중에 다시 읽어 볼까요?</div>'
+    + '<div style="font-size:.78rem;color:#94a3b8;margin-bottom:6px">' + (ask || '이 내용을 나중에 다시 읽어 볼까요?') + '</div>'
     + '<button type="button" class="btn btn-ghost" style="width:100%;padding:11px" onclick="mrAsk(\'' + u + '\',\'' + id + '\')">📌 복습할래요</button>'
     + '<div id="rvq-' + u + '-' + id + '"></div></div>';
 }
