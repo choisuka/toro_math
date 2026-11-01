@@ -16,16 +16,18 @@ function mrSnapWrap(html){
   return '<div style="background:#1e293b;color:#e2e8f0;border-radius:10px;padding:12px">' + html + '</div>';
 }
 function mrMsg(box, text, color){ box.innerHTML = '<div style="margin-top:8px;font-size:.82rem;color:' + color + '">' + text + '</div>'; }
-function mrAsk(u, id){
-  var box = document.getElementById('rvq-' + u + '-' + id);
+// w: 같은 카드가 다른 화면에도 그려질 때 칸 id가 겹치지 않게 붙이는 구분 접두어(없으면 카드 화면용)
+function mrBoxId(u, id, w){ return 'rvq-' + (w ? w + '-' : '') + u + '-' + id; }
+function mrAsk(u, id, w){
+  var box = document.getElementById(mrBoxId(u, id, w));
   if(box.innerHTML){ box.innerHTML = ''; return; }
   box.innerHTML = '<div style="margin-top:8px;font-size:.82rem">언제 복습할까요?</div>'
     + '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">'
-    + [1, 2, 3, 7].map(function(d){ return '<button type="button" class="btn btn-ghost" style="width:auto;padding:6px 12px" onclick="mrSave(\'' + u + '\',\'' + id + '\',' + d + ')">' + d + '일 후</button>'; }).join('')
-    + '<button type="button" class="btn btn-ghost" style="width:auto;padding:6px 12px" onclick="mrSave(\'' + u + '\',\'' + id + '\',0)">오늘</button></div>';
+    + [1, 2, 3, 7].map(function(d){ return '<button type="button" class="btn btn-ghost" style="width:auto;padding:6px 12px" onclick="mrSave(\'' + u + '\',\'' + id + '\',' + d + (w ? ',\'' + w + '\'' : '') + ')">' + d + '일 후</button>'; }).join('')
+    + '<button type="button" class="btn btn-ghost" style="width:auto;padding:6px 12px" onclick="mrSave(\'' + u + '\',\'' + id + '\',0' + (w ? ',\'' + w + '\'' : '') + ')">오늘</button></div>';
 }
-function mrSave(u, id, days){
-  var box = document.getElementById('rvq-' + u + '-' + id), r = MR_UNITS[u].make(id);
+function mrSave(u, id, days, w){
+  var box = document.getElementById(mrBoxId(u, id, w)), r = MR_UNITS[u].make(id);
   if(!r){ mrMsg(box, MR_MSG.none, '#fde68a'); return; }
   var h = mrHash(u + id + r.q), today = mrDateStr(new Date()), due = new Date(); due.setDate(due.getDate() + days);
   var dueStr = mrDateStr(due), log = mrList(MR_REVIEW_KEY);
@@ -40,11 +42,11 @@ function mrSave(u, id, days){
 // ── 카드 열어 보기(open 형) ──
 // 편지에는 정원이 그 카드를 여는 완성된 주소(spec.url)를 적어 보낸다. 날짜가 지난 뒤 카드를 열면 "열어 봄" 기록만 남기고, 포인트·삭제는 정원이 한다.
 var MR_OPEN_KEY = 'toro_review_open_v1';
-function mrCardBox(u, id, ask){
+function mrCardBox(u, id, ask, w){
   return '<div style="margin-top:14px;padding:12px;border:1px dashed rgba(255,255,255,.25);border-radius:10px">'
     + '<div style="font-size:.78rem;color:#94a3b8;margin-bottom:6px">' + (ask || '이 내용을 나중에 다시 읽어 볼까요?') + '</div>'
-    + '<button type="button" class="btn btn-ghost" style="width:100%;padding:11px" onclick="mrAsk(\'' + u + '\',\'' + id + '\')">📌 복습할래요</button>'
-    + '<div id="rvq-' + u + '-' + id + '"></div></div>';
+    + '<button type="button" class="btn btn-ghost" style="width:100%;padding:11px" onclick="mrAsk(\'' + u + '\',\'' + id + '\'' + (w ? ',\'' + w + '\'' : '') + ')">📌 복습할래요</button>'
+    + '<div id="' + mrBoxId(u, id, w) + '"></div></div>';
 }
 function mrTouch(u, id){
   var today = mrDateStr(new Date()), type = u + ':' + id;
@@ -90,6 +92,10 @@ function mrCardMake(u, id){
     return {spec: {kind: 'choice', options: ch.options.slice(), answer: ch.answer, reason: null}, q: mrSnapWrap(ch.stem), s: mrSnapWrap(cfg.solution(m[1], c))};
   }
   return null;
+}
+function mrCardBoxFor(u, set, idx, w){
+  var c = (CARD_DATA[set] || [])[idx], kind = c && MR_UNITS[u].cfg.kindOf(set, c);
+  return kind ? mrCardBox(u, 'c-' + set + '-' + idx, kind === 'open' ? '' : '이 문제를 나중에 다시 풀어 볼까요?', w) : '';
 }
 function mrOnCard(){
   var u = MR_CARD_UNIT[CS.set], d = CS.cards && CS.cards[CS.cur]; if(!u || !d) return;

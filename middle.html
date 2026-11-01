@@ -17721,6 +17721,7 @@ function renderFMProblems(){
         +'<div style="font-family:Jua,sans-serif;color:'+c.tagColor+';font-size:.72rem;margin-bottom:10px">'+c.tag+'</div>'+c.body
         +(c.ans?'<button class="btn btn-ghost" onclick="fmToggleSol(this)" style="width:100%;margin-top:10px">💡 정답/풀이 보기</button>'
           +'<div class="fm-sol" style="display:none;margin-top:10px;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.2);border-radius:10px;padding:12px;font-size:.9rem;color:#e2e8f0;line-height:1.85">'+c.ans+'</div>':'')
+        +mrCardBoxFor('fmcard', r[0], CARD_DATA[r[0]].indexOf(c), 'lst')
         +'</div>';
     });
   });
