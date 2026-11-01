@@ -42,9 +42,10 @@ function mrSave(u, id, days, w){
 // ── 카드 열어 보기(open 형) ──
 // 편지에는 정원이 그 카드를 여는 완성된 주소(spec.url)를 적어 보낸다. 날짜가 지난 뒤 카드를 열면 "열어 봄" 기록만 남기고, 포인트·삭제는 정원이 한다.
 var MR_OPEN_KEY = 'toro_review_open_v1';
-function mrCardBox(u, id, ask, w){
-  return '<div style="margin-top:14px">'
-    + '<button type="button" class="btn btn-ghost" style="width:100%;padding:11px" onclick="mrAsk(\'' + u + '\',\'' + id + '\'' + (w ? ',\'' + w + '\'' : '') + ')">📌 ' + (ask || '이 내용을 나중에 다시 읽어 볼까요?') + '</button>'
+function mrCardBox(u, id, ask, w, extra){
+  return '<div style="margin-top:14px"><div style="display:flex;gap:8px;align-items:stretch">'
+    + '<button type="button" class="btn btn-ghost" style="flex:1 1 0;width:auto;min-width:0;padding:11px 8px" onclick="mrAsk(\'' + u + '\',\'' + id + '\'' + (w ? ',\'' + w + '\'' : '') + ')">📌 ' + (ask || '이 내용을 나중에 다시 읽어 볼까요?') + '</button>'
+    + (extra || '') + '</div>'
     + '<div id="' + mrBoxId(u, id, w) + '"></div></div>';
 }
 function mrTouch(u, id){
@@ -106,9 +107,72 @@ function mrOnCard(){
   if(MR_BACK) document.getElementById('cv-inner').insertAdjacentHTML('afterbegin', mrBackButton());
   var u = MR_CARD_UNIT[CS.set], d = CS.cards && CS.cards[CS.cur]; if(!u || !d) return;
   var kind = MR_UNITS[u].cfg.kindOf(CS.set, d); if(!kind) return;
-  var id = 'c-' + CS.set + '-' + CS.cur;
-  document.getElementById('cv-inner').insertAdjacentHTML('beforeend', mrCardBox(u, id, kind === 'open' ? '' : '이 문제를 나중에 다시 풀어 볼까요?'));
+  var id = 'c-' + CS.set + '-' + CS.cur, note = MR_BACK && kind === 'open';
+  var inner = document.getElementById('cv-inner');
+  inner.insertAdjacentHTML('beforeend', mrCardBox(u, id, kind === 'open' ? '' : '이 문제를 나중에 다시 풀어 볼까요?', '', note ? mrCardNoteBtn() : ''));
+  if(note){ inner.insertAdjacentHTML('beforeend', '<div id="mrcn-panel" style="display:none"></div>'); if(mrCardNoteList().length) mrCardNoteToggle(); }
   if(kind === 'open') mrTouch(u, id);
+}
+// ── 핵심 내용 써 보기(정원 링크로 연 다시 읽기 카드에만) ──
+// 읽고 나서 내 말로 쓴 핵심을 이 브라우저의 교재에 저장하고, 같은 카드를 다시 읽을 때 보여 준다. 정원으로는 보내지 않는다.
+// 저장: {"세트|카드 제목": [{date, text}, ...]} 카드당 최근 5건
+var MR_CARDNOTE_KEY = 'toro_card_notes_v1';
+function mrEsc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]; }); }
+function mrCardNoteAll(){
+  try{ var o = JSON.parse(localStorage.getItem(MR_CARDNOTE_KEY) || '{}'); return o && typeof o === 'object' && !Array.isArray(o) ? o : {}; }catch(e){ return {}; }
+}
+function mrCardNoteName(){ return CS.set + '|' + CS.cards[CS.cur].tag; }
+function mrCardNoteList(){ var l = mrCardNoteAll()[mrCardNoteName()]; return Array.isArray(l) ? l : []; }
+function mrCardNoteStore(list){
+  var all = mrCardNoteAll(); if(list.length) all[mrCardNoteName()] = list; else delete all[mrCardNoteName()];
+  try{ localStorage.setItem(MR_CARDNOTE_KEY, JSON.stringify(all)); return true; }catch(e){ return false; }
+}
+function mrCardNoteBtn(){
+  var n = mrCardNoteList().length;
+  return '<button type="button" id="mrcn-btn" class="btn btn-ghost" style="flex:0 0 36%;width:auto;min-width:0;padding:11px 6px" onclick="mrCardNoteToggle()">✏️ 핵심 내용 써 보기' + (n ? ' (' + n + ')' : '') + '</button>';
+}
+function mrCardNoteToggle(){
+  var p = document.getElementById('mrcn-panel'); if(!p) return;
+  if(p.style.display === 'none'){ mrCardNoteRender(); p.style.display = ''; } else p.style.display = 'none';
+}
+function mrCardNoteRender(msg){
+  var p = document.getElementById('mrcn-panel'), list = mrCardNoteList(), btn = '<button type="button" class="btn btn-ghost" style="flex:none;width:auto;padding:6px 10px;font-size:.78rem"';
+  p.innerHTML = '<div style="margin-top:10px;padding:12px;border:1px dashed rgba(255,255,255,.25);border-radius:10px;font-size:.84rem;line-height:1.7;color:#e2e8f0">'
+    + (list.length ? '<div style="font-family:Jua,sans-serif;color:#fbbf24;margin-bottom:6px">지난번에 내가 쓴 핵심</div>' + list.map(function(e, i){
+        return '<div style="margin-bottom:8px"><span style="font-size:.72rem;color:#94a3b8">' + mrEsc(e.date || '') + '</span>'
+          + '<div id="mrcn-t-' + i + '" style="white-space:pre-wrap">' + mrEsc(e.text) + '</div>'
+          + '<div id="mrcn-b-' + i + '" style="display:flex;gap:6px;margin-top:4px">' + btn + ' onclick="mrCardNoteEdit(' + i + ')">✏️ 수정</button>' + btn + ' onclick="mrCardNoteDel(' + i + ')">🗑 삭제</button></div></div>';
+      }).join('') : '')
+    + '<div style="font-family:Jua,sans-serif;color:#fde68a;margin:6px 0">읽고 나서 핵심을 내 말로 써 보세요 (선택)</div>'
+    + '<textarea id="mrcn-ta" rows="3" maxlength="300" placeholder="예) 약수는 어떤 수를 나누어떨어지게 하는 수" style="width:100%;box-sizing:border-box;background:#ffffff;border:1px solid #c5ccd8;border-radius:10px;color:#1d2433;padding:10px;font-size:.9rem;font-family:inherit;resize:vertical"></textarea>'
+    + '<button type="button" class="btn btn-ghost" style="width:100%;margin-top:8px;padding:10px" onclick="mrCardNoteSave()">💾 저장</button>'
+    + '<div id="mrcn-msg" style="margin-top:6px;font-size:.8rem;color:#fde68a">' + (msg || '') + '</div></div>';
+  var b = document.getElementById('mrcn-btn'); if(b) b.outerHTML = mrCardNoteBtn();
+}
+function mrCardNoteSave(){
+  var ta = document.getElementById('mrcn-ta'), text = ta.value.trim();
+  if(!text){ document.getElementById('mrcn-msg').textContent = '글을 먼저 써 주세요.'; return; }
+  var list = mrCardNoteList().concat([{date: mrDateStr(new Date()), text: text}]).slice(-5);
+  if(!mrCardNoteStore(list)){ document.getElementById('mrcn-msg').textContent = MR_MSG.save; return; }
+  mrCardNoteRender('저장했어요 🌱');
+}
+function mrCardNoteDel(i){
+  if(!confirm('이 핵심 내용을 삭제할까요?')) return;
+  var list = mrCardNoteList(); list.splice(i, 1);
+  mrCardNoteStore(list); mrCardNoteRender();
+}
+function mrCardNoteEdit(i){
+  var e = mrCardNoteList()[i], t = document.getElementById('mrcn-t-' + i), b = document.getElementById('mrcn-b-' + i); if(!e || !t || !b) return;
+  t.innerHTML = '<textarea id="mrcn-e-' + i + '" rows="3" maxlength="300" style="width:100%;box-sizing:border-box;background:#ffffff;border:1px solid #c5ccd8;border-radius:10px;color:#1d2433;padding:10px;font-size:.9rem;font-family:inherit"></textarea>';
+  document.getElementById('mrcn-e-' + i).value = e.text;
+  var btn = '<button type="button" class="btn btn-ghost" style="flex:none;width:auto;padding:6px 10px;font-size:.78rem"';
+  b.innerHTML = btn + ' onclick="mrCardNoteEditSave(' + i + ')">저장</button>' + btn + ' onclick="mrCardNoteRender()">취소</button>';
+}
+function mrCardNoteEditSave(i){
+  var ta = document.getElementById('mrcn-e-' + i); if(!ta) return;
+  var text = ta.value.trim(), list = mrCardNoteList(); if(!list[i]) return;
+  if(text) list[i] = {date: list[i].date, text: text}; else list.splice(i, 1);
+  mrCardNoteStore(list); mrCardNoteRender();
 }
 // 정원이 편지의 주소로 열면(?open=세트:번호&t=제목&from=정원 주소) 카드 화면 맨 위에 "정원으로 돌아가기"를 보여 준다.
 // from은 http·https·file 주소만 받는다. 카드 화면을 벗어나면 지워서, 허브에서 일반으로 연 카드에는 나타나지 않는다.
