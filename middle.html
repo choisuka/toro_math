@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script src="toro_ai.js"></script>
+<script src="middle_review.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -17810,6 +17811,7 @@ function fmdItems(){
   });
 }
 let FMD_ITEMS = [], FMD_DONE = {};
+function fmdAsk(it, p){ return it.find.length > 1 ? ['①', '②'][p] + '에서 찾는 것은?' : '이 문제에서 찾는 것은?'; }
 function renderFMDrawer(){
   FMD_ITEMS = fmdItems(); FMD_DONE = {};
   var bx = 'border-radius:12px;padding:12px 14px;margin-bottom:8px;font-size:.84rem;line-height:1.85;color:#e2e8f0;';
@@ -17835,7 +17837,7 @@ function renderFMDrawer(){
     html += '<div class="fmd-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:16px;margin-bottom:10px">'
       + '<div style="font-family:Jua,sans-serif;color:#fbbf24;font-size:.72rem;margin-bottom:10px">' + (i + 1) + '번</div>' + it.body;
     it.find.forEach(function(f, p){
-      var ask = it.find.length > 1 ? ['①', '②'][p] + '에서 찾는 것은?' : '이 문제에서 찾는 것은?';
+      var ask = fmdAsk(it, p);
       html += '<div style="font-family:Jua,sans-serif;font-size:.8rem;color:#fde68a;margin-top:12px">' + ask + '</div><div class="fmd-opts">';
       ['cd', 'cm', 'gcd', 'lcm'].forEach(function(k){
         html += '<button type="button" class="fmd-opt" onclick="fmdPick(this,' + i + ',' + p + ",'" + k + "')\">" + FMD_LABEL[k] + '</button>';
@@ -17843,7 +17845,14 @@ function renderFMDrawer(){
       html += '</div><div class="fmd-fb" style="display:none;margin-top:8px;font-size:.84rem;line-height:1.7;color:#e2e8f0"></div>';
     });
     html += '<button id="fmd-sol-' + i + '" class="btn btn-ghost" onclick="fmToggleSol(this)" style="display:none;width:100%;margin-top:10px">💡 정답/풀이 보기</button>'
-      + '<div class="fm-sol" style="display:none;margin-top:10px;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.2);border-radius:10px;padding:12px;font-size:.9rem;color:#e2e8f0;line-height:1.85">' + it.ans + '</div></div>';
+      + '<div class="fm-sol" style="display:none;margin-top:10px;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.2);border-radius:10px;padding:12px;font-size:.9rem;color:#e2e8f0;line-height:1.85">' + it.ans + '</div>'
+      + '<div id="fmd-rv-' + i + '" style="display:none;margin-top:10px">'
+      + it.find.map(function(f, p){
+          var id = 'd-' + i + '-' + p;
+          return '<button type="button" class="btn btn-ghost" style="width:100%;margin-top:6px" onclick="mrAsk(\'fmdrawer\',\'' + id + '\')">📌 '
+            + (it.find.length > 1 ? ['①', '②'][p] + ' ' : '') + '복습할래요</button><div id="rvq-fmdrawer-' + id + '"></div>';
+        }).join('')
+      + '</div></div>';
   });
   document.getElementById('fm-drawer-body').innerHTML = html;
 }
@@ -17861,9 +17870,23 @@ function fmdPick(btn, i, p, key){
   FMD_DONE[i] = (FMD_DONE[i] || 0) + 1;
   if(FMD_DONE[i] === it.find.length){
     document.getElementById('fmd-sol-' + i).style.display = '';
+    document.getElementById('fmd-rv-' + i).style.display = '';
     document.getElementById('fmd-count').textContent = '맞힌 문제 ' + Object.keys(FMD_DONE).filter(function(k){ return FMD_DONE[k] === FMD_ITEMS[k].find.length; }).length + ' / ' + FMD_ITEMS.length;
   }
 }
+// 서랍 문제 복습 편지: 문제 하나(여러 질문이면 질문 하나)가 선택형 편지 한 통이 된다. id = d-문제번호-질문번호
+MR_UNITS['fmdrawer'] = {
+  make: function(id){
+    var m = /^d-(\d+)-(\d+)$/.exec(id); if(!m) return null;
+    var it = FMD_ITEMS[+m[1]], p = +m[2]; if(!it || !it.find[p]) return null;
+    var opts = ['cd', 'cm', 'gcd', 'lcm'].map(function(k){ return FMD_LABEL[k]; });
+    return {
+      spec: {kind: 'choice', options: opts, answer: FMD_LABEL[it.find[p]], reason: null},
+      q: mrSnapWrap(it.body + FMD_W0 + '<b style="color:#fde68a">' + fmdAsk(it, p) + '</b>' + FMD_W1),
+      s: mrSnapWrap(FMD_W0 + '<b>' + FMD_LABEL[it.find[p]] + '</b> — ' + it.why[p] + '<br><br>' + it.ans + FMD_W1)
+    };
+  }
+};
 function fmToggleSol(btn){
   var box=btn.nextElementSibling, open=box.style.display==='none';
   box.style.display=open?'':'none';
