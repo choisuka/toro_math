@@ -17887,6 +17887,39 @@ MR_UNITS['fmdrawer'] = {
     };
   }
 };
+// 약수와 배수 카드 복습(open 형): 문제 없는 카드(입문·개념·하브루타·토론)에만 버튼을 붙인다. 문제 카드는 서랍에서 복습한다.
+// 카드는 "세트 이름 + 그 세트 안의 번호"로 가리키고, 번호가 밀려도 찾을 수 있게 카드 제목(tag)도 주소에 같이 적는다.
+const FMC_PICK = {'fm-finland': ['1/6', '2/6', '6/6'], 'fm-singapore': ['1/6', '2/6'], 'fm-jewish': ['1/8', '2/8', '3/8', '6/8', '8/8']};
+MR_UNITS['fmcard'] = {
+  make: function(id){
+    var m = /^c-(.+)-(\d+)$/.exec(id); if(!m) return null;
+    var c = (CARD_DATA[m[1]] || [])[+m[2]]; if(!c) return null;
+    return {
+      spec: {kind: 'open', card: +m[2], title: c.tag, url: location.href.split('#')[0].split('?')[0] + '?open=' + m[1] + ':' + m[2] + '&t=' + encodeURIComponent(c.tag)},
+      q: '', s: ''
+    };
+  }
+};
+function fmcOnCard(){
+  var d = CS.cards[CS.cur];
+  if(!d || !(FMC_PICK[CS.set] || []).some(function(n){ return d.tag.indexOf(n + ' —') >= 0; })) return;
+  var id = 'c-' + CS.set + '-' + CS.cur;
+  document.getElementById('cv-inner').insertAdjacentHTML('beforeend', mrCardBox('fmcard', id));
+  mrTouch('fmcard', id);
+}
+const _fmcOrigRenderCard = renderCard;
+renderCard = function(){ _fmcOrigRenderCard(); fmcOnCard(); };
+// 정원이 편지의 주소(?open=세트:번호&t=제목)로 열면 그 카드를 바로 보여 준다
+function fmcOpenFromUrl(){
+  var m = /[?&]open=([^:&]+):(\d+)/.exec(location.search); if(!m) return;
+  var cards = CARD_DATA[m[1]], idx = +m[2], t = /[?&]t=([^&]*)/.exec(location.search);
+  if(!cards) return;
+  try{ t = t ? decodeURIComponent(t[1]) : ''; }catch(e){ t = ''; }
+  if(t && (!cards[idx] || cards[idx].tag !== t)) idx = cards.findIndex(function(c){ return c.tag === t; });
+  if(idx < 0 || !cards[idx]) return;
+  showScreen('factmult'); startCards(m[1], 'factmult'); CS.cur = idx; renderCard();
+}
+window.addEventListener('load', fmcOpenFromUrl);
 function fmToggleSol(btn){
   var box=btn.nextElementSibling, open=box.style.display==='none';
   box.style.display=open?'':'none';
