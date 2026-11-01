@@ -17891,7 +17891,6 @@ MR_UNITS['fmdrawer'] = {
 //  open   = 입문·개념·마무리처럼 문제가 없는 카드 → 정원이 카드를 열어 보게 한다(열어 봄 기록 → 포인트)
 //  self   = 연습 문제 카드 → 정원에서 답을 써서 제출하면 풀이가 열리고, 학생이 스스로 채점한다
 //  choice = 확인 문제 카드(선택형) → 정원이 자동으로 채점한다
-// 카드는 "세트 이름 + 그 세트 안의 번호"로 가리키고, 번호가 밀려도 찾을 수 있게 카드 제목(tag)도 주소에 같이 적는다.
 const FMC_KIND = {
   'fm-finland':   {open: ['1/6', '2/6', '6/6'],        self: ['3/6', '4/6', '5/6']},
   'fm-singapore': {open: ['1/6', '2/6'],               self: ['3/6', '4/6', '5/6', '6/6']},
@@ -17904,51 +17903,17 @@ function fmcKind(set, tag){
   var has = function(list){ return list.some(function(n){ return tag.indexOf(n + ' —') >= 0; }); };
   return has(k.open) ? 'open' : has(k.self) ? 'self' : null;
 }
-MR_UNITS['fmcard'] = {
-  make: function(id){
-    var m = /^c-(.+)-(\d+)$/.exec(id); if(!m) return null;
-    var c = (CARD_DATA[m[1]] || [])[+m[2]]; if(!c) return null;
-    var kind = fmcKind(m[1], c.tag);
-    if(kind === 'open') return {
-      spec: {kind: 'open', card: +m[2], title: c.tag, url: location.href.split('#')[0].split('?')[0] + '?open=' + m[1] + ':' + m[2] + '&t=' + encodeURIComponent(c.tag)},
-      q: '', s: ''
-    };
-    if(kind === 'self') return {
-      spec: {kind: 'self'},
-      q: mrSnapWrap(fmdStrip(c.body)),
-      s: mrSnapWrap(FMD_W0 + c.ans + FMD_W1)
-    };
-    if(kind === 'choice'){
-      var n = /확인 문제 (\d+)\//.exec(c.tag), q = n && FM_QS[FMC_METHOD[m[1]]][+n[1] - 1]; if(!q) return null;
-      return {
-        spec: {kind: 'choice', options: q.choices.slice(), answer: q.choices[q.ans], reason: null},
-        q: mrSnapWrap(FMD_W0 + '<b style="color:#fde68a">' + q.q + '</b>' + FMD_W1),
-        s: mrSnapWrap(FMD_W0 + c.ans + FMD_W1)
-      };
-    }
-    return null;
+// 동작(버튼 붙이기·편지 만들기·주소로 카드 열기)은 middle_review.js가 하고, 여기엔 약수와 배수 카드의 설정만 둔다
+mrCardUnit('fmcard', {
+  sets: Object.keys(FMC_KIND), home: 'factmult',
+  kindOf: function(set, c){ return fmcKind(set, c.tag); },
+  question: function(set, c){ return fmdStrip(c.body); },
+  solution: function(set, c){ return FMD_W0 + c.ans + FMD_W1; },
+  choiceOf: function(set, c){
+    var n = /확인 문제 (\d+)\//.exec(c.tag), q = n && FM_QS[FMC_METHOD[set]][+n[1] - 1]; if(!q) return null;
+    return {stem: FMD_W0 + '<b style="color:#fde68a">' + q.q + '</b>' + FMD_W1, options: q.choices, answer: q.choices[q.ans]};
   }
-};
-function fmcOnCard(){
-  var d = CS.cards[CS.cur], kind = d && fmcKind(CS.set, d.tag);
-  if(!kind) return;
-  var id = 'c-' + CS.set + '-' + CS.cur;
-  document.getElementById('cv-inner').insertAdjacentHTML('beforeend', mrCardBox('fmcard', id, kind === 'open' ? '' : '이 문제를 나중에 다시 풀어 볼까요?'));
-  if(kind === 'open') mrTouch('fmcard', id);
-}
-const _fmcOrigRenderCard = renderCard;
-renderCard = function(){ _fmcOrigRenderCard(); fmcOnCard(); };
-// 정원이 편지의 주소(?open=세트:번호&t=제목)로 열면 그 카드를 바로 보여 준다
-function fmcOpenFromUrl(){
-  var m = /[?&]open=([^:&]+):(\d+)/.exec(location.search); if(!m) return;
-  var cards = CARD_DATA[m[1]], idx = +m[2], t = /[?&]t=([^&]*)/.exec(location.search);
-  if(!cards) return;
-  try{ t = t ? decodeURIComponent(t[1]) : ''; }catch(e){ t = ''; }
-  if(t && (!cards[idx] || cards[idx].tag !== t)) idx = cards.findIndex(function(c){ return c.tag === t; });
-  if(idx < 0 || !cards[idx]) return;
-  showScreen('factmult'); startCards(m[1], 'factmult'); CS.cur = idx; renderCard();
-}
-window.addEventListener('load', fmcOpenFromUrl);
+});
 function fmToggleSol(btn){
   var box=btn.nextElementSibling, open=box.style.display==='none';
   box.style.display=open?'':'none';

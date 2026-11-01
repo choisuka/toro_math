@@ -56,3 +56,129 @@ function mrTouch(u, id){
   due.forEach(function(x){ if(!touched[x.id]){ touched[x.id] = today; changed = true; } });
   if(changed){ try{ localStorage.setItem(MR_OPEN_KEY, JSON.stringify(touched)); }catch(e){} }
 }
+
+// ── 카드 세트 복습(open / self / choice) ──
+// 단원이 mrCardUnit으로 설정을 등록하면, 그 세트의 카드 화면에 "복습할래요"가 붙고 정원이 편지의 주소로 카드를 열 수 있다.
+//   cfg = { sets:[세트키...], home:'카드를 닫고 돌아갈 화면',
+//           kindOf(set, card)     → 'open'(문제 없는 카드) | 'self'(문제 카드) | 'choice'(선택형) | null,
+//           question(set, card)   → 정원에 보낼 문제 HTML(힌트·정답 암시를 뺀 것),
+//           solution(set, card)   → 풀이 HTML,
+//           choiceOf(set, card)   → {stem, options, answer}  (choice일 때만) }
+// 카드는 "세트 이름 + 그 세트 안의 번호"(c-세트-번호)로 가리키고, 번호가 밀려도 찾을 수 있게 카드 제목(tag)을 주소에 같이 적는다.
+var MR_CARD_UNIT = {};
+var MR_CARD_HOOKED = false;
+function mrCardUnit(u, cfg){
+  MR_UNITS[u] = {cfg: cfg, make: function(id){ return mrCardMake(u, id); }};
+  cfg.sets.forEach(function(s){ MR_CARD_UNIT[s] = u; });
+  if(!MR_CARD_HOOKED){
+    MR_CARD_HOOKED = true;
+    var orig = renderCard;
+    renderCard = function(){ orig(); mrOnCard(); };
+  }
+}
+function mrCardMake(u, id){
+  var cfg = MR_UNITS[u].cfg, m = /^c-(.+)-(\d+)$/.exec(id); if(!m) return null;
+  var c = (CARD_DATA[m[1]] || [])[+m[2]]; if(!c) return null;
+  var kind = cfg.kindOf(m[1], c);
+  if(kind === 'open') return {
+    spec: {kind: 'open', card: +m[2], title: c.tag, url: location.href.split('#')[0].split('?')[0] + '?open=' + m[1] + ':' + m[2] + '&t=' + encodeURIComponent(c.tag)},
+    q: '', s: ''
+  };
+  if(kind === 'self') return {spec: {kind: 'self'}, q: mrSnapWrap(cfg.question(m[1], c)), s: mrSnapWrap(cfg.solution(m[1], c))};
+  if(kind === 'choice'){
+    var ch = cfg.choiceOf(m[1], c); if(!ch) return null;
+    return {spec: {kind: 'choice', options: ch.options.slice(), answer: ch.answer, reason: null}, q: mrSnapWrap(ch.stem), s: mrSnapWrap(cfg.solution(m[1], c))};
+  }
+  return null;
+}
+function mrOnCard(){
+  var u = MR_CARD_UNIT[CS.set], d = CS.cards && CS.cards[CS.cur]; if(!u || !d) return;
+  var kind = MR_UNITS[u].cfg.kindOf(CS.set, d); if(!kind) return;
+  var id = 'c-' + CS.set + '-' + CS.cur;
+  document.getElementById('cv-inner').insertAdjacentHTML('beforeend', mrCardBox(u, id, kind === 'open' ? '' : '이 문제를 나중에 다시 풀어 볼까요?'));
+  if(kind === 'open') mrTouch(u, id);
+}
+// 정원이 편지의 주소(?open=세트:번호&t=제목)로 열면 그 카드를 바로 보여 준다
+function mrOpenFromUrl(){
+  var m = /[?&]open=([^:&]+):(\d+)/.exec(location.search); if(!m) return;
+  var u = MR_CARD_UNIT[m[1]], cards = CARD_DATA[m[1]], idx = +m[2], t = /[?&]t=([^&]*)/.exec(location.search);
+  if(!u || !cards) return;
+  try{ t = t ? decodeURIComponent(t[1]) : ''; }catch(e){ t = ''; }
+  if(t && (!cards[idx] || cards[idx].tag !== t)) idx = cards.findIndex(function(c){ return c.tag === t; });
+  if(idx < 0 || !cards[idx]) return;
+  var home = MR_UNITS[u].cfg.home;
+  showScreen(home); startCards(m[1], home); CS.cur = idx; renderCard();
+}
+window.addEventListener('load', mrOpenFromUrl);
+
+// ── 오늘 배운 것 적기 ──
+// AI 없이 규칙으로만 판정한다(초등과 같은 기준): 10자 이상 · 글자/어절 다양성 · 이전 기록과 중복 금지 · 카드 본문(과 예시 답안) 베끼기 금지 · 핵심 낱말만 나열 금지 · 핵심어 묶음.
+// 정원이 단원·날짜마다 1번 포인트를 준다(합격 10P, 보너스 +5P).
+//   cfg = { groups:{A:정규식, B:..., C:...}, words:낱말 정규식(/g), keywordMsg, prompt, sampleAnswer, texts() → 카드 본문 글(문자열) }
+var MR_NOTE_KEY = 'toro_study_log_v1';
+var MR_NOTES = {};
+var MR_NOTE_FAIL = {};
+var MR_NOTE_MSG = {
+  short: '조금 더 길게 써 볼까요? 10글자 이상 적어 주세요.',
+  repeat: '여러 가지 글자와 낱말로 문장을 만들어 써 보세요.',
+  list: '낱말만 적지 말고 문장으로 써 볼까요?',
+  dup: '전에 쓴 글과 똑같아요. 오늘 내 생각으로 새로 써 볼까요?',
+  copy: '카드의 문장과 너무 비슷해요. 내 말로 바꿔 써 볼까요?',
+  save: '저장하지 못했어요. 브라우저 설정에서 저장이 막혀 있는지 확인해 주세요.'
+};
+function mrNoteUnit(u, cfg){ cfg.corpus = null; MR_NOTES[u] = cfg; }
+function mrNorm(s){ return String(s).replace(/[^가-힣a-zA-Z0-9]/g, ''); }
+function mrGrams(s){ var o = []; for(var i = 0; i + 6 <= s.length; i++) o.push(s.slice(i, i + 6)); return o; }
+function mrNoteCorpus(u){
+  var c = MR_NOTES[u];
+  if(!c.corpus){
+    c.corpus = {};
+    mrGrams(mrNorm(c.texts() + (c.sampleAnswer || ''))).forEach(function(g){ c.corpus[g] = 1; });
+  }
+  return c.corpus;
+}
+// 반환: {ok, code, groups, bonus}
+function mrNoteJudge(u, text, prevNorm){
+  var c = MR_NOTES[u], norm = mrNorm(text), distinct = {};
+  norm.split('').forEach(function(ch){ distinct[ch] = 1; });
+  if(norm.length < 10) return {ok: false, code: 'short'};
+  if(Object.keys(distinct).length < 5 || text.trim().split(/\s+/).length < 2) return {ok: false, code: 'repeat'};
+  if(prevNorm.indexOf(norm) >= 0) return {ok: false, code: 'dup'};
+  var grams = mrGrams(norm);
+  if(grams.length){
+    var corpus = mrNoteCorpus(u), hit = grams.filter(function(g){ return corpus[g]; }).length;
+    if(hit / grams.length >= 0.7) return {ok: false, code: 'copy'};
+  }
+  if(norm.replace(c.words, '').length < 6) return {ok: false, code: 'list'};
+  var groups = Object.keys(c.groups).filter(function(k){ return c.groups[k].test(norm); });
+  if(groups.indexOf('A') < 0 || groups.length < 2) return {ok: false, code: 'keyword'};
+  return {ok: true, groups: groups, bonus: groups.length >= 3};
+}
+function mrNoteSubmit(u){
+  var c = MR_NOTES[u], ta = document.getElementById('mrn-text-' + u), out = document.getElementById('mrn-result-' + u);
+  var log = mrList(MR_NOTE_KEY);
+  var r = mrNoteJudge(u, ta.value, log.map(function(e){ return mrNorm(e.text || ''); }));
+  if(r.ok){
+    log.push({unit: u, date: mrDateStr(new Date()), text: ta.value.trim(), groups: r.groups, bonus: r.bonus, ts: Date.now()});
+    try{ localStorage.setItem(MR_NOTE_KEY, JSON.stringify(log)); }catch(e){ r = {ok: false, code: 'save'}; }
+  }
+  if(r.ok){
+    MR_NOTE_FAIL[u] = 0;
+    out.innerHTML = '<div style="color:#86efac;font-size:.9rem">' + (r.bonus ? '와, 여러 가지를 빠짐없이 적었어요! 보너스 기록까지 저장됐어요 🌟' : '잘 적었어요! 오늘 기록이 저장됐어요 🌱') + '</div>';
+    ta.value = '';
+  }else{
+    MR_NOTE_FAIL[u] = (MR_NOTE_FAIL[u] || 0) + 1;
+    out.innerHTML = '<div style="color:#fde68a;font-size:.85rem">' + (r.code === 'keyword' ? c.keywordMsg : MR_NOTE_MSG[r.code]) + '</div>'
+      + (MR_NOTE_FAIL[u] >= 2 && c.sampleAnswer
+        ? '<div style="margin-top:10px;padding:10px;border:1px dashed rgba(255,255,255,.25);border-radius:10px;font-size:.82rem;line-height:1.7"><b style="color:#fbbf24">📖 이렇게도 써볼 수 있어요</b><br>' + c.sampleAnswer + '</div>' : '');
+  }
+}
+// 카드 본문 HTML(카드 객체의 body로 넣는다)
+function mrNoteBody(u){
+  var c = MR_NOTES[u];
+  return '<div style="font-size:.84rem;line-height:1.85;color:#e2e8f0"><p>공부를 마쳤나요? 오늘 배운 것을 내 말로 적어 봐요. 카드의 문장을 그대로 베끼면 인정되지 않아요.</p>'
+    + '<div style="font-family:Jua,sans-serif;color:#fde68a;margin:10px 0 6px">' + c.prompt + '</div>'
+    + '<textarea id="mrn-text-' + u + '" rows="4" maxlength="300" placeholder="여기에 써 보세요 (10글자 이상)" style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:10px;color:#fff;padding:10px;font-size:.9rem;font-family:inherit;resize:vertical"></textarea>'
+    + '<button type="button" class="btn btn-ghost" style="width:100%;margin-top:8px;padding:11px" onclick="mrNoteSubmit(\'' + u + '\')">✅ 제출하기</button>'
+    + '<div id="mrn-result-' + u + '" style="margin-top:10px"></div></div>';
+}
