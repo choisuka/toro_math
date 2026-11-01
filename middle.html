@@ -17914,6 +17914,24 @@ mrCardUnit('fmcard', {
     return {stem: FMD_W0 + '<b style="color:#fde68a">' + q.q + '</b>' + FMD_W1, options: q.choices, answer: q.choices[q.ans]};
   }
 });
+
+// 오늘 배운 것 적기: 세 방(발견형·시각화·하브루타)의 마지막 카드. 핵심어는 이 방들의 카드에 실제로 쓰인 낱말만(판정은 공백을 뺀 글로 한다)
+const FMN_SETS = ['fm-finland', 'fm-singapore', 'fm-jewish'];
+mrNoteUnit('factmult', {
+  groups: {A: /약수|배수|공약수|공배수|최대공약수|최소공배수/, B: /나누|똑같이|자르|가장큰/, C: /동시|처음으로|되풀이|반복|이어붙/},
+  words: /약수|배수|공약수|공배수|최대공약수|최소공배수|나누|똑같이|자르|가장큰|동시에|처음으로|되풀이|반복|이어붙|\d+/g,
+  keywordMsg: '약수·배수(또는 최대공약수·최소공배수)와, 나누는 상황인지 다시 만나는 상황인지를 함께 적어 주세요.',
+  prompt: '"똑같이 나누거나 자르는 문제"와 "되풀이되다가 다시 만나는 문제"를 어떻게 구별하는지 내 말로 써 보세요.',
+  texts: function(){
+    var box = document.createElement('div');
+    return FMN_SETS.map(function(set){
+      return CARD_DATA[set].filter(function(c){ return c.tag.indexOf('적기') < 0; }).map(function(c){ box.innerHTML = c.body; return box.textContent; }).join('');
+    }).join('');
+  }
+});
+FMN_SETS.forEach(function(set){
+  CARD_DATA[set].push({tag: '✍️ 오늘 배운 것 적기', tagColor: '#fbbf24', bg: 'rgba(251,191,36,.06)', bd: 'rgba(251,191,36,.3)', body: mrNoteBody('factmult')});
+});
 function fmToggleSol(btn){
   var box=btn.nextElementSibling, open=box.style.display==='none';
   box.style.display=open?'':'none';

@@ -178,7 +178,7 @@ function mrNoteBody(u){
   var c = MR_NOTES[u];
   return '<div style="font-size:.84rem;line-height:1.85;color:#e2e8f0"><p>공부를 마쳤나요? 오늘 배운 것을 내 말로 적어 봐요. 카드의 문장을 그대로 베끼면 인정되지 않아요.</p>'
     + '<div style="font-family:Jua,sans-serif;color:#fde68a;margin:10px 0 6px">' + c.prompt + '</div>'
-    + '<textarea id="mrn-text-' + u + '" rows="4" maxlength="300" placeholder="여기에 써 보세요 (10글자 이상)" style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:10px;color:#fff;padding:10px;font-size:.9rem;font-family:inherit;resize:vertical"></textarea>'
+    + '<textarea id="mrn-text-' + u + '" rows="4" maxlength="300" placeholder="여기에 써 보세요 (10글자 이상)" style="width:100%;box-sizing:border-box;background:#ffffff;border:1px solid #c5ccd8;border-radius:10px;color:#1d2433;padding:10px;font-size:.9rem;font-family:inherit;resize:vertical"></textarea>'
     + '<button type="button" class="btn btn-ghost" style="width:100%;margin-top:8px;padding:11px" onclick="mrNoteSubmit(\'' + u + '\')">✅ 제출하기</button>'
     + '<div id="mrn-result-' + u + '" style="margin-top:10px"></div></div>';
 }
