@@ -17904,11 +17904,28 @@ function fmcKind(set, tag){
   return has(k.open) ? 'open' : has(k.self) ? 'self' : null;
 }
 // 동작(버튼 붙이기·편지 만들기·주소로 카드 열기)은 middle_review.js가 하고, 여기엔 약수와 배수 카드의 설정만 둔다
+// 친구들의 토론(fm-guide·fm-gcd·fm-worksheet·fm-hard10)·세 가지 방법(fm-advanced)·소인수분해로 다시 보기(fm-prime-link)
+//  - 풀이(ans)가 따로 없는 카드와 안내·입문 카드는 open, 풀이(ans)가 있는 문제 카드는 self
+//  - fm-prime-link 문제 카드는 본문에 세 가지 풀이가 섞여 있어서, 첫 문장(문제)만 문제로 보내고 나머지를 풀이로 보낸다
+const FMX_HOME = {'fm-guide': 'fm-talkhub', 'fm-gcd': 'fm-talkhub', 'fm-worksheet': 'fm-talkhub', 'fm-hard10': 'fm-talkhub', 'fm-advanced': 'factmult', 'fm-prime-link': 'factmult'};
+function fmxKind(set, tag){
+  if(set === 'fm-hard10') return /\d+\/10\b/.test(tag) ? 'self' : 'open';
+  if(set === 'fm-prime-link'){ var m = /(\d+)\/9\b/.exec(tag); return m && +m[1] >= 2 ? 'self' : 'open'; }
+  return 'open';
+}
+function fmxSplit(c){
+  var box = document.createElement('div'); box.innerHTML = c.body;
+  var wrap = box.firstElementChild, q = wrap && wrap.firstElementChild;
+  if(!q) return {q: fmdStrip(c.body), rest: ''};
+  var qh = q.outerHTML; q.remove();
+  return {q: FMD_W0 + qh + FMD_W1, rest: wrap.innerHTML};
+}
 mrCardUnit('fmcard', {
-  sets: Object.keys(FMC_KIND), home: 'factmult',
-  kindOf: function(set, c){ return fmcKind(set, c.tag); },
-  question: function(set, c){ return fmdStrip(c.body); },
-  solution: function(set, c){ return FMD_W0 + c.ans + FMD_W1; },
+  sets: Object.keys(FMC_KIND).concat(Object.keys(FMX_HOME)),
+  home: function(set){ return FMX_HOME[set] || 'factmult'; },
+  kindOf: function(set, c){ return FMX_HOME[set] ? fmxKind(set, c.tag) : fmcKind(set, c.tag); },
+  question: function(set, c){ return set === 'fm-prime-link' ? fmxSplit(c).q : fmdStrip(c.body); },
+  solution: function(set, c){ return FMD_W0 + (set === 'fm-prime-link' ? fmxSplit(c).rest + '<br><br>' : '') + c.ans + FMD_W1; },
   choiceOf: function(set, c){
     var n = /확인 문제 (\d+)\//.exec(c.tag), q = n && FM_QS[FMC_METHOD[set]][+n[1] - 1]; if(!q) return null;
     return {stem: FMD_W0 + '<b style="color:#fde68a">' + q.q + '</b>' + FMD_W1, options: q.choices, answer: q.choices[q.ans]};

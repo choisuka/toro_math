@@ -59,7 +59,7 @@ function mrTouch(u, id){
 
 // ── 카드 세트 복습(open / self / choice) ──
 // 단원이 mrCardUnit으로 설정을 등록하면, 그 세트의 카드 화면에 "복습할래요"가 붙고 정원이 편지의 주소로 카드를 열 수 있다.
-//   cfg = { sets:[세트키...], home:'카드를 닫고 돌아갈 화면',
+//   cfg = { sets:[세트키...], home:'카드를 닫고 돌아갈 화면'(세트마다 다르면 home(set) 함수),
 //           kindOf(set, card)     → 'open'(문제 없는 카드) | 'self'(문제 카드) | 'choice'(선택형) | null,
 //           question(set, card)   → 정원에 보낼 문제 HTML(힌트·정답 암시를 뺀 것),
 //           solution(set, card)   → 풀이 HTML,
@@ -106,7 +106,7 @@ function mrOpenFromUrl(){
   try{ t = t ? decodeURIComponent(t[1]) : ''; }catch(e){ t = ''; }
   if(t && (!cards[idx] || cards[idx].tag !== t)) idx = cards.findIndex(function(c){ return c.tag === t; });
   if(idx < 0 || !cards[idx]) return;
-  var home = MR_UNITS[u].cfg.home;
+  var home = MR_UNITS[u].cfg.home; if(typeof home === 'function') home = home(m[1]);
   showScreen(home); startCards(m[1], home); CS.cur = idx; renderCard();
 }
 window.addEventListener('load', mrOpenFromUrl);
