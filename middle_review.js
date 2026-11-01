@@ -76,6 +76,8 @@ function mrCardUnit(u, cfg){
     MR_CARD_HOOKED = true;
     var orig = renderCard;
     renderCard = function(){ orig(); mrOnCard(); };
+    var origShow = showScreen;
+    showScreen = function(name){ if(name !== 'cardviewer') MR_BACK = ''; origShow(name); };
   }
 }
 function mrCardMake(u, id){
@@ -101,13 +103,23 @@ function mrCardBoxFor(u, set, idx, w){
   return kind ? mrCardBox(u, 'c-' + set + '-' + idx, kind === 'open' ? '' : '이 문제를 나중에 다시 풀어 볼까요?', w) : '';
 }
 function mrOnCard(){
+  if(MR_BACK) document.getElementById('cv-inner').insertAdjacentHTML('afterbegin', mrBackButton());
   var u = MR_CARD_UNIT[CS.set], d = CS.cards && CS.cards[CS.cur]; if(!u || !d) return;
   var kind = MR_UNITS[u].cfg.kindOf(CS.set, d); if(!kind) return;
   var id = 'c-' + CS.set + '-' + CS.cur;
   document.getElementById('cv-inner').insertAdjacentHTML('beforeend', mrCardBox(u, id, kind === 'open' ? '' : '이 문제를 나중에 다시 풀어 볼까요?'));
   if(kind === 'open') mrTouch(u, id);
 }
-// 정원이 편지의 주소(?open=세트:번호&t=제목)로 열면 그 카드를 바로 보여 준다
+// 정원이 편지의 주소로 열면(?open=세트:번호&t=제목&from=정원 주소) 카드 화면 맨 위에 "정원으로 돌아가기"를 보여 준다.
+// from은 http·https·file 주소만 받는다. 카드 화면을 벗어나면 지워서, 허브에서 일반으로 연 카드에는 나타나지 않는다.
+var MR_BACK = '';
+function mrBackUrl(){
+  var m = /[?&]from=([^&]*)/.exec(location.search); if(!m) return '';
+  try{ var u = decodeURIComponent(m[1]); return /^(https?|file):/i.test(u) ? u : ''; }catch(e){ return ''; }
+}
+function mrBackButton(){
+  return '<button type="button" class="btn btn-ghost" style="width:100%;padding:11px;margin-bottom:12px" onclick="location.href=MR_BACK">🌱 정원으로 돌아가기</button>';
+}
 function mrOpenFromUrl(){
   var m = /[?&]open=([^:&]+):(\d+)/.exec(location.search); if(!m) return;
   var u = MR_CARD_UNIT[m[1]], cards = CARD_DATA[m[1]], idx = +m[2], t = /[?&]t=([^&]*)/.exec(location.search);
@@ -116,7 +128,9 @@ function mrOpenFromUrl(){
   if(t && (!cards[idx] || cards[idx].tag !== t)) idx = cards.findIndex(function(c){ return c.tag === t; });
   if(idx < 0 || !cards[idx]) return;
   var home = MR_UNITS[u].cfg.home; if(typeof home === 'function') home = home(m[1]);
-  showScreen(home); startCards(m[1], home); CS.cur = idx; renderCard();
+  showScreen(home); startCards(m[1], home); CS.cur = idx;
+  MR_BACK = mrBackUrl();
+  renderCard();
 }
 window.addEventListener('load', mrOpenFromUrl);
 
