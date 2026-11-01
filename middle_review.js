@@ -65,6 +65,7 @@ function mrTouch(u, id){
 //           kindOf(set, card)     → 'open'(문제 없는 카드) | 'self'(문제 카드) | 'choice'(선택형) | null,
 //           question(set, card)   → 정원에 보낼 문제 HTML(힌트·정답 암시를 뺀 것),
 //           solution(set, card)   → 풀이 HTML,
+//           ask(set, card)        → (선택) self 편지의 입력칸 위 안내 문구,
 //           choiceOf(set, card)   → {stem, options, answer}  (choice일 때만) }
 // 카드는 "세트 이름 + 그 세트 안의 번호"(c-세트-번호)로 가리키고, 번호가 밀려도 찾을 수 있게 카드 제목(tag)을 주소에 같이 적는다.
 var MR_CARD_UNIT = {};
@@ -86,7 +87,10 @@ function mrCardMake(u, id){
     spec: {kind: 'open', card: +m[2], title: c.tag, url: location.href.split('#')[0].split('?')[0] + '?open=' + m[1] + ':' + m[2] + '&t=' + encodeURIComponent(c.tag)},
     q: '', s: ''
   };
-  if(kind === 'self') return {spec: {kind: 'self'}, q: mrSnapWrap(cfg.question(m[1], c)), s: mrSnapWrap(cfg.solution(m[1], c))};
+  if(kind === 'self'){
+    var spec = {kind: 'self'}, ask = cfg.ask && cfg.ask(m[1], c); if(ask) spec.ask = ask;
+    return {spec: spec, q: mrSnapWrap(cfg.question(m[1], c)), s: mrSnapWrap(cfg.solution(m[1], c))};
+  }
   if(kind === 'choice'){
     var ch = cfg.choiceOf(m[1], c); if(!ch) return null;
     return {spec: {kind: 'choice', options: ch.options.slice(), answer: ch.answer, reason: null}, q: mrSnapWrap(ch.stem), s: mrSnapWrap(cfg.solution(m[1], c))};

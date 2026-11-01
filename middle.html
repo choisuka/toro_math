@@ -17910,6 +17910,7 @@ function fmcKind(set, tag){
 //  - fm-prime-link 문제 카드는 본문에 세 가지 풀이가 섞여 있어서, 첫 문장(문제)만 문제로 보내고 나머지를 풀이로 보낸다
 const FMX_HOME = {'fm-guide': 'fm-talkhub', 'fm-gcd': 'fm-talkhub', 'fm-worksheet': 'fm-talkhub', 'fm-hard10': 'fm-talkhub', 'fm-advanced': 'factmult', 'fm-prime-link': 'factmult'};
 function fmxKind(set, tag){
+  if(set === 'fm-advanced'){ var a = /(\d+)\/5\b/.exec(tag); return a && +a[1] <= 4 ? 'self' : 'open'; }
   if(set === 'fm-hard10') return /\d+\/10\b/.test(tag) ? 'self' : 'open';
   if(set === 'fm-prime-link'){ var m = /(\d+)\/9\b/.exec(tag); return m && +m[1] >= 2 ? 'self' : 'open'; }
   return 'open';
@@ -17921,12 +17922,29 @@ function fmxSplit(c){
   var qh = q.outerHTML; q.remove();
   return {q: FMD_W0 + qh + FMD_W1, rest: wrap.innerHTML};
 }
+// 세 가지 방법(fm-advanced): 한 문제(항구의 조명)를 세 방식으로 푼다. 1/5~4/5는 같은 문제를 보내고, 풀이로는 그 카드의 해설(1/5는 세 방식 해설 전부)을 보낸다.
+function fmaProblem(){
+  var box = document.createElement('div'); box.innerHTML = CARD_DATA['fm-advanced'][0].body;
+  var p = box.querySelector('div[style*="border-left"]');
+  return p ? FMD_W0 + p.outerHTML + FMD_W1 : '';
+}
+function fmaMethod(tag){ var m = /(발견형|시각화형|유대인식) 풀이/.exec(tag); return m ? m[1] : ''; }
+function fmaSolution(c){
+  var cards = CARD_DATA['fm-advanced'];
+  if(cards.indexOf(c) !== 0) return c.body;
+  return cards.slice(1, 4).map(function(d){ return '<div style="font-family:Jua,sans-serif;color:' + d.tagColor + ';font-size:.78rem;margin:10px 0 4px">' + d.tag + '</div>' + d.body; }).join('');
+}
 mrCardUnit('fmcard', {
   sets: Object.keys(FMC_KIND).concat(Object.keys(FMX_HOME)),
   home: function(set){ return FMX_HOME[set] || 'factmult'; },
   kindOf: function(set, c){ return FMX_HOME[set] ? fmxKind(set, c.tag) : fmcKind(set, c.tag); },
-  question: function(set, c){ return set === 'fm-prime-link' ? fmxSplit(c).q : fmdStrip(c.body); },
-  solution: function(set, c){ return FMD_W0 + (set === 'fm-prime-link' ? fmxSplit(c).rest + '<br><br>' : '') + c.ans + FMD_W1; },
+  question: function(set, c){ return set === 'fm-advanced' ? (fmaProblem() || fmdStrip(c.body)) : set === 'fm-prime-link' ? fmxSplit(c).q : fmdStrip(c.body); },
+  solution: function(set, c){ return set === 'fm-advanced' ? fmaSolution(c) : FMD_W0 + (set === 'fm-prime-link' ? fmxSplit(c).rest + '<br><br>' : '') + c.ans + FMD_W1; },
+  ask: function(set, c){
+    if(set !== 'fm-advanced') return '';
+    var m = fmaMethod(c.tag);
+    return '이 문제를 ' + (m ? m + ' 방식으로 ' : '') + '풀어 보세요. 먼저 내 답을 써 보세요.';
+  },
   choiceOf: function(set, c){
     var n = /확인 문제 (\d+)\//.exec(c.tag), q = n && FM_QS[FMC_METHOD[set]][+n[1] - 1]; if(!q) return null;
     return {stem: FMD_W0 + '<b style="color:#fde68a">' + q.q + '</b>' + FMD_W1, options: q.choices, answer: q.choices[q.ans]};
