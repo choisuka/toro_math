@@ -135,19 +135,25 @@ function mrCardNoteToggle(){
   var p = document.getElementById('mrcn-panel'); if(!p) return;
   if(p.style.display === 'none'){ mrCardNoteRender(); p.style.display = ''; } else p.style.display = 'none';
 }
-function mrCardNoteRender(msg){
-  var p = document.getElementById('mrcn-panel'), list = mrCardNoteList(), btn = '<button type="button" class="btn btn-ghost" style="flex:none;width:auto;padding:6px 10px;font-size:.78rem"';
+function mrCardNoteRender(msg, adding){
+  var p = document.getElementById('mrcn-panel'), list = mrCardNoteList(), showBox = adding || !list.length, btn = '<button type="button" class="btn btn-ghost" style="flex:none;width:auto;padding:6px 10px;font-size:.78rem"';
   p.innerHTML = '<div style="margin-top:10px;padding:12px;border:1px dashed rgba(255,255,255,.25);border-radius:10px;font-size:.84rem;line-height:1.7;color:#e2e8f0">'
     + (list.length ? '<div style="font-family:Jua,sans-serif;color:#fbbf24;margin-bottom:6px">지난번에 내가 쓴 핵심</div>' + list.map(function(e, i){
         return '<div style="margin-bottom:8px"><span style="font-size:.72rem;color:#94a3b8">' + mrEsc(e.date || '') + '</span>'
           + '<div id="mrcn-t-' + i + '" style="white-space:pre-wrap">' + mrEsc(e.text) + '</div>'
           + '<div id="mrcn-b-' + i + '" style="display:flex;gap:6px;margin-top:4px">' + btn + ' onclick="mrCardNoteEdit(' + i + ')">✏️ 수정</button>' + btn + ' onclick="mrCardNoteDel(' + i + ')">🗑 삭제</button></div></div>';
       }).join('') : '')
-    + '<div style="font-family:Jua,sans-serif;color:#fde68a;margin:6px 0">읽고 나서 핵심을 내 말로 써 보세요 (선택)</div>'
-    + '<textarea id="mrcn-ta" rows="3" maxlength="300" placeholder="예) 약수는 어떤 수를 나누어떨어지게 하는 수" style="width:100%;box-sizing:border-box;background:#ffffff;border:1px solid #c5ccd8;border-radius:10px;color:#1d2433;padding:10px;font-size:.9rem;font-family:inherit;resize:vertical"></textarea>'
-    + '<button type="button" class="btn btn-ghost" style="width:100%;margin-top:8px;padding:10px" onclick="mrCardNoteSave()">💾 저장</button>'
+    + (showBox ? (
+      '<div style="font-family:Jua,sans-serif;color:#fde68a;margin:6px 0">읽고 나서 핵심을 내 말로 써 보세요 (선택)</div>'
+      + '<textarea id="mrcn-ta" rows="3" maxlength="300" placeholder="예) 약수는 어떤 수를 나누어떨어지게 하는 수" style="width:100%;box-sizing:border-box;background:#ffffff;border:1px solid #c5ccd8;border-radius:10px;color:#1d2433;padding:10px;font-size:.9rem;font-family:inherit;resize:vertical"></textarea>'
+      + '<button type="button" class="btn btn-ghost" style="width:100%;margin-top:8px;padding:10px" onclick="mrCardNoteSave()">💾 저장</button>'
+      ) : '<button type="button" class="btn btn-ghost" style="width:100%;margin-top:4px;padding:10px" onclick="mrCardNoteMore()">＋ 하나 더 쓰기</button>')
     + '<div id="mrcn-msg" style="margin-top:6px;font-size:.8rem;color:#fde68a">' + (msg || '') + '</div></div>';
   var b = document.getElementById('mrcn-btn'); if(b) b.outerHTML = mrCardNoteBtn();
+}
+function mrCardNoteMore(){
+  mrCardNoteRender('', true);
+  var ta = document.getElementById('mrcn-ta'); if(ta) ta.focus();
 }
 function mrCardNoteSave(){
   var ta = document.getElementById('mrcn-ta'), text = ta.value.trim();
