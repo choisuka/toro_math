@@ -19,12 +19,22 @@ function msFieldOk(f, v){
 function msEsc(s){ return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
 
 function msStartBtn(){
-  return '<button onclick="msStart()" style="display:block;width:100%;background:linear-gradient(135deg,#065f46,#10b981);border:none;color:#fff;border-radius:12px;padding:13px;font-family:Jua,sans-serif;font-size:.95rem;cursor:pointer">🎮 단계로 풀기</button>'
+  return '<button onclick="msStart()" style="display:block;width:100%;background:linear-gradient(135deg,#065f46,#10b981);border:none;color:#fff;border-radius:12px;padding:13px;font-family:Jua,sans-serif;font-size:.95rem;cursor:pointer">🎮 단계별 풀이 보기</button>'
     + '<div style="text-align:center;font-size:.72rem;color:rgba(255,255,255,.5);margin-top:6px">질문에 답을 쓰면서 한 단계씩 풀어 봐요</div>';
 }
+// 단계 카드의 화면 순서: 카드 → 단계별 풀이 보기 → 정답/풀이 → 복습핀. 다른 카드로 넘어가면 원래 순서(카드 → 정답/풀이 → 복습핀 → 단계 칸)로 되돌린다.
 function msOnCard(){
-  var box = document.getElementById('cv-interactive'); if(!box || !MS_DATA[msKey()]) return;
+  var box = document.getElementById('cv-interactive'), inner = document.getElementById('cv-inner'),
+      area = document.getElementById('cv-ans-area'), btn = document.getElementById('cv-ans-btn');
+  if(!box || !inner || !area || !btn) return;
+  var old = document.getElementById('ms-rvbox'); if(old) old.parentNode.removeChild(old);
+  var par = inner.parentNode;
+  par.insertBefore(area, inner.nextSibling); par.insertBefore(btn, area.nextSibling); par.insertBefore(box, btn.nextSibling);
+  if(!MS_DATA[msKey()]) return;
   MS_RUN = null; box.style.display = ''; box.innerHTML = msStartBtn();
+  var rv = inner.querySelector('[id^="rvq-"]'), rvBox = rv && rv.parentElement;
+  par.insertBefore(box, area);
+  if(rvBox){ rvBox.id = 'ms-rvbox'; inner.parentNode.insertBefore(rvBox, btn.nextSibling); }
 }
 function msStart(){
   MS_RUN = {key: msKey(), i: 0, res: [], tries: 0, seen: false};
