@@ -648,6 +648,22 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
     </div>
   </div>
 
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">📐 삼각형 <span class="badge">초4</span></div><div class="unit-sub">이등변삼각형·정삼각형 (변의 길이로 분류하기)</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e4tri">
+        <div class="cv-grid" id="cv-e4tri-grid"></div>
+        <div class="cv-detail" id="cv-e4tri-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e4tri')">← 목록으로</button>
+          <div id="cv-e4tri-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="semester-divider">나머지 초4-2 단원을 순서대로 만들고 있어요</div>
   </div>
 
@@ -12245,6 +12261,664 @@ US_UNITS['e4pat'] = {
 US_UNITS['e4pat'].snapCss = e4patCss();
 usInject('e4pat', [0,1,2,5]);
 
+// ── 삼각형(e4tri) 도형 헬퍼: 각도 호·같은변 틱을 평균 변 길이 비율로 자동 계산해서 그린다(수작업 추측 금지) ──
+function e4triHyp(dx,dy){ return Math.sqrt(dx*dx+dy*dy); }
+function e4triUnit(dx,dy){ var l=e4triHyp(dx,dy); return [dx/l,dy/l]; }
+function e4triAngleDeg(pts,i){
+  var A=pts[i],B=pts[(i+1)%3],C=pts[(i+2)%3];
+  var v1=[B[0]-A[0],B[1]-A[1]], v2=[C[0]-A[0],C[1]-A[1]];
+  var dot=v1[0]*v2[0]+v1[1]*v2[1], m1=e4triHyp(v1[0],v1[1]), m2=e4triHyp(v2[0],v2[1]);
+  return Math.acos(dot/(m1*m2))*180/Math.PI;
+}
+var E4TRI_RATIO = { arcR:0.1, sq:0.062, lgap:0.10, fs:0.08, markSw:0.009, tickLen:0.056, tickGap:0.0675, markOp:0.42 };
+function e4triScale(pts){
+  return (e4triHyp(pts[1][0]-pts[0][0],pts[1][1]-pts[0][1]) + e4triHyp(pts[2][0]-pts[1][0],pts[2][1]-pts[1][1]) + e4triHyp(pts[0][0]-pts[2][0],pts[0][1]-pts[2][1])) / 3;
+}
+function e4triAngleMark(pts,i,scale,opts){
+  opts=opts||{};
+  var A=pts[i],B=pts[(i+1)%3],C=pts[(i+2)%3];
+  var ang=e4triAngleDeg(pts,i);
+  var u1=e4triUnit(B[0]-A[0],B[1]-A[1]), u2=e4triUnit(C[0]-A[0],C[1]-A[1]);
+  var sw=E4TRI_RATIO.markSw*scale, op=E4TRI_RATIO.markOp;
+  var stroke=opts.stroke||'#1d2433';
+  if(Math.abs(ang-90)<1){
+    var s=E4TRI_RATIO.sq*scale;
+    var p1=[A[0]+u1[0]*s,A[1]+u1[1]*s];
+    var p2=[A[0]+u1[0]*s+u2[0]*s,A[1]+u1[1]*s+u2[1]*s];
+    var p3=[A[0]+u2[0]*s,A[1]+u2[1]*s];
+    return '<path d="M'+p1[0]+','+p1[1]+' L'+p2[0]+','+p2[1]+' L'+p3[0]+','+p3[1]+'" fill="none" stroke="'+stroke+'" stroke-width="'+sw+'" opacity="'+op+'"/>';
+  }
+  var r=E4TRI_RATIO.arcR*scale*(ang<20?0.5:1);
+  var p1=[A[0]+u1[0]*r,A[1]+u1[1]*r];
+  var p2=[A[0]+u2[0]*r,A[1]+u2[1]*r];
+  var a1=Math.atan2(u1[1],u1[0]), a2=Math.atan2(u2[1],u2[0]);
+  var delta=a2-a1;
+  while(delta<=-Math.PI) delta+=2*Math.PI;
+  while(delta>Math.PI) delta-=2*Math.PI;
+  var sweep=delta>0?1:0;
+  var mid=a1+delta/2, lr=r+E4TRI_RATIO.lgap*scale, lx, ly;
+  if(ang<20){
+    var ctr=[(pts[0][0]+pts[1][0]+pts[2][0])/3,(pts[0][1]+pts[1][1]+pts[2][1])/3];
+    var out1=e4triUnit(A[0]-ctr[0],A[1]-ctr[1]), od=E4TRI_RATIO.fs*scale*1.1;
+    lx=A[0]+out1[0]*od; ly=A[1]+out1[1]*od;
+  }else{
+    lx=A[0]+Math.cos(mid)*lr; ly=A[1]+Math.sin(mid)*lr;
+  }
+  var out='<path d="M'+p1[0]+','+p1[1]+' A'+r+' '+r+' 0 0 '+sweep+' '+p2[0]+','+p2[1]+'" fill="none" stroke="'+stroke+'" stroke-width="'+sw+'" opacity="'+op+'"/>';
+  if(opts.label!==false){
+    out+='<text x="'+lx+'" y="'+ly+'" font-size="'+(E4TRI_RATIO.fs*scale)+'" fill="'+(opts.q?'#c0362f':stroke)+'" opacity="'+(opts.q?1:op)+'" font-weight="'+(opts.q?'700':'400')+'" text-anchor="middle" dominant-baseline="middle">'+(opts.q?'?':Math.round(ang)+'°')+'</text>';
+  }
+  return out;
+}
+function e4triTickMark(p1,p2,n,color,scale){
+  var mx=(p1[0]+p2[0])/2, my=(p1[1]+p2[1])/2;
+  var dx=p2[0]-p1[0], dy=p2[1]-p1[1], len=e4triHyp(dx,dy);
+  var ux=dx/len, uy=dy/len, px=-uy, py=ux;
+  var gap=E4TRI_RATIO.tickGap*scale, tlen=E4TRI_RATIO.tickLen*scale, sw=E4TRI_RATIO.markSw*scale, out='';
+  for(var k=0;k<n;k++){
+    var off=(k-(n-1)/2)*gap;
+    var cx=mx+ux*off, cy=my+uy*off;
+    out+='<line x1="'+(cx-px*tlen/2)+'" y1="'+(cy-py*tlen/2)+'" x2="'+(cx+px*tlen/2)+'" y2="'+(cy+py*tlen/2)+'" stroke="'+(color||'#1d2433')+'" stroke-width="'+sw+'" opacity="'+E4TRI_RATIO.markOp+'"/>';
+  }
+  return out;
+}
+function e4triPolyPath(pts){ return 'M'+pts.map(function(p){return p[0]+','+p[1];}).join(' L ')+' Z'; }
+function e4triBbox(ptsList,pad){
+  var xs=[],ys=[];
+  ptsList.forEach(function(pts){pts.forEach(function(p){xs.push(p[0]);ys.push(p[1]);});});
+  var minX=Math.min.apply(null,xs)-pad, maxX=Math.max.apply(null,xs)+pad;
+  var minY=Math.min.apply(null,ys)-pad, maxY=Math.max.apply(null,ys)+pad;
+  return [minX,minY,maxX-minX,maxY-minY];
+}
+var E4TRI_FILL_ISO='#27c96a', E4TRI_FILL_EQ='#9b6bf2', E4TRI_FILL_OP=0.55;
+function e4triWrapOpen(){ return e4barWrapOpen().replace('class="e4bw"','class="e4bw e4tri"')+'<style>'
+  +'.e4bw.e4tri h2{font-family:"Jua","Nanum Gothic",sans-serif;font-size:1.1rem;color:#7a4fc2;margin:0 0 10px;display:flex;align-items:center;gap:8px}'
+  +'.e4bw.e4tri .secnum{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:#7a4fc2;color:#fff;font-size:.85rem;flex:0 0 auto}'
+  +'.e4bw.e4tri .e4tri-sec{margin-bottom:34px}'
+  +'.e4bw.e4tri .e4tri-sub{color:#5d6678;font-size:.9rem;margin-bottom:16px;line-height:1.55}'
+  +'.e4bw.e4tri .e4tri-hookq{background:#f4eeff;border:1px solid #d7c4fa;border-radius:10px;padding:12px 14px;font-size:.98rem;margin-bottom:18px;color:#1d2433}'
+  +'.e4bw.e4tri .e4tri-hookq b{color:#7a4fc2}'
+  +'.e4bw.e4tri .e4tri-diagrow{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}'
+  +'@media(max-width:600px){.e4bw.e4tri .e4tri-diagrow{grid-template-columns:1fr}}'
+  +'.e4bw.e4tri .e4tri-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.12)}'
+  +'.e4bw.e4tri .e4tri-card .cap{font-size:.98rem;color:#5d6678;margin-top:10px;line-height:1.6}'
+  +'.e4bw.e4tri .e4tri-card .cap b{color:#1d2433}'
+  +'.e4bw.e4tri .e4tri-hookb{color:#ff3d9a;font-weight:800;display:inline-block;animation:e4triHookPulse 1.6s ease-in-out infinite}'
+  +'@keyframes e4triHookPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}'
+  +'@media (prefers-reduced-motion: reduce){.e4bw.e4tri .e4tri-hookb{animation:none}}'
+  +'.e4bw.e4tri .e4tri-card svg{display:block;width:100%;max-width:200px;height:auto;margin:0 auto}'
+  +'.e4bw.e4tri .e4tri-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.85rem;color:#5d6678;margin-top:8px}'
+  +'.e4bw.e4tri .e4tri-legend span{display:inline-flex;align-items:center;gap:4px}'
+  +'.e4bw.e4tri .e4tri-dot{width:9px;height:9px;border-radius:2px;display:inline-block}'
+  +'.e4bw.e4tri .e4tri-sortgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}'
+  +'@media(max-width:600px){.e4bw.e4tri .e4tri-sortgrid{grid-template-columns:repeat(2,1fr)}}'
+  +'.e4bw.e4tri .e4tri-sortcard{background:#fff;border-radius:10px;padding:10px;display:flex;align-items:center;justify-content:center}'
+  +'.e4bw.e4tri .e4tri-sortcard svg{width:100%;height:auto;max-height:140px}'
+  +'.e4bw.e4tri .e4tri-groupwrap{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:4px;align-items:start}'
+  +'@media(max-width:600px){.e4bw.e4tri .e4tri-groupwrap{grid-template-columns:1fr}}'
+  +'.e4bw.e4tri .e4tri-groupbox{background:#fff;border-radius:12px;padding:14px}'
+  +'.e4bw.e4tri .e4tri-grouptitle{color:#1d2433;font-weight:700;font-size:.9rem;margin-bottom:8px}'
+  +'.e4bw.e4tri .e4tri-groupbox .e4tri-sortgrid{grid-template-columns:repeat(2,1fr);margin-bottom:0}'
+  +'.e4bw.e4tri .e4tri-groupbox.small .e4tri-sortcard svg{max-height:110px}'
+  +'.e4bw.e4tri .e4tri-togglebtn{background:#7a4fc2;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-size:.92rem;font-weight:700;cursor:pointer;margin-bottom:16px;font-family:inherit}'
+  +'.e4bw.e4tri .e4tri-togglebtn:hover{opacity:.9}'
+  +'.e4bw.e4tri .e4tri-reveal{display:none}'
+  +'.e4bw.e4tri .e4tri-reveal.show{display:block}'
+  +'.e4bw.e4tri .e4tri-takeaway{background:#eafbf0;border:1px solid #9bd0ab;border-radius:10px;padding:12px 14px;font-size:.9rem;margin-top:14px;color:#1d2433}'
+  +'.e4bw.e4tri .e4tri-flow{background:#f4eeff;border:1px solid #d7c4fa;border-radius:10px;padding:14px 16px;font-size:.95rem;line-height:1.7;margin-bottom:30px;color:#1d2433}'
+  +'.e4bw.e4tri .e4tri-flow .tag{color:#7a4fc2;font-weight:700}'
+  +'.e4bw.e4tri .e4tri-explain{font-size:1.02rem;line-height:1.75;margin-top:14px;color:#1d2433}'
+  +'.e4bw.e4tri .e4tri-explain b{color:#7a4fc2}'
+  +'.e4bw.e4tri .e4tri-single{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.12)}'
+  +'.e4bw.e4tri .e4tri-single svg{display:block;width:100%;max-width:270px;height:auto;margin:0 auto}'
+  +'.e4bw.e4tri .e4tri-single .cap{font-size:1.05rem;font-weight:600;color:#1d2433;text-align:center;margin-top:10px}'
+  +'.e4bw.e4tri .e4tri-incl{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.12)}'
+  +'.e4bw.e4tri .e4tri-incl svg{display:block;width:100%;max-width:320px;height:auto;margin:0 auto}'
+  +'</style>';
+}
+
+/* ── 카드0 "왜 배우는가" 다이어그램: 정사각형→대각선(45-45-90), 정삼각형→높이로 절반(30-60-90) ── */
+function e4triHookSquare(){
+  var s=120;
+  var A=[0,0], B=[s,0], C=[s,s], D=[0,s];
+  var vb=e4triBbox([[A,B,C,D]],34);
+  var svg='<svg viewBox="'+vb.join(' ')+'">';
+  svg+='<path d="'+e4triPolyPath([A,B,C,D])+'" fill="none" stroke="#1d2433" stroke-width="3"/>';
+  svg+='<line x1="'+A[0]+'" y1="'+A[1]+'" x2="'+C[0]+'" y2="'+C[1]+'" stroke="#1d2433" stroke-width="3"/>';
+  svg+='<path d="'+e4triPolyPath([A,B,C])+'" fill="#2f8fe8" opacity="0.62"/>';
+  svg+='<path d="'+e4triPolyPath([A,C,D])+'" fill="#27c96a" opacity="0.62"/>';
+  var BIG={fs:14,sw:2.4,r:19,sq:11,lgap:17};
+  svg+=e4triTickMark(A,B,1,'#2f6fa8',3)+e4triTickMark(B,C,1,'#2f6fa8',3);
+  svg+=e4triTickMark(A,D,1,'#1f7a42',3)+e4triTickMark(D,C,1,'#1f7a42',3);
+  [0,1,2].forEach(function(i){ svg+=e4triAngleMarkBig([A,B,C],i,'#2f6fa8',BIG); });
+  [0,1,2].forEach(function(i){ svg+=e4triAngleMarkBig([A,C,D],i,'#1f7a42',BIG); });
+  svg+='</svg>';
+  return svg+'<div class="cap"><b class="e4tri-hookb">정사각형을 대각선으로 자르면</b> → 두 변의 길이가 같은(파랑·초록 각 변) 45°-45°-90° 삼각형 2개가 나와요. 이게 삼각자 중 하나예요.</div>'
+    +'<div class="e4tri-legend"><span><span class="e4tri-dot" style="background:#2f8fe8"></span>이등변삼각형 ①</span><span><span class="e4tri-dot" style="background:#27c96a"></span>이등변삼각형 ②</span></div>';
+}
+/* 각 표시를 "진짜 크게"(카드1 전용 고정 크기) 그릴 때 쓰는 보조 함수 — e4triAngleMark의 비율 시스템과 별개로, opts로 직접 지정 */
+function e4triAngleMarkBig(pts,i,stroke,opts){
+  var A=pts[i],B=pts[(i+1)%3],C=pts[(i+2)%3];
+  var ang=e4triAngleDeg(pts,i);
+  var u1=e4triUnit(B[0]-A[0],B[1]-A[1]), u2=e4triUnit(C[0]-A[0],C[1]-A[1]);
+  if(Math.abs(ang-90)<1){
+    var s=opts.sq;
+    var p1=[A[0]+u1[0]*s,A[1]+u1[1]*s];
+    var p2=[A[0]+u1[0]*s+u2[0]*s,A[1]+u1[1]*s+u2[1]*s];
+    var p3=[A[0]+u2[0]*s,A[1]+u2[1]*s];
+    return '<path d="M'+p1[0]+','+p1[1]+' L'+p2[0]+','+p2[1]+' L'+p3[0]+','+p3[1]+'" fill="none" stroke="'+stroke+'" stroke-width="'+opts.sw+'"/>';
+  }
+  var r=opts.r;
+  var p1=[A[0]+u1[0]*r,A[1]+u1[1]*r];
+  var p2=[A[0]+u2[0]*r,A[1]+u2[1]*r];
+  var a1=Math.atan2(u1[1],u1[0]), a2=Math.atan2(u2[1],u2[0]);
+  var delta=a2-a1;
+  while(delta<=-Math.PI) delta+=2*Math.PI;
+  while(delta>Math.PI) delta-=2*Math.PI;
+  var sweep=delta>0?1:0;
+  var mid=a1+delta/2, lr=r+opts.lgap;
+  var lx=A[0]+Math.cos(mid)*lr, ly=A[1]+Math.sin(mid)*lr;
+  return '<path d="M'+p1[0]+','+p1[1]+' A'+r+' '+r+' 0 0 '+sweep+' '+p2[0]+','+p2[1]+'" fill="none" stroke="'+stroke+'" stroke-width="'+opts.sw+'"/>'
+    +'<text x="'+lx+'" y="'+ly+'" font-size="'+opts.fs+'" fill="'+stroke+'" text-anchor="middle" dominant-baseline="middle">'+Math.round(ang)+'°</text>';
+}
+function e4triHookTri(){
+  var side=120, h=side*Math.sqrt(3)/2;
+  var L=[0,h], R=[side,h], T=[side/2,0], M=[side/2,h];
+  var vb=e4triBbox([[L,R,T]],34);
+  var svg='<svg viewBox="'+vb.join(' ')+'">';
+  svg+='<path d="'+e4triPolyPath([L,R,T])+'" fill="none" stroke="#1d2433" stroke-width="3"/>';
+  svg+='<line x1="'+T[0]+'" y1="'+T[1]+'" x2="'+M[0]+'" y2="'+M[1]+'" stroke="#1d2433" stroke-width="3"/>';
+  svg+='<path d="'+e4triPolyPath([T,L,M])+'" fill="#2f8fe8" opacity="0.62"/>';
+  svg+='<path d="'+e4triPolyPath([T,M,R])+'" fill="#27c96a" opacity="0.62"/>';
+  var BIG={fs:14,sw:2.4,r:19,sq:11,lgap:17};
+  svg+=e4triTickMark(T,L,1,'#2f6fa8',3)+e4triTickMark(T,R,1,'#1f7a42',3);
+  [0,1,2].forEach(function(i){ svg+=e4triAngleMarkBig([T,L,M],i,'#2f6fa8',BIG); });
+  [0,1,2].forEach(function(i){ svg+=e4triAngleMarkBig([T,M,R],i,'#1f7a42',BIG); });
+  svg+='</svg>';
+  return svg+'<div class="cap"><b class="e4tri-hookb">정삼각형을 꼭짓점에서 밑변 중점까지 자르면</b> → 자른 선은 밑변과 수직(직각)이고, 꼭지각 60°가 30°+30°로 나뉘어요. 30°-60°-90° 삼각형 2개, 이게 삼각자의 다른 하나예요.</div>'
+    +'<div class="e4tri-legend"><span><span class="e4tri-dot" style="background:#2f8fe8"></span>절반 ①</span><span><span class="e4tri-dot" style="background:#27c96a"></span>절반 ②</span></div>';
+}
+
+/* ── 카드0 분류 활동용 삼각형 6개(각 변의 길이를 실제로 계산해서 배치) ── */
+var E4TRI_SHAPES = [
+  { pts:[[0,69.28],[80,69.28],[40,0]], equalPairs:[[0,1,0],[1,2,2],[0,2,1]] },
+  { pts:[[0,67.08],[40,67.08],[20,0]], equalPairs:[[0,2,1],[1,2,1]] },
+  { pts:[[0,31.62],[90,31.62],[45,0]], equalPairs:[[0,2,1],[1,2,1]] },
+  { pts:[[0,38.68],[90,38.68],[31.67,0]], equalPairs:[] },
+  { pts:[[0,40],[90,40],[0,0]], equalPairs:[] },
+  { pts:[[0,0],[60,0],[0,60]], equalPairs:[[0,1,0],[0,2,0]] }
+];
+function e4triCentroid(pts){ return [(pts[0][0]+pts[1][0]+pts[2][0])/3,(pts[0][1]+pts[1][1]+pts[2][1])/3]; }
+function e4triSideLabel(p1,p2,ctr,color){
+  var mx=(p1[0]+p2[0])/2, my=(p1[1]+p2[1])/2;
+  var ox=mx-ctr[0], oy=my-ctr[1], ol=e4triHyp(ox,oy);
+  var ux=ox/ol, uy=oy/ol, off=13;
+  var len=Math.round(e4triHyp(p2[0]-p1[0],p2[1]-p1[1]));
+  return '<text x="'+(mx+ux*off)+'" y="'+(my+uy*off)+'" font-size="11" fill="'+(color||'#5d6678')+'" text-anchor="middle" dominant-baseline="middle">'+len+'</text>';
+}
+function e4triRenderShape(pts, showTicks, equalPairs, outlineOnly, labelSides){
+  var vb=e4triBbox([pts],labelSides?26:16);
+  var svg='<svg viewBox="'+vb.join(' ')+'">';
+  svg+='<path d="'+e4triPolyPath(pts)+'" fill="'+(outlineOnly?'#e9edf3':'#dce6f5')+'" stroke="#5d6678" stroke-width="2"/>';
+  if(showTicks){ equalPairs.forEach(function(e){ svg+=e4triTickMark(pts[e[0]],pts[e[1]],e[2]+1,'#1d2433',1); }); }
+  if(labelSides){
+    var ctr=e4triCentroid(pts);
+    svg+=e4triSideLabel(pts[0],pts[1],ctr)+e4triSideLabel(pts[1],pts[2],ctr)+e4triSideLabel(pts[0],pts[2],ctr);
+  }
+  svg+='</svg>';
+  return svg;
+}
+function e4triShuffle(arr){
+  var a=arr.slice();
+  for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+  return a;
+}
+function e4triSortHtml(){
+  var challenge='', groupA='', groupB='';
+  e4triShuffle(E4TRI_SHAPES).forEach(function(s){
+    challenge+='<div class="e4tri-sortcard">'+e4triRenderShape(s.pts,false,[],true,false)+'</div>';
+  });
+  E4TRI_SHAPES.forEach(function(s){
+    var card='<div class="e4tri-sortcard">'+e4triRenderShape(s.pts,true,s.equalPairs,false,true)+'</div>';
+    if(s.equalPairs.length>0) groupA+=card; else groupB+=card;
+  });
+  return '<div class="e4tri-hookq">이 삼각형 6개를 <b>두 무리</b>로 나눠보라면, 어떻게 나눌 수 있을까요?</div>'
+    +'<div class="e4tri-sortgrid">'+challenge+'</div>'
+    +'<button class="e4tri-togglebtn" onclick="e4triRevealToggle(this)">📏 변의 길이를 재어 보니...</button>'
+    +'<div class="e4tri-reveal" id="e4tri-revealBox">'
+    +'<p class="e4tri-sub" style="margin-bottom:10px">삼각형 안의 작은 숫자는 각 변의 길이예요.</p>'
+    +'<div class="e4tri-groupwrap">'
+    +'<div class="e4tri-groupbox"><div class="e4tri-grouptitle">두 변 이상의 길이가 같다</div><div class="e4tri-sortgrid">'+groupA+'</div></div>'
+    +'<div class="e4tri-groupbox small"><div class="e4tri-grouptitle">세 변의 길이가 모두 다르다</div><div class="e4tri-sortgrid">'+groupB+'</div></div>'
+    +'</div>'
+    +'<div class="e4tri-takeaway">이렇게 나온 모양에 이름을 붙이면 — 두 변이 같으면 <b>이등변삼각형</b>, 세 변이 모두 같으면 <b>정삼각형</b>이 돼요. (세 변이 모두 다른 삼각형은 다음 카드에서 다시 짚어요)</div>'
+    +'</div>';
+}
+function e4triRevealToggle(btn){
+  var box=document.getElementById('e4tri-revealBox');
+  var showing=box.classList.toggle('show');
+  btn.textContent = showing ? '🙈 다시 가리기' : '📏 변의 길이를 재어 보니...';
+}
+
+/* ── 카드1 "개념 설명": 이등변삼각형 접기 3단 + 정삼각형 60도 + 포함관계 원 ── */
+var E4TRI_D=[0,233.34], E4TRI_E=[165,233.34], E4TRI_F=[82.5,0], E4TRI_M=[82.5,233.34];
+function e4triFoldPanel1(){
+  var vb=e4triBbox([[E4TRI_D,E4TRI_E,E4TRI_F]],65), sc=e4triScale([E4TRI_D,E4TRI_E,E4TRI_F]);
+  var svg='<svg viewBox="'+vb.join(' ')+'">';
+  svg+='<path d="'+e4triPolyPath([E4TRI_D,E4TRI_E,E4TRI_F])+'" fill="'+E4TRI_FILL_ISO+'" opacity="'+E4TRI_FILL_OP+'" stroke="#000000" stroke-width="1"/>';
+  svg+=e4triTickMark(E4TRI_D,E4TRI_F,1,'#1d2433',sc)+e4triTickMark(E4TRI_E,E4TRI_F,1,'#1d2433',sc);
+  svg+=e4triAngleMark([E4TRI_D,E4TRI_E,E4TRI_F],0,sc)+e4triAngleMark([E4TRI_D,E4TRI_E,E4TRI_F],1,sc);
+  svg+='</svg>';
+  return svg+'<div class="cap">두 변의 길이가 같아요</div>';
+}
+function e4triFoldPanel2(){
+  var vb=e4triBbox([[E4TRI_D,E4TRI_E,E4TRI_F]],65);
+  var svg='<svg viewBox="'+vb.join(' ')+'">';
+  svg+='<path d="'+e4triPolyPath([E4TRI_D,E4TRI_E,E4TRI_F])+'" fill="'+E4TRI_FILL_ISO+'" opacity="'+E4TRI_FILL_OP+'" stroke="#000000" stroke-width="1"/>';
+  svg+='<line x1="'+E4TRI_F[0]+'" y1="'+E4TRI_F[1]+'" x2="'+E4TRI_M[0]+'" y2="'+E4TRI_M[1]+'" stroke="#ff3d9a" stroke-width="1.3" stroke-dasharray="2.5,2" opacity="0.45"/>';
+  svg+='</svg>';
+  return svg+'<div class="cap">꼭짓점~밑변 중점으로 접어요</div>';
+}
+function e4triFoldPanel3(){
+  var half=[E4TRI_F,E4TRI_D,E4TRI_M];
+  var vb=e4triBbox([[E4TRI_D,E4TRI_E,E4TRI_F]],65), sc=e4triScale([E4TRI_D,E4TRI_E,E4TRI_F]);
+  var svg='<svg viewBox="'+vb.join(' ')+'">';
+  svg+='<path d="'+e4triPolyPath(half)+'" fill="'+E4TRI_FILL_ISO+'" opacity="'+E4TRI_FILL_OP+'" stroke="#000000" stroke-width="1"/>';
+  svg+=e4triAngleMark([half[1],half[2],half[0]],0,sc);
+  svg+='</svg>';
+  return svg+'<div class="cap"><b>완전히 겹쳐요!</b> → 두 밑각이 같다는 증거</div>';
+}
+function e4triConceptEquil(){
+  var side=220, h=side*Math.sqrt(3)/2;
+  var A=[0,h], B=[side,h], C=[side/2,0];
+  var vb=e4triBbox([[A,B,C]],65), sc=e4triScale([A,B,C]);
+  var svg='<svg viewBox="'+vb.join(' ')+'">';
+  svg+='<path d="'+e4triPolyPath([A,B,C])+'" fill="'+E4TRI_FILL_EQ+'" opacity="'+E4TRI_FILL_OP+'" stroke="#000000" stroke-width="1"/>';
+  svg+=e4triTickMark(A,B,1,'#1d2433',sc)+e4triTickMark(B,C,1,'#1d2433',sc)+e4triTickMark(A,C,1,'#1d2433',sc);
+  svg+=e4triAngleMark([A,B,C],0,sc)+e4triAngleMark([A,B,C],1,sc)+e4triAngleMark([A,B,C],2,sc);
+  svg+='</svg>';
+  return svg+'<div class="cap">세 변이 같으니 세 각도 모두 60°</div>';
+}
+function e4triInclCircles(){
+  var svg='<svg viewBox="0 0 320 180">';
+  svg+='<circle cx="150" cy="90" r="82" fill="#f6a93d" opacity="0.30" stroke="#1d2433" stroke-width="2.6"/>';
+  svg+='<circle cx="115" cy="90" r="42" fill="#1fbfad" opacity="0.62" stroke="#1d2433" stroke-width="2.6"/>';
+  svg+='<text x="150" y="26" font-size="15" fill="#1d2433" text-anchor="middle" font-weight="700">이등변삼각형 (두 변이 같다)</text>';
+  svg+='<text x="115" y="90" font-size="13.5" fill="#1d2433" text-anchor="middle" font-weight="700">정삼각형</text>';
+  svg+='<text x="115" y="107" font-size="11.5" fill="#1d2433" text-anchor="middle">(세 변이 같다)</text>';
+  svg+='</svg>';
+  return svg;
+}
+// 연 모양(변 BD를 공유하는 두 이등변삼각형) — 문장제 심화 9·10번용
+function e4triKiteSvg(apexA, apexC, qSide){
+  var s=100;
+  var hA=(s/2)/Math.tan(apexA*Math.PI/180/2);
+  var hC=(s/2)/Math.tan(apexC*Math.PI/180/2);
+  var B=[0,s/2], D=[0,-s/2], A=[-hA,0], C=[hC,0];
+  var vb=e4triBbox([[A,B,C],[A,B,D],[B,C,D]],34);
+  var sc=(e4triScale([A,B,D])+e4triScale([C,B,D]))/2;
+  var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:240px;display:block;margin:0 auto 8px">';
+  svg+='<path d="'+e4triPolyPath([A,B,D])+'" fill="'+E4TRI_FILL_ISO+'" opacity="0.5" stroke="#000000" stroke-width="1"/>';
+  svg+='<path d="'+e4triPolyPath([C,B,D])+'" fill="'+E4TRI_FILL_EQ+'" opacity="0.5" stroke="#000000" stroke-width="1"/>';
+  svg+=e4triTickMark(A,B,1,'#1d2433',sc)+e4triTickMark(A,D,1,'#1d2433',sc);
+  svg+=e4triTickMark(C,B,2,'#1d2433',sc)+e4triTickMark(C,D,2,'#1d2433',sc);
+  svg+=e4triAngleMark([B,A,D],1,sc,{q:qSide==='A'});
+  svg+=e4triAngleMark([B,C,D],1,sc,{q:qSide==='C'});
+  svg+=e4triAngleMark([D,A,B],2,sc,{label:false});
+  svg+=e4triAngleMark([D,C,B],0,sc,{label:false});
+  svg+='<line x1="'+B[0]+'" y1="'+B[1]+'" x2="'+D[0]+'" y2="'+D[1]+'" stroke="#9aa3b2" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>';
+  ['A','B','C','D'].forEach(function(name){
+    var p={A:A,B:B,C:C,D:D}[name];
+    var ctr=[(A[0]+B[0]+C[0]+D[0])/4,(A[1]+B[1]+C[1]+D[1])/4];
+    var ux=p[0]-ctr[0], uy=p[1]-ctr[1], ul=e4triHyp(ux,uy), off=16;
+    svg+='<text x="'+(p[0]+ux/ul*off)+'" y="'+(p[1]+uy/ul*off)+'" font-size="13" fill="#5d6678" font-weight="700" text-anchor="middle" dominant-baseline="middle">'+name+'</text>';
+  });
+  svg+='</svg>';
+  return svg;
+}
+// 문장제 심화 10선 — 랜덤 생성기
+function e4triGen(){
+  if(e4triGen._c) return e4triGen._c;
+  function rnd(a,b){return a+Math.floor(Math.random()*(b-a+1));}
+  function ans(t){return '<strong style="color:#2f9e57">'+t+'</strong>';}
+  function isTri(a,b,c){return a+b>c && a+c>b && b+c>a;}
+  function isoDiagram(baseAng, qIdx){ // qIdx: 2=apex 모름, 0/1=밑각 모름(배열로 전달)
+    var base=100, h=(base/2)*Math.tan(baseAng*Math.PI/180);
+    var D=[0,h],E=[base,h],F=[base/2,0];
+    var vb=e4triBbox([[D,E,F]],30), sc=e4triScale([D,E,F]);
+    var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:220px;display:block;margin:0 auto 8px">';
+    svg+='<path d="'+e4triPolyPath([D,E,F])+'" fill="'+E4TRI_FILL_ISO+'" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+    svg+=e4triTickMark(D,F,1,'#1d2433',sc)+e4triTickMark(E,F,1,'#1d2433',sc);
+    [0,1,2].forEach(function(i){ svg+=e4triAngleMark([D,E,F],i,sc,{q:qIdx.indexOf(i)>=0}); });
+    svg+='</svg>';
+    return svg;
+  }
+  function foldDiagram(baseAng, qIdx){
+    var base=100, h=(base/2)*Math.tan(baseAng*Math.PI/180);
+    var D=[0,h],E=[base,h],F=[base/2,0],M=[base/2,h];
+    var vb=e4triBbox([[D,E,F]],30), sc=e4triScale([D,E,F]);
+    var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:220px;display:block;margin:0 auto 8px">';
+    svg+='<path d="'+e4triPolyPath([D,E,F])+'" fill="'+E4TRI_FILL_ISO+'" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+    svg+='<line x1="'+F[0]+'" y1="'+F[1]+'" x2="'+M[0]+'" y2="'+M[1]+'" stroke="#ff3d9a" stroke-width="1.3" stroke-dasharray="2.5,2" opacity="0.5"/>';
+    svg+=e4triTickMark(D,F,1,'#1d2433',sc)+e4triTickMark(E,F,1,'#1d2433',sc);
+    [0,1,2].forEach(function(i){ svg+=e4triAngleMark([D,E,F],i,sc,{q:qIdx.indexOf(i)>=0}); });
+    svg+='</svg>';
+    return svg;
+  }
+  function equilDiagram(side, qIdx){
+    var h=side*Math.sqrt(3)/2;
+    var A=[0,h],B=[side,h],C=[side/2,0];
+    var vb=e4triBbox([[A,B,C]],30), sc=e4triScale([A,B,C]);
+    var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:200px;display:block;margin:0 auto 8px">';
+    svg+='<path d="'+e4triPolyPath([A,B,C])+'" fill="'+E4TRI_FILL_EQ+'" opacity="0.5" stroke="#000000" stroke-width="1"/>';
+    svg+=e4triTickMark(A,B,1,'#1d2433',sc)+e4triTickMark(B,C,1,'#1d2433',sc)+e4triTickMark(A,C,1,'#1d2433',sc);
+    if(qIdx && qIdx.length) [0,1,2].forEach(function(i){ if(qIdx.indexOf(i)>=0) svg+=e4triAngleMark([A,B,C],i,sc,{q:true}); });
+    svg+='</svg>';
+    return svg;
+  }
+  function sideLabel(p1,p2,text,ctr,off){
+    var mx=(p1[0]+p2[0])/2, my=(p1[1]+p2[1])/2;
+    var ux=mx-ctr[0], uy=my-ctr[1], ul=e4triHyp(ux,uy);
+    return '<text x="'+(mx+ux/ul*off)+'" y="'+(my+uy/ul*off)+'" font-size="13" fill="#5d6678" text-anchor="middle" dominant-baseline="middle">'+text+'</text>';
+  }
+  function isoLenDiagram(legText, baseText){
+    var base=90, apexAng=70*Math.PI/180, h=(base/2)/Math.tan(apexAng/2);
+    var D=[0,h],E=[base,h],F=[base/2,0];
+    var vb=e4triBbox([[D,E,F]],34), sc=e4triScale([D,E,F]);
+    var ctr=[base/2,h*2/3];
+    var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:210px;display:block;margin:0 auto 8px">';
+    svg+='<path d="'+e4triPolyPath([D,E,F])+'" fill="'+E4TRI_FILL_ISO+'" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+    svg+=e4triTickMark(D,F,1,'#1d2433',sc)+e4triTickMark(E,F,1,'#1d2433',sc);
+    svg+=sideLabel(D,F,legText,ctr,16)+sideLabel(E,F,legText,ctr,16)+sideLabel(D,E,baseText,ctr,16);
+    svg+='</svg>';
+    return svg;
+  }
+  function G1(){ // 밑각2개 -> 꼭지각
+    var baseAng=rnd(35,80), apex=180-2*baseAng;
+    var q=isoDiagram(baseAng,[2])+'이등변삼각형의 두 밑각이 각각 '+baseAng+'°, '+baseAng+'°예요. 나머지 한 각(꼭지각)은 몇 도일까요?';
+    var sol='180°−'+baseAng+'°−'+baseAng+'°='+ans(apex+'°');
+    return {q:q,sol:sol,meta:{baseAng:baseAng,apex:apex}};
+  }
+  function G2(){ // 꼭지각 -> 밑각
+    var apexDeg=rnd(10,70)*2, baseAng=(180-apexDeg)/2;
+    var leg=80, base=2*leg*Math.sin(apexDeg*Math.PI/180/2), h=Math.sqrt(leg*leg-(base/2)*(base/2));
+    var D=[0,h],E=[base,h],F=[base/2,0];
+    var vb=e4triBbox([[D,E,F]],30), sc=e4triScale([D,E,F]);
+    var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:220px;display:block;margin:0 auto 8px">';
+    svg+='<path d="'+e4triPolyPath([D,E,F])+'" fill="'+E4TRI_FILL_ISO+'" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+    svg+=e4triTickMark(D,F,1,'#1d2433',sc)+e4triTickMark(E,F,1,'#1d2433',sc);
+    svg+=e4triAngleMark([D,E,F],0,sc,{q:true})+e4triAngleMark([D,E,F],1,sc,{q:true})+e4triAngleMark([D,E,F],2,sc);
+    svg+='</svg>';
+    var q=svg+'이등변삼각형의 꼭지각이 '+apexDeg+'°예요. 밑각 하나는 몇 도일까요?';
+    var sol='(180°−'+apexDeg+'°)÷2='+ans(baseAng+'°');
+    return {q:q,sol:sol,meta:{apexDeg:apexDeg,baseAng:baseAng}};
+  }
+  function G3(){ // 정삼각형 둘레 -> 한 변
+    var side=rnd(6,15), peri=side*3;
+    var svg=equilDiagram(90,[]);
+    var q=svg+'<div style="text-align:center;font-size:.8rem;color:#5d6678;margin:-4px 0 6px">? ? ?</div>'+'정삼각형 모양 깃발의 둘레가 '+peri+'cm예요. 한 변의 길이는 몇 cm일까요?';
+    var sol=peri+'cm÷3='+ans(side+'cm');
+    return {q:q,sol:sol,meta:{side:side,peri:peri}};
+  }
+  function G4(){ // 다리+둘레 -> 밑변
+    var leg=rnd(8,20), base=rnd(4,2*leg-2), peri=2*leg+base;
+    var svg=isoLenDiagram(leg+'cm','?cm');
+    var q=svg+'이등변삼각형의 다리 길이가 '+leg+'cm이고 둘레가 '+peri+'cm예요. 밑변의 길이는 몇 cm일까요?';
+    var sol=peri+'cm−'+leg+'cm×2='+ans(base+'cm');
+    return {q:q,sol:sol,meta:{leg:leg,base:base,peri:peri}};
+  }
+  function G5(){ // 밑변+둘레 -> 다리
+    var base=rnd(6,20), leg=rnd(Math.ceil(base/2)+1,25), peri=2*leg+base;
+    var svg=isoLenDiagram('?cm',base+'cm');
+    var q=svg+'이등변삼각형의 밑변이 '+base+'cm이고 둘레가 '+peri+'cm예요. 다리 하나의 길이는 몇 cm일까요?';
+    var sol='('+peri+'cm−'+base+'cm)÷2='+ans(leg+'cm');
+    return {q:q,sol:sol,meta:{base:base,leg:leg,peri:peri}};
+  }
+  function G6(){ // 세 변의 길이로 분류
+    var p=rnd(6,15), third; do{ third=rnd(2,2*p-1); }while(third===p || !isTri(p,p,third));
+    var eqSide=rnd(6,15);
+    var a,b,c; do{ a=rnd(5,12); b=rnd(5,12); c=rnd(5,12); }while(a===b||b===c||a===c||!isTri(a,b,c));
+    var sets=[[p,p,third],[eqSide,eqSide,eqSide],[a,b,c]];
+    var D=[0,70],E=[90,70],F=[45,0], ctr=[45,46.7];
+    var vb=e4triBbox([[D,E,F]],28);
+    var html='<div style="display:flex;justify-content:space-around;gap:6px;margin-bottom:8px">';
+    sets.forEach(function(s,idx){
+      var svg='<svg viewBox="'+vb.join(' ')+'" style="width:100%;max-width:120px;display:block;margin:0 auto">';
+      svg+='<path d="'+e4triPolyPath([D,E,F])+'" fill="#f6a93d" opacity="0.5" stroke="#000000" stroke-width="1"/>';
+      var sideLabelLocal=function(p1,p2,text,off){
+        var mx=(p1[0]+p2[0])/2, my=(p1[1]+p2[1])/2;
+        var ux=mx-ctr[0], uy=my-ctr[1], ul=e4triHyp(ux,uy);
+        return '<text x="'+(mx+ux/ul*off)+'" y="'+(my+uy/ul*off)+'" font-size="13" fill="#5d6678" text-anchor="middle" dominant-baseline="middle">'+text+'cm</text>';
+      };
+      svg+=sideLabelLocal(D,F,s[0],14)+sideLabelLocal(E,F,s[1],14)+sideLabelLocal(D,E,s[2],14);
+      svg+='</svg>';
+      html+='<div style="text-align:center"><div style="font-size:.74rem;color:#5d6678;margin-bottom:2px">('+['가','나','다'][idx]+')</div>'+svg+'</div>';
+    });
+    html+='</div>';
+    var q=html+'세 삼각형의 세 변의 길이가 각각 다음과 같아요. 이등변삼각형·정삼각형·세 변이 모두 다른 삼각형 중 무엇인지 각각 말해볼까요?<br>'
+      +'(가) '+p+'cm, '+p+'cm, '+third+'cm &nbsp; (나) '+eqSide+'cm, '+eqSide+'cm, '+eqSide+'cm &nbsp; (다) '+a+'cm, '+b+'cm, '+c+'cm';
+    var sol='(가) 두 변('+p+','+p+')이 같음 → '+ans('이등변삼각형')+'<br>(나) 세 변이 모두 같음 → '+ans('정삼각형')+'<br>(다) 세 변이 모두 다름 → '+ans('세 변의 길이가 모두 다른 삼각형');
+    return {q:q,sol:sol,meta:{sets:sets}};
+  }
+  function G7(){ // 접기 서술형
+    var names=['민지','현우','소율','지후'], name=names[rnd(0,names.length-1)];
+    var baseAng=rnd(35,80), apex=180-2*baseAng;
+    var q=foldDiagram(baseAng,[1,2])+name+'가 이등변삼각형 모양 색종이를 반으로 접었더니 완전히 겹쳤어요. 접기 전 한쪽 밑각이 '+baseAng+'°였다면, 다른 쪽 밑각과 꼭지각은 각각 몇 도일까요?';
+    var sol='완전히 겹쳤으니 다른 밑각도 '+ans(baseAng+'°')+' (접으면 겹치는 각은 크기가 같음)<br>꼭지각=180°−'+baseAng+'°−'+baseAng+'°='+ans(apex+'°');
+    return {q:q,sol:sol,meta:{baseAng:baseAng,apex:apex}};
+  }
+  function G8(){ // 정삼각형 서술형
+    var side=rnd(6,20);
+    var q=equilDiagram(90,[2])+'세 변의 길이가 모두 '+side+'cm로 같은 깃발 모양이 있어요. 이 깃발의 한 각의 크기는 몇 도이고, 그 이유는 무엇일까요?';
+    var sol='한 각은 '+ans('60°')+'. 세 변이 모두 같으면 세 각도 모두 같고(이등변삼각형 성질), 세 각의 합은 180°이니 180°÷3=60°';
+    return {q:q,sol:sol,meta:{side:side}};
+  }
+  function G9(){ // 연 모양 - 쉬운 버전
+    var apexA=rnd(10,70)*2, apexC=rnd(10,70)*2;
+    var baseA=(180-apexA)/2, baseC=(180-apexC)/2, answer=baseA+baseC;
+    var q=e4triKiteSvg(apexA,apexC,null)+'변 BD를 공유하는 두 이등변삼각형이 붙어 있어요.<br>왼쪽 삼각형 ABD는 AB=AD, 꼭지각 A='+apexA+'°<br>오른쪽 삼각형 CBD는 CB=CD, 꼭지각 C='+apexC+'°<br>이때 각 ABC(두 밑각을 합친 각)는 몇 도일까요?';
+    var sol='① 삼각형 ABD에서 밑각 하나 = (180°−'+apexA+'°)÷2 = '+baseA+'° (각 ABD)<br>② 삼각형 CBD에서 밑각 하나 = (180°−'+apexC+'°)÷2 = '+baseC+'° (각 DBC)<br>③ 각 ABC = 각 ABD + 각 DBC = '+baseA+'°+'+baseC+'° = '+ans(answer+'°');
+    return {q:q,sol:sol,meta:{apexA:apexA,apexC:apexC,baseA:baseA,baseC:baseC,answer:answer}};
+  }
+  function G10(){ // 연 모양 - 역으로 추론
+    var apexA=rnd(10,70)*2, baseA=(180-apexA)/2;
+    var angleDBC=rnd(10,40)*2, apexC=180-2*angleDBC, totalABC=baseA+angleDBC;
+    var q=e4triKiteSvg(apexA,apexC,'C')+'같은 모양이에요. 이번엔 다른 정보가 주어져요.<br>왼쪽 삼각형 ABD는 꼭지각 A='+apexA+'°<br>합쳐진 각 ABC = '+totalABC+'°<br>오른쪽 삼각형 CBD의 꼭지각 C는 몇 도일까요?';
+    var sol='① 삼각형 ABD에서 밑각 하나 = (180°−'+apexA+'°)÷2 = '+baseA+'° (각 ABD)<br>② 각 DBC = 각 ABC − 각 ABD = '+totalABC+'°−'+baseA+'° = '+angleDBC+'°<br>③ 삼각형 CBD는 밑각이 '+angleDBC+'°씩이니, 꼭지각 C = 180°−'+angleDBC+'°×2 = '+ans(apexC+'°');
+    return {q:q,sol:sol,meta:{apexA:apexA,baseA:baseA,angleDBC:angleDBC,totalABC:totalABC,apexC:apexC}};
+  }
+  var PROBS=[
+    {name:'밑각2개 → 꼭지각',gen:G1},{name:'꼭지각 → 밑각',gen:G2},{name:'정삼각형 둘레 → 한 변',gen:G3},
+    {name:'다리+둘레 → 밑변',gen:G4},{name:'밑변+둘레 → 다리',gen:G5},{name:'세 변의 길이로 분류',gen:G6},
+    {name:'종이 접기 서술형',gen:G7},{name:'정삼각형 서술형',gen:G8},{name:'[심화] 연 모양 — 쉬운 버전',gen:G9},
+    {name:'[심화] 연 모양 — 역으로 추론',gen:G10}
+  ];
+  e4triGen._c={PROBS:PROBS};
+  return e4triGen._c;
+}
+function e4triProbHtml(){
+  var P=e4triGen().PROBS, html='';
+  e4triProbHtml._last=e4triProbHtml._last||{};
+  P.forEach(function(p,i){
+    var r=p.gen(); e4triProbHtml._last[i]=r;
+    html+='<div class="et5-prob"><div class="et5-label">문제 '+(i+1)+' · '+p.name+'</div><div id="et5-pb-'+i+'">'+r.q+'</div>'
+      +'<div class="et5-btns"><button class="et5-btn main" id="et5-bs-'+i+'" onclick="e4triProbToggle('+i+')">💡 풀이 보기</button><button class="et5-btn" onclick="e4triProbRegen('+i+')">🔄 유사문제</button><button class="et5-btn" onclick="usReviewAsk(\'e4tri\',\'p5-'+i+'\')">📌 복습할래요</button></div><div id="rvq-e4tri-p5-'+i+'"></div>'
+      +'<div class="et5-sol" id="et5-ps-'+i+'" hidden>'+r.sol+'</div></div>';
+  });
+  return html;
+}
+function e4triProbRegen(i){
+  var r=e4triGen().PROBS[i].gen();
+  document.getElementById('et5-pb-'+i).innerHTML=r.q;
+  var s=document.getElementById('et5-ps-'+i); s.innerHTML=r.sol; s.hidden=true;
+  document.getElementById('et5-bs-'+i).textContent='💡 풀이 보기';
+  e4triProbHtml._last[i]=r;
+  var rq=document.getElementById('rvq-e4tri-p5-'+i); if(rq) rq.innerHTML='';
+}
+function e4triProbToggle(i){
+  var s=document.getElementById('et5-ps-'+i); s.hidden=!s.hidden;
+  document.getElementById('et5-bs-'+i).textContent=s.hidden?'💡 풀이 보기':'👆 접어두기';
+}
+
+var CV_DATA_E4TRI = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`${e4triWrapOpen()}
+    <div class="e4tri-sec">
+      <h2><span class="secnum">1</span> 삼각자 이야기</h2>
+      <p class="e4tri-sub">교실에 있는 삼각자 두 개를 꺼내 볼까요? 하나는 45°·45°·90°, 다른 하나는 30°·60°·90°예요.</p>
+      <div class="e4tri-diagrow">
+        <div class="e4tri-card">${e4triHookSquare()}</div>
+        <div class="e4tri-card">${e4triHookTri()}</div>
+      </div>
+    </div>
+    <div class="e4tri-sec">
+      <h2><span class="secnum">2</span> 직접 분류해보기</h2>
+      ${e4triSortHtml()}
+    </div>
+  </div>` },
+  { title:'📖 개념 설명', cls:'concept', html:`${e4triWrapOpen()}
+    <div class="e4tri-flow"><span class="tag">🔙 복습</span> 4학년 1학기 '각도와 삼각형' 단원에서 각의 크기로 예각삼각형·직각삼각형·둔각삼각형을 나눴던 것, 기억하나요? 삼각형 세 각의 합이 180°였다는 것도요.<br><br>
+    <span class="tag">🔗 연결</span> 이번엔 각이 아니라 <b style="color:#1d2433">변의 길이</b>로 삼각형을 나눠볼 거예요.</div>
+    <div class="e4tri-sec">
+      <h2><span class="secnum">1</span> 이등변삼각형 — 두 변의 길이가 같은 삼각형</h2>
+      <div class="e4tri-diagrow" style="grid-template-columns:repeat(3,1fr)">
+        <div class="e4tri-card">${e4triFoldPanel1()}</div>
+        <div class="e4tri-card">${e4triFoldPanel2()}</div>
+        <div class="e4tri-card">${e4triFoldPanel3()}</div>
+      </div>
+      <div class="e4tri-explain">종이로 이등변삼각형을 만들어서 <b>반으로 접어보면</b>, 양쪽이 완전히 겹쳐져요. 그래서 두 밑각의 크기도 항상 같아요.</div>
+    </div>
+    <div class="e4tri-sec">
+      <h2><span class="secnum">2</span> 정삼각형 — 세 변의 길이가 모두 같은 삼각형</h2>
+      <div class="e4tri-single">${e4triConceptEquil()}</div>
+      <div class="e4tri-explain">세 변의 길이가 같으면 세 각의 크기도 모두 같아져요. 세 각의 합이 180°이니, 한 각은 180° ÷ 3 = <b>60°</b>예요.</div>
+    </div>
+    <div class="e4tri-sec">
+      <h2><span class="secnum">3</span> 이등변삼각형과 정삼각형의 관계</h2>
+      <div class="e4tri-incl">${e4triInclCircles()}</div>
+      <div class="e4tri-explain">정삼각형은 "어느 두 변을 봐도" 길이가 같아요. 그러니 정삼각형은 이등변삼각형의 조건(두 변의 길이가 같음)도 만족해요 — <b>정삼각형은 이등변삼각형에 포함되는 특별한 경우</b>예요.</div>
+    </div>
+  </div>` },
+  { title:'💬 하브루타 질문', cls:'havruta', html:`${e4triWrapOpen()}
+    <div class="q-item">
+      <strong>Q1.</strong> 이등변삼각형은 항상 예각삼각형일까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4tri-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4tri-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4tri-h1',0,this)">그렇다, 두 각이 같으니까</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4tri-h1',1,this)">아니다, 둔각이나 직각도 될 수 있다</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4tri-h1',2,this)">항상 직각삼각형이다</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4tri-h1"></div>
+      </div>
+    </div>
+    <div class="q-item">
+      <strong>Q2.</strong> 정삼각형은 이등변삼각형이라고 할 수 있을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4tri-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4tri-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4tri-h2',0,this)">전혀 다른 종류다</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4tri-h2',1,this)">그렇다, 세 변이 같으니 어느 두 변을 봐도 같다</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4tri-h2',2,this)">가끔 그렇다</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4tri-h2"></div>
+      </div>
+    </div>
+    <div class="q-item">
+      <strong>Q3.</strong> 두 변이 같으면 왜 두 각도 같아질까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4tri-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4tri-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4tri-h3',0,this)">종이를 반으로 접으면 완전히 겹쳐지기 때문</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4tri-h3',1,this)">우연히 그렇다</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4tri-h3',2,this)">상관없다</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4tri-h3"></div>
+      </div>
+    </div>
+  </div>` },
+  { title:'✏️ 예제 문제', cls:'problems', html:`${e4triWrapOpen()}
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 1</div>
+      <div class="prob-q">${(function(){
+        var base=100, baseAng=50*Math.PI/180;
+        var h=(base/2)*Math.tan(baseAng);
+        var D=[0,h],E=[base,h],F=[base/2,0];
+        var vb=e4triBbox([[D,E,F]],30), sc=e4triScale([D,E,F]);
+        var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:220px;display:block;margin:0 auto 8px">';
+        svg+='<path d="'+e4triPolyPath([D,E,F])+'" fill="#27c96a" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+        svg+=e4triTickMark(D,F,1,'#1d2433',sc)+e4triTickMark(E,F,1,'#1d2433',sc);
+        svg+=e4triAngleMark([D,E,F],0,sc)+e4triAngleMark([D,E,F],1,sc)+e4triAngleMark([D,E,F],2,sc,{q:true});
+        svg+='</svg>';
+        return svg;
+      })()}
+      이등변삼각형의 두 밑각이 각각 50°, 50°예요. 나머지 한 각(꼭지각)은 몇 도일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4tri-ef-1')">💡 정답 보기</button>
+      <div id="e4tri-ef-1" style="display:none;margin-top:8px">180°−50°−50°=<strong style="color:#2f9e57">80°</strong></div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 2</div>
+      <div class="prob-q">${(function(){
+        var side=90, h=side*Math.sqrt(3)/2;
+        var A=[0,h], B=[side,h], C=[side/2,0];
+        var vb=e4triBbox([[A,B,C]],30), sc=e4triScale([A,B,C]);
+        var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:200px;display:block;margin:0 auto 8px">';
+        svg+='<path d="'+e4triPolyPath([A,B,C])+'" fill="#9b6bf2" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+        svg+=e4triTickMark(A,B,1,'#1d2433',sc)+e4triTickMark(B,C,1,'#1d2433',sc)+e4triTickMark(A,C,1,'#1d2433',sc);
+        svg+=e4triAngleMark([A,B,C],0,sc,{q:true})+e4triAngleMark([A,B,C],1,sc,{q:true})+e4triAngleMark([A,B,C],2,sc,{q:true});
+        svg+='</svg>';
+        return svg;
+      })()}
+      정삼각형의 한 각의 크기는 몇 도일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4tri-ef-2')">💡 정답 보기</button>
+      <div id="e4tri-ef-2" style="display:none;margin-top:8px">180°÷3=<strong style="color:#2f9e57">60°</strong></div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 3</div>
+      <div class="prob-q">${(function(){
+        var leg=80, apex=100*Math.PI/180;
+        var base=2*leg*Math.sin(apex/2);
+        var h=Math.sqrt(leg*leg-(base/2)*(base/2));
+        var D=[0,h],E=[base,h],F=[base/2,0];
+        var vb=e4triBbox([[D,E,F]],30), sc=e4triScale([D,E,F]);
+        var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:220px;display:block;margin:0 auto 8px">';
+        svg+='<path d="'+e4triPolyPath([D,E,F])+'" fill="#27c96a" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+        svg+=e4triTickMark(D,F,1,'#1d2433',sc)+e4triTickMark(E,F,1,'#1d2433',sc);
+        svg+=e4triAngleMark([D,E,F],0,sc,{q:true})+e4triAngleMark([D,E,F],2,sc);
+        svg+='</svg>';
+        return svg;
+      })()}
+      이등변삼각형의 꼭지각이 100°예요. 밑각 하나는 몇 도일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4tri-ef-3')">💡 정답 보기</button>
+      <div id="e4tri-ef-3" style="display:none;margin-top:8px">(180°−100°)÷2=<strong style="color:#2f9e57">40°</strong></div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 4</div>
+      <div class="prob-q">${(function(){
+        var side=90, h=side*Math.sqrt(3)/2;
+        var A=[0,h], B=[side,h], C=[side/2,0];
+        var vb=e4triBbox([[A,B,C]],34), sc=e4triScale([A,B,C]);
+        var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:200px;display:block;margin:0 auto 8px">';
+        svg+='<path d="'+e4triPolyPath([A,B,C])+'" fill="#f6a93d" opacity="0.5" stroke="#000000" stroke-width="1"/>';
+        svg+=e4triTickMark(A,B,1,'#1d2433',sc)+e4triTickMark(B,C,1,'#1d2433',sc)+e4triTickMark(A,C,1,'#1d2433',sc);
+        [[A,B],[B,C],[A,C]].forEach(function(pair){
+          var mx=(pair[0][0]+pair[1][0])/2, my=(pair[0][1]+pair[1][1])/2;
+          var ctr=[side/2,h*2/3];
+          var ox=mx-ctr[0], oy=my-ctr[1], ol=Math.sqrt(ox*ox+oy*oy), ux=ox/ol, uy=oy/ol, off=16;
+          svg+='<text x="'+(mx+ux*off)+'" y="'+(my+uy*off)+'" font-size="12" fill="#5d6678" text-anchor="middle" dominant-baseline="middle">5cm</text>';
+        });
+        svg+='</svg>';
+        return svg;
+      })()}
+      세 변의 길이가 각각 5cm, 5cm, 5cm인 삼각형이 있어요. 이 삼각형의 이름은 무엇이고, 한 각의 크기는 몇 도일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4tri-ef-4')">💡 정답 보기</button>
+      <div id="e4tri-ef-4" style="display:none;margin-top:8px"><strong style="color:#2f9e57">정삼각형</strong>, 한 각은 <strong style="color:#2f9e57">60°</strong></div>
+    </div>
+  </div>` },
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="e4bw e4t5" style="background:#ffffff;color:#1d2433;border-radius:12px;padding:18px"><style>.e4bw p,.e4bw strong{color:#1d2433}.e4t5 .et5-prob{border:1px solid #c5ccd8;border-radius:12px;padding:16px;margin-bottom:16px}.e4t5 .et5-label{font-size:.78rem;font-weight:700;color:#a8730a;margin-bottom:6px}.e4t5 .et5-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.e4t5 .et5-btn{font-family:inherit;font-size:.9rem;font-weight:700;border-radius:8px;padding:8px 14px;cursor:pointer;border:1.5px solid #7a4fc2;background:#f4eeff;color:#7a4fc2}.e4t5 .et5-btn.main{background:#7a4fc2;color:#ffffff}.e4t5 .et5-sol{margin-top:12px;background:#f4eeff;border:1px solid #d7c4fa;border-radius:10px;padding:12px 14px}</style>
+      <p>지금까지 배운 이등변삼각형·정삼각형을 실제 상황에 적용하는 문제들이에요. 9·10번은 두 이등변삼각형이 붙은 모양을 다루는 조금 더 어려운 문제예요. "🔄 유사문제"를 누르면 숫자가 바뀐 비슷한 문제가 계속 나와요.</p>
+      ${e4triProbHtml()}
+    </div>
+  `},
+];
+CV_DATA['e4tri'] = CV_DATA_E4TRI;
+
 // ── 평면도형의 이동(e4move): 좌표 변환 + SVG 렌더링 ──
 // 기준 도형: L자(비대칭) — 좌우/상하 모두 비대칭이라 밀기·뒤집기·돌리기 결과가 전부 다르게 보임
 var MV_L_SHAPE = [[0,0],[20,0],[20,40],[50,40],[50,60],[0,60]];
@@ -15111,6 +15785,42 @@ const FB_DIAGRAM_E4PAT_H1 = '<div class="fb-diagram"><div class="ep-scroll">'
   +'<div class="ep-cap">노란 칸 1, 2, 4는 두 줄이 똑같아요. 네 번째 수만 8과 7로 달라요.</div></div>';
 const FB_DIAGRAM_E4PAT_H2 = '<div class="fb-diagram"><div class="ep-row">'+e4patStair(4)+e4patStair(5)+'</div><div class="ep-cap">진한 색이 새로 더해진 줄이에요. 넷째는 4개, 다섯째는 5개가 더해졌어요.</div></div>';
 const FB_DIAGRAM_E4PAT_H3 = '<div class="fb-diagram"><table class="ep-eq"><tr><td>1 × 1</td><td>= 1</td></tr><tr><td>11 × 11</td><td>= 121</td></tr><tr><td>111 × 111</td><td>= 12321</td></tr><tr class="ep-ans"><td>1111 × 1111</td><td>= 1234321 ✔</td></tr></table><div class="ep-cap">✔는 계산기로 확인한 결과예요.</div></div>';
+const FB_DIAGRAM_E4TRI_H1 = (function(){
+  // 이등변삼각형(다리 70,70)의 꼭지각을 120°로 두면(둔각) 밑각은 법칙으로 계산해 자동으로 (180-120)/2=30°가 나온다(추측 아님)
+  var leg=70, apexDeg=120;
+  var baseLen=Math.sqrt(2*leg*leg*(1-Math.cos(apexDeg*Math.PI/180)));
+  var h=Math.sqrt(leg*leg-(baseLen/2)*(baseLen/2));
+  var D=[0,h], E=[baseLen,h], F=[baseLen/2,0];
+  var vb=e4triBbox([[D,E,F]],30), sc=e4triScale([D,E,F]);
+  var svg='<svg viewBox="'+vb.join(' ')+'">';
+  svg+='<path d="'+e4triPolyPath([D,E,F])+'" fill="#27c96a" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+  svg+=e4triTickMark(D,F,1,'#1d2433',sc)+e4triTickMark(E,F,1,'#1d2433',sc);
+  svg+=e4triAngleMark([D,E,F],0,sc)+e4triAngleMark([D,E,F],1,sc)+e4triAngleMark([D,E,F],2,sc);
+  svg+='</svg>';
+  return '<div class="fb-diagram">'+svg+'<div style="font-size:.78rem;color:#5d6678;margin-top:6px">두 변이 같아도(이등변삼각형) 꼭지각이 120°면 둔각삼각형이에요. 밑각은 (180°−120°)÷2=30°씩이고요.</div></div>';
+})();
+const FB_DIAGRAM_E4TRI_H2 = (function(){
+  var side=90, h=side*Math.sqrt(3)/2;
+  var A=[0,h], B=[side,h], C=[side/2,0];
+  var vb=e4triBbox([[A,B,C]],30), sc=e4triScale([A,B,C]);
+  var svg='<svg viewBox="'+vb.join(' ')+'">';
+  svg+='<path d="'+e4triPolyPath([A,B,C])+'" fill="#9b6bf2" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+  svg+=e4triTickMark(A,B,1,'#1d2433',sc)+e4triTickMark(B,C,1,'#1d2433',sc)+e4triTickMark(A,C,1,'#1d2433',sc);
+  svg+='</svg>';
+  return '<div class="fb-diagram">'+svg+'<div style="font-size:.78rem;color:#5d6678;margin-top:6px">세 변이 모두 같으니, 어느 두 변을 골라도 "두 변이 같다"는 이등변삼각형의 조건을 만족해요.</div></div>';
+})();
+const FB_DIAGRAM_E4TRI_H3 = (function(){
+  var leg=70, base=47;
+  var h=Math.sqrt(leg*leg-(base/2)*(base/2));
+  var D=[0,h], E=[base,h], F=[base/2,0], M=[base/2,h];
+  var vb=e4triBbox([[D,E,F]],30), sc=e4triScale([D,E,F]);
+  var svg='<svg viewBox="'+vb.join(' ')+'">';
+  svg+='<path d="'+e4triPolyPath([D,E,F])+'" fill="#27c96a" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+  svg+='<line x1="'+F[0]+'" y1="'+F[1]+'" x2="'+M[0]+'" y2="'+M[1]+'" stroke="#ff3d9a" stroke-width="1.3" stroke-dasharray="2.5,2" opacity="0.45"/>';
+  svg+=e4triAngleMark([D,E,F],0,sc)+e4triAngleMark([D,E,F],1,sc);
+  svg+='</svg>';
+  return '<div class="fb-diagram">'+svg+'<div style="font-size:.78rem;color:#5d6678;margin-top:6px">꼭짓점에서 밑변 중점으로 접으면 양쪽이 완전히 겹쳐요 — 그래서 두 밑각이 같아요.</div></div>';
+})();
 const HAVRUTA_FB = {
   'e6prism-h1': [
     {ok:true, text:'맞아요! 두 밑면이 평행하고 합동이어야, 그 사이를 잇는 옆면들이 위아래 폭이 똑같은 반듯한 직사각형이 될 수 있어요.', diagram:FB_DIAGRAM_E6PRISM_H1},
@@ -15464,6 +16174,21 @@ const HAVRUTA_FB = {
     {ok:false, text:'규칙으로 알아낸 건 "맞을 것 같다"는 추측이에요. 이 규칙은 1이 9개인 수까지는 맞아요. 하지만 1이 10개가 되면 규칙대로 나오지 않아요. 그래서 확인이 필요해요.', diagram:FB_DIAGRAM_E4PAT_H3},
     {ok:true, text:'맞아요! 규칙으로 먼저 추측하고, 계산기로 확인하면 믿을 수 있어요. 1111×1111을 계산기로 해 보면 1234321이 나와서 맞아요.', diagram:FB_DIAGRAM_E4PAT_H3},
     {ok:false, text:'규칙을 찾는 건 도움이 돼요. 계산하기 전에 결과를 미리 추측할 수 있게 해 주니까요. 다만 추측이 맞는지 확인하는 것이 필요해요.', diagram:FB_DIAGRAM_E4PAT_H3}
+  ],
+  'e4tri-h1': [
+    {ok:false, text:'음, 두 각이 같다는 거랑 "모든 각이 90°보다 작다"는 건 다른 얘기예요. 두 변이 같은 삼각형이라도 꼭지각이 아주 크면 둔각이 될 수 있어요.', diagram:FB_DIAGRAM_E4TRI_H1},
+    {ok:true, text:'맞아요! 두 변이 같고 꼭지각이 120°인 삼각형을 생각해보면, 밑각은 각각 (180−120)÷2=30°예요. 꼭지각이 둔각이니 이 삼각형은 둔각삼각형이면서 이등변삼각형이에요.', diagram:FB_DIAGRAM_E4TRI_H1},
+    {ok:false, text:'이등변삼각형이 직각을 가지려면 조건이 맞아야 해요(예: 밑각이 각각 45°). 항상 그런 건 아니에요.', diagram:FB_DIAGRAM_E4TRI_H1}
+  ],
+  'e4tri-h2': [
+    {ok:false, text:'정삼각형도 "두 변이 같다"는 조건은 만족해요. 세 변이 같다는 건 어느 두 변을 골라도 같다는 뜻이니까요.', diagram:FB_DIAGRAM_E4TRI_H2},
+    {ok:true, text:'맞아요! 그래서 2번 카드에서 본 것처럼 정삼각형은 이등변삼각형 안에 포함돼요.', diagram:FB_DIAGRAM_E4TRI_H2},
+    {ok:false, text:'정삼각형은 항상 세 변이 같아요. "가끔"이 아니라 "항상" 이등변삼각형의 조건을 만족해요.', diagram:FB_DIAGRAM_E4TRI_H2}
+  ],
+  'e4tri-h3': [
+    {ok:true, text:'맞아요! 2번 카드에서 직접 접어봤죠. 완전히 겹쳐진다는 건 두 밑각의 크기가 똑같다는 뜻이에요.', diagram:FB_DIAGRAM_E4TRI_H3},
+    {ok:false, text:'우연이 아니에요. 두 변이 같은 삼각형은 항상(예외 없이) 두 밑각이 같아요 — 접어보면 매번 확인할 수 있어요.', diagram:FB_DIAGRAM_E4TRI_H3},
+    {ok:false, text:'상관있어요! 변의 길이와 각의 크기는 서로 연결돼 있어요.', diagram:FB_DIAGRAM_E4TRI_H3}
   ],
   'e5gcd-h1': [
     {ok:true, text:'맞아요! 소수는 약수가 정확히 2개(1과 자기 자신)여야 해요. 1은 약수가 자기 자신 하나뿐이라 이 조건에 맞지 않아서 소수가 아니에요.', diagram:FB_DIAGRAM_GCD1_OK},
