@@ -12916,6 +12916,68 @@ var CV_DATA_E4TRI = [
       ${e4triProbHtml()}
     </div>
   `},
+  { title:'🔥 심화 토론', cls:'debate', html:`${e4triWrapOpen()}
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하린</span>이등변삼각형은 두 변이 같은 거잖아. 그럼 항상 비슷하게 생기지 않아?</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">도윤</span>아니야, 내 생각엔 꼭지각을 작게 하면 예각삼각형도 될 것 같아.</div></div>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:12px;margin:8px 0 14px;text-align:center">${(function(){
+      var leg=70, apexDeg=50;
+      var baseLen=Math.sqrt(2*leg*leg*(1-Math.cos(apexDeg*Math.PI/180)));
+      var h=Math.sqrt(leg*leg-(baseLen/2)*(baseLen/2));
+      var D=[0,h], E=[baseLen,h], F=[baseLen/2,0];
+      var vb=e4triBbox([[D,E,F]],30), sc=e4triScale([D,E,F]);
+      var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:190px;display:block;margin:0 auto">';
+      svg+='<path d="'+e4triPolyPath([D,E,F])+'" fill="#27c96a" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+      svg+=e4triTickMark(D,F,1,'#1d2433',sc)+e4triTickMark(E,F,1,'#1d2433',sc);
+      svg+=e4triAngleMark([D,E,F],0,sc)+e4triAngleMark([D,E,F],1,sc)+e4triAngleMark([D,E,F],2,sc);
+      svg+='</svg>';
+      return svg;
+    })()}<div style="font-size:.78rem;color:#5d6678;margin-top:6px">다리 70, 70 — 꼭지각 50°, 밑각 65°, 65° → 모두 90°보다 작은 예각삼각형</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">예나</span>그럼 꼭지각을 딱 90°로 하면 직각삼각형도 되지 않을까?</div></div>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:12px;margin:8px 0 14px;text-align:center">${(function(){
+      var leg=70, apexDeg=90;
+      var baseLen=Math.sqrt(2*leg*leg*(1-Math.cos(apexDeg*Math.PI/180)));
+      var h=Math.sqrt(leg*leg-(baseLen/2)*(baseLen/2));
+      var D=[0,h], E=[baseLen,h], F=[baseLen/2,0];
+      var vb=e4triBbox([[D,E,F]],30), sc=e4triScale([D,E,F]);
+      var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:190px;display:block;margin:0 auto">';
+      svg+='<path d="'+e4triPolyPath([D,E,F])+'" fill="#27c96a" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+      svg+=e4triTickMark(D,F,1,'#1d2433',sc)+e4triTickMark(E,F,1,'#1d2433',sc);
+      svg+=e4triAngleMark([D,E,F],0,sc)+e4triAngleMark([D,E,F],1,sc)+e4triAngleMark([D,E,F],2,sc);
+      svg+='</svg>';
+      return svg;
+    })()}<div style="font-size:.78rem;color:#5d6678;margin-top:6px">다리 70, 70 — 꼭지각 90°, 밑각 45°, 45° → 직각삼각형</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">시우</span>오! 그럼 꼭지각을 크게, 120°로 하면 둔각삼각형도 되겠네?</div></div>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:12px;margin:8px 0 14px;text-align:center">${(function(){
+      var leg=70, apexDeg=120;
+      var baseLen=Math.sqrt(2*leg*leg*(1-Math.cos(apexDeg*Math.PI/180)));
+      var h=Math.sqrt(leg*leg-(baseLen/2)*(baseLen/2));
+      var D=[0,h], E=[baseLen,h], F=[baseLen/2,0];
+      var vb=e4triBbox([[D,E,F]],30), sc=e4triScale([D,E,F]);
+      var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:190px;display:block;margin:0 auto">';
+      svg+='<path d="'+e4triPolyPath([D,E,F])+'" fill="#27c96a" opacity="0.55" stroke="#000000" stroke-width="1"/>';
+      svg+=e4triTickMark(D,F,1,'#1d2433',sc)+e4triTickMark(E,F,1,'#1d2433',sc);
+      svg+=e4triAngleMark([D,E,F],0,sc)+e4triAngleMark([D,E,F],1,sc)+e4triAngleMark([D,E,F],2,sc);
+      svg+='</svg>';
+      return svg;
+    })()}<div style="font-size:.78rem;color:#5d6678;margin-top:6px">다리 70, 70 — 꼭지각 120°, 밑각 30°, 30° → 둔각삼각형</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요! 세 명 다 맞혔어요. 이등변삼각형은 "두 변이 같다"는 조건만 지키면 되니까, 꼭지각의 크기에 따라 예각삼각형도, 직각삼각형도, 둔각삼각형도 될 수 있어요.</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하린</span>오, 그럼 종류가 겹칠 수도 있구나! 그럼 정삼각형은 어때? 정삼각형이면서 직각삼각형도 될 수 있어?</div></div>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:12px;margin:8px 0 14px;text-align:center">${(function(){
+      var side=120, h=side*Math.sqrt(3)/2;
+      var A=[0,h], B=[side,h], C=[side/2,0];
+      var vb=e4triBbox([[A,B,C]],30), sc=e4triScale([A,B,C]);
+      var svg='<svg viewBox="'+vb.join(' ')+'" style="max-width:200px;display:block;margin:0 auto">';
+      svg+='<path d="'+e4triPolyPath([A,B,C])+'" fill="#9b6bf2" opacity="0.5" stroke="#000000" stroke-width="1"/>';
+      svg+=e4triTickMark(A,B,1,'#1d2433',sc)+e4triTickMark(B,C,1,'#1d2433',sc)+e4triTickMark(A,C,1,'#1d2433',sc);
+      svg+=e4triAngleMark([A,B,C],0,sc)+e4triAngleMark([A,B,C],1,sc)+e4triAngleMark([A,B,C],2,sc);
+      svg+='</svg>';
+      return svg;
+    })()}<div style="font-size:.78rem;color:#5d6678;margin-top:6px">정삼각형은 세 각이 항상 60°, 60°, 60°</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">도윤</span>어... 정삼각형은 세 각이 다 60°잖아. 그럼 90°인 각은 하나도 없으니까... 안 되는 거 아니야?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">예나</span>맞아! 세 각의 합이 180°인데 세 각이 다 같으면 180°÷3=60°뿐이야. 90°가 끼어들 자리가 없어.</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요. 정삼각형은 세 각이 항상 60°로 고정되어 있어서, 직각삼각형(한 각이 90°)이 될 수 없어요. 반면 이등변삼각형은 꼭지각 크기에 따라 예각·직각·둔각삼각형이 모두 될 수 있어요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 이등변삼각형은 꼭지각 크기에 따라 예각삼각형·직각삼각형·둔각삼각형이 모두 될 수 있지만, 정삼각형은 세 각이 항상 60°로 고정되어 있어서 직각삼각형이 될 수 없다.</div>
+  </div>`}
 ];
 CV_DATA['e4tri'] = CV_DATA_E4TRI;
 
