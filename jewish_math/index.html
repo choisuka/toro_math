@@ -11736,7 +11736,41 @@ var CV_DATA_E4PAT = [
 CV_DATA['e4pat'] = CV_DATA_E4PAT;
 
 // ── 초4-2 ① 분수의 덧셈과 뺄셈 (동분모) ──
-function e4fracWrapOpen(){ return e4barWrapOpen().replace('class="e4bw"','class="e4bw e4frac"')+'<style>@media(min-width:768px){ .e4bw.e4frac svg.e4fw{max-width:calc(var(--fw) * 1.25) !important} }</style>'; }
+function e4fracWrapOpen(){ return e4barWrapOpen().replace('class="e4bw"','class="e4bw e4frac"')+'<style>'
+  +'@media(min-width:768px){ .e4bw.e4frac svg.e4fw{max-width:calc(var(--fw) * 1.25) !important} }'
+  +'.e4bw.e4frac .havruta-opt.has-face::before{content:none}'
+  +'.e4bw.e4frac .e4frac-face{vertical-align:middle;margin-right:4px}'
+  +'.e4bw.e4frac .e4frac-face .eye-open{animation:e4fracFaceEyeOpen 2.6s infinite}'
+  +'.e4bw.e4frac .e4frac-face .eye-closed{animation:e4fracFaceEyeClosed 2.6s infinite}'
+  +'.e4bw.e4frac .e4frac-face .smile{animation:e4fracFaceSmile 1.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}'
+  +'@keyframes e4fracFaceEyeOpen{0%,80%,100%{opacity:1}85%,92%{opacity:0}}'
+  +'@keyframes e4fracFaceEyeClosed{0%,80%,100%{opacity:0}85%,92%{opacity:1}}'
+  +'@keyframes e4fracFaceSmile{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.15)}}'
+  +'@media (prefers-reduced-motion: reduce){.e4bw.e4frac .e4frac-face *{animation:none!important}}'
+  +'.e4bw.e4frac .expr-item{background:#f8fafd;border:1px solid #c5ccd8;color:#1d2433}'
+  +'.e4bw.e4frac .expr-item strong{color:#7a4fc2}'
+  +'.e4bw.e4frac .expr-num{background:#fff3d1;color:#a8730a}'
+  +'.e4bw.e4frac .expr-ans{color:#2f9e57}'
+  +'.e4bw.e4frac .e4frac-blank{display:inline-block;width:1.3em;height:1.1em;border:2px solid #7a4fc2;border-radius:3px;vertical-align:middle;margin:0 2px;background:#fff}'
+  +'</style>'; }
+var E4FRAC_FACE_SVG = '<svg class="e4frac-face" viewBox="0 0 40 40" width="26"><circle cx="20" cy="20" r="17" fill="#6cc3f0" stroke="#1d2433" stroke-width="2"/><g class="eye-open"><circle cx="14" cy="17" r="2.2" fill="#1d2433"/><circle cx="26" cy="17" r="2.2" fill="#1d2433"/></g><g class="eye-closed"><line x1="11.5" y1="17" x2="16.5" y2="17" stroke="#1d2433" stroke-width="2" stroke-linecap="round"/><line x1="23.5" y1="17" x2="28.5" y2="17" stroke="#1d2433" stroke-width="2" stroke-linecap="round"/></g><path class="smile" d="M12,24 Q20,32 28,24" fill="none" stroke="#1d2433" stroke-width="2.4" stroke-linecap="round"/></svg>';
+var E4FRAC_TEACHER_FACE_SVG = '<svg class="e4frac-face" viewBox="0 0 40 40" width="24"><ellipse cx="20" cy="13" rx="16" ry="13" fill="#5b4330" stroke="#1d2433" stroke-width="1.8"/><circle cx="20" cy="22" r="14" fill="#ffd9b3" stroke="#1d2433" stroke-width="2"/><g class="eye-open"><circle cx="14" cy="21" r="2" fill="#1d2433"/><circle cx="26" cy="21" r="2" fill="#1d2433"/></g><g class="eye-closed"><line x1="11.5" y1="21" x2="16.5" y2="21" stroke="#1d2433" stroke-width="2" stroke-linecap="round"/><line x1="23.5" y1="21" x2="28.5" y2="21" stroke="#1d2433" stroke-width="2" stroke-linecap="round"/></g><path class="smile" d="M13,27 Q20,34 27,27" fill="none" stroke="#1d2433" stroke-width="2.2" stroke-linecap="round"/></svg>';
+function e4fracFaceReact(qid, idx, btn){
+  var group = btn.parentElement.querySelectorAll('.havruta-opt');
+  group.forEach(function(b){
+    b.classList.remove('has-face');
+    var f = b.querySelector('.e4frac-face');
+    if(f){ f.remove(); }
+  });
+  var fbBox = document.getElementById('fb-'+qid);
+  var avatar = fbBox ? fbBox.querySelector('.story-avatar') : null;
+  var correct = btn.classList.contains('selected') && HAVRUTA_FB[qid][idx].ok;
+  if(correct){
+    btn.classList.add('has-face');
+    btn.insertAdjacentHTML('afterbegin', E4FRAC_FACE_SVG);
+    if(avatar){ avatar.innerHTML = E4FRAC_TEACHER_FACE_SVG; }
+  }
+}
 // 분수 막대(segments:[{count,color,cross?}], denom칸 중 비어있는 칸은 연한 회색으로 채움), 가로로 이어붙이기(row), 최종 svg 포장
 function e4fracBar(segments, denom, w, h){
   var segW=w/denom, x=0, rects='', used=0;
@@ -11765,6 +11799,110 @@ function e4fracSvgWrap(innerW, innerH, content, pad){
   pad = pad||6;
   var w = innerW+pad*2, h = innerH+pad*2;
   return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" class="e4fw" style="max-width:'+w+'px;--fw:'+w+'px"><g transform="translate('+pad+','+pad+')">'+content+'</g></svg>';
+}
+// ── 문장제 심화 10선(e4frac): 랜덤 생성기. 이름 충돌을 막으려고 함수 안에 가둔다 ──
+function e4fracGen(){
+  if(e4fracGen._c) return e4fracGen._c;
+  function rnd(a,b){return a+Math.floor(Math.random()*(b-a+1));}
+  function ans(t){return '<strong style="color:#2f9e57">'+t+'</strong>';}
+  function G1(){ // 진분수 덧셈(받아올림 없음) — 주스
+    var d=rnd(5,9), a=rnd(1,d-2), b=rnd(1,d-1-a), sum=a+b;
+    var q='주스를 아침에 '+frac(a,d)+'L, 저녁에 '+frac(b,d)+'L 마셨습니다. 마신 주스는 모두 몇 L인가요?';
+    var sol='분모는 그대로 '+d+', 분자는 '+a+'+'+b+'='+sum+' → '+ans(frac(sum,d)+'L');
+    return {q:q,sol:sol,meta:{d:d,a:a,b:b,sum:sum}};
+  }
+  function G2(){ // 진분수 뺄셈 — 리본
+    var d=rnd(5,9), a=rnd(3,d-1), b=rnd(1,a-1), diff=a-b;
+    var q='리본 '+frac(a,d)+'m 중에서 '+frac(b,d)+'m를 사용했습니다. 남은 리본은 몇 m인가요?';
+    var sol='분모는 그대로 '+d+', 분자는 '+a+'−'+b+'='+diff+' → '+ans(frac(diff,d)+'m');
+    return {q:q,sol:sol,meta:{d:d,a:a,b:b,diff:diff}};
+  }
+  function G3(){ // 전체에서 빼기 — 물통
+    var d=rnd(5,9), a=rnd(1,d-1), rest=d-a;
+    var q='물통에 물이 가득('+frac(d,d)+') 차 있었는데 '+frac(a,d)+'만큼 사용했습니다. 남은 물은 전체의 얼마인가요?';
+    var sol='분모는 그대로 '+d+', 분자는 '+d+'−'+a+'='+rest+' → '+ans(frac(rest,d));
+    return {q:q,sol:sol,meta:{d:d,a:a,rest:rest}};
+  }
+  function G4(){ // 세 분수의 합 — 페인트
+    var d=rnd(7,9), a=1,b=1,c=1, extra=rnd(0,d-4);
+    for(var k=0;k<extra;k++){ var w=rnd(0,2); if(w===0)a++; else if(w===1)b++; else c++; }
+    var sum=a+b+c;
+    var q='페인트를 첫날 '+frac(a,d)+'통, 둘째 날 '+frac(b,d)+'통, 셋째 날 '+frac(c,d)+'통 사용했습니다. 3일 동안 사용한 페인트는 모두 몇 통인가요?';
+    var sol='분모는 그대로 '+d+', 분자는 '+a+'+'+b+'+'+c+'='+sum+' → '+ans(frac(sum,d)+'통');
+    return {q:q,sol:sol,meta:{d:d,a:a,b:b,c:c,sum:sum}};
+  }
+  function G5(){ // 대분수 덧셈(받아올림 없음) — 설탕
+    var d=rnd(5,9), a=rnd(1,d-2), b=rnd(1,d-1-a), w1=rnd(1,3), w2=rnd(1,3), sum=a+b, wsum=w1+w2;
+    var q='설탕 '+w1+frac(a,d)+'kg과 '+w2+frac(b,d)+'kg을 합치면 모두 몇 kg인가요?';
+    var sol='자연수는 '+w1+'+'+w2+'='+wsum+', 분수는 '+frac(a,d)+'+'+frac(b,d)+'='+frac(sum,d)+' → '+ans(wsum+frac(sum,d)+'kg');
+    return {q:q,sol:sol,meta:{d:d,a:a,b:b,w1:w1,w2:w2}};
+  }
+  function G6(){ // 대분수 뺄셈(받아내림 없음) — 끈
+    var d=rnd(5,9), a=rnd(2,d-1), b=rnd(1,a-1), w1=rnd(2,4), w2=rnd(1,w1-1), diff=a-b, wdiff=w1-w2;
+    var q='끈 '+w1+frac(a,d)+'m 중에서 '+w2+frac(b,d)+'m를 사용했습니다. 남은 끈은 몇 m인가요?';
+    var sol='자연수는 '+w1+'−'+w2+'='+wdiff+', 분수는 '+frac(a,d)+'−'+frac(b,d)+'='+frac(diff,d)+' → '+ans(wdiff+frac(diff,d)+'m');
+    return {q:q,sol:sol,meta:{d:d,a:a,b:b,w1:w1,w2:w2}};
+  }
+  function G7(){ // 대분수 뺄셈(받아내림 있음) — 쌀
+    var d=rnd(5,9), a=rnd(1,d-2), b=rnd(a+1,d-1), w1=rnd(3,5), w2=rnd(1,w1-2);
+    var newA=a+d, diffFrac=newA-b, diffWhole=(w1-1)-w2;
+    var q='쌀 '+w1+frac(a,d)+'kg 중에서 '+w2+frac(b,d)+'kg을 사용했습니다. 남은 쌀은 몇 kg인가요?';
+    var sol=frac(a,d)+'에서 '+frac(b,d)+'를 뺄 수 없으니, 자연수 1을 '+frac(d,d)+'로 바꿔와요<br>'
+      +w1+frac(a,d)+' = '+(w1-1)+frac(newA,d)+'<br>'
+      +'자연수는 '+(w1-1)+'−'+w2+'='+diffWhole+', 분수는 '+frac(newA,d)+'−'+frac(b,d)+'='+frac(diffFrac,d)+' → '+ans(diffWhole+frac(diffFrac,d)+'kg');
+    return {q:q,sol:sol,meta:{d:d,a:a,b:b,w1:w1,w2:w2}};
+  }
+  function G8(){ // 어떤 수 구하기(역산) — 빈칸
+    var d=rnd(5,9), b=rnd(1,d-2), diff=rnd(1,d-1-b), c=b+diff;
+    var q='어떤 수와 '+frac(b,d)+'의 합이 '+frac(c,d)+'입니다. 어떤 수는 얼마인가요?';
+    var sol='덧셈의 빈칸은 뺄셈으로 — '+frac(c,d)+'−'+frac(b,d)+' = 분자 '+c+'−'+b+'='+diff+' → '+ans(frac(diff,d));
+    return {q:q,sol:sol,meta:{d:d,b:b,c:c,diff:diff}};
+  }
+  function G9(){ // 대분수 덧셈(받아올림 있음) — 우유
+    var d=rnd(5,9), a=rnd(2,d-1), minB=d-a+1, b=rnd(minB,d-1), w1=rnd(1,3), w2=rnd(1,3);
+    var sumFrac=a+b, newFrac=sumFrac-d, wsum=w1+w2+1;
+    var q='우유 '+w1+frac(a,d)+'L와 '+w2+frac(b,d)+'L를 합치면 모두 몇 L인가요?';
+    var sol='분수끼리 더하면 '+frac(a,d)+'+'+frac(b,d)+'='+frac(sumFrac,d)+' — 분자('+sumFrac+')가 분모('+d+')보다 크니 자연수로 바꿔요<br>'
+      +frac(sumFrac,d)+' = 1'+frac(newFrac,d)+'<br>'
+      +'자연수는 '+w1+'+'+w2+'+1='+wsum+', 분수는 '+frac(newFrac,d)+' → '+ans(wsum+frac(newFrac,d)+'L');
+    return {q:q,sol:sol,meta:{d:d,a:a,b:b,w1:w1,w2:w2}};
+  }
+  function G10(){ // 두 단계 종합(덧셈 후 뺄셈) — 물통
+    var d=rnd(5,9), start=rnd(2,d-2), add=rnd(1,d-1-start), mid=start+add, sub=rnd(1,mid-1), fin=mid-sub;
+    var q='물통에 물이 '+frac(start,d)+'L 있었습니다. 거기에 '+frac(add,d)+'L를 더 부은 뒤, '+frac(sub,d)+'L를 사용했습니다. 지금 물통에 남은 물은 몇 L인가요?';
+    var sol='먼저 더하면 '+frac(start,d)+'+'+frac(add,d)+'='+frac(mid,d)+'<br>거기서 빼면 '+frac(mid,d)+'−'+frac(sub,d)+'='+frac(fin,d)+' → '+ans(frac(fin,d)+'L');
+    return {q:q,sol:sol,meta:{d:d,start:start,add:add,sub:sub,fin:fin}};
+  }
+  var PROBS=[
+    {name:'진분수의 덧셈',gen:G1},{name:'진분수의 뺄셈',gen:G2},{name:'전체에서 빼기',gen:G3},{name:'세 분수의 합',gen:G4},
+    {name:'대분수의 덧셈(받아올림 없음)',gen:G5},{name:'대분수의 뺄셈(받아내림 없음)',gen:G6},{name:'대분수의 뺄셈(받아내림)',gen:G7},
+    {name:'어떤 수 구하기',gen:G8},{name:'대분수의 덧셈(받아올림)',gen:G9},{name:'두 단계 종합',gen:G10}
+  ];
+  e4fracGen._c = {PROBS:PROBS};
+  return e4fracGen._c;
+}
+function e4fracProbHtml(){
+  var P = e4fracGen().PROBS, html = '';
+  e4fracProbHtml._last = e4fracProbHtml._last || {};
+  P.forEach(function(p,i){
+    var r = p.gen(); e4fracProbHtml._last[i] = r;
+    html += '<div class="ef5-prob"><div class="ef5-label">문제 '+(i+1)+' · '+p.name+'</div><div id="ef5-pb-'+i+'">'+r.q+'</div>'
+      +'<div class="ef5-btns"><button class="ef5-btn main" id="ef5-bs-'+i+'" onclick="e4fracProbToggle('+i+')">💡 풀이 보기</button><button class="ef5-btn" onclick="e4fracProbRegen('+i+')">🔄 유사문제</button><button class="ef5-btn" onclick="usReviewAsk(\'e4frac\',\'p5-'+i+'\')">📌 복습할래요</button></div><div id="rvq-e4frac-p5-'+i+'"></div>'
+      +'<div class="ef5-sol" id="ef5-ps-'+i+'" hidden>'+r.sol+'</div></div>';
+  });
+  return html;
+}
+function e4fracProbRegen(i){
+  var r = e4fracGen().PROBS[i].gen();
+  document.getElementById('ef5-pb-'+i).innerHTML = r.q;
+  var s = document.getElementById('ef5-ps-'+i); s.innerHTML = r.sol; s.hidden = true;
+  document.getElementById('ef5-bs-'+i).textContent = '💡 풀이 보기';
+  e4fracProbHtml._last[i] = r;
+  var rq = document.getElementById('rvq-e4frac-p5-'+i); if(rq) rq.innerHTML = '';
+}
+function e4fracProbToggle(i){
+  var s = document.getElementById('ef5-ps-'+i); s.hidden = !s.hidden;
+  document.getElementById('ef5-bs-'+i).textContent = s.hidden ? '💡 풀이 보기' : '👆 접어두기';
 }
 var CV_DATA_E4FRAC = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`${e4fracWrapOpen()}<style>
@@ -12057,6 +12195,223 @@ var CV_DATA_E4FRAC = [
     })()}</div>
     <div style="text-align:center;font-size:1.05rem;font-weight:800;margin:8px 0">1+${frac(11,8)} − 1+${frac(5,8)} = 0+<span style="color:#2f9e57">${frac(6,8)}</span></div>
   </div>`},
+  { title:'📖 다양한 표현 익히기', cls:'group', html:'<div></div>', desc:`<p>"${frac(2,8)}와 ${frac(3,8)}을 더하면 ${frac(5,8)}"(개념1과 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 세 수의 관계가 얼마나 다양하게 표현되는지, 계산 과정을 함께 볼까요?</p>`, items:[
+  { title:'✏️ 빈칸 문제로 익히기', cls:'concept', html:`${e4fracWrapOpen()}
+    <p>빈칸(<span class="e4frac-blank"></span>)에 무엇이 들어갈지 먼저 생각해 보세요.</p>
+    <div class="expr-item"><span class="expr-num">1</span>${frac(2,8)} + ${frac(3,8)} = <span class="e4frac-blank"></span>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:4px">💡 분모가 같으면 분자끼리만 더해요 (2+3=5)</div>
+      → <span class="expr-ans">${frac(5,8)}</span></div>
+    <div class="expr-item"><span class="expr-num">2</span>${frac(5,8)} − ${frac(3,8)} = <span class="e4frac-blank"></span>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:4px">💡 분모는 그대로, 분자는 5−3=2</div>
+      → <span class="expr-ans">${frac(2,8)}</span></div>
+    <div class="expr-item"><span class="expr-num">3</span>${frac(5,8)} − ${frac(2,8)} = <span class="e4frac-blank"></span>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:4px">💡 분모는 그대로, 분자는 5−2=3</div>
+      → <span class="expr-ans">${frac(3,8)}</span></div>
+    <div class="expr-item"><span class="expr-num">4</span>${frac(2,8)} + <span class="e4frac-blank"></span> = ${frac(5,8)}
+      <div style="font-size:.72rem;color:#7a4fc2;font-weight:700;margin-top:4px">💡 덧셈의 빈칸은 뺄셈으로 — ${frac(5,8)}−${frac(2,8)}</div>
+      → <span class="expr-ans">${frac(3,8)}</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><span class="e4frac-blank"></span> + ${frac(3,8)} = ${frac(5,8)}
+      <div style="font-size:.72rem;color:#7a4fc2;font-weight:700;margin-top:4px">💡 덧셈의 빈칸은 뺄셈으로 — ${frac(5,8)}−${frac(3,8)}</div>
+      → <span class="expr-ans">${frac(2,8)}</span></div>
+    <div class="expr-item"><span class="expr-num">6</span>${frac(5,8)} − <span class="e4frac-blank"></span> = ${frac(2,8)}
+      <div style="font-size:.72rem;color:#7a4fc2;font-weight:700;margin-top:4px">💡 뺄셈의 빈칸도 다시 뺄셈으로 — ${frac(5,8)}−${frac(2,8)}</div>
+      → <span class="expr-ans">${frac(3,8)}</span></div>
+    <div class="expr-item"><span class="expr-num">7</span>${frac(2,8)} <span class="e4frac-blank"></span> ${frac(3,8)} <span style="font-size:.72rem;color:#5d6678">(빈칸에 &gt;, &lt;, = 중 하나)</span>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:4px">💡 분모가 같으면 분자가 작을수록 더 작은 분수예요 (2&lt;3)</div>
+      → <span class="expr-ans">&lt;</span></div>
+    <div class="expr-item"><span class="expr-num">8</span>${frac(8,8)} − ${frac(5,8)} = <span class="e4frac-blank"></span>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:4px">💡 우유 1통(${frac(8,8)})을 채우려면 얼마나 모자른지 구하는 거예요</div>
+      → <span class="expr-ans">${frac(3,8)}</span></div>
+  </div>`},
+  { title:'🧺 실생활에서 10가지로 표현하기', cls:'concept', html:`${e4fracWrapOpen()}
+    <p>이번엔 거꾸로, 같은 세 수(${frac(2,8)}, ${frac(3,8)}, ${frac(5,8)})를 10가지 다른 실생활 상황으로 표현해 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><strong>우유</strong><br>민지가 우유를 아침에 ${frac(2,8)}컵, 저녁에 ${frac(3,8)}컵 마셨습니다. 하루 동안 마신 우유는 모두 몇 컵인가요?
+      → <span class="expr-ans">${frac(5,8)}컵</span></div>
+    <div class="expr-item"><span class="expr-num">2</span><strong>리본</strong><br>리본 ${frac(5,8)}m 중에서 ${frac(2,8)}m를 풀어놓았다면, 지금 쓰고 있는 리본은 몇 m인가요?
+      → <span class="expr-ans">${frac(3,8)}m</span></div>
+    <div class="expr-item"><span class="expr-num">3</span><strong>피자</strong><br>형이 피자 한 판의 ${frac(2,8)}, 동생이 ${frac(3,8)}을 먹었습니다. 둘이 먹은 양은 전체의 얼마인가요?
+      → <span class="expr-ans">${frac(5,8)}</span></div>
+    <div class="expr-item"><span class="expr-num">4</span><strong>색종이</strong><br>8칸으로 나눈 색종이에서 2칸은 빨강, 3칸은 파랑으로 칠했습니다. 색을 칠한 칸은 전체의 얼마인가요?
+      → <span class="expr-ans">${frac(5,8)}</span></div>
+    <div class="expr-item"><span class="expr-num">5</span><strong>물병</strong><br>물 ${frac(5,8)}L가 있던 물병에서 ${frac(3,8)}L를 마셨습니다. 남은 물은 몇 L인가요?
+      → <span class="expr-ans">${frac(2,8)}L</span></div>
+    <div class="expr-item"><span class="expr-num">6</span><strong>초콜릿</strong><br>초콜릿 ${frac(2,8)}개와 ${frac(3,8)}개를 모으면 모두 몇 개인가요?
+      → <span class="expr-ans">${frac(5,8)}개</span></div>
+    <div class="expr-item"><span class="expr-num">7</span><strong>밧줄</strong><br>${frac(5,8)}m짜리 밧줄 중 ${frac(2,8)}m를 잘라 썼습니다. 남은 길이는 몇 m인가요?
+      → <span class="expr-ans">${frac(3,8)}m</span></div>
+    <div class="expr-item"><span class="expr-num">8</span><strong>화단</strong><br>8칸짜리 화단에 2칸은 장미, 3칸은 튤립을 심었습니다. 꽃을 심은 칸은 전체의 얼마인가요?
+      → <span class="expr-ans">${frac(5,8)}</span></div>
+    <div class="expr-item"><span class="expr-num">9</span><strong>색연필</strong><br>색연필 통 전체(${frac(8,8)}) 중 ${frac(5,8)}을 썼습니다. 남은 색연필은 전체의 얼마인가요?
+      → <span class="expr-ans">${frac(3,8)}</span></div>
+    <div class="expr-item"><span class="expr-num">10</span><strong>모래시계</strong><br>전체 모래(${frac(8,8)}) 중 ${frac(2,8)}이 먼저 내려가고, 다시 ${frac(3,8)}이 더 내려갔습니다. 지금까지 내려간 모래는 전체의 얼마인가요?
+      → <span class="expr-ans">${frac(5,8)}</span></div>
+    <p style="margin-top:10px">이렇게 10가지나 되는 이야기가 결국 <strong style="color:#7a4fc2">같은 세 수(${frac(2,8)}, ${frac(3,8)}, ${frac(5,8)})의 관계</strong>를 묻고 있어요.</p>
+  </div>`}
+  ]},
+  { title:'💬 하브루타 질문', cls:'havruta', html:`${e4fracWrapOpen()}
+    <div class="q-item"><strong>Q1.</strong> ${frac(2,8)} + ${frac(3,8)}을 계산하려고 해요. 친구들은 이렇게 답했어요.
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4frac-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4frac-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4frac-h1',0,this);e4fracFaceReact('e4frac-h1',0,this)">분자도 더하고 분모도 더했어요. ${frac(5,16)}이에요.</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4frac-h1',1,this);e4fracFaceReact('e4frac-h1',1,this)">분자만 더했어요. ${frac(5,8)}이에요.</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4frac-h1',2,this);e4fracFaceReact('e4frac-h1',2,this)">분모를 분자에 맞춰 바꿨어요. ${frac(6,8)}이에요.</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4frac-h1"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q2.</strong> ${frac(5,8)} + ${frac(4,8)}을 계산했더니 ${frac(9,8)}이 나왔어요. 이 답을 어떻게 생각해야 할까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4frac-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4frac-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4frac-h2',0,this);e4fracFaceReact('e4frac-h2',0,this)">분수는 1보다 클 수 없으니까 틀렸어요.</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4frac-h2',1,this);e4fracFaceReact('e4frac-h2',1,this)">${frac(9,8)}은 1보다 큰 분수예요. 1+${frac(1,8)}로도 쓸 수 있어요.</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4frac-h2',2,this);e4fracFaceReact('e4frac-h2',2,this)">분모가 9로 바뀌어야 해요.</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4frac-h2"></div>
+      </div>
+    </div>
+    <div class="q-item"><strong>Q3.</strong> 1 − ${frac(3,8)}을 계산하려고 해요. 친구들은 이렇게 답했어요.
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4frac-h3',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4frac-h3">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4frac-h3',0,this);e4fracFaceReact('e4frac-h3',0,this)">1에서는 분수를 뺄 수 없어요.</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4frac-h3',1,this);e4fracFaceReact('e4frac-h3',1,this)">분모 8에서 분자 3을 그냥 빼서 ${frac(1,5)}이에요.</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4frac-h3',2,this);e4fracFaceReact('e4frac-h3',2,this)">1을 ${frac(8,8)}로 바꾼 다음 3칸을 빼면 ${frac(5,8)}이에요.</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4frac-h3"></div>
+      </div>
+    </div>
+  </div>`},
+  { title:'✏️ 예제 문제', cls:'problems', html:`${e4fracWrapOpen()}
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 1 (진분수의 덧셈)</div>
+      <div class="prob-q">${frac(3,9)} + ${frac(4,9)}는 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'ef-sol-1')">💡 풀이 보기</button>
+      <div id="ef-sol-1" style="display:none;margin-top:8px">
+        <div class="fb-diagram" style="text-align:left">
+          <div style="text-align:center;margin-bottom:6px">${(function(){
+            var W=100,H=26,gap=8;
+            var b1=e4fracBar([{count:3,color:'#2f9e57'}],9,W,H);
+            var b2=e4fracBar([{count:4,color:'#5b9bdc'}],9,W,H);
+            var r=e4fracRow([{svg:b1,w:W,h:H},{svg:b2,w:W,h:H}],gap);
+            return e4fracSvgWrap(r.w,r.h,r.html);
+          })()}</div>
+          <div style="text-align:center;margin-bottom:6px">${(function(){
+            var W=180,H=30;
+            var b=e4fracBar([{count:3,color:'#2f9e57'},{count:4,color:'#5b9bdc'}],9,W,H);
+            return e4fracSvgWrap(W,H,b);
+          })()}</div>
+          분모는 그대로 9, 분자는 3+4=7 → <strong style="color:#2f9e57">${frac(7,9)}</strong>
+        </div>
+      </div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 2 (가분수 → 대분수)</div>
+      <div class="prob-q">${frac(5,6)} + ${frac(4,6)}는 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'ef-sol-2')">💡 풀이 보기</button>
+      <div id="ef-sol-2" style="display:none;margin-top:8px">
+        <div class="fb-diagram" style="text-align:left">
+          <div style="text-align:center;margin-bottom:6px">${(function(){
+            var W=100,H=26,gap=8;
+            var b1=e4fracBar([{count:5,color:'#f6b53d'}],6,W,H);
+            var b2=e4fracBar([{count:4,color:'#5b9bdc'}],6,W,H);
+            var r=e4fracRow([{svg:b1,w:W,h:H},{svg:b2,w:W,h:H}],gap);
+            return e4fracSvgWrap(r.w,r.h,r.html);
+          })()}</div>
+          <div style="text-align:center;margin-bottom:6px">${(function(){
+            var W=120,H=28,gap=10;
+            var b1=e4fracBar([{count:6,color:'#f6b53d'}],6,W,H);
+            var b2=e4fracBar([{count:3,color:'#f6b53d'}],6,W,H);
+            var r=e4fracRow([{svg:b1,w:W,h:H},{svg:b2,w:W,h:H}],gap);
+            return e4fracSvgWrap(r.w,r.h,r.html);
+          })()}</div>
+          분자를 더하면 5+4=9, 분모는 그대로 6 → ${frac(9,6)} = 6칸(1통) + 3칸 → <strong style="color:#2f9e57">1+${frac(3,6)}</strong>
+        </div>
+      </div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 3 (진분수의 뺄셈)</div>
+      <div class="prob-q">${frac(7,10)} − ${frac(4,10)}는 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'ef-sol-3')">💡 풀이 보기</button>
+      <div id="ef-sol-3" style="display:none;margin-top:8px">
+        <div class="fb-diagram" style="text-align:left">
+          <div style="text-align:center;margin-bottom:6px">${(function(){
+            var W=170,H=28;
+            var b=e4fracBar([{count:7,color:'#5b9bdc'}],10,W,H);
+            return e4fracSvgWrap(W,H,b);
+          })()}</div>
+          <div style="text-align:center;margin-bottom:6px">${(function(){
+            var W=170,H=28;
+            var b=e4fracBar([{count:3,color:'#2f9e57'},{count:4,color:'#c9ccd3',cross:true}],10,W,H);
+            return e4fracSvgWrap(W,H,b);
+          })()}</div>
+          분모는 그대로 10, 분자는 7−4=3 → <strong style="color:#2f9e57">${frac(3,10)}</strong>
+        </div>
+      </div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 4 (대분수의 뺄셈, 받아내림)</div>
+      <div class="prob-q">3+${frac(1,5)} − 1+${frac(3,5)}는 얼마인가요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'ef-sol-4')">💡 풀이 보기</button>
+      <div id="ef-sol-4" style="display:none;margin-top:8px">
+        <div class="fb-diagram" style="text-align:left">
+          <div style="text-align:center;margin-bottom:6px">${(function(){
+            var Wb=40,H=30,gap=6;
+            var g1=e4fracRow([{svg:e4fracWholeBox('#f6b53d',Wb,H),w:Wb,h:H},{svg:e4fracWholeBox('#f6b53d',Wb,H),w:Wb,h:H},{svg:e4fracWholeBox('#f6b53d',Wb,H),w:Wb,h:H},{svg:e4fracBar([{count:1,color:'#f6b53d'}],5,Wb,H),w:Wb,h:H}],gap);
+            var g2=e4fracRow([{svg:e4fracWholeBox('#5b9bdc',Wb,H),w:Wb,h:H},{svg:e4fracBar([{count:3,color:'#5b9bdc'}],5,Wb,H),w:Wb,h:H}],gap);
+            return '<div style="display:flex;flex-direction:column;gap:8px;align-items:center">'
+              +'<div><div style="font-size:.72rem;color:#5d6678;margin-bottom:3px">3+'+frac(1,5)+'</div>'+e4fracSvgWrap(g1.w,g1.h,g1.html)+'</div>'
+              +'<div><div style="font-size:.72rem;color:#5d6678;margin-bottom:3px">1+'+frac(3,5)+'</div>'+e4fracSvgWrap(g2.w,g2.h,g2.html)+'</div>'
+              +'</div>';
+          })()}</div>
+          <div style="font-size:.76rem;color:#5d6678;font-weight:700;margin-bottom:3px">${frac(1,5)}에서 ${frac(3,5)}를 뺄 수 없으니, 자연수 1을 ${frac(5,5)}로 바꿔와요</div>
+          <div style="text-align:center;margin-bottom:6px">${(function(){
+            var Wf=40,H=30,gap=6;
+            var box1=e4fracWholeBox('#f6b53d',Wf,H), box2=e4fracWholeBox('#f6b53d',Wf,H);
+            var broken=e4fracBar([{count:5,color:'#f6b53d'}],5,Wf,H);
+            var part=e4fracBar([{count:1,color:'#f6b53d'}],5,Wf,H);
+            var r=e4fracRow([{svg:box1,w:Wf,h:H},{svg:box2,w:Wf,h:H},{svg:broken,w:Wf,h:H},{svg:part,w:Wf,h:H}],gap);
+            return e4fracSvgWrap(r.w,r.h,r.html);
+          })()}</div>
+          3+${frac(1,5)} = 2+${frac(6,5)}<br>
+          자연수는 2−1=1, 분수는 ${frac(6,5)}−${frac(3,5)}=${frac(3,5)} → <strong style="color:#2f9e57">1+${frac(3,5)}</strong>
+        </div>
+      </div>
+    </div>
+  </div>`},
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="e4bw e4f5" style="background:#ffffff;color:#1d2433;border-radius:12px;padding:18px"><style>.e4bw p,.e4bw strong{color:#1d2433}.e4f5 .ef5-prob{border:1px solid #c5ccd8;border-radius:12px;padding:16px;margin-bottom:16px}.e4f5 .ef5-label{font-size:.78rem;font-weight:700;color:#a8730a;margin-bottom:6px}.e4f5 .ef5-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.e4f5 .ef5-btn{font-family:inherit;font-size:.9rem;font-weight:700;border-radius:8px;padding:8px 14px;cursor:pointer;border:1.5px solid #2f6fd0;background:#f4f6fa;color:#2f6fd0}.e4f5 .ef5-btn.main{background:#2f6fd0;color:#ffffff}.e4f5 .ef5-sol{margin-top:12px;background:#f4f6fa;border:1px solid #c5ccd8;border-radius:10px;padding:12px 14px}</style>
+      <p>지금까지 배운 분모가 같은 분수의 덧셈과 뺄셈을 실제 상황에 적용하는 문제들이에요. "🔄 유사문제"를 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
+      ${e4fracProbHtml()}
+    </div>
+  `},
+  { title:'🔥 심화 토론', cls:'debate', html:`${e4fracWrapOpen()}
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>${frac(2,8)} + ${frac(3,8)}은 분자도 더하고 분모도 더해서 ${frac(5,16)} 아니야?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">지호</span>어? 그럼 그림으로 확인해보자.</div></div>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px;margin:6px 0 12px;text-align:center">
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
+        <div><div style="font-size:.78rem;color:#5d6678;margin-bottom:3px">${frac(2,8)}은 8조각 중 2조각</div>${(function(){
+          var W=160,H=30;
+          return e4fracSvgWrap(W,H,e4fracBar([{count:2,color:'#2f9e57'}],8,W,H));
+        })()}</div>
+        <div style="font-size:1.1rem;font-weight:800;color:#5d6678">+</div>
+        <div><div style="font-size:.78rem;color:#5d6678;margin-bottom:3px">${frac(3,8)}은 똑같이 8조각 중 3조각</div>${(function(){
+          var W=160,H=30;
+          return e4fracSvgWrap(W,H,e4fracBar([{count:3,color:'#5b9bdc'}],8,W,H));
+        })()}</div>
+        <div style="font-size:1.1rem;font-weight:800;color:#5d6678">=</div>
+        <div><div style="font-size:.78rem;color:#5d6678;margin-bottom:3px">조각을 그대로 합치면 똑같은 8조각 중 5조각</div>${(function(){
+          var W=160,H=30;
+          return e4fracSvgWrap(W,H,e4fracBar([{count:2,color:'#2f9e57'},{count:3,color:'#5b9bdc'}],8,W,H));
+        })()}</div>
+        <div style="font-size:.78rem;color:#2f9e57;font-weight:700">${frac(5,8)}</div>
+      </div>
+      <div style="font-size:.76rem;color:#5d6678;margin-top:8px">전체를 나눈 조각 수(8)는 처음부터 끝까지 그대로예요 — 바뀌는 건 색칠된 조각의 개수(2개→5개)뿐이에요.</div>
+    </div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>분모는 전체를 몇 조각으로 나눴는지 나타내는 수잖아. 둘 다 8조각으로 나눈 건 그대로인데 왜 분모가 바뀌어?</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">하은</span>맞아! 조각 하나의 크기(${frac(1,8)})는 안 변했어. 그 조각이 몇 개 있는지(분자)만 세는 거야.</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요. 분모는 '전체를 몇 조각으로 나눴는지', 분자는 '그 조각이 몇 개 있는지'를 말해요. ${frac(2,8)}과 ${frac(3,8)}은 둘 다 똑같이 8조각으로 나눈 거라서, 조각의 개수만 2개와 3개를 더하면 돼요.</div></div>
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>아하! 그래서 분모는 그대로 두고 분자만 더하는 거구나!</div></div>
+    <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>맞아요. 분모까지 더하면 조각의 크기 자체가 바뀌어버려서 틀린 답이 나와요.</div></div>
+    <div class="story-takeaway"><strong>정리:</strong> 분모가 같은 분수를 더하거나 뺄 때는 조각의 크기(분모)는 바뀌지 않으므로 분모는 그대로 두고, 조각의 개수(분자)만 더하거나 뺀다.</div>
+  </div>`},
 ];
 CV_DATA['e4frac'] = CV_DATA_E4FRAC;
 
@@ -12103,6 +12458,7 @@ function usNoteJudge(u, text, prevNorm){
   if(groups.indexOf('A')<0 || groups.length<2) return {ok:false,code:'keyword'};
   return {ok:true,groups:groups,bonus:groups.length>=3};
 }
+var US_NOTE_FAIL = {};
 function usNoteSubmit(u){
   var c=US_UNITS[u], ta=document.getElementById('usn-text-'+u), out=document.getElementById('usn-result-'+u);
   var log=usList(US_NOTE_KEY);
@@ -12111,11 +12467,15 @@ function usNoteSubmit(u){
     log.push({unit:u, date:usDateStr(new Date()), text:ta.value.trim(), groups:r.groups, bonus:r.bonus, ts:Date.now()});
     try{ localStorage.setItem(US_NOTE_KEY, JSON.stringify(log)); }catch(e){ r={ok:false,code:'save'}; }
   }
+  var sampleBox = c.sampleAnswer ? '<div class="prob-box" style="margin-top:10px"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">📖 이렇게도 써볼 수 있어요</div>'+c.sampleAnswer+'</div>' : '';
   if(r.ok){
-    out.innerHTML='<div class="story-takeaway">'+(r.bonus?'와, 여러 가지를 빠짐없이 적었어요! 보너스 기록까지 저장됐어요 🌟':'잘 적었어요! 오늘 기록이 저장됐어요 🌱')+'</div>';
+    US_NOTE_FAIL[u]=0;
+    out.innerHTML='<div class="story-takeaway">'+(r.bonus?'와, 여러 가지를 빠짐없이 적었어요! 보너스 기록까지 저장됐어요 🌟':'잘 적었어요! 오늘 기록이 저장됐어요 🌱')+'</div>'+sampleBox;
     ta.value='';
   }else{
-    out.innerHTML='<div style="color:#8a6100;font-size:.85rem">'+(r.code==='keyword'?c.keywordMsg:US_NOTE_MSG[r.code])+'</div>';
+    US_NOTE_FAIL[u]=(US_NOTE_FAIL[u]||0)+1;
+    out.innerHTML='<div style="color:#8a6100;font-size:.85rem">'+(r.code==='keyword'?c.keywordMsg:US_NOTE_MSG[r.code])+'</div>'
+      +(US_NOTE_FAIL[u]>=2?sampleBox:'');
   }
 }
 function usNoteCard(u){
@@ -15863,6 +16223,26 @@ const FB_DIAGRAM_E4PAT_H1 = '<div class="fb-diagram"><div class="ep-scroll">'
   +'<div class="ep-cap">노란 칸 1, 2, 4는 두 줄이 똑같아요. 네 번째 수만 8과 7로 달라요.</div></div>';
 const FB_DIAGRAM_E4PAT_H2 = '<div class="fb-diagram"><div class="ep-row">'+e4patStair(4)+e4patStair(5)+'</div><div class="ep-cap">진한 색이 새로 더해진 줄이에요. 넷째는 4개, 다섯째는 5개가 더해졌어요.</div></div>';
 const FB_DIAGRAM_E4PAT_H3 = '<div class="fb-diagram"><table class="ep-eq"><tr><td>1 × 1</td><td>= 1</td></tr><tr><td>11 × 11</td><td>= 121</td></tr><tr><td>111 × 111</td><td>= 12321</td></tr><tr class="ep-ans"><td>1111 × 1111</td><td>= 1234321 ✔</td></tr></table><div class="ep-cap">✔는 계산기로 확인한 결과예요.</div></div>';
+const FB_DIAGRAM_E4FRAC_H1 = (function(){
+  var W=180,H=34;
+  var b=e4fracBar([{count:2,color:'#2f9e57'},{count:3,color:'#5b9bdc'}],8,W,H);
+  return '<div class="fb-diagram">'+e4fracSvgWrap(W,H,b)+'<div style="font-size:.78rem;color:#5d6678;margin-top:6px">초록 2칸 + 파랑 3칸 = 5칸. 몇 조각으로 나눴는지(8)는 그대로예요 — 칸 수만 세면 돼요.</div></div>';
+})();
+const FB_DIAGRAM_E4FRAC_H2 = (function(){
+  var W=120,H=28,gap=10;
+  var b1=e4fracBar([{count:8,color:'#f6b53d'}],8,W,H);
+  var b2=e4fracBar([{count:1,color:'#f6b53d'}],8,W,H);
+  var r=e4fracRow([{svg:b1,w:W,h:H},{svg:b2,w:W,h:H}],gap);
+  return '<div class="fb-diagram">'+e4fracSvgWrap(r.w,r.h,r.html)+'<div style="font-size:.78rem;color:#5d6678;margin-top:6px">8칸짜리 한 통을 가득 채우고 1칸이 남아요 — 그래서 '+frac(9,8)+' = 1+'+frac(1,8)+'이에요.</div></div>';
+})();
+const FB_DIAGRAM_E4FRAC_H3 = (function(){
+  var W=150,H=30,gap=10;
+  var full=e4fracBar([{count:8,color:'#5b9bdc'}],8,W,H);
+  var after=e4fracBar([{count:5,color:'#2f9e57'},{count:3,color:'#c9ccd3',cross:true}],8,W,H);
+  return '<div class="fb-diagram"><div style="font-size:.74rem;color:#5d6678;margin-bottom:3px">1 = '+frac(8,8)+'</div>'+e4fracSvgWrap(W,H,full)
+    +'<div style="font-size:.74rem;color:#5d6678;margin:8px 0 3px">3칸을 빼면</div>'+e4fracSvgWrap(W,H,after)
+    +'<div style="font-size:.78rem;color:#5d6678;margin-top:6px">8칸 중 3칸(회색 X)을 빼면 5칸이 남아요 → '+frac(5,8)+'</div></div>';
+})();
 const FB_DIAGRAM_E4TRI_H1 = (function(){
   // 이등변삼각형(다리 70,70)의 꼭지각을 120°로 두면(둔각) 밑각은 법칙으로 계산해 자동으로 (180-120)/2=30°가 나온다(추측 아님)
   var leg=70, apexDeg=120;
@@ -16252,6 +16632,21 @@ const HAVRUTA_FB = {
     {ok:false, text:'규칙으로 알아낸 건 "맞을 것 같다"는 추측이에요. 이 규칙은 1이 9개인 수까지는 맞아요. 하지만 1이 10개가 되면 규칙대로 나오지 않아요. 그래서 확인이 필요해요.', diagram:FB_DIAGRAM_E4PAT_H3},
     {ok:true, text:'맞아요! 규칙으로 먼저 추측하고, 계산기로 확인하면 믿을 수 있어요. 1111×1111을 계산기로 해 보면 1234321이 나와서 맞아요.', diagram:FB_DIAGRAM_E4PAT_H3},
     {ok:false, text:'규칙을 찾는 건 도움이 돼요. 계산하기 전에 결과를 미리 추측할 수 있게 해 주니까요. 다만 추측이 맞는지 확인하는 것이 필요해요.', diagram:FB_DIAGRAM_E4PAT_H3}
+  ],
+  'e4frac-h1': [
+    {ok:false, text:'분모는 전체를 몇 조각으로 나눴는지를 나타내는 수예요. 더해도 몇 조각으로 나눴는지(8)는 바뀌지 않아요 — 그래서 분모는 그대로예요.', diagram:FB_DIAGRAM_E4FRAC_H1},
+    {ok:true, text:'맞아요! 몇 조각으로 나눴는지(분모)는 그대로고, 조각이 몇 개인지(분자)만 세면 돼요. 2칸 + 3칸 = 5칸이에요.', diagram:FB_DIAGRAM_E4FRAC_H1},
+    {ok:false, text:'분모를 분자에 맞추는 게 아니라, 몇 조각으로 나눴는지(분모)는 원래대로 두고 조각 개수(분자)만 더해요.', diagram:FB_DIAGRAM_E4FRAC_H1}
+  ],
+  'e4frac-h2': [
+    {ok:false, text:'분수는 1보다 클 수 있어요! 조각을 충분히 모으면 전체(1)를 넘을 수 있어요. 가분수라고 해요.', diagram:FB_DIAGRAM_E4FRAC_H2},
+    {ok:true, text:'맞아요! 8칸이 1통인데 9칸이 나왔으니, 1통을 가득 채우고 1칸이 남은 거예요. 그래서 1 + 8분의 1이에요.', diagram:FB_DIAGRAM_E4FRAC_H2},
+    {ok:false, text:'분모는 전체를 몇 조각으로 나눴는지를 나타내는 수라서 바뀌지 않아요. 대신 분자(9)가 분모(8)보다 커진 걸 1 + 8분의 1로 바꿔 쓸 수 있어요.', diagram:FB_DIAGRAM_E4FRAC_H2}
+  ],
+  'e4frac-h3': [
+    {ok:false, text:'자연수도 분수로 바꾸면 뺄 수 있어요! 1을 8분의 1이 8개인 것으로 생각해 보세요.', diagram:FB_DIAGRAM_E4FRAC_H3},
+    {ok:false, text:'분모와 분자를 그냥 빼면 안 돼요. 1을 8분의 1 조각 8개(8분의 8)로 먼저 바꿔야 빼기를 할 수 있어요.', diagram:FB_DIAGRAM_E4FRAC_H3},
+    {ok:true, text:'맞아요! 1을 8분의 1이 8개인 8분의 8로 바꾸면, 거기서 3칸을 빼서 5칸(8분의 5)이 남아요.', diagram:FB_DIAGRAM_E4FRAC_H3}
   ],
   'e4tri-h1': [
     {ok:false, text:'음, 두 각이 같다는 거랑 "모든 각이 90°보다 작다"는 건 다른 얘기예요. 두 변이 같은 삼각형이라도 꼭지각이 아주 크면 둔각이 될 수 있어요.', diagram:FB_DIAGRAM_E4TRI_H1},
@@ -21000,7 +21395,9 @@ function cvRenderGroupGrid(id, groupIdx){
   }).join('');
   document.getElementById('cv-'+id+'-detail-body').innerHTML =
     '<div class="section-title" style="margin-bottom:10px">'+group.title+'</div>'
-    + '<div class="cv-grid">'+gridHtml+'</div>';
+    + (group.desc ? '<div style="margin-bottom:12px">'+group.desc+'</div>' : '')
+    + '<div class="cv-grid">'+gridHtml+'</div>'
+    + (group.html || '');
 }
 function cvShowSubSection(id, groupIdx, subIdx){
   const d = CV_DATA[id][groupIdx].items[subIdx];
