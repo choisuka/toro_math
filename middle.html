@@ -193,6 +193,12 @@ h1,h2,h3,.jua{font-family:'Jua',sans-serif}
 @keyframes cvAskBlink{0%,100%{opacity:1;text-shadow:0 0 0 rgba(125,211,252,0)}50%{opacity:.35;text-shadow:0 0 10px rgba(125,211,252,.9)}}
 .cv-ask-blink{animation:cvAskBlink 1.3s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.cv-ask-blink{animation:none}}
+.ph-q{height:2.7em;line-height:1.3;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;color:#fde68a;font-size:.68rem;margin-top:3px;text-align:center}
+@keyframes phqIn{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes phqOut{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-14px)}}
+.ph-q .in{animation:phqIn .45s ease-out both}
+.ph-q .out{animation:phqOut .35s ease-in both}
+@media (prefers-reduced-motion:reduce){.ph-q .in,.ph-q .out{animation:none}}
 @keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 
 /* 오답 노트 개선 */
@@ -710,8 +716,8 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
       </div>
       <div class="topic-card" onclick="startCards('prime-havruta','prime-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 8px;border:1px solid rgba(253,230,138,.3);background:rgba(253,230,138,.1)">
         <div class="ico" style="font-size:2.2rem">✡️</div>
-        <div class="name" style="color:#fde68a;font-size:.85rem;margin-top:6px;text-align:center">하브루타 토론관</div>
-        <div class="desc" style="font-size:.7rem;color:#94a3b8;text-align:center;margin-top:3px">3편</div>
+        <div class="name" style="color:#fde68a;font-size:.85rem;margin-top:6px;text-align:center">주제 탐구</div>
+        <div class="ph-q"><span id="ph-q-s"></span></div>
       </div>
       <div class="topic-card" onclick="startQuizHard('prime','prime-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 8px;border:1px solid rgba(99,102,241,.4);background:rgba(99,102,241,.15)">
         <div class="ico" style="font-size:2.2rem">🔥</div>
@@ -14579,6 +14585,29 @@ function fixRadicals(html) {
     // √변수 — 단일 영문자
     .replace(/√([a-zA-Z])\b/g, (_, v) => K('\\sqrt{' + v + '}'));
 }
+
+// 소인수분해 동굴 "주제 탐구" 카드: 질문을 랜덤 순서로 번갈아 보여 준다(카드를 누르면 하브루타 카드 묶음으로 들어간다).
+const PHQ = ['왜 1은 소수가 아닐까?', '약수가 3개인 수는 어떤 수일까?', '소수는 무한히 많은지 어떻게 알까?'];
+let phqOrder = [], phqLast = -1;
+function phqNext(){
+  if(!phqOrder.length){
+    phqOrder = [0, 1, 2].sort(function(){ return Math.random() - .5; });
+    if(phqOrder[0] === phqLast) phqOrder.push(phqOrder.shift());
+  }
+  phqLast = phqOrder.shift(); return phqLast;
+}
+function phqShow(){
+  var el = document.getElementById('ph-q-s'); if(!el) return;
+  el.className = 'in'; el.textContent = PHQ[phqNext()];
+}
+document.addEventListener('DOMContentLoaded', function(){
+  phqShow();
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  setInterval(function(){
+    var el = document.getElementById('ph-q-s'); if(!el || !el.offsetParent) return;
+    el.className = 'out'; setTimeout(phqShow, 350);
+  }, 3500);
+});
 
 function startCards(set, from) {
   CS.set = set; CS.cards = CARD_DATA[set];
