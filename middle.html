@@ -15173,7 +15173,7 @@ function genLCMThree(){
     ()=>`신호등 세 개가 ${a}초, ${b}초, ${c}초마다 바뀌어요. 세 신호등이 동시에 바뀌는 최소 주기는 몇 초?`,
     ()=>`버스가 ${a}분, ${b}분, ${c}분 간격으로 출발해요. 세 버스가 동시에 출발하는 최소 간격은?`,
     ()=>`세 수 ${a}, ${b}, ${c}의 최소공배수는?`,
-    ()=>`톱니바퀴 A(${a}이), B(${b}이), C(${c}이)가 맞물려요. 세 이가 동시에 만나는 최소 회전 수는?`,
+    ()=>`톱니가 ${a}개, ${b}개, ${c}개인 톱니바퀴 A, B, C가 맞물려요. 세 톱니바퀴가 처음 자리로 동시에 돌아오는 최소 톱니 수는?`,
   ];
   const choices=[String(L)];
   [String(lcm(a,b)),String(L+rnd([a,b,c])),String(a*b*c),String(lcm(a,c))].forEach(w=>{if(!choices.includes(w))choices.push(w);});
