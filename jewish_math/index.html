@@ -12621,6 +12621,25 @@ US_UNITS['e4pat'] = {
 US_UNITS['e4pat'].snapCss = e4patCss();
 usInject('e4pat', [0,1,2,5]);
 
+// ── 분수의 덧셈과 뺄셈(e4frac) 설정 ──
+function e4fracSnapCss(){ return '<style>.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:.92em;line-height:1.15;margin:0 2px}.frac-n,.frac-d{display:block;padding:0 3px}.frac-n{border-bottom:1.5px solid #1d2433}</style>'; }
+US_UNITS['e4frac'] = {
+  scope:'e4bw e4frac', cards:function(){return CV_DATA_E4FRAC;}, wrapOpen:function(){return e4fracWrapOpen();},
+  groups:{A:/분모|분자/, B:/덧셈|더하|합|뺄셈|빼|차/, C:/받아올림|받아내림|대분수|가분수|자연수/, D:/조각|크기|같|나누/},
+  words:/분모|분자|진분수|대분수|가분수|덧셈|뺄셈|받아올림|받아내림|자연수|조각|크기|같은|더하|빼|\d+/g,
+  keywordMsg:'분모나 분자, 그리고 덧셈/뺄셈(또는 받아올림·받아내림) 같은 말을 함께 적어 주세요.',
+  prompt:'분모가 같은 분수를 더하거나 뺄 때, 왜 분모는 그대로 두고 분자만 계산하는지 내 말로 써 보세요.',
+  sampleAnswer:'분모는 전체를 몇 조각으로 나눴는지를 나타내는 수예요. 분모가 같은 두 분수는 이미 조각의 크기가 같기 때문에, 조각이 몇 개 있는지(분자)만 더하거나 빼면 돼요. 분모까지 더하면 조각의 크기 자체가 바뀌어버려서 틀린 답이 나와요.',
+  make:function(id){
+    var m=/^p5-(\d+)$/.exec(id); if(!m) return null;
+    var i=+m[1], rec=(e4fracProbHtml._last||{})[i]; if(!rec) return null;
+    var pbEl=document.getElementById('ef5-pb-'+i), psEl=document.getElementById('ef5-ps-'+i);
+    return {spec:{kind:'view'}, q:usSnapWrap('e4frac',pbEl.innerHTML), s:usSnapWrap('e4frac',psEl.innerHTML)};
+  }
+};
+US_UNITS['e4frac'].snapCss = e4fracSnapCss();
+usInject('e4frac', [0,1,2,3,6]);
+
 // ── 삼각형(e4tri) 도형 헬퍼: 각도 호·같은변 틱을 평균 변 길이 비율로 자동 계산해서 그린다(수작업 추측 금지) ──
 function e4triHyp(dx,dy){ return Math.sqrt(dx*dx+dy*dy); }
 function e4triUnit(dx,dy){ var l=e4triHyp(dx,dy); return [dx/l,dy/l]; }
