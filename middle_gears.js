@@ -20,17 +20,17 @@ function gpCss(){
     + '.gp-rb{display:inline-block;margin-left:6px;vertical-align:middle;font-family:Jua,"Nanum Gothic",sans-serif;font-size:.95rem;cursor:pointer;white-space:nowrap;background:linear-gradient(90deg,#ff5f6d,#ffc371,#fde047,#4ade80,#38bdf8,#a78bfa,#ff5f6d);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:gpRb 3s linear infinite}'
     + '@keyframes gpRb{0%{background-position:0 0}100%{background-position:200% 0}}'
     + '@keyframes gpEmo{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}@media (prefers-reduced-motion:reduce){.gp-emoji,.gp-rb{animation:none}}'
-    + '.gp{background:#fffdf6;color:#5b4636;border:2px solid #e9d8b4;border-radius:16px;padding:10px 8px;margin:10px 0 14px;font-family:Jua,"Nanum Gothic",sans-serif;font-size:.9rem;line-height:1.5}'
+    + '.gp{background:#faf7ff;color:#3b2a5c;border:2px solid #c4b5fd;border-radius:16px;padding:10px 8px;margin:10px 0 14px;font-family:Jua,"Nanum Gothic",sans-serif;font-size:.9rem;line-height:1.5}'
     + '.gp *{box-sizing:border-box}.gp .gp-title{text-align:center;font-size:.92rem;margin-bottom:4px}'
-    + '.gp .gp-stage{background:#fff;border:2px solid #e9d8b4;border-radius:14px;padding:4px 2px;position:relative}.gp .gp-stage svg{width:50%;height:auto;display:block;margin:0 auto}'
-    + '.gp .gp-now{position:absolute;left:8px;top:6px;font-size:.72rem;background:#fbbf24;color:#fff;border-radius:10px;padding:1px 8px}'
+    + '.gp .gp-stage{background:#fff;border:2px solid #c4b5fd;border-radius:14px;padding:4px 2px;position:relative}.gp .gp-stage svg{width:50%;height:auto;display:block;margin:0 auto}'
+    + '.gp .gp-now{position:absolute;left:8px;top:6px;font-size:.72rem;background:#8b5cf6;color:#fff;border-radius:10px;padding:1px 8px}'
     + '.gp .gp-ctl{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:8px 0}'
-    + '.gp .gp-ctl button{font-family:inherit;font-size:.8rem;border:none;border-radius:10px;padding:7px 11px;cursor:pointer;background:#f59e0b;color:#fff}.gp .gp-ctl button.sec{background:#e5e7eb;color:#4b5563}'
+    + '.gp .gp-ctl button{font-family:inherit;font-size:.8rem;border:none;border-radius:10px;padding:7px 11px;cursor:pointer;background:#7c3aed;color:#fff}.gp .gp-ctl button.sec{background:#e5e7eb;color:#4b5563}'
     + '.gp .gp-chips{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;min-height:28px;margin-bottom:6px}'
-    + '.gp .gp-chip{background:#fff;border:2px solid #fcd34d;border-radius:10px;padding:1px 8px;font-size:.85rem;animation:gpPop .35s ease-out}.gp .gp-chip i{font-style:normal;font-size:.68rem;color:#b45309;margin-right:3px}.gp .gp-chip.again{border-color:#22c55e;background:#f0fdf4}'
+    + '.gp .gp-chip{background:#fff;border:2px solid #c4b5fd;border-radius:10px;padding:1px 8px;font-size:.85rem;animation:gpPop .35s ease-out}.gp .gp-chip i{font-style:normal;font-size:.68rem;color:#6d28d9;margin-right:3px}.gp .gp-chip.again{border-color:#22c55e;background:#f0fdf4}'
     + '.gp .gp-board{text-align:center}.gp table{border-collapse:separate;border-spacing:3px;margin:0 auto}.gp th{font-size:.85rem;font-weight:normal;padding:1px 5px}'
-    + '.gp td{width:38px;height:32px;text-align:center;border-radius:8px;background:#f3ead2;font-size:.9rem;color:#c9b88f}.gp td.hit{background:#fcd34d;color:#7c2d12;animation:gpPop .35s ease-out}.gp td.never{background:#e5e7eb;color:#9ca3af}'
-    + '.gp .gp-sum{text-align:center;font-size:.85rem;line-height:1.65;padding:8px;border-radius:12px;background:#fffbeb;border:2px solid #fde68a;margin-top:6px}.gp .gp-sum.good{background:#ecfdf5;border-color:#86efac}.gp .gp-sum.bad{background:#fff1f2;border-color:#fda4af}'
+    + '.gp td{width:38px;height:32px;text-align:center;border-radius:8px;background:#ede9fe;font-size:.9rem;color:#b4a7d6}.gp td.hit{background:#c4b5fd;color:#3b1d8a;animation:gpPop .35s ease-out}.gp td.never{background:#e5e7eb;color:#9ca3af}'
+    + '.gp .gp-sum{text-align:center;font-size:.85rem;line-height:1.65;padding:8px;border-radius:12px;background:#f5f3ff;border:2px solid #c4b5fd;margin-top:6px}.gp .gp-sum.good{background:#ecfdf5;border-color:#86efac}.gp .gp-sum.bad{background:#fff1f2;border-color:#fda4af}'
     + '@keyframes gpPop{0%{transform:scale(.3)}70%{transform:scale(1.15)}100%{transform:scale(1)}}'
     + '@media (prefers-reduced-motion:reduce){.gp .gp-chip,.gp td.hit{animation:none}}';
   document.head.appendChild(st);
@@ -54,15 +54,15 @@ function gpMount(root, ci){
     var pad = ta + 8, cy = Math.max(rA, rB) + pad, cxA = rA + pad, cxB = cxA + rA + rB + 2 * ta, W = cxB + rB + pad, H = cy + Math.max(rA, rB) + pad + 22;
     var m = Math.round(t), pa = m % c.a.n, pb = m % c.b.n, near = Math.abs(t - m) < 0.12;
     function gear(cx, cnt, r, colors, names, hit, dir, owner){
-      var g = '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r - 4) + '" fill="#fff3d6" stroke="#e9c46a" stroke-width="3"/>';
+      var g = '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r - 4) + '" fill="#ede9fe" stroke="#a78bfa" stroke-width="3"/>';
       for(var k = 0; k < cnt; k++){
         var ang = (dir > 0 ? (t - k) * 360 / cnt : 180 - (t - k) * 360 / cnt) * Math.PI / 180, x = cx + r * Math.cos(ang), y = cy + r * Math.sin(ang), on = k === hit;
-        g += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + ta + '" fill="' + colors[k % colors.length] + '" opacity="' + (on ? 1 : .6) + '" stroke="' + (on ? '#f59e0b' : '#fff') + '" stroke-width="' + (on ? 3.5 : 1.5) + '"/>'
+        g += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + ta + '" fill="' + colors[k % colors.length] + '" opacity="' + (on ? 1 : .6) + '" stroke="' + (on ? '#7c3aed' : '#fff') + '" stroke-width="' + (on ? 3.5 : 1.5) + '"/>'
           + '<text x="' + x.toFixed(1) + '" y="' + (y + 5).toFixed(1) + '" text-anchor="middle" font-size="14" font-family="Jua,sans-serif" fill="#fff" stroke="rgba(0,0,0,.25)" stroke-width=".4">' + names[k] + '</text>';
       }
-      g += '<circle cx="' + (cx - 8) + '" cy="' + (cy - 4) + '" r="2.8" fill="#5b4636"/><circle cx="' + (cx + 8) + '" cy="' + (cy - 4) + '" r="2.8" fill="#5b4636"/>'
-        + '<path d="M' + (cx - 7) + ' ' + (cy + 6) + ' Q' + cx + ' ' + (cy + (near ? 15 : 11)) + ' ' + (cx + 7) + ' ' + (cy + 6) + '" fill="none" stroke="#5b4636" stroke-width="2.2" stroke-linecap="round"/>'
-        + '<text x="' + cx + '" y="' + (cy + r + ta + 16) + '" text-anchor="middle" font-size="13" font-family="Jua,sans-serif" fill="#8a7358">' + owner + ' · 톱니 ' + cnt + '개</text>';
+      g += '<circle cx="' + (cx - 8) + '" cy="' + (cy - 4) + '" r="2.8" fill="#3b2a5c"/><circle cx="' + (cx + 8) + '" cy="' + (cy - 4) + '" r="2.8" fill="#3b2a5c"/>'
+        + '<path d="M' + (cx - 7) + ' ' + (cy + 6) + ' Q' + cx + ' ' + (cy + (near ? 15 : 11)) + ' ' + (cx + 7) + ' ' + (cy + 6) + '" fill="none" stroke="#3b2a5c" stroke-width="2.2" stroke-linecap="round"/>'
+        + '<text x="' + cx + '" y="' + (cy + r + ta + 16) + '" text-anchor="middle" font-size="13" font-family="Jua,sans-serif" fill="#6d5a9c">' + owner + ' · 톱니 ' + cnt + '개</text>';
       return g;
     }
     var mid = (cxA + rA + cxB - rB) / 2;
@@ -90,7 +90,7 @@ function gpMount(root, ci){
       }
       h += '</tr>';
     }
-    q('.gp-board').innerHTML = '<div style="font-size:.74rem;color:#8a7358;margin-bottom:3px">🗒️ 만남 도장판 — 칸의 숫자는 처음 만난 악수 순서</div>' + h + '</table>';
+    q('.gp-board').innerHTML = '<div style="font-size:.74rem;color:#6d5a9c;margin-bottom:3px">🗒️ 만남 도장판 — 칸의 숫자는 처음 만난 악수 순서</div>' + h + '</table>';
   }
   function summary(done){
     var box = q('.gp-sum');
