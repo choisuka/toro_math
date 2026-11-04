@@ -6,7 +6,9 @@ var GP_CASES = [
   {a: {n: 2, names: ['가', '나'], owner: '동글이'}, b: {n: 3, names: ['1', '2', '3'], owner: '뭉실이'}, coprime: true},
   {a: {n: 2, names: ['가', '나'], owner: '동글이'}, b: {n: 4, names: ['1', '2', '3', '4'], owner: '네모'}, coprime: false}
 ];
-var GP_AC = ['#fb923c', '#f472b6'], GP_BC = ['#38bdf8', '#4ade80', '#facc15', '#2dd4bf'];
+var GP_AC = ['#fb923c', '#f472b6'], GP_BC = ['#9fd2f7', '#4ade80', '#facc15', '#2dd4bf'];
+var GP_PALE = {'#9fd2f7': '#5aa0d6'};   // 파스텔 톱니색 → 도장판 열 제목에 쓰는 글자색
+function gpLabel(color){ return GP_PALE[color] ? '#3b2a5c' : '#fff'; }
 var GP_SPEED = 0.55;
 
 function gpGcd(a, b){ return b ? gpGcd(b, a % b) : a; }
@@ -58,7 +60,7 @@ function gpMount(root, ci){
       for(var k = 0; k < cnt; k++){
         var ang = (dir > 0 ? (t - k) * 360 / cnt : 180 - (t - k) * 360 / cnt) * Math.PI / 180, x = cx + r * Math.cos(ang), y = cy + r * Math.sin(ang), on = k === hit;
         g += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + ta + '" fill="' + colors[k % colors.length] + '" opacity="' + (on ? 1 : .6) + '" stroke="' + (on ? '#7c3aed' : '#fff') + '" stroke-width="' + (on ? 3.5 : 1.5) + '"/>'
-          + '<text x="' + x.toFixed(1) + '" y="' + (y + 5).toFixed(1) + '" text-anchor="middle" font-size="14" font-family="Jua,sans-serif" fill="#fff" stroke="rgba(0,0,0,.25)" stroke-width=".4">' + names[k] + '</text>';
+          + '<text x="' + x.toFixed(1) + '" y="' + (y + 5).toFixed(1) + '" text-anchor="middle" font-size="14" font-family="Jua,sans-serif" fill="' + gpLabel(colors[k % colors.length]) + '" stroke="' + (GP_PALE[colors[k % colors.length]] ? 'none' : 'rgba(0,0,0,.25)') + '" stroke-width=".4">' + names[k] + '</text>';
       }
       g += '<circle cx="' + (cx - 8) + '" cy="' + (cy - 4) + '" r="2.8" fill="#3b2a5c"/><circle cx="' + (cx + 8) + '" cy="' + (cy - 4) + '" r="2.8" fill="#3b2a5c"/>'
         + '<path d="M' + (cx - 7) + ' ' + (cy + 6) + ' Q' + cx + ' ' + (cy + (near ? 15 : 11)) + ' ' + (cx + 7) + ' ' + (cy + 6) + '" fill="none" stroke="#3b2a5c" stroke-width="2.2" stroke-linecap="round"/>'
@@ -81,7 +83,7 @@ function gpMount(root, ci){
     var key = count + ':' + done; if(key === boardKey) return; boardKey = key;
     var first = {}, t, h;
     for(t = 0; t < n; t++){ var p = pairAt(t); if(first[p[0] + ',' + p[1]] === undefined) first[p[0] + ',' + p[1]] = t + 1; }
-    h = '<table><tr><th></th>' + c.b.names.map(function(x, j){ return '<th style="color:' + GP_BC[j % GP_BC.length] + '">' + x + '</th>'; }).join('') + '</tr>';
+    h = '<table><tr><th></th>' + c.b.names.map(function(x, j){ return '<th style="color:' + (GP_PALE[GP_BC[j % GP_BC.length]] || GP_BC[j % GP_BC.length]) + '">' + x + '</th>'; }).join('') + '</tr>';
     for(var i = 0; i < c.a.n; i++){
       h += '<tr><th style="color:' + GP_AC[i % GP_AC.length] + '">' + c.a.names[i] + '</th>';
       for(var j = 0; j < c.b.n; j++){
