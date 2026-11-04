@@ -59,7 +59,7 @@ function gpMount(root, ci){
       var g = '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r - 4) + '" fill="#ede9fe" stroke="#a78bfa" stroke-width="3"/>';
       for(var k = 0; k < cnt; k++){
         var ang = (dir > 0 ? (t - k) * 360 / cnt : 180 - (t - k) * 360 / cnt) * Math.PI / 180, x = cx + r * Math.cos(ang), y = cy + r * Math.sin(ang), on = k === hit;
-        g += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + ta + '" fill="' + colors[k % colors.length] + '" opacity="' + (on ? 1 : .6) + '" stroke="' + (on ? '#7c3aed' : '#fff') + '" stroke-width="' + (on ? 3.5 : 1.5) + '"/>'
+        g += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + ta + '" fill="' + colors[k % colors.length] + '" opacity="' + (on ? 1 : .6) + '" stroke="' + (on ? 'none' : '#fff') + '" stroke-width="1.5"' + (on ? ' style="filter:drop-shadow(0 0 5px rgba(124,58,237,.65))"' : '') + '/>'
           + '<text x="' + x.toFixed(1) + '" y="' + (y + 5).toFixed(1) + '" text-anchor="middle" font-size="14" font-family="Jua,sans-serif" fill="' + gpLabel(colors[k % colors.length]) + '" stroke="' + (GP_PALE[colors[k % colors.length]] ? 'none' : 'rgba(0,0,0,.25)') + '" stroke-width=".4">' + names[k] + '</text>';
       }
       g += '<circle cx="' + (cx - 8) + '" cy="' + (cy - 4) + '" r="2.8" fill="#3b2a5c"/><circle cx="' + (cx + 8) + '" cy="' + (cy - 4) + '" r="2.8" fill="#3b2a5c"/>'
