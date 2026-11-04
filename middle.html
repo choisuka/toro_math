@@ -14587,9 +14587,9 @@ function fixRadicals(html) {
 }
 
 // 소인수분해 동굴 "주제 탐구" 카드: 질문을 랜덤 순서로 번갈아 보여 준다(카드를 누르면 하브루타 카드 묶음으로 들어간다).
-const PHQ = ['왜 1은 소수가 아닐까?', '약수가 3개인 수는 어떤 수일까?', '소수는 무한히 많은지 어떻게 알까?'];
-// 보이는 질문과 열리는 카드를 맞춘다(prime-havruta의 카드 번호: 0 = 1은 왜 소수가 아닐까?, 2 = 약수의 개수가 3개인 수, 3 = 소수는 무한히 많다)
-const PHQ_CARD = [0, 2, 3];
+const PHQ = ['왜 1은 소수가 아닐까?', '약수가 3개인 수는 어떤 수일까?', '소수는 무한히 많은지 어떻게 알까?', '공통점이 1뿐인 두 수는 왜 중요할까?'];
+// 보이는 질문과 열리는 카드를 맞춘다(prime-havruta의 카드 번호: 0 = 1은 왜 소수가 아닐까?, 1 = 최대공약수 1(서로소), 2 = 약수의 개수가 3개인 수, 3 = 소수는 무한히 많다)
+const PHQ_CARD = [0, 2, 3, 1];
 let phqOrder = [], phqLast = -1;
 function phqOpen(){
   startCards('prime-havruta', 'prime-hub');
@@ -14597,7 +14597,7 @@ function phqOpen(){
 }
 function phqNext(){
   if(!phqOrder.length){
-    phqOrder = [0, 1, 2].sort(function(){ return Math.random() - .5; });
+    phqOrder = PHQ.map(function(_, i){ return i; }).sort(function(){ return Math.random() - .5; });
     if(phqOrder[0] === phqLast) phqOrder.push(phqOrder.shift());
   }
   phqLast = phqOrder.shift(); return phqLast;
