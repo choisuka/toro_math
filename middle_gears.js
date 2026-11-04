@@ -16,7 +16,9 @@ function gpT(x){ var m = Math.floor(x + 1e-9); return m + gpEase(x - m); }
 function gpCss(){
   if(document.getElementById('gp-css')) return;
   var st = document.createElement('style'); st.id = 'gp-css';
-  st.textContent = '.gp{background:#fffdf6;color:#5b4636;border:2px solid #e9d8b4;border-radius:16px;padding:10px 8px;margin:10px 0 14px;font-family:Jua,"Nanum Gothic",sans-serif;font-size:.9rem;line-height:1.5}'
+  st.textContent = '.gp-emoji{display:inline-block;margin-left:4px;padding:0 7px;font-size:1.2rem;line-height:1.55;border-radius:50%;border:1px solid rgba(253,230,138,.55);background:rgba(253,230,138,.14);cursor:pointer;vertical-align:middle;animation:gpEmo 2.2s ease-in-out infinite}.gp-emoji.on{animation:none;background:rgba(253,230,138,.35)}'
+    + '@keyframes gpEmo{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}@media (prefers-reduced-motion:reduce){.gp-emoji{animation:none}}'
+    + '.gp{background:#fffdf6;color:#5b4636;border:2px solid #e9d8b4;border-radius:16px;padding:10px 8px;margin:10px 0 14px;font-family:Jua,"Nanum Gothic",sans-serif;font-size:.9rem;line-height:1.5}'
     + '.gp *{box-sizing:border-box}.gp .gp-title{text-align:center;font-size:.92rem;margin-bottom:4px}'
     + '.gp .gp-stage{background:#fff;border:2px solid #e9d8b4;border-radius:14px;padding:4px 2px;position:relative}.gp .gp-stage svg{width:100%;height:auto;display:block}'
     + '.gp .gp-now{position:absolute;left:8px;top:6px;font-size:.72rem;background:#fbbf24;color:#fff;border-radius:10px;padding:1px 8px}'
@@ -129,7 +131,16 @@ function gpMount(root, ci){
 function gpMountAll(){
   Array.prototype.forEach.call(document.querySelectorAll('#cv-ans-area .gp'), function(el){ if(!el.__gp) gpMount(el, +el.getAttribute('data-gp')); });
 }
+// 풀이의 톱니바퀴 설명 옆 이모지: 누르면 "뾰족이 이야기" 상자가 열리고(다시 누르면 닫힘), 열릴 때 그림을 붙인다
+function gpStoryToggle(btn){
+  var p = document.getElementById('gp-story'); if(!p) return;
+  var show = p.style.display === 'none';
+  p.style.display = show ? '' : 'none';
+  btn.setAttribute('aria-expanded', show ? 'true' : 'false'); btn.classList.toggle('on', show);
+  if(show) gpMountAll();
+}
 window.addEventListener('load', function(){
+  gpCss();
   if(typeof toggleCVAnswer !== 'function') return;
   var orig = toggleCVAnswer;
   toggleCVAnswer = function(){ orig(); gpMountAll(); };
