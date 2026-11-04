@@ -134,6 +134,10 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
   /* 열 폭도 함께 넓혀 양옆 빈 공간을 줄인다 */
   .grade-section.unit-grid-mode.active{max-width:880px}
 }
+/* 마스코트 배지: 카드 상단 캐릭터가 살짝 위아래로 움직임 */
+@keyframes mascotBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.mascot-badge svg{animation:mascotBob 2.4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.mascot-badge svg{animation:none}}
 /* ── 흰 바탕 패널(.lw): LIGHT_UNITS에 든 단원의 카드 본문을 흰 바탕으로. 카드 본문은 수정하지 않고 아래 규칙으로 덮어씀 ── */
 .lw-bar{display:flex;justify-content:flex-end;margin-bottom:6px}
 .lw-btn{background:rgba(255,255,255,.06);border:1px solid #30363d;color:#c9d1d9;border-radius:8px;padding:4px 10px;font-size:.74rem;cursor:pointer;font-family:inherit}
@@ -165,6 +169,9 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 .lw [style^="color:#58a6ff"],.lw [style*=";color:#58a6ff"],.lw [style*="; color:#58a6ff"]{color:#1f5fae !important}
 .lw [style^="color:#bc8cff"],.lw [style*=";color:#bc8cff"],.lw [style*="; color:#bc8cff"]{color:#4b3590 !important}
 .lw [style^="color:#c9d1d9"],.lw [style*=";color:#c9d1d9"],.lw [style*="; color:#c9d1d9"]{color:#3a4458 !important}
+.lw [style^="color:#7dd3fc"],.lw [style*=";color:#7dd3fc"],.lw [style*="; color:#7dd3fc"]{color:#0b6a94 !important}
+.lw [style^="color:#ffa657"],.lw [style*=";color:#ffa657"],.lw [style*="; color:#ffa657"]{color:#9a5b12 !important}
+.lw [style^="color:#ff7ab8"],.lw [style*=";color:#ff7ab8"],.lw [style*="; color:#ff7ab8"]{color:#b23a72 !important}
 .lw pre{color:#1d2433}
 .lw .tver-badge.basic{background:#eef0f4;color:#5b6472;border-color:#c5ccd8}
 .lw .tver-badge.story{background:#fff3d1;color:#7a5600;border-color:#c9a227}
@@ -188,6 +195,10 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
 .lw svg text[fill="#f85149"]{fill:#c0362f}
 .lw svg text[fill="#bc8cff"]{fill:#4b3590}
 .lw svg text[fill="#7dd3fc"]{fill:#0b6a94}
+/* 초5 전용: 흰 바탕을 끄고 검정 바탕으로 볼 때, 흐린 회색 작은 글씨(설명문 등)가 배경과 대비가 약해서 밝게 보정 */
+[id^="cv-e5"] .lw-off [style^="color:#8b949e"],
+[id^="cv-e5"] .lw-off [style*=";color:#8b949e"],
+[id^="cv-e5"] .lw-off [style*="; color:#8b949e"]{color:#aeb7c2 !important}
 </style>
 </head>
 <body>
@@ -664,6 +675,22 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
     </div>
   </div>
 
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">🔢 소수의 덧셈과 뺄셈 <span class="badge">초4</span></div><div class="unit-sub">소수 두 자리 수 범위의 덧셈과 뺄셈</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e4dec">
+        <div class="cv-grid" id="cv-e4dec-grid"></div>
+        <div class="cv-detail" id="cv-e4dec-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e4dec')">← 목록으로</button>
+          <div id="cv-e4dec-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="semester-divider">나머지 초4-2 단원을 순서대로 만들고 있어요</div>
   </div>
 
@@ -1054,6 +1081,36 @@ function gcd(a,b){ return b?gcd(b,a%b):a; }
 var BADGE61 = '<span style="background:#1f6feb;color:#fff;font-size:.6rem;font-weight:700;padding:1px 6px;border-radius:8px;margin-left:6px;vertical-align:middle;white-space:nowrap">6-1</span>';
 var BADGE62 = '<span style="background:#bc8cff;color:#0d1117;font-size:.6rem;font-weight:700;padding:1px 6px;border-radius:8px;margin-left:6px;vertical-align:middle;white-space:nowrap">6-2</span>';
 var BADGE_ADV = '<span style="background:#f85149;color:#fff;font-size:.6rem;font-weight:700;padding:1px 6px;border-radius:8px;margin-left:6px;vertical-align:middle;white-space:nowrap">범위밖 심화</span>';
+// ── 마스코트 배지(사용자 승인 2026-11-02, _dev/mascots_approved_20261102.html) — CV_DATA보다 먼저 선언해야 함(일부 단원이 배열 생성 시점에 바로 호출) ──
+var MASCOT_ICON = {
+  tori: '<path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/><ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/><circle cx="46" cy="40" r="16" fill="#d98a4a"/><polygon points="36,28 32,16 42,26" fill="#d98a4a"/><polygon points="56,28 60,16 50,26" fill="#d98a4a"/><circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/><circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/><ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/><rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>',
+  focus: '<polygon points="50,10 70,42 30,42" fill="#4b3f8f"/><circle cx="50" cy="12" r="4" fill="#f0c040"/><circle cx="36" cy="38" r="9" fill="#a9754a"/><circle cx="64" cy="38" r="9" fill="#a9754a"/><circle cx="50" cy="56" r="26" fill="#c9915a"/><ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/><circle cx="42" cy="52" r="3" fill="#2b2b2b"/><circle cx="58" cy="52" r="3" fill="#2b2b2b"/><ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/><rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>',
+  lupe: '<path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/><polygon points="36,70 48,80 40,86" fill="#6d5138"/><polygon points="60,70 48,80 56,86" fill="#6d5138"/><circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/><circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/><circle cx="48" cy="46" r="18" fill="#ffd9a8"/><path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/><rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/><circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/><circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/><line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/><line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/><line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/><circle cx="40" cy="47" r="2" fill="#2b2b2b"/><circle cx="56" cy="47" r="2" fill="#2b2b2b"/><circle cx="48" cy="53" r="1.4" fill="#c9915a"/><path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/><g transform="translate(74,66) rotate(20)"><circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/><line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/></g>',
+  ray: '<circle cx="50" cy="50" r="24" fill="#b0b0b0"/><polygon points="34,30 28,18 42,28" fill="#8d8d8d"/><polygon points="66,30 72,18 58,28" fill="#8d8d8d"/><ellipse cx="50" cy="52" rx="22" ry="16" fill="#e8e8e8"/><circle cx="42" cy="46" r="7" fill="#fff" stroke="#2b2b2b" stroke-width="1.5"/><circle cx="58" cy="46" r="7" fill="#fff" stroke="#2b2b2b" stroke-width="1.5"/><circle cx="42" cy="46" r="2.4" fill="#2b2b2b"/><circle cx="58" cy="46" r="2.4" fill="#2b2b2b"/><line x1="49" y1="46" x2="51" y2="46" stroke="#2b2b2b" stroke-width="1.5"/><ellipse cx="50" cy="56" rx="4" ry="2.4" fill="#2b2b2b"/><rect x="60" y="64" width="22" height="6" rx="3" fill="#607d8b" transform="rotate(30 71 67)"/>',
+  algo: '<line x1="50" y1="14" x2="50" y2="26" stroke="#8b949e" stroke-width="3"/><circle cx="50" cy="11" r="4" fill="#58d6ff"/><rect x="26" y="26" width="48" height="36" rx="8" fill="#9aa6b2"/><rect x="34" y="34" width="32" height="18" rx="4" fill="#0d1117"/><circle cx="44" cy="43" r="3" fill="#58d6ff"/><circle cx="56" cy="43" r="3" fill="#58d6ff"/><rect x="30" y="64" width="40" height="24" rx="6" fill="#7c8894"/><rect x="36" y="70" width="28" height="4" rx="2" fill="#58d6ff"/>',
+  komo: '<polygon points="78,70 86,52 92,72" fill="#7c5cff"/><polygon points="88,61 97,61 92,69" fill="#f0c040"/><circle cx="50" cy="55" r="26" fill="#7c5cff"/><polygon points="32,38 28,20 44,32" fill="#7c5cff"/><polygon points="68,38 72,20 56,32" fill="#7c5cff"/><circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/><circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/><path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/><line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/><line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>',
+  mong: '<path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/><circle cx="40" cy="48" r="4" fill="#2b2b2b"/><circle cx="60" cy="48" r="4" fill="#2b2b2b"/><path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>',
+  tipi: '<polygon points="18,44 2,30 18,34" fill="#ffd166" opacity=".85"/><polygon points="82,44 98,30 82,34" fill="#ffd166" opacity=".85"/><circle cx="50" cy="50" r="24" fill="#fff6e0" stroke="#f0c040" stroke-width="3"/><line x1="50" y1="50" x2="50" y2="36" stroke="#2b2b2b" stroke-width="2.5" stroke-linecap="round"/><line x1="50" y1="50" x2="60" y2="54" stroke="#2b2b2b" stroke-width="2.5" stroke-linecap="round"/><circle cx="40" cy="46" r="2" fill="#2b2b2b"/><circle cx="60" cy="46" r="2" fill="#2b2b2b"/><path d="M42 60 Q50 65 58 60" stroke="#2b2b2b" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="44" y="76" width="4" height="12" rx="2" fill="#f0c040"/>',
+  chase: '<path d="M68 70 Q90 64 85 42" fill="none" stroke="#f2b84b" stroke-width="8" stroke-linecap="round"/><circle cx="83" cy="48" r="2" fill="#2b2320"/><circle cx="78" cy="58" r="2" fill="#2b2320"/><ellipse cx="45" cy="70" rx="20" ry="16" fill="#f2b84b"/><circle cx="33" cy="74" r="2" fill="#2b2320"/><circle cx="55" cy="78" r="2" fill="#2b2320"/><circle cx="46" cy="64" r="1.8" fill="#2b2320"/><path d="M30 82 L19 95" stroke="#f2b84b" stroke-width="8" stroke-linecap="round"/><path d="M58 82 L69 95" stroke="#f2b84b" stroke-width="8" stroke-linecap="round"/><circle cx="42" cy="40" r="18" fill="#f2b84b"/><polygon points="28,30 23,15 38,27" fill="#f2b84b"/><polygon points="56,30 61,15 46,27" fill="#f2b84b"/><polygon points="29,27 26,19 35,26" fill="#3a2f22"/><polygon points="55,27 58,19 49,26" fill="#3a2f22"/><path d="M25,34 Q42,23 59,34" stroke="#1b1b1b" stroke-width="5" fill="none" stroke-linecap="round"/><polygon points="45,21 39,30 43,30 40,39 48,28 44,28 46,21" fill="#f0c040" stroke="#c99a1e" stroke-width="1"/><line x1="33" y1="45" x2="30" y2="54" stroke="#3a2f22" stroke-width="2" stroke-linecap="round"/><line x1="51" y1="45" x2="54" y2="54" stroke="#3a2f22" stroke-width="2" stroke-linecap="round"/><circle cx="35" cy="43" r="2.4" fill="#2b2320"/><circle cx="49" cy="43" r="2.4" fill="#2b2320"/><polygon points="40,49 44,49 42,52" fill="#2b2320"/><path d="M38 53 Q42 56 46 53" stroke="#2b2320" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="31" cy="38" r="1.7" fill="#2b2320"/><circle cx="55" cy="38" r="1.7" fill="#2b2320"/>',
+  somi: '<ellipse cx="50" cy="58" rx="30" ry="22" fill="#fdfdfd" stroke="#c5ccd8" stroke-width="2"/><circle cx="28" cy="48" r="13" fill="#fdfdfd" stroke="#c5ccd8" stroke-width="2"/><circle cx="72" cy="48" r="13" fill="#fdfdfd" stroke="#c5ccd8" stroke-width="2"/><circle cx="40" cy="38" r="14" fill="#fdfdfd" stroke="#c5ccd8" stroke-width="2"/><circle cx="60" cy="38" r="14" fill="#fdfdfd" stroke="#c5ccd8" stroke-width="2"/><circle cx="42" cy="56" r="2.6" fill="#2b2b2b"/><circle cx="58" cy="56" r="2.6" fill="#2b2b2b"/><path d="M44 66 Q50 70 56 66" stroke="#e08a9d" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="35" cy="62" r="4" fill="#ffd2de" opacity=".7"/><circle cx="65" cy="62" r="4" fill="#ffd2de" opacity=".7"/>'
+};
+var MASCOT_MSG = {
+  tori: '다람쥐 토리와 함께 생각해 볼까요?',
+  focus: '마법사 곰 포커스가 원리를 알려줘요',
+  lupe: '탐정 루페와 함께 단서를 찾아봐요',
+  ray: '너구리 레이가 도형을 조립해요',
+  algo: '로봇 알고가 계산을 확인해요',
+  komo: '우주고양이 코모가 도전을 기다려요',
+  mong: '꼬마 유령 몽이가 함정을 알려줘요',
+  tipi: '시간요정 티피와 시간을 재 봐요',
+  chase: '치타 체이스와 속도를 겨뤄봐요',
+  somi: '구름양 솜이가 응원하고 있어요'
+};
+function mascotBadge(key, color){
+  return '<div class="mascot-badge" style="background:#0d1117;border:2px solid '+color+';border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">'
+    +'<svg viewBox="0 0 100 100" style="width:64px;height:64px">'+MASCOT_ICON[key]+'</svg>'
+    +'<div style="font-size:.68rem;color:'+color+';margin-top:4px">'+MASCOT_MSG[key]+'</div></div>';
+}
 // ── 카드뷰(한 장씩 넘기기) ──
 const CV_DATA = {
   'e3div': [
@@ -1286,6 +1343,20 @@ const CV_DATA = {
   ],
   'e5gcd': [
     { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #58a6ff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/>
+        <ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/>
+        <circle cx="46" cy="40" r="16" fill="#d98a4a"/>
+        <polygon points="36,28 32,16 42,26" fill="#d98a4a"/>
+        <polygon points="56,28 60,16 50,26" fill="#d98a4a"/>
+        <circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/>
+        <circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/>
+        <ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/>
+        <rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>
+      </svg>
+      <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">다람쥐 토리와 함께 생각해 볼까요?</div>
+    </div>
       <p>친구들과 12명이서 팀을 나눠 게임을 하고 싶은데, 몇 명씩 나눠야 딱 맞을까 고민해본 적 있나요? 4명씩 3팀? 3명씩 4팀? 이렇게 남는 사람 없이 딱 맞아떨어지게 나누는 방법을 아는 게 바로 <strong>약수</strong>예요.</p>
       <p style="margin-top:10px">그리고 버스 A는 4분마다, 버스 B는 6분마다 온다면, 두 버스가 언제 동시에 도착할지 알 수 있을까요? 그걸 알려주는 게 바로 <strong>배수</strong>예요. 약수와 배수를 알면 "어떻게 나누면 딱 맞을까?", "언제 다시 만날까?" 같은 질문에 답할 수 있어요.</p>
       <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px">
@@ -1299,6 +1370,21 @@ const CV_DATA = {
       </div>
     `},
     { title:'📖 개념 설명', cls:'concept', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #58a6ff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="50,10 70,42 30,42" fill="#4b3f8f"/>
+        <circle cx="50" cy="12" r="4" fill="#f0c040"/>
+        <circle cx="36" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="64" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="50" cy="56" r="26" fill="#c9915a"/>
+        <ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/>
+        <circle cx="42" cy="52" r="3" fill="#2b2b2b"/>
+        <circle cx="58" cy="52" r="3" fill="#2b2b2b"/>
+        <ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/>
+        <rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
+    </div>
       <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 약수: 나누어떨어지게 하는 수</div>
       <ul><li>12를 나머지 없이 나눌 수 있는 수 → 12의 약수: 1,2,3,4,6,12</li></ul>
       <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
@@ -1429,6 +1515,32 @@ const CV_DATA = {
       <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 두 수(24와 36)의 관계</strong>를 묻고 있어요. 최대공약수·최소공배수·공약수·공배수는 모두 서로 연결되어 있다는 걸 알 수 있어요.</p>
     `},
     { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #58a6ff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/>
+        <polygon points="36,70 48,80 40,86" fill="#6d5138"/>
+        <polygon points="60,70 48,80 56,86" fill="#6d5138"/>
+        <circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="46" r="18" fill="#ffd9a8"/>
+        <path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/>
+        <rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/>
+        <circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <circle cx="40" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="56" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="48" cy="53" r="1.4" fill="#c9915a"/>
+        <path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g transform="translate(74,66) rotate(20)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+          <line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">탐정 루페와 함께 단서를 찾아봐요</div>
+    </div>
       <div class="q-item"><strong>Q1.</strong> 소수(素數)는 약수가 항상 정확히 2개(1과 자기 자신)입니다. 그런데 1은 소수일까요?
         <button class="havruta-show-btn" onclick="havrutaReveal('e5gcd-h1',this)">💬 친구들은 이렇게 답했어요</button>
         <div class="havruta-reveal" id="rv-e5gcd-h1">
@@ -1464,6 +1576,19 @@ const CV_DATA = {
       </div>
     `},
     { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #58a6ff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <line x1="50" y1="14" x2="50" y2="26" stroke="#8b949e" stroke-width="3"/>
+        <circle cx="50" cy="11" r="4" fill="#58d6ff"/>
+        <rect x="26" y="26" width="48" height="36" rx="8" fill="#9aa6b2"/>
+        <rect x="34" y="34" width="32" height="18" rx="4" fill="#0d1117"/>
+        <circle cx="44" cy="43" r="3" fill="#58d6ff"/>
+        <circle cx="56" cy="43" r="3" fill="#58d6ff"/>
+        <rect x="30" y="64" width="40" height="24" rx="6" fill="#7c8894"/>
+        <rect x="36" y="70" width="28" height="4" rx="2" fill="#58d6ff"/>
+      </svg>
+      <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">로봇 알고가 계산을 확인해요</div>
+    </div>
       <div class="prob-box">
         <div class="prob-q">문제: 사과 24개와 귤 36개를 최대한 많은 사람에게 똑같이 나누려 합니다. 몇 명에게 나눌 수 있나요?</div>
         <button class="havruta-show-btn" onclick="havrutaReveal('e5gcd-p1',this)">💡 풀이 보기</button>
@@ -1483,6 +1608,21 @@ const CV_DATA = {
       </div>
     `},
     { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #58a6ff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="78,70 86,52 92,72" fill="#7c5cff"/>
+        <polygon points="88,61 97,61 92,69" fill="#f0c040"/>
+        <circle cx="50" cy="55" r="26" fill="#7c5cff"/>
+        <polygon points="32,38 28,20 44,32" fill="#7c5cff"/>
+        <polygon points="68,38 72,20 56,32" fill="#7c5cff"/>
+        <circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/>
+        <circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/>
+        <path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/>
+        <line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>
+      </svg>
+      <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">우주고양이 코모가 도전을 기다려요</div>
+    </div>
       <p>지금까지 배운 약수·배수·최대공약수·최소공배수를 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
       <div class="prob-box">
         <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
@@ -1546,6 +1686,15 @@ const CV_DATA = {
       </div>
     `},
     { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #58a6ff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/>
+        <circle cx="40" cy="48" r="4" fill="#2b2b2b"/>
+        <circle cx="60" cy="48" r="4" fill="#2b2b2b"/>
+        <path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">꼬마 유령 몽이가 함정을 알려줘요</div>
+    </div>
       <div class="story-line">
         <div class="story-avatar">🧒</div>
         <div class="story-bubble"><span class="story-name">민준</span>선생님, 소수가 무한히 많다는 걸 어떻게 알아요? 끝까지 다 세어본 것도 아니잖아요.</div>
@@ -3330,6 +3479,20 @@ const CV_DATA_E3DATA = [
 CV_DATA['e3data'] = CV_DATA_E3DATA;
 const CV_DATA_E5MIX = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f0c040;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/>
+        <ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/>
+        <circle cx="46" cy="40" r="16" fill="#d98a4a"/>
+        <polygon points="36,28 32,16 42,26" fill="#d98a4a"/>
+        <polygon points="56,28 60,16 50,26" fill="#d98a4a"/>
+        <circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/>
+        <circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/>
+        <ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/>
+        <rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f0c040;margin-top:4px">다람쥐 토리와 함께 생각해 볼까요?</div>
+    </div>
     <p>문구점에서 500원짜리 지우개 3개를 사고 2000원을 냈어요. 거스름돈은 얼마일까요?</p>
     <p style="margin-top:10px">식으로 쓰면 <strong>2000-3×500</strong>인데, 뺄셈과 곱셈이 섞여 있으면 어떤 걸 먼저 계산해야 할까요?</p>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
@@ -3339,6 +3502,21 @@ const CV_DATA_E5MIX = [
     </div>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f0c040;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="50,10 70,42 30,42" fill="#4b3f8f"/>
+        <circle cx="50" cy="12" r="4" fill="#f0c040"/>
+        <circle cx="36" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="64" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="50" cy="56" r="26" fill="#c9915a"/>
+        <ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/>
+        <circle cx="42" cy="52" r="3" fill="#2b2b2b"/>
+        <circle cx="58" cy="52" r="3" fill="#2b2b2b"/>
+        <ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/>
+        <rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f0c040;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
+    </div>
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 덧셈과 뺄셈만 있는 식</div>
     <ul><li>5+3-2는 어떤 순서로 계산할까요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
@@ -3378,6 +3556,32 @@ const CV_DATA_E5MIX = [
     </div>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f0c040;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/>
+        <polygon points="36,70 48,80 40,86" fill="#6d5138"/>
+        <polygon points="60,70 48,80 56,86" fill="#6d5138"/>
+        <circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="46" r="18" fill="#ffd9a8"/>
+        <path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/>
+        <rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/>
+        <circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <circle cx="40" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="56" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="48" cy="53" r="1.4" fill="#c9915a"/>
+        <path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g transform="translate(74,66) rotate(20)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+          <line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div style="font-size:.68rem;color:#f0c040;margin-top:4px">탐정 루페와 함께 단서를 찾아봐요</div>
+    </div>
     <div class="q-item"><strong>Q1.</strong> 2000-3×500을 계산할 때, 왜 곱셈(3×500)을 뺄셈보다 먼저 해야 할까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5mix-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e5mix-h1">
@@ -3413,6 +3617,19 @@ const CV_DATA_E5MIX = [
     </div>
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f0c040;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <line x1="50" y1="14" x2="50" y2="26" stroke="#8b949e" stroke-width="3"/>
+        <circle cx="50" cy="11" r="4" fill="#58d6ff"/>
+        <rect x="26" y="26" width="48" height="36" rx="8" fill="#9aa6b2"/>
+        <rect x="34" y="34" width="32" height="18" rx="4" fill="#0d1117"/>
+        <circle cx="44" cy="43" r="3" fill="#58d6ff"/>
+        <circle cx="56" cy="43" r="3" fill="#58d6ff"/>
+        <rect x="30" y="64" width="40" height="24" rx="6" fill="#7c8894"/>
+        <rect x="36" y="70" width="28" height="4" rx="2" fill="#58d6ff"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f0c040;margin-top:4px">로봇 알고가 계산을 확인해요</div>
+    </div>
     <div class="prob-box">
       <div class="prob-q">문제: 500원짜리 지우개 3개를 사고 2000원을 냈습니다. 거스름돈은 얼마인가요?</div>
       <button class="havruta-show-btn" onclick="havrutaReveal('e5mix-p1',this)">💡 풀이 보기</button>
@@ -3439,6 +3656,21 @@ const CV_DATA_E5MIX = [
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f0c040;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="78,70 86,52 92,72" fill="#7c5cff"/>
+        <polygon points="88,61 97,61 92,69" fill="#f0c040"/>
+        <circle cx="50" cy="55" r="26" fill="#7c5cff"/>
+        <polygon points="32,38 28,20 44,32" fill="#7c5cff"/>
+        <polygon points="68,38 72,20 56,32" fill="#7c5cff"/>
+        <circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/>
+        <circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/>
+        <path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/>
+        <line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f0c040;margin-top:4px">우주고양이 코모가 도전을 기다려요</div>
+    </div>
     <p>지금까지 배운 계산 순서 규칙을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
@@ -3492,6 +3724,15 @@ const CV_DATA_E5MIX = [
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f0c040;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/>
+        <circle cx="40" cy="48" r="4" fill="#2b2b2b"/>
+        <circle cx="60" cy="48" r="4" fill="#2b2b2b"/>
+        <path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f0c040;margin-top:4px">꼬마 유령 몽이가 함정을 알려줘요</div>
+    </div>
     <div class="story-line">
       <div class="story-avatar">🧒</div>
       <div class="story-bubble"><span class="story-name">민준</span>선생님, 저 계산기에 "10-2×3"을 순서대로 눌렀는데 24가 나왔어요! 근데 학교에서는 4라고 배웠는데 계산기가 틀린 거예요?</div>
@@ -3574,6 +3815,20 @@ function corrBeforeAfter(n, T, L){
 }
 const CV_DATA_E5CORR = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #bc8cff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/>
+        <ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/>
+        <circle cx="46" cy="40" r="16" fill="#d98a4a"/>
+        <polygon points="36,28 32,16 42,26" fill="#d98a4a"/>
+        <polygon points="56,28 60,16 50,26" fill="#d98a4a"/>
+        <circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/>
+        <circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/>
+        <ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/>
+        <rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>
+      </svg>
+      <div style="font-size:.68rem;color:#bc8cff;margin-top:4px">다람쥐 토리와 함께 생각해 볼까요?</div>
+    </div>
     <p>잔칫집에서 네모 탁자를 한 줄로 붙여서 손님을 앉히려고 해요. 탁자를 1개, 2개, 3개... 늘릴 때마다 앉을 수 있는 사람 수도 달라져요.</p>
     <p style="margin-top:10px">이렇게 "하나가 변하면 다른 하나도 따라서 변하는" 두 양의 관계를 미리 알아두면, 탁자 100개를 붙였을 때 몇 명이 앉을 수 있는지도 하나하나 세지 않고 바로 알 수 있어요.</p>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
@@ -3583,6 +3838,21 @@ const CV_DATA_E5CORR = [
     </div>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #bc8cff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="50,10 70,42 30,42" fill="#4b3f8f"/>
+        <circle cx="50" cy="12" r="4" fill="#f0c040"/>
+        <circle cx="36" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="64" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="50" cy="56" r="26" fill="#c9915a"/>
+        <ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/>
+        <circle cx="42" cy="52" r="3" fill="#2b2b2b"/>
+        <circle cx="58" cy="52" r="3" fill="#2b2b2b"/>
+        <ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/>
+        <rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#bc8cff;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
+    </div>
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 먼저, 탁자를 "붙이지 않고" 따로 두면?</div>
     <ul><li>4인용 탁자를 붙이지 않고 하나씩 띄엄띄엄 두면, 탁자가 1개, 2개, 3개로 늘어날 때 의자 수는 어떻게 될까요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
@@ -3652,6 +3922,32 @@ const CV_DATA_E5CORR = [
     </div>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #bc8cff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/>
+        <polygon points="36,70 48,80 40,86" fill="#6d5138"/>
+        <polygon points="60,70 48,80 56,86" fill="#6d5138"/>
+        <circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="46" r="18" fill="#ffd9a8"/>
+        <path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/>
+        <rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/>
+        <circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <circle cx="40" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="56" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="48" cy="53" r="1.4" fill="#c9915a"/>
+        <path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g transform="translate(74,66) rotate(20)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+          <line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div style="font-size:.68rem;color:#bc8cff;margin-top:4px">탐정 루페와 함께 단서를 찾아봐요</div>
+    </div>
     <div class="q-item"><strong>Q1.</strong> 탁자를 한 줄로 붙여 나갈 때, 하나씩 늘릴 때마다 의자가 왜 4개씩이 아니라 2개씩만 늘어날까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5corr-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e5corr-h1">
@@ -3698,6 +3994,19 @@ const CV_DATA_E5CORR = [
     </div>
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #bc8cff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <line x1="50" y1="14" x2="50" y2="26" stroke="#8b949e" stroke-width="3"/>
+        <circle cx="50" cy="11" r="4" fill="#58d6ff"/>
+        <rect x="26" y="26" width="48" height="36" rx="8" fill="#9aa6b2"/>
+        <rect x="34" y="34" width="32" height="18" rx="4" fill="#0d1117"/>
+        <circle cx="44" cy="43" r="3" fill="#58d6ff"/>
+        <circle cx="56" cy="43" r="3" fill="#58d6ff"/>
+        <rect x="30" y="64" width="40" height="24" rx="6" fill="#7c8894"/>
+        <rect x="36" y="70" width="28" height="4" rx="2" fill="#58d6ff"/>
+      </svg>
+      <div style="font-size:.68rem;color:#bc8cff;margin-top:4px">로봇 알고가 계산을 확인해요</div>
+    </div>
     <div class="prob-box">
       <div class="prob-q">문제: 4인용 탁자를 한 줄로 5개 붙이면 의자는 몇 개 필요한가요?</div>
       <div class="fb-diagram">${corrBeforeAfter(3,1,1)}<span class="cap">탁자 5개는 이 그림의 패턴이 한 번 더 이어진 거예요 — 맞닿는 자리(✕)가 몇 군데인지 세어보세요</span></div>
@@ -3732,6 +4041,21 @@ const CV_DATA_E5CORR = [
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #bc8cff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="78,70 86,52 92,72" fill="#7c5cff"/>
+        <polygon points="88,61 97,61 92,69" fill="#f0c040"/>
+        <circle cx="50" cy="55" r="26" fill="#7c5cff"/>
+        <polygon points="32,38 28,20 44,32" fill="#7c5cff"/>
+        <polygon points="68,38 72,20 56,32" fill="#7c5cff"/>
+        <circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/>
+        <circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/>
+        <path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/>
+        <line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>
+      </svg>
+      <div style="font-size:.68rem;color:#bc8cff;margin-top:4px">우주고양이 코모가 도전을 기다려요</div>
+    </div>
     <p>지금까지 배운 대응 관계를 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
@@ -3785,6 +4109,15 @@ const CV_DATA_E5CORR = [
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #bc8cff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/>
+        <circle cx="40" cy="48" r="4" fill="#2b2b2b"/>
+        <circle cx="60" cy="48" r="4" fill="#2b2b2b"/>
+        <path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:.68rem;color:#bc8cff;margin-top:4px">꼬마 유령 몽이가 함정을 알려줘요</div>
+    </div>
     <div class="story-line">
       <div class="story-avatar">🧒</div>
       <div class="story-bubble"><span class="story-name">민준</span>선생님, 저희 삼촌 결혼식에서 탁자를 몇 개 붙여야 손님 60명이 다 앉을 수 있는지 계산해봤어요! △=□×2+2에서 △=60이니까...</div>
@@ -3820,6 +4153,20 @@ const CV_DATA_E5CORR = [
 CV_DATA['e5corr'] = CV_DATA_E5CORR;
 const CV_DATA_E5FRAC2 = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #7dd3fc;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/>
+        <ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/>
+        <circle cx="46" cy="40" r="16" fill="#d98a4a"/>
+        <polygon points="36,28 32,16 42,26" fill="#d98a4a"/>
+        <polygon points="56,28 60,16 50,26" fill="#d98a4a"/>
+        <circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/>
+        <circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/>
+        <ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/>
+        <rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>
+      </svg>
+      <div style="font-size:.68rem;color:#7dd3fc;margin-top:4px">다람쥐 토리와 함께 생각해 볼까요?</div>
+    </div>
     <p>민준이는 피자를 3/4 먹었고, 서연이는 다른 피자를 2/3 먹었어요. 누가 더 많이 먹었을까요?</p>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
       ${fracPieHtml(3,4,'#f0c040',56)}${fracPieHtml(2,3,'#58a6ff',56)}
@@ -3828,6 +4175,21 @@ const CV_DATA_E5FRAC2 = [
     <p style="margin-top:10px">이럴 때 두 분수의 분모를 <strong>같게</strong> 만들면 분자 크기만 비교하면 되니까 훨씬 쉬워져요. 분모를 같게 만드는 것을 "통분", 분수를 가장 간단하게 만드는 것을 "약분"이라고 해요. 오늘은 이 두 가지를 배워볼게요.</p>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #7dd3fc;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="50,10 70,42 30,42" fill="#4b3f8f"/>
+        <circle cx="50" cy="12" r="4" fill="#f0c040"/>
+        <circle cx="36" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="64" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="50" cy="56" r="26" fill="#c9915a"/>
+        <ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/>
+        <circle cx="42" cy="52" r="3" fill="#2b2b2b"/>
+        <circle cx="58" cy="52" r="3" fill="#2b2b2b"/>
+        <ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/>
+        <rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#7dd3fc;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
+    </div>
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 크기가 같은 분수</div>
     <ul><li>1/2, 2/4, 3/6, 4/8은 숫자가 다 다른데, 크기도 다 다를까요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
@@ -3872,7 +4234,7 @@ const CV_DATA_E5FRAC2 = [
       <div style="font-size:.68rem;color:#8b949e;margin-top:8px">분모가 같아지면 분자만 비교하면 되니까 쉬워져요</div>
     </div>
   `},
-  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`${mascotBadge('ray','#7dd3fc')}
     <p>"${frac(8,12)}를 약분하고, ${frac(3,4)}와 ${frac(2,3)}를 통분하는"(개념2·5와 같은 예시) 상황 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 관계가 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
     <div class="expr-item"><span class="expr-num">1</span><strong>약분 표현</strong><br>"${frac(8,12)}를 가장 간단한 분수로 나타내면?"
       <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 약분은 분모·분자를 같은 공약수로 나누는 거예요</div>
@@ -3917,6 +4279,32 @@ const CV_DATA_E5FRAC2 = [
     <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 분수 관계(${frac(8,12)} 약분, ${frac(3,4)}·${frac(2,3)} 통분)</strong>를 묻고 있어요. 약분과 통분은 서로 반대 방향의 과정이라는 것도 함께 확인할 수 있어요.</p>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #7dd3fc;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/>
+        <polygon points="36,70 48,80 40,86" fill="#6d5138"/>
+        <polygon points="60,70 48,80 56,86" fill="#6d5138"/>
+        <circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="46" r="18" fill="#ffd9a8"/>
+        <path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/>
+        <rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/>
+        <circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <circle cx="40" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="56" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="48" cy="53" r="1.4" fill="#c9915a"/>
+        <path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g transform="translate(74,66) rotate(20)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+          <line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div style="font-size:.68rem;color:#7dd3fc;margin-top:4px">탐정 루페와 함께 단서를 찾아봐요</div>
+    </div>
     <div class="q-item"><strong>Q1.</strong> 분모와 분자에 똑같은 수를 곱해도 왜 분수의 크기는 변하지 않을까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5frac2-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e5frac2-h1">
@@ -3963,6 +4351,19 @@ const CV_DATA_E5FRAC2 = [
     </div>
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #7dd3fc;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <line x1="50" y1="14" x2="50" y2="26" stroke="#8b949e" stroke-width="3"/>
+        <circle cx="50" cy="11" r="4" fill="#58d6ff"/>
+        <rect x="26" y="26" width="48" height="36" rx="8" fill="#9aa6b2"/>
+        <rect x="34" y="34" width="32" height="18" rx="4" fill="#0d1117"/>
+        <circle cx="44" cy="43" r="3" fill="#58d6ff"/>
+        <circle cx="56" cy="43" r="3" fill="#58d6ff"/>
+        <rect x="30" y="64" width="40" height="24" rx="6" fill="#7c8894"/>
+        <rect x="36" y="70" width="28" height="4" rx="2" fill="#58d6ff"/>
+      </svg>
+      <div style="font-size:.68rem;color:#7dd3fc;margin-top:4px">로봇 알고가 계산을 확인해요</div>
+    </div>
     <div class="prob-box">
       <div class="prob-q">문제: 12/18을 약분하여 기약분수로 나타내세요.</div>
       <div class="fb-diagram">${fracPieHtml(12,18,'#f0c040',52)}<span style="font-size:1.1rem;color:#8b949e">➜</span>${fracPieHtml(2,3,'#3fb950',52)}<span class="cap">12와 18의 최대공약수 6으로 분모·분자를 나눠보세요</span></div>
@@ -3997,6 +4398,21 @@ const CV_DATA_E5FRAC2 = [
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #7dd3fc;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="78,70 86,52 92,72" fill="#7c5cff"/>
+        <polygon points="88,61 97,61 92,69" fill="#f0c040"/>
+        <circle cx="50" cy="55" r="26" fill="#7c5cff"/>
+        <polygon points="32,38 28,20 44,32" fill="#7c5cff"/>
+        <polygon points="68,38 72,20 56,32" fill="#7c5cff"/>
+        <circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/>
+        <circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/>
+        <path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/>
+        <line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>
+      </svg>
+      <div style="font-size:.68rem;color:#7dd3fc;margin-top:4px">우주고양이 코모가 도전을 기다려요</div>
+    </div>
     <p>지금까지 배운 약분·통분을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
@@ -4050,6 +4466,15 @@ const CV_DATA_E5FRAC2 = [
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #7dd3fc;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/>
+        <circle cx="40" cy="48" r="4" fill="#2b2b2b"/>
+        <circle cx="60" cy="48" r="4" fill="#2b2b2b"/>
+        <path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:.68rem;color:#7dd3fc;margin-top:4px">꼬마 유령 몽이가 함정을 알려줘요</div>
+    </div>
     <div class="story-line">
       <div class="story-avatar">🧒</div>
       <div class="story-bubble"><span class="story-name">민준</span>선생님, 다음 시간에 분수 덧셈을 배운다던데, 1/2 더하기 1/3은 분자끼리 더하고 분모끼리 더해서 2/5 아니에요?</div>
@@ -4103,6 +4528,20 @@ function rangeLineSvg(lo, hi, boundary, closed, dir){
 }
 const CV_DATA_E5RANGE = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #ffa657;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/>
+        <ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/>
+        <circle cx="46" cy="40" r="16" fill="#d98a4a"/>
+        <polygon points="36,28 32,16 42,26" fill="#d98a4a"/>
+        <polygon points="56,28 60,16 50,26" fill="#d98a4a"/>
+        <circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/>
+        <circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/>
+        <ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/>
+        <rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>
+      </svg>
+      <div style="font-size:.68rem;color:#ffa657;margin-top:4px">다람쥐 토리와 함께 생각해 볼까요?</div>
+    </div>
     <p>놀이기구 앞에 "키 140cm 이상만 탑승 가능"이라고 쓰여 있어요. 키가 정확히 140cm인 친구는 탈 수 있을까요?</p>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
       ${rangeLineSvg(136,144,140,true,'ge')}
@@ -4111,6 +4550,21 @@ const CV_DATA_E5RANGE = [
     <p style="margin-top:10px">그런데 만약 "키 140cm 초과만 탑승 가능"이었다면, 140cm인 친구는 탈 수 없어요. "이상"과 "초과"는 경계값(140)을 포함하는지 아닌지가 달라서, 정확히 구분해서 써야 해요.</p>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #ffa657;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="50,10 70,42 30,42" fill="#4b3f8f"/>
+        <circle cx="50" cy="12" r="4" fill="#f0c040"/>
+        <circle cx="36" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="64" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="50" cy="56" r="26" fill="#c9915a"/>
+        <ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/>
+        <circle cx="42" cy="52" r="3" fill="#2b2b2b"/>
+        <circle cx="58" cy="52" r="3" fill="#2b2b2b"/>
+        <ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/>
+        <rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#ffa657;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
+    </div>
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 이상과 이하</div>
     <ul><li>"10 이상"은 어떤 수들을 말할까요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
@@ -4190,7 +4644,7 @@ const CV_DATA_E5RANGE = [
       <div style="text-align:center;font-size:.68rem;color:#8b949e;margin-top:8px">"까지"는 그 자리를 남기고, "에서"는 그 자리까지 0으로 만들어서 한 단계 위까지 표현해요 — 그래서 "백의 자리에서 반올림"은 "반올림하여 천의 자리까지 나타내기"와 같은 말이에요</div>
     </div>
   `},
-  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`${mascotBadge('tipi','#ffa657')}
     <p>"236"이라는 수(개념3·4·5와 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 수가 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
     <div class="expr-item"><span class="expr-num">1</span><strong>올림 표현</strong><br>"236을 십의 자리까지 올림하면?"
       <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 올림은 구하는 자리보다 작은 자리를 모두 올려서 채우는 거예요</div>
@@ -4230,6 +4684,32 @@ const CV_DATA_E5RANGE = [
     <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 수(236)</strong>를 다루고 있어요. 올림·버림·반올림·이상·미만은 모두 "어느 자리를 기준으로 수를 어떻게 다룰지"를 정하는 규칙이라는 걸 알 수 있어요. 6~10번은 "다음 문제" 버튼으로 숫자를 바꿔가며 계속 연습할 수 있어요.</p>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #ffa657;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/>
+        <polygon points="36,70 48,80 40,86" fill="#6d5138"/>
+        <polygon points="60,70 48,80 56,86" fill="#6d5138"/>
+        <circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="46" r="18" fill="#ffd9a8"/>
+        <path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/>
+        <rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/>
+        <circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <circle cx="40" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="56" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="48" cy="53" r="1.4" fill="#c9915a"/>
+        <path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g transform="translate(74,66) rotate(20)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+          <line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div style="font-size:.68rem;color:#ffa657;margin-top:4px">탐정 루페와 함께 단서를 찾아봐요</div>
+    </div>
     <div class="q-item"><strong>Q1.</strong> "이상"과 "초과"는 왜 경계값 포함 여부를 정확히 구분해서 쓸까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5range-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e5range-h1">
@@ -4265,6 +4745,19 @@ const CV_DATA_E5RANGE = [
     </div>
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #ffa657;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <line x1="50" y1="14" x2="50" y2="26" stroke="#8b949e" stroke-width="3"/>
+        <circle cx="50" cy="11" r="4" fill="#58d6ff"/>
+        <rect x="26" y="26" width="48" height="36" rx="8" fill="#9aa6b2"/>
+        <rect x="34" y="34" width="32" height="18" rx="4" fill="#0d1117"/>
+        <circle cx="44" cy="43" r="3" fill="#58d6ff"/>
+        <circle cx="56" cy="43" r="3" fill="#58d6ff"/>
+        <rect x="30" y="64" width="40" height="24" rx="6" fill="#7c8894"/>
+        <rect x="36" y="70" width="28" height="4" rx="2" fill="#58d6ff"/>
+      </svg>
+      <div style="font-size:.68rem;color:#ffa657;margin-top:4px">로봇 알고가 계산을 확인해요</div>
+    </div>
     <div class="prob-box">
       <div class="prob-q">문제: 다음 수 중 "15 이상"인 것을 모두 고르세요: 13, 15, 17, 20</div>
       <div class="fb-diagram">${rangeLineSvg(11,21,15,true,'ge')}<span class="cap">15는 포함, 15보다 작은 13은 제외</span></div>
@@ -4327,6 +4820,21 @@ const CV_DATA_E5RANGE = [
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #ffa657;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="78,70 86,52 92,72" fill="#7c5cff"/>
+        <polygon points="88,61 97,61 92,69" fill="#f0c040"/>
+        <circle cx="50" cy="55" r="26" fill="#7c5cff"/>
+        <polygon points="32,38 28,20 44,32" fill="#7c5cff"/>
+        <polygon points="68,38 72,20 56,32" fill="#7c5cff"/>
+        <circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/>
+        <circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/>
+        <path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/>
+        <line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>
+      </svg>
+      <div style="font-size:.68rem;color:#ffa657;margin-top:4px">우주고양이 코모가 도전을 기다려요</div>
+    </div>
     <p>지금까지 배운 이상·이하·초과·미만과 올림·버림·반올림을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
@@ -4380,6 +4888,15 @@ const CV_DATA_E5RANGE = [
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #ffa657;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/>
+        <circle cx="40" cy="48" r="4" fill="#2b2b2b"/>
+        <circle cx="60" cy="48" r="4" fill="#2b2b2b"/>
+        <path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:.68rem;color:#ffa657;margin-top:4px">꼬마 유령 몽이가 함정을 알려줘요</div>
+    </div>
     <div class="story-line">
       <div class="story-avatar">🧒</div>
       <div class="story-bubble"><span class="story-name">민준</span>선생님, 과자 138개를 한 상자에 10개씩 담으려는데, 138÷10=13.8이라 13상자면 되는 거 아니에요?</div>
@@ -4553,6 +5070,20 @@ function fracAreaModel(n1,d1,n2,d2,unshadedFill,strokeColor){
 }
 const CV_DATA_E5FRACMUL = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #ff7ab8;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/>
+        <ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/>
+        <circle cx="46" cy="40" r="16" fill="#d98a4a"/>
+        <polygon points="36,28 32,16 42,26" fill="#d98a4a"/>
+        <polygon points="56,28 60,16 50,26" fill="#d98a4a"/>
+        <circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/>
+        <circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/>
+        <ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/>
+        <rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>
+      </svg>
+      <div style="font-size:.68rem;color:#ff7ab8;margin-top:4px">다람쥐 토리와 함께 생각해 볼까요?</div>
+    </div>
     <p>피자 한 판의 ${fracBar(2,3)}이 남았는데, 이걸 친구 3명이서 똑같이 나눠 먹으면 한 명은 전체 피자의 얼마를 먹게 될까요?</p>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
       ${fracPieHtml(2,3,'#f0c040',56)}
@@ -4561,6 +5092,21 @@ const CV_DATA_E5FRACMUL = [
     <p style="margin-top:10px">이렇게 "분수의 일부를 또 나누는" 상황은 분수끼리 곱해야 풀 수 있어요. 오늘은 분수와 분수를 곱하는 방법을 배워볼게요.</p>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #ff7ab8;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="50,10 70,42 30,42" fill="#4b3f8f"/>
+        <circle cx="50" cy="12" r="4" fill="#f0c040"/>
+        <circle cx="36" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="64" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="50" cy="56" r="26" fill="#c9915a"/>
+        <ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/>
+        <circle cx="42" cy="52" r="3" fill="#2b2b2b"/>
+        <circle cx="58" cy="52" r="3" fill="#2b2b2b"/>
+        <ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/>
+        <rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#ff7ab8;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
+    </div>
     <div class="light-card" style="background:#fdfdfa;color:#1a1a1a;border-radius:10px;padding:16px;margin:4px 0 14px">
       <div style="font-weight:800;font-size:1rem;margin-bottom:10px;color:#1a1a1a">개념1 — 곱셈의 뜻이 "~배"에서 "~의"로 바뀌어요</div>
       <ul style="margin:0;padding-left:22px;font-size:.85rem;line-height:1.7;color:#1a1a1a">
@@ -4721,7 +5267,7 @@ const CV_DATA_E5FRACMUL = [
       </ul>
     </div>
   `},
-  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`${mascotBadge('chase','#ff7ab8')}
     <p>"${fracBar(2,3)} × ${fracBar(3,4)}"(개념4·5와 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 계산이 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
     <div class="expr-item"><span class="expr-num">1</span><strong>부분의 부분 표현</strong><br>"${fracBar(3,4)}의 ${fracBar(2,3)}는 얼마인가요?"
       <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 분수×분수는 "~의 ~"라는 부분의 또 다른 부분을 구하는 거예요</div>
@@ -4766,6 +5312,32 @@ const CV_DATA_E5FRACMUL = [
     <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 계산(${fracBar(2,3)}×${fracBar(3,4)})</strong>을 묻고 있어요. 부분의 부분, 사각형 모델, 약분 — 방법은 달라도 답은 항상 ${fracBar(1,2)}예요.</p>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #ff7ab8;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/>
+        <polygon points="36,70 48,80 40,86" fill="#6d5138"/>
+        <polygon points="60,70 48,80 56,86" fill="#6d5138"/>
+        <circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="46" r="18" fill="#ffd9a8"/>
+        <path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/>
+        <rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/>
+        <circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <circle cx="40" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="56" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="48" cy="53" r="1.4" fill="#c9915a"/>
+        <path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g transform="translate(74,66) rotate(20)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+          <line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div style="font-size:.68rem;color:#ff7ab8;margin-top:4px">탐정 루페와 함께 단서를 찾아봐요</div>
+    </div>
     <div class="q-item"><strong>Q1.</strong> 분수끼리 곱할 때는 왜 분모는 분모끼리, 분자는 분자끼리 곱할까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5fracmul-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e5fracmul-h1">
@@ -4801,6 +5373,19 @@ const CV_DATA_E5FRACMUL = [
     </div>
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #ff7ab8;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <line x1="50" y1="14" x2="50" y2="26" stroke="#8b949e" stroke-width="3"/>
+        <circle cx="50" cy="11" r="4" fill="#58d6ff"/>
+        <rect x="26" y="26" width="48" height="36" rx="8" fill="#9aa6b2"/>
+        <rect x="34" y="34" width="32" height="18" rx="4" fill="#0d1117"/>
+        <circle cx="44" cy="43" r="3" fill="#58d6ff"/>
+        <circle cx="56" cy="43" r="3" fill="#58d6ff"/>
+        <rect x="30" y="64" width="40" height="24" rx="6" fill="#7c8894"/>
+        <rect x="36" y="70" width="28" height="4" rx="2" fill="#58d6ff"/>
+      </svg>
+      <div style="font-size:.68rem;color:#ff7ab8;margin-top:4px">로봇 알고가 계산을 확인해요</div>
+    </div>
     <div class="prob-box">
       <div class="prob-q">문제: ${fracBar(2,5)} × 4를 계산하세요.</div>
       <div class="fb-diagram">${fracPieHtml(2,5,'#f0c040',52)}<span class="cap">${fracBar(2,5)}를 4번 더하는 것과 같아요</span></div>
@@ -4875,6 +5460,21 @@ const CV_DATA_E5FRACMUL = [
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #ff7ab8;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="78,70 86,52 92,72" fill="#7c5cff"/>
+        <polygon points="88,61 97,61 92,69" fill="#f0c040"/>
+        <circle cx="50" cy="55" r="26" fill="#7c5cff"/>
+        <polygon points="32,38 28,20 44,32" fill="#7c5cff"/>
+        <polygon points="68,38 72,20 56,32" fill="#7c5cff"/>
+        <circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/>
+        <circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/>
+        <path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/>
+        <line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>
+      </svg>
+      <div style="font-size:.68rem;color:#ff7ab8;margin-top:4px">우주고양이 코모가 도전을 기다려요</div>
+    </div>
     <p>지금까지 배운 분수의 곱셈을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
@@ -4928,6 +5528,15 @@ const CV_DATA_E5FRACMUL = [
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #ff7ab8;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/>
+        <circle cx="40" cy="48" r="4" fill="#2b2b2b"/>
+        <circle cx="60" cy="48" r="4" fill="#2b2b2b"/>
+        <path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:.68rem;color:#ff7ab8;margin-top:4px">꼬마 유령 몽이가 함정을 알려줘요</div>
+    </div>
     <div class="story-line">
       <div class="story-avatar">🧒</div>
       <div class="story-bubble"><span class="story-name">민준</span>선생님, 1/2 × 1/3을 계산했는데, 분수 덧셈처럼 분모를 통분해서 3/6 × 2/6 = 6/36이라고 했어요. 맞나요?</div>
@@ -5111,6 +5720,20 @@ function tileGridSvg(n,m){
 }
 const CV_DATA_E5SYM = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f0c040;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/>
+        <ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/>
+        <circle cx="46" cy="40" r="16" fill="#d98a4a"/>
+        <polygon points="36,28 32,16 42,26" fill="#d98a4a"/>
+        <polygon points="56,28 60,16 50,26" fill="#d98a4a"/>
+        <circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/>
+        <circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/>
+        <ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/>
+        <rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f0c040;margin-top:4px">다람쥐 토리와 함께 생각해 볼까요?</div>
+    </div>
     <p>도장(스탬프)을 종이에 찍으면 항상 똑같은 모양이 찍혀요. 나비의 왼쪽 날개와 오른쪽 날개도 서로 거울처럼 똑같이 생겼어요.</p>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
       ${congruentSvg()}
@@ -5119,6 +5742,21 @@ const CV_DATA_E5SYM = [
     <p style="margin-top:10px">그리고 나비 날개처럼 "거울에 비친 모습"이나 바람개비처럼 "돌려도 똑같은 모습"도 우리 주변에 많아요. 오늘은 합동과 두 가지 대칭(선대칭·점대칭)을 배워볼게요.</p>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f0c040;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="50,10 70,42 30,42" fill="#4b3f8f"/>
+        <circle cx="50" cy="12" r="4" fill="#f0c040"/>
+        <circle cx="36" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="64" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="50" cy="56" r="26" fill="#c9915a"/>
+        <ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/>
+        <circle cx="42" cy="52" r="3" fill="#2b2b2b"/>
+        <circle cx="58" cy="52" r="3" fill="#2b2b2b"/>
+        <ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/>
+        <rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f0c040;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
+    </div>
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 합동이란</div>
     <ul><li>두 도형을 포개었을 때 완전히 겹쳐지면 무엇이라고 할까요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
@@ -5157,6 +5795,32 @@ const CV_DATA_E5SYM = [
     </div>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f0c040;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/>
+        <polygon points="36,70 48,80 40,86" fill="#6d5138"/>
+        <polygon points="60,70 48,80 56,86" fill="#6d5138"/>
+        <circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="46" r="18" fill="#ffd9a8"/>
+        <path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/>
+        <rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/>
+        <circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <circle cx="40" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="56" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="48" cy="53" r="1.4" fill="#c9915a"/>
+        <path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g transform="translate(74,66) rotate(20)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+          <line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div style="font-size:.68rem;color:#f0c040;margin-top:4px">탐정 루페와 함께 단서를 찾아봐요</div>
+    </div>
     <div class="q-item"><strong>Q1.</strong> 합동인 두 도형은 왜 대응변의 길이와 대응각의 크기가 항상 같을까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5sym-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e5sym-h1">
@@ -5192,6 +5856,22 @@ const CV_DATA_E5SYM = [
     </div>
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f0c040;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <circle cx="50" cy="50" r="24" fill="#b0b0b0"/>
+        <polygon points="34,30 28,18 42,28" fill="#8d8d8d"/>
+        <polygon points="66,30 72,18 58,28" fill="#8d8d8d"/>
+        <ellipse cx="50" cy="52" rx="22" ry="16" fill="#e8e8e8"/>
+        <circle cx="42" cy="46" r="7" fill="#fff" stroke="#2b2b2b" stroke-width="1.5"/>
+        <circle cx="58" cy="46" r="7" fill="#fff" stroke="#2b2b2b" stroke-width="1.5"/>
+        <circle cx="42" cy="46" r="2.4" fill="#2b2b2b"/>
+        <circle cx="58" cy="46" r="2.4" fill="#2b2b2b"/>
+        <line x1="49" y1="46" x2="51" y2="46" stroke="#2b2b2b" stroke-width="1.5"/>
+        <ellipse cx="50" cy="56" rx="4" ry="2.4" fill="#2b2b2b"/>
+        <rect x="60" y="64" width="22" height="6" rx="3" fill="#607d8b" transform="rotate(30 71 67)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f0c040;margin-top:4px">너구리 레이가 도형을 조립해요</div>
+    </div>
     <div class="prob-box">
       <div class="prob-q">문제: 삼각형 ABC와 삼각형 A'B'C'는 합동입니다. 변AB=6cm, 변BC=8cm일 때, 변A'B'와 변B'C'는 각각 몇 cm인가요?</div>
       <div class="fb-diagram">${congruentSvg()}<span class="cap">합동이면 대응변의 길이가 서로 같아요</span></div>
@@ -5249,6 +5929,21 @@ const CV_DATA_E5SYM = [
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f0c040;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="78,70 86,52 92,72" fill="#7c5cff"/>
+        <polygon points="88,61 97,61 92,69" fill="#f0c040"/>
+        <circle cx="50" cy="55" r="26" fill="#7c5cff"/>
+        <polygon points="32,38 28,20 44,32" fill="#7c5cff"/>
+        <polygon points="68,38 72,20 56,32" fill="#7c5cff"/>
+        <circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/>
+        <circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/>
+        <path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/>
+        <line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f0c040;margin-top:4px">우주고양이 코모가 도전을 기다려요</div>
+    </div>
     <p>지금까지 배운 합동과 대칭을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
@@ -5302,6 +5997,15 @@ const CV_DATA_E5SYM = [
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f0c040;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/>
+        <circle cx="40" cy="48" r="4" fill="#2b2b2b"/>
+        <circle cx="60" cy="48" r="4" fill="#2b2b2b"/>
+        <path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f0c040;margin-top:4px">꼬마 유령 몽이가 함정을 알려줘요</div>
+    </div>
     <div class="story-line">
       <div class="story-avatar">🧒</div>
       <div class="story-bubble"><span class="story-name">민준</span>선생님, 정사각형은 선대칭도형이에요, 점대칭도형이에요?</div>
@@ -5334,6 +6038,20 @@ const CV_DATA_E5SYM = [
 CV_DATA['e5sym'] = CV_DATA_E5SYM;
 const CV_DATA_E5DECMUL = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #58a6ff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/>
+        <ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/>
+        <circle cx="46" cy="40" r="16" fill="#d98a4a"/>
+        <polygon points="36,28 32,16 42,26" fill="#d98a4a"/>
+        <polygon points="56,28 60,16 50,26" fill="#d98a4a"/>
+        <circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/>
+        <circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/>
+        <ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/>
+        <rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>
+      </svg>
+      <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">다람쥐 토리와 함께 생각해 볼까요?</div>
+    </div>
     <p>한 개에 1.5kg인 수박을 3개 사면 무게는 모두 몇 kg일까요?</p>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
       <div style="font-size:.9rem">1.5 + 1.5 + 1.5 = 4.5(kg)　　또는　　1.5 × 3 = ?</div>
@@ -5342,6 +6060,21 @@ const CV_DATA_E5DECMUL = [
     <p style="margin-top:10px">그런데 소수끼리 곱하면(예: 1.5×2.3) 소수점을 어디에 찍어야 할지 헷갈릴 수 있어요. 오늘은 소수의 곱셈과, 소수점을 정확히 찍는 방법을 배워볼게요.</p>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #58a6ff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="50,10 70,42 30,42" fill="#4b3f8f"/>
+        <circle cx="50" cy="12" r="4" fill="#f0c040"/>
+        <circle cx="36" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="64" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="50" cy="56" r="26" fill="#c9915a"/>
+        <ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/>
+        <circle cx="42" cy="52" r="3" fill="#2b2b2b"/>
+        <circle cx="58" cy="52" r="3" fill="#2b2b2b"/>
+        <ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/>
+        <rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
+    </div>
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — (소수)×(자연수)</div>
     <ul><li>0.3 × 4는 얼마일까요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
@@ -5375,7 +6108,7 @@ const CV_DATA_E5DECMUL = [
       <div style="font-size:.68rem;color:#8b949e;margin-top:8px">자리수 규칙(1+1=2자리)으로도 확인되지만, 어림으로 한 번 더 확인하면 실수를 잡을 수 있어요</div>
     </div>
   `},
-  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`${mascotBadge('somi','#58a6ff')}
     <p>"0.3 × 0.4"(개념3·4·5와 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 계산이 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
     <div class="expr-item"><span class="expr-num">1</span><strong>분수 변환 표현</strong><br>"0.3×0.4를 분수로 바꿔서 계산하면?"
       <div style="font-size:.68rem;color:#bc8cff;font-weight:700;margin-top:4px">💡 소수는 분모가 10, 100…인 분수로 바꿀 수 있어요</div>
@@ -5420,6 +6153,32 @@ const CV_DATA_E5DECMUL = [
     <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 계산(0.3×0.4)</strong>을 묻고 있어요. 분수로 바꾸기, 자리수 규칙, 어림 확인 — 방법은 달라도 답은 항상 0.12예요.</p>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #58a6ff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/>
+        <polygon points="36,70 48,80 40,86" fill="#6d5138"/>
+        <polygon points="60,70 48,80 56,86" fill="#6d5138"/>
+        <circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="46" r="18" fill="#ffd9a8"/>
+        <path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/>
+        <rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/>
+        <circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <circle cx="40" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="56" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="48" cy="53" r="1.4" fill="#c9915a"/>
+        <path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g transform="translate(74,66) rotate(20)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+          <line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">탐정 루페와 함께 단서를 찾아봐요</div>
+    </div>
     <div class="q-item"><strong>Q1.</strong> 소수끼리 곱할 때는 왜 자연수처럼 계산한 다음 나중에 소수점을 찍을까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5decmul-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e5decmul-h1">
@@ -5455,6 +6214,19 @@ const CV_DATA_E5DECMUL = [
     </div>
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #58a6ff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <line x1="50" y1="14" x2="50" y2="26" stroke="#8b949e" stroke-width="3"/>
+        <circle cx="50" cy="11" r="4" fill="#58d6ff"/>
+        <rect x="26" y="26" width="48" height="36" rx="8" fill="#9aa6b2"/>
+        <rect x="34" y="34" width="32" height="18" rx="4" fill="#0d1117"/>
+        <circle cx="44" cy="43" r="3" fill="#58d6ff"/>
+        <circle cx="56" cy="43" r="3" fill="#58d6ff"/>
+        <rect x="30" y="64" width="40" height="24" rx="6" fill="#7c8894"/>
+        <rect x="36" y="70" width="28" height="4" rx="2" fill="#58d6ff"/>
+      </svg>
+      <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">로봇 알고가 계산을 확인해요</div>
+    </div>
     <div class="prob-box">
       <div class="prob-q">문제: 0.6 × 5를 계산하세요.</div>
       <button class="havruta-show-btn" onclick="havrutaReveal('e5decmul-p1',this)">💡 풀이 보기</button>
@@ -5486,6 +6258,21 @@ const CV_DATA_E5DECMUL = [
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #58a6ff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="78,70 86,52 92,72" fill="#7c5cff"/>
+        <polygon points="88,61 97,61 92,69" fill="#f0c040"/>
+        <circle cx="50" cy="55" r="26" fill="#7c5cff"/>
+        <polygon points="32,38 28,20 44,32" fill="#7c5cff"/>
+        <polygon points="68,38 72,20 56,32" fill="#7c5cff"/>
+        <circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/>
+        <circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/>
+        <path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/>
+        <line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>
+      </svg>
+      <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">우주고양이 코모가 도전을 기다려요</div>
+    </div>
     <p>지금까지 배운 소수의 곱셈을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
@@ -5590,6 +6377,15 @@ const CV_DATA_E5DECMUL = [
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #58a6ff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/>
+        <circle cx="40" cy="48" r="4" fill="#2b2b2b"/>
+        <circle cx="60" cy="48" r="4" fill="#2b2b2b"/>
+        <path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">꼬마 유령 몽이가 함정을 알려줘요</div>
+    </div>
     <div class="story-line">
       <div class="story-avatar">🧒</div>
       <div class="story-bubble"><span class="story-name">민준</span>선생님, 2.5 × 3.2를 계산했는데 25×32=800이니까 답이 8이라고 했어요. 맞나요?</div>
@@ -5621,10 +6417,39 @@ const CV_DATA_E5DECMUL = [
 CV_DATA['e5decmul'] = CV_DATA_E5DECMUL;
 const CV_DATA_E5BOX = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #bc8cff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/>
+        <ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/>
+        <circle cx="46" cy="40" r="16" fill="#d98a4a"/>
+        <polygon points="36,28 32,16 42,26" fill="#d98a4a"/>
+        <polygon points="56,28 60,16 50,26" fill="#d98a4a"/>
+        <circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/>
+        <circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/>
+        <ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/>
+        <rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>
+      </svg>
+      <div style="font-size:.68rem;color:#bc8cff;margin-top:4px">다람쥐 토리와 함께 생각해 볼까요?</div>
+    </div>
     <div class="fb-diagram">${cuboidSvg()}<span class="cap">택배 상자, 냉장고, 책, 주사위 — 다 이 모양이에요</span></div>
     <p style="margin-top:10px">우리 주변의 물건은 대부분 <strong>직육면체</strong> 모양이에요. 상자를 포장하거나 방 안에 가구가 들어갈 공간을 가늠할 때, 직육면체의 성질(면·모서리·꼭짓점)을 알면 훨씬 정확하게 판단할 수 있어요.</p>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #bc8cff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="50,10 70,42 30,42" fill="#4b3f8f"/>
+        <circle cx="50" cy="12" r="4" fill="#f0c040"/>
+        <circle cx="36" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="64" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="50" cy="56" r="26" fill="#c9915a"/>
+        <ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/>
+        <circle cx="42" cy="52" r="3" fill="#2b2b2b"/>
+        <circle cx="58" cy="52" r="3" fill="#2b2b2b"/>
+        <ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/>
+        <rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#bc8cff;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
+    </div>
     <div class="fb-diagram">${cuboidSvg()}<span class="cap">실선 = 보이는 모서리, 점선 = 안 보이는 모서리(겨냥도)</span></div>
     <ul style="margin-top:8px;padding-left:18px;line-height:1.9">
       <li><strong>직육면체</strong>: 직사각형 6개로 둘러싸인 도형</li>
@@ -5634,6 +6459,32 @@ const CV_DATA_E5BOX = [
     </ul>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #bc8cff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/>
+        <polygon points="36,70 48,80 40,86" fill="#6d5138"/>
+        <polygon points="60,70 48,80 56,86" fill="#6d5138"/>
+        <circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="46" r="18" fill="#ffd9a8"/>
+        <path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/>
+        <rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/>
+        <circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <circle cx="40" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="56" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="48" cy="53" r="1.4" fill="#c9915a"/>
+        <path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g transform="translate(74,66) rotate(20)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+          <line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div style="font-size:.68rem;color:#bc8cff;margin-top:4px">탐정 루페와 함께 단서를 찾아봐요</div>
+    </div>
     <div class="q-item"><strong>Q1.</strong> 정육면체는 직육면체라고 할 수 있을까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5box-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e5box-h1">
@@ -5669,6 +6520,22 @@ const CV_DATA_E5BOX = [
     </div>
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #bc8cff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <circle cx="50" cy="50" r="24" fill="#b0b0b0"/>
+        <polygon points="34,30 28,18 42,28" fill="#8d8d8d"/>
+        <polygon points="66,30 72,18 58,28" fill="#8d8d8d"/>
+        <ellipse cx="50" cy="52" rx="22" ry="16" fill="#e8e8e8"/>
+        <circle cx="42" cy="46" r="7" fill="#fff" stroke="#2b2b2b" stroke-width="1.5"/>
+        <circle cx="58" cy="46" r="7" fill="#fff" stroke="#2b2b2b" stroke-width="1.5"/>
+        <circle cx="42" cy="46" r="2.4" fill="#2b2b2b"/>
+        <circle cx="58" cy="46" r="2.4" fill="#2b2b2b"/>
+        <line x1="49" y1="46" x2="51" y2="46" stroke="#2b2b2b" stroke-width="1.5"/>
+        <ellipse cx="50" cy="56" rx="4" ry="2.4" fill="#2b2b2b"/>
+        <rect x="60" y="64" width="22" height="6" rx="3" fill="#607d8b" transform="rotate(30 71 67)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#bc8cff;margin-top:4px">너구리 레이가 도형을 조립해요</div>
+    </div>
     <div class="prob-box">
       <div class="prob-q">문제: 아래 겨냥도를 보고 면, 모서리, 꼭짓점이 각각 몇 개인지 세어보세요.</div>
       <div class="fb-diagram">${cuboidSvg()}</div>
@@ -5700,6 +6567,21 @@ const CV_DATA_E5BOX = [
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #bc8cff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="78,70 86,52 92,72" fill="#7c5cff"/>
+        <polygon points="88,61 97,61 92,69" fill="#f0c040"/>
+        <circle cx="50" cy="55" r="26" fill="#7c5cff"/>
+        <polygon points="32,38 28,20 44,32" fill="#7c5cff"/>
+        <polygon points="68,38 72,20 56,32" fill="#7c5cff"/>
+        <circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/>
+        <circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/>
+        <path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/>
+        <line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>
+      </svg>
+      <div style="font-size:.68rem;color:#bc8cff;margin-top:4px">우주고양이 코모가 도전을 기다려요</div>
+    </div>
     <p>지금까지 배운 직육면체의 구성 요소·전개도를 실제 문제에 적용해봐요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
@@ -5789,6 +6671,15 @@ const CV_DATA_E5BOX = [
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #bc8cff;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/>
+        <circle cx="40" cy="48" r="4" fill="#2b2b2b"/>
+        <circle cx="60" cy="48" r="4" fill="#2b2b2b"/>
+        <path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:.68rem;color:#bc8cff;margin-top:4px">꼬마 유령 몽이가 함정을 알려줘요</div>
+    </div>
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 정육면체는 직육면체가 아니라 완전히 다른 도형 아닌가요? 이름부터 다르잖아요!</div></div>
     <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>그런데 정육면체도 면이 다 직사각형이잖아요? 정사각형도 직사각형의 한 종류였던 것 같은데...</div></div>
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>아! 정사각형은 네 변의 길이가 같은 "특별한 직사각형"이었죠. 그럼 정육면체도 "특별한 직육면체"일 수 있겠네요?</div></div>
@@ -8904,6 +9795,20 @@ function cywSol20(id){
 }
 const CV_DATA_E5FRACADD = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #3fb950;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/>
+        <ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/>
+        <circle cx="46" cy="40" r="16" fill="#d98a4a"/>
+        <polygon points="36,28 32,16 42,26" fill="#d98a4a"/>
+        <polygon points="56,28 60,16 50,26" fill="#d98a4a"/>
+        <circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/>
+        <circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/>
+        <ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/>
+        <rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>
+      </svg>
+      <div style="font-size:.68rem;color:#3fb950;margin-top:4px">다람쥐 토리와 함께 생각해 볼까요?</div>
+    </div>
     <p>피자 ${frac(1,3)}판을 먹고, 다시 ${frac(1,4)}판을 더 먹었어요. 전체 몇 판을 먹은 걸까요?</p>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
       ${fracPieHtml(1,3,'#f0c040',52)}+${fracPieHtml(1,4,'#58a6ff',52)}
@@ -8912,6 +9817,21 @@ const CV_DATA_E5FRACADD = [
     <p style="margin-top:10px">약분과 통분에서 배운 "분모를 같게 만드는 방법"을 이용해서, 분모가 다른 분수끼리도 더하고 빼는 방법을 배워볼게요.</p>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #3fb950;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="50,10 70,42 30,42" fill="#4b3f8f"/>
+        <circle cx="50" cy="12" r="4" fill="#f0c040"/>
+        <circle cx="36" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="64" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="50" cy="56" r="26" fill="#c9915a"/>
+        <ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/>
+        <circle cx="42" cy="52" r="3" fill="#2b2b2b"/>
+        <circle cx="58" cy="52" r="3" fill="#2b2b2b"/>
+        <ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/>
+        <rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#3fb950;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
+    </div>
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 분모가 다른 분수, 어떻게 더할까?</div>
     <ul><li>${frac(1,3)} + ${frac(1,4)}는 얼마일까요? 여러분이라면 먼저 어떻게 계산해 보겠어요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
@@ -8983,6 +9903,32 @@ const CV_DATA_E5FRACADD = [
     </div>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #3fb950;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/>
+        <polygon points="36,70 48,80 40,86" fill="#6d5138"/>
+        <polygon points="60,70 48,80 56,86" fill="#6d5138"/>
+        <circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="46" r="18" fill="#ffd9a8"/>
+        <path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/>
+        <rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/>
+        <circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <circle cx="40" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="56" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="48" cy="53" r="1.4" fill="#c9915a"/>
+        <path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g transform="translate(74,66) rotate(20)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+          <line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div style="font-size:.68rem;color:#3fb950;margin-top:4px">탐정 루페와 함께 단서를 찾아봐요</div>
+    </div>
     <div class="q-item" style="text-align:left">
       <div style="font-size:.85rem">${frac(1,3)} + ${frac(1,4)}를 하브루타식으로 발견해봅시다 — 공식을 먼저 주지 말고, 학생이 스스로 시도하고 틀려보고 이유를 찾게 하는 방식이에요.</div>
       <div style="margin-top:14px;font-size:.85rem;color:#f0c040;font-weight:700">1. 먼저 질문</div>
@@ -9046,6 +9992,19 @@ const CV_DATA_E5FRACADD = [
     </div>
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #3fb950;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <line x1="50" y1="14" x2="50" y2="26" stroke="#8b949e" stroke-width="3"/>
+        <circle cx="50" cy="11" r="4" fill="#58d6ff"/>
+        <rect x="26" y="26" width="48" height="36" rx="8" fill="#9aa6b2"/>
+        <rect x="34" y="34" width="32" height="18" rx="4" fill="#0d1117"/>
+        <circle cx="44" cy="43" r="3" fill="#58d6ff"/>
+        <circle cx="56" cy="43" r="3" fill="#58d6ff"/>
+        <rect x="30" y="64" width="40" height="24" rx="6" fill="#7c8894"/>
+        <rect x="36" y="70" width="28" height="4" rx="2" fill="#58d6ff"/>
+      </svg>
+      <div style="font-size:.68rem;color:#3fb950;margin-top:4px">로봇 알고가 계산을 확인해요</div>
+    </div>
     <div class="prob-box">
       <div class="prob-q">문제: ${frac(1,2)} + ${frac(1,5)}를 계산하세요.</div>
       <button class="havruta-show-btn" onclick="havrutaReveal('e5fracadd-p1',this)">💡 풀이 보기</button>
@@ -9090,6 +10049,21 @@ const CV_DATA_E5FRACADD = [
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #3fb950;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="78,70 86,52 92,72" fill="#7c5cff"/>
+        <polygon points="88,61 97,61 92,69" fill="#f0c040"/>
+        <circle cx="50" cy="55" r="26" fill="#7c5cff"/>
+        <polygon points="32,38 28,20 44,32" fill="#7c5cff"/>
+        <polygon points="68,38 72,20 56,32" fill="#7c5cff"/>
+        <circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/>
+        <circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/>
+        <path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/>
+        <line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>
+      </svg>
+      <div style="font-size:.68rem;color:#3fb950;margin-top:4px">우주고양이 코모가 도전을 기다려요</div>
+    </div>
     <p>지금까지 배운 분수의 덧셈과 뺄셈을 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
@@ -9143,6 +10117,15 @@ const CV_DATA_E5FRACADD = [
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #3fb950;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/>
+        <circle cx="40" cy="48" r="4" fill="#2b2b2b"/>
+        <circle cx="60" cy="48" r="4" fill="#2b2b2b"/>
+        <path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:.68rem;color:#3fb950;margin-top:4px">꼬마 유령 몽이가 함정을 알려줘요</div>
+    </div>
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 3${frac(1,4)} - 1${frac(2,3)}을 계산했는데, ${frac(1,4)}에서 ${frac(2,3)}을 못 빼서 그냥 반대로 ${frac(2,3)}-${frac(1,4)}을 했어요. 답이 이상하게 나왔어요.</div></div>
     <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>어? 분수 부분끼리는 순서를 바꾸면 안 되지 않나요?</div></div>
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>맞아요! 자연수 뺄셈에서도 42-17을 계산할 때 일의 자리(2-7)를 못 빼면 그냥 7-2로 바꾸는 게 아니라, 십의 자리에서 10을 빌려오잖아요.</div></div>
@@ -10464,9 +11447,11 @@ function e4barPicto(hiRow){
     +rows.map(function(r,i){return '<tr><th style="'+th+'">'+r[0]+'</th><td style="'+td+(i===hiRow?';outline:2px solid #2f9e57':'')+'">'+r[1]+'</td></tr>';}).join('')
     +'</table>';
 }
+
 var E4BAR_FRUIT = ['사과','딸기','바나나','포도'];
 var CV_DATA_E4BAR = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`<div class="e4bw" style="background:#ffffff;color:#1d2433;border-radius:12px;padding:18px"><style>.e4bw p,.e4bw strong{color:#1d2433}</style>
+    ${mascotBadge('tori','#58a6ff')}
     <p>우리 반 친구들이 좋아하는 과일을 조사했더니 이런 표가 나왔어요.</p>
     ${e4barTable(['과일','사과','딸기','바나나','포도'],'학생 수(명)',[8,12,6,10])}
     <p>"가장 많은 친구가 좋아하는 과일은?" 표에서는 숫자를 하나씩 읽고 비교해야 해요.<br>같은 자료를 막대로 그리면 어떨까요?</p>
@@ -10478,6 +11463,7 @@ var CV_DATA_E4BAR = [
     <p>이번 단원에서는 자료를 한눈에 보이게 하는 <strong>막대그래프</strong>를 배워요.</p>
   </div>`},
   { title:'📖 개념 설명', cls:'concept', html:`<div class="e4bw" style="background:#ffffff;color:#1d2433;border-radius:12px;padding:18px"><style>.e4bw p,.e4bw strong{color:#1d2433}</style>
+    ${mascotBadge('focus','#58a6ff')}
     <div style="font-size:.78rem;color:#5d6678;font-weight:700;margin-bottom:6px">🔙복습 — 3학년에서 배운 표와 그림그래프</div>
     <p>같은 자료를 표와 그림그래프로 나타냈어요.</p>
     <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px;margin:10px 0;text-align:center">
@@ -10578,6 +11564,7 @@ var CV_DATA_E4BAR = [
     <p>눈금이 너무 좁으면 그래프가 길어지고, 너무 크면 막대 사이의 차이가 잘 안 보여요.</p>
   </div>`},
   { title:'💬 하브루타 질문', cls:'havruta', html:`${e4barWrapOpen()}
+    ${mascotBadge('lupe','#58a6ff')}
     <div class="q-item"><strong>Q1.</strong> 같은 자료를 눈금 한 칸의 크기만 바꿔서 그렸어요. 한 칸 = 1명 그래프에서 딸기 막대는 12칸, 한 칸 = 4명 그래프에서는 3칸이에요. 두 그래프의 딸기는 각각 몇 명일까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e4bar-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e4bar-h1">
@@ -10613,6 +11600,7 @@ var CV_DATA_E4BAR = [
     </div>
   </div>`},
   { title:'✏️ 예제 문제', cls:'problems', html:`${e4barWrapOpen()}
+    ${mascotBadge('algo','#58a6ff')}
     <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 1 (눈금 한 칸 읽기)</div>
       <div class="prob-q">우리 반이 좋아하는 운동을 조사해 막대그래프로 나타냈어요.
         <div style="text-align:center;margin:8px 0">${e4barFig(e4barOpt1(0))}</div>
@@ -10675,11 +11663,13 @@ var CV_DATA_E4BAR = [
   </div>`},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
     <div class="e4bw e4b5" style="background:#ffffff;color:#1d2433;border-radius:12px;padding:18px"><style>.e4bw p,.e4bw strong{color:#1d2433}.e4b5 .eb5-prob{border:1px solid #c5ccd8;border-radius:12px;padding:16px;margin-bottom:16px}.e4b5 .eb5-label{font-size:.78rem;font-weight:700;color:#a8730a;margin-bottom:6px}.e4b5 .eb5-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.e4b5 .eb5-btn{font-family:inherit;font-size:.9rem;font-weight:700;border-radius:8px;padding:8px 14px;cursor:pointer;border:1.5px solid #2f6fd0;background:#f4f6fa;color:#2f6fd0}.e4b5 .eb5-btn.main{background:#2f6fd0;color:#ffffff}.e4b5 .eb5-sol{margin-top:12px;background:#f4f6fa;border:1px solid #c5ccd8;border-radius:10px;padding:12px 14px}</style>
+      ${mascotBadge('komo','#58a6ff')}
       <p>"🔄 유사문제"를 누르면 항목 이름, 숫자, 눈금 한 칸의 크기가 바뀐 비슷한 문제가 나와요.</p>
       ${e4barProbHtml()}
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`${e4barWrapOpen()}
+    ${mascotBadge('mong','#58a6ff')}
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>우리 모둠이 한 달 동안 읽은 책 수를 막대그래프로 그리는데요. 14권, 20권, 8권, 16권이에요. 눈금 한 칸을 3권으로 하면 안 돼요?</div></div>
     <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">지호</span>왜 안 돼? 눈금 한 칸은 내 마음대로 정하면 되지. 어차피 막대 높이만 보면 누가 많이 읽었는지는 다 보이잖아.</div></div>
     <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>많고 적음은 맞는데... 그럼 민수가 몇 권 읽었는지는 어떻게 읽어? 14권이면 막대 끝이 어디에 와?</div></div>
@@ -11434,6 +12424,7 @@ function e4patProbToggle(i){
 }
 var CV_DATA_E4PAT = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`${e4patWrapOpen()}
+  ${mascotBadge('tori','#bc8cff')}
   <p>바닥 타일, 달력, 계단을 본 적 있나요? 이런 것들에는 같은 모양이 되풀이되거나, 일정하게 변하는 모습이 숨어 있어요. 이것을 <strong>규칙</strong>이라고 해요.</p>
 
   <div class="ep-fig">
@@ -11476,6 +12467,7 @@ var CV_DATA_E4PAT = [
   <p>이번 단원에서는 수, 도형, 계산식에서 규칙을 찾고, 그 규칙으로 다음을 알아내는 방법을 배워요.</p>
   </div>`},
   { title:'📖 개념 설명', cls:'concept', html:`${e4patWrapOpen()}
+  ${mascotBadge('focus','#bc8cff')}
   <div class="ep-lab ep-rev">🔙복습 — 2학년에서 배운 규칙 찾기</div>
   <p>2학년에서는 모양이 되풀이되는 규칙을 찾고, 내가 정한 규칙으로 무늬를 만들어 봤어요.</p>
   <div class="ep-fig">
@@ -11598,6 +12590,7 @@ var CV_DATA_E4PAT = [
   </div>
   </div>`},
   { title:'💬 하브루타 질문', cls:'havruta', html:`${e4patWrapOpen()}
+    ${mascotBadge('lupe','#bc8cff')}
     <div class="q-item"><strong>Q1.</strong> 수가 1, 2, 4 다음에 올 수는 무엇일까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e4pat-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e4pat-h1">
@@ -11633,6 +12626,7 @@ var CV_DATA_E4PAT = [
     </div>
   </div>`},
   { title:'✏️ 예제 문제', cls:'problems', html:`${e4patWrapOpen()}
+    ${mascotBadge('algo','#bc8cff')}
     <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 1 (수 배열표에서 규칙 찾기)</div>
       <div class="prob-q">수 배열표를 보고 물음에 답해 보세요.
         <div class="ep-fig">${e4patTb(E4PAT_BL(),false)}</div>
@@ -11687,10 +12681,12 @@ var CV_DATA_E4PAT = [
     </div>
   </div>`},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`${e4patWrapOpen()}
+    ${mascotBadge('komo','#bc8cff')}
     <p>"🔄 유사문제"를 누르면 숫자와 규칙이 바뀐 비슷한 문제가 나와요.</p>
     ${e4patProbHtml()}
   </div>`},
   { title:'🔥 심화 토론', cls:'debate', html:`${e4patWrapOpen()}
+    ${mascotBadge('mong','#bc8cff')}
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>달력에서 가로로 이웃한 세 수의 합은 가운데 수의 3배라고 배웠잖아. 그럼 비스듬하게 이웃한 세 수도 그럴까?</div></div>
     <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">지호</span>에이, 안 그럴걸. 가로는 1씩, 세로는 7씩 차이 나는데 비스듬한 건 규칙이 달라서 안 맞을 거야.</div></div>
     <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>그러면 해 보자. 4, 12, 20을 더하면 36이야. 가운데 수 12의 3배도 36! 맞네?</div></div>
@@ -11926,7 +12922,7 @@ var CV_DATA_E4FRAC = [
     @keyframes e4fracMouthWow{0%,80%,100%{opacity:0}85%,93%{opacity:1}}
     @media (prefers-reduced-motion: reduce){.e4frac-milk .liquid,.e4frac-milk .liquid2,.e4frac-milk .bub,.e4frac-milk .eye-open,.e4frac-milk .eye-closed,.e4frac-milk .mouth-smile,.e4frac-milk .mouth-wow{animation:none!important}}
     </style>
-
+    ${mascotBadge('tori','#ff7ab8')}
     <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
       <p style="flex:1;min-width:200px;margin:0">민지가 우유를 두 번에 나눠 마셨어요. 처음에 전체의 ${frac(5,8)}, 조금 뒤에 전체의 ${frac(4,8)}를 마셨어요.</p>
       <svg class="e4frac-milk" viewBox="0 0 90 100" width="92">
@@ -12051,6 +13047,7 @@ var CV_DATA_E4FRAC = [
     @keyframes e4fracEarWiggle{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-10deg)}}
     @media (prefers-reduced-motion: reduce){.e4frac-animal .mouth,.e4frac-animal .eye-open,.e4frac-animal .eye-closed,.e4frac-animal .ear-l,.e4frac-animal .ear-r{animation:none!important}}
     </style>
+    ${mascotBadge('focus','#ff7ab8')}
     <div style="font-size:.78rem;color:#5d6678;font-weight:700;margin-bottom:6px">🔙복습 — 3학년에서 배운 분수</div>
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
       <p style="flex:1;min-width:160px;margin:0;line-height:1.7">분수는 전체를 똑같이 나눈 것 중 일부예요.<br>분모는 똑같이 나눈 수,<br>분자는 그 중 몇 개인지를 나타내요.</p>
@@ -12249,6 +13246,7 @@ var CV_DATA_E4FRAC = [
   </div>`}
   ]},
   { title:'💬 하브루타 질문', cls:'havruta', html:`${e4fracWrapOpen()}
+    ${mascotBadge('lupe','#ff7ab8')}
     <div class="q-item"><strong>Q1.</strong> ${frac(2,8)} + ${frac(3,8)}을 계산하려고 해요. 친구들은 이렇게 답했어요.
       <button class="havruta-show-btn" onclick="havrutaReveal('e4frac-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e4frac-h1">
@@ -12284,6 +13282,7 @@ var CV_DATA_E4FRAC = [
     </div>
   </div>`},
   { title:'✏️ 예제 문제', cls:'problems', html:`${e4fracWrapOpen()}
+    ${mascotBadge('algo','#ff7ab8')}
     <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 1 (진분수의 덧셈)</div>
       <div class="prob-q">${frac(3,9)} + ${frac(4,9)}는 얼마인가요?</div>
       <button class="havruta-show-btn" onclick="e4barSolToggle(this,'ef-sol-1')">💡 풀이 보기</button>
@@ -12378,11 +13377,13 @@ var CV_DATA_E4FRAC = [
   </div>`},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
     <div class="e4bw e4f5" style="background:#ffffff;color:#1d2433;border-radius:12px;padding:18px"><style>.e4bw p,.e4bw strong{color:#1d2433}.e4f5 .ef5-prob{border:1px solid #c5ccd8;border-radius:12px;padding:16px;margin-bottom:16px}.e4f5 .ef5-label{font-size:.78rem;font-weight:700;color:#a8730a;margin-bottom:6px}.e4f5 .ef5-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.e4f5 .ef5-btn{font-family:inherit;font-size:.9rem;font-weight:700;border-radius:8px;padding:8px 14px;cursor:pointer;border:1.5px solid #2f6fd0;background:#f4f6fa;color:#2f6fd0}.e4f5 .ef5-btn.main{background:#2f6fd0;color:#ffffff}.e4f5 .ef5-sol{margin-top:12px;background:#f4f6fa;border:1px solid #c5ccd8;border-radius:10px;padding:12px 14px}</style>
+      ${mascotBadge('komo','#ff7ab8')}
       <p>지금까지 배운 분모가 같은 분수의 덧셈과 뺄셈을 실제 상황에 적용하는 문제들이에요. "🔄 유사문제"를 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
       ${e4fracProbHtml()}
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`${e4fracWrapOpen()}
+    ${mascotBadge('mong','#ff7ab8')}
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>${frac(2,8)} + ${frac(3,8)}은 분자도 더하고 분모도 더해서 ${frac(5,16)} 아니야?</div></div>
     <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">지호</span>어? 그럼 그림으로 확인해보자.</div></div>
     <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px;margin:6px 0 12px;text-align:center">
@@ -12481,6 +13482,7 @@ function usNoteSubmit(u){
 function usNoteCard(u){
   var c=US_UNITS[u];
   return {title:'✍️ 오늘 배운 것 적기', cls:'problems', noCorpus:true, html:c.wrapOpen()
+    +(c.noteMascot ? mascotBadge(c.noteMascot, c.noteColor) : '')
     +'<p>공부를 마쳤나요? 오늘 배운 것을 내 말로 적어 봐요. 카드의 문장을 그대로 베끼면 인정되지 않아요.</p>'
     +'<div class="prob-box"><div class="prob-q">'+c.prompt+'</div>'
     +'<textarea id="usn-text-'+u+'" rows="4" maxlength="300" placeholder="여기에 써 보세요 (10글자 이상)" style="width:100%;box-sizing:border-box;background:#ffffff;border:1px solid #c5ccd8;border-radius:8px;color:#1d2433;padding:10px;font-size:.9rem;font-family:inherit;resize:vertical"></textarea>'
@@ -12555,6 +13557,7 @@ function usPlain(el){ return el ? el.innerHTML : ''; }
 // ── 막대그래프(e4bar) 설정 ──
 US_UNITS['e4bar'] = {
   scope:'e4bw', cards:function(){return CV_DATA_E4BAR;}, wrapOpen:function(){return e4barWrapOpen();},
+  noteMascot:'tipi', noteColor:'#58a6ff',
   groups:{A:/막대|눈금|그래프/, B:/한칸|크기|칸/, C:/수|명|개|권|많|적|비교|읽|값/, D:/가로|세로|항목|높이|길이|표|그림그래프/},
   words:/막대그래프|막대|눈금|그래프|한칸|크기|가로|세로|항목|높이|길이|비교|그림그래프|\d+/g,
   keywordMsg:'막대그래프(또는 눈금)와, 눈금 한 칸의 크기나 막대 길이가 무엇을 뜻하는지를 함께 적어 주세요.',
@@ -12588,6 +13591,7 @@ usInject('e4bar', [0,1,2,5]);
 // ── 규칙 찾기(e4pat) 설정 ──
 US_UNITS['e4pat'] = {
   scope:'e4pat', snapCss:null, cards:function(){return CV_DATA_E4PAT;}, wrapOpen:function(){return e4patWrapOpen();},
+  noteMascot:'chase', noteColor:'#bc8cff',
   groups:{A:/규칙/, B:/다음|미리|추측|알수|예측|확인/, C:/씩|커지|작아지|늘어|줄어|더하|빼|곱|나누|배/, D:/배열|계산식|달력|도형|모양|무늬|표/},
   words:/규칙|다음|미리|추측|예측|확인|씩|커지|작아지|늘어|줄어|더하|빼|곱|나누|배열|수배열표|계산식|달력|도형|모양|무늬|\d+/g,
   keywordMsg:'규칙과, 그 규칙으로 무엇을 알 수 있는지(다음 수·모양·결과 등)를 함께 적어 주세요.',
@@ -12625,6 +13629,7 @@ usInject('e4pat', [0,1,2,5]);
 function e4fracSnapCss(){ return '<style>.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:.92em;line-height:1.15;margin:0 2px}.frac-n,.frac-d{display:block;padding:0 3px}.frac-n{border-bottom:1.5px solid #1d2433}</style>'; }
 US_UNITS['e4frac'] = {
   scope:'e4bw e4frac', cards:function(){return CV_DATA_E4FRAC;}, wrapOpen:function(){return e4fracWrapOpen();},
+  noteMascot:'somi', noteColor:'#ff7ab8',
   groups:{A:/분모|분자/, B:/덧셈|더하|합|뺄셈|빼|차/, C:/받아올림|받아내림|대분수|가분수|자연수/, D:/조각|크기|같|나누/},
   words:/분모|분자|진분수|대분수|가분수|덧셈|뺄셈|받아올림|받아내림|자연수|조각|크기|같은|더하|빼|\d+/g,
   keywordMsg:'분모나 분자, 그리고 덧셈/뺄셈(또는 받아올림·받아내림) 같은 말을 함께 적어 주세요.',
@@ -13141,6 +14146,7 @@ function e4triProbToggle(i){
 
 var CV_DATA_E4TRI = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`${e4triWrapOpen()}
+    ${mascotBadge('tori','#ffa657')}
     <div class="e4tri-sec">
       <h2><span class="secnum">1</span> 삼각자 이야기</h2>
       <p class="e4tri-sub">교실에 있는 삼각자 두 개를 꺼내 볼까요? 하나는 45°·45°·90°, 다른 하나는 30°·60°·90°예요.</p>
@@ -13155,6 +14161,7 @@ var CV_DATA_E4TRI = [
     </div>
   </div>` },
   { title:'📖 개념 설명', cls:'concept', html:`${e4triWrapOpen()}
+    ${mascotBadge('focus','#ffa657')}
     <div class="e4tri-flow"><span class="tag">🔙 복습</span> 4학년 1학기 '각도와 삼각형' 단원에서 각의 크기로 예각삼각형·직각삼각형·둔각삼각형을 나눴던 것, 기억하나요? 삼각형 세 각의 합이 180°였다는 것도요.<br><br>
     <span class="tag">🔗 연결</span> 이번엔 각이 아니라 <b style="color:#1d2433">변의 길이</b>로 삼각형을 나눠볼 거예요.</div>
     <div class="e4tri-sec">
@@ -13178,6 +14185,7 @@ var CV_DATA_E4TRI = [
     </div>
   </div>` },
   { title:'💬 하브루타 질문', cls:'havruta', html:`${e4triWrapOpen()}
+    ${mascotBadge('ray','#ffa657')}
     <div class="q-item">
       <strong>Q1.</strong> 이등변삼각형은 항상 예각삼각형일까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e4tri-h1',this)">💬 친구들은 이렇게 답했어요</button>
@@ -13216,6 +14224,7 @@ var CV_DATA_E4TRI = [
     </div>
   </div>` },
   { title:'✏️ 예제 문제', cls:'problems', html:`${e4triWrapOpen()}
+    ${mascotBadge('algo','#ffa657')}
     <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 1</div>
       <div class="prob-q">${(function(){
         var base=100, baseAng=50*Math.PI/180;
@@ -13291,11 +14300,13 @@ var CV_DATA_E4TRI = [
   </div>` },
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
     <div class="e4bw e4t5" style="background:#ffffff;color:#1d2433;border-radius:12px;padding:18px"><style>.e4bw p,.e4bw strong{color:#1d2433}.e4t5 .et5-prob{border:1px solid #c5ccd8;border-radius:12px;padding:16px;margin-bottom:16px}.e4t5 .et5-label{font-size:.78rem;font-weight:700;color:#a8730a;margin-bottom:6px}.e4t5 .et5-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.e4t5 .et5-btn{font-family:inherit;font-size:.9rem;font-weight:700;border-radius:8px;padding:8px 14px;cursor:pointer;border:1.5px solid #7a4fc2;background:#f4eeff;color:#7a4fc2}.e4t5 .et5-btn.main{background:#7a4fc2;color:#ffffff}.e4t5 .et5-sol{margin-top:12px;background:#f4eeff;border:1px solid #d7c4fa;border-radius:10px;padding:12px 14px}</style>
+      ${mascotBadge('komo','#ffa657')}
       <p>지금까지 배운 이등변삼각형·정삼각형을 실제 상황에 적용하는 문제들이에요. 9·10번은 두 이등변삼각형이 붙은 모양을 다루는 조금 더 어려운 문제예요. "🔄 유사문제"를 누르면 숫자가 바뀐 비슷한 문제가 계속 나와요.</p>
       ${e4triProbHtml()}
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`${e4triWrapOpen()}
+    ${mascotBadge('mong','#ffa657')}
     <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하린</span>이등변삼각형은 두 변이 같은 거잖아. 그럼 항상 비슷하게 생기지 않아?</div></div>
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">도윤</span>아니야, 내 생각엔 꼭지각을 작게 하면 예각삼각형도 될 것 같아.</div></div>
     <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:12px;margin:8px 0 14px;text-align:center">${(function(){
@@ -13363,6 +14374,7 @@ CV_DATA['e4tri'] = CV_DATA_E4TRI;
 // ── 이등변삼각형·정삼각형(e4tri) 복습 연동 설정 ──
 US_UNITS['e4tri'] = {
   scope:'e4bw e4tri', cards:function(){return CV_DATA_E4TRI;}, wrapOpen:function(){return e4triWrapOpen();},
+  noteMascot:'lupe', noteColor:'#ffa657',
   groups:{A:/이등변삼각형/, B:/정삼각형/, C:/변|길이|같/, D:/각|밑각|꼭지각/},
   words:/이등변삼각형|정삼각형|삼각형|밑각|꼭지각|변|길이|같은|각|\d+/g,
   keywordMsg:'이등변삼각형이나 정삼각형, 그리고 변의 길이나 각에 대한 말을 함께 적어 주세요.',
@@ -13375,6 +14387,215 @@ US_UNITS['e4tri'] = {
   }
 };
 usInject('e4tri', [0,1,3]);
+
+// ── 소수의 덧셈과 뺄셈(e4dec) ──
+function e4decWrapOpen(){ return e4barWrapOpen().replace('class="e4bw"','class="e4bw e4dec"')+'<style>'
+  +'.e4bw.e4dec .track-box{background:#f8fafd;border:1px solid #c5ccd8;border-radius:12px;padding:16px;margin:12px 0}'
+  +'.e4bw.e4dec .runner-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}'
+  +'.e4bw.e4dec .runner-row:last-child{margin-bottom:0}'
+  +'.e4bw.e4dec .runner-name{width:46px;font-weight:700;font-size:.88rem;flex:0 0 auto}'
+  +'.e4bw.e4dec .runner-time{margin-left:auto;font-weight:800;font-size:1.05rem;color:#2f9e57;font-variant-numeric:tabular-nums}'
+  +'.e4bw.e4dec .run-track{position:relative;width:130px;height:40px;flex:0 0 auto}'
+  +'.e4bw.e4dec .run-track::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:4px;border-radius:2px;background:#e3ddd3}'
+  +'.e4bw.e4dec .run-emoji{position:absolute;top:2px;left:0;font-size:2.1rem;line-height:1;animation:e4decRunSlide 4s ease-in-out infinite, e4decRunStep .34s ease-in-out infinite}'
+  +'.e4bw.e4dec .run-emoji.r2{animation-duration:3.7s,.3s}'
+  +'@keyframes e4decRunSlide{0%,100%{left:0}50%{left:92px}}'
+  +'@keyframes e4decRunStep{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-4px) rotate(6deg)}}'
+  +'@media (prefers-reduced-motion: reduce){.e4bw.e4dec .run-emoji{animation:none!important}}'
+  +'.e4bw.e4dec .guess-box{background:#f4eeff;border:1px solid #d7c4fa;border-radius:10px;padding:14px;margin-top:14px}'
+  +'.e4bw.e4dec .guess-box .q{font-weight:700;margin-bottom:6px}'
+  +'.e4bw.e4dec .guess-opts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}'
+  +'.e4bw.e4dec .guess-opt{border:1.5px solid #7a4fc2;color:#7a4fc2;background:#fff;border-radius:8px;padding:6px 12px;font-size:.85rem;font-weight:700;font-family:inherit;cursor:pointer}'
+  +'.e4bw.e4dec .guess-opt:disabled{opacity:.55;cursor:default}'
+  +'.e4bw.e4dec .guess-opt.ok{border-color:#2f9e57;color:#2f9e57;background:#eafaf0}'
+  +'.e4bw.e4dec .guess-opt.no{border-color:#c0362f;color:#c0362f;background:#fdeeee}'
+  +'.e4bw.e4dec .guess-fb{margin-top:10px;font-size:.88rem}'
+  +'.e4bw.e4dec .secnum{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:#2f9e57;color:#fff;font-size:.85rem;flex:0 0 auto}'
+  +'.e4bw.e4dec .e4dec-sec{margin-bottom:34px}'
+  +'.e4bw.e4dec .e4dec-sub{color:#5d6678;font-size:.9rem;margin-bottom:12px;line-height:1.55}'
+  +'.e4bw.e4dec .e4dec-flow{background:#eafaf0;border:1px solid #bfe8cf;border-radius:10px;padding:14px 16px;font-size:.95rem;line-height:1.7;margin-bottom:30px;color:#1d2433}'
+  +'.e4bw.e4dec .e4dec-flow .tag{color:#1f7a42;font-weight:700}'
+  +'.e4bw.e4dec .e4dec-explain{font-size:1.02rem;line-height:1.75;margin-top:14px;color:#1d2433}'
+  +'.e4bw.e4dec .e4dec-explain b{color:#1f7a42}'
+  +'.e4bw.e4dec .calc-box{background:#f8fafd;border:1px solid #c5ccd8;border-radius:12px;padding:16px;display:flex;justify-content:center}'
+  +'.e4bw.e4dec .calc{display:inline-grid;grid-auto-rows:2rem;font-variant-numeric:tabular-nums;font-size:1.25rem;font-weight:700;row-gap:.125rem}'
+  +'.e4bw.e4dec .calc .cell{display:flex;align-items:center;justify-content:center;width:1.875rem}'
+  +'.e4bw.e4dec .calc .dot{width:.875rem;color:#c0362f}'
+  +'.e4bw.e4dec .calc .sign{width:1.25rem;color:#5d6678;font-weight:700}'
+  +'.e4bw.e4dec .calc .carry{font-size:.7rem;color:#c0362f;font-weight:800;align-self:end;height:1rem}'
+  +'.e4bw.e4dec .calc .line{grid-column:1/-1;border-top:2.5px solid #1d2433;margin:.125rem 0}'
+  +'.e4bw.e4dec .calc .result{color:#2f9e57}'
+  +'.e4bw.e4dec .calc .cell.borrow{position:relative}'
+  +'.e4bw.e4dec .calc .borrow-new{position:absolute;top:-1rem;font-size:.62rem;color:#c0362f;font-weight:800;left:50%;transform:translateX(-50%)}'
+  +'.e4bw.e4dec .calc .orig-strike{text-decoration:line-through;text-decoration-color:#c0362f;color:#9aa3b2}'
+  +'.content:has(.e4bw.e4dec){max-width:1200px}'
+  +'.grade-section.unit-grid-mode.active:has(.e4bw.e4dec){max-width:1200px}'
+  +'</style>'; }
+function e4decGuess1(btn, correct){
+  document.querySelectorAll('.e4dec-guess1-opt').forEach(function(b){ b.disabled=true; });
+  btn.classList.add(correct?'ok':'no');
+  document.getElementById('e4dec-guess1-fb').innerHTML = (correct
+    ? '<b style="color:#2f9e57">맞아요!</b> '
+    : '<b style="color:#c0362f">아쉬워요.</b> ')
+    +'13.45 + 13.60 = <b style="color:#2f9e57">27.05</b>예요. 27보다 커요.';
+}
+var CV_DATA_E4DEC = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`${e4decWrapOpen()}
+    ${mascotBadge('tori','#3fb950')}
+    <p>오늘 100m 달리기 시합을 했어요. 민준이와 서연이의 기록이에요.</p>
+    <div class="track-box">
+      <div class="runner-row">
+        <span class="runner-name">민준</span>
+        <span class="run-track"><span class="run-emoji r1">🏃</span></span>
+        <span class="runner-time">13.45초</span>
+      </div>
+      <div class="runner-row">
+        <span class="runner-name">서연</span>
+        <span class="run-track"><span class="run-emoji r2">🏃‍♀️</span></span>
+        <span class="runner-time">13.6초</span>
+      </div>
+    </div>
+    <p style="margin-top:14px">두 사람이 이어달리기를 한다면 전체 기록은 두 시간을 <b style="color:#1d2433">더해서</b> 구하고, 누가 몇 초 더 빨랐는지는 두 시간의 <b style="color:#1d2433">차이(뺄셈)</b>로 구해요.</p>
+    <div class="guess-box">
+      <div class="q">🤔 직접 어림해보기</div>
+      13.45 + 13.6은 얼마쯤 될까요? 27보다 클까요, 작을까요?
+      <div class="guess-opts">
+        <button class="guess-opt e4dec-guess1-opt" onclick="e4decGuess1(this,false)">27보다 작다</button>
+        <button class="guess-opt e4dec-guess1-opt" onclick="e4decGuess1(this,true)">27보다 크다</button>
+        <button class="guess-opt e4dec-guess1-opt" onclick="e4decGuess1(this,false)">정확히 27이다</button>
+      </div>
+      <div class="guess-fb" id="e4dec-guess1-fb"></div>
+    </div>
+  </div>` },
+  { title:'📖 개념 설명', cls:'concept', html:`${e4decWrapOpen()}
+    ${mascotBadge('focus','#3fb950')}
+    <div class="e4dec-flow"><span class="tag">🔙 복습</span> 3학년 2학기 '소수' 단원에서 0.37과 0.28처럼 소수의 크기를 비교할 때, 자연수 부분부터 자릿값을 하나씩 맞춰 비교하는 법을 배웠어요.<br><br>
+    <span class="tag">🔗 연결</span> 오늘은 그 자릿값 맞추기를 그대로 써서, 소수를 더하고 빼는 법을 배워요.</div>
+    <div class="e4dec-sec">
+      <h2><span class="secnum">1</span> 소수 한 자리 수의 덧셈</h2>
+      <p class="e4dec-sub">0.3 + 0.4를 세로로 맞춰 써 볼까요?</p>
+      <div class="calc-box">
+        <div class="calc" style="grid-template-columns:1.25rem repeat(3,1.875rem)">
+          <div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">3</div>
+          <div class="cell sign">+</div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">4</div>
+          <div class="line"></div>
+          <div class="cell"></div><div class="cell result">0</div><div class="cell dot result">.</div><div class="cell result">7</div>
+        </div>
+      </div>
+      <div class="e4dec-explain">소수점끼리 맞추고, <b>같은 자리의 수끼리</b> 더해요. 소수 첫째 자리는 소수 첫째 자리끼리 — 3 + 4 = 7이니 답은 0.7이에요.</div>
+    </div>
+    <div class="e4dec-sec">
+      <h2><span class="secnum">2</span> 소수 두 자리 수의 덧셈 — 자리 맞추기</h2>
+      <p class="e4dec-sub">0.25 + 0.34를 세로로 맞춰 써 볼까요?</p>
+      <div class="calc-box">
+        <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+          <div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">2</div><div class="cell">5</div>
+          <div class="cell sign">+</div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">3</div><div class="cell">4</div>
+          <div class="line"></div>
+          <div class="cell"></div><div class="cell result">0</div><div class="cell dot result">.</div><div class="cell result">5</div><div class="cell result">9</div>
+        </div>
+      </div>
+      <div class="e4dec-explain">소수 둘째 자리는 소수 둘째 자리끼리(5+4=9), 소수 첫째 자리는 소수 첫째 자리끼리(2+3=5) 더해요. 소수점의 자리가 하나라도 어긋나면 전혀 다른 답이 나오니, <b>소수점을 맞춰 쓰는 것</b>이 가장 중요해요(자릿수가 다른 소수를 더할 때도 마찬가지예요).</div>
+    </div>
+    <div class="e4dec-sec">
+      <h2><span class="secnum">3</span> 소수 두 자리 수의 덧셈 — 받아올림이 있을 때</h2>
+      <p class="e4dec-sub">0.37 + 0.28을 세로로 맞춰 써 볼까요?</p>
+      <div class="calc-box">
+        <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+          <div class="cell"></div><div class="cell"></div><div class="cell carry">1</div><div class="cell carry">1</div><div class="cell"></div>
+          <div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">3</div><div class="cell">7</div>
+          <div class="cell sign">+</div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">2</div><div class="cell">8</div>
+          <div class="line"></div>
+          <div class="cell"></div><div class="cell result">0</div><div class="cell dot result">.</div><div class="cell result">6</div><div class="cell result">5</div>
+        </div>
+      </div>
+      <div class="e4dec-explain">7 + 8 = 15 → 자리에는 5만 쓰고, 10은 한 자리 왼쪽(소수 첫째 자리)으로 <b>받아올림</b>해요. 그래서 3 + 2 + 1(받아올림) = 6이 돼요.</div>
+    </div>
+    <div class="e4dec-sec">
+      <h2><span class="secnum">4</span> 소수 두 자리 수의 덧셈 — 자연수 자리까지 받아올림될 때</h2>
+      <p class="e4dec-sub">0.65 + 0.48을 세로로 맞춰 써 볼까요?</p>
+      <div class="calc-box">
+        <div class="calc" style="grid-template-columns:1.25rem repeat(5,1.875rem)">
+          <div class="cell"></div><div class="cell carry">1</div><div class="cell"></div><div class="cell carry">1</div><div class="cell"></div><div class="cell"></div>
+          <div class="cell"></div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">6</div><div class="cell">5</div>
+          <div class="cell sign">+</div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">4</div><div class="cell">8</div>
+          <div class="line"></div>
+          <div class="cell"></div><div class="cell"></div><div class="cell result">1</div><div class="cell dot result">.</div><div class="cell result">1</div><div class="cell result">3</div>
+        </div>
+      </div>
+      <div class="e4dec-explain">5 + 8 = 13 → 3을 쓰고 1을 소수 첫째 자리로 받아올림해요. 6 + 4 + 1(받아올림) = 11 → 1을 쓰고, 남은 1은 또 <b>자연수 자리로</b> 받아올림해요. 자연수 자리는 0 + 0 + 1(받아올림) = 1이 되어, 답은 1보다 커진 <b>1.13</b>이에요. 소수 두 자리를 더하면 이렇게 자연수 자리까지 올라갈 수도 있어요.</div>
+    </div>
+    <div class="e4dec-sec">
+      <h2><span class="secnum">5</span> 소수 한 자리 수의 뺄셈</h2>
+      <p class="e4dec-sub">0.8 − 0.5를 세로로 맞춰 써 볼까요?</p>
+      <div class="calc-box">
+        <div class="calc" style="grid-template-columns:1.25rem repeat(3,1.875rem)">
+          <div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">8</div>
+          <div class="cell sign">−</div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">5</div>
+          <div class="line"></div>
+          <div class="cell"></div><div class="cell result">0</div><div class="cell dot result">.</div><div class="cell result">3</div>
+        </div>
+      </div>
+      <div class="e4dec-explain">덧셈과 똑같이 소수점을 맞추고, 같은 자리의 수끼리 빼요. 8 − 5 = 3이니 답은 0.3이에요.</div>
+    </div>
+    <div class="e4dec-sec">
+      <h2><span class="secnum">6</span> 소수 두 자리 수의 뺄셈 — 받아내림이 없을 때</h2>
+      <p class="e4dec-sub">0.58 − 0.23을 세로로 맞춰 써 볼까요?</p>
+      <div class="calc-box">
+        <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+          <div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">5</div><div class="cell">8</div>
+          <div class="cell sign">−</div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">2</div><div class="cell">3</div>
+          <div class="line"></div>
+          <div class="cell"></div><div class="cell result">0</div><div class="cell dot result">.</div><div class="cell result">3</div><div class="cell result">5</div>
+        </div>
+      </div>
+      <div class="e4dec-explain">소수 둘째 자리는 소수 둘째 자리끼리(8−3=5), 소수 첫째 자리는 소수 첫째 자리끼리(5−2=3) 빼요.</div>
+    </div>
+    <div class="e4dec-sec">
+      <h2><span class="secnum">7</span> 소수 두 자리 수의 뺄셈 — 받아내림이 있을 때</h2>
+      <p class="e4dec-sub">0.62 − 0.38을 세로로 맞춰 써 볼까요?</p>
+      <div class="calc-box">
+        <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+          <div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div>
+          <div class="cell borrow"><span class="borrow-new">5</span><span class="orig-strike">6</span></div>
+          <div class="cell borrow"><span class="borrow-new">12</span><span class="orig-strike">2</span></div>
+          <div class="cell sign">−</div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">3</div><div class="cell">8</div>
+          <div class="line"></div>
+          <div class="cell"></div><div class="cell result">0</div><div class="cell dot result">.</div><div class="cell result">2</div><div class="cell result">4</div>
+        </div>
+      </div>
+      <div class="e4dec-explain">소수 둘째 자리에서 2 − 8을 할 수 없어요. 그래서 소수 첫째 자리에서 1을 <b>받아내림</b>해요(0.1 = 0.01이 10개). 둘째 자리는 12 − 8 = 4, 첫째 자리는 1을 내준 6이 5가 되어 5 − 3 = 2가 돼요.</div>
+    </div>
+  </div>` },
+  { title:'💬 하브루타 질문', cls:'havruta', html:`${e4decWrapOpen()}
+    ${mascotBadge('lupe','#3fb950')}
+    <div class="q-item">
+      <strong>Q1.</strong> 3.6 + 0.25를 계산할 때, 민준이는 소수점을 생각하지 않고 끝자리 숫자부터 맞춰서 계산했어요(36과 025를 더하듯이). 이렇게 하면 맞을까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4dec-h1',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4dec-h1">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4dec-h1',0,this)">맞다, 끝자리를 맞추면 된다</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4dec-h1',1,this)">틀리다, 소수점끼리 맞춰야 한다</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4dec-h1',2,this)">둘 다 답이 똑같아서 상관없다</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4dec-h1"></div>
+      </div>
+    </div>
+    <div class="q-item">
+      <strong>Q2.</strong> 0.5 − 0.23을 계산하려는데, 0.5는 소수 둘째 자리가 없어요. 어떻게 해야 할까요?
+      <button class="havruta-show-btn" onclick="havrutaReveal('e4dec-h2',this)">💬 친구들은 이렇게 답했어요</button>
+      <div class="havruta-reveal" id="rv-e4dec-h2">
+        <div class="havruta-opts">
+          <button class="havruta-opt" onclick="havrutaPick('e4dec-h2',0,this)">둘째 자리가 없으니 계산할 수 없다</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4dec-h2',1,this)">0.5를 0.50으로 생각하면 계산할 수 있다</button>
+          <button class="havruta-opt" onclick="havrutaPick('e4dec-h2',2,this)">0.23을 0.2로 반올림해서 계산한다</button>
+        </div>
+        <div class="havruta-fb" id="fb-e4dec-h2"></div>
+      </div>
+    </div>
+  </div>` }
+];
+CV_DATA['e4dec'] = CV_DATA_E4DEC;
 
 // ── 평면도형의 이동(e4move): 좌표 변환 + SVG 렌더링 ──
 // 기준 도형: L자(비대칭) — 좌우/상하 모두 비대칭이라 밀기·뒤집기·돌리기 결과가 전부 다르게 보임
@@ -14367,6 +15588,20 @@ function fawSol10(id){
 }
 const CV_DATA_E5POLY = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f85149;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/>
+        <ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/>
+        <circle cx="46" cy="40" r="16" fill="#d98a4a"/>
+        <polygon points="36,28 32,16 42,26" fill="#d98a4a"/>
+        <polygon points="56,28 60,16 50,26" fill="#d98a4a"/>
+        <circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/>
+        <circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/>
+        <ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/>
+        <rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f85149;margin-top:4px">다람쥐 토리와 함께 생각해 볼까요?</div>
+    </div>
     <p>운동장 둘레를 몇 바퀴 뛰었는지, 교실 바닥에 장판을 깔려면 얼마나 필요한지 — 모두 도형의 둘레와 넓이를 알아야 답할 수 있어요.</p>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-top:14px;text-align:center">
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
@@ -14378,6 +15613,21 @@ const CV_DATA_E5POLY = [
     <p style="margin-top:10px">직사각형의 넓이 공식을 기본으로 삼아, 평행사변형·삼각형·마름모·사다리꼴의 넓이를 "왜 그 공식이 성립하는지" 하나씩 유도해볼게요.</p>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f85149;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="50,10 70,42 30,42" fill="#4b3f8f"/>
+        <circle cx="50" cy="12" r="4" fill="#f0c040"/>
+        <circle cx="36" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="64" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="50" cy="56" r="26" fill="#c9915a"/>
+        <ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/>
+        <circle cx="42" cy="52" r="3" fill="#2b2b2b"/>
+        <circle cx="58" cy="52" r="3" fill="#2b2b2b"/>
+        <ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/>
+        <rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f85149;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
+    </div>
     <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 다각형의 둘레</div>
     <ul><li>정오각형(한 변 4cm)과 직사각형(가로 6cm, 세로 4cm)의 둘레는 각각 몇 cm일까요?</li></ul>
     <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0;text-align:center">
@@ -14432,6 +15682,32 @@ const CV_DATA_E5POLY = [
     </div>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f85149;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/>
+        <polygon points="36,70 48,80 40,86" fill="#6d5138"/>
+        <polygon points="60,70 48,80 56,86" fill="#6d5138"/>
+        <circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="46" r="18" fill="#ffd9a8"/>
+        <path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/>
+        <rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/>
+        <circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <circle cx="40" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="56" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="48" cy="53" r="1.4" fill="#c9915a"/>
+        <path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g transform="translate(74,66) rotate(20)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+          <line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div style="font-size:.68rem;color:#f85149;margin-top:4px">탐정 루페와 함께 단서를 찾아봐요</div>
+    </div>
     <div class="q-item"><strong>Q1.</strong> 평행사변형의 넓이는 왜 밑변×높이일까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5poly-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e5poly-h1">
@@ -14467,6 +15743,22 @@ const CV_DATA_E5POLY = [
     </div>
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f85149;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <circle cx="50" cy="50" r="24" fill="#b0b0b0"/>
+        <polygon points="34,30 28,18 42,28" fill="#8d8d8d"/>
+        <polygon points="66,30 72,18 58,28" fill="#8d8d8d"/>
+        <ellipse cx="50" cy="52" rx="22" ry="16" fill="#e8e8e8"/>
+        <circle cx="42" cy="46" r="7" fill="#fff" stroke="#2b2b2b" stroke-width="1.5"/>
+        <circle cx="58" cy="46" r="7" fill="#fff" stroke="#2b2b2b" stroke-width="1.5"/>
+        <circle cx="42" cy="46" r="2.4" fill="#2b2b2b"/>
+        <circle cx="58" cy="46" r="2.4" fill="#2b2b2b"/>
+        <line x1="49" y1="46" x2="51" y2="46" stroke="#2b2b2b" stroke-width="1.5"/>
+        <ellipse cx="50" cy="56" rx="4" ry="2.4" fill="#2b2b2b"/>
+        <rect x="60" y="64" width="22" height="6" rx="3" fill="#607d8b" transform="rotate(30 71 67)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f85149;margin-top:4px">너구리 레이가 도형을 조립해요</div>
+    </div>
     <div class="prob-box">
       <div class="prob-q">문제: 한 변이 5cm인 정육각형의 둘레는 몇 cm인가요?</div>
       <button class="havruta-show-btn" onclick="havrutaReveal('e5poly-p1',this)">💡 풀이 보기</button>
@@ -14497,6 +15789,21 @@ const CV_DATA_E5POLY = [
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f85149;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="78,70 86,52 92,72" fill="#7c5cff"/>
+        <polygon points="88,61 97,61 92,69" fill="#f0c040"/>
+        <circle cx="50" cy="55" r="26" fill="#7c5cff"/>
+        <polygon points="32,38 28,20 44,32" fill="#7c5cff"/>
+        <polygon points="68,38 72,20 56,32" fill="#7c5cff"/>
+        <circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/>
+        <circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/>
+        <path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/>
+        <line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f85149;margin-top:4px">우주고양이 코모가 도전을 기다려요</div>
+    </div>
     <p>지금까지 배운 다각형의 둘레와 넓이를 실제 상황에 적용하는 문제들이에요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
@@ -14550,6 +15857,15 @@ const CV_DATA_E5POLY = [
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #f85149;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/>
+        <circle cx="40" cy="48" r="4" fill="#2b2b2b"/>
+        <circle cx="60" cy="48" r="4" fill="#2b2b2b"/>
+        <path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:.68rem;color:#f85149;margin-top:4px">꼬마 유령 몽이가 함정을 알려줘요</div>
+    </div>
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 삼각형 밑변 6cm, 높이 4cm인데 넓이를 6×4=24cm²라고 했어요. 근데 답이 틀렸대요.</div></div>
     <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>어? 평행사변형 공식이랑 헷갈리신 거 아니에요?</div></div>
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">지호</span>맞다! 삼각형은 평행사변형의 절반이니까 2로 나눠야죠.</div></div>
@@ -15138,10 +16454,39 @@ const CV_DATA_E6RATIO = [
 CV_DATA['e6ratio'] = CV_DATA_E6RATIO;
 const CV_DATA_E5AVG = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #7dd3fc;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M70 70 Q95 65 88 35 Q80 45 72 50 Q82 55 70 70 Z" fill="#c97b3d"/>
+        <ellipse cx="46" cy="60" rx="22" ry="20" fill="#d98a4a"/>
+        <circle cx="46" cy="40" r="16" fill="#d98a4a"/>
+        <polygon points="36,28 32,16 42,26" fill="#d98a4a"/>
+        <polygon points="56,28 60,16 50,26" fill="#d98a4a"/>
+        <circle cx="40" cy="40" r="2.6" fill="#2b2b2b"/>
+        <circle cx="52" cy="40" r="2.6" fill="#2b2b2b"/>
+        <ellipse cx="46" cy="46" rx="3" ry="2" fill="#7a4a1e"/>
+        <rect x="30" y="58" width="18" height="20" rx="4" fill="#8b5a2b"/>
+      </svg>
+      <div style="font-size:.68rem;color:#7dd3fc;margin-top:4px">다람쥐 토리와 함께 생각해 볼까요?</div>
+    </div>
     <div class="fb-diagram">${spinnerSvg(4,1,'#58a6ff')}<span class="cap">시험 평균 점수, 일기예보의 강수 확률, 제비뽑기에서 당첨될 가능성 — 다 이 단원에서 배우는 내용이에요</span></div>
     <p style="margin-top:10px">"이번 시험 평균이 몇 점이야?"라는 말도, "내일 비가 올 가능성이 70%래"라는 말도 전부 <strong>평균</strong>과 <strong>가능성</strong>을 수로 표현한 거예요. 여러 개의 값을 하나의 대표값으로 정리하거나(평균), 아직 일어나지 않은 일이 얼마나 일어날 것 같은지(가능성)를 수로 나타내는 법을 배워요.</p>
   `},
   { title:'📖 개념 설명', cls:'concept', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #7dd3fc;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="50,10 70,42 30,42" fill="#4b3f8f"/>
+        <circle cx="50" cy="12" r="4" fill="#f0c040"/>
+        <circle cx="36" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="64" cy="38" r="9" fill="#a9754a"/>
+        <circle cx="50" cy="56" r="26" fill="#c9915a"/>
+        <ellipse cx="50" cy="60" rx="13" ry="10" fill="#e8c39a"/>
+        <circle cx="42" cy="52" r="3" fill="#2b2b2b"/>
+        <circle cx="58" cy="52" r="3" fill="#2b2b2b"/>
+        <ellipse cx="50" cy="62" rx="3" ry="2" fill="#5c3a1e"/>
+        <rect x="68" y="60" width="4" height="26" fill="#8b5a2b" transform="rotate(20 70 73)"/>
+      </svg>
+      <div style="font-size:.68rem;color:#7dd3fc;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
+    </div>
     <ul style="margin-top:8px;padding-left:18px;line-height:1.9">
       <li><strong>평균</strong> = (자료 값의 합) ÷ (자료의 수) — 자료를 "골고루 나눴을 때"의 값이에요</li>
       <li>평균을 알면 거꾸로 <strong style="color:#bc8cff">전체 합 = 평균×개수</strong>도 구할 수 있어요</li>
@@ -15150,7 +16495,7 @@ const CV_DATA_E5AVG = [
     </ul>
     <div class="fb-diagram">${spinnerSvg(4,2,'#f0c040')}<span class="cap">회전판을 반으로 나누면 화살이 그 색을 가리킬 가능성은 ${frac(1,2)}(반반)이에요</span></div>
   `},
-  { title:'📖 다양한 표현 익히기', cls:'concept', html:`
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`${mascotBadge('ray','#7dd3fc')}
     <p>"수학 점수 80점, 85점, 90점, 85점"(예제 문제와 같은 자료) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 자료가 얼마나 다양하게 표현되는지, 정의와 계산 과정을 함께 볼까요?</p>
     <div class="expr-item"><span class="expr-num">1</span><strong>평균 구하기 표현</strong><br>"80점, 85점, 90점, 85점의 평균은?"
       <div style="font-size:.68rem;color:#8b949e;margin-top:4px">💡 평균은 (자료 값의 합)÷(자료의 수)예요</div>
@@ -15195,6 +16540,32 @@ const CV_DATA_E5AVG = [
     <p style="margin-top:10px">이렇게 10가지나 되는 표현이 결국 <strong>같은 자료(80,85,90,85점)</strong>를 다루고 있어요. 평균 구하기와 그 역산(합·빠진 값 구하기)이 서로 연결되어 있다는 걸 알 수 있어요.</p>
   `},
   { title:'💬 하브루타 질문', cls:'havruta', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #7dd3fc;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M30 70 L26 94 L70 94 L66 70 Q48 80 30 70 Z" fill="#8a6a4a"/>
+        <polygon points="36,70 48,80 40,86" fill="#6d5138"/>
+        <polygon points="60,70 48,80 56,86" fill="#6d5138"/>
+        <circle cx="48" cy="84" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="90" r="1.6" fill="#3a2c1c"/>
+        <circle cx="48" cy="46" r="18" fill="#ffd9a8"/>
+        <path d="M26 38 Q48 16 70 38 L70 44 Q48 32 26 44 Z" fill="#5c4530"/>
+        <rect x="24" y="42" width="48" height="6" rx="3" fill="#4a3826"/>
+        <circle cx="40" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <circle cx="56" cy="47" r="8.5" fill="none" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="48.5" y1="47" x2="47.5" y2="47" stroke="#2b2b2b" stroke-width="2.4"/>
+        <line x1="31.5" y1="46" x2="26" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <line x1="64.5" y1="46" x2="70" y2="44" stroke="#2b2b2b" stroke-width="2"/>
+        <circle cx="40" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="56" cy="47" r="2" fill="#2b2b2b"/>
+        <circle cx="48" cy="53" r="1.4" fill="#c9915a"/>
+        <path d="M42 58 Q48 62 54 58" stroke="#7a4a1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g transform="translate(74,66) rotate(20)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+          <line x1="6.5" y1="6.5" x2="16" y2="16" stroke="#2b2b2b" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div style="font-size:.68rem;color:#7dd3fc;margin-top:4px">탐정 루페와 함께 단서를 찾아봐요</div>
+    </div>
     <div class="q-item"><strong>Q1.</strong> 평균을 구할 때 왜 그냥 다 더하지 않고, 자료의 개수로 나눌까요?
       <button class="havruta-show-btn" onclick="havrutaReveal('e5avg-h1',this)">💬 친구들은 이렇게 답했어요</button>
       <div class="havruta-reveal" id="rv-e5avg-h1">
@@ -15230,6 +16601,19 @@ const CV_DATA_E5AVG = [
     </div>
   `},
   { title:'✏️ 예제 문제 & 다양한 풀이', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #7dd3fc;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <line x1="50" y1="14" x2="50" y2="26" stroke="#8b949e" stroke-width="3"/>
+        <circle cx="50" cy="11" r="4" fill="#58d6ff"/>
+        <rect x="26" y="26" width="48" height="36" rx="8" fill="#9aa6b2"/>
+        <rect x="34" y="34" width="32" height="18" rx="4" fill="#0d1117"/>
+        <circle cx="44" cy="43" r="3" fill="#58d6ff"/>
+        <circle cx="56" cy="43" r="3" fill="#58d6ff"/>
+        <rect x="30" y="64" width="40" height="24" rx="6" fill="#7c8894"/>
+        <rect x="36" y="70" width="28" height="4" rx="2" fill="#58d6ff"/>
+      </svg>
+      <div style="font-size:.68rem;color:#7dd3fc;margin-top:4px">로봇 알고가 계산을 확인해요</div>
+    </div>
     <div class="prob-box">
       <div class="prob-q">문제: 수학 시험 점수가 80점, 85점, 90점, 85점입니다. 평균 점수를 구하세요.</div>
       <button class="havruta-show-btn" onclick="havrutaReveal('e5avg-p1',this)">💡 풀이 보기</button>
@@ -15255,6 +16639,21 @@ const CV_DATA_E5AVG = [
     </div>
   `},
   { title:'✏️ 문장제 심화 10선', cls:'problems', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #7dd3fc;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <polygon points="78,70 86,52 92,72" fill="#7c5cff"/>
+        <polygon points="88,61 97,61 92,69" fill="#f0c040"/>
+        <circle cx="50" cy="55" r="26" fill="#7c5cff"/>
+        <polygon points="32,38 28,20 44,32" fill="#7c5cff"/>
+        <polygon points="68,38 72,20 56,32" fill="#7c5cff"/>
+        <circle cx="42" cy="52" r="4" fill="#fff"/><circle cx="58" cy="52" r="4" fill="#fff"/>
+        <circle cx="42" cy="52" r="1.6" fill="#1b1b1b"/><circle cx="58" cy="52" r="1.6" fill="#1b1b1b"/>
+        <path d="M44 62 Q50 66 56 62" stroke="#2b2250" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="30" y1="58" x2="18" y2="55" stroke="#fff" stroke-width="1.3"/>
+        <line x1="70" y1="58" x2="82" y2="55" stroke="#fff" stroke-width="1.3"/>
+      </svg>
+      <div style="font-size:.68rem;color:#7dd3fc;margin-top:4px">우주고양이 코모가 도전을 기다려요</div>
+    </div>
     <p>평균과 가능성을 실제 문제에 적용해봐요. "다음 문제" 버튼을 누르면 숫자가 바뀐 비슷한 문제가 계속 나와서, 원하는 만큼 연습할 수 있어요.</p>
     <div class="prob-box">
       <div style="font-size:.72rem;color:#f0c040;font-weight:700;margin-bottom:4px">문제 1</div>
@@ -15319,6 +16718,15 @@ const CV_DATA_E5AVG = [
     </div>
   `},
   { title:'🔥 심화 토론', cls:'debate', html:`
+    <div class="mascot-badge" style="background:#0d1117;border:2px solid #7dd3fc;border-radius:12px;padding:10px;margin-bottom:14px;text-align:center">
+      <svg viewBox="0 0 100 100" style="width:64px;height:64px">
+        <path d="M26 80 L26 48 Q26 20 50 20 Q74 20 74 48 L74 80 Q66 70 58 80 Q50 70 42 80 Q34 70 26 80 Z" fill="#dfe6ff"/>
+        <circle cx="40" cy="48" r="4" fill="#2b2b2b"/>
+        <circle cx="60" cy="48" r="4" fill="#2b2b2b"/>
+        <path d="M40 60 Q50 54 60 60" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:.68rem;color:#7dd3fc;margin-top:4px">꼬마 유령 몽이가 함정을 알려줘요</div>
+    </div>
     <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">민준</span>선생님, 우리 반 수학 평균이 80점이래요. 그런데 저는 60점 받았는데, 평균이 틀린 거 아니에요?</div></div>
     <div class="story-line"><div class="story-avatar">🧑‍🏫</div><div class="story-bubble teacher"><span class="story-name">선생님</span>평균은 "모든 사람이 똑같이 받았다면"을 가정한 대표값이지, 모든 사람이 실제로 그 점수를 받았다는 뜻이 아니에요. 누군가는 60점, 누군가는 100점을 받아도 평균이 80점일 수 있어요.</div></div>
     <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">서연</span>그럼 딱 한 명이 엄청 높은 점수를 받으면 평균이 확 올라갈 수도 있겠네요?</div></div>
@@ -16681,6 +18089,16 @@ const HAVRUTA_FB = {
     {ok:true, text:'맞아요! 2번 카드에서 직접 접어봤죠. 완전히 겹쳐진다는 건 두 밑각의 크기가 똑같다는 뜻이에요.', diagram:FB_DIAGRAM_E4TRI_H3},
     {ok:false, text:'우연이 아니에요. 두 변이 같은 삼각형은 항상(예외 없이) 두 밑각이 같아요 — 접어보면 매번 확인할 수 있어요.', diagram:FB_DIAGRAM_E4TRI_H3},
     {ok:false, text:'상관있어요! 변의 길이와 각의 크기는 서로 연결돼 있어요.', diagram:FB_DIAGRAM_E4TRI_H3}
+  ],
+  'e4dec-h1': [
+    {ok:false, text:'끝자리로 맞추면 3.6을 360으로, 0.25를 25로 보고 더하는 셈이 돼요. 0.25의 5는 소수 둘째 자리인데, 끝자리 맞추기로는 3.6의 6(소수 첫째 자리)과 더해지니 자리가 완전히 어긋나요.'},
+    {ok:true, text:'맞아요! 소수점을 기준으로 자리를 맞춰야 자연수는 자연수끼리, 소수 첫째 자리는 소수 첫째 자리끼리 더해져요. 3.6을 3.60으로 생각하면, 3.60+0.25=3.85예요.'},
+    {ok:false, text:'답이 서로 달라요. 소수점을 맞추면 3.85가 나오지만, 끝자리만 맞추면 전혀 다른(틀린) 값이 나와요. 직접 계산해서 비교해 볼까요?'}
+  ],
+  'e4dec-h2': [
+    {ok:false, text:'계산할 수 있어요! 0.5는 0.50과 똑같은 수예요. 둘째 자리가 "없는" 게 아니라 "0"이라고 생각하면 돼요.'},
+    {ok:true, text:'맞아요! 0.5=0.50이니 0.50−0.23처럼 자리를 맞춰서 빼면 돼요. 50−23=27이니 0.27이 나와요.'},
+    {ok:false, text:'반올림하면 정확한 답이 아니라 어림값만 나와요. 0.5를 0.50으로 바꿔서 자리를 맞추면 반올림 없이 정확하게 계산할 수 있어요.'}
   ],
   'e5gcd-h1': [
     {ok:true, text:'맞아요! 소수는 약수가 정확히 2개(1과 자기 자신)여야 해요. 1은 약수가 자기 자신 하나뿐이라 이 조건에 맞지 않아서 소수가 아니에요.', diagram:FB_DIAGRAM_GCD1_OK},
@@ -21427,7 +22845,8 @@ function cvShowSubSection(id, groupIdx, subIdx){
 // 흰 바탕 패널: 대상 단원 + 학생이 끈 선택(이 기기 localStorage)
 var LIGHT_UNITS = new Set(['e5mix','e5gcd','e5corr','e5frac2','e5fracadd','e5poly','e5range','e5fracmul','e5sym','e5decmul','e5box','e5avg',
   'e6fracdiv','e6prism','e6decdiv','e6ratio','e6graph','e6cyl','e6pct','e6vol','e6circ','e6cube',
-  'e3div','e3mul','e3frac','e3frac2','e3frac3','e3frac4','e3circ','e3msr','e3data']);
+  'e3div','e3mul','e3frac','e3frac2','e3frac3','e3frac4','e3circ','e3msr','e3data',
+  'e4bar','e4pat','e4frac','e4tri','e4dec']);
 var LW_BOLD = new Set(['e6ratio','e6fracdiv','e6pct','e5gcd','e5frac2','e5range','e5fracmul','e5decmul','e5avg','e3div','e3mul','e3frac','e3frac2','e3frac3','e3frac4','e3circ']);
 function lwIsOff(){ try{ return localStorage.getItem('toro_lw_off')==='1'; }catch(e){ return false; } }
 function lwWrap(id, html){
