@@ -1,6 +1,6 @@
 // 심화 문제를 "아이디어 주고받기"로 푼다 — 소인수분해 동굴 "심화 문제 도전"(완전제곱수 만들기 유형)
 // 이 유형은 4지선다 보기를 두지 않고, 문제 바로 아래에서 토로와 3단계(같은 수를 둘씩 짝짓기)로 푼 뒤,
-// 4번 질문 "그럼 n이 될 수 있는 수는?"(확장 문제)을 이모지 버튼으로 연다. 단계마다 학생 A / 학생 B / 잘 모르겠어요 중 선택.
+// 4번 질문 "그럼 n이 될 수 있는 수는?"(확장 문제)은 3단계에서 답을 고르면 나오는 이모지 버튼으로 연다. 단계마다 학생 A / 학생 B / 잘 모르겠어요 중 선택.
 // 점수: 3단계를 끝까지 가면 기본 +1P, 맞는 생각을 먼저 고른 단계가 2개 이상이면 +2P(기존 오답 +1P·정답 +2P와 같은 크기). 확장 문제는 점수 없음.
 // 문제 숫자는 매판 다르므로 문장은 q.data(n, f, fStr, minN, result, sqrtRes)로 채운다. 지수 표기 대신 "같은 수가 몇 개인지"로 센다.
 var IDEA = null;
@@ -100,6 +100,7 @@ function ideaRender(){
     var react = S.picked === 2 ? st.hint : opts[S.picked].o.react, good = S.picked !== 2 && opts[S.picked].o === st.ok;
     h += '<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:10px;font-size:.84rem;color:#e2e8f0;line-height:1.8;margin-bottom:8px">🦕 <b style="color:#fde68a">' + (S.picked === 2 ? '힌트' : (good ? '오!' : '음~')) + '</b> ' + ideaEsc(react) + '</div>'
       + '<div style="background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.3);border-radius:10px;padding:10px;font-size:.84rem;color:#e2e8f0;line-height:1.8;margin-bottom:10px">✅ <b style="color:#86efac">정리</b> ' + ideaEsc(st.right) + '</div>'
+      + (S.i === n - 1 ? ideaCtaHtml() : '')
       + '<button onclick="ideaNext()" style="display:block;width:100%;background:linear-gradient(135deg,#7c3aed,#a855f7);border:none;color:#fff;border-radius:10px;padding:10px;font-family:Jua,sans-serif;font-size:.9rem;cursor:pointer">' + (S.i === n - 1 ? '끝내기 🏁' : '다음 →') + '</button>';
   }
   box.innerHTML = ideaWrap(h);
@@ -123,7 +124,6 @@ function ideaFinalHtml(){
     '<div style="text-align:center;font-size:2rem;margin-bottom:4px">🎉</div>'
     + '<div style="text-align:center;font-family:Jua,sans-serif;color:#d8b4fe;font-size:1rem;margin-bottom:8px">아이디어를 끝까지 따라갔어요!</div>'
     + '<div style="font-size:.86rem;color:#e2e8f0;line-height:1.85;margin-bottom:10px">🔑 <b style="color:#fde68a">비밀 정리</b><br>짝이 없는 수에게 짝을 하나씩 만들어 주면 최소야.<br>검산: ' + d.n + ' × ' + d.minN + ' = ' + d.result + ' = ' + d.sqrtRes + '²<br><span style="color:#94a3b8;font-size:.78rem">' + n + '단계 중 ' + IDEA.right + '단계에서 맞는 생각을 먼저 골랐어요.</span></div>'
-    + ideaCtaHtml()
     + '<button onclick="ideaRestart()" style="display:block;width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#e2e8f0;border-radius:10px;padding:9px;font-family:Jua,sans-serif;cursor:pointer">🔄 처음부터 다시 (점수는 그대로)</button>'
   );
 }
@@ -292,7 +292,9 @@ function extNext(){
     + '<button onclick="extOpen();extOpen()" style="display:block;width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#e2e8f0;border-radius:10px;padding:9px;font-family:Jua,sans-serif;cursor:pointer">🔄 다른 범위로 다시</button>'
   );
   // 확장 문제를 끝내면 위쪽 4번째 점이 분홍색으로 채워진다
-  if(IDEA && IDEA.cur === ST.cur && IDEA.i >= IDEA.steps.length) document.getElementById('qc-idea').innerHTML = ideaFinalHtml();
+  if(IDEA && IDEA.cur === ST.cur){
+    if(IDEA.i >= IDEA.steps.length) document.getElementById('qc-idea').innerHTML = ideaFinalHtml(); else ideaRender();
+  }
 }
 
 // 심화 모드 + 소인수분해 + 완전제곱수 유형만 보기 4개 대신 아이디어 칸을 쓴다(나머지 유형·일반 모드는 그대로)
