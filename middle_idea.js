@@ -312,6 +312,111 @@ IDEA_TYPES.tree_plant = {
   secret: function(q){ var d = q.data; return '간격은 가로·세로의 최대공약수, 그루 수 = 둘레 ÷ 간격.<br>검산: ' + d.peri + ' ÷ ' + d.G + ' = ' + d.count + '그루'; }
 };
 
+// ⑤′ 나무 심기(도로 → 양쪽 → 연못 → 직사각형 둘레) — 미리보기 중: ?demo=idea&t=tree_road 에서만 열린다(퀴즈에는 아직 연결 안 함)
+// 기본 = 도로 한쪽(처음부터 끝까지, 간격 수 + 1), 확장 1 = 도로 양쪽, 확장 2 = 연못 둘레(닫힌 둘레라 +1 없음), 확장 3 = 직사각형 둘레(모퉁이에 꼭 → 최대공약수 간격)
+function genTreeRoad(){
+  var cases = [{w: 120, h: 84, G: 12}, {w: 90, h: 60, G: 30}, {w: 80, h: 60, G: 20}, {w: 72, h: 48, G: 24}, {w: 100, h: 75, G: 25}, {w: 105, h: 70, G: 35}, {w: 96, h: 64, G: 32}, {w: 120, h: 90, G: 30}];
+  var c = cases[Math.floor(Math.random() * cases.length)], n = c.w / c.G, per = 2 * (c.w + c.h);
+  var stories = [
+    '길이가 ' + c.w + 'm인 도로 한쪽에 처음부터 끝까지 ' + c.G + 'm 간격으로 가로수를 심어요. 가로수는 모두 몇 그루 필요할까요?',
+    c.w + 'm 길이의 도로 한쪽에 양 끝에도 심으며 ' + c.G + 'm 간격으로 은행나무를 심어요. 은행나무는 모두 몇 그루일까요?'
+  ];
+  var ans = (n + 1) + '그루';
+  return {type: 'prime', subtype: 'tree_road', story: stories[Math.floor(Math.random() * 2)], data: {w: c.w, h: c.h, G: c.G, nGap: n, road: n + 1, peri: per, count: per / c.G}, answer: ans, choices: [ans], qsteps: []};
+}
+// 도로(한쪽 또는 양쪽)에 나무를 심은 그림
+function ideaRoadHtml(len, G, sides, note){
+  var n = len / G, W = 300, ys = sides === 2 ? [28, 62] : [38], dots = '', H = sides === 2 ? 90 : 76;
+  ys.forEach(function(y){
+    dots += '<line x1="14" y1="' + y + '" x2="' + (W - 14) + '" y2="' + y + '" stroke="#64748b" stroke-width="3"/>';
+    for(var k = 0; k <= n; k++) dots += '<circle cx="' + (14 + (W - 28) * k / n).toFixed(1) + '" cy="' + y + '" r="' + (k === 0 || k === n ? 6 : 5) + '" fill="' + (k === 0 || k === n ? '#fbbf24' : '#4ade80') + '"/>';
+  });
+  return '<div style="background:#0f1c33;border:1px solid #243b63;border-radius:12px;padding:10px;margin:0 0 10px;text-align:center"><svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;max-width:340px">' + dots + '</svg><div style="font-size:.8rem;color:#94a3b8">길이 ' + len + 'm — ' + G + 'm마다 한 그루(노란 점: 양 끝)</div>' + (note ? '<div style="margin-top:6px;font-size:.82rem;line-height:1.7;color:#e2e8f0">' + note + '</div>' : '') + '</div>';
+}
+// 연못 둘레(원)에 나무를 심은 그림
+function ideaPondHtml(cnt, G, per, note){
+  var dots = '', cx = 80, cy = 70, r = 52;
+  for(var k = 0; k < cnt; k++){ var a = -Math.PI / 2 + 2 * Math.PI * k / cnt; dots += '<circle cx="' + (cx + r * Math.cos(a)).toFixed(1) + '" cy="' + (cy + r * Math.sin(a)).toFixed(1) + '" r="' + (k === 0 ? 6 : 4.5) + '" fill="' + (k === 0 ? '#fbbf24' : '#4ade80') + '"/>'; }
+  return '<div style="background:#0f1c33;border:1px solid #243b63;border-radius:12px;padding:10px;margin:0 0 10px;text-align:center"><svg viewBox="0 0 160 140" style="width:100%;max-width:200px"><circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="rgba(56,189,248,.18)" stroke="#475569" stroke-width="1.5"/>' + dots + '</svg><div style="font-size:.8rem;color:#94a3b8">둘레 ' + per + 'm — ' + G + 'm마다 한 그루(노란 점: 시작한 자리)</div>' + (note ? '<div style="margin-top:6px;font-size:.82rem;line-height:1.7;color:#e2e8f0">' + note + '</div>' : '') + '</div>';
+}
+
+IDEA_TYPES.tree_road = {
+  ok: function(q){ return !!(q && q.data && q.data.G && q.data.nGap); },
+  steps: function(q){
+    var d = q.data, w = d.w, G = d.G, n = d.nGap;
+    return [
+      B('도로 ' + w + 'm를 ' + G + 'm 간격으로 나누면, 나무와 나무 사이의 간격은 몇 개 생길까요?', [{post: '개', accept: [String(n)]}],
+        [{re: new RegExp('^' + (n + 1) + '$'), msg: n + '개가 아니라 ' + (n + 1) + '이라고 썼어. ' + w + '÷' + G + ' = ' + n + '이 간격의 수야. 나무의 수는 다음에 생각해 보자.'}],
+        n + '개', w + ' ÷ ' + G + ' = ' + n + '이니까 나무와 나무 사이 간격이 ' + n + '개야.'),
+      C('간격의 수와 나무의 수는 어떤 관계일까요?',
+        {text: '나무가 간격보다 하나 더 많아요. 양 끝에 모두 심으니까요.', react: '맞아! 나무 2그루 사이에는 간격이 1개, 3그루 사이에는 2개야. 나무가 간격보다 늘 하나 더 많아.'},
+        [{text: '나무와 간격이 같아요. 간격 하나에 나무 하나씩이에요.', react: '간격은 나무와 나무 사이야. 나무 2그루 사이에는 간격이 1개뿐이야. 나무가 하나 더 있어야 해.'},
+         {text: '나무가 간격보다 하나 적어요. 처음과 끝에는 안 심으니까요.', react: '이 문제는 처음부터 끝까지, 양 끝에도 심는다고 했어. 그러면 나무가 간격보다 하나 더 많아.'}],
+        '나무 2그루를 그려 보고 그 사이의 간격을 세어 봐. 나무 3그루일 때는?', '나무의 수 = 간격의 수 + 1 (양 끝에도 심을 때).'),
+      B('그럼 도로 한쪽에 나무는 모두 몇 그루일까요?', [{post: '그루', accept: [String(n + 1)]}],
+        [{re: new RegExp('^' + n + '$'), msg: n + '은 간격의 수야. 나무는 간격보다 하나 더 많으니까 하나를 더해야 해.'}],
+        (n + 1) + '그루', n + ' + 1 = ' + (n + 1) + '그루. 검산: 처음 나무에서 ' + G + 'm씩 ' + n + '번 가면 ' + w + 'm 끝 나무야.',
+        {visual: function(W){ return (W.cur.solved || W.cur.revealed) ? ideaRoadHtml(w, G, 1, '간격 ' + n + '개, 나무 <b>' + (n + 1) + '그루</b>예요.') : ''; }})
+    ];
+  },
+  ext: function(q){
+    var d = q.data, w = d.w, h = d.h, G = d.G, n = d.nGap, per = d.peri, cnt = d.count, mn = Math.min(w, h), mx = Math.max(w, h), L = w * h / G;
+    var bad = 0; for(var k = 2; k <= per; k++){ if(per % k === 0 && (w % k !== 0 || h % k !== 0)){ bad = k; break; } }
+    return {title: '그럼 이런 곳에 심으면?', intro: '', steps: [
+      // 확장 1: 도로 양쪽
+      C('도로 양쪽에 모두 심으면 나무는 몇 그루일까요?',
+        {text: '한쪽이 ' + (n + 1) + '그루이니까, 양쪽은 그 두 배인 ' + (2 * n + 2) + '그루예요.', react: '맞아! 한쪽 ' + (n + 1) + '그루씩 두 줄이니 ' + (2 * n + 2) + '그루야.',
+         },
+        [{text: '간격 수만 세서 ' + (2 * n) + '그루예요. ' + n + ' × 2로 계산해요.', react: n + '은 간격의 수야. 한쪽에 처음 나무가 하나 더 있어서 한쪽이 ' + (n + 1) + '그루이고, 그 두 배를 해야 해.'},
+         {text: '반대쪽은 처음 나무를 빼서 ' + (2 * n + 1) + '그루예요.', react: '반대쪽 줄도 양 끝에 모두 심으니까 똑같이 ' + (n + 1) + '그루야. 빼지 않아.'}],
+        '한쪽이 몇 그루인지 먼저 생각하고, 반대쪽도 같을지 생각해 봐.', '한쪽 ' + (n + 1) + '그루 × 2 = ' + (2 * n + 2) + '그루.',
+        {label: '🚀 확장 1 · 도로 양쪽에', introTitle: '확장 1 · 도로 양쪽에', intro: '같은 도로(' + w + 'm)의 <b>양쪽 모두</b>에 ' + G + 'm 간격으로, 처음부터 끝까지 심어요.'}),
+      B('도로 양쪽에 나무는 모두 몇 그루일까요?', [{post: '그루', accept: [String(2 * n + 2)]}],
+        [{re: new RegExp('^' + (n + 1) + '$'), msg: n + 1 + '은 한쪽의 수야. 도로 양쪽이니까 두 배를 해야 해.'}],
+        (2 * n + 2) + '그루', (n + 1) + ' × 2 = ' + (2 * n + 2) + '그루예요.',
+        {label: '🚀 확장 1 · 도로 양쪽에', visual: function(W){ return (W.cur.solved || W.cur.revealed) ? ideaRoadHtml(w, G, 2, '한쪽 ' + (n + 1) + '그루씩 두 줄, 모두 <b>' + (2 * n + 2) + '그루</b>예요.') : ''; }}),
+      // 확장 2: 연못
+      C('둘레가 ' + w + 'm인 연못 둘레에 ' + G + 'm 간격으로 심으면 나무는 몇 그루일까요?',
+        {text: '한 바퀴 돌아 처음 자리로 돌아와서 ' + n + '그루예요. 처음과 끝이 같은 자리거든요.', react: '맞아! 연못 둘레는 이어진 한 바퀴라서 마지막 자리가 처음 자리와 같아. 간격의 수와 나무의 수가 같아.'},
+        [{text: '도로처럼 ' + (n + 1) + '그루예요. 처음과 끝에 모두 심으니까요.', react: '도로는 양 끝이 서로 달라서 +1이야. 연못은 한 바퀴 돌아 시작한 자리로 오니까 마지막 나무가 처음 나무와 같은 자리야. 하나를 두 번 센 거야.'},
+         {text: (n - 1) + '그루예요. 처음과 끝은 빼요.', react: '연못에도 모든 자리에 심어. 처음 자리에도 한 그루는 있어. 그러면 나무는 간격과 같은 ' + n + '그루야.'}],
+        '둘레를 한 바퀴 돌면 마지막 자리는 처음 자리와 같을까 다를까?', '닫힌 둘레에서는 나무의 수 = 간격의 수 = ' + n + '그루.',
+        {label: '🚀 확장 2 · 연못 둘레에', introTitle: '확장 2 · 연못 둘레에', intro: '이번에는 길이가 아니라 <b>둘레가 ' + w + 'm인 연못</b> 둘레에 ' + G + 'm 간격으로 심어요.'}),
+      B('연못 둘레에 나무는 모두 몇 그루일까요?', [{post: '그루', accept: [String(n)]}],
+        [{re: new RegExp('^' + (n + 1) + '$'), msg: '도로처럼 +1을 한 거 같아. 연못은 한 바퀴 돌아 처음 자리로 오니까 더하지 않아.'}],
+        n + '그루', w + ' ÷ ' + G + ' = ' + n + '그루예요. (이어진 둘레라서 +1이 없어요)',
+        {label: '🚀 확장 2 · 연못 둘레에', visual: function(W){ return (W.cur.solved || W.cur.revealed) ? ideaPondHtml(n, G, w, '연못 둘레에 나무는 <b>' + n + '그루</b>예요.') : ''; }}),
+      // 확장 3: 직사각형 둘레
+      C('네 모퉁이에 꼭 심고 간격을 일정하게 하려면, 간격은 어떤 수여야 할까요?',
+        {text: w + 'm와 ' + h + 'm를 둘 다 나누어떨어뜨리는 수여야 해요(공약수).', react: '맞아! 가로 한 변, 세로 한 변이 모두 간격으로 딱 나누어떨어져야 모퉁이에 나무가 와.'},
+        [{text: '둘레 ' + per + 'm를 나누어떨어뜨리는 수면 돼요.', react: '예를 들어 간격 ' + bad + 'm는 ' + per + '÷' + bad + ' = ' + (per / bad) + '로 나누어떨어지지만, ' + (w % bad !== 0 ? w + '÷' + bad : h + '÷' + bad) + '은 나누어떨어지지 않아서 모퉁이에 나무가 안 와.'},
+         {text: w + 'm와 ' + h + 'm의 공배수여야 해요.', react: '공배수는 ' + w + 'm, ' + h + 'm보다 커져. 간격이 한 변보다 길 수는 없어. 한 변을 딱 나누어떨어뜨리는 공약수야.'}],
+        '가로 ' + w + 'm에서 간격이 안 맞으면 모퉁이에 나무가 못 와. 세로도 마찬가지야. 두 변 모두 어떻게 되어야 할까?', '간격은 ' + w + '과 ' + h + '의 공약수여야 해(두 변을 모두 딱 나누어떨어뜨려야 해).',
+        {label: '🚀 확장 3 · 직사각형 둘레에', introTitle: '확장 3 · 직사각형 둘레에', intro: '이번에는 가로 <b>' + w + 'm</b>, 세로 <b>' + h + 'm</b>인 직사각형 땅의 둘레예요. <b>네 모퉁이에 꼭</b> 심고 간격은 일정하게, 나무를 <b>가장 적게</b> 심어요.'}),
+      C('나무를 가장 적게 심으려면 간격은 어떻게 하면 될까요?',
+        {text: '간격을 가장 크게 해요. ' + w + '과 ' + h + '의 최대공약수 ' + G + 'm예요.', react: '맞아! 간격이 클수록 나무가 적게 필요해. 공약수 중 가장 큰 수인 최대공약수 ' + G + 'm야.'},
+        [{text: '간격을 가장 크게 해요. 짧은 변 ' + mn + 'm만큼 띄우면 돼요.', react: mn + 'm 간격이면 긴 변 ' + mx + 'm는 ' + mx + '÷' + mn + ' = ' + (mx / mn).toFixed(1).replace(/\.0$/, '') + '이라 나누어떨어지지 않아. 모퉁이에 나무가 안 와.'},
+         {text: '간격을 가장 크게 해요. 최소공배수 ' + L + 'm예요.', react: L + 'm는 한 변보다 훨씬 길어서 둘레 안에 나무를 심을 수가 없어. 간격은 두 변의 공약수 중에서 골라야 해.'}],
+        '나무를 적게 심으려면 간격이 클수록 좋아. 공약수 중 가장 큰 수는 무엇이라고 부를까?', '간격은 가장 크게, ' + w + '과 ' + h + '의 최대공약수 ' + G + 'm야.',
+        {label: '🚀 확장 3 · 직사각형 둘레에', visual: function(W){ return W.cur.picked !== null ? ideaTreeHtml(w, h, G, '간격 ' + G + 'm면 모든 변이 딱 나누어떨어져요.') : ''; }}),
+      B('둘레 ' + per + 'm에 ' + G + 'm마다 심으면 모두 몇 그루일까요?', [{post: '그루', accept: [String(cnt)]}],
+        [{re: new RegExp('^' + (cnt + 1) + '$'), msg: '연못처럼 직사각형 둘레도 한 바퀴 돌아 처음 자리로 와. 하나를 더하지 않아.'}],
+        cnt + '그루', per + ' ÷ ' + G + ' = ' + cnt + '그루야.',
+        {label: '🚀 확장 3 · 직사각형 둘레에', visual: function(W){ return (W.cur.solved || W.cur.revealed) ? ideaTreeHtml(w, h, G, '나무는 모두 <b>' + cnt + '그루</b>예요.') : ''; }})
+    ], finalHtml: function(W){ return '정답: 도로 한쪽 <b style="color:#fde68a">' + (n + 1) + '그루</b> → 양쪽 <b style="color:#fde68a">' + (2 * n + 2) + '그루</b> → 연못 <b style="color:#fde68a">' + n + '그루</b> → 직사각형 둘레 <b style="color:#fde68a">' + cnt + '그루</b><br>🔑 <b style="color:#fde68a">비밀</b>: 도로는 간격 수 + 1, 이어진 둘레(연못·직사각형)는 간격 수, 모퉁이에 꼭 심으면 간격 = 최대공약수'; }, J: cnt, ks: [n + 1, 2 * n + 2, n, cnt]};
+  },
+  secret: function(q){ var d = q.data; return '도로(양 끝에도 심기)는 나무 = 간격 수 + 1.<br>검산: ' + d.w + ' ÷ ' + d.G + ' = ' + d.nGap + '개 → ' + d.nGap + ' + 1 = ' + d.road + '그루'; }
+};
+// "풀이 보기"(기존 설명 자리)도 도로 문제에 맞게
+window.addEventListener('load', function(){
+  if(typeof buildQCExplain !== 'function') return;
+  var orig = buildQCExplain;
+  buildQCExplain = function(q){
+    if(q && q.subtype === 'tree_road'){ var d = q.data; return '<b style="color:#7dd3fc">① 간격의 수</b><br>' + d.w + ' ÷ ' + d.G + ' = ' + d.nGap + '개<br><b style="color:#7dd3fc">② 양 끝에도 심으니 나무 = 간격 + 1</b><br>' + d.nGap + ' + 1 = <b style="color:var(--yellow)">' + d.road + '그루</b>'; }
+    return orig(q);
+  };
+});
+
 function ideaSpecFor(q){
   var t = q && IDEA_TYPES[q.subtype];
   return t && q.data && t.ok(q) ? t : null;
@@ -420,9 +525,11 @@ function wkRender(which){
     box.innerHTML = '<div style="background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.35);border-radius:12px;padding:12px">' + wkDotsHtml(W, {done: '#a855f7'}, true) + head + wkBodyHtml(W, 'main') + '</div>';
   } else {
     var box2 = document.getElementById('qc-ext'); if(!box2 || W.qi !== ST.cur) return;
-    var n2 = W.steps.length, intro = '';
-    if(W.i === 0) intro = '<div style="background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.35);border-radius:10px;padding:10px;font-size:.88rem;line-height:1.8;color:#e2e8f0;margin-bottom:10px"><b style="color:#fbcfe8">👑 ' + W.data.title + '</b><br>' + W.data.intro + '</div>';
-    box2.innerHTML = '<div style="background:rgba(236,72,153,.07);border:1px solid rgba(236,72,153,.35);border-radius:12px;padding:12px">' + wkDotsHtml(W, {done: '#ec4899'}, false) + '<div style="font-family:Jua,sans-serif;color:#f0abfc;font-size:.78rem;margin-bottom:6px">🚀 4번 질문 · 확장 문제 (' + (W.i + 1) + ' / ' + n2 + ')</div>' + intro + wkBodyHtml(W, 'ext') + '</div>';
+    var n2 = W.steps.length, intro = '', s1 = W.steps[W.i], boxHtml = function(title, body){ return '<div style="background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.35);border-radius:10px;padding:10px;font-size:.88rem;line-height:1.8;color:#e2e8f0;margin-bottom:10px"><b style="color:#fbcfe8">👑 ' + title + '</b><br>' + body + '</div>'; };
+    if(s1.intro) intro = boxHtml(s1.introTitle || W.data.title, s1.intro);
+    else if(W.i === 0 && W.data.intro) intro = boxHtml(W.data.title, W.data.intro);
+    var lab2 = (s1.label || '🚀 4번 질문 · 확장 문제') + ' (' + (W.i + 1) + ' / ' + n2 + ')';
+    box2.innerHTML = '<div style="background:rgba(236,72,153,.07);border:1px solid rgba(236,72,153,.35);border-radius:12px;padding:12px">' + wkDotsHtml(W, {done: '#ec4899'}, false) + '<div style="font-family:Jua,sans-serif;color:#f0abfc;font-size:.78rem;margin-bottom:6px">' + lab2 + '</div>' + intro + wkBodyHtml(W, 'ext') + '</div>';
   }
   var st0 = W.steps[W.i];
   if(st0 && st0.kind === 'blank' && !wkResolved(W) && !W.cur.busy){ var f0 = document.getElementById('wk-in-' + which + '-0'); if(f0 && f0.focus) f0.focus(); }
@@ -506,11 +613,11 @@ function ideaSideCtaHtml(){
 }
 function ideaBottomCtaHtml(){
   return '<button class="idx-cta" onclick="extOpen()" style="margin-top:4px"><span class="idx-lv"><span class="ring"></span><span class="core"></span><span class="face">🤩</span></span>'
-    + '<span class="txt">🚀 ' + ideaExtLabel() + '<small>확장 문제 — 새 화면에서 가능한 수가 모두 몇 개인지 세어 봐요</small></span></button>';
+    + '<span class="txt">🚀 ' + ideaExtLabel() + '<small>확장 문제 — 새 화면에서 이어서 풀어 봐요</small></span></button>';
 }
 function ideaExtLabel(){
   var q = ST.qs[ST.cur], t = q && q.subtype;
-  return ({perfect_sq: '그럼 n이 될 수 있는 수는?', lcm_gcd_pair: '그럼 두 수가 될 수 있는 쌍은?', div_eq: '그럼 (a, b)가 될 수 있는 쌍은?', rem_gcd: '그럼 나누는 수가 될 수 있는 수는?', tree_plant: '그럼 간격이 될 수 있는 수는?'})[t] || '확장 문제 도전!';
+  return ({perfect_sq: '그럼 n이 될 수 있는 수는?', lcm_gcd_pair: '그럼 두 수가 될 수 있는 쌍은?', div_eq: '그럼 (a, b)가 될 수 있는 쌍은?', rem_gcd: '그럼 나누는 수가 될 수 있는 수는?', tree_plant: '그럼 간격이 될 수 있는 수는?', tree_road: '그럼 도로 양쪽은? 연못은? 직사각형은?'})[t] || '확장 문제 도전!';
 }
 function ideaHopNow(){
   var es = document.querySelectorAll('#qc-idea .idx-lv'); if(!es.length) return;
@@ -573,10 +680,10 @@ window.addEventListener('load', function(){
 });
 
 // 바로가기(무작위라 찾기 어려워서): middle.html?demo=idea&t=유형 → 소인수분해 "심화 문제 도전"을 열고 첫 문제를 그 유형으로 놓는다
-//   t = perfect_sq(기본) | lcm_gcd_pair | div_eq | rem_gcd | tree_plant
+//   t = perfect_sq(기본) | lcm_gcd_pair | div_eq | rem_gcd | tree_plant | tree_road(미리보기: 도로→양쪽→연못→직사각형, 퀴즈에는 아직 연결 안 함)
 //   middle.html?demo=ext&t=유형 → 위와 같고, 풀이 3단계를 건너뛰어(쓰는 답은 모두 정답) 확장 문제가 열린 화면으로 간다
 function ideaDemo(kind){
-  var gens = {perfect_sq: 'genPerfectSquare', lcm_gcd_pair: 'genLCMGCDPair', div_eq: 'genDivisorEq', rem_gcd: 'genRemainderGCD', tree_plant: 'genTreePlant'};
+  var gens = {perfect_sq: 'genPerfectSquare', lcm_gcd_pair: 'genLCMGCDPair', div_eq: 'genDivisorEq', rem_gcd: 'genRemainderGCD', tree_plant: 'genTreePlant', tree_road: 'genTreeRoad'};
   var m = /[?&]t=([a-z_]+)/.exec(location.search), t = m && gens[m[1]] ? m[1] : 'perfect_sq';
   startQuizHard('prime', 'prime-hub');
   ST.qs[0] = window[gens[t]](); ST.cur = 0; ST.answered = false; renderQ();
