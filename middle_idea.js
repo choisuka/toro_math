@@ -1,6 +1,6 @@
 // 심화 문제를 "아이디어 주고받기"로 푼다 — 소인수분해 동굴 "심화 문제 도전"(완전제곱수 만들기 유형)
 // 이 유형은 4지선다 보기를 두지 않고, 문제 바로 아래에서 토로와 3단계(같은 수를 둘씩 짝짓기)로 푼 뒤,
-// 4번 질문 "그럼 n이 될 수 있는 수는?"(확장 문제)은 3단계에서 답을 고르면 나오는 이모지 버튼으로 연다. 단계마다 학생 A / 학생 B / 잘 모르겠어요 중 선택.
+// 4번 질문 "그럼 n이 될 수 있는 수는?"(확장 문제)은 3단계 화면 위쪽의 이모지 버튼을 누르면 전체 화면을 새로 열어 푼다. 단계마다 학생 A / 학생 B / 잘 모르겠어요 중 선택.
 // 점수: 3단계를 끝까지 가면 기본 +1P, 맞는 생각을 먼저 고른 단계가 2개 이상이면 +2P(기존 오답 +1P·정답 +2P와 같은 크기). 확장 문제는 점수 없음.
 // 문제 숫자는 매판 다르므로 문장은 q.data(n, f, fStr, minN, result, sqrtRes)로 채운다. 지수 표기 대신 "같은 수가 몇 개인지"로 센다.
 var IDEA = null;
@@ -77,7 +77,10 @@ function ideaRender(){
   var S = IDEA, st = S.steps[S.i], n = S.steps.length, d = ST.qs[ST.cur].data;
   var a = S.flips[S.i] ? st.no : st.ok, b = S.flips[S.i] ? st.ok : st.no;
   var opts = [{k: 'A', o: a}, {k: 'B', o: b}], h = '', p = S.p;
-  h += '<div style="font-family:Jua,sans-serif;color:#d8b4fe;font-size:.78rem;margin-bottom:6px">' + (S.i + 1) + ' / ' + n + ' 단계</div>';
+  var lab = '<div style="font-family:Jua,sans-serif;color:#d8b4fe;font-size:.78rem">' + (S.i + 1) + ' / ' + n + ' 단계</div>';
+  h += (S.i === n - 1)
+    ? '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px">' + lab + ideaSideCtaHtml() + '</div>'
+    : '<div style="margin-bottom:6px">' + lab + '</div>';
   // 같은 수 둘씩 짝짓기 그림(2·3단계)
   if(st.pairs){
     if(st.pairs.kind === 'before') h += ideaPairsHtml(d, p, 0, st.note);
@@ -100,7 +103,6 @@ function ideaRender(){
     var react = S.picked === 2 ? st.hint : opts[S.picked].o.react, good = S.picked !== 2 && opts[S.picked].o === st.ok;
     h += '<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:10px;font-size:.84rem;color:#e2e8f0;line-height:1.8;margin-bottom:8px">🦕 <b style="color:#fde68a">' + (S.picked === 2 ? '힌트' : (good ? '오!' : '음~')) + '</b> ' + ideaEsc(react) + '</div>'
       + '<div style="background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.3);border-radius:10px;padding:10px;font-size:.84rem;color:#e2e8f0;line-height:1.8;margin-bottom:10px">✅ <b style="color:#86efac">정리</b> ' + ideaEsc(st.right) + '</div>'
-      + (S.i === n - 1 ? ideaCtaHtml() : '')
       + '<button onclick="ideaNext()" style="display:block;width:100%;background:linear-gradient(135deg,#7c3aed,#a855f7);border:none;color:#fff;border-radius:10px;padding:10px;font-family:Jua,sans-serif;font-size:.9rem;cursor:pointer">' + (S.i === n - 1 ? '끝내기 🏁' : '다음 →') + '</button>';
   }
   box.innerHTML = ideaWrap(h);
@@ -147,7 +149,7 @@ function ideaFinish(){
 }
 function ideaRestart(){
   if(!IDEA) return;
-  var ex = document.getElementById('qc-ext'); if(ex){ ex.style.display = 'none'; ex.innerHTML = ''; } EXT = null;
+  extClose(); EXT = null;
   IDEA.i = 0; IDEA.right = 0; IDEA.picked = null; IDEA.flips = IDEA.steps.map(function(){ return Math.random() < .5; });
   ideaRender();
 }
@@ -158,10 +160,10 @@ function ideaStart(){
   var q = ST.qs[ST.cur];
   ideaCss();
   document.getElementById('q-steps-wrap').innerHTML =
-    '<div id="qc-idea" style="margin-top:12px"></div><div id="qc-ext" style="display:none;margin-top:12px"></div><div id="qc-result" style="margin-top:12px"></div>'
+    '<div id="qc-idea" style="margin-top:12px"></div><div id="qc-result" style="margin-top:12px"></div>'
     + '<div id="qc-explain" style="display:none;margin-top:10px;background:rgba(99,102,241,.1);border-left:3px solid #6366f1;padding:12px 14px;border-radius:8px;font-size:.9rem;line-height:1.7;color:#c0d0e0"></div>';
   var steps = ideaStepsFor(q), odd = Object.keys(q.data.f).map(Number).filter(function(p){ return q.data.f[p] % 2 !== 0; });
-  EXT = null;
+  extClose(); EXT = null;
   IDEA = {cur: ST.cur, steps: steps, p: odd[0], i: 0, right: 0, scored: false, flips: steps.map(function(){ return Math.random() < .5; }), picked: null};
   ideaRender();
 }
@@ -176,6 +178,8 @@ function ideaCss(){
   var st = document.createElement('style'); st.id = 'idx-css';
   st.textContent = '.idx-cta{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:linear-gradient(135deg,rgba(168,85,247,.25),rgba(236,72,153,.2));border:1px solid #c084fc;border-radius:16px;padding:12px 14px;color:#f5e9ff;cursor:pointer;font-family:Jua,sans-serif;margin:0 0 10px}'
     + '.idx-cta .txt{font-size:1rem;line-height:1.35}.idx-cta .txt small{display:block;font-family:"Nanum Gothic",sans-serif;font-size:.74rem;color:#e9d5ff;opacity:.85;margin-top:2px}'
+    + '.idx-side{display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,.25),rgba(236,72,153,.2));border:1px solid #c084fc;border-radius:16px;padding:4px 10px 4px 5px;color:#f5e9ff;cursor:pointer;font-family:Jua,sans-serif}'
+    + '.idx-side .txt{font-size:.74rem;line-height:1.3;text-align:left}.idx-side .idx-lv{width:46px;height:46px}.idx-side .idx-lv .face{font-size:1.5rem}.idx-side .idx-lv .core{inset:4px}'
     + '.idx-lv{position:relative;flex:none;width:62px;height:62px;display:flex;align-items:center;justify-content:center}'
     + '.idx-lv .ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,#f472b6,#fbbf24,#4ade80,#38bdf8,#a78bfa,#f472b6);opacity:.9;animation:idxSpin 4s linear infinite,idxHue 7s linear infinite}'
     + '.idx-lv .core{position:absolute;inset:5px;border-radius:50%;background:#1e1b4b}'
@@ -192,9 +196,9 @@ function ideaCss(){
     + '@media (prefers-reduced-motion:reduce){.idx-lv .ring,.idx-lv .face,.idx-lv.idx-hop,.idp-lone,.idt-add{animation:none}}';
   document.head.appendChild(st);
 }
-function ideaCtaHtml(){
-  return '<button class="idx-cta" onclick="extOpen()"><span class="idx-lv" id="idx-lv"><span class="ring"></span><span class="core"></span><span class="face" id="idx-face">🤩</span></span>'
-    + '<span class="txt">🚀 그럼 n이 될 수 있는 수는?<small>확장 문제 — 같은 문제에서 가능한 n이 모두 몇 개인지 세어 봐요</small></span></button>';
+function ideaSideCtaHtml(){
+  return '<button class="idx-side" onclick="extOpen()" title="확장 문제 열기"><span class="idx-lv" id="idx-lv"><span class="ring"></span><span class="core"></span><span class="face" id="idx-face">🤩</span></span>'
+    + '<span class="txt">🚀 그럼 n이 될<br>수 있는 수는?</span></button>';
 }
 function ideaHopNow(){
   var e = document.getElementById('idx-lv'); if(!e) return;
@@ -242,13 +246,29 @@ function extDots(){
   }
   return '<div style="text-align:center;margin-bottom:10px">' + h + '</div>';
 }
-function extOpen(){
-  var box = document.getElementById('qc-ext'); if(!box || !IDEA || IDEA.cur !== ST.cur) return;
-  if(box.style.display !== 'none'){ box.style.display = 'none'; return; }
+function extStart(){
   var x = extMake(ST.qs[ST.cur]);
   EXT = {cur: ST.cur, data: x, steps: x.steps, i: 0, picked: null, right: 0, flips: x.steps.map(function(){ return Math.random() < .5; })};
-  box.style.display = ''; extRender();
-  if(box.scrollIntoView) box.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+  extRender();
+}
+// 이모지를 누르면 아래로 펼치지 않고 전체 화면을 새로 연다. 풀이 화면의 상태(IDEA)는 그대로 두고 "← 돌아가기"로 돌아온다
+function extOpen(){
+  if(!IDEA || IDEA.cur !== ST.cur || document.getElementById('idx-screen')) return;
+  var sc = document.createElement('div'); sc.id = 'idx-screen';
+  sc.style.cssText = 'position:fixed;left:0;top:0;right:0;bottom:0;z-index:9500;background:#0b1220;overflow:auto;padding:16px';
+  sc.innerHTML = '<div style="max-width:1200px;margin:0 auto"><button onclick="extClose()" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;border-radius:10px;padding:8px 14px;font-family:Jua,sans-serif;font-size:.9rem;cursor:pointer;margin-bottom:12px">← 돌아가기</button>'
+    + '<div style="font-family:Jua,sans-serif;color:#f0abfc;font-size:1.05rem;margin:0 0 10px">🚀 확장 문제</div><div id="qc-ext"></div></div>';
+  document.body.appendChild(sc); document.body.style.overflow = 'hidden';
+  if(!EXT || EXT.cur !== ST.cur || EXT.i >= EXT.steps.length) extStart(); else extRender();
+  sc.scrollTop = 0;
+}
+function extClose(){
+  var sc = document.getElementById('idx-screen'); if(sc) sc.parentNode.removeChild(sc);
+  document.body.style.overflow = '';
+  // 풀이 화면의 위쪽 점(4번째)을 최신으로
+  if(IDEA && IDEA.cur === ST.cur){
+    if(IDEA.i >= IDEA.steps.length) document.getElementById('qc-idea').innerHTML = ideaFinalHtml(); else ideaRender();
+  }
 }
 function extWrap(inner){
   return '<div style="background:rgba(236,72,153,.07);border:1px solid rgba(236,72,153,.35);border-radius:12px;padding:12px">' + extDots() + inner + '</div>';
@@ -289,12 +309,9 @@ function extNext(){
     '<div style="text-align:center;font-size:2rem;margin-bottom:4px">🎉</div>'
     + '<div style="text-align:center;font-family:Jua,sans-serif;color:#f0abfc;font-size:1rem;margin-bottom:8px">확장 문제까지 해냈어요!</div>'
     + '<div style="font-size:.88rem;color:#e2e8f0;line-height:1.85;margin-bottom:10px">정답: <b style="color:#fde68a;font-size:1rem">' + x.J + '개</b> (n = ' + x.ks.join(', ') + ')<br>🔑 <b style="color:#fde68a">비밀</b>: ' + x.a + ' × n이 제곱수 ⇔ n = ' + x.m + ' × (제곱수)<br><span style="color:#94a3b8;font-size:.78rem">' + n + '단계 중 ' + EXT.right + '단계에서 맞는 생각을 먼저 골랐어요.</span></div>'
-    + '<button onclick="extOpen();extOpen()" style="display:block;width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#e2e8f0;border-radius:10px;padding:9px;font-family:Jua,sans-serif;cursor:pointer">🔄 다른 범위로 다시</button>'
+    + '<div style="display:flex;gap:8px"><button onclick="extStart()" style="flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#e2e8f0;border-radius:10px;padding:9px;font-family:Jua,sans-serif;cursor:pointer">🔄 다른 범위로 다시</button>'
+    + '<button onclick="extClose()" style="flex:1;background:linear-gradient(135deg,#7c3aed,#a855f7);border:none;color:#fff;border-radius:10px;padding:9px;font-family:Jua,sans-serif;cursor:pointer">← 풀이로 돌아가기</button></div>'
   );
-  // 확장 문제를 끝내면 위쪽 4번째 점이 분홍색으로 채워진다
-  if(IDEA && IDEA.cur === ST.cur){
-    if(IDEA.i >= IDEA.steps.length) document.getElementById('qc-idea').innerHTML = ideaFinalHtml(); else ideaRender();
-  }
 }
 
 // 심화 모드 + 소인수분해 + 완전제곱수 유형만 보기 4개 대신 아이디어 칸을 쓴다(나머지 유형·일반 모드는 그대로)
