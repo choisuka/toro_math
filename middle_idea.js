@@ -1,6 +1,7 @@
-// 심화 문제 풀이를 "아이디어 주고받기"로 따라가기 — 소인수분해 동굴 "심화 문제 도전"(완전제곱수 만들기 유형)
-// 답을 고른 뒤 결과 칸에 "🎮 아이디어로 풀이 따라가기" 버튼을 붙이고, 누르면 토로와 단계마다 보기 3개(학생 A / 학생 B / 잘 모르겠어요) 중 하나를 골라 가며 풀이를 따라간다.
-// 점수·포인트와는 상관없고, 기존 "📖 풀이 보기"는 그대로 둔다. 문제 숫자는 매판 다르므로 문장은 q.data(n, f, fStr, minN, result, sqrtRes)로 채운다.
+// 심화 문제를 "아이디어 주고받기"로 푼다 — 소인수분해 동굴 "심화 문제 도전"(완전제곱수 만들기 유형)
+// 이 유형은 4지선다 보기를 두지 않고, 문제 바로 아래에서 토로와 4단계 아이디어를 따라가며 푼다(단계마다 학생 A / 학생 B / 잘 모르겠어요 중 선택).
+// 끝까지 가면 기본 +1P, 맞는 생각을 먼저 고른 단계가 3개 이상이면 +2P(기존 오답 +1P·정답 +2P와 같은 크기). 기존 "📖 풀이 보기"는 끝난 뒤에 그대로 쓴다.
+// 문제 숫자는 매판 다르므로 문장은 q.data(n, f, fStr, minN, result, sqrtRes)로 채운다.
 var IDEA = null;
 
 function ideaEsc(s){ return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
@@ -40,21 +41,6 @@ function superscriptNote(e){ return eul(e); }
 function ideaStepsFor(q){
   if(!q || q.subtype !== 'perfect_sq' || !q.data || !q.data.f) return null;
   return ideaPerfectSq(q);
-}
-
-function ideaButtonHtml(){
-  return '<button id="qc-idea-btn" onclick="ideaToggle()" style="background:linear-gradient(135deg,rgba(168,85,247,.28),rgba(99,102,241,.25));border:1px solid #a855f7;color:#e9d5ff;border-radius:8px;padding:7px 16px;font-size:.85rem;cursor:pointer;margin-right:6px;margin-bottom:8px">🎮 아이디어로 풀이 따라가기</button>'
-    + '<div id="qc-idea" style="display:none;margin:4px 0 10px"></div>';
-}
-
-function ideaToggle(){
-  var box = document.getElementById('qc-idea'); if(!box) return;
-  if(box.style.display !== 'none'){ box.style.display = 'none'; return; }
-  var q = ST.qs[ST.cur], steps = ideaStepsFor(q); if(!steps) return;
-  // 틀린 생각과 맞는 생각이 학생 A·B 어느 쪽에 오는지는 단계마다 무작위로 정한다
-  IDEA = {cur: ST.cur, steps: steps, i: 0, right: 0, flips: steps.map(function(){ return Math.random() < .5; }), picked: null};
-  box.style.display = '';
-  ideaRender();
 }
 
 function ideaDots(){
@@ -98,26 +84,56 @@ function ideaPick(idx){
 function ideaNext(){
   if(!IDEA) return;
   if(IDEA.i < IDEA.steps.length - 1){ IDEA.i++; IDEA.picked = null; ideaRender(); return; }
-  var q = ST.qs[ST.cur], d = q.data, n = IDEA.steps.length;
+  ideaFinish();
+}
+// 끝: 점수(처음 한 번만)와 정답 줄·풀이 보기·다음 버튼을 붙이고, 아이디어 칸에는 비밀 정리를 보여 준다
+function ideaFinish(){
+  var q = ST.qs[ST.cur], d = q.data, n = IDEA.steps.length, good = IDEA.right >= 3, earn = good ? 2 : 1;
   IDEA.i = n; IDEA.picked = null;
-  var box = document.getElementById('qc-idea');
-  box.innerHTML = ideaWrap(
+  if(!IDEA.scored){
+    IDEA.scored = true; ST.answered = true;
+    if(good) ST.score++;
+    ST.points += earn; updatePoints();
+    document.getElementById('qc-result').innerHTML =
+      '<div style="font-size:.95rem;color:var(--green);margin-bottom:8px">✅ 정답: n의 최솟값 = <b style="color:var(--yellow)">' + q.answer + '</b></div>'
+      + '<button id="qc-explain-btn" onclick="toggleQCExplain()" style="background:rgba(99,102,241,.2);border:1px solid #6366f1;color:#a5b4fc;border-radius:8px;padding:7px 16px;font-size:.85rem;cursor:pointer">📖 풀이 보기</button>';
+    var fb = document.getElementById('feedback-area');
+    fb.style.display = 'block'; fb.className = 'feedback ' + (good ? 'correct' : 'wrong');
+    fb.innerHTML = '<div class="feedback-title">' + (good ? '🎉 잘했어! +' : '👏 수고했어! +') + earn + 'P</div>';
+    document.getElementById('btn-next').style.display = '';
+    document.getElementById('btn-skip').style.display = 'none';
+  }
+  document.getElementById('qc-idea').innerHTML = ideaWrap(
     '<div style="text-align:center;font-size:2rem;margin-bottom:4px">🎉</div>'
     + '<div style="text-align:center;font-family:Jua,sans-serif;color:#d8b4fe;font-size:1rem;margin-bottom:8px">아이디어를 끝까지 따라갔어요!</div>'
     + '<div style="font-size:.86rem;color:#e2e8f0;line-height:1.85;margin-bottom:10px">🔑 <b style="color:#fde68a">비밀 정리</b><br>지수가 홀수인 소인수를 한 번씩만 곱하면 최소야.<br>검산: ' + d.n + ' × ' + d.minN + ' = ' + d.result + ' = ' + d.sqrtRes + '²<br><span style="color:#94a3b8;font-size:.78rem">' + n + '단계 중 ' + IDEA.right + '단계에서 맞는 생각을 먼저 골랐어요.</span></div>'
-    + '<button onclick="ideaToggle();ideaToggle()" style="display:block;width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#e2e8f0;border-radius:10px;padding:9px;font-family:Jua,sans-serif;cursor:pointer">🔄 처음부터 다시</button>'
+    + '<button onclick="ideaRestart()" style="display:block;width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#e2e8f0;border-radius:10px;padding:9px;font-family:Jua,sans-serif;cursor:pointer">🔄 처음부터 다시 (점수는 그대로)</button>'
   );
 }
+function ideaRestart(){
+  if(!IDEA) return;
+  IDEA.i = 0; IDEA.right = 0; IDEA.picked = null; IDEA.flips = IDEA.steps.map(function(){ return Math.random() < .5; });
+  ideaRender();
+}
 
-// 답을 고른 뒤 결과 칸의 "📖 풀이 보기" 앞에 버튼을 끼운다(심화 모드 + 소인수분해 + 완전제곱수 유형만)
+function ideaEligible(q){ return !!(ST.hardMode && ST.topic === 'prime' && ideaStepsFor(q)); }
+// 보기 4개를 만드는 renderQChoices 대신 이 자리에 아이디어 칸을 놓고 바로 시작한다
+function ideaStart(){
+  var q = ST.qs[ST.cur];
+  document.getElementById('q-steps-wrap').innerHTML =
+    '<div id="qc-idea" style="margin-top:12px"></div><div id="qc-result" style="margin-top:12px"></div>'
+    + '<div id="qc-explain" style="display:none;margin-top:10px;background:rgba(99,102,241,.1);border-left:3px solid #6366f1;padding:12px 14px;border-radius:8px;font-size:.9rem;line-height:1.7;color:#c0d0e0"></div>';
+  var steps = ideaStepsFor(q);
+  IDEA = {cur: ST.cur, steps: steps, i: 0, right: 0, scored: false, flips: steps.map(function(){ return Math.random() < .5; }), picked: null};
+  ideaRender();
+}
+
+// 심화 모드 + 소인수분해 + 완전제곱수 유형만 보기 4개 대신 아이디어 칸을 쓴다(나머지 유형·일반 모드는 그대로)
 window.addEventListener('load', function(){
-  if(typeof checkQChoice !== 'function') return;
-  var orig = checkQChoice;
-  checkQChoice = function(val){
-    var first = !ST.answered;
-    orig(val);
-    var q = ST.qs && ST.qs[ST.cur], eb = document.getElementById('qc-explain-btn');
-    if(first && eb && ST.hardMode && ST.topic === 'prime' && ideaStepsFor(q)) eb.insertAdjacentHTML('beforebegin', ideaButtonHtml());
+  if(typeof renderQChoices !== 'function') return;
+  var orig = renderQChoices;
+  renderQChoices = function(){
+    if(ideaEligible(ST.qs[ST.cur])) ideaStart(); else orig();
   };
 });
 
