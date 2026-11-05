@@ -1,6 +1,6 @@
 // 심화 문제를 "아이디어 주고받기"로 푼다 — 소인수분해 동굴 "심화 문제 도전"(완전제곱수 만들기 유형)
 // 이 유형은 4지선다 보기를 두지 않고, 문제 바로 아래에서 토로와 3단계(같은 수를 둘씩 짝짓기)로 푼 뒤,
-// 4번 질문 "그럼 n이 될 수 있는 수는?"(확장 문제)은 3단계 화면 위쪽의 이모지 버튼을 누르면 전체 화면을 새로 열어 푼다. 단계마다 학생 A / 학생 B / 잘 모르겠어요 중 선택.
+// 4번 질문 "그럼 n이 될 수 있는 수는?"(확장 문제)은 3단계 화면의 이모지 버튼(옆: 위쪽 줄 오른쪽, 아래: "끝내기" 위)을 누르면 전체 화면을 새로 열어 푼다. 단계마다 학생 A / 학생 B / 잘 모르겠어요 중 선택.
 // 점수: 3단계를 끝까지 가면 기본 +1P, 맞는 생각을 먼저 고른 단계가 2개 이상이면 +2P(기존 오답 +1P·정답 +2P와 같은 크기). 확장 문제는 점수 없음.
 // 문제 숫자는 매판 다르므로 문장은 q.data(n, f, fStr, minN, result, sqrtRes)로 채운다. 지수 표기 대신 "같은 수가 몇 개인지"로 센다.
 var IDEA = null;
@@ -99,10 +99,12 @@ function ideaRender(){
     h += '<button ' + (S.picked !== null ? 'disabled ' : '') + 'onclick="ideaPick(' + idx + ')" style="display:block;width:100%;text-align:left;margin-bottom:8px;background:' + (chosen ? 'rgba(168,85,247,.28)' : 'rgba(255,255,255,.05)') + ';border:1px solid ' + (chosen ? '#a855f7' : 'rgba(255,255,255,.18)') + ';color:#e2e8f0;border-radius:10px;padding:10px 12px;font-size:.84rem;line-height:1.6;cursor:pointer">학생 ' + x.k + ': "' + ideaEsc(x.o.text) + '"</button>';
   });
   h += '<button ' + (S.picked !== null ? 'disabled ' : '') + 'onclick="ideaPick(2)" style="display:block;width:100%;text-align:left;margin-bottom:8px;background:' + (S.picked === 2 ? 'rgba(168,85,247,.28)' : 'rgba(255,255,255,.05)') + ';border:1px solid ' + (S.picked === 2 ? '#a855f7' : 'rgba(255,255,255,.18)') + ';color:#e2e8f0;border-radius:10px;padding:10px 12px;font-size:.84rem;cursor:pointer">잘 모르겠어요 🤔</button>';
+  if(S.picked === null && S.i === n - 1) h += ideaBottomCtaHtml();
   if(S.picked !== null){
     var react = S.picked === 2 ? st.hint : opts[S.picked].o.react, good = S.picked !== 2 && opts[S.picked].o === st.ok;
     h += '<div style="background:rgba(253,230,138,.08);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:10px;font-size:.84rem;color:#e2e8f0;line-height:1.8;margin-bottom:8px">🦕 <b style="color:#fde68a">' + (S.picked === 2 ? '힌트' : (good ? '오!' : '음~')) + '</b> ' + ideaEsc(react) + '</div>'
       + '<div style="background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.3);border-radius:10px;padding:10px;font-size:.84rem;color:#e2e8f0;line-height:1.8;margin-bottom:10px">✅ <b style="color:#86efac">정리</b> ' + ideaEsc(st.right) + '</div>'
+      + (S.i === n - 1 ? ideaBottomCtaHtml() : '')
       + '<button onclick="ideaNext()" style="display:block;width:100%;background:linear-gradient(135deg,#7c3aed,#a855f7);border:none;color:#fff;border-radius:10px;padding:10px;font-family:Jua,sans-serif;font-size:.9rem;cursor:pointer">' + (S.i === n - 1 ? '끝내기 🏁' : '다음 →') + '</button>';
   }
   box.innerHTML = ideaWrap(h);
@@ -197,13 +199,18 @@ function ideaCss(){
   document.head.appendChild(st);
 }
 function ideaSideCtaHtml(){
-  return '<button class="idx-side" onclick="extOpen()" title="확장 문제 열기"><span class="idx-lv" id="idx-lv"><span class="ring"></span><span class="core"></span><span class="face" id="idx-face">🤩</span></span>'
+  return '<button class="idx-side" onclick="extOpen()" title="확장 문제 열기"><span class="idx-lv"><span class="ring"></span><span class="core"></span><span class="face">🤩</span></span>'
     + '<span class="txt">🚀 그럼 n이 될<br>수 있는 수는?</span></button>';
 }
+// 아래쪽 버튼(3단계 화면 맨 아래, "끝내기" 바로 위). 옆 버튼과 똑같이 확장 문제 새 화면을 연다
+function ideaBottomCtaHtml(){
+  return '<button class="idx-cta" onclick="extOpen()" style="margin-top:4px"><span class="idx-lv"><span class="ring"></span><span class="core"></span><span class="face">🤩</span></span>'
+    + '<span class="txt">🚀 그럼 n이 될 수 있는 수는?<small>확장 문제 — 새 화면에서 가능한 n이 모두 몇 개인지 세어 봐요</small></span></button>';
+}
 function ideaHopNow(){
-  var e = document.getElementById('idx-lv'); if(!e) return;
-  e.classList.remove('idx-hop'); void e.offsetWidth; e.classList.add('idx-hop');
-  setTimeout(function(){ e.classList.remove('idx-hop'); }, 950);
+  var es = document.querySelectorAll('#qc-idea .idx-lv'); if(!es.length) return;
+  Array.prototype.forEach.call(es, function(e){ e.classList.remove('idx-hop'); void e.offsetWidth; e.classList.add('idx-hop'); });
+  setTimeout(function(){ Array.prototype.forEach.call(es, function(e){ e.classList.remove('idx-hop'); }); }, 950);
 }
 
 function extMake(q){
@@ -326,8 +333,9 @@ window.addEventListener('load', function(){
 window.addEventListener('load', function(){
   ideaCss();
   setInterval(function(){
-    var f = document.getElementById('idx-face'); if(!f) return;
-    ideaFi = (ideaFi + 1 + Math.floor(Math.random() * 2)) % IDEA_FACES.length; f.textContent = IDEA_FACES[ideaFi];
+    var fs = document.querySelectorAll('#qc-idea .idx-lv .face'); if(!fs.length) return;
+    ideaFi = (ideaFi + 1 + Math.floor(Math.random() * 2)) % IDEA_FACES.length;
+    Array.prototype.forEach.call(fs, function(f){ f.textContent = IDEA_FACES[ideaFi]; });
   }, 1300);
   (function schedule(){ setTimeout(function(){ ideaHopNow(); schedule(); }, 4000 + Math.random() * 4000); })();
 });
