@@ -133,6 +133,9 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
   html{font-size:125%}
   /* 열 폭도 함께 넓혀 양옆 빈 공간을 줄인다 */
   .grade-section.unit-grid-mode.active{max-width:880px}
+  /* 흰 바탕 패널(.e4bw) 단원 카드는 항상 넓게 — 단원마다 따로 지정할 필요 없음 */
+  .content:has(.e4bw){max-width:1200px}
+  .grade-section.unit-grid-mode.active:has(.e4bw){max-width:1200px}
 }
 /* 마스코트 배지: 카드 상단 캐릭터가 살짝 위아래로 움직임 */
 @keyframes mascotBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -686,6 +689,22 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
         <div class="cv-detail" id="cv-e4dec-detail" style="display:none">
           <button class="cv-back-btn" onclick="cvShowGrid('e4dec')">← 목록으로</button>
           <div id="cv-e4dec-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">◻️ 사각형 <span class="badge">초4</span></div><div class="unit-sub">수직·평행과 사다리꼴·평행사변형·마름모</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e4quad">
+        <div class="cv-grid" id="cv-e4quad-grid"></div>
+        <div class="cv-detail" id="cv-e4quad-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e4quad')">← 목록으로</button>
+          <div id="cv-e4quad-detail-body"></div>
         </div>
       </div>
     </div>
@@ -14428,8 +14447,17 @@ function e4decWrapOpen(){ return e4barWrapOpen().replace('class="e4bw"','class="
   +'.e4bw.e4dec .calc .cell.borrow{position:relative}'
   +'.e4bw.e4dec .calc .borrow-new{position:absolute;top:-1rem;font-size:.62rem;color:#c0362f;font-weight:800;left:50%;transform:translateX(-50%)}'
   +'.e4bw.e4dec .calc .orig-strike{text-decoration:line-through;text-decoration-color:#c0362f;color:#9aa3b2}'
-  +'.content:has(.e4bw.e4dec){max-width:1200px}'
-  +'.grade-section.unit-grid-mode.active:has(.e4bw.e4dec){max-width:1200px}'
+  +'.e4bw.e4dec .expr-item{background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:16px;margin-bottom:14px;font-size:1rem;color:#1d2433;line-height:1.7}'
+  +'.e4bw.e4dec .expr-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:#fff3d1;color:#7a5600;border-radius:50%;font-size:.85rem;font-weight:800;margin-right:8px;flex:0 0 auto}'
+  +'.e4bw.e4dec .expr-title{display:block;color:#1f6feb;font-size:1.02rem;font-weight:800;margin:2px 0 8px}'
+  +'.e4bw.e4dec .expr-q{color:#1d2433;font-weight:700;font-size:1.22rem;line-height:1.5}'
+  +'.e4bw.e4dec .expr-sol{background:#eafaf0;border:1px solid #bfe8cf;border-radius:8px;padding:10px 12px;margin-top:10px}'
+  +'.e4bw.e4dec .expr-sol.subtract{background:#fdeeee;border-color:#e8b4b1}'
+  +'.e4bw.e4dec .expr-tip{font-size:.85rem;color:#1f7a42;font-weight:700;margin-bottom:5px}'
+  +'.e4bw.e4dec .expr-sol.subtract .expr-tip{color:#b23a33}'
+  +'.e4bw.e4dec .expr-calc{font-size:.92rem;color:#5d6678;margin-bottom:5px}'
+  +'.e4bw.e4dec .expr-ans{color:#1f7a42;font-weight:800;font-size:1.02rem}'
+  +'.e4bw.e4dec .expr-sol.subtract .expr-ans{color:#b23a33}'
   +'</style>'; }
 function e4decGuess1(btn, correct){
   document.querySelectorAll('.e4dec-guess1-opt').forEach(function(b){ b.disabled=true; });
@@ -14438,6 +14466,47 @@ function e4decGuess1(btn, correct){
     ? '<b style="color:#2f9e57">맞아요!</b> '
     : '<b style="color:#c0362f">아쉬워요.</b> ')
     +'13.45 + 13.60 = <b style="color:#2f9e57">27.05</b>예요. 27보다 커요.';
+}
+var E4DEC_G2_POOL = [
+  {a:'0.08', b:'0.1', bigger:'b', explain:'0.1(=0.10)의 소수 첫째 자리는 1, 0.08의 소수 첫째 자리는 0이에요.'},
+  {a:'0.07', b:'0.2', bigger:'b', explain:'0.2의 소수 첫째 자리는 2, 0.07의 소수 첫째 자리는 0이에요.'},
+  {a:'0.009', b:'0.1', bigger:'b', explain:'0.1(=0.100)의 소수 첫째 자리는 1, 0.009는 소수 둘째 자리까지도 0이에요.'},
+  {a:'0.45', b:'0.5', bigger:'b', explain:'0.5(=0.50)의 소수 첫째 자리는 5, 0.45의 소수 첫째 자리는 4예요.'},
+  {a:'0.3', b:'0.29', bigger:'a', explain:'0.3(=0.30)의 소수 첫째 자리는 3, 0.29의 소수 첫째 자리는 2예요.'}
+];
+function e4decPlaceDigits(numStr){
+  var parts = numStr.split('.');
+  var dec = (parts[1]||'').padEnd(3,'0');
+  return { ones: parts[0], d1: dec[0], d2: dec[1], d3: dec[2] };
+}
+function e4decBuildPlaceTable(aStr, bStr){
+  var a = e4decPlaceDigits(aStr), b = e4decPlaceDigits(bStr);
+  return '<div style="display:grid;grid-template-columns:1fr repeat(4,1fr);gap:4px;text-align:center;font-size:.82rem;margin-bottom:8px">'
+    +'<div style="font-weight:700;color:#5d6678">수</div><div style="font-weight:700;color:#5d6678">일</div><div style="font-weight:700;color:#c0362f">소수 첫째</div><div style="font-weight:700;color:#c0362f">소수 둘째</div><div style="font-weight:700;color:#c0362f">소수 셋째</div>'
+    +'<div>'+aStr+'</div><div>'+a.ones+'</div><div>'+a.d1+'</div><div>'+a.d2+'</div><div>'+a.d3+'</div>'
+    +'<div>'+bStr+'</div><div>'+b.ones+'</div><div>'+b.d1+'</div><div>'+b.d2+'</div><div>'+b.d3+'</div>'
+    +'</div>';
+}
+function e4decGuess2Gen(){
+  var pick = E4DEC_G2_POOL[Math.floor(Math.random()*E4DEC_G2_POOL.length)];
+  document.getElementById('e4dec-g2-q').textContent = '그럼 '+pick.a+'과 '+pick.b+' 중에 어느 것이 더 클까요? 왜 그런지 자리값표로 설명해 보세요.';
+  var opts = document.getElementById('e4dec-g2-opts');
+  opts.innerHTML = '<button class="guess-opt" onclick="e4decGuess2(this,'+(pick.bigger==='a')+')">'+pick.a+'이 더 크다</button>'
+    + '<button class="guess-opt" onclick="e4decGuess2(this,'+(pick.bigger==='b')+')">'+pick.b+'이 더 크다</button>';
+  opts.dataset.a = pick.a; opts.dataset.b = pick.b;
+  opts.dataset.explain = pick.explain;
+  opts.dataset.bigger = pick.bigger==='a'?pick.a:pick.b;
+  document.getElementById('e4dec-guess2-fb').innerHTML = '';
+}
+function e4decGuess2(btn, correct){
+  var opts = document.getElementById('e4dec-g2-opts');
+  opts.querySelectorAll('.guess-opt').forEach(function(b){ b.disabled=true; });
+  btn.classList.add(correct?'ok':'no');
+  var table = e4decBuildPlaceTable(opts.dataset.a, opts.dataset.b);
+  document.getElementById('e4dec-guess2-fb').innerHTML = table + (correct
+    ? '<b style="color:#2f9e57">맞아요!</b> '
+    : '<b style="color:#c0362f">아쉬워요.</b> ')
+    + opts.dataset.explain + ' 자릿수가 많다고 더 큰 게 아니에요. <b style="color:#2f9e57">'+opts.dataset.bigger+'이 더 커요</b>.';
 }
 var CV_DATA_E4DEC = [
   { title:'🌟 왜 배우는가?', cls:'why', html:`${e4decWrapOpen()}
@@ -14593,9 +14662,610 @@ var CV_DATA_E4DEC = [
         <div class="havruta-fb" id="fb-e4dec-h2"></div>
       </div>
     </div>
+  </div>` },
+  { title:'✏️ 예제 문제', cls:'problems', html:`${e4decWrapOpen()}
+    ${mascotBadge('algo','#3fb950')}
+    <div class="e4dec-sub" style="margin-top:22px;font-weight:700;color:#1d2433">📐 세로셈 문제 — 직접 풀어보세요</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">
+      <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 1</div>
+        <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">8</div><div class="cell">0</div>
+            <div class="cell sign">+</div><div class="cell">2</div><div class="cell dot">.</div><div class="cell">3</div><div class="cell">5</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result"></div><div class="cell dot result"></div><div class="cell result"></div><div class="cell result"></div>
+          </div>
+        </div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efh-1')">💡 정답 보기</button>
+        <div id="e4dec-efh-1" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell carry">1</div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+            <div class="cell"></div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">8</div><div class="cell">0</div>
+            <div class="cell sign">+</div><div class="cell">2</div><div class="cell dot">.</div><div class="cell">3</div><div class="cell">5</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result">4</div><div class="cell dot result">.</div><div class="cell result">1</div><div class="cell result">5</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">자릿수가 다르니 1.8을 1.80으로 생각해요. 0+5=5, 8+3=11→1을 쓰고 1을 받아올림, 1+2+1(받아올림)=4 → <strong style="color:#2f9e57">4.15</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 2</div>
+        <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">6</div><div class="cell">2</div>
+            <div class="cell sign">−</div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">3</div><div class="cell">8</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result"></div><div class="cell dot result"></div><div class="cell result"></div><div class="cell result"></div>
+          </div>
+        </div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efh-2')">💡 정답 보기</button>
+        <div id="e4dec-efh-2" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell">1</div><div class="cell dot">.</div>
+            <div class="cell borrow"><span class="borrow-new">5</span><span class="orig-strike">6</span></div>
+            <div class="cell borrow"><span class="borrow-new">12</span><span class="orig-strike">2</span></div>
+            <div class="cell sign">−</div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">3</div><div class="cell">8</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result">1</div><div class="cell dot result">.</div><div class="cell result">2</div><div class="cell result">4</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">소수 둘째 자리 2−8을 할 수 없어 소수 첫째 자리에서 받아내림: 6은 5가 되고, 2는 12가 돼요. 12−8=4, 5−3=2, 1−0=1 → <strong style="color:#2f9e57">1.24</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 3</div>
+        <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(5,1.875rem)">
+            <div class="cell"></div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">9</div><div class="cell">0</div>
+            <div class="cell sign">+</div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">1</div><div class="cell">5</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell"></div><div class="cell result"></div><div class="cell dot result"></div><div class="cell result"></div><div class="cell result"></div>
+          </div>
+        </div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efh-3')">💡 정답 보기</button>
+        <div id="e4dec-efh-3" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(5,1.875rem)">
+            <div class="cell"></div><div class="cell carry">1</div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+            <div class="cell"></div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">9</div><div class="cell">0</div>
+            <div class="cell sign">+</div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">1</div><div class="cell">5</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell"></div><div class="cell result">1</div><div class="cell dot result">.</div><div class="cell result">0</div><div class="cell result">5</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">0+5=5, 9+1=10→0을 쓰고 1을 자연수 자리로 받아올림, 0+0+1(받아올림)=1 → <strong style="color:#2f9e57">1.05</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 4</div>
+        <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell">2</div><div class="cell dot">.</div><div class="cell">4</div><div class="cell">7</div>
+            <div class="cell sign">−</div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">2</div><div class="cell">0</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result"></div><div class="cell dot result"></div><div class="cell result"></div><div class="cell result"></div>
+          </div>
+        </div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efh-4')">💡 정답 보기</button>
+        <div id="e4dec-efh-4" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell">2</div><div class="cell dot">.</div><div class="cell">4</div><div class="cell">7</div>
+            <div class="cell sign">−</div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">2</div><div class="cell">0</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result">1</div><div class="cell dot result">.</div><div class="cell result">2</div><div class="cell result">7</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">자릿수가 다르니 1.2를 1.20으로 생각해요. 7−0=7, 4−2=2, 2−1=1 → <strong style="color:#2f9e57">1.27</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 5</div>
+        <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(5,1.875rem)">
+            <div class="cell"></div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">7</div><div class="cell">5</div>
+            <div class="cell sign">+</div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">6</div><div class="cell">8</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell"></div><div class="cell result"></div><div class="cell dot result"></div><div class="cell result"></div><div class="cell result"></div>
+          </div>
+        </div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efh-5')">💡 정답 보기</button>
+        <div id="e4dec-efh-5" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(5,1.875rem)">
+            <div class="cell"></div><div class="cell carry">1</div><div class="cell"></div><div class="cell carry">1</div><div class="cell"></div><div class="cell"></div>
+            <div class="cell"></div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">7</div><div class="cell">5</div>
+            <div class="cell sign">+</div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">6</div><div class="cell">8</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell"></div><div class="cell result">1</div><div class="cell dot result">.</div><div class="cell result">4</div><div class="cell result">3</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">5+8=13→3을 쓰고 1을 받아올림, 7+6+1(받아올림)=14→4를 쓰고 1을 자연수 자리로 받아올림, 0+0+1(받아올림)=1 → <strong style="color:#2f9e57">1.43</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 6</div>
+        <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell">4</div><div class="cell dot">.</div><div class="cell">3</div><div class="cell">0</div>
+            <div class="cell sign">−</div><div class="cell">2</div><div class="cell dot">.</div><div class="cell">7</div><div class="cell">5</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result"></div><div class="cell dot result"></div><div class="cell result"></div><div class="cell result"></div>
+          </div>
+        </div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efh-6')">💡 정답 보기</button>
+        <div id="e4dec-efh-6" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div>
+            <div class="cell borrow"><span class="borrow-new">3</span><span class="orig-strike">4</span></div>
+            <div class="cell dot">.</div>
+            <div class="cell borrow"><span class="borrow-new">12</span><span class="orig-strike">3</span></div>
+            <div class="cell borrow"><span class="borrow-new">10</span><span class="orig-strike">0</span></div>
+            <div class="cell sign">−</div><div class="cell">2</div><div class="cell dot">.</div><div class="cell">7</div><div class="cell">5</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result">1</div><div class="cell dot result">.</div><div class="cell result">5</div><div class="cell result">5</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">4.3을 4.30으로 생각해요. 소수 둘째 자리 0−5를 할 수 없어 첫째 자리(3)에서 받아내림: 10−5=5. 소수 첫째 자리는 이미 2가 됐는데 2−7도 할 수 없어 자연수 자리(4)에서 받아내림: 12−7=5. 자연수 자리는 3−2=1 → <strong style="color:#2f9e57">1.55</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 7</div>
+        <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">0</div><div class="cell">8</div>
+            <div class="cell sign">+</div><div class="cell">2</div><div class="cell dot">.</div><div class="cell">9</div><div class="cell">0</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result"></div><div class="cell dot result"></div><div class="cell result"></div><div class="cell result"></div>
+          </div>
+        </div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efh-7')">💡 정답 보기</button>
+        <div id="e4dec-efh-7" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">0</div><div class="cell">8</div>
+            <div class="cell sign">+</div><div class="cell">2</div><div class="cell dot">.</div><div class="cell">9</div><div class="cell">0</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result">3</div><div class="cell dot result">.</div><div class="cell result">9</div><div class="cell result">8</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">자릿수가 다르니 2.9를 2.90으로 생각해요. 8+0=8, 0+9=9, 1+2=3 → <strong style="color:#2f9e57">3.98</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 8</div>
+        <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell">6</div><div class="cell dot">.</div><div class="cell">2</div><div class="cell">5</div>
+            <div class="cell sign">−</div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">5</div><div class="cell">0</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result"></div><div class="cell dot result"></div><div class="cell result"></div><div class="cell result"></div>
+          </div>
+        </div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efh-8')">💡 정답 보기</button>
+        <div id="e4dec-efh-8" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div>
+            <div class="cell borrow"><span class="borrow-new">5</span><span class="orig-strike">6</span></div>
+            <div class="cell dot">.</div>
+            <div class="cell borrow"><span class="borrow-new">12</span><span class="orig-strike">2</span></div>
+            <div class="cell">5</div>
+            <div class="cell sign">−</div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">5</div><div class="cell">0</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result">4</div><div class="cell dot result">.</div><div class="cell result">7</div><div class="cell result">5</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">1.5를 1.50으로 생각해요. 소수 첫째 자리 2−5를 할 수 없어 자연수 자리(6)에서 받아내림: 12−5=7. 자연수 자리는 5−1=4. 소수 둘째 자리는 5−0=5 → <strong style="color:#2f9e57">4.75</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="e4dec-sub" style="margin-top:22px;font-weight:700;color:#1d2433">📝 가로셈 문제 — 직접 풀어보세요</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">
+      <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 1</div>
+        <div class="prob-q">1.8 + 2.35를 계산하세요.</div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efg-1')">💡 정답 보기</button>
+        <div id="e4dec-efg-1" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell carry">1</div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+            <div class="cell"></div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">8</div><div class="cell">0</div>
+            <div class="cell sign">+</div><div class="cell">2</div><div class="cell dot">.</div><div class="cell">3</div><div class="cell">5</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result">4</div><div class="cell dot result">.</div><div class="cell result">1</div><div class="cell result">5</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">자릿수가 다르니 1.8을 1.80으로 생각해요. 0+5=5, 8+3=11→1을 쓰고 1을 받아올림, 1+2+1(받아올림)=4 → <strong style="color:#2f9e57">4.15</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 2</div>
+        <div class="prob-q">1.62 − 0.38을 계산하세요.</div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efg-2')">💡 정답 보기</button>
+        <div id="e4dec-efg-2" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell">1</div><div class="cell dot">.</div>
+            <div class="cell borrow"><span class="borrow-new">5</span><span class="orig-strike">6</span></div>
+            <div class="cell borrow"><span class="borrow-new">12</span><span class="orig-strike">2</span></div>
+            <div class="cell sign">−</div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">3</div><div class="cell">8</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result">1</div><div class="cell dot result">.</div><div class="cell result">2</div><div class="cell result">4</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">소수 둘째 자리 2−8을 할 수 없어 소수 첫째 자리에서 받아내림: 6은 5가 되고, 2는 12가 돼요. 12−8=4, 5−3=2, 1−0=1 → <strong style="color:#2f9e57">1.24</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 3</div>
+        <div class="prob-q">0.9 + 0.15를 계산하세요. (자연수 자리까지 받아올림되는 경우예요!)</div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efg-3')">💡 정답 보기</button>
+        <div id="e4dec-efg-3" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(5,1.875rem)">
+            <div class="cell"></div><div class="cell carry">1</div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+            <div class="cell"></div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">9</div><div class="cell">0</div>
+            <div class="cell sign">+</div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">1</div><div class="cell">5</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell"></div><div class="cell result">1</div><div class="cell dot result">.</div><div class="cell result">0</div><div class="cell result">5</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">0+5=5, 9+1=10→0을 쓰고 1을 자연수 자리로 받아올림, 0+0+1(받아올림)=1 → <strong style="color:#2f9e57">1.05</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 4</div>
+        <div class="prob-q">2.47 − 1.2를 계산하세요.</div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efg-4')">💡 정답 보기</button>
+        <div id="e4dec-efg-4" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell">2</div><div class="cell dot">.</div><div class="cell">4</div><div class="cell">7</div>
+            <div class="cell sign">−</div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">2</div><div class="cell">0</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result">1</div><div class="cell dot result">.</div><div class="cell result">2</div><div class="cell result">7</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">자릿수가 다르니 1.2를 1.20으로 생각해요. 7−0=7, 4−2=2, 2−1=1 → <strong style="color:#2f9e57">1.27</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 5</div>
+        <div class="prob-q">0.75 + 0.68을 계산하세요.</div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efg-5')">💡 정답 보기</button>
+        <div id="e4dec-efg-5" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(5,1.875rem)">
+            <div class="cell"></div><div class="cell carry">1</div><div class="cell"></div><div class="cell carry">1</div><div class="cell"></div><div class="cell"></div>
+            <div class="cell"></div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">7</div><div class="cell">5</div>
+            <div class="cell sign">+</div><div class="cell"></div><div class="cell">0</div><div class="cell dot">.</div><div class="cell">6</div><div class="cell">8</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell"></div><div class="cell result">1</div><div class="cell dot result">.</div><div class="cell result">4</div><div class="cell result">3</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">5+8=13→3을 쓰고 1을 받아올림, 7+6+1(받아올림)=14→4를 쓰고 1을 자연수 자리로 받아올림, 0+0+1(받아올림)=1 → <strong style="color:#2f9e57">1.43</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 6</div>
+        <div class="prob-q">4.3 − 2.75를 계산하세요. (받아내림이 두 번 필요해요!)</div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efg-6')">💡 정답 보기</button>
+        <div id="e4dec-efg-6" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div>
+            <div class="cell borrow"><span class="borrow-new">3</span><span class="orig-strike">4</span></div>
+            <div class="cell dot">.</div>
+            <div class="cell borrow"><span class="borrow-new">12</span><span class="orig-strike">3</span></div>
+            <div class="cell borrow"><span class="borrow-new">10</span><span class="orig-strike">0</span></div>
+            <div class="cell sign">−</div><div class="cell">2</div><div class="cell dot">.</div><div class="cell">7</div><div class="cell">5</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result">1</div><div class="cell dot result">.</div><div class="cell result">5</div><div class="cell result">5</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">4.3을 4.30으로 생각해요. 소수 둘째 자리 0−5를 할 수 없어 첫째 자리(3)에서 받아내림: 10−5=5. 소수 첫째 자리는 이미 2가 됐는데 2−7도 할 수 없어 자연수 자리(4)에서 받아내림: 12−7=5. 자연수 자리는 3−2=1 → <strong style="color:#2f9e57">1.55</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 7</div>
+        <div class="prob-q">1.08 + 2.9를 계산하세요.</div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efg-7')">💡 정답 보기</button>
+        <div id="e4dec-efg-7" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">0</div><div class="cell">8</div>
+            <div class="cell sign">+</div><div class="cell">2</div><div class="cell dot">.</div><div class="cell">9</div><div class="cell">0</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result">3</div><div class="cell dot result">.</div><div class="cell result">9</div><div class="cell result">8</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">자릿수가 다르니 2.9를 2.90으로 생각해요. 8+0=8, 0+9=9, 1+2=3 → <strong style="color:#2f9e57">3.98</strong></div>
+        </div>
+      </div>
+<div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 8</div>
+        <div class="prob-q">6.25 − 1.5를 계산하세요.</div>
+        <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-efg-8')">💡 정답 보기</button>
+        <div id="e4dec-efg-8" style="display:none;margin-top:8px">
+          <div class="calc-box">
+          <div class="calc" style="grid-template-columns:1.25rem repeat(4,1.875rem)">
+            <div class="cell"></div>
+            <div class="cell borrow"><span class="borrow-new">5</span><span class="orig-strike">6</span></div>
+            <div class="cell dot">.</div>
+            <div class="cell borrow"><span class="borrow-new">12</span><span class="orig-strike">2</span></div>
+            <div class="cell">5</div>
+            <div class="cell sign">−</div><div class="cell">1</div><div class="cell dot">.</div><div class="cell">5</div><div class="cell">0</div>
+            <div class="line"></div>
+            <div class="cell"></div><div class="cell result">4</div><div class="cell dot result">.</div><div class="cell result">7</div><div class="cell result">5</div>
+          </div>
+        </div>
+          <div style="margin-top:8px">1.5를 1.50으로 생각해요. 소수 첫째 자리 2−5를 할 수 없어 자연수 자리(6)에서 받아내림: 12−5=7. 자연수 자리는 5−1=4. 소수 둘째 자리는 5−0=5 → <strong style="color:#2f9e57">4.75</strong></div>
+      </div>
+        </div>
+      </div>
+</div>
+    </div>
+  </div>` },
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`${e4decWrapOpen()}
+    ${mascotBadge('tipi','#ffa657')}
+    <p>"1.8+2.35"(예제 1과 같은 예시) 하나를 여러 가지 다른 말로 물어볼 수 있어요. 숫자나 상황이 바뀌어도 "모두 합쳐서"는 덧셈, "남은 것은"은 뺄셈처럼 같은 말투는 같은 연산을 뜻한다는 걸 함께 볼까요?</p>
+    <div class="expr-item"><span class="expr-num">1</span><span class="expr-title">자리맞추기 확인 표현</span>
+      <div class="expr-q">"1.8+2.35를 세로로 쓸 때, 1.8 아래 빈자리는 뭘로 채워요?"</div>
+      <div class="expr-sol"><div class="expr-tip">💡 자릿수가 다른 소수는 짧은 쪽 끝에 0을 채워서 자리를 맞춰요</div>
+      <div class="expr-calc">1.8 → 1.80으로 생각</div>
+      <div>→ <span class="expr-ans">소수 둘째 자리에 0</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">2</span><span class="expr-title">어림 확인 표현</span>
+      <div class="expr-q">"1.8+2.35가 4.15인 게 맞는지 어림으로 확인하면?"</div>
+      <div class="expr-sol"><div class="expr-tip">💡 소수를 가까운 자연수로 바꿔서 어림하면 답이 맞는지 빠르게 확인할 수 있어요</div>
+      <div class="expr-calc">1.8은 2에 가깝고 2.35는 2에 가까우니 2+2=4 근처</div>
+      <div>→ <span class="expr-ans">타당함(4.15)</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">3</span><span class="expr-title">순서 바꿔도 같은가 표현</span>
+      <div class="expr-q">"2.35+1.8은 1.8+2.35와 같은가요?"</div>
+      <div class="expr-sol"><div class="expr-tip">💡 덧셈의 교환법칙은 소수에서도 그대로 성립해요</div>
+      <div class="expr-calc">2.35+1.80 = 4.15</div>
+      <div>→ <span class="expr-ans">같음(4.15)</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">4</span><span class="expr-title">다른 자리수 적용 표현</span>
+      <div class="expr-q">"같은 방법으로 1.08+2.9는 얼마인가요?"</div>
+      <div class="expr-sol"><div class="expr-tip">💡 자릿수가 달라도 짧은 쪽에 0을 채우면 같은 방법으로 계산할 수 있어요</div>
+      <div class="expr-calc">1.08+2.90 = 3.98</div>
+      <div>→ <span class="expr-ans">3.98</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">5</span><span class="expr-title">실생활 적용 표현</span>
+      <div class="expr-q">"사과 1.8kg과 배 2.35kg을 더하면 몇 kg인가요?"</div>
+      <div class="expr-sol"><div class="expr-tip">💡 실생활 상황도 자리를 맞춰 더하는 소수 덧셈으로 그대로 풀 수 있어요</div>
+      <div class="expr-calc">1.80+2.35 = 4.15</div>
+      <div>→ <span class="expr-ans">4.15kg</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">6</span><span class="expr-title">"모두 합쳐서" 표현 (덧셈 신호)</span>
+      <div class="expr-q">"리본이 0.75m, 0.68m 두 개 있어요. 모두 합쳐서 몇 m인가요?"</div>
+      <div class="expr-sol"><div class="expr-tip">💡 "모두 합쳐서"는 덧셈을 뜻하는 말이에요</div>
+      <div class="expr-calc">0.75+0.68 = 1.43</div>
+      <div>→ <span class="expr-ans">1.43m</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">7</span><span class="expr-title">"~만큼 늘어난" 표현 (덧셈 신호)</span>
+      <div class="expr-q">"강아지 몸무게가 4.3kg이었는데 0.75kg만큼 늘었어요. 지금 몸무게는?"</div>
+      <div class="expr-sol"><div class="expr-tip">💡 "~만큼 늘었다/늘어난"도 덧셈을 뜻해요</div>
+      <div class="expr-calc">4.3+0.75 = 5.05</div>
+      <div>→ <span class="expr-ans">5.05kg</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">8</span><span class="expr-title">"남은 것은" 표현 (뺄셈 신호)</span>
+      <div class="expr-q">"물이 6.25L 있었는데 1.5L를 사용했어요. 남은 것은 몇 L인가요?"</div>
+      <div class="expr-sol subtract"><div class="expr-tip">💡 "남은 것은"은 뺄셈을 뜻하는 말이에요</div>
+      <div class="expr-calc">6.25−1.5 = 4.75</div>
+      <div>→ <span class="expr-ans">4.75L</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">9</span><span class="expr-title">"차이는" 표현 (뺄셈 신호)</span>
+      <div class="expr-q">"두 리본 길이가 각각 2.47m, 1.2m예요. 두 리본의 길이 차이는 몇 m인가요?"</div>
+      <div class="expr-sol subtract"><div class="expr-tip">💡 "차이는"도 뺄셈을 뜻해요</div>
+      <div class="expr-calc">2.47−1.2 = 1.27</div>
+      <div>→ <span class="expr-ans">1.27m</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">10</span><span class="expr-title">덧셈/뺄셈 먼저 판단하기 표현 (혼합)</span>
+      <div class="expr-q">"다음 두 문장을 보고 덧셈인지 뺄셈인지 먼저 판단해 보세요.<br>(가) 설탕 1.08kg에 2.9kg을 더 샀어요.<br>(나) 설탕 3.98kg에서 1.47kg을 썼어요."</div>
+      <div class="expr-sol"><div class="expr-tip">💡 "더 샀다"는 덧셈, "썼다"는 뺄셈을 뜻해요 — 말부터 먼저 읽고 연산을 정해요</div>
+      <div class="expr-calc">(가) 1.08+2.90 = 3.98 (나) 3.98−1.47 = 2.51</div>
+      <div>→ <span class="expr-ans">(가) 덧셈=3.98kg, (나) 뺄셈=2.51kg</span></div></div></div>
+    <p style="margin-top:10px">이렇게 10가지 표현이 모두 <strong>자리를 맞춰 더하거나 빼는 소수 연산</strong>을 다른 말로 묻고 있어요. "모두 합쳐서"·"~만큼 늘어난"은 덧셈, "남은 것은"·"차이는"은 뺄셈을 뜻한다는 걸 꼭 기억하세요.</p>
+  </div>` },
+  { title:'✏️ 문장제 심화 10선', cls:'problems', html:`${e4decWrapOpen()}
+    ${mascotBadge('komo','#f0c040')}
+    <p>지금까지 배운 소수의 덧셈과 뺄셈을 실제 상황에 적용하는 문제들이에요. 9·10번은 두 단계로 계산해야 하는 심화 문제예요.</p>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 1</div>
+      <div class="prob-q" id="e4dec-wpb-1">마트에서 수박 1.6kg, 참외 2.85kg을 샀어요. 과일은 모두 몇 kg일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-w1')">💡 정답 보기</button>
+      <div id="e4dec-w1" style="display:none;margin-top:8px">1.6을 1.60으로 생각해요. 1.60+2.85 = <strong style="color:#2f9e57">4.45kg</strong></div>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:8px">이 문제를 나중에 다시 풀어볼까요?</div>
+      <button class="havruta-show-btn" onclick="usReviewAsk('e4dec','p5-1')" style="width:100%;margin-top:4px">📌 복습할래요</button><div id="rvq-e4dec-p5-1"></div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 2</div>
+      <div class="prob-q" id="e4dec-wpb-2">리본 3.2m 중에서 1.75m를 잘라 썼어요. 남은 리본은 몇 m일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-w2')">💡 정답 보기</button>
+      <div id="e4dec-w2" style="display:none;margin-top:8px">3.2를 3.20으로 생각해요. 3.20−1.75 = <strong style="color:#2f9e57">1.45m</strong></div>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:8px">이 문제를 나중에 다시 풀어볼까요?</div>
+      <button class="havruta-show-btn" onclick="usReviewAsk('e4dec','p5-2')" style="width:100%;margin-top:4px">📌 복습할래요</button><div id="rvq-e4dec-p5-2"></div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 3</div>
+      <div class="prob-q" id="e4dec-wpb-3">물통에 물이 0.6L 있었는데 0.95L를 더 부었어요. 지금 물은 몇 L일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-w3')">💡 정답 보기</button>
+      <div id="e4dec-w3" style="display:none;margin-top:8px">0.6을 0.60으로 생각해요. 0.60+0.95 = <strong style="color:#2f9e57">1.55L</strong></div>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:8px">이 문제를 나중에 다시 풀어볼까요?</div>
+      <button class="havruta-show-btn" onclick="usReviewAsk('e4dec','p5-3')" style="width:100%;margin-top:4px">📌 복습할래요</button><div id="rvq-e4dec-p5-3"></div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 4</div>
+      <div class="prob-q" id="e4dec-wpb-4">몸무게가 5.3kg인 강아지가 다이어트를 해서 4.65kg이 되었어요. 몸무게가 얼마나 줄었나요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-w4')">💡 정답 보기</button>
+      <div id="e4dec-w4" style="display:none;margin-top:8px">5.3을 5.30으로 생각해요. 5.30−4.65 = <strong style="color:#2f9e57">0.65kg</strong></div>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:8px">이 문제를 나중에 다시 풀어볼까요?</div>
+      <button class="havruta-show-btn" onclick="usReviewAsk('e4dec','p5-4')" style="width:100%;margin-top:4px">📌 복습할래요</button><div id="rvq-e4dec-p5-4"></div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 5</div>
+      <div class="prob-q" id="e4dec-wpb-5">테이프 두 개 길이가 각각 0.85m, 0.9m예요. 겹치지 않게 이으면 전체 길이는 몇 m일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-w5')">💡 정답 보기</button>
+      <div id="e4dec-w5" style="display:none;margin-top:8px">0.9를 0.90으로 생각해요. 0.85+0.90 = <strong style="color:#2f9e57">1.75m</strong></div>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:8px">이 문제를 나중에 다시 풀어볼까요?</div>
+      <button class="havruta-show-btn" onclick="usReviewAsk('e4dec','p5-5')" style="width:100%;margin-top:4px">📌 복습할래요</button><div id="rvq-e4dec-p5-5"></div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 6</div>
+      <div class="prob-q" id="e4dec-wpb-6">설탕 2.4kg이 있었는데 요리에 1.68kg을 썼어요. 남은 설탕은 몇 kg일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-w6')">💡 정답 보기</button>
+      <div id="e4dec-w6" style="display:none;margin-top:8px">2.4를 2.40으로 생각해요. 2.40−1.68 = <strong style="color:#2f9e57">0.72kg</strong></div>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:8px">이 문제를 나중에 다시 풀어볼까요?</div>
+      <button class="havruta-show-btn" onclick="usReviewAsk('e4dec','p5-6')" style="width:100%;margin-top:4px">📌 복습할래요</button><div id="rvq-e4dec-p5-6"></div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 7</div>
+      <div class="prob-q" id="e4dec-wpb-7">주스 1.25L와 우유 0.8L를 섞었어요. 모두 몇 L일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-w7')">💡 정답 보기</button>
+      <div id="e4dec-w7" style="display:none;margin-top:8px">0.8을 0.80으로 생각해요. 1.25+0.80 = <strong style="color:#2f9e57">2.05L</strong></div>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:8px">이 문제를 나중에 다시 풀어볼까요?</div>
+      <button class="havruta-show-btn" onclick="usReviewAsk('e4dec','p5-7')" style="width:100%;margin-top:4px">📌 복습할래요</button><div id="rvq-e4dec-p5-7"></div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 8</div>
+      <div class="prob-q" id="e4dec-wpb-8">철사 4.5m 중에서 2.75m를 사용했어요. 남은 철사는 몇 m일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-w8')">💡 정답 보기</button>
+      <div id="e4dec-w8" style="display:none;margin-top:8px">4.5를 4.50으로 생각해요. 4.50−2.75 = <strong style="color:#2f9e57">1.75m</strong></div>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:8px">이 문제를 나중에 다시 풀어볼까요?</div>
+      <button class="havruta-show-btn" onclick="usReviewAsk('e4dec','p5-8')" style="width:100%;margin-top:4px">📌 복습할래요</button><div id="rvq-e4dec-p5-8"></div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 9 (2단계 심화)</div>
+      <div class="prob-q" id="e4dec-wpb-9">쌀이 처음에 3.4kg 있었어요. 1.65kg을 더 사고, 그중 2.8kg으로 밥을 지었어요. 지금 남은 쌀은 몇 kg일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-w9')">💡 정답 보기</button>
+      <div id="e4dec-w9" style="display:none;margin-top:8px">먼저 더해요: 3.40+1.65 = 5.05kg. 그다음 밥을 지은 만큼 빼요: 5.05−2.80 = <strong style="color:#2f9e57">2.25kg</strong></div>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:8px">이 문제를 나중에 다시 풀어볼까요?</div>
+      <button class="havruta-show-btn" onclick="usReviewAsk('e4dec','p5-9')" style="width:100%;margin-top:4px">📌 복습할래요</button><div id="rvq-e4dec-p5-9"></div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">문제 10 (2단계 심화)</div>
+      <div class="prob-q" id="e4dec-wpb-10">두 친구가 멀리뛰기를 했어요. 민준이는 1.68m, 서연이는 1.8m를 뛰었어요. 두 사람의 기록을 더한 합과, 두 기록의 차이를 각각 구하세요.</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4dec-w10')">💡 정답 보기</button>
+      <div id="e4dec-w10" style="display:none;margin-top:8px">합: 1.68+1.80 = 3.48m. 차이: 1.80−1.68 = <strong style="color:#2f9e57">0.12m</strong> (합 3.48m, 차이 0.12m)</div>
+      <div style="font-size:.72rem;color:#5d6678;margin-top:8px">이 문제를 나중에 다시 풀어볼까요?</div>
+      <button class="havruta-show-btn" onclick="usReviewAsk('e4dec','p5-10')" style="width:100%;margin-top:4px">📌 복습할래요</button><div id="rvq-e4dec-p5-10"></div>
+    </div>
+  </div>` },
+  { title:'🔥 심화 토론', cls:'debate', html:`${e4decWrapOpen()}
+    ${mascotBadge('mong','#9b6bf2')}
+    <div class="story-line"><div class="story-avatar">🧒</div><div class="story-bubble"><span class="story-name">도윤</span>자연수는 999가 9.99보다 훨씬 큰데, 소수는 자리수가 많다고 꼭 큰 게 아니네? 0.15는 0.9보다 자리수가 많은데도 더 작아. 그럼 소수는 자연수랑 자리값 규칙이 다른 거 아니야?</div></div>
+    <div class="story-line"><div class="story-avatar">👧</div><div class="story-bubble"><span class="story-name">하린</span>음... 나는 규칙은 똑같은데 소수점이 있어서 헷갈리는 것 같아. 그런데 왜 그런지는 설명 못 하겠어.</div></div>
+    <div style="background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:14px 16px;margin:8px 0 14px">
+      <div style="font-weight:700;margin-bottom:8px;color:#1f6feb">자리값표로 비교해 볼까요?</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;text-align:center;font-size:.82rem;margin-bottom:8px">
+        <div style="font-weight:700;color:#5d6678">백</div><div style="font-weight:700;color:#5d6678">십</div><div style="font-weight:700;color:#5d6678">일</div><div style="font-weight:700;color:#c0362f">소수 첫째</div><div style="font-weight:700;color:#c0362f">소수 둘째</div>
+        <div>9</div><div>9</div><div>9</div><div>-</div><div>-</div>
+        <div>-</div><div>-</div><div>9</div><div>9</div><div>-</div>
+        <div>-</div><div>-</div><div>0</div><div>1</div><div>5</div>
+      </div>
+      <div style="font-size:.92rem;color:#1d2433;line-height:1.65">
+        <p style="margin:0 0 8px">자리값은 오른쪽으로 한 칸씩 갈 때마다 <span style="font-size:1.15em;font-weight:800;color:#1f6feb">10분의 1씩</span> 작아져요.</p>
+        <p style="margin:0 0 8px">이 규칙은 소수점을 넘어가도 그대로예요.</p>
+        <p style="margin:0 0 8px"><span style="font-size:1.1em;font-weight:800;color:#1f6feb">999는 "백의 자리"까지 채워졌지만, 0.15는 "일의 자리"조차 비어 있어요(0).</span></p>
+        <p style="margin:0">그래서 자릿수가 많아 보여도 실제 크기는 작을 수 있어요.</p>
+      </div>
+      <div style="background:#eef4ff;border:1px solid #b9cdfa;border-radius:10px;padding:12px 14px;margin-top:10px;font-size:.92rem;line-height:1.65">
+        <strong>정리하면</strong> — 소수도 자연수와 똑같이 왼쪽 자리일수록 큰 자리예요.<br>
+        자릿수 "개수"가 아니라, <span style="font-size:1.1em;font-weight:800;color:#c0362f">가장 왼쪽(큰) 자리에 어떤 숫자가 있는지</span>를 먼저 봐야 해요.
+      </div>
+    </div>
+    <div class="guess-box">
+      <div class="q">🤔 직접 생각해보기</div>
+      <div id="e4dec-g2-q">그럼 0.08과 0.1 중에 어느 것이 더 클까요? 왜 그런지 자리값표로 설명해 보세요.</div>
+      <div class="guess-opts" id="e4dec-g2-opts" data-a="0.08" data-b="0.1" data-explain='0.1(=0.10)의 소수 첫째 자리는 1, 0.08의 소수 첫째 자리는 0이에요.' data-bigger="0.1">
+        <button class="guess-opt" onclick="e4decGuess2(this,false)">0.08이 더 크다 (자릿수가 많으니까)</button>
+        <button class="guess-opt" onclick="e4decGuess2(this,true)">0.1이 더 크다</button>
+      </div>
+      <div class="guess-fb" id="e4dec-guess2-fb"></div>
+      <button class="havruta-show-btn" onclick="e4decGuess2Gen()" style="width:100%;margin-top:8px">🔄 유사 문제</button>
+    </div>
   </div>` }
 ];
 CV_DATA['e4dec'] = CV_DATA_E4DEC;
+US_UNITS['e4dec'] = {
+  scope:'e4bw e4dec', cards:function(){return CV_DATA_E4DEC;}, wrapOpen:function(){return e4decWrapOpen();},
+  noteMascot:'somi', noteColor:'#58a6ff',
+  groups:{A:/자리|자릿값|소수점/, B:/받아올림/, C:/받아내림/, D:/덧셈|뺄셈|더하|빼/},
+  words:/소수점|자릿값|자리|소수|받아올림|받아내림|덧셈|뺄셈|더하기|빼기|더하|빼기|\d+/g,
+  keywordMsg:'소수의 자리(소수점)와, 받아올림이나 받아내림 중 하나에 대한 말을 함께 적어 주세요.',
+  prompt:'소수의 덧셈과 뺄셈을 할 때 가장 중요한 게 뭔지, 그리고 받아올림/받아내림은 언제 하는지 내 말로 써 보세요.',
+  make:function(id){
+    var ask='식을 써 보세요. 예) ';
+    var m=/^p5-(\d+)$/.exec(id); if(!m) return null;
+    var i=+m[1];
+    var pbEl=document.getElementById('e4dec-wpb-'+i), psEl=document.getElementById('e4dec-w'+i);
+    if(!pbEl || !psEl) return null;
+    var q=usSnapWrap('e4dec', pbEl.outerHTML), s=usSnapWrap('e4dec', psEl.outerHTML.replace('display:none','display:block'));
+    var specs = {
+      1:{kind:'num',answers:[4.45],givens:[1.6,2.85],ask:ask+'1.60+2.85=4.45'},
+      2:{kind:'num',answers:[1.45],givens:[3.2,1.75],ask:ask+'3.20-1.75=1.45'},
+      3:{kind:'num',answers:[1.55],givens:[0.6,0.95],ask:ask+'0.60+0.95=1.55'},
+      4:{kind:'num',answers:[0.65],givens:[5.3,4.65],ask:ask+'5.30-4.65=0.65'},
+      5:{kind:'num',answers:[1.75],givens:[0.85,0.9],ask:ask+'0.85+0.90=1.75'},
+      6:{kind:'num',answers:[0.72],givens:[2.4,1.68],ask:ask+'2.40-1.68=0.72'},
+      7:{kind:'num',answers:[2.05],givens:[1.25,0.8],ask:ask+'1.25+0.80=2.05'},
+      8:{kind:'num',answers:[1.75],givens:[4.5,2.75],ask:ask+'4.50-2.75=1.75'},
+      9:{kind:'num',answers:[2.25],givens:[3.4,1.65,2.8],ask:ask+'3.40+1.65-2.80=2.25'},
+      10:{kind:'view'}
+    };
+    var spec = specs[i]; if(!spec) return null;
+    return {spec:spec, q:q, s:s};
+  }
+};
+usInject('e4dec', [0,1,2,4,6]);
+
+// ── 사각형(e4quad) ──
+function e4quadWrapOpen(){ return e4barWrapOpen().replace('class="e4bw"','class="e4bw e4quad"')+'<style>'
+  +'.e4bw.e4quad p{font-size:1.08rem;line-height:1.75}'
+  +'.e4bw.e4quad .quad-shapes{display:flex;gap:28px;justify-content:center;margin:18px 0;flex-wrap:wrap}'
+  +'.e4bw.e4quad .quad-shape-box{text-align:center;max-width:280px}'
+  +'.e4bw.e4quad .quad-shape-box svg{width:160px;height:auto}'
+  +'.e4bw.e4quad .quad-shape-box span{display:block;font-size:.95rem;line-height:1.55;color:#4b5565;margin-top:8px;max-width:260px}'
+  +'.e4bw.e4quad .guess-box{background:#faf5ff;border:1px solid #d7c4fa;border-radius:10px;padding:16px;margin-top:16px}'
+  +'.e4bw.e4quad .guess-box .q{font-weight:700;font-size:1.02rem;margin-bottom:8px}'
+  +'.e4bw.e4quad .guess-opts{display:flex;flex-direction:column;gap:10px;margin-top:10px}'
+  +'.e4bw.e4quad .guess-opt{display:block;width:100%;text-align:left;border:1.5px solid #7a4fc2;color:#7a4fc2;background:#fff;border-radius:8px;padding:10px 14px;font-size:.92rem;line-height:1.65;font-weight:700;font-family:inherit;cursor:pointer}'
+  +'.e4bw.e4quad .guess-opt:disabled{opacity:.55;cursor:default}'
+  +'.e4bw.e4quad .guess-opt.ok{border-color:#2f9e57;color:#2f9e57;background:#eafaf0}'
+  +'.e4bw.e4quad .guess-opt.no{border-color:#c0362f;color:#c0362f;background:#fdeeee}'
+  +'.e4bw.e4quad .guess-fb{margin-top:10px;font-size:.92rem;line-height:1.65}'
+  +'</style>'; }
+function e4quadGuess1(btn, correct){
+  document.querySelectorAll('.e4quad-guess1-opt').forEach(function(b){ b.disabled=true; });
+  btn.classList.add(correct?'ok':'no');
+  document.getElementById('e4quad-guess1-fb').innerHTML = (correct
+    ? '<b style="color:#2f9e57">맞아요!</b> '
+    : '<b style="color:#c0362f">아쉬워요.</b> ')
+    +'책상은 네 각이 모두 직각이고 마주보는 변끼리 길이가 같지만, 연은 변의 길이와 각의 크기가 달라요. 이런 차이를 정확히 말하려면 이름(직사각형, 마름모 등)과 기준이 필요해요.';
+}
+var CV_DATA_E4QUAD = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`${e4quadWrapOpen()}
+    ${mascotBadge('tori','#3fb950')}
+    <p>목수 아저씨가 책상을 만들었어요. 네 변의 길이를 전부 <b style="color:#1d2433">40cm로 정확히</b> 맞췄는데도, 책상이 삐뚤어져서 물건이 자꾸 굴러떨어져요. 뭐가 잘못됐을까요?</p>
+    <div class="quad-shapes">
+      <div class="quad-shape-box">
+        <svg viewBox="0 0 120 110" width="120" height="110">
+          <polygon points="60,15 100,55 60,105 20,55" fill="#f0c040" opacity="0.5" stroke="#1d2433" stroke-width="2"/>
+        </svg>
+        <span>아저씨가 만든 책상<br>(변 길이는 같지만 삐뚤어짐)</span>
+      </div>
+      <div class="quad-shape-box">
+        <svg viewBox="0 0 120 110" width="120" height="110">
+          <rect x="25" y="25" width="70" height="70" fill="#58a6ff" opacity="0.5" stroke="#1d2433" stroke-width="2"/>
+        </svg>
+        <span>원래 원했던 책상<br>(변 길이도, 각도도 맞음)</span>
+      </div>
+    </div>
+    <div class="guess-box">
+      <div class="q">🤔 직접 생각해보기</div>
+      변의 길이를 다 똑같이 맞췄는데도 왜 삐뚤어졌을까요?
+      <div class="guess-opts">
+        <button class="guess-opt e4quad-guess1-opt" onclick="e4quadGuess1(this,false)">색이 다르기 때문이다</button>
+        <button class="guess-opt e4quad-guess1-opt" onclick="e4quadGuess1(this,true)">변의 길이만 맞추고 각의 크기(직각)는 안 맞췄기 때문이다</button>
+        <button class="guess-opt e4quad-guess1-opt" onclick="e4quadGuess1(this,false)">크기가 다르기 때문이다</button>
+      </div>
+      <div class="guess-fb" id="e4quad-guess1-fb"></div>
+    </div>
+    <p style="margin-top:14px">이런 일은 생활 곳곳에서 일어나요.</p>
+    <div class="quad-shapes">
+      <div class="quad-shape-box">
+        <svg viewBox="0 0 130 110" width="130" height="110">
+          <polygon points="20,70 65,30 110,55 65,95" fill="#27c96a" opacity="0.45" stroke="#1d2433" stroke-width="2"/>
+          <polygon points="80,70 95,65 110,70" fill="#c0362f" opacity="0.8"/>
+        </svg>
+        <span>거실 바닥에 마름모 타일을 깔아요. 네 변은 모두 15cm로 같은데, 어떤 타일은 각을 70°로, 어떤 타일은 110°로 잘라서 섞어 썼더니 <b style="color:#1d2433">타일 사이에 틈이 생기고</b> 안 맞물려요.</span>
+      </div>
+      <div class="quad-shape-box">
+        <svg viewBox="0 0 130 110" width="130" height="110">
+          <polygon points="30,20 110,20 125,95 15,95" fill="#58a6ff" opacity="0.45" stroke="#1d2433" stroke-width="2"/>
+          <rect x="40" y="35" width="55" height="40" fill="none" stroke="#c0362f" stroke-width="2" stroke-dasharray="4 3"/>
+        </svg>
+        <span>창틀을 재보니 위쪽 120cm, 아래쪽 100cm로 길이가 달라요(사다리꼴 모양). 유리 가게에서는 <b style="color:#1d2433">네모난 유리를 그냥 끼우면 틈이 생겨서</b>, 정확한 모양을 재서 맞춤 제작해야 한다고 해요.</span>
+      </div>
+    </div>
+    <p style="margin-top:14px">이렇게 "네모 모양"이라고 다 같은 게 아니에요. 변의 길이가 같아도 각이 다르면 전혀 다른 모양(마름모)이 되고, 쓰임새도 달라져요. 그래서 사각형을 변의 길이·각의 크기·평행 여부로 정확히 구별하는 법을 오늘 배워요 — 그래야 "이건 왜 삐뚤어졌는지", "이건 왜 틈이 생기는지"를 정확히 설명할 수 있어요.</p>
+  </div>` }
+];
+CV_DATA['e4quad'] = CV_DATA_E4QUAD;
 
 // ── 평면도형의 이동(e4move): 좌표 변환 + SVG 렌더링 ──
 // 기준 도형: L자(비대칭) — 좌우/상하 모두 비대칭이라 밀기·뒤집기·돌리기 결과가 전부 다르게 보임
@@ -22846,7 +23516,7 @@ function cvShowSubSection(id, groupIdx, subIdx){
 var LIGHT_UNITS = new Set(['e5mix','e5gcd','e5corr','e5frac2','e5fracadd','e5poly','e5range','e5fracmul','e5sym','e5decmul','e5box','e5avg',
   'e6fracdiv','e6prism','e6decdiv','e6ratio','e6graph','e6cyl','e6pct','e6vol','e6circ','e6cube',
   'e3div','e3mul','e3frac','e3frac2','e3frac3','e3frac4','e3circ','e3msr','e3data',
-  'e4bar','e4pat','e4frac','e4tri','e4dec']);
+  'e4bar','e4pat','e4frac','e4tri','e4dec','e4quad']);
 var LW_BOLD = new Set(['e6ratio','e6fracdiv','e6pct','e5gcd','e5frac2','e5range','e5fracmul','e5decmul','e5avg','e3div','e3mul','e3frac','e3frac2','e3frac3','e3frac4','e3circ']);
 function lwIsOff(){ try{ return localStorage.getItem('toro_lw_off')==='1'; }catch(e){ return false; } }
 function lwWrap(id, html){
