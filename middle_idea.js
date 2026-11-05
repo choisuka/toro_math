@@ -120,3 +120,10 @@ window.addEventListener('load', function(){
     if(first && eb && ST.hardMode && ST.topic === 'prime' && ideaStepsFor(q)) eb.insertAdjacentHTML('beforebegin', ideaButtonHtml());
   };
 });
+
+// 바로가기: middle.html?demo=idea → 소인수분해 "심화 문제 도전"을 열고 첫 문제를 완전제곱수 만들기로 놓는다(무작위라 찾기 어려워서)
+window.addEventListener('load', function(){
+  if(!/[?&]demo=idea(&|$)/.test(location.search) || typeof startQuizHard !== 'function') return;
+  startQuizHard('prime', 'prime-hub');
+  ST.qs[0] = genPerfectSquare(); ST.cur = 0; ST.answered = false; renderQ();
+});
