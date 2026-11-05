@@ -204,8 +204,16 @@ function ideaHopNow(){
 
 function extMake(q){
   var d = q.data, a = d.n, m = d.minN;
-  var J = [3, 4, 5, 6][Math.floor(Math.random() * 4)], lo = m * J * J, hi = m * (J + 1) * (J + 1) - 1;
-  var R = lo + Math.floor(Math.random() * (hi - lo + 1)), ks = [];
+  // 범위 R: 절반쯤은 100·150·200·250·300·400·500 같은 평범한 수(가능한 n이 3~12개인 것만), 나머지는 가능한 n이 3~6개가 되는 임의의 수
+  var R, J = 0, ks = [], rounds = [100, 150, 200, 250, 300, 400, 500].filter(function(v){ var k = 0; while(m * (k + 1) * (k + 1) <= v) k++; return k >= 3 && k <= 12; });
+  if(rounds.length && Math.random() < .5){
+    R = rounds[Math.floor(Math.random() * rounds.length)];
+    while(m * (J + 1) * (J + 1) <= R) J++;
+  } else {
+    J = [3, 4, 5, 6][Math.floor(Math.random() * 4)];
+    var lo = m * J * J, hi = m * (J + 1) * (J + 1) - 1;
+    R = lo + Math.floor(Math.random() * (hi - lo + 1));
+  }
   for(var j = 1; j <= J; j++) ks.push(m * j * j);
   var last = ks[ks.length - 1], sq = Math.round(Math.sqrt(a * last)), self = ks.indexOf(a) >= 0;
   return {a: a, m: m, R: R, J: J, ks: ks, steps: [
