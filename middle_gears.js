@@ -24,7 +24,7 @@ function gpCss(){
     + '@keyframes gpEmo{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}@media (prefers-reduced-motion:reduce){.gp-emoji,.gp-rb{animation:none}}'
     + '.gp{background:#faf7ff;color:#3b2a5c;border:2px solid #c4b5fd;border-radius:16px;padding:10px 8px;margin:10px 0 14px;font-family:Jua,"Nanum Gothic",sans-serif;font-size:.9rem;line-height:1.5}'
     + '.gp *{box-sizing:border-box}.gp .gp-title{text-align:center;font-size:.92rem;margin-bottom:4px}'
-    + '.gp .gp-stage{background:#fff;border:2px solid #c4b5fd;border-radius:14px;padding:4px 2px;position:relative}.gp .gp-stage svg{width:50%;height:auto;display:block;margin:0 auto}'
+    + '.gp .gp-stage{background:#fff;border:2px solid #c4b5fd;border-radius:14px;padding:4px 2px;position:relative}.gp .gp-stage svg{width:50%;max-width:340px;height:auto;display:block;margin:0 auto}'
     + '.gp .gp-now{position:absolute;left:8px;top:6px;font-size:.72rem;background:#8b5cf6;color:#fff;border-radius:10px;padding:1px 8px}'
     + '.gp .gp-ctl{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:8px 0}'
     + '.gp .gp-ctl button{font-family:inherit;font-size:.8rem;border:none;border-radius:10px;padding:7px 11px;cursor:pointer;background:#7c3aed;color:#fff}.gp .gp-ctl button.sec{background:#e5e7eb;color:#4b5563}'
