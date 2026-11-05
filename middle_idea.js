@@ -306,8 +306,16 @@ window.addEventListener('load', function(){
 });
 
 // 바로가기: middle.html?demo=idea → 소인수분해 "심화 문제 도전"을 열고 첫 문제를 완전제곱수 만들기로 놓는다(무작위라 찾기 어려워서)
+// middle.html?demo=ext → 위와 같고, 풀이 3단계를 바로 끝내서 4번 질문(확장 문제)이 열린 화면으로 간다
 window.addEventListener('load', function(){
   if(!/[?&]demo=idea(&|$)/.test(location.search) || typeof startQuizHard !== 'function') return;
   startQuizHard('prime', 'prime-hub');
   ST.qs[0] = genPerfectSquare(); ST.cur = 0; ST.answered = false; renderQ();
+});
+window.addEventListener('load', function(){
+  if(!/[?&]demo=ext(&|$)/.test(location.search) || typeof startQuizHard !== 'function') return;
+  startQuizHard('prime', 'prime-hub');
+  ST.qs[0] = genPerfectSquare(); ST.cur = 0; ST.answered = false; renderQ();
+  for(var k = 0; k < 3; k++){ var S = IDEA, st = S.steps[S.i]; ideaPick((S.flips[S.i] ? st.no : st.ok) === st.ok ? 0 : 1); ideaNext(); }
+  extOpen();
 });
