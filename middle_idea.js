@@ -481,6 +481,7 @@ function wkPick(which, k){
   var W = wkWalk(which); if(!W || wkResolved(W)) return;
   var st = W.steps[W.i]; if(!st || st.kind !== 'choice' || (k !== 'dk' && !st.opts[k])) return;
   W.cur.picked = k;
+  (W.firsts = W.firsts || [])[W.i] = (k !== 'dk' && st.opts[k].ok);
   if(k !== 'dk' && st.opts[k].ok) W.right++;
   wkRender(which);
 }
@@ -491,7 +492,7 @@ function wkSubmit(which){
   c.vals = vals;
   if(vals.some(function(v){ return !String(v).trim(); })){ c.msg = '✏️ 빈칸을 모두 써 주세요.'; wkRender(which); return; }
   c.tries++;
-  if(st.fields.every(function(f, k){ return ideaFieldOk(f, vals[k]); })){ c.solved = true; if(c.tries === 1) W.right++; c.msg = ''; wkRender(which); return; }
+  if(st.fields.every(function(f, k){ return ideaFieldOk(f, vals[k]); })){ c.solved = true; (W.firsts = W.firsts || [])[W.i] = (c.tries === 1); if(c.tries === 1) W.right++; c.msg = ''; wkRender(which); return; }
   var joined = vals.join(' ').replace(/\s+/g, ''), wrong = (st.wrong || []).filter(function(w){ return w.re.test(joined) || w.re.test(String(vals[0]).replace(/\s+/g, '')); })[0];
   if(typeof window.toroAiGrader === 'function' && !wrong){
     c.busy = true; wkRender(which);
@@ -499,7 +500,7 @@ function wkSubmit(which){
     var timeout = new Promise(function(res){ setTimeout(function(){ res(null); }, IDEA_AI_TIMEOUT_MS); });
     Promise.race([call, timeout]).catch(function(){ return null; }).then(function(res){
       c.busy = false;
-      if(res && res.tier === 'full'){ c.solved = true; c.msg = ''; } else c.msg = '아쉬워요. 다시 한 번 생각해 볼까요?';
+      if(res && res.tier === 'full'){ c.solved = true; (W.firsts = W.firsts || [])[W.i] = (c.tries === 1); if(c.tries === 1) W.right++; c.msg = ''; } else c.msg = '아쉬워요. 다시 한 번 생각해 볼까요?';
       wkRender(which);
     });
     return;
@@ -509,7 +510,7 @@ function wkSubmit(which){
 }
 function wkReveal(which){
   var W = wkWalk(which); if(!W || wkResolved(W)) return;
-  W.cur.revealed = true; W.cur.msg = ''; wkRender(which);
+  W.cur.revealed = true; W.cur.msg = ''; (W.firsts = W.firsts || [])[W.i] = false; wkRender(which);
 }
 function wkNext(which){
   var W = wkWalk(which); if(!W || !wkResolved(W)) return;
@@ -551,6 +552,14 @@ function ideaFinish(){
     IDEA.scored = true; ST.answered = true;
     if(good) ST.score++;
     ST.points += earn; updatePoints();
+    ST.log.push({
+      time: new Date().toLocaleString('ko-KR'), topic: ST.topic,
+      story: q.story.replace(/<[^>]+>/g, '').substring(0, 60),
+      answer: q.answer, allOk: good,
+      stepResults: IDEA.steps.map(function(st, k){ return {label: String(st.ask).replace(/<[^>]+>/g, '').substring(0, 30), ok: !!(IDEA.firsts && IDEA.firsts[k]), errCode: null}; }),
+      grade: ST.grade
+    });
+    try{ localStorage.setItem('toroLog', JSON.stringify(ST.log.slice(-50))); }catch(e){}
     document.getElementById('qc-result').innerHTML =
       '<div style="font-size:.95rem;color:var(--green);margin-bottom:8px">✅ 정답: <b style="color:var(--yellow)">' + q.answer + '</b></div>'
       + '<button id="qc-explain-btn" onclick="toggleQCExplain()" style="background:rgba(99,102,241,.2);border:1px solid #6366f1;color:#a5b4fc;border-radius:8px;padding:7px 16px;font-size:.85rem;cursor:pointer">📖 풀이 보기</button>';
@@ -565,7 +574,7 @@ function ideaFinish(){
 function ideaRestart(){
   if(!IDEA) return;
   extClose(); EXT = null;
-  IDEA.i = 0; IDEA.right = 0; IDEA.cur = {picked: null, tries: 0, msg: '', solved: false, revealed: false, busy: false};
+  IDEA.i = 0; IDEA.right = 0; IDEA.firsts = []; IDEA.cur = {picked: null, tries: 0, msg: '', solved: false, revealed: false, busy: false};
   IDEA.order = IDEA.steps.map(function(st){ return st.kind === 'choice' ? ideaShuffle(st.opts.map(function(_, k){ return k; })) : null; });
   wkRender('main');
 }

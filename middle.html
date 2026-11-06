@@ -15342,13 +15342,16 @@ function genTreePlant(){
   return {type:'prime',subtype:'tree_plant',story:rnd(stories)(),data:{w,h,G,count,peri},answer:`${count}그루`,choices:shuffle(choices.slice(0,4))};
 }
 
+// 나무 심기 유형: 도로 한쪽(기본) → 양쪽 → 연못 → 직사각형 둘레(확장)는 middle_idea.js의 genTreeRoad. 그 파일이 없을 때만 예전 직사각형 문제로 대신한다
+function genTreeHard(){ return typeof genTreeRoad === 'function' ? genTreeRoad() : genTreePlant(); }
+
 function genPrimeHard(){
-  const fns=[genPerfectSquare,genLCMGCDPair,genDivisorEq,genRemainderGCD,genTreePlant];
+  const fns=[genPerfectSquare,genLCMGCDPair,genDivisorEq,genRemainderGCD,genTreeHard];
   return rnd(fns)();
 }
 function genQsPrimeHard(){
   const order=[0,1,2,3,4,0,1,2,3,4];
-  const fns=[genPerfectSquare,genLCMGCDPair,genDivisorEq,genRemainderGCD,genTreePlant];
+  const fns=[genPerfectSquare,genLCMGCDPair,genDivisorEq,genRemainderGCD,genTreeHard];
   return shuffle([...order]).map(i=>fns[i]());
 }
 
