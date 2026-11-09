@@ -87,7 +87,43 @@ IDEA_TYPES.perfect_sq = {
     var d = q.data, f = d.f, ps = Object.keys(f).map(Number), p = ps.filter(function(x){ return f[x] % 2 !== 0; })[0], r = ps.filter(function(x){ return f[x] % 2 === 0; })[0];
     return {d: d, f: f, p: p, e: f[p], r: r, er: f[r], n: d.n, m: d.minN};
   },
-  steps: function(q){
+  // 한 판의 완전제곱수 두 문제는 풀이 방식이 서로 다르게 나온다(고르기형 한 번, 빈칸형 한 번). 어느 쪽이 먼저인지는 무작위
+  styleOf: function(q){
+    if(!q.sqStyle){
+      var other = (ST.qs || []).filter(function(x){ return x !== q && x.subtype === 'perfect_sq' && x.sqStyle; })[0];
+      q.sqStyle = other ? (other.sqStyle === 'pick' ? 'blank' : 'pick') : (Math.random() < .5 ? 'pick' : 'blank');
+    }
+    return q.sqStyle;
+  },
+  steps: function(q){ return this.styleOf(q) === 'pick' ? this.stepsPick(q) : this.stepsBlank(q); },
+  stepsPick: function(q){
+    var t = this.parts(q), d = t.d, p = t.p, e = t.e, r = t.r, er = t.er, n = t.n, exp = Object.keys(t.f).map(Number).map(function(x){ return ideaTimes(x, t.f[x]); }).join(' × ');
+    return [
+      C('완전제곱수 36, 100, 144를 풀어서 곱셈으로 써 보면 어떤 모양일까요?',
+        {text: '같은 수가 둘씩 짝이에요! 36 = 2×2×3×3, 100 = 2×2×5×5', react: '맞아! 제곱은 같은 수를 두 번 곱한 거라서, 소인수도 둘씩 짝을 이뤄. 2가 2개, 3이 2개 — 모두 짝이 있지?'},
+        [{text: '일의 자리가 0, 1, 4, 5, 6, 9로 끝나요', react: '좋은 관찰이야. 그런데 14도 일의 자리가 4인데 제곱수가 아니야. 만들 때는 쓰기 어려워서, 곱셈으로 풀어서 보자.'}],
+        '36 = 2×2×3×3, 100 = 2×2×5×5, 144 = 2×2×2×2×3×3. 같은 수가 몇 개씩인지 세어 봐!',
+        '완전제곱수는 풀어서 곱하면 같은 수가 모두 둘씩 짝이 지어져(짝이 없는 수가 하나도 없어).'),
+      C(n + ' = ' + exp + '. 같은 수끼리 둘씩 짝을 지으면 짝이 없는 수는?',
+        {text: p + '가 ' + e + '개라서 짝을 못 찾은 ' + p + ' 하나가 남아요.', react: '맞아! ' + r + '는 ' + er + '개라서 딱 짝이 맞아.'},
+        [{text: r + '가 짝을 못 찾아요.', react: r + '는 ' + er + '개라서 둘씩 딱 짝이 맞아. 짝이 모자란 건 ' + p + ' 쪽이야.'}],
+        '같은 수끼리 모아서 둘씩 묶어 봐. 어느 수가 하나 남을까?',
+        p + '가 ' + e + '개(홀수)라서 짝 없는 ' + p + ' 하나가 남아. 이 ' + p + '에게 짝을 만들어 줘야 해.',
+        {visual: function(W){ return ideaPairsHtml(d, p, 0, '노란 점선 상자가 <b>짝을 못 찾은 ' + p + '</b>예요.'); }}),
+      C('짝을 못 찾은 ' + p + '에게 짝을 만들어 주려면, ' + p + eul(p) + ' 몇 개 더 곱해야 할까요?',
+        {text: '한 개요. ' + p + '가 ' + e + '개에서 ' + (e + 1) + '개가 되니까 모두 짝이 맞아요.', react: ideaTimes(p, e) + '에 ' + p + ' 하나를 더 곱하면 ' + ideaTimes(p, e + 1) + ', ' + p + '가 ' + (e + 1) + '개가 되어 둘씩 딱 맞아!'},
+        [{text: '두 개요.', react: p + eul(p) + ' 두 개 곱하면 ' + p + '가 ' + (e + 2) + '개가 돼. 또 하나가 짝 없이 남아.'}],
+        '짝이 없는 ' + p + ' 하나가 외로워. 같은 ' + p + ' 하나만 더 있으면 어떻게 될까?',
+        p + ' 하나만 더 곱하면 ' + p + '가 ' + (e + 1) + '개가 되어서 모두 둘씩 짝이 맞아. 그래서 최소 n = ' + d.minN + '이고, ' + n + ' × ' + d.minN + ' = ' + d.result + ' = ' + d.sqrtRes + '²이야.',
+        {visual: function(W){
+          var s = W.cur;
+          if(s.picked === null) return ideaPairsHtml(d, p, 0, '아직 곱하기 전이에요. ' + p + '가 ' + e + '개 → 짝 없는 ' + p + ' 하나가 남아 있어요.');
+          if(s.picked === 'dk' || W.steps[W.i].opts[s.picked].ok) return ideaPairsHtml(d, p, 1, '초록 상자가 새로 생긴 짝이에요. <b>짝 없는 수가 하나도 없어요! 🎉</b>');
+          return ideaPairsHtml(d, p, 2, '또 하나가 짝 없이 남았어요. 하나만 더 곱하면 되는 거예요.');
+        }})
+    ];
+  },
+  stepsBlank: function(q){
     var t = this.parts(q), d = t.d, p = t.p, e = t.e, r = t.r, er = t.er, n = t.n, exp = Object.keys(t.f).map(Number).map(function(x){ return ideaTimes(x, t.f[x]); }).join(' × ');
     return [
       B('완전제곱수 36 = 2×2×3×3, 100 = 2×2×5×5처럼 풀어서 곱해 보세요. 같은 수가 몇 개씩 짝을 이룰까요?',
