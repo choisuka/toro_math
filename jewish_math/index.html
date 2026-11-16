@@ -726,6 +726,22 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
     </div>
   </div>
 
+  <div class="unit-card">
+    <div class="unit-header" onclick="toggle(this)">
+      <div><div class="unit-title">⬡ 다각형 <span class="badge">초4</span></div><div class="unit-sub">다각형·정다각형·대각선</div></div>
+      <span class="unit-arrow">▼</span>
+    </div>
+    <div class="unit-body">
+      <div class="cv-wrap" id="cv-e4poly">
+        <div class="cv-grid" id="cv-e4poly-grid"></div>
+        <div class="cv-detail" id="cv-e4poly-detail" style="display:none">
+          <button class="cv-back-btn" onclick="cvShowGrid('e4poly')">← 목록으로</button>
+          <div id="cv-e4poly-detail-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="semester-divider">나머지 초4-2 단원을 순서대로 만들고 있어요</div>
   </div>
 
@@ -16123,6 +16139,453 @@ US_UNITS['e4line'] = {
 };
 usInject('e4line', [0,1,2,4,6]);
 
+// ── 다각형(e4poly) ──
+function e4polyWrapOpen(){ return e4barWrapOpen().replace('class="e4bw"','class="e4bw e4poly"')+'<style>'
+  +'.e4bw.e4poly p{font-size:1.08rem;line-height:1.75}'
+  +'.e4bw.e4poly .poly-shapes{display:flex;gap:20px;justify-content:center;margin:18px 0;flex-wrap:wrap}'
+  +'.e4bw.e4poly .poly-shape-box{text-align:center;max-width:220px}'
+  +'.e4bw.e4poly .poly-shape-box svg{width:120px;height:auto}'
+  +'.e4bw.e4poly .poly-shape-box span{display:block;font-size:.88rem;line-height:1.5;color:#4b5565;margin-top:8px;max-width:200px}'
+  +'.e4bw.e4poly .guess-box{background:#faf5ff;border:1px solid #d7c4fa;border-radius:10px;padding:16px;margin-top:16px}'
+  +'.e4bw.e4poly .guess-box .q{font-weight:700;font-size:1.02rem;margin-bottom:8px}'
+  +'.e4bw.e4poly .guess-opts{display:flex;flex-direction:column;gap:10px;margin-top:10px}'
+  +'.e4bw.e4poly .guess-opt{display:block;width:100%;text-align:left;border:1.5px solid #7a4fc2;color:#7a4fc2;background:#fff;border-radius:8px;padding:10px 14px;font-size:.92rem;line-height:1.65;font-weight:700;font-family:inherit;cursor:pointer}'
+  +'.e4bw.e4poly .guess-opt:disabled{opacity:.55;cursor:default}'
+  +'.e4bw.e4poly .guess-opt.ok{border-color:#2f9e57;color:#2f9e57;background:#eafaf0}'
+  +'.e4bw.e4poly .guess-opt.no{border-color:#c0362f;color:#c0362f;background:#fdeeee}'
+  +'.e4bw.e4poly .guess-fb{margin-top:10px;font-size:.92rem;line-height:1.65}'
+  +'.e4bw.e4poly .poly-flow{background:#eafaf0;border:1px solid #bfe8cf;border-radius:10px;padding:14px 16px;font-size:1.02rem;line-height:1.8;margin-bottom:30px;color:#1d2433}'
+  +'.e4bw.e4poly .poly-flow .tag{display:inline-block;background:#fff3d1;color:#7a5600;border-radius:6px;padding:2px 8px;font-size:.78rem;font-weight:700;margin-right:6px}'
+  +'.e4bw.e4poly .guess-opts.compact{flex-direction:row;flex-wrap:wrap}'
+  +'.e4bw.e4poly .guess-opts.compact .guess-opt{width:auto;flex:0 0 auto;padding:8px 14px}'
+  +'.e4bw.e4poly .path-nodes{display:flex;align-items:center;justify-content:center;margin:18px 0;flex-wrap:wrap}'
+  +'.e4bw.e4poly .path-node{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.92rem;color:#fff;background:#e3e8ef;flex:0 0 auto;transition:transform .3s,background .3s}'
+  +'.e4bw.e4poly .path-node.active{background:#f0c040;color:#5c4500;transform:scale(1.2);box-shadow:0 0 0 5px rgba(240,192,64,.25)}'
+  +'.e4bw.e4poly .path-node.done{background:#2f9e57}'
+  +'.e4bw.e4poly .path-link{width:22px;height:4px;background:#e3e8ef;flex:0 0 auto}'
+  +'.e4bw.e4poly .path-link.done{background:#2f9e57}'
+  +'.e4bw.e4poly .path-card{background:#f8fafd;border:1px solid #d7c4fa;border-radius:14px;padding:18px}'
+  +'.e4bw.e4poly .path-card p{font-size:1.05rem;line-height:1.7;margin:0 0 12px}'
+  +'.e4bw.e4poly .path-next{display:block;width:100%;margin-top:14px;background:#7a4fc2;color:#fff;border:none;border-radius:10px;padding:13px;font-size:1.02rem;font-weight:800;font-family:inherit;cursor:pointer}'
+  +'.e4bw.e4poly .path-ask{display:block;width:100%;margin-top:4px;background:#faf5ff;color:#7a4fc2;border:1.5px solid #d7c4fa;border-radius:10px;padding:11px;font-size:.95rem;font-weight:700;font-family:inherit;cursor:pointer}'
+  +'.e4bw.e4poly .path-done{text-align:center}'
+  +'.e4bw.e4poly .path-done .big{font-size:2rem;margin-bottom:6px}'
+  +'.e4bw.e4poly .path-diagram{display:flex;justify-content:center;margin-bottom:8px}'
+  +'@keyframes e4polyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}'
+  +'.e4bw.e4poly .path-balloon-row{display:flex;justify-content:center;margin-bottom:4px}'
+  +'.e4bw.e4poly .path-balloon{display:inline-block;animation:e4polyFloat 1.4s ease-in-out infinite}'
+  +'.e4bw.e4poly .path-intro{display:flex;align-items:center;justify-content:center;gap:14px;background:#fff3d1;border-radius:14px;padding:16px 18px;margin-top:20px;box-shadow:0 2px 10px rgba(240,192,64,.35);flex-wrap:wrap}'
+  +'@keyframes e4polyPanorama{0%{background-position:0% center}100%{background-position:200% center}}'
+  +'.e4bw.e4poly .rainbow-text{font-family:"Jua","Nanum Gothic",sans-serif;font-size:1.25rem;letter-spacing:.5px;background:linear-gradient(90deg,#ff4d4d,#ff9d4d,#ffe14d,#4dd47a,#4db8ff,#b84dff,#ff4d4d);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:e4polyPanorama 2.5s linear infinite}'
+  +'</style>'; }
+// 정n각형 좌표(중심 0,0, 외접원 반지름 R, 꼭짓점 각도 rot에서 시작)
+function e4polyPts(n, R, rot){
+  var pts=[];
+  for(var i=0;i<n;i++){
+    var a=(rot+360/n*i)*Math.PI/180;
+    pts.push([R*Math.cos(a), R*Math.sin(a)]);
+  }
+  return pts;
+}
+function e4polyPtsStr(pts, dx, dy){ return pts.map(function(p){return (p[0]+dx).toFixed(1)+','+(p[1]+dy).toFixed(1);}).join(' '); }
+// 타일링 미리보기: 정삼각형·정사각형·정육각형(틈 없음) / 정오각형(틈 생김)
+function e4polyTileSvg(kind){
+  var w=100,h=100,cx=50,cy=52;
+  if(kind==='tri'){
+    var s=28, hgt=s*Math.sqrt(3)/2, x0=cx-s*1.5, y0=cy+hgt/2;
+    var tris=[
+      [[x0,y0],[x0+s,y0],[x0+s/2,y0-hgt]],
+      [[x0+s/2,y0-hgt],[x0+s*1.5,y0-hgt],[x0+s,y0]],
+      [[x0+s,y0],[x0+s*2,y0],[x0+s*1.5,y0-hgt]],
+      [[x0+s*1.5,y0-hgt],[x0+s*2.5,y0-hgt],[x0+s*2,y0]]
+    ];
+    var polys=tris.map(function(t,i){return '<polygon points="'+t.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ')+'" fill="'+(i%2===0?'#58a6ff':'#ffffff')+'" opacity="'+(i%2===0?'0.6':'1')+'" stroke="#1d2433" stroke-width="1.8"/>';}).join('');
+    return '<svg viewBox="0 0 '+w+' '+h+'" width="120" height="120">'+polys+'</svg>';
+  }
+  if(kind==='sq'){
+    var s=30, x0=cx-s*1.5, y0=cy-s;
+    var rects='';
+    for(var r=0;r<2;r++) for(var c=0;c<3;c++){
+      rects+='<rect x="'+(x0+c*s)+'" y="'+(y0+r*s)+'" width="'+s+'" height="'+s+'" fill="#f0c040" opacity="0.5" stroke="#1d2433" stroke-width="1.5"/>';
+    }
+    return '<svg viewBox="0 0 '+w+' '+h+'" width="120" height="120">'+rects+'</svg>';
+  }
+  if(kind==='hex'){
+    var R=20, dx1=Math.sqrt(3)*R, dy1=0, dx2=Math.sqrt(3)/2*R, dy2=1.5*R;
+    var centers=[[cx-dx2,cy-dy2+10],[cx-dx2+dx1,cy-dy2+10],[cx,cy+10]];
+    var pts=e4polyPts(6,R,-90);
+    var polys=centers.map(function(c){return '<polygon points="'+e4polyPtsStr(pts,c[0],c[1])+'" fill="#27c96a" opacity="0.5" stroke="#1d2433" stroke-width="1.5"/>';}).join('');
+    return '<svg viewBox="0 0 '+w+' '+h+'" width="120" height="120">'+polys+'</svg>';
+  }
+  // pent: 정오각형 3개를 한 꼭짓점에 모아 돌리면 틈이 남는다
+  var R=26;
+  var base=e4polyPts(5,R,-90);
+  var v0=base[0];
+  var shifted=base.map(function(p){return [p[0]-v0[0], p[1]-v0[1]];});
+  var cxp=cx, cyp=cy+18;
+  var polys='';
+  for(var k=0;k<3;k++){
+    var ang=108*k*Math.PI/180;
+    var rotated=shifted.map(function(p){
+      return [p[0]*Math.cos(ang)-p[1]*Math.sin(ang), p[0]*Math.sin(ang)+p[1]*Math.cos(ang)];
+    });
+    polys+='<polygon points="'+e4polyPtsStr(rotated,cxp,cyp)+'" fill="#c0362f" opacity="0.45" stroke="#1d2433" stroke-width="1.5"/>';
+  }
+  polys+='<circle cx="'+cxp+'" cy="'+cyp+'" r="2.2" fill="#1d2433"/>';
+  return '<svg viewBox="0 0 '+w+' '+h+'" width="120" height="120">'+polys+'</svg>';
+}
+function e4polyGuess1(btn, correct){
+  document.querySelectorAll('.e4poly-guess1-opt').forEach(function(b){ b.disabled=true; });
+  btn.classList.add(correct?'ok':'no');
+  document.getElementById('e4poly-guess1-fb').innerHTML = (correct
+    ? '<b style="color:#2f9e57">맞아요!</b> '
+    : '<b style="color:#c0362f">아쉬워요.</b> ')
+    +'정삼각형·정사각형·정육각형은 여러 개를 이어 붙이면 틈이나 겹침 없이 평면을 채울 수 있어요. 그런데 정오각형은 아무리 이어 붙여도 어딘가 틈이 남아요(정확한 이유는 중학교에서 각을 배우며 알게 돼요).';
+}
+// 왜 카드용: 에펠탑처럼 삼각형 뼈대로 짠 탑 모양(단순화한 선그림)
+// 에펠탑: 두 단(큰 사다리꼴)을 각각 X자로 나눠 "색칠된 큰 삼각형"을 또렷이 보여주고, 꼭대기 단은 그 자체로 삼각형이 되게 그림
+function e4polyTrapTriangles(TL,TR,BR,BL,fill1,fill2){
+  var cx=(TL[0]+TR[0]+BR[0]+BL[0])/4, cy=(TL[1]+TR[1]+BR[1]+BL[1])/4;
+  function poly(a,b){ return '<polygon points="'+a[0]+','+a[1]+' '+b[0]+','+b[1]+' '+cx.toFixed(1)+','+cy.toFixed(1)+'" '; }
+  return poly(TL,TR)+'fill="'+fill1+'" stroke="#1d2433" stroke-width="1.3"/>'
+    +poly(BR,BL)+'fill="'+fill1+'" stroke="#1d2433" stroke-width="1.3"/>'
+    +poly(TR,BR)+'fill="'+fill2+'" stroke="#1d2433" stroke-width="1.3"/>'
+    +poly(BL,TL)+'fill="'+fill2+'" stroke="#1d2433" stroke-width="1.3"/>';
+}
+function e4eiffelSvg(){
+  var base=[4,185], baseR=[116,185], p1=[34,125], p1R=[86,125], p2=[48,80], p2R=[72,80], apex=[60,25];
+  var tierA=e4polyTrapTriangles(p1,p1R,baseR,base,'#58a6ff','#ffffff');
+  var tierB=e4polyTrapTriangles(p2,p2R,p1R,p1,'#58a6ff','#ffffff');
+  var tierC='<polygon points="'+p2[0]+','+p2[1]+' '+p2R[0]+','+p2R[1]+' '+apex[0]+','+apex[1]+'" fill="#58a6ff" stroke="#1d2433" stroke-width="1.3"/>';
+  return '<svg viewBox="0 0 120 200" width="100" height="160">'
+    +'<rect x="0" y="0" width="120" height="200" fill="#ffffff"/>'
+    +tierA+tierB+tierC
+    +'<line x1="34" y1="125" x2="86" y2="125" stroke="#1d2433" stroke-width="1.6"/>'
+    +'<line x1="48" y1="80" x2="72" y2="80" stroke="#1d2433" stroke-width="1.6"/>'
+    +'<line x1="60" y1="25" x2="60" y2="8" stroke="#5d6678" stroke-width="2"/>'
+    +'<line x1="0" y1="187" x2="120" y2="187" stroke="#1d2433" stroke-width="2.4"/>'
+    +'</svg>';
+}
+// 개념 설명용: 다각형 판별(원·열린사각형·곡선섞인도형·오각형) + 정다각형 판별(불규칙/정오각형) 그림
+function e4polyShape(kind){
+  var w=100,h=100;
+  if(kind==='circle') return '<svg viewBox="0 0 '+w+' '+h+'" width="90" height="90"><circle cx="50" cy="50" r="34" fill="#f0c040" opacity="0.5" stroke="#1d2433" stroke-width="2.2"/></svg>';
+  if(kind==='openquad') return '<svg viewBox="0 0 '+w+' '+h+'" width="90" height="90"><polyline points="22,78 22,22 78,22 78,78" fill="none" stroke="#c0362f" stroke-width="2.4"/></svg>';
+  if(kind==='curvy') return '<svg viewBox="0 0 '+w+' '+h+'" width="90" height="90"><path d="M20,20 L80,20 L80,55 Q80,80 55,80 L20,80 Z" fill="#27c96a" opacity="0.5" stroke="#1d2433" stroke-width="2.2"/></svg>';
+  if(kind==='pentagon'){ var pts=e4polyPts(5,34,-90); return '<svg viewBox="0 0 '+w+' '+h+'" width="90" height="90"><polygon points="'+e4polyPtsStr(pts,50,54)+'" fill="#58a6ff" opacity="0.5" stroke="#1d2433" stroke-width="2.2"/></svg>'; }
+  if(kind==='irregpent') return '<svg viewBox="0 0 '+w+' '+h+'" width="110" height="110"><polygon points="50,14 82,38 70,82 34,86 16,42" fill="#c0362f" opacity="0.4" stroke="#1d2433" stroke-width="2.2"/></svg>';
+  if(kind==='regpent'){ var pts=e4polyPts(5,36,-90); return '<svg viewBox="0 0 '+w+' '+h+'" width="110" height="110"><polygon points="'+e4polyPtsStr(pts,50,54)+'" fill="#27c96a" opacity="0.5" stroke="#1d2433" stroke-width="2.2"/></svg>'; }
+  if(kind==='diagsq') return '<svg viewBox="0 0 '+w+' '+h+'" width="130" height="130">'
+    +'<polygon points="20,20 80,20 80,80 20,80" fill="#f8fafd" stroke="#1d2433" stroke-width="2.2"/>'
+    +'<line x1="20" y1="20" x2="80" y2="80" stroke="#c0362f" stroke-width="1.8" stroke-dasharray="4 3"/>'
+    +'<line x1="80" y1="20" x2="20" y2="80" stroke="#c0362f" stroke-width="1.8" stroke-dasharray="4 3"/>'
+    +'<circle cx="20" cy="20" r="2.6" fill="#1d2433"/><circle cx="80" cy="20" r="2.6" fill="#1d2433"/><circle cx="80" cy="80" r="2.6" fill="#1d2433"/><circle cx="20" cy="80" r="2.6" fill="#1d2433"/>'
+    +'</svg>';
+  if(kind==='diagpent'){
+    var pts=e4polyPts(5,34,-90).map(function(p){return [p[0]+50,p[1]+54];});
+    var sides=pts.map(function(p,i){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
+    var diags='';
+    for(var i=0;i<5;i++) for(var j=i+2;j<5;j++){ if(i===0&&j===4) continue; diags+='<line x1="'+pts[i][0].toFixed(1)+'" y1="'+pts[i][1].toFixed(1)+'" x2="'+pts[j][0].toFixed(1)+'" y2="'+pts[j][1].toFixed(1)+'" stroke="#c0362f" stroke-width="1.6" stroke-dasharray="4 3"/>'; }
+    return '<svg viewBox="0 0 '+w+' '+h+'" width="110" height="110"><polygon points="'+sides+'" fill="#f8fafd" stroke="#1d2433" stroke-width="2.2"/>'+diags+'</svg>';
+  }
+}
+function e4polyGuess2(btn, correct){
+  document.querySelectorAll('.e4poly-guess2-opt').forEach(function(b){ b.disabled=true; });
+  btn.classList.add(correct?'ok':'no');
+  document.getElementById('e4poly-guess2-fb').innerHTML = (correct
+    ? '<b style="color:#2f9e57">맞아요!</b> '
+    : '<b style="color:#c0362f">아쉬워요.</b> ')
+    +'원은 곡선이라 다각형이 아니고, 한쪽이 트인 사각형은 닫혀 있지 않아서 다각형이 아니에요. 곡선이 하나라도 섞인 도형도 다각형이 아니에요. 오각형처럼 선분으로만 완전히 둘러싸여야 다각형이에요.';
+}
+function e4polyGuess3(btn, correct){
+  document.querySelectorAll('.e4poly-guess3-opt').forEach(function(b){ b.disabled=true; });
+  btn.classList.add(correct?'ok':'no');
+  document.getElementById('e4poly-guess3-fb').innerHTML = (correct
+    ? '<b style="color:#2f9e57">맞아요!</b> '
+    : '<b style="color:#c0362f">아쉬워요.</b> ')
+    +'둘 다 변이 5개인 오각형이지만, 왼쪽은 변의 길이와 각의 크기가 제각각이에요. 오른쪽처럼 변의 길이도 모두 같고 각의 크기도 모두 같아야 정다각형이에요.';
+}
+// 하브루타용: 정n각형에서 한 꼭짓점(0번)을 강조하고, 그 점에서 그을 수 있는 대각선만 표시(showDiag)
+function e4polyVertexDiagSvg(n, showDiag){
+  var R=34, pts=e4polyPts(n,R,-90).map(function(p){return [p[0]+50,p[1]+54];});
+  var sides=pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
+  var diags='';
+  if(showDiag){
+    for(var j=0;j<n;j++){
+      if(j===0 || j===1 || j===n-1) continue;
+      diags+='<line x1="'+pts[0][0].toFixed(1)+'" y1="'+pts[0][1].toFixed(1)+'" x2="'+pts[j][0].toFixed(1)+'" y2="'+pts[j][1].toFixed(1)+'" stroke="#c0362f" stroke-width="2" stroke-dasharray="4 3"/>';
+    }
+  }
+  return '<svg viewBox="0 0 100 100" width="110" height="110"><polygon points="'+sides+'" fill="#f8fafd" stroke="#1d2433" stroke-width="2"/>'+diags
+    +'<circle cx="'+pts[0][0].toFixed(1)+'" cy="'+pts[0][1].toFixed(1)+'" r="4.5" fill="#58a6ff" stroke="#1d2433" stroke-width="1.5"/></svg>';
+}
+function e4polyGuess4(btn, correct){
+  document.querySelectorAll('.e4poly-guess4-opt').forEach(function(b){ b.disabled=true; });
+  btn.classList.add(correct?'ok':'no');
+  document.getElementById('e4poly-guess4-fb').innerHTML = (correct
+    ? '<b style="color:#2f9e57">맞아요!</b> '
+    : '<b style="color:#c0362f">아쉬워요.</b> ')
+    +'삼각형은 세 꼭짓점이 전부 서로 이웃해 있어서, "이웃하지 않는 두 꼭짓점"이라는 짝 자체가 없어요. 그래서 대각선을 하나도 그을 수 없어요(0개).';
+}
+function e4polyGuess5(btn, correct){
+  document.querySelectorAll('.e4poly-guess5-opt').forEach(function(b){ b.disabled=true; });
+  btn.classList.add(correct?'ok':'no');
+  document.getElementById('e4poly-guess5-fb').innerHTML = (correct
+    ? '<b style="color:#2f9e57">맞아요!</b> '
+    : '<b style="color:#c0362f">아쉬워요.</b> ')
+    +'육각형은 꼭짓점이 6개예요. 강조된 꼭짓점 자신과, 양옆에 이웃한 2개는 대각선을 그을 수 없으니 빼면 6−3=<b style="color:#1f7a42">3개</b>가 남아요. 아래 그림처럼 확인해볼까요?'
+    +'<div style="text-align:center;margin-top:10px">'+e4polyVertexDiagSvg(6,true)+'</div>';
+}
+function e4polyGuess6(btn, correct){
+  document.querySelectorAll('.e4poly-guess6-opt').forEach(function(b){ b.disabled=true; });
+  btn.classList.add(correct?'ok':'no');
+  document.getElementById('e4poly-guess6-fb').innerHTML = (correct
+    ? '<b style="color:#2f9e57">맞아요!</b> '
+    : '<b style="color:#c0362f">아쉬워요.</b> ')
+    +'칠각형은 꼭짓점이 7개, 한 꼭짓점마다 대각선 4개니까 7×4=28개. 그런데 대각선 하나는 양쪽에서 두 번씩 세어졌으니까 28÷2=<b style="color:#1f7a42">14개</b>예요.';
+}
+// 듀오링고 스타일 "대각선 공식 유도" 길 — 육각형으로 1~4단계 유도, 칠각형으로 도전
+function e4polyIsAdjacent(i,j,n){ return j===i+1 || j===i-1 || (i===0&&j===n-1) || (i===n-1&&j===0); }
+function e4polySvgLine(a,b,color,w,dash){ return '<line x1="'+a[0].toFixed(1)+'" y1="'+a[1].toFixed(1)+'" x2="'+b[0].toFixed(1)+'" y2="'+b[1].toFixed(1)+'" stroke="'+color+'" stroke-width="'+w+'"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>'; }
+function e4polySvgDot(p,color,r){ return '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+(r||4.5)+'" fill="'+color+'" stroke="#1d2433" stroke-width="1.2"/>'; }
+function e4polySvgLabel(p,text,dx,dy){ return '<text x="'+(p[0]+dx).toFixed(1)+'" y="'+(p[1]+dy).toFixed(1)+'" font-size="10" font-weight="800" fill="#1d2433" text-anchor="middle">'+text+'</text>'; }
+function e4polyHexPathDiagram(mode){
+  var n=6, pts=e4polyPts(n,34,-90).map(function(p){return [p[0]+50,p[1]+54];});
+  var sides=pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
+  var extra='<polygon points="'+sides+'" fill="#f8fafd" stroke="#1d2433" stroke-width="2"/>';
+  if(mode==='onevertex'){
+    for(var j=0;j<n;j++){ if(e4polyIsAdjacent(0,j,n)) continue; extra+=e4polySvgLine(pts[0],pts[j],'#c0362f',2,'4 3'); }
+    extra+=e4polySvgDot(pts[0],'#58a6ff');
+  } else if(mode==='allvertices'){
+    pts.forEach(function(p){ extra+=e4polySvgDot(p,'#58a6ff',4); });
+  } else if(mode==='doublecount'){
+    for(var i=0;i<n;i++) for(var j=i+1;j<n;j++){ if(e4polyIsAdjacent(i,j,n)) continue; extra+=e4polySvgLine(pts[i],pts[j],'#d7dce3',1.2); }
+    extra+=e4polySvgLine(pts[0],pts[2],'#f0c040',3);
+    extra+=e4polySvgLabel(pts[0],'①',-10,-6);
+    extra+=e4polySvgLabel(pts[2],'②',12,-4);
+    pts.forEach(function(p){ extra+=e4polySvgDot(p,'#58a6ff',3.5); });
+  } else if(mode==='confirmed'){
+    for(var i=0;i<n;i++) for(var j=i+1;j<n;j++){ if(e4polyIsAdjacent(i,j,n)) continue; extra+=e4polySvgLine(pts[i],pts[j],'#2f9e57',1.6); }
+    pts.forEach(function(p){ extra+=e4polySvgDot(p,'#58a6ff',3.5); });
+  }
+  return '<svg viewBox="0 0 100 100" width="170" height="170">'+extra+'</svg>';
+}
+function e4polyHeptPathDiagram(){
+  var n=7, pts=e4polyPts(n,34,-90).map(function(p){return [p[0]+50,p[1]+54];});
+  var sides=pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
+  var extra='<polygon points="'+sides+'" fill="#f8fafd" stroke="#1d2433" stroke-width="2"/>';
+  for(var j=0;j<n;j++){ if(e4polyIsAdjacent(0,j,n)) continue; extra+=e4polySvgLine(pts[0],pts[j],'#c0362f',2,'4 3'); }
+  extra+=e4polySvgDot(pts[0],'#58a6ff');
+  return '<svg viewBox="0 0 100 100" width="150" height="150">'+extra+'</svg>';
+}
+function e4polyBalloonWithLabel(label){
+  return '<svg viewBox="0 0 40 50" width="56" height="69"><circle cx="20" cy="17" r="15" fill="#7dd3fc"/><polygon points="17,31 23,31 20,37" fill="#7dd3fc"/><line x1="20" y1="37" x2="20" y2="48" stroke="#7dd3fc" stroke-width="1.5"/><text x="20" y="21" font-size="13" font-weight="800" fill="#1d2433" text-anchor="middle">'+label+'</text></svg>';
+}
+var e4polyPathStep=0, e4polyPathRevealed=false;
+function e4polyPathRender(){
+  var nodeLabels=['1','2','3','4','✓','⬡'];
+  var nodesHtml='';
+  for(var i=0;i<6;i++){
+    var cls='path-node'+(i<e4polyPathStep?' done':(i===e4polyPathStep?' active':''));
+    nodesHtml+='<div class="'+cls+'">'+nodeLabels[i]+'</div>';
+    if(i<5) nodesHtml+='<div class="path-link'+(i<e4polyPathStep?' done':'')+'"></div>';
+  }
+  var balloonHtml='<div class="path-balloon-row"><span class="path-balloon">'+e4polyBalloonWithLabel(nodeLabels[e4polyPathStep])+'</span></div>';
+  var s=e4polyPathStep, cardHtml='';
+  if(s===0){
+    cardHtml='<div class="path-diagram">'+e4polyHexPathDiagram('onevertex')+'</div>'
+      +'<p><b>1단계</b> 방금 육각형에서 한 꼭짓점(파란 점)이 그을 수 있는 대각선은 <b>3개</b>라는 걸 알았어요.</p>'
+      +'<button class="path-next" onclick="e4polyPathNext()">다음 →</button>';
+  } else if(s===1){
+    cardHtml='<div class="path-diagram">'+e4polyHexPathDiagram('allvertices')+'</div>'
+      +'<p><b>2단계</b> 육각형은 꼭짓점이 6개예요. 모든 꼭짓점이 똑같이 3개씩 대각선을 가질 수 있어요.</p>'
+      +'<button class="path-next" onclick="e4polyPathNext()">다음 →</button>';
+  } else if(s===2){
+    cardHtml='<div class="path-diagram">'+e4polyHexPathDiagram('doublecount')+'</div>'
+      +'<p><b>3단계</b> 그러면 6개 × 3개 = <b>18개</b>겠네요? 그런데 노란 대각선을 보세요 — ①번 꼭짓점에서 셀 때도 포함되고, ②번 꼭짓점에서 셀 때도 포함돼요.</p>'
+      +'<button class="path-next" onclick="e4polyPathNext()">다음 →</button>';
+  } else if(s===3){
+    cardHtml='<p><b>4단계</b> 어? 그런데 아까 육각형 대각선은 9개라고 배웠는데, 왜 18이 나왔을까요?</p>'
+      +(!e4polyPathRevealed
+        ? '<button class="path-ask" onclick="e4polyPathReveal()">🤔 이상한 점을 찾았나요? 눌러서 확인!</button>'
+        : '<div class="path-diagram">'+e4polyHexPathDiagram('confirmed')+'</div>'
+          +'<p style="margin-top:0"><b style="color:#2f9e57">발견!</b> 대각선 하나는 양쪽 끝 꼭짓점에서 각각 한 번씩, 총 두 번 세어진 거예요. 그래서 18을 2로 나누면 딱 9개! 18÷2=9. (초록색 선이 실제 대각선 9개예요)</p>'
+          +'<button class="path-next" onclick="e4polyPathNext()">다음 →</button>');
+  } else if(s===4){
+    cardHtml='<div class="path-done"><div class="big">⭐🎉⭐</div><p style="font-size:1.1rem"><b>완성!</b> 육각형 대각선 공식을 스스로 찾아냈어요.</p>'
+      +'<button class="path-next" onclick="e4polyPathNext()">칠각형으로 도전하기 →</button></div>';
+  } else if(s===5){
+    cardHtml='<div class="path-diagram">'+e4polyHeptPathDiagram()+'</div>'
+      +'<div class="guess-box" style="margin-top:0">'
+      +'<div class="q">🤔 칠각형(변 7개)은 한 꼭짓점마다 대각선 4개를 그을 수 있어요(그림 참고). 같은 방법으로 계산하면, 칠각형 전체의 대각선은 몇 개일까요?</div>'
+      +'<div class="guess-opts compact">'
+      +'<button class="guess-opt e4poly-guess6-opt" onclick="e4polyGuess6(this,false)">28개</button>'
+      +'<button class="guess-opt e4poly-guess6-opt" onclick="e4polyGuess6(this,false)">21개</button>'
+      +'<button class="guess-opt e4poly-guess6-opt" onclick="e4polyGuess6(this,true)">14개</button>'
+      +'<button class="guess-opt e4poly-guess6-opt" onclick="e4polyGuess6(this,false)">7개</button>'
+      +'</div><div class="guess-fb" id="e4poly-guess6-fb"></div></div>';
+  }
+  return balloonHtml+'<div class="path-nodes">'+nodesHtml+'</div><div class="path-card">'+cardHtml+'</div>';
+}
+function e4polyPathScrollIn(){
+  var el=document.getElementById('e4poly-path-wrap');
+  if(el && el.scrollIntoView) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function e4polyPathToggleIntro(){
+  var el=document.getElementById('e4poly-path-body');
+  var open = el.style.display==='none';
+  el.style.display = open ? '' : 'none';
+  if(open) e4polyPathScrollIn();
+}
+function e4polyPathNext(){ e4polyPathStep++; e4polyPathRevealed=false; document.getElementById('e4poly-path-wrap').innerHTML=e4polyPathRender(); e4polyPathScrollIn(); }
+function e4polyPathReveal(){ e4polyPathRevealed=true; document.getElementById('e4poly-path-wrap').innerHTML=e4polyPathRender(); e4polyPathScrollIn(); }
+// 예제용: 세 변은 곧은 선분, 한 변만 둥글게 휜 도형(다각형 판별용)
+function e4polyCurvyQuad(){
+  return '<svg viewBox="0 0 100 100" width="110" height="110"><path d="M20,25 L80,25 L80,55 Q82,85 50,80 L20,75 Z" fill="#ffa657" opacity="0.45" stroke="#1d2433" stroke-width="2.2"/></svg>';
+}
+// 예제용: 각의 크기가 90°/150°로 번갈아 다른 육각형(정다각형 판별용, 모양은 참고용 정육각형 베이스에 각 값만 표시)
+function e4polyAngleHex(){
+  // 변의 길이는 모두 같고(34) 내각이 150·90·150·90·150·90°로 실제 번갈아 나오는 육각형(턴틀 각도로 직접 계산한 좌표)
+  var pts=[[42.8,23.2],[76.8,23.2],[76.8,57.2],[59.8,86.6],[30.4,69.6],[13.4,40.2]];
+  var angles=[150,90,150,90,150,90];
+  var sides=pts.map(function(p){return p[0]+','+p[1];}).join(' ');
+  var txt=pts.map(function(p,i){
+    var dx=(p[0]-50)*0.22, dy=(p[1]-50)*0.22;
+    return '<text x="'+(p[0]+dx).toFixed(1)+'" y="'+(p[1]+dy).toFixed(1)+'" font-size="9" fill="#a8730a" text-anchor="middle" font-weight="700">'+angles[i]+'°</text>';
+  }).join('');
+  return '<svg viewBox="-8 -8 116 116" width="130" height="130"><polygon points="'+sides+'" fill="#f0c040" opacity="0.4" stroke="#1d2433" stroke-width="2"/>'+txt+'</svg>';
+}
+var CV_DATA_E4POLY = [
+  { title:'🌟 왜 배우는가?', cls:'why', html:`${e4polyWrapOpen()}
+    ${mascotBadge('tori','#3fb950')}
+    <p>벌이 집을 지을 때, 사각형이나 삼각형이 아니라 꼭 "육각형" 모양으로 벌집을 만들어요. 왜 그럴까요?</p>
+    <div class="poly-shapes">
+      <div class="poly-shape-box">${e4polyTileSvg('tri')}<span>정삼각형</span></div>
+      <div class="poly-shape-box">${e4polyTileSvg('sq')}<span>정사각형</span></div>
+      <div class="poly-shape-box">${e4polyTileSvg('hex')}<span>정육각형</span></div>
+      <div class="poly-shape-box">${e4polyTileSvg('pent')}<span>정오각형(틈이 보여요)</span></div>
+    </div>
+    <div class="guess-box">
+      <div class="q">🤔 다음 중 여러 개를 이어 붙였을 때 틈 없이 평면을 채울 수 없는 모양은?</div>
+      <div class="guess-opts">
+        <button class="guess-opt e4poly-guess1-opt" onclick="e4polyGuess1(this,false)">정삼각형</button>
+        <button class="guess-opt e4poly-guess1-opt" onclick="e4polyGuess1(this,false)">정사각형</button>
+        <button class="guess-opt e4poly-guess1-opt" onclick="e4polyGuess1(this,true)">정오각형</button>
+        <button class="guess-opt e4poly-guess1-opt" onclick="e4polyGuess1(this,false)">정육각형</button>
+      </div>
+      <div class="guess-fb" id="e4poly-guess1-fb"></div>
+    </div>
+    <p style="margin-top:14px">그럼 정삼각형·정사각형·정육각형은 셋 다 틈 없이 채워지는데, 벌은 왜 그중에서 육각형을 골랐을까요? 같은 양의 밀랍(재료)으로 <b style="color:#1d2433">가장 넓은 공간</b>을 둘러쌀 수 있는 모양이 정육각형이기 때문이에요. 삼각형이나 사각형으로 지으면 같은 재료로 더 좁은 공간밖에 못 만들어요. 그래서 재료를 아끼는 게 중요한 벌집에는 육각형이 가장 알맞아요.</p>
+    <p style="margin-top:10px">그런데 삼각형과 사각형도 각자 꼭 필요한 곳이 있어요.</p>
+    <div class="poly-shapes">
+      <div class="poly-shape-box">${e4eiffelSvg()}<span>삼각형: 세 변의 길이가 정해지면 모양이 절대 안 변해서(힘을 줘도 비뚤어지지 않음) 다리·철탑 같은 구조물의 뼈대에 많이 써요(정삼각형일 필요는 없어요). 에펠탑도 다리와 몸체 전체가 삼각형 모양 쇠기둥들을 엮어서 만들어져 있어요. 삼각형이라서 바람이 세게 불어도 탑이 휘거나 무너지지 않게 버텨줘요. 만약 사각형 모양 뼈대로 만들었다면, 사각형은 네 변의 길이가 같아도 힘을 받으면 마름모처럼 비뚤어질 수 있어서 훨씬 약해요.</span></div>
+      <div class="poly-shape-box">${e4polyTileSvg('sq')}<span>정사각형: 줄을 딱 맞춰 쌓거나 나누기 편해서 바닥 타일, 책상 칸, 건물 평면도에 많이 써요.</span></div>
+      <div class="poly-shape-box">${e4polyTileSvg('hex')}<span>정육각형: 같은 재료로 가장 넓은 공간을 만들 수 있어서 벌집처럼 재료를 아껴야 할 때 써요.</span></div>
+    </div>
+    <p style="margin-top:14px">이렇게 다각형마다 다른 성질이 있어서 쓰이는 곳도 달라요. 오늘은 다각형이 무엇인지, 정다각형은 무엇인지, 그리고 다각형 안에 숨어있는 대각선까지 배워볼게요.</p>
+  </div>` },
+  { title:'📖 개념 설명', cls:'concept', html:`${e4polyWrapOpen()}
+    ${mascotBadge('focus','#3fb950')}
+    <div class="poly-flow"><span class="tag">🔙 복습</span> 3학년에서 삼각형·사각형처럼 변의 개수로 도형을 분류하는 법을 배웠어요.<br><br>
+    <span class="tag">🔗 연결</span> 오늘은 변이 몇 개든 "선분으로만 둘러싸인 도형"을 통틀어 부르는 이름과, 그중 특별한 도형, 그리고 도형 안에 숨어있는 선분까지 배워요.</div>
+    <p><b>① 다각형이란?</b></p>
+    <p>다음 중에서 선분으로만 둘러싸여 있고 완전히 닫혀 있는 모양은 어느 것일까요?</p>
+    <div class="poly-shapes">
+      <div class="poly-shape-box">${e4polyShape('circle')}<span>원</span></div>
+      <div class="poly-shape-box">${e4polyShape('openquad')}<span>한쪽이 트인 사각형</span></div>
+      <div class="poly-shape-box">${e4polyShape('curvy')}<span>곡선이 섞인 도형</span></div>
+      <div class="poly-shape-box">${e4polyShape('pentagon')}<span>오각형</span></div>
+    </div>
+    <div class="guess-box">
+      <div class="q">🤔 다음 중 다각형인 것은?</div>
+      <div class="guess-opts">
+        <button class="guess-opt e4poly-guess2-opt" onclick="e4polyGuess2(this,false)">원</button>
+        <button class="guess-opt e4poly-guess2-opt" onclick="e4polyGuess2(this,false)">한쪽이 트인 사각형</button>
+        <button class="guess-opt e4poly-guess2-opt" onclick="e4polyGuess2(this,false)">곡선이 섞인 도형</button>
+        <button class="guess-opt e4poly-guess2-opt" onclick="e4polyGuess2(this,true)">오각형</button>
+      </div>
+      <div class="guess-fb" id="e4poly-guess2-fb"></div>
+    </div>
+    <p style="margin-top:14px"><b>선분으로만 둘러싸인 도형을 다각형이라고 해요.</b> 변이 3개면 삼각형, 4개면 사각형, 5개면 오각형, 6개면 육각형처럼 변의 개수로 이름이 정해져요.</p>
+    <p style="margin-top:20px"><b>② 정다각형이란?</b></p>
+    <p>둘 다 변이 5개인 오각형인데, 뭐가 다를까요?</p>
+    <div class="poly-shapes">
+      <div class="poly-shape-box">${e4polyShape('irregpent')}<span>불규칙한 오각형</span></div>
+      <div class="poly-shape-box">${e4polyShape('regpent')}<span>정오각형</span></div>
+    </div>
+    <div class="guess-box">
+      <div class="q">🤔 어느 쪽이 정다각형일까요?</div>
+      <div class="guess-opts">
+        <button class="guess-opt e4poly-guess3-opt" onclick="e4polyGuess3(this,false)">불규칙한 오각형</button>
+        <button class="guess-opt e4poly-guess3-opt" onclick="e4polyGuess3(this,true)">정오각형</button>
+      </div>
+      <div class="guess-fb" id="e4poly-guess3-fb"></div>
+    </div>
+    <p style="margin-top:14px"><b>변의 길이가 모두 같고, 각의 크기도 모두 같은 다각형을 정다각형이라고 해요.</b> 변의 길이만 같다고 정다각형이 되는 건 아니에요 — 예를 들어 마름모는 네 변의 길이가 모두 같지만, 각이 다 같지 않으면 정사각형(정다각형)이 아니에요. 두 조건이 <b>모두</b> 맞아야 해요.</p>
+    <p style="margin-top:20px"><b>③ 대각선이란?</b></p>
+    <p>사각형의 네 꼭짓점 중에서, 서로 이웃하지 않는 두 꼭짓점끼리 선분으로 이으면 어떻게 될까요?</p>
+    <div class="poly-shapes">
+      <div class="poly-shape-box">${e4polyShape('diagsq')}<span>사각형의 대각선 2개</span></div>
+      <div class="poly-shape-box">${e4polyShape('diagpent')}<span>오각형의 대각선 5개</span></div>
+    </div>
+    <p style="margin-top:10px"><b>다각형에서 서로 이웃하지 않는 두 꼭짓점을 이은 선분을 대각선이라고 해요.</b> 사각형은 대각선이 2개, 오각형은 5개가 생겨요. 변의 개수가 많아질수록 대각선의 개수도 더 많아져요.</p>
+  </div>` },
+  { title:'💬 하브루타 질문', cls:'havruta', html:`${e4polyWrapOpen()}
+    ${mascotBadge('lupe','#bc8cff')}
+    <div class="guess-box">
+      <div class="q">🤔 삼각형에도 대각선을 그을 수 있을까요? 있다면 몇 개일까요?</div>
+      <div class="guess-opts">
+        <button class="guess-opt e4poly-guess4-opt" onclick="e4polyGuess4(this,false)">그릴 수 있다, 1개</button>
+        <button class="guess-opt e4poly-guess4-opt" onclick="e4polyGuess4(this,true)">그릴 수 없다, 0개</button>
+        <button class="guess-opt e4poly-guess4-opt" onclick="e4polyGuess4(this,false)">삼각형은 다각형이 아니라서 대각선도 없다</button>
+      </div>
+      <div class="guess-fb" id="e4poly-guess4-fb"></div>
+    </div>
+    <p style="margin-top:18px">그럼 "한 꼭짓점"에서 그을 수 있는 대각선은 몇 개인지 살펴볼까요? 오각형에서 강조된 꼭짓점(파란 점)을 보세요.</p>
+    <div class="poly-shapes">
+      <div class="poly-shape-box">${e4polyVertexDiagSvg(5,true)}<span>오각형: 강조된 꼭짓점 자신과 양옆 이웃 2개는 안 되니까, 남은 2개 꼭짓점으로만 대각선을 그을 수 있어요 → <b style="color:#1f7a42">2개</b></span></div>
+      <div class="poly-shape-box">${e4polyVertexDiagSvg(6,false)}<span>육각형: 강조된 꼭짓점에서는 몇 개를 그을 수 있을까요?</span></div>
+    </div>
+    <div class="guess-box">
+      <div class="q">🤔 육각형에서 강조된 꼭짓점 하나가 그을 수 있는 대각선은 몇 개일까요?</div>
+      <div class="guess-opts">
+        <button class="guess-opt e4poly-guess5-opt" onclick="e4polyGuess5(this,false)">2개</button>
+        <button class="guess-opt e4poly-guess5-opt" onclick="e4polyGuess5(this,true)">3개</button>
+        <button class="guess-opt e4poly-guess5-opt" onclick="e4polyGuess5(this,false)">4개</button>
+        <button class="guess-opt e4poly-guess5-opt" onclick="e4polyGuess5(this,false)">5개</button>
+      </div>
+      <div class="guess-fb" id="e4poly-guess5-fb"></div>
+    </div>
+    <p style="margin-top:14px">이렇게 꼭짓점이 많아질수록, 한 꼭짓점에서 그을 수 있는 대각선 수도 하나씩 늘어나요(자기 자신과 양옆 이웃 2개만 빼면 되니까요). 그래서 변이 늘어날수록 다각형 전체의 대각선 개수도 점점 더 많이 늘어나는 거예요.</p>
+    <div class="path-intro" onclick="e4polyPathToggleIntro()" style="cursor:pointer">
+      <span class="path-balloon"><svg viewBox="0 0 40 50" width="90" height="111"><circle cx="20" cy="17" r="15" fill="#7dd3fc"/><polygon points="17,31 23,31 20,37" fill="#7dd3fc"/><line x1="20" y1="37" x2="20" y2="48" stroke="#7dd3fc" stroke-width="1.5"/></svg></span>
+      <span class="rainbow-text">힘들지만 똑똑해지기! 대각선 개수를 직접 유도해볼까요?</span>
+    </div>
+    <div id="e4poly-path-body" style="display:none">
+      <div id="e4poly-path-wrap">${e4polyPathRender()}</div>
+    </div>
+  </div>` },
+  { title:'✏️ 예제 문제', cls:'problems', html:`${e4polyWrapOpen()}
+    ${mascotBadge('algo','#3fb950')}
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 1</div>
+      <div class="prob-q">${e4polyCurvyQuad()}<br>이 도형은 다각형인가요? 이유는 무엇인가요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4poly-w1')">💡 정답 보기</button>
+      <div id="e4poly-w1" style="display:none;margin-top:8px">다각형이 <strong style="color:#c0362f">아니에요</strong>. 세 변은 곧은 선분이지만 한 변이 둥글게 휘어진 곡선이에요. 다각형은 선분으로만 둘러싸여야 하는데, 곡선이 하나라도 섞이면 다각형이 될 수 없어요.</div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 2</div>
+      <div class="prob-q">${e4polyAngleHex()}<br>변이 6개이고 모든 변의 길이가 5cm인 도형이 있어요. 그런데 각의 크기가 90°, 150°, 90°, 150°, 90°, 150°로 서로 달라요. 이 도형은 정육각형인가요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4poly-w2')">💡 정답 보기</button>
+      <div id="e4poly-w2" style="display:none;margin-top:8px"><strong style="color:#c0362f">아니에요</strong>. 변의 길이는 모두 같지만 각의 크기가 다 같지 않아요. 정다각형이 되려면 변의 길이도, 각의 크기도 <strong>둘 다</strong> 모두 같아야 해요.</div>
+    </div>
+    <div class="prob-box"><div style="font-size:.72rem;color:#a8730a;font-weight:700;margin-bottom:4px">예제 3</div>
+      <div class="prob-q">${e4polyVertexDiagSvg(7,false)}<br>칠각형(변 7개)에서 강조된 꼭짓점 하나가 그을 수 있는 대각선은 몇 개일까요?</div>
+      <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4poly-w3')">💡 정답 보기</button>
+      <div id="e4poly-w3" style="display:none;margin-top:8px">꼭짓점이 7개이고, 자기 자신과 양옆 이웃 2개를 빼면 7−3=<strong style="color:#2f9e57">4개</strong>예요.<div style="text-align:center;margin-top:8px">${e4polyVertexDiagSvg(7,true)}</div></div>
+    </div>
+  </div>` }
+];
+CV_DATA['e4poly'] = CV_DATA_E4POLY;
+
 // ── 평면도형의 이동(e4move): 좌표 변환 + SVG 렌더링 ──
 // 기준 도형: L자(비대칭) — 좌우/상하 모두 비대칭이라 밀기·뒤집기·돌리기 결과가 전부 다르게 보임
 var MV_L_SHAPE = [[0,0],[20,0],[20,40],[50,40],[50,60],[0,60]];
@@ -26401,7 +26864,7 @@ function printOpenUnit() {
   w.document.write(`<!DOCTYPE html><html lang="ko"><head>
 <meta charset="UTF-8">
 <title>${title} — 인쇄</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a1a1a;padding:20px;font-size:13px;line-height:1.7}
