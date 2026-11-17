@@ -16170,13 +16170,21 @@ function e4polyWrapOpen(){ return e4barWrapOpen().replace('class="e4bw"','class=
   +'.e4bw.e4poly .path-ask{display:block;width:100%;margin-top:4px;background:#faf5ff;color:#7a4fc2;border:1.5px solid #d7c4fa;border-radius:10px;padding:11px;font-size:.95rem;font-weight:700;font-family:inherit;cursor:pointer}'
   +'.e4bw.e4poly .path-done{text-align:center}'
   +'.e4bw.e4poly .path-done .big{font-size:2rem;margin-bottom:6px}'
-  +'.e4bw.e4poly .path-diagram{display:flex;justify-content:center;margin-bottom:8px}'
+  +'.e4bw.e4poly .path-diagram{display:flex;justify-content:center;margin-bottom:8px;gap:10px;flex-wrap:wrap}'
   +'@keyframes e4polyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}'
   +'.e4bw.e4poly .path-balloon-row{display:flex;justify-content:center;margin-bottom:4px}'
   +'.e4bw.e4poly .path-balloon{display:inline-block;animation:e4polyFloat 1.4s ease-in-out infinite}'
   +'.e4bw.e4poly .path-intro{display:flex;align-items:center;justify-content:center;gap:14px;background:#fff3d1;border-radius:14px;padding:16px 18px;margin-top:20px;box-shadow:0 2px 10px rgba(240,192,64,.35);flex-wrap:wrap}'
   +'@keyframes e4polyPanorama{0%{background-position:0% center}100%{background-position:200% center}}'
   +'.e4bw.e4poly .rainbow-text{font-family:"Jua","Nanum Gothic",sans-serif;font-size:1.25rem;letter-spacing:.5px;background:linear-gradient(90deg,#ff4d4d,#ff9d4d,#ffe14d,#4dd47a,#4db8ff,#b84dff,#ff4d4d);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:e4polyPanorama 2.5s linear infinite}'
+  +'.e4bw.e4poly .expr-item{background:#f8fafd;border:1px solid #c5ccd8;border-radius:10px;padding:16px;margin-bottom:14px;font-size:1rem;color:#1d2433;line-height:1.7}'
+  +'.e4bw.e4poly .expr-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:#fff3d1;color:#7a5600;border-radius:50%;font-size:.85rem;font-weight:800;margin-right:8px;flex:0 0 auto}'
+  +'.e4bw.e4poly .expr-title{display:block;color:#1f6feb;font-size:1.02rem;font-weight:800;margin:2px 0 8px}'
+  +'.e4bw.e4poly .expr-q{color:#1d2433;font-weight:700;font-size:1.15rem;line-height:1.5}'
+  +'.e4bw.e4poly .expr-sol{background:#eafaf0;border:1px solid #bfe8cf;border-radius:8px;padding:10px 12px;margin-top:10px}'
+  +'.e4bw.e4poly .expr-tip{font-size:.85rem;color:#1f7a42;font-weight:700;margin-bottom:5px}'
+  +'.e4bw.e4poly .expr-ans{color:#1f7a42;font-weight:800;font-size:1.02rem}'
+  +'.e4bw.e4poly .tinput{font-family:inherit;font-size:1rem;border:1.5px solid #c5ccd8;border-radius:6px;padding:6px 8px;text-align:center}'
   +'</style>'; }
 // 정n각형 좌표(중심 0,0, 외접원 반지름 R, 꼭짓점 각도 rot에서 시작)
 function e4polyPts(n, R, rot){
@@ -16319,6 +16327,17 @@ function e4polyVertexDiagSvg(n, showDiag){
   return '<svg viewBox="0 0 100 100" width="110" height="110"><polygon points="'+sides+'" fill="#f8fafd" stroke="#1d2433" stroke-width="2"/>'+diags
     +'<circle cx="'+pts[0][0].toFixed(1)+'" cy="'+pts[0][1].toFixed(1)+'" r="4.5" fill="#58a6ff" stroke="#1d2433" stroke-width="1.5"/></svg>';
 }
+// 안 되는 꼭짓점(자기 자신+양옆 이웃, 빨강)과 되는 꼭짓점(나머지, 파랑)을 색으로 구분해 보여주는 그림
+function e4polyVertexColorSvg(n){
+  var R=34, pts=e4polyPts(n,R,-90).map(function(p){return [p[0]+50,p[1]+54];});
+  var sides=pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' ');
+  var dots='';
+  for(var i=0;i<n;i++){
+    var isRed = (i===0) || e4polyIsAdjacent(0,i,n);
+    dots += '<circle cx="'+pts[i][0].toFixed(1)+'" cy="'+pts[i][1].toFixed(1)+'" r="5" fill="'+(isRed?'#c0362f':'#58a6ff')+'" stroke="#1d2433" stroke-width="1.3"/>';
+  }
+  return '<svg viewBox="0 0 100 100" width="110" height="110"><polygon points="'+sides+'" fill="#f8fafd" stroke="#1d2433" stroke-width="2"/>'+dots+'</svg>';
+}
 function e4polyGuess4(btn, correct){
   document.querySelectorAll('.e4poly-guess4-opt').forEach(function(b){ b.disabled=true; });
   btn.classList.add(correct?'ok':'no');
@@ -16393,7 +16412,7 @@ function e4polyPathRender(){
   var balloonHtml='<div class="path-balloon-row"><span class="path-balloon">'+e4polyBalloonWithLabel(nodeLabels[e4polyPathStep])+'</span></div>';
   var s=e4polyPathStep, cardHtml='';
   if(s===0){
-    cardHtml='<div class="path-diagram">'+e4polyHexPathDiagram('onevertex')+'</div>'
+    cardHtml='<div class="path-diagram">'+e4polyHexPathDiagram('onevertex')+e4polyVertexColorSvg(6)+'</div>'
       +'<p><b>1단계</b> 방금 육각형에서 한 꼭짓점(파란 점)이 그을 수 있는 대각선은 <b>3개</b>라는 걸 알았어요.</p>'
       +'<button class="path-next" onclick="e4polyPathNext()">다음 →</button>';
   } else if(s===1){
@@ -16439,6 +16458,64 @@ function e4polyPathToggleIntro(){
 }
 function e4polyPathNext(){ e4polyPathStep++; e4polyPathRevealed=false; document.getElementById('e4poly-path-wrap').innerHTML=e4polyPathRender(); e4polyPathScrollIn(); }
 function e4polyPathReveal(){ e4polyPathRevealed=true; document.getElementById('e4poly-path-wrap').innerHTML=e4polyPathRender(); e4polyPathScrollIn(); }
+// 다양한 표현 익히기 6·7·8번: 단답식으로 먼저 묻고, 틀리면 객관식으로 전환. 6번은 확인하면 항상 그림으로 이유를 보여줌
+function e4polyExprCheckA(){
+  var v=document.getElementById('e4poly-exprA-in').value.trim();
+  var fb=document.getElementById('e4poly-exprA-fb');
+  var diagram='<div style="display:flex;justify-content:center;gap:10px;margin-top:8px;flex-wrap:wrap">'+e4polyVertexDiagSvg(6,true)+e4polyVertexColorSvg(6)+'</div>';
+  if(v==='3'){
+    fb.innerHTML='<b style="color:#2f9e57">맞아요!</b> 6개 중 자기 자신과 양옆 이웃 2개를 빼면 3개예요.'+diagram;
+  } else {
+    fb.innerHTML='<div style="margin-bottom:6px;color:#c0362f">다시 생각해볼까요? 그림을 보면서 아래에서 골라보세요.</div>'+diagram
+      +'<div class="guess-opts compact">'
+      +'<button class="guess-opt" onclick="e4polyExprPick(this,false,\'A\')">2개</button>'
+      +'<button class="guess-opt" onclick="e4polyExprPick(this,true,\'A\')">3개</button>'
+      +'<button class="guess-opt" onclick="e4polyExprPick(this,false,\'A\')">4개</button>'
+      +'<button class="guess-opt" onclick="e4polyExprPick(this,false,\'A\')">5개</button>'
+      +'</div>';
+  }
+}
+function e4polyExprCheck7a(btn, correct){
+  var fb=document.getElementById('e4poly-expr7a-fb');
+  document.querySelectorAll('.e4poly-expr7a-ox').forEach(function(b){ b.disabled=true; });
+  btn.classList.add(correct?'ok':'no');
+  if(correct){
+    fb.innerHTML='<b style="color:#2f9e57">맞아요!</b> 6×3=18은 맞지만, 이건 대각선 하나를 양쪽 끝에서 두 번씩 센 값이라 실제 대각선 개수는 아니에요.';
+    document.getElementById('e4poly-expr7b-box').style.display='';
+  } else {
+    fb.innerHTML='<b style="color:#c0362f">아니에요.</b> 6×3=18은 맞는 계산이지만, 대각선 하나를 양쪽 끝에서 두 번씩 센 값이라 실제 대각선 개수와는 달라요.';
+    document.getElementById('e4poly-expr7b-box').style.display='';
+  }
+}
+function e4polyExprCheck7b(){
+  var v=document.getElementById('e4poly-expr7b-in').value.trim();
+  var fb=document.getElementById('e4poly-expr7b-fb');
+  var ok = /두\s*번|두번|중복|겹|양쪽|양끝/.test(v);
+  if(ok){
+    fb.innerHTML='<b style="color:#2f9e57">맞아요!</b> 대각선 하나를 양쪽 끝에서 두 번씩 세었기 때문에, 18÷2=9개가 실제 대각선 개수예요.';
+  } else {
+    fb.innerHTML='<div style="margin-bottom:6px;color:#c0362f">다시 생각해볼까요? 아래에서 골라보세요.</div>'
+      +'<div class="guess-opts compact">'
+      +'<button class="guess-opt" onclick="e4polyExprPick(this,false,\'7b\')">꼭짓점을 빠뜨리고 세어서</button>'
+      +'<button class="guess-opt" onclick="e4polyExprPick(this,true,\'7b\')">대각선 하나를 양쪽 끝에서 두 번씩 세어서</button>'
+      +'<button class="guess-opt" onclick="e4polyExprPick(this,false,\'7b\')">변도 같이 세어서</button>'
+      +'<button class="guess-opt" onclick="e4polyExprPick(this,false,\'7b\')">6×3 계산이 틀려서</button>'
+      +'</div>';
+  }
+}
+function e4polyExprPick(btn, correct, which){
+  var fb=document.getElementById('e4poly-expr'+which+'-fb');
+  fb.querySelectorAll('.guess-opt').forEach(function(b){ b.disabled=true; });
+  btn.classList.add(correct?'ok':'no');
+  if(correct){
+    var msg=document.createElement('div');
+    msg.style.marginTop='8px';
+    msg.innerHTML = which==='A'
+      ? '<b style="color:#2f9e57">맞아요!</b> 6개 중 자기 자신과 양옆 이웃 2개를 빼면 3개예요.'
+      : '<b style="color:#2f9e57">맞아요!</b> 대각선 하나를 양쪽 끝에서 두 번씩 세었기 때문에, 18÷2=9개가 실제 대각선 개수예요.';
+    fb.appendChild(msg);
+  }
+}
 // 예제용: 세 변은 곧은 선분, 한 변만 둥글게 휜 도형(다각형 판별용)
 function e4polyCurvyQuad(){
   return '<svg viewBox="0 0 100 100" width="110" height="110"><path d="M20,25 L80,25 L80,55 Q82,85 50,80 L20,75 Z" fill="#ffa657" opacity="0.45" stroke="#1d2433" stroke-width="2.2"/></svg>';
@@ -16544,7 +16621,9 @@ var CV_DATA_E4POLY = [
     <p style="margin-top:18px">그럼 "한 꼭짓점"에서 그을 수 있는 대각선은 몇 개인지 살펴볼까요? 오각형에서 강조된 꼭짓점(파란 점)을 보세요.</p>
     <div class="poly-shapes">
       <div class="poly-shape-box">${e4polyVertexDiagSvg(5,true)}<span>오각형: 강조된 꼭짓점 자신과 양옆 이웃 2개는 안 되니까, 남은 2개 꼭짓점으로만 대각선을 그을 수 있어요 → <b style="color:#1f7a42">2개</b></span></div>
+      <div class="poly-shape-box">${e4polyVertexColorSvg(5)}<span>빨간 점(자신+양옆)은 안 되고, 파란 점만 대각선을 그을 수 있어요</span></div>
       <div class="poly-shape-box">${e4polyVertexDiagSvg(6,false)}<span>육각형: 강조된 꼭짓점에서는 몇 개를 그을 수 있을까요?</span></div>
+      <div class="poly-shape-box">${e4polyVertexColorSvg(6)}<span>빨간 점(자신+양옆)은 안 되고, 파란 점만 대각선을 그을 수 있어요</span></div>
     </div>
     <div class="guess-box">
       <div class="q">🤔 육각형에서 강조된 꼭짓점 하나가 그을 수 있는 대각선은 몇 개일까요?</div>
@@ -16582,6 +16661,57 @@ var CV_DATA_E4POLY = [
       <button class="havruta-show-btn" onclick="e4barSolToggle(this,'e4poly-w3')">💡 정답 보기</button>
       <div id="e4poly-w3" style="display:none;margin-top:8px">꼭짓점이 7개이고, 자기 자신과 양옆 이웃 2개를 빼면 7−3=<strong style="color:#2f9e57">4개</strong>예요.<div style="text-align:center;margin-top:8px">${e4polyVertexDiagSvg(7,true)}</div></div>
     </div>
+  </div>` },
+  { title:'📖 다양한 표현 익히기', cls:'concept', html:`${e4polyWrapOpen()}
+    ${mascotBadge('tipi','#ffa657')}
+    <p>한 변이 4cm인 정육각형 모양 보도블록 하나를 여러 가지 다른 말로 물어볼 수 있어요. 같은 도형 하나를 여러 각도에서 살펴볼까요?</p>
+    <div style="text-align:center;margin-bottom:14px">${e4polyVertexDiagSvg(6,false)}</div>
+    <div class="expr-item"><span class="expr-num">1</span><span class="expr-title">변의 개수 확인 표현</span>
+      <div class="expr-q">이 보도블록은 변이 몇 개인가요?</div>
+      <div class="expr-sol"><div class="expr-tip">💡 각 변을 하나씩 세어 보세요</div>
+      <div>→ <span class="expr-ans">6개</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">2</span><span class="expr-title">다각형 이름 확인 표현</span>
+      <div class="expr-q">변이 6개인 다각형은 무엇이라고 부르나요?</div>
+      <div class="expr-sol"><div class="expr-tip">💡 변의 개수로 다각형의 이름이 정해져요</div>
+      <div>→ <span class="expr-ans">육각형</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">3</span><span class="expr-title">정다각형 조건 확인 표현</span>
+      <div class="expr-q">이 보도블록이 정육각형이 되려면 어떤 조건이 필요한가요?</div>
+      <div class="expr-sol"><div class="expr-tip">💡 조건 하나만으로는 정다각형이 되지 않아요</div>
+      <div>→ <span class="expr-ans">변의 길이도 모두 같고, 각의 크기도 모두 같아야 함</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">4</span><span class="expr-title">변의 길이 확인 표현</span>
+      <div class="expr-q">한 변이 4cm인 정육각형의 나머지 다섯 변의 길이는 각각 몇 cm인가요?</div>
+      <div class="expr-sol"><div class="expr-tip">💡 정다각형은 모든 변의 길이가 같아요</div>
+      <div>→ <span class="expr-ans">모두 4cm</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">5</span><span class="expr-title">꼭짓점 개수 확인 표현</span>
+      <div class="expr-q">이 정육각형의 꼭짓점은 몇 개인가요?</div>
+      <div class="expr-sol"><div class="expr-tip">💡 변의 개수와 꼭짓점의 개수는 같아요</div>
+      <div>→ <span class="expr-ans">6개</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">6</span><span class="expr-title">한 꼭짓점 대각선 확인 표현(단답)</span>
+      <div class="expr-q">이 정육각형의 한 꼭짓점에서 그을 수 있는 대각선은 몇 개인가요?</div>
+      <div style="margin-top:8px"><input type="text" id="e4poly-exprA-in" class="tinput" style="width:50px"> 개
+      <button class="havruta-show-btn" onclick="e4polyExprCheckA()" style="margin-left:8px">확인</button></div>
+      <div id="e4poly-exprA-fb" style="margin-top:8px"></div></div>
+    <div class="expr-item"><span class="expr-num">7</span><span class="expr-title">전체 대각선 — 곱하기 표현(O/X, 하브루타처럼 두 단계)</span>
+      <div class="expr-q">정육각형의 꼭짓점 6개가 모두 3개씩 대각선을 가질 수 있다면, 대각선의 개수는 6×3이 맞나요?</div>
+      <div style="margin-top:8px;display:flex;gap:10px">
+        <button class="guess-opt e4poly-expr7a-ox" style="width:auto;padding:10px 22px;font-size:1.1rem" onclick="e4polyExprCheck7a(this,false)">⭕</button>
+        <button class="guess-opt e4poly-expr7a-ox" style="width:auto;padding:10px 22px;font-size:1.1rem" onclick="e4polyExprCheck7a(this,true)">❌</button>
+      </div>
+      <div id="e4poly-expr7a-fb" style="margin-top:8px"></div></div>
+    <div class="expr-item" id="e4poly-expr7b-box" style="display:none"><span class="expr-num">8</span><span class="expr-title">전체 대각선 — 이상한 점 찾기 표현(단답)</span>
+      <div class="expr-q">그럼 왜 틀렸을까요?</div>
+      <div style="margin-top:8px"><input type="text" id="e4poly-expr7b-in" class="tinput" style="width:180px" placeholder="이유를 써보세요">
+      <button class="havruta-show-btn" onclick="e4polyExprCheck7b()" style="margin-left:8px">확인</button></div>
+      <div id="e4poly-expr7b-fb" style="margin-top:8px"></div></div>
+    <div class="expr-item"><span class="expr-num">9</span><span class="expr-title">실생활 적용(타일링) 표현</span>
+      <div class="expr-q">이 보도블록을 여러 개 이어 붙이면 왜 틈이 안 생기나요?</div>
+      <div class="expr-sol"><div class="expr-tip">💡 한 점에 모이는 각의 합이 360°가 되어야 딱 맞게 채워져요</div>
+      <div>→ <span class="expr-ans">정육각형의 한 각은 120°예요. 한 점에 세 모서리가 모이면 120°×3=360°로 꽉 차서 틈이 생기지 않아요</span></div></div></div>
+    <div class="expr-item"><span class="expr-num">10</span><span class="expr-title">다른 도형과 비교 표현</span>
+      <div class="expr-q">같은 한 변 4cm인 정삼각형과 비교하면 어떤 점이 다른가요?</div>
+      <div class="expr-sol"><div class="expr-tip">💡 변의 개수가 다르면 대각선 개수도 달라져요</div>
+      <div>→ <span class="expr-ans">변 6개(정삼각형은 3개), 대각선 9개(정삼각형은 0개)</span></div></div></div>
+    <p style="margin-top:10px">이렇게 10가지 표현이 모두 <strong>한 변 4cm인 정육각형 보도블록 하나</strong>를 서로 다른 질문으로 풀어본 거예요. 변·꼭짓점·대각선·정다각형 조건을 모두 기억해두세요.</p>
   </div>` }
 ];
 CV_DATA['e4poly'] = CV_DATA_E4POLY;
