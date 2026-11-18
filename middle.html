@@ -19,6 +19,7 @@
 <script src="middle_gears.js"></script>
 <script src="middle_idea.js"></script>
 <script src="middle_eqwalk.js"></script>
+<script src="middle_heart.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -750,27 +751,71 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
     </div>
     <div style="font-family:'Jua',sans-serif;color:#d8b4fe;font-size:.95rem;text-align:center;margin-bottom:10px">⚖️ "등식의 평형(Balance)"</div>
 
-    <div style="background:linear-gradient(155deg,rgba(168,85,247,.14),rgba(168,85,247,.05));border:2px solid rgba(168,85,247,.4);border-radius:16px;padding:16px;margin-bottom:16px">
-      <div style="font-family:'Jua',sans-serif;color:#e9d5ff;font-size:1rem;text-align:center;margin-bottom:10px">⚖️ 방정식 활용, 이렇게 접근해요</div>
-      <div style="font-size:.82rem;color:#e2e8f0;line-height:1.7;text-align:center;margin-bottom:12px">
-        방정식은 <b style="color:#fde68a">"모르는 값(미지수)"이 들어있는 등식</b>이에요.<br>
-        어떤 문장제든, 방정식으로 바꾸려면 딱 두 가지만 찾으면 됩니다.
+    <div class="hb" id="hb-eqapp" data-hb-key="toroHeart_eqapp">
+    <div class="hb-heart" aria-hidden="true"><span class="hh">❤️</span><span class="sp s1">✨</span><span class="sp s2">✨</span><span class="sp s3">✨</span><span class="sp s4">✨</span></div>
+    <div class="hb-head"><div class="hb-title">방정식 활용,<br>이렇게 접근해요</div><svg class="hb-scale" viewBox="0 0 220 135" role="img" aria-label="양쪽이 같아서 수평을 이루는 저울">
+        <rect x="78" y="122" width="64" height="7" rx="3.5" fill="#6d5aa8"/>
+        <rect x="107" y="32" width="6" height="92" rx="3" fill="#a78bfa"/>
+        <text x="110" y="17" text-anchor="middle" font-family="Jua,sans-serif" font-size="22" fill="#fde68a">=</text>
+        <g>
+          <animateTransform attributeName="transform" type="rotate" dur="6s" repeatCount="indefinite" keyTimes="0;.08;.18;.28;.38;.48;1" values="-9 110 32;7 110 32;-5 110 32;3 110 32;-1.5 110 32;0 110 32;0 110 32"/>
+          <line x1="26" y1="32" x2="194" y2="32" stroke="#e9d5ff" stroke-width="5" stroke-linecap="round"/>
+          <g>
+            <animateTransform attributeName="transform" type="rotate" dur="6s" repeatCount="indefinite" keyTimes="0;.08;.18;.28;.38;.48;1" values="9 26 32;-7 26 32;5 26 32;-3 26 32;1.5 26 32;0 26 32;0 26 32"/>
+            <line x1="26" y1="32" x2="4" y2="86" stroke="#c4b5fd" stroke-width="1.8"/><line x1="26" y1="32" x2="48" y2="86" stroke="#c4b5fd" stroke-width="1.8"/>
+            <path d="M-2 86 H54 q-3 16 -28 16 q-25 0 -28 -16z" fill="#7dd3fc"/>
+            <rect x="14" y="62" width="24" height="24" rx="4" fill="#fde68a"/>
+          </g>
+          <g>
+            <animateTransform attributeName="transform" type="rotate" dur="6s" repeatCount="indefinite" keyTimes="0;.08;.18;.28;.38;.48;1" values="9 194 32;-7 194 32;5 194 32;-3 194 32;1.5 194 32;0 194 32;0 194 32"/>
+            <line x1="194" y1="32" x2="172" y2="86" stroke="#c4b5fd" stroke-width="1.8"/><line x1="194" y1="32" x2="216" y2="86" stroke="#c4b5fd" stroke-width="1.8"/>
+            <path d="M166 86 H222 q-3 16 -28 16 q-25 0 -28 -16z" fill="#86efac"/>
+            <rect x="176" y="62" width="36" height="24" rx="4" fill="#fbcfe8"/>
+          </g>
+        </g>
+        <circle cx="110" cy="32" r="7.5" fill="#fde68a" stroke="#a16207" stroke-width="1.5"/>
+      </svg></div>
+    <div class="hb-lead">
+      방정식은 <b>"모르는 값(미지수)"이 들어있는 등식</b>이에요.<br>
+      어떤 문장제든, 방정식으로 바꾸려면 딱 두 가지만 찾으면 됩니다.
+    </div>
+    <div class="hb-rows">
+      <button type="button" class="hb-row" aria-expanded="false">
+        <span class="heart" aria-hidden="true">❤️</span>
+        <span class="h">① 모르는 것을 찾는다</span><span class="tap">👆 눌러 보기</span>
+        <div class="more">→ 그걸 x로 놓는다</div>
+      </button>
+      <button type="button" class="hb-row" aria-expanded="false">
+        <span class="heart" aria-hidden="true">❤️</span>
+        <span class="h">② 같은 값을 가져야 하는 두 가지를 찾는다</span><span class="tap">👆 눌러 보기</span>
+        <div class="more">→ 그 둘을 "="로 연결한다</div>
+      </button>
+    </div>
+    <div class="hb-ex">
+      <b style="color:#7dd3fc">예시</b>: "지우개 3개와 200원짜리 연필 1개를 사고 1,400원을 냈다. 지우개 한 개는 얼마인가?"<br><br>
+      ① 모르는 것: 지우개 한 개의 가격 → <b class="x">x</b>(원)<br>
+      ② 같아야 하는 두 가지: "산 물건의 총 가격"과 "낸 돈" → <b class="x">3x + 200 = 1400</b>
+    </div>
+    <div class="hb-copy" data-hb-big-key="toroHeart_eqapp_big">
+      <div class="ct">✍️ 따라 써 볼까요?</div>
+      <div class="lock">위의 ①, ②를 먼저 눌러 펼쳐 보세요.</div>
+      <div class="body">
+        <div class="cd">위에서 본 두 줄을 그대로 또는 내 말로 짧게 써 보세요. 번호(①, ②), 띄어쓰기, 따옴표, 화살표는 달라도 괜찮아요. 붙여 넣기는 안 돼요.</div>
+        <div class="hb-line" data-rule="1" data-ans="모르는 것을 찾는다 → 그걸 x로 놓는다"><div class="lb">① 줄</div><input type="text" autocomplete="off" placeholder="① 줄을 써 보세요"><div class="fb"></div></div>
+        <div class="hb-line" data-rule="2" data-ans='같은 값을 가져야 하는 두 가지를 찾는다 → 그 둘을 "="로 연결한다' data-alt='같은 값을 가지는 두 가지를 찾는다 → 그 둘을 "="로 연결한다'><div class="lb">② 줄</div><input type="text" autocomplete="off" placeholder="② 줄을 써 보세요"><div class="fb"></div></div>
+        <button type="button" class="hb-go">확인하기</button>
       </div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
-        <div style="background:rgba(0,0,0,.18);border-radius:10px;padding:10px 12px">
-          <span style="font-family:'Jua',sans-serif;color:#a78bfa">① 모르는 것을 찾는다</span>
-          <span style="color:#94a3b8;font-size:.8rem"> → 그걸 x로 놓는다</span>
+      <div class="hb-big"><div class="bh">❤️<span class="sp s1">✨</span><span class="sp s2">✨</span><span class="sp s3">✨</span><span class="sp s4">✨</span></div><div class="bt">큰 하트를 받았어요! 두 줄을 정확히 따라 썼어요.</div>
+        <div class="hb-garden">
+          <div class="gs-cap">🌱 정원에 가면 이렇게 보여요</div>
+          <div class="gs-sub">미리 보는 장면이에요 (실제 포인트는 아직 쌓이지 않아요)</div>
+          <div class="gs-stat"><span class="gs-plus">+10P</span><div class="num">0</div><div class="lbl">🌟 포인트</div></div>
+          <div class="gs-garden"><div class="gs-title">텅 빈 정원</div><div class="gs-plants"><span class="gs-empty">아직 정원이 비어있어요.</span></div></div>
+          <button type="button" class="gs-replay">▶ 다시 보기</button>
         </div>
-        <div style="background:rgba(0,0,0,.18);border-radius:10px;padding:10px 12px">
-          <span style="font-family:'Jua',sans-serif;color:#a78bfa">② 같은 값을 가져야 하는 두 가지를 찾는다</span>
-          <span style="color:#94a3b8;font-size:.8rem"> → 그 둘을 "="로 연결한다</span>
-        </div>
       </div>
-      <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;font-size:.78rem;color:#c8d8e8;line-height:1.7">
-        <b style="color:#7dd3fc">예시</b>: "지우개 3개와 200원짜리 연필 1개를 사고 1,400원을 냈다. 지우개 한 개는 얼마인가?"<br><br>
-        ① 모르는 것: 지우개 한 개의 가격 → <b style="color:#fde68a">x</b>(원)<br>
-        ② 같아야 하는 두 가지: "산 물건의 총 가격"과 "낸 돈" → <b style="color:#fde68a">3x + 200 = 1400</b>
-      </div>
+    </div>
+    <div class="hb-msg" id="hb-msg"></div>
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
