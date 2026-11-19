@@ -1715,6 +1715,19 @@ const CV_DATA = {
         <button class="havruta-show-btn" onclick="havrutaReveal('e5gcd-p1',this)">💡 풀이 보기</button>
         <div class="havruta-reveal" id="rv-e5gcd-p1">
           <div class="fb-diagram" style="text-align:left">
+            <div style="font-size:.76rem;font-weight:700;color:#f0c040;margin-bottom:6px">먼저 직접 나눠볼까요? (사과 24개 · 귤 36개 둘 다 확인!)</div>
+            <div style="font-size:.78rem;line-height:1.9">
+              1명에게 주면 → 사과 24개씩, 귤 36개씩 ✓ 둘 다 나눠짐<br>
+              2명에게 주면 → 사과 12개씩, 귤 18개씩 ✓<br>
+              3명에게 주면 → 사과 8개씩, 귤 12개씩 ✓<br>
+              4명에게 주면 → 사과 6개씩, 귤 9개씩 ✓<br>
+              5명에게 주면 → 사과 24÷5=4···4 <span style="color:#f85149">✗ 사과부터 안 나눠짐</span><br>
+              6명에게 주면 → 사과 4개씩, 귤 6개씩 ✓<br>
+              12명에게 주면 → 사과 2개씩, 귤 3개씩 ✓ ← <strong style="color:#3fb950">가장 많이 나눌 수 있는 사람 수!</strong>
+            </div>
+            <span class="cap">둘 다 남김없이 나눠지는 사람 수(1,2,3,4,6,12)가 공통 약수이고, 그중 가장 큰 12가 최대공약수예요</span>
+          </div>
+          <div class="fb-diagram" style="text-align:left">
             <div style="display:flex;justify-content:center;gap:8px;font-size:.72rem;text-align:center;margin-bottom:6px">
               <div style="flex:1">24의 약수<br>1,2,3,4,6,8,12,24</div>
               <div style="flex:1;background:rgba(63,185,80,.1);border:1px solid rgba(63,185,80,.3);border-radius:6px;padding:4px">공통 약수<br><strong style="color:#3fb950">1,2,3,4,6,12</strong></div>
