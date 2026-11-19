@@ -133,9 +133,9 @@ body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',sans-serif;min-heig
   html{font-size:125%}
   /* 열 폭도 함께 넓혀 양옆 빈 공간을 줄인다 */
   .grade-section.unit-grid-mode.active{max-width:880px}
-  /* 흰 바탕 패널(.e4bw) 단원 카드는 항상 넓게 — 단원마다 따로 지정할 필요 없음 */
-  .content:has(.e4bw){max-width:1200px}
-  .grade-section.unit-grid-mode.active:has(.e4bw){max-width:1200px}
+  /* 흰 바탕 패널(.e4bw, .lw/.lw-off) 단원 카드는 항상 넓게 — 단원마다 따로 지정할 필요 없음 */
+  .content:has(.e4bw),.content:has(.lw),.content:has(.lw-off){max-width:1200px}
+  .grade-section.unit-grid-mode.active:has(.e4bw),.grade-section.unit-grid-mode.active:has(.lw),.grade-section.unit-grid-mode.active:has(.lw-off){max-width:1200px}
 }
 /* 마스코트 배지: 카드 상단 캐릭터가 살짝 위아래로 움직임 */
 @keyframes mascotBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
