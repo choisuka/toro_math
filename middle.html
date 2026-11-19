@@ -20,6 +20,7 @@
 <script src="middle_idea.js"></script>
 <script src="middle_eqwalk.js"></script>
 <script src="middle_heart.js"></script>
+<script src="middle_eqmean.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -841,6 +842,11 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
         <div class="name" style="color:#7dd3fc;font-size:.85rem;margin-top:6px;text-align:center">단계 풀이 10</div>
         <div class="desc" style="font-size:.6rem;color:#94a3b8;text-align:center;margin-top:3px">같은 두 양 · 미지수 찾기</div>
       </div>
+      <div class="topic-card" onclick="showScreen('eq-meaning-list')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 8px;border:1px solid rgba(134,239,172,.4);background:rgba(134,239,172,.1)">
+        <div class="ico" style="font-size:2.2rem">💡</div>
+        <div class="name" style="color:#86efac;font-size:.85rem;margin-top:6px;text-align:center">뜻 (만드는 중)</div>
+        <div class="desc" style="font-size:.6rem;color:#94a3b8;text-align:center;margin-top:3px">카드 3장</div>
+      </div>
       <div class="topic-card" onclick="startCards('eq-hard','equation-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 8px;border:1px solid rgba(248,113,113,.3);background:rgba(248,113,113,.1)">
         <div class="ico" style="font-size:2.2rem">🔥</div>
         <div class="name" style="color:#f87171;font-size:.85rem;margin-top:6px;text-align:center">심화 문제 ★★</div>
@@ -920,6 +926,48 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
 <!-- ══════════════════════════════════
      일차방정식 개념 가이드 & 문제 목록
 ══════════════════════════════════ -->
+<div id="eq-meaning-list" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 일차방정식</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.9rem;text-align:center;color:#86efac">💡 뜻 (만드는 중)</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      <div class="topic-card" onclick="eqmOpen(0)" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 6px;border:1px solid rgba(134,239,172,.4);background:rgba(134,239,172,.1)">
+        <div class="ico" style="font-size:2.2rem">🛒</div>
+        <div class="name" style="color:#86efac;font-size:.85rem;margin-top:6px;text-align:center">방정식이 처음이라고? 이미 쓰고 있었는걸.</div>
+      </div>
+      <div class="topic-card" onclick="eqmOpen(3)" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 6px;border:1px solid rgba(134,239,172,.4);background:rgba(134,239,172,.1)">
+        <div style="font-family:Jua,sans-serif;color:#fde68a;font-size:1.25rem;line-height:1.5;text-align:center">2 + 3 = 5<br>x + 3 = 5</div>
+        <div class="name" style="color:#86efac;font-size:.85rem;margin-top:6px;text-align:center">방정식이란 무엇인가?</div>
+      </div>
+      <div class="topic-card" onclick="showScreen('eq-meaning-prop')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 6px;border:1px solid rgba(253,230,138,.45);background:rgba(253,230,138,.08)">
+        <div style="background:#fff;border-radius:8px;padding:4px;width:100%"><svg viewBox="8 38 384 196" style="display:block;width:100%;height:auto" aria-hidden="true"><polygon points="150,226 250,226 236,206 164,206" fill="#64748b"/><rect x="196" y="60" width="8" height="150" fill="#94a3b8"/><rect x="52" y="54" width="296" height="8" rx="4" fill="#475569"/><circle cx="200" cy="58" r="9" fill="#334155"/><g stroke="#64748b" stroke-width="2" fill="none"><line x1="60" y1="62" x2="20" y2="150"/><line x1="60" y1="62" x2="100" y2="150"/><line x1="340" y1="62" x2="300" y2="150"/><line x1="340" y1="62" x2="380" y2="150"/></g><path d="M20 150 Q60 188 100 150 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><path d="M300 150 Q340 188 380 150 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><g fill="#ef4444" stroke="#991b1b" stroke-width="1.5"><circle cx="36" cy="139" r="11"/><circle cx="60" cy="139" r="11"/><circle cx="84" cy="139" r="11"/></g><g stroke="#166534" stroke-width="2" stroke-linecap="round"><line x1="36" y1="128" x2="38" y2="123"/><line x1="60" y1="128" x2="62" y2="123"/><line x1="84" y1="128" x2="86" y2="123"/></g><polygon points="308,150 332,150 327,128 313,128" fill="#475569" stroke="#1e293b" stroke-width="1.5"/><circle cx="320" cy="123" r="4.5" fill="none" stroke="#1e293b" stroke-width="2"/><circle cx="358" cy="139" r="11" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="358" y1="128" x2="360" y2="123" stroke="#166534" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="name" style="color:#fde68a;font-size:.85rem;margin-top:6px;text-align:center">등식의 성질이 도대체 뭘까요?</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="eq-meaning-prop" class="screen">
+  <div style="width:100%;max-width:620px">
+    <div class="nav-bar" style="max-width:620px">
+      <button class="nav-back" onclick="goBack()">← 뜻</button>
+      <h2 style="flex:1;font-family:'Jua',sans-serif;font-size:.9rem;text-align:center;color:#fde68a">등식의 성질이 도대체 뭘까요?</h2>
+      <div style="width:60px"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      <div class="topic-card" onclick="eqmOpen(1, 2, 'eq-meaning-prop')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 6px;border:1px solid rgba(134,239,172,.4);background:rgba(134,239,172,.1)">
+        <div style="background:#fff;border-radius:8px;padding:4px;width:100%"><svg viewBox="8 38 384 196" style="display:block;width:100%;height:auto" aria-hidden="true"><polygon points="150,226 250,226 236,206 164,206" fill="#64748b"/><rect x="196" y="60" width="8" height="150" fill="#94a3b8"/><rect x="52" y="54" width="296" height="8" rx="4" fill="#475569"/><circle cx="200" cy="58" r="9" fill="#334155"/><g stroke="#64748b" stroke-width="2" fill="none"><line x1="60" y1="62" x2="20" y2="150"/><line x1="60" y1="62" x2="100" y2="150"/><line x1="340" y1="62" x2="300" y2="150"/><line x1="340" y1="62" x2="380" y2="150"/></g><path d="M20 150 Q60 188 100 150 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><path d="M300 150 Q340 188 380 150 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><g fill="#ef4444" stroke="#991b1b" stroke-width="1.5"><circle cx="36" cy="139" r="11"/><circle cx="60" cy="139" r="11"/><circle cx="84" cy="139" r="11"/></g><g stroke="#166534" stroke-width="2" stroke-linecap="round"><line x1="36" y1="128" x2="38" y2="123"/><line x1="60" y1="128" x2="62" y2="123"/><line x1="84" y1="128" x2="86" y2="123"/></g><polygon points="308,150 332,150 327,128 313,128" fill="#475569" stroke="#1e293b" stroke-width="1.5"/><circle cx="320" cy="123" r="4.5" fill="none" stroke="#1e293b" stroke-width="2"/><circle cx="358" cy="139" r="11" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="358" y1="128" x2="360" y2="123" stroke="#166534" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="name" style="color:#86efac;font-size:.85rem;margin-top:6px;text-align:center">양쪽에서 덜고, 더해도 저울은 그대로일까?</div>
+      </div>
+      <div class="topic-card" onclick="eqmOpen(2, 3, 'eq-meaning-prop')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 6px;border:1px solid rgba(134,239,172,.4);background:rgba(134,239,172,.1)">
+        <div style="background:#fff;border-radius:8px;padding:4px;width:100%"><svg viewBox="8 38 384 196" style="display:block;width:100%;height:auto" aria-hidden="true"><polygon points="150,226 250,226 236,206 164,206" fill="#64748b"/><rect x="196" y="60" width="8" height="150" fill="#94a3b8"/><rect x="52" y="54" width="296" height="8" rx="4" fill="#475569"/><circle cx="200" cy="58" r="9" fill="#334155"/><g stroke="#64748b" stroke-width="2" fill="none"><line x1="60" y1="62" x2="20" y2="150"/><line x1="60" y1="62" x2="100" y2="150"/><line x1="340" y1="62" x2="300" y2="150"/><line x1="340" y1="62" x2="380" y2="150"/></g><path d="M20 150 Q60 188 100 150 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><path d="M300 150 Q340 188 380 150 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><circle cx="33" cy="142" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="33" y1="134" x2="35" y2="129" stroke="#166534" stroke-width="2" stroke-linecap="round"/><circle cx="51" cy="142" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="51" y1="134" x2="53" y2="129" stroke="#166534" stroke-width="2" stroke-linecap="round"/><circle cx="69" cy="142" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="69" y1="134" x2="71" y2="129" stroke="#166534" stroke-width="2" stroke-linecap="round"/><circle cx="87" cy="142" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="87" y1="134" x2="89" y2="129" stroke="#166534" stroke-width="2" stroke-linecap="round"/><circle cx="51" cy="116" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="51" y1="108" x2="53" y2="103" stroke="#166534" stroke-width="2" stroke-linecap="round"/><circle cx="69" cy="116" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="69" y1="108" x2="71" y2="103" stroke="#166534" stroke-width="2" stroke-linecap="round"/><polygon points="310,150 330,150 327,132 313,132" fill="#475569" stroke="#1e293b" stroke-width="1.5"/><circle cx="320" cy="128" r="3.5" fill="none" stroke="#1e293b" stroke-width="2"/><polygon points="332,150 352,150 349,132 335,132" fill="#475569" stroke="#1e293b" stroke-width="1.5"/><circle cx="342" cy="128" r="3.5" fill="none" stroke="#1e293b" stroke-width="2"/><circle cx="362" cy="142" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="362" y1="134" x2="364" y2="129" stroke="#166534" stroke-width="2" stroke-linecap="round"/><circle cx="340" cy="116" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="340" y1="108" x2="342" y2="103" stroke="#166534" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="name" style="color:#86efac;font-size:.85rem;margin-top:6px;text-align:center">양쪽을 2배로, 반으로 해도 같을까?</div>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="eq-concept" class="screen">
   <div style="width:100%;max-width:620px">
     <div class="nav-bar" style="max-width:620px">
@@ -1767,6 +1815,53 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
 const CS = { set:'', cards:[], cur:0, from:'home', showAns:false, iStep:0 };
 
 const CARD_DATA = {
+'eq-meaning': [
+  { tag:'방정식이 처음이라고? 이미 쓰고 있었는걸.', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+편의점에서 5,000원으로 음료(1,500원)를 한 개 샀어요.<br>
+남은 돈: 5,000 − 1,500 = 3,500원<br><br>
+이번엔 500원짜리 과자를 <b>여러 개</b> 사고 싶은데, 남은 돈도 똑같이 3,500원이어야 해요.<br><br>
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.8rem 1rem;margin:.5rem 0;font-size:.9rem;line-height:2.2;text-align:center">
+5,000 − 500 × <b style="color:#fde68a;font-size:1.05rem">□</b> = 3,500
+</div>
+<b style="color:#86efac">□에 들어갈 수를 찾는 것 — 이게 방정식이에요.</b><br><br>
+<span style="font-size:.8rem;color:#aaa">계산하지 않아도 머릿속에서 이미 하고 있던 것, 방정식은 그 과정을 식으로 쓴 것뿐이에요.</span>
+</div>`,
+    ans:`<b style="color:#86efac">□ = 3</b> (과자 3개)<br><br>
+5,000 − 500 × 3 = 5,000 − 1,500 = 3,500 ✓<br><br>
+<b style="color:#fde68a">변수 x로 쓰면:</b><br>
+5,000 − 500x = 3,500<br>
+500x = 1,500<br>
+x = 3` },
+
+  { tag:'양쪽에서 덜고, 더해도 저울은 그대로일까?', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<div style="background:#fff;border-radius:10px;padding:8px;margin-bottom:10px"><svg viewBox="8 38 384 196" style="display:block;margin:0 auto;width:100%;max-width:420px;height:auto" role="img" aria-label="평형을 이룬 양팔저울. 왼쪽 접시에 사과 3개, 오른쪽 접시에 추 1개와 사과 1개"><polygon points="150,226 250,226 236,206 164,206" fill="#64748b"/><rect x="196" y="60" width="8" height="150" fill="#94a3b8"/><rect x="52" y="54" width="296" height="8" rx="4" fill="#475569"/><circle cx="200" cy="58" r="9" fill="#334155"/><g stroke="#64748b" stroke-width="2" fill="none"><line x1="60" y1="62" x2="20" y2="150"/><line x1="60" y1="62" x2="100" y2="150"/><line x1="340" y1="62" x2="300" y2="150"/><line x1="340" y1="62" x2="380" y2="150"/></g><path d="M20 150 Q60 188 100 150 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><path d="M300 150 Q340 188 380 150 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><g fill="#ef4444" stroke="#991b1b" stroke-width="1.5"><circle cx="36" cy="139" r="11"/><circle cx="60" cy="139" r="11"/><circle cx="84" cy="139" r="11"/></g><g stroke="#166534" stroke-width="2" stroke-linecap="round"><line x1="36" y1="128" x2="38" y2="123"/><line x1="60" y1="128" x2="62" y2="123"/><line x1="84" y1="128" x2="86" y2="123"/></g><polygon points="308,150 332,150 327,128 313,128" fill="#475569" stroke="#1e293b" stroke-width="1.5"/><circle cx="320" cy="123" r="4.5" fill="none" stroke="#1e293b" stroke-width="2"/><circle cx="358" cy="139" r="11" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="358" y1="128" x2="360" y2="123" stroke="#166534" stroke-width="2" stroke-linecap="round"/></svg></div>
+양팔저울이 평형이에요. 왼쪽엔 사과 3개, 오른쪽엔 추 1개와 사과 1개가 올라가 있어요. 사과는 모두 같은 무게예요.<br><br>
+<span style="font-size:.78rem;color:#94a3b8">질문을 누르면 답이 나와요.</span>
+<details style="margin:8px 0;background:rgba(255,255,255,.04);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:8px 12px"><summary style="cursor:pointer;list-style:none"><span style="color:#fde68a">▸ </span><b style="color:#fde68a">질문 1</b> 추 1개는 사과 몇 개와 같은 무게일까요?</summary><div style="margin-top:6px;padding-top:6px;border-top:1px dashed rgba(255,255,255,.2)"><b style="color:#86efac">2개.</b> 양쪽에 사과가 1개씩 있으니 덜어내면 왼쪽 사과 2개 = 오른쪽 추 1개예요.</div></details>
+<details style="margin:8px 0;background:rgba(255,255,255,.04);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:8px 12px"><summary style="cursor:pointer;list-style:none"><span style="color:#fde68a">▸ </span><b style="color:#fde68a">질문 2</b> 양쪽에서 사과를 1개씩 동시에 덜어내도 저울은 그대로일까요? 왜 그럴까요?</summary><div style="margin-top:6px;padding-top:6px;border-top:1px dashed rgba(255,255,255,.2)"><b style="color:#86efac">그대로 평형이에요.</b> 양쪽에서 똑같이 덜어냈기 때문이에요.</div></details>
+<details style="margin:8px 0;background:rgba(255,255,255,.04);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:8px 12px"><summary style="cursor:pointer;list-style:none"><span style="color:#fde68a">▸ </span><b style="color:#fde68a">질문 3</b> 이번에는 양쪽에 사과를 2개씩 더 올리면 어떻게 될까요?</summary><div style="margin-top:6px;padding-top:6px;border-top:1px dashed rgba(255,255,255,.2)"><b style="color:#86efac">그대로 평형이에요.</b> 왼쪽 사과 5개 = 오른쪽 추 1개 + 사과 3개이고, 추 1개는 사과 2개와 같아서 5 = 5예요.</div></details>
+<details style="margin:8px 0;background:rgba(255,255,255,.04);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:8px 12px"><summary style="cursor:pointer;list-style:none"><span style="color:#fde68a">▸ </span><b style="color:#fde68a">질문 4</b> 한쪽에서만 덜거나 더하면 어떻게 될까요?</summary><div style="margin-top:6px;padding-top:6px;border-top:1px dashed rgba(255,255,255,.2)"><b style="color:#86efac">기울어요.</b> 한쪽만 바뀌면 그쪽이 더 가볍거나 더 무거워져요.</div></details>
+<details style="margin:8px 0;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.3);border-radius:10px;padding:8px 12px"><summary style="cursor:pointer;list-style:none"><span style="color:#86efac">▸ </span><b style="color:#86efac">정리</b></summary><div style="margin-top:6px">양쪽에 같은 수를 더하거나 빼도 저울(=)은 그대로예요.<br>이게 바로 <b style="color:#fde68a">등식의 성질</b>이에요. 교재에 나오는 문자표현으로는 이렇게 써요.<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.6rem .8rem;margin:.5rem 0;text-align:center;line-height:2.2">a = b이면 a + c = b + c<br>a = b이면 a − c = b − c</div><div style="font-size:.8rem;color:#cbd5e1;margin-top:4px"><b style="color:#fde68a">a, b</b>는 저울 양쪽의 같은 두 양(등식의 양변)이에요.<br><b style="color:#fde68a">c</b>는 양쪽에 똑같이 더하거나 빼는 수예요.</div></div></details>
+</div>` },
+  { tag:'양쪽을 2배로, 반으로 해도 같을까?', tagColor:'#86efac',
+    bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
+    body:`<div style="font-size:.85rem;color:#e2e8f0;line-height:1.85">
+<div style="background:#fff;border-radius:10px;padding:8px;margin-bottom:10px"><svg viewBox="8 38 384 196" style="display:block;margin:0 auto;width:100%;max-width:420px;height:auto" role="img" aria-label="평형을 이룬 양팔저울. 왼쪽 접시에 사과 6개, 오른쪽 접시에 추 2개와 사과 2개"><polygon points="150,226 250,226 236,206 164,206" fill="#64748b"/><rect x="196" y="60" width="8" height="150" fill="#94a3b8"/><rect x="52" y="54" width="296" height="8" rx="4" fill="#475569"/><circle cx="200" cy="58" r="9" fill="#334155"/><g stroke="#64748b" stroke-width="2" fill="none"><line x1="60" y1="62" x2="20" y2="150"/><line x1="60" y1="62" x2="100" y2="150"/><line x1="340" y1="62" x2="300" y2="150"/><line x1="340" y1="62" x2="380" y2="150"/></g><path d="M20 150 Q60 188 100 150 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><path d="M300 150 Q340 188 380 150 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><circle cx="33" cy="142" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="33" y1="134" x2="35" y2="129" stroke="#166534" stroke-width="2" stroke-linecap="round"/><circle cx="51" cy="142" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="51" y1="134" x2="53" y2="129" stroke="#166534" stroke-width="2" stroke-linecap="round"/><circle cx="69" cy="142" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="69" y1="134" x2="71" y2="129" stroke="#166534" stroke-width="2" stroke-linecap="round"/><circle cx="87" cy="142" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="87" y1="134" x2="89" y2="129" stroke="#166534" stroke-width="2" stroke-linecap="round"/><circle cx="51" cy="116" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="51" y1="108" x2="53" y2="103" stroke="#166534" stroke-width="2" stroke-linecap="round"/><circle cx="69" cy="116" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="69" y1="108" x2="71" y2="103" stroke="#166534" stroke-width="2" stroke-linecap="round"/><polygon points="310,150 330,150 327,132 313,132" fill="#475569" stroke="#1e293b" stroke-width="1.5"/><circle cx="320" cy="128" r="3.5" fill="none" stroke="#1e293b" stroke-width="2"/><polygon points="332,150 352,150 349,132 335,132" fill="#475569" stroke="#1e293b" stroke-width="1.5"/><circle cx="342" cy="128" r="3.5" fill="none" stroke="#1e293b" stroke-width="2"/><circle cx="362" cy="142" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="362" y1="134" x2="364" y2="129" stroke="#166534" stroke-width="2" stroke-linecap="round"/><circle cx="340" cy="116" r="8" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/><line x1="340" y1="108" x2="342" y2="103" stroke="#166534" stroke-width="2" stroke-linecap="round"/></svg></div>
+카드 2의 저울(사과 3개 = 추 1개 + 사과 1개)이 평형이에요. 위 그림은 그 저울의 양쪽을 똑같이 2배로 늘린 모습이에요. (사과 6개 = 추 2개 + 사과 2개)<br><br>
+<span style="font-size:.78rem;color:#94a3b8">질문을 누르면 답이 나와요.</span>
+<details style="margin:8px 0;background:rgba(255,255,255,.04);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:8px 12px"><summary style="cursor:pointer;list-style:none"><span style="color:#fde68a">▸ </span><b style="color:#fde68a">질문 1</b> 양쪽을 똑같이 2배로 늘렸는데 저울은 어떻게 될까요?</summary><div style="margin-top:6px;padding-top:6px;border-top:1px dashed rgba(255,255,255,.2)"><b style="color:#86efac">그대로 평형이에요.</b> 추 1개 = 사과 2개이니 왼쪽은 사과 6개, 오른쪽은 추 2개(사과 4개) + 사과 2개 = 6개예요.</div></details>
+<details style="margin:8px 0;background:rgba(255,255,255,.04);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:8px 12px"><summary style="cursor:pointer;list-style:none"><span style="color:#fde68a">▸ </span><b style="color:#fde68a">질문 2</b> 그 상태에서 양쪽을 똑같이 반으로 줄이면 어떻게 될까요?</summary><div style="margin-top:6px;padding-top:6px;border-top:1px dashed rgba(255,255,255,.2)"><b style="color:#86efac">그대로 평형이에요.</b> 처음 저울(사과 3개 = 추 1개 + 사과 1개)로 돌아와요.</div></details>
+<details style="margin:8px 0;background:rgba(255,255,255,.04);border:1px solid rgba(253,230,138,.3);border-radius:10px;padding:8px 12px"><summary style="cursor:pointer;list-style:none"><span style="color:#fde68a">▸ </span><b style="color:#fde68a">질문 3</b> 한쪽만 2배로 늘리면 어떻게 될까요?</summary><div style="margin-top:6px;padding-top:6px;border-top:1px dashed rgba(255,255,255,.2)"><b style="color:#86efac">기울어요.</b> 2배로 늘린 쪽이 더 무거워져요.</div></details>
+<details style="margin:8px 0;background:rgba(134,239,172,.07);border:1px solid rgba(134,239,172,.3);border-radius:10px;padding:8px 12px"><summary style="cursor:pointer;list-style:none"><span style="color:#86efac">▸ </span><b style="color:#86efac">정리</b></summary><div style="margin-top:6px">양쪽에 같은 수를 곱하거나 나누어도 저울(=)은 그대로예요.<br>이게 바로 <b style="color:#fde68a">등식의 성질</b>이에요. 교재에 나오는 문자표현으로는 이렇게 써요.<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:.6rem .8rem;margin:.5rem 0;text-align:center;line-height:2.2">a = b이면 a × c = b × c<br>a = b이면 <span class="frac"><span class="num">a</span><span class="den">c</span></span> = <span class="frac"><span class="num">b</span><span class="den">c</span></span> (c ≠ 0)</div><div style="font-size:.8rem;color:#cbd5e1;margin-top:4px"><b style="color:#fde68a">a, b</b>는 저울 양쪽의 같은 두 양(등식의 양변)이에요.<br><b style="color:#fde68a">c</b>는 양쪽에 똑같이 곱하거나 나누는 수예요.</div><br>단, 나누는 수는 0이 아니에요. (왜 0이 안 되는지는 "0으로 나누면" 카드에서)</div></details>
+</div>` },
+  { tag:'방정식이란 무엇인가?', tagColor:'#fde68a',
+    bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.3)',
+    fun:'eqmean', body:`<div id="eqm-root"></div>`, ans:null },
+],
 'eq-guide': [
   { tag:'🔍 발견형 1/3 — 이미 쓰고 있었어', tagColor:'#86efac',
     bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.3)',
@@ -14639,6 +14734,14 @@ document.addEventListener('DOMContentLoaded', function(){
   }, 3500);
 });
 
+// 뜻 묶음: 목록에서 고른 카드(i부터 j 앞까지)만 연다. 다른 카드로 이어지지 않는다
+function eqmOpen(i, j, from){
+  j = j || i + 1;
+  var key = 'eq-meaning-' + i + '-' + j;
+  CARD_DATA[key] = CARD_DATA['eq-meaning'].slice(i, j);
+  startCards(key, from || 'eq-meaning-list');
+}
+
 function startCards(set, from) {
   CS.set = set; CS.cards = CARD_DATA[set];
   CS.cur = 0; CS.from = from; CS.showAns = false;
@@ -18778,7 +18881,7 @@ function renderNotebook(){
 <script>
 // 중1 대수 화면에서만 색상 선택을 보여준다. 카드 본문(HTML)은 수정하지 않고, 연한 글자색을 같은 계열의 진한 색으로 실행 중에 바꾼다.
 (function(){
-  var CARDS = ['geometry-example','geometry-guide-congruence','geometry-guide-construction','geometry-guide-position','geometry-hard-advanced','geometry-hard-basic','geometry-havruta','plane-shape-example','plane-shape-guide','plane-shape-hard','plane-shape-havruta','solid-shape-example','solid-shape-guide','solid-shape-hard','solid-shape-havruta','fm-advanced','fm-prime-link','fm-finland','fm-singapore','fm-jewish','fm-guide','fm-gcd','fm-worksheet','fm-hard10','prime-guide','prime-havruta','eq-basic','eq-hard','eq-guide','eq-havruta-lesson','eq-zero-div','eq-havruta-cards','eq-identity','eq-identity-havruta','eq-guarantee','eq-identity-discussion','avg-guide','avg-hard','avg-example','avg-havruta'];
+  var CARDS = ['geometry-example','geometry-guide-congruence','geometry-guide-construction','geometry-guide-position','geometry-hard-advanced','geometry-hard-basic','geometry-havruta','plane-shape-example','plane-shape-guide','plane-shape-hard','plane-shape-havruta','solid-shape-example','solid-shape-guide','solid-shape-hard','solid-shape-havruta','fm-advanced','fm-prime-link','fm-finland','fm-singapore','fm-jewish','fm-guide','fm-gcd','fm-worksheet','fm-hard10','prime-guide','prime-havruta','eq-hard','eq-meaning','eq-guide','eq-havruta-lesson','eq-zero-div','eq-havruta-cards','eq-identity','eq-identity-havruta','eq-guarantee','eq-identity-discussion','avg-guide','avg-hard','avg-example','avg-havruta'];
   var KEY = 'toro_mid_theme';
   var mode = 'dark';
   function pref(){ try{ var v = localStorage.getItem(KEY); return (v==='dark'||v==='lm-a'||v==='lm-b') ? v : 'dark'; }catch(e){ return 'dark'; } }
