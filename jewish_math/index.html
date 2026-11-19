@@ -1553,17 +1553,41 @@ const CV_DATA = {
           </div>
         </div>
       </div></div>
-      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념3 — 최대공약수: 공통 약수 중 가장 큰 수</div>
-      <ul><li>사과 24개와 귤 36개를 최대한 많은 사람에게 남김없이 똑같이 나눠주려면 몇 명까지 나눠줄 수 있을까?</li></ul>
-      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
-        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">24와 36의 공통 약수 찾기</div>
-        <div style="display:flex;justify-content:center;gap:8px;font-size:.72rem;text-align:center">
-          <div style="flex:1">24의 약수<br>1,2,3,4,6,8,12,24</div>
-          <div style="flex:1;background:rgba(63,185,80,.1);border:1px solid rgba(63,185,80,.3);border-radius:6px;padding:4px">공통 약수<br><strong style="color:#3fb950">1,2,3,4,6,12</strong></div>
-          <div style="flex:1">36의 약수<br>1,2,3,4,6,9,12,18,36</div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 10px">개념3 — 최대공약수: 공통 약수 중 가장 큰 수 (눌러서 보는 영상)</div>
+      <div class="e5g-wrap"><div class="e5g-card">
+        <button class="e5g-startbtn" id="e5gcStartBtn" onclick="e5gcStart()">▶ 눌러서 시작하기</button>
+        <div class="e5g-playArea" id="e5gcPlayArea">
+          <div class="e5g-playControls">
+            <button class="e5g-pausebtn" id="e5gcRewindBtn" onclick="e5gcRestart()">↺ 되돌리기</button>
+            <button class="e5g-pausebtn" id="e5gcPauseBtn" onclick="e5gcTogglePause()">⏸ 정지</button>
+          </div>
+          <div class="e5g-soundRow" id="e5gcSoundRow">
+            <button class="e5g-soundbtn active" data-prof="bright" onclick="e5gcSetProfile('bright',this)">🔔 기본</button>
+            <button class="e5g-soundbtn" data-prof="soft" onclick="e5gcSetProfile('soft',this)">🎐 차분</button>
+            <button class="e5g-soundbtn" data-prof="bouncy" onclick="e5gcSetProfile('bouncy',this)">🎵 통통</button>
+            <button class="e5g-soundbtn" data-prof="off" onclick="e5gcSetProfile('off',this)">🔇 무음</button>
+          </div>
+          <div class="e5g-story">
+            <div class="e5g-avatar">🐿️</div>
+            <div class="e5g-bubble" id="e5gcBubble"></div>
+          </div>
+          <div id="e5gcAfterIntro" style="display:none">
+            <div class="e5g-watch" id="e5gcWatch">👀 가만히 지켜봐 주세요…</div>
+            <div class="e5g-board">
+              <div style="font-size:.72rem;color:#5b6472;margin-bottom:4px">🍎 사과 24개</div>
+              <div class="e5g-grid" id="e5gcGridA"></div>
+              <div style="font-size:.72rem;color:#5b6472;margin:10px 0 4px">🍊 귤 36개</div>
+              <div class="e5g-grid" id="e5gcGridB"></div>
+              <div class="e5g-feedback" id="e5gcFb"></div>
+            </div>
+            <div class="e5g-reveal" id="e5gcReveal">
+              <p style="font-size:.78rem;color:#5b6472;margin:10px 0 8px">이제 너도 해봐! 사람 수를 눌러서 사과·귤 둘 다 나눠지는지 확인해보세요. 공통 약수 6개를 다 찾아보세요!</p>
+              <div class="e5g-pickrow" id="e5gcPicks"></div>
+              <div class="e5g-checklist" id="e5gcChecklist"></div>
+            </div>
+          </div>
         </div>
-        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">공통 약수 중 가장 큰 수 12가 최대공약수 → 최대 12명에게 나눠줄 수 있어요</div>
-      </div>
+      </div></div>
       <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념4 — 최소공배수: 공통 배수 중 가장 작은 수</div>
       <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
         <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">4분·6분마다 오는 버스, 언제 같이 올까?</div>
@@ -24670,6 +24694,220 @@ function e5gmRestart(){
   var eqBox=document.getElementById('e5gmEqBox');
   eqBox.style.opacity=0; eqBox.style.display='none';
   e5gmRunAutoplay();
+}
+
+// ---- 개념3(최대공약수) 게임: 그리드 두 개(사과24·귤36)를 순서대로 확인 ----
+var e5gcS = {audioCtx:null, paused:false, gen:0, found:{}, pickBtns:{}, profile:'bright'};
+function e5gcUnlock(){
+  if(!e5gcS.audioCtx){
+    try{ e5gcS.audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){}
+  } else if(e5gcS.audioCtx.state==='suspended'){ e5gcS.audioCtx.resume(); }
+}
+function e5gcBeep(freq,dur,type,vol){
+  var prof = E5G_SOUND_PROFILES[e5gcS.profile];
+  if(!prof) return;
+  if(!e5gcS.audioCtx || e5gcS.audioCtx.state!=='running') return;
+  var osc=e5gcS.audioCtx.createOscillator(), gain=e5gcS.audioCtx.createGain();
+  osc.type=prof.wave||type||'sine'; osc.frequency.value=freq*prof.mul;
+  var now=e5gcS.audioCtx.currentTime;
+  gain.gain.setValueAtTime(vol||0.07, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now+dur);
+  osc.connect(gain); gain.connect(e5gcS.audioCtx.destination);
+  osc.start(now); osc.stop(now+dur);
+}
+function e5gcSetProfile(name, btn){
+  e5gcS.profile = name;
+  document.querySelectorAll('#e5gcSoundRow .e5g-soundbtn').forEach(function(b){ b.classList.remove('active'); });
+  if(btn) btn.classList.add('active');
+  e5gcUnlock();
+  if(name!=='off') e5gcBeep(600,.06,'triangle',.05);
+}
+function e5gcSndType(){ e5gcBeep(680+Math.random()*120,.035,'square',.025); }
+function e5gcSndPop(){ e5gcBeep(440,.09,'triangle',.05); }
+function e5gcSndGhost(){ e5gcBeep(260,.12,'sine',.035); }
+function e5gcSndOk(){ e5gcBeep(523,.12,'triangle',.07); e5gcDelay(110,function(){e5gcBeep(659,.12,'triangle',.07);}); e5gcDelay(220,function(){e5gcBeep(784,.18,'triangle',.08);}); }
+function e5gcSndNo(){ e5gcBeep(220,.22,'sawtooth',.05); e5gcDelay(140,function(){e5gcBeep(174,.28,'sawtooth',.05);}); }
+function e5gcSndClick(){ e5gcBeep(500,.04,'square',.03); }
+function e5gcDelay(ms, cb){
+  var start=null, elapsed=0;
+  function tick(ts){
+    if(start===null) start=ts;
+    if(!e5gcS.paused){ elapsed += ts-start; }
+    start=ts;
+    if(elapsed>=ms){ cb(); return; }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+function e5gcTogglePause(){
+  e5gcS.paused=!e5gcS.paused;
+  var b=document.getElementById('e5gcPauseBtn');
+  if(b) b.textContent = e5gcS.paused ? '▶ 계속' : '⏸ 정지';
+}
+function e5gcTypewriter(el, text, charMs, cb){
+  el.textContent='';
+  var idx=0;
+  function step(){
+    if(idx>=text.length){ if(cb) e5gcDelay(Math.max(900, text.length*32), cb); return; }
+    el.textContent += text[idx]; e5gcSndType();
+    idx++;
+    e5gcDelay(charMs, step);
+  }
+  step();
+}
+function e5gcSay(text, cb){
+  var bubble=document.getElementById('e5gcBubble');
+  if(!bubble) return;
+  bubble.style.opacity=0;
+  e5gcDelay(300, function(){
+    bubble.style.opacity=1;
+    e5gcTypewriter(bubble, text, 42, cb);
+  });
+}
+function e5gcRenderChecklist(){
+  var want=[1,2,3,4,6,12];
+  var el=document.getElementById('e5gcChecklist');
+  if(!el) return;
+  el.innerHTML='';
+  want.forEach(function(d){
+    var c=document.createElement('span'); c.className='e5g-chip'+(e5gcS.found[d]?' got':'');
+    c.textContent=d; el.appendChild(c);
+  });
+}
+function e5gcBuildOne(total, cols, gridId, myGen, cb){
+  var grid=document.getElementById(gridId);
+  grid.style.gridTemplateColumns='repeat('+cols+',17px)';
+  grid.innerHTML='';
+  var fullRows=Math.floor(total/cols), rem=total-fullRows*cols, full=fullRows*cols;
+  var lastRowTotal=full+(rem>0?cols:0), i=0;
+  function step(){
+    if(myGen!==e5gcS.gen) return;
+    if(i<full){
+      var c=document.createElement('div'); c.className='e5g-cell anim';
+      c.style.setProperty('--r',(Math.random()*18-9).toFixed(1)+'deg');
+      grid.appendChild(c); e5gcSndPop();
+      i++; e5gcDelay(90+Math.random()*50, step);
+    } else if(rem>0 && i<lastRowTotal){
+      var posInRow=i-full, c=document.createElement('div');
+      if(posInRow<rem){
+        c.className='e5g-cell extra anim';
+        c.style.setProperty('--r',(Math.random()*18-9).toFixed(1)+'deg');
+        grid.appendChild(c); e5gcSndPop();
+      } else {
+        c.className='e5g-cell ghost';
+        grid.appendChild(c); e5gcSndGhost();
+      }
+      i++; e5gcDelay(90+Math.random()*50, step);
+    } else {
+      cb(rem===0);
+    }
+  }
+  step();
+}
+function e5gcTryBoth(n, btn, isDemo, onDone){
+  document.querySelectorAll('#e5gcPicks .e5g-pick').forEach(function(p){p.classList.remove('active');});
+  if(btn) btn.classList.add('active');
+  var fb=document.getElementById('e5gcFb');
+  var prefix=isDemo?'(예시) ':'';
+  fb.textContent=prefix+'사과부터 나눠볼게요…'; fb.className='e5g-feedback';
+  document.getElementById('e5gcGridB').innerHTML='';
+  var myGen=++e5gcS.gen;
+  e5gcBuildOne(24, n, 'e5gcGridA', myGen, function(okA){
+    if(myGen!==e5gcS.gen) return;
+    if(!okA){
+      fb.textContent=prefix+n+'명 — 사과부터 안 나눠져요! 공통 약수가 아니에요'; fb.className='e5g-feedback no';
+      e5gcSndNo();
+      if(onDone) e5gcDelay(500, onDone);
+      return;
+    }
+    fb.textContent=prefix+'사과는 됐어요! 이번엔 귤도 볼게요…';
+    e5gcDelay(300, function(){
+      if(myGen!==e5gcS.gen) return;
+      e5gcBuildOne(36, n, 'e5gcGridB', myGen, function(okB){
+        if(myGen!==e5gcS.gen) return;
+        if(okB){
+          fb.textContent=prefix+n+'명 — 사과 귤 둘 다 나눠져요! 공통 약수예요 🎉'; fb.className='e5g-feedback ok';
+          e5gcS.found[n]=true; if(btn) btn.classList.add('found');
+          e5gcRenderChecklist(); e5gcSndOk();
+        } else {
+          fb.textContent=prefix+n+'명 — 사과는 되는데 귤이 안 나눠져요! 공통 약수가 아니에요'; fb.className='e5g-feedback no';
+          e5gcSndNo();
+        }
+        if(onDone) e5gcDelay(500, onDone);
+      });
+    });
+  });
+}
+var E5GC_BEATS=[
+  "이번엔 '최대공약수'가 뭔지 알아볼 거야.",
+  "최대공약수란, 두 수를 공통으로 나눌 수 있는 수(공약수) 중에서 가장 큰 수를 말해.",
+  "아까 봤던 사과 24개, 귤 36개 기억나? 둘 다 나눌 수 있는 수를 찾아볼 거야.",
+  "이번엔 블록으로 사과랑 귤을 같이 나눠보면서 확인해볼게.",
+  "둘 다 남김없이 나눠지는 사람 수 중에서 제일 큰 수가 최대공약수야!"
+];
+function e5gcPlayBeats(cb){
+  var i=0;
+  function next(){
+    if(i>=E5GC_BEATS.length){ cb(); return; }
+    var text=E5GC_BEATS[i]; i++;
+    e5gcSay(text, next);
+  }
+  next();
+}
+function e5gcRunAutoplay(){
+  e5gcPlayBeats(function(){
+    document.getElementById('e5gcAfterIntro').style.display='block';
+    e5gcSay('12명한테 나누면 사과 귤 둘 다 나눠질까?', function(){
+      e5gcTryBoth(12, e5gcS.pickBtns[12], true, function(){
+        e5gcSay('봐봐! 12명이면 사과 귤 둘 다 딱 맞지? 그럼 8명은 어떨까?', function(){
+          e5gcTryBoth(8, e5gcS.pickBtns[8], true, function(){
+            e5gcSay('사과는 됐는데 귤이 안 맞았지? 그래서 8명은 공통 약수가 아니야. 이제 너도 직접 눌러서 나머지 공통 약수들을 찾아볼래?', function(){
+              document.getElementById('e5gcWatch').classList.add('gone');
+              document.getElementById('e5gcReveal').classList.add('show');
+            });
+          });
+        });
+      });
+    });
+  });
+}
+function e5gcBuildPicks(){
+  var row=document.getElementById('e5gcPicks');
+  if(!row || row.childElementCount) return;
+  e5gcS.pickBtns={};
+  [1,2,3,4,5,6,8,12].forEach(function(n){
+    var b=document.createElement('button');
+    b.className='e5g-pick'; b.textContent=n;
+    b.onclick=function(){ e5gcSndClick(); e5gcTryBoth(n,b); };
+    row.appendChild(b);
+    e5gcS.pickBtns[n]=b;
+  });
+}
+function e5gcStart(){
+  e5gcUnlock();
+  var startBtn=document.getElementById('e5gcStartBtn');
+  if(startBtn) startBtn.style.display='none';
+  document.getElementById('e5gcPlayArea').style.display='block';
+  e5gcBuildPicks();
+  e5gcRenderChecklist();
+  e5gcRunAutoplay();
+}
+function e5gcRestart(){
+  e5gcS.gen++;
+  e5gcS.paused=false;
+  var pb=document.getElementById('e5gcPauseBtn'); if(pb) pb.textContent='⏸ 정지';
+  e5gcS.found={};
+  Object.keys(e5gcS.pickBtns).forEach(function(k){ e5gcS.pickBtns[k].classList.remove('found','active'); });
+  e5gcRenderChecklist();
+  document.getElementById('e5gcGridA').innerHTML='';
+  document.getElementById('e5gcGridB').innerHTML='';
+  document.getElementById('e5gcFb').textContent='';
+  document.getElementById('e5gcAfterIntro').style.display='none';
+  document.getElementById('e5gcWatch').classList.remove('gone');
+  document.getElementById('e5gcReveal').classList.remove('show');
+  var bubble=document.getElementById('e5gcBubble');
+  bubble.textContent=''; bubble.style.opacity=0;
+  e5gcRunAutoplay();
 }
 
 function gcwGen1(id){
