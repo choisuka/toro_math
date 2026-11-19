@@ -18886,7 +18886,7 @@ function renderNotebook(){
   var mode = 'dark';
   function pref(){ try{ var v = localStorage.getItem(KEY); return (v==='dark'||v==='lm-a'||v==='lm-b') ? v : 'dark'; }catch(e){ return 'dark'; } }
   // 허브·선택 화면은 원래 모습 그대로 두고, 카드를 눌러 열린 카드 화면에서만 적용한다
-  function inScope(name){ return name==='fm-problems' || name==='fm-scroll' || name==='fm-drawer' || (name==='cardviewer' && typeof CS!=='undefined' && CARDS.indexOf(CS.set)>=0); }
+  function inScope(name){ return name==='fm-problems' || name==='fm-scroll' || name==='fm-drawer' || name==='cardviewer'; }
   function wrapPanel(id){
     var sc = document.getElementById(id); if(!sc || sc.querySelector('.lm-panel')) return;
     var nav = sc.querySelector('.nav-bar'); if(!nav) return;
