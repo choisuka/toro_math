@@ -1445,6 +1445,9 @@ const CV_DATA = {
       .e5g-wrap .e5g-playArea{display:none}
       .e5g-wrap .e5g-playControls{display:flex;gap:6px;justify-content:flex-end;margin-bottom:12px}
       .e5g-wrap .e5g-pausebtn{font-family:'Nanum Gothic',sans-serif;font-weight:700;font-size:.68rem;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--sub);cursor:pointer}
+      .e5g-wrap .e5g-soundRow{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;margin-bottom:12px}
+      .e5g-wrap .e5g-soundbtn{font-family:'Nanum Gothic',sans-serif;font-weight:700;font-size:.66rem;padding:4px 8px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--sub);cursor:pointer}
+      .e5g-wrap .e5g-soundbtn.active{border-color:var(--gold);color:var(--gold);background:#fff3d1}
       .e5g-wrap .e5g-story{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
       .e5g-wrap .e5g-avatar{font-size:1.7rem;flex:0 0 auto;background:#fff3d1;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center}
       .e5g-wrap .e5g-bubble{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:9px 12px;font-size:.84rem;line-height:1.6;flex:1;min-height:1.6em}
@@ -1485,6 +1488,12 @@ const CV_DATA = {
           <div class="e5g-playControls">
             <button class="e5g-pausebtn" id="e5gRewindBtn" onclick="e5gRestart()">↺ 되돌리기</button>
             <button class="e5g-pausebtn" id="e5gPauseBtn" onclick="e5gTogglePause()">⏸ 정지</button>
+          </div>
+          <div class="e5g-soundRow" id="e5gSoundRow">
+            <button class="e5g-soundbtn active" data-prof="bright" onclick="e5gSetProfile('bright',this)">🔔 기본</button>
+            <button class="e5g-soundbtn" data-prof="soft" onclick="e5gSetProfile('soft',this)">🎐 차분</button>
+            <button class="e5g-soundbtn" data-prof="bouncy" onclick="e5gSetProfile('bouncy',this)">🎵 통통</button>
+            <button class="e5g-soundbtn" data-prof="off" onclick="e5gSetProfile('off',this)">🔇 무음</button>
           </div>
           <div class="e5g-story">
             <div class="e5g-avatar">🐿️</div>
@@ -24206,16 +24215,31 @@ function gcwRenderToggle(id, diagramHtml, solfn){
     el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">👆 접어두기</button>' + diagramHtml;
   }
 }
-var e5gS = {audioCtx:null, paused:false, divGen:0, found:{}, pickBtns:{}};
+var e5gS = {audioCtx:null, paused:false, divGen:0, found:{}, pickBtns:{}, profile:'bright'};
+var E5G_SOUND_PROFILES = {
+  bright:{mul:1, wave:null},
+  soft:{mul:0.74, wave:'sine'},
+  bouncy:{mul:1.35, wave:'square'},
+  off:null
+};
+function e5gSetProfile(name, btn){
+  e5gS.profile = name;
+  document.querySelectorAll('#e5gSoundRow .e5g-soundbtn').forEach(function(b){ b.classList.remove('active'); });
+  if(btn) btn.classList.add('active');
+  e5gUnlock();
+  if(name!=='off') e5gBeep(600,.06,'triangle',.05);
+}
 function e5gUnlock(){
   if(!e5gS.audioCtx){
     try{ e5gS.audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){}
   } else if(e5gS.audioCtx.state==='suspended'){ e5gS.audioCtx.resume(); }
 }
 function e5gBeep(freq,dur,type,vol){
+  var prof = E5G_SOUND_PROFILES[e5gS.profile];
+  if(!prof) return; // 무음
   if(!e5gS.audioCtx || e5gS.audioCtx.state!=='running') return;
   var osc=e5gS.audioCtx.createOscillator(), gain=e5gS.audioCtx.createGain();
-  osc.type=type||'sine'; osc.frequency.value=freq;
+  osc.type=prof.wave||type||'sine'; osc.frequency.value=freq*prof.mul;
   var now=e5gS.audioCtx.currentTime;
   gain.gain.setValueAtTime(vol||0.07, now);
   gain.gain.exponentialRampToValueAtTime(0.001, now+dur);
