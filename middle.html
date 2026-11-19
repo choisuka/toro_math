@@ -836,11 +836,6 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
       </div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
-      <div class="topic-card" onclick="startCards('eq-basic','equation-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 8px;border:1px solid rgba(125,211,252,.3);background:rgba(125,211,252,.1)">
-        <div class="ico" style="font-size:2.2rem">📚</div>
-        <div class="name" style="color:#7dd3fc;font-size:.85rem;margin-top:6px;text-align:center">기본 문제 ★</div>
-        <div class="desc" style="font-size:.6rem;color:#94a3b8;text-align:center;margin-top:3px">상세 풀이 · "왜?"를 배우는 것</div>
-      </div>
       <div class="topic-card" onclick="startCards('eq-basic-walk','equation-hub')" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 8px;border:1px solid rgba(125,211,252,.4);background:linear-gradient(155deg,rgba(125,211,252,.18),rgba(125,211,252,.06))">
         <div class="ico" style="font-size:2.2rem">🕵️</div>
         <div class="name" style="color:#7dd3fc;font-size:.85rem;margin-top:6px;text-align:center">단계 풀이 10</div>
@@ -936,7 +931,7 @@ body.lm-pick-on .screen.active{padding-bottom:64px}
     <button onclick="startCards('eq-guide','eq-concept')" style="width:100%;margin-bottom:8px;background:rgba(134,239,172,.1);border:1px solid rgba(134,239,172,.3);color:#86efac;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       📖 3개국 개념 가이드 <span style="font-size:.72rem;opacity:.7">(3장)</span> →
     </button>
-    <button onclick="startCards('eq-basic','eq-concept')" style="width:100%;margin-bottom:8px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
+    <button onclick="startCards('eq-basic-walk','eq-concept')" style="width:100%;margin-bottom:8px;background:rgba(125,211,252,.1);border:1px solid rgba(125,211,252,.3);color:#7dd3fc;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
       📚 기본 문제 <span style="font-size:.72rem;opacity:.7">(10문항)</span> →
     </button>
     <button onclick="startCards('eq-hard','eq-concept')" style="width:100%;margin-bottom:8px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:12px;padding:13px;font-family:'Jua',sans-serif;font-size:.88rem;cursor:pointer;text-align:left">
@@ -2079,41 +2074,6 @@ a ÷ b = c<br>
 </div>`, ans:null }
 ],
 
-/* ── 기본 문제 (10문항) ───────────────────────── */
-
-
-'eq-basic': [
-  { tag:'기본 1/10', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">어떤 수에 5를 더한 값은 그 수의 2배와 같습니다.<br>이 시소를 평형으로 만드는 '어떤 수'는?</div>`,
-    ans:`<b style="color:#86efac">풀이:</b> 어떤 수를 x라 하면<br>x + 5 = 2x → 5 = x<br><b style="color:#fde68a;font-size:.9rem">x = 5</b>` },
-  { tag:'기본 2/10', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">전체 길이가 24cm인 막대를 x cm와 10cm 두 토막으로 나누었습니다. x의 값은?</div>`,
-    ans:`<b style="color:#7dd3fc">풀이:</b> 두 토막의 합 = 전체<br>x + 10 = 24<br><b style="color:#fde68a;font-size:.9rem">x = 14 (cm)</b>` },
-  { tag:'✡️ 기본 3/10', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">등식 3x + 6 = 12에서<br>양변을 3으로 먼저 나누는 것과<br>6을 먼저 빼는 것 중 어느 것이 더 논리적인가요?</div>`,
-    ans:`<b style="color:#fde68a">핵심:</b> 두 방법 모두 x = 2<br><br><b style="color:#86efac">6을 먼저 빼는 것 추천:</b><br>3x = 6 → x = 2<br><br>핵심(3x)을 드러내기 위해 껍질(+6)부터 벗기는 게 실수를 줄이는 지름길` },
-  { tag:'기본 4/10', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">한 자루에 800원 하는 볼펜을 몇 자루 사고 5,000원을 냈더니 거스름돈이 1,800원이었습니다. 몇 자루를 샀을까요?</div>`,
-    ans:`<b style="color:#86efac">풀이:</b><br>5,000 − 800x = 1,800<br>800x = 3,200<br><b style="color:#fde68a;font-size:.9rem">x = 4 (볼펜 4자루)</b>` },
-  { tag:'기본 5/10', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">사탕 30개를 형과 동생이 나누었습니다.<br>형이 동생보다 6개 더 많다면<br>형의 사탕 수는?</div>`,
-    ans:`<b style="color:#7dd3fc">풀이:</b> 형 = x<br>x + (x − 6) = 30<br>2x = 36<br><b style="color:#fde68a;font-size:.9rem">형 18개, 동생 12개</b>` },
-  { tag:'✡️ 기본 6/10', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">0 × x = 0 에서 x는 무엇이든 될 수 있습니다.<br>이런 식도 방정식이라고 할 수 있을까요?</div>`,
-    ans:`<b style="color:#fde68a">답: 방정식 아님 → 항등식</b><br><br><div style="background:rgba(165,180,252,.08);border-radius:8px;padding:7px 10px;margin-bottom:8px;font-size:.79rem"><b style="color:#a5b4fc">항등식이란?</b> x가 어떤 값이든 항상 성립하는 등식이에요.<br>(방정식은 특정 x값에서만 성립 → "범인 찾기")</div>방정식은 특정 x에서만 참이어야 합니다.<br>0×x=0은 x가 무엇이든 항상 참 → <b style="color:#a5b4fc">항등식</b>` },
-  { tag:'기본 7/10', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">현재 아버지 45세, 아들 13세입니다.<br>아버지의 나이가 아들의 3배가 되는 것은 몇 년 후인가요?</div>`,
-    ans:`<b style="color:#86efac">풀이:</b> x년 후<br>45 + x = 3(13 + x)<br>45 + x = 39 + 3x<br>6 = 2x<br><b style="color:#fde68a;font-size:.9rem">3년 후</b> (아버지 48세 = 아들 16세 × 3)` },
-  { tag:'기본 8/10', tagColor:'#7dd3fc', bg:'rgba(125,211,252,.07)', bd:'rgba(125,211,252,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">가로가 세로보다 5cm 더 긴 직사각형의 둘레가 30cm입니다. 세로의 길이는?</div>`,
-    ans:`<b style="color:#7dd3fc">풀이:</b> 세로=x, 가로=x+5<br>2(x + x + 5) = 30<br>4x + 10 = 30 → 4x = 20<br><b style="color:#fde68a;font-size:.9rem">세로 5cm, 가로 10cm</b>` },
-  { tag:'✡️ 기본 9/10', tagColor:'#fde68a', bg:'rgba(253,230,138,.07)', bd:'rgba(253,230,138,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">'연속하는 세 홀수의 합이 33이다.'<br>중간 수를 기준으로 두는 것과 가장 작은 수를 기준으로 두는 것 중 무엇이 더 편할까요?</div>`,
-    ans:`<b style="color:#fde68a">중간 수 x 추천:</b><br>(x−2) + x + (x+2) = 3x = 33<br><b style="color:#fde68a;font-size:.9rem">x = 11</b> (11, 13, 15)<br><br><span style="color:#aaa">가장 작은 수 x → 3x+6=33 → 복잡</span>` },
-  { tag:'기본 10/10', tagColor:'#86efac', bg:'rgba(134,239,172,.07)', bd:'rgba(134,239,172,.25)',
-    body:`<div style="font-size:.88rem;color:#e2e8f0;line-height:1.8;font-weight:600">사탕을 학생들에게 4개씩 나눠주면 3개가 남고, 5개씩 나눠주면 2개가 부족합니다. 학생 수는?</div>`,
-    ans:`<b style="color:#86efac">풀이:</b> 학생 수 = x<br>4x + 3 = 5x − 2<br><b style="color:#fde68a;font-size:.9rem">x = 5명</b>, 사탕 23개` }
-],
 
 /* ── 심화 문제 (10문항) ───────────────────────── */
 
@@ -15761,14 +15721,14 @@ function genEqSimple(){
     {a:2,b:5,story:(a,b,x)=>`시소: 어떤 수에 ${b}를 더한 값이 그 수의 ${a}배와 같아요. 어떤 수는?`,eq:(a,b,x)=>`x + ${b} = ${a}x`,x:5},
     {a:3,b:8,x:4,story:(a,b,x)=>`어떤 수에 ${b}를 더하면 그 수의 ${a}배가 돼요. 어떤 수는?`,eq:(a,b,x)=>`x + ${b} = ${a}x`},
     {a:2,b:6,x:6,story:(a,b,x)=>`어떤 수의 ${a}배에서 ${b}를 빼면 그 수와 같아요. 어떤 수는?`,eq:(a,b,x)=>`${a}x - ${b} = x`},
-    {a:3,b:10,x:5,story:(a,b,x)=>`어떤 수의 ${a}배에서 ${b}를 빼면 그 수의 2배가 돼요. 어떤 수는?`,eq:(a,b,x)=>`${a}x - ${b} = 2x`},
+    {a:3,b:10,x:10,story:(a,b,x)=>`어떤 수의 ${a}배에서 ${b}를 빼면 그 수의 2배가 돼요. 어떤 수는?`,eq:(a,b,x)=>`${a}x - ${b} = 2x`},
     {a:4,b:3,x:1,story:(a,b,x)=>`연속하는 세 홀수의 합이 33이에요. 중간에 있는 홀수는?`,eq:()=>`(x-2)+x+(x+2) = 33`,special:true,x:11},
     {a:2,b:7,x:7,story:(a,b,x)=>`시소의 왼쪽은 어떤 수에 ${b}를 더한 값, 오른쪽은 그 수의 ${a}배예요. 평형이 되는 수는?`,eq:(a,b,x)=>`x + ${b} = ${a}x`},
   ];
   const cfg=rnd(configs);
   if(cfg.special){
     const x=11;
-    const choices=[String(x),String(x+2),String(x-2),String(9)];
+    const choices=[String(x),String(x+2),String(x-2),String(x*3)];
     return {type:'equation',subtype:'simple',story:cfg.story(0,0,x),data:{eq:'(x-2)+x+(x+2)=33',x},answer:String(x),choices:shuffle(choices)};
   }
   const {a,b,x}=cfg;
@@ -15817,7 +15777,7 @@ function genEqRect(){
     ()=>`가로가 세로보다 ${diff}cm 더 긴 직사각형의 둘레가 ${P}cm예요. 세로의 길이는?`,
     ()=>`직사각형의 둘레가 ${P}cm이고, 가로는 세로보다 ${diff}cm 길어요. 세로의 길이는?`,
   ];
-  const choices=[`${h}cm`,`${h+2}cm`,`${h-1}cm`,`${w}cm`];
+  const choices=[`${h}cm`,`${h+2===w?h+3:h+2}cm`,`${h-1}cm`,`${w}cm`];
   return {type:'equation',subtype:'rect',story:rnd(stories)(),data:{diff,P,h,w},answer:`${h}cm`,choices:shuffle(choices)};
 }
 
