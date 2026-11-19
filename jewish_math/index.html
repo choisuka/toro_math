@@ -1436,17 +1436,78 @@ const CV_DATA = {
       </svg>
       <div style="font-size:.68rem;color:#58a6ff;margin-top:4px">마법사 곰 포커스가 원리를 알려줘요</div>
     </div>
-      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:6px">개념1 — 약수: 나누어떨어지게 하는 수</div>
-      <ul><li>12를 나머지 없이 나눌 수 있는 수 → 12의 약수: 1,2,3,4,6,12</li></ul>
-      <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
-        <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:8px;text-align:center">12를 직사각형으로 딱 맞게 배열하면?</div>
-        <div style="display:flex;flex-direction:column;gap:6px;align-items:center;font-size:.82rem;font-family:monospace">
-          <div>1×12: ⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛</div>
-          <div>2×6: ⬛⬛⬛⬛⬛⬛<br>&nbsp;&nbsp;&nbsp;&nbsp;⬛⬛⬛⬛⬛⬛</div>
-          <div>3×4: ⬛⬛⬛⬛<br>&nbsp;&nbsp;&nbsp;&nbsp;⬛⬛⬛⬛<br>&nbsp;&nbsp;&nbsp;&nbsp;⬛⬛⬛⬛</div>
+      <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin-bottom:10px">개념1 — 약수: 나누어떨어지게 하는 수 (눌러서 보는 영상)</div>
+      <style>
+      .e5g-wrap{--bg:#f8fafd;--panel:#ffffff;--ink:#1d2433;--sub:#5b6472;--line:#c5ccd8;--gold:#c9a227;--green:#2f9e57;--red:#c0362f;--blue:#4b3590;font-family:'Nanum Gothic',sans-serif;color:var(--ink)}
+      .e5g-wrap .e5g-card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 14px 18px;box-shadow:0 3px 10px rgba(30,30,60,.08)}
+      .e5g-wrap .e5g-startbtn{display:block;width:100%;font-family:'Jua',sans-serif;font-size:1rem;padding:14px;border-radius:12px;border:none;border-bottom:4px solid #9a7a10;background:var(--gold);color:#fff;cursor:pointer}
+      .e5g-wrap .e5g-startbtn:active{transform:translateY(3px);border-bottom-width:1px}
+      .e5g-wrap .e5g-playArea{display:none}
+      .e5g-wrap .e5g-playControls{position:absolute;top:14px;right:14px;display:flex;gap:6px;z-index:2}
+      .e5g-wrap .e5g-pausebtn{font-family:'Nanum Gothic',sans-serif;font-weight:700;font-size:.68rem;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--sub);cursor:pointer}
+      .e5g-wrap .e5g-story{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
+      .e5g-wrap .e5g-avatar{font-size:1.7rem;flex:0 0 auto;background:#fff3d1;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center}
+      .e5g-wrap .e5g-bubble{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:9px 12px;font-size:.84rem;line-height:1.6;flex:1;min-height:1.6em}
+      .e5g-wrap .e5g-bubble::before{content:'';position:absolute;left:-7px;top:14px;width:12px;height:12px;background:var(--bg);border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg)}
+      .e5g-wrap .e5g-eq{opacity:0;display:none;flex-direction:column;align-items:center;gap:8px;font-family:'Jua',sans-serif;font-size:1.3rem;margin:4px 0 10px;transition:opacity .4s}
+      .e5g-wrap .e5g-eqrow{display:flex;align-items:center}
+      .e5g-wrap .e5g-eqpart{display:inline-flex;align-items:center;justify-content:center;min-width:1.3em;padding:2px 6px;border-radius:7px;background:#eef0fa}
+      .e5g-wrap .e5g-eqpart.ok{color:var(--green);background:#e6f6ec}
+      .e5g-wrap .e5g-eqop{margin:0 4px;color:var(--sub)}
+      .e5g-wrap .e5g-eqnote{font-family:'Nanum Gothic',sans-serif;font-weight:700;font-size:.78rem;color:var(--green)}
+      .e5g-wrap .e5g-watch{font-size:.7rem;font-weight:700;color:var(--blue);text-align:center;margin-bottom:6px}
+      .e5g-wrap .e5g-watch.gone{display:none}
+      .e5g-wrap .e5g-board{min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;margin:12px 0}
+      .e5g-wrap .e5g-grid{display:grid;gap:3px;justify-content:center}
+      .e5g-wrap .e5g-cell{width:17px;height:17px;border-radius:4px;background:var(--blue);box-shadow:inset 0 1px 1px rgba(255,255,255,.3), inset 0 -2px 2px rgba(0,0,0,.2), 0 2px 3px rgba(0,0,0,.15)}
+      @keyframes e5gPop{0%{transform:scale(0) rotate(var(--r,0deg));opacity:0}55%{transform:scale(1.2) rotate(calc(var(--r,0deg) * -.5))}80%{transform:scale(.95)}100%{transform:scale(1) rotate(0);opacity:1}}
+      .e5g-wrap .e5g-cell.anim{animation:e5gPop .3s ease-out backwards}
+      .e5g-wrap .e5g-cell.extra{background:var(--red)}
+      .e5g-wrap .e5g-cell.ghost{background:transparent;border:2px dashed var(--red);box-shadow:none;opacity:0;animation:e5gGhost .3s ease-out forwards}
+      @keyframes e5gGhost{to{opacity:.5}}
+      .e5g-wrap .e5g-feedback{font-size:.8rem;font-weight:700;text-align:center;min-height:1.3em}
+      .e5g-wrap .e5g-feedback.ok{color:var(--green)}
+      .e5g-wrap .e5g-feedback.no{color:var(--red)}
+      .e5g-wrap .e5g-pickrow{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+      .e5g-wrap .e5g-pick{font-family:'Jua',sans-serif;font-size:.85rem;width:36px;height:36px;border-radius:9px;border:1px solid var(--line);border-bottom:3px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+      .e5g-wrap .e5g-pick:active{transform:translateY(2px);border-bottom-width:1px}
+      .e5g-wrap .e5g-pick.found{border-color:var(--green);color:var(--green);background:#e6f6ec}
+      .e5g-wrap .e5g-pick.active{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,162,39,.35)}
+      .e5g-wrap .e5g-checklist{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+      .e5g-wrap .e5g-chip{font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--sub)}
+      .e5g-wrap .e5g-chip.got{border-color:var(--gold);color:var(--gold);background:#fff3d1}
+      .e5g-wrap .e5g-reveal{opacity:0;max-height:0;overflow:hidden;transition:opacity .4s,max-height .4s}
+      .e5g-wrap .e5g-reveal.show{opacity:1;max-height:300px}
+      </style>
+      <div class="e5g-wrap"><div class="e5g-card">
+        <button class="e5g-startbtn" id="e5gStartBtn" onclick="e5gStart()">▶ 눌러서 시작하기</button>
+        <div class="e5g-playArea" id="e5gPlayArea">
+          <div class="e5g-playControls">
+            <button class="e5g-pausebtn" id="e5gRewindBtn" onclick="e5gRestart()">↺ 되돌리기</button>
+            <button class="e5g-pausebtn" id="e5gPauseBtn" onclick="e5gTogglePause()">⏸ 정지</button>
+          </div>
+          <div class="e5g-story">
+            <div class="e5g-avatar">🐿️</div>
+            <div class="e5g-bubble" id="e5gBubble"></div>
+          </div>
+          <div class="e5g-eq" id="e5gEqBox">
+            <div class="e5g-eqrow"><span class="e5g-eqpart">12</span><span class="e5g-eqop">÷</span><span class="e5g-eqpart">3</span><span class="e5g-eqop">=</span><span class="e5g-eqpart ok">4</span></div>
+            <div class="e5g-eqnote">나머지 0 → <strong>3은 12의 약수!</strong> ✓</div>
+          </div>
+          <div id="e5gAfterIntro" style="display:none">
+            <div class="e5g-watch" id="e5gWatch">👀 가만히 지켜봐 주세요…</div>
+            <div class="e5g-board">
+              <div class="e5g-grid" id="e5gGrid"></div>
+              <div class="e5g-feedback" id="e5gFb"></div>
+            </div>
+            <div class="e5g-reveal" id="e5gReveal">
+              <p style="font-size:.78rem;color:#5b6472;margin:10px 0 8px">이제 너도 해봐! 아래 숫자를 눌러서 한 줄에 몇 개씩 넣을지 정해보세요. 마지막 줄까지 딱 맞으면 그 수가 12의 약수예요. 6개를 다 찾아보세요!</p>
+              <div class="e5g-pickrow" id="e5gPicks"></div>
+              <div class="e5g-checklist" id="e5gChecklist"></div>
+            </div>
+          </div>
         </div>
-        <div style="text-align:center;font-size:.7rem;color:#8b949e;margin-top:8px">빈틈없이 직사각형이 되는 가로·세로 수(1,2,3,4,6,12)가 12의 약수예요</div>
-      </div>
+      </div></div>
       <div style="font-size:.78rem;color:#f0c040;font-weight:700;margin:14px 0 6px">개념2 — 배수: 곱해서 나오는 수</div>
       <ul><li>어떤 수를 1배, 2배, 3배… 한 수 → 4의 배수: 4,8,12,16…</li></ul>
       <div style="background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:12px;margin:10px 0">
@@ -24144,6 +24205,199 @@ function gcwRenderToggle(id, diagramHtml, solfn){
     el.setAttribute('data-showing', '1');
     el.innerHTML = qtext + '<br><button class="havruta-show-btn" onclick="'+solfn+'(\''+id+'\')">👆 접어두기</button>' + diagramHtml;
   }
+}
+var e5gS = {audioCtx:null, paused:false, divGen:0, found:{}, pickBtns:{}};
+function e5gUnlock(){
+  if(!e5gS.audioCtx){
+    try{ e5gS.audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){}
+  } else if(e5gS.audioCtx.state==='suspended'){ e5gS.audioCtx.resume(); }
+}
+function e5gBeep(freq,dur,type,vol){
+  if(!e5gS.audioCtx || e5gS.audioCtx.state!=='running') return;
+  var osc=e5gS.audioCtx.createOscillator(), gain=e5gS.audioCtx.createGain();
+  osc.type=type||'sine'; osc.frequency.value=freq;
+  var now=e5gS.audioCtx.currentTime;
+  gain.gain.setValueAtTime(vol||0.07, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now+dur);
+  osc.connect(gain); gain.connect(e5gS.audioCtx.destination);
+  osc.start(now); osc.stop(now+dur);
+}
+function e5gSndType(){ e5gBeep(680+Math.random()*120,.035,'square',.025); }
+function e5gSndPop(){ e5gBeep(440,.09,'triangle',.05); }
+function e5gSndGhost(){ e5gBeep(260,.12,'sine',.035); }
+function e5gSndOk(){ e5gBeep(523,.12,'triangle',.07); e5gDelay(110,function(){e5gBeep(659,.12,'triangle',.07);}); e5gDelay(220,function(){e5gBeep(784,.18,'triangle',.08);}); }
+function e5gSndNo(){ e5gBeep(220,.22,'sawtooth',.05); e5gDelay(140,function(){e5gBeep(174,.28,'sawtooth',.05);}); }
+function e5gSndClick(){ e5gBeep(500,.04,'square',.03); }
+function e5gDelay(ms, cb){
+  var start=null, elapsed=0;
+  function tick(ts){
+    if(start===null) start=ts;
+    if(!e5gS.paused){ elapsed += ts-start; }
+    start=ts;
+    if(elapsed>=ms){ cb(); return; }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+function e5gTogglePause(){
+  e5gS.paused=!e5gS.paused;
+  var b=document.getElementById('e5gPauseBtn');
+  if(b) b.textContent = e5gS.paused ? '▶ 계속' : '⏸ 정지';
+}
+function e5gTypewriter(el, text, charMs, cb){
+  el.textContent='';
+  var idx=0;
+  function step(){
+    if(idx>=text.length){ if(cb) e5gDelay(Math.max(900, text.length*32), cb); return; }
+    el.textContent += text[idx]; e5gSndType();
+    idx++;
+    e5gDelay(charMs, step);
+  }
+  step();
+}
+function e5gSay(text, cb){
+  var bubble=document.getElementById('e5gBubble');
+  if(!bubble) return;
+  bubble.style.opacity=0;
+  e5gDelay(300, function(){
+    bubble.style.opacity=1;
+    e5gTypewriter(bubble, text, 42, cb);
+  });
+}
+var E5G_N=12;
+function e5gRenderChecklist(){
+  var want=[1,2,3,4,6,12];
+  var el=document.getElementById('e5gChecklist');
+  if(!el) return;
+  el.innerHTML='';
+  want.forEach(function(d){
+    var c=document.createElement('span'); c.className='e5g-chip'+(e5gS.found[d]?' got':'');
+    c.textContent=d; el.appendChild(c);
+  });
+}
+function e5gTryDiv(r, btn, isDemo, onDone){
+  document.querySelectorAll('#e5gPicks .e5g-pick').forEach(function(p){p.classList.remove('active');});
+  if(btn) btn.classList.add('active');
+  var cols=r, fullRows=Math.floor(E5G_N/r), rem=E5G_N-fullRows*r, total=fullRows*r;
+  var grid=document.getElementById('e5gGrid');
+  grid.style.gridTemplateColumns='repeat('+cols+',17px)';
+  grid.innerHTML='';
+  var fb=document.getElementById('e5gFb');
+  fb.textContent=(isDemo?'(예시) ':'')+'블록을 한 칸씩 놓아볼게요…'; fb.className='e5g-feedback';
+  var myGen=++e5gS.divGen, i=0;
+  var lastRowTotal=total+(rem>0?cols:0);
+  function placeNext(){
+    if(myGen!==e5gS.divGen) return;
+    if(i<total){
+      var c=document.createElement('div'); c.className='e5g-cell anim';
+      c.style.setProperty('--r',(Math.random()*18-9).toFixed(1)+'deg');
+      grid.appendChild(c); e5gSndPop();
+      i++; e5gDelay(280+Math.random()*160, placeNext);
+    } else if(rem>0 && i<lastRowTotal){
+      var posInRow=i-total, c=document.createElement('div');
+      if(posInRow<rem){
+        c.className='e5g-cell extra anim';
+        c.style.setProperty('--r',(Math.random()*18-9).toFixed(1)+'deg');
+        grid.appendChild(c); e5gSndPop();
+      } else {
+        c.className='e5g-cell ghost';
+        grid.appendChild(c); e5gSndGhost();
+      }
+      i++; e5gDelay(280+Math.random()*160, placeNext);
+    } else {
+      var prefix=isDemo?'(예시) ':'';
+      if(rem===0){
+        fb.textContent=prefix+'딱 맞아요! '+r+'개씩이면 12의 약수예요 🎉'; fb.className='e5g-feedback ok';
+        e5gS.found[r]=true; if(btn) btn.classList.add('found');
+        e5gRenderChecklist(); e5gSndOk();
+      } else {
+        fb.textContent=prefix+r+'개가 안 돼요! '+(fullRows+1)+'번째 줄은 '+rem+'개만 채우고 '+(cols-rem)+'칸이 모자라요 — 12의 약수가 아니에요'; fb.className='e5g-feedback no';
+        e5gSndNo();
+      }
+      if(onDone) e5gDelay(500, onDone);
+    }
+  }
+  placeNext();
+}
+var E5G_BEATS=[
+  "애들아 안녕! 오늘은 '약수'가 뭔지 알아볼 거야.",
+  "약수란, 어떤 수를 나머지 없이 딱 나눌 수 있는 수를 말해.",
+  "예를 들어 12를 3으로 나누면 4가 되고, 나머지가 하나도 안 남아. 그래서 3은 12의 약수야!",
+  "이걸 눈으로 쉽게 보려고, 블록 12개로 확인해볼게.",
+  "한 줄에 3개씩 채웠을 때 마지막 줄까지 하나도 안 남고 딱 맞으면 — 그게 약수라는 뜻이야!"
+];
+function e5gPlayBeats(cb){
+  var i=0, eqBox=document.getElementById('e5gEqBox');
+  function next(){
+    if(i>=E5G_BEATS.length){ cb(); return; }
+    var text=E5G_BEATS[i], showEq=(i===2);
+    i++;
+    if(showEq){
+      eqBox.style.display='flex';
+      requestAnimationFrame(function(){ eqBox.style.opacity=1; });
+    } else if(eqBox.style.opacity==='1'){
+      eqBox.style.opacity=0;
+      e5gDelay(500, function(){ eqBox.style.display='none'; });
+    }
+    e5gSay(text, next);
+  }
+  next();
+}
+function e5gRunAutoplay(){
+  e5gPlayBeats(function(){
+    document.getElementById('e5gAfterIntro').style.display='block';
+    e5gTryDiv(3, e5gS.pickBtns[3], true, function(){
+      e5gSay('봐봐! 3개씩 넣었더니 4줄로 딱 맞았지? 그래서 3은 12의 약수야! 이번엔 5개씩도 해볼게.', function(){
+        e5gTryDiv(5, e5gS.pickBtns[5], true, function(){
+          e5gSay('어? 마지막 줄이 모자라지? 그래서 5는 12의 약수가 아니야. 이제 너도 직접 눌러서 나머지 약수들을 찾아볼래?', function(){
+            document.getElementById('e5gWatch').classList.add('gone');
+            document.getElementById('e5gReveal').classList.add('show');
+          });
+        });
+      });
+    });
+  });
+}
+function e5gBuildPicks(){
+  var row=document.getElementById('e5gPicks');
+  if(!row || row.childElementCount) return;
+  e5gS.pickBtns={};
+  for(var r=1;r<=E5G_N;r++){
+    (function(r){
+      var b=document.createElement('button');
+      b.className='e5g-pick'; b.textContent=r;
+      b.onclick=function(){ e5gSndClick(); e5gTryDiv(r,b); };
+      row.appendChild(b);
+      e5gS.pickBtns[r]=b;
+    })(r);
+  }
+}
+function e5gStart(){
+  e5gUnlock();
+  var startBtn=document.getElementById('e5gStartBtn');
+  if(startBtn) startBtn.style.display='none';
+  document.getElementById('e5gPlayArea').style.display='block';
+  e5gBuildPicks();
+  e5gRenderChecklist();
+  e5gRunAutoplay();
+}
+function e5gRestart(){
+  e5gS.divGen++;
+  e5gS.paused=false;
+  var pb=document.getElementById('e5gPauseBtn'); if(pb) pb.textContent='⏸ 정지';
+  e5gS.found={};
+  Object.keys(e5gS.pickBtns).forEach(function(k){ e5gS.pickBtns[k].classList.remove('found','active'); });
+  e5gRenderChecklist();
+  document.getElementById('e5gGrid').innerHTML='';
+  document.getElementById('e5gFb').textContent='';
+  document.getElementById('e5gAfterIntro').style.display='none';
+  document.getElementById('e5gWatch').classList.remove('gone');
+  document.getElementById('e5gReveal').classList.remove('show');
+  var bubble=document.getElementById('e5gBubble');
+  bubble.textContent=''; bubble.style.opacity=0;
+  var eqBox=document.getElementById('e5gEqBox');
+  eqBox.style.opacity=0; eqBox.style.display='none';
+  e5gRunAutoplay();
 }
 function gcwGen1(id){
   var g = 2+Math.floor(Math.random()*10);
