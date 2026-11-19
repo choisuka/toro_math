@@ -1715,17 +1715,23 @@ const CV_DATA = {
         <button class="havruta-show-btn" onclick="havrutaReveal('e5gcd-p1',this)">💡 풀이 보기</button>
         <div class="havruta-reveal" id="rv-e5gcd-p1">
           <div class="fb-diagram" style="text-align:left">
-            <div style="font-size:.76rem;font-weight:700;color:#f0c040;margin-bottom:6px">먼저 직접 나눠볼까요? (사과 24개 · 귤 36개 둘 다 확인!)</div>
+            <div style="font-size:.76rem;font-weight:700;color:#f0c040;margin-bottom:6px">먼저 사과 24개부터 직접 나눠볼까요?</div>
             <div style="font-size:.78rem;line-height:1.9">
-              1명에게 주면 → 사과 24개씩, 귤 36개씩 ✓ 둘 다 나눠짐<br>
-              2명에게 주면 → 사과 12개씩, 귤 18개씩 ✓<br>
-              3명에게 주면 → 사과 8개씩, 귤 12개씩 ✓<br>
-              4명에게 주면 → 사과 6개씩, 귤 9개씩 ✓<br>
-              5명에게 주면 → 사과 24÷5=4···4 <span style="color:#f85149">✗ 사과부터 안 나눠짐</span><br>
-              6명에게 주면 → 사과 4개씩, 귤 6개씩 ✓<br>
-              12명에게 주면 → 사과 2개씩, 귤 3개씩 ✓ ← <strong style="color:#3fb950">가장 많이 나눌 수 있는 사람 수!</strong>
+              1명 → 24개씩 ✓ · 2명 → 12개씩 ✓ · 3명 → 8개씩 ✓ · 4명 → 6개씩 ✓<br>
+              5명 → 24÷5=4···4 <span style="color:#f85149">✗</span> · 6명 → 4개씩 ✓ · 7명 → 3···3 <span style="color:#f85149">✗</span> · 8명 → 3개씩 ✓
             </div>
-            <span class="cap">둘 다 남김없이 나눠지는 사람 수(1,2,3,4,6,12)가 공통 약수이고, 그중 가장 큰 12가 최대공약수예요</span>
+            <span class="cap">이렇게 쭉 확인하면 24의 약수: 1,2,3,4,6,8,12,24</span>
+          </div>
+          <div class="fb-diagram" style="text-align:left">
+            <div style="font-size:.76rem;font-weight:700;color:#f0c040;margin-bottom:6px">이번엔 귤 36개를 직접 나눠볼까요?</div>
+            <div style="font-size:.78rem;line-height:1.9">
+              1명 → 36개씩 ✓ · 2명 → 18개씩 ✓ · 3명 → 12개씩 ✓ · 4명 → 9개씩 ✓<br>
+              5명 → 36÷5=7···1 <span style="color:#f85149">✗</span> · 6명 → 6개씩 ✓ · 9명 → 4개씩 ✓ · 12명 → 3개씩 ✓
+            </div>
+            <span class="cap">이렇게 쭉 확인하면 36의 약수: 1,2,3,4,6,9,12,18,36</span>
+          </div>
+          <div class="fb-diagram" style="text-align:left">
+            <span class="cap">두 약수 목록에 <strong style="color:#3fb950">공통으로 있는 수(1,2,3,4,6,12)</strong> 중 가장 큰 <strong style="color:#3fb950">12</strong>가 최대공약수예요!</span>
           </div>
           <div class="fb-diagram" style="text-align:left">
             <div style="display:flex;justify-content:center;gap:8px;font-size:.72rem;text-align:center;margin-bottom:6px">
